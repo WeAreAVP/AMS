@@ -1,0 +1,5 @@
+cache/*
+log/*
+nbproject/
+.DS_Store
+

@@ -63,6 +63,23 @@ class Station_Model extends CI_Model {
         return  $query->num_rows;
         
     }
+    /**
+     * Filter stations
+     * 
+     * @param type $certified
+     * @param type $agreed
+     * @return type 
+     */
+    function apply_filter($certified,$agreed) {
+        
+        if(trim($certified)!='')
+            $this->db->where('is_certified',$certified);
+        if(trim($certified)!='')
+            $this->db->where('is_agreed',$agreed);
+        
+        return $query = $this->db->get($this->_table)->result();
+        
+    }
 
 }
 

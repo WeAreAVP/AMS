@@ -1,20 +1,45 @@
+<?php
+$search = array(
+    'name' => 'search_keyword',
+    'id' => 'search_keyword',
+    'value' => set_value('search_keyword'),
+);
+$certified = array(
+    'name' => 'certified',
+    'id' => 'certified',
+    'value' => set_value('certified'),
+);
+$agreed = array(
+    'name' => 'agreed',
+    'id' => 'agreed',
+    'value' => set_value('agreed'),
+);
+$attributes = array('id' => 'search_form');
 
-<table class="table">
+echo form_open_multipart($this->uri->uri_string(), $attributes);
+?>
+
+<table class="table no_border">
     <tr>
-        <td class="no_td_border">
-            <b>Search Keyword</b>
+        <td>
+            <?php echo form_label('Search Keyword', $search['id']); ?>
         </td>
-        <td class="no_td_border">
-            <input type="input" id="search" name="search" placeholder="Enter Keyword"/>
+        <td>
+            <?php echo form_input($search); ?>
         </td>
-        <td>Certified</td>
-        <td><select id="certified" name="certified">
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-            </select></td>
+        <td><?php echo form_label('Certified', $certified['id']); ?></td>
+        <td>
+            <?php echo form_dropdown($certified['id'], array('' => 'Select', '1' => 'Yes', '0' => 'No')); ?>
+
+        </td>
+        <td><?php echo form_label('Agreed', $certified['id']); ?></td>
+        <td>
+            <?php echo form_dropdown($agreed['id'], array('' => 'Select', '1' => 'Yes', '0' => 'No')); ?>
+        </td>
+        <td><?php echo form_submit('search', 'Search', 'class="btn primary" '); ?></td>
     </tr>
 </table>
-
+<?php echo form_close(); ?>
 <table class="table table-bordered zebra-striped text-align">
     <thead>
         <tr>
@@ -119,4 +144,5 @@
             }
         });
     }
+    
 </script>

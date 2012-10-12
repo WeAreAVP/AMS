@@ -32,6 +32,10 @@ class Unit_Testing extends CI_Controller {
         $test2 = $this->station_model->get_all();
         $test_name = 'Station type';
         echo $this->unit->run($test2, 'is_array', $test_name);
+        echo '<br/>';
+        $test3 = $this->station_model->update_station(1, array('start_date' => '2011-10-12'));
+        $test_name = 'Digitilization Start Date';
+        echo $this->unit->run($test3, 'is_true', $test_name);
     }
 
 }

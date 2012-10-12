@@ -1531,7 +1531,7 @@ table {
   vertical-align: top;
   border-top: 1px solid #dddddd;
 }
-.no_td_border{
+.no_border td{
     border:none !important;
 }
 .table th {

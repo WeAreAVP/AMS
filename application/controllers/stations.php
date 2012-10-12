@@ -24,7 +24,18 @@ class Stations extends CI_Controller {
      *  
      */
     public function index() {
-        $data['stations'] = $this->station_model->get_all();
+        $val = $this->form_validation;
+        $val->set_rules('search_keyword', 'Search Keyword', 'trim|xss_clean');
+        $val->set_rules('certified', 'Certified', 'trim|xss_clean');
+        $val->set_rules('agreed', 'Agreed', 'trim|xss_clean');
+        if ($this->input->post()) {
+            $certified = $this->input->post('certified');
+            $agreed = $this->input->post('agreed');
+            $data['stations'] = $this->station_model->apply_filter($certified, $agreed);
+        } else {
+            $data['stations'] = $this->station_model->get_all();
+        }
+
         $this->load->view('stations/list', $data);
     }
 

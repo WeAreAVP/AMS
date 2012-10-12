@@ -24,7 +24,7 @@ $serverName = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : gethostname
 
 if (strpos($serverName, 'iserver.purelogics.info') !== FALSE) {
     define('ENVIRONMENT', 'testing');
-} else if (strpos($serverName, '') !== FALSE) {
+} else if (strpos($serverName, 'ec2-54-242-106-197.compute-1.amazonaws.com') !== FALSE) {
     define('ENVIRONMENT', 'development');
 } else {
     define('ENVIRONMENT', 'production');

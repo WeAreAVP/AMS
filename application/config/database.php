@@ -58,9 +58,19 @@ if (ENVIRONMENT == 'testing') {
     $db['default']['dbdriver'] = 'mysql';
     $db['default']['db_debug'] = TRUE;
 } else if (ENVIRONMENT == 'development') {
-    
+     $db['default']['hostname'] = 'localhost';
+    $db['default']['username'] = 'root';
+    $db['default']['password'] = 'pl@123';
+    $db['default']['database'] = 'ams';
+    $db['default']['dbdriver'] = 'mysql';
+    $db['default']['db_debug'] = TRUE;
 } else {
-    
+     $db['default']['hostname'] = 'localhost';
+    $db['default']['username'] = 'root';
+    $db['default']['password'] = 'pl@123';
+    $db['default']['database'] = 'ams';
+    $db['default']['dbdriver'] = 'mysql';
+    $db['default']['db_debug'] = TRUE;
 }
 
 

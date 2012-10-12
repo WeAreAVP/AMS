@@ -12,3 +12,8 @@ function active_anchor($orignal_class, $orignal_method, $class = 'active') {
     return '';
 }
 
+function isAjax()
+	{
+        return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest");
+  }
+

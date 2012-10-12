@@ -53,11 +53,11 @@
                     <td>
                         <?php if (empty($data->start_date)) {
                             ?>
-                            <a href="#myModal"  data-toggle="modal" onclick="setStartDate('','<?php echo $data->station_name; ?>');">Set start date</a>
+                            <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');">Set start date</a>
                             <?php
                         } else {
                             ?>
-                            <a href="#myModal"  data-toggle="modal" onclick="setStartDate('<?php echo $data->start_date; ?>','<?php echo $data->station_name; ?>');"><?php echo $data->start_date; ?></a>
+                            <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('<?php echo $data->start_date; ?>','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');"><?php echo $data->start_date; ?></a>
                             <?php
                         }
                         ?>
@@ -82,6 +82,7 @@
         <h3 id="stationLabel">Set Start Date</h3>
     </div>
     <div class="modal-body">
+        <input type="hidden" id="station_id" name="station_id"/>
         <input type="text" id="start_date" name="start_date"/>
     </div>
     <div class="modal-footer">
@@ -90,12 +91,32 @@
     </div>
 </div>
 <script type="text/javascript">
-    function setStartDate(date,station_name){
+    var stationName=null;
+    function setStartDate(date,station_name,id){
+        stationName=station_name;
         $('#stationLabel').html(station_name+' Start Date');
         $('#start_date').val(date);
+        $('#station_id').val(id);
         
     }
     function updateStartDate(){
-        
+        station=$('#station_id').val();
+        start_date=$('#start_date').val();
+        $.ajax({
+            type: 'POST', 
+            url: '/index.php/stations/update_station_date',
+            data:{id:station,start_date:start_date},
+            dataType: 'json',
+            cache: false,
+            success: function (result) { 
+                if(result.success==true && result.station==true){
+                    $('#'+station+'_date').attr('onclick','setStartDate("'+start_date+'","'+stationName+'","'+station+'")');
+                    $('#'+station+'_date').html(start_date);
+                }
+                else{
+                    console.log('some error occur');
+                }
+            }
+        });
     }
 </script>

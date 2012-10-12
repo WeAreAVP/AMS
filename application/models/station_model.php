@@ -18,6 +18,12 @@ class Station_Model extends CI_Model {
         return $this->db->get($this->_table)->row();
     }
 
+    function update_station($station_id, $data) {
+        $data['updated_at'] = date('Y-m-d H:i:s', time());
+        $this->db->where('id', $station_id);
+        return $this->db->update($this->_table, $data);
+    }
+
 }
 
 ?>

@@ -48,7 +48,7 @@ class Station_Model extends CI_Model {
      * @return boolean 
      */
     function update_station($station_id, $data) {
-        $data['updated_at'] = date('Y-m-d H:i:s', time());
+        $data['updated_at'] = date('Y-m-d H:i:s');
         $this->db->where('id', $station_id);
         return $this->db->update($this->_table, $data);
     }

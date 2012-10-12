@@ -3,12 +3,16 @@
 /**
  * stations controller.
  *
- * @package    ams
+ * @package    AMS
  * @subpackage stations
  * @author     Nouman Tayyab
  */
 class Stations extends CI_Controller {
 
+    /**
+     * constructor. Load layout,Model,Library and helpers
+     * 
+     */
     function __construct() {
         parent::__construct();
         $this->layout = 'main_layout.php';
@@ -26,7 +30,8 @@ class Stations extends CI_Controller {
 
     /**
      * Show Detail of specific station
-     *  
+     * 
+     * @param $station_id as a uri segment
      */
     public function detail() {
         $station_id = $this->uri->segment(3);
@@ -34,6 +39,13 @@ class Stations extends CI_Controller {
         $this->load->view('stations/detail', $data);
     }
 
+    /**
+     * set or update the start time of station.
+     * 
+     * @param $id get id of a station
+     * @param $start_date get station start date
+     * @return json 
+     */
     public function update_station_date() {
         if (isAjax()) {
             $station_id = $this->input->post('id');

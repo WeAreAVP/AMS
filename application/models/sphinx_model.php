@@ -9,21 +9,21 @@ class Sphinx_Model extends CI_Model
 		$this->load->library('sphinxsearch');
 	}
 
-	public function search_station($params, $offset = 0, $limit = 5 )
+	public function search_stations($params, $offset = 0, $limit = 5, $select = FALSE )
 	{
-   	$listings=false;
+   	
 		$total_record = 0;
-		$this->sphinxsearch->reset_filters();
-		$this->sphinxsearch->reset_group_by();
-		$where ='';//$this->get_sphinx_search_condtion($params);
-		$mode = SPH_MATCH_EXTENDED;
-		$this->sphinxsearch->set_array_result ( true );
-		$this->sphinxsearch->set_match_mode ( $mode );
-		$this->sphinxsearch->set_connect_timeout ( 120 );
-		if ( $limit ) $this->sphinxsearch->set_limits ( (int) $offset, (int) $limit, ( $limit>1000 ) ? $limit : 1000 );
-		$res = $this->sphinxsearch->query( $where, 'stations' );
-		print_r($res);
-		exit();
+		
+			$this->sphinxsearch->reset_filters();
+			$this->sphinxsearch->reset_group_by();
+//			$where = $this->get_sphinx_search_condtion($params);
+			$mode = SPH_MATCH_EXTENDED;
+			$this->sphinxsearch->set_array_result ( true );
+			$this->sphinxsearch->set_match_mode ( $mode );
+			$this->sphinxsearch->set_connect_timeout ( 120 );
+			if ( $limit ) $this->sphinxsearch->set_limits ( (int) $offset, (int) $limit, ( $limit>1000 ) ? $limit : 1000 );
+			$res = $this->sphinxsearch->query( '', 'stations' );
+			print_r($res);
 			$execution_time=$res['time'];
 			if ( $res)
 			{
@@ -39,6 +39,7 @@ class Sphinx_Model extends CI_Model
 					}
 				}
 			}
+		
 		return array("total_count"=>$total_record,"listings_record"=>$listings,"query_time"=>$execution_time);
 	}
 }

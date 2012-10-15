@@ -17,8 +17,7 @@ class Stations extends CI_Controller {
         parent::__construct();
         $this->layout = 'main_layout.php';
         $this->load->model('station_model');
-				 $this->load->model('sphinx_model','sphinx');
-				
+				$this->load->model('sphinx_model','sphinx');
     }
 
     /**
@@ -73,7 +72,7 @@ class Stations extends CI_Controller {
    */
 	public function search()
 	{
-			$this->sphinx->search_station();
+			$this->sphinx->search_stations();
 	}
 
 }

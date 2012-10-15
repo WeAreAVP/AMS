@@ -17,7 +17,7 @@ class Stations extends CI_Controller {
         parent::__construct();
         $this->layout = 'main_layout.php';
         $this->load->model('station_model');
-        $this->load->model('sphinx_model', 'sphinx');
+				$this->load->model('sphinx_model','sphinx');
     }
 
     /**
@@ -67,23 +67,14 @@ class Stations extends CI_Controller {
             exit;
         }
     }
-
-    /*
-     * Search Station based on sphinx 
-     */
-
-    public function search() {
-        $this->load->library('sphinxsearch');
-        $cl = new SphinxClient();
-        $cl->SetServer("localhost", 9312);
-        $cl->SetMatchMode(SPH_MATCH_ANY);
-        
-
-        $result = $cl->Query('radio', '*');
-        var_dump($result);
-        exit;
-//        $this->sphinx->search_stations();
-    }
+	 /*
+    * Search Station based on sphinx 
+   */
+	public function search()
+	{
+		echo "test";
+			$this->sphinx->search_stations("");
+	}
 
 }
 

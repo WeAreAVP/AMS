@@ -47,6 +47,7 @@ if (defined('ENVIRONMENT')) {
             break;
 
         case 'testing':
+        case 'qatesting':
         case 'production':
             error_reporting(0);
             break;

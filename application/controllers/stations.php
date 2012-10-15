@@ -72,8 +72,13 @@ class Stations extends CI_Controller {
    */
 	public function search()
 	{
-		echo "test";
-			$this->sphinx->search_stations("");
+		$s = new SphinxClient;
+		$s->setServer("localhost", 9312);
+		$s->setMatchMode(SPH_MATCH_ANY);
+		$s->setMaxQueryTime(3);
+		$result = $s->query("radio");
+		var_dump($result);
+			//$this->sphinx->search_stations("");
 	}
 
 }

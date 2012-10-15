@@ -18,10 +18,11 @@ class Sphinx_Model extends CI_Model
 			 	
 			//$this->sphinxsearch->reset_group_by();
 //			$where = $this->get_sphinx_search_condtion($params);
-			$mode = SPH_MATCH_ALL;//SPH_MATCH_EXTENDED;
-			$this->sphinxsearch->set_array_result ( true );
-			$this->sphinxsearch->set_match_mode ( $mode );
-			$this->sphinxsearch->set_connect_timeout ( 120 );
+	var_dump($this->sphinxsearch->is_connect_error());
+		//	$mode = SPH_MATCH_ALL;//SPH_MATCH_EXTENDED;
+		//	$this->sphinxsearch->set_array_result ( true );
+		//	$this->sphinxsearch->set_match_mode ( $mode );
+		//	$this->sphinxsearch->set_connect_timeout ( 120 );
 			//if ( $limit ) $this->sphinxsearch->set_limits ( (int) $offset, (int) $limit, ( $limit>1000 ) ? $limit : 1000 );
 			$res = $this->sphinxsearch->query( 'radio', '*' );
 			

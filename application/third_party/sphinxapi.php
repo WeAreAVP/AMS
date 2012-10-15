@@ -534,7 +534,6 @@ class SphinxClient
 			$this->_connerror = true;
 			return false;
 		}
-		echo "Ali Raza";
 		return true;
 	}
 
@@ -586,17 +585,11 @@ class SphinxClient
 			$host = $this->_host;
 			$port = $this->_port;
 		}
-			echo $this->_host;
-			$port = $this->_port;
+
 		if ( $this->_timeout<=0 )
 			$fp = @fsockopen ( $host, $port, $errno, $errstr );
 		else
 			$fp = @fsockopen ( $host, $port, $errno, $errstr, $this->_timeout );
-		
-		echo "A";
-		echo "<br>$errstr<br>$errno<br>";
-		var_dump($fp);
-		exit;
 		
 		if ( !$fp )
 		{
@@ -961,7 +954,6 @@ class SphinxClient
 	/// and return the search results
 	function Query ( $query, $index="*", $comment="" )
 	{
-		echo $query.$index;
 		assert ( empty($this->_reqs) );
 
 		$this->AddQuery ( $query, $index, $comment );
@@ -972,8 +964,8 @@ class SphinxClient
 		if ( !is_array($results) )
 			return false; // probably network error; error message should be already filled
 
-		$this->_error = $results[0]["error"];
-		$this->_warning = $results[0]["warning"];
+		echo $this->_error = $results[0]["error"];
+		echo $this->_warning = $results[0]["warning"];
 		if ( $results[0]["status"]==SEARCHD_ERROR )
 			return false;
 		else
@@ -1630,8 +1622,6 @@ class SphinxClient
 			return false;
 
 		$this->_socket = $fp;
-		
-		
 		return true;
 	}
 

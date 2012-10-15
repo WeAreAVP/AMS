@@ -66,6 +66,13 @@ class Stations extends CI_Controller {
             exit;
         }
     }
+	 /*
+    * Search Station based on sphinx 
+   */
+	public function search()
+	{
+			
+	}
 
 }
 

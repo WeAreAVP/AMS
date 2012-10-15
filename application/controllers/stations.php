@@ -72,8 +72,7 @@ class Stations extends CI_Controller {
    */
 	public function search()
 	{
-		define('SPHINXSEARCH_SPARK_HOME', dirname(dirname(__FILE__)));
-		class_exists('SphinxClient') or require_once(SPHINXSEARCH_SPARK_HOME.'/third_party/sphinxapi.php');
+	//	class_exists('SphinxClient') or require_once(SPHINXSEARCH_SPARK_HOME.'/third_party/sphinxapi.php');
 		$s = new SphinxClient;
 		$s->setServer("localhost", 9312);
 		$s->setMatchMode(SPH_MATCH_ANY);

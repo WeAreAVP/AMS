@@ -77,7 +77,6 @@ class Stations extends CI_Controller {
 		$s->setServer("localhost", 9312);
 		$s->setMatchMode(SPH_MATCH_ANY);
 		$s->setMaxQueryTime(3);
-		
 		$result = $s->query("general | radio");
 		var_dump($result);
 	

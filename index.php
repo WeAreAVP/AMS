@@ -18,7 +18,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-@date_default_timezone_set('America/New_York');
+
 $serverName = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : gethostname();
 
 
@@ -26,6 +26,8 @@ if (strpos($serverName, 'iserver.purelogics.info') !== FALSE) {
     define('ENVIRONMENT', 'testing');
 } else if (strpos($serverName, 'ec2-54-242-106-197.compute-1.amazonaws.com') !== FALSE) {
     define('ENVIRONMENT', 'development');
+} else if (strpos($serverName, 'ec2-174-129-139-234.compute-1.amazonaws.com') !== FALSE) {
+    define('ENVIRONMENT', 'qatesting');
 } else {
     define('ENVIRONMENT', 'production');
 }

@@ -21,9 +21,11 @@ if (ENVIRONMENT == 'testing') {
     $config['base_url'] = "http://ams.iserver.purelogics.info/";
 } else if (ENVIRONMENT == 'development') {
      $config['base_url'] = "http://ec2-54-242-106-197.compute-1.amazonaws.com/";
-       
-} else {
+}
+else if (ENVIRONMENT == 'qatesting') {
      $config['base_url'] = "http://ec2-174-129-139-234.compute-1.amazonaws.com/";
+} else {
+    
 }
 
 

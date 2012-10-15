@@ -18,6 +18,7 @@ class Sphinx_Model extends CI_Model
 			 	
 			//$this->sphinxsearch->reset_group_by();
 //			$where = $this->get_sphinx_search_condtion($params);
+	var_dump($this->sphinxsearch->is_connect_error());
 			$mode = SPH_MATCH_ALL;//SPH_MATCH_EXTENDED;
 			$this->sphinxsearch->set_array_result ( true );
 			$this->sphinxsearch->set_match_mode ( $mode );

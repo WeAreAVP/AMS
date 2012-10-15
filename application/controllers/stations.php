@@ -15,6 +15,8 @@ class Stations extends CI_Controller {
      */
     function __construct() {
         parent::__construct();
+				error_reporting(E_ALL);
+					error_reporting(1);
         $this->layout = 'main_layout.php';
         $this->load->model('station_model');
 				$this->load->model('sphinx_model','sphinx');
@@ -72,15 +74,7 @@ class Stations extends CI_Controller {
    */
 	public function search()
 	{
-	//	class_exists('SphinxClient') or require_once(SPHINXSEARCH_SPARK_HOME.'/third_party/sphinxapi.php');
-		$s = new SphinxClient;
-		$s->setServer("localhost", 9312);
-		$s->setMatchMode(SPH_MATCH_ANY);
-		$s->setMaxQueryTime(3);
-		$result = $s->query("general | radio");
-		var_dump($result);
-	
-		//$this->sphinx->search_stations("");
+		$this->sphinx->search_stations("");
 	}
 
 }

@@ -72,11 +72,14 @@ class Stations extends CI_Controller {
    */
 	public function search()
 	{
-		class_exists('SphinxClient') or require_once(dirname(dirname(__FILE__)).'/third_party/sphinxapi.php');
-		$cl = new SphinxClient();
+		define('SPHINXSEARCH_SPARK_HOME', dirname(dirname(__FILE__)));
+		class_exists('SphinxClient') or require_once(SPHINXSEARCH_SPARK_HOME.'/third_party/sphinxapi.php');
+	  $cl = new SphinxClient();
   	$cl->SetMatchMode(SPH_MATCH_BOOLEAN);
+  	$cl->SetSortMode(SPH_SORT_RELEVANCE);
   	$cl->SetLimits(0,3);
-	  $result = $cl->Query( "radio", 'stations' );
+	  $result = $cl->Query( "general | radio", "stations" );
+		var_dump($result);
 		//$this->sphinx->search_stations("");
 	}
 

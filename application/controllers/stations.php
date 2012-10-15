@@ -17,7 +17,7 @@ class Stations extends CI_Controller {
         parent::__construct();
         $this->layout = 'main_layout.php';
         $this->load->model('station_model');
-				$this->load->model('sphinx_model','sphinx');
+        $this->load->model('sphinx_model', 'sphinx');
     }
 
     /**
@@ -68,25 +68,21 @@ class Stations extends CI_Controller {
         }
     }
 
+    /*
+     * Search Station based on sphinx 
+     */
 
-  
-
-	 /*
-    * Search Station based on sphinx 
-   */
-	public function search()
-	{
-		define('SPHINXSEARCH_SPARK_HOME', dirname(dirname(__FILE__)));
-		class_exists('SphinxClient') or require_once(SPHINXSEARCH_SPARK_HOME.'/third_party/sphinxapi.php');
-	  $cl = new SphinxClient();
-  	$cl->SetMatchMode(SPH_MATCH_BOOLEAN);
-  	$cl->SetSortMode(SPH_SORT_RELEVANCE);
-  	$cl->SetLimits(0,3);
-	  $result = $cl->Query( "general | radio", "stations" );
-		var_dump($result);
-		//$this->sphinx->search_stations("");
-	}
-
+    public function search() {
+        define('SPHINXSEARCH_SPARK_HOME', dirname(dirname(__FILE__)));
+        class_exists('SphinxClient') or require_once(SPHINXSEARCH_SPARK_HOME . '/third_party/sphinxapi.php');
+        $cl = new SphinxClient();
+        $cl->SetMatchMode(SPH_MATCH_BOOLEAN);
+        $cl->SetSortMode(SPH_SORT_RELEVANCE);
+        $cl->SetLimits(0, 3);
+        $result = $cl->Query("general | radio", "stations");
+        var_dump($result);
+        //$this->sphinx->search_stations("");
+    }
 
 }
 

@@ -958,14 +958,13 @@ class SphinxClient
 
 		$this->AddQuery ( $query, $index, $comment );
 		$results = $this->RunQueries ();
-		var_dump($results);
 		$this->_reqs = array (); // just in case it failed too early
 
 		if ( !is_array($results) )
 			return false; // probably network error; error message should be already filled
 
-		echo $this->_error = $results[0]["error"];
-		echo $this->_warning = $results[0]["warning"];
+		$this->_error = $results[0]["error"];
+		$this->_warning = $results[0]["warning"];
 		if ( $results[0]["status"]==SEARCHD_ERROR )
 			return false;
 		else

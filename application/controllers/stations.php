@@ -81,6 +81,7 @@ class Stations extends CI_Controller {
 
         $result = $cl->Query('radio', '*');
         var_dump($result);
+        exit;
 //        $this->sphinx->search_stations();
     }
 

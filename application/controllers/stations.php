@@ -67,6 +67,14 @@ class Stations extends CI_Controller {
         }
     }
 
+    public function search() {
+        $cl = new SphinxClient();
+        $cl->SetServer("localhost", 9312);
+        $cl->SetMatchMode(SPH_MATCH_ANY);
+         $result = $cl->Query( 'radio', '*' );
+         var_dump($result);
+    }
+
 }
 
 ?>

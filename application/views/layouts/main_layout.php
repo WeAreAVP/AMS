@@ -54,7 +54,12 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <a class="brand" href="<?php echo site_url('stations/index') ?>">AMS</a>
+<!--                 <div class="btn-group pull-right">
 
+                    <ul class="nav">
+                        <li><a href="<?php echo site_url('auth/logout') ?>">Log Out</a></li>
+                    </ul>
+                </div>-->
                 <div class="nav-collapse">
                     <ul class="nav">
                         <li class="<?php echo active_anchor('stations', 'index'); ?>"><a href="<?php echo site_url('stations/index') ?>">Stations</a></li>

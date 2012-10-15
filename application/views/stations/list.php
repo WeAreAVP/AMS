@@ -40,64 +40,94 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
     </tr>
 </table>
 <?php echo form_close(); ?>
-<table class="table table-bordered zebra-striped text-align">
-    <thead>
-        <tr>
-            <th>CPB ID</th>
-            <th>Station Name</th>
-            <th>Contact Name</th>
-            <th>Type</th>
-            <th>Total Allocated Hours</th>
-            <th>Start Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        if (count($stations) > 0) {
-            foreach ($stations as $data) {
+<div  style="overflow: scroll;height: 600px;">
+    <table class="tablesorter table table-bordered" id="station_table">
+        <thead>
+            <tr>
+                <td width="20"><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
+                <th width="20">CPB ID</th>
+                <th>Station Name</th>
+                <th>Contact Name</th>
+                <th>Contact Title</th>
+                <th>Type</th>
+                <th>Primary Address </th>
+                <th>Secondary Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Contact Phone</th>
+                <th>Contact Fax</th>
+                <th>Contact Email</th>
+                <th>Allocated Hours</th>
+                <th>Allocated Buffer</th>
+                <th>Total Allocated Hours</th>
+                <th>Certified</th>
+                <th>Agreed</th>
+                <th>Start Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (count($stations) > 0) {
+                foreach ($stations as $data) {
+                    ?>
+                    <tr>
+                        <td><input style='margin-left:15px;' type='checkbox' name='station[]' value='<?php echo $data->id; ?>'  class='checkboxes'/></td>
+                        <td><a href="<?php echo site_url('stations/detail/' . $data->id); ?>"><?php echo $data->cpb_id; ?></a></td>
+                        <td><?php echo $data->station_name; ?></td>
+                        <td><?php echo $data->contact_name; ?></td>
+                        <td><?php echo $data->contact_title; ?></td>
+
+                        <td>
+                            <?php
+                            if ($data->type == 0)
+                                echo 'Radio';
+                            else if ($data->type == 1)
+                                echo 'TV';
+                            else if ($data->type == 2)
+                                echo 'Joint';
+                            else
+                                echo 'Unknown';
+                            ?>
+                        </td>
+                        <td><?php echo $data->address_primary; ?></td>
+                        <td><?php echo $data->address_secondary; ?></td>
+                        <td><?php echo $data->city; ?></td>
+                        <td><?php echo $data->state; ?></td>
+                        <td><?php echo $data->zip; ?></td>
+                        <td><?php echo $data->contact_phone; ?></td>
+                        <td><?php echo $data->contact_fax; ?></td>
+                        <td><?php echo $data->contact_email; ?></td>
+                        <td><?php echo $data->allocated_hours; ?></td>
+                        <td><?php echo $data->allocated_buffer; ?></td>
+                        <td><?php echo $data->total_allocated; ?></td>
+                        <td><?php echo ($data->is_certified) ? 'Yes' : 'No'; ?>
+                        <td><?php echo ($data->is_agreed) ? 'Yes' : 'No'; ?>
+                        <td>
+                            <?php if (empty($data->start_date)) {
+                                ?>
+                                <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');">Set start date</a>
+                                <?php
+                            } else {
+                                ?>
+                                <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('<?php echo $data->start_date; ?>','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');"><?php echo $data->start_date; ?></a>
+                                <?php
+                            }
+                            ?>
+
+
+                        </td>
+                    </tr>
+                    <?php
+                }
+            } else {
                 ?>
-                <tr>
-                    <td><a href="<?php echo site_url('stations/detail/' . $data->id); ?>"><?php echo $data->cpb_id; ?></a></td>
-                    <td><?php echo $data->station_name; ?></td>
-                    <td><?php echo $data->contact_name; ?></td>
-                    <td>
-                        <?php
-                        if ($data->type == 0)
-                            echo 'Radio';
-                        else if ($data->type == 1)
-                            echo 'TV';
-                        else if ($data->type == 2)
-                            echo 'Joint';
-                        else
-                            echo 'Unknown';
-                        ?>
-                    </td>
-                    <td>
-                        <?php echo $data->total_allocated; ?>
-                    </td>
-                    <td>
-                        <?php if (empty($data->start_date)) {
-                            ?>
-                            <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');">Set start date</a>
-                            <?php
-                        } else {
-                            ?>
-                            <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('<?php echo $data->start_date; ?>','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');"><?php echo $data->start_date; ?></a>
-                            <?php
-                        }
-                        ?>
+                <tr><td colspan="11" style="text-align: center;"><b>No Station Found.</b></td></tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
 
-
-                    </td>
-                </tr>
-                <?php
-            }
-        } else {
-            ?>
-            <tr><td colspan="11" style="text-align: center;"><b>No Station Found.</b></td></tr>
-        <?php } ?>
-    </tbody>
-</table>
 <div style="text-align: center;"><a href="<?php echo site_url('stations/add/'); ?>" >Add New</a></div>
 
 
@@ -143,6 +173,15 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                 }
             }
         });
+    }
+    function checkAll() {
+        var boxes = document.getElementsByTagName('input');
+        for (var index = 0; index < boxes.length; index++) {
+            box = boxes[index];
+            if (box.type == 'checkbox' && box.className == 'checkboxes' && box.disabled == false)
+                box.checked = document.getElementById('check_all').checked;
+        }
+        return true;
     }
     
 </script>

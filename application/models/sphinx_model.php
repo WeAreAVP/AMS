@@ -9,22 +9,24 @@ class Sphinx_Model extends CI_Model
 		$this->load->library('sphinxsearch');
 	}
 
-	public function search_stations($params, $offset = 0, $limit = 5, $select = FALSE )
+	public function search_stations($params, $offset = 0, $limit = 5)
 	{
-   	
+   	echo "In Method";
 		$total_record = 0;
-		
-			$this->sphinxsearch->reset_filters();
-			$this->sphinxsearch->reset_group_by();
+				
+			//$this->sphinxsearch->reset_filters();
+			 	
+			//$this->sphinxsearch->reset_group_by();
 //			$where = $this->get_sphinx_search_condtion($params);
-			$mode = SPH_MATCH_EXTENDED;
+			$mode = SPH_MATCH_ALL;//SPH_MATCH_EXTENDED;
 			$this->sphinxsearch->set_array_result ( true );
 			$this->sphinxsearch->set_match_mode ( $mode );
 			$this->sphinxsearch->set_connect_timeout ( 120 );
-			if ( $limit ) $this->sphinxsearch->set_limits ( (int) $offset, (int) $limit, ( $limit>1000 ) ? $limit : 1000 );
-			$res = $this->sphinxsearch->query( '', 'stations' );
-			echo "In Method";
-			print_r($res);
+			//if ( $limit ) $this->sphinxsearch->set_limits ( (int) $offset, (int) $limit, ( $limit>1000 ) ? $limit : 1000 );
+			$res = $this->sphinxsearch->query( 'radio', '*' );
+			
+			var_dump($res);
+			echo "In Method 23";
 			exit();
 			$execution_time=$res['time'];
 			if ( $res)

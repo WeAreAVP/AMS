@@ -7,7 +7,7 @@
         <script src="/js/jquery-ui-1.9.0.custom.js" type="text/javascript"></script>
         <script src="/js/jquery.tablesorter.js" type="text/javascript"></script>
         <script src="/js/bootstrap/bootstrap.js" type="text/javascript"></script>
-        
+
         <link href="/css/tableSorter.css" rel="stylesheet" />
         <link href="/css/smoothness/jquery-ui-1.9.0.custom.css" rel="stylesheet" />
         <link href="/css/bootstrap/bootstrap.css" rel="stylesheet" />
@@ -19,12 +19,12 @@
 
         <style type="text/css">
             html, body {
-                background-color: #eee !important;
+/*                background-color: #eee !important;*/
             }
-            .navbar-inner{padding-left: 250px !important;padding-right: 250px !important;}
+            .navbar-inner{padding-left: 20px !important;padding-right: 20px !important;}
             .container {
                 zoom : 1;
-                margin-top: 40px;
+                margin-top: 70px;
             }
 
             /* The white background content wrapper */
@@ -52,17 +52,26 @@
 
     <body>
         <div class="navbar navbar-fixed-top">
+            <div class="custom-nav">
+                <a>Messages</a>
+                <a>Log Out</a>
+            </div>
             <div class="navbar-inner">
                 <a class="brand" href="<?php echo site_url('stations/index') ?>">AMS</a>
-<!--                 <div class="btn-group pull-right">
+                <div class="btn-group pull-right">
 
-                    <ul class="nav">
+<!--                    <ul class="nav">
                         <li><a href="<?php echo site_url('auth/logout') ?>">Log Out</a></li>
-                    </ul>
-                </div>-->
+                    </ul>-->
+                </div>
                 <div class="nav-collapse">
                     <ul class="nav">
+                        <li class="<?php echo active_anchor('dashboard', 'index'); ?>"><a href="">Dashboard</a></li>
+                        <li class="<?php echo active_anchor('objects', 'index'); ?>"><a href="">Objects</a></li>
+
                         <li class="<?php echo active_anchor('stations', 'index'); ?>"><a href="<?php echo site_url('stations/index') ?>">Stations</a></li>
+                        <li class="<?php echo active_anchor('reports', 'index'); ?>"><a href="">Reports</a></li>
+                        <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="">Settings</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
 

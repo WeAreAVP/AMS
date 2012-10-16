@@ -399,6 +399,7 @@ class SphinxClient {
     // common stuff
     /////////////////////////////////////////////////////////////////////////////
     /// create a new client object and fill defaults
+
     function SphinxClient() {
         // per-client-object settings
         $this->_host = "localhost";
@@ -860,20 +861,20 @@ class SphinxClient {
     /// and return the search results
     function Query($query, $index = "*", $comment = "") {
         assert(empty($this->_reqs));
-echo '<pre>';
-echo $query.'<br/>';
-        $this->AddQuery($query, $index, $comment);
+
+        echo '<pre>';
+        print_r($this->AddQuery($query, $index, $comment));
         $results = $this->RunQueries();
-        print_r($results);
+        exit('kill me');
         $this->_reqs = array(); // just in case it failed too early
-        print_r($results);
+
         if (!is_array($results))
             return false; // probably network error; error message should be already filled
 
         $this->_error = $results[0]["error"];
-        print_r($this->_error);
+
         $this->_warning = $results[0]["warning"];
-        print_r($this->_warning);exit;
+
         if ($results[0]["status"] == SEARCHD_ERROR)
             return false;
 

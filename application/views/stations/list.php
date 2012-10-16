@@ -41,35 +41,16 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
             </div>
             <div><?php echo form_submit('search', 'Search', 'class="btn primary" '); ?></div>
         </div>
-        
-<!--<table class="table no_border">
-<tr>
-    <td>
-        <?php echo form_label('Search Keyword', $search['id']); ?>
-    </td>
-    <td>
-        <?php echo form_input($search); ?>
-    </td>
-    <td></td>
-    <td>
-        
 
-    </td>
-    <td><?php echo form_label('Agreed', $certified['id']); ?></td>
-    <td>
-        <?php echo form_dropdown($agreed['id'], array('' => 'Select', '1' => 'Yes', '0' => 'No')); ?>
-    </td>
-    <td><?php echo form_submit('search', 'Search', 'class="btn primary" '); ?></td>
-</tr>
-</table>-->
+
     </div>
     <?php echo form_close(); ?>
     <div  style="overflow: scroll;height: 600px;" class="span9">
         <table class="tablesorter table table-bordered" id="station_table">
             <thead>
                 <tr>
-                    <td width="20"><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
-                    <th width="20">CPB ID</th>
+                    <td style"float:left"><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
+                    <th>CPB ID</th>
                     <th>Station Name</th>
                     <th>Contact Name</th>
                     <th>Contact Title</th>

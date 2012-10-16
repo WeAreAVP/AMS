@@ -11,7 +11,7 @@ class Sphinx_Model extends CI_Model
 
 	public function search_stations($params, $offset = 0, $limit = 5)
 	{
-   	echo "In Method";
+   	echo "In Method <br/>";
 		$total_record = 0;
 				
 			//$this->sphinxsearch->reset_filters();

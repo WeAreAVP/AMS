@@ -863,7 +863,8 @@ class SphinxClient {
         assert(empty($this->_reqs));
 
         echo '<pre>';
-        print_r($this->AddQuery($query, $index, $comment));
+        $addQuery=$this->AddQuery($query, $index, $comment);
+        print_r($addQuery);
         $results = $this->RunQueries();
         exit('kill me');
         $this->_reqs = array(); // just in case it failed too early

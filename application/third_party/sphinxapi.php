@@ -862,11 +862,11 @@ class SphinxClient {
     function Query($query, $index = "*", $comment = "") {
         assert(empty($this->_reqs));
 
-        echo '<pre>';
+        
         $addQuery=$this->AddQuery($query, $index, $comment);
-        print_r($addQuery);
+        
         $results = $this->RunQueries();
-        exit('kill me');
+        
         $this->_reqs = array(); // just in case it failed too early
 
         if (!is_array($results))
@@ -1004,8 +1004,10 @@ class SphinxClient {
 
     /// connect to searchd, run queries batch, and return an array of result sets
     function RunQueries() {
+        echo 'Now Here<br/>';
         if (empty($this->_reqs)) {
             $this->_error = "no queries defined, issue AddQuery() first";
+            echo 'Faild<br/>';
             return false;
         }
 
@@ -1014,6 +1016,7 @@ class SphinxClient {
 
         if (!( $fp = $this->_Connect() )) {
             $this->_MBPop();
+            echo 'Connection Error<br/>';
             return false;
         }
 
@@ -1026,12 +1029,13 @@ class SphinxClient {
         if (!( $this->_Send($fp, $req, $len + 8) ) ||
                 !( $response = $this->_GetResponse($fp, VER_COMMAND_SEARCH) )) {
             $this->_MBPop();
+             echo 'Some Error<br/>';
             return false;
         }
 
         // query sent ok; we can reset reqs now
         $this->_reqs = array();
-
+        echo 'we pass all the tests';exit;
         // parse and return response
         return $this->_ParseSearchResponse($response, $nreqs);
     }

@@ -965,8 +965,11 @@ class SphinxClient
 
 		$this->_error = $results[0]["error"];
 		$this->_warning = $results[0]["warning"];
-		if ( $results[0]["status"]==SEARCHD_ERROR )
-			return false;
+		if ( $results[0]["status"]==SEARCHD_ERROR ){
+                    echo '<pre>';print_r($result);exit;
+                    return false;
+                }
+			
 		else
 			return $results[0];
 	}

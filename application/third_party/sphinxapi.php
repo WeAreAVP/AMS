@@ -860,11 +860,13 @@ class SphinxClient {
     /// and return the search results
     function Query($query, $index = "*", $comment = "") {
         assert(empty($this->_reqs));
-
+echo '<pre>';
+echo $query.'<br/>';
         $this->AddQuery($query, $index, $comment);
         $results = $this->RunQueries();
+        print_r($results);
         $this->_reqs = array(); // just in case it failed too early
-        echo '<pre>';print_r($results);exit;
+        print_r($results);exit;
         if (!is_array($results))
             return false; // probably network error; error message should be already filled
 

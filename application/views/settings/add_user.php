@@ -51,7 +51,7 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'new_user');
         <?php } ?>
         <tr>
             <td width="150"><?php echo form_label('Password', $password['id']); ?></td>
-            <td><?php echo form_input($password); ?></td>
+            <td><?php echo form_password($password); ?></td>
         </tr>
 
         <?php if (isset($errors[$password['name']])) { ?>
@@ -92,8 +92,8 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'new_user');
                 <td style="color: red;"><?php echo form_error($phone_no['name']); ?></td>
             </tr>
         <?php } ?>
-            
-            <tr>
+
+        <tr>
             <td width="150"><?php echo form_label('Country', $role['id']); ?></td>
             <td><?php echo form_dropdown($role['id'], $roles); ?></td>
         </tr>
@@ -120,9 +120,9 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'new_user');
         <tr>
 
             <td colspan="2" style="text-align: right;">
-                
+
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>&nbsp;<?php echo form_submit('save', 'Save', 'class="btn primary" onclick="addUser(\'post\');" '); ?>
-                
+
             </td>
         </tr>
 

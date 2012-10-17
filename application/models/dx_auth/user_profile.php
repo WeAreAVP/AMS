@@ -39,6 +39,10 @@ class User_Profile extends CI_Model
 		$this->db->where('user_id', $user_id);
 		return $this->db->delete($this->_table);
 	}
+        function insert_profile($data) {
+        $this->db->insert($this->_table, $data);
+        return $this->db->insert_id();
+    }
 }
 
 ?>

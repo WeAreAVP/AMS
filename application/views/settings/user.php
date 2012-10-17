@@ -1,5 +1,9 @@
 <div class="tab-content">
     <div id="users"  class="tab-pane">
+        <?php if (isset($this->session->userdata['saved'])) { ?><div class="alert alert-success notification" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['saved']; ?></div><br/><?php } $this->session->unset_userdata('saved'); ?>
+        <?php if (isset($this->session->userdata['updated'])) { ?><div class="alert alert-success notification" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['updated']; ?></div><br/><?php } $this->session->unset_userdata('updated'); ?>
+        <?php if (isset($this->session->userdata['deleted'])) { ?><div class="alert alert-error notification" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['deleted']; ?></div><br/><?php } $this->session->unset_userdata('deleted'); ?>
+
         <table class="tablesorter table table-bordered">
             <thead>
                 <tr>
@@ -50,6 +54,9 @@
 
 </div>
 <script type="text/javascript">
+    setTimeout(function(){
+        $('.notification').hide();
+    },5000);
     function addUser(type){
         data=null;
         method='GET';

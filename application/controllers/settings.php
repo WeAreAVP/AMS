@@ -18,7 +18,7 @@ class Settings extends MY_Controller {
         $this->layout = 'main_layout.php';
         $this->load->model('dx_auth/users', 'users');
         $this->load->model('dx_auth/roles', 'roles');
-        $this->load->model('dx_auth/user_profile', 'profile');
+        $this->load->model('dx_auth/user_profile', 'user_profile');
 
         if (!$this->dx_auth->is_logged_in()) {
             redirect('auth/login');
@@ -73,9 +73,11 @@ class Settings extends MY_Controller {
                     'last_name' => $val->set_value('last_name'),
                     'phone_no' => $val->set_value('phone_no'),
                 );
-                $id = $this->users->create_user($record);echo $id;
-                $this->profile->set_profile($id, $profile_data);
-                echo 'donedfaf';
+                $id = $this->users->create_user($record);
+                $profile_data['user_id']=$id;
+                $this->user_profile->insert_profile($profile_data);
+                $this->session->set_userdata('saved', 'Record is Successfully Saved');
+                echo 'done';
                 exit;
             } else {
                 $errors = $val->error_string();

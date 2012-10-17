@@ -78,7 +78,7 @@ class Stations extends CI_Controller {
      */
 
     public function search() {
-        $this->sphinx->search_stations("");
+        print_r($this->sphinx->search_stations(""));
     }
 
 }

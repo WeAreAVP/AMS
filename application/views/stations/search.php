@@ -3,6 +3,7 @@ $search = array(
     'name' => 'search_keyword',
     'id' => 'search_keyword',
     'value' => set_value('search_keyword'),
+		'onkeyup' => 'makeToken(event);',
 );
 $attributes = array('id' => 'search_form');
 
@@ -11,6 +12,8 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
 <div class="row-fluid">
     <div class="span3">
         <div id="search_bar">
+          <div id="tokens" style="display: none;"></div>
+           <input type="hidden" name="search_words" id="search_words"/>
             <div>
                 <?php echo form_label('FILTER STATIONS', $search['id']); ?></b>
             </div>
@@ -23,16 +26,16 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
 
     </div>
     <?php echo form_close(); ?>
-    <div  style="overflow: scroll;height: 600px;" class="span9">
+    <div class="span9">
         <table class="tablesorter table table-bordered" id="station_table">
             <thead>
                 <tr>
                     <td style"float:left"><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
                     <th>Station Name</th>
-                    <th>Contact Name</th>
-                    <th>Contact Title</th>
-                    <th>Type</th>
-                    <th>Start Date</th>
+                    <td>Contact Name</td>
+                    <td>Contact Title</td>
+                    <td>Type</td>
+                    <td>Start Date</td>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +48,7 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                             <td><?php echo $data->station_name; ?></td>
                             <td><?php echo $data->contact_name; ?></td>
                             <td><?php echo $data->contact_title; ?></td>
-	                          <td></td>
+	                          <td><?php echo $data->my_type; ?></td>
                             <td><?php if (($data->start_date)==0) {?>
                                     <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');">Set start date</a>
                                     <?php
@@ -124,5 +127,34 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
         }
         return true;
     }
+    var token=0;
+    var removeToken=0;
+    var search_words=null;
+    function makeToken(event){
     
+        if (event.keyCode == 13 && $('#search_keyword').val()!='') {
+            
+            
+            $('#tokens').append('<div class="token">'+$('#search_keyword').val()+'</div>');
+            $('#search_keyword').val('');
+            $('.token').last().html();
+            
+            if(token==0)
+                search_words=$('.token').last().html();
+            else
+                search_words+=','+$('.token').last().html();
+              
+              $('#search_words').val(search_words);
+            
+            token=token+1;
+            
+        }
+        if(token>0){
+            $('#tokens').show();
+        }
+        else{
+            $('#tokens').hide();
+        }
+        
+    }
 </script>

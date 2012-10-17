@@ -79,7 +79,7 @@ class Stations extends CI_Controller {
 
     public function search()
 		{
-			$search_kewords = $this->uri->segment(3);
+			$search_kewords = str_replace(","," | ",$this->uri->segment(3));
     	$data['results']=$this->sphinx->search_stations($search_kewords);
 			$this->load->view('stations/search', $data);
     }

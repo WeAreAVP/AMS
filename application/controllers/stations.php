@@ -7,7 +7,7 @@
  * @subpackage stations
  * @author     Nouman Tayyab
  */
-class Stations extends CI_Controller {
+class Stations extends MY_Controller {
 
     /**
      * constructor. Load layout,Model,Library and helpers
@@ -20,9 +20,7 @@ class Stations extends CI_Controller {
         $this->layout = 'main_layout.php';
         $this->load->model('station_model');
         $this->load->model('sphinx_model', 'sphinx');
-        if (!$this->dx_auth->is_logged_in()) {
-            redirect('auth/login');
-        }
+        
     }
 
     /**

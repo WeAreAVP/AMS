@@ -114,7 +114,8 @@ class Users extends CI_Model {
 
     function create_user($data) {
         $data['created'] = date('Y-m-d H:i:s', time());
-        return $this->db->insert($this->_table, $data);
+        $this->db->insert($this->_table, $data);
+        return $this->db->insert_id();
     }
 
     function get_user_field($user_id, $fields) {

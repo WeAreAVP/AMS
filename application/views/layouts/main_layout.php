@@ -15,7 +15,10 @@
         <link href="/css/style.css" rel="stylesheet" />
 
 
-
+        <script type="text/javascript">
+	var site_url='<?php echo site_url()?>';
+	
+</script>
 
         <style type="text/css">
             html, body {
@@ -80,7 +83,7 @@
 
             <div class="content" >
                 <?php if (active_anchor('settings', 'index') != '') { ?>
-                    <ul class="nav nav-tabs">
+                    <ul class="nav nav-tabs" id="myTab">
                         <li><a href="#email_template" data-toggle="tab">Email Template</a></li>
                         <li><a href="#users" data-toggle="tab">Users</a></li>
                     </ul>

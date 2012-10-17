@@ -32,9 +32,9 @@ $reply_to = array(
     'value' => set_value('reply_to'),
 );
 $replacebale = array(
-    'name' => 'replacebale',
-    'id' => 'replacebale',
-    'value' => set_value('replacebale'),
+    'name' => 'replaceables',
+    'id' => 'replaceables',
+    'value' => set_value('replaceables'),
 );
 //$replacebale=array("{station name}","{first name}","{last name}","{start date}","{end date}");
 

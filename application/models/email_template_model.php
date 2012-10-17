@@ -15,7 +15,6 @@ class Email_Template_Model extends CI_Model {
      */
     function __construct() {
         parent::__construct();
-
         $this->_prefix = '';
         $this->_table = 'email_templates';
     }
@@ -51,7 +50,7 @@ class Email_Template_Model extends CI_Model {
      * 
      * @return insert id
     */
-		function add_email_template($id)
+		function get_template_by_id($id)
 		{
 			$this->db->select("*");
 			$this->db->from($this->_table);

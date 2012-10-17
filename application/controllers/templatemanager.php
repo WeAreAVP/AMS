@@ -20,21 +20,16 @@ class TemplateManager extends CI_Controller
 		$this->load->library('Form_validation');
 		$this->load->helper('form');
 		$this->load->model('email_template_model','email_template');
-		$this->load->model('dx_auth/users', 'users');
-		if (!$this->dx_auth->is_logged_in())
-		{
-    	redirect('auth/login');
-    }
 	}
 	function system_id_check($system_id)
 	{
 		$result = $this->email_template->get_template_by_sys_id($system_id);
 		if ($result)
 		{
-			$this->form_validation->set_message('system_id', 'System Id is already used. Please choose another system id.');
-		}
-				
-		return $result;
+			$this->form_validation->set_message('system_id_check', 'System Id is already used. Please choose another system id.');
+			return false;
+		}	
+		return true;
 	} 
 	/*
 		*
@@ -65,7 +60,8 @@ class TemplateManager extends CI_Controller
 				$email_template_data['email_type']=$val->set_value('email_type');
 				$email_template_data['email_from']=$val->set_value('email_from');
 				$email_template_data['reply_to']=$val->set_value('reply_to');
-				$email_template_data['replaceables']=$val->set_value('replaceables');
+				$replaceable=explode("\n",$val->set_value('replaceables'));
+				$email_template_data['replaceables']= isset($replaceable)?json_encode($replaceable):'';
 				$email_template_data['created_date']=date("Y-m-d H:i:s");			
 				$this->email_template->add_email_template($email_template_data);
 				$data['add_temp']=true;

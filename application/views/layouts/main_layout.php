@@ -82,9 +82,9 @@
         <div class="container">
 
             <div class="content" >
-                <?php if (active_anchor('settings', 'index') != '') { ?>
-                    <ul class="nav nav-tabs" id="myTab">
-                        <li><a href="#email_template" data-toggle="tab">Email Template</a></li>
+               <?php if (active_anchor('settings', 'index') != '' || active_anchor('templatemanager', 'addtemplate')) { ?>
+                    <ul class="nav nav-tabs">
+                        <li><a href="<?php echo site_url('');?>" data-toggle="tab">Email Template</a></li>
                         <li><a href="#users" data-toggle="tab">Users</a></li>
                     </ul>
                     <script>

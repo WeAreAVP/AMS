@@ -81,7 +81,19 @@ class Stations extends CI_Controller {
 		{
 			$search_kewords = str_replace(","," | ",$this->uri->segment(3));
     	$data['results']=$this->sphinx->search_stations($search_kewords);
-			$this->load->view('stations/search', $data);
+			if (isAjax())
+			{
+				$data['is_ajax']=true;
+				
+				echo json_encode(array('success' => true, 'html' => $this->load->view('stations/search', $data,true)));
+        exit;
+			}
+			else
+			{
+				$data['is_ajax']=false;;
+				$this->load->view('stations/search', $data);
+			}
+			
     }
 
 }

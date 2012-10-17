@@ -1,33 +1,35 @@
 <?php
+if(!$is_ajax){
 $search = array(
     'name' => 'search_keyword',
     'id' => 'search_keyword',
     'value' => set_value('search_keyword'),
 		'onkeyup' => 'makeToken(event);',
 );
-$attributes = array('id' => 'search_form');
-
+$attributes = array('id' => 'search_form','onsubmit' => "return false;",'onkeypress' => "return event.keyCode != 13;");
 echo form_open_multipart($this->uri->uri_string(), $attributes);
 ?>
 <div class="row-fluid">
     <div class="span3">
         <div id="search_bar">
           <div id="tokens" style="display: none;"></div>
-           <input type="hidden" name="search_words" id="search_words"/>
+           <input  type="hidden" name="search_words" id="search_words"/>
             <div>
                 <?php echo form_label('FILTER STATIONS', $search['id']); ?></b>
             </div>
             <div>
                 <?php echo form_input($search); ?>
             </div>
-            <div><?php echo form_submit('search', 'Search', 'class="btn primary" '); ?></div>
+            <div><input type="button" name="Search" value="Search" class="btn primary" onclick="search_station();" /></div>
         </div>
 
 
     </div>
     <?php echo form_close(); ?>
     <div class="span9">
-        <table class="tablesorter table table-bordered" id="station_table">
+    	<table class="tablesorter table table-bordered" id="station_table">
+      <?php
+      }?>
             <thead>
                 <tr>
                     <td style"float:left"><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
@@ -69,6 +71,8 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                     <tr><td colspan="11" style="text-align: center;"><b>No Station Found.</b></td></tr>
                 <?php } ?>
             </tbody>
+            <?php
+if(!$is_ajax){?>
         </table>
     </div>
 
@@ -118,6 +122,25 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
             }
         });
     }
+		function search_station(){
+      var search_words=$('#search_words').val();
+       $.ajax({
+            type: 'POST', 
+            url: '/index.php/stations/search',
+            data:{"search_words":search_words},
+            dataType: 'json',
+            cache: false,
+            success: function (result) { 
+                if(result.success==true )
+								{
+                	 $('#station_table').html(result.html);
+                }
+                else{
+                    console.log('some error occur');
+                }
+            }
+        });
+    }
     function checkAll() {
         var boxes = document.getElementsByTagName('input');
         for (var index = 0; index < boxes.length; index++) {
@@ -158,3 +181,4 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
         
     }
 </script>
+<?php }else{ exit();} ?>

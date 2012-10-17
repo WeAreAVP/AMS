@@ -123,6 +123,7 @@ if(!$is_ajax){?>
         });
     }
 		function search_station(){
+			add_remove_search();
       var search_words=$('#search_words').val();
        $.ajax({
             type: 'POST', 
@@ -155,30 +156,35 @@ if(!$is_ajax){?>
     var search_words=null;
     function makeToken(event){
     
-        if (event.keyCode == 13 && $('#search_keyword').val()!='') {
-            
-            
-            $('#tokens').append('<div class="token">'+$('#search_keyword').val()+'</div>');
-            $('#search_keyword').val('');
-            $('.token').last().html();
-            
-            if(token==0)
-                search_words=$('.token').last().html();
-            else
-                search_words+=','+$('.token').last().html();
-              
-              $('#search_words').val(search_words);
-            
-            token=token+1;
-            
+        if (event.keyCode == 13 ) {
+          add_remove_search();
         }
-        if(token>0){
-            $('#tokens').show();
-        }
-        else{
-            $('#tokens').hide();
-        }
+       
         
     }
+		function add_remove_search()
+		{
+			if($('#search_keyword').val()!='')
+			{
+				$('#tokens').append('<div class="token">'+$('#search_keyword').val()+'</div>');
+				$('#search_keyword').val('');
+				$('.token').last().html();
+				
+				if(token==0)
+					search_words=$('.token').last().html();
+				else
+					search_words+=','+$('.token').last().html();
+				
+				$('#search_words').val(search_words);
+				
+				token=token+1;
+			}
+				if(token>0){
+					$('#tokens').show();
+				}
+				else{
+					$('#tokens').hide();
+				}
+		}
 </script>
 <?php }else{ exit();} ?>

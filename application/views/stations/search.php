@@ -20,9 +20,9 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
             
             <div id="tokens" style="display: none;"></div>
             <div>
-                <?php echo form_input($search); ?>
+                <?php echo form_input($search); ?><span class="input-search-img" onclick="search_station();"></span>
             </div>
-            <div><input type="button" name="Search" value="Search" class="btn primary" onclick="search_station();" /></div>
+           <?php /*?> <div><input type="button" name="Search" value="Search" class="btn primary" onclick="search_station();" /></div><?php */?>
         </div>
 
 
@@ -160,7 +160,7 @@ if(!$is_ajax){?>
 		{
 			if($('#search_keyword').val()!='')
 			{
-				$('#tokens').append('<div class="token">'+$('#search_keyword').val()+'</div>');
+				$('#tokens').append('<div class="btn-img">'+$('#search_keyword').val()+'<span class="btn-close-img"></span></div>');
 				$('#search_keyword').val('');
 				$('.token').last().html();
 				

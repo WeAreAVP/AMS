@@ -1,6 +1,18 @@
 <?php
+
+/**
+ * Settings controller.
+ *
+ * @package    AMS
+ * @subpackage Template Manager
+ * @author     Ali Raza
+ */
 class TemplateManager extends CI_Controller
 {
+	/**
+     * constructor. Load layout,Model,Library and helpers
+     * 
+     */
 	function __construct()
 	{
 		parent::__construct();
@@ -8,6 +20,11 @@ class TemplateManager extends CI_Controller
 		$this->load->library('Form_validation');
 		$this->load->helper('form');
 		$this->load->model('email_template_model','email_template');
+		$this->load->model('dx_auth/users', 'users');
+		if (!$this->dx_auth->is_logged_in())
+		{
+    	redirect('auth/login');
+    }
 	}
 	function system_id_check($system_id)
 	{
@@ -19,8 +36,14 @@ class TemplateManager extends CI_Controller
 				
 		return $result;
 	} 
+	/*
+		*
+  	* Add Custom template
+ 	 	*  
+  */
 	function addtemplate()
 	{
+		$data['add_temp']=false;
 		if(isset($_POST) && !empty($_POST) )
 		{
 			$val = $this->form_validation;
@@ -44,10 +67,11 @@ class TemplateManager extends CI_Controller
 				$email_template_data['reply_to']=$val->set_value('reply_to');
 				$email_template_data['replaceables']=$val->set_value('replaceables');
 				$email_template_data['created_date']=date("Y-m-d H:i:s");			
-				print_r($email_template_data);	
+				$this->email_template->add_email_template($email_template_data);
+				$data['add_temp']=true;
 			}
 		}
-		$this->load->view("templatemanager/add_template");
+		$this->load->view("templatemanager/add_template",$data);
 	}
 }
 ?>

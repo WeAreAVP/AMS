@@ -40,7 +40,12 @@ $replacebale = array(
 
 echo form_open_multipart($this->uri->uri_string(), $attributes);
 ?>
+<?php 
+if($add_temp){?>
+       <div class="alert alert-success">Template Added Successfully</div>
+    <?php } ?>
 <table class="table no_border">
+
     <tr>
           <td><?php echo form_label('System id*', $system_id['id']); ?></td>
           <td><?php echo form_input($system_id); ?><span class="help-inline"><?php echo form_error($system_id['id']); ?></span></td>

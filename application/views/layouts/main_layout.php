@@ -89,7 +89,7 @@
                     </ul>
                     <script>
                         $(function () {
-                            $('#myTab a:last').tab('show');
+                            $('#myTab a[href="#users"]').tab('show');
                         })
                     </script>
                 <?php } ?>

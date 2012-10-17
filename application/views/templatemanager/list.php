@@ -1,23 +1,25 @@
 <div class="row-fluid">
-     <div  class="span9">
-        <div style="overflow: scroll;height: 600px;" >
+     <div  class="span12">
+        <div style="" >
             <table class="tablesorter table table-bordered" id="station_table">
+              <?php
+                    if (isset($templates) && $templates && count($templates) > 0)
+										{
+                      ?>
                 <thead>
                     <tr>
-                        <th><span style="float:left;min-width:50px;">Name</span></th>
-                        <th><span style="float:left;min-width:80px;">Subject</span></th>
-                        <th><span style="float:left;min-width:90px;">Reply To</span></th>
-                        <th><span style="float:left;min-width:80px;">From</span></th>
-                        <th><span style="float:left;min-width:30px;">Template Type</span></th>
-                        <th><span style="float:left;min-width:80px;">Replaceables</span></th>
-                        <th><span style="float:left;min-width:80px;">Action</span></th>
+                        <td><span style="float:left;min-width:50px;">Name</span></td>
+                        <td><span style="float:left;min-width:80px;">Subject</span></td>
+                        <td><span style="float:left;min-width:90px;">Reply To</span></td>
+                        <td><span style="float:left;min-width:80px;">From</span></td>
+                        <td><span style="float:left;min-width:30px;">Template Type</span></td>
+                        <td><span style="float:left;min-width:80px;">Replaceables</span></td>
+                        <td><span style="float:left;min-width:80px;">Action</span></td>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    if (count($templates) > 0)
-										{
-                        foreach ($templates as $data)
+                <?php 
+                    foreach ($templates as $data)
 												{?>
                             <tr>
                                 <td><a href="<?php echo site_url('templatemanager/details/' . $data->id); ?>"><?php echo $data->system_id; ?></a></td>

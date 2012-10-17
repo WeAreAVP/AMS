@@ -21,7 +21,7 @@ class TemplateManager extends CI_Controller
 		$this->load->helper('form');
 		$this->load->model('email_template_model','email_template');
 	}
-	function system_id_check($system_id)
+	private function system_id_check($system_id)
 	{
 		$result = $this->email_template->get_template_by_sys_id($system_id);
 		if ($result)
@@ -36,7 +36,7 @@ class TemplateManager extends CI_Controller
   	* Add Custom template
  	 	*  
   */
-	function add()
+	public function add()
 	{
 		$data['add_temp']=false;
 		if(isset($_POST) && !empty($_POST) )
@@ -70,15 +70,30 @@ class TemplateManager extends CI_Controller
 		}
 		$this->load->view("templatemanager/add_template",$data);
 	}
-	function lists()
+	/* Lsit all Templates*/
+	public function lists()
 	{
 		$data['info'] = $this->uri->segment(3);
-		$data['templates']=$this->email_template->get_all($email_template_data);
+		$data['templates']=$this->email_template->get_all();
 		$this->load->view("templatemanager/list",$data);
 	}
-	function details()
+	/**
+	* Show Detail of specific templates
+	* 
+	* @param $station_id as a uri segment
+	*/
+	public function details($template_id='')
 	{
-		
+		if(isset($template_id) && !empty($template_id))
+		{
+			$data['template_detail'] = $this->email_template->get_template_by_id($template_id);
+			$this->load->view('templatemanager/detail', $data);
+		}
+		else
+		{
+			redirect('templatemanager/list');
+		}
 	}
+
 }
 ?>

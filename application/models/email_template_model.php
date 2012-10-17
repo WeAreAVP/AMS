@@ -54,10 +54,12 @@ class Email_Template_Model extends CI_Model {
 		{
 			$this->db->select("*");
 			$this->db->from($this->_table);
-			$this->db->where("id",$system_id);
+			$this->db->where("id",$id);
 			$res=$this->db->get();
 			if(isset($res) && !empty($res))
-				return $res->result();
+			{
+				return $res->row();
+			}
 			return false;
 		}
 		/**
@@ -67,9 +69,11 @@ class Email_Template_Model extends CI_Model {
      */
     function get_all()
 		{
-      $query = $this->db->get($this->_table);
-			if($query)
-			 	$query->result();
+      $res = $this->db->query("SELECT * FROM ".$this->_table);
+			if($res)
+			{
+			 	return $res->result();
+			}
 			return false;
     }
 }

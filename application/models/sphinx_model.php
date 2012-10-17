@@ -21,7 +21,7 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->set_match_mode ( $mode );
 		$this->sphinxsearch->set_connect_timeout ( 120 );
 		if ( $limit ) $this->sphinxsearch->set_limits ( (int) $offset, (int) $limit, ( $limit>1000 ) ? $limit : 1000 );
-		$res = $this->sphinxsearch->query( 'radio', '*' );
+		$res = $this->sphinxsearch->query( '', 'stations' );
 		$execution_time=$res['time'];
 		if ( $res)
 		{
@@ -37,7 +37,7 @@ class Sphinx_Model extends CI_Model
 				}
 			}
 		}
-		return array("total_count"=>$total_record,"listings_record"=>$listings,"query_time"=>$execution_time);
+		return array("total_count"=>$total_record,"records"=>$listings,"query_time"=>$execution_time);
 	}
 }
 

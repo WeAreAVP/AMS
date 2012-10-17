@@ -77,8 +77,11 @@ class Stations extends CI_Controller {
      * Search Station based on sphinx 
      */
 
-    public function search() {
-        print_r($this->sphinx->search_stations(""));
+    public function search()
+		{
+			$search_kewords = $this->uri->segment(3);
+    	$data['results']=$this->sphinx->search_stations($search_kewords);
+			$this->load->view('stations/search', $data);
     }
 
 }

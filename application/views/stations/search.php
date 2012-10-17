@@ -130,9 +130,8 @@ if(!$is_ajax){?>
             url: '/index.php/stations/search',
             data:{"search_words":search_words},
             dataType: 'json',
-            cache: false,
             success: function (result) { 
-                if(result.success==true )
+                if(result.success=='yes' )
 								{
                 	 $('#station_table').html(result.html);
                 }
@@ -157,7 +156,7 @@ if(!$is_ajax){?>
     function makeToken(event){
     
         if (event.keyCode == 13 ) {
-          add_remove_search();
+          search_station();
         }
        
         

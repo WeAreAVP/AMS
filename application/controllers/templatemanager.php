@@ -36,7 +36,7 @@ class TemplateManager extends CI_Controller
   	* Add Custom template
  	 	*  
   */
-	function addtemplate()
+	function add()
 	{
 		$data['add_temp']=false;
 		if(isset($_POST) && !empty($_POST) )
@@ -65,9 +65,20 @@ class TemplateManager extends CI_Controller
 				$email_template_data['created_date']=date("Y-m-d H:i:s");			
 				$this->email_template->add_email_template($email_template_data);
 				$data['add_temp']=true;
+				redirect('templatemanager/list/added');
 			}
 		}
 		$this->load->view("templatemanager/add_template",$data);
+	}
+	function lists()
+	{
+		$data['info'] = $this->uri->segment(3);
+		$data['templates']=$this->email_template->get_all($email_template_data);
+		$this->load->view("templatemanager/list",$data);
+	}
+	function details()
+	{
+		
 	}
 }
 ?>

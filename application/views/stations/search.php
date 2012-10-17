@@ -39,7 +39,8 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                     <td>Contact Name</td>
                     <td>Contact Title</td>
                     <td>Type</td>
-                    <td>Start Date</td>
+                    <td>DSD</td>
+                    <td>DED</td>
                 </tr>
             </thead>
             <tbody>

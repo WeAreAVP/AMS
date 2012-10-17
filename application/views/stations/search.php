@@ -1,38 +1,45 @@
 <?php
+if(!$is_ajax){
 $search = array(
     'name' => 'search_keyword',
     'id' => 'search_keyword',
     'value' => set_value('search_keyword'),
+		'onkeyup' => 'makeToken(event);',
 );
-$attributes = array('id' => 'search_form');
-
+$attributes = array('id' => 'search_form','onsubmit' => "return false;",'onkeypress' => "return event.keyCode != 13;");
 echo form_open_multipart($this->uri->uri_string(), $attributes);
 ?>
 <div class="row-fluid">
     <div class="span3">
         <div id="search_bar">
+          
+           <input  type="hidden" name="search_words" id="search_words"/>
             <div>
                 <?php echo form_label('FILTER STATIONS', $search['id']); ?></b>
             </div>
+            
+            <div id="tokens" style="display: none;"></div>
             <div>
-                <?php echo form_input($search); ?>
+                <?php echo form_input($search); ?><span class="input-search-img" onclick="search_station();"></span>
             </div>
-            <div><?php echo form_submit('search', 'Search', 'class="btn primary" '); ?></div>
+           <?php /*?> <div><input type="button" name="Search" value="Search" class="btn primary" onclick="search_station();" /></div><?php */?>
         </div>
 
 
     </div>
     <?php echo form_close(); ?>
-    <div  style="overflow: scroll;height: 600px;" class="span9">
-        <table class="tablesorter table table-bordered" id="station_table">
+    <div class="span9">
+    	<table class="tablesorter table table-bordered" id="station_table">
+      <?php
+      }?>
             <thead>
                 <tr>
                     <td style"float:left"><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
                     <th>Station Name</th>
-                    <th>Contact Name</th>
-                    <th>Contact Title</th>
-                    <th>Type</th>
-                    <th>Start Date</th>
+                    <td>Contact Name</td>
+                    <td>Contact Title</td>
+                    <td>Type</td>
+                    <td>Start Date</td>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +52,7 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                             <td><?php echo $data->station_name; ?></td>
                             <td><?php echo $data->contact_name; ?></td>
                             <td><?php echo $data->contact_title; ?></td>
-	                          <td></td>
+	                          <td><?php echo $data->my_type; ?></td>
                             <td><?php if (($data->start_date)==0) {?>
                                     <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');">Set start date</a>
                                     <?php
@@ -66,6 +73,8 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                     <tr><td colspan="11" style="text-align: center;"><b>No Station Found.</b></td></tr>
                 <?php } ?>
             </tbody>
+            <?php
+if(!$is_ajax){?>
         </table>
     </div>
 
@@ -115,6 +124,18 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
             }
         });
     }
+		function search_station(){
+			add_remove_search();
+      var search_words=$('#search_words').val();
+       $.ajax({
+            type: 'POST', 
+            url: '/index.php/stations/search',
+            data:{"search_words":search_words},
+           	success: function (result) { 
+           	 $('#station_table').html(result);
+            }
+        });
+    }
     function checkAll() {
         var boxes = document.getElementsByTagName('input');
         for (var index = 0; index < boxes.length; index++) {
@@ -124,5 +145,40 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
         }
         return true;
     }
+    var token=0;
+    var removeToken=0;
+    var search_words=null;
+    function makeToken(event){
     
+        if (event.keyCode == 13 ) {
+          search_station();
+        }
+       
+        
+    }
+		function add_remove_search()
+		{
+			if($('#search_keyword').val()!='')
+			{
+				$('#tokens').append('<div class="btn-img">'+$('#search_keyword').val()+'<span class="btn-close-img"></span></div>');
+				$('#search_keyword').val('');
+				$('.token').last().html();
+				
+				if(token==0)
+					search_words=$('.token').last().html();
+				else
+					search_words+=','+$('.token').last().html();
+				
+				$('#search_words').val(search_words);
+				
+				token=token+1;
+			}
+				if(token>0){
+					$('#tokens').show();
+				}
+				else{
+					$('#tokens').hide();
+				}
+		}
 </script>
+<?php }else{ exit();} ?>

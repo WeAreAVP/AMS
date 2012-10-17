@@ -77,9 +77,25 @@ class Stations extends MY_Controller {
 
     public function search()
 		{
-			$search_kewords = $this->uri->segment(3);
+			
+			$search_kewords = '';
+			if(isset($_REQUEST['search_words']) && !empty($_REQUEST['search_words']))
+			{
+				$search_kewords = str_replace(","," | ",trim($_REQUEST['search_words']));
+			}
     	$data['results']=$this->sphinx->search_stations($search_kewords);
-			$this->load->view('stations/search', $data);
+			if (isAjax())
+			{
+				$data['is_ajax']=true;
+				echo $this->load->view('stations/search', $data,true);
+				exit;
+			}
+			else
+			{
+				$data['is_ajax']=false;;
+				$this->load->view('stations/search', $data);
+			}
+			
     }
 
 }

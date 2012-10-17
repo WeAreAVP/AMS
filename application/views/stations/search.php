@@ -131,15 +131,8 @@ if(!$is_ajax){?>
             type: 'POST', 
             url: '/index.php/stations/search',
             data:{"search_words":search_words},
-            dataType: 'json',
-            success: function (result) { 
-                if(result.success=='yes' )
-								{
-                	 $('#station_table').html(result.html);
-                }
-                else{
-                    console.log('some error occur');
-                }
+           	success: function (result) { 
+           	 $('#station_table').html(result);
             }
         });
     }

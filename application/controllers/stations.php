@@ -89,10 +89,8 @@ class Stations extends CI_Controller {
 			if (isAjax())
 			{
 				$data['is_ajax']=true;
-				$result['html']=$this->load->view('stations/search', $data,true);
-				$result['success']="yes";
-				echo json_encode($result);
-        exit;
+				echo $this->load->view('stations/search', $data,true);
+				exit;
 			}
 			else
 			{

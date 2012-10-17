@@ -15,11 +15,14 @@ class Stations extends CI_Controller {
      */
     function __construct() {
         parent::__construct();
-				error_reporting(E_ALL);
-					error_reporting(1);
+        error_reporting(E_ALL);
+        error_reporting(1);
         $this->layout = 'main_layout.php';
         $this->load->model('station_model');
-				$this->load->model('sphinx_model','sphinx');
+        $this->load->model('sphinx_model', 'sphinx');
+        if (!$this->dx_auth->is_logged_in()) {
+            redirect('auth/login');
+        }
     }
 
     /**
@@ -69,13 +72,14 @@ class Stations extends CI_Controller {
             exit;
         }
     }
-	 /*
-    * Search Station based on sphinx 
-   */
-	public function search()
-	{
-		$this->sphinx->search_stations("");
-	}
+
+    /*
+     * Search Station based on sphinx 
+     */
+
+    public function search() {
+        $this->sphinx->search_stations("");
+    }
 
 }
 

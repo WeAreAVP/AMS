@@ -32,10 +32,12 @@ class Settings extends CI_Controller {
     }
 
     public function users() {
-        $data['users']=$this->users->get_users()->result();
-        echo '<pre>';print_r($data['users']);exit;
-       
-        $this->load->view('settings/index',$data);
+        $data['users'] = $this->users->get_users()->result();
+        echo '<pre>';
+        print_r($data['users']);
+        exit;
+
+        $this->load->view('settings/index', $data);
     }
 
 }

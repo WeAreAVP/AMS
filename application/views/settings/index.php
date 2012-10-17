@@ -3,7 +3,6 @@
         <table class="tablesorter table table-bordered">
             <thead>
                 <tr>
-                    <th>Username</th>
                     <th>Email</th>
                     <th>Name</th>
                     <th>Phone #</th>
@@ -16,6 +15,12 @@
                         ?>
 
                         <tr>
+                            <td><?php echo $row->email;?></td>
+                            <td><?php echo $row->first_name.$row->last_name;?></td>
+                            <td><?php echo $row->email;?></td>
+                            <td><?php echo $row->email;?></td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                         </tr>
 

@@ -15,6 +15,7 @@ $agreed = array(
     'id' => 'agreed',
     'value' => set_value('agreed'),
 );
+
 $attributes = array('id' => 'search_form', 'onkeypress' => "return event.keyCode != 13;");
 
 echo form_open_multipart($this->uri->uri_string(), $attributes);
@@ -23,6 +24,7 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
     <div class="span3">
         <div id="search_bar">
             <div id="tokens" style="display: none;"></div>
+             <input type="hidden" name="search_words" id="search_words"/>
             <div>
                 <?php echo form_label('FILTER STATIONS', $search['id']); ?></b>
             </div>
@@ -213,14 +215,24 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
     }
     var token=0;
     var removeToken=0;
+    var search_words=null;
     function makeToken(event){
     
         if (event.keyCode == 13 && $('#search_keyword').val()!='') {
-            token=token+1;
+            
             
             $('#tokens').append('<div class="token">'+$('#search_keyword').val()+'</div>');
             $('#search_keyword').val('');
+            $('.token').last().html();
             
+            if(token==0)
+                search_words=$('.token').last().html();
+            else
+                search_words+=','+$('.token').last().html();
+              
+              $('#search_words').val(search_words);
+            
+            token=token+1;
             
         }
         if(token>0){
@@ -231,4 +243,5 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
         }
         
     }
+   
 </script>

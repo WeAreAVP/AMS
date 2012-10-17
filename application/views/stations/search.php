@@ -13,7 +13,7 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
     <div class="span3">
         <div id="search_bar">
           
-           <input  type="hidden" name="search_words" id="search_words"/>
+           <input type="hidden" name="search_words" id="search_words"/>
             <div>
                 <?php echo form_label('FILTER STATIONS', $search['id']); ?></b>
             </div>
@@ -160,7 +160,7 @@ if(!$is_ajax){?>
 		{
 			if($('#search_keyword').val()!='')
 			{
-				$('#tokens').append('<div class="btn-img">'+$('#search_keyword').val()+'<span class="btn-close-img"></span></div>');
+				$('#tokens').append('<div class="btn-img" >'+$('#search_keyword').val()+'<span class="btn-close-img"></span></div>');
 				$('#search_keyword').val('');
 				$('.token').last().html();
 				

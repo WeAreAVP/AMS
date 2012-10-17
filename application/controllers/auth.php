@@ -33,6 +33,7 @@ class Auth extends CI_Controller {
 		if ( ! $result)
 		{
 			$this->form_validation->set_message('username_check', 'Username already exist. Please choose another username.');
+			return true;
 		}
 				
 		return $result;

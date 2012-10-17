@@ -12,11 +12,13 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
 <div class="row-fluid">
     <div class="span3">
         <div id="search_bar">
-          <div id="tokens" style="display: none;"></div>
+          
            <input  type="hidden" name="search_words" id="search_words"/>
             <div>
                 <?php echo form_label('FILTER STATIONS', $search['id']); ?></b>
             </div>
+            
+            <div id="tokens" style="display: none;"></div>
             <div>
                 <?php echo form_input($search); ?>
             </div>

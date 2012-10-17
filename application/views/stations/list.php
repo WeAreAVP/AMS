@@ -3,6 +3,7 @@ $search = array(
     'name' => 'search_keyword',
     'id' => 'search_keyword',
     'value' => set_value('search_keyword'),
+    'onkeyup' => 'makeToken(event);',
 );
 $certified = array(
     'name' => 'certified',
@@ -14,7 +15,7 @@ $agreed = array(
     'id' => 'agreed',
     'value' => set_value('agreed'),
 );
-$attributes = array('id' => 'search_form');
+$attributes = array('id' => 'search_form','onkeypress'=>"return event.keyCode != 13;");
 
 echo form_open_multipart($this->uri->uri_string(), $attributes);
 ?>
@@ -209,5 +210,47 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
         }
         return true;
     }
+    var token=0;
+    var removeToken=0;
+    function makeToken(event){
     
+        if (event.keyCode == 13 && $('#mainsearch').val()!='') {
+            token=token+1;
+            
+            $('#token_string').append('<div class="token" id="div_'+token+'"><span id="search_string_'+token+'">'+$('#mainsearch').val()+'</span><span> <a href="javascript:void(0);" onclick="removeTokenDiv('+token+');">X</a></span></div>');
+//            getRecords();
+            $('#mainsearch').val('');
+            $('.dropdown-container').css('width',$('.search-input').width()+26);
+            
+        }
+        else if (event.keyCode == 8) {
+            if($('#mainsearch').val()=='' && token!=0){
+                if(removeToken==1){
+                    $('.token').last().remove();
+                    
+                    $('.dropdown-container').css('width',$('.search-input').width()+26);
+                    token=token-1;
+                    removeToken=0;
+//                    getRecords();
+                }
+                else{
+                    removeToken=1;
+                }
+                
+            }
+            
+        }
+        if(token>0){
+            $('.token-count').html(token);
+            $('.search-close').show();
+            $('.token-count').show();
+            
+        }
+        else{
+            $('.token-count').html(token);
+            $('.search-close').hide();
+            $('.token-count').hide();
+        }
+        //        console.log(token);
+    }
 </script>

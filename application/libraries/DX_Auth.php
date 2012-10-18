@@ -783,14 +783,14 @@ class DX_Auth
 	}
 	
 	// Check if email is available to use, by making sure there is no same email in the database
-	function is_email_available($email)
+	function is_email_available($email,$user_id)
 	{
 		// Load Models
 		$this->ci->load->model('dx_auth/users', 'users');
 		$this->ci->load->model('dx_auth/user_temp', 'user_temp');
 
-		$users = $this->ci->users->check_email($email);
-		$temp = $this->ci->user_temp->check_email($email);
+		$users = $this->ci->users->check_email($email,$user_id);
+		$temp = $this->ci->user_temp->check_email($email,$user_id);
 		
 		return $users->num_rows() + $temp->num_rows() == 0;
 	}			

@@ -45,7 +45,8 @@ class Settings extends MY_Controller {
     /**
      * Check if email is already exist in database
      * 
-     * @param type $email
+     * @param $email 
+     * @param $user_id
      * @return string 
      */
     function email_check($email,$user_id=NULL) {
@@ -140,9 +141,7 @@ class Settings extends MY_Controller {
                 echo 'done';
                 exit;
             } else {
-                echo '<pre>';
                 $errors = $val->error_string();
-                echo '<pre>';print_r($errors);exit;
                 $data['errors'] = $errors;
             }
         }

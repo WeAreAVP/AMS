@@ -116,6 +116,7 @@ if(!$is_ajax){?>
         });
     }
 		function search_station(){
+			search_words=$('#search_words').val();
     	   $.ajax({
             type: 'POST', 
             url: '<?php echo site_url('stations/search')?>',
@@ -150,7 +151,7 @@ if(!$is_ajax){?>
 		{
 			var token=0;
 			$('#search_words').val('');
-			search_words='';
+			var my_search_words='';
 			if($('#search_keyword').val()!='')
 			{
 				var random_id=rand(0,1000365);
@@ -161,12 +162,15 @@ if(!$is_ajax){?>
 			
 			$(".search_keys").each(function() {
 				if(token==0)
-					search_words=$(this).text();
+					my_search_words=$(this).text();
 				else
-					search_words+=','+$(this).text();
+					my_search_words+=','+$(this).text();
 					token=token+1;
 			});
-			$('#search_words').val(search_words);
+			if(my_search_words!='' && typeof(my_search_words)!=undefined)
+			{
+				$('#search_words').val(my_search_words);
+			}
 			if(token>0){
 				$('#tokens').show();
 			}

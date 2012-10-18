@@ -39,7 +39,11 @@ class Station_Model extends CI_Model {
         $this->db->where('id', $station_id);
         return $this->db->get($this->_table)->row();
     }
-
+    function get_stations_by_id($stations){
+        $this->db->select('station_name,start_date,end_date');
+        $this->db->where_in('id',$stations);
+        return $this->db->get($this->_table)->result();
+    }
     /**
      * update the stations record
      * 

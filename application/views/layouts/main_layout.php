@@ -47,7 +47,22 @@
         </style> 
         <script type="text/javascript"> 
             $(document).ready(function() {
-                $("#start_date").datepicker({dateFormat: 'yy-dd-mm'});
+                
+                var dates = $( "#start_date, #end_date" ).datepicker({
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 1,
+                    dateFormat: 'yy-dd-mm',
+                    onSelect: function( selectedDate ) {
+                        var option = this.id == "start_date" ? "minDate" : "maxDate",
+                        instance = $( this ).data( "datepicker" ),
+                        date = $.datepicker.parseDate(
+                        instance.settings.dateFormat ||
+                            $.datepicker._defaults.dateFormat,
+                        selectedDate, instance.settings );
+                        dates.not( this ).datepicker( "option", option, date );
+                    }
+                });
                 
                 $("#station_table").tablesorter();
             });
@@ -95,7 +110,7 @@
                         $(function () {
                             $('#myTab a:last').tab('show');
                         })
-                            
+                                
                     </script>
                 <?php } ?>
                 {yield}

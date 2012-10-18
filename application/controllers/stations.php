@@ -69,6 +69,16 @@ class Stations extends MY_Controller {
             echo json_encode(array('success' => true, 'station' => $station));
             exit;
         }
+        show_404();
+    }
+    public function get_stations(){
+        if(isAjax()){
+            $stations_id=$this->input->post('id');
+            $records=$this->station_model->get_stations_by_id($stations_id);
+            echo json_encode(array('success'=>true,'records'=>$records));
+            exit;
+        }
+        show_404();
     }
 
     /*

@@ -196,11 +196,11 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                                 <td>
                                     <?php if (empty($data->start_date)) {
                                         ?>
-                                        <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');">Set start date</a>
+                                        No DSD
                                         <?php
                                     } else {
                                         ?>
-                                        <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('<?php echo $data->start_date; ?>','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');"><?php echo $data->start_date; ?></a>
+                                        <?php echo $data->start_date; ?>
                                         <?php
                                     }
                                     ?>
@@ -210,11 +210,11 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                                 <td>
                                     <?php if (empty($data->end_date)) {
                                         ?>
-                                        <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');">Set end date</a>
+                                        No DED
                                         <?php
                                     } else {
                                         ?>
-                                        <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('<?php echo $data->end_date; ?>','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');"><?php echo $data->end_date; ?></a>
+                                        <?php echo $data->end_date; ?>
                                         <?php
                                     }
                                     ?>
@@ -233,56 +233,34 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
         </div>
         <div class="row" style="margin:5px 0px;">
 
-            <a href="javascript://" class="btn btn-large">Edit</a>
+            <a href="javascript://" class="btn btn-large" onclick="editStations();">Edit</a>
         </div>
     </div>
 
 
 </div>
-
-<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<a href="#myStationModal" data-toggle="modal" id="showPopUp"></a>
+<div class="modal hide" id="myStationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="stationLabel">Set Start Date</h3>
+        <h3>Edit Station Record(s)</h3>
+        <p id="subLabel" style="font-size: 10px;"></p>
     </div>
     <div class="modal-body">
+
         <input type="hidden" id="station_id" name="station_id"/>
-        <input type="text" id="start_date" name="start_date"/>
+        <div><div style="float: left;width: 150px;">Digitization Start Date:</div><input type="text" id="start_date" name="start_date"/></div>
+        <div><div style="float: left;width: 150px;">Digitization End Date:</div><input type="text" id="end_date" name="end_date"/></div>
     </div>
     <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <button class="btn btn-primary" onclick="updateStartDate();"  data-dismiss="modal">Save changes</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true" id="">Cancel</button>
+        <button class="btn btn-primary"   data-dismiss="modal">Save changes</button>
     </div>
 </div>
 <script type="text/javascript">
     var stationName=null;
-    function setStartDate(date,station_name,id){
-        stationName=station_name;
-        $('#stationLabel').html(station_name+' Start Date');
-        $('#start_date').val(date);
-        $('#station_id').val(id);
-        
-    }
-    function updateStartDate(){
-        station=$('#station_id').val();
-        start_date=$('#start_date').val();
-        $.ajax({
-            type: 'POST', 
-            url: '/index.php/stations/update_station_date',
-            data:{id:station,start_date:start_date},
-            dataType: 'json',
-            cache: false,
-            success: function (result) { 
-                if(result.success==true && result.station==true){
-                    $('#'+station+'_date').attr('onclick','setStartDate("'+start_date+'","'+stationName+'","'+station+'")');
-                    $('#'+station+'_date').html(start_date);
-                }
-                else{
-                    console.log('some error occur');
-                }
-            }
-        });
-    }
+    
+    
     function checkAll() {
         var boxes = document.getElementsByTagName('input');
         for (var index = 0; index < boxes.length; index++) {
@@ -322,5 +300,77 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
         }
         
     }
-   
+    
+    function editStations(){
+        var stations=new Array();
+        $('input[name="station[]"]:checked').each(function(index,a){
+            stations[index]=$(this).val();
+        });
+        if(stations.length>0){
+            $.ajax({
+                type: 'POST', 
+                url: site_url+'stations/get_stations',
+                data:{id:stations},
+                dataType: 'json',
+                cache: false,
+                success: function (result) {
+                    if(result.success==true){
+                        var station_name='';
+                        var compare_start_date=0;
+                        var compare_end_date=0;
+                        var start_date=false;
+                        var end_date=false;
+                        for(cnt in result.records){
+                            if(cnt==0){
+                                start_date=result.records[cnt].start_date;
+                                end_date=result.records[cnt].end_date;
+                            
+                            }
+                        
+                            if(cnt>=result.records.length-1){
+                                if(start_date==result.records[cnt].start_date){
+                                    compare_start_date=0;
+                                }
+                                else{
+                                    compare_start_date=1; 
+                                }
+                                if(end_date==result.records[cnt].end_date){
+                                    compare_end_date=0;
+                                }
+                                else{
+                                    compare_end_date=1; 
+                                }
+                            }
+                        
+                            if(cnt==result.records.length-1)
+                                station_name+=result.records[cnt].station_name;
+                            else
+                                station_name+=result.records[cnt].station_name+',';
+                        }
+                        if(compare_start_date==0 && start_date!=null)
+                            $('#start_date').val(start_date);
+                        else if(compare_start_date==0 && start_date==null)
+                            $('#start_date').val('');
+                        else
+                            $('#start_date').val('---');
+                        if(compare_end_date==0 && end_date!=null)
+                            $('#end_date').val(end_date);
+                        else if(compare_end_date==0 && end_date==null)
+                            $('#end_date').val('');
+                        else
+                            $('#end_date').val('---');
+                        $('#subLabel').html('Record(s) being edited: '+station_name);
+                        $('#station_id').val(stations);
+                        $('#showPopUp').trigger('click');
+                    }
+                    else{
+                        console.log(result);
+                    }
+                
+                }
+            });
+        }
+        
+    }
+    
 </script>

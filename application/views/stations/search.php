@@ -148,8 +148,8 @@ if(!$is_ajax){?>
 		}
 		function add_remove_search()
 		{
+			var token=0;
 			$('#search_words').val('');
-			token==0;
 			if($('#search_keyword').val()!='')
 			{
 				var random_id=rand(0,1000365);

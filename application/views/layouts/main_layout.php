@@ -87,11 +87,11 @@
                     <ul class="nav nav-tabs">
                         <li><a href="<?php echo site_url('templatemanager/add');?>" >Email Template</a></li>
                         <li><a href="<?php echo site_url('templatemanager/lists');?>" >List Template</a></li>
-                        <li><a href="#users" data-toggle="tab">Users</a></li>
+                        <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index');?>">Users</a></li>
                     </ul>
                     <script>
                         $(function () {
-                            $('#myTab a[href="#users"]').tab('show');
+                            $('#myTab a:last').tab('show');
                         })
                     </script>
                 <?php } ?>

@@ -36,92 +36,45 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'new_user');
 <center>
     <?php echo form_open_multipart($this->uri->uri_string(), $attributes); ?>
     <table class="table">
-
-
-
         <tr>
             <td width="150"><?php echo form_label('Email', $email['id']); ?></td>
-            <td><?php echo form_input($email); ?></td>
+            <td><?php echo form_input($email); ?><span style="color: red;"><?php echo form_error($email['name']); ?></span></td>
         </tr>
 
-        <?php if (isset($errors[$email['name']])) { ?>
-            <tr><td></td>	
-                <td style="color: red;"><?php echo form_error($email['name']); ?></td>
-            </tr>
-        <?php } ?>
+
         <tr>
             <td width="150"><?php echo form_label('Password', $password['id']); ?></td>
-            <td><?php echo form_password($password); ?></td>
+            <td><?php echo form_password($password); ?><span style="color: red;"><?php echo form_error($password['name']); ?></span></td>
         </tr>
 
-        <?php if (isset($errors[$password['name']])) { ?>
-            <tr><td></td>	
-                <td style="color: red;"><?php echo form_error($password['name']); ?></td>
-            </tr>
-        <?php } ?>
+
 
         <tr>
             <td width="150"><?php echo form_label('First Name', $first_name['id']); ?></td>
-            <td><?php echo form_input($first_name); ?></td>
+            <td><?php echo form_input($first_name); ?><span style="color: red;"><?php echo form_error($first_name['name']); ?></span></td>
         </tr>
-
-        <?php if (isset($errors[$first_name['name']])) { ?>
-            <tr><td></td>	
-                <td style="color: red;"><?php echo form_error($first_name['name']); ?></td>
-            </tr>
-        <?php } ?>
-
 
         <tr>
             <td width="150"><?php echo form_label('Last Name', $last_name['id']); ?></td>
-            <td><?php echo form_input($last_name); ?></td>
+            <td><?php echo form_input($last_name); ?><span style="color: red;"><?php echo form_error($last_name['name']); ?></span></td>
         </tr>
 
-        <?php if (isset($errors[$last_name['name']])) { ?>
-            <tr><td></td>	
-                <td style="color: red;"><?php echo form_error($last_name['name']); ?></td>
-            </tr>
-        <?php } ?>
+
         <tr>
             <td width="150"><?php echo form_label('Phone #', $phone_no['id']); ?></td>
-            <td><?php echo form_input($phone_no); ?></td>
+            <td><?php echo form_input($phone_no); ?><span style="color: red;"><?php echo form_error($phone_no['name']); ?></span></td>
         </tr>
-
-        <?php if (isset($errors[$phone_no['name']])) { ?>
-            <tr><td></td>	
-                <td style="color: red;"><?php echo form_error($phone_no['name']); ?></td>
-            </tr>
-        <?php } ?>
 
         <tr>
-            <td width="150"><?php echo form_label('Country', $role['id']); ?></td>
-            <td><?php echo form_dropdown($role['id'], $roles); ?></td>
+            <td width="150"><?php echo form_label('Role', $role['id']); ?></td>
+            <td><?php echo form_dropdown($role['id'], $roles); ?><span style="color: red;"><?php echo form_error($role['name']); ?></span></td>
         </tr>
-
-        <?php if (isset($errors[$country['name']])) { ?>
-            <tr><td></td>	
-                <td style="color: red;"><?php echo form_error($country['name']); ?></td>
-            </tr>
-        <?php } ?>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         <tr>
 
             <td colspan="2" style="text-align: right;">
-
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>&nbsp;<?php echo form_submit('save', 'Save', 'class="btn primary" onclick="addUser(\'post\');" '); ?>
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>&nbsp;<?php echo form_submit('save', 'Save', 'class="btn btn-primary" onclick="manageUser(\'post\',\'add_user\');" '); ?>
 
             </td>
         </tr>

@@ -7,6 +7,7 @@
         <script src="/js/jquery-ui-1.9.0.custom.js" type="text/javascript"></script>
         <script src="/js/jquery.tablesorter.js" type="text/javascript"></script>
         <script src="/js/bootstrap/bootstrap.js" type="text/javascript"></script>
+        <script src="/js/custom.js" type="text/javascript"></script>
 
         <link href="/css/tableSorter.css" rel="stylesheet" />
         <link href="/css/smoothness/jquery-ui-1.9.0.custom.css" rel="stylesheet" />

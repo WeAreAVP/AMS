@@ -17,14 +17,14 @@ if (!defined('BASEPATH'))
   | path to your installation.
   |
  */
+ $config['index_page'] = 'index.php';
 if (ENVIRONMENT == 'testing') {
+	$config['index_page'] = '';
     $config['base_url'] = "http://ams.iserver.purelogics.info/";
 } else if (ENVIRONMENT == 'development') {
-			$config['index_page'] = 'index.php';
      $config['base_url'] = "http://ec2-54-242-106-197.compute-1.amazonaws.com/";
 }
 else if (ENVIRONMENT == 'qatesting') {
-		$config['index_page'] = 'index.php';
      $config['base_url'] = "http://ec2-174-129-139-234.compute-1.amazonaws.com/";
 } else {
     

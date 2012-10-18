@@ -46,13 +46,14 @@ class Users extends CI_Model {
         $query = $this->db->get($this->_table);
         return $query;
     }
+
     function get_user_detail($user_id) {
         $users_table = $this->_table;
         $profile_table = $this->_profile_table;
         $this->db->select("$users_table.*", FALSE);
-        
+
         $this->db->select("$profile_table.id as profile_id,first_name,last_name,phone_no", FALSE);
-        
+
         $this->db->join($profile_table, "$profile_table.user_id = $users_table.id");
         $this->db->where("$users_table.id", $user_id);
         $this->db->order_by("$users_table.id", "ASC");
@@ -94,9 +95,11 @@ class Users extends CI_Model {
         return $this->db->get($this->_table);
     }
 
-    function check_email($email) {
+    function check_email($email, $user_id = NULL) {
         $this->db->select('1', FALSE);
         $this->db->where('LOWER(email)=', strtolower($email));
+        if ($user_id != NULL)
+            $this->db->where('id !=', $user_id);
         return $this->db->get($this->_table);
     }
 

@@ -48,8 +48,9 @@ class Settings extends MY_Controller {
      * @param type $email
      * @return string 
      */
-    function email_check($email) {
-        $result = $this->dx_auth->is_email_available($email);
+    function email_check($email,$user_id=NULL) {
+        
+        $result = $this->dx_auth->is_email_available($email,$user_id);
         if (!$result) {
             $this->form_validation->set_message('email_check', 'Email is already used by another user. Please choose another email address.');
         }
@@ -112,7 +113,7 @@ class Settings extends MY_Controller {
         $user_id = $this->uri->segment(3);
         $val = $this->form_validation;
 
-        $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
+        $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check['.$user_id.']');
         $val->set_rules('password', 'Password', 'trim|xss_clean');
         $val->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
         $val->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
@@ -139,7 +140,9 @@ class Settings extends MY_Controller {
                 echo 'done';
                 exit;
             } else {
+                echo '<pre>';
                 $errors = $val->error_string();
+                echo '<pre>';print_r($errors);exit;
                 $data['errors'] = $errors;
             }
         }

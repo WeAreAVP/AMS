@@ -9,92 +9,81 @@ $search = array(
 $attributes = array('id' => 'search_form','onsubmit' => "return false;",'onkeypress' => "return event.keyCode != 13;");
 echo form_open_multipart($this->uri->uri_string(), $attributes);
 ?>
+
 <div class="row-fluid">
-    <div class="span3">
-        <div id="search_bar">
-          
-           <input type="hidden" name="search_words" id="search_words"/>
-            <div>
-                <?php echo form_label('FILTER STATIONS', $search['id']); ?></b>
-            </div>
-            
-            <div id="tokens" style="display: none;"></div>
-            <div>
-                <?php echo form_input($search); ?><span class="input-search-img" onclick="search_station();"></span>
-            </div>
-           <?php /*?> <div><input type="button" name="Search" value="Search" class="btn primary" onclick="search_station();" /></div><?php */?>
-        </div>
-
-
+  <div class="span3">
+    <div id="search_bar">
+      <input type="hidden" name="search_words" id="search_words"/>
+      <div> <?php echo form_label('FILTER STATIONS', $search['id']); ?></b> </div>
+      <div id="tokens" style="display: none;"></div>
+      <div> <?php echo form_input($search); ?><span class="input-search-img" onclick="search_station();"></span> </div>
+      <?php /*?> <div><input type="button" name="Search" value="Search" class="btn primary" onclick="search_station();" /></div><?php */?>
     </div>
-    <?php echo form_close(); ?>
-    <div class="span9">
-    	<table class="tablesorter table table-bordered" id="station_table">
+  </div>
+  <?php echo form_close(); ?>
+  <div class="span9">
+    <table class="tablesorter table table-bordered" id="station_table">
       <?php
       }?>
-            <thead>
-                <tr>
-                    <td style"float:left"><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
-                    <th>Station Name</th>
-                    <td>Contact Name</td>
-                    <td>Contact Title</td>
-                    <td>Type</td>
-                    <td>DSD</td>
-                    <td>DED</td>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+      <thead>
+        <tr>
+          <td style"float:left"><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
+          <th>Station Name</th>
+          <td>Contact Name</td>
+          <td>Contact Title</td>
+          <td>Type</td>
+          <td>DSD</td>
+          <td>DED</td>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
                 if (isset($results['records']) && count($results['records']) > 0) {
                     foreach ($results['records'] as $data) {
                         ?>
-                        <tr>
-                            <td><input style='margin-left:15px;' type='checkbox' name='station[]' value='<?php echo $data->id; ?>'  class='checkboxes'/></td>
-                            <td><?php echo $data->station_name; ?></td>
-                            <td><?php echo $data->contact_name; ?></td>
-                            <td><?php echo $data->contact_title; ?></td>
-	                          <td><?php echo $data->my_type; ?></td>
-                            <td><?php if (($data->start_date)==0) {?>
-                                    <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');">Set start date</a>
-                                    <?php
+        <tr>
+          <td><input style='margin-left:15px;' type='checkbox' name='station[]' value='<?php echo $data->id; ?>'  class='checkboxes'/></td>
+          <td><?php echo $data->station_name; ?></td>
+          <td><?php echo $data->contact_name; ?></td>
+          <td><?php echo $data->contact_title; ?></td>
+          <td><?php echo $data->my_type; ?></td>
+          <td><?php if (($data->start_date)==0) {?>
+            <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');">Set start date</a>
+            <?php
                                 } else {
                                     ?>
-                                    <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('<?php echo date("Y-m-d",$data->start_date); ?>','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');"><?php echo date("Y-m-d",$data->start_date); ?></a>
-                                    <?php
+            <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('<?php echo date("Y-m-d",$data->start_date); ?>','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');"><?php echo date("Y-m-d",$data->start_date); ?></a>
+            <?php
                                 }
-                                ?>
-
-
-                            </td>
-                        </tr>
-                        <?php
+                                ?></td>
+        </tr>
+        <?php
                     }
                 } else {
                     ?>
-                    <tr><td colspan="11" style="text-align: center;"><b>No Station Found.</b></td></tr>
-                <?php } ?>
-            </tbody>
-            <?php
+        <tr>
+          <td colspan="11" style="text-align: center;"><b>No Station Found.</b></td>
+        </tr>
+        <?php } ?>
+      </tbody>
+      <?php
 if(!$is_ajax){?>
-        </table>
-    </div>
-
-
+    </table>
+  </div>
 </div>
-
 <div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="stationLabel">Set Start Date</h3>
-    </div>
-    <div class="modal-body">
-        <input type="hidden" id="station_id" name="station_id"/>
-        <input type="text" id="start_date" name="start_date"/>
-    </div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <button class="btn btn-primary" onclick="updateStartDate();"  data-dismiss="modal">Save changes</button>
-    </div>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="stationLabel">Set Start Date</h3>
+  </div>
+  <div class="modal-body">
+    <input type="hidden" id="station_id" name="station_id"/>
+    <input type="text" id="start_date" name="start_date"/>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary" onclick="updateStartDate();"  data-dismiss="modal">Save changes</button>
+  </div>
 </div>
 <script type="text/javascript">
     var stationName=null;
@@ -126,7 +115,6 @@ if(!$is_ajax){?>
         });
     }
 		function search_station(){
-			add_remove_search();
       var search_words=$('#search_words').val();
        $.ajax({
             type: 'POST', 
@@ -146,24 +134,22 @@ if(!$is_ajax){?>
         }
         return true;
     }
-    var token=0;
-    var removeToken=0;
-    var search_words=null;
-    function makeToken(event){
-    
-        if (event.keyCode == 13 ) {
-          search_station();
-        }
-       
-        
+   	function makeToken(event)
+	 	{
+   		if (event.keyCode == 13 )
+			{
+      	add_remove_search();
+      }
     }
 		function remove_keword(id)
 		{
 			$("#"+id).remove();
-			search_station();
+			add_remove_search();
 		}
 		function add_remove_search()
 		{
+			$('#search_words').val('');
+			token==0;
 			if($('#search_keyword').val()!='')
 			{
 				var random_id=rand(0,1000365);
@@ -171,7 +157,7 @@ if(!$is_ajax){?>
 				$('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'</span><span class="btn-close-img" onlclick="remove_keword(\''+search_id+'\')"></span></div>');
 			}
 			$('#search_keyword').val('');
-			token==0;
+		
 			$(".search_keys").each(function() {
 				if(token==0)
 					search_words=$(this).text();
@@ -187,6 +173,7 @@ if(!$is_ajax){?>
 			{
 				$('#tokens').hide();
 			}	
+			search_station();
 		}
 </script>
 <?php }else{ exit();} ?>

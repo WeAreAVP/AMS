@@ -16,7 +16,7 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
       <input type="hidden" name="search_words" id="search_words"/>
       <div> <?php echo form_label('FILTER STATIONS', $search['id']); ?></b> </div>
       <div id="tokens" style="display: none;"></div>
-      <div> <?php echo form_input($search); ?><span class="input-search-img" onclick="search_station();"></span> </div>
+      <div> <?php echo form_input($search); ?><span class="input-search-img" onclick="add_remove_search();"></span> </div>
       <?php /*?> <div><input type="button" name="Search" value="Search" class="btn primary" onclick="search_station();" /></div><?php */?>
     </div>
   </div>

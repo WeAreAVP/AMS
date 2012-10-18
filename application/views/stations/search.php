@@ -174,9 +174,9 @@ if(!$is_ajax){?>
 		{
 			if($('#search_keyword').val()!='')
 			{
-				var random_id=rand();
-				var search_id=$('#search_keyword').val()+'(**)'+random_id;
-				$('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'<span><span class="btn-close-img" onlclick="remove_keword('+search_id+')"></span></div>');
+				var random_id=rand(0,1000365);
+				var search_id=$('#search_keyword').val()+random_id;
+				$('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'</span><span class="btn-close-img" onlclick="remove_keword('+search_id+')"></span></div>');
 				$('#search_keyword').val('');
 				$('.token').last().html();
 				

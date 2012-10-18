@@ -31,7 +31,10 @@ class Email_Template_Model extends CI_Model {
 			$this->db->where("system_id",$system_id);
 			$res=$this->db->get();
 			if(isset($res) && !empty($res))
+			{
+				echo $this->db->last_query();
 				return $res->result();
+			}
 			return false;
 		}
 		
@@ -75,5 +78,16 @@ class Email_Template_Model extends CI_Model {
 			 	return $res->result();
 			}
 			return false;
+    }
+		/**
+     * Delete Template
+     * 
+     * @return object
+     */
+		function delete_template($template_id)
+		{
+    	$this->db->where('id', $template_id);
+      $this->db->delete($this->_table);
+      return $this->db->affected_rows() > 0;
     }
 }

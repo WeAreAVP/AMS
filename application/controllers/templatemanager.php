@@ -21,7 +21,7 @@ class TemplateManager extends CI_Controller
 		$this->load->helper('form');
 		$this->load->model('email_template_model','email_template');
 	}
-	private function system_id_check($system_id)
+	function system_id_check($system_id)
 	{
 		$result = $this->email_template->get_template_by_sys_id($system_id);
 		if ($result)
@@ -39,7 +39,7 @@ class TemplateManager extends CI_Controller
 	public function add()
 	{
 		$data['add_temp']=false;
-		if(isset($_POST) && !empty($_POST) )
+		if ($this->input->post()) 
 		{
 			$val = $this->form_validation;
 			$val->set_rules('system_id', 'System Id', 'trim|required|xss_clean|callback_system_id_check');
@@ -62,10 +62,10 @@ class TemplateManager extends CI_Controller
 				$email_template_data['reply_to']=$val->set_value('reply_to');
 				$replaceable=explode("\n",$val->set_value('replaceables'));
 				$email_template_data['replaceables']= isset($replaceable)?json_encode($replaceable):'';
-				$email_template_data['created_date']=date("Y-m-d H:i:s");			
+				$email_template_data['created_date']=date("Y-m-d H:i:s");
 				$this->email_template->add_email_template($email_template_data);
 				$data['add_temp']=true;
-				redirect('templatemanager/list/added');
+				redirect('templatemanager/lists/added');
 			}
 		}
 		$this->load->view("templatemanager/add_template",$data);
@@ -73,14 +73,14 @@ class TemplateManager extends CI_Controller
 	/* Lsit all Templates*/
 	public function lists()
 	{
-		$data['info'] = $this->uri->segment(3);
+		$data['message'] = $this->uri->segment(3);
 		$data['templates']=$this->email_template->get_all();
 		$this->load->view("templatemanager/list",$data);
 	}
 	/**
 	* Show Detail of specific templates
 	* 
-	* @param $station_id as a uri segment
+	* @param $template_id
 	*/
 	public function details($template_id='')
 	{
@@ -91,9 +91,26 @@ class TemplateManager extends CI_Controller
 		}
 		else
 		{
-			redirect('templatemanager/list');
+			redirect('templatemanager/lists');
 		}
 	}
-
+	/**
+	* Detelet template
+	* 
+	* @param $template_id
+	*/
+	public function delete($template_id='')
+	{
+		$message='';
+		if(isset($template_id) && !empty($template_id))
+		{
+			if($this->email_template->delete_template($template_id))
+			{
+				$this->load->view('templatemanager/detail', $data);
+				$message='deleted';
+			}
+		}
+		redirect('templatemanager/lists/'.$message);
+	}
 }
 ?>

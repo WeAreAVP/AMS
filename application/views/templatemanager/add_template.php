@@ -38,7 +38,7 @@ $replacebale = array(
 );
 //$replacebale=array("{station name}","{first name}","{last name}","{start date}","{end date}");
 
-echo form_open_multipart($this->uri->uri_string(), $attributes);
+echo form_open_multipart(site_url('templatemanager/add'), $attributes);
 ?>
 <?php 
 if($add_temp){?>

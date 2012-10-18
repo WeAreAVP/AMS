@@ -17,9 +17,9 @@
 
 
         <script type="text/javascript">
-	var site_url='<?php echo site_url()?>';
+            var site_url='<?php echo site_url() ?>';
 	
-</script>
+        </script>
 
         <style type="text/css">
             html, body {
@@ -72,7 +72,7 @@
 
                             <li class="<?php echo active_anchor('stations', 'index'); ?>"><a href="<?php echo site_url('stations/index') ?>">Stations</a></li>
                             <li class="<?php echo active_anchor('reports', 'index'); ?>"><a href="">Reports</a></li>
-                            <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index') ?>">Settings</a></li> 
+                            <li class="<?php echo active_anchor('settings', false); ?>"><a href="<?php echo site_url('settings/index') ?>">Settings</a></li> 
 
                         </ul>
                     </div><!--/.nav-collapse -->
@@ -83,18 +83,19 @@
         <div class="container">
 
             <div class="content" >
-               <?php if (active_anchor('settings', 'index') || active_anchor('settings', 'edit_profile') || active_anchor('templatemanager', 'add') || active_anchor('templatemanager', 'lists')) { ?>
+                <?php if (active_anchor('settings', 'index') || active_anchor('settings', 'edit_profile') || active_anchor('templatemanager', 'add') || active_anchor('templatemanager', 'lists')) { ?>
                     <ul class="nav nav-tabs">
-                        <li><a href="<?php echo site_url('templatemanager/add');?>" >Email Template</a></li>
-                        <li><a href="<?php echo site_url('templatemanager/lists');?>" >List Template</a></li>
-                        <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index');?>">Users</a></li>
-                        
+                        <li><a href="<?php echo site_url('templatemanager/add'); ?>" >Email Template</a></li>
+                        <li><a href="<?php echo site_url('templatemanager/lists'); ?>" >List Template</a></li>
+                        <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index'); ?>">Users</a></li>
+                        <li class="<?php echo active_anchor('settings', 'edit_profile'); ?>"><a href="<?php echo site_url('settings/edit_profile'); ?>">Edit Profile</a></li> 
+
                     </ul>
                     <script>
                         $(function () {
                             $('#myTab a:last').tab('show');
                         })
-                        
+                            
                     </script>
                 <?php } ?>
                 {yield}

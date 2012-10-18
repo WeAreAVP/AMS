@@ -7,7 +7,7 @@ function active_anchor($orignal_class, $orignal_method, $class = 'active') {
         return $class;
     }
 
-     if ($CI->router->class == $orignal_class) {
+    if ($CI->router->class == $orignal_class && !$orignal_method) { 
         return $class;
     }
     return '';

@@ -168,7 +168,10 @@ class Settings extends MY_Controller {
         $this->session->set_userdata('deleted', 'Record is Successfully Deleted');
         redirect('settings/index', 'location');
     }
-
+    /**
+     * Update current user profile
+     *  
+     */
     public function edit_profile() {
         $user_id = $this->session->userdata['DX_user_id'];
         $val = $this->form_validation;

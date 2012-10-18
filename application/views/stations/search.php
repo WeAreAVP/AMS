@@ -168,7 +168,7 @@ if(!$is_ajax){?>
 					search_words+=','+$(this).text();
 			});
 			$('#search_words').val(search_words);
-			search_station(){
+			search_station();
 		}
 		function add_remove_search()
 		{

@@ -29,13 +29,14 @@ $role = array(
     'id' => 'role',
     'value' => $user_info->role_id,
 );
-
+$attributes=null;
+if(!isset($profile_edit))
 $attributes = array('onsubmit' => 'return false;', 'id' => 'edit_from');
 ?>
 
 <center>
     <?php echo form_open_multipart($this->uri->uri_string(), $attributes); ?>
-    <table class="table">
+    <table class="table no_border">
 
 
 
@@ -80,12 +81,18 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'edit_from');
 
 
         <tr>
-
-            <td colspan="2" style="text-align: right;">
-                
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>&nbsp;<?php echo form_submit('save', 'Update', 'class="btn btn-primary" onclick="manageUser(\'post\',\'edit_user/' . $user_info->id . '\');" '); ?>
-
+            <?php if (isset($profile_edit)) { ?>
+            <td colspan="2">
+                <?php echo form_submit('save', 'Save', 'class="btn btn-primary"'); ?>
             </td>
+                
+            <?php } else { ?>
+                <td colspan="2" style="text-align: right;">
+
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>&nbsp;<?php echo form_submit('save', 'Update', 'class="btn btn-primary" onclick="manageUser(\'post\',\'edit_user/' . $user_info->id . '\');" '); ?>
+
+                </td>
+            <?php } ?>
         </tr>
 
 

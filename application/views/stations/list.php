@@ -15,7 +15,68 @@ $agreed = array(
     'id' => 'agreed',
     'value' => set_value('agreed'),
 );
-
+$state_options = array(
+    "AK" => "AK",
+    "AL" => "AL",
+    "AR" => "AR",
+    "AZ" => "AZ",
+    "CA" => "CA",
+    "CO" => "CO",
+    "CT" => "CT",
+    "DC" => "DC",
+    "DE" => "DE",
+    "FL" => "FL",
+    "GA" => "GA",
+    "HI" => "HI",
+    "IA" => "IA",
+    "ID" => "ID",
+    "IL" => "IL",
+    "IN" => "IN",
+    "KS" => "KS",
+    "KY" => "KY",
+    "LA" => "LA",
+    "MA" => "MA",
+    "MD" => "MD",
+    "ME" => "ME",
+    "MI" => "MI",
+    "MN" => "MN",
+    "MO" => "MO",
+    "MS" => "MS",
+    "MT" => "MT",
+    "NC" => "NC",
+    "ND" => "ND",
+    "NE" => "NE",
+    "NH" => "NH",
+    "NJ" => "NJ",
+    "NM" => "NM",
+    "NV" => "NV",
+    "NY" => "NY",
+    "OH" => "OH",
+    "OK" => "OK",
+    "OR" => "OR",
+    "PA" => "PA",
+    "RI" => "RI",
+    "SC" => "SC",
+    "SD" => "SD",
+    "TN" => "TN",
+    "TX" => "TX",
+    "UT" => "UT",
+    "VA" => "VA",
+    "VT" => "VT",
+    "WA" => "WA",
+    "WI" => "WI",
+    "WV" => "WV",
+    "WY" => "WY",
+    "ON" => "ON",
+    "QC" => "QC",
+    "AB" => "AB",
+    "NS" => "NS",
+    "NB" => "NB",
+    "MB" => "MB",
+    "BC" => "BC",
+    "PE" => "PE",
+    "SK" => "SK",
+    "NL" => "NL");
 $attributes = array('id' => 'search_form', 'onkeypress' => "return event.keyCode != 13;");
 
 echo form_open_multipart($this->uri->uri_string(), $attributes);
@@ -23,13 +84,31 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
 <div class="row-fluid">
     <div class="span3">
         <div id="search_bar">
+            <b><h4>Filter Stations</h4></b>
             <div id="tokens" style="display: none;"></div>
-             <input type="hidden" name="search_words" id="search_words"/>
+            <input type="hidden" name="search_words" id="search_words"/>
             <div>
-                <?php echo form_label('FILTER STATIONS', $search['id']); ?></b>
+                <?php echo form_label('Keyword(s):', $search['id']); ?></b>
             </div>
             <div>
                 <?php echo form_input($search); ?>
+            </div>
+            <div style="float: left;">Type:</div>
+            <div style="margin-left:35px;">
+                <div><input type="checkbox" value="0" name="type[]" id="radio" class="cls_radio"/>Radio</div>
+                <div><input type="checkbox" value="1" name="type[]" id="tv" class="cls_radio"/>TV</div>
+                <div><input type="checkbox" value="2" name="type[]" id="joint" class="cls_radio"/>Joint</div>
+            </div>
+            <div>State:</div>
+            <div>
+                <select name="state" >
+                    <option value="0">Select</option>
+                    <?php foreach ($state_options as $options) { ?>
+                        <option value="<?php echo $options; ?>" <?php if ($options == $sel_state_id) { ?> selected <?php } ?>  ><?php echo $options; ?></option>
+                    <?php } ?>
+
+
+                </select>
             </div>
             <div>
                 <?php echo form_label('Certified', $certified['id']); ?>
@@ -230,7 +309,7 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
             else
                 search_words+=','+$('.token').last().html();
               
-              $('#search_words').val(search_words);
+            $('#search_words').val(search_words);
             
             token=token+1;
             

@@ -67,3 +67,6 @@ float:right;
 margin-top:3px;
 cursor:pointer;
 }
+.cls_radio{
+    margin: 5px !important;
+}

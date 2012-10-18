@@ -168,6 +168,9 @@ class Settings extends MY_Controller {
         $this->session->set_userdata('deleted', 'Record is Successfully Deleted');
         redirect('settings/index', 'location');
     }
+    public function edit_profile(){
+//        echo 'here';
+    }
 
 }
 

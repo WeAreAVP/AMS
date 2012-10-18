@@ -110,7 +110,7 @@ if(!$is_ajax){?>
         start_date=$('#start_date').val();
         $.ajax({
             type: 'POST', 
-            url: '/index.php/stations/update_station_date',
+            url: '<?php echo site_url('stations/update_station_date')?>',
             data:{id:station,start_date:start_date},
             dataType: 'json',
             cache: false,
@@ -130,7 +130,7 @@ if(!$is_ajax){?>
       var search_words=$('#search_words').val();
        $.ajax({
             type: 'POST', 
-            url: '/index.php/stations/search',
+            url: '<?php echo site_url('stations/search')?>',
             data:{"search_words":search_words},
            	success: function (result) { 
            	 $('#station_table').html(result);
@@ -157,18 +157,33 @@ if(!$is_ajax){?>
        
         
     }
+		function remove_keword(id)
+		{
+			token=0;
+			$("#"+id).remove();
+			$(".search_keys").each(function() {
+				if(token==0)
+					search_words=$(this).text();
+				else
+					search_words+=','+$(this).text();
+			});
+			$('#search_words').val(search_words);
+			search_station(){
+		}
 		function add_remove_search()
 		{
 			if($('#search_keyword').val()!='')
 			{
-				$('#tokens').append('<div class="btn-img" >'+$('#search_keyword').val()+'<span class="btn-close-img"></span></div>');
+				var random_id=Math.random();
+				var search_id=$('#search_keyword').val()+'(**)'+random_id;
+				$('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'<span><span class="btn-close-img" onlclick="remove_keword('+search_id+')"></span></div>');
 				$('#search_keyword').val('');
 				$('.token').last().html();
 				
 				if(token==0)
-					search_words=$('.token').last().html();
+					search_words=$('.search_keys').last().text();
 				else
-					search_words+=','+$('.token').last().html();
+					search_words+=','+$('.search_keys').last().html();
 				
 				$('#search_words').val(search_words);
 				

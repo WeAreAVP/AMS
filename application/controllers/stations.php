@@ -81,7 +81,7 @@ class Stations extends MY_Controller {
 			$search_kewords = '';
 			if(isset($_REQUEST['search_words']) && !empty($_REQUEST['search_words']))
 			{
-				$search_kewords = str_replace(","," | ",trim($_REQUEST['search_words']));
+				$search_kewords = str_replace(","," & ",trim($_REQUEST['search_words']));
 			}
     	$data['results']=$this->sphinx->search_stations($search_kewords);
 			if (isAjax())

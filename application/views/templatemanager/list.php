@@ -1,7 +1,8 @@
 <div class="row-fluid">
      <div  class="span12">
-        <div style="" >
-            <table class="tablesorter table table-bordered" id="station_table">
+     		<?php if (isset($message) && !empty($message)) { ?><div class="alert alert-success notification" style="margin-bottom: 0px; margin-top: 0px;">Template <?php echo ucfirst($message)?> Successfully</div><br/><?php } ?>
+
+            <table class="tablesorter table table-bordered">
               <?php
                     if (isset($templates) && $templates && count($templates) > 0)
 										{
@@ -29,10 +30,10 @@
                                 <td><?php echo $data->email_from; ?></td>
                                 <td><?php echo $data->email_type; ?></td>
                                 <td><?php echo $data->replaceables; ?></td>
-                                <td>
-                                	<a href="<?php echo site_url('templatemanager/delete/' . $data->id)?>" >Delete</a> | 
-                                	<a href="<?php echo site_url('templatemanager/edit/' . $data->id)?>" >Edit</a>
-                               	</td>
+                                <td>                   
+                                	<a href="<?php echo site_url('templatemanager/edit/' . $data->id)?>" ><i class="icon-pencil" style="margin-right: 5px; margin-top: 2px;" > </i>Edit</a>&nbsp;|&nbsp;
+                                	<a href="<?php echo site_url('templatemanager/delete/' . $data->id)?>" ><i class="icon-trash" style="margin-right: 5px; margin-top: 2px;" > </i>Delete</a>
+                         				</td>
                             </tr>
                             <?php
                         }
@@ -42,6 +43,6 @@
                     <?php } ?>
                 </tbody>
             </table>
-        </div>
+              <div style="text-align: center;"><a href="<?php echo site_url('templatemanager/add');?>"  ><i class="icon-plus-sign" style="margin-right: 5px; margin-top: 2px;" > </i>Add New</a></div>
     </div>
 </div>

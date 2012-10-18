@@ -21,7 +21,7 @@
 
                         <tr>
                             <td><?php echo $row->email; ?></td>
-                            <td><?php echo $row->first_name . $row->last_name; ?></td>
+                            <td><?php echo $row->first_name .' '. $row->last_name; ?></td>
                             <td><?php echo $row->phone_no; ?></td>
                             <td>
                                 <a href="#myModal" data-toggle="modal" onclick="manageUser('get','edit_user/<?php echo $row->id; ?>');"><i class="icon-pencil" style="margin-right: 5px; margin-top: 2px;" > </i>Edit</a>&nbsp;|&nbsp;

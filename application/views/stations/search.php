@@ -87,6 +87,7 @@ if(!$is_ajax){?>
 </div>
 <script type="text/javascript">
     var stationName=null;
+		var search_words='';
     function setStartDate(date,station_name,id){
         stationName=station_name;
         $('#stationLabel').html(station_name+' Start Date');
@@ -148,8 +149,8 @@ if(!$is_ajax){?>
 		function add_remove_search()
 		{
 			var token=0;
-			var search_words='';
 			$('#search_words').val('');
+			search_words='';
 			if($('#search_keyword').val()!='')
 			{
 				var random_id=rand(0,1000365);

@@ -75,17 +75,17 @@ class Unit_Testing extends CI_Controller {
 		/*
 		Test For Sation Filter Search
 		*/
-		function search_sphinx()
+		function searchsphinxtest()
 		{
 			 echo '<br/>';
-        $test1 = $this->station_model->search_stations('AK');
+        $test1 = $this->sphinx_model->search_stations('AK');
         $test1 = count($test1['records']);
         $expected_result = 5;
         $test_name = 'State=AK ';
         echo $this->unit->run($test1, $expected_result, $test_name);
 				
 				 echo '<br/>';
-        $test2 = $this->station_model->search_stations('99576');
+        $test2 = $this->sphinx_model->search_stations('99576');
         $test2 = count($test2['records']);
         $expected_result = 1;
         $test_name = 'Zip=99576 ';
@@ -93,7 +93,7 @@ class Unit_Testing extends CI_Controller {
 				
 				
 				 echo '<br/>';
-        $test3 = $this->station_model->search_stations('General Manager');
+        $test3 = $this->sphinx_model->search_stations('General Manager');
         $test3 = count($test2['records']);
         $expected_result = 14;
         $test_name = 'Contact Title=General Manager ';

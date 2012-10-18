@@ -94,7 +94,7 @@ class Unit_Testing extends CI_Controller {
 				
 				 echo '<br/>';
         $test3 = $this->sphinx_model->search_stations('General Manager');
-        $test3 = count($test2['records']);
+        $test3 = count($test3['records']);
         $expected_result = 14;
         $test_name = 'Contact Title=General Manager ';
         echo $this->unit->run($test3, $expected_result, $test_name);

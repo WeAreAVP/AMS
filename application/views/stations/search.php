@@ -11,60 +11,72 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
 ?>
 
 <div class="row-fluid">
-  <div class="span3">
-    <div id="search_bar">
-      <input type="hidden" name="search_words" id="search_words"/>
-      <div> <?php echo form_label('FILTER STATIONS', $search['id']); ?></b> </div>
-      <div id="tokens" style="display: none;"></div>
-      <div> <?php echo form_input($search); ?><span class="input-search-img" onclick="add_remove_search();"></span> </div>
-      <?php /*?> <div><input type="button" name="Search" value="Search" class="btn primary" onclick="search_station();" /></div><?php */?>
-    </div>
+<div class="span3">
+  <div id="search_bar">
+    <input type="hidden" name="search_words" id="search_words"/>
+    <div> <?php echo form_label('FILTER STATIONS', $search['id']); ?></b> </div>
+    <div id="tokens" style="display: none;"></div>
+    <div> <?php echo form_input($search); ?><span class="input-search-img" onclick="add_remove_search();"></span> </div>
+    <?php /*?> <div><input type="button" name="Search" value="Search" class="btn primary" onclick="search_station();" /></div><?php */?>
   </div>
-  <?php echo form_close(); ?>
-  <div class="span9">
+</div>
+<?php echo form_close(); ?>
+<div class="span9">
+  <div style="overflow: scroll;height: 600px;" >
     <table class="tablesorter table table-bordered" id="station_table">
       <?php
-      }?>
+			}
+			 if (isset($results['records']) && count($results['records']) > 0) {
+      ?>
       <thead>
         <tr>
-          <td style"float:left"><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
-          <th>Station Name</th>
-          <td>Contact Name</td>
-          <td>Contact Title</td>
-          <td>Type</td>
-          <td>DSD</td>
-          <td>DED</td>
+          <th><span style="float:left;min-width:50px;">CPB ID</span></th>
+          <th><span style="float:left;min-width:80px;">Station Name</span></th>
+          <th><span style="float:left;min-width:90px;">Contact Name</span></th>
+          <th><span style="float:left;min-width:80px;">Contact Title</span></th>
+          <th><span style="float:left;min-width:30px;">Type</span></th>
+          <th><span style="float:left;min-width:100px;">Primary Address</span> </th>
+          <th><span style="float:left;min-width:110px;">Secondary Address</span></th>
+          <th><span style="float:left;min-width:50px;">City</span></th>
+          <th><span style="float:left;min-width:50px;">State</span></th>
+          <th><span style="float:left;min-width:50px;">Zip</span></th>
+          <th><span style="float:left;min-width:90px;">Contact Phone</span></th>
+          <th><span style="float:left;min-width:90px;">Contact Fax</span></th>
+          <th><span style="float:left;min-width:80px;">Contact Email</span></th>
+          <th><span style="float:left;min-width:90px;">Allocated Hours</span></th>
+          <th><span style="float:left;min-width:100px;">Allocated Buffer</span></th>
+          <th><span style="float:left;min-width:130px;">Total Allocated Hours</span></th>
         </tr>
       </thead>
-      <tbody>
-        <?php
-                if (isset($results['records']) && count($results['records']) > 0) {
-                    foreach ($results['records'] as $data) {
-                        ?>
-        <tr>
-          <td><input style='margin-left:15px;' type='checkbox' name='station[]' value='<?php echo $data->id; ?>'  class='checkboxes'/></td>
-          <td><?php echo $data->station_name; ?></td>
-          <td><?php echo $data->contact_name; ?></td>
-          <td><?php echo $data->contact_title; ?></td>
-          <td><?php echo $data->my_type; ?></td>
-          <td><?php if (($data->start_date)==0) {?>
-            <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');">Set start date</a>
-            <?php
-                                } else {
-                                    ?>
-            <a id="<?php echo $data->id; ?>_date" href="#myModal"  data-toggle="modal" onclick="setStartDate('<?php echo date("Y-m-d",$data->start_date); ?>','<?php echo $data->station_name; ?>','<?php echo $data->id; ?>');"><?php echo date("Y-m-d",$data->start_date); ?></a>
-            <?php
-                                }
-                                ?></td>
-        </tr>
-        <?php
-                    }
-                } else {
-                    ?>
+      <tbody><?php
+      	foreach ($results['records'] as $data)
+				{?>
+          <tr>
+            <td><?php echo $data->cpb_id; ?></td>
+            <td><?php echo $data->station_name; ?></td>
+            <td><?php echo $data->contact_name; ?></td>
+            <td><?php echo $data->contact_title; ?></td>
+            <td><?php echo $data->my_type; ?></td>
+            <td><?php echo $data->address_primary; ?></td>
+            <td><?php echo $data->address_secondary; ?></td>
+            <td><?php echo $data->city; ?></td>
+            <td><?php echo $data->state; ?></td>
+            <td><?php echo $data->zip; ?></td>
+            <td><?php echo $data->contact_phone; ?></td>
+            <td><?php echo $data->contact_fax; ?></td>
+            <td><?php echo $data->contact_email; ?></td>
+            <td><?php echo $data->allocated_hours; ?></td>
+            <td><?php echo $data->allocated_buffer; ?></td>
+            <td><?php echo $data->total_allocated; ?></td>
+          </tr><?php
+        }
+			}
+			else
+			{?>
         <tr>
           <td colspan="11" style="text-align: center;"><b>No Station Found.</b></td>
-        </tr>
-        <?php } ?>
+        </tr><?php 
+			} ?>
       </tbody>
       <?php
 if(!$is_ajax){?>
@@ -87,6 +99,7 @@ if(!$is_ajax){?>
 </div>
 <script type="text/javascript">
     var stationName=null;
+		var search_words='';
     function setStartDate(date,station_name,id){
         stationName=station_name;
         $('#stationLabel').html(station_name+' Start Date');
@@ -115,6 +128,7 @@ if(!$is_ajax){?>
         });
     }
 		function search_station(){
+			search_words=$('#search_words').val();
     	   $.ajax({
             type: 'POST', 
             url: '<?php echo site_url('stations/search')?>',
@@ -148,8 +162,8 @@ if(!$is_ajax){?>
 		function add_remove_search()
 		{
 			var token=0;
-			var search_words='';
 			$('#search_words').val('');
+			var my_search_words='';
 			if($('#search_keyword').val()!='')
 			{
 				var random_id=rand(0,1000365);
@@ -160,12 +174,15 @@ if(!$is_ajax){?>
 			
 			$(".search_keys").each(function() {
 				if(token==0)
-					search_words=$(this).text();
+					my_search_words=$(this).text();
 				else
-					search_words+=','+$(this).text();
+					my_search_words+=','+$(this).text();
 					token=token+1;
 			});
-			$('#search_words').val(search_words);
+			if(my_search_words!='' && typeof(my_search_words)!=undefined)
+			{
+				$('#search_words').val(my_search_words);
+			}
 			if(token>0){
 				$('#tokens').show();
 			}

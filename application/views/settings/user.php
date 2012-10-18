@@ -1,5 +1,6 @@
 <div class="row-fluid">
     <div id="users"  class="span12">
+        
         <?php if (isset($this->session->userdata['saved'])) { ?><div class="alert alert-success notification" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['saved']; ?></div><br/><?php } $this->session->unset_userdata('saved'); ?>
         <?php if (isset($this->session->userdata['updated'])) { ?><div class="alert alert-success notification" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['updated']; ?></div><br/><?php } $this->session->unset_userdata('updated'); ?>
         <?php if (isset($this->session->userdata['deleted'])) { ?><div class="alert alert-error notification" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['deleted']; ?></div><br/><?php } $this->session->unset_userdata('deleted'); ?>

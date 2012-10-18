@@ -35,7 +35,7 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'new_user');
 
 <center>
     <?php echo form_open_multipart($this->uri->uri_string(), $attributes); ?>
-    <table class="table">
+    <table class="table no_border">
         <tr>
             <td width="150"><?php echo form_label('Email', $email['id']); ?></td>
             <td><?php echo form_input($email); ?><span style="color: red;"><?php echo form_error($email['name']); ?></span></td>

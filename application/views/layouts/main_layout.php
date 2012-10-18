@@ -88,7 +88,7 @@
                         <li><a href="<?php echo site_url('templatemanager/add'); ?>" >Email Template</a></li>
                         <li><a href="<?php echo site_url('templatemanager/lists'); ?>" >List Template</a></li>
                         <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index'); ?>">Users</a></li>
-                        <li class="<?php echo active_anchor('settings', 'edit_profile'); ?>"><a href="<?php echo site_url('settings/edit_profile'); ?>">Edit Profile</a></li>
+                        <li class="<?php echo active_anchor('settings', 'edit_profile'); ?>"><a href="<?php echo site_url('settings/edit_profile'); ?>">Edit Profile</a></li> 
 
                     </ul>
                     <script>

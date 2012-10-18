@@ -4,7 +4,7 @@ if (count($template_detail) > 0) {
     <center>
         <table class="table table-bordered zebra-striped" style="width: 50%;">
             <tr>
-                <td>
+                <td >
                    System Id
                 </td>
                 <td> <?php echo $template_detail->system_id; ?></td>

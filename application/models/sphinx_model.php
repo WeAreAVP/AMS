@@ -20,7 +20,7 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->set_array_result ( true );
 		$this->sphinxsearch->set_match_mode ( $mode );
 		$this->sphinxsearch->set_connect_timeout ( 120 );
-		if ( $limit ) $this->sphinxsearch->set_limits ( (int) $offset, (int) $limit, ( $limit>1000 ) ? $limit : 1000 );
+		//if ( $limit ) $this->sphinxsearch->set_limits ( (int) $offset, (int) $limit, ( $limit>1000 ) ? $limit : 1000 );
 		$res = $this->sphinxsearch->query( $params, 'stations' );
 		$execution_time=$res['time'];
 		if ( $res)

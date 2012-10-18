@@ -115,8 +115,7 @@ if(!$is_ajax){?>
         });
     }
 		function search_station(){
-      var search_words=$('#search_words').val();
-       $.ajax({
+    	   $.ajax({
             type: 'POST', 
             url: '<?php echo site_url('stations/search')?>',
             data:{"search_words":search_words},
@@ -149,6 +148,7 @@ if(!$is_ajax){?>
 		function add_remove_search()
 		{
 			var token=0;
+			var search_words='';
 			$('#search_words').val('');
 			if($('#search_keyword').val()!='')
 			{
@@ -157,7 +157,7 @@ if(!$is_ajax){?>
 				$('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'</span><span class="btn-close-img" onclick="remove_keword(\''+search_id+'\')"></span></div>');
 			}
 			$('#search_keyword').val('');
-		
+			
 			$(".search_keys").each(function() {
 				if(token==0)
 					search_words=$(this).text();

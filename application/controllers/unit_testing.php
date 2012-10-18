@@ -14,9 +14,10 @@ class Unit_Testing extends CI_Controller {
      * 
      */
     function __construct() {
-        parent::__construct();
-        $this->load->library('unit_test');
-        $this->load->model('station_model');
+       parent::__construct();
+       $this->load->library('unit_test');
+       $this->load->model('station_model');
+			 $this->load->model('sphinx_model');
     }
 
     /**
@@ -71,6 +72,33 @@ class Unit_Testing extends CI_Controller {
         $test_name = 'Filter (Certified=\'\', Agree=\'\')';
         echo $this->unit->run($test8, $expected_result, $test_name);
     }
+		/*
+		Test For Sation Filter Search
+		*/
+		function search_sphinx()
+		{
+			 echo '<br/>';
+        $test1 = $this->station_model->search_stations('AK');
+        $test1 = count($test1['records']);
+        $expected_result = 5;
+        $test_name = 'State=AK ';
+        echo $this->unit->run($test1, $expected_result, $test_name);
+				
+				 echo '<br/>';
+        $test2 = $this->station_model->search_stations('99576');
+        $test2 = count($test2['records']);
+        $expected_result = 1;
+        $test_name = 'Zip=99576 ';
+        echo $this->unit->run($test2, $expected_result, $test_name);
+				
+				
+				 echo '<br/>';
+        $test3 = $this->station_model->search_stations('General Manager');
+        $test3 = count($test2['records']);
+        $expected_result = 14;
+        $test_name = 'Contact Title=General Manager ';
+        echo $this->unit->run($test3, $expected_result, $test_name);
+		}
 
 }
 

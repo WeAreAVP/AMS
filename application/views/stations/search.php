@@ -193,4 +193,6 @@ if(!$is_ajax){?>
 			search_station();
 		}
 </script>
-<?php }else{ exit();} ?>
+<?php }else{ exit();?>
+<script type="text/javascript"> $("#station_table").tablesorter();</script>
+ <?php } ?>

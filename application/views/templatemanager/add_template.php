@@ -1,3 +1,6 @@
+<script type="text/javascript">
+	
+</script>
 <?php
 $system_id = array(
     'name' => 'system_id',
@@ -38,7 +41,7 @@ $replacebale = array(
 );
 //$replacebale=array("{station name}","{first name}","{last name}","{start date}","{end date}");
 
-echo form_open_multipart(site_url('templatemanager/add'), $attributes);
+echo form_open_multipart(site_url('templatemanager/add'), $form_attributes);
 ?>
 <?php 
 if($add_temp){?>
@@ -71,13 +74,21 @@ if($add_temp){?>
          	<td><?php echo form_textarea($replacebale); ?></td>
      
         </tr>
-        
+         <tr>
+       	<td><?php echo form_label('Email Type', 'email_type'); ?></td>
+        <td>
+          <select name="email_type" id="email_type" class="span2" onchange="toggal_message_body();">
+            <option value="plain" <?php echo set_select('email_type', 'plain', TRUE); ?>>Plain</option>
+            <option value="html" <?php echo set_select('email_type', 'html'); ?>>Html</option>
+         </select>
+				</td>
+       </tr>
         <tr>
         	<td><?php echo form_label('Plain Body', $body_plain['id']); ?></td>
         	<td><?php echo form_textarea($body_plain); ?></td>
      
         </tr>
-        <tr>
+        <tr id="html_body_msg" style="display:none">
         	<td><?php echo form_label('Html Body', $body_html['id']); ?></td>
         	<td><?php echo form_textarea($body_html); ?></td>
      
@@ -85,15 +96,7 @@ if($add_temp){?>
           
         
         
-       <tr>
-       	<td><?php echo form_label('Email Type', 'email_type'); ?></td>
-        <td>
-          <select name="email_type" id="email_type" class="span2">
-            <option value="plain" <?php echo set_select('email_type', 'plain', TRUE); ?>>Plain</option>
-            <option value="html" <?php echo set_select('email_type', 'html'); ?>>Html</option>
-         </select>
-				</td>
-       </tr>
+      
        <tr>
         <td colspan="2" align="center"><?php echo form_submit('addtemplate', 'Add Template', 'class="btn" '); ?></td>
     </tr>

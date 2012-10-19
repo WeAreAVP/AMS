@@ -52,7 +52,7 @@
                     defaultDate: "+1w",
                     changeMonth: true,
                     numberOfMonths: 1,
-                    dateFormat: 'yy-dd-mm',
+                    dateFormat: 'yy-mm-dd',
                     onSelect: function( selectedDate ) {
                         var option = this.id == "start_date" ? "minDate" : "maxDate",
                         instance = $( this ).data( "datepicker" ),

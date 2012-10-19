@@ -20,7 +20,6 @@ class Stations extends MY_Controller {
         $this->layout = 'main_layout.php';
         $this->load->model('station_model');
         $this->load->model('sphinx_model', 'sphinx');
-        
     }
 
     /**
@@ -63,19 +62,32 @@ class Stations extends MY_Controller {
      */
     public function update_station_date() {
         if (isAjax()) {
-            $station_id = $this->input->post('id');
+            $station_ids = $this->input->post('id');
+            $station_ids = explode(',', $station_ids);
             $start_date = $this->input->post('start_date');
-            $station = $this->station_model->update_station($station_id, array('start_date' => $start_date));
-            echo json_encode(array('success' => true, 'station' => $station));
+            $end_date = $this->input->post('end_date');
+
+            $station = array();
+            foreach ($station_ids as $value) {
+                $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date));
+            }
+            echo json_encode(array('success' => true, 'station' => $station, 'total' => count($station_ids)));
             exit;
         }
         show_404();
     }
-    public function get_stations(){
-        if(isAjax()){
-            $stations_id=$this->input->post('id');
-            $records=$this->station_model->get_stations_by_id($stations_id);
-            echo json_encode(array('success'=>true,'records'=>$records));
+
+    /**
+     *  Get List of stations by Id by Ajax Request.
+     *  
+     * @param $id as post parameter
+     * @return json
+     */
+    public function get_stations() {
+        if (isAjax()) {
+            $stations_id = $this->input->post('id');
+            $records = $this->station_model->get_stations_by_id($stations_id);
+            echo json_encode(array('success' => true, 'records' => $records));
             exit;
         }
         show_404();
@@ -85,27 +97,22 @@ class Stations extends MY_Controller {
      * Search Station based on sphinx 
      */
 
-    public function search()
-		{
-			
-			$search_kewords = '';
-			if(isset($_REQUEST['search_words']) && !empty($_REQUEST['search_words']))
-			{
-				$search_kewords = str_replace(","," & ",trim($_REQUEST['search_words']));
-			}
-    	$data['results']=$this->sphinx->search_stations($search_kewords);
-			if (isAjax())
-			{
-				$data['is_ajax']=true;
-				echo $this->load->view('stations/search', $data,true);
-				exit;
-			}
-			else
-			{
-				$data['is_ajax']=false;;
-				$this->load->view('stations/search', $data);
-			}
-			
+    public function search() {
+
+        $search_kewords = '';
+        if (isset($_REQUEST['search_words']) && !empty($_REQUEST['search_words'])) {
+            $search_kewords = str_replace(",", " & ", trim($_REQUEST['search_words']));
+        }
+        $data['results'] = $this->sphinx->search_stations($search_kewords);
+        if (isAjax()) {
+            $data['is_ajax'] = true;
+            echo $this->load->view('stations/search', $data, true);
+            exit;
+        } else {
+            $data['is_ajax'] = false;
+            ;
+            $this->load->view('stations/search', $data);
+        }
     }
 
 }

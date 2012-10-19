@@ -73,12 +73,12 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'edit_from');
         </tr>
 
 
-
+        <?php if(!isset($profile_edit)){ ?>
         <tr>
             <td width="150"><?php echo form_label('Role', $role['id']); ?></td>
             <td><?php echo form_dropdown($role['id'], $roles, array($user_info->role_id)); ?><span style="color: red;"><?php echo form_error($role['name']); ?></span></td>
         </tr>
-
+        <?php } ?>
 
         <tr>
             <?php if (isset($profile_edit)) { ?>

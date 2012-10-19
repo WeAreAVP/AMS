@@ -39,6 +39,12 @@ class Station_Model extends CI_Model {
         $this->db->where('id', $station_id);
         return $this->db->get($this->_table)->row();
     }
+    /**
+     * Let the list of stations by staion id
+     * 
+     * @param type $stations
+     * @return array 
+     */
     function get_stations_by_id($stations){
         $this->db->select('station_name,start_date,end_date');
         $this->db->where_in('id',$stations);
@@ -51,9 +57,9 @@ class Station_Model extends CI_Model {
      * @param array $data
      * @return boolean 
      */
-    function update_station($station_id, $data) {
+    function update_station($station_ids, $data) {
         $data['updated_at'] = date('Y-m-d H:i:s');
-        $this->db->where('id', $station_id);
+        $this->db->where('id', $station_ids);
         return $this->db->update($this->_table, $data);
     }
 

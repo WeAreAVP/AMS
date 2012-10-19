@@ -168,6 +168,7 @@ class Settings extends MY_Controller {
         $this->session->set_userdata('deleted', 'Record is Successfully Deleted');
         redirect('settings/index', 'location');
     }
+
     /**
      * Update current user profile
      *  
@@ -181,13 +182,12 @@ class Settings extends MY_Controller {
         $val->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
         $val->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
         $val->set_rules('phone_no', 'Phone #', 'trim|xss_clean');
-        $val->set_rules('role', 'Role', 'trim|xss_clean|required');
+
 
         if ($this->input->post()) {
             if ($val->run()) {
 
-                $record = array('email' => $val->set_value('email'),
-                    'role_id' => $val->set_value('role'),
+                $record = array('email' => $val->set_value('email')
                 );
                 if ($val->set_value('password') != '')
                     $record['password'] = crypt($this->dx_auth->_encode($val->set_value('password')));
@@ -216,6 +216,11 @@ class Settings extends MY_Controller {
 
 
         $this->load->view('settings/edit_user', $data);
+    }
+
+    public function list_roles() {
+        $data['roles'] = $this->roles->get_users()->result();
+        $this->load->view('settings/list_roles', $data);
     }
 
 }

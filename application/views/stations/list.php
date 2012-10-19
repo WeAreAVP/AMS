@@ -4,6 +4,7 @@ $search = array(
     'id' => 'search_keyword',
     'value' => set_value('search_keyword'),
     'onkeyup' => 'makeToken(event);',
+    'class'=>'span10'
 );
 $certified = array(
     'name' => 'certified',
@@ -87,11 +88,12 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
             <b><h4>Filter Stations</h4></b>
             <div id="tokens" style="display: none;"></div>
             <input type="hidden" name="search_words" id="search_words"/>
+        
             <div>
                 <?php echo form_label('Keyword(s):', $search['id']); ?></b>
             </div>
-            <div>
-                <?php echo form_input($search); ?>
+            <div class="input-append">
+                <?php echo form_input($search); ?><span class="add-on"><i class="icon-search"></i></span>
             </div>
             <div style="float: left;">Type:</div>
             <div style="margin-left:35px;">
@@ -129,6 +131,7 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
     </div>
     <?php echo form_close(); ?>
     <div  class="span9">
+        <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
         <div style="overflow: scroll;height: 600px;" >
             <table class="tablesorter table table-bordered" id="station_table">
                 <thead>
@@ -193,7 +196,7 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                                 <td><?php echo $data->total_allocated; ?></td>
                                 <td><?php echo ($data->is_certified) ? 'Yes' : 'No'; ?>
                                 <td><?php echo ($data->is_agreed) ? 'Yes' : 'No'; ?>
-                                <td>
+                                <td id="start_date_<?php echo $data->id; ?>">
                                     <?php if (empty($data->start_date)) {
                                         ?>
                                         No DSD
@@ -207,7 +210,7 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
 
 
                                 </td>
-                                <td>
+                                <td id="end_date_<?php echo $data->id; ?>">
                                     <?php if (empty($data->end_date)) {
                                         ?>
                                         No DED
@@ -234,6 +237,8 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
         <div class="row" style="margin:5px 0px;">
 
             <a href="javascript://" class="btn btn-large" onclick="editStations();">Edit</a>
+            <a href="javascript://" class="btn btn-large">Messages</a>
+            <a href="javascript://" class="btn btn-large">Upload Stations</a>
         </div>
     </div>
 
@@ -254,7 +259,20 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true" id="">Cancel</button>
-        <button class="btn btn-primary"   data-dismiss="modal">Save changes</button>
+        <button class="btn btn-primary"   data-dismiss="modal" onclick="$('#showConfirmPopUp').trigger('click');">Save</button>
+    </div>
+</div>
+<a href="#confirmModel" data-toggle="modal" id="showConfirmPopUp"></a>
+<div class="modal hide" id="confirmModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Are you sure you want to save?</h3>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="$('#showPopUp').trigger('click');">Go Back</button>
+        <button class="btn" data-dismiss="modal" onclick="UpdateStations();">Save</button>
     </div>
 </div>
 <script type="text/javascript">
@@ -328,13 +346,13 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                             }
                         
                             if(cnt>=result.records.length-1){
-                                if(start_date==result.records[cnt].start_date){
+                                if(start_date==result.records[cnt].start_date && compare_start_date==0){
                                     compare_start_date=0;
                                 }
                                 else{
                                     compare_start_date=1; 
                                 }
-                                if(end_date==result.records[cnt].end_date){
+                                if(end_date==result.records[cnt].end_date && compare_end_date==0){
                                     compare_end_date=0;
                                 }
                                 else{
@@ -352,13 +370,13 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                         else if(compare_start_date==0 && start_date==null)
                             $('#start_date').val('');
                         else
-                            $('#start_date').val('---');
+                            $('#start_date').val('--');
                         if(compare_end_date==0 && end_date!=null)
                             $('#end_date').val(end_date);
                         else if(compare_end_date==0 && end_date==null)
                             $('#end_date').val('');
                         else
-                            $('#end_date').val('---');
+                            $('#end_date').val('--');
                         $('#subLabel').html('Record(s) being edited: '+station_name);
                         $('#station_id').val(stations);
                         $('#showPopUp').trigger('click');
@@ -372,5 +390,29 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
         }
         
     }
-    
+    function UpdateStations(){
+        ids=$('#station_id').val();
+        start_date=$('#start_date').val();
+        end_date=$('#end_date').val();
+        
+        $.ajax({
+            type: 'POST', 
+            url: site_url+'stations/update_station_date',
+            data:{id:ids,start_date:start_date,end_date:end_date},
+            dataType: 'json',
+            cache: false,
+            success: function (result) {
+                if(result.success==true){
+                    $('#success_message').html('<strong>'+result.total+' Record(s) Changed.</strong>');
+                    $('#success_message').show();
+                    ids=ids.split(',');
+                    for(cnt in ids){
+                        $('#start_date_'+ids[cnt]).html(start_date);
+                        $('#end_date_'+ids[cnt]).html(end_date);
+                    }
+                }
+                
+            }
+        });
+    }
 </script>

@@ -86,7 +86,7 @@
         }
         $.ajax({
             type: method, 
-            url: site_url+'/settings/'+uType,
+            url: site_url+'settings/'+uType,
             data:data,
             dataType: 'html',
             success: function (result) { 

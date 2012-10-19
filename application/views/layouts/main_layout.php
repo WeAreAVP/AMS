@@ -20,7 +20,7 @@
         echo link_tag("css/style.css");
         ?> 
         <script type="text/javascript">
-            var site_url='<?php echo site_url() ?>';
+            var site_url='<?php echo site_url() ?>/';
 	
         </script>
 

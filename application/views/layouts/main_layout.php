@@ -3,48 +3,26 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>AMS</title>
-        <script src="/js/jquery-1.8.2.js" type="text/javascript"></script>
-        <script src="/js/jquery-ui-1.9.0.custom.js" type="text/javascript"></script>
-        <script src="/js/jquery.tablesorter.js" type="text/javascript"></script>
-        <script src="/js/bootstrap/bootstrap.js" type="text/javascript"></script>
-        <script src="/js/custom.js" type="text/javascript"></script>
+        <?php
+        echo link_js('jquery-1.8.2.js');
+        echo link_js('jquery-ui-1.9.0.custom.js');
+        echo link_js('jquery.tablesorter.js');
+        echo link_js('query.tablesorter.js');
+        echo link_js('custom.js');
+        echo link_tag("css/tableSorter.css");
+        echo link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
+        echo link_tag("css/tableSorter.css");
 
-        <link href="/css/tableSorter.css" rel="stylesheet" />
-        <link href="/css/smoothness/jquery-ui-1.9.0.custom.css" rel="stylesheet" />
-        <link href="/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
-        <link href="/css/style.css" rel="stylesheet" />
-
-
+        echo link_tag("css/bootstrap/bootstrap.css");
+        echo link_tag("css/bootstrap/bootstrap-responsive.css");
+        echo link_tag("css/style.css");
+        ?> 
         <script type="text/javascript">
             var site_url='<?php echo site_url() ?>';
 	
         </script>
 
-        <style type="text/css">
-            html, body {
-                /*                background-color: #eee !important;*/
-            }
-            .navbar-inner{padding-left: 20px !important;padding-right: 20px !important;}
-            .container {
-                zoom : 1;
-                margin-top: 70px;
-            }
 
-            /* The white background content wrapper */
-            .container > .content {
-                background-color: #fff;
-                padding: 20px;
-                margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-                -webkit-border-radius: 0 0 6px 6px;
-                -moz-border-radius: 0 0 6px 6px;
-                border-radius: 0 0 6px 6px;
-                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-                -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-                box-shadow: 0 1px 2px rgba(0,0,0,.15);
-            }
-
-        </style> 
         <script type="text/javascript"> 
             $(document).ready(function() {
                 
@@ -110,7 +88,7 @@
                         $(function () {
                             $('#myTab a:last').tab('show');
                         })
-                                
+                                            
                     </script>
                 <?php } ?>
                 {yield}

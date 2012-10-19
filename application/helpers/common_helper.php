@@ -7,7 +7,7 @@ function active_anchor($orignal_class, $orignal_method, $class = 'active') {
         return $class;
     }
 
-    if ($CI->router->class == $orignal_class && !$orignal_method) { 
+    if ($CI->router->class == $orignal_class && !$orignal_method) {
         return $class;
     }
     return '';
@@ -15,5 +15,11 @@ function active_anchor($orignal_class, $orignal_method, $class = 'active') {
 
 function isAjax() {
     return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest");
+}
+
+
+function link_js($file) {
+
+    return '<script type="text/javascript" src="' . base_url() . 'js/' . $file . '"></script>';
 }
 

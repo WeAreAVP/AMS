@@ -14,10 +14,13 @@ class Unit_Testing extends CI_Controller {
      * 
      */
     function __construct() {
-       parent::__construct();
-       $this->load->library('unit_test');
-       $this->load->model('station_model');
-			 $this->load->model('sphinx_model');
+        parent::__construct();
+        $this->load->library('unit_test');
+        $this->load->model('station_model');
+        $this->load->model('sphinx_model');
+        $this->load->model('dx_auth/users', 'users');
+        $this->load->model('dx_auth/roles', 'roles');
+        $this->load->model('dx_auth/user_profile', 'user_profile');
     }
 
     /**
@@ -72,33 +75,114 @@ class Unit_Testing extends CI_Controller {
         $test_name = 'Filter (Certified=\'\', Agree=\'\')';
         echo $this->unit->run($test8, $expected_result, $test_name);
     }
-		/*
-		Test For Sation Filter Search
-		*/
-		function searchsphinxtest()
-		{
-			 echo '<br/>';
+
+    /**
+     * User Testing Function will be called from this function
+     *  
+     */
+    function usertesting() {
+        $this->userlisttesting();
+        $this->addusertesting();
+        $this->editusertesting();
+        $this->deleteusertesting();
+    }
+
+    /**
+     * List users testing
+     *  
+     */
+    function userlisttesting() {
+        $test1 = $this->users->get_users()->num_rows;
+        $expected_result = 2;
+        $test_name = 'User list count';
+        echo $this->unit->run($test1, $expected_result, $test_name);
+        echo '<br/>';
+    }
+
+    /**
+     * Add user testing
+     *  
+     */
+    function addusertesting() {
+        $record = array('email' => 'testing@abc.com',
+            'password' => crypt($this->dx_auth->_encode('nouman')),
+            'role_id' => '1',
+        );
+        $profile_data = array('first_name' => 'Test',
+            'last_name' => 'Case',
+            'phone_no' => '1234567',
+        );
+        $id = $this->users->create_user($record);
+        $profile_data['user_id'] = $id;
+        $result = $this->user_profile->insert_profile($profile_data);
+
+        $expected_result = 'is_numeric';
+        $test_name = 'Add New User';
+        echo $this->unit->run($result, $expected_result, $test_name);
+        echo '<br/>';
+    }
+
+    /**
+     * Edit user/ Edit Profile testing
+     *  
+     */
+    function editusertesting() {
+        $record = array('email' => 'testing@abc.com',
+            'role_id' => '1',
+        );
+
+        $profile_data = array('first_name' => 'Test Edit',
+            'last_name' => 'Case',
+            'phone_no' => '1234567',
+        );
+        $this->users->set_user('18', $record);
+
+        $result = $this->user_profile->set_profile('17', $profile_data);
+        $expected_result = 'is_true';
+        $test_name = 'Add New User';
+        echo $this->unit->run($result, $expected_result, $test_name);
+        echo '<br/>';
+    }
+    /**
+     * Delete User Tesing
+     *  
+     */
+    function deleteusertesting() {
+        $result = $delete_user = $this->users->delete_user('18');
+
+        $expected_result = 'is_true';
+        $test_name = 'Add New User';
+        echo $this->unit->run($result, $expected_result, $test_name);
+        echo '<br/>';
+    }
+
+    /*
+      Test For Sation Filter Search
+     */
+
+    function searchsphinxtest() {
+        echo '<br/>';
         $test1 = $this->sphinx_model->search_stations('AK');
         $test1 = count($test1['records']);
         $expected_result = 5;
         $test_name = 'State=AK ';
         echo $this->unit->run($test1, $expected_result, $test_name);
-				
-				 echo '<br/>';
+
+        echo '<br/>';
         $test2 = $this->sphinx_model->search_stations('99576');
         $test2 = count($test2['records']);
         $expected_result = 1;
         $test_name = 'Zip=99576 ';
         echo $this->unit->run($test2, $expected_result, $test_name);
-				
-				
-				 echo '<br/>';
+
+
+        echo '<br/>';
         $test3 = $this->sphinx_model->search_stations('General Manager');
         $test3 = count($test3['records']);
         $expected_result = 14;
         $test_name = 'Contact Title=General Manager ';
         echo $this->unit->run($test3, $expected_result, $test_name);
-		}
+    }
 
 }
 

@@ -19,10 +19,6 @@ class Settings extends MY_Controller {
         $this->load->model('dx_auth/users', 'users');
         $this->load->model('dx_auth/roles', 'roles');
         $this->load->model('dx_auth/user_profile', 'user_profile');
-
-        if (!$this->dx_auth->is_logged_in()) {
-            redirect('auth/login');
-        }
     }
 
     /**
@@ -216,11 +212,6 @@ class Settings extends MY_Controller {
 
 
         $this->load->view('settings/edit_user', $data);
-    }
-
-    public function list_roles() {
-        $data['roles'] = $this->roles->get_users()->result();
-        $this->load->view('settings/list_roles', $data);
     }
 
 }

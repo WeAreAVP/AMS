@@ -224,7 +224,7 @@ if (!$is_ajax) {
             else{
                 $('#end_date_message').hide();
             }
-            if($('#start_date').val()!='' && $('#start_date').val()!='--' && $('#start_date').val()=='0000-00-00' && $('#end_date').val()!='' && $('#end_date').val()!='--' && $('#end_date').val()=='0000-00-00'){
+            if($('#start_date').val()!='' && $('#start_date').val()!='--' && $('#start_date').val()!='0000-00-00' && $('#end_date').val()!='' && $('#end_date').val()!='--' && $('#end_date').val()!='0000-00-00'){
                 $('#showPopUp').trigger('click');
                 $('#showConfirmPopUp').trigger('click');
             }

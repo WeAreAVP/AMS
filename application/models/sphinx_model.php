@@ -56,7 +56,7 @@ class Sphinx_Model extends CI_Model
                 
                 echo '<pre>';print_r($res);exit;
         }
-        function search($params){
+        function search1($params){
             
         }
 }

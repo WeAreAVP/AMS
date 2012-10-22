@@ -101,6 +101,9 @@ class Station_Model extends CI_Model {
     function insert_station_backup($data) {
         return $this->db->insert($this->_table_backup, $data);
     }
+     function get_all_backup_stations() {
+        return $query = $this->db->get($this->_table_backup)->result();
+    }
 
 }
 

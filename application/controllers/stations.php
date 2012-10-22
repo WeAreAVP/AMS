@@ -102,13 +102,23 @@ class Stations extends MY_Controller {
             $stations_id = $this->input->post('id');
             $records = $this->station_model->get_stations_by_id($stations_id);
             foreach ($records as $value) {
-                $backup_record=array('station_id' => $value->id, 'start_date' => $value->start_date, 'end_date' => $value->end_date);
+                $backup_record = array('station_id' => $value->id, 'start_date' => $value->start_date, 'end_date' => $value->end_date);
                 $this->station_model->insert_station_backup($backup_record);
             }
             echo json_encode(array('success' => true, 'records' => $records));
             exit;
         }
         show_404();
+    }
+
+    public function undostations() {
+        $backups = $this->station_model->get_all_backup_stations();
+        if (count($backups) > 0) {
+            foreach ($backups as $value) {
+                $this->station_model->update_station($value->station_id, array('start_date' => $value->start_date, 'end_date' => $value->end_date));
+            }
+        }
+        redirect('stations/index', 'location');
     }
 
     /*

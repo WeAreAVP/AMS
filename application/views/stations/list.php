@@ -97,7 +97,7 @@ if (!$is_ajax) {
                             ?>
                             <tr>
                                 <td><input style='margin-left:15px;' type='checkbox' name='station[]' value='<?php echo $data->id; ?>'  class='checkboxes'/></td>
-                                <td><a href="<?php echo site_url('stations/detail/' . $data->id); ?>"><?php echo $data->cpb_id; ?></a></td>
+                                <td><?php echo $data->cpb_id; ?></td>
                                 <td><?php echo $data->station_name; ?></td>
                                 <td><?php echo $data->contact_name; ?></td>
                                 <td><?php echo $data->contact_title; ?></td>

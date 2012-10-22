@@ -45,7 +45,7 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
                 
-//                $this->sphinxsearch->set_filter("is_certified",array(1));
+                $this->sphinxsearch->set_filter("is_certified",1);
                 $mode =SPH_MATCH_EXTENDED;
 		$this->sphinxsearch->set_array_result ( true );
 		$this->sphinxsearch->set_match_mode ( $mode );

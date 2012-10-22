@@ -18,6 +18,7 @@ class Station_Model extends CI_Model {
 
         $this->_prefix = '';
         $this->_table = 'stations';
+        $this->_table_backup = 'stations_backup';
     }
 
     /**
@@ -39,17 +40,19 @@ class Station_Model extends CI_Model {
         $this->db->where('id', $station_id);
         return $this->db->get($this->_table)->row();
     }
+
     /**
      * Let the list of stations by staion id
      * 
      * @param type $stations
      * @return array 
      */
-    function get_stations_by_id($stations){
+    function get_stations_by_id($stations) {
         $this->db->select('station_name,start_date,end_date');
-        $this->db->where_in('id',$stations);
+        $this->db->where_in('id', $stations);
         return $this->db->get($this->_table)->result();
     }
+
     /**
      * update the stations record
      * 
@@ -69,10 +72,10 @@ class Station_Model extends CI_Model {
      * @return integer 
      */
     function get_station_count() {
-         $query = $this->db->get($this->_table);
-        return  $query->num_rows;
-        
+        $query = $this->db->get($this->_table);
+        return $query->num_rows;
     }
+
     /**
      * Filter stations
      * 
@@ -80,15 +83,23 @@ class Station_Model extends CI_Model {
      * @param type $agreed
      * @return type 
      */
-    function apply_filter($certified,$agreed) {
-        
-        if(trim($certified)!='')
-            $this->db->where('is_certified',$certified);
-        if(trim($certified)!='')
-            $this->db->where('is_agreed',$agreed);
-        
+    function apply_filter($certified, $agreed) {
+
+        if (trim($certified) != '')
+            $this->db->where('is_certified', $certified);
+        if (trim($certified) != '')
+            $this->db->where('is_agreed', $agreed);
+
         return $query = $this->db->get($this->_table)->result();
-        
+    }
+
+    function delete_stations_backup() {
+        $this->db->delete($this->_table_backup);
+        return $this->db->affected_rows() > 0;
+    }
+
+    function insert_station_backup($data) {
+        return $this->db->insert($this->_table_backup, $data);
     }
 
 }

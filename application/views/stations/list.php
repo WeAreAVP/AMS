@@ -134,7 +134,7 @@ if (!$is_ajax) {
                                         <?php
                                     } else {
                                         ?>
-                                        <?php echo $data->start_date; ?>
+                                        <?php echo date('Y-m-d',$data->start_date); ?>
                                         <?php
                                     }
                                     ?>
@@ -148,7 +148,7 @@ if (!$is_ajax) {
                                         <?php
                                     } else {
                                         ?>
-                                        <?php echo $data->end_date; ?>
+                                        <?php echo date('Y-m-d',$data->end_date); ?>
                                         <?php
                                     }
                                     ?>

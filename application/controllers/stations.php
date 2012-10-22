@@ -38,8 +38,15 @@ class Stations extends MY_Controller {
         } else {
             $data['stations'] = $this->station_model->get_all();
         }
-
-        $this->load->view('stations/list', $data);
+        if (isAjax()) {
+            $data['is_ajax'] = true;
+            echo $this->load->view('stations/list', $data, true);
+            exit;
+        } else {
+            $data['is_ajax'] = false;
+            ;
+            $this->load->view('stations/list', $data);
+        }
     }
 
     /**
@@ -114,7 +121,8 @@ class Stations extends MY_Controller {
             $this->load->view('stations/search', $data);
         }
     }
-    public function  test(){
+
+    public function test() {
         echo 'here';
         $this->sphinx->search(1);
     }

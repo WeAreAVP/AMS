@@ -75,7 +75,7 @@ html, body {
     border-radius:20px;
     margin-bottom:10px;
     float:left;
-    width:70px;
+    min-width:60px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
 }
@@ -86,6 +86,7 @@ html, body {
     float:right;
     margin-top:3px;
     cursor:pointer;
+    margin-left: 5px;
 }
 .cls_radio{
     margin: 5px !important;

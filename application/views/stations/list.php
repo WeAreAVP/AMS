@@ -1,10 +1,12 @@
 <?php
+
+if(!$is_ajax){
 $search = array(
     'name' => 'search_keyword',
     'id' => 'search_keyword',
     'value' => set_value('search_keyword'),
     'onkeyup' => 'makeToken(event);',
-    'class'=>'span10'
+    'class' => 'span10'
 );
 $certified = array(
     'name' => 'certified',
@@ -78,7 +80,7 @@ $state_options = array(
     "PE" => "PE",
     "SK" => "SK",
     "NL" => "NL");
-$attributes = array('id' => 'search_form', 'onkeypress' => "return event.keyCode != 13;");
+$attributes = array('id' => 'search_form', 'onsubmit' => "return false;", 'onkeypress' => "return event.keyCode != 13;");
 
 echo form_open_multipart($this->uri->uri_string(), $attributes);
 ?>
@@ -86,14 +88,16 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
     <div class="span3">
         <div id="search_bar">
             <b><h4>Filter Stations</h4></b>
-            <div id="tokens" style="display: none;"></div>
             <input type="hidden" name="search_words" id="search_words"/>
-        
+
+            <input type="hidden" name="search_words" id="search_words"/>
+
             <div>
                 <?php echo form_label('Keyword(s):', $search['id']); ?></b>
             </div>
+            <div id="tokens" style="display: none;"></div>
             <div class="input-append">
-                <?php echo form_input($search); ?><span class="add-on"><i class="icon-search"></i></span>
+                <?php echo form_input($search); ?><span class="add-on" onclick="add_remove_search();"><i class="icon-search"></i></span>
             </div>
             <div style="float: left;">Type:</div>
             <div style="margin-left:35px;">
@@ -159,8 +163,9 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                         <th><span style="float:left;min-width:80px;">DED</span></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php
+                <tbody id="append_record">
+                   
+                    <?php }
                     if (count($stations) > 0) {
                         foreach ($stations as $data) {
                             ?>
@@ -231,6 +236,7 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                         ?>
                         <tr><td colspan="11" style="text-align: center;"><b>No Station Found.</b></td></tr>
                     <?php } ?>
+                        <?php if(!$is_ajax) { ?>
                 </tbody>
             </table>
         </div>
@@ -288,37 +294,73 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
         }
         return true;
     }
-    var token=0;
-    var removeToken=0;
-    var search_words=null;
-    function makeToken(event){
-    
-        if (event.keyCode == 13 && $('#search_keyword').val()!='') {
-            
-            
-            $('#tokens').append('<div class="token">'+$('#search_keyword').val()+'</div>');
-            $('#search_keyword').val('');
-            $('.token').last().html();
-            
+     
+    var search_words='';
+    function makeToken(event)
+    {
+        if (event.keyCode == 13 )
+        {
+            add_remove_search();
+        }
+    }
+    function remove_keword(id)
+    {
+        $("#"+id).remove();
+        add_remove_search();
+    }
+    function add_remove_search()
+    {
+        var token=0;
+        $('#search_words').val('');
+        var my_search_words='';
+        if($('#search_keyword').val()!='')
+        {
+            var random_id=rand(0,1000365);
+            name=make_slug_name($('#search_keyword').val());
+            var search_id=name+random_id;
+            $('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'</span><span class="btn-close-img" onclick="remove_keword(\''+search_id+'\')"></span></div>');
+        }
+        $('#search_keyword').val('');
+			
+        $(".search_keys").each(function() {
             if(token==0)
-                search_words=$('.token').last().html();
+                my_search_words=$(this).text();
             else
-                search_words+=','+$('.token').last().html();
-              
-            $('#search_words').val(search_words);
-            
+                my_search_words+=','+$(this).text();
             token=token+1;
-            
+        });
+        if(my_search_words!='' && typeof(my_search_words)!=undefined)
+        {
+            $('#search_words').val(my_search_words);
         }
         if(token>0){
             $('#tokens').show();
         }
-        else{
+        else
+        {
             $('#tokens').hide();
-        }
-        
+        }	
+        search_station();
     }
-    
+    function make_slug_name(string){
+        string = string.split('/').join('-');
+        string = string.split('??').join('q');
+        string = string.split(' ').join('');
+        string = string.toLowerCase();
+        return string;
+    }
+    function search_station(){
+        search_words=$('#search_words').val();
+        $.ajax({
+            type: 'POST', 
+            url: '<?php echo site_url('stations/index') ?>',
+            data:{"search_words":search_words},
+            success: function (result) { 
+                console.log(result);
+                $('#append_record').html(result);
+            }
+        });
+    }
     function editStations(){
         var stations=new Array();
         $('input[name="station[]"]:checked').each(function(index,a){
@@ -416,3 +458,7 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
         });
     }
 </script>
+
+    <?php }else{ exit();?>
+<script type="text/javascript"> $("#station_table").tablesorter();</script>
+ <?php } ?>

@@ -83,7 +83,8 @@ class Stations extends MY_Controller {
             $station = array();
             foreach ($station_ids as $value) {
                 $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date));
-                 $this->sphinx->update_indexes('stations',array('start_date','end_date'),array($value=>array($start_date,$end_date)));
+                
+                 $this->sphinx->update_indexes('stations',array('start_date','end_date'),array($value=>array(strtotime($start_date),strtotime($end_date))));
             }
            
 //            print exec("/usr/bin/indexer --all --rotate");

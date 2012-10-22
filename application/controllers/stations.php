@@ -43,7 +43,7 @@ class Stations extends MY_Controller {
         } else {
             $records = $this->sphinx->search_stations($param);
             $data['stations'] = $records['records'];
-            echo '<pre>';print_r($data['stations']);exit;
+         
         }
         if (isAjax()) {
             $data['is_ajax'] = true;

@@ -114,6 +114,10 @@ class Stations extends MY_Controller {
             $this->load->view('stations/search', $data);
         }
     }
+    public function  test(){
+        $param['is_certified']=1;
+        $this->sphinx->search($param['is_certified']);
+    }
 
 }
 

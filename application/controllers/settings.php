@@ -93,7 +93,13 @@ class Settings extends MY_Controller {
             }
         }
 
-        $roles = $this->roles->get_all()->result();
+
+
+
+        $superadmin = $this->session->userdata['DX_role_id'];
+
+
+        $roles = $this->roles->get_all($superadmin)->result();
         foreach ($roles as $value) {
             $data['roles'][$value->id] = $value->name;
         }
@@ -143,7 +149,9 @@ class Settings extends MY_Controller {
         }
         $data['user_info'] = $this->users->get_user_detail($user_id)->row();
 
-        $roles = $this->roles->get_all()->result();
+        $superadmin = $this->session->userdata['DX_role_id'];
+
+        $roles = $this->roles->get_all($superadmin)->result();
         foreach ($roles as $value) {
             $data['roles'][$value->id] = $value->name;
         }
@@ -205,6 +213,7 @@ class Settings extends MY_Controller {
         $data['user_info'] = $this->users->get_user_detail($user_id)->row();
 
         $roles = $this->roles->get_all()->result();
+
         foreach ($roles as $value) {
             $data['roles'][$value->id] = $value->name;
         }

@@ -25,7 +25,7 @@ class Sphinx_Model extends CI_Model {
 
         $res = $this->sphinxsearch->query($params['search_kewords'], 'stations');
 
-        echo '<pre>';print_r($res);exit;
+        
         $execution_time = $res['time'];
         if ($res) {
             $total_record = $res['total_found'];

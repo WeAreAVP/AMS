@@ -93,15 +93,32 @@ class Station_Model extends CI_Model {
         return $query = $this->db->get($this->_table)->result();
     }
 
+    /**
+     * Truncate the stations bachup table
+     * 
+     * @return integer 
+     */
     function delete_stations_backup() {
         $this->db->empty_table($this->_table_backup);
         return $this->db->affected_rows() > 0;
     }
 
+    /**
+     * insert the records in stations backup table 
+     * 
+     * @param array $data
+     * @return boolean 
+     */
     function insert_station_backup($data) {
         return $this->db->insert($this->_table_backup, $data);
     }
-     function get_all_backup_stations() {
+
+    /**
+     * Get list of all backup stations
+     * 
+     * @return array 
+     */
+    function get_all_backup_stations() {
         return $query = $this->db->get($this->_table_backup)->result();
     }
 

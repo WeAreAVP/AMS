@@ -44,11 +44,12 @@ class Sphinx_Model extends CI_Model
             $total_record = 0;
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
+                
+                $filter=$this->sphinxsearch->set_filter("is_certified",array(1));
                 $mode =SPH_MATCH_EXTENDED;
 		$this->sphinxsearch->set_array_result ( true );
 		$this->sphinxsearch->set_match_mode ( $mode );
 		$this->sphinxsearch->set_connect_timeout ( 120 );
-                $filter=$this->sphinxsearch->set_filter("is_certified",array(1));
                 echo '<pre>';print_r($filter);exit;
         }
 }

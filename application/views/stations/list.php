@@ -90,7 +90,7 @@ if (!$is_ajax) {
                     </thead>
                     <tbody id="append_record">
 
-                    <?php
+                        <?php
                     }
                     if (count($stations) > 0) {
                         foreach ($stations as $data) {
@@ -186,12 +186,12 @@ if (!$is_ajax) {
         <div class="modal-body">
 
             <input type="hidden" id="station_id" name="station_id"/>
-            <div><div style="float: left;width: 150px;">Digitization Start Date:</div><input type="text" id="start_date" name="start_date"/><span id="start_date_message">Please select date.</span></div>
-            <div><div style="float: left;width: 150px;">Digitization End Date:</div><input type="text" id="end_date" name="end_date"/><span id="end_date_message">Please select date.</span></div>
+            <div><div style="float: left;width: 150px;">Digitization Start Date:</div><input type="text" id="start_date" name="start_date"/><span id="start_date_message" style="display: none;color: yellow;">Please select date.</span></div>
+            <div><div style="float: left;width: 150px;">Digitization End Date:</div><input type="text" id="end_date" name="end_date"/><span id="end_date_message" style="display: none;color: yellow;"">Please select date.</span></div>
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true" id="">Cancel</button>
-            <button class="btn btn-primary"   data-dismiss="modal" onclick="validateFields();">Save</button>
+            <button class="btn btn-primary"  onclick="validateFields();">Save</button>
         </div>
     </div>
     <a href="#confirmModel" data-toggle="modal" id="showConfirmPopUp"></a>
@@ -209,195 +209,197 @@ if (!$is_ajax) {
     </div>
     <script type="text/javascript">
         var stationName=null;
-        
-    function validateFields(){
-        if($('#start_date').val()=='' || $('#start_date').val()=='--')
-            $('#start_date_message').show();
-        else
-            $('#start_date_message').hide(); 
-        if($('#end_date').val()=='' || $('#end_date').val()=='--')
-            $('#end_date_message').show();
-        else
-            $('#end_date_message').hide(); 
-//        $('#showConfirmPopUp').trigger('click');
-    }
-    function checkAll() {
-    var boxes = document.getElementsByTagName('input');
-    for (var index = 0; index < boxes.length; index++) {
-        box = boxes[index];
-        if (box.type == 'checkbox' && box.className == 'checkboxes' && box.disabled == false)
-            box.checked = document.getElementById('check_all').checked;
-    }
-    return true;
-    }
-         
-    var search_words='';
-    function makeToken(event)
-    {
-    if (event.keyCode == 13 )
-    {
-        add_remove_search();
-    }
-    }
-    function remove_keword(id)
-    {
-    $("#"+id).remove();
-    add_remove_search();
-    }
-    function add_remove_search()
-    {
-    var token=0;
-    $('#search_words').val('');
-    var my_search_words='';
-    if($('#search_keyword').val()!='')
-    {
-    var random_id=rand(0,1000365);
-    name=make_slug_name($('#search_keyword').val());
-    var search_id=name+random_id;
-    $('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'</span><span class="btn-close-img" onclick="remove_keword(\''+search_id+'\')"></span></div>');
-    }
-    $('#search_keyword').val('');
-    			
-    $(".search_keys").each(function() {
-    if(token==0)
-    my_search_words=$(this).text();
-    else
-    my_search_words+=','+$(this).text();
-    token=token+1;
-    });
-    if(my_search_words!='' && typeof(my_search_words)!=undefined)
-    {
-    $('#search_words').val(my_search_words);
-    }
-    if(token>0){
-    $('#tokens').show();
-    }
-    else
-    {
-    $('#tokens').hide();
-    }	
-    search_station();
-    }
-    function make_slug_name(string){
-    string = string.split('/').join('-');
-    string = string.split('??').join('q');
-    string = string.split(' ').join('');
-    string = string.toLowerCase();
-    return string;
-    }
-    function search_station(){
-    search_words=$('#search_words').val();
-    certified=$('#certified').val();
-    agreed=$('#agreed').val();
-    $.ajax({
-    type: 'POST', 
-    url: '<?php echo site_url('stations/index') ?>',
-    data:{"search_words":search_words,certified:certified,agreed:agreed},
-    success: function (result) { 
-    console.log(result);
-    $('#append_record').html(result);
-    }
-    });
-    }
-    function editStations(){
-    var stations=new Array();
-    $('input[name="station[]"]:checked').each(function(index,a){
-    stations[index]=$(this).val();
-    });
-    if(stations.length>0){
-    $.ajax({
-    type: 'POST', 
-    url: site_url+'stations/get_stations',
-    data:{id:stations},
-    dataType: 'json',
-    cache: false,
-    success: function (result) {
-        if(result.success==true){
-            var station_name='';
-            var compare_start_date=0;
-            var compare_end_date=0;
-            var start_date=false;
-            var end_date=false;
-            for(cnt in result.records){
-                if(cnt==0){
-                    start_date=result.records[cnt].start_date;
-                    end_date=result.records[cnt].end_date;
-                                
-                }
-                            
-                if(cnt>=result.records.length-1){
-                    if(start_date==result.records[cnt].start_date && compare_start_date==0){
-                        compare_start_date=0;
-                    }
-                    else{
-                        compare_start_date=1; 
-                    }
-                    if(end_date==result.records[cnt].end_date && compare_end_date==0){
-                        compare_end_date=0;
-                    }
-                    else{
-                        compare_end_date=1; 
-                    }
-                }
-                            
-                if(cnt==result.records.length-1)
-                    station_name+=result.records[cnt].station_name;
-                else
-                    station_name+=result.records[cnt].station_name+',';
+            
+        function validateFields(){
+            if($('#start_date').val()=='' || $('#start_date').val()=='--')
+                $('#start_date_message').show();
+            else
+                $('#start_date_message').hide(); 
+            if($('#end_date').val()=='' || $('#end_date').val()=='--')
+                $('#end_date_message').show();
+            else
+                $('#end_date_message').hide(); 
+            if($('#start_date').val()!='' && $('#start_date').val()!='--'&& $('#end_date').val()!='' || $('#end_date').val()!='--')
+                $('#showConfirmPopUp').trigger('click');
+        }
+        function checkAll() {
+            var boxes = document.getElementsByTagName('input');
+            for (var index = 0; index < boxes.length; index++) {
+                box = boxes[index];
+                if (box.type == 'checkbox' && box.className == 'checkboxes' && box.disabled == false)
+                    box.checked = document.getElementById('check_all').checked;
             }
-            if(compare_start_date==0 && start_date!=null)
-                $('#start_date').val(start_date);
-            else if(compare_start_date==0 && start_date==null)
-                $('#start_date').val('');
+            return true;
+        }
+             
+        var search_words='';
+        function makeToken(event)
+        {
+            if (event.keyCode == 13 )
+            {
+                add_remove_search();
+            }
+        }
+        function remove_keword(id)
+        {
+            $("#"+id).remove();
+            add_remove_search();
+        }
+        function add_remove_search()
+        {
+            var token=0;
+            $('#search_words').val('');
+            var my_search_words='';
+            if($('#search_keyword').val()!='')
+            {
+                var random_id=rand(0,1000365);
+                name=make_slug_name($('#search_keyword').val());
+                var search_id=name+random_id;
+                $('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'</span><span class="btn-close-img" onclick="remove_keword(\''+search_id+'\')"></span></div>');
+            }
+            $('#search_keyword').val('');
+        			
+            $(".search_keys").each(function() {
+                if(token==0)
+                    my_search_words=$(this).text();
+                else
+                    my_search_words+=','+$(this).text();
+                token=token+1;
+            });
+            if(my_search_words!='' && typeof(my_search_words)!=undefined)
+            {
+                $('#search_words').val(my_search_words);
+            }
+            if(token>0){
+                $('#tokens').show();
+            }
             else
-                $('#start_date').val('--');
-            if(compare_end_date==0 && end_date!=null)
-                $('#end_date').val(end_date);
-            else if(compare_end_date==0 && end_date==null)
-                $('#end_date').val('');
-            else
-                $('#end_date').val('--');
-            $('#subLabel').html('Record(s) being edited: '+station_name);
-            $('#station_id').val(stations);
-            $('#showPopUp').trigger('click');
+            {
+                $('#tokens').hide();
+            }	
+            search_station();
         }
-        else{
-            console.log(result);
+        function make_slug_name(string){
+            string = string.split('/').join('-');
+            string = string.split('??').join('q');
+            string = string.split(' ').join('');
+            string = string.toLowerCase();
+            return string;
         }
-                    
-    }
-    });
-    }
-            
-    }
-    function UpdateStations(){
-    ids=$('#station_id').val();
-    start_date=$('#start_date').val();
-    end_date=$('#end_date').val();
-            
-    $.ajax({
-    type: 'POST', 
-    url: site_url+'stations/update_station_date',
-    data:{id:ids,start_date:start_date,end_date:end_date},
-    dataType: 'json',
-    cache: false,
-    success: function (result) {
-    if(result.success==true){
-        $('#success_message').html('<strong>'+result.total+' Record(s) Changed.</strong>');
-        $('#success_message').show();
-        ids=ids.split(',');
-        for(cnt in ids){
-            $('#start_date_'+ids[cnt]).html(start_date);
-            $('#end_date_'+ids[cnt]).html(end_date);
+        function search_station(){
+            search_words=$('#search_words').val();
+            certified=$('#certified').val();
+            agreed=$('#agreed').val();
+            $.ajax({
+                type: 'POST', 
+                url: '<?php echo site_url('stations/index') ?>',
+                data:{"search_words":search_words,certified:certified,agreed:agreed},
+                success: function (result) { 
+                    console.log(result);
+                    $('#append_record').html(result);
+                }
+            });
         }
-    }
-                    
-    }
-    });
-    }
+        function editStations(){
+            var stations=new Array();
+            $('input[name="station[]"]:checked').each(function(index,a){
+                stations[index]=$(this).val();
+            });
+            if(stations.length>0){
+                $.ajax({
+                    type: 'POST', 
+                    url: site_url+'stations/get_stations',
+                    data:{id:stations},
+                    dataType: 'json',
+                    cache: false,
+                    success: function (result) {
+                        if(result.success==true){
+                            var station_name='';
+                            var compare_start_date=0;
+                            var compare_end_date=0;
+                            var start_date=false;
+                            var end_date=false;
+                            for(cnt in result.records){
+                                if(cnt==0){
+                                    start_date=result.records[cnt].start_date;
+                                    end_date=result.records[cnt].end_date;
+                                    
+                                }
+                                
+                                if(cnt>=result.records.length-1){
+                                    if(start_date==result.records[cnt].start_date && compare_start_date==0){
+                                        compare_start_date=0;
+                                    }
+                                    else{
+                                        compare_start_date=1; 
+                                    }
+                                    if(end_date==result.records[cnt].end_date && compare_end_date==0){
+                                        compare_end_date=0;
+                                    }
+                                    else{
+                                        compare_end_date=1; 
+                                    }
+                                }
+                                
+                                if(cnt==result.records.length-1)
+                                    station_name+=result.records[cnt].station_name;
+                                else
+                                    station_name+=result.records[cnt].station_name+',';
+                            }
+                            if(compare_start_date==0 && start_date!=null)
+                                $('#start_date').val(start_date);
+                            else if(compare_start_date==0 && start_date==null)
+                                $('#start_date').val('');
+                            else
+                                $('#start_date').val('--');
+                            if(compare_end_date==0 && end_date!=null)
+                                $('#end_date').val(end_date);
+                            else if(compare_end_date==0 && end_date==null)
+                                $('#end_date').val('');
+                            else
+                                $('#end_date').val('--');
+                            $('#subLabel').html('Record(s) being edited: '+station_name);
+                            $('#station_id').val(stations);
+                            $('#showPopUp').trigger('click');
+                        }
+                        else{
+                            console.log(result);
+                        }
+                        
+                    }
+                });
+            }
+                
+        }
+        function UpdateStations(){
+            ids=$('#station_id').val();
+            start_date=$('#start_date').val();
+            end_date=$('#end_date').val();
+                
+            $.ajax({
+                type: 'POST', 
+                url: site_url+'stations/update_station_date',
+                data:{id:ids,start_date:start_date,end_date:end_date},
+                dataType: 'json',
+                cache: false,
+                success: function (result) {
+                    if(result.success==true){
+                        $('#success_message').html('<strong>'+result.total+' Record(s) Changed.</strong>');
+                        $('#success_message').show();
+                        ids=ids.split(',');
+                        for(cnt in ids){
+                            $('#start_date_'+ids[cnt]).html(start_date);
+                            $('#end_date_'+ids[cnt]).html(end_date);
+                        }
+                    }
+                        
+                }
+            });
+        }
     </script>
 
 <?php } else {
-    exit(); ?>
+    exit();
+    ?>
     <script type="text/javascript"> $("#station_table").tablesorter();</script>
 <?php } ?>

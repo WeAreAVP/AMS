@@ -12,10 +12,10 @@ class Roles extends CI_Model {
 
     function get_all($super_admin = null) {
         $this->db->order_by('id', 'asc');
-        if ($super_admin != 1) {
-            $this->db->where('id !=', '1');
-            
-        }
+//        if ($super_admin != 1) {
+//            $this->db->where('id !=', '1');
+//            
+//        }
         return $this->db->get($this->_table);
     }
 

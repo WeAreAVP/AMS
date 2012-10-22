@@ -40,7 +40,7 @@ class Sphinx_Model extends CI_Model
 		return array("total_count"=>$total_record,"records"=>$listings,"query_time"=>$execution_time);
 	}
         public function search($params){
-            
+                echo 'now here';
             $total_record = 0;
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
@@ -50,7 +50,7 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->set_array_result ( true );
 		$this->sphinxsearch->set_match_mode ( $mode );
 		$this->sphinxsearch->set_connect_timeout ( 120 );
-                echo '<pre>';print_r($filter);exit;
+                echo '<pre>';print_r($this->sphinxsearch);exit;
         }
 }
 

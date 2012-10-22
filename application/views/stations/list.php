@@ -219,7 +219,7 @@ if (!$is_ajax) {
                 $('#end_date_message').show();
             else
                 $('#end_date_message').hide(); 
-            if($('#start_date').val()!='' && $('#start_date').val()!='--'&& $('#end_date').val()!='' || $('#end_date').val()!='--')
+            if($('#start_date').val()!='' && $('#start_date').val()!='--'&& $('#end_date').val()!='' && $('#end_date').val()!='--')
                 $('#showConfirmPopUp').trigger('click');
             else
                  $('#showPopUp').trigger('click');

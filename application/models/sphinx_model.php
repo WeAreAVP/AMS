@@ -50,7 +50,8 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->set_array_result ( true );
 		$this->sphinxsearch->set_match_mode ( $mode );
 		$this->sphinxsearch->set_connect_timeout ( 120 );
-                echo '<pre>';print_r($this->sphinxsearch);exit;
+                $res=  $this->sphinxsearch->run_queries();
+                echo '<pre>';print_r($res);exit;
         }
 }
 

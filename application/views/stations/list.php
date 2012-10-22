@@ -12,13 +12,13 @@ $certified = array(
     'name' => 'certified',
     'id' => 'certified',
     'value' => set_value('certified'),
-    'onchange' => 'search_station();',
+    'function' => 'onchange="search_station();"',
 );
 $agreed = array(
     'name' => 'agreed',
     'id' => 'agreed',
     'value' => set_value('agreed'),
-    'onchange' => 'search_station();',
+     'function' => 'onchange="search_station();"',
 );
 
 $attributes = array('id' => 'search_form', 'onsubmit' => "return false;", 'onkeypress' => "return event.keyCode != 13;");
@@ -46,13 +46,13 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                 <?php echo form_label('Certified', $certified['id']); ?>
             </div>
             <div>
-                <?php echo form_dropdown($certified['id'], array('' => 'Select', '1' => 'Yes', '0' => 'No')); ?>
+                <?php echo form_dropdown($certified['id'], array('' => 'Select', '1' => 'Yes', '0' => 'No'),array(),$certified['function']); ?>
             </div>
             <div>
                 <?php echo form_label('Agreed', $agreed['id']); ?>
             </div>
             <div>
-                <?php echo form_dropdown($agreed['id'], array('' => 'Select', '1' => 'Yes', '0' => 'No')); ?>
+                <?php echo form_dropdown($agreed['id'], array('' => 'Select', '1' => 'Yes', '0' => 'No'),array(),$certified['function']); ?>
             </div>
             <div><?php echo form_submit('search', 'Search', 'class="btn primary" '); ?></div>
         </div>

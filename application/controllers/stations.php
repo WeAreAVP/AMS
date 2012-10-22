@@ -126,6 +126,7 @@ class Stations extends MY_Controller {
         if (count($backups) > 0) {
             foreach ($backups as $value) {
                 $this->station_model->update_station($value->station_id, array('start_date' => $value->start_date, 'end_date' => $value->end_date));
+                $this->sphinx->update_indexes('stations',array('start_date','end_date'),array($value->station_id=>array(strtotime($value->start_date),strtotime($value->end_date))));
             }
         }
         redirect('stations/index', 'location');

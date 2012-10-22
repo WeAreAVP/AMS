@@ -94,7 +94,7 @@ class Station_Model extends CI_Model {
     }
 
     function delete_stations_backup() {
-        $this->db->delete($this->_table_backup);
+        $this->db->empty_table($this->_table_backup);
         return $this->db->affected_rows() > 0;
     }
 

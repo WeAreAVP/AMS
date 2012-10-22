@@ -51,7 +51,7 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->set_match_mode ( $mode );
 		$this->sphinxsearch->set_connect_timeout ( 120 );
                 $query='';
-                $query    .= ' @state AK,CA ';
+                $query    .= ' @state AK&CA ';
                 $res = $this->sphinxsearch->query( $query, 'stations' );
                 
                 echo '<pre>';print_r($res);exit;

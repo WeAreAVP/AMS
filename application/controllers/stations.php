@@ -83,7 +83,13 @@ class Stations extends MY_Controller {
             $station = array();
             foreach ($station_ids as $value) {
                 $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date));
+                
+                 $this->sphinx->update_indexes('stations',array('start_date','end_date'),array($value=>array(strtotime($start_date),strtotime($end_date))));
             }
+           
+//            print exec("/usr/bin/indexer --all --rotate");
+           
+
             echo json_encode(array('success' => true, 'station' => $station, 'total' => count($station_ids)));
             exit;
         }
@@ -98,12 +104,32 @@ class Stations extends MY_Controller {
      */
     public function get_stations() {
         if (isAjax()) {
+            $this->station_model->delete_stations_backup();
             $stations_id = $this->input->post('id');
             $records = $this->station_model->get_stations_by_id($stations_id);
+            foreach ($records as $value) {
+                $backup_record = array('station_id' => $value->id, 'start_date' => $value->start_date, 'end_date' => $value->end_date);
+                $this->station_model->insert_station_backup($backup_record);
+            }
             echo json_encode(array('success' => true, 'records' => $records));
             exit;
         }
         show_404();
+    }
+
+    /**
+     * Undo the last edited statons
+     *  
+     */
+    public function undostations() {
+        $backups = $this->station_model->get_all_backup_stations();
+        if (count($backups) > 0) {
+            foreach ($backups as $value) {
+                $this->station_model->update_station($value->station_id, array('start_date' => $value->start_date, 'end_date' => $value->end_date));
+                $this->sphinx->update_indexes('stations',array('start_date','end_date'),array($value->station_id=>array(strtotime($value->start_date),strtotime($value->end_date))));
+            }
+        }
+        redirect('stations/index', 'location');
     }
 
     /*
@@ -127,8 +153,6 @@ class Stations extends MY_Controller {
             $this->load->view('stations/search', $data);
         }
     }
-
-   
 
 }
 

@@ -354,15 +354,15 @@ if (!$is_ajax) {
                                 else
                                     station_name+=result.records[cnt].station_name+',';
                             }
-                            if(compare_start_date==0 && start_date!=null)
+                            if(compare_start_date==0 && start_date!=0)
                                 $('#start_date').val(start_date);
-                            else if(compare_start_date==0 && start_date==null)
+                            else if(compare_start_date==0 && start_date==0)
                                 $('#start_date').val('');
                             else
                                 $('#start_date').val('--');
-                            if(compare_end_date==0 && end_date!=null)
+                            if(compare_end_date==0 && end_date!=0)
                                 $('#end_date').val(end_date);
-                            else if(compare_end_date==0 && end_date==null)
+                            else if(compare_end_date==0 && end_date==0)
                                 $('#end_date').val('');
                             else
                                 $('#end_date').val('--');

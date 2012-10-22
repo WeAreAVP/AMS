@@ -381,7 +381,7 @@ if (!$is_ajax) {
                 cache: false,
                 success: function (result) {
                     if(result.success==true){
-                        $('#success_message').html('<strong>'+result.total+' Record(s) Changed.</strong> <a style="color:#C09853;" href="'+site_url+'stations/undostations">Undo</a>');
+                        $('#success_message').html('<strong>'+result.total+' Record(s) Changed.</strong> <a style="color:#C09853;text-decoration: underline;" href="'+site_url+'stations/undostations">Undo</a>');
                         $('#success_message').show();
                         ids=ids.split(',');
                         for(cnt in ids){

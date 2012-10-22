@@ -128,7 +128,7 @@ if (!$is_ajax) {
                                 <td><?php echo ($data->is_certified) ? 'Yes' : 'No'; ?>
                                 <td><?php echo ($data->is_agreed) ? 'Yes' : 'No'; ?>
                                 <td id="start_date_<?php echo $data->id; ?>">
-                                    <?php if (empty($data->start_date)) {
+                                    <?php if ($data->start_date==0) {
                                         ?>
                                         No DSD
                                         <?php
@@ -142,7 +142,7 @@ if (!$is_ajax) {
 
                                 </td>
                                 <td id="end_date_<?php echo $data->id; ?>">
-                                    <?php if (empty($data->end_date)) {
+                                    <?php if ($data->end_date==0) {
                                         ?>
                                         No DED
                                         <?php

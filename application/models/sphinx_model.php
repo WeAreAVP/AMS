@@ -7,7 +7,7 @@ class Sphinx_Model extends CI_Model {
         $this->load->library('sphinxsearch');
     }
 
-    public function search_stations($params, $offset = 0, $limit = 5) {
+    public function search_stations($params, $offset = 0, $limit = 100) {
 
         $total_record = 0;
         $this->sphinxsearch->reset_filters();
@@ -17,7 +17,7 @@ class Sphinx_Model extends CI_Model {
         $this->sphinxsearch->set_array_result(true);
         $this->sphinxsearch->set_match_mode($mode);
         $this->sphinxsearch->set_connect_timeout(120);
-        //if ( $limit ) $this->sphinxsearch->set_limits ( (int) $offset, (int) $limit, ( $limit>1000 ) ? $limit : 1000 );
+        if ( $limit ) $this->sphinxsearch->set_limits ( (int) $offset, (int) $limit, ( $limit>1000 ) ? $limit : 1000 );
         if (isset($params['certified']) && $params['certified'] != '')
             $this->sphinxsearch->set_filter("is_certified", array($params['certified']));
         if (isset($params['agreed']) && $params['agreed'] != '')

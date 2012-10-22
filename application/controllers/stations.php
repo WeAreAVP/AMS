@@ -83,10 +83,11 @@ class Stations extends MY_Controller {
             $station = array();
             foreach ($station_ids as $value) {
                 $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date));
+                 $this->sphinx->update_indexes('stations',array('start_date','end_date'),array($value=>array($start_date,$end_date)));
             }
+           
 //            print exec("/usr/bin/indexer --all --rotate");
-           print $output = exec("/usr/bin/indexer --config
-/usr/bin/sphinx.conf testindex --rotate");
+           
 
             echo json_encode(array('success' => true, 'station' => $station, 'total' => count($station_ids)));
             exit;

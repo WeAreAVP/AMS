@@ -32,9 +32,11 @@ class Stations extends MY_Controller {
         $val->set_rules('certified', 'Certified', 'trim|xss_clean');
         $val->set_rules('agreed', 'Agreed', 'trim|xss_clean');
         if ($this->input->post()) {
-            $certified = $this->input->post('certified');
-            $agreed = $this->input->post('agreed');
-            $data['stations'] = $this->station_model->apply_filter($certified, $agreed);
+//            $certified = $this->input->post('certified');
+//            $agreed = $this->input->post('agreed');
+//            $data['stations'] = $this->station_model->apply_filter($certified, $agreed);
+            $search_kewords = str_replace(",", " & ", trim($this->input->post('search_words')));
+             $data['stations'] = $this->sphinx->search_stations($search_kewords);
         } else {
             $data['stations'] = $this->station_model->get_all();
         }

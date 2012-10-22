@@ -23,7 +23,9 @@ class Stations extends MY_Controller {
     }
 
     /**
-     * List all the stations
+     * List all the stations and also filters stations
+     * 
+     * It receives 3 post parameters are received with ajax call
      *  
      */
     public function index() {
@@ -126,10 +128,7 @@ class Stations extends MY_Controller {
         }
     }
 
-    public function test() {
-        echo 'here';
-        $this->sphinx->search(1);
-    }
+   
 
 }
 

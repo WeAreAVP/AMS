@@ -110,7 +110,10 @@ class Stations extends MY_Controller {
         }
         show_404();
     }
-
+    /**
+     * Undo the last edited statons
+     *  
+     */
     public function undostations() {
         $backups = $this->station_model->get_all_backup_stations();
         if (count($backups) > 0) {

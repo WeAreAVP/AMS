@@ -46,13 +46,13 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
                 <?php echo form_label('Certified', $certified['id']); ?>
             </div>
             <div>
-                <?php echo form_dropdown($certified['id'], array('' => 'Select', '1' => 'Yes', '0' => 'No'),array(),$certified['function']); ?>
+                <?php echo form_dropdown($certified['id'], array('' => 'Select', '1' => 'Yes', '0' => 'No'),array(),$certified['function'].'id="'.$certified['id'].'"'); ?>
             </div>
             <div>
                 <?php echo form_label('Agreed', $agreed['id']); ?>
             </div>
             <div>
-                <?php echo form_dropdown($agreed['id'], array('' => 'Select', '1' => 'Yes', '0' => 'No'),array(),$certified['function']); ?>
+                <?php echo form_dropdown($agreed['id'], array('' => 'Select', '1' => 'Yes', '0' => 'No'),array(),$agreed['function'].'id="'.$agreed['id'].'"'); ?>
             </div>
             <div><?php echo form_submit('search', 'Search', 'class="btn primary" '); ?></div>
         </div>

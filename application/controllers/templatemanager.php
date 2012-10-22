@@ -21,6 +21,7 @@ class TemplateManager extends CI_Controller
 		$this->load->helper('form');
 		 $this->load->model('station_model');
 		$this->load->model('email_template_model','email_template');
+		$this->load->model('sphinx_model', 'sphinx');
 	}
 	function system_id_check($system_id)
 	{
@@ -158,16 +159,24 @@ class TemplateManager extends CI_Controller
 						redirect('templatemanager/lists/updated');
 					}
 				}
-			}else{		redirect('templatemanager/lists');}
-			
+			}else{redirect('templatemanager/lists');}
 			$this->load->view("templatemanager/edit_template",$data);
 		}
 	}
 	public function liststations()
 	{
-		 $data['stations'] = $this->station_model->get_all();
-		 $data['templates']=$this->email_template->get_all();
-		 $this->load->view("templatemanager/list_stations",$data);
+		$data['stations'] = $this->sphinx->search_stations('');
+		$data['templates']=$this->email_template->get_all();
+		$this->load->view("templatemanager/list_stations",$data);
+	}
+	public function add_email_to_queues()
+	{
+		if (isAjax())
+		{
+    	$station_ids = $this->input->post('id');
+      $station_ids = explode(',', $station_ids);
+      $template_id = $this->input->post('template_id');
+		}
 	}
 }
 ?>

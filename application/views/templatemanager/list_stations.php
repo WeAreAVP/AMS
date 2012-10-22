@@ -27,35 +27,27 @@
           <td><?php echo $data->station_name; ?></td>
           <td><?php echo $data->contact_name; ?></td>
           <td><?php echo $data->contact_title; ?></td>
-          <td><?php
-							if ($data->type == 0)
-									echo 'Radio';
-							else if ($data->type == 1)
-									echo 'TV';
-							else if ($data->type == 2)
-									echo 'Joint';
-							else
-									echo 'Unknown';
-							?></td>
+          <td><?php echo $data->my_type; ?></td>
           <td id="start_date_<?php echo $data->id; ?>"><?php 
-					if (empty($data->start_date))
-					{?>
-            No DSD <?php
-          }
-					else
-					{
-						echo $data->start_date;
-					}?>
-          </td>
+						if ($data->start_date==0)
+						{?>
+             	No DSD<?php
+            }
+						else
+						{
+            	echo date('Y-m-d',$data->start_date); 
+            }?>
+					</td>
           <td id="end_date_<?php echo $data->id; ?>"><?php 
-					if (empty($data->end_date))
-					{?>
-            No DED <?php
-          }
-					else
-					{
-						echo $data->end_date;
-					}?>
+						if ($data->end_date==0)
+						{?>
+            	No DED<?php
+            }
+						else
+						{
+							echo date('Y-m-d',$data->end_date);
+              
+            }?>
           </td>
         </tr>
         <?php
@@ -94,6 +86,26 @@
 $('.dropdown-toggle').dropdown()
 function send_message(template_id)
 {
-}
-		
+	ids=$('#station_id').val();
+	if(ids=='' || ids==null)
+	{
+		alert("Please Select Station");
+		return ;
+	}
+  $.ajax({
+   	type: 'POST', 
+    url: site_url+'templatemanager/add_email_to_queues',
+    data:{id:ids,template_id:template_id},
+    dataType: 'json',
+    cache: false,
+    success: function (result)
+		{
+    	if(result.success==true)
+			{
+      	$('#success_message').html('<strong>Sent Email to '+result.total+' Station(s).</strong>');
+      	$('#success_message').show();
+    	}
+   	}
+  });
+}	
 </script> 

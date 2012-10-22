@@ -282,7 +282,7 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
         $.ajax({
             type: 'POST', 
             url: '<?php echo site_url('stations/index') ?>',
-            data:{"search_words":search_words},
+            data:{"search_words":search_words,certified:certified,agreed:agreed},
             success: function (result) { 
                 console.log(result);
                 $('#append_record').html(result);

@@ -32,14 +32,15 @@ class Stations extends MY_Controller {
         $val->set_rules('certified', 'Certified', 'trim|xss_clean');
         $val->set_rules('agreed', 'Agreed', 'trim|xss_clean');
         if ($this->input->post()) {
-//            $certified = $this->input->post('certified');
-//            $agreed = $this->input->post('agreed');
-//            $data['stations'] = $this->station_model->apply_filter($certified, $agreed);
-            $search_kewords = str_replace(",", " & ", trim($this->input->post('search_words')));
-             $records= $this->sphinx->search_stations($search_kewords);
-             $data['stations']=$records['records'];
+            $param['certified'] = $this->input->post('certified');
+            $param['agreed'] = $this->input->post('agreed');
+            $param['search_kewords'] = str_replace(",", " & ", trim($this->input->post('search_words')));
+            $records = $this->sphinx->search_stations($search_kewords);
+            $data['stations'] = $records['records'];
         } else {
-            $data['stations'] = $this->station_model->get_all();
+            $params['search_kewords']='';
+            $records = $this->sphinx->search_stations($params);
+            $data['stations'] = $records['records'];
         }
         if (isAjax()) {
             $data['is_ajax'] = true;

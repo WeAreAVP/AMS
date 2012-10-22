@@ -39,31 +39,6 @@ class Sphinx_Model extends CI_Model {
         }
         return array("total_count" => $total_record, "records" => $listings, "query_time" => $execution_time);
     }
-
-    public function search($params) {
-
-        $total_record = 0;
-        $this->sphinxsearch->reset_filters();
-        $this->sphinxsearch->reset_group_by();
-
-        $this->sphinxsearch->set_filter("is_certified", array(1));
-        $mode = SPH_MATCH_EXTENDED;
-        $this->sphinxsearch->set_array_result(true);
-        $this->sphinxsearch->set_match_mode($mode);
-        $this->sphinxsearch->set_connect_timeout(120);
-        $query = '';
-//                $query    .= ' @state ME ';
-        $res = $this->sphinxsearch->query($query, 'stations');
-
-        echo '<pre>';
-        print_r($res);
-        exit;
-    }
-
-    function search1($params) {
-        
-    }
-
 }
 
 ?>

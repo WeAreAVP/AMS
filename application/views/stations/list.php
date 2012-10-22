@@ -12,11 +12,13 @@ $certified = array(
     'name' => 'certified',
     'id' => 'certified',
     'value' => set_value('certified'),
+    'onchange' => 'search_station();',
 );
 $agreed = array(
     'name' => 'agreed',
     'id' => 'agreed',
     'value' => set_value('agreed'),
+    'onchange' => 'search_station();',
 );
 
 $attributes = array('id' => 'search_form', 'onsubmit' => "return false;", 'onkeypress' => "return event.keyCode != 13;");
@@ -275,6 +277,8 @@ echo form_open_multipart($this->uri->uri_string(), $attributes);
     }
     function search_station(){
         search_words=$('#search_words').val();
+        certified=$('#certified').val();
+        agreed=$('#agreed').val();
         $.ajax({
             type: 'POST', 
             url: '<?php echo site_url('stations/index') ?>',

@@ -191,13 +191,13 @@ if (!$is_ajax) {
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true" id="">Cancel</button>
-            <button class="btn btn-primary" data-dismiss="modal" onclick="validateFields();">Save</button>
+            <button class="btn btn-primary" onclick="validateFields();">Save</button>
         </div>
     </div>
     <a href="#confirmModel" data-toggle="modal" id="showConfirmPopUp"></a>
     <div class="modal hide" id="confirmModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
-            <button type="button" class="close" aria-hidden="true">×</button>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3>Are you sure you want to save?</h3>
 
         </div>
@@ -213,11 +213,11 @@ if (!$is_ajax) {
         function validateFields(){
             if($('#start_date').val()=='' || $('#start_date').val()=='--'){
                 $('#start_date_message').show();
-               
+                
             }
             if($('#end_date').val()=='' || $('#end_date').val()=='--'){
                 $('#end_date_message').show();
-               
+                
             }
             if($('#start_date').val()!='' && $('#start_date').val()!='--'&& $('#end_date').val()!='' && $('#end_date').val()!='--')
                 $('#showConfirmPopUp').trigger('click');

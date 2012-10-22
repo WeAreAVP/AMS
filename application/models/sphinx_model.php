@@ -48,7 +48,7 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->set_array_result ( true );
 		$this->sphinxsearch->set_match_mode ( $mode );
 		$this->sphinxsearch->set_connect_timeout ( 120 );
-                $filter=$this->sphinxsearch->set_filter("is_certified",array($param['is_certified']));
+                $filter=$this->sphinxsearch->set_filter("is_certified",array(1));
                 echo '<pre>';print_r($filter);exit;
         }
 }

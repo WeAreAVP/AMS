@@ -43,7 +43,6 @@ class Stations extends MY_Controller {
         } else {
             $records = $this->sphinx->search_stations($param);
             $data['stations'] = $records['records'];
-         
         }
         if (isAjax()) {
             $data['is_ajax'] = true;
@@ -86,9 +85,9 @@ class Stations extends MY_Controller {
                 $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date));
             }
 //            print exec("/usr/bin/indexer --all --rotate");
-            $output = exec("/usr/local/sphinx/bin/indexer --config
-/usr/local/sphinx/etc/sphinx.conf testindex --rotate", $o);
-print_r($o);
+           print $output = exec("/usr/local/sphinx/bin/indexer --config
+/usr/local/sphinx/etc/sphinx.conf testindex --rotate");
+
             echo json_encode(array('success' => true, 'station' => $station, 'total' => count($station_ids)));
             exit;
         }
@@ -115,6 +114,7 @@ print_r($o);
         }
         show_404();
     }
+
     /**
      * Undo the last edited statons
      *  

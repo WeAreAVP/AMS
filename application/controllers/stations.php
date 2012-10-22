@@ -85,7 +85,7 @@ class Stations extends MY_Controller {
             foreach ($station_ids as $value) {
                 $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date));
             }
-            print shell_exec("indexer --all --rotate");
+            print exec("indexer --all --rotate");
             echo json_encode(array('success' => true, 'station' => $station, 'total' => count($station_ids)));
             exit;
         }

@@ -191,7 +191,7 @@ if (!$is_ajax) {
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true" id="">Cancel</button>
-            <button class="btn btn-primary"  onclick="validateFields();">Save</button>
+            <button class="btn btn-primary" data-dismiss="modal" onclick="validateFields();">Save</button>
         </div>
     </div>
     <a href="#confirmModel" data-toggle="modal" id="showConfirmPopUp"></a>
@@ -221,6 +221,8 @@ if (!$is_ajax) {
                 $('#end_date_message').hide(); 
             if($('#start_date').val()!='' && $('#start_date').val()!='--'&& $('#end_date').val()!='' || $('#end_date').val()!='--')
                 $('#showConfirmPopUp').trigger('click');
+            else
+                 $('#showPopUp').trigger('click');
         }
         function checkAll() {
             var boxes = document.getElementsByTagName('input');

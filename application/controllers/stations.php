@@ -36,7 +36,8 @@ class Stations extends MY_Controller {
 //            $agreed = $this->input->post('agreed');
 //            $data['stations'] = $this->station_model->apply_filter($certified, $agreed);
             $search_kewords = str_replace(",", " & ", trim($this->input->post('search_words')));
-             $data['stations'] = $this->sphinx->search_stations($search_kewords);
+             $records= $this->sphinx->search_stations($search_kewords);
+             $data['stations']=$records['records'];
         } else {
             $data['stations'] = $this->station_model->get_all();
         }

@@ -35,10 +35,12 @@ class Stations extends MY_Controller {
             $param['certified'] = $this->input->post('certified');
             $param['agreed'] = $this->input->post('agreed');
             $param['search_kewords'] = str_replace(",", " & ", trim($this->input->post('search_words')));
-            $records = $this->sphinx->search_stations($search_kewords);
+            $records = $this->sphinx->search_stations($param);
             $data['stations'] = $records['records'];
         } else {
             $params['search_kewords']='';
+            $params['certified']='';
+            $params['agreed']='';
             $records = $this->sphinx->search_stations($params);
             $data['stations'] = $records['records'];
         }

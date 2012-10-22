@@ -27,6 +27,7 @@ class Stations extends MY_Controller {
      *  
      */
     public function index() {
+        $param = array('search_kewords' => '', 'certified' => '', 'agreed' => '');
         $val = $this->form_validation;
         $val->set_rules('search_keyword', 'Search Keyword', 'trim|xss_clean');
         $val->set_rules('certified', 'Certified', 'trim|xss_clean');
@@ -38,10 +39,7 @@ class Stations extends MY_Controller {
             $records = $this->sphinx->search_stations($param);
             $data['stations'] = $records['records'];
         } else {
-            $params['search_kewords']='';
-            $params['certified']='';
-            $params['agreed']='';
-            $records = $this->sphinx->search_stations($params);
+            $records = $this->sphinx->search_stations($param);
             $data['stations'] = $records['records'];
         }
         if (isAjax()) {

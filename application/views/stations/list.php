@@ -202,14 +202,14 @@ if (!$is_ajax) {
 
         </div>
 
-        <div class="modal-footer">
+        <div class="modal-footer" style="text-align: left;">
             <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="$('#showPopUp').trigger('click');">Go Back</button>
             <button class="btn" data-dismiss="modal" onclick="UpdateStations();">Save</button>
         </div>
     </div>
     <script type="text/javascript">
         var stationName=null;
-                                
+                                    
         function validateFields(){
             if($('#start_date').val()=='' || $('#start_date').val()=='--'){
                 $('#start_date_message').show();
@@ -219,7 +219,7 @@ if (!$is_ajax) {
             }
             if($('#end_date').val()=='' || $('#end_date').val()=='--'){
                 $('#end_date_message').show();
-                                
+                                    
             }
             else{
                 $('#end_date_message').hide();
@@ -228,7 +228,7 @@ if (!$is_ajax) {
                 $('#showPopUp').trigger('click');
                 $('#showConfirmPopUp').trigger('click');
             }
-                                     
+                                         
         }
         function checkAll() {
             var boxes = document.getElementsByTagName('input');
@@ -239,7 +239,7 @@ if (!$is_ajax) {
             }
             return true;
         }
-                                 
+                                     
         var search_words='';
         function makeToken(event)
         {
@@ -266,7 +266,7 @@ if (!$is_ajax) {
                 $('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'</span><span class="btn-close-img" onclick="remove_keword(\''+search_id+'\')"></span></div>');
             }
             $('#search_keyword').val('');
-                            			
+                                			
             $(".search_keys").each(function() {
                 if(token==0)
                     my_search_words=$(this).text();
@@ -331,9 +331,9 @@ if (!$is_ajax) {
                                 if(cnt==0){
                                     start_date=result.records[cnt].start_date;
                                     end_date=result.records[cnt].end_date;
-                                                        
+                                                            
                                 }
-                                                    
+                                                        
                                 if(cnt>=result.records.length-1){
                                     if(start_date==result.records[cnt].start_date && compare_start_date==0){
                                         compare_start_date=0;
@@ -348,7 +348,7 @@ if (!$is_ajax) {
                                         compare_end_date=1; 
                                     }
                                 }
-                                                    
+                                                        
                                 if(cnt==result.records.length-1)
                                     station_name+=result.records[cnt].station_name;
                                 else
@@ -373,17 +373,17 @@ if (!$is_ajax) {
                         else{
                             console.log(result);
                         }
-                                            
+                                                
                     }
                 });
             }
-                                    
+                                        
         }
         function UpdateStations(){
             ids=$('#station_id').val();
             start_date=$('#start_date').val();
             end_date=$('#end_date').val();
-                                    
+                                        
             $.ajax({
                 type: 'POST', 
                 url: site_url+'stations/update_station_date',
@@ -400,7 +400,7 @@ if (!$is_ajax) {
                             $('#end_date_'+ids[cnt]).html(end_date);
                         }
                     }
-                                            
+                                                
                 }
             });
         }

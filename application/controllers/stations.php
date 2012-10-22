@@ -115,8 +115,8 @@ class Stations extends MY_Controller {
         }
     }
     public function  test(){
-        $param['is_certified']=1;
-        $this->sphinx->search($param['is_certified']);
+        echo 'here';
+        $this->sphinx->search(1);
     }
 
 }

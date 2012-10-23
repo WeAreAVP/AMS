@@ -93,6 +93,8 @@
                                             
                     </script>
                 <?php } ?>
+                 <?php if (active_anchor('messages', 'inbox') || active_anchor('settings', 'sent') ) { ?>
+                <?php } ?>
                 {yield}
             </div>
         </div>

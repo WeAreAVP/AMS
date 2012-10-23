@@ -10,25 +10,25 @@ if (!$is_ajax) {
         'id' => 'message_type',
         'function' => 'onchange="filter_inbox();"',
     );
- 		$select[]='Select';
-		foreach($this->config->item('messages_type') as $msg_type)
-		{
-			$select[]=$msg_type;
-		}
+    $select[] = 'Select';
+    foreach ($this->config->item('messages_type') as $msg_type) {
+        $select[] = $msg_type;
+    }
     ?>
     <br/>
     <div class="row-fluid">
-			<div class="span3">
-				<a href="javascript:;" class="btn btn-large" >Compose Message</a>
-			</div>
-		</div>
+        <div class="span3">
+            <a href="#compose_to_type" class="btn btn-large" data-toggle="modal" id="compose_anchor">Compose Message</a>
+            <a href="#compose_confirm"  data-toggle="modal" id="confirm_anchor" style="display: none;"></a>
+        </div>
+    </div>
     <div class="row-fluid">
         <div class="span3">
             <div id="search_bar">
                 <b><h4>Folders</h4></b>
-                <div style="padding: 8px;" ><a href="<?php echo site_url('messages/inbox')?>" >Inbox</a></div>
-                <div style="padding: 8px;color: white;background: none repeat scroll 0% 0% rgb(0, 152, 214);" >	<a href="<?php echo site_url('messages/sent')?>" >Sent</a></div>
-                
+                <div style="padding: 8px;" ><a href="<?php echo site_url('messages/inbox') ?>" >Inbox</a></div>
+                <div style="padding: 8px;color: white;background: none repeat scroll 0% 0% rgb(0, 152, 214);" >	<a href="<?php echo site_url('messages/sent') ?>" >Sent</a></div>
+
                 <div>
                     <?php echo form_label('Stations', $stations['id']); ?>
                 </div>
@@ -43,7 +43,7 @@ if (!$is_ajax) {
                 </div>
             </div>
         </div>
-       
+
         <div  class="span9">
             <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
             <div style="overflow: scroll;height: 600px;" >
@@ -58,17 +58,17 @@ if (!$is_ajax) {
                         </tr>
                     </thead>
                     <tbody id="append_record"><?php
-                    }
-                    if (count($results) > 0) {
-                        foreach ($results as $row) {
-                            ?>
+                }
+                if (count($results) > 0) {
+                    foreach ($results as $row) {
+                        ?>
                             <tr>
-                              <td><?php echo $data->receiver_id; ?></td>
-                              <td><?php echo $data->subject; ?></td>
-                              <td><?php echo $select[$data->msg_type]; ?></td>
-                               <td><?php echo $data->msg_status; ?></td>
-                              <td><?php echo date("Y-m-d",strtotime($data->created_at)); ?></td>
-                           </tr>
+                                <td><?php echo $data->receiver_id; ?></td>
+                                <td><?php echo $data->subject; ?></td>
+                                <td><?php echo $select[$data->msg_type]; ?></td>
+                                <td><?php echo $data->msg_status; ?></td>
+                                <td><?php echo date("Y-m-d", strtotime($data->created_at)); ?></td>
+                            </tr>
                             <?php
                         }
                     } else {
@@ -81,10 +81,10 @@ if (!$is_ajax) {
             </div>
         </div>
     </div>
-      <script type="text/javascript">
-       function filter_inbox(){
-           var stations=$('#stations').val();
-           var message_type=$('#message_type').val();
+    <script type="text/javascript">
+        function filter_inbox(){
+            var stations=$('#stations').val();
+            var message_type=$('#message_type').val();
             $.ajax({
                 type: 'POST', 
                 url: site_url+'messages/inbox',
@@ -92,7 +92,7 @@ if (!$is_ajax) {
                 dataType: 'json',
                 cache: false,
                 success: function (result) {
-	                 $('#append_record').html(result);
+                    $('#append_record').html(result);
                 }
             });
         }

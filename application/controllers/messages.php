@@ -60,7 +60,7 @@ class Messages extends MY_Controller {
                 $where['msg_type'] = $_POST['message_type'];
             }
             if ($_POST['stations']) {
-                $where['sender_id'] = $_POST['stations'];
+                $where['receiver_id'] = $_POST['stations'];
             }
         }
         $data['station_records'] = $this->station_model->get_all();

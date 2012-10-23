@@ -101,7 +101,7 @@ class Messages_Model extends CI_Model {
      * 
      * @return rows object 
     */
-		function get_sent_msgs($sender_id)
+		function get_sent_msgs($sender_id,$where='')
 		{
 			$this->db->select("*");
 			$this->db->from($this->_table);

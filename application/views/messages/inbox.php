@@ -1,4 +1,8 @@
 <?php
+ $select[] = 'Select';
+    foreach ($this->config->item('messages_type') as $msg_type) {
+        $select[] = $msg_type;
+    }
 if (!$is_ajax) {
     $stations = array(
         'name' => 'stations',
@@ -10,10 +14,7 @@ if (!$is_ajax) {
         'id' => 'message_type',
         'function' => 'onchange="filter_inbox();"',
     );
-    $select[] = 'Select';
-    foreach ($this->config->item('messages_type') as $msg_type) {
-        $select[] = $msg_type;
-    }
+   
     ?>
     <br/>
     <div class="row-fluid">

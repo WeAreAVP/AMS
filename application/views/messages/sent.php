@@ -63,11 +63,11 @@ if (!$is_ajax) {
                         foreach ($results as $row) {
                             ?>
                             <tr>
-                              <td><?php echo $data->receiver_id; ?></td>
-                              <td><?php echo $data->subject; ?></td>
-                              <td><?php echo $select[$data->msg_type]; ?></td>
-                               <td><?php echo $data->msg_status; ?></td>
-                              <td><?php echo date("Y-m-d",strtotime($data->created_at)); ?></td>
+                              <td><?php echo $row->receiver_id; ?></td>
+                              <td><?php echo $row->subject; ?></td>
+                              <td><?php echo $select[$row->msg_type]; ?></td>
+                               <td><?php if($row->msg_status=='read'){?><a data-placement="top" rel="tooltip" href="#" data-original-title="<?php echo "Message last read on ".date("m/d/Y",strtotime($row->read_at)); ?>"><?php echo $row->msg_status; ?></a><?php }else{ echo $row->msg_status; }?></td>
+                              <td><?php echo date("Y-m-d",strtotime($row->created_at)); ?></td>
                            </tr>
                             <?php
                         }
@@ -104,3 +104,8 @@ if (!$is_ajax) {
     ?>
     <script type="text/javascript"> $("#station_table").tablesorter();</script>
 <?php } ?>
+<?php /*?><tr <?php if($row->msg_status=='unread'){?> style="font-weight:bold"<?php }?>>
+                                <td><?php echo $row->sender_id; ?></td>
+                                <td><?php echo $row->subject; ?></td>
+                                <td><?php echo date("Y-m-d", strtotime($row->created_at)); ?></td>
+                            </tr><?php */?>

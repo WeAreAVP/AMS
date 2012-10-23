@@ -26,9 +26,9 @@ if (!$is_ajax) {
         <div class="span3">
             <div id="search_bar">
                 <b><h4>Folders</h4></b>
-                <div style="padding: 8px;color: white;background: none repeat scroll 0% 0% rgb(0, 152, 214);" ><a href="<?php echo site_url('messages/inbox') ?>" >Inbox</a></div>
+                <div style="padding: 8px;background: none repeat scroll 0% 0% rgb(0, 152, 214);" ><a  style="color: white;" href="<?php echo site_url('messages/inbox') ?>" >Inbox</a></div>
                 <div style="padding: 8px;" >	<a href="<?php echo site_url('messages/sent') ?>" >Sent</a></div>
-
+<br/>
                 <div>
                     <?php echo form_label('Stations', $stations['id']); ?>
                 </div>
@@ -46,15 +46,18 @@ if (!$is_ajax) {
 
         <div  class="span9">
             <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
-            <div style="overflow: scroll;height: 600px;" >
+            <div style="overflow: auto;height: 600px;" >
                 <table class="tablesorter table table-bordered" id="station_table">
+                 <?php 
+								 if (count($results) > 0) {?>
                     <thead>
                         <tr>
-                            <td><span style="float:left;min-width:50px;">From</span></td>
-                            <td><span style="float:left;min-width:80px;">Subject</span></td>
-                            <th><span style="float:left;min-width:90px;">Date</span></td>
+                            <td><span style="float:left;min-width:50px; padding:4px;font-weight:bold">From</span></td>
+                            <td><span style="float:left;min-width:80px; padding:4px;font-weight:bold">Subject</span></td>
+                            <th><span style="float:left;min-width:90px;">Date</span></th>
                         </tr>
                     </thead>
+                    <?php }?>
                     <tbody id="append_record"><?php
             }
             if (count($results) > 0) {
@@ -63,7 +66,7 @@ if (!$is_ajax) {
                             <tr <?php if($row->msg_status=='unread'){?> style="font-weight:bold"<?php }?>>
                                 <td><?php echo $row->sender_id; ?></td>
                                 <td><?php echo $row->subject; ?></td>
-                                <td><?php echo date("Y-m-d", strtotime($row->created_at)); ?></td>
+                                <td><?php echo date("m/d/Y", strtotime($row->created_at)); ?></td>
                             </tr>
                             <?php
                         }
@@ -85,14 +88,13 @@ if (!$is_ajax) {
                 type: 'POST', 
                 url: site_url+'messages/inbox',
                 data:{stations:stations,message_type:message_type},
-                dataType: 'json',
-                cache: false,
+                 cache: false,
                 success: function (result) {
                     $('#append_record').html(result);
                 }
             });
     }
-    
+   
     </script>
    
     <?php

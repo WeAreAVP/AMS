@@ -20,7 +20,7 @@
         echo link_tag("css/style.css");
         ?> 
         <script type="text/javascript">
-            var site_url='<?php echo site_url() ?>/';
+            var site_url='<?php echo site_url() ?>';
 	
         </script>
 
@@ -43,7 +43,7 @@
                         dates.not( this ).datepicker( "option", option, date );
                     }
                 });
-                
+                $("[rel=tooltip]").tooltip();
                 $("#station_table").tablesorter();
             });
         </script>

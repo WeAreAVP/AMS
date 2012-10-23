@@ -81,6 +81,7 @@ class Messages_Model extends CI_Model {
 			
 			$this->db->select("*");
 			$this->db->from($this->_table);
+			$this->db->join
 			$this->db->where("receiver_id",$receiver_id);
 			$this->db->where("receiver_folder","inbox");
 			if(!empty($where))

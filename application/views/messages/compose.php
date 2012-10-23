@@ -38,10 +38,10 @@
                 <div class="controls">
                     <select id="msg_type" onchange="typeForm();">
                         <option value="">Select</option>
-                        <?php foreach ($this->config->item('messages_type') as $key => $value) {?>
-                                          <option value="<?php echo $key; ?>"><?php echo $value; ?></option>           
-                                               <?php }?>
-                        
+                        <?php foreach ($this->config->item('messages_type') as $key => $value) { ?>
+                            <option value="<?php echo $key; ?>"><?php echo $value; ?></option>           
+                        <?php } ?>
+
                     </select>
                     <span id="message_type_error">Please select message type</span>
                 </div>
@@ -88,7 +88,7 @@
                 <div class="control-group">
                     <label class="control-label" for="date_received_2">Date Received:</label>
                     <div class="controls">
-                        <input id="date_received" name="date_received_2"/>
+                        <input id="date_received_2" name="date_received_2"/>
 
                     </div>
                 </div>
@@ -265,7 +265,12 @@
                 comments=$('#comments_1').val();
                 complete_date=$('#complete_date').val();
                         
-                extras='ship_date='+ship_date+',shipping_instructions='+ship_instructions+',comments='+comments+',estimated_complete_date='+complete_date;      
+                extras= {
+                    ship_date: ship_date,
+                    shipping_instructions: ship_instructions,
+                    comments: comments,
+                    estimated_complete_date: complete_date
+                };
                 html='<div>Ship Date: '+ship_date+'</div>'+
                     '<div>Shipping Instructions: '+ship_instructions+'</div>'+
                     '<div>Comments: '+comments+'</div>'+
@@ -284,8 +289,12 @@
                 comments=$('#comments_2').val();
                 contact_detail=$('#contact_detail_2').val();
                                 
-                            
-                extras='date_received='+date_received+',comments='+comments+',crawford_contact_details='+contact_detail;
+                extras= {
+                    date_received: date_received,
+                    comments: comments,
+                    crawford_contact_details: contact_detail
+                };
+                
                 html='<div>Date Received: '+date_received+'</div>'+
                     '<div>Comments: '+comments+'</div>'+
                     '<div>Crawford Contact Details: '+contact_detail+'</div>';           
@@ -306,7 +315,16 @@
                 return_date=$('#return_date').val();
                                 
                             
-                extras='date_received='+date_received+',comments='+comments+',crawford_contact_details='+contact_detail+',30_day_digitization_review='+digitization_review_date+',30_day_material_review='+material_review_date+',material_return_date='+return_date;
+               
+                extras= {
+                    date_received: date_received,
+                    comments: comments,
+                    crawford_contact_details: contact_detail,
+                    day_digitization_review: digitization_review_date,
+                    day_material_review: material_review_date,
+                    material_return_date: return_date
+                };
+                
                 html= '<div>Date Received: '+date_received+'</div>'+
                     '<div>Comments: '+comments+'</div>'+
                     '<div>Crawford Contact Details: '+contact_detail+'</div>'+ 
@@ -329,7 +347,13 @@
                 comments=$('#comments_4').val();
                 hd_list=$('#hd_list').val();
                                 
-                extras='date_due='+date_due+',comments='+comments+',hard_drive_list='+hd_list;
+                
+                
+                extras= {
+                    date_due: date_due,
+                    comments: comments,
+                    hard_drive_list: hd_list
+                };
                 html=             '<div>Date Due: '+date_due+'</div>'+
                     '<div>Comments: '+comments+'</div>'+
                     '<div>Date Due: '+hd_list+'</div>';
@@ -348,6 +372,12 @@
                 ftp_detail=$('#ftp_detail').val();
                                 
                 extras='review_end_date='+review_end_date+',comments='+comments+',ftp_details='+ftp_detail;
+                
+                extras= {
+                    review_end_date: review_end_date,
+                    comments: comments,
+                    ftp_details: ftp_detail
+                };
                 html=        '<div>Review End Date: '+review_end_date+'</div>'+
                     '<div>Comments: '+comments+'</div>'+
                     '<div>FTP Details: '+ftp_detail+'</div>';   
@@ -370,7 +400,7 @@
             url: '<?php echo site_url('messages/compose') ?>',
             data:{"extras":extras,to:to,from:from,subject:subject,type:type,html:body},
             success: function (result) { 
-//               window.location.reload();
+                //               window.location.reload();
                     
                                 
             }

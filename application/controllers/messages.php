@@ -83,8 +83,8 @@ class Messages extends MY_Controller {
             $type = $this->input->post('type');
             $subject = $this->input->post('subject');
             $extra = $this->input->post('extras');
-            $extra = explode(',', $extra);
-            $extra = serialize($extra);
+            $extra = json_encode($extra);
+
             $this->load->library('email');
 
             $this->session->set_userdata('sent', 'Message Sent');

@@ -141,4 +141,20 @@ class Messages_Model extends CI_Model {
 			}
 			return 0;
 		}
+		 /**
+     * Get Messages By Receiver Id And id
+     * 
+     * @return rows object 
+    */
+		function get_msg_by_receiverid_msgid($receiver_id,$id)
+		{
+			$this->db->select("*");
+			$this->db->from($this->_table);
+			$this->db->where("receiver_id",$id);
+			$this->db->where("id",$receiver_id);
+			$res=$this->db->get();
+			if(isset($res) && !empty($res))
+				return $res->result();
+			return false;
+		}
 }

@@ -40,9 +40,9 @@ class Messages extends MY_Controller {
             }
         }
         $data['results'] = $this->msgs->get_inbox_msgs($this->user_id, $where);
-        $data['station_records'] =$this->station_model->get_all();
-        
-           
+        $data['station_records'] = $this->station_model->get_all();
+
+
         if (isAjax()) {
             $data['is_ajax'] = true;
             echo $this->load->view('messages/inbox', $data, true);
@@ -74,9 +74,21 @@ class Messages extends MY_Controller {
     }
 
     public function compose() {
-        echo '<pre>';
-        print_r($_REQUEST);
-        exit;
+        if ($this->input->post()) {
+            $to = $this->input->post('to');
+            $from = $this->input->post('from');
+            $type = $this->input->post('type');
+            $subject = $this->input->post('subject');
+            $extra = $this->input->post('extras');
+            $extra = explode(',', $extra);
+            $extra=serialize($extra);
+            
+            $data=array('sender_id'=>$from,'receiver_id'=>$to,'msg_type'=>$type,'subject'=>$subject,'msg_extras'=>$extra);
+            echo '<pre>';print_r($data);exit;
+            $this->msgs->add_msg($this->user_id, $data);
+        } else {
+            show_404();
+        }
     }
 
 }

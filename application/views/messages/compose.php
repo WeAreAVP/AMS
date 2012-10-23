@@ -224,7 +224,7 @@
     var from=null;
     var subject=null;
     var type=null;
-    var html=null;
+    var body=null;
     $(function() {
         $( "#ship_date" ).datepicker();
         $( "#complete_date" ).datepicker();
@@ -274,7 +274,10 @@
                 $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
                     '<div><strong>Subject: '+subject+'</strong></div><br/>'+
                     html );
-                                          
+                body='Ship Date: '+ship_date+'\n'+
+                    'Shipping Instructions: '+ship_instructions+'\n'+
+                    'Comments: '+comments+'\n'+
+                    'Estimated Complete Date: '+complete_date+'\n';       
                                       
             }
             else if(type==2){
@@ -290,6 +293,9 @@
                 $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
                     '<div><strong>Subject: '+subject+'</strong></div><br/>'+
                     html );
+                body='Date Received: '+date_received+'\n'+
+                    'Comments: '+comments+'\n'+
+                    'Crawford Contact Details: '+contact_detail+'\n';  
                                       
             }
             else if(type==3){
@@ -312,6 +318,12 @@
                     '<div><strong>Subject: '+subject+'</strong></div><br/>'+
                     html
             );
+                body='Date Received: '+date_received+'\n'+
+                    'Comments: '+comments+'\n'+
+                    'Crawford Contact Details: '+contact_detail+'\n'+ 
+                    '30 day Digitization review: '+digitization_review_date+'\n'+ 
+                    '30 day Material Review: '+material_review_date+'\n'+ 
+                    '>Material Return Date: '+return_date+'\n';
             }
             else if(type==4){
                 date_due=$('#date_due').val();
@@ -327,6 +339,9 @@
                 $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
                     '<div><strong>Subject: '+subject+'</strong></div><br/>'+
                     html );
+                body=    'Date Due: '+date_due+'\n'+
+                    'Comments: '+comments+'\n'+
+                    'Date Due: '+hd_list+'\n';
             }
             else if(type==5){
                 review_end_date=$('#review_end_date').val();
@@ -341,6 +356,9 @@
                 $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
                     '<div><strong>Subject: '+subject+'</strong></div><br/>'+
                     html );
+                body=  'Review End Date: '+review_end_date+'\n'+
+                    'Comments: '+comments+'\n'+
+                    'FTP Details: '+ftp_detail+'\n';
             }
             $('#confirm_anchor').trigger('click');
             
@@ -351,7 +369,7 @@
         $.ajax({
             type: 'POST', 
             url: '<?php echo site_url('messages/compose') ?>',
-            data:{"extras":extras,to:to,from:from,subject:subject,type:type,html:html},
+            data:{"extras":extras,to:to,from:from,subject:subject,type:type,html:body},
             success: function (result) { 
                 
                                 

@@ -89,8 +89,8 @@ class Messages extends MY_Controller {
 
             $this->session->set_userdata('sent', 'Message Sent');
             if ($this->config->item('demo') == true) {
-                $station_email = $this->config->item('from_email');
-                $user_detail = $this->config->item('to_email');
+                $station_email = $this->config->item('to_email');
+                $user_detail = $this->config->item('from_email');
             } else {
                 $station_email = $this->station_model->get_station_by_id($to)->contact_email;
                 $user_detail = $this->users->get_user_detail($from)->row()->email;

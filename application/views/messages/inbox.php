@@ -66,7 +66,7 @@ if (!$is_ajax) {
                 foreach ($results as $row) {
                         ?>
                             <tr <?php if($row->msg_status=='unread'){?> style="font-weight:bold"<?php }?>>
-                                <td><?php echo $row->sender_id; ?></td>
+                                <td><?php echo $row->full_name; ?></td>
                                 <td><?php echo $row->subject; ?></td>
                                 <td><?php echo date("m/d/Y", strtotime($row->created_at)); ?></td>
                             </tr>

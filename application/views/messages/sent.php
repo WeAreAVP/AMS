@@ -92,7 +92,7 @@ if (!$is_ajax) {
            var message_type=$('#message_type').val();
             $.ajax({
                 type: 'POST', 
-                url: site_url+'messages/inbox',
+                url: site_url+'messages/sent',
                 data:{stations:stations,message_type:message_type},
                  cache: false,
                 success: function (result) {

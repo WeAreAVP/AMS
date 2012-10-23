@@ -79,9 +79,9 @@ class Messages_Model extends CI_Model {
 		function get_inbox_msgs($receiver_id,$where='')
 		{
 			
-			$this->db->select("*");
+			$this->db->select(" {$this->_table}.*, CONCAT(user_profile.first_name,\" \",user_profile.last_name) AS full_name" ,false);
 			$this->db->from($this->_table);
-			$this->db->join
+			$this->db->join("user_profile","user_profile.user_id=".$this->_table.".receiver_id");
 			$this->db->where("receiver_id",$receiver_id);
 			$this->db->where("receiver_folder","inbox");
 			if(!empty($where))

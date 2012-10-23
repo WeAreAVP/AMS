@@ -17,15 +17,20 @@ if (!defined('BASEPATH'))
   | path to your installation.
   |
  */
- $config['index_page'] = 'index.php';
+$config['index_page'] = 'index.php';
 if (ENVIRONMENT == 'testing') {
-	$config['index_page'] = '';
+    $config['index_page'] = '';
     $config['base_url'] = "http://ams.iserver.purelogics.info/";
+    $config['to_email'] = 'nouman@geekschicago.com';
+    $config['from_email'] = 'nouman@geekschicago.com';
 } else if (ENVIRONMENT == 'development') {
-     $config['base_url'] = "http://ec2-54-242-106-197.compute-1.amazonaws.com/";
-}
-else if (ENVIRONMENT == 'qatesting') {
-     $config['base_url'] = "http://ec2-174-129-139-234.compute-1.amazonaws.com/";
+    $config['base_url'] = "http://ec2-54-242-106-197.compute-1.amazonaws.com/";
+    $config['to_email'] = 'nouman.tayyab@purelogics.net';
+    $config['from_email'] = 'nouman@geekschicago.com';
+} else if (ENVIRONMENT == 'qatesting') {
+    $config['base_url'] = "http://ec2-174-129-139-234.compute-1.amazonaws.com/";
+    $config['to_email'] = 'ssapienza@cpb.org';
+    $config['from_email'] = 'nouman@geekschicago.com';
 } else {
     
 }
@@ -362,7 +367,7 @@ $config['rewrite_short_tags'] = FALSE;
  */
 $config['proxy_ips'] = '';
 
-$config['messages_type']=array(1=>"Digitization Start Date",2=>"Materials Received",3=>"Assets Ready to Ship Back",4=>"Hard Drive Return Date",5=>"Audio FTP Review");
-$config['demo']=true;
+$config['messages_type'] = array(1 => "Digitization Start Date", 2 => "Materials Received", 3 => "Assets Ready to Ship Back", 4 => "Hard Drive Return Date", 5 => "Audio FTP Review");
+$config['demo'] = true;
 /* End of file config.php */
 /* Location: ./application/config/config.php */

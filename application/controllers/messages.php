@@ -63,7 +63,7 @@ class Messages extends MY_Controller {
                 $where['sender_id'] = $_POST['stations'];
             }
         }
-          $data['station_records'] = $this->station_model->get_all();
+        $data['station_records'] = $this->station_model->get_all();
         $data['results'] = $this->msgs->get_sent_msgs($this->user_id, $where);
         if (isAjax()) {
             $data['is_ajax'] = true;
@@ -86,21 +86,21 @@ class Messages extends MY_Controller {
             $extra = explode(',', $extra);
             $extra = serialize($extra);
             $this->load->library('email');
-            $station_email=$this->station_model->get_station_by_id($to)->contact_email;
-            
-            $user_detail=$this->users->get_user_detail($from)->row()->email;
+            $station_email = $this->station_model->get_station_by_id($to)->contact_email;
+
+            $user_detail = $this->users->get_user_detail($from)->row()->email;
             $this->session->set_userdata('sent', 'Message Sent');
             $this->email->from($user_email);
             $this->email->to($station_email);
-            
+
             $this->email->subject($subject);
             $this->email->message($html);
 
 //            $this->email->send();
-            $data = array('sender_id' => $from, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => $extra,'created_at'=>date('Y-m-d h:m:i'));
-            
+            $data = array('sender_id' => $from, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => $extra, 'created_at' => date('Y-m-d h:m:i'));
+
             $this->msgs->add_msg($data);
-            echo json_encode(array('success'=>true));
+            echo json_encode(array('success' => true));
             exit;
         } else {
             show_404();

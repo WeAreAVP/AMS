@@ -60,7 +60,7 @@
                     <a href="<?php echo site_url('messages/inbox') ?>">Messages</a>
                     <?php }?>
 
-                    <a href="<?php echo site_url('auth/logout') ?>">Log Out</a>
+                    <a href="<?php echo site_url('auth/logout') ?>">Log Out</a> 
                 </div>
             <?php } ?>
             <div class="navbar-inner">

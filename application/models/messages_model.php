@@ -124,7 +124,7 @@ class Messages_Model extends CI_Model {
      * 
      * @return rows object 
     */
-		function get_unread_msgs_count()
+		function get_unread_msgs_count($receiver_id)
 		{
 			$this->db->select("COUNT(id) as total");
 			$this->db->from($this->_table);
@@ -133,6 +133,7 @@ class Messages_Model extends CI_Model {
 			$this->db->where("msg_status","unread");
 			$this->db->group_by("receiver_id");
 			$res=$this->db->get();
+			echo $this->db->last_query();
 			if(isset($res) && !empty($res))
 			{
 				$cnt=$res->row();

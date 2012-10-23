@@ -60,10 +60,10 @@ if (!$is_ajax) {
             if (count($results) > 0) {
                 foreach ($results as $row) {
                         ?>
-                            <tr>
-                                <td><?php echo $data->sender_id; ?></td>
-                                <td><?php echo $data->subject; ?></td>
-                                <td><?php echo date("Y-m-d", strtotime($data->created_at)); ?></td>
+                            <tr <?php if($row->msg_status=='unread'){?> style="font-weight:bold"<?php }?>>
+                                <td><?php echo $row->sender_id; ?></td>
+                                <td><?php echo $row->subject; ?></td>
+                                <td><?php echo date("Y-m-d", strtotime($row->created_at)); ?></td>
                             </tr>
                             <?php
                         }

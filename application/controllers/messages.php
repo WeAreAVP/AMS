@@ -63,7 +63,7 @@ class Messages extends MY_Controller {
             }
         }
         $data['results'] = $this->msgs->get_sent_msgs($this->user_id, $where);
-        if (isAjax()) {
+				if (isAjax()) {
             $data['is_ajax'] = true;
             echo $this->load->view('messages/sent', $data, true);
             exit;

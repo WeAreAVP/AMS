@@ -51,9 +51,16 @@
 
     <body>
         <div class="navbar navbar-fixed-top">
-            <?php if ($this->dx_auth->is_logged_in()) { ?>
+            <?php if ($this->dx_auth->is_logged_in()) {
+							
+							 ?>
                 <div class="custom-nav">
-                    <a>Messages</a>
+                <?php if(isset($this->total_unread) && $this->total_unread>0 ){?>
+                    <a class="btn large message" href="<?php echo site_url('messages/inbox') ?>">Messages<span class="badge label-important message-alert"><?php echo $this->total_unread ?></span></a>
+                    <?php }else{?>
+                    <a href="<?php echo site_url('messages/inbox') ?>">Messages</a>
+                    <?php }?>
+
                     <a href="<?php echo site_url('auth/logout') ?>">Log Out</a>
                 </div>
             <?php } ?>

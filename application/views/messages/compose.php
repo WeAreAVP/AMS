@@ -224,6 +224,7 @@
     var from=null;
     var subject=null;
     var type=null;
+    var html=null;
     $(function() {
         $( "#ship_date" ).datepicker();
         $( "#complete_date" ).datepicker();
@@ -266,13 +267,13 @@
                 complete_date=$('#complete_date').val();
                         
                 extras='ship_date='+ship_date+',shipping_instructions='+ship_instructions+',comments='+comments+',estimated_complete_date='+complete_date;      
-                                 
-                $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
-                    '<div><strong>Subject: '+subject+'</strong></div><br/>'+
-                    '<div>Ship Date: '+ship_date+'</div>'+
+                html='<div>Ship Date: '+ship_date+'</div>'+
                     '<div>Shipping Instructions: '+ship_instructions+'</div>'+
                     '<div>Comments: '+comments+'</div>'+
-                    '<div>Estimated Complete Date: '+complete_date+'</div>' );
+                    '<div>Estimated Complete Date: '+complete_date+'</div>';               
+                $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
+                    '<div><strong>Subject: '+subject+'</strong></div><br/>'+
+                    html );
                                           
                                       
             }
@@ -283,12 +284,12 @@
                                 
                             
                 extras='date_received='+date_received+',comments='+comments+',crawford_contact_details='+contact_detail;
-                                
+                html='<div>Date Received: '+date_received+'</div>'+
+                    '<div>Comments: '+comments+'</div>'+
+                    '<div>Crawford Contact Details: '+contact_detail+'</div>';           
                 $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
                     '<div><strong>Subject: '+subject+'</strong></div><br/>'+
-                    '<div>Date Received: '+date_received+'</div>'+
-                    '<div>Comments: '+comments+'</div>'+
-                    '<div>Crawford Contact Details: '+contact_detail+'</div>' );
+                    html );
                                       
             }
             else if(type==3){
@@ -301,15 +302,15 @@
                                 
                             
                 extras='date_received='+date_received+',comments='+comments+',crawford_contact_details='+contact_detail+',30_day_digitization_review='+digitization_review_date+',30_day_material_review='+material_review_date+',material_return_date='+return_date;
-                                
-                $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
-                    '<div><strong>Subject: '+subject+'</strong></div><br/>'+
-                    '<div>Date Received: '+date_received+'</div>'+
+                html= '<div>Date Received: '+date_received+'</div>'+
                     '<div>Comments: '+comments+'</div>'+
                     '<div>Crawford Contact Details: '+contact_detail+'</div>'+ 
                     '<div>30 day Digitization review: '+digitization_review_date+'</div>'+ 
                     '<div>30 day Material Review: '+material_review_date+'</div>'+ 
-                    '<div>Material Return Date: '+return_date+'</div>'
+                    '<div>Material Return Date: '+return_date+'</div>';          
+                $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
+                    '<div><strong>Subject: '+subject+'</strong></div><br/>'+
+                    html
             );
             }
             else if(type==4){
@@ -318,14 +319,14 @@
                 hd_list=$('#hd_list').val();
                                 
                 extras='date_due='+date_due+',comments='+comments+',hard_drive_list='+hd_list;
-                                
+                html=             '<div>Date Due: '+date_due+'</div>'+
+                    '<div>Comments: '+comments+'</div>'+
+                    '<div>Date Due: '+hd_list+'</div>';
                                 
                                 
                 $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
                     '<div><strong>Subject: '+subject+'</strong></div><br/>'+
-                    '<div>Date Due: '+date_due+'</div>'+
-                    '<div>Comments: '+comments+'</div>'+
-                    '<div>Date Due: '+hd_list+'</div>' );
+                    html );
             }
             else if(type==5){
                 review_end_date=$('#review_end_date').val();
@@ -333,13 +334,13 @@
                 ftp_detail=$('#ftp_detail').val();
                                 
                 extras='review_end_date='+review_end_date+',comments='+comments+',ftp_details='+ftp_detail;
-                                
+                html=        '<div>Review End Date: '+review_end_date+'</div>'+
+                    '<div>Comments: '+comments+'</div>'+
+                    '<div>FTP Details: '+ftp_detail+'</div>';   
                                 
                 $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
                     '<div><strong>Subject: '+subject+'</strong></div><br/>'+
-                    '<div>Review End Date: '+review_end_date+'</div>'+
-                    '<div>Comments: '+comments+'</div>'+
-                    '<div>FTP Details: '+ftp_detail+'</div>' );
+                    html );
             }
             $('#confirm_anchor').trigger('click');
             
@@ -350,7 +351,7 @@
         $.ajax({
             type: 'POST', 
             url: '<?php echo site_url('messages/compose') ?>',
-            data:{"extras":extras,to:to,from:from,subject:subject,type:type},
+            data:{"extras":extras,to:to,from:from,subject:subject,type:type,html:html},
             success: function (result) { 
                 
                                 

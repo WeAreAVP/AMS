@@ -38,11 +38,10 @@
                 <div class="controls">
                     <select id="msg_type" onchange="typeForm();">
                         <option value="">Select</option>
-                        <option value="1">Digitization Start Date</option>
-                        <option value="2">Materials Received</option>
-                        <option value="3">Assets Ready to Ship Back</option>
-                        <option value="4">Hard Drive Return Date</option>
-                        <option value="5">Audio FTP Review</option>
+                        <?php foreach ($this->config->item('messages_type') as $key => $value) {?>
+                                          <option value="<?php echo $key; ?>"><?php echo $value; ?></option>           
+                                               <?php }?>
+                        
                     </select>
                     <span id="message_type_error">Please select message type</span>
                 </div>

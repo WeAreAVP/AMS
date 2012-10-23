@@ -84,10 +84,10 @@ if (!$is_ajax) {
         </div>
     </div>
     <script type="text/javascript">
-		function read_msg(id)
-		{
-			window.location='<?php echo site_url('messages/readmessage');?>/'+id;
-		}
+				function read_msg(id)
+				{
+					window.location='<?php echo site_url('messages/readmessage');?>/'+id;
+				}
         function filter_inbox(){
             var stations=$('#stations').val();
             var message_type=$('#message_type').val();

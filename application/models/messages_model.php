@@ -81,7 +81,7 @@ class Messages_Model extends CI_Model {
 			
 			$this->db->select(" {$this->_table}.*, CONCAT(user_profile.first_name,\" \",user_profile.last_name) AS full_name" ,false);
 			$this->db->from($this->_table);
-			$this->db->join("user_profile","user_profile.user_id=".$this->_table.".receiver_id");
+			$this->db->join("user_profile","user_profile.user_id=".$this->_table.".sender_id");
 			$this->db->where("receiver_id",$receiver_id);
 			$this->db->where("receiver_folder","inbox");
 			if(!empty($where))
@@ -103,8 +103,9 @@ class Messages_Model extends CI_Model {
     */
 		function get_sent_msgs($sender_id,$where='')
 		{
-			$this->db->select("*");
+			$this->db->select("{$this->_table}.*,stations.station_name AS full_name" ,false);
 			$this->db->from($this->_table);
+			$this->db->join("stations","stations.id=".$this->_table.".receiver_id");
 			$this->db->where("sender_id",$sender_id);
 			$this->db->where("sender_folder","sent");
 			if(!empty($where))

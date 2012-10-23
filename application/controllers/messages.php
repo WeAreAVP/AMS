@@ -76,49 +76,41 @@ class Messages extends MY_Controller {
     }
 
     public function compose() {
-         if ($this->input->post()) {
-					$to = $this->input->post('to');
-					$html = $this->input->post('html');
-					$from = $this->input->post('from');
-					$type = $this->input->post('type');
-					$subject = $this->input->post('subject');
-					$extra = $this->input->post('extras');
-					$extra = explode(',', $extra);
-					$extra = serialize($extra);
-					$this->load->library('email');
-					
-					$this->session->set_userdata('sent', 'Message Sent');
-					if ($this->config->item('demo') == false) {
-					$station_email = $this->station_model->get_station_by_id($to)->contact_email;
-					$user_detail = $this->users->get_user_detail($from)->row()->email;
-					} else {
-					$station_email = 'nouman.tayyab@purelogics.net';
-					$user_detail = 'ali.raza@purelogics.net';
-					}
-					$this->email->from($user_detail);
-					$this->email->to($station_email);
-					
-					$this->email->subject($subject);
-					$this->email->message($html);
-					
-					$this->email->send();
-					$data = array('sender_id' => $from, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => $extra, 'created_at' => date('Y-m-d h:m:i'));
-					
-					$this->msgs->add_msg($data);
-					echo json_encode(array('success' => true));
-					exit;
-					} else {
-					show_404();
-					}
+        if ($this->input->post()) {
+            $to = $this->input->post('to');
+            $html = $this->input->post('html');
+            $from = $this->input->post('from');
+            $type = $this->input->post('type');
+            $subject = $this->input->post('subject');
+            $extra = $this->input->post('extras');
+            $extra = explode(',', $extra);
+            $extra = serialize($extra);
+            $this->load->library('email');
 
+            $this->session->set_userdata('sent', 'Message Sent');
+            if ($this->config->item('demo') == false) {
+                $station_email = $this->station_model->get_station_by_id($to)->contact_email;
+                $user_detail = $this->users->get_user_detail($from)->row()->email;
+            } else {
+                $station_email = 'nouman.tayyab@purelogics.net';
+                $user_detail = 'ali.raza@purelogics.net';
+            }
+            $this->email->from($user_detail);
+            $this->email->to($station_email);
+
+            $this->email->subject($subject);
+            $this->email->message($html);
+
+            $this->email->send();
+            $data = array('sender_id' => $from, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => $extra, 'created_at' => date('Y-m-d h:m:i'));
+
+            $this->msgs->add_msg($data);
+            echo json_encode(array('success' => true));
+            exit;
+        } else {
+            show_404();
+        }
     }
-		public function readmessage($message_id='')
-		{
-			if($message_id!='')
-			{
-				$data['result']=$this->msgs->get_inbox_msgs($this->user_id,array("id"=>$message_id));
-			}
-		}
 
 }
 

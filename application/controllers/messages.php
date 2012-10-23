@@ -86,17 +86,22 @@ class Messages extends MY_Controller {
             $extra = explode(',', $extra);
             $extra = serialize($extra);
             $this->load->library('email');
-            $station_email = $this->station_model->get_station_by_id($to)->contact_email;
 
-            $user_detail = $this->users->get_user_detail($from)->row()->email;
             $this->session->set_userdata('sent', 'Message Sent');
-            $this->email->from($user_email);
+            if ($this->config->item('demo') == false) {
+                $station_email = $this->station_model->get_station_by_id($to)->contact_email;
+                $user_detail = $this->users->get_user_detail($from)->row()->email;
+            } else {
+                $station_email = 'nouman.tayyab@purelogics.net';
+                $user_detail = 'ali.raza@purelogics.net';
+            }
+            $this->email->from($user_detail);
             $this->email->to($station_email);
 
             $this->email->subject($subject);
             $this->email->message($html);
 
-//            $this->email->send();
+            $this->email->send();
             $data = array('sender_id' => $from, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => $extra, 'created_at' => date('Y-m-d h:m:i'));
 
             $this->msgs->add_msg($data);

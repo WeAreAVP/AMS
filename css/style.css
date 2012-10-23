@@ -91,3 +91,12 @@ html, body {
 .cls_radio{
     margin: 5px !important;
 }
+.compose label{
+    width: 165px !important;
+    padding-right: 15px !important;
+}
+#message_type_error{
+    color: red;
+    padding-left: 10px;
+    display: none;
+}

@@ -100,3 +100,12 @@ html, body {
     padding-left: 10px;
     display: none;
 }
+.message{
+color:#FFF !important;
+background:#1797D2 !important;
+}
+.message-alert{
+background:#DD2226;
+float:right;
+margin:-14px -23px 0 0;
+}

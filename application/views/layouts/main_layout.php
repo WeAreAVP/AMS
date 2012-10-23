@@ -3,13 +3,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>AMS</title>
-        <script src="<?php echo site_url('tiny_mce/tiny_mce.js')?>" ></script>
+        <script src="<?php echo site_url('tiny_mce/tiny_mce.js') ?>" ></script>
         <?php
         echo link_js('jquery-1.8.2.js');
         echo link_js('jquery-ui-1.9.0.custom.js');
         echo link_js('jquery.tablesorter.js');
         echo link_js('bootstrap/bootstrap.js');
-        
+
         echo link_js('custom.js');
         echo link_tag("css/tableSorter.css");
         echo link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
@@ -88,11 +88,18 @@
                     </ul>
                     <script>
                         $(function () {
-//                            $('#myTab a:last').tab('show');
+                            //                            $('#myTab a:last').tab('show');
                         })
-                                            
+                                                
                     </script>
                 <?php } ?>
+                <?php
+                if (active_anchor('messages', 'inbox') || active_anchor('messages', 'sent')) {
+
+                    $this->load->view('messages/compose');
+                }
+                ?>
+
                 {yield}
             </div>
         </div>

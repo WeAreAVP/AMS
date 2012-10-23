@@ -21,6 +21,7 @@ class Messages extends MY_Controller {
         $this->load->library('Form_validation');
         $this->load->helper('form');
         $this->load->model('station_model');
+        $this->load->model('dx_auth/users', 'users');
         $this->load->model('messages_model', 'msgs');
         $this->user_id = 1;
     }
@@ -62,6 +63,7 @@ class Messages extends MY_Controller {
                 $where['sender_id'] = $_POST['stations'];
             }
         }
+        $data['station_records'] = $this->station_model->get_all();
         $data['results'] = $this->msgs->get_sent_msgs($this->user_id, $where);
         if (isAjax()) {
             $data['is_ajax'] = true;
@@ -84,19 +86,22 @@ class Messages extends MY_Controller {
             $extra = explode(',', $extra);
             $extra = serialize($extra);
             $this->load->library('email');
+            $station_email = $this->station_model->get_station_by_id($to)->contact_email;
 
-            $this->email->from('your@example.com', 'Your Name');
-            $this->email->to('nouman.tayyab@purelogics.net');
-            
+            $user_detail = $this->users->get_user_detail($from)->row()->email;
+            $this->session->set_userdata('sent', 'Message Sent');
+            $this->email->from($user_email);
+            $this->email->to($station_email);
+
             $this->email->subject($subject);
             $this->email->message($html);
 
-            $this->email->send();
-            $data = array('sender_id' => $from, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => $extra);
-            echo '<pre>';
-            print_r($html);
+//            $this->email->send();
+            $data = array('sender_id' => $from, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => $extra, 'created_at' => date('Y-m-d h:m:i'));
+
+            $this->msgs->add_msg($data);
+            echo json_encode(array('success' => true));
             exit;
-            $this->msgs->add_msg($this->user_id, $data);
         } else {
             show_404();
         }

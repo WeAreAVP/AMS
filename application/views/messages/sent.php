@@ -17,9 +17,11 @@ if (!$is_ajax) {
 		}
     ?>
     <br/>
+    <?php if (isset($this->session->userdata['sent'])) { ?><div class="alert" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['sent']; ?></div><br/><?php } $this->session->unset_userdata('sent'); ?>
     <div class="row-fluid">
 			<div class="span3">
-				<a href="javascript:;" class="btn btn-large" >Compose Message</a>
+				 <a href="#compose_to_type" class="btn btn-large" data-toggle="modal" id="compose_anchor">Compose Message</a>
+            <a href="#compose_confirm"  data-toggle="modal" id="confirm_anchor" style="display: none;"></a>
 			</div>
 		</div>
     <div class="row-fluid">

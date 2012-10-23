@@ -1,4 +1,4 @@
-<?php
+<script src="<?php echo site_url('tiny_mce/tiny_mce.js') ?>" ></script><?php
 $system_id = array(
     'name' => 'system_id',
     'id' => 'system_id',

@@ -88,7 +88,7 @@ class Messages_Model extends CI_Model {
 			{
 				foreach($where as $key=>$value)
 				{
-					$this->db->where($key,$value);
+					$this->db->where($this->_table.".".$key,$value);
 				}
 			}
 			$res=$this->db->get();

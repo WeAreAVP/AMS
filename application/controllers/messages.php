@@ -111,6 +111,14 @@ class Messages extends MY_Controller {
             show_404();
         }
     }
+		public function readmessage($message_id='')
+		{
+			if($message_id!='')
+			{
+				$data['result']=$this->msgs->get_inbox_msgs($this->user_id,array("id"=>$message_id));
+				$this->load->view('messages/read_msg', $data);
+			}
+		}
 
 }
 

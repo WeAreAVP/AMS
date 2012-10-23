@@ -66,7 +66,7 @@ if (!$is_ajax) {
             if (count($results) > 0) {
                 foreach ($results as $row) {
                         ?>
-                            <tr <?php if($row->msg_status=='unread'){?> style="font-weight:bold"<?php }?>>
+                          <tr style="cursor: pointer;<?php if($row->msg_status=='unread'){?> font-weight:bold;<?php }?>" onclick="read_msg('<?php echo $row->id?>')">
                                 <td><?php echo $row->full_name; ?></td>
                                 <td><?php echo $row->subject; ?></td>
                                 <td><?php echo date("m/d/Y", strtotime($row->created_at)); ?></td>
@@ -84,6 +84,10 @@ if (!$is_ajax) {
         </div>
     </div>
     <script type="text/javascript">
+		function read_msg(id)
+		{
+			window.location='<?php echo site_url('messages/readmessage');?>/'+id;
+		}
         function filter_inbox(){
             var stations=$('#stations').val();
             var message_type=$('#message_type').val();

@@ -400,7 +400,7 @@
             url: '<?php echo site_url('messages/compose') ?>',
             data:{"extras":extras,to:to,from:from,subject:subject,type:type,html:body},
             success: function (result) { 
-                //               window.location.reload();
+                window.location.reload();
                     
                                 
             }

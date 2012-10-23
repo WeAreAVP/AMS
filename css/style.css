@@ -103,6 +103,7 @@ html, body {
 .message{
 color:#FFF !important;
 background:#1797D2 !important;
+margin: -5px 0 0 !important;
 }
 .message-alert{
 background:#DD2226;

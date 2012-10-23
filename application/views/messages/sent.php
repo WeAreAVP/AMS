@@ -104,8 +104,3 @@ if (!$is_ajax) {
     ?>
     <script type="text/javascript"> $("#station_table").tablesorter();</script>
 <?php } ?>
-<?php /*?><tr <?php if($row->msg_status=='unread'){?> style="font-weight:bold"<?php }?>>
-                                <td><?php echo $row->sender_id; ?></td>
-                                <td><?php echo $row->subject; ?></td>
-                                <td><?php echo date("Y-m-d", strtotime($row->created_at)); ?></td>
-                            </tr><?php */?>

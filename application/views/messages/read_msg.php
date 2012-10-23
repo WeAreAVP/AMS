@@ -11,10 +11,18 @@ if(isset($result) && !empty($result) && isset($result[0]))
 				<div><strong><?php echo date("F d, Y",strtotime($row->created_at));?></strong></div>
         <div><strong>From: <?php echo $row->full_name;?></strong></div>
         <div><strong>Subject: <?php echo $row->subject;?></strong></div>
-        <br/><br/>
+        <br/>
         <?php 
 				if(isset($row->msg_extras) && $row->msg_extras!=NULL){
-					print_r(unserialize($row->msg_extras));
+					$extras=json_decode($row->msg_extras);
+					if(isset($extras) && !empty($extras))
+					{
+						foreach($extras as $key=>$value)
+						{?>
+							 <div><strong><?php echo ucwords(str_replace("_"," ",$key));?>: <?php echo $value;?></strong></div>
+						<?php
+            }
+					}
 					?>
         	
         <?php }?>

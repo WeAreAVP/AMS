@@ -65,8 +65,8 @@ if (!$is_ajax) {
 if (count($results) > 0) {
     foreach ($results as $row) {
         ?>
-                            <tr>
-                                <td><?php echo $row->receiver_id; ?></td>
+                            <tr onclick="read_msg('<?php echo $row->id?>')">
+                                <td><?php echo $row->full_name; ?></td>
                                 <td><?php echo $row->subject; ?></td>
                                 <td><?php echo $select[$row->msg_type]; ?></td>
                                 <td><?php if ($row->msg_status == 'read') { ?><a data-placement="top" rel="tooltip" href="#" data-original-title="<?php echo "Message last read on " . date("m/d/Y", strtotime($row->read_at)); ?>"><?php echo ucfirst($row->msg_status); ?></a><?php } else {
@@ -87,6 +87,10 @@ if (count($results) > 0) {
         </div>
     </div>
     <script type="text/javascript">
+		function read_msg(id)
+				{
+					window.location='<?php echo site_url('messages/readmessage');?>/'+id;
+				}
         function filter_inbox(){
             var stations=$('#stations').val();
             var message_type=$('#message_type').val();

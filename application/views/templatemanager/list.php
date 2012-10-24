@@ -26,7 +26,6 @@
                                 <td><a href="<?php echo site_url('templatemanager/details/' . $data->id); ?>"><?php echo $data->system_id; ?></a></td>
                                 <td><?php echo $data->subject; ?></td>
                                 <td><?php echo $data->reply_to; ?></td>
-                                <td><?php echo $data->contact_title; ?></td>
                                 <td><?php echo $data->email_from; ?></td>
                                 <td><?php echo $data->email_type; ?></td>
                                 <td><?php echo $data->replaceables; ?></td>

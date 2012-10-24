@@ -31,7 +31,7 @@ class Email_Template_Model extends CI_Model {
 			$this->db->where("system_id",$system_id);
 			$res=$this->db->get();
 			if(isset($res) && !empty($res))
-				return $res->result();
+				return $res->row();
 			return false;
 		}
 		

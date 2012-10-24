@@ -3,7 +3,8 @@ if(isset($result) && !empty($result) && isset($result[0]))
 {
 	$row=$result[0];
 	?>
-<div >
+  <div class="span3">&nbsp;</div>
+<div class="span8">
     <div class="modal-header">
        <h3 id="userLabel"><?php echo $row->subject;?></h3>
     </div>
@@ -29,5 +30,13 @@ if(isset($result) && !empty($result) && isset($result[0]))
     </div>
 </div>
 <?php }else{?>
+  <div class="span3">&nbsp;</div>
+<div class="span8">
+    <div class="modal-header">
+       <h3 id="userLabel">No Message Found</h3>
+    </div>
+</div
 
 <?php }?>
+
+<br clear="all"/>

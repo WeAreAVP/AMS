@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Settings controller.
+ * Messages controller.
  *
  * @package    AMS
  * @subpackage Messeges Alerts
- * @author     Ali Raza
+ * @author     Ali Raza, Nouman Tayyab
  */
 class Messages extends MY_Controller {
 
@@ -25,7 +25,10 @@ class Messages extends MY_Controller {
         $this->load->model('messages_model', 'msgs');
         $this->user_id = 1;
     }
-
+    /**
+     * Redirect to inbox
+     *  
+     */
     public function index() {
         redirect('messages/inbox', 'location');
     }
@@ -74,7 +77,13 @@ class Messages extends MY_Controller {
             $this->load->view('messages/sent', $data);
         }
     }
-
+    /**
+     * Get the message type and load the respective view. Receive an ajax call
+     * 
+     * @param $type as post parameter
+     * @return html view for message type
+     *  
+     */
     public function get_message_type() {
         if (isAjax()) {
             $type = $this->input->post('type');
@@ -86,7 +95,18 @@ class Messages extends MY_Controller {
         }
         show_404();
     }
-
+    /**
+     * Recieve the compose message parameteres. Store in database and send email
+     * Receive an ajax call
+     * 
+     * @param $to receiver id
+     * @param $from send id
+     * @param $html for email body
+     * @param $type message type
+     * @param $subject email subject
+     * @param $extaras receive the remaining fields as an array
+     *  
+     */
     public function compose() {
         if ($this->input->post()) {
             $to = $this->input->post('to');

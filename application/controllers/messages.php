@@ -115,9 +115,30 @@ class Messages extends MY_Controller {
 		{
 			if($message_id!='')
 			{
+				
 				$data['result']=$this->msgs->get_inbox_msgs($this->user_id,array("id"=>$message_id));
+				if(isset($data['result']) && !empty($data['result']) && $data['result'][0]->msg_status=='unread')
+				{
+					$this->msgs->update_msg_by_id($message_id,array("msg_status"=>"read","read_at"=>date("Y-m-d H:i:s")));
+					$this->total_unread = $this->msgs->get_unread_msgs_count($this->user_id);
+				}
 				$this->load->view('messages/read_msg', $data);
 			}
+			else {
+            show_404();
+        }
+		}
+		public function readsentmessage($message_id='')
+		{
+			if($message_id!='')
+			{
+				$data['result']=$this->msgs->get_sent_msgs($this->user_id,array("id"=>$message_id));
+				$this->load->view('messages/read_msg', $data);
+			}
+			else
+			{
+      	show_404();
+      }
 		}
 
 }

@@ -65,7 +65,7 @@ if (!$is_ajax) {
 if (count($results) > 0) {
     foreach ($results as $row) {
         ?>
-                            <tr onclick="read_msg('<?php echo $row->id?>')">
+                            <tr style="cursor: pointer;" onclick="read_msg('<?php echo $row->id?>')">
                                 <td><?php echo $row->full_name; ?></td>
                                 <td><?php echo $row->subject; ?></td>
                                 <td><?php echo $select[$row->msg_type]; ?></td>
@@ -89,7 +89,7 @@ if (count($results) > 0) {
     <script type="text/javascript">
 		function read_msg(id)
 				{
-					window.location='<?php echo site_url('messages/readmessage');?>/'+id;
+					window.location='<?php echo site_url('messages/readsentmessage');?>/'+id;
 				}
         function filter_inbox(){
             var stations=$('#stations').val();

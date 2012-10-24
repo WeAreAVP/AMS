@@ -91,7 +91,9 @@ class Messages_Model extends CI_Model {
 					$this->db->where($this->_table.".".$key,$value);
 				}
 			}
+			$this->db->order_by('created_at','DESC');
 			$res=$this->db->get();
+			
 			if(isset($res) && !empty($res))
 				return $res->result();
 			return false;
@@ -112,9 +114,10 @@ class Messages_Model extends CI_Model {
 			{
 				foreach($where as $key=>$value)
 				{
-					$this->db->where($key,$value);
+					$this->db->where($this->_table.".".$key,$value);
 				}
 			}
+			$this->db->order_by('created_at','DESC');
 			$res=$this->db->get();
 			if(isset($res) && !empty($res))
 				return $res->result();

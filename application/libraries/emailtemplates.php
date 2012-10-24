@@ -43,36 +43,20 @@ class Emailtemplates
 				{
 					if(!empty($replace_able))
 					{
-						$queue_data['email_body']=
-						$email_template->body_html;
+						$queue_data['email_body']=$email_template->body_plain;
 					}
 					else
 					{
-						$queue_data['email_body']=
+						$queue_data['email_body']=$email_template->body_plain;
 					}
 				}
 				else
 				{
-					body_plain
+						$email_template->body_html;
 				}
-				
-				$queue_data['created_at']=
-				$queue_data['is_sent']=
-				$queue_data['sent_at']=
-				
-				
-
-
-
-
-
-
-
-
-
-
-
-
+				$queue_data['created_at']=date('Y-m-d H:i:s');
+				$queue_data['is_sent']=1;
+				$queue_data['sent_at']=date('Y-m-d H:i:s');
 			}
 		}
 		else

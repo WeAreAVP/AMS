@@ -75,6 +75,18 @@ class Messages extends MY_Controller {
         }
     }
 
+    public function get_message_type() {
+        if (isAjax()) {
+            $type = $this->input->post('type');
+            $messagesType = $this->config->item('messages_type');
+            $messageType = '_' . str_replace(' ', '_', strtolower($messagesType[$type]));
+            $data['is_ajax'] = true;
+            echo $this->load->view('messages/' . $messageType, $data, TRUE);
+            exit;
+        }
+        show_404();
+    }
+
     public function compose() {
         if ($this->input->post()) {
             $to = $this->input->post('to');
@@ -111,14 +123,13 @@ class Messages extends MY_Controller {
             show_404();
         }
     }
-		public function readmessage($message_id='')
-		{
-			if($message_id!='')
-			{
-				$data['result']=$this->msgs->get_inbox_msgs($this->user_id,array("id"=>$message_id));
-				$this->load->view('messages/read_msg', $data);
-			}
-		}
+
+    public function readmessage($message_id = '') {
+        if ($message_id != '') {
+            $data['result'] = $this->msgs->get_inbox_msgs($this->user_id, array("id" => $message_id));
+            $this->load->view('messages/read_msg', $data);
+        }
+    }
 
 }
 

@@ -1,0 +1,52 @@
+<div id="type_5">
+    <div class="control-group">
+        <label class="control-label" for="review_end_date">Review End Date:</label>
+        <div class="controls">
+            <input id="review_end_date" name="review_end_date"/>
+
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="comments">Comments:</label>
+        <div class="controls">
+            <input id="comments" name="comments"/>
+
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="ftp_detail">FTP Details:</label>
+        <div class="controls">
+            <input id="ftp_detail" name="ftp_detail"/>
+
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(function() {
+        $( "#review_end_date" ).datepicker();
+    });
+    function confirmBody(){
+        review_end_date=$('#review_end_date').val();
+        comments=$('#comments').val();
+        ftp_detail=$('#ftp_detail').val();
+                                
+        extras= {
+            review_end_date: review_end_date,
+            comments: comments,
+            ftp_details: ftp_detail
+        };
+        
+                                
+        $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
+            '<div><strong>Subject: '+subject+'</strong></div><br/>'+
+            '<div>Review End Date: '+review_end_date+'</div>'+
+            '<div>Comments: '+comments+'</div>'+
+            '<div>FTP Details: '+ftp_detail+'</div>' );
+       
+        body=  'Review End Date: '+review_end_date+'\n'+
+            'Comments: '+comments+'\n'+
+            'FTP Details: '+ftp_detail+'\n';
+    }
+</script>

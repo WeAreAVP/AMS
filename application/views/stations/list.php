@@ -61,8 +61,8 @@ if (!$is_ajax) {
         <?php echo form_close(); ?>
         <div  class="span9">
             <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
-            <div style="overflow: scroll;height: 600px;" >
-                <table class="tablesorter" id="station_table">
+<!--            <div style="overflow: scroll;height: 700px;" >-->
+                <table class="tablesorter table-bordered" id="station_table">
                     <thead>
                         <tr>
                             <td><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
@@ -154,7 +154,7 @@ if (!$is_ajax) {
                     <?php if (!$is_ajax) { ?>
                     </tbody>
                 </table>
-            </div>
+<!--            </div>-->
             <div class="row" style="margin:5px 0px;">
 
                 <a href="javascript://" class="btn btn-large" onclick="editStations();">Edit</a>

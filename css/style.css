@@ -143,3 +143,12 @@ margin:-14px -23px 0 0;
 .table-station tbody + tbody {
     border-top: 2px solid #dddddd;
 }
+
+#station_table-div table {
+              border-collapse: collapse;
+            }
+            #mytable-div td,th {
+              border: 1px solid gray;
+              white-space: nowrap;
+              padding: 2px 4px;
+            }

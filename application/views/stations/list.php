@@ -61,7 +61,7 @@ if (!$is_ajax) {
         <?php echo form_close(); ?>
         <div  class="span9">
             <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
-            <div style="overflow: hidden;width: 900px;" >
+            <div style="overflow: hidden;width: 880px;" >
 <table class="tablesorter table-station table-bordered" id="station_table">
                     <thead>
                         <tr>

@@ -132,7 +132,7 @@
 		);
 		main_div.append(
       '<div id="' + main_id + '-row2"  style="white-space: nowrap;">' +
-		  '<div id="' + main_id + '-region3" style="display: inline-block; vertical-align: top; height: 100%; width: 5px; overflow-y: hidden; overflow-x: scroll;"><div></div></div>' + 
+		  '<div id="' + main_id + '-region3" style="display: inline-block; vertical-align: top; height: 100%; width: 5px; overflow-y: hidden; overflow-x: hidden;"><div></div></div>' + 
       '<div id="' + main_id + '-region4" style="display: inline-block; vertical-align: top; height: 100%; width: 5px; overflow: scroll;"><div></div></div>' + 
 	    '</div>'
 	  );

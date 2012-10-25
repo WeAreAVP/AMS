@@ -49,7 +49,7 @@
             width:       900,   // required
             height:      500,   // required
             numFrozen:   2,     // optional
-            frozenWidth: 100,   // optional
+            frozenWidth: 50,   // optional
             clearWidths: true  // optional
           });//freezeTableColumns
             });

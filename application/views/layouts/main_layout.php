@@ -46,7 +46,7 @@
                 $("[rel=tooltip]").tooltip();
                 $("#station_table").tablesorter();
                  $('#station_table').freezeTableColumns({
-            width:       900,   // required
+            width:       850,   // required
             height:      700,   // required
             numFrozen:   2,     // optional
 //            frozenWidth: 150,   // optional

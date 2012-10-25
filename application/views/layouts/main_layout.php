@@ -48,9 +48,9 @@
                  $('#station_table').freezeTableColumns({
             width:       900,   // required
             height:      500,   // required
-            numFrozen:   4,     // optional
-            frozenWidth: 200,   // optional
-            clearWidths: true,  // optional
+            numFrozen:   2,     // optional
+//            frozenWidth: 100,   // optional
+//            clearWidths: true  // optional
           });//freezeTableColumns
             });
         </script>

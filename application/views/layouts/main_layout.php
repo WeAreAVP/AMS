@@ -46,10 +46,10 @@
                 $("[rel=tooltip]").tooltip();
                 $("#station_table").tablesorter();
                  $('#station_table').freezeTableColumns({
-            width:       100,   // required
+            width:       900,   // required
             height:      500,   // required
             numFrozen:   2,     // optional
-            frozenWidth: 50,   // optional
+            frozenWidth: 150,   // optional
             clearWidths: true  // optional
           });//freezeTableColumns
             });

@@ -66,7 +66,7 @@ if (!$is_ajax) {
                     <thead>
                         <tr>
                             <td><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
-                            <th style="width: 55px;">CPB ID</th>
+                            <th>CPB ID</th>
                             <th>Station Name</th>
                             <th>Contact Name</th>
                             <th>Contact Title</th>
@@ -96,8 +96,8 @@ if (!$is_ajax) {
                         foreach ($stations as $data) {
                             ?>
                             <tr>
-                                <td><input style='margin-left:15px;' type='checkbox' name='station[]' value='<?php echo $data->id; ?>'  class='checkboxes'/></td>
-                                <td style="width: 55px;"><?php echo $data->cpb_id; ?></td>
+                                <td><input style='margin-left:10px;' type='checkbox' name='station[]' value='<?php echo $data->id; ?>'  class='checkboxes'/></td>
+                                <td><?php echo $data->cpb_id; ?></td>
                                 <td><?php echo $data->station_name; ?></td>
                                 <td><?php echo $data->contact_name; ?></td>
                                 <td><?php echo $data->contact_title; ?></td>

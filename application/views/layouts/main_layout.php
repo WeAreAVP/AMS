@@ -8,11 +8,12 @@
         echo link_js('jquery-ui-1.9.0.custom.js');
         echo link_js('jquery.tablesorter.js');
         echo link_js('bootstrap/bootstrap.js');
+        echo link_js('jquery.freezetablecolumns.1.1');
 
         echo link_js('custom.js');
         echo link_tag("css/tableSorter.css");
         echo link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
-        echo link_tag("css/tableSorter.css");
+        
 
         echo link_tag("css/bootstrap/bootstrap.css");
         echo link_tag("css/bootstrap/bootstrap-responsive.css");
@@ -44,6 +45,13 @@
                 });
                 $("[rel=tooltip]").tooltip();
                 $("#station_table").tablesorter();
+                 $('#station_table').freezeTableColumns({
+            width:       900,   // required
+            height:      500,   // required
+            numFrozen:   4,     // optional
+            frozenWidth: 200,   // optional
+            clearWidths: true,  // optional
+          });//freezeTableColumns
             });
         </script>
     </head>

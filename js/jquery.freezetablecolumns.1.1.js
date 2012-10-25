@@ -125,7 +125,7 @@
 		source_table.detach(); // remove the table from the document flow
 		main_div = $('#' + main_id + '-div');
 		main_div.append(
-		  '<div id="' + main_id + '-row1" style="white-space: nowrap;height:63px;">' + 
+		  '<div id="' + main_id + '-row1" style="white-space: nowrap;height:62px;">' + 
 		  '<div id="' + main_id + '-region1" style="display: inline-block; vertical-align: top; width: 5px; overflow: hidden;"><div></div></div>' + 
       '<div id="' + main_id + '-region2" style="display: inline-block; vertical-align: top; width: 5px; overflow-x: hidden; overflow-y: hidden;"><div></div></div>' + 
 		  '</div>'

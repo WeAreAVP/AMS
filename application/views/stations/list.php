@@ -96,7 +96,7 @@ if (!$is_ajax) {
                         foreach ($stations as $data) {
                             ?>
                             <tr>
-                                <td><input style='margin-left:10px;' type='checkbox' name='station[]' value='<?php echo $data->id; ?>'  class='checkboxes'/></td>
+                                <td><input style='margin-left:18px;' type='checkbox' name='station[]' value='<?php echo $data->id; ?>'  class='checkboxes'/></td>
                                 <td><?php echo $data->cpb_id; ?></td>
                                 <td><?php echo $data->station_name; ?></td>
                                 <td><?php echo $data->contact_name; ?></td>

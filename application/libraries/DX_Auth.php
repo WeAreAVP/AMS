@@ -1048,14 +1048,15 @@ class DX_Auth
 					$data['reset_password_uri'] = site_url($this->ci->config->item('DX_reset_password_uri')."{$row->username}/{$data['key']}");
 					
 					// Create email
-					$from = $this->ci->config->item('DX_webmaster_email');
-					$subject = $this->ci->lang->line('auth_forgot_password_subject'); 
+					$data['email_to']=$row->email;
+					//$from = $this->ci->config->item('DX_webmaster_email');
+					//$subject = $this->ci->lang->line('auth_forgot_password_subject'); 
 					
 					// Trigger event and get email content
 					$this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
 
-					// Send instruction email
-					$this->_email($row->email, $from, $subject, $message);
+					// Send instruction email through email que
+					//$this->_email($row->email, $from, $subject, $message);
 					
 					$result = TRUE;
 				}

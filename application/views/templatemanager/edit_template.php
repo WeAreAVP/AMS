@@ -52,7 +52,7 @@ if($add_temp){?>
 
     <tr>
           <td><?php echo form_label('System id', $system_id['id']); ?></td>
-          <td><span class="input-xlarge uneditable-input">Some value here</span></td>
+          <td><span class="input-xlarge uneditable-input"><?php echo $system_id['value']?></span></td>
           
        	</tr>
         <tr>

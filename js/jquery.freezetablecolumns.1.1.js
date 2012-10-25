@@ -125,13 +125,13 @@
 		source_table.detach(); // remove the table from the document flow
 		main_div = $('#' + main_id + '-div');
 		main_div.append(
-		  '<div id="' + main_id + '-row1" style="white-space: nowrap;height:61px;">' + 
+		  '<div id="' + main_id + '-row1" style="white-space: nowrap;height:72px;">' + 
 		  '<div id="' + main_id + '-region1" style="display: inline-block; vertical-align: top; width: 5px; overflow: hidden;"><div></div></div>' + 
       '<div id="' + main_id + '-region2" style="display: inline-block; vertical-align: top; width: 5px; overflow-x: hidden; overflow-y: scroll;"><div></div></div>' + 
 		  '</div>'
 		);
 		main_div.append(
-      '<div id="' + main_id + '-row2"  style="white-space: nowrap;padding-top:13px;">' +
+      '<div id="' + main_id + '-row2"  style="white-space: nowrap;">' +
 		  '<div id="' + main_id + '-region3" style="display: inline-block; vertical-align: top; height: 100%; width: 5px; overflow-y: hidden; overflow-x: scroll;"><div></div></div>' + 
       '<div id="' + main_id + '-region4" style="display: inline-block; vertical-align: top; height: 100%; width: 5px; overflow: scroll;"><div></div></div>' + 
 	    '</div>'

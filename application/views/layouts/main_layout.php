@@ -50,7 +50,7 @@
             height:      600,   // required
             numFrozen:   3,     // optional
 //            frozenWidth: 150,   // optional
-//            clearWidths: true  // optional
+            clearWidths: true  // optional
           });//freezeTableColumns
             });
         </script>

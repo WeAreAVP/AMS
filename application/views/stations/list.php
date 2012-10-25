@@ -62,7 +62,7 @@ if (!$is_ajax) {
         <div  class="span9">
             <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
 <!--            <div style="overflow: scroll;height: 700px;" >-->
-<table class="tablesorter table table-bordered" id="station_table" style="width: auto;">
+<table class="tablesorter table-station table-bordered" id="station_table">
                     <thead>
                         <tr>
                             <td><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>

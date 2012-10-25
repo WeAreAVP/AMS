@@ -64,7 +64,7 @@ if (!$is_ajax) {
             <div style="overflow: hidden;width: 880px;"  id="append_record">
                 <?php }
             ?>
-            <table class="tablesorter table-station table-bordered" id="station_table">
+                <table class="tablesorter table-station table-bordered" id="station_table" style="margin-top:0px;">
                 <thead>
                     <tr>
                         <td><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>

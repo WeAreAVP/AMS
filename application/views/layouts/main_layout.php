@@ -47,8 +47,8 @@
                 $("#station_table").tablesorter();
                  $('#station_table').freezeTableColumns({
             width:       850,   // required
-            height:      700,   // required
-            numFrozen:   2,     // optional
+            height:      600,   // required
+            numFrozen:   3,     // optional
 //            frozenWidth: 150,   // optional
 //            clearWidths: true  // optional
           });//freezeTableColumns

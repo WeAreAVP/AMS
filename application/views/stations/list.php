@@ -61,7 +61,7 @@ if (!$is_ajax) {
         <?php echo form_close(); ?>
         <div  class="span9">
             <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
-            <div class="dropdown" style="text-align:right;">
+            <div class="dropdown">
                 <a class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" href="#">Freeze Columns <b class="caret"></b></a>
                 <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
                   <li><a tabindex="-1" href="#">No Frozen Column</a></li>

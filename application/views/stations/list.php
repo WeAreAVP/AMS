@@ -65,27 +65,27 @@ if (!$is_ajax) {
                 <table class="tablesorter table table-bordered" id="station_table">
                     <thead>
                         <tr>
-                            <td><span style="float:left;min-width:25px;"><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></span></td>
-                            <th><span style="float:left;min-width:50px;">CPB ID</span></th>
-                            <th><span style="float:left;min-width:80px;">Station Name</span></th>
-                            <th><span style="float:left;min-width:90px;">Contact Name</span></th>
-                            <th><span style="float:left;min-width:80px;">Contact Title</span></th>
-                            <th><span style="float:left;min-width:30px;">Type</span></th>
-                            <th><span style="float:left;min-width:100px;">Primary Address</span> </th>
-                            <th><span style="float:left;min-width:110px;">Secondary Address</span></th>
-                            <th><span style="float:left;min-width:50px;">City</span></th>
-                            <th><span style="float:left;min-width:50px;">State</span></th>
-                            <th><span style="float:left;min-width:50px;">Zip</span></th>
-                            <th><span style="float:left;min-width:90px;">Contact Phone</span></th>
-                            <th><span style="float:left;min-width:90px;">Contact Fax</span></th>
-                            <th><span style="float:left;min-width:80px;">Contact Email</span></th>
-                            <th><span style="float:left;min-width:90px;">Allocated Hours</span></th>
-                            <th><span style="float:left;min-width:100px;">Allocated Buffer</span></th>
-                            <th><span style="float:left;min-width:130px;">Total Allocated Hours</span></th>
-                            <th><span style="float:left;min-width:50px;">Certified</span></th>
-                            <th><span style="float:left;min-width:50px;">Agreed</span></th>
-                            <th><span style="float:left;min-width:80px;">DSD</span></th>
-                            <th><span style="float:left;min-width:80px;">DED</span></th>
+                            <td><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
+                            <th>CPB ID</th>
+                            <th>Station Name</th>
+                            <th>Contact Name</th>
+                            <th>Contact Title</th>
+                            <th>Type</th>
+                            <th>Primary Address </th>
+                            <th>Secondary Address</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Zip</th>
+                            <th>Contact Phone</th>
+                            <th>Contact Fax</th>
+                            <th>Contact Email</th>
+                            <th>Allocated Hours</th>
+                            <th>Allocated Buffer</th>
+                            <th>Total Allocated Hours</th>
+                            <th>Certified</th>
+                            <th>Agreed</th>
+                            <th>DSD</th>
+                            <th>DED</th>
                         </tr>
                     </thead>
                     <tbody id="append_record">

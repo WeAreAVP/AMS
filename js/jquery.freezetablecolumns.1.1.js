@@ -126,8 +126,8 @@
 		main_div = $('#' + main_id + '-div');
 		main_div.append(
 		  '<div id="' + main_id + '-row1" style="white-space: nowrap;height:72px;">' + 
-		  '<div id="' + main_id + '-region1" style="display: inline-block; vertical-align: top; width: 5px; overflow: hidden;"><div></div></div>' + 
-      '<div id="' + main_id + '-region2" style="display: inline-block; vertical-align: top; width: 5px; overflow-x: hidden; overflow-y: scroll;"><div></div></div>' + 
+		  '<div id="' + main_id + '-region1" style="display: inline-block; vertical-align: top; width: 5px; overflow: hidden;height:72px;"><div></div></div>' + 
+      '<div id="' + main_id + '-region2" style="display: inline-block; vertical-align: top; width: 5px; overflow-x: hidden; overflow-y: hidden;height:72px;"><div></div></div>' + 
 		  '</div>'
 		);
 		main_div.append(

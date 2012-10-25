@@ -62,37 +62,37 @@ if (!$is_ajax) {
         <div  class="span9">
             <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
             <div style="overflow: hidden;width: 880px;"  id="append_record">
-                <?php
-                    }?>
-                <table class="tablesorter table-station table-bordered" id="station_table">
-                    <thead>
-                        <tr>
-                            <td><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
-                            <th>CPB ID</th>
-                            <th>Station Name</th>
-                            <th>Contact Name</th>
-                            <th>Contact Title</th>
-                            <th>Type</th>
-                            <th>Primary Address </th>
-                            <th>Secondary Address</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>Zip</th>
-                            <th>Contact Phone</th>
-                            <th>Contact Fax</th>
-                            <th>Contact Email</th>
-                            <th>Allocated Hours</th>
-                            <th>Allocated Buffer</th>
-                            <th>Total Allocated Hours</th>
-                            <th>Certified</th>
-                            <th>Agreed</th>
-                            <th>DSD</th>
-                            <th>DED</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <?php }
+            ?>
+            <table class="tablesorter table-station table-bordered" id="station_table">
+                <thead>
+                    <tr>
+                        <td><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
+                        <th>CPB ID</th>
+                        <th>Station Name</th>
+                        <th>Contact Name</th>
+                        <th>Contact Title</th>
+                        <th>Type</th>
+                        <th>Primary Address </th>
+                        <th>Secondary Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Zip</th>
+                        <th>Contact Phone</th>
+                        <th>Contact Fax</th>
+                        <th>Contact Email</th>
+                        <th>Allocated Hours</th>
+                        <th>Allocated Buffer</th>
+                        <th>Total Allocated Hours</th>
+                        <th>Certified</th>
+                        <th>Agreed</th>
+                        <th>DSD</th>
+                        <th>DED</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                     <?php   
+                    <?php
                     if (count($stations) > 0) {
                         foreach ($stations as $data) {
                             ?>
@@ -152,10 +152,10 @@ if (!$is_ajax) {
                         ?>
                         <tr><td colspan="11" style="text-align: center;"><b>No Station Found.</b></td></tr>
                     <?php } ?>
-                   
-                    </tbody>
-                </table>
-                 <?php if (!$is_ajax) { ?>
+
+                </tbody>
+            </table>
+            <?php if (!$is_ajax) { ?>
             </div>
             <div class="row" style="margin:5px 0px;">
 
@@ -200,7 +200,7 @@ if (!$is_ajax) {
     </div>
     <script type="text/javascript">
         var stationName=null;
-                                                    
+                                                        
         function validateFields(){
             if($('#start_date').val()=='' || $('#start_date').val()=='--' ||  $('#start_date').val()=='0000-00-00'){
                 $('#start_date_message').show();
@@ -210,7 +210,7 @@ if (!$is_ajax) {
             }
             if($('#end_date').val()=='' || $('#end_date').val()=='--'  ||  $('#end_date').val()=='0000-00-00'){
                 $('#end_date_message').show();
-                                                    
+                                                        
             }
             else{
                 $('#end_date_message').hide();
@@ -219,7 +219,7 @@ if (!$is_ajax) {
                 $('#showPopUp').trigger('click');
                 $('#showConfirmPopUp').trigger('click');
             }
-                                                         
+                                                             
         }
         function checkAll() {
             var boxes = document.getElementsByTagName('input');
@@ -230,7 +230,7 @@ if (!$is_ajax) {
             }
             return true;
         }
-                                                     
+                                                         
         var search_words='';
         function makeToken(event)
         {
@@ -257,7 +257,7 @@ if (!$is_ajax) {
                 $('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'</span><span class="btn-close-img" onclick="remove_keword(\''+search_id+'\')"></span></div>');
             }
             $('#search_keyword').val('');
-                                                			
+                                                    			
             $(".search_keys").each(function() {
                 if(token==0)
                     my_search_words=$(this).text();
@@ -295,6 +295,14 @@ if (!$is_ajax) {
                 data:{"search_words":search_words,certified:certified,agreed:agreed},
                 success: function (result) { 
                     $('#append_record').html(result);
+                     $("#station_table").trigger("update");  
+                    $('#station_table').freezeTableColumns({
+                        width:       850,   // required
+                        height:      600,   // required
+                        numFrozen:   3,     // optional
+                        //            frozenWidth: 150,   // optional
+                        clearWidths: true  // optional
+                    });//freezeTableColumns
                 }
             });
         }
@@ -321,9 +329,9 @@ if (!$is_ajax) {
                                 if(cnt==0){
                                     start_date=result.records[cnt].start_date;
                                     end_date=result.records[cnt].end_date;
-                                                                            
+                                                                                
                                 }
-                                                                        
+                                                                            
                                 if(cnt>=result.records.length-1){
                                     if(start_date==result.records[cnt].start_date && compare_start_date==0){
                                         compare_start_date=0;
@@ -338,7 +346,7 @@ if (!$is_ajax) {
                                         compare_end_date=1; 
                                     }
                                 }
-                                                                        
+                                                                            
                                 if(cnt==result.records.length-1)
                                     station_name+=result.records[cnt].station_name;
                                 else
@@ -363,17 +371,17 @@ if (!$is_ajax) {
                         else{
                             console.log(result);
                         }
-                                                                
+                                                                    
                     }
                 });
             }
-                                                        
+                                                            
         }
         function UpdateStations(){
             ids=$('#station_id').val();
             start_date=$('#start_date').val();
             end_date=$('#end_date').val();
-                                                        
+                                                            
             $.ajax({
                 type: 'POST', 
                 url: site_url+'stations/update_station_date',
@@ -390,7 +398,7 @@ if (!$is_ajax) {
                             $('#end_date_'+ids[cnt]).html(end_date);
                         }
                     }
-                                                                
+                                                                    
                 }
             });
         }

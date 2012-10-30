@@ -33,7 +33,7 @@ class Users extends CI_Model {
         return $query;
     }
 
-    function get_users() {
+    function get_users($role = null,$params=null) {
         $users_table = $this->_table;
         $roles_table = $this->_roles_table;
         $profile_table = $this->_profile_table;
@@ -42,6 +42,21 @@ class Users extends CI_Model {
         $this->db->select("$profile_table.id as profile_id,first_name,last_name,phone_no", FALSE);
         $this->db->join($roles_table, "$roles_table.id = $users_table.role_id");
         $this->db->join($profile_table, "$profile_table.user_id = $users_table.id");
+        if ($role != null) {
+            if ($role == 1) {
+                
+            } else if ($role == 2)
+                $this->db->where_not_in("$users_table.id", array('1'));
+            else if ($role == 3)
+                $this->db->where_not_in("$users_table.id", array('1','2'));
+            else
+                $this->db->where_not_in("$users_table.id", array('1','2','3'));
+        }
+        if($params!=null){
+            if($params['role_id']!='')
+                 $this->db->where("$users_table.role_id", $params['role_id']);
+        }
+
         $this->db->order_by("$users_table.id", "ASC");
         $query = $this->db->get($this->_table);
         return $query;

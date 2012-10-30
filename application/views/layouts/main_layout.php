@@ -49,7 +49,7 @@
                 $('#station_table').freezeTableColumns({
                     width:       870,   // required
                     height:      600,   // required
-                    numFrozen:   3,     // optional
+                    numFrozen:   0,     // optional
                     //            frozenWidth: 150,   // optional
                     clearWidths: true  // optional
                 });//freezeTableColumns

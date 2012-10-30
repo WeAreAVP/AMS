@@ -264,6 +264,11 @@ class Settings extends MY_Controller {
         foreach ($roles as $value) {
             $data['roles'][$value->id] = $value->name;
         }
+         $stations = $this->station_model->get_all();
+
+            foreach ($stations as $value) {
+                $data['stations_list'][$value->id] = $value->station_name;
+            }
         $data['profile_edit'] = true;
 
 

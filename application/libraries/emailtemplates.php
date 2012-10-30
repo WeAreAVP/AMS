@@ -96,6 +96,7 @@ class Emailtemplates
 		$config['validate'] = TRUE;
 		$config['mailtype'] = 'html';
 		$config['charset'] = 'utf-8';
+		$config['protocol'] = 'sendmail';
 		$email = $this->CI->email;
 		$email->clear();
 		$email->initialize($config);

@@ -31,7 +31,7 @@
                         <th>Phone #</th>
                         <th>Station</th>
                         <th>Role</th>
-                        <?php if ($current_role == 1 || $current_role == 2 || $current_role == 3) { ?><th></th><?php } ?>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="user_list">
@@ -47,12 +47,14 @@
                             <td><?php echo $row->phone_no; ?></td>
                             <td><?php echo $row->st_name; ?></td>
                             <td><?php echo $row->role_name; ?></td>
-                            <?php if ($current_role == 1 || $current_role == 2 || $current_role == 3) { ?>
-                                <td>
+
+                            <td>
+                                <?php if ($current_role == 1 || $current_role == 2 || $current_role == 3) { ?>
                                     <a title="Edit User" href="#myModal" data-toggle="modal" onclick="manageUser('get','edit_user/<?php echo $row->id; ?>');"><i class="icon-cog"></i></a>
                                     <a title="Delete User" href="#deleteModel" data-toggle="modal" onclick="deleteUser('<?php echo $row->id; ?>','<?php echo $row->first_name . ' ' . $row->last_name; ?>')" ><i class="icon-remove-sign"></i></a>
-                                </td>
-                            <?php } ?>
+                                <?php } ?>
+                            </td>
+
                         </tr>
 
                         <?php
@@ -61,7 +63,7 @@
 
 
                 <?php } else { ?>
-                    <tr><td>No User Found.</td></tr>
+                    <tr><td colspan="6">No User Found.</td></tr>
                 <?php } if (!$is_ajax) { ?>
                 </tbody>
             </table>
@@ -126,7 +128,7 @@
                     else{
                         $('#manage_user').html(result);  
                     }
-                                    
+                                        
                 }
             });
         }
@@ -135,7 +137,7 @@
             $('#delete_user_btn').attr('href',site_url+'/settings/delete_user/'+userID);
         }
         function filterUser(){
-                        
+                            
             role=$('#role_id').val();
             station=$('#station_id').val();
             $.ajax({
@@ -146,7 +148,7 @@
                 success: function (result) { 
                     $('#user_list').html(result);
                     $("#user_table_list").trigger("update");  
-                                    
+                                        
                 }
             });
         }

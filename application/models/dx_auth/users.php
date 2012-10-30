@@ -50,11 +50,11 @@ class Users extends CI_Model {
             if ($role == 1) {
                 
             } else if ($role == 2)
-                $this->db->where_not_in("$users_table.id", array('1'));
+                $this->db->where_not_in("$users_table.role_id", array('1'));
             else if ($role == 3)
-                $this->db->where_not_in("$users_table.id", array('1','2'));
+                $this->db->where_not_in("$users_table.role_id", array('1','2'));
             else
-                $this->db->where_not_in("$users_table.id", array('1','2','3'));
+                $this->db->where_not_in("$users_table.role_id", array('1','2','3'));
         }
         if($params!=null){
             if($params['role_id']!='')

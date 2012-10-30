@@ -183,6 +183,13 @@ class Unit_Testing extends CI_Controller {
         $test_name = 'Contact Title=General Manager ';
         echo $this->unit->run($test3, $expected_result, $test_name);
     }
+		
+	public function templatetesting()
+	{
+		$this->emailtemplates->sent_now=true;
+		$this->emailtemplates->queue_email('ForgetPassword','ali.raza@purelogics.net',array("web_name"=>$this->config->item('DX_website_name'),"uri"=>"test_uri","new_password"=>"testpassword",
+																																				"key"=>"testkey","web_master"=>$this->config->item('DX_webmaster_email')));
+	}
 
 }
 

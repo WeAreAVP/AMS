@@ -12,10 +12,10 @@
       <?php }}?>
     </div>
   </div>
-  <div class="span8">
-    <div style="margin-bottom: 0px; margin-top: 0px;display: none;" class="alert"></div>
+  <div class="span9">
+    <div id="success_message" style="margin-bottom: 0px; margin-top: 0px;display: none;" class="alert"></div>
     <div style="height: 600px;">
-      <table id="station_table" class="table table-bordered">
+      <table class="tablesorter table table-bordered">
         <?php
 if (count($template_detail) > 0) {
     ?>

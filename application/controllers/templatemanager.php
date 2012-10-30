@@ -46,24 +46,30 @@ class TemplateManager extends CI_Controller
 			$val = $this->form_validation;
 			$val->set_rules('system_id', 'System Id', 'trim|required|xss_clean|callback_system_id_check');
 			$val->set_rules('subject', 'Subject', 'trim|required|xss_clean');
-			$val->set_rules('body_plain', 'Plain Body', 'trim|xss_clean');
-			$val->set_rules('body_html', 'Plain Body', 'trim|xss_clean');
+			$val->set_rules('body_plain', 'Plain Body', 'trim');
+			$val->set_rules('body_html', 'HTML Body', 'trim');
 			$val->set_rules('replaceables', 'Replaceables', 'trim|xss_clean');
 			$val->set_rules('email_type', 'Email Type', 'trim|required|xss_clean');
 			$val->set_rules('email_from', 'Email From', 'trim|required|xss_clean');
 			$val->set_rules('reply_to', 'Reply To', 'trim|required|xss_clean');
-			if ($val->run() && (isset($_POST['body_plain']) || isset($_POST['body_html'])))
+			if(!(isset($_POST['body_plain']) && !isset($_POST['body_html'])))
+			{
+				$this->form_validation->set_message('body_plain', 'You must enter plain or html body');
+			}
+			if ($val->run())
 			{
 				$email_template_data=array();
 				$email_template_data['system_id']=$val->set_value('system_id');
 				$email_template_data['subject']=$val->set_value('subject');
 				$email_template_data['email_type']=$val->set_value('email_type');
-				if($email_template_data['email_type']!='plain'){
-					$email_template_data['body_html']=$val->set_value('body_html');
+				if($email_template_data['email_type']!='plain')
+				{
+					$email_template_data['body_html']=str_replace(array("\r","\n","\r\n"),"<br>",$val->set_value('body_html'));
 				}
-				$email_template_data['body_plain']=$val->set_value('body_plain');
-				
-
+				else
+				{
+					$email_template_data['body_plain']=str_replace(array("\r","\n","\r\n"),"<br>",$val->set_value('body_plain'));
+				}
 				$email_template_data['email_from']=$val->set_value('email_from');
 				$email_template_data['reply_to']=$val->set_value('reply_to');
 				$replaceable=explode("\n",$val->set_value('replaceables'));
@@ -134,21 +140,28 @@ class TemplateManager extends CI_Controller
 					$val = $this->form_validation;
 					//$val->set_rules('system_id', 'System Id', 'trim|required|xss_clean|callback_system_id_check');
 					$val->set_rules('subject', 'Subject', 'trim|required|xss_clean');
-					$val->set_rules('body_plain', 'Plain Body', 'trim|xss_clean');
-					$val->set_rules('body_html', 'Plain Body', 'trim|xss_clean');
+					$val->set_rules('body_plain', 'Plain Body', 'trim');
+					$val->set_rules('body_html', 'HTML Body', 'trim');
 					$val->set_rules('replaceables', 'Replaceables', 'trim|xss_clean');
 					$val->set_rules('email_type', 'Email Type', 'trim|required|xss_clean');
 					$val->set_rules('email_from', 'Email From', 'trim|required|xss_clean');
 					$val->set_rules('reply_to', 'Reply To', 'trim|required|xss_clean');
-					if ($val->run() && (isset($_POST['body_plain']) || isset($_POST['body_html'])))
+					if(!(isset($_POST['body_plain']) && !isset($_POST['body_html'])))
+					{
+						$this->form_validation->set_message('body_plain', 'You must enter plain or html body');
+					}	
+					if ($val->run())
 					{
 						$email_template_data=array();
 						$email_template_data['subject']=$val->set_value('subject');
 						$email_template_data['email_type']=$val->set_value('email_type');
-						$email_template_data['body_plain']=$val->set_value('body_plain');
 						if($email_template_data['email_type']!='plain')
 						{
-							$email_template_data['body_html']=$val->set_value('body_html');
+							$email_template_data['body_html']=str_replace(array("\r","\n","\r\n"),"<br>",$val->set_value('body_html'));
+						}
+						else
+						{
+							$email_template_data['body_plain']=str_replace(array("\r","\n","\r\n"),"<br>",$val->set_value('body_plain'));
 						}
 						$email_template_data['email_from']=$val->set_value('email_from');
 						$email_template_data['reply_to']=$val->set_value('reply_to');

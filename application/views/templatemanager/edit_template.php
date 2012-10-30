@@ -12,12 +12,12 @@ $subject = array(
 $body_plain = array(
     'name' => 'body_plain',
     'id' => 'body_plain',
-    'value' => $template_detail->body_plain,
+    'value' => str_replace("<br>","\n",$template_detail->body_plain),
 );
 $body_html = array(
     'name' => 'body_html',
     'id' => 'body_html',
-    'value' => $template_detail->body_html,
+    'value' => str_replace("<br>","\n",$template_detail->body_html),
 );
 $form_attributes = array('id' => 'edit_template',"class"=>"bs-docs-example");
 $from = array(

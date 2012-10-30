@@ -10,14 +10,14 @@ class Emailtemplates
 {
 
 	private $CI;
- 	var $sent_now;
+ 	public $sent_now;
   function __construct()
   {
     $this->CI =& get_instance();
 		$this->sent_now=false;/*If set to true then email will sent immediately*/
 		log_message('debug', 'Email Templates Initialized');
 		/*Load Email Tempalte Model */
-		$this->load->model('email_template_model','email_template');
+		$this->CI->load->model('email_template_model','email_templates');
   
 	}
 	/*
@@ -25,7 +25,7 @@ class Emailtemplates
 	*/
 	function queue_email($template_sys_id,$email_to,$replace_able='')
 	{
-		$email_template=$this->email_template->get_template_by_sys_id($template_sys_id);
+		$email_template=$this->CI->email_templates->get_template_by_sys_id($template_sys_id);
 		if(isset($email_template) && !empty($email_template))
 		{
 			if(valid_email($email_to))
@@ -39,21 +39,22 @@ class Emailtemplates
 				$queue_data['email_type']=$email_template->email_type;
 				if($email_template->email_type=='plain')
 				{
-					$queue_data['email_body']=$email_template->body_plain;
+					$email_body=$email_template->body_plain;
 				}
 				else
 				{
-					$queue_data['email_body']=$email_template->body_html;
+					$email_body=$email_template->body_html;
 				}
-				if(isset($queue_data['email_body']) && !empty($queue_data['email_body']))
+				if(isset($email_body) && !empty($email_body))
 				{
-					if(isset($email_template->replaceables) && !empty($email_template->replaceables) && !empty($replace_able))
+					$template_replaceable=json_decode($email_template->replaceables,true);
+					if(isset($template_replaceable) && !empty($template_replaceable) && !empty($replace_able))
 					{
-						foreach($email_template->replaceables as $replaceable_key)
+						foreach($template_replaceable as $replaceable_key)
 						{
-							if(isset($replace_abl[$replaceable_key]) && !empty($replace_abl[$replaceable_key]))
+							if(isset($replace_able[$replaceable_key]) && !empty($replace_able[$replaceable_key]))
 							{
-								str_replace("{".$replaceable_key."}",$replace_abl[$replaceable_key],$queue_data['email_body']);
+								$email_body=str_replace("{".$replaceable_key."}",$replace_able[$replaceable_key],$email_body);
 							}
 							else
 							{
@@ -62,11 +63,22 @@ class Emailtemplates
 							}
 						}
 					}
-				}else{log_message('error', 'Email template body not define.' );}
+				}
+				else
+				{
+					log_message('error', 'Email template body not define.' );
+					return false;
+				}
+				$queue_data['email_body']=$email_body;
 				$queue_data['created_at']=date('Y-m-d H:i:s');
 				$queue_data['is_sent']=1;
-				$queue_data['sent_at']=date('Y-m-d H:i:s');
-				print_r($queue_data);
+				if($this->sent_now)
+				{
+					$this->_email($queue_data['email_to'],$queue_data['email_from'],$queue_data['email_subject'],$queue_data['email_body']);
+					$queue_data['is_sent']=2;
+					$queue_data['sent_at']=date('Y-m-d H:i:s');
+				}
+				$this->CI->email_templates->add_email_queue($queue_data);
 				return true;
 			}
 		}
@@ -76,14 +88,28 @@ class Emailtemplates
 			return false;
 		}
 	}
+	/* Sent Email if $this->sent_now is set true*/
 	function _email($to, $from, $subject, $message)
 	{
 		$this->CI->load->library('Email');
-		$email = $this->ci->email;
+		$config['wordwrap'] = TRUE;
+		$config['validate'] = TRUE;
+		$config['mailtype'] = 'html';
+		$config['charset'] = 'utf-8';
+		$email = $this->CI->email;
+		$email->clear();
+		$email->initialize($config);
 		$email->from($from);
 		$email->to($to);
 		$email->subject($subject);
 		$email->message($message);
-		return $email->send();
+		if($email->send())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }

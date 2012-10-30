@@ -17,6 +17,7 @@ class Email_Template_Model extends CI_Model {
         parent::__construct();
         $this->_prefix = '';
         $this->_table = 'email_templates';
+				$this->_email_queue_table='email_queue';
     }
 
     /**
@@ -98,4 +99,14 @@ class Email_Template_Model extends CI_Model {
       $this->db->delete($this->_table);
       return $this->db->affected_rows() > 0;
     }
+		/**
+     * Add Email Queue
+     * 
+     * @return insert id
+     */
+		function add_email_queue($data)
+		{
+			$this->db->insert($this->_email_queue_table,$data);
+			return $this->db->insert_id();
+		}
 }

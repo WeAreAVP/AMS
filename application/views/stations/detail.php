@@ -1,135 +1,71 @@
-<?php
-if (count($station_detail) > 0) {
-    ?>
-    <center>
-        <table class="table table-bordered zebra-striped" style="width: 50%;">
-            <tr>
-                <td>
-                    CPB ID
-                </td>
-                <td> <?php echo $station_detail->cpb_id; ?></td>
-            </tr>
-            <tr>
-                <td>
-                    Station Name
-                </td>
-                <td><?php echo $station_detail->station_name; ?>
+<?php if (count($station_detail) > 0) { ?>
+    <div style="margin: 0px -20px;">
+        <ul class="breadcrumb">
+            <li><a href="<?php echo site_url('stations/index'); ?>">Stations</a> <span class="divider">/</span></li>
+            <li class="active"><?php echo $station_detail->station_name; ?></li>
+        </ul> 
+        <h2>Station Information</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>CPB ID</th>
+                    <th>Station Name</th>
+                    <th>Allocated Hours</th>
+                    <th>Allocated Buffer</th>
+                    <th>Total Allocated Hours</th>
+                    <th>Certified</th>
+                    <th>Agreed</th>
+                    <th>DSD</th>
+                    <th>DED</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><?php echo $station_detail->cpb_id; ?></td>
+                    <td><?php echo $station_detail->station_name; ?></td>
+                    <td><?php echo $station_detail->allocated_hours; ?></td>
+                    <td><?php echo $station_detail->allocated_buffer; ?></td>
+                    <td><?php echo $station_detail->total_allocated; ?></td>
+                    <td><?php echo ($station_detail->is_certified) ? 'Yes' : 'No'; ?></td>
+                    <td><?php echo ($station_detail->is_agreed) ? 'Yes' : 'No'; ?></td>
+                    <td><?php echo ($station_detail->start_date) ? $station_detail->start_date : 'NO DSD'; ?></td>
+                    <td><?php echo ($station_detail->end_date) ? $station_detail->end_date : 'NO DED'; ?></td>
+                    <td><i class="icon-cog"></i></td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Tracking Information</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Ship Date</th>
+                    <th>To</th>
+                    <th>Shipped Via</th>
+                    <th>Tracking Number</th>
+                    <th># Boxes Shipped</th>
+                    <th style="width: 35px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1/3/12</td>
+                    <td>Station</td>
+                    <td>FedEx</td>
+                    <td>67GHTY88965</td>
+                    <td>5</td>
+                    <td><i class="icon-cog"></i><i class="icon-remove-sign"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Contact Name
-                </td>
-                <td><?php echo $station_detail->contact_name; ?>
-            </tr>
-            <tr>
-                <td>
-                    Contact Title
-                </td>
-                <td><?php echo $station_detail->contact_title; ?>
-            </tr>
-            <tr>
-                <td>
-                    Type
-                </td>
-                <td>
-                    <?php
-                    if ($station_detail->type == 0)
-                        echo 'Radio';
-                    else if ($station_detail->type == 1)
-                        echo 'TV';
-                    else
-                        echo 'Joint';
-                    ?>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Primary Address 
-                </td>
-                <td><?php echo $station_detail->address_primary; ?>
-            </tr>
-            <tr>
-                <td>
-                    Secondary Address
-                </td>
-                <td><?php echo $station_detail->address_secondary; ?>
-            </tr>
-            <tr>
-                <td>
-                    City
-                </td>
-                <td><?php echo $station_detail->city; ?>
-            </tr>
-            <tr>
-                <td>
-                    State
-                </td>
-                <td><?php echo $station_detail->state; ?>
-            </tr>
-            <tr>
-                <td>
-                    Zip
-                </td>
-                <td><?php echo $station_detail->zip; ?>
-            </tr>
-            <tr>
-                <td>
-                    Contact Phone
-                </td>
-                <td><?php echo $station_detail->contact_phone; ?>
-            </tr>
-            <tr>
-                <td>
-                    Contact Fax
-                </td>
-                <td><?php echo $station_detail->contact_fax; ?>
-            </tr>
-            <tr>
-                <td>
-                    Contact Email
-                </td>
-                <td><?php echo $station_detail->contact_email; ?>
-            </tr>
-            <tr>
-                <td>
-                    Allocated Hours
-                </td>
-                <td><?php echo $station_detail->allocated_hours; ?>
-            </tr>
-            <tr>
-                <td>
-                    Allocated Buffer
-                </td>
-                <td><?php echo $station_detail->allocated_buffer; ?>
-            </tr>
-            <tr>
-                <td>
-                    Total Allocated Hours
-                </td>
-                <td><?php echo $station_detail->total_allocated; ?>
-            </tr>
-            <tr>
-                <td>
-                    Certified
-                </td>
-                <td><?php echo ($station_detail->is_certified) ? 'Yes' : 'No'; ?>
-            </tr>
-            <tr>
-                <td>
-                    Agreed
-                </td>
-                <td><?php echo ($station_detail->is_agreed) ? 'Yes' : 'No'; ?>
-            </tr>
-            <tr>
-                <td>
-                    Start Date
-                </td>
-                <td><?php echo $station_detail->start_date; ?>
-            </tr>
-        </table></center>
-    <?php ?>
+
+
+
+
+
+
     <?php
 } else {
     echo '<h1>The requested sationed not found</h1>';

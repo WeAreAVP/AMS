@@ -9,9 +9,9 @@
                 </div>
                 <div>
                     <div>Station:</div>
-                    <div><?php echo form_dropdown('station_id', $stations, array(),  'id="station_id" onchange="filterUser();"'); ?></div>
+                    <div><?php echo form_dropdown('station_id', $stations, array(), 'id="station_id" onchange="filterUser();"'); ?></div>
                 </div>
-                <div><a class="btn">Reset</a></div>
+                <div><a class="btn" onclick="resetFilter();">Reset</a></div>
 
             </div>
         </div>
@@ -60,8 +60,8 @@
                     ?>
 
 
-                <?php }else { ?>
-                        <tr><td>No User Found.</td></tr>
+                <?php } else { ?>
+                    <tr><td>No User Found.</td></tr>
                 <?php } if (!$is_ajax) { ?>
                 </tbody>
             </table>
@@ -73,12 +73,12 @@
 
 
 
-<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+    <div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="userLabel">Add User</h3>
         </div>
-    <div class="modal-body"  id="manage_user" style="max-height: 600px !important;">
+        <div class="modal-body"  id="manage_user" style="max-height: 600px !important;">
 
         </div>
 
@@ -126,7 +126,7 @@
                     else{
                         $('#manage_user').html(result);  
                     }
-                        
+                                    
                 }
             });
         }
@@ -135,21 +135,26 @@
             $('#delete_user_btn').attr('href',site_url+'/settings/delete_user/'+userID);
         }
         function filterUser(){
-            
+                        
             role=$('#role_id').val();
             station=$('#station_id').val();
             $.ajax({
                 type: 'POST', 
                 url: site_url+'settings/users',
                 data:{role_id:role,station_id:station},
-//                dataType: 'html',
+                //                dataType: 'html',
                 success: function (result) { 
                     $('#user_list').html(result);
                     $("#user_table_list").trigger("update");  
-                        
+                                    
                 }
             });
         }
+        function resetFilter(){
+            $('#station_id').prop('selectedIndex', 0);
+            $('#role_id').prop('selectedIndex', 0);
+            filterUser();
+        }
     </script>
-    <?php
-} ?>
+<?php }
+?>

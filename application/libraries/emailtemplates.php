@@ -22,7 +22,6 @@ class Emailtemplates
 	}
 	/*
 		Insert Data in to email queue table also check if sent
-		$extra array must contain email_to and replaceables
 	*/
 	function queue_email($template_sys_id,$email_to,$replace_able='')
 	{
@@ -31,7 +30,6 @@ class Emailtemplates
 		{
 			if(valid_email($email_to))
 			{
-				log_message('error', 'Email address '.$email_to.' is not valid.' );
 				$queue_data=array();
 				$queue_data['template_id']=$email_template->id;
 				$queue_data['email_from']=$email_template->email_from;
@@ -41,27 +39,41 @@ class Emailtemplates
 				$queue_data['email_type']=$email_template->email_type;
 				if($email_template->email_type=='plain')
 				{
-					if(!empty($replace_able))
-					{
-						$queue_data['email_body']=$email_template->body_plain;
-					}
-					else
-					{
-						$queue_data['email_body']=$email_template->body_plain;
-					}
+					$queue_data['email_body']=$email_template->body_plain;
 				}
 				else
 				{
-						$email_template->body_html;
+					$queue_data['email_body']=$email_template->body_html;
 				}
+				if(isset($queue_data['email_body']) && !empty($queue_data['email_body']))
+				{
+					if(isset($email_template->replaceables) && !empty($email_template->replaceables) && !empty($replace_able))
+					{
+						foreach($email_template->replaceables as $replaceable_key)
+						{
+							if(isset($replace_abl[$replaceable_key]) && !empty($replace_abl[$replaceable_key]))
+							{
+								str_replace("{".$replaceable_key."}",$replace_abl[$replaceable_key],$queue_data['email_body']);
+							}
+							else
+							{
+								log_message('error', 'Email template Replaceable '.$replaceable_key.' not found.' );
+								return false;
+							}
+						}
+					}
+				}else{log_message('error', 'Email template body not define.' );}
 				$queue_data['created_at']=date('Y-m-d H:i:s');
 				$queue_data['is_sent']=1;
 				$queue_data['sent_at']=date('Y-m-d H:i:s');
+				print_r($queue_data);
+				return true;
 			}
 		}
 		else
 		{
 			log_message('error', 'Email template '.$template_sys_id.' not found.' );
+			return false;
 		}
 	}
 	function _email($to, $from, $subject, $message)

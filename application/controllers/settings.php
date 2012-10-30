@@ -94,6 +94,7 @@ class Settings extends MY_Controller {
             $val->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
             $val->set_rules('phone_no', 'Phone #', 'trim|xss_clean');
             $val->set_rules('role', 'Role', 'trim|xss_clean|required');
+            $val->set_rules('station', 'Station', 'trim|xss_clean|required');
 
             if ($this->input->post()) {
                 if ($val->run()) {
@@ -101,6 +102,7 @@ class Settings extends MY_Controller {
                     $record = array('email' => $val->set_value('email'),
                         'password' => crypt($this->dx_auth->_encode($val->set_value('password'))),
                         'role_id' => $val->set_value('role'),
+                        'station_id' => $val->set_value('station'),
                     );
                     $profile_data = array('first_name' => $val->set_value('first_name'),
                         'last_name' => $val->set_value('last_name'),
@@ -120,6 +122,11 @@ class Settings extends MY_Controller {
             $roles = $this->roles->get_roles_list($currentRoleID)->result();
             foreach ($roles as $value) {
                 $data['roles'][$value->id] = $value->name;
+            }
+            $stations = $this->station_model->get_all();
+
+            foreach ($stations as $value) {
+                $data['stations_list'][$value->id] = $value->station_name;
             }
             echo $this->load->view('settings/add_user', $data, TRUE);
         } else {
@@ -145,12 +152,14 @@ class Settings extends MY_Controller {
             $val->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
             $val->set_rules('phone_no', 'Phone #', 'trim|xss_clean');
             $val->set_rules('role', 'Role', 'trim|xss_clean|required');
+            $val->set_rules('station', 'Station', 'trim|xss_clean|required');
 
             if ($this->input->post()) {
                 if ($val->run()) {
 
                     $record = array('email' => $val->set_value('email'),
                         'role_id' => $val->set_value('role'),
+                        'station_id' => $val->set_value('station'),
                     );
                     if ($val->set_value('password') != '')
                         $record['password'] = crypt($this->dx_auth->_encode($val->set_value('password')));
@@ -176,6 +185,11 @@ class Settings extends MY_Controller {
             $roles = $this->roles->get_roles_list($currentRoleID)->result();
             foreach ($roles as $value) {
                 $data['roles'][$value->id] = $value->name;
+            }
+            $stations = $this->station_model->get_all();
+
+            foreach ($stations as $value) { 
+                $data['stations_list'][$value->id] = $value->station_name;
             }
             echo $this->load->view('settings/edit_user', $data, TRUE);
         } else {

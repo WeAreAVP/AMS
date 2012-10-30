@@ -29,6 +29,11 @@ $role = array(
     'id' => 'role',
     'value' => $user_info->role_id,
 );
+$station = array(
+    'name' => 'station',
+    'id' => 'station',
+    'value' => $user_info->station_id,
+);
 $attributes=null;
 if(!isset($profile_edit))
 $attributes = array('onsubmit' => 'return false;', 'id' => 'edit_from');
@@ -41,20 +46,20 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'edit_from');
 
 
         <tr>
-            <td width="150"><?php echo form_label('Email', $email['id']); ?></td>
+            <td width="150"><?php echo form_label('Email:', $email['id']); ?></td>
             <td><?php echo form_input($email); ?><span style="color: red;"><?php echo form_error($email['name']); ?></span></td>
         </tr>
 
 
         <tr>
-            <td width="150"><?php echo form_label('Password', $password['id']); ?></td>
+            <td width="150"><?php echo form_label('Password:', $password['id']); ?></td>
             <td><?php echo form_password($password); ?><br/>Leave blank if you not want to change<span style="color: red;"><?php echo form_error($password['name']); ?></span></td>
 
         </tr>
 
 
         <tr>
-            <td width="150"><?php echo form_label('First Name', $first_name['id']); ?></td>
+            <td width="150"><?php echo form_label('First Name:', $first_name['id']); ?></td>
             <td><?php echo form_input($first_name); ?><span style="color: red;"><?php echo form_error($first_name['name']); ?></span></td>
         </tr>
 
@@ -62,25 +67,28 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'edit_from');
 
 
         <tr>
-            <td width="150"><?php echo form_label('Last Name', $last_name['id']); ?></td>
+            <td width="150"><?php echo form_label('Last Name:', $last_name['id']); ?></td>
             <td><?php echo form_input($last_name); ?><span style="color: red;"><?php echo form_error($last_name['name']); ?></span></td>
         </tr>
 
 
         <tr>
-            <td width="150"><?php echo form_label('Phone #', $phone_no['id']); ?></td>
+            <td width="150"><?php echo form_label('Phone #:', $phone_no['id']); ?></td>
             <td><?php echo form_input($phone_no); ?><span style="color: red;"><?php echo form_error($phone_no['name']); ?></span></td>
         </tr>
 
 
         <?php if(!isset($profile_edit)){ ?>
         <tr>
-            <td width="150"><?php echo form_label('Role', $role['id']); ?></td>
+            <td width="150"><?php echo form_label('Role:', $role['id']); ?></td>
             <td><?php echo form_dropdown($role['id'], $roles, array($user_info->role_id)); ?><span style="color: red;"><?php echo form_error($role['name']); ?></span></td>
         </tr>
         <?php } ?>
-
         <tr>
+            <td width="150"><?php echo form_label('Station:', $station['id']); ?></td>
+            <td><?php echo form_dropdown($station['id'], $stations_list, array($user_info->station_id)); ?><span style="color: red;"><?php echo form_error($station['name']); ?></span></td>
+        </tr>
+        <tr style="background-color: whitesmoke;">
             <?php if (isset($profile_edit)) { ?>
             <td colspan="2">
                 <?php echo form_submit('save', 'Save', 'class="btn btn-primary"'); ?>

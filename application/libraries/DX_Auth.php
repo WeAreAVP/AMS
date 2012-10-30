@@ -25,7 +25,7 @@ class DX_Auth
 	{
 		$this->ci =& get_instance();
 
-		log_message('debug', 'DX Auth Initialized');
+		log_message('debug', 'DX Auth Initialized'); 
 
 		// Load required library
 		$this->ci->load->library('Session');

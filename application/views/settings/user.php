@@ -9,8 +9,9 @@
                 </div>
                 <div>
                     <div>Station:</div>
-                    <div><?php echo form_dropdown('station_id', $stations, array(), 'id="station_id"','onchange="filterUser();"'); ?></div>
+                    <div><?php echo form_dropdown('station_id', $stations, array(),  'id="station_id" onchange="filterUser();"'); ?></div>
                 </div>
+                <div><a class="btn">Reset</a></div>
 
             </div>
         </div>
@@ -28,6 +29,8 @@
                         <th>Email</th>
                         <th>Name</th>
                         <th>Phone #</th>
+                        <th>Station</th>
+                        <th>Role</th>
                         <?php if ($current_role == 1 || $current_role == 2 || $current_role == 3) { ?><th></th><?php } ?>
                     </tr>
                 </thead>
@@ -42,6 +45,8 @@
                             <td><?php echo $row->email; ?></td>
                             <td><?php echo $row->first_name . ' ' . $row->last_name; ?></td>
                             <td><?php echo $row->phone_no; ?></td>
+                            <td><?php echo $row->st_name; ?></td>
+                            <td><?php echo $row->role_name; ?></td>
                             <?php if ($current_role == 1 || $current_role == 2 || $current_role == 3) { ?>
                                 <td>
                                     <a title="Edit User" href="#myModal" data-toggle="modal" onclick="manageUser('get','edit_user/<?php echo $row->id; ?>');"><i class="icon-cog"></i></a>
@@ -68,12 +73,12 @@
 
 
 
-    <div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="userLabel">Add User</h3>
         </div>
-        <div class="modal-body"  id="manage_user">
+    <div class="modal-body"  id="manage_user" style="max-height: 600px !important;">
 
         </div>
 

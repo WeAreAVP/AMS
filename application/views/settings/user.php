@@ -3,15 +3,15 @@
         <div class="span3">
             <div id="search_bar">
                 <b><h4>Filter Users</h4></b>
-                <div>
+                <div class="filter-fileds">
                     <div>Role:</div>
                     <div><?php echo form_dropdown('role_id', $roles, array(), 'id="role_id" onchange="filterUser();"'); ?></div>
                 </div>
-                <div>
+                <div class="filter-fileds">
                     <div>Station:</div>
                     <div><?php echo form_dropdown('station_id', $stations, array(), 'id="station_id" onchange="filterUser();"'); ?></div>
                 </div>
-                <div><a class="btn" onclick="resetFilter();">Reset</a></div>
+                <div class="filter-fileds"><a class="btn" onclick="resetFilter();">Reset</a></div>
 
             </div>
         </div>

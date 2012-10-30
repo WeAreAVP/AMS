@@ -10,6 +10,7 @@ class Users extends CI_Model {
         $this->_table = $this->_prefix . $this->config->item('DX_users_table');
         $this->_roles_table = $this->_prefix . $this->config->item('DX_roles_table');
         $this->_profile_table = $this->_prefix . $this->config->item('DX_user_profile_table');
+        $this->_station_table = $this->_prefix . 'stations';
     }
 
     // General function
@@ -33,15 +34,35 @@ class Users extends CI_Model {
         return $query;
     }
 
-    function get_users() {
+    function get_users($role = null,$params=null) {
         $users_table = $this->_table;
         $roles_table = $this->_roles_table;
         $profile_table = $this->_profile_table;
+        $station_table = $this->_station_table;
         $this->db->select("$users_table.*", FALSE);
         $this->db->select("$roles_table.name AS role_name", FALSE);
+        $this->db->select("$station_table.station_name AS st_name", FALSE);
         $this->db->select("$profile_table.id as profile_id,first_name,last_name,phone_no", FALSE);
         $this->db->join($roles_table, "$roles_table.id = $users_table.role_id");
         $this->db->join($profile_table, "$profile_table.user_id = $users_table.id");
+        $this->db->join($station_table, "$station_table.id = $users_table.station_id");
+        if ($role != null) {
+            if ($role == 1) {
+                
+            } else if ($role == 2)
+                $this->db->where_not_in("$users_table.role_id", array('1'));
+            else if ($role == 3)
+                $this->db->where_not_in("$users_table.role_id", array('1','2'));
+            else
+                $this->db->where_not_in("$users_table.role_id", array('1','2','3'));
+        }
+        if($params!=null){
+            if($params['role_id']!='')
+                 $this->db->where("$users_table.role_id", $params['role_id']);
+            if($params['station_id']!='')
+                 $this->db->where("$users_table.station_id", $params['station_id']);
+        }
+
         $this->db->order_by("$users_table.id", "ASC");
         $query = $this->db->get($this->_table);
         return $query;

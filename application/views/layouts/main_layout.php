@@ -13,7 +13,7 @@
         echo link_js('custom.js');
         echo link_tag("css/tableSorter.css");
         echo link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
-        
+
 
         echo link_tag("css/bootstrap/bootstrap.css");
         echo link_tag("css/bootstrap/bootstrap-responsive.css");
@@ -45,13 +45,14 @@
                 });
                 $("[rel=tooltip]").tooltip();
                 $("#station_table").tablesorter();
-                 $('#station_table').freezeTableColumns({
-            width:       870,   // required
-            height:      600,   // required
-            numFrozen:   3,     // optional
-//            frozenWidth: 150,   // optional
-            clearWidths: true  // optional
-          });//freezeTableColumns
+                $("#user_table_list").tablesorter();
+                $('#station_table').freezeTableColumns({
+                    width:       870,   // required
+                    height:      600,   // required
+                    numFrozen:   0,     // optional
+                    //            frozenWidth: 150,   // optional
+                    clearWidths: true  // optional
+                });//freezeTableColumns
             });
         </script>
     </head>
@@ -59,14 +60,13 @@
     <body>
         <div class="navbar navbar-fixed-top">
             <?php if ($this->dx_auth->is_logged_in()) {
-							
-							 ?>
+                ?>
                 <div class="custom-nav">
-                <?php if(isset($this->total_unread) && $this->total_unread>0 ){?>
-                    <a class="btn large message" href="<?php echo site_url('messages/inbox') ?>">Messages<span class="badge label-important message-alert"><?php echo $this->total_unread ?></span></a>
-                    <?php }else{?>
-                    <a href="<?php echo site_url('messages/inbox') ?>">Messages</a>
-                    <?php }?>
+                    <?php if (isset($this->total_unread) && $this->total_unread > 0) { ?>
+                        <a class="btn large message" href="<?php echo site_url('messages/inbox') ?>">Messages<span class="badge label-important message-alert"><?php echo $this->total_unread ?></span></a>
+                    <?php } else { ?>
+                        <a href="<?php echo site_url('messages/inbox') ?>">Messages</a>
+                    <?php } ?>
 
                     <a href="<?php echo site_url('auth/logout') ?>">Log Out</a> 
                 </div>
@@ -104,7 +104,7 @@
                         $(function () {
                             //                            $('#myTab a:last').tab('show');
                         })
-                                                
+                                                    
                     </script>
                 <?php } ?>
                 <?php

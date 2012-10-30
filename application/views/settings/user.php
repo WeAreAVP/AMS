@@ -1,20 +1,41 @@
-<div class="row-fluid">
-    <div id="users"  class="span12">
-        
-        <?php if (isset($this->session->userdata['saved'])) { ?><div class="alert alert-success notification" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['saved']; ?></div><br/><?php } $this->session->unset_userdata('saved'); ?>
-        <?php if (isset($this->session->userdata['updated'])) { ?><div class="alert alert-success notification" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['updated']; ?></div><br/><?php } $this->session->unset_userdata('updated'); ?>
-        <?php if (isset($this->session->userdata['deleted'])) { ?><div class="alert alert-error notification" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['deleted']; ?></div><br/><?php } $this->session->unset_userdata('deleted'); ?>
+<?php if (!$is_ajax) { ?>
+    <div class="row-fluid">
+        <div class="span3">
+            <div id="search_bar">
+                <b><h4>Filter Users</h4></b>
+                <div class="filter-fileds">
+                    <div>Role:</div>
+                    <div><?php echo form_dropdown('role_id', $roles, array(), 'id="role_id" onchange="filterUser();"'); ?></div>
+                </div>
+                <div class="filter-fileds">
+                    <div>Station:</div>
+                    <div><?php echo form_dropdown('station_id', $stations, array(), 'id="station_id" onchange="filterUser();"'); ?></div>
+                </div>
+                <div class="filter-fileds"><a class="btn" onclick="resetFilter();">Reset</a></div>
 
-        <table class="tablesorter table table-bordered">
-            <thead>
-                <tr>
-                    <th>Email</th>
-                    <th>Name</th>
-                    <th>Phone #</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
+            </div>
+        </div>
+        <div id="users"  class="span9">
+
+            <?php if (isset($this->session->userdata['saved'])) { ?><div class="alert alert-success notification" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['saved']; ?></div><br/><?php } $this->session->unset_userdata('saved'); ?>
+            <?php if (isset($this->session->userdata['updated'])) { ?><div class="alert alert-success notification" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['updated']; ?></div><br/><?php } $this->session->unset_userdata('updated'); ?>
+            <?php if (isset($this->session->userdata['deleted'])) { ?><div class="alert alert-error notification" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['deleted']; ?></div><br/><?php } $this->session->unset_userdata('deleted'); ?>
+            <?php if ($current_role == 1 || $current_role == 2 || $current_role == 3) { ?>
+                <div><a href="#myModal" data-toggle="modal" onclick="manageUser('get','add_user');" class="btn btn-primary btn-large">Add User</a></div>
+            <?php } ?>
+            <table class="tablesorter table table-bordered" id="user_table_list">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Phone #</th>
+                        <th>Station</th>
+                        <th>Role</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="user_list">
+                <?php } ?>
                 <?php
                 if (count($users) > 0) {
                     foreach ($users as $row) {
@@ -22,12 +43,18 @@
 
                         <tr>
                             <td><?php echo $row->email; ?></td>
-                            <td><?php echo $row->first_name .' '. $row->last_name; ?></td>
+                            <td><?php echo $row->first_name . ' ' . $row->last_name; ?></td>
                             <td><?php echo $row->phone_no; ?></td>
+                            <td><?php echo $row->st_name; ?></td>
+                            <td><?php echo $row->role_name; ?></td>
+
                             <td>
-                                <a href="#myModal" data-toggle="modal" onclick="manageUser('get','edit_user/<?php echo $row->id; ?>');"><i class="icon-pencil" style="margin-right: 5px; margin-top: 2px;" > </i>Edit</a>&nbsp;|&nbsp;
-                                <a href="#deleteModel" data-toggle="modal" onclick="deleteUser('<?php echo $row->id; ?>')" ><i class="icon-trash" style="margin-right: 5px; margin-top: 2px;" > </i>Delete</a>
+                                <?php if ($current_role == 1 || $current_role == 2 || $current_role == 3) { ?>
+                                    <a title="Edit User" href="#myModal" data-toggle="modal" onclick="manageUser('get','edit_user/<?php echo $row->id; ?>');"><i class="icon-cog"></i></a>
+                                    <a title="Delete User" href="#deleteModel" data-toggle="modal" onclick="deleteUser('<?php echo $row->id; ?>','<?php echo $row->first_name . ' ' . $row->last_name; ?>')" ><i class="icon-remove-sign"></i></a>
+                                <?php } ?>
                             </td>
+
                         </tr>
 
                         <?php
@@ -35,72 +62,101 @@
                     ?>
 
 
-                <?php } ?>
-            </tbody>
-        </table>
-        <div style="text-align: center;"><a href="#myModal" data-toggle="modal" onclick="manageUser('get','add_user');" ><i class="icon-plus-sign" style="margin-right: 5px; margin-top: 2px;" > </i>Add New</a></div>
-    </div>
+                <?php } else { ?>
+                    <tr><td colspan="6">No User Found.</td></tr>
+                <?php } if (!$is_ajax) { ?>
+                </tbody>
+            </table>
 
-</div>
+        </div>
 
-<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="userLabel">Add User</h3>
-    </div>
-    <div class="modal-body"  id="manage_user">
 
     </div>
 
 
-</div>
-<div class="modal hide" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="stationLabel">Are you sure you want to delete?</h3>
-    </div>
 
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-        <a id="delete_user_btn" class="btn btn-primary"  href="">Yes</a>
+    <div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="userLabel">Add User</h3>
+        </div>
+        <div class="modal-body"  id="manage_user" style="max-height: 600px !important;">
+
+        </div>
+
 
     </div>
-</div>
-<script type="text/javascript">
-    setTimeout(function(){
-        $('.notification').hide();
-    },5000);
-    function manageUser(type,uType){
-        data=null;
-        method='GET';
-        if(uType=='add_user')
-            $('#userLabel').html('Add User');
-        else
-            $('#userLabel').html('Edit User');
-        if(type=='post'){
+    <div class="modal hide" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="userDelete">Are you sure you want to delete?</h3>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+            <a id="delete_user_btn" class="btn btn-danger"  href="">Yes</a>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        setTimeout(function(){
+            $('.notification').hide();
+        },5000);
+        function manageUser(type,uType){
+            data=null;
+            method='GET';
             if(uType=='add_user')
-                data=$('#new_user').serialize();
+                $('#userLabel').html('Add User');
             else
-                data=$('#edit_from').serialize();
-            method='POST';
-        }
-        $.ajax({
-            type: method, 
-            url: site_url+'settings/'+uType,
-            data:data,
-            dataType: 'html',
-            success: function (result) { 
-                if(result=='done'){
-                    window.location.reload();
-                }
-                else{
-                    $('#manage_user').html(result);  
-                }
-                
+                $('#userLabel').html('Edit User');
+            if(type=='post'){
+                if(uType=='add_user')
+                    data=$('#new_user').serialize();
+                else
+                    data=$('#edit_from').serialize();
+                method='POST';
             }
-        });
-    }
-    function deleteUser(userID){
-        $('#delete_user_btn').attr('href',site_url+'/settings/delete_user/'+userID);
-    }
-</script>
+            $.ajax({
+                type: method, 
+                url: site_url+'settings/'+uType,
+                data:data,
+                dataType: 'html',
+                success: function (result) { 
+                    if(result=='done'){
+                        window.location.reload();
+                    }
+                    else{
+                        $('#manage_user').html(result);  
+                    }
+                                        
+                }
+            });
+        }
+        function deleteUser(userID,name){
+            $('#userDelete').html('Are you sure you want to delete "'+name+'"?');
+            $('#delete_user_btn').attr('href',site_url+'/settings/delete_user/'+userID);
+        }
+        function filterUser(){
+                            
+            role=$('#role_id').val();
+            station=$('#station_id').val();
+            $.ajax({
+                type: 'POST', 
+                url: site_url+'settings/users',
+                data:{role_id:role,station_id:station},
+                //                dataType: 'html',
+                success: function (result) { 
+                    $('#user_list').html(result);
+                    $("#user_table_list").trigger("update");  
+                                        
+                }
+            });
+        }
+        function resetFilter(){
+            $('#station_id').prop('selectedIndex', 0);
+            $('#role_id').prop('selectedIndex', 0);
+            filterUser();
+        }
+    </script>
+<?php }
+?>

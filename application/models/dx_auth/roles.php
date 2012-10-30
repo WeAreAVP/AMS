@@ -10,12 +10,24 @@ class Roles extends CI_Model {
         $this->_table = $this->_prefix . $this->config->item('DX_roles_table');
     }
 
-    function get_all($super_admin = null) {
+    function get_all() {
         $this->db->order_by('id', 'asc');
-//        if ($super_admin != 1) {
-//            $this->db->where('id !=', '1');
-//            
-//        }
+
+        return $this->db->get($this->_table);
+    }
+
+    function get_roles_list($role = null) {
+        $this->db->order_by('id', 'asc');
+        if ($role != null) {
+            if ($role == 1) {
+                
+            } else if ($role == 2)
+                $this->db->where_not_in("id", array('1'));
+            else if ($role == 3)
+                $this->db->where_not_in("id", array('1', '2'));
+            else
+                $this->db->where_not_in("id", array('1', '2', '3'));
+        }
         return $this->db->get($this->_table);
     }
 

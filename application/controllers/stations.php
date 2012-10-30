@@ -26,6 +26,10 @@ class Stations extends MY_Controller {
      * List all the stations and also filters stations
      * 
      * It receives 3 post parameters are received with ajax call
+     * 
+     * @param string $search_keyword
+     * @param boolean $certified
+     * @param boolean $agreed
      *  
      */
     public function index() {
@@ -83,12 +87,12 @@ class Stations extends MY_Controller {
             $station = array();
             foreach ($station_ids as $value) {
                 $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date));
-                
-                 $this->sphinx->update_indexes('stations',array('start_date','end_date'),array($value=>array(strtotime($start_date),strtotime($end_date))));
+
+                $this->sphinx->update_indexes('stations', array('start_date', 'end_date'), array($value => array(strtotime($start_date), strtotime($end_date))));
             }
-           
+
 //            print exec("/usr/bin/indexer --all --rotate");
-           
+
 
             echo json_encode(array('success' => true, 'station' => $station, 'total' => count($station_ids)));
             exit;
@@ -118,7 +122,7 @@ class Stations extends MY_Controller {
     }
 
     /**
-     * Undo the last edited statons
+     * Undo the last edited stations
      *  
      */
     public function undostations() {
@@ -126,7 +130,7 @@ class Stations extends MY_Controller {
         if (count($backups) > 0) {
             foreach ($backups as $value) {
                 $this->station_model->update_station($value->station_id, array('start_date' => $value->start_date, 'end_date' => $value->end_date));
-                $this->sphinx->update_indexes('stations',array('start_date','end_date'),array($value->station_id=>array(strtotime($value->start_date),strtotime($value->end_date))));
+                $this->sphinx->update_indexes('stations', array('start_date', 'end_date'), array($value->station_id => array(strtotime($value->start_date), strtotime($value->end_date))));
             }
         }
         redirect('stations/index', 'location');

@@ -41,7 +41,7 @@ class Settings extends MY_Controller {
         $params = null;
         if (isAjax()) {
             $data['is_ajax'] = true;
-            $params = array('station_id' => $this->input->post('station_id'), 'role_id' => $this->input->post('role_id'));
+//            $params = array('station_id' => $this->input->post('station_id'), 'role_id' => $this->input->post('role_id'));
         }
 
         $data['users'] = $this->users->get_users($currentRoleID, $params)->result();

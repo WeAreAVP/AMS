@@ -45,6 +45,7 @@
                 });
                 $("[rel=tooltip]").tooltip();
                 $("#station_table").tablesorter();
+                $("#user_table_list").tablesorter();
                  $('#station_table').freezeTableColumns({
             width:       870,   // required
             height:      600,   // required

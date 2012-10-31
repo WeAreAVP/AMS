@@ -92,7 +92,7 @@ class Unit_Testing extends CI_Controller {
      *  
      */
     function userlisttesting() {
-        $test1 = $this->users->get_users()->num_rows;
+        $test1 = $this->users->get_users(1, null)->num_rows;
         $expected_result = 2;
         $test_name = 'User list count';
         echo $this->unit->run($test1, $expected_result, $test_name);
@@ -107,6 +107,7 @@ class Unit_Testing extends CI_Controller {
         $record = array('email' => 'testing@abc.com',
             'password' => crypt($this->dx_auth->_encode('nouman')),
             'role_id' => '1',
+            'station_id' => '1',
         );
         $profile_data = array('first_name' => 'Test',
             'last_name' => 'Case',
@@ -129,6 +130,7 @@ class Unit_Testing extends CI_Controller {
     function editusertesting() {
         $record = array('email' => 'testing@abc.com',
             'role_id' => '1',
+            'station_id' => '1',
         );
 
         $profile_data = array('first_name' => 'Test Edit',
@@ -139,19 +141,21 @@ class Unit_Testing extends CI_Controller {
 
         $result = $this->user_profile->set_profile('17', $profile_data);
         $expected_result = 'is_true';
-        $test_name = 'Add New User';
+        $test_name = 'Edit User';
         echo $this->unit->run($result, $expected_result, $test_name);
         echo '<br/>';
     }
+
     /**
      * Delete User Tesing
      *  
      */
     function deleteusertesting() {
+        $this->user_profile->delete_profile('18');
         $result = $delete_user = $this->users->delete_user('18');
 
         $expected_result = 'is_true';
-        $test_name = 'Add New User';
+        $test_name = 'Delete User';
         echo $this->unit->run($result, $expected_result, $test_name);
         echo '<br/>';
     }
@@ -183,13 +187,12 @@ class Unit_Testing extends CI_Controller {
         $test_name = 'Contact Title=General Manager ';
         echo $this->unit->run($test3, $expected_result, $test_name);
     }
-		
-	public function templatetesting()
-	{
-		$this->emailtemplates->sent_now=true;
-		$this->emailtemplates->queue_email('ForgetPassword','ali.raza@purelogics.net',array("web_name"=>$this->config->item('DX_website_name'),"uri"=>"test_uri","new_password"=>"testpassword",
-																																				"key"=>"testkey","web_master"=>$this->config->item('DX_webmaster_email')));
-	}
+
+    public function templatetesting() {
+        $this->emailtemplates->sent_now = true;
+        $this->emailtemplates->queue_email('ForgetPassword', 'ali.raza@purelogics.net', array("web_name" => $this->config->item('DX_website_name'), "uri" => "test_uri", "new_password" => "testpassword",
+            "key" => "testkey", "web_master" => $this->config->item('DX_webmaster_email')));
+    }
 
 }
 

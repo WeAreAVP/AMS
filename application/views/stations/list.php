@@ -91,10 +91,10 @@ if (!$is_ajax) {
                         <tr>
                             <td><input style='margin-left:18px;margin-right: 4px;' type='checkbox' name='station[]' value='<?php echo $data->id; ?>'  class='checkboxes'/></td>
                             <td><?php echo $data->cpb_id; ?></td>
-                            <td><?php echo $data->station_name; ?></td>
+                            <td><a href="<?php echo site_url('stations/detail'.$data->id);?>"><?php echo $data->station_name; ?></a></td>
                             <td><?php echo $data->total_allocated; ?></td>
-                            <td><?php echo ($data->is_certified) ? 'Yes' : 'No'; ?>
-                            <td><?php echo ($data->is_agreed) ? 'Yes' : 'No'; ?>
+                            <td id="certified<?php echo $data->id; ?>"><?php echo ($data->is_certified) ? 'Yes' : 'No'; ?>
+                            <td id="start_date_<?php echo $data->id; ?>"><?php echo ($data->is_agreed) ? 'Yes' : 'No'; ?>
                             <td id="start_date_<?php echo $data->id; ?>">
                                 <?php echo ($data->start_date == 0) ? 'No DSD' : date('Y-m-d', $data->start_date); ?>
                             </td>
@@ -380,6 +380,7 @@ if (!$is_ajax) {
                     $('#success_message').show();
                     ids=ids.split(',');
                     for(cnt in ids){
+                        $('#start_date_'+ids[cnt]).html(start_date);
                         $('#start_date_'+ids[cnt]).html(start_date);
                                    
                     }

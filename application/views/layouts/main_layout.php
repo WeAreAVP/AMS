@@ -92,9 +92,12 @@
         <div class="container">
 
             <div class="content" >
-                <?php if (is_route_method(array('settings'=>'index','settings'=>'edit_profile','templatemanager'=>'add','templatemanager'=>'lists','templatemanager'=>'edit','templatemanager'=>'details','templatemanager'=>'readmessage'))) { ?>
+                <?php 
+								if (is_route_method(array('settings'=>array('index','edit_profile'),'templatemanager'=>array('add','lists','edit','details','readmessage'))
+											)
+										) { ?>
                     <ul class="nav nav-tabs">
-                        <li><a href="<?php echo site_url('templatemanager/lists'); ?>" >Email Template</a></li>
+                        <li class="<?php echo active_anchor('templatemanager', array('add','lists','edit','details','readmessage')); ?>"><a href="<?php echo site_url('templatemanager/lists'); ?>" >Email Template</a></li>
                         <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index'); ?>">Users</a></li>
                         <li class="<?php echo active_anchor('settings', 'edit_profile'); ?>"><a href="<?php echo site_url('settings/edit_profile'); ?>">Edit Profile</a></li> 
 

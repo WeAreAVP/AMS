@@ -3,8 +3,22 @@
 function active_anchor($orignal_class, $orignal_method, $class = 'active') {
     $CI = & get_instance();
 
-    if ($CI->router->class == $orignal_class && $CI->router->method == $orignal_method) {
-        return $class;
+    if ($CI->router->class == $orignal_class )
+		{
+			if(is_array($orignal_method))
+			{
+				if(in_array($CI->router->method ,$orignal_method))
+				{
+        	return $class;
+				}
+			}
+			else
+			{
+				if($CI->router->method == $orignal_method)
+				{
+					return $class;
+				}
+			}
     }
 
     if ($CI->router->class == $orignal_class && !$orignal_method) {
@@ -12,13 +26,14 @@ function active_anchor($orignal_class, $orignal_method, $class = 'active') {
     }
     return '';
 }
-//get array of key should be route and values should be method
+//get 2d array of key should be route and array of values should be method
 function is_route_method($route_method)
 {
+	
 	$CI = & get_instance();
 	foreach($route_method as $route=>$method)
 	{
-		if (in_array($CI->router->class,$route) && in_array($CI->router->method,$method))
+		if ($CI->router->class==$route && in_array($CI->router->method,$method))
 	 		return true;
 	}
 	return false;

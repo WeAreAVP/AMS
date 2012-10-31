@@ -13,7 +13,10 @@ class EmailTracking extends CI_Controller
 		{
 			header('Content-type: image/png');
 			echo(base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII='));
-			$this->email_templates->update_email_queue_by_id($email_queue_data->id,array("is_email_read"=>2,"read_at"=>date("Y-m-d H:i:s")));
+			if($email_queue_data->id!=2)
+			{
+				$this->email_templates->update_email_queue_by_id($email_queue_data->id,array("is_email_read"=>2,"read_at"=>date("Y-m-d H:i:s")));
+			}
 			exit();
 		}
 	}

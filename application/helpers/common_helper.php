@@ -54,7 +54,6 @@ function send_email($to, $from, $subject, $message,$reply_to='')
 	$CI = & get_instance();
 	$CI->load->library('Email');
 	$config['wordwrap'] = TRUE;
-	$config['validate'] = TRUE;
 	$config['mailtype'] = 'html';
 	$config['charset'] = 'utf-8';
 	$config['protocol'] = 'sendmail';

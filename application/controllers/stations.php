@@ -88,7 +88,7 @@ class Stations extends MY_Controller {
 
             $station = array();
             foreach ($station_ids as $value) {
-                $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date,'is_certified'=>$is_certified,'is_agreed',$is_agreed));
+                $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date,'is_certified'=>$is_certified,'is_agreed'=>$is_agreed));
 
                 $this->sphinx->update_indexes('stations', array('start_date', 'end_date','is_certified','is_agreed'), array($value => array(strtotime($start_date), strtotime($end_date),$is_certified,$is_agreed)));
             }

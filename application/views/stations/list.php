@@ -354,6 +354,7 @@ if (!$is_ajax) {
             $('#certified').prop('selectedIndex', 0);
             $('#agreed').prop('selectedIndex', 0);
             $('#tokens').html('');
+            search_station();
         }
     </script>
 

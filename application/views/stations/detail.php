@@ -68,8 +68,8 @@
 
 
 
-    <?php
-} else {
-    echo '<h3>The requested sationed not found</h3>';
-}
-?>
+    <?php } else { ?>
+    <h3>The requested sation not found</h3>
+    <a href="<?php echo site_url('stations/index');?>">Back to Stations</a>
+    
+<?php } ?>

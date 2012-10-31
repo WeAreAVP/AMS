@@ -125,10 +125,10 @@ if (!$is_ajax) {
         <div class="modal-body">
 
             <input type="hidden" id="station_id" name="station_id"/>
-            <div><div style="float: left;width: 150px;">Digitization Start Date:</div><input type="text" id="start_date" name="start_date" value=""/><span id="start_date_message" style="display: none;color: #C09853;margin-left: 10px;">Please select date.</span></div>
-            <div><div style="float: left;width: 150px;">Digitization End Date:</div><input type="text" id="end_date" name="end_date" value=""/><span id="end_date_message" style="display: none;color: #C09853;margin-left: 10px;">Please select date.</span></div>
-            <div><div style="float: left;width: 150px;">Certified:</div><input type="checkbox" id="station_certified" name="station_certified" value="1"/></div>
-            <div><div style="float: left;width: 150px;">Agreed:</div><input type="checkbox" id="station_agreed" name="station_agreed" value="1"/></div>
+            <div><div style="float: left;width: 130px;text-align: right;margin-right: 10px;">Digitization Start Date:</div><input type="text" id="start_date" name="start_date" value=""/><span id="start_date_message" style="display: none;color: #C09853;margin-left: 10px;">Please select date.</span></div>
+            <div><div style="float: left;width: 130px;text-align: right;margin-right: 10px;">Digitization End Date:</div><input type="text" id="end_date" name="end_date" value=""/><span id="end_date_message" style="display: none;color: #C09853;margin-left: 10px;">Please select date.</span></div>
+            <div><div style="float: left;width: 130px;text-align: right;margin-right: 10px;">Certified:</div><input type="checkbox" id="station_certified" name="station_certified" value="1"/></div>
+            <div><div style="float: left;width: 130px;text-align: right;margin-right: 10px;">Agreed:</div><input type="checkbox" id="station_agreed" name="station_agreed" value="1"/></div>
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true" id="">Cancel</button>

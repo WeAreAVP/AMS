@@ -1053,7 +1053,7 @@ class DX_Auth
 					
 					// Trigger event and get email content
 					//$this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
-					$this->ci->emailtemplates('ForgetPassword',$row->email,array("web_name"=>$this->ci->config->item('DX_website_name'),"uri"=>$data['reset_password_uri'],"new_password"=>$data['password'],
+					$this->ci->emailtemplates->queue_email('ForgetPassword',$row->email,array("web_name"=>$this->ci->config->item('DX_website_name'),"uri"=>$data['reset_password_uri'],"new_password"=>$data['password'],
 																																				"key"=>$data['key'],"web_master"=>$this->ci->config->item('DX_webmaster_email')));
 					// Send instruction email through email que
 					//$this->_email($row->email, $from, $subject, $message);

@@ -92,10 +92,9 @@
         <div class="container">
 
             <div class="content" >
-                <?php if (active_anchor('settings', 'index') || active_anchor('settings', 'edit_profile') || active_anchor('templatemanager', 'add') || active_anchor('templatemanager', 'lists')) { ?>
+                <?php if (active_anchor('settings', 'index') || active_anchor('settings', 'edit_profile') || active_anchor('templatemanager', 'add') || active_anchor('templatemanager', 'lists') || active_anchor('templatemanager', 'edit') || active_anchor('templatemanager', 'details')) { ?>
                     <ul class="nav nav-tabs">
-                        <li><a href="<?php echo site_url('templatemanager/add'); ?>" >Email Template</a></li>
-                        <li><a href="<?php echo site_url('templatemanager/lists'); ?>" >List Template</a></li>
+                        <li><a href="<?php echo site_url('templatemanager/lists'); ?>" >Email Template</a></li>
                         <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index'); ?>">Users</a></li>
                         <li class="<?php echo active_anchor('settings', 'edit_profile'); ?>"><a href="<?php echo site_url('settings/edit_profile'); ?>">Edit Profile</a></li> 
 

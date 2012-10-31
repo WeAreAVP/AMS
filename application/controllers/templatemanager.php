@@ -25,7 +25,7 @@ class TemplateManager extends CI_Controller
 	}
 	function system_id_check($system_id)
 	{
-		$result = $this->email_template->get_template_by_sys_id($system_id);
+		$result = $this->email_template->get_template_by_sys_id(str_replace(" ","_",$system_id));
 		if ($result)
 		{
 			$this->form_validation->set_message('system_id_check', 'System Id is already used. Please choose another system id.');
@@ -59,7 +59,7 @@ class TemplateManager extends CI_Controller
 			if ($val->run())
 			{
 				$email_template_data=array();
-				$email_template_data['system_id']=$val->set_value('system_id');
+				$email_template_data['system_id']=str_replace(" ","_",$val->set_value('system_id'));
 				$email_template_data['subject']=$val->set_value('subject');
 				$email_template_data['email_type']=$val->set_value('email_type');
 				if($email_template_data['email_type']!='plain')

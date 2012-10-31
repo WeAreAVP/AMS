@@ -80,7 +80,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="userLabel">Add User</h3>
         </div>
-        <div class="modal-body"  id="manage_user" style="max-height: 600px !important;">
+        <div class="modal-body"  id="manage_user" style="max-height: 550px !important;">
 
         </div>
 

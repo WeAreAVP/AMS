@@ -72,9 +72,9 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'new_user');
 
         <tr>
             <td width="150"><?php echo form_label('Role:', $role['id']); ?></td>
-            <td><?php echo form_dropdown($role['id'], $roles); ?><span style="color: red;"><?php echo form_error($role['name']); ?></span></td>
+            <td><?php echo form_dropdown($role['id'], $roles,array(),'id="role" onchange="checkRole();"'); ?><span style="color: red;"><?php echo form_error($role['name']); ?></span></td>
         </tr>
-        <tr>
+        <tr style="display: none;" id="station_row">
             <td width="150"><?php echo form_label('Station:', $station['id']); ?></td>
             <td><?php echo form_dropdown($station['id'], $stations_list); ?><span style="color: red;"><?php echo form_error($station['name']); ?></span></td>
         </tr>

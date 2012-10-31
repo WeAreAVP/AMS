@@ -126,7 +126,8 @@
                         window.location.reload();
                     }
                     else{
-                        $('#manage_user').html(result);  
+                        $('#manage_user').html(result); 
+                        checkRole();
                     }
                                         
                 }
@@ -156,6 +157,13 @@
             $('#station_id').prop('selectedIndex', 0);
             $('#role_id').prop('selectedIndex', 0);
             filterUser();
+        }
+        function checkRole(){
+            role=$('#role').val();
+            if(role==3 || role==4)
+                $('#station_row').show();
+            else
+                $('#station_row').hide();
         }
     </script>
 <?php }

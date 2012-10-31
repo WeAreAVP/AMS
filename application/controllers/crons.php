@@ -29,6 +29,7 @@ class Crons extends CI_Controller
 				if(send_email($queue->email_to,$queue->email_from,$queue->email_subject,$queue->email_body))
 				{
 					$this->email_template->update_email_queue_by_id($queue->id,array("is_sent"=>2,"sent_at"=>date('Y-m-d H:i:s')));
+					echo "Email Sent To ".$queue->email_to." <br/>";
 				}
 			}
 		}

@@ -153,3 +153,22 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
   `created` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*10-31-2012 */
+/* Changes in email queue*/
+ALTER TABLE `email_queue` ADD COLUMN `is_email_read` TINYINT(1) DEFAULT 1 NULL COMMENT '1 for not read 2 for read' AFTER `is_sent`, ADD COLUMN `read_at` DATETIME NULL AFTER `is_email_read`; 
+/* Message Alerts Contain Email Alert Queue id */
+ALTER TABLE `messages` ADD COLUMN `email_queue_id` INT NULL AFTER `read_at`; 
+

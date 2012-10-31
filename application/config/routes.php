@@ -40,7 +40,7 @@
 
 $route['default_controller'] = "stations";
 $route['404_override'] = '';
-
+$route['emailtracking/(:any).png'] = "emailtracking/index/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

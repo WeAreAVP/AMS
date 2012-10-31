@@ -22,4 +22,31 @@ function link_js($file) {
 
     return '<script type="text/javascript" src="' . base_url() . 'js/' . $file . '"></script>';
 }
+/* Sent Email if $this->sent_now is set true*/
+function send_email($to, $from, $subject, $message,$reply_to='')
+{
+	$CI = & get_instance();
+	$CI->load->library('Email');
+	$config['wordwrap'] = TRUE;
+	$config['validate'] = TRUE;
+	$config['mailtype'] = 'html';
+	$config['charset'] = 'utf-8';
+	$config['protocol'] = 'sendmail';
+	$email = $CI->email;
+	$email->clear();
+	$email->initialize($config);
+	$email->from($from);
+	$email->to($to);
+	if(!empty($reply_to))
+	{
+		$email->reply_to($reply_to);
+	}
+	$email->subject($subject);
+	$email->message($message);
+	if($email->send())
+		return true;
+	else
+		return false;
+	
+}
 

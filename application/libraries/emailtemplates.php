@@ -11,6 +11,7 @@ class Emailtemplates
 
 	private $CI;
  	public $sent_now;
+	public $track_email;
   function __construct()
   {
     $this->CI =& get_instance();
@@ -18,7 +19,7 @@ class Emailtemplates
 		log_message('debug', 'Email Templates Initialized');
 		/*Load Email Tempalte Model */
 		$this->CI->load->model('email_template_model','email_templates');
-  
+		$this->track_email=true;/*If set to true then email will track*/
 	}
 	/*
 		Insert Data in to email queue table also check if sent
@@ -72,44 +73,23 @@ class Emailtemplates
 				$queue_data['email_body']=$email_body;
 				$queue_data['created_at']=date('Y-m-d H:i:s');
 				$queue_data['is_sent']=1;
+				$last_inserted_id=$this->CI->email_templates->add_email_queue($queue_data);
 				if($this->sent_now)
 				{
-					$this->_email($queue_data['email_to'],$queue_data['email_from'],$queue_data['email_subject'],$queue_data['email_body']);
-					$queue_data['is_sent']=2;
-					$queue_data['sent_at']=date('Y-m-d H:i:s');
+					$now_queue_data = $queue_data['email_body'];
+					if($this->track_email)
+					{
+						$now_queue_data .='<img src="'.site_url('emailtracking/'.$last_inserted_id.'png').'" height="1" width="1" />';
+					}
+					send_email($queue_data['email_to'],$queue_data['email_from'],$queue_data['email_subject'],$queue_data['email_body'],$queue_data['email_reply_to']);
+					$this->CI->email_templates->update_email_template($last_inserted_id,array("is_sent"=>2,"sent_at"=>date('Y-m-d H:i:s')));
 				}
-				$this->CI->email_templates->add_email_queue($queue_data);
-				return true;
+				return $last_inserted_id;
 			}
 		}
 		else
 		{
 			log_message('error', 'Email template '.$template_sys_id.' not found.' );
-			return false;
-		}
-	}
-	/* Sent Email if $this->sent_now is set true*/
-	function _email($to, $from, $subject, $message)
-	{
-		$this->CI->load->library('Email');
-		$config['wordwrap'] = TRUE;
-		$config['validate'] = TRUE;
-		$config['mailtype'] = 'html';
-		$config['charset'] = 'utf-8';
-		$config['protocol'] = 'sendmail';
-		$email = $this->CI->email;
-		$email->clear();
-		$email->initialize($config);
-		$email->from($from);
-		$email->to($to);
-		$email->subject($subject);
-		$email->message($message);
-		if($email->send())
-		{
-			return true;
-		}
-		else
-		{
 			return false;
 		}
 	}

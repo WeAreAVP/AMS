@@ -24,6 +24,22 @@ $phone_no = array(
     'id' => 'phone_no',
     'value' => $user_info->phone_no,
 );
+
+$title = array(
+    'name' => 'title',
+    'id' => 'title',
+    'value' => $user_info->title,
+);
+$fax = array(
+    'name' => 'fax',
+    'id' => 'fax',
+    'value' => $user_info->fax,
+);
+$address = array(
+    'name' => 'address',
+    'id' => 'address',
+    'value' => $user_info->address,
+);
 $role = array(
     'name' => 'role',
     'id' => 'role',
@@ -75,6 +91,18 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'edit_from');
         <tr>
             <td width="150"><?php echo form_label('Phone #:', $phone_no['id']); ?></td>
             <td><?php echo form_input($phone_no); ?><span style="color: red;"><?php echo form_error($phone_no['name']); ?></span></td>
+        </tr>
+        <tr>
+            <td width="150"><?php echo form_label('Title:', $title['id']); ?></td>
+            <td><?php echo form_input($title); ?><span style="color: red;"><?php echo form_error($title['name']); ?></span></td>
+        </tr>
+        <tr>
+            <td width="150"><?php echo form_label('Fax :', $fax['id']); ?></td>
+            <td><?php echo form_input($fax); ?><span style="color: red;"><?php echo form_error($fax['name']); ?></span></td>
+        </tr>
+        <tr>
+            <td width="150"><?php echo form_label('Address:', $address['id']); ?></td>
+            <td><?php echo form_input($address); ?><span style="color: red;"><?php echo form_error($address['name']); ?></span></td>
         </tr>
 
 

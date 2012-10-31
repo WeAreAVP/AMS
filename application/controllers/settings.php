@@ -97,6 +97,10 @@ class Settings extends MY_Controller {
             $val->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
             $val->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
             $val->set_rules('phone_no', 'Phone #', 'trim|xss_clean');
+            $val->set_rules('title', 'Title', 'trim|xss_clean|required');
+            $val->set_rules('fax', 'Fax', 'trim|xss_clean');
+            $val->set_rules('address', 'Address #', 'trim|xss_clean|required');
+            
             $val->set_rules('role', 'Role', 'trim|xss_clean|required');
             $val->set_rules('station', 'Station', 'trim|xss_clean');
 
@@ -114,7 +118,11 @@ class Settings extends MY_Controller {
                     $profile_data = array('first_name' => $val->set_value('first_name'),
                         'last_name' => $val->set_value('last_name'),
                         'phone_no' => $val->set_value('phone_no'),
+                        'title' => $val->set_value('title'),
+                        'fax' => $val->set_value('fax'),
+                        'address' => $val->set_value('address'),
                     );
+                    
                     $id = $this->users->create_user($record);
                     $profile_data['user_id'] = $id;
                     $this->user_profile->insert_profile($profile_data);
@@ -158,6 +166,9 @@ class Settings extends MY_Controller {
             $val->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
             $val->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
             $val->set_rules('phone_no', 'Phone #', 'trim|xss_clean');
+            $val->set_rules('title', 'Title', 'trim|xss_clean|required');
+            $val->set_rules('fax', 'Fax', 'trim|xss_clean');
+            $val->set_rules('address', 'Address #', 'trim|xss_clean|required');
             $val->set_rules('role', 'Role', 'trim|xss_clean|required');
             $val->set_rules('station', 'Station', 'trim|xss_clean');
 
@@ -177,6 +188,9 @@ class Settings extends MY_Controller {
                     $profile_data = array('first_name' => $val->set_value('first_name'),
                         'last_name' => $val->set_value('last_name'),
                         'phone_no' => $val->set_value('phone_no'),
+                        'title' => $val->set_value('title'),
+                        'fax' => $val->set_value('fax'),
+                        'address' => $val->set_value('address'),
                     );
                     $this->users->set_user($user_id, $record);
 

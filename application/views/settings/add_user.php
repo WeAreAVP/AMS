@@ -24,6 +24,21 @@ $phone_no = array(
     'id' => 'phone_no',
     'value' => set_value('phone_no'),
 );
+$title = array(
+    'name' => 'title',
+    'id' => 'title',
+    'value' => set_value('title'),
+);
+$fax = array(
+    'name' => 'fax',
+    'id' => 'fax',
+    'value' => set_value('fax'),
+);
+$address = array(
+    'name' => 'address',
+    'id' => 'address',
+    'value' => set_value('address'),
+);
 $role = array(
     'name' => 'role',
     'id' => 'role',
@@ -69,10 +84,22 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'new_user');
             <td width="150"><?php echo form_label('Phone #:', $phone_no['id']); ?></td>
             <td><?php echo form_input($phone_no); ?><span style="color: red;"><?php echo form_error($phone_no['name']); ?></span></td>
         </tr>
+        <tr>
+            <td width="150"><?php echo form_label('Title:', $title['id']); ?></td>
+            <td><?php echo form_input($title); ?><span style="color: red;"><?php echo form_error($title['name']); ?></span></td>
+        </tr>
+        <tr>
+            <td width="150"><?php echo form_label('Fax :', $fax['id']); ?></td>
+            <td><?php echo form_input($fax); ?><span style="color: red;"><?php echo form_error($fax['name']); ?></span></td>
+        </tr>
+        <tr>
+            <td width="150"><?php echo form_label('Address:', $address['id']); ?></td>
+            <td><?php echo form_input($address); ?><span style="color: red;"><?php echo form_error($address['name']); ?></span></td>
+        </tr>
 
         <tr>
             <td width="150"><?php echo form_label('Role:', $role['id']); ?></td>
-            <td><?php echo form_dropdown($role['id'], $roles,array(),'id="role" onchange="checkRole();"'); ?><span style="color: red;"><?php echo form_error($role['name']); ?></span></td>
+            <td><?php echo form_dropdown($role['id'], $roles, array(), 'id="role" onchange="checkRole();"'); ?><span style="color: red;"><?php echo form_error($role['name']); ?></span></td>
         </tr>
         <tr style="display: none;" id="station_row">
             <td width="150"><?php echo form_label('Station:', $station['id']); ?></td>

@@ -35,8 +35,9 @@
                 </tr>
             </tbody>
         </table>
+        <h2>Station Contacts</h2>
         <h2>Tracking Information</h2>
-        <table class="table table-bordered">
+<!--        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Ship Date</th>
@@ -57,7 +58,8 @@
                     <td><i class="icon-cog"></i><i class="icon-remove-sign"></i></td>
                 </tr>
             </tbody>
-        </table>
+        </table>-->
+        
     </div>
     <?php $this->load->view('stations/_edit_station'); ?>
 
@@ -68,6 +70,6 @@
 
     <?php
 } else {
-    echo '<h1>The requested sationed not found</h1>';
+    echo '<h3>The requested sationed not found</h3>';
 }
 ?>

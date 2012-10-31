@@ -48,7 +48,7 @@ class Station_Model extends CI_Model {
      * @return array 
      */
     function get_stations_by_id($stations) {
-        $this->db->select('id,station_name,start_date,end_date');
+        $this->db->select('id,station_name,start_date,end_date,is_certified,is_agreed');
         $this->db->where_in('id', $stations);
         return $this->db->get($this->_table)->result();
     }

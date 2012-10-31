@@ -29,7 +29,7 @@ class Crons extends CI_Controller
 			foreach($email_queue as $queue)
 			{	
 				$now_queue_body = $queue->email_body. '<img src="'.site_url('emailtracking/'.$last_inserted_id.'png').'" height="1" width="1" />';
-				if(send_email($queue->email_to,$queue->email_from,$queue->email_subject,$queue->email_body))
+				if(send_email($queue->email_to,$queue->email_from,$queue->email_subject,$now_queue_body))
 				{
 					$this->email_template->update_email_queue_by_id($queue->id,array("is_sent"=>2,"sent_at"=>date('Y-m-d H:i:s')));
 					echo "Email Sent To ".$queue->email_to." <br/>";

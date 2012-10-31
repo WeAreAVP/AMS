@@ -437,12 +437,16 @@ class DX_Auth
 			'DX_parent_roles_name'	=> $role_data['parent_roles_name'], // Array of parent role_name
 			'DX_permission'					=> $role_data['permission'],
 			'DX_parent_permissions'	=> $role_data['parent_permissions'],			
-			'DX_logged_in'					=> TRUE
+			'DX_logged_in'					=> TRUE,
+			'DX_station_id'					=> FALSE 
 		);
-
+		if(isset($data->station_id) && $data->station_id!=NULL && !empty($data->station_id))
+		{
+			$user['DX_station_id']=$data->station_id;
+		}
 		$this->ci->session->set_userdata($user);
 	}
-
+	
 	function _auto_cookie($data)
 	{
 		// Load Cookie Helper
@@ -660,7 +664,19 @@ class DX_Auth
 	{
 		return $this->ci->session->userdata('DX_user_id');
 	}
-
+	// Get Station Id
+	function get_station_id()
+	{
+		return $this->ci->session->userdata('DX_station_id');
+	}
+	
+	// Get Station Id
+	function is_station_user()
+	{
+		if($this->get_station_id())
+			return true;
+		return false;
+	}
 	// Get username string
 	function get_username()
 	{

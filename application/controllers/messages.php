@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 /**
  * Messages controller.
@@ -23,7 +23,6 @@ class Messages extends MY_Controller {
       $this->load->model('station_model');
       $this->load->model('dx_auth/users', 'users');
       $this->load->model('messages_model', 'msgs');
-      $this->user_id = 1;
     }
     /**
      * Redirect to inbox

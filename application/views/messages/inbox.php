@@ -98,6 +98,7 @@ if (!$is_ajax) {
                  cache: false,
                 success: function (result) {
                     $('#append_record').html(result);
+										
                 }
             });
     }

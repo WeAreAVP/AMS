@@ -77,18 +77,20 @@ class Stations extends MY_Controller {
      * @param $start_date get station start date
      * @return json 
      */
-    public function update_station_date() {
+    public function update_stations() {
         if (isAjax()) {
             $station_ids = $this->input->post('id');
             $station_ids = explode(',', $station_ids);
             $start_date = $this->input->post('start_date');
             $end_date = $this->input->post('end_date');
+            $is_certified = $this->input->post('is_certified');
+            $is_agreed = $this->input->post('is_agreed');
 
             $station = array();
             foreach ($station_ids as $value) {
-                $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date));
+                $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date,'is_certified'=>$is_certified,'is_agreed',$is_agreed));
 
-                $this->sphinx->update_indexes('stations', array('start_date', 'end_date'), array($value => array(strtotime($start_date), strtotime($end_date))));
+                $this->sphinx->update_indexes('stations', array('start_date', 'end_date','is_certified','is_agreed'), array($value => array(strtotime($start_date), strtotime($end_date),$is_certified,$is_agreed)));
             }
 
 //            print exec("/usr/bin/indexer --all --rotate");

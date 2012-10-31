@@ -368,14 +368,10 @@ if (!$is_ajax) {
             certified=0;
         else
             certified=1;
-        
-        console.log(certified);
-        console.log(agreed);
-        return;                                                                                                         
         $.ajax({
             type: 'POST', 
-            url: site_url+'stations/update_station_date',
-            data:{id:ids,start_date:start_date,end_date:end_date},
+            url: site_url+'stations/update_stations',
+            data:{id:ids,start_date:start_date,end_date:end_date,is_agreed:agreed,is_certified:certified},
             dataType: 'json',
             cache: false,
             success: function (result) {

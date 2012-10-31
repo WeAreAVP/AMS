@@ -34,6 +34,7 @@
 </div>
 <script type="text/javascript">
     var stationName=null;
+    var detailPage=false;
     function validateFields(){
         if($('#start_date').val()=='' || $('#start_date').val()=='--' ||  $('#start_date').val()=='0000-00-00'){
             $('#start_date_message').show();
@@ -68,7 +69,6 @@
                 cache: false,
                 success: function (result) {
                     if(result.success==true){
-                        console.log(result.records);
                         var station_name='';
                         var compare_start_date=0;
                         var compare_end_date=0;
@@ -189,21 +189,35 @@
             cache: false,
             success: function (result) {
                 if(result.success==true){
-                    $('#success_message').html('<strong>'+result.total+' Record(s) Changed.</strong> <a style="color:#C09853;text-decoration: underline;" href="'+site_url+'stations/undostations">Undo</a>');
-                    $('#success_message').show();
-                    ids=ids.split(',');
-                    for(cnt in ids){
-                        $('#start_date_'+ids[cnt]).html(start_date);
-                        $('#certified_'+ids[cnt]).html(is_certify);
-                        $('#agreed_'+ids[cnt]).html(is_agree);
+                    if(detailPage==false){
+                        $('#success_message').html('<strong>'+result.total+' Record(s) Changed.</strong> <a style="color:#C09853;text-decoration: underline;" href="'+site_url+'stations/undostations">Undo</a>');
+                        $('#success_message').show();
+                        ids=ids.split(',');
+                        for(cnt in ids){
+                            $('#start_date_'+ids[cnt]).html(start_date);
+                            $('#certified_'+ids[cnt]).html(is_certify);
+                            $('#agreed_'+ids[cnt]).html(is_agree);
                                    
+                        }
+                    }
+                    else{
+                        $('#dsd_').html(start_date);
+                        $('#ded_').html(start_date);
+                        $('#certified_').html(is_certify);
+                        $('#agreed_').html(is_agree);
                     }
                 }
                                                                                                                             
             }
         });
     }
-    
+    function editSingleStation(start,end,certified,agreed){
+        $('#start_date').val(start);
+        $('#end_date').val(end);
+        $('#station_certified').val(certified);
+        $('#station_agreed').val(agreed);
+        detailPage=true;
+    }
     
 </script>
 

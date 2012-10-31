@@ -27,16 +27,17 @@
                     <td><?php echo $station_detail->allocated_hours; ?></td>
                     <td><?php echo $station_detail->allocated_buffer; ?></td>
                     <td><?php echo $station_detail->total_allocated; ?></td>
-                    <td><?php echo ($station_detail->is_certified) ? 'Yes' : 'No'; ?></td>
-                    <td><?php echo ($station_detail->is_agreed) ? 'Yes' : 'No'; ?></td>
-                    <td><?php echo ($station_detail->start_date) ? $station_detail->start_date : 'NO DSD'; ?></td>
-                    <td><?php echo ($station_detail->end_date) ? $station_detail->end_date : 'NO DED'; ?></td>
-                    <td><i class="icon-cog"></i></td>
+                    <td id="certified_"><?php echo ($station_detail->is_certified) ? 'Yes' : 'No'; ?></td>
+                    <td id="agreed_"><?php echo ($station_detail->is_agreed) ? 'Yes' : 'No'; ?></td>
+                    <td id="dsd_"><?php echo ($station_detail->start_date) ? $station_detail->start_date : 'NO DSD'; ?></td>
+                    <td id="ded_"><?php echo ($station_detail->end_date) ? $station_detail->end_date : 'NO DED'; ?></td>
+                    <td><a href="#myStationModal" data-toggle="modal" onclick="editSingleStation('<?php echo $station_detail->start_date; ?>','<?php echo $station_detail->end_date; ?>','<?php echo $station_detail->is_certified; ?>','<?php echo $station_detail->is_agreed; ?>');"><i class="icon-cog"></i></a></td>
                 </tr>
             </tbody>
         </table>
+        <h2>Station Contacts</h2>
         <h2>Tracking Information</h2>
-        <table class="table table-bordered">
+<!--        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Ship Date</th>
@@ -57,17 +58,18 @@
                     <td><i class="icon-cog"></i><i class="icon-remove-sign"></i></td>
                 </tr>
             </tbody>
-        </table>
+        </table>-->
+        
     </div>
+    <?php $this->load->view('stations/_edit_station'); ?>
 
 
 
 
 
 
-
-    <?php
-} else {
-    echo '<h1>The requested sationed not found</h1>';
-}
-?>
+    <?php } else { ?>
+    <h3>The requested sation not found</h3>
+    <a href="<?php echo site_url('stations/index');?>">Back to Stations</a>
+    
+<?php } ?>

@@ -46,13 +46,13 @@
                 $("[rel=tooltip]").tooltip();
                 $("#station_table").tablesorter();
                 $("#user_table_list").tablesorter();
-//                $('#station_table').freezeTableColumns({
-//                    width:       870,   // required
-//                    height:      600,   // required
-//                    numFrozen:   0,     // optional
-//                    //            frozenWidth: 150,   // optional
-//                    clearWidths: true  // optional
-//                });//freezeTableColumns
+                //                $('#station_table').freezeTableColumns({
+                //                    width:       870,   // required
+                //                    height:      600,   // required
+                //                    numFrozen:   0,     // optional
+                //                    //            frozenWidth: 150,   // optional
+                //                    clearWidths: true  // optional
+                //                });//freezeTableColumns
             });
         </script>
     </head>
@@ -79,7 +79,7 @@
                             <li class="<?php echo active_anchor('dashboard', 'index'); ?>"><a href="">Dashboard</a></li>
                             <li class="<?php echo active_anchor('objects', 'index'); ?>"><a href="">Objects</a></li>
 
-                            <li class="<?php echo active_anchor('stations', 'index'); ?>"><a href="<?php echo site_url('stations/index') ?>">Stations</a></li>
+                            <li class="<?php echo active_anchor('stations', array('index', 'detail')); ?>"><a href="<?php echo site_url('stations/index') ?>">Stations</a></li>
                             <li class="<?php echo active_anchor('reports', 'index'); ?>"><a href="">Reports</a></li>
                             <li class="<?php echo active_anchor('settings', false); ?>"><a href="<?php echo site_url('settings/index') ?>">Settings</a></li> 
 
@@ -92,12 +92,13 @@
         <div class="container">
 
             <div class="content" >
-                <?php 
-								if (is_route_method(array('settings'=>array('index','edit_profile'),'templatemanager'=>array('add','lists','edit','details','readmessage'))
-											)
-										) { ?>
+                <?php
+                if (is_route_method(array('settings' => array('index', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage'))
+                        )
+                ) {
+                    ?>
                     <ul class="nav nav-tabs">
-                        <li class="<?php echo active_anchor('templatemanager', array('add','lists','edit','details','readmessage')); ?>"><a href="<?php echo site_url('templatemanager/lists'); ?>" >Email Template</a></li>
+                        <li class="<?php echo active_anchor('templatemanager', array('add', 'lists', 'edit', 'details', 'readmessage')); ?>"><a href="<?php echo site_url('templatemanager/lists'); ?>" >Email Template</a></li>
                         <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index'); ?>">Users</a></li>
                         <li class="<?php echo active_anchor('settings', 'edit_profile'); ?>"><a href="<?php echo site_url('settings/edit_profile'); ?>">Edit Profile</a></li> 
 
@@ -106,7 +107,7 @@
                         $(function () {
                             //                            $('#myTab a:last').tab('show');
                         })
-                                                    
+                                                        
                     </script>
                 <?php } ?>
                 <?php

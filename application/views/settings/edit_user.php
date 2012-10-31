@@ -81,14 +81,14 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'edit_from');
         <?php if(!isset($profile_edit)){ ?>
         <tr>
             <td width="150"><?php echo form_label('Role:', $role['id']); ?></td>
-            <td><?php echo form_dropdown($role['id'], $roles, array($user_info->role_id)); ?><span style="color: red;"><?php echo form_error($role['name']); ?></span></td>
+            <td><?php echo form_dropdown($role['id'], $roles, array($user_info->role_id),'id="role" onchange="checkRole();"'); ?><span style="color: red;"><?php echo form_error($role['name']); ?></span></td>
         </tr>
         <?php } ?>
-        <tr>
+        <tr id="station_row"  style="display: none;">
             <td width="150"><?php echo form_label('Station:', $station['id']); ?></td>
             <td><?php echo form_dropdown($station['id'], $stations_list, array($user_info->station_id)); ?><span style="color: red;"><?php echo form_error($station['name']); ?></span></td>
         </tr>
-        <tr style="background-color: whitesmoke;">
+        <tr>
             <?php if (isset($profile_edit)) { ?>
             <td colspan="2">
                 <?php echo form_submit('save', 'Save', 'class="btn btn-primary"'); ?>

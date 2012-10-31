@@ -20,6 +20,9 @@ class Crons extends CI_Controller
   	  parent::__construct();
 	   	$this->load->model('email_template_model','email_template');
     }
+		//
+		//Process all pending email 
+		//
 		function processemailqueues()
 		{
 			$email_queue=$this->email_template->get_all_pending_email();

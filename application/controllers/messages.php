@@ -14,75 +14,89 @@ class Messages extends MY_Controller {
      * constructor. Load layout,Model,Library and helpers
      * 
      */
-    function __construct() {
-        parent::__construct();
-
-        $this->layout = 'main_layout.php';
-        $this->load->library('Form_validation');
-        $this->load->helper('form');
-        $this->load->model('station_model');
-        $this->load->model('dx_auth/users', 'users');
-        $this->load->model('messages_model', 'msgs');
-        $this->user_id = 1;
+    function __construct()
+		{
+    	parent::__construct();
+      $this->layout = 'main_layout.php';
+      $this->load->library('Form_validation');
+      $this->load->helper('form');
+      $this->load->model('station_model');
+      $this->load->model('dx_auth/users', 'users');
+      $this->load->model('messages_model', 'msgs');
+      $this->user_id = 1;
     }
     /**
      * Redirect to inbox
      *  
      */
-    public function index() {
+    public function index()
+		{
         redirect('messages/inbox', 'location');
     }
  		/**
     * List Received Message 
     *  
     */
-    public function inbox() {
-
-        if ($_POST) {
-            if ($_POST['message_type']) {
-                $where['msg_type'] = $_POST['message_type'];
-            }
-            if ($_POST['stations']) {
-                $where['sender_id'] = $_POST['stations'];
-            }
+    public function inbox()
+		{
+			$where='';
+      if ($_POST)
+			{
+      	if ($_POST['message_type'])
+				{
+        	$where['msg_type'] = $_POST['message_type'];
         }
-        $data['results'] = $this->msgs->get_inbox_msgs($this->user_id, $where);
-        $data['station_records'] = $this->station_model->get_all();
-
-
-        if (isAjax()) {
-            $data['is_ajax'] = true;
-            echo $this->load->view('messages/inbox', $data, true);
-            exit;
-        } else {
-            $data['is_ajax'] = false;
-            $this->load->view('messages/inbox', $data);
+        if ($_POST['stations'])
+				{
+        	$where['sender_id'] = $_POST['stations'];
         }
+     	}
+      $data['results'] = $this->msgs->get_inbox_msgs($this->user_id, $where);
+      $data['station_records'] = $this->station_model->get_all();
+      if (isAjax())
+			{
+      	$data['is_ajax'] = true;
+        echo $this->load->view('messages/inbox', $data, true);
+        exit;
+      }
+			else
+			{
+      	$data['is_ajax'] = false;
+        $this->load->view('messages/inbox', $data);
+      }
     }
 		/*
 		*
     * List Sent Message 
     *  
     */
-    public function sent() {
-        if ($_POST) {
-            if ($_POST['message_type']) {
-                $where['msg_type'] = $_POST['message_type'];
-            }
-            if ($_POST['stations']) {
-                $where['receiver_id'] = $_POST['stations'];
-            }
+    public function sent()
+		{
+			$where='';
+      if ($_POST)
+			{
+      	if ($_POST['message_type'])
+				{
+        	$where['msg_type'] = $_POST['message_type'];
         }
-        $data['station_records'] = $this->station_model->get_all();
-        $data['results'] = $this->msgs->get_sent_msgs($this->user_id, $where);
-        if (isAjax()) {
-            $data['is_ajax'] = true;
-            echo $this->load->view('messages/sent', $data, true);
-            exit;
-        } else {
-            $data['is_ajax'] = false;
-            $this->load->view('messages/sent', $data);
+        if ($_POST['stations'])
+				{
+          $where['receiver_id'] = $_POST['stations'];
         }
+      }
+      $data['station_records'] = $this->station_model->get_all();
+      $data['results'] = $this->msgs->get_sent_msgs($this->user_id, $where);
+      if (isAjax())
+			{
+      	$data['is_ajax'] = true;
+        echo $this->load->view('messages/sent', $data, true);
+        exit;
+      }
+			else
+			{
+      	$data['is_ajax'] = false;
+        $this->load->view('messages/sent', $data);
+      }
     }
     /**
      * Get the message type and load the respective view. Receive an ajax call
@@ -91,16 +105,18 @@ class Messages extends MY_Controller {
      * @return html view for message type
      *  
      */
-    public function get_message_type() {
-        if (isAjax()) {
-            $type = $this->input->post('type');
-            $messagesType = $this->config->item('messages_type');
-            $messageType = '_' . str_replace(' ', '_', strtolower($messagesType[$type]));
-            $data['is_ajax'] = true;
-            echo $this->load->view('messages/' . $messageType, $data, TRUE);
-            exit;
-        }
-        show_404();
+    public function get_message_type()
+		{
+    	if (isAjax())
+			{
+      	$type = $this->input->post('type');
+        $messagesType = $this->config->item('messages_type');
+        $messageType = '_' . str_replace(' ', '_', strtolower($messagesType[$type]));
+        $data['is_ajax'] = true;
+        echo $this->load->view('messages/' . $messageType, $data, TRUE);
+        exit;
+      }
+      show_404();
     }
     /**
      * Recieve the compose message parameteres. Store in database and send email

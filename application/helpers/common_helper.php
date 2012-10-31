@@ -12,6 +12,17 @@ function active_anchor($orignal_class, $orignal_method, $class = 'active') {
     }
     return '';
 }
+//get array of key should be route and values should be method
+function is_route_method($route_method)
+{
+	$CI = & get_instance();
+	foreach($route_method as $route=>$method)
+	{
+		if (in_array($CI->router->class,$route) && in_array($CI->router->method,$method))
+	 		return true;
+	}
+	return false;
+}
 
 function isAjax() {
     return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest");

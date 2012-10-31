@@ -31,8 +31,12 @@ class Settings extends MY_Controller {
     }
 
     /**
-     * List all the users 
-     *  
+     * List all the users.
+     * 
+     * It receives 2 post parameters with ajax call for user filteration
+     * 
+     * @param integer $station_id
+     * @param integer $role_id 
      */
     public function users() {
         $data['current_role'] = $currentRoleID = $this->session->userdata['DX_role_id'];
@@ -41,7 +45,7 @@ class Settings extends MY_Controller {
         $params = null;
         if (isAjax()) {
             $data['is_ajax'] = true;
-//            $params = array('station_id' => $this->input->post('station_id'), 'role_id' => $this->input->post('role_id'));
+            $params = array('station_id' => $this->input->post('station_id'), 'role_id' => $this->input->post('role_id'));
         }
 
         $data['users'] = $this->users->get_users($currentRoleID, $params)->result();
@@ -208,7 +212,8 @@ class Settings extends MY_Controller {
         if ($currentRoleID == 1 || $currentRoleID == 2 || $currentRoleID == 3) {
             $currentUserID = $this->session->userdata['DX_user_id'];
             if ($currentUserID != $id) {
-                $delete_user = $this->users->delete_user($id);
+                $this->user_profile->delete_profile($id);
+                $this->users->delete_user($id);
                 $this->session->set_userdata('deleted', 'Record is Successfully Deleted');
             } else {
                 $this->session->set_userdata('deleted', 'You cannot delete currently active user.');

@@ -109,4 +109,32 @@ class Email_Template_Model extends CI_Model {
 			$this->db->insert($this->_email_queue_table,$data);
 			return $this->db->insert_id();
 		}
+		/**
+     * update Email Queue By Id
+     * 
+     * @return bool
+     */
+		function update_email_queue_by_id($id,$data)
+		{
+			$this->db->where("id",$id);
+			$this->db->update($this->_email_queue_table,$data);
+			return $this->db->affected_rows() > 0;
+		}
+		/*
+		*
+		*Get Email from queue by id
+		*
+		*/
+		function get_email_queue_by_id($id)
+		{
+			$this->db->select("*");
+			$this->db->from($this->_email_queue_table);
+			$this->db->where("id",$id);
+			$res=$this->db->get();
+			if(isset($res) && !empty($res))
+			{
+				return $res->row();
+			}
+			return false;
+		}
 }

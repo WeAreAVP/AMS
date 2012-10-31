@@ -98,7 +98,7 @@ class Settings extends MY_Controller {
             $val->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
             $val->set_rules('phone_no', 'Phone #', 'trim|xss_clean');
             $val->set_rules('role', 'Role', 'trim|xss_clean|required');
-            $val->set_rules('station', 'Station', 'trim|xss_clean|required');
+            $val->set_rules('station', 'Station', 'trim|xss_clean');
 
             if ($this->input->post()) {
                 if ($val->run()) {
@@ -106,8 +106,11 @@ class Settings extends MY_Controller {
                     $record = array('email' => $val->set_value('email'),
                         'password' => crypt($this->dx_auth->_encode($val->set_value('password'))),
                         'role_id' => $val->set_value('role'),
-                        'station_id' => $val->set_value('station'),
                     );
+                    if ($val->set_value('role') == 3 || $val->set_value('role') == 4)
+                        $record['station_id'] = $val->set_value('station');
+                    else
+                        $record['station_id'] = NULL;
                     $profile_data = array('first_name' => $val->set_value('first_name'),
                         'last_name' => $val->set_value('last_name'),
                         'phone_no' => $val->set_value('phone_no'),
@@ -156,15 +159,18 @@ class Settings extends MY_Controller {
             $val->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
             $val->set_rules('phone_no', 'Phone #', 'trim|xss_clean');
             $val->set_rules('role', 'Role', 'trim|xss_clean|required');
-            $val->set_rules('station', 'Station', 'trim|xss_clean|required');
+            $val->set_rules('station', 'Station', 'trim|xss_clean');
 
             if ($this->input->post()) {
                 if ($val->run()) {
 
                     $record = array('email' => $val->set_value('email'),
                         'role_id' => $val->set_value('role'),
-                        'station_id' => $val->set_value('station'),
                     );
+                    if ($val->set_value('role') == 3 || $val->set_value('role') == 4)
+                        $record['station_id'] = $val->set_value('station');
+                    else
+                        $record['station_id'] = NULL;
                     if ($val->set_value('password') != '')
                         $record['password'] = crypt($this->dx_auth->_encode($val->set_value('password')));
 

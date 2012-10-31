@@ -263,6 +263,7 @@ if (!$is_ajax) {
                     cache: false,
                     success: function (result) {
                         if(result.success==true){
+                            console.log(result.records);
                             var station_name='';
                             var compare_start_date=0;
                             var compare_end_date=0;

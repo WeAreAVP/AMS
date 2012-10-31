@@ -30,7 +30,7 @@ if (!$is_ajax) {
                 <b><h4>Filter Stations</h4></b>
                 <input type="hidden" name="search_words" id="search_words"/>
 
-                <input type="hidden" name="search_words" id="search_words"/>
+
 
                 <div>
                     <?php echo form_label('Keyword(s):', $search['id']); ?></b>
@@ -53,6 +53,7 @@ if (!$is_ajax) {
                 <div>
                     <?php echo form_dropdown($agreed['id'], array('' => 'Select', '1' => 'Yes', '0' => 'No'), array(), $agreed['function'] . 'id="' . $agreed['id'] . '"'); ?>
                 </div>
+                <div class="filter-fileds"><a class="btn" onclick="resetStationFilter();">Reset</a></div>
 
             </div>
 
@@ -61,121 +62,55 @@ if (!$is_ajax) {
         <?php echo form_close(); ?>
         <div  class="span9">
             <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
-            <div class="dropdown" style="margin-bottom: 5px;">
-                <a class="dropdown-toggle btn" id="drop4" role="button" data-toggle="dropdown" href="#">Freeze Columns <b class="caret"></b></a>
-                <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-                    <li><a tabindex="-1" href="javascript://" onclick="frozenColumn(0);">No Frozen Column</a></li>
-                    <li class="divider"></li>
-                    <li><a tabindex="-1" href="javascript://" onclick="frozenColumn(1);">Freeze 1 column</a></li>
-                    <li><a tabindex="-1" href="javascript://" onclick="frozenColumn(2);">Freeze 2 columns</a></li>
-
-                    <li><a tabindex="-1" href="javascript://" onclick="frozenColumn(3);">Freeze 3 columns</a></li>
-                    <li><a tabindex="-1" href="javascript://" onclick="frozenColumn(4);">Freeze 4 columns</a></li>
-                </ul>
+            <div class="row" style="margin:5px 0px;">
+                <a href="javascript://" class="btn btn-large" onclick="editStations();">Batch Edit</a>
             </div>
 
-            <div style="overflow: hidden;width: 880px;"  id="append_record">
-            <?php }
-            ?>
-            <table class="tablesorter table-station table-bordered" id="station_table" style="margin-top:0px;margin-left: 1px;">
+
+
+            <table class="tablesorter table table-bordered" id="station_table">
                 <thead>
                     <tr>
                         <td><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
                         <th>CPB ID</th>
                         <th>Station Name</th>
-                        <th>Contact Name</th>
-                        <th>Contact Title</th>
-                        <th>Type</th>
-                        <th>Primary Address </th>
-                        <th>Secondary Address</th>
-                        <th>City</th>
-                        <th>State</th>
-                        <th>Zip</th>
-                        <th>Contact Phone</th>
-                        <th>Contact Fax</th>
-                        <th>Contact Email</th>
-                        <th>Allocated Hours</th>
-                        <th>Allocated Buffer</th>
                         <th>Total Allocated Hours</th>
                         <th>Certified</th>
                         <th>Agreed</th>
                         <th>DSD</th>
-                        <th>DED</th>
+
                     </tr>
                 </thead>
-                <tbody>
-
-                    <?php
-                    if (count($stations) > 0) {
-                        foreach ($stations as $data) {
-                            ?>
-                            <tr>
-                                <td><input style='margin-left:18px;margin-right: 4px;' type='checkbox' name='station[]' value='<?php echo $data->id; ?>'  class='checkboxes'/></td>
-                                <td><?php echo $data->cpb_id; ?></td>
-                                <td><?php echo $data->station_name; ?></td>
-                                <td><?php echo $data->contact_name; ?></td>
-                                <td><?php echo $data->contact_title; ?></td>
-
-                                <td><?php echo $data->my_type; ?></td>
-                                <td><?php echo $data->address_primary; ?></td>
-                                <td><?php echo $data->address_secondary; ?></td>
-                                <td><?php echo $data->city; ?></td>
-                                <td><?php echo $data->state; ?></td>
-                                <td><?php echo $data->zip; ?></td>
-                                <td><?php echo $data->contact_phone; ?></td>
-                                <td><?php echo $data->contact_fax; ?></td>
-                                <td><?php echo $data->contact_email; ?></td>
-                                <td><?php echo $data->allocated_hours; ?></td>
-                                <td><?php echo $data->allocated_buffer; ?></td>
-                                <td><?php echo $data->total_allocated; ?></td>
-                                <td><?php echo ($data->is_certified) ? 'Yes' : 'No'; ?>
-                                <td><?php echo ($data->is_agreed) ? 'Yes' : 'No'; ?>
-                                <td id="start_date_<?php echo $data->id; ?>">
-                                    <?php if ($data->start_date == 0) {
-                                        ?>
-                                        No DSD
-                                        <?php
-                                    } else {
-                                        ?>
-                                        <?php echo date('Y-m-d', $data->start_date); ?>
-                                        <?php
-                                    }
-                                    ?>
-
-
-                                </td>
-                                <td id="end_date_<?php echo $data->id; ?>">
-                                    <?php if ($data->end_date == 0) {
-                                        ?>
-                                        No DED
-                                        <?php
-                                    } else {
-                                        ?>
-                                        <?php echo date('Y-m-d', $data->end_date); ?>
-                                        <?php
-                                    }
-                                    ?>
-
-
-                                </td>
-                            </tr>
-                            <?php
-                        }
-                    } else {
+                <tbody id="append_record">
+                <?php }
+                ?>
+                <?php
+                if (count($stations) > 0) {
+                    foreach ($stations as $data) {
                         ?>
-                        <tr><td colspan="11" style="text-align: center;"><b>No Station Found.</b></td></tr>
-                    <?php } ?>
-
+                        <tr>
+                            <td><input style='margin-left:18px;margin-right: 4px;' type='checkbox' name='station[]' value='<?php echo $data->id; ?>'  class='checkboxes'/></td>
+                            <td><?php echo $data->cpb_id; ?></td>
+                            <td><?php echo $data->station_name; ?></td>
+                            <td><?php echo $data->total_allocated; ?></td>
+                            <td><?php echo ($data->is_certified) ? 'Yes' : 'No'; ?>
+                            <td><?php echo ($data->is_agreed) ? 'Yes' : 'No'; ?>
+                            <td id="start_date_<?php echo $data->id; ?>">
+                                <?php echo ($data->start_date == 0) ? 'No DSD' : date('Y-m-d', $data->start_date); ?>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <tr><td colspan="8" style="text-align: center;"><b>No Station Found.</b></td></tr>
+                <?php } ?>
+                <?php if (!$is_ajax) { ?>
                 </tbody>
             </table>
-            <?php if (!$is_ajax) { ?>
-            </div>
-            <div class="row" style="margin:5px 0px;">
 
-                <a href="javascript://" class="btn btn-large" onclick="editStations();">Edit</a>
-                <a href="javascript://" class="btn btn-large">Messages</a>
-                <a href="javascript://" class="btn btn-large">Upload Stations</a>
-            </div>
+
+
         </div>
 
 
@@ -213,7 +148,6 @@ if (!$is_ajax) {
     </div>
     <script type="text/javascript">
         var stationName=null;
-        var freezeColumn=0;                                                  
         function validateFields(){
             if($('#start_date').val()=='' || $('#start_date').val()=='--' ||  $('#start_date').val()=='0000-00-00'){
                 $('#start_date_message').show();
@@ -223,7 +157,7 @@ if (!$is_ajax) {
             }
             if($('#end_date').val()=='' || $('#end_date').val()=='--'  ||  $('#end_date').val()=='0000-00-00'){
                 $('#end_date_message').show();
-                                                                            
+                                                                                                        
             }
             else{
                 $('#end_date_message').hide();
@@ -232,7 +166,7 @@ if (!$is_ajax) {
                 $('#showPopUp').trigger('click');
                 $('#showConfirmPopUp').trigger('click');
             }
-                                                                                 
+                                                                                                             
         }
         function checkAll() {
             var boxes = document.getElementsByTagName('input');
@@ -243,7 +177,7 @@ if (!$is_ajax) {
             }
             return true;
         }
-                                                                             
+                                                                                                         
         var search_words='';
         function makeToken(event)
         {
@@ -270,7 +204,7 @@ if (!$is_ajax) {
                 $('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'</span><span class="btn-close-img" onclick="remove_keword(\''+search_id+'\')"></span></div>');
             }
             $('#search_keyword').val('');
-                                                                        			
+                                                                                                    			
             $(".search_keys").each(function() {
                 if(token==0)
                     my_search_words=$(this).text();
@@ -309,12 +243,7 @@ if (!$is_ajax) {
                 success: function (result) { 
                     $('#append_record').html(result);
                     $("#station_table").trigger("update");  
-                    $('#station_table').freezeTableColumns({
-                        width:       850,
-                        height:      600,
-                        numFrozen:   freezeColumn,
-                        clearWidths: true
-                    });
+                    
                 }
             });
         }
@@ -341,9 +270,9 @@ if (!$is_ajax) {
                                 if(cnt==0){
                                     start_date=result.records[cnt].start_date;
                                     end_date=result.records[cnt].end_date;
-                                                                                                    
+                                                                                                                                
                                 }
-                                                                                                
+                                                                                                                            
                                 if(cnt>=result.records.length-1){
                                     if(start_date==result.records[cnt].start_date && compare_start_date==0){
                                         compare_start_date=0;
@@ -358,7 +287,7 @@ if (!$is_ajax) {
                                         compare_end_date=1; 
                                     }
                                 }
-                                                                                                
+                                                                                                                            
                                 if(cnt==result.records.length-1)
                                     station_name+=result.records[cnt].station_name;
                                 else
@@ -383,17 +312,17 @@ if (!$is_ajax) {
                         else{
                             console.log(result);
                         }
-                                                                                        
+                                                                                                                    
                     }
                 });
             }
-                                                                                
+                                                                                                            
         }
         function UpdateStations(){
             ids=$('#station_id').val();
             start_date=$('#start_date').val();
             end_date=$('#end_date').val();
-                                                                                
+                                                                                                            
             $.ajax({
                 type: 'POST', 
                 url: site_url+'stations/update_station_date',
@@ -407,17 +336,24 @@ if (!$is_ajax) {
                         ids=ids.split(',');
                         for(cnt in ids){
                             $('#start_date_'+ids[cnt]).html(start_date);
-                            $('#end_date_'+ids[cnt]).html(end_date);
+                           
                         }
                     }
-                                                                                        
+                                                                                                                    
                 }
             });
         }
         function frozenColumn(count){
             freezeColumn=count;
             search_station();
-                    
+                                                
+        }
+        function resetStationFilter(){
+            $('#search_words').val('');
+            $('#search_keyword').val('');
+            $('#certified').prop('selectedIndex', 0);
+            $('#agreed').prop('selectedIndex', 0);
+            $('#tokens').html('');
         }
     </script>
 

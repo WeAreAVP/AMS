@@ -75,7 +75,7 @@ class Email_Template_Model extends CI_Model {
 			return false;
 		}
 		/**
-     * Get list of all the stations
+     * Get list of all the Email Templates 
      * 
      * @return object
      */
@@ -137,4 +137,19 @@ class Email_Template_Model extends CI_Model {
 			}
 			return false;
 		}
+		/**
+     * Get Pending Email from queue
+     * 
+     * @return object
+     */
+		function get_all_pending_email()
+		{
+ 	  	$res = $this->db->query("SELECT * FROM ".$this->_email_queue_table." WHERE is_sent=1");
+			if($res)
+			{
+			 	return $res->result();
+			}
+			return false;
+    }
+		
 }

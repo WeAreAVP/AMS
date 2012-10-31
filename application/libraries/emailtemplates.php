@@ -81,7 +81,7 @@ class Emailtemplates
 					{
 						$now_queue_data .='<img src="'.site_url('emailtracking/'.$last_inserted_id.'png').'" height="1" width="1" />';
 					}
-					$this->_email($queue_data['email_to'],$queue_data['email_from'],$queue_data['email_subject'],$queue_data['email_body']);
+					send_email($queue_data['email_to'],$queue_data['email_from'],$queue_data['email_subject'],$queue_data['email_body'],$queue_data['email_reply_to']);
 					$this->CI->email_templates->update_email_template($last_inserted_id,array("is_sent"=>2,"sent_at"=>date('Y-m-d H:i:s')));
 				}
 				return $last_inserted_id;
@@ -90,31 +90,6 @@ class Emailtemplates
 		else
 		{
 			log_message('error', 'Email template '.$template_sys_id.' not found.' );
-			return false;
-		}
-	}
-	/* Sent Email if $this->sent_now is set true*/
-	function _email($to, $from, $subject, $message)
-	{
-		$this->CI->load->library('Email');
-		$config['wordwrap'] = TRUE;
-		$config['validate'] = TRUE;
-		$config['mailtype'] = 'html';
-		$config['charset'] = 'utf-8';
-		$config['protocol'] = 'sendmail';
-		$email = $this->CI->email;
-		$email->clear();
-		$email->initialize($config);
-		$email->from($from);
-		$email->to($to);
-		$email->subject($subject);
-		$email->message($message);
-		if($email->send())
-		{
-			return true;
-		}
-		else
-		{
 			return false;
 		}
 	}

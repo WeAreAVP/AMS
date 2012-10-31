@@ -18,11 +18,18 @@ class Crons extends CI_Controller
     function __construct()
 		{
   	  parent::__construct();
-	    $this->load->model('station_model');
-     	$this->ci->load->model('email_template_model','emailtmp');
+	   	$this->ci->load->model('email_template_model','email_template');
     }
 		function processemailqueues()
 		{
-			$this->emailtmp->get_pending_emails();
+			$email_queue=$this->email_template->get_all_pending_email();
+			foreach($email_queue as $queue)
+			{	
+				$now_queue_body = $queue->email_body. '<img src="'.site_url('emailtracking/'.$last_inserted_id.'png').'" height="1" width="1" />';
+				if(send_email($queue->email_to,$queue->email_from,$queue->email_subject,$queue->email_body))
+				{
+					$this->email_template->update_email_queue_by_id($queue->id,array("is_sent"=>2,"sent_at"=>date('Y-m-d H:i:s')));
+				}
+			}
 		}
 }

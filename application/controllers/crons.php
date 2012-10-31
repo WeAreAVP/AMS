@@ -18,7 +18,7 @@ class Crons extends CI_Controller
     function __construct()
 		{
   	  parent::__construct();
-	   	$this->ci->load->model('email_template_model','email_template');
+	   	$this->load->model('email_template_model','email_template');
     }
 		function processemailqueues()
 		{

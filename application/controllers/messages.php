@@ -144,7 +144,7 @@ class Messages extends MY_Controller {
         //$this->email->send();
 				$email_queue_id=$this->emailtemplates->queue_email('General',$station_email,array("body"=>$html));
         $data = array('sender_id' => $from, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => $extra, 'created_at' => date('Y-m-d h:m:i'));
-				if(isset($last_inserted_id) && $last_inserted_id)
+				if(isset($email_queue_id) && $email_queue_id)
 				{
 					$data['email_queue_id']=$email_queue_id;
 				}

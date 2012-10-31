@@ -27,11 +27,11 @@
                     <td><?php echo $station_detail->allocated_hours; ?></td>
                     <td><?php echo $station_detail->allocated_buffer; ?></td>
                     <td><?php echo $station_detail->total_allocated; ?></td>
-                    <td><?php echo ($station_detail->is_certified) ? 'Yes' : 'No'; ?></td>
-                    <td><?php echo ($station_detail->is_agreed) ? 'Yes' : 'No'; ?></td>
-                    <td><?php echo ($station_detail->start_date) ? $station_detail->start_date : 'NO DSD'; ?></td>
-                    <td><?php echo ($station_detail->end_date) ? $station_detail->end_date : 'NO DED'; ?></td>
-                    <td><i class="icon-cog"></i></td>
+                    <td id="certified_"><?php echo ($station_detail->is_certified) ? 'Yes' : 'No'; ?></td>
+                    <td id="agreed_"><?php echo ($station_detail->is_agreed) ? 'Yes' : 'No'; ?></td>
+                    <td id="dsd_"><?php echo ($station_detail->start_date) ? $station_detail->start_date : 'NO DSD'; ?></td>
+                    <td id="ded_"><?php echo ($station_detail->end_date) ? $station_detail->end_date : 'NO DED'; ?></td>
+                    <td><a href="#myStationModal" data-toggle="modal" onclick="editSingleStation('<?php echo $station_detail->start_date; ?>','<?php echo $station_detail->end_date; ?>','<?php echo $station_detail->is_certified; ?>','<?php echo $station_detail->is_agreed; ?>');"><i class="icon-cog"></i></a></td>
                 </tr>
             </tbody>
         </table>
@@ -59,7 +59,7 @@
             </tbody>
         </table>
     </div>
-
+    <?php $this->load->view('stations/_edit_station'); ?>
 
 
 

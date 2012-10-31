@@ -360,8 +360,17 @@ if (!$is_ajax) {
         ids=$('#station_id').val();
         start_date=$('#start_date').val();
         end_date=$('#end_date').val();
-        console.log($('#station_agreed').val());
-        console.log($('#station_certified').val());
+        if($('#station_agreed').attr('checked')==undefined)
+            agreed=0;
+        else
+            agreed=1;
+        if($('#station_certified').attr('checked')==undefined)
+            certified=0;
+        else
+            certified=1;
+        
+        console.log(certified);
+        console.log(agreed);
         return;                                                                                                         
         $.ajax({
             type: 'POST', 

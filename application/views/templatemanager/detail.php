@@ -8,7 +8,7 @@
       <?php if($data->id==$template_id){?>
       <div style="padding: 8px;color: white;background: none repeat scroll 0% 0% rgb(0, 152, 214);" > <?php echo $data->system_id; ?></div>
       <?php }else{?>
-      <div style="padding: 8px;" ><a href="<?php echo site_url('templatemanager/details/'.$data->id)?>"><?php echo $data->system_id; ?></a></div>
+      <div style="padding: 8px;" ><a href="<?php echo site_url('templatemanager/details/'.$data->id)?>"><?php echo str_replace("_"," ",$data->system_id); ?></a></div>
       <?php }}?>
     </div>
   </div>

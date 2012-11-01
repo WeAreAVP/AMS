@@ -70,6 +70,8 @@
 
                 <?php }
                 ?>
+            <?php } else { ?>
+            <div style="text-align: center;">No Station Contact Available.</div>
             <?php } ?>
         </div>
         <h2>Tracking Information</h2>
@@ -94,7 +96,8 @@
                             <td><?php echo $value->ship_via; ?></td>
                             <td><?php echo $value->tracking_no; ?></td>
                             <td><?php echo $value->no_box_shipped; ?></td>
-                            <td><a href="#trackingModel" data-toggle="modal" onclick="manageTracking('get','edit','<?php echo $value->id; ?>');"><i class="icon-cog"></i></a><i class="icon-remove-sign"></i></td>
+<!--                            <td><a href="#trackingModel" data-toggle="modal" onclick="manageTracking('get','edit','<?php echo $value->id; ?>');"><i class="icon-cog"></i></a><i class="icon-remove-sign"></i></td>-->
+                            <td><a href="#trackingModel" ><i class="icon-cog"></i></a><i class="icon-remove-sign"></i></td>
                         </tr>
 
 

@@ -41,8 +41,7 @@ class Settings extends MY_Controller {
      * @param integer $role_id 
      */
     public function users() {
-        echo $this->user_id;exit;
-        $data['current_role'] = $currentRoleID = $this->session->userdata['DX_role_id'];
+        $data['current_role'] = $currentRoleID = $this->role_id;
         $data['is_ajax'] = false;
         $roles = $this->roles->get_roles_list($currentRoleID)->result();
         $params = null;
@@ -93,7 +92,7 @@ class Settings extends MY_Controller {
     public function add_user() {
         $this->layout = 'default.php';
         $val = $this->form_validation;
-        $currentRoleID = $this->session->userdata['DX_role_id'];
+        $currentRoleID = $this->role_id;
         if ($currentRoleID == 1 || $currentRoleID == 2 || $currentRoleID == 3) {
             $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check');
             $val->set_rules('password', 'Password', 'required');
@@ -160,7 +159,7 @@ class Settings extends MY_Controller {
     public function edit_user() {
         $this->layout = 'default.php';
         $user_id = $this->uri->segment(3);
-        $currentRoleID = $this->session->userdata['DX_role_id'];
+        $currentRoleID = $this->role_id;
         if ($currentRoleID == 1 || $currentRoleID == 2 || $currentRoleID == 3) {
             $val = $this->form_validation;
 
@@ -231,9 +230,9 @@ class Settings extends MY_Controller {
      */
     public function delete_user() {
         $id = $this->uri->segment(3);
-        $currentRoleID = $this->session->userdata['DX_role_id'];
+        $currentRoleID = $this->role_id;
         if ($currentRoleID == 1 || $currentRoleID == 2 || $currentRoleID == 3) {
-            $currentUserID = $this->session->userdata['DX_user_id'];
+            $currentUserID = $this->user_id;;
             if ($currentUserID != $id) {
                 $this->user_profile->delete_profile($id);
                 $this->users->delete_user($id);
@@ -253,7 +252,7 @@ class Settings extends MY_Controller {
      *  
      */
     public function edit_profile() {
-        $user_id = $this->session->userdata['DX_user_id'];
+        $user_id = $this->user_id;;
         $val = $this->form_validation;
 
         $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check[' . $user_id . ']');

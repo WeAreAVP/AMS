@@ -20,7 +20,8 @@ class Stations extends MY_Controller {
         $this->layout = 'main_layout.php';
         $this->load->model('station_model');
         $this->load->model('sphinx_model', 'sphinx');
-         $this->load->model('dx_auth/users', 'users');
+        $this->load->model('dx_auth/users', 'users');
+        $this->load->model('tracking_model', 'tracking');
     }
 
     /**
@@ -68,7 +69,9 @@ class Stations extends MY_Controller {
     public function detail() {
         $station_id = $this->uri->segment(3);
         $data['station_detail'] = $this->station_model->get_station_by_id($station_id);
-        $data['station_contacts']=$this->users->get_station_users($station_id);
+        $data['station_contacts'] = $this->users->get_station_users($station_id);
+        $data['station_tracking'] = $this->tracking->get_all($station_id);
+
         $this->load->view('stations/detail', $data);
     }
 
@@ -90,9 +93,9 @@ class Stations extends MY_Controller {
 
             $station = array();
             foreach ($station_ids as $value) {
-                $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date,'is_certified'=>$is_certified,'is_agreed'=>$is_agreed));
+                $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date, 'is_certified' => $is_certified, 'is_agreed' => $is_agreed));
 
-                $this->sphinx->update_indexes('stations', array('start_date', 'end_date','is_certified','is_agreed'), array($value => array(strtotime($start_date), strtotime($end_date),$is_certified,$is_agreed)));
+                $this->sphinx->update_indexes('stations', array('start_date', 'end_date', 'is_certified', 'is_agreed'), array($value => array(strtotime($start_date), strtotime($end_date), $is_certified, $is_agreed)));
             }
 
 //            print exec("/usr/bin/indexer --all --rotate");
@@ -116,7 +119,7 @@ class Stations extends MY_Controller {
             $stations_id = $this->input->post('id');
             $records = $this->station_model->get_stations_by_id($stations_id);
             foreach ($records as $value) {
-                $backup_record = array('station_id' => $value->id, 'start_date' => $value->start_date, 'end_date' => $value->end_date,'is_certified'=>$value->is_certified,'is_agreed'=>$value->is_agreed);
+                $backup_record = array('station_id' => $value->id, 'start_date' => $value->start_date, 'end_date' => $value->end_date, 'is_certified' => $value->is_certified, 'is_agreed' => $value->is_agreed);
                 $this->station_model->insert_station_backup($backup_record);
             }
             echo json_encode(array('success' => true, 'records' => $records));

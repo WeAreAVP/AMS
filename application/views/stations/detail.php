@@ -33,7 +33,7 @@
                     <td id="ded_"><?php echo ($station_detail->end_date) ? $station_detail->end_date : 'NO DED'; ?></td>
                     <td><a href="#myStationModal" data-toggle="modal" onclick="editSingleStation('<?php echo $station_detail->start_date; ?>','<?php echo $station_detail->end_date; ?>','<?php echo $station_detail->is_certified; ?>','<?php echo $station_detail->is_agreed; ?>');"><i class="icon-cog"></i></a></td>
                 </tr>
-            </tbody>
+            </tbody> 
         </table>
         <h2>Station Address</h2>
         <div class="row">
@@ -73,39 +73,99 @@
             <?php } ?>
         </div>
         <h2>Tracking Information</h2>
-    <!--        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Ship Date</th>
-                    <th>To</th>
-                    <th>Shipped Via</th>
-                    <th>Tracking Number</th>
-                    <th># Boxes Shipped</th>
-                    <th style="width: 35px;"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1/3/12</td>
-                    <td>Station</td>
-                    <td>FedEx</td>
-                    <td>67GHTY88965</td>
-                    <td>5</td>
-                    <td><i class="icon-cog"></i><i class="icon-remove-sign"></i></td>
-                </tr>
-            </tbody>
-        </table>-->
+        <?php if (count($station_tracking) > 0) { ?>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Ship Date</th>
+                        <th>To</th>
+                        <th>Shipped Via</th>
+                        <th>Tracking Number</th>
+                        <th># Boxes Shipped</th>
+                        <th style="width: 35px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <?php foreach ($station_tracking as $value) { ?>
+                        <tr>
+                            <td><?php echo $value->ship_date; ?></td>
+                            <td><?php echo $value->ship_to; ?></td>
+                            <td><?php echo $value->ship_via; ?></td>
+                            <td><?php echo $value->tracking_no; ?></td>
+                            <td><?php echo $value->no_box_shipped; ?></td>
+                            <td><a href="#trackingModel" data-toggle="modal" onclick="manageTracking('get','edit','<?php echo $value->id; ?>');"><i class="icon-cog"></i></a><i class="icon-remove-sign"></i></td>
+                        </tr>
+
+
+                        </div>
+                    <?php } ?>
+                </tbody>
+            </table>
+
+
+        <?php } else { ?>
+            <div style="text-align: center;">No Tracking Information available for station <?php echo $station_detail->station_name; ?>.</div>
+        <?php } ?>
+        <div><a href="#trackingModel" class="btn btn-large" data-toggle="modal" onclick="manageTracking('get','add','<?php echo $station_detail->id; ?>');">Add Shipment</a></div>
+        <?php $this->load->view('stations/_edit_station'); ?>
+
+
+
+
+
+
+    <?php } else { ?>
+        <h3>The requested sation not found</h3>
+        <a href="<?php echo site_url('stations/index'); ?>">Back to Stations</a>
+
+    <?php } ?>
+
+
+    <div class="modal hide" id="trackingModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 680px;" >
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="TrackingLabel">Add User</h3>
+        </div>
+        <div class="modal-body"  id="manage_tracking" style="max-height: 460px !important">
+
+        </div>
+
 
     </div>
-    <?php $this->load->view('stations/_edit_station'); ?>
-
-
-
-
-
-
-<?php } else { ?>
-    <h3>The requested sation not found</h3>
-    <a href="<?php echo site_url('stations/index'); ?>">Back to Stations</a>
-
-<?php } ?>
+    <script type="text/javascript">
+        function manageTracking(type,action,id){
+            data=null;
+            method='GET';
+        
+            if(action=='add'){
+                $('#TrackingLabel').html('Add Shipment');
+            }
+            else{
+                $('#TrackingLabel').html('Edit Shipment');
+            }
+            if(type=='post'){
+                if(action=='add')
+                    data=$('#tracking_new_form').serialize();
+                else
+                    data=$('#tracking_edit_form').serialize();
+                method='POST';
+            }
+            $.ajax({
+                type: method, 
+                url: site_url+'tracking/'+action+'/'+id,
+                data:data,
+                dataType: 'html',
+                success: function (result) { 
+                    if(result=='done'){
+                        window.location.reload();
+                    }
+                    else{
+                        $('#manage_tracking').html(result); 
+                 
+                    }
+                                        
+                }
+            });
+        }
+    </script>

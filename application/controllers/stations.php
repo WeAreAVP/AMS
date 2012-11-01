@@ -47,7 +47,7 @@ class Stations extends MY_Controller {
             $param['agreed'] = $this->input->post('agreed');
             $param['start_date'] = $this->input->post('start_date');
             echo $param['start_date'];
-            echo strtotime($param['start_ate']);
+            echo strtotime($param['start_date']);
             $param['search_kewords'] = str_replace(",", " & ", trim($this->input->post('search_words')));
             $records = $this->sphinx->search_stations($param);
             $data['stations'] = $records['records'];

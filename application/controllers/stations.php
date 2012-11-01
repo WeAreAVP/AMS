@@ -40,9 +40,14 @@ class Stations extends MY_Controller {
         $val->set_rules('search_keyword', 'Search Keyword', 'trim|xss_clean');
         $val->set_rules('certified', 'Certified', 'trim|xss_clean');
         $val->set_rules('agreed', 'Agreed', 'trim|xss_clean');
+        $val->set_rules('start_date_range', 'Start Date', 'trim|xss_clean');
+        $val->set_rules('end_date_range', 'End Date', 'trim|xss_clean');
         if ($this->input->post()) {
             $param['certified'] = $this->input->post('certified');
             $param['agreed'] = $this->input->post('agreed');
+            $param['start_date'] = $this->input->post('start_date');
+            echo $param['start_date'];
+            echo strtotime($param['start_ate']);
             $param['search_kewords'] = str_replace(",", " & ", trim($this->input->post('search_words')));
             $records = $this->sphinx->search_stations($param);
             $data['stations'] = $records['records'];

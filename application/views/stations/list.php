@@ -19,6 +19,18 @@ if (!$is_ajax) {
         'value' => set_value('agreed'),
         'function' => 'onchange="search_station();"',
     );
+    $start_date_range = array(
+        'name' => 'start_date_range',
+        'id' => 'start_date_range',
+        'value' => set_value('start_date_range'),
+        'function' => 'onchange="search_station();"',
+    );
+    $end_date_range = array(
+        'name' => 'end_date_range',
+        'id' => 'end_date_range',
+        'value' => set_value('end_date_range'),
+        'function' => 'onchange="search_station();"',
+    );
 
     $attributes = array('id' => 'search_form', 'onsubmit' => "return false;", 'onkeypress' => "return event.keyCode != 13;");
 
@@ -52,6 +64,12 @@ if (!$is_ajax) {
                 </div>
                 <div>
                     <?php echo form_dropdown($agreed['id'], array('' => 'Select', '1' => 'Yes', '0' => 'No'), array(), $agreed['function'] . 'id="' . $agreed['id'] . '"'); ?>
+                </div>
+                <div>
+                    <?php echo form_label('Digitization Start Date Range', $start_date_range['id']); ?>
+                </div>
+                <div>
+                    <?php echo form_input($start_date_range); ?>
                 </div>
                 <div class="filter-fileds"><a class="btn" onclick="resetStationFilter();">Reset</a></div>
 
@@ -189,10 +207,11 @@ if (!$is_ajax) {
             search_words=$('#search_words').val();
             certified=$('#certified').val();
             agreed=$('#agreed').val();
+            start_date=$('#start_date_range').val();
             $.ajax({
                 type: 'POST', 
                 url: '<?php echo site_url('stations/index') ?>',
-                data:{"search_words":search_words,certified:certified,agreed:agreed},
+                data:{"search_words":search_words,certified:certified,agreed:agreed,start_date:start_date},
                 success: function (result) { 
                     $('#append_record').html(result);
                     $("#station_table").trigger("update");  

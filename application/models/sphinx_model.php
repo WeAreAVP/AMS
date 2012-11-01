@@ -17,7 +17,8 @@ class Sphinx_Model extends CI_Model {
         $this->sphinxsearch->set_array_result(true);
         $this->sphinxsearch->set_match_mode($mode);
         $this->sphinxsearch->set_connect_timeout(120);
-        if ( $limit ) $this->sphinxsearch->set_limits ( (int) $offset, (int) $limit, ( $limit>1000 ) ? $limit : 1000 );
+        if ($limit)
+            $this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
         if (isset($params['certified']) && $params['certified'] != '')
             $this->sphinxsearch->set_filter("is_certified", array($params['certified']));
         if (isset($params['agreed']) && $params['agreed'] != '')
@@ -25,7 +26,7 @@ class Sphinx_Model extends CI_Model {
 
         $res = $this->sphinxsearch->query($params['search_kewords'], 'stations');
 
-        
+
         $execution_time = $res['time'];
         if ($res) {
             $total_record = $res['total_found'];
@@ -37,12 +38,14 @@ class Sphinx_Model extends CI_Model {
                 }
             }
         }
-        
+
         return array("total_count" => $total_record, "records" => $listings, "query_time" => $execution_time);
     }
-    function update_indexes($index,$attr,$values){
-        $this->sphinxsearch->update_attributes($index,$attr,$values);
+
+    function update_indexes($index, $attr, $values) {
+        $this->sphinxsearch->update_attributes($index, $attr, $values);
     }
+
 }
 
 ?>

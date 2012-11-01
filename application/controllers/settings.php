@@ -20,7 +20,6 @@ class Settings extends MY_Controller {
         $this->load->model('dx_auth/roles', 'roles');
         $this->load->model('station_model');
         $this->load->model('dx_auth/user_profile', 'user_profile');
-        
     }
 
     /**
@@ -29,7 +28,6 @@ class Settings extends MY_Controller {
      */
     public function index() {
         $this->users();
-        
     }
 
     /**
@@ -102,7 +100,7 @@ class Settings extends MY_Controller {
 //            $val->set_rules('title', 'Title', 'trim|xss_clean|required');
             $val->set_rules('fax', 'Fax', 'trim|xss_clean');
             $val->set_rules('address', 'Address', 'trim|xss_clean|required');
-            
+
             $val->set_rules('role', 'Role', 'trim|xss_clean|required');
             $val->set_rules('station', 'Station', 'trim|xss_clean');
 
@@ -124,7 +122,7 @@ class Settings extends MY_Controller {
                         'fax' => $val->set_value('fax'),
                         'address' => $val->set_value('address'),
                     );
-                    
+
                     $id = $this->users->create_user($record);
                     $profile_data['user_id'] = $id;
                     $this->user_profile->insert_profile($profile_data);
@@ -232,7 +230,8 @@ class Settings extends MY_Controller {
         $id = $this->uri->segment(3);
         $currentRoleID = $this->role_id;
         if ($currentRoleID == 1 || $currentRoleID == 2 || $currentRoleID == 3) {
-            $currentUserID = $this->user_id;;
+            $currentUserID = $this->user_id;
+            ;
             if ($currentUserID != $id) {
                 $this->user_profile->delete_profile($id);
                 $this->users->delete_user($id);
@@ -252,7 +251,8 @@ class Settings extends MY_Controller {
      *  
      */
     public function edit_profile() {
-        $user_id = $this->user_id;;
+        $user_id = $this->user_id;
+        ;
         $val = $this->form_validation;
 
         $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check[' . $user_id . ']');

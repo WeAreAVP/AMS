@@ -75,12 +75,12 @@
 
 
 
-    <div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+    <div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 680px;" >
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="userLabel">Add User</h3>
         </div>
-        <div class="modal-body"  id="manage_user" style="max-height: 550px !important;">
+        <div class="modal-body"  id="manage_user" style="max-height: 460px !important">
 
         </div>
 

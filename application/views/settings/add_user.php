@@ -57,52 +57,52 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'new_user');
     <?php echo form_open_multipart($this->uri->uri_string(), $attributes); ?>
     <table class="table no_border">
         <tr>
-            <td width="150"><?php echo form_label('Email:', $email['id']); ?></td>
+            <td class="_label"><?php echo form_label('Email:', $email['id']); ?></td>
             <td><?php echo form_input($email); ?><span style="color: red;"><?php echo form_error($email['name']); ?></span></td>
         </tr>
 
 
         <tr>
-            <td width="150"><?php echo form_label('Password:', $password['id']); ?></td>
+            <td class="_label"<?php echo form_label('Password:', $password['id']); ?></td>
             <td><?php echo form_password($password); ?><span style="color: red;"><?php echo form_error($password['name']); ?></span></td>
         </tr>
 
 
 
         <tr>
-            <td width="150"><?php echo form_label('First Name:', $first_name['id']); ?></td>
+            <td class="_label"><?php echo form_label('First Name:', $first_name['id']); ?></td>
             <td><?php echo form_input($first_name); ?><span style="color: red;"><?php echo form_error($first_name['name']); ?></span></td>
         </tr>
 
         <tr>
-            <td width="150"><?php echo form_label('Last Name:', $last_name['id']); ?></td>
+            <td class="_label"><?php echo form_label('Last Name:', $last_name['id']); ?></td>
             <td><?php echo form_input($last_name); ?><span style="color: red;"><?php echo form_error($last_name['name']); ?></span></td>
         </tr>
 
 
         <tr>
-            <td width="150"><?php echo form_label('Phone #:', $phone_no['id']); ?></td>
+            <td class="_label"><?php echo form_label('Phone #:', $phone_no['id']); ?></td>
             <td><?php echo form_input($phone_no); ?><span style="color: red;"><?php echo form_error($phone_no['name']); ?></span></td>
         </tr>
         <tr>
-            <td width="150"><?php echo form_label('Title:', $title['id']); ?></td>
+            <td class="_label"><?php echo form_label('Title:', $title['id']); ?></td>
             <td><?php echo form_input($title); ?><span style="color: red;"><?php echo form_error($title['name']); ?></span></td>
         </tr>
         <tr>
-            <td width="150"><?php echo form_label('Fax :', $fax['id']); ?></td>
+            <td class="_label"><?php echo form_label('Fax :', $fax['id']); ?></td>
             <td><?php echo form_input($fax); ?><span style="color: red;"><?php echo form_error($fax['name']); ?></span></td>
         </tr>
         <tr>
-            <td width="150"><?php echo form_label('Address:', $address['id']); ?></td>
+            <td class="_label"><?php echo form_label('Address:', $address['id']); ?></td>
             <td><?php echo form_input($address); ?><span style="color: red;"><?php echo form_error($address['name']); ?></span></td>
         </tr>
 
         <tr>
-            <td width="150"><?php echo form_label('Role:', $role['id']); ?></td>
+            <td class="_label"><?php echo form_label('Role:', $role['id']); ?></td>
             <td><?php echo form_dropdown($role['id'], $roles, array(), 'id="role" onchange="checkRole();"'); ?><span style="color: red;"><?php echo form_error($role['name']); ?></span></td>
         </tr>
         <tr style="display: none;" id="station_row">
-            <td width="150"><?php echo form_label('Station:', $station['id']); ?></td>
+            <td class="_label"><?php echo form_label('Station:', $station['id']); ?></td>
             <td><?php echo form_dropdown($station['id'], $stations_list); ?><span style="color: red;"><?php echo form_error($station['name']); ?></span></td>
         </tr>
 
@@ -110,7 +110,7 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'new_user');
         <tr>
 
             <td colspan="2" style="text-align: right;">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>&nbsp;<?php echo form_submit('save', 'Save', 'class="btn btn-primary" onclick="manageUser(\'post\',\'add_user\');" '); ?>
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>&nbsp;<?php echo form_submit('save', 'Save', 'class="btn btn-primary btn-custom" onclick="manageUser(\'post\',\'add_user\');" '); ?>
 
             </td>
         </tr>

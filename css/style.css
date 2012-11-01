@@ -101,19 +101,19 @@ html, body {
     display: none;
 }
 .message{
-color:#FFF !important;
-background:#1797D2 !important;
-margin: -5px 0 0 !important;
+    color:#FFF !important;
+    background:#1797D2 !important;
+    margin: -5px 0 0 !important;
 }
 .message-alert{
-background:#DD2226;
-float:right;
-margin:-14px -23px 0 0;
+    background:#DD2226;
+    float:right;
+    margin:-14px -23px 0 0;
 }
- .table-station {
-    
+.table-station {
+
     margin-bottom: 18px;
-/*    border-collapse: collapse;*/
+    /*    border-collapse: collapse;*/
 }
 
 .table-station th,
@@ -147,5 +147,21 @@ margin:-14px -23px 0 0;
 .filter-fileds{
     margin: 10px 0px;
 }
+#new_user input{
+    margin: 0 8px 0 0 !important;
+    float:left;
+}
+#edit_from input{
+    margin: 0 8px 0 0 !important;
+    float:left;
+}
+._label{
+    text-align: right !important;
+    width: 90px;
+}
+.btn-custom{
+    float: none !important;
+}
 
-           
+
+

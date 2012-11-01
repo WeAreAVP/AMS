@@ -367,7 +367,7 @@ $config['rewrite_short_tags'] = FALSE;
  */
 $config['proxy_ips'] = '';
 
-$config['messages_type'] = array(1 => "Digitization Start Date", 2 => "Materials Received", 3 => "Assets Ready to Ship Back", 4 => "Hard Drive Return Date", 5 => "Audio FTP Review");
+$config['messages_type'] = array(1 => "Digitization Start Date", 2 => "Materials Received Digitization Vendor", 3 => "Assets Ready to Ship Back", 4 => "Hard Drive Return Date", 5 => "Audio FTP Review");
 $config['ship_types'] = array(1 => "fedex", 2 => "truck", 3 => "UPS", 4 => "etc");
 $config['demo'] = true;
 /* End of file config.php */

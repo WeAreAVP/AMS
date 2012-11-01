@@ -22,7 +22,11 @@ class MY_Controller extends CI_Controller {
 			{
       	redirect('auth/login');
       }
-    	$this->load->model('messages_model', 'msgs');
+			$this->load->library('Form_validation');
+    	$this->load->helper('form');
+			$this->load->model('messages_model', 'msgs');
+      $this->load->model('station_model');
+      $this->load->model('dx_auth/users', 'users');
       $this->_assing_user_info();
     }
     function _assing_user_info()

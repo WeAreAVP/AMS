@@ -26,7 +26,6 @@
             <div class="control-group">
                 <label class="control-label" for="receiver_id">To:</label>
                 <div class="controls">
-                    <input type="hidden" name="sender_id" id="sender_id" value="<?php echo $this->session->userdata['DX_user_id']; ?>"/>
                     <select id="receiver_id" name="receiver_id">
                         <?php foreach ($station_records as $value) { ?>
                             <option value="<?php echo $value->id; ?>"><?php echo $value->station_name; ?></option>
@@ -40,7 +39,7 @@
             <div class="control-group">
                 <label class="control-label" for="msg_type">Message Type:</label>
                 <div class="controls">
-                    <select id="msg_type" onchange="typeForm();">
+                    <select id="msg_type" name="msg_type" onchange="typeForm();">
                         <option value="">Select</option>
                         <?php foreach ($this->config->item('messages_type') as $key => $value) { ?>
                             <option value="<?php echo $key; ?>"><?php echo $value; ?></option>           
@@ -50,13 +49,13 @@
                     <span id="message_type_error">Please select message type</span>
                 </div>
             </div>
-            <div class="control-group" id="subject_div" style="display: none;">
+            <?php /*?><div class="control-group" id="subject_div" style="display: none;">
                 <label class="control-label" for="subject">Subject:</label>
                 <div class="controls">
                     <input id="subject" name="subject"/>
 
                 </div>
-            </div>
+            </div><?php */?>
             <div id="alert_type"></div>
         </form>
     </div>
@@ -79,7 +78,7 @@
     
     
     function typeForm(){
-        $('#subject_div').show();
+       // $('#subject_div').show();
         type=$('#msg_type').val();
         $.ajax({
             type: 'POST', 

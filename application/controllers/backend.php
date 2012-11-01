@@ -14,7 +14,7 @@ class Backend extends CI_Controller
 		
 		// Protect entire controller so only admin, 
 		// and users that have granted role in permissions table can access it.
-		$this->dx_auth->check_uri_permissions();
+		//$this->dx_auth->check_uri_permissions();
 	}
 	
 	function index()

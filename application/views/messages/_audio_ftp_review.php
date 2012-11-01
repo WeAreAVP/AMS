@@ -21,6 +21,13 @@
 
         </div>
     </div>
+    <div class="control-group">
+        <label class="control-label" for="media_list">Media List:</label>
+        <div class="controls">
+            <input id="media_list" name="media_list"/>
+
+        </div>
+    </div>
 
 </div>
 <script type="text/javascript">
@@ -31,11 +38,13 @@
         review_end_date=$('#review_end_date').val();
         comments=$('#comments').val();
         ftp_detail=$('#ftp_detail').val();
+				media_list=$('#media_list').val();
                                 
         extras= {
             review_end_date: review_end_date,
             comments: comments,
-            ftp_details: ftp_detail
+            ftp_details: ftp_detail,
+						media_list:media_list
         };
         
                                 
@@ -43,10 +52,12 @@
             '<div><strong>Subject: '+subject+'</strong></div><br/>'+
             '<div>Review End Date: '+review_end_date+'</div>'+
             '<div>Comments: '+comments+'</div>'+
-            '<div>FTP Details: '+ftp_detail+'</div>' );
+            '<div>FTP Details: '+ftp_detail+'</div>'+ 
+						'<div>Media List: '+media_list+'</div>' );
        
-        body=  'Review End Date: '+review_end_date+'\n'+
+        msg_body=  'Review End Date: '+review_end_date+'\n'+
             'Comments: '+comments+'\n'+
-            'FTP Details: '+ftp_detail+'\n';
+            'FTP Details: '+ftp_detail+'\n'+
+						'Media List: '+media_list+'\n';
     }
 </script>

@@ -1,6 +1,6 @@
 <div id="type_2">
     <div class="control-group">
-        <label class="control-label" for="date_received">Date Received:</label>
+        <label class="control-label" for="date_received">Media Received Date:</label>
         <div class="controls">
             <input id="date_received" name="date_received"/>
 
@@ -39,14 +39,14 @@
             crawford_contact_details: crawford_contact_details
         };
                 
-        body='Date Received: '+date_received+'\n'+
+        msg_body='Date Received: '+date_received+'\n'+
             'Comments: '+comments+'\n'+
             'Crawford Contact Details: '+crawford_contact_details+'\n' ; 
         
         
         $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
             '<div><strong>Subject: '+subject+'</strong></div><br/>'+
-            '<div>Date Received: '+date_received+'</div>'+
+            '<div>Media Received Date: '+date_received+'</div>'+
             '<div>Comments: '+comments+'</div>'+
             '<div>Crawford Contact Details: '+crawford_contact_details+'</div>');
     }

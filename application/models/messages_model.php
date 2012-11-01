@@ -140,7 +140,7 @@ class Messages_Model extends CI_Model {
 			if(isset($res) && !empty($res))
 			{
 				$cnt=$res->row();
-				if($cnt->total>0)
+				if(isset($cnt) && isset($cnt->total) && $cnt->total>0)
 					return $cnt->total;
 			}
 			return 0;

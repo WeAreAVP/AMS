@@ -172,3 +172,8 @@ ALTER TABLE `email_queue` ADD COLUMN `is_email_read` TINYINT(1) DEFAULT 1 NULL C
 /* Message Alerts Contain Email Alert Queue id */
 ALTER TABLE `messages` ADD COLUMN `email_queue_id` INT NULL AFTER `read_at`; 
 
+
+/*11-1-2012 */
+/* Changes in email_templates*/
+
+ALTER TABLE `email_templates` CHANGE `replaceables` `replaceables` VARCHAR( 500 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL 

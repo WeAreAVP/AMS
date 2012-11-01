@@ -74,7 +74,7 @@
     var from=null;
     var subject=null;
     var type=null;
-    var body=null;
+    var msg_body=null;
     
     
     function typeForm(){
@@ -102,8 +102,7 @@
             $('#compose_anchor').trigger('click');
             to=$('#receiver_id').val();
             to_name=$("#receiver_id option[value='"+$('#receiver_id').val()+"']").text();
-            from=$('#sender_id').val();
-            subject=$('#subject').val();
+            subject=$("#msg_type option[value='"+type+"']").text();//$('#subject').val();
             confirmBody();                      
             
             $('#confirm_anchor').trigger('click');
@@ -115,9 +114,9 @@
         $.ajax({
             type: 'POST', 
             url: '<?php echo site_url('messages/compose') ?>',
-            data:{"extras":extras,to:to,from:from,subject:subject,type:type,html:body},
+            data:{"extras":extras,to:to,subject:subject,type:type,html:msg_body},
             success: function (result) { 
-                window.location.reload();
+              //  window.location.reload();
                     
                                 
             }

@@ -8,7 +8,7 @@
  * @subpackage Template Manager
  * @author     Ali Raza
  */
-class TemplateManager extends CI_Controller
+class TemplateManager extends MY_Controller
 {
 	/**
      * constructor. Load layout,Model,Library and helpers
@@ -18,10 +18,6 @@ class TemplateManager extends CI_Controller
 	{
 		parent::__construct();
 		$this->layout = 'main_layout.php';
-		$this->load->library('Form_validation');
-		$this->load->helper('form');
-		 $this->load->model('station_model');
-		$this->load->model('email_template_model','email_template');
 		$this->load->model('sphinx_model', 'sphinx');
 	}
 	function system_id_check($system_id)

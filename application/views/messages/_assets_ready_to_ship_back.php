@@ -1,8 +1,15 @@
 <div id="type_3">
     <div class="control-group">
-        <label class="control-label" for="date_received">Date Received:</label>
+        <label class="control-label" for="est_ship_date">Est. Ship Date:</label>
         <div class="controls">
-            <input id="date_received" name="date_received"/>
+            <input id="est_ship_date" name="est_ship_date"/>
+
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="actual_ship_date">Actual Ship Date:</label>
+        <div class="controls">
+            <input id="actual_ship_date" name="actual_ship_date"/>
 
         </div>
     </div>
@@ -42,49 +49,65 @@
 
         </div>
     </div>
+ 		<div class="control-group">
+        <label class="control-label" for="assets_list">Asset List:</label>
+        <div class="controls">
+            <input id="assets_list" name="assets_list"/>
 
+        </div>
+    </div>
 </div>
 <script type="text/javascript">
     $(function() {
-        $( "#date_received" ).datepicker();
+			 
+        $( "#est_ship_date" ).datepicker();
+				$( "#actual_ship_date" ).datepicker();
         $( "#day_digitization_review" ).datepicker();
         $( "#day_material_review" ).datepicker();
         $( "#material_return_date" ).datepicker();
     });
     function confirmBody(){
-        date_received=$('#date_received').val();
-        comments=$('#comments').val();
+				est_ship_date=$( "#est_ship_date" ).datepicker();
+				actual_ship_date=$( "#actual_ship_date" ).datepicker();
+         comments=$('#comments').val();
         crawford_contact_details=$('#crawford_contact_details').val();
         digitization_review_date=$('#day_digitization_review').val();
         material_review_date=$('#day_material_review').val();
         return_date=$('#material_return_date').val();
+				assets_list=$('#assets_list').val();
                                 
                             
                
         extras= {
-            date_received: date_received,
+            est_ship_date: est_ship_date,
+						actual_ship_date: actual_ship_date,
             comments: comments,
             crawford_contact_details: crawford_contact_details,
             day_digitization_review: digitization_review_date,
             day_material_review: material_review_date,
-            material_return_date: return_date
+            material_return_date: return_date,
+						assets_list:assets_list
         };
                 
                   
         $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
             '<div><strong>Subject: '+subject+'</strong></div><br/>'+
-            '<div>Date Received: '+date_received+'</div>'+
+            '<div>Est. Ship Date: '+est_ship_date+'</div>'+
+						'<div>Actual Ship Date: '+actual_ship_date+'</div>'+
             '<div>Comments: '+comments+'</div>'+
             '<div>Crawford Contact Details: '+crawford_contact_details+'</div>'+ 
             '<div>30 day Digitization review: '+digitization_review_date+'</div>'+ 
             '<div>30 day Material Review: '+material_review_date+'</div>'+ 
-            '<div>Material Return Date: '+return_date+'</div>'
+            '<div>Material Return Date: '+return_date+'</div>'+ 
+						'<div>Asset List: '+assets_list+'</div>'
     );
-        body='Date Received: '+date_received+'\n'+
+        msg_body='Est. Ship Date: '+est_ship_date+'\n'+
+						'Actual Ship Date: '+actual_ship_date+'\n'+
             'Comments: '+comments+'\n'+
             'Crawford Contact Details: '+crawford_contact_details+'\n'+ 
             '30 day Digitization review: '+digitization_review_date+'\n'+ 
             '30 day Material Review: '+material_review_date+'\n'+ 
-            '>Material Return Date: '+return_date+'\n';
+            'Material Return Date: '+return_date+'\n'+
+						'Asset List: '+assets_list+'\n';
     }
 </script>

@@ -128,46 +128,57 @@ class Messages extends MY_Controller {
 		{
     	if ($this->input->post())
 			{
-				print_r($_REQUEST);
-				exit();
-      	$to = $this->input->post('to');
-        $html = $this->input->post('html');
-        $from = $this->input->post('from');
+				$alerts_array=$this->config->item('messages_type');
+				$to = $this->input->post('to');
+			  $html = $this->input->post('html');
         $type = $this->input->post('type');
-        //$subject = $this->input->post('subject');
-        $extra = $this->input->post('extras');
-        $extra = json_encode($extra);
-        $this->load->library('email');
-        $this->session->set_userdata('sent', 'Message Sent');
-        if ($this->config->item('demo') == true)
+				$template = str_replace(" ","_",$alerts_array[$type]);
+				$template_data=$this->email_template->get_template_by_sys_id($template);
+				if(isset($template_data) && !empty($template_data))
 				{
-        	$station_email = $this->config->item('to_email');
-          $user_detail = $this->config->item('from_email');
-        }
+					$station_details = $this->station_model->get_station_by_id($to);
+					$subject =$template_data->subject;
+					$extra = $this->input->post('extras');
+					foreach($extra as $key=>$value)
+					{
+						$replacebale[$key]=(isset($value) && !empty($value))?$value:'';
+					}
+					$replacebale['station_name']=isset($station_details->station_name)?$station_details->station_name:'';
+					if ($this->config->item('demo') == true)
+					{
+						$to_email = $this->config->item('to_email');
+						$from_email = $this->config->item('from_email');
+						$replacebale['user_name']='AMS';
+					}
+					else
+					{
+						$to_email = 	$station_details->contact_email;
+						$from_email = $this->user_detail->email;
+						$replacebale['user_name']=$this->user_detail->first_name.' '.$this->user_detail->last_name;
+					}
+					$replacebale['inform_to']='ssapienza@cpb.org';
+					$email_queue_id=$this->emailtemplates->queue_email('General',$station_email,$replacebale);
+					$data = array('sender_id' => $from, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' =>  json_encode($extra), 'created_at' => date('Y-m-d h:m:i'));
+					if(isset($email_queue_id) && $email_queue_id)
+					{
+						$data['email_queue_id']=$email_queue_id;
+					}
+					$this->msgs->add_msg($data);
+					$this->session->set_userdata('sent', 'Message Sent');
+					echo json_encode(array('success' => true));
+					exit;
+				}
 				else
 				{
-          $station_email = $this->station_model->get_station_by_id($to)->contact_email;
-          $user_detail = $this->users->get_user_detail($from)->row()->email;
-        }
-        //$this->email->from($user_detail);
-        //$this->email->to($station_email);
-        //$this->email->subject($subject);
-        //$this->email->message($html);
-        //$this->email->send();
-				$email_queue_id=$this->emailtemplates->queue_email('General',$station_email,array("body"=>str_replace(array("\r","\n","\r\n"),"<br>",$html)));
-        $data = array('sender_id' => $from, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => $extra, 'created_at' => date('Y-m-d h:m:i'));
-				if(isset($email_queue_id) && $email_queue_id)
-				{
-					$data['email_queue_id']=$email_queue_id;
+					echo json_encode(array('success' => false));
+					exit;
 				}
-        $this->msgs->add_msg($data);
-        echo json_encode(array('success' => true));
-        exit;
 			}
 			else
 			{
-				show_404();
-      }
+				echo json_encode(array('success' => false));
+				exit;
+			}
     }
 		/**
      * Recieve the message id

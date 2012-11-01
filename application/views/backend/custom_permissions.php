@@ -28,25 +28,26 @@
 		
 		// Build form
 		echo form_open($this->uri->uri_string());
-		
-		echo form_label('Role', 'role_name_label');
+		echo '<div>';
+		echo form_label('Role', 'role_name_label',array('style'=>'float:left;margin: 5px 15px;'));
 		echo form_dropdown('role', $options); 
-		echo form_submit('show', 'Show permissions'); 
+                echo '</div>';
+		echo form_submit('show', 'Show permissions','class="btn"'); 
 		
 		echo form_label('', 'uri_label');
 				
 		echo '<hr/>';
 		
-		echo form_checkbox('edit', '1', $edit);
+		echo form_checkbox('edit', '1', $edit,'style="float:left;margin-right:5px;"');
 		echo form_label('Allow edit', 'edit_label');
 		echo '<br/>';
 		
-		echo form_checkbox('delete', '1', $delete);
+		echo form_checkbox('delete', '1', $delete,'style="float:left;margin-right:5px;"');
 		echo form_label('Allow delete', 'delete_label');
 		echo '<br/>';
 					
 		echo '<br/>';
-		echo form_submit('save', 'Save Permissions');
+		echo form_submit('save', 'Save Permissions','class="btn"');
 		
 		echo '<br/>';
 		

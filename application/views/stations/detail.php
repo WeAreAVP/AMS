@@ -37,21 +37,43 @@
         </table>
         <h2>Station Address</h2>
         <div class="row">
-        <div class="span4">
-<!--          <h2>Heading</h2>-->
-          <p>
-              <?php echo $station_detail->address_primary; ?><br/><?php echo $station_detail->city; ?>, <?php echo $station_detail->state; ?> <?php echo $station_detail->zip; ?>
-              <br/>Phone: <?php echo $station_detail->contact_phone; ?>
-              <br/>Fax: <?php echo $station_detail->contact_fax; ?>
-              <br/>Email: <?php echo $station_detail->contact_email; ?>
-          </p>
+            <div class="span4">
+                <!--          <h2>Heading</h2>-->
+                <p>
+                    <?php echo $station_detail->address_primary; ?><br/><?php echo $station_detail->city; ?>, <?php echo $station_detail->state; ?> <?php echo $station_detail->zip; ?>
+                    <br/>Phone: <?php echo $station_detail->contact_phone; ?>
+                    <br/>Fax: <?php echo $station_detail->contact_fax; ?>
+                    <br/>Email: <?php echo $station_detail->contact_email; ?>
+                </p>
+            </div>
+
         </div>
-        
-      </div>
         <h2>Station Contacts</h2>
-        <?php echo '<pre>';print_r($station_contacts);?>
+        <div class="row">
+            <?php if (count($station_contacts) > 0) { ?>
+
+                <?php
+                foreach ($station_contacts as $key => $value) {
+                    ?>
+
+                    <div class="span3">
+                        <h4><?php echo $value->first_name . ' ' . $value->last_name; ?></h4>
+                        <h4><?php echo ($value->role_id == 3) ? 'Station Admin' : 'Station User'; ?></h4>
+                        <h4><?php if ($station_detail->type == 0) echo 'Radio'; else if ($station_detail->type == 1) echo 'TV'; else echo 'Joint'; ?></h4>
+                        <p>
+                            <?php echo $value->address; ?>
+                            <br/>Phone: <?php echo $value->phone_no; ?>
+                            <br/>Fax: <?php echo $value->fax; ?>
+                            <br/>Email: <?php echo $value->email; ?>
+                        </p>
+                    </div>
+
+                <?php }
+                ?>
+            <?php } ?>
+        </div>
         <h2>Tracking Information</h2>
-<!--        <table class="table table-bordered">
+    <!--        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Ship Date</th>
@@ -73,7 +95,7 @@
                 </tr>
             </tbody>
         </table>-->
-        
+
     </div>
     <?php $this->load->view('stations/_edit_station'); ?>
 
@@ -82,8 +104,8 @@
 
 
 
-    <?php } else { ?>
+<?php } else { ?>
     <h3>The requested sation not found</h3>
-    <a href="<?php echo site_url('stations/index');?>">Back to Stations</a>
-    
+    <a href="<?php echo site_url('stations/index'); ?>">Back to Stations</a>
+
 <?php } ?>

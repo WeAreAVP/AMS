@@ -4,7 +4,7 @@ class Backend extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		
+		$this->layout = 'main_layout.php';
 		$this->load->library('Table');
 		$this->load->library('Pagination');
 		$this->load->library('DX_Auth');
@@ -188,6 +188,7 @@ class Backend extends CI_Controller
 	
 	function uri_permissions()
 	{
+            
 		function trim_value(&$value) 
 		{ 
 			$value = trim($value); 

@@ -99,7 +99,7 @@ class Settings extends MY_Controller {
             $val->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
             $val->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
             $val->set_rules('phone_no', 'Phone #', 'trim|xss_clean');
-            $val->set_rules('title', 'Title', 'trim|xss_clean|required');
+//            $val->set_rules('title', 'Title', 'trim|xss_clean|required');
             $val->set_rules('fax', 'Fax', 'trim|xss_clean');
             $val->set_rules('address', 'Address #', 'trim|xss_clean|required');
             
@@ -120,7 +120,7 @@ class Settings extends MY_Controller {
                     $profile_data = array('first_name' => $val->set_value('first_name'),
                         'last_name' => $val->set_value('last_name'),
                         'phone_no' => $val->set_value('phone_no'),
-                        'title' => $val->set_value('title'),
+//                        'title' => $val->set_value('title'),
                         'fax' => $val->set_value('fax'),
                         'address' => $val->set_value('address'),
                     );
@@ -168,7 +168,7 @@ class Settings extends MY_Controller {
             $val->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
             $val->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
             $val->set_rules('phone_no', 'Phone #', 'trim|xss_clean');
-            $val->set_rules('title', 'Title', 'trim|xss_clean|required');
+//            $val->set_rules('title', 'Title', 'trim|xss_clean|required');
             $val->set_rules('fax', 'Fax', 'trim|xss_clean');
             $val->set_rules('address', 'Address #', 'trim|xss_clean|required');
             $val->set_rules('role', 'Role', 'trim|xss_clean|required');
@@ -190,7 +190,7 @@ class Settings extends MY_Controller {
                     $profile_data = array('first_name' => $val->set_value('first_name'),
                         'last_name' => $val->set_value('last_name'),
                         'phone_no' => $val->set_value('phone_no'),
-                        'title' => $val->set_value('title'),
+//                        'title' => $val->set_value('title'),
                         'fax' => $val->set_value('fax'),
                         'address' => $val->set_value('address'),
                     );

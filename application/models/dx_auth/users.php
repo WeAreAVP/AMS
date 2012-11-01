@@ -75,7 +75,7 @@ class Users extends CI_Model {
          $this->db->select("$profile_table.id as profile_id,first_name,last_name,phone_no,fax,address,title", FALSE);
          $this->db->join($profile_table, "$profile_table.user_id = $users_table.id");
          $this->db->where("$users_table.station_id", $station_id);
-         return $this->db->get($this->_table);
+         return $this->db->get($this->_table)->result(); 
     }
 
     function get_user_detail($user_id) {

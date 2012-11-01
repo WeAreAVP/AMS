@@ -34,7 +34,7 @@ class Users extends CI_Model {
         return $query;
     }
 
-    function get_users($role = null,$params=null) {
+    function get_users($role = null, $params = null) {
         $users_table = $this->_table;
         $roles_table = $this->_roles_table;
         $profile_table = $this->_profile_table;
@@ -45,27 +45,37 @@ class Users extends CI_Model {
         $this->db->select("$profile_table.id as profile_id,first_name,last_name,phone_no", FALSE);
         $this->db->join($roles_table, "$roles_table.id = $users_table.role_id");
         $this->db->join($profile_table, "$profile_table.user_id = $users_table.id");
-        $this->db->join($station_table, "$station_table.id = $users_table.station_id",'left');
+        $this->db->join($station_table, "$station_table.id = $users_table.station_id", 'left');
         if ($role != null) {
             if ($role == 1) {
                 
             } else if ($role == 2)
                 $this->db->where_not_in("$users_table.role_id", array('1'));
             else if ($role == 3)
-                $this->db->where_not_in("$users_table.role_id", array('1','2'));
+                $this->db->where_not_in("$users_table.role_id", array('1', '2'));
             else
-                $this->db->where_not_in("$users_table.role_id", array('1','2','3'));
+                $this->db->where_not_in("$users_table.role_id", array('1', '2', '3'));
         }
-        if($params!=null){
-            if($params['role_id']!='')
-                 $this->db->where("$users_table.role_id", $params['role_id']);
-            if($params['station_id']!='')
-                 $this->db->where("$users_table.station_id", $params['station_id']);
+        if ($params != null) {
+            if ($params['role_id'] != '')
+                $this->db->where("$users_table.role_id", $params['role_id']);
+            if ($params['station_id'] != '')
+                $this->db->where("$users_table.station_id", $params['station_id']);
         }
 
         $this->db->order_by("$users_table.id", "ASC");
         $query = $this->db->get($this->_table);
         return $query;
+    }
+
+    function get_station_users($station_id) {
+        $users_table = $this->_table;
+        $profile_table = $this->_profile_table;
+         $this->db->select("$users_table.*", FALSE);
+         $this->db->select("$profile_table.id as profile_id,first_name,last_name,phone_no,fax,address,title", FALSE);
+         $this->db->join($profile_table, "$profile_table.user_id = $users_table.id");
+         $this->db->where("$users_table.station_id", $station_id);
+         return $this->db->get($this->_table);
     }
 
     function get_user_detail($user_id) {

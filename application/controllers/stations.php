@@ -20,6 +20,7 @@ class Stations extends MY_Controller {
         $this->layout = 'main_layout.php';
         $this->load->model('station_model');
         $this->load->model('sphinx_model', 'sphinx');
+         $this->load->model('dx_auth/users', 'users');
     }
 
     /**
@@ -67,6 +68,7 @@ class Stations extends MY_Controller {
     public function detail() {
         $station_id = $this->uri->segment(3);
         $data['station_detail'] = $this->station_model->get_station_by_id($station_id);
+        $data['station_contacts']=$this->users->get_station_users($station_id);
         $this->load->view('stations/detail', $data);
     }
 

@@ -20,6 +20,7 @@ class Settings extends MY_Controller {
         $this->load->model('dx_auth/roles', 'roles');
         $this->load->model('station_model');
         $this->load->model('dx_auth/user_profile', 'user_profile');
+        
     }
 
     /**
@@ -28,6 +29,7 @@ class Settings extends MY_Controller {
      */
     public function index() {
         $this->users();
+        
     }
 
     /**
@@ -39,6 +41,7 @@ class Settings extends MY_Controller {
      * @param integer $role_id 
      */
     public function users() {
+        echo $this->user_id;exit;
         $data['current_role'] = $currentRoleID = $this->session->userdata['DX_role_id'];
         $data['is_ajax'] = false;
         $roles = $this->roles->get_roles_list($currentRoleID)->result();

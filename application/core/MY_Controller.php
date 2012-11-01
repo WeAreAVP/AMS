@@ -21,16 +21,21 @@ class MY_Controller extends CI_Controller {
             redirect('auth/login');
         }
         $this->load->model('messages_model', 'msgs');
+        $this->_assing_user_info();
     }
 
     function _assing_user_info() {
+       
         $this->user_id = $this->dx_auth->get_user_id();
+         
         $this->role_id = $this->dx_auth->get_role_id();
-        $this->is_station_user = $this->dx_auth->is_station_user();
-        if ($this->is_station_user) {
-            $this->station_id = $this->dx_auth->get_station_id();
-            ;
-        }
+        
+//        $this->is_station_user = $this->dx_auth->is_station_user();
+//        if ($this->is_station_user) {
+//            $this->station_id = $this->dx_auth->get_station_id();
+//            
+//        }
+       
         $this->total_unread = $this->msgs->get_unread_msgs_count($this->user_id);
     }
 

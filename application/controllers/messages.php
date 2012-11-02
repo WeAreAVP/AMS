@@ -119,6 +119,8 @@ class Messages extends MY_Controller {
         if ($this->input->post()) {
             $alerts_array = $this->config->item('messages_type');
             $to = $this->input->post('to');
+						print_r($to);
+						exit();
             $html = $this->input->post('html');
             $type = $this->input->post('type');
             $template = str_replace(" ", "_", $alerts_array[$type]);

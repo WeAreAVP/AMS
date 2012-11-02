@@ -26,7 +26,7 @@
             <div class="control-group">
                 <label class="control-label" for="receiver_id">To:</label>
                 <div class="controls">
-                    <select id="receiver_id" name="receiver_id">
+                    <select id="receiver_id" name="receiver_id" multiple="multiple">
                         <?php foreach ($station_records as $value) { ?>
                             <option value="<?php echo $value->id; ?>"><?php echo $value->station_name; ?></option>
                             <?php
@@ -66,7 +66,7 @@
         <button class="btn btn-primary" onclick="validateFormType();">Next</button>
     </div>
 </div>
-
+<script src="<?php echo site_url('js/jquery.multiselect.min.js')?>" type="text/javascript"></script>
 
 <script type="text/javascript">
     var extras=null;
@@ -76,7 +76,10 @@
     var type=null;
     var msg_body=null;
     
-    
+    $(function(){
+  		 $("#receiver_id").multiselect(); 
+			 $(".ui-multiselect-menu").width('400px');
+			});
     function typeForm(){
        // $('#subject_div').show();
         type=$('#msg_type').val();

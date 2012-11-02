@@ -4,15 +4,16 @@
     
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>AMS</title>
-        <script src="<?php echo site_url('tiny_mce/tiny_mce.js')?>" type="text/javascript"></script>
+        
+      
         <?php
         echo link_js('jquery-1.8.2.js');
         echo link_js('jquery-ui-1.9.0.custom.js');
         echo link_js('jquery.tablesorter.js');
         echo link_js('bootstrap/bootstrap.js');
         echo link_js('jquery.freezetablecolumns.1.1.js');
-
-        echo link_js('custom.js');
+			  echo link_js('custom.js');
+				echo link_js('jquery.multiselect.min.js');
         echo link_tag("css/tableSorter.css");
         echo link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
 
@@ -21,6 +22,7 @@
         echo link_tag("css/bootstrap/bootstrap-responsive.css");
         echo link_tag("css/style.css");
         ?> 
+        <script src="<?php echo base_url('tiny_mce/tiny_mce.js')?>" type="text/javascript"></script>
         <script type="text/javascript">
             var site_url='<?php echo site_url() ?>';
 	

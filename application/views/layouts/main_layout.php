@@ -52,7 +52,7 @@
                     numberOfMonths: 1,
                     dateFormat: 'yy-mm-dd',
                     onSelect: function( selectedDate ) {
-                        console.log(selectedDate);
+                        $('#end_date_range').val(selectedDate);
                         var option = this.id == "start_date" ? "minDate" : "maxDate",
                         instance = $( this ).data( "datepicker" ),
                         date = $.datepicker.parseDate(

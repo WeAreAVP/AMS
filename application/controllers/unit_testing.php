@@ -17,6 +17,7 @@ class Unit_Testing extends CI_Controller {
         parent::__construct();
         $this->load->library('unit_test');
         $this->load->model('station_model');
+        $this->load->model('tracking_model', 'tracking');
         $this->load->model('sphinx_model');
         $this->load->model('dx_auth/users', 'users');
         $this->load->model('dx_auth/roles', 'roles');
@@ -28,15 +29,12 @@ class Unit_Testing extends CI_Controller {
      *  
      */
     public function station_test() {
-        $test1 = $this->station_model->get_station_count();
-        $expected_result = 98;
-        $test_name = 'Station list count';
+        $test1 = $this->station_model->get_all();
+        $expected_result = 'is_array';
+        $test_name = 'Station list';
         echo $this->unit->run($test1, $expected_result, $test_name);
         echo '<br/>';
-        $test2 = $this->station_model->get_all();
-        $test_name = 'Station type';
-        echo $this->unit->run($test2, 'is_array', $test_name);
-        echo '<br/>';
+        
         $test3 = $this->station_model->update_station(1, array('start_date' => '2011-10-12'));
         $test_name = 'Digitilization Start Date';
         echo $this->unit->run($test3, 'is_true', $test_name);
@@ -83,8 +81,6 @@ class Unit_Testing extends CI_Controller {
     function usertesting() {
         $this->userlisttesting();
         $this->addusertesting();
-        $this->editusertesting();
-        $this->deleteusertesting();
     }
 
     /**
@@ -92,9 +88,9 @@ class Unit_Testing extends CI_Controller {
      *  
      */
     function userlisttesting() {
-        $test1 = $this->users->get_users(1, null)->num_rows;
-        $expected_result = 2;
-        $test_name = 'User list count';
+        $test1 = $this->users->get_users(1, null)->result();
+        $expected_result = 'is_array';
+        $test_name = 'User list';
         echo $this->unit->run($test1, $expected_result, $test_name);
         echo '<br/>';
     }
@@ -112,6 +108,8 @@ class Unit_Testing extends CI_Controller {
         $profile_data = array('first_name' => 'Test',
             'last_name' => 'Case',
             'phone_no' => '1234567',
+            'fax' => '1234563427',
+            'address' => 'Lahore Pakistan',
         );
         $id = $this->users->create_user($record);
         $profile_data['user_id'] = $id;
@@ -121,13 +119,15 @@ class Unit_Testing extends CI_Controller {
         $test_name = 'Add New User';
         echo $this->unit->run($result, $expected_result, $test_name);
         echo '<br/>';
+        $this->editusertesting($id);
     }
 
     /**
      * Edit user/ Edit Profile testing
+     * @param integer $id 
      *  
      */
-    function editusertesting() {
+    function editusertesting($id) {
         $record = array('email' => 'testing@abc.com',
             'role_id' => '1',
             'station_id' => '1',
@@ -137,25 +137,106 @@ class Unit_Testing extends CI_Controller {
             'last_name' => 'Case',
             'phone_no' => '1234567',
         );
-        $this->users->set_user('18', $record);
+        $this->users->set_user($id, $record);
 
-        $result = $this->user_profile->set_profile('17', $profile_data);
+        $result = $this->user_profile->set_profile($id, $profile_data);
         $expected_result = 'is_true';
         $test_name = 'Edit User';
+        echo $this->unit->run($result, $expected_result, $test_name);
+        echo '<br/>';
+        $this->deleteusertesting($id);
+    }
+
+    /**
+     * Delete User Tesing
+     * @param integer $id 
+     *  
+     */
+    function deleteusertesting($id) {
+        $this->user_profile->delete_profile($id);
+        $result = $delete_user = $this->users->delete_user($id);
+
+        $expected_result = 'is_true';
+        $test_name = 'Delete User';
         echo $this->unit->run($result, $expected_result, $test_name);
         echo '<br/>';
     }
 
     /**
-     * Delete User Tesing
+     * Station Tracking Testing Function will be called from this function
      *  
      */
-    function deleteusertesting() {
-        $this->user_profile->delete_profile('18');
-        $result = $delete_user = $this->users->delete_user('18');
+    function stationtrackingtesting() {
+        $this->trackinglisttesting();
+        $this->addtrackingtesting();
+    }
 
+    /**
+     * Station Tracking List Testing
+     *  
+     */
+    function trackinglisttesting() {
+        $station_id = 1;
+        $result = $this->tracking->get_all($station_id);
+        $expected_result = 'is_array';
+        $test_name = 'Station Tracking List';
+        echo $this->unit->run($result, $expected_result, $test_name);
+        echo '<br/>';
+    }
+
+    /**
+     * Add station tracking info
+     *  
+     */
+    function addtrackingtesting() {
+        $record = array('ship_date' => date('Y-m-d', strtotime('2012-11-13')),
+            'ship_to' => 'Station',
+            'ship_via' => 'fedex',
+            'tracking_no' => 'AB4546DC',
+            'no_box_shipped' => 12,
+            'station_id' => 1,
+        );
+
+        $result = $this->tracking->insert_record($record);
+
+        $expected_result = 'is_numeric';
+        $test_name = 'Add Station Tracking';
+        echo $this->unit->run($result, $expected_result, $test_name);
+        echo '<br/>';
+        $this->edittrackingtesting($result);
+    }
+
+    /**
+     * Edit station tracking info
+     * 
+     * @param integer $id 
+     */
+    function edittrackingtesting($id) {
+        $record = array('ship_date' => date('Y-m-d', strtotime('2012-11-13')),
+            'ship_to' => 'Station',
+            'ship_via' => 'fedex',
+            'tracking_no' => 'AB4546DC',
+            'no_box_shipped' => 15,
+        );
+
+        $result = $this->tracking->update_record($id, $record);
+
+        $expected_result = 'is_bool';
+        $test_name = 'Edit Station Tracking';
+        echo $this->unit->run($result, $expected_result, $test_name);
+        echo '<br/>';
+        $this->deletetrackingtesting($id);
+    }
+
+    /**
+     * Delete station tracking info
+     * 
+     * @param integer $id 
+     */
+    function deletetrackingtesting($id) {
+        $result = $this->tracking->delete_record($id);
         $expected_result = 'is_true';
-        $test_name = 'Delete User';
+        $test_name = 'Delete Station Tracking';
         echo $this->unit->run($result, $expected_result, $test_name);
         echo '<br/>';
     }

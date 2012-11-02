@@ -38,7 +38,8 @@ class Tracking_Model extends CI_Model {
      * @return boolean 
      */
     function insert_record($data) {
-        return $this->db->insert($this->_table, $data);
+        $this->db->insert($this->_table, $data);
+        return $this->db->insert_id(); 
     }
 
     /**

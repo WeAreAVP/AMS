@@ -109,7 +109,7 @@ class Tracking extends MY_Controller {
     public function delete() {
         $tracking_id = $this->uri->segment(3);
         $staion_id = $this->uri->segment(4);
-        $this->users->delete_user($id);
+        $this->tracking->delete_record($tracking_id);
         redirect('stations/detail/' . $staion_id, 'location');
     }
 

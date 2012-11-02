@@ -110,6 +110,8 @@ if (!$is_ajax) {
                  cache: false,
                 success: function (result) {
                     $('#append_record').html(result);
+										$("#station_table").trigger("update");
+										$("[rel=tooltip]").tooltip();
 										
                 }
             });

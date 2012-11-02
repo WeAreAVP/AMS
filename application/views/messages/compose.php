@@ -66,7 +66,7 @@
         <button class="btn btn-primary" onclick="validateFormType();">Next</button>
     </div>
 </div>
-<script src="<?php echo site_url('js/jquery.multiselect.min.js')?>" type="text/javascript"></script>
+
 
 <script type="text/javascript">
     var extras=null;

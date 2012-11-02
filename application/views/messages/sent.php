@@ -62,7 +62,8 @@ if (!$is_ajax) {
                                 <td style="vertical-align: bottom;"><span style="float:left;min-width:50px;">To</span></td>
                                 <td style="vertical-align: bottom;"><span style="float:left;min-width:80px;">Subject</span></td>
                                 <td style="vertical-align: bottom;"><span style="float:left;min-width:90px;">Message Type</span></td>
-                                <td style="vertical-align: bottom;"><span style="float:left;min-width:90px;">Status</span></td>
+                                <td style="vertical-align: bottom;"><span style="float:left;min-width:90px;">Alert Status</span></td>
+                                <td style="vertical-align: bottom;"><span style="float:left;min-width:90px;">Email Status</span></td>
                                 <th><span style="float:left;min-width:90px;">Send Date</span></th>
                             </tr>
                         </thead>
@@ -76,9 +77,16 @@ if (count($results) > 0) {
                                 <td><?php echo $row->full_name; ?></td>
                                 <td><?php echo $row->subject; ?></td>
                                 <td><?php echo $select[$row->msg_type]; ?></td>
-                                <td><?php if ($row->msg_status == 'read') { ?><a data-placement="top" rel="tooltip" href="#" data-original-title="<?php echo "Message last read on " . date("m/d/Y", strtotime($row->read_at)); ?>"><?php echo ucfirst($row->msg_status); ?></a><?php } else {
-                        echo ucfirst($row->msg_status);
-                    } ?></td>
+                                <td><?php if ($row->msg_status == 'read') { ?>
+                                	<a data-placement="top" rel="tooltip" href="#" data-original-title="<?php echo "Message last read on " . date("m/d/Y", strtotime($row->read_at)); ?>"><?php echo ucfirst($row->msg_status); ?>
+                                  </a><?php } else {echo ucfirst($row->msg_status);} ?>
+                                </td>
+                                <td><?php if ($row->is_email_read == 2) { ?>
+                                	<a data-placement="top" rel="tooltip" href="#" data-original-title="<?php echo "Email read on " . date("m/d/Y", strtotime($row->email_read_at)); ?>">
+																		Email Read
+                                  </a><?php } else {echo 'Un-read';} ?>
+                                </td>
+                                
                                 <td><?php echo date("m/d/Y", strtotime($row->created_at)); ?></td>
                             </tr>
                             <?php
@@ -108,6 +116,8 @@ if (count($results) > 0) {
                 cache: false,
                 success: function (result) {
                     $('#append_record').html(result);
+										$("#station_table").trigger("update");
+										$("[rel=tooltip]").tooltip();
                 }
             });
     }

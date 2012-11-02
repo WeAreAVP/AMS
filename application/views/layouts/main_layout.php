@@ -4,15 +4,17 @@
     
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>AMS</title>
-        <script src="<?php echo site_url('tiny_mce/tiny_mce.js')?>" type="text/javascript"></script>
+        <script type="text/javascript">
+            var site_url='<?php echo site_url() ?>';
+        </script>
         <?php
         echo link_js('jquery-1.8.2.js');
         echo link_js('jquery-ui-1.9.0.custom.js');
         echo link_js('jquery.tablesorter.js');
         echo link_js('bootstrap/bootstrap.js');
         echo link_js('jquery.freezetablecolumns.1.1.js');
-
-        echo link_js('custom.js');
+			 
+				echo link_js('jquery.multiselect.min.js');
         echo link_tag("css/tableSorter.css");
         echo link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
 
@@ -21,10 +23,8 @@
         echo link_tag("css/bootstrap/bootstrap-responsive.css");
         echo link_tag("css/style.css");
         ?> 
-        <script type="text/javascript">
-            var site_url='<?php echo site_url() ?>';
-	
-        </script>
+        <script src="<?php echo base_url('tiny_mce/tiny_mce.js')?>" type="text/javascript"></script>
+        <?php  echo link_js('custom.js');?>
         
 				
 
@@ -117,7 +117,9 @@
                 ) {
                     ?>
                     <ul class="nav nav-tabs">
+                    <?php if($this->can_compose_alert){?>
                         <li class="<?php echo active_anchor('templatemanager', array('add', 'lists', 'edit', 'details', 'readmessage')); ?>"><a href="<?php echo site_url('templatemanager/lists'); ?>" >Email Template</a></li>
+                    <?php }?>
                         <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index'); ?>">Users</a></li>
                         <li class="<?php echo active_anchor('settings', 'edit_profile'); ?>"><a href="<?php echo site_url('settings/edit_profile'); ?>">Edit Profile</a></li> 
 

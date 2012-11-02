@@ -119,9 +119,7 @@
             url: '<?php echo site_url('messages/compose') ?>',
             data:{"extras":extras,to:to,subject:subject,type:type,html:msg_body},
             success: function (result) { 
-              //window.location.reload();
-                    
-                                
+             window.location.reload();
             }
         });
     }

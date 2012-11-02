@@ -35,16 +35,16 @@ class Messages extends MY_Controller {
      *  
      */
     public function inbox() {
-        $where = '';
+			  $where = '';
         if ($_POST) {
             if ($_POST['message_type']) {
                 $where['msg_type'] = $_POST['message_type'];
             }
             if ($_POST['stations']) {
-                $where['sender_id'] = $_POST['stations'];
+                $where['receiver_id'] = $_POST['stations'];
             }
         }
-        $data['results'] = $this->msgs->get_inbox_msgs($this->user_id, $where);
+        $data['results'] = $this->msgs->get_inbox_msgs($this->station_id, $where);
         $data['station_records'] = $this->station_model->get_all();
         if (isAjax()) {
             $data['is_ajax'] = true;
@@ -63,6 +63,7 @@ class Messages extends MY_Controller {
      */
 
     public function sent() {
+			if(in_array($this->role_id,array(1,2,5))) { 
         $where = '';
         if ($_POST) {
             if ($_POST['message_type']) {
@@ -82,6 +83,7 @@ class Messages extends MY_Controller {
             $data['is_ajax'] = false;
             $this->load->view('messages/sent', $data);
         }
+			}else{show_404();}
     }
 
     /**
@@ -176,8 +178,8 @@ class Messages extends MY_Controller {
      */
     public function readmessage($message_id = '') {
         if ($message_id != '') {
-            $data['result'] = $this->msgs->get_inbox_msgs($this->user_id, array("id" => $message_id));
-            if (isset($data['result']) && !empty($data['result']) && $data['result'][0]->msg_status == 'unread') {
+            $data['result'] = $this->msgs->get_inbox_msgs( $this->station_id, array("id" => $message_id));
+            if (isset($data['result']) && !empty($data['result']) && $data['result'][0]->msg_status == 'unread' && !$this->can_compose_alert) {
                 $this->msgs->update_msg_by_id($message_id, array("msg_status" => 'read', "read_at" => date('Y-m-d H:i:s')));
                 $this->total_unread = $this->msgs->get_unread_msgs_count($this->user_id);
             }
@@ -187,13 +189,19 @@ class Messages extends MY_Controller {
         }
     }
 
-    public function readsentmessage($message_id = '') {
+    public function readsentmessage($message_id = '')
+		{
+			if($this->can_compose_alert)
+			{
         if ($message_id != '') {
-            $data['result'] = $this->msgs->get_inbox_msgs($this->user_id, array("id" => $message_id));
+            $data['result'] = $this->msgs->get_sent_msgs($this->user_id, array("id" => $message_id));
             $this->load->view('messages/read_msg', $data);
         } else {
             show_404();
         }
+			}else {
+            show_404();
+      }
     }
 
 }

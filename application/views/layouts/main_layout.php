@@ -130,7 +130,7 @@
                     </script>
                 <?php } ?>
                 <?php
-                if (active_anchor('messages', 'inbox') || active_anchor('messages', 'sent')) {
+                if ( (active_anchor('messages', array('inbox', 'sent'))) && $this->can_compose_alert) {
 
                     $this->load->view('messages/compose');
                 }

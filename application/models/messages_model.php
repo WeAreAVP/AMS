@@ -76,23 +76,29 @@ class Messages_Model extends CI_Model {
      * @return rows object 
      */
     function get_inbox_msgs($receiver_id, $where = '') {
-
-        $this->db->select(" {$this->_table}.*, CONCAT(user_profile.first_name,\" \",user_profile.last_name) AS full_name", false);
-        $this->db->from($this->_table);
-        $this->db->join("user_profile", "user_profile.user_id=" . $this->_table . ".sender_id");
-        $this->db->where("receiver_id", $receiver_id);
-        $this->db->where("receiver_folder", "inbox");
-        if (!empty($where)) {
-            foreach ($where as $key => $value) {
-                $this->db->where($this->_table . "." . $key, $value);
-            }
+			$this->db->select(" {$this->_table}.*, CONCAT(user_profile.first_name,\" \",user_profile.last_name) AS full_name", false);
+      $this->db->from($this->_table);
+      $this->db->join("user_profile", "user_profile.user_id=" . $this->_table . ".sender_id");
+      if(!$this->can_compose_alert)
+			{
+			  $this->db->where("receiver_id", $receiver_id);
+			}
+			else
+			{
+			 
+			}
+      $this->db->where("receiver_folder", "inbox");
+      if (!empty($where)) {
+      	foreach ($where as $key => $value) {
+        	$this->db->where($this->_table . "." . $key, $value);
         }
-        $this->db->order_by('created_at', 'DESC');
-        $res = $this->db->get();
-
-        if (isset($res) && !empty($res))
-            return $res->result();
-        return false;
+      }
+			$this->db->order_by('created_at', 'DESC');
+      $res = $this->db->get();
+			//echo $this->db->last_query();
+      if (isset($res) && !empty($res))
+      	return $res->result();
+      return false;
     }
 
     /**

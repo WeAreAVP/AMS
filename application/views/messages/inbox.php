@@ -18,26 +18,38 @@ if (!$is_ajax) {
     ?>
     <br/>
     <div class="row-fluid">
-         
+         <?php if($this->can_compose_alert){?>
           <?php if (isset($this->session->userdata['sent'])) { ?><div class="alert" style="margin-bottom: 0px; margin-top: 0px;"><strong><?php echo $this->session->userdata['sent']; ?></strong></div><br/><?php } $this->session->unset_userdata('sent'); ?>
         <div class="span3" style="margin-bottom: 15px;">
             <a href="#compose_to_type" class="btn btn-large" data-toggle="modal" id="compose_anchor">Compose Message</a>
             <a href="#compose_confirm"  data-toggle="modal" id="confirm_anchor" style="display: none;"></a>
         </div>
+        <?php }?>
     </div>
     <div class="row-fluid">
         <div class="span3">
             <div id="search_bar">
                 <b><h4>Folders</h4></b>
-                <div style="padding: 8px;background: none repeat scroll 0% 0% rgb(0, 152, 214);" ><a  style="color: white;" href="<?php echo site_url('messages/inbox') ?>" >Inbox</a></div>
-                <div style="padding: 8px;" >	<a href="<?php echo site_url('messages/sent') ?>" >Sent</a></div>
-<br/>
+                <div style="padding: 8px;background: none repeat scroll 0% 0% rgb(0, 152, 214);" >
+                	<a  style="color: white;" href="<?php echo site_url('messages/inbox') ?>" >Inbox</a></div>
+                  <?php if($this->can_compose_alert) { ?>
+                  	<div style="padding: 8px;" >	<a href="<?php echo site_url('messages/sent') ?>" >Sent</a></div>
+                  
+									<br/>
                 <div>
                     <?php echo form_label('Stations', $stations['id']); ?>
                 </div>
                 <div>
-                    <?php echo form_dropdown($stations['id'], array('' => 'Select'), array(), $stations['function'] . 'id="' . $stations['id'] . '"'); ?>
+                <select name="<?php echo $stations['id']?>" id="<?php echo $stations['id']?>" <?php echo $stations['function']?>>
+                <option value="">Select</option>
+                 <?php foreach ($station_records as $value) { ?>
+                            <option value="<?php echo $value->id; ?>"><?php echo $value->station_name; ?></option>
+                            <?php
+                        }
+                        ?>
+                 </select>
                 </div>
+                 <?php }?>
                 <div>
                     <?php echo form_label('Message Type', $message_type['id']); ?>
                 </div>

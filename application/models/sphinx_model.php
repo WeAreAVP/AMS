@@ -43,11 +43,17 @@ class Sphinx_Model extends CI_Model {
 
         return array("total_count" => $total_record, "records" => $listings, "query_time" => $execution_time);
     }
-
-    function update_indexes($index, $attr, $values) {
+    public function update_indexes($index, $attr, $values) {
         $this->sphinxsearch->update_attributes($index, $attr, $values);
     }
-
+		public function get_all_stations()
+		{
+			$res=$this->search_stations('',0,400);
+			if($res['total_count']>0)
+			{
+				return $res['records'];
+			}
+		}
 }
 
 ?>

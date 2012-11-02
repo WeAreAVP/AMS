@@ -34,7 +34,14 @@ if (!$is_ajax) {
     <?php echo form_label('Stations', $stations['id']); ?>
                 </div>
                 <div>
-    <?php echo form_dropdown($stations['id'], array('' => 'Select'), array(), $stations['function'] . 'id="' . $stations['id'] . '"'); ?>
+    							<select name="<?php echo $stations['id']?>" id="<?php echo $stations['id']?>" <?php echo $stations['function']?>>
+                <option value="">Select</option>
+                 <?php foreach ($station_records as $value) { ?>
+                            <option value="<?php echo $value->id; ?>"><?php echo $value->station_name; ?></option>
+                            <?php
+                        }
+                        ?>
+                 </select>
                 </div>
                 <div>
     <?php echo form_label('Message Type', $message_type['id']); ?>

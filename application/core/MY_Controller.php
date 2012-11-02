@@ -15,6 +15,7 @@ class MY_Controller extends CI_Controller {
     public $is_station_user;
     public $station_id;
     public $user_details;
+		public $can_compose_alert;
 
     function __construct() {
         parent::__construct();
@@ -33,7 +34,6 @@ class MY_Controller extends CI_Controller {
     }
 
     function _assing_user_info() {
-
         $this->user_id = $this->dx_auth->get_user_id();
         $this->role_id = $this->dx_auth->get_role_id();
         $this->is_station_user = $this->dx_auth->is_station_user();
@@ -42,6 +42,11 @@ class MY_Controller extends CI_Controller {
         }
         $this->user_detail = $this->users->get_user_detail($this->user_id)->row();
         $this->total_unread = $this->msgs->get_unread_msgs_count($this->user_id);
+				$this->can_compose_alert=false;
+				if(in_array($this->role_id,array(1,2,5)))
+			 	{
+					$this->can_compose_alert=true;
+			 	}
     }
 
 }

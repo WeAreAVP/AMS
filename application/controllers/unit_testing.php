@@ -29,15 +29,12 @@ class Unit_Testing extends CI_Controller {
      *  
      */
     public function station_test() {
-        $test1 = $this->station_model->get_station_count();
-        $expected_result = 98;
-        $test_name = 'Station list count';
+        $test1 = $this->station_model->get_all();
+        $expected_result = 'is_array';
+        $test_name = 'Station list';
         echo $this->unit->run($test1, $expected_result, $test_name);
         echo '<br/>';
-        $test2 = $this->station_model->get_all();
-        $test_name = 'Station type';
-        echo $this->unit->run($test2, 'is_array', $test_name);
-        echo '<br/>';
+        
         $test3 = $this->station_model->update_station(1, array('start_date' => '2011-10-12'));
         $test_name = 'Digitilization Start Date';
         echo $this->unit->run($test3, 'is_true', $test_name);
@@ -84,8 +81,6 @@ class Unit_Testing extends CI_Controller {
     function usertesting() {
         $this->userlisttesting();
         $this->addusertesting();
-        
-        
     }
 
     /**
@@ -129,6 +124,7 @@ class Unit_Testing extends CI_Controller {
 
     /**
      * Edit user/ Edit Profile testing
+     * @param integer $id 
      *  
      */
     function editusertesting($id) {
@@ -153,6 +149,7 @@ class Unit_Testing extends CI_Controller {
 
     /**
      * Delete User Tesing
+     * @param integer $id 
      *  
      */
     function deleteusertesting($id) {

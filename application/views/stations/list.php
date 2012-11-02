@@ -213,11 +213,11 @@ if (!$is_ajax) {
             search_words=$('#search_words').val();
             certified=$('#certified').val();
             agreed=$('#agreed').val();
-            start_date=$('#start_date_range').val();
+            
             $.ajax({
                 type: 'POST', 
                 url: '<?php echo site_url('stations/index') ?>',
-                data:{"search_words":search_words,certified:certified,agreed:agreed,start_date:start_date},
+                data:{"search_words":search_words,certified:certified,agreed:agreed},
                 success: function (result) { 
                     $('#append_record').html(result);
                     $("#station_table").trigger("update");  

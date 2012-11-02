@@ -83,7 +83,7 @@
     function typeForm(){
        // $('#subject_div').show();
         type=$('#msg_type').val();
-				if(to=='' || to==null ||  typeof(to)==undefined)
+				if(to=='' || to==null )
 				{
 					  $('#message_station_error').show();
 						return ;
@@ -114,7 +114,7 @@
         temp_to_name=new Array();                
         type=$('#msg_type').val();
 				to=$('#receiver_id').val();
-				if(to=='' || to==null || typeof(to)==undefined)
+				if(to=='' || to==null)
 				{
 					  $('#message_station_error').show();
 						return false;

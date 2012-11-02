@@ -20,6 +20,7 @@ table.tablesorter {
 	font-size: 12px;
 /*	width: 100%;*/
 	text-align: left;
+        word-break: break-all;
 }
 table.tablesorter thead tr th, table.tablesorter tfoot tr th {
 /*	background-color: #ADC095;*/

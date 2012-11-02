@@ -71,7 +71,7 @@
                 <?php }
                 ?>
             <?php } else { ?>
-            <div style="text-align: center;">No Station Contact Available.</div>
+                <div style="text-align: center;">No Station Contact Available.</div>
             <?php } ?>
         </div>
         <h2>Tracking Information</h2>
@@ -96,7 +96,9 @@
                             <td><?php echo $value->ship_via; ?></td>
                             <td><?php echo $value->tracking_no; ?></td>
                             <td><?php echo $value->no_box_shipped; ?></td>
-                            <td><a href="#trackingModel" data-toggle="modal" onclick="manageTracking('get','edit','<?php echo $value->id; ?>');"><i class="icon-cog"></i></a><i class="icon-remove-sign"></i></td>
+                            <td><a href="#trackingModel" data-toggle="modal" onclick="manageTracking('get','edit','<?php echo $value->id; ?>');"><i class="icon-cog"></i></a>
+                                <a  href="#deleteTracingModel" data-toggle="modal" onclick="deleteTracking('<?php echo $value->id; ?>','<?php echo $station_detail->id; ?>');"><i class="icon-remove-sign"></i></a>
+                            </td>
                         </tr>
 
 
@@ -135,6 +137,19 @@
 
 
     </div>
+
+    <div class="modal hide" id="deleteTracingModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="trackingDelete">Are you sure you want to delete?</h3>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+            <a id="delete_tracking_btn" class="btn btn-danger"  href="">Yes</a>
+
+        </div>
+    </div>
     <script type="text/javascript">
         function manageTracking(type,action,id){
             data=null;
@@ -169,5 +184,8 @@
                                         
                 }
             });
+        }
+        function deleteTracking(trackingID,stationID){
+            $('#delete_tracking_btn').attr('href',site_url+'/tracking/delete/'+trackingID+'/'+stationID);
         }
     </script>

@@ -53,7 +53,7 @@
                     dateFormat: 'yy-mm-dd',
                     onSelect: function( selectedDate ) {
                         $('#end_date_range').val(selectedDate);
-                        var option = this.id == "start_date" ? "minDate" : "maxDate",
+                        var option = this.id == "start_date_range" ? "minDate" : "maxDate",
                         instance = $( this ).data( "datepicker" ),
                         date = $.datepicker.parseDate(
                         instance.settings.dateFormat ||

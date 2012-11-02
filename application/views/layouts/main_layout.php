@@ -46,22 +46,22 @@
                         dates.not( this ).datepicker( "option", option, date );
                     }
                 });
-                var dates = $( "#start_date_range, #end_date_range" ).datepicker({
-                    defaultDate: "+1w",
-                    changeMonth: true,
-                    numberOfMonths: 1,
-                    dateFormat: 'yy-mm-dd',
-                    onSelect: function( selectedDate ) {
-                        $('#end_date_range').val(selectedDate);
-                        var option = this.id == "start_date_range" ? "minDate" : "maxDate",
-                        instance = $( this ).data( "datepicker" ),
-                        date = $.datepicker.parseDate(
-                        instance.settings.dateFormat ||
-                            $.datepicker._defaults.dateFormat,
-                        selectedDate, instance.settings );
-                        dates.not( this ).datepicker( "option", option, date );
-                    }
-                });
+//                var dates = $( "#start_date_range, #end_date_range" ).datepicker({
+//                    defaultDate: "+1w",
+//                    changeMonth: true,
+//                    numberOfMonths: 1,
+//                    dateFormat: 'yy-mm-dd',
+//                    onSelect: function( selectedDate ) {
+//                        $('#end_date_range').val(selectedDate);
+//                        var option = this.id == "start_date_range" ? "minDate" : "maxDate",
+//                        instance = $( this ).data( "datepicker" ),
+//                        date = $.datepicker.parseDate(
+//                        instance.settings.dateFormat ||
+//                            $.datepicker._defaults.dateFormat,
+//                        selectedDate, instance.settings );
+//                        dates.not( this ).datepicker( "option", option, date );
+//                    }
+//                });
                 $("[rel=tooltip]").tooltip();
                 $("#station_table").tablesorter();
                 $("#user_table_list").tablesorter();

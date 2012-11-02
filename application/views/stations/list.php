@@ -65,7 +65,7 @@ if (!$is_ajax) {
                 <div>
                     <?php echo form_dropdown($agreed['id'], array('' => 'Select', '1' => 'Yes', '0' => 'No'), array(), $agreed['function'] . 'id="' . $agreed['id'] . '"'); ?>
                 </div>
-                <div>
+<!--                <div>
                     <?php echo form_label('Digitization Start Date Range', $start_date_range['id']); ?>
                 </div>
                 <div>
@@ -76,7 +76,7 @@ if (!$is_ajax) {
                 </div>
                 <div>
                     <?php echo form_input($end_date_range); ?>
-                </div>
+                </div>-->
                 <div class="filter-fileds"><a class="btn" onclick="resetStationFilter();">Reset</a></div>
 
             </div>

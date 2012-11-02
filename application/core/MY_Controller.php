@@ -28,7 +28,8 @@ class MY_Controller extends CI_Controller {
         $this->load->model('station_model');
         $this->load->model('dx_auth/users', 'users');
         $this->load->model('email_template_model', 'email_template');
-        if (!isset($this->user_id)) {
+        //if (!isset($this->user_id))
+				{
             $this->_assing_user_info();
         }
     }
@@ -38,10 +39,11 @@ class MY_Controller extends CI_Controller {
         $this->role_id = $this->dx_auth->get_role_id();
         $this->is_station_user = $this->dx_auth->is_station_user();
         if ($this->is_station_user) {
-            $this->station_id = $this->dx_auth->get_station_id();
+          $this->station_id = $this->dx_auth->get_station_id();
+					$this->total_unread = $this->msgs->get_unread_msgs_count( $this->station_id);
         }
         $this->user_detail = $this->users->get_user_detail($this->user_id)->row();
-        $this->total_unread = $this->msgs->get_unread_msgs_count($this->user_id);
+       
 				$this->can_compose_alert=false;
 				if(in_array($this->role_id,array(1,2,5)))
 			 	{

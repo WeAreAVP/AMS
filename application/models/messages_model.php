@@ -107,9 +107,10 @@ class Messages_Model extends CI_Model {
      * @return rows object 
      */
     function get_sent_msgs($sender_id, $where = '') {
-        $this->db->select("{$this->_table}.*,stations.station_name AS full_name", false);
+        $this->db->select("{$this->_table}.*,stations.station_name AS full_name,email_queue.is_email_read,email_queue.read_at AS email_read_at", false);
         $this->db->from($this->_table);
         $this->db->join("stations", "stations.id=" . $this->_table . ".receiver_id");
+				$this->db->join("email_queue", "email_queue.id=" . $this->_table . ".email_queue_id");
         $this->db->where("sender_id", $sender_id);
         $this->db->where("sender_folder", "sent");
         if (!empty($where)) {

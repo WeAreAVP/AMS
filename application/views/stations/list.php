@@ -71,6 +71,12 @@ if (!$is_ajax) {
                 <div>
                     <?php echo form_input($start_date_range); ?>
                 </div>
+                <div>
+                    <?php echo form_label('Digitization End Date Range', $end_date_range['id']); ?>
+                </div>
+                <div>
+                    <?php echo form_input($end_date_range); ?>
+                </div>
                 <div class="filter-fileds"><a class="btn" onclick="resetStationFilter();">Reset</a></div>
 
             </div>

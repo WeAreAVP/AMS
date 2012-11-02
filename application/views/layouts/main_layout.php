@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-    
+
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>AMS</title>
         <script type="text/javascript">
@@ -13,8 +13,8 @@
         echo link_js('jquery.tablesorter.js');
         echo link_js('bootstrap/bootstrap.js');
         echo link_js('jquery.freezetablecolumns.1.1.js');
-			 
-				echo link_js('jquery.multiselect.min.js');
+
+        echo link_js('jquery.multiselect.min.js');
         echo link_tag("css/tableSorter.css");
         echo link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
 
@@ -23,10 +23,10 @@
         echo link_tag("css/bootstrap/bootstrap-responsive.css");
         echo link_tag("css/style.css");
         ?> 
-        <script src="<?php echo base_url('tiny_mce/tiny_mce.js')?>" type="text/javascript"></script>
-        <?php  echo link_js('custom.js');?>
-        
-				
+        <script src="<?php echo base_url('tiny_mce/tiny_mce.js') ?>" type="text/javascript"></script>
+        <?php echo link_js('custom.js'); ?>
+
+
 
         <script type="text/javascript"> 
             $(document).ready(function() {
@@ -46,22 +46,22 @@
                         dates.not( this ).datepicker( "option", option, date );
                     }
                 });
-//                var dates = $( "#start_date_range, #end_date_range" ).datepicker({
-//                    defaultDate: "+1w",
-//                    changeMonth: true,
-//                    numberOfMonths: 1,
-//                    dateFormat: 'yy-mm-dd',
-//                    onSelect: function( selectedDate ) {
-//                        $('#end_date_range').val(selectedDate);
-//                        var option = this.id == "start_date_range" ? "minDate" : "maxDate",
-//                        instance = $( this ).data( "datepicker" ),
-//                        date = $.datepicker.parseDate(
-//                        instance.settings.dateFormat ||
-//                            $.datepicker._defaults.dateFormat,
-//                        selectedDate, instance.settings );
-//                        dates.not( this ).datepicker( "option", option, date );
-//                    }
-//                });
+                //                var dates = $( "#start_date_range, #end_date_range" ).datepicker({
+                //                    defaultDate: "+1w",
+                //                    changeMonth: true,
+                //                    numberOfMonths: 1,
+                //                    dateFormat: 'yy-mm-dd',
+                //                    onSelect: function( selectedDate ) {
+                //                        $('#end_date_range').val(selectedDate);
+                //                        var option = this.id == "start_date_range" ? "minDate" : "maxDate",
+                //                        instance = $( this ).data( "datepicker" ),
+                //                        date = $.datepicker.parseDate(
+                //                        instance.settings.dateFormat ||
+                //                            $.datepicker._defaults.dateFormat,
+                //                        selectedDate, instance.settings );
+                //                        dates.not( this ).datepicker( "option", option, date );
+                //                    }
+                //                });
                 $("[rel=tooltip]").tooltip();
                 $("#station_table").tablesorter();
                 $("#user_table_list").tablesorter();
@@ -100,7 +100,7 @@
 
                             <li class="<?php echo active_anchor('stations', array('index', 'detail')); ?>"><a href="<?php echo site_url('stations/index') ?>">Stations</a></li>
                             <li class="<?php echo active_anchor('reports', 'index'); ?>"><a href="">Reports</a></li>
-                            <li class="<?php echo active_anchor('settings', false); ?>"><a href="<?php echo site_url('settings/index') ?>">Settings</a></li> 
+                            <li class="<?php echo (is_route_method(array('settings' => array('index', 'users', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('settings/index') ?>">Settings</a></li> 
 
                         </ul>
                     </div><!--/.nav-collapse -->
@@ -117,22 +117,17 @@
                 ) {
                     ?>
                     <ul class="nav nav-tabs">
-                    <?php if($this->can_compose_alert){?>
-                        <li class="<?php echo active_anchor('templatemanager', array('add', 'lists', 'edit', 'details', 'readmessage')); ?>"><a href="<?php echo site_url('templatemanager/lists'); ?>" >Email Template</a></li>
-                    <?php }?>
+                        <?php if ($this->can_compose_alert) { ?>
+                            <li class="<?php echo active_anchor('templatemanager', array('add', 'lists', 'edit', 'details', 'readmessage')); ?>"><a href="<?php echo site_url('templatemanager/lists'); ?>" >Email Template</a></li>
+                        <?php } ?>
                         <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index'); ?>">Users</a></li>
                         <li class="<?php echo active_anchor('settings', 'edit_profile'); ?>"><a href="<?php echo site_url('settings/edit_profile'); ?>">Edit Profile</a></li> 
 
                     </ul>
-                    <script>
-                        $(function () {
-                            //                            $('#myTab a:last').tab('show');
-                        })
-                                                        
-                    </script>
+
                 <?php } ?>
                 <?php
-                if ( (active_anchor('messages', array('inbox', 'sent'))) && $this->can_compose_alert) {
+                if ((active_anchor('messages', array('inbox', 'sent'))) && $this->can_compose_alert) {
 
                     $this->load->view('messages/compose');
                 }

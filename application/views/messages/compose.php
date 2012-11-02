@@ -83,6 +83,7 @@
     function typeForm(){
        // $('#subject_div').show();
         type=$('#msg_type').val();
+				to=$('#receiver_id').val();
 				if(to=='' || to==null )
 				{
 					  $('#message_station_error').show();

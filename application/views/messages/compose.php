@@ -33,13 +33,13 @@
                         }
                         ?>
                     </select>
-
+										<span id="message_station_error" style="display: none;">Please select at least one station</span>
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="msg_type">Message Type:</label>
+                <label class="control-label"  for="msg_type">Message Type:</label>
                 <div class="controls">
-                    <select id="msg_type" name="msg_type" onchange="typeForm();">
+                    <select id="msg_type" style="width: 237px;" name="msg_type" onchange="typeForm();">
                         <option value="">Select</option>
                         <?php foreach ($this->config->item('messages_type') as $key => $value) { ?>
                             <option value="<?php echo $key; ?>"><?php echo $value; ?></option>           
@@ -83,28 +83,59 @@
     function typeForm(){
        // $('#subject_div').show();
         type=$('#msg_type').val();
-        $.ajax({
-            type: 'POST', 
-            url: '<?php echo site_url('messages/get_message_type') ?>',
-            data:{"type":type},
-            dataType: 'html',
-            success: function (result) { 
-                $('#alert_type').html(result);
-            }
-        });
+				to=$('#receiver_id').val();
+				if(to=='' || to==null )
+				{
+					  $('#message_station_error').show();
+						return ;
+				}
+        else if(type=='')
+				{
+            $('#message_type_error').show();
+						return ;
+				}
+				else
+				{
+					$('#message_station_error').hide();
+          $('#message_type_error').hide();
+					$.ajax({
+							type: 'POST', 
+							url: '<?php echo site_url('messages/get_message_type') ?>',
+							data:{"type":type},
+							dataType: 'html',
+							success: function (result) { 
+									$('#alert_type').html(result);
+							}
+					});
+				}
     }
    
     function validateFormType(){
         extras=new Array();
-                        
+        temp_to_name=new Array();                
         type=$('#msg_type').val();
-        if(type=='')
+				to=$('#receiver_id').val();
+				if(to=='' || to==null)
+				{
+					  $('#message_station_error').show();
+						return false;
+				}
+        else if(type=='')
+				{
             $('#message_type_error').show();
-        else{
+						return false;
+				}
+        else
+				{
+						 $('#message_station_error').hide();
             $('#message_type_error').hide();
             $('#compose_anchor').trigger('click');
-            to=$('#receiver_id').val();
-            to_name=$("#receiver_id option[value='"+$('#receiver_id').val()+"']").text();
+            
+						for(i in to)
+						{
+            	temp_to_name[i]= $("#receiver_id option[value='"+to[i]+"']").text();
+						}
+						to_name=implode(", ",temp_to_name)
             subject=$("#msg_type option[value='"+type+"']").text();//$('#subject').val();
             confirmBody();                      
             
@@ -117,9 +148,24 @@
         $.ajax({
             type: 'POST', 
             url: '<?php echo site_url('messages/compose') ?>',
-            data:{extras:extras,to:to,subject:subject,type:type,html:msg_body},
+            data:{"extras":extras,to:to,subject:subject,type:type,html:msg_body},
+						dataType: 'json',
             success: function (result) { 
-             window.location.reload();
+							if(result.success)
+							{
+								 window.location.reload();
+							}
+							else
+							{
+								if(error_id==1)
+								{
+									$('#message_station_error').show();
+								}
+								else
+								{
+									$('#message_type_error').show();
+								}
+							}
             }
         });
     }

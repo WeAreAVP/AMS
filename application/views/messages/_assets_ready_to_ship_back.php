@@ -67,9 +67,9 @@
         $( "#material_return_date" ).datepicker();
     });
     function confirmBody(){
-				est_ship_date=$( "#est_ship_date" ).datepicker();
-				actual_ship_date=$( "#actual_ship_date" ).datepicker();
-         comments=$('#comments').val();
+				est_ship_date=$( "#est_ship_date" ).val();
+				actual_ship_date=$( "#actual_ship_date" ).val();
+        comments=$('#comments').val();
         crawford_contact_details=$('#crawford_contact_details').val();
         digitization_review_date=$('#day_digitization_review').val();
         material_review_date=$('#day_material_review').val();

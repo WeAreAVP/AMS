@@ -116,18 +116,20 @@ class Messages extends MY_Controller {
      *  
      */
     public function compose() {
-        if ($this->input->post()) {
+        if ($this->input->post() && isAjax()) {
             $alerts_array = $this->config->item('messages_type');
 						$html = $this->input->post('html');
             $type = $this->input->post('type');
             $template = str_replace(" ", "_", $alerts_array[$type]);
             $template_data = $this->email_template->get_template_by_sys_id($template);
             $multiple_station=$this->input->post('to');
-						if(isset($multiple_station) && !empty($multiple_station))
+						if (isset($template_data) && !empty($template_data)) 
 						{
-							foreach($multiple_station as $to )
+							if(isset($multiple_station) && !empty($multiple_station))
 							{
-								if (isset($template_data) && !empty($template_data)) {
+								foreach($multiple_station as $to )
+								{
+								
 									$station_details = $this->station_model->get_station_by_id($to);
 									$subject = $template_data->subject;
 									$extra = $this->input->post('extras');
@@ -155,18 +157,22 @@ class Messages extends MY_Controller {
 									$this->msgs->add_msg($data);
 									$this->session->set_userdata('sent', 'Message Sent');
 								}
+								echo json_encode(array('success' => true));
+								exit;
 							}
-							echo json_encode(array('success' => true));
-							exit;
+							else
+							{
+								echo json_encode(array('success' => false,"error_id"=>1));
+								exit;
+							}
 						}
 						else
 						{
-							echo json_encode(array('success' => false));
+							echo json_encode(array('success' => false,"error_id"=>2));
 							exit;
 						}
         } else {
-            echo json_encode(array('success' => false));
-            exit;
+            show_404();
         }
     }
 

@@ -52,7 +52,7 @@ class Email_Template_Model extends CI_Model {
      */
     function update_email_template($template_id, $data) {
         $this->db->where("id", $template_id);
-        $this->db->update($this->_email_queue_table, $data);
+        $this->db->update($this->_table, $data);
         return $this->db->affected_rows() > 0;
     }
 

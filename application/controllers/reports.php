@@ -17,7 +17,7 @@ class Reports extends MY_Controller
      */
     function Reports()
 		{
-        parent::__construct();
+			parent::__construct();
     }
 		/*
 		*
@@ -26,7 +26,6 @@ class Reports extends MY_Controller
 		*/
 		function emailalerts()
 		{
-			$this->get_email_queue
+			$this->report_model->get_email_queue();
 		}
-
 }

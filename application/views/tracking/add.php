@@ -1,8 +1,8 @@
 <?php
 $ship_date = array(
-    'name' => 'ship_date',
-    'id' => 'ship_date',
-    'value' => set_value('ship_date'),
+    'name' => 'tracking_ship_date',
+    'id' => 'tracking_ship_date',
+    'value' => set_value('tracking_ship_date'),
 );
 $ship_to = array(
     'name' => 'ship_to',
@@ -74,7 +74,6 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'tracking_new_form','
 
 <script type="text/javascript">
     $(function() {
-        
-        $("#ship_date").datepicker({dateFormat: 'yy-mm-dd'});
+        $("#tracking_ship_date").datepicker({dateFormat: 'yy-mm-dd'});
     });
 </script>

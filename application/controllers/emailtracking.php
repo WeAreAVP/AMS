@@ -2,15 +2,32 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
-class EmailTracking extends CI_Controller {
-
-    function EmailTracking() {
+/**
+ * Email Tracking controller.
+ *
+ * @package    AMS
+ * @author     Ali Raza
+ */
+class EmailTracking extends CI_Controller
+{
+ 		/**
+     * constructor. Load Model
+     * 
+     */
+    function EmailTracking()
+		{
         parent::__construct();
         $this->load->model('email_template_model', 'email_templates');
     }
-
-    function index($email_alert) {
+		
+		/*
+		*	To Update Email Alert Status
+		* @Perm Email Alert Id
+		* @Retun 1*1 image
+		*/
+		
+    function index($email_alert) 
+		{
         if (isset($email_alert) && $email_queue_data = $this->email_templates->get_email_queue_by_id($email_alert)) {
             header('Content-type: image/png');
             echo(base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII='));

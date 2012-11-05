@@ -211,11 +211,12 @@
             }
         });
     }
-    function editSingleStation(start,end,certified,agreed){
+    function editSingleStation(id,start,end,certified,agreed){
         $('#start_date').val(start);
         $('#end_date').val(end);
         $('#station_certified').val(certified);
         $('#station_agreed').val(agreed);
+        $('#station_id').val(id);
         detailPage=true;
     }
     

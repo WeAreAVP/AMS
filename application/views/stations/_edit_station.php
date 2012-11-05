@@ -214,7 +214,11 @@
     function editSingleStation(id,start,end,certified,agreed){
         $('#start_date').val(start);
         $('#end_date').val(end);
+        if(certified==1)
+            $('#station_certified').attr('checked',true);
         $('#station_certified').val(certified);
+        if(agreed==1)
+            $('#station_agreed').attr('checked',true);
         $('#station_agreed').val(agreed);
         $('#station_id').val(id);
         detailPage=true;

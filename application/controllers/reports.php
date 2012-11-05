@@ -26,7 +26,7 @@ class Reports extends MY_Controller
 		*/
 		function emailalerts()
 		{
-			
+			$this->get_email_queue
 		}
 
 }

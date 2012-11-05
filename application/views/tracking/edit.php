@@ -1,7 +1,7 @@
 <?php
 $ship_date = array(
-    'name' => 'ship_date',
-    'id' => 'ship_date',
+    'name' => 'tracking_ship_date',
+    'id' => 'tracking_ship_date',
     'value' => $tracking_info->ship_date,
 );
 $ship_to = array(

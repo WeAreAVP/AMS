@@ -1,7 +1,4 @@
-<?php if (count($station_detail) > 0) {
-    echo $station_detail->start_date.'nouman';
-    echo $station_detail->end_date;
-    ?>
+<?php if (count($station_detail) > 0) { ?>
     <div style="margin: 0px -20px;">
         <ul class="breadcrumb">
             <li><a href="<?php echo site_url('stations/index'); ?>">Stations</a> <span class="divider">/</span></li>

@@ -78,7 +78,7 @@ if (!$is_ajax) {
             if (count($results) > 0) {
                 foreach ($results as $row) {
                         ?>
-                          <tr style="cursor: pointer;<?php if($row->msg_status=='unread'){?> font-weight:bold;<?php }?>" onclick="read_msg('<?php echo $row->id?>')">
+                          <tr id="row_<?php echo $row->id?>" style="cursor: pointer;<?php if($row->msg_status=='unread'){?> font-weight:bold;<?php }?>" onclick="read_inbox_msg('<?php echo $row->id?>')">
                                 <td><?php echo $row->full_name; ?></td>
                                 <td><?php echo $row->subject; ?></td>
                                 <td><?php echo date("m/d/Y", strtotime($row->created_at)); ?></td>
@@ -96,11 +96,7 @@ if (!$is_ajax) {
         </div>
     </div>
     <script type="text/javascript">
-				function read_msg(id)
-				{
-					window.location='<?php echo site_url('messages/readmessage');?>/'+id;
-				}
-        function filter_inbox(){
+				function filter_inbox(){
             var stations=$('#stations').val();
             var message_type=$('#message_type').val();
             $.ajax({
@@ -115,7 +111,30 @@ if (!$is_ajax) {
 										
                 }
             });
-    }
+    		}
+				function read_inbox_msg(id)
+				{
+         	$.ajax({
+          	type: 'POST', 
+            url: site_url+'messages/readmessage/'+id,
+            cache: false,
+						datatype:'json',
+            success: function (r)
+						{
+							result=eval('(' +r+ ')');
+            	if(result.error==false)
+							{
+								if(result.reset_row)
+								{
+									$("#row_"+id).css('font-weight','normal');
+								}
+								$('#myGeneral_body').html(result.msg_data); 
+								$('#msg_text_link').html(result.total_unread_text)	;        
+								$('#myGeneral').modal('show');
+							}
+            }
+            });
+				}
    
     </script>
    

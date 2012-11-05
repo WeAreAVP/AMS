@@ -3,9 +3,9 @@ if(isset($result) && !empty($result) && isset($result[0]))
 {
 	$row=$result[0];
 	?>
-  <div class="span3">&nbsp;</div>
-<div class="span8">
+
     <div class="modal-header">
+    	<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
        <h3 id="userLabel"><?php echo $row->subject;?></h3>
     </div>
     <div class="modal-body">
@@ -20,7 +20,7 @@ if(isset($result) && !empty($result) && isset($result[0]))
 					{
 						foreach($extras as $key=>$value)
 						{?>
-							 <div><strong><?php echo ucwords(str_replace("_"," ",$key));?>: <?php echo $value;?></strong></div>
+							 <div><?php echo ucwords(str_replace("_"," ",$key));?>: <?php echo $value;?></div>
 						<?php
             }
 					}
@@ -28,15 +28,12 @@ if(isset($result) && !empty($result) && isset($result[0]))
         	
         <?php }?>
     </div>
-</div>
 <?php }else{?>
-  <div class="span3">&nbsp;</div>
-<div class="span8">
+  
     <div class="modal-header">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
        <h3 id="userLabel">No Message Found</h3>
     </div>
-</div
-
 <?php }?>
 
 <br clear="all"/>

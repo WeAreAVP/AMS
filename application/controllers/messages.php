@@ -183,31 +183,55 @@ class Messages extends MY_Controller {
      *  Display Message details
      */
     public function readmessage($message_id = '') {
+			if(isAjax())
+			{
+				$rslt["total_unread_text"]='<a href="'.site_url('messages/inbox').'">Messages</a>';
+				$rslt["error"]=true;
+				$rslt["reset_row"]=false;
         if ($message_id != '') {
             $data['result'] = $this->msgs->get_inbox_msgs( $this->station_id, array("id" => $message_id));
             if (isset($data['result']) && !empty($data['result']) && $data['result'][0]->msg_status == 'unread' && !$this->can_compose_alert) {
                 $this->msgs->update_msg_by_id($message_id, array("msg_status" => 'read', "read_at" => date('Y-m-d H:i:s')));
                 $this->total_unread = $this->msgs->get_unread_msgs_count($this->user_id);
+								if (isset($this->total_unread) && $this->total_unread > 0 && $this->is_station_user)
+								{
+                	$rslt["total_unread_text"]='<a class="btn large message" href="'.site_url('messages/inbox').'">Messages<span class="badge label-important message-alert">'.$this->total_unread.'</span></a>';
+									$rslt["reset_row"]=true;
+                }
             }
-            $this->load->view('messages/read_msg', $data);
+						$rslt["error"]=false;
+            $rslt["msg_data"]= $this->load->view('messages/read_msg', $data,true);
+						echo json_encode($rslt);
+						exit;
         } else {
-            show_404();
+            echo json_encode($rslt);
+						exit;
         }
+			}else{ show_404();}
     }
 
     public function readsentmessage($message_id = '')
 		{
-			if($this->can_compose_alert)
+			if(isAjax())
 			{
-        if ($message_id != '') {
+				$rslt["error"]=true;
+				if($this->can_compose_alert)
+				{
+					if ($message_id != '') {
             $data['result'] = $this->msgs->get_sent_msgs($this->user_id, array("id" => $message_id));
-            $this->load->view('messages/read_msg', $data);
-        } else {
-            show_404();
-        }
-			}else {
-            show_404();
-      }
+            $rslt["error"]=false;
+            $rslt["msg_data"]= $this->load->view('messages/read_msg', $data,true);
+						echo json_encode($rslt);
+						exit;
+        	} else {
+          	echo json_encode($rslt);
+						exit;
+        	}
+				}else {
+        	echo json_encode($rslt);
+					exit;
+      	}
+			}else{ show_404();}
     }
 
 }

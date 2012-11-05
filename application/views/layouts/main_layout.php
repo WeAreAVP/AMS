@@ -30,6 +30,9 @@
 
         <script type="text/javascript"> 
             $(document).ready(function() {
+							$('#myGeneral').on('hidden', function () {
+    						$('#myGeneral_body').html(''); 
+    					})
                 
                 var dates = $( "#start_date, #end_date" ).datepicker({
                     defaultDate: "+1w",
@@ -81,12 +84,13 @@
             <?php if ($this->dx_auth->is_logged_in()) {
                 ?>
                 <div class="custom-nav">
+                	<span id="msg_text_link">
                     <?php if (isset($this->total_unread) && $this->total_unread > 0) { ?>
                         <a class="btn large message" href="<?php echo site_url('messages/inbox') ?>">Messages<span class="badge label-important message-alert"><?php echo $this->total_unread ?></span></a>
                     <?php } else { ?>
                         <a href="<?php echo site_url('messages/inbox') ?>">Messages</a>
                     <?php } ?>
-
+									</span>
                     <a href="<?php echo site_url('auth/logout') ?>">Log Out</a> 
                 </div>
             <?php } ?>
@@ -135,6 +139,10 @@
 
                 {yield}
             </div>
+        </div>
+        <a href="#myGeneral" data-toggle="modal" id="showPopUp"></a>
+        <div class="modal hide" id="myGeneral" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div id="myGeneral_body" > </div>
         </div>
     </body>
 </html>

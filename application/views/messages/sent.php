@@ -102,9 +102,27 @@ if (count($results) > 0) {
         </div>
     </div>
     <script type="text/javascript">
-		function read_msg(id)
+			function read_sent_msg(id)
 				{
-					window.location='<?php echo site_url('messages/readsentmessage');?>/'+id;
+         	$.ajax({
+          	type: 'POST', 
+            url: site_url+'messages/readsentmessage/'+id,
+            cache: false,
+						datatype:'json',
+            success: function (r)
+						{
+							result=eval('(' +r+ ')');
+            	if(result.error==false)
+							{
+								$('#myGeneral_body').html(result.msg_data); 
+								$('#myGeneral').modal('show');
+							}
+            }
+            });
+				}
+				function read_msg(id)
+				{
+					read_sent_msg(id);
 				}
         function filter_inbox(){
             var stations=$('#stations').val();

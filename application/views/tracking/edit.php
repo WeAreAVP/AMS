@@ -74,7 +74,7 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'tracking_edit_form',
 
 <script type="text/javascript">
     $(function() {
-        $( "#ship_date" ).datepicker();
+        $("#tracking_ship_date").datepicker({dateFormat: 'yy-mm-dd'});
         
     });
 </script>

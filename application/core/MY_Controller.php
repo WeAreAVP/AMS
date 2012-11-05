@@ -28,12 +28,15 @@ class MY_Controller extends CI_Controller {
         $this->load->model('station_model');
         $this->load->model('dx_auth/users', 'users');
         $this->load->model('email_template_model', 'email_template');
-        //if (!isset($this->user_id))
+				$this->load->model('report_model');
+       	if (!isset($this->user_id))
 				{
             $this->_assing_user_info();
         }
     }
-
+		/*
+		*To Assign Current Login user info
+		*/
     function _assing_user_info() {
         $this->user_id = $this->dx_auth->get_user_id();
         $this->role_id = $this->dx_auth->get_role_id();

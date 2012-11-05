@@ -1,12 +1,29 @@
 <?php
-
-class Sphinx_Model extends CI_Model {
-
-    function __construct() {
-        parent::__construct();
-        $this->load->library('sphinxsearch');
+/**
+ * Sphinx Model.
+ *
+ * @package    AMS
+ * @subpackage Sphinx_Model
+ * @author     Ali Raza
+ */
+class Sphinx_Model extends CI_Model
+{
+		 /*
+		 *
+     * constructor. Load Sphinx Search Library
+     * 
+     */
+    function __construct()
+		{
+    	parent::__construct();
+      $this->load->library('sphinxsearch');
     }
-
+ 		 /**
+     * Get list of all the stations based on search params
+     * 
+		 * @Perm Get Array of Perm possible value of array are certified,agreed,start_date,end_date,search_kewords
+     * @return Object 
+     */
     public function search_stations($params, $offset = 0, $limit = 100) {
 
         $total_record = 0;
@@ -43,9 +60,18 @@ class Sphinx_Model extends CI_Model {
 
         return array("total_count" => $total_record, "records" => $listings, "query_time" => $execution_time);
     }
+		/*
+		* Update Index Attribute Value
+		* @Perm Name of index
+		* @Perm Name of attribute
+		* @Perm Value of attribute
+		*/
     public function update_indexes($index, $attr, $values) {
         $this->sphinxsearch->update_attributes($index, $attr, $values);
     }
+		/*
+		* Get All Stations
+		*/
 		public function get_all_stations()
 		{
 			$res=$this->search_stations('',0,400);

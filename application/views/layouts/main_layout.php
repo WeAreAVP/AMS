@@ -100,7 +100,7 @@
                     <div class="nav-collapse">
                         <ul class="nav">
                             <li class="<?php echo active_anchor('dashboard', 'index'); ?>"><a href="">Dashboard</a></li>
-                            <li class="<?php echo active_anchor('objects', 'index'); ?>"><a href="">Objects</a></li>
+                            <li class="<?php echo active_anchor('records', 'index'); ?>"><a href="<?php echo site_url('records/index') ?>">Records</a></li>
 
                             <li class="<?php echo active_anchor('stations', array('index', 'detail')); ?>"><a href="<?php echo site_url('stations/index') ?>">Stations</a></li>
                             <li class="<?php echo active_anchor('reports', 'index'); ?>"><a href="">Reports</a></li>
@@ -127,6 +127,16 @@
                         <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index'); ?>">Users</a></li>
                         <li class="<?php echo active_anchor('settings', 'edit_profile'); ?>"><a href="<?php echo site_url('settings/edit_profile'); ?>">Edit Profile</a></li> 
 
+                    </ul>
+
+                <?php } ?>
+                <?php
+                if (is_route_method(array('records' => array('index'))))
+								{
+                    ?>
+                    <ul class="nav nav-tabs">
+                        <li class="<?php echo active_anchor('records', 'index'); ?>"><a href="<?php echo site_url('records/index'); ?>">Assets</a></li>
+                       
                     </ul>
 
                 <?php } ?>

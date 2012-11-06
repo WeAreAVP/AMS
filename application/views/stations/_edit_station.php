@@ -36,20 +36,20 @@
     var stationName=null;
     var detailPage=false;
     function validateFields(){
-        if($('#start_date').val()=='' || $('#start_date').val()=='--' ||  $('#start_date').val()=='0000-00-00'){
+        if($('#start_date').val()=='--' ||  $('#start_date').val()=='0000-00-00'){
             $('#start_date_message').show();
         }
         else{
             $('#start_date_message').hide();
         }
-        if($('#end_date').val()=='' || $('#end_date').val()=='--'  ||  $('#end_date').val()=='0000-00-00'){
+        if($('#end_date').val()=='--'  ||  $('#end_date').val()=='0000-00-00'){
             $('#end_date_message').show();
                                                                                                                 
         }
         else{
             $('#end_date_message').hide();
         }
-        if($('#start_date').val()!='' && $('#start_date').val()!='--' && $('#start_date').val()!='0000-00-00' && $('#end_date').val()!='' && $('#end_date').val()!='--' && $('#end_date').val()!='0000-00-00'){
+        if($('#start_date').val()!='--' && $('#start_date').val()!='0000-00-00'  && $('#end_date').val()!='--' && $('#end_date').val()!='0000-00-00'){
             $('#showPopUp').trigger('click');
             $('#showConfirmPopUp').trigger('click');
         }

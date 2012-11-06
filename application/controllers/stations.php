@@ -95,7 +95,8 @@ class Stations extends MY_Controller {
             $end_date = $this->input->post('end_date');
             $is_certified = $this->input->post('is_certified');
             $is_agreed = $this->input->post('is_agreed');
-
+            $start_date=$start_date ? $start_date : NULL;
+            $end_date=$end_date ? $end_date : NULL;
             $station = array();
             foreach ($station_ids as $value) {
                 $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date, 'is_certified' => $is_certified, 'is_agreed' => $is_agreed));

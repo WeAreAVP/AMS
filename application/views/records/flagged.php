@@ -31,7 +31,7 @@
     <div style="overflow: auto;height: 400px;" id="simple_view">
       <table class="tablesorter table table-bordered" >
         
-          <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag"></i></td>
+          <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag "></i></td>
           <th>AA GUID</th>
           <td style="vertical-align:middle;font-weight:bold">Local ID</td>
           <td style="vertical-align:middle;font-weight:bold">Title</td>
@@ -39,7 +39,7 @@
           <td style="vertical-align:middle;font-weight:bold">Instantiations</td>
         <tbody>
           <tr>
-             <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag"></i></td>
+             <td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="flag"></i></td>
             <td>cpb-aacip/109-000000b9</td>
             <td>Set 1 Box 64 Tape 22 | !b99758-96ab-48ef-ba66-f71ee48d0245</td>
             <td><p>10:05-10:20 BAKER SPRING RESEARCH
@@ -60,6 +60,15 @@
               SP)
               Instn. 2 (VHS)
               Instn. 3 (Cassette)</p></td>
+          </tr>
+           <tr>
+             <td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="flag"></i></td>
+             <td>AA GUID</td>
+            <td>Local ID</td>
+            <td>Title</td>
+            <td><p>Description</p></td>
+            <td><p>Instantiations</p></td>
+            
           </tr>
         </tbody>
       </table>
@@ -67,15 +76,15 @@
     <div style="overflow: scroll;display:none;" id="full_table_view" >
       <table class="tablesorter table table-bordered" >
         
-          <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag"></i></td>
+          <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag "></i></td>
           <th>AA GUID</th>
           <td style="vertical-align:middle;font-weight:bold">Local ID</td>
           <td style="vertical-align:middle;font-weight:bold">Title</td>
           <td style="vertical-align:middle;font-weight:bold">Description</td>
           <td style="vertical-align:middle;font-weight:bold">Instantiations</td>
-          <tbody>
+        <tbody>
           <tr>
-             <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag"></i></td>
+             <td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="flag"></i></td>
             <td>cpb-aacip/109-000000b9</td>
             <td>Set 1 Box 64 Tape 22 | !b99758-96ab-48ef-ba66-f71ee48d0245</td>
             <td><p>10:05-10:20 BAKER SPRING RESEARCH
@@ -97,10 +106,49 @@
               Instn. 2 (VHS)
               Instn. 3 (Cassette)</p></td>
           </tr>
+           <tr>
+             <td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="flag"></i></td>
+             <td>AA GUID</td>
+            <td>Local ID</td>
+            <td>Title</td>
+            <td><p>Description</p></td>
+            <td><p>Instantiations</p></td>
+            
+          </tr>
         </tbody>
       </table>
     </div>
-    <div style="overflow: auto;display:none;" id="thumbnails_view"> <img src="http://placehold.it/140x140" class="img-rounded"> <img src="http://placehold.it/140x140" class="img-rounded"> <img src="http://placehold.it/140x140" class="img-rounded"> <img src="http://placehold.it/140x140" class="img-rounded"> </div>
+    <div style="overflow: auto;display:none;" id="thumbnails_view">  <div class="span3 title">
+        <div class="flag"></div>
+        <img width="250px"  src="http://placehold.it/140x140" alt="" />
+        <h4>Title</h4>
+        <p>10:05-10:20 BAKER SPRING
+RESEARCH FELLOW AND
+NATIONAL SECURITY AT THE
+HERITAGE FOUNDATION http://
+www.heritage.org 202-608-6112,
+CT. JOE DOUGHERTY 202
+546-4400 FAR OUT RUMSFELD
+PROPOSES TO | On the Line</p>
+        </div>
+  		<div class="span3 title">
+        <div class="flag"></div>
+        <img width="250px"  src="http://placehold.it/140x140" alt="" />
+        <h4>Title</h4>
+        <p>Title of the Asset</p>
+</div>
+
+  		<div class="span3 title">
+       <div class="flag"></div>
+        <img width="250px"  src="http://placehold.it/140x140" alt="" />
+        <h4>Title</h4>
+        <p>Title of the Asset</p></div>
+  		<div class="span3 title">
+       <div class="flag"></div>
+        <img width="250px" src="http://placehold.it/140x140" alt="" />
+        <h4>Title</h4>
+        <p>Title of the Asset</p></div>
+        </div>
   </div>
 </div>
 <script>

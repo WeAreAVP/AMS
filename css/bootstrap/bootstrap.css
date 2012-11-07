@@ -4987,3 +4987,16 @@ to {
 .invisible {
     visibility: hidden;
 }
+.flag, .unflag{
+	background:url(../../images/orange-img.png) no-repeat -312px -25px;
+	height:14px;
+	width:14px;
+	float:right;
+	position:relative;
+	z-index:99;
+	margin:5px 5px -19px 0;
+	}
+.unflag{
+	 background:url(../../images/grey-img.png) no-repeat -312px -25px;
+	}
+.title{text-decoration:underline;}

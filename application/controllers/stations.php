@@ -61,7 +61,7 @@ class Stations extends MY_Controller {
             exit;
         } else {
             $data['is_ajax'] = false;
-            ;
+            
             $this->load->view('stations/list', $data);
         }
     }

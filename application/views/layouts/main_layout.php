@@ -1,158 +1,161 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+  <head>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>AMS</title>
-        <script type="text/javascript">
-            var site_url='<?php echo site_url() ?>';
-        </script>
-        <?php
-        echo link_js('jquery-1.8.2.js');
-        echo link_js('jquery-ui-1.9.0.custom.js');
-        echo link_js('jquery.tablesorter.js');
-        echo link_js('bootstrap/bootstrap.js');
-        echo link_js('jquery.freezetablecolumns.1.1.js');
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>AMS</title>
+    <script type="text/javascript">
+      var site_url='<?php echo site_url() ?>';
+    </script>
+    <?php
+    echo link_js('jquery-1.8.2.js');
+    echo link_js('jquery-ui-1.9.0.custom.js');
+    echo link_js('jquery.tablesorter.js');
+    echo link_js('bootstrap/bootstrap.js');
+    echo link_js('jquery.freezetablecolumns.1.1.js');
+    echo link_js('highcharts.js');
+    echo link_js('modules/exporting.js');
 
-        echo link_js('jquery.multiselect.min.js');
-        echo link_tag("css/tableSorter.css");
-        echo link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
-
-
-        echo link_tag("css/bootstrap/bootstrap.css");
-        echo link_tag("css/bootstrap/bootstrap-responsive.css");
-        echo link_tag("css/style.css");
-        ?> 
-        <script src="<?php echo base_url('tiny_mce/tiny_mce.js') ?>" type="text/javascript"></script>
-        <?php echo link_js('custom.js'); ?>
+    echo link_js('jquery.multiselect.min.js');
+    echo link_tag("css/tableSorter.css");
+    echo link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
 
 
+    echo link_tag("css/bootstrap/bootstrap.css");
+    echo link_tag("css/bootstrap/bootstrap-responsive.css");
+    echo link_tag("css/style.css");
+    ?> 
+    <script src="<?php echo base_url('tiny_mce/tiny_mce.js') ?>" type="text/javascript"></script>
+    <?php echo link_js('custom.js'); ?>
 
-        <script type="text/javascript"> 
-            $(document).ready(function() {
-							$('#myGeneral').on('hidden', function () {
-    						$('#myGeneral_body').html(''); 
-    					})
+
+
+    <script type="text/javascript"> 
+      $(document).ready(function() {
+        $('#myGeneral').on('hidden', function () {
+          $('#myGeneral_body').html(''); 
+        })
                 
-                var dates = $( "#start_date, #end_date" ).datepicker({
-                    defaultDate: "+1w",
-                    changeMonth: true,
-                    numberOfMonths: 1,
-                    dateFormat: 'yy-mm-dd',
-                    onSelect: function( selectedDate ) {
-                        var option = this.id == "start_date" ? "minDate" : "maxDate",
-                        instance = $( this ).data( "datepicker" ),
-                        date = $.datepicker.parseDate(
-                        instance.settings.dateFormat ||
-                            $.datepicker._defaults.dateFormat,
-                        selectedDate, instance.settings );
-                        dates.not( this ).datepicker( "option", option, date );
-                    }
-                });
-                //                var dates = $( "#start_date_range, #end_date_range" ).datepicker({
-                //                    defaultDate: "+1w",
-                //                    changeMonth: true,
-                //                    numberOfMonths: 1,
-                //                    dateFormat: 'yy-mm-dd',
-                //                    onSelect: function( selectedDate ) {
-                //                        $('#end_date_range').val(selectedDate);
-                //                        var option = this.id == "start_date_range" ? "minDate" : "maxDate",
-                //                        instance = $( this ).data( "datepicker" ),
-                //                        date = $.datepicker.parseDate(
-                //                        instance.settings.dateFormat ||
-                //                            $.datepicker._defaults.dateFormat,
-                //                        selectedDate, instance.settings );
-                //                        dates.not( this ).datepicker( "option", option, date );
-                //                    }
-                //                });
-                $("[rel=tooltip]").tooltip();
-                $("#station_table").tablesorter();
-                $("#user_table_list").tablesorter();
-                //                $('#station_table').freezeTableColumns({
-                //                    width:       870,   // required
-                //                    height:      600,   // required
-                //                    numFrozen:   0,     // optional
-                //                    //            frozenWidth: 150,   // optional
-                //                    clearWidths: true  // optional
-                //                });//freezeTableColumns
-            });
-        </script>
-    </head>
+        var dates = $( "#start_date, #end_date" ).datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 1,
+          dateFormat: 'yy-mm-dd',
+          onSelect: function( selectedDate ) {
+            var option = this.id == "start_date" ? "minDate" : "maxDate",
+            instance = $( this ).data( "datepicker" ),
+            date = $.datepicker.parseDate(
+            instance.settings.dateFormat ||
+              $.datepicker._defaults.dateFormat,
+            selectedDate, instance.settings );
+            dates.not( this ).datepicker( "option", option, date );
+          }
+        });
+        //                var dates = $( "#start_date_range, #end_date_range" ).datepicker({
+        //                    defaultDate: "+1w",
+        //                    changeMonth: true,
+        //                    numberOfMonths: 1,
+        //                    dateFormat: 'yy-mm-dd',
+        //                    onSelect: function( selectedDate ) {
+        //                        $('#end_date_range').val(selectedDate);
+        //                        var option = this.id == "start_date_range" ? "minDate" : "maxDate",
+        //                        instance = $( this ).data( "datepicker" ),
+        //                        date = $.datepicker.parseDate(
+        //                        instance.settings.dateFormat ||
+        //                            $.datepicker._defaults.dateFormat,
+        //                        selectedDate, instance.settings );
+        //                        dates.not( this ).datepicker( "option", option, date );
+        //                    }
+        //                });
+        $("[rel=tooltip]").tooltip();
+        $("#station_table").tablesorter();
+        $("#user_table_list").tablesorter();
+        //                $('#station_table').freezeTableColumns({
+        //                    width:       870,   // required
+        //                    height:      600,   // required
+        //                    numFrozen:   0,     // optional
+        //                    //            frozenWidth: 150,   // optional
+        //                    clearWidths: true  // optional
+        //                });//freezeTableColumns
+      });
+    </script>
+  </head>
 
-    <body>
-        <div class="navbar navbar-fixed-top">
-            <?php if ($this->dx_auth->is_logged_in()) {
-                ?>
-                <div class="custom-nav">
-                	<span id="msg_text_link">
-                    <?php if (isset($this->total_unread) && $this->total_unread > 0) { ?>
-                        <a class="btn large message" href="<?php echo site_url('messages/inbox') ?>">Messages<span class="badge label-important message-alert"><?php echo $this->total_unread ?></span></a>
-                    <?php } else { ?>
-                        <a href="<?php echo site_url('messages/inbox') ?>">Messages</a>
-                    <?php } ?>
-									</span>
-                    <a href="<?php echo site_url('auth/logout') ?>">Log Out</a> 
-                </div>
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <?php if ($this->dx_auth->is_logged_in()) {
+        ?>
+        <div class="custom-nav">
+          <span id="msg_text_link">
+            <?php if (isset($this->total_unread) && $this->total_unread > 0) { ?>
+              <a class="btn large message" href="<?php echo site_url('messages/inbox') ?>">Messages<span class="badge label-important message-alert"><?php echo $this->total_unread ?></span></a>
+            <?php } else { ?>
+              <a href="<?php echo site_url('messages/inbox') ?>">Messages</a>
             <?php } ?>
-            <div class="navbar-inner">
-                <a class="brand" href="<?php echo site_url() ?>">AMS</a>
-                <?php if ($this->dx_auth->is_logged_in()) { ?>
-                    <div class="nav-collapse">
-                        <ul class="nav">
-                            <li class="<?php echo active_anchor('dashboard', 'index'); ?>"><a href="">Dashboard</a></li>
-                            <li class="<?php echo active_anchor('records', 'index'); ?>"><a href="<?php echo site_url('records/index') ?>">Records</a></li>
-
-                            <li class="<?php echo active_anchor('stations', array('index', 'detail')); ?>"><a href="<?php echo site_url('stations/index') ?>">Stations</a></li>
-                            <li class="<?php echo active_anchor('reports', 'index'); ?>"><a href="">Reports</a></li>
-                            <li class="<?php echo (is_route_method(array('settings' => array('index', 'users', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('settings/index') ?>">Settings</a></li> 
-
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                <?php } ?>
-
-            </div>
+          </span>
+          <a href="<?php echo site_url('auth/logout') ?>">Log Out</a> 
         </div>
-        <div class="container">
+      <?php } ?>
+      <div class="navbar-inner">
+        <a class="brand" href="<?php echo site_url() ?>">AMS</a>
+        <?php if ($this->dx_auth->is_logged_in()) { ?>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <?php if ($this->role_id == 1 || $this->role_id == 2 || $this->role_id == 5) { ?>
+                <li class="<?php echo active_anchor('dashboard', 'index'); ?>"><a href="<?php echo site_url('dashboard/index') ?>">Dashboard</a></li>
+              <?php } ?>
+              <li class="<?php echo active_anchor('records', 'index'); ?>"><a href="<?php echo site_url('records/index') ?>">Records</a></li>
 
-            <div class="content" >
-                <?php
-                if (is_route_method(array('settings' => array('index', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage'))
-                        )
-                ) {
-                    ?>
-                    <ul class="nav nav-tabs">
-                        <?php if ($this->can_compose_alert) { ?>
-                            <li class="<?php echo active_anchor('templatemanager', array('add', 'lists', 'edit', 'details', 'readmessage')); ?>"><a href="<?php echo site_url('templatemanager/lists'); ?>" >Email Template</a></li>
-                        <?php } ?>
-                        <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index'); ?>">Users</a></li>
-                        <li class="<?php echo active_anchor('settings', 'edit_profile'); ?>"><a href="<?php echo site_url('settings/edit_profile'); ?>">Edit Profile</a></li> 
+              <li class="<?php echo active_anchor('stations', array('index', 'detail')); ?>"><a href="<?php echo site_url('stations/index') ?>">Stations</a></li>
+              <li class="<?php echo active_anchor('reports', 'index'); ?>"><a href="">Reports</a></li>
+              <li class="<?php echo (is_route_method(array('settings' => array('index', 'users', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('settings/index') ?>">Settings</a></li> 
 
-                    </ul>
+            </ul>
+          </div><!--/.nav-collapse -->
+        <?php } ?>
 
-                <?php } ?>
-                <?php
-                if (is_route_method(array('records' => array('index'))))
-								{
-                    ?>
-                    <ul class="nav nav-tabs">
-                        <li class="<?php echo active_anchor('records', 'index'); ?>"><a href="<?php echo site_url('records/index'); ?>">Assets</a></li>
-                       
-                    </ul>
+      </div>
+    </div>
+    <div class="container">
 
-                <?php } ?>
-                <?php
-                if ((active_anchor('messages', array('inbox', 'sent'))) && $this->can_compose_alert) {
+      <div class="content" >
+        <?php
+        if (is_route_method(array('settings' => array('index', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage'))
+                )
+        ) {
+          ?>
+          <ul class="nav nav-tabs">
+            <?php if ($this->can_compose_alert) { ?>
+              <li class="<?php echo active_anchor('templatemanager', array('add', 'lists', 'edit', 'details', 'readmessage')); ?>"><a href="<?php echo site_url('templatemanager/lists'); ?>" >Email Template</a></li>
+            <?php } ?>
+            <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index'); ?>">Users</a></li>
+            <li class="<?php echo active_anchor('settings', 'edit_profile'); ?>"><a href="<?php echo site_url('settings/edit_profile'); ?>">Edit Profile</a></li> 
 
-                    $this->load->view('messages/compose');
-                }
-                ?>
+          </ul>
 
-                {yield}
-            </div>
-        </div>
-        <a href="#myGeneral" data-toggle="modal" id="showPopUp"></a>
-        <div class="modal hide" id="myGeneral" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-         <div id="myGeneral_body" > </div>
-        </div>
-    </body>
+        <?php } ?>
+        <?php
+        if (is_route_method(array('records' => array('index')))) {
+          ?>
+          <ul class="nav nav-tabs">
+            <li class="<?php echo active_anchor('records', 'index'); ?>"><a href="<?php echo site_url('records/index'); ?>">Assets</a></li>
+
+          </ul>
+
+        <?php } ?>
+        <?php
+        if ((active_anchor('messages', array('inbox', 'sent'))) && $this->can_compose_alert) {
+
+          $this->load->view('messages/compose');
+        }
+        ?>
+
+        {yield}
+      </div>
+    </div>
+    <a href="#myGeneral" data-toggle="modal" id="showPopUp"></a>
+    <div class="modal hide" id="myGeneral" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div id="myGeneral_body" > </div>
+    </div>
+  </body>
 </html>

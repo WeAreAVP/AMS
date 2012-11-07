@@ -19,13 +19,15 @@
   <div  class="span9">
   	
     <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
-    <div><input type="button" name="clear_all_flags" value="Clear All Flags" /></div>
+   
+    
     <ul class="nav nav-tabs">
       <li ><a href="javascript:;" style="color:#000;cursor:default;">View type :</a></li>
       <li id="simple_li" class="active"><a href="javascript:;" onClick="change_view('simple')">Simple Table</a></li>
       <li id="full_table_li"><a href="javascript:;" onClick="change_view('full_table')">Full Table</a></li>
       <li id="thumbnails_li"><a href="javascript:;" onClick="change_view('thumbnails')">Thumbnails</a></li>
     </ul>
+     <div><input type="button" name="clear_all_flags" value="Clear All Flags" /><br/></div>
     <div style="overflow: auto;height: 400px;" id="simple_view">
       <table class="tablesorter table table-bordered" >
         

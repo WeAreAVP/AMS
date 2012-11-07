@@ -135,10 +135,10 @@
 
         <?php } ?>
         <?php
-        if (is_route_method(array('records' => array('index')))) {
+        if (is_route_method(array('records' => array('index','flagged')))) {
           ?>
           <ul class="nav nav-tabs">
-            <li class="<?php echo active_anchor('records', 'index'); ?>"><a href="<?php echo site_url('records/index'); ?>">Assets</a></li>
+            <li class="<?php echo active_anchor('records', array('index','flagged')); ?>"><a href="<?php echo site_url('records/index'); ?>">Assets</a></li>
 
           </ul>
 

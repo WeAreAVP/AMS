@@ -4,20 +4,22 @@
     <div id="search_bar"> <b>
       <h4>Assets</h4>
       </b>
-      <div style="padding: 8px;background: none repeat scroll 0% 0% rgb(0, 152, 214); " ><a style="color: white;" href="<?php echo site_url('records/index') ?>" >All Assets</a></div>
-      <div style="padding: 8px;" > <a href="<?php echo site_url('records/flagged') ?>" >Flagged</a></div>
+      <div style="padding: 8px;" ><a  href="<?php echo site_url('records/index') ?>" >All Assets</a></div>
+      <div style="padding: 8px;background: none repeat scroll 0% 0% rgb(0, 152, 214); " > <a  style="color: white;" href="<?php echo site_url('records/flagged') ?>" >Flagged</a></div>
       <br/>
       <br/>
       <b>
       <h4>FILTER ASSETS</h4>
       </b>
-      <div style="height:80px;border:dotted;">ASSET FILTER CRITERIA TK</div>
+      <div style="height:80px;border:dotted;">Flagged FILTER CRITERIA TK</div>
       <br/>
       <input type="button" name"reset" value="Reset" />
     </div>
   </div>
   <div  class="span9">
+  	
     <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
+    <div><input type="button" name="clear_all_flags" value="Clear All Flags" /></div>
     <ul class="nav nav-tabs">
       <li ><a href="javascript:;" style="color:#000;cursor:default;">View type :</a></li>
       <li id="simple_li" class="active"><a href="javascript:;" onClick="change_view('simple')">Simple Table</a></li>

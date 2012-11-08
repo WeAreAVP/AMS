@@ -23,9 +23,9 @@
         ],
         chart: {
           plotBackgroundColor: 'whiteSmoke',
-         plotShadow:false,
-         shadow:false,
-         pointBorderWidth:0
+          plotShadow:false,
+          shadow:false,
+          pointBorderWidth:0
          
          
         },
@@ -169,13 +169,15 @@
               rotation: 0,
               color: '#FFFFFF',
               align: 'center',
+              
               x: 0,
               y: 50,
-              style: {
-                //                fontSize: '18px',
-                fontFamily: 'Verdana, sans-serif',
-                fontWeight:'bold'
-              },
+//              style: {
+//                //                fontSize: '18px',
+//                fontFamily: 'Verdana, sans-serif',
+//                fontWeight:'bold',
+//                
+//              },
               
               formatter: function() {
                 return '<b>'+this.y +'</b><br/>Assets<br/>Completed';

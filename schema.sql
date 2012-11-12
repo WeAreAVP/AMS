@@ -177,3 +177,4 @@ ALTER TABLE `messages` ADD COLUMN `email_queue_id` INT NULL AFTER `read_at`;
 /* Changes in email_templates*/
 
 ALTER TABLE `email_templates` CHANGE `replaceables` `replaceables` VARCHAR( 500 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL 
+

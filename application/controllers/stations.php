@@ -171,7 +171,7 @@ class Stations extends MY_Controller {
     }
 
     $oSpreadSheet = new Zend_Gdata_Spreadsheets();
-    $list = $oSpreadSheet->getSpreadsheets();
+    $list = $oSpreadSheet->getSpreadsheetFeed(); 
 
     var_dump($list);
     echo(" </pre> ");

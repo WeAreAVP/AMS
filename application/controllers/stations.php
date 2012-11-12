@@ -177,7 +177,7 @@ class Stations extends MY_Controller {
       $spreadsheetTitle[] = $entry->title->text;
     }
     echo '<pre>';
-    var_dump($spreadsheetTitle);
+    print_r($spreadsheetTitle);
     echo(" </pre> ");
     EXIT;
     $entry = $oSpreadSheet->newCellEntry();

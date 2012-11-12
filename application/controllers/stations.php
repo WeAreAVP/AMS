@@ -173,7 +173,7 @@ class Stations extends MY_Controller {
 
     
     $list = $oSpreadSheet->getSpreadsheetFeed(); 
-
+    echo '<pre>';
     var_dump($list);
     echo(" </pre> ");
     EXIT;

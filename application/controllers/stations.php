@@ -154,6 +154,7 @@ class Stations extends MY_Controller {
     $this->load->library('zend');
     $this->zend->load('Zend/Gdata/Spreadsheets');
     $this->zend->load('Zend/Gdata/ClientLogin');
+    $this->zend->load('Zend/Gdata/Calendar');
     
     
     
@@ -189,7 +190,7 @@ echo "</ul>";
     $oSpreadSheet = new Zend_Gdata_Spreadsheets();
     $service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
     $client = Zend_Gdata_ClientLogin::getHttpClient('purelogicsy@gmail.com', 'purelogics123', $service);
-    $list = $oSpreadSheet->getSpreadsheets();
+    $list = $oSpreadSheet->getSpreadsheet();
 
     var_dump($list);
     echo(" </pre> ");

@@ -171,10 +171,11 @@ class Stations extends MY_Controller {
       echo 'Problem authenticating: ' . $ae->getMessage() . "\n";
     }
 
-    $spreadsheetTitle=array();
+    $spreadsheetTitle = array();
     $list = $oSpreadSheet->getSpreadsheetFeed();
     foreach ($list->entries as $entry) {
-      $spreadsheetTitle[] = $entry;
+      $spreadsheetTitle[]['name'] = $entry->title->text;
+      $spreadsheetTitle[]['URL'] = $entry->id;
     }
     echo '<pre>';
     print_r($spreadsheetTitle);

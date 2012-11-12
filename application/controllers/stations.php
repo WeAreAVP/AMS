@@ -174,7 +174,7 @@ class Stations extends MY_Controller {
 
 
     $client = Zend_Gdata_ClientLogin::getHttpClient('purelogicsy@gmail.com', 'purelogics123', $service);
-    $list = $oSpreadSheet->getSpreadsheet();
+    $list = $oSpreadSheet->getSpreadsheets();
 
     var_dump($list);
     echo(" </pre> ");

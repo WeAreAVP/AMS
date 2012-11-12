@@ -184,6 +184,8 @@ class Stations extends MY_Controller {
     $query = new Zend_Gdata_Spreadsheets_ListQuery();
     $query->setSpreadsheetKey($spreadsheetKey);
     $feed = $oSpreadSheet->getWorksheetFeed($query); // now that we have the desired spreadsheet, we need the worksheets
+    echo '<pre>';
+    print_r($feed);exit;
 
     /**
      * Loop through all of our worksheets and echo

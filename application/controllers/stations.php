@@ -180,7 +180,7 @@ class Stations extends MY_Controller {
     }
 
     $spreadsheetKey = basename($spreadsheetTitle[0]['entityID']);
-
+    echo $spreadsheetKey.'<br/>';
     $query = new Zend_Gdata_Spreadsheets_DocumentQuery();
     $query->setSpreadsheetKey($spreadsheetKey);
     $feed = $spreadsheetService->getWorksheetFeed($query); // now that we have the desired spreadsheet, we need the worksheets

@@ -178,7 +178,7 @@ class Stations extends MY_Controller {
       $spreadsheetTitle[$key]['URL'] = $entry->link[1]->href;
       $spreadsheetTitle[$key]['entityID'] = $entry->id;
     }
-
+    echo $spreadsheetTitle[0]['entityID'].'<br/>';
     $spreadsheetKey = basename($spreadsheetTitle[0]['entityID']);
     echo $spreadsheetKey.'<br/>';
     $query = new Zend_Gdata_Spreadsheets_DocumentQuery();

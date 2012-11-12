@@ -163,6 +163,7 @@ class Stations extends MY_Controller {
     $service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
     try {
       $client = Zend_Gdata_ClientLogin::getHttpClient($email, $passwd, $service);
+      $oSpreadSheet = new Zend_Gdata_Spreadsheets($client);
     } catch (Zend_Gdata_App_CaptchaRequiredException $cre) {
       echo 'URL of CAPTCHA image: ' . $cre->getCaptchaUrl() . "\n";
       echo 'Token ID: ' . $cre->getCaptchaToken() . "\n";
@@ -170,7 +171,7 @@ class Stations extends MY_Controller {
       echo 'Problem authenticating: ' . $ae->getMessage() . "\n";
     }
 
-    $oSpreadSheet = new Zend_Gdata_Spreadsheets();
+    
     $list = $oSpreadSheet->getSpreadsheetFeed(); 
 
     var_dump($list);

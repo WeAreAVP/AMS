@@ -173,14 +173,14 @@ class Stations extends MY_Controller {
 
     $spreadsheetTitle = array();
     $list = $oSpreadSheet->getSpreadsheetFeed();
-    foreach ($list->entries as $key=>$entry) {
+    foreach ($list->entries as $key => $entry) {
       $spreadsheetTitle[$key]['name'] = $entry->title->text;
       $spreadsheetTitle[$key]['URL'] = $entry->link[1]->href;
       $spreadsheetTitle[$key]['entityID'] = $entry->id;
     }
-    echo $spreadsheetTitle[0]['entityID'].'<br/>';
-    $spreadsheetKey = basename($spreadsheetTitle[0]['entityID']);
-    echo $spreadsheetKey.'<br/>';
+    echo $spreadsheetTitle[0]['entityID'] . '<br/>';
+    $spreadsheetKey = basename($spreadsheetTitle[0]['URL']);
+    echo $spreadsheetKey . '<br/>';
     $query = new Zend_Gdata_Spreadsheets_DocumentQuery();
     $query->setSpreadsheetKey($spreadsheetKey);
     $feed = $spreadsheetService->getWorksheetFeed($query); // now that we have the desired spreadsheet, we need the worksheets

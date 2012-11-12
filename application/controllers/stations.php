@@ -150,45 +150,29 @@ class Stations extends MY_Controller {
   }
 
   function test() {
-   
+
     $this->load->library('zend');
     $this->zend->load('Zend/Gdata/Spreadsheets');
     $this->zend->load('Zend/Gdata/ClientLogin');
     $this->zend->load('Zend/Gdata/Calendar');
-    
-    
-    
-    $email = 'purelogicsy@gmail.com';
-$passwd = 'purelogics123';
-try {
-   $client = Zend_Gdata_ClientLogin::getHttpClient($email, $passwd);
-} catch (Zend_Gdata_App_CaptchaRequiredException $cre) {
-    echo 'URL of CAPTCHA image: ' . $cre->getCaptchaUrl() . "\n";
-    echo 'Token ID: ' . $cre->getCaptchaToken() . "\n"; 
-} catch (Zend_Gdata_App_AuthException $ae) {
-   echo 'Problem authenticating: ' . $ae->getMessage() . "\n";
-}
-$service = new Zend_Gdata_Calendar($client);
 
-try {
-    $listFeed= $service->getCalendarListFeed();
-} catch (Zend_Gdata_App_Exception $e) {
-    echo "Error: " . $e->getMessage();
-}
-echo "<h1>Calendar List Feed</h1>";
-echo "<ul>";
-foreach ($listFeed as $calendar) {
-    echo "<li>" . $calendar->title . " (Event Feed: " . $calendar->id . ")</li>";
-}
-echo "</ul>";
-    exit;
-    
-    
-    
-    
-    
-    $oSpreadSheet = new Zend_Gdata_Spreadsheets();
+
+
+    $email = 'purelogicsy@gmail.com';
+    $passwd = 'purelogics123';
     $service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
+    try {
+      $client = Zend_Gdata_ClientLogin::getHttpClient($email, $passwd, $service);
+    } catch (Zend_Gdata_App_CaptchaRequiredException $cre) {
+      echo 'URL of CAPTCHA image: ' . $cre->getCaptchaUrl() . "\n";
+      echo 'Token ID: ' . $cre->getCaptchaToken() . "\n";
+    } catch (Zend_Gdata_App_AuthException $ae) {
+      echo 'Problem authenticating: ' . $ae->getMessage() . "\n";
+    }
+
+    $oSpreadSheet = new Zend_Gdata_Spreadsheets();
+
+
     $client = Zend_Gdata_ClientLogin::getHttpClient('purelogicsy@gmail.com', 'purelogics123', $service);
     $list = $oSpreadSheet->getSpreadsheet();
 

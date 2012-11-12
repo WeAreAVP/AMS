@@ -157,7 +157,7 @@ class Stations extends MY_Controller {
     
     $oSpreadSheet = new Zend_Gdata_Spreadsheets();
     $service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
-    $client = Zend_Gdata_ClientLogin::getHttpClient('nouman@geekschicago.com', 'fadfadf', $service);
+    $client = Zend_Gdata_ClientLogin::getHttpClient('nouman@geekschicago.com', 'trishamrita', $service);
     $list = $oSpreadSheet->getSpreadsheetFeed();
 
     var_dump($list);

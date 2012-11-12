@@ -173,12 +173,31 @@ class Stations extends MY_Controller {
 
     $spreadsheetTitle = array();
     $list = $oSpreadSheet->getSpreadsheetFeed();
-    foreach ($list->entries as $entry) {
-      $spreadsheetTitle[]['name'] = $entry->title->text;
-      $spreadsheetTitle[]['URL'] = $entry->link[1]->href;
+    foreach ($list->entries as $key=>$entry) {
+      $spreadsheetTitle[$key]['name'] = $entry->title->text;
+      $spreadsheetTitle[$key]['URL'] = $entry->link[1]->href;
+      $spreadsheetTitle[$key]['entityID'] = $entry->id;
     }
+
+    $spreadsheetKey = basename($spreadsheetTitle[0]['entityID']);
+
+    $query = new Zend_Gdata_Spreadsheets_DocumentQuery();
+    $query->setSpreadsheetKey($spreadsheetKey);
+    $feed = $spreadsheetService->getWorksheetFeed($query); // now that we have the desired spreadsheet, we need the worksheets
+
+    /**
+     * Loop through all of our worksheets and echo
+     * its name as well as its id
+     */
+    echo("<table><tr><td><strong>Spreadsheet Name:</strong></td><td>" . $spreadsheetToFind . "</td></tr><tr><td><strong>Spreadsheet ID:</strong></td><td>" . $spreadsheetKey . "</td></tr>");
+
+    foreach ($feed->entries as $entry) {
+      echo("<tr><td><strong>" . $entry->title->text . ": </strong></td><td>" . basename($entry->id) . "</td></tr>");
+    }
+
+    echo("</table>");
     echo '<pre>';
-    print_r($spreadsheetTitle);
+//    print_r($spreadsheetTitle);
     echo(" </pre> ");
     EXIT;
     $entry = $oSpreadSheet->newCellEntry();

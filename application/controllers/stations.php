@@ -173,8 +173,8 @@ class Stations extends MY_Controller {
 
     $spreadsheetTitle=array();
     $list = $oSpreadSheet->getSpreadsheetFeed();
-    foreach ($list->entries as $list) {
-      $spreadsheetTitle[] = $entry;
+    foreach ($list->entries as $entry) {
+      $spreadsheetTitle[] = $entry->title->text;
     }
     echo '<pre>';
     print_r($spreadsheetTitle);

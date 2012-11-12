@@ -175,7 +175,7 @@ class Stations extends MY_Controller {
     $list = $oSpreadSheet->getSpreadsheetFeed();
     foreach ($list->entries as $entry) {
       $spreadsheetTitle[]['name'] = $entry->title->text;
-      $spreadsheetTitle[]['URL'] = $entry->link->href;
+      $spreadsheetTitle[]['URL'] = $entry;
     }
     echo '<pre>';
     print_r($spreadsheetTitle);

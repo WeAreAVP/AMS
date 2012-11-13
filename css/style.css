@@ -237,3 +237,24 @@ html, body {
   font-weight: bold;
   padding-top: 23px;
 }
+.report-tab{
+  font-size: 17px;
+  margin: 8px 0px 0px 7px;
+}
+.report-tab i{
+  margin-right: 5px;
+  margin-top: 2px;
+}
+.report-tab-detail{
+  margin: 10px;
+}
+.report-main{
+  margin-top: 10px;
+}
+.report-main a{
+  color: black;
+  text-decoration: none;
+}
+.report-popup{
+  margin-top: 10px;
+}

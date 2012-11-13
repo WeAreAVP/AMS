@@ -107,7 +107,7 @@
               <li class="<?php echo active_anchor('records', 'index'); ?>"><a href="<?php echo site_url('records/index') ?>">Records</a></li>
 
               <li class="<?php echo active_anchor('stations', array('index', 'detail')); ?>"><a href="<?php echo site_url('stations/index') ?>">Stations</a></li>
-              <li class="<?php echo active_anchor('reports', 'index'); ?>"><a href="">Reports</a></li>
+              <li class="<?php echo active_anchor('reports', 'index'); ?>"><a href="<?php echo site_url('reports/index') ?>">Reports</a></li>
               <li class="<?php echo (is_route_method(array('settings' => array('index', 'users', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('settings/index') ?>">Settings</a></li> 
 
             </ul>

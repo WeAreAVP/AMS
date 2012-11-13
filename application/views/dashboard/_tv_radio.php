@@ -1,4 +1,4 @@
-<div style="clear: both;"></div>
+
 
 <div style="width: 50%;float: right;">
   <div class="my-navbar">
@@ -8,7 +8,7 @@
 
   </div>
 
-  <div  id="tv_radio" style="min-width: 400px;height: 350px; margin: 0 auto"></div>
+  <div  id="tv_radio" style="min-width: 400px;height: 380px; margin: 0 auto"></div>
 </div>
 <div style="clear: both;"></div>
 <script type="text/javascript">

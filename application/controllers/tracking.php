@@ -36,7 +36,7 @@ class Tracking extends MY_Controller {
         $val->set_rules('ship_to', 'Password', 'trim|required|xss_clean');
         $val->set_rules('ship_via', 'First Name', 'trim|required|xss_clean');
         $val->set_rules('tracking_no', 'Last Name', 'trim|required|xss_clean');
-        $val->set_rules('no_box_shipped', 'Phone #', 'trim|required|xss_clean');
+        $val->set_rules('no_box_shipped', 'Phone #', 'trim|required|is_natural|xss_clean');
 
         if ($this->input->post()) {
             if ($val->run()) {
@@ -77,7 +77,7 @@ class Tracking extends MY_Controller {
         $val->set_rules('ship_to', 'Password', 'trim|required|xss_clean');
         $val->set_rules('ship_via', 'First Name', 'trim|required|xss_clean');
         $val->set_rules('tracking_no', 'Last Name', 'trim|required|xss_clean');
-        $val->set_rules('no_box_shipped', 'Phone #', 'trim|required|xss_clean');
+        $val->set_rules('no_box_shipped', 'Phone #', 'trim|required|is_natural|xss_clean');
 
         if ($this->input->post()) {
             if ($val->run()) {

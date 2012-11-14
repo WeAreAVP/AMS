@@ -24,7 +24,7 @@ class Citest extends CI_Controller {
 
     
 
-    echo $this->unit->report();
+    #echo $this->unit->report();
   }
 
 }

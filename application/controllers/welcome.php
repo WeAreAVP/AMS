@@ -19,12 +19,9 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-            $this->layout = 'bootstrap_layout.php';
+            
 		$this->load->view('welcome_message');
 	}
-        public function bot(){
-            echo '<pre>';print_r($_POST);exit;
-        }
 }
 
 /* End of file welcome.php */

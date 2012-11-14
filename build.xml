@@ -3,7 +3,7 @@
 
 <project name="php-rlo" default="build">
 
-    <path id="filesProcess" cache="true">
+    <path id="filesProcess">
         <pathelement path="${basedir}/application/config" />
         <pathelement path="${basedir}/application/controllers" />
         <pathelement path="${basedir}/application/core" />

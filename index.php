@@ -20,7 +20,7 @@
  */
 
 
-@date_default_timezone_set('America/New_York');
+date_default_timezone_set('America/New_York');
 $serverName = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : gethostname();
 
 

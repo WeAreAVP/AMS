@@ -20,7 +20,8 @@
  */
 
 
-date_default_timezone_set('America/New_York');
+
+
 $serverName = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : gethostname();
 
 
@@ -32,6 +33,14 @@ if (strpos($serverName, 'iserver.purelogics.info') !== FALSE) {
   define('ENVIRONMENT', 'qatesting');
 } else {
   define('ENVIRONMENT', 'production');
+}
+
+/**
+ * Setting the default timezone
+ *  
+ */
+if (!ini_get('date.timezone')) {
+  date_default_timezone_set('America/New_York');
 }
 /*
  * ---------------------------------------------------------------
@@ -48,7 +57,7 @@ if (defined('ENVIRONMENT')) {
     case 'testing':
     case 'qatesting':
       error_reporting(E_ALL);
-      ini_set('display_errors', 0);
+      ini_set('display_errors', 1);
       break;
 
     case 'production':

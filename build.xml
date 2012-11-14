@@ -14,7 +14,6 @@
         <pathelement path="${basedir}/application/libraries" />
         <pathelement path="${basedir}/application/models" />
         <pathelement path="${basedir}/application/views" />
-        <pathelement path="${basedir}/x_aleph" />
     </path>
    
     <pathconvert targetos="unix" property="filesProcess.processed" refid="filesProcess" pathsep=" " />           

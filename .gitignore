@@ -2,7 +2,7 @@ cache/*
 log/*
 nbproject/
 .DS_Store
-
+assets/*
 /ZendFramework-1.11.12/.svn/
 /ZendFramework-1.11.12/demos/Zend/Cloud/cloudexp/application/views/scripts/error/.svn/
 /ZendFramework-1.11.12/demos/Zend/Cloud/cloudexp/application/views/scripts/document/.svn/

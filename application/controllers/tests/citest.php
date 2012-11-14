@@ -22,10 +22,7 @@ class Citest extends CI_Controller {
    */
   public function index() {
 
-    $this->test_no_additional_headers();
-    $this->test_x_forwarded_for();
-    $this->test_client_ip();
-    $this->test_x_forwarded_for_and_client_ip();
+    
 
     echo $this->unit->report();
   }

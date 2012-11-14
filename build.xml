@@ -88,8 +88,8 @@
  <target name="phpcs" description="Generate checkstyle.xml using PHP_CodeSniffer">
   <exec executable="phpcs" output="/dev/null">
    <arg line="--report=checkstyle
+			  --standard=CodeIgniter
               --report-file=${basedir}/build/logs/checkstyle.xml
-              --standard=PEAR
               ${filesProcess.processed}" />
   </exec>
  </target>

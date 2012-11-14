@@ -39,9 +39,8 @@ if (strpos($serverName, 'iserver.purelogics.info') !== FALSE) {
  * Setting the default timezone
  *  
  */
-if (!ini_get('date.timezone')) {
-  date_default_timezone_set('America/New_York');
-}
+date_default_timezone_set('America/New_York');
+
 /*
  * ---------------------------------------------------------------
  * ERROR REPORTING

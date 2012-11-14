@@ -83,7 +83,7 @@ class CI_Log {
 			return FALSE;
 		}
 
-		$filepath = $this->_log_path.'log-'.date('Y-m-d').'.php';
+		$filepath = $this->_log_path.'log-'.@date('Y-m-d').'.php';
 		$message  = '';
 
 		if ( ! file_exists($filepath))
@@ -96,7 +96,7 @@ class CI_Log {
 			return FALSE;
 		}
 
-		$message .= $level.' '.(($level == 'INFO') ? ' -' : '-').' '.date($this->_date_fmt). ' --> '.$msg."\n";
+		$message .= $level.' '.(($level == 'INFO') ? ' -' : '-').' '.@date($this->_date_fmt). ' --> '.$msg."\n";
 
 		flock($fp, LOCK_EX);
 		fwrite($fp, $message);

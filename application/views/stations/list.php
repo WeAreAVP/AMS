@@ -88,6 +88,7 @@ if (!$is_ajax) {
             <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
             <div class="row" style="margin:5px 0px;">
                 <a href="javascript://" class="btn btn-large" onclick="editStations();">Batch Edit</a>
+                <a href="javascript://" class="btn btn-large" onclick="">Send DSD Message</a>
             </div>
 
 

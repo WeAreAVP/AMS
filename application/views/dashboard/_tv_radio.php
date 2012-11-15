@@ -7,16 +7,16 @@
     </div>
 
   </div>
-<ul class="nav nav-tabs">
-  <li class="active"><a href="#tv_radio" data-toggle="tab">Radio & TV</a></li>
-  <li><a href="#all_formats" data-toggle="tab">All Formats</a></li>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tv_radio" data-toggle="tab">Radio & TV</a></li>
+    <li><a href="#all_formats" data-toggle="tab">All Formats</a></li>
 
-</ul>
-<div class="tab-content">
-  <div class="tab-pane active" id="tv_radio" style="min-width: 400px;height: 380px; margin: 0 auto;"></div>
-  <div class="tab-pane" id="all_formats" style="width: 605px;height: 380px; margin: 0 auto;"></div>
-</div>
- 
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tv_radio" style="min-width: 400px;height: 380px; margin: 0 auto;"></div>
+    <div class="tab-pane" id="all_formats" style="width: 605px;height: 380px; margin: 0 auto;"></div>
+  </div>
+
 </div>
 <div style="clear: both;"></div>
 <script type="text/javascript">
@@ -45,7 +45,7 @@
           labels: {
             style: {
               color: '#060b10',
-//              fontWeight: 'bold',
+              //              fontWeight: 'bold',
               fontSize: '15px'
             }
           }
@@ -181,12 +181,12 @@
               
               x: 0,
               y: 50,
-//              style: {
-//                //                fontSize: '18px',
-//                fontFamily: 'Verdana, sans-serif',
-//                fontWeight:'bold',
-//                
-//              },
+              //              style: {
+              //                //                fontSize: '18px',
+              //                fontFamily: 'Verdana, sans-serif',
+              //                fontWeight:'bold',
+              //                
+              //              },
               
               formatter: function() {
                 return '<b>'+this.y +'</b><br/>Assets<br/>Completed';
@@ -296,12 +296,12 @@
               
               x: 0,
               y: 50,
-//              style: {
-//                //                fontSize: '18px',
-//                fontFamily: 'Verdana, sans-serif',
-//                fontWeight:'bold',
-//                
-//              },
+              //              style: {
+              //                //                fontSize: '18px',
+              //                fontFamily: 'Verdana, sans-serif',
+              //                fontWeight:'bold',
+              //                
+              //              },
               
               formatter: function() {
                 return '<b>'+this.y +'</b><br/>Assets<br/>Completed';

@@ -48,12 +48,12 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 // '../' - is the parent directory
 // case sensitive
 // e.x.: /home/user or c:\files
-echo $dir='assets/20121105 AA XML Export FTP Group/1323_KGNU_PBCoreXMLBag_20121105/';
+echo $dir='assets/';
 
 // 1 - uppercase all files
 // 2 - lowercase all files
 // 3 - do not uppercase or lowercase
-$up=3;
+$up=1;
 
 //rename files that have $w in their filename
 //case sensitive

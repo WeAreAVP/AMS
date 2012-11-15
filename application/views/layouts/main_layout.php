@@ -83,28 +83,33 @@
 
   <body>
     <div class="navbar navbar-fixed-top">
-      <?php if ($this->dx_auth->is_logged_in()) {
+      <?php if ($this->dx_auth->is_logged_in())
+      {
         ?>
         <div class="custom-nav">
           <span id="msg_text_link">
-            <?php if (isset($this->total_unread) && $this->total_unread > 0) { ?>
+            <?php if (isset($this->total_unread) && $this->total_unread > 0)
+            { ?>
               <a class="btn large message" href="<?php echo site_url('messages/inbox') ?>">Messages<span class="badge label-important message-alert"><?php echo $this->total_unread ?></span></a>
-            <?php } else { ?>
+            <?php } else
+            { ?>
               <a href="<?php echo site_url('messages/inbox') ?>">Messages</a>
-            <?php } ?>
+        <?php } ?>
           </span>
           <a href="<?php echo site_url('auth/logout') ?>">Log Out</a> 
         </div>
-      <?php } ?>
+        <?php } ?>
       <div class="navbar-inner">
         <a class="brand" href="<?php echo site_url() ?>">AMS</a>
-        <?php if ($this->dx_auth->is_logged_in()) { ?>
+            <?php if ($this->dx_auth->is_logged_in())
+            { ?>
           <div class="nav-collapse">
             <ul class="nav">
-              <?php if ($this->role_id == 1 || $this->role_id == 2 || $this->role_id == 5) { ?>
+  <?php if ($this->role_id == 1 || $this->role_id == 2 || $this->role_id == 5)
+  { ?>
                 <li class="<?php echo active_anchor('dashboard', 'index'); ?>"><a href="<?php echo site_url('dashboard/index') ?>">Dashboard</a></li>
-              <?php } ?>
-              <li class="<?php echo active_anchor('records', 'index'); ?>"><a href="<?php echo site_url('records/index') ?>">Records</a></li>
+  <?php } ?>
+              <li class="<?php echo active_anchor('records', 'index'); ?>"><a href="<?php echo site_url('records/index') ?>">Assets</a></li>
 
               <li class="<?php echo active_anchor('stations', array('index', 'detail')); ?>"><a href="<?php echo site_url('stations/index') ?>">Stations</a></li>
               <li class="<?php echo active_anchor('reports', 'index'); ?>"><a href="<?php echo site_url('reports/index') ?>">Reports</a></li>
@@ -112,43 +117,47 @@
 
             </ul>
           </div><!--/.nav-collapse -->
-        <?php } ?>
+<?php } ?>
 
       </div>
     </div>
     <div class="container">
 
       <div class="content" >
-        <?php
-        if (is_route_method(array('settings' => array('index', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage'))
-                )
-        ) {
-          ?>
+          <?php
+          if (is_route_method(array('settings' => array('index', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage'))
+                  )
+          )
+          {
+            ?>
           <ul class="nav nav-tabs">
-            <?php if ($this->can_compose_alert) { ?>
+  <?php if ($this->can_compose_alert)
+  { ?>
               <li class="<?php echo active_anchor('templatemanager', array('add', 'lists', 'edit', 'details', 'readmessage')); ?>"><a href="<?php echo site_url('templatemanager/lists'); ?>" >Email Template</a></li>
-            <?php } ?>
+          <?php } ?>
             <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index'); ?>">Users</a></li>
             <li class="<?php echo active_anchor('settings', 'edit_profile'); ?>"><a href="<?php echo site_url('settings/edit_profile'); ?>">Edit Profile</a></li> 
 
           </ul>
 
-        <?php } ?>
+<?php } ?>
         <?php
-        if (is_route_method(array('records' => array('index','flagged')))) {
+        if (is_route_method(array('records' => array('index', 'flagged'))))
+        {
           ?>
           <ul class="nav nav-tabs">
-            <li class="<?php echo active_anchor('records', array('index','flagged')); ?>"><a href="<?php echo site_url('records/index'); ?>">Assets</a></li>
+            <li class="<?php echo active_anchor('records', array('index', 'flagged')); ?>"><a href="<?php echo site_url('records/index'); ?>">Assets</a></li>
 
           </ul>
 
-        <?php } ?>
-        <?php
-        if ((active_anchor('messages', array('inbox', 'sent'))) && $this->can_compose_alert) {
+<?php } ?>
+<?php
+if ((active_anchor('messages', array('inbox', 'sent'))) && $this->can_compose_alert)
+{
 
-          $this->load->view('messages/compose');
-        }
-        ?>
+  $this->load->view('messages/compose');
+}
+?>
 
         {yield}
       </div>

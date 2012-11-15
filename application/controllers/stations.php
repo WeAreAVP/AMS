@@ -5,15 +5,20 @@
  *
  * @package    AMS
  * @subpackage stations
- * @author     Nouman Tayyab
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @copyright  AMS 2012
+ * @link       http://ams.com
+ * @license    ABC
  */
-class Stations extends MY_Controller {
+class Stations extends MY_Controller
+{
 
   /**
    * constructor. Load layout,Model,Library and helpers
    * 
    */
-  function __construct() {
+  function __construct()
+  {
     parent::__construct();
     error_reporting(E_ALL);
     error_reporting(1);
@@ -34,7 +39,8 @@ class Stations extends MY_Controller {
    * @param boolean $agreed
    *  
    */
-  public function index() {
+  public function index()
+  {
     $param = array('search_kewords' => '', 'certified' => '', 'agreed' => '');
     $val = $this->form_validation;
     $val->set_rules('search_keyword', 'Search Keyword', 'trim|xss_clean');
@@ -42,7 +48,8 @@ class Stations extends MY_Controller {
     $val->set_rules('agreed', 'Agreed', 'trim|xss_clean');
     $val->set_rules('start_date_range', 'Start Date', 'trim|xss_clean');
     $val->set_rules('end_date_range', 'End Date', 'trim|xss_clean');
-    if ($this->input->post()) {
+    if ($this->input->post())
+    {
       $param['certified'] = $this->input->post('certified');
       $param['agreed'] = $this->input->post('agreed');
 //            $param['start_date'] = $this->input->post('start_date');
@@ -51,15 +58,18 @@ class Stations extends MY_Controller {
       $param['search_kewords'] = str_replace(",", " & ", trim($this->input->post('search_words')));
       $records = $this->sphinx->search_stations($param);
       $data['stations'] = $records['records'];
-    } else {
+    } else
+    {
       $records = $this->sphinx->search_stations($param);
       $data['stations'] = $records['records'];
     }
-    if (isAjax()) {
+    if (isAjax())
+    {
       $data['is_ajax'] = true;
       echo $this->load->view('stations/list', $data, true);
       exit;
-    } else {
+    } else
+    {
       $data['is_ajax'] = false;
 
       $this->load->view('stations/list', $data);
@@ -71,7 +81,8 @@ class Stations extends MY_Controller {
    * 
    * @param $station_id as a uri segment
    */
-  public function detail() {
+  public function detail()
+  {
     $station_id = $this->uri->segment(3);
     $data['station_detail'] = $this->station_model->get_station_by_id($station_id);
     $data['station_contacts'] = $this->users->get_station_users($station_id);
@@ -87,8 +98,10 @@ class Stations extends MY_Controller {
    * @param $start_date get station start date
    * @return json 
    */
-  public function update_stations() {
-    if (isAjax()) {
+  public function update_stations()
+  {
+    if (isAjax())
+    {
       $station_ids = $this->input->post('id');
       $station_ids = explode(',', $station_ids);
       $start_date = $this->input->post('start_date');
@@ -98,7 +111,8 @@ class Stations extends MY_Controller {
       $start_date = $start_date ? $start_date : NULL;
       $end_date = $end_date ? $end_date : NULL;
       $station = array();
-      foreach ($station_ids as $value) {
+      foreach ($station_ids as $value)
+      {
         $station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date, 'is_certified' => $is_certified, 'is_agreed' => $is_agreed));
 
         $this->sphinx->update_indexes('stations', array('start_date', 'end_date', 'is_certified', 'is_agreed'), array($value => array(strtotime($start_date), strtotime($end_date), $is_certified, $is_agreed)));
@@ -119,12 +133,15 @@ class Stations extends MY_Controller {
    * @param $id as post parameter
    * @return json
    */
-  public function get_stations() {
-    if (isAjax()) {
+  public function get_stations()
+  {
+    if (isAjax())
+    {
       $this->station_model->delete_stations_backup();
       $stations_id = $this->input->post('id');
       $records = $this->station_model->get_stations_by_id($stations_id);
-      foreach ($records as $value) {
+      foreach ($records as $value)
+      {
         $backup_record = array('station_id' => $value->id, 'start_date' => $value->start_date, 'end_date' => $value->end_date, 'is_certified' => $value->is_certified, 'is_agreed' => $value->is_agreed);
         $this->station_model->insert_station_backup($backup_record);
       }
@@ -138,10 +155,13 @@ class Stations extends MY_Controller {
    * Undo the last edited stations
    *  
    */
-  public function undostations() {
+  public function undostations()
+  {
     $backups = $this->station_model->get_all_backup_stations();
-    if (count($backups) > 0) {
-      foreach ($backups as $value) {
+    if (count($backups) > 0)
+    {
+      foreach ($backups as $value)
+      {
         $this->station_model->update_station($value->station_id, array('start_date' => $value->start_date, 'end_date' => $value->end_date));
         $this->sphinx->update_indexes('stations', array('start_date', 'end_date'), array($value->station_id => array(strtotime($value->start_date), strtotime($value->end_date))));
       }
@@ -149,7 +169,8 @@ class Stations extends MY_Controller {
     redirect('stations/index', 'location');
   }
 
-  function test() {
+  function test()
+  {
 
     $this->load->library('zend');
     $this->zend->load('Zend/Gdata/Spreadsheets');
@@ -161,19 +182,23 @@ class Stations extends MY_Controller {
     $email = 'purelogicsy@gmail.com';
     $passwd = 'purelogics123';
     $service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
-    try {
+    try
+    {
       $client = Zend_Gdata_ClientLogin::getHttpClient($email, $passwd, $service);
       $oSpreadSheet = new Zend_Gdata_Spreadsheets($client);
-    } catch (Zend_Gdata_App_CaptchaRequiredException $cre) {
+    } catch (Zend_Gdata_App_CaptchaRequiredException $cre)
+    {
       echo 'URL of CAPTCHA image: ' . $cre->getCaptchaUrl() . "\n";
       echo 'Token ID: ' . $cre->getCaptchaToken() . "\n";
-    } catch (Zend_Gdata_App_AuthException $ae) {
+    } catch (Zend_Gdata_App_AuthException $ae)
+    {
       echo 'Problem authenticating: ' . $ae->getMessage() . "\n";
     }
 
     $spreadsheetTitle = array();
     $list = $oSpreadSheet->getSpreadsheetFeed();
-    foreach ($list->entries as $key => $entry) {
+    foreach ($list->entries as $key => $entry)
+    {
       $spreadsheetTitle[$key]['name'] = $entry->title->text;
       $spreadsheetTitle[$key]['URL'] = $entry->link[1]->href;
       $spreadsheetTitle[$key]['entityID'] = $entry->id;
@@ -185,7 +210,8 @@ class Stations extends MY_Controller {
     $query->setSpreadsheetKey($spreadsheetKey);
     $feed = $oSpreadSheet->getWorksheetFeed($query); // now that we have the desired spreadsheet, we need the worksheets
     echo '<pre>';
-    print_r($feed);exit;
+    print_r($feed);
+    exit;
 
     /**
      * Loop through all of our worksheets and echo
@@ -193,7 +219,8 @@ class Stations extends MY_Controller {
      */
     echo("<table><tr><td><strong>Spreadsheet Name:</strong></td><td>" . $spreadsheetToFind . "</td></tr><tr><td><strong>Spreadsheet ID:</strong></td><td>" . $spreadsheetKey . "</td></tr>");
 
-    foreach ($feed->entries as $entry) {
+    foreach ($feed->entries as $entry)
+    {
       echo("<tr><td><strong>" . $entry->title->text . ": </strong></td><td>" . basename($entry->id) . "</td></tr>");
     }
 

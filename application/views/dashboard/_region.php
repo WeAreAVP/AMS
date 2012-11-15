@@ -3,7 +3,7 @@
   .container-map{
     width:468px;
     margin:0 auto;
-    height:300px;
+    height:320px;
     color:#FFF;
     text-align:center;
     font-family:Arial, Helvetica, sans-serif;
@@ -11,8 +11,19 @@
   }
   .container-map h2{
     margin:5px 0 0;
-    line-height: 24px;
-    font-size:21px;
+    line-height: 23px;
+    font-size:22px;
+  }
+  .container-map h3{
+    margin:5px 0 0;
+    font-size:13px;
+    color:#000;
+  }
+  .other{
+    position:relative;
+    width:78px;
+    top:54px;
+    margin-left:22px;
   }
   .container-map span{
     font-size:11px;
@@ -32,32 +43,46 @@
   .third-asset{
     position:relative;
     width:136px;
-    top:94px;
+    top:100px;
     margin-left:233px;
   }
   .forth-asset{
     position:relative;
     width:84px;
-    top:-94px;
+    top:-92px;
     margin-left:377px;
+  }
+  .fifth-asset{
+    position:relative;
+    width:78px;
+    top:55px;
+    margin-left:22px;
   }
 </style>
 <!--[if lt IE 8]>
 <style>
         
         .first-asset{
-                margin-left:-370px;
+                margin-left:-275px;
                 }
         .second-asset{
-                margin-left:-45px;
+                margin-left:45px;
                 }
         .third-asset{
-                margin-left:40px;
-                top:88px;
+                margin-left:135px;
+                top:90px;
                 }
         .forth-asset{
-                margin-left:275px;
-                top:-110px;
+                margin-left:370px;
+                top:-108px;
+                }
+        .fifth-asset{
+                margin-left:-350px;
+                top:36px;
+                }
+        .other{
+                margin-left:-350px;
+                top:36px;
                 }
  
 </style>
@@ -79,7 +104,7 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="region_digitized" style=" margin: 0 auto">
-      <div class="container-map" id="">
+      <div class="container-map">
         <div class="first-asset">
           <h2>825</h2>
           <span>Assets</span>
@@ -96,6 +121,13 @@
           <h2>12,052</h2>
           <span>Assets</span>
         </div><!--end of first-asset-->
+        <div class="fifth-asset">
+          <h2>12,052</h2>
+          <span>Assets</span>
+        </div><!--end of first-asset-->
+        <div class="other">
+          <h3>Other</h3>
+        </div><!--end of other-->
       </div><!--end of container-map-->
     </div>
     <div class="tab-pane" id="region_hours" style=" margin: 0 auto">
@@ -116,6 +148,13 @@
           <h2>95</h2>
           <span>Hours</span>
         </div><!--end of first-asset-->
+        <div class="fifth-asset">
+          <h2>12</h2>
+          <span>Hours</span>
+        </div><!--end of first-asset-->
+        <div class="other">
+          <h3>Other</h3>
+        </div><!--end of other-->
       </div><!--end of container-map-->
     </div>
   </div>

@@ -3,18 +3,27 @@
 <div style="width: 50%;float: right;">
   <div class="my-navbar">
     <div>
-      TV and Radio
+      Scheduled vs. Completed
     </div>
 
   </div>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#tv_radio" data-toggle="tab">Radio & TV</a></li>
+  <li><a href="#all_formats" data-toggle="tab">All Formats</a></li>
 
-  <div  id="tv_radio" style="min-width: 400px;height: 380px; margin: 0 auto"></div>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="tv_radio" style="min-width: 400px;height: 380px; margin: 0 auto;"></div>
+  <div class="tab-pane" id="all_formats" style="width: 605px;height: 380px; margin: 0 auto;"></div>
+</div>
+ 
 </div>
 <div style="clear: both;"></div>
 <script type="text/javascript">
   $(function () {
     
     var chart;
+    var chart1;
     $(document).ready(function() {
       Highcharts.theme = {
         colors: [
@@ -36,7 +45,7 @@
           labels: {
             style: {
               color: '#060b10',
-              fontWeight: 'bold',
+//              fontWeight: 'bold',
               fontSize: '15px'
             }
           }
@@ -48,7 +57,7 @@
           
           labels: {
             style: {
-              color: '#000000',
+              color: '#000000'
               //              fontWeight: 'bold'
             }
           }
@@ -155,7 +164,7 @@
               hover: {
                 enabled: false
               }
-            },
+            }
            
     
           }, {
@@ -187,7 +196,122 @@
               hover: {
                 enabled: false
               }
-            },
+            }
+            
+            
+    
+          }]
+      });
+      
+      
+      chart1 = new Highcharts.Chart({
+        chart: {
+          renderTo: 'all_formats',
+          type: 'column'
+        },
+        title: {
+          text: ''
+        },
+        subtitle: {
+          text: ''
+        },
+        plotOptions:{
+          column:{
+            borderWidth:0
+            
+            
+          }
+        },
+        credits: {
+          enabled: false,
+          href: "",
+          text: "AMS"
+        },legend: {
+          enabled: false
+        },
+        
+        xAxis: {
+          lineWidth: 0,
+          tickWidth:0,
+          categories: [
+            'All Formats'
+            
+                    
+          ]
+        },
+        yAxis: {
+          min: 0,
+          max:1000,
+          tickInterval:100,
+          gridLineWidth: 0,
+          title: {
+            text: ''
+          }
+        },
+        
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.x +'</b><br/>'+
+              Highcharts.numberFormat(this.y, 0);
+          }
+        },
+        
+        series: [{
+            name: 'All Formats Scheduled',
+            shadow:false,
+            data: [499],
+            pointWidth: 90,
+            
+            
+            pointBorderColor:'#000000',
+            dataLabels: {
+              enabled: true,
+              rotation: 0,
+              color: '#FFFFFF',
+              align: 'center',
+              x: 0,
+              y: 50,
+              
+              formatter: function() {
+                return '<b>'+this.y +'</b><br/>Assets<br/>Scheduled';
+              }
+            },states: {
+              hover: {
+                enabled: false
+              }
+            }
+           
+    
+          }, {
+            name: 'All Formats Completed',
+            shadow:false,
+            data: [283],
+            pointWidth: 90,
+            pointBorderColor:'#000000',
+            dataLabels: {
+              enabled: true,
+              rotation: 0,
+              color: '#FFFFFF',
+              align: 'center',
+              
+              x: 0,
+              y: 50,
+//              style: {
+//                //                fontSize: '18px',
+//                fontFamily: 'Verdana, sans-serif',
+//                fontWeight:'bold',
+//                
+//              },
+              
+              formatter: function() {
+                return '<b>'+this.y +'</b><br/>Assets<br/>Completed';
+              }
+              
+            },states: {
+              hover: {
+                enabled: false
+              }
+            }
             
             
     

@@ -19,10 +19,8 @@ class Crons extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('email_template_model', 'email_template');
-		$this->load->helper('directory');
-		$this->load->helper('file');
+		$this->load->model('cron_model');
 		$this->assets_path='assets/';
-		$this->depth=2;
     }
     /**
      * Process all pending email 
@@ -43,56 +41,9 @@ class Crons extends CI_Controller
 	}
 	function process_dir()
 	{
-		$this->scan_directory($this->assets_path,0);
-	}
-	public function scan_directory($dir,$depth)
-	{
-		$dir=rtrim(trim($dir,'\\'),'/') . '/';
-		$d=@opendir($dir);
-		
-		if(!$d)die('The directory ' .$dir .' does not exists or PHP have no access to it<br>');
-		while(false!==($file=@readdir($d)))
-		{
-			if ($file!='.' && $file!='..')
-			{
-				if(is_file($dir.$file) && $file==='manifest-md5.txt')
-				{
-					echo "<br/>";
-					echo $dir.$file;
-					$depth=0;
-					/*$data_result=file($dir.$file);
-					
-					if(isset($data_result))
-					{
-						
-						foreach($data_result as $value)
-						{
-							$data_file=(explode(" ",$value));
-							$dir;
-						//	echo $data_file[1];
-						//	exit();
-						}
-					}*/
-				}
-				else
-				{
-					if(is_dir($dir.$file) && $file!='data')
-					{
-						if($depth<$this->depth)
-						{
-							//echo $dir.$file;
-							//$depth++;
-							$this->scan_directory($dir.$file,$depth);
-							
-							
-						}
-					}else
-					{
-						continue;
-					}
-				}
-			}
-		}
-		@closedir($d);
+		set_time_limit(0);
+		$this->cron_model->scan_directory($this->assets_path,'assets');
+		echo "All Data Path Under {$this->assets_path} Directory Stored ";
+		exit(0);
 	}
 }

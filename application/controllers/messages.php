@@ -10,50 +10,57 @@ if (!defined('BASEPATH'))
  * @subpackage Messeges Alerts
  * @author     Ali Raza, Nouman Tayyab
  */
-class Messages extends MY_Controller {
-
-    /**
-     *
-     * constructor. Load layout,Model,Library and helpers
-     * 
-     */
-    function __construct() {
-        parent::__construct();
-        $this->layout = 'main_layout.php';
-    }
-
+class Messages extends MY_Controller
+{
+	/**
+    *
+    * constructor. Load layout,Model,Library and helpers
+    * 
+    */
+	function __construct()
+	{
+		parent::__construct();
+		$this->layout = 'main_layout.php';
+	}
     /**
      * Redirect to inbox
      *  
-     */
-    public function index() {
-        redirect('messages/inbox', 'location');
-    }
-
+    */
+	public function index()
+	{
+		redirect('messages/inbox', 'location');
+	}
     /**
      * List Received Message 
      *  
      */
-    public function inbox() {
-			  $where = '';
-        if ($_POST) {
-            if ($_POST['message_type']) {
-                $where['msg_type'] = $_POST['message_type'];
+    public function inbox()
+	{
+		$where = '';
+        if ($_POST)
+		{
+			if ($_POST['message_type'])
+			{
+				$where['msg_type'] = $_POST['message_type'];
+			}
+            if ($_POST['stations'])
+			{
+				$where['receiver_id'] = $_POST['stations'];
             }
-            if ($_POST['stations']) {
-                $where['receiver_id'] = $_POST['stations'];
-            }
-        }
-        $data['results'] = $this->msgs->get_inbox_msgs($this->station_id, $where);
+		}
+		$data['results'] = $this->msgs->get_inbox_msgs($this->station_id, $where);
         $data['station_records'] = $this->station_model->get_all();
-        if (isAjax()) {
-            $data['is_ajax'] = true;
-            echo $this->load->view('messages/inbox', $data, true);
+        if (isAjax())
+		{
+			$data['is_ajax'] = true;
+			echo $this->load->view('messages/inbox', $data, true);
             exit;
-        } else {
-            $data['is_ajax'] = false;
-            $this->load->view('messages/inbox', $data);
         }
+		else
+		{
+			$data['is_ajax'] = false;
+			$this->load->view('messages/inbox', $data);
+		}
     }
 
     /*

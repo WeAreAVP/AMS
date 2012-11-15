@@ -88,7 +88,7 @@
         ?>
         <div class="custom-nav">
           <span id="msg_text_link">
-            <?php if (isset($this->total_unread) && $this->total_unread > 0)
+            <?php if (isset($this->total_unread) && $this->total_unread > 0 && $this->is_station_user)
             { ?>
               <a class="btn large message" href="<?php echo site_url('messages/inbox') ?>">Messages<span class="badge label-important message-alert"><?php echo $this->total_unread ?></span></a>
             <?php } else

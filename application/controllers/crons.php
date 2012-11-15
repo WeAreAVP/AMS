@@ -39,11 +39,33 @@ class Crons extends CI_Controller
 			}
 		}
 	}
+	/**
+     * Store All Assets Data Files Structure in database
+     *  
+     */
+    
 	function process_dir()
 	{
 		set_time_limit(0);
 		$this->cron_model->scan_directory($this->assets_path,'assets');
 		echo "All Data Path Under {$this->assets_path} Directory Stored ";
 		exit(0);
+	}
+	/**
+    * Process all pending assets Data Files
+    *  
+    */
+    function process_xml_file()
+	{
+		$folders=$this->cron_model->get_all_data_folder();
+		$doc = new DOMDocument();
+		foreach($folders as $folder)
+		{
+			$data=file_get_contents( $folder->folder_path.'data/organization.xml' );
+			$x = @simplexml_load_string( $data );
+			$data=xmlObjToArr($x);
+			$station_cpb_id= $data['children']['cpb-id'][0]['text'];
+			exit();		
+		}
 	}
 }

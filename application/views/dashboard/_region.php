@@ -1,64 +1,64 @@
 
 <style>
- .container-map{
-		width:468px;
-		margin:0 auto;
-		height:300px;
-		color:#FFF;
-		text-align:center;
-		font-family:Arial, Helvetica, sans-serif;
-		background:url(/images/map.png) no-repeat;
-		}
-	.container-map h2{
-		margin:5px 0 0;
-        line-height: 24px;
-		font-size:21px;
-		}
-	.container-map span{
-		font-size:11px;
-		}
-	.first-asset{
-		position:relative;
-		width:150px;
-		top:96px;
-		margin-left:16px;
-		}
-	.second-asset{
-		position:relative;
-		width:110px;
-		top:25px;
-		margin-left:196px;
-		}
-	.third-asset{
-		position:relative;
-		width:136px;
-		top:94px;
-		margin-left:233px;
-		}
-	.forth-asset{
-		position:relative;
-		width:84px;
-		top:-94px;
-		margin-left:377px;
-		}
+  .container-map{
+    width:468px;
+    margin:0 auto;
+    height:300px;
+    color:#FFF;
+    text-align:center;
+    font-family:Arial, Helvetica, sans-serif;
+    background:url(/images/map.png) no-repeat;
+  }
+  .container-map h2{
+    margin:5px 0 0;
+    line-height: 24px;
+    font-size:21px;
+  }
+  .container-map span{
+    font-size:11px;
+  }
+  .first-asset{
+    position:relative;
+    width:150px;
+    top:96px;
+    margin-left:16px;
+  }
+  .second-asset{
+    position:relative;
+    width:110px;
+    top:25px;
+    margin-left:196px;
+  }
+  .third-asset{
+    position:relative;
+    width:136px;
+    top:94px;
+    margin-left:233px;
+  }
+  .forth-asset{
+    position:relative;
+    width:84px;
+    top:-94px;
+    margin-left:377px;
+  }
 </style>
 <!--[if lt IE 8]>
 <style>
-	
-	.first-asset{
-		margin-left:-370px;
-		}
-	.second-asset{
-		margin-left:-45px;
-		}
-	.third-asset{
-		margin-left:40px;
-		top:88px;
-		}
-	.forth-asset{
-		margin-left:275px;
-		top:-110px;
-		}
+        
+        .first-asset{
+                margin-left:-370px;
+                }
+        .second-asset{
+                margin-left:-45px;
+                }
+        .third-asset{
+                margin-left:40px;
+                top:88px;
+                }
+        .forth-asset{
+                margin-left:275px;
+                top:-110px;
+                }
  
 </style>
 <![endif]-->

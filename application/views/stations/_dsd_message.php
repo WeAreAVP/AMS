@@ -14,14 +14,14 @@
       <div class="control-group">
         <label class="control-label" for="shipping_instructions">Shipping Instructions:</label>
         <div class="controls">
-          <input id="shipping_instructions" name="shipping_instructions"/>
+          <textarea id="shipping_instructions" name="shipping_instructions"></textarea>
 
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="comments">Comments:</label>
         <div class="controls">
-          <input id="comments" name="comments"/>
+          <textarea id="comments" name="comments"></textarea>
 
         </div>
       </div>

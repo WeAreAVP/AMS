@@ -284,24 +284,26 @@ if (!$is_ajax)
                 else
                   station_name+=result.records[cnt].station_name+',';
               }
+              console.log(start_date);
+              console.log(compare_start_date);
               if(compare_start_date==0 && start_date!=0){
                 $('#compose_div').show();
                 $('#conflict_error').hide();
                 $('#send_message').show();
-                console.log('1');
+               
               }
               else if(compare_start_date==0 && start_date==0){
                 $('#conflict_error').html('DSD is set.');
                 $('#conflict_error').show();
                 $('#send_message').hide();
                 $('#compose_div').hide();
-                console.log('2');
+               
               }
               else{
                 $('#conflict_error').show();
                 $('#send_message').hide();
                 $('#compose_div').hide();
-                console.log('3');
+               
               }
               $('#DSDLabel').html(station_name);
               $('#showDSDPopUp').trigger('click'); 

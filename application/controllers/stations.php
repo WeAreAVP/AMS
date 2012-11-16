@@ -209,6 +209,8 @@ class Stations extends MY_Controller
         if (isset($multiple_station) && !empty($multiple_station))
         {
           $this->station_mail($multiple_station);
+          echo json_encode(array('success' => true));
+          exit;
         } else
         {
           echo json_encode(array('success' => false, "error_id" => 1));
@@ -261,10 +263,8 @@ class Stations extends MY_Controller
         $data['email_queue_id'] = $email_queue_id;
       }
       $this->msgs->add_msg($data);
-      $this->session->set_userdata('sent', 'Message Sent');
+//      $this->session->set_userdata('sent', 'Message Sent');
     }
-    echo json_encode(array('success' => true));
-    exit;
   }
 
   function test()

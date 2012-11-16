@@ -188,7 +188,7 @@ class Stations extends MY_Controller
   }
 
   /**
-   * Recieve the compose message parameteres. Store in database and send email
+   * Recieve the DSD message parameteres. Store in database and send email
    * Receive an ajax call
    * 
    * @param $to receiver ids

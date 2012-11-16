@@ -250,7 +250,7 @@ if (!$is_ajax)
       if(stations.length>0){
         $.ajax({
           type: 'POST', 
-          url: site_url+'stations/get_stations',
+          url: site_url+'stations/get_dsd_stations',
           data:{id:stations},
           dataType: 'json',
           cache: false,

@@ -152,6 +152,24 @@ class Stations extends MY_Controller
   }
 
   /**
+   * Get a list of stations for DSD
+   * 
+   * @param $id as post parameter
+   * @return json
+   */
+  public function get_dsd_stations()
+  {
+    if (isAjax())
+    {
+      $stations_id = $this->input->post('id');
+      $records = $this->station_model->get_stations_by_id($stations_id);
+      echo json_encode(array('success' => true, 'records' => $records));
+      exit;
+    }
+    show_404();
+  }
+
+  /**
    * Undo the last edited stations
    *  
    */

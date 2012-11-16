@@ -286,13 +286,13 @@ if (!$is_ajax)
               }
               console.log(start_date);
               console.log(compare_start_date);
-              if(compare_start_date==0 && start_date.length!=0){
+              if(compare_start_date==0 && start_date!=null){
                 $('#compose_div').show();
                 $('#conflict_error').hide();
                 $('#send_message').show();
                
               }
-              else if(compare_start_date==0 && start_date.length==0){
+              else if(compare_start_date==0 && start_date==null){
                 $('#conflict_error').html('DSD is set.');
                 $('#conflict_error').show();
                 $('#send_message').hide();

@@ -293,7 +293,8 @@ if (!$is_ajax)
                 console.log('empty date');
               }
               else{
-                console.log('conflicting dates');
+               $('#conflict_error').show();
+               $('#send_message').hide();
               }
               $('#DSDLabel').html(station_name);
               $('#showDSDPopUp').trigger('click'); 

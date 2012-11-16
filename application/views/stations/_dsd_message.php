@@ -8,7 +8,7 @@
   </div>
   <div class="modal-body">
     <div id="conflict_error" style="display: none;">
-      Please select stations that have same DSD.
+      Please select stations that have same DSD and DSD is set.
     </div>
     <div id="compose_div" style="display: none;">
       <div class="control-group">

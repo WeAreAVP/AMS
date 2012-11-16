@@ -153,7 +153,7 @@ if (!$is_ajax)
 
   <script type="text/javascript">
     var stationName=null;
-                          
+                            
     function checkAll() {
       var boxes = document.getElementsByTagName('input');
       for (var index = 0; index < boxes.length; index++) {
@@ -163,7 +163,7 @@ if (!$is_ajax)
       }
       return true;
     }
-                                                                                                                                       
+                                                                                                                                         
     var search_words='';
     function makeToken(event)
     {
@@ -190,7 +190,7 @@ if (!$is_ajax)
         $('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'</span><span class="btn-close-img" onclick="remove_keword(\''+search_id+'\')"></span></div>');
       }
       $('#search_keyword').val('');
-                                                                                                                                  			
+                                                                                                                                    			
       $(".search_keys").each(function() {
         if(token==0)
           my_search_words=$(this).text();
@@ -222,7 +222,7 @@ if (!$is_ajax)
       search_words=$('#search_words').val();
       certified=$('#certified').val();
       agreed=$('#agreed').val();
-                              
+                                
       $.ajax({
         type: 'POST', 
         url: '<?php echo site_url('stations/index') ?>',
@@ -230,11 +230,11 @@ if (!$is_ajax)
         success: function (result) { 
           $('#append_record').html(result);
           $("#station_table").trigger("update");  
-                                                  
+                                                    
         }
       });
     }
-                          
+                            
     function resetStationFilter(){
       $('#search_words').val('');
       $('#search_keyword').val('');
@@ -259,9 +259,9 @@ if (!$is_ajax)
             if(result.success==true){
               var station_name='Station(s):';
               var compare_start_date=0;
-                            
-                            
-                            
+                              
+                              
+                              
               var start_date=false;
               for(cnt in result.records){
                 if(cnt==0){
@@ -274,11 +274,11 @@ if (!$is_ajax)
                   else{
                     compare_start_date=1; 
                   }
-                              
-                             
-                              
+                                
+                               
+                                
                 }
-                                                                                                                                                    
+                                                                                                                                                      
                 if(cnt==result.records.length-1)
                   station_name+=result.records[cnt].station_name;
                 else
@@ -286,43 +286,36 @@ if (!$is_ajax)
               }
               console.log(start_date);
               console.log(compare_start_date);
-              if(compare_start_date==0 && start_date!=null){
+              if(compare_start_date==0 && start_date){
                 $('#compose_div').show();
                 $('#conflict_error').hide();
                 $('#send_message').show();
-               
-              }
-              else if(compare_start_date==0 && start_date==null){
-                $('#conflict_error').html('DSD is set.');
-                $('#conflict_error').show();
-                $('#send_message').hide();
-                $('#compose_div').hide();
-               
+                 
               }
               else{
                 $('#conflict_error').show();
                 $('#send_message').hide();
                 $('#compose_div').hide();
-               
+                 
               }
               $('#DSDLabel').html(station_name);
               $('#showDSDPopUp').trigger('click'); 
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+                          
+                          
+                          
+                          
+                          
+                          
+                          
             }
             else{
               console.log(result);
             }
-                                                                                                                                            
+                                                                                                                                              
           }
         });
       }
-                    
+                      
     }
   </script>
 

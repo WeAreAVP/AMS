@@ -292,7 +292,7 @@ if (!$is_ajax)
                 $('#send_message').show();
                
               }
-              else if(compare_start_date==0 && start_date==0){
+              else if(compare_start_date==0 && start_date==0 || start_date==''){
                 $('#conflict_error').html('DSD is set.');
                 $('#conflict_error').show();
                 $('#send_message').hide();

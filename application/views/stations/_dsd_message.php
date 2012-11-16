@@ -45,7 +45,7 @@
     $.ajax({
       type: 'POST', 
       url: '<?php echo site_url('stations/compose') ?>',
-      data:{"extras":extras,to:to,type:type},
+      data:{"extras":extras,to:to,type:1},
       dataType: 'json',
       success: function (result) { 
         if(result.success)

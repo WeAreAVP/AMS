@@ -30,7 +30,7 @@
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true" id="">Cancel</button>
-    <button class="btn btn-primary" id="send_message">Send</button>
+    <button class="btn btn-primary" id="send_message" onclick="sendDSDEmail();">Send</button>
   </div>
 </div>
 
@@ -40,8 +40,31 @@
     comments=$('#comments').val();
     extras= {
       shipping_instructions: shipping_instructions,
-      comments: comments,
+      comments: comments
     };
+    $.ajax({
+      type: 'POST', 
+      url: '<?php echo site_url('stations/compose') ?>',
+      data:{"extras":extras,to:to,type:type},
+      dataType: 'json',
+      success: function (result) { 
+        if(result.success)
+        {
+          //           window.location.reload();
+        }
+        else
+        {
+          if(error_id==1)
+          {
+            $('#message_station_error').show();
+          }
+          else
+          {
+            $('#message_type_error').show();
+          }
+        }
+      }
+    });
   }
     
 </script>

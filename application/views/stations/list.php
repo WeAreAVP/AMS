@@ -243,11 +243,13 @@ if (!$is_ajax)
       $('#tokens').html('');
       search_station();
     }
+    var to=null;
     function sendMessage(){
       var stations=new Array();
       $('input[name="station[]"]:checked').each(function(index,a){
         stations[index]=$(this).val();
       });
+      to=stations;
       if(stations.length>0){
         $.ajax({
           type: 'POST', 

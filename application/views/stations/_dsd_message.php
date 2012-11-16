@@ -10,7 +10,23 @@
     <div id="conflict_error" style="display: none;">
       Please select stations that have same DSD.
     </div>
-    
+    <div id="compose_div" style="display: none;">
+      <div class="control-group">
+        <label class="control-label" for="shipping_instructions">Shipping Instructions:</label>
+        <div class="controls">
+          <input id="shipping_instructions" name="shipping_instructions"/>
+
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="comments">Comments:</label>
+        <div class="controls">
+          <input id="comments" name="comments"/>
+
+        </div>
+      </div>
+    </div>
+
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true" id="">Cancel</button>
@@ -19,7 +35,14 @@
 </div>
 
 <script type="text/javascript">
-
+  function sendDSDEmail(){
+    shipping_instructions=$('#shipping_instructions').val();
+    comments=$('#comments').val();
+    extras= {
+      shipping_instructions: shipping_instructions,
+      comments: comments,
+    };
+  }
     
 </script>
 

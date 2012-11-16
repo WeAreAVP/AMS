@@ -12,22 +12,10 @@
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true" id="">Cancel</button>
-    <button class="btn btn-primary" onclick="validateFields();">Save</button>
+    <button class="btn btn-primary">Save</button>
   </div>
 </div>
-<a href="#confirmModel" data-toggle="modal" id="showConfirmPopUp"></a>
-<div class="modal hide" id="confirmModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>Are you sure you want to save?</h3>
 
-  </div>
-
-  <div class="modal-footer" style="text-align: left;">
-    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="$('#showPopUp').trigger('click');">Go Back</button>
-    <button class="btn" data-dismiss="modal" onclick="UpdateStations();">Save</button>
-  </div>
-</div>
 <script type="text/javascript">
   function sendMessage(){
       var stations=new Array();

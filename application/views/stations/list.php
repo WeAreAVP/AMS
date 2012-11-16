@@ -148,6 +148,7 @@ if (!$is_ajax)
 
   </div>
   <?php $this->load->view('stations/_edit_station'); ?>
+  <?php $this->load->view('stations/_dsd_message'); ?>
 
 
   <script type="text/javascript">

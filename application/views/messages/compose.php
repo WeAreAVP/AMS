@@ -153,7 +153,7 @@
             success: function (result) { 
 							if(result.success)
 							{
-								 window.location.reload();
+//								 window.location.reload();
 							}
 							else
 							{

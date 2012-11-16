@@ -4,11 +4,9 @@
  * stations controller.
  *
  * @package    AMS
- * @subpackage stations
+ * @subpackage Stations
  * @author     Nouman Tayyab <nouman@geekschicago.com>
- * @copyright  AMS 2012
- * @link       http://ams.com
- * @license    ABC
+ * @copyright  20012 AMSF
  */
 class Stations extends MY_Controller
 {
@@ -34,20 +32,20 @@ class Stations extends MY_Controller
    * 
    * It receives 3 post parameters are received with ajax call
    * 
-   * @param string $search_keyword
-   * @param boolean $certified
-   * @param boolean $agreed
+   * @param string  $search_keyword search keyword
+   * @param boolean $certified value of certified
+   * @param boolean $agreed value for agreed
    *  
    */
   public function index()
   {
     $param = array('search_kewords' => '', 'certified' => '', 'agreed' => '');
-    $val = $this->form_validation;
-    $val->set_rules('search_keyword', 'Search Keyword', 'trim|xss_clean');
-    $val->set_rules('certified', 'Certified', 'trim|xss_clean');
-    $val->set_rules('agreed', 'Agreed', 'trim|xss_clean');
-    $val->set_rules('start_date_range', 'Start Date', 'trim|xss_clean');
-    $val->set_rules('end_date_range', 'End Date', 'trim|xss_clean');
+    $value = $this->form_validation;
+    $value->set_rules('search_keyword', 'Search Keyword', 'trim|xss_clean');
+    $value->set_rules('certified', 'Certified', 'trim|xss_clean');
+    $value->set_rules('agreed', 'Agreed', 'trim|xss_clean');
+    $value->set_rules('start_date_range', 'Start Date', 'trim|xss_clean');
+    $value->set_rules('end_date_range', 'End Date', 'trim|xss_clean');
     if ($this->input->post())
     {
       $param['certified'] = $this->input->post('certified');
@@ -152,6 +150,24 @@ class Stations extends MY_Controller
   }
 
   /**
+   * Get a list of stations for DSD
+   * 
+   * @param $id as post parameter
+   * @return json
+   */
+  public function get_dsd_stations()
+  {
+    if (isAjax())
+    {
+      $stations_id = $this->input->post('id');
+      $records = $this->station_model->get_stations_by_id($stations_id);
+      echo json_encode(array('success' => true, 'records' => $records));
+      exit;
+    }
+    show_404();
+  }
+
+  /**
    * Undo the last edited stations
    *  
    */
@@ -167,6 +183,83 @@ class Stations extends MY_Controller
       }
     }
     redirect('stations/index', 'location');
+  }
+
+  /**
+   * Recieve the DSD message parameteres. Store in database and send email
+   * Receive an ajax call
+   * 
+   * @param $to receiver ids
+   * @param $type message type
+   * @param $extaras receive the remaining fields as an array
+   *  
+   */
+  public function compose()
+  {
+    if ($this->input->post() && isAjax())
+    {
+      $alerts_array = $this->config->item('messages_type');
+
+      $type = $this->input->post('type');
+      $template = str_replace(" ", "_", $alerts_array[$type]);
+      $template_data = $this->email_template->get_template_by_sys_id($template);
+      $multiple_station = $this->input->post('to');
+      if (isset($template_data) && !empty($template_data))
+      {
+        if (isset($multiple_station) && !empty($multiple_station))
+        {
+          foreach ($multiple_station as $to)
+          {
+
+            $station_details = $this->station_model->get_station_by_id($to);
+            $subject = $template_data->subject;
+            $extra = $this->input->post('extras');
+            foreach ($extra as $key => $value)
+            {
+              $replacebale[$key] = (isset($value) && !empty($value)) ? $value : '';
+            }
+            $replacebale['station_name'] = isset($station_details->station_name) ? $station_details->station_name : '';
+            $replacebale['ship_date'] = $station_details->start_date;
+            $replacebale['estimated_complete_date'] = $station_details->end_date;
+            if ($this->config->item('demo') == true)
+            {
+              $to_email = $this->config->item('to_email');
+              $from_email = $this->config->item('from_email');
+              $replacebale['user_name'] = 'AMS';
+            } else
+            {
+              $to_email = $station_details->contact_email;
+              $from_email = $this->user_detail->email;
+              $replacebale['user_name'] = $this->user_detail->first_name . ' ' . $this->user_detail->last_name;
+            }
+            $replacebale['inform_to'] = 'ssapienza@cpb.org';
+
+            $email_queue_id = $this->emailtemplates->queue_email($template, $to_email, $replacebale);
+
+            $data = array('sender_id' => $this->user_id, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => json_encode($extra), 'created_at' => date('Y-m-d h:m:i'));
+            if (isset($email_queue_id) && $email_queue_id)
+            {
+              $data['email_queue_id'] = $email_queue_id;
+            }
+            $this->msgs->add_msg($data);
+            $this->session->set_userdata('sent', 'Message Sent');
+          }
+          echo json_encode(array('success' => true));
+          exit;
+        } else
+        {
+          echo json_encode(array('success' => false, "error_id" => 1));
+          exit;
+        }
+      } else
+      {
+        echo json_encode(array('success' => false, "error_id" => 2));
+        exit;
+      }
+    } else
+    {
+      show_404();
+    }
   }
 
   function test()

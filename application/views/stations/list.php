@@ -148,11 +148,12 @@ if (!$is_ajax)
 
   </div>
   <?php $this->load->view('stations/_edit_station'); ?>
+  <?php $this->load->view('stations/_dsd_message'); ?>
 
 
   <script type="text/javascript">
     var stationName=null;
-                
+                              
     function checkAll() {
       var boxes = document.getElementsByTagName('input');
       for (var index = 0; index < boxes.length; index++) {
@@ -162,7 +163,7 @@ if (!$is_ajax)
       }
       return true;
     }
-                                                                                                                             
+                                                                                                                                           
     var search_words='';
     function makeToken(event)
     {
@@ -189,7 +190,7 @@ if (!$is_ajax)
         $('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'</span><span class="btn-close-img" onclick="remove_keword(\''+search_id+'\')"></span></div>');
       }
       $('#search_keyword').val('');
-                                                                                                                        			
+                                                                                                                                      			
       $(".search_keys").each(function() {
         if(token==0)
           my_search_words=$(this).text();
@@ -221,7 +222,7 @@ if (!$is_ajax)
       search_words=$('#search_words').val();
       certified=$('#certified').val();
       agreed=$('#agreed').val();
-                    
+                                  
       $.ajax({
         type: 'POST', 
         url: '<?php echo site_url('stations/index') ?>',
@@ -229,11 +230,11 @@ if (!$is_ajax)
         success: function (result) { 
           $('#append_record').html(result);
           $("#station_table").trigger("update");  
-                                        
+                                                      
         }
       });
     }
-                
+                              
     function resetStationFilter(){
       $('#search_words').val('');
       $('#search_keyword').val('');
@@ -242,25 +243,27 @@ if (!$is_ajax)
       $('#tokens').html('');
       search_station();
     }
+    var to=null;
     function sendMessage(){
       var stations=new Array();
       $('input[name="station[]"]:checked').each(function(index,a){
         stations[index]=$(this).val();
       });
+      to=stations;
       if(stations.length>0){
         $.ajax({
           type: 'POST', 
-          url: site_url+'stations/get_stations',
+          url: site_url+'stations/get_dsd_stations',
           data:{id:stations},
           dataType: 'json',
           cache: false,
           success: function (result) {
             if(result.success==true){
-              var station_name='';
+              var station_name='Station(s):';
               var compare_start_date=0;
-                  
-                  
-                  
+                                
+                                
+                                
               var start_date=false;
               for(cnt in result.records){
                 if(cnt==0){
@@ -273,38 +276,48 @@ if (!$is_ajax)
                   else{
                     compare_start_date=1; 
                   }
-                    
-                   
-                    
+                                  
+                                 
+                                  
                 }
-                                                                                                                                          
+                                                                                                                                                        
                 if(cnt==result.records.length-1)
                   station_name+=result.records[cnt].station_name;
                 else
                   station_name+=result.records[cnt].station_name+',';
               }
-              if(compare_start_date==0 && start_date!=0)
-                $('#start_date').val(start_date);
-              else if(compare_start_date==0 && start_date==0)
-                $('#start_date').val('');
-              else
-                $('#start_date').val('--');
-              
-              
-              
-              
-              
-              
-              
+              console.log(start_date);
+              console.log(compare_start_date);
+              if(compare_start_date==0 && start_date){
+                $('#compose_div').show();
+                $('#conflict_error').hide();
+                $('#send_message').show();
+                   
+              }
+              else{
+                $('#conflict_error').show();
+                $('#send_message').hide();
+                $('#compose_div').hide();
+                   
+              }
+              $('#DSDLabel').html(station_name);
+              $('#showDSDPopUp').trigger('click'); 
+                            
+                            
+                            
+                            
+                            
+                            
+                            
             }
             else{
               console.log(result);
             }
-                                                                                                                                  
+                                                                                                                                                
           }
         });
       }
-          
+                        
     }
   </script>
 

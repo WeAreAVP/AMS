@@ -30,7 +30,7 @@
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true" id="">Cancel</button>
-    <button class="btn btn-primary" id="send_message" onclick="sendDSDEmail();">Send</button>
+    <button class="btn btn-primary" id="send_message"  data-dismiss="modal" aria-hidden="true" onclick="sendDSDEmail();">Send</button>
   </div>
 </div>
 

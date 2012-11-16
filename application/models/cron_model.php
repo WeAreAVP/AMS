@@ -45,7 +45,9 @@ class Cron_Model extends CI_Model
 	{
 		$this->db->select("*");
 		$this->db->from($this->_table);
-		$this->db->where("data_folder_id LIKE ",$data_folder_id);
+		$this->db->where("data_folder_id ",$data_folder_id);
+		$this->db->where("is_processed ",0);
+		
 		$res=$this->db->get();
 		if(isset($res))
 		{
@@ -144,9 +146,12 @@ class Cron_Model extends CI_Model
 							{
 								$data_file=(explode(" ",$value));
 								$data_file_path=$data_file[1];
-								if(!$this->get_pbcore_file_by_path($data_file_path))
+								if(strpos($data_file_path,'organization.xml')===false)
 								{
-									$this->insert_prcoess_data(array('file_type'=>$type,'file_path'=>$data_file_path,'is_processed'=>0,'created_at'=>date('Y-m-d H:i:s'),"data_folder_id"=>$data_folder_id));
+									if(!$this->get_pbcore_file_by_path($data_file_path))
+									{
+										$this->insert_prcoess_data(array('file_type'=>$type,'file_path'=>trim($data_file_path),'is_processed'=>0,'created_at'=>date('Y-m-d H:i:s'),"data_folder_id"=>$data_folder_id));
+									}
 								}
 							}
 						}

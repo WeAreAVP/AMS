@@ -1,32 +1,44 @@
 <?php
 
 if (!defined('BASEPATH'))
-  exit('No direct script access allowed');
+    exit('No direct script access allowed');
 
 /**
- * dashboard controller.
+ * AMS Dashboard Controller
  *
- * @package    AMS
- * @subpackage dashboard
- * @author     Nouman Tayyab
+ * @package		AMS
+ * @subpackage	Dashboard Controller
+ * @category	Controllers
+ * @author		Nouman Tayyab <nouman@geekschicago.com>
  */
-class Dashboard extends MY_Controller {
+class Dashboard extends MY_Controller
+{
 
-  /**
-   * Constructor. 
-   */
-  function __construct() {
-    parent::__construct();
-    $this->layout = 'main_layout.php';
-  }
+    /**
+     * Constructor.
+     * 
+     * Load the layout for the dashboard.
+     *  
+     */
+    function __construct()
+    {
+        parent::__construct();
+        $this->layout = 'main_layout.php';
+    }
 
-  /**
-   * Dashboard Functionality
-   *  
-   */
-  function index() {
-    $data=null;
-    $this->load->view('dashboard/index', $data);
-  }
+    /**
+     * Dashboard Functionality
+     *  
+     */
+    function index()
+    {
+        $data = null;
+        $this->load->view('dashboard/index', $data);
+    }
 
 }
+
+// END Dashboard Controller
+
+/* End of file dashboard.php */
+/* Location: ./application/controllers/dashboard.php */

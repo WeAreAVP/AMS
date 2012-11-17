@@ -143,6 +143,7 @@ class Messages extends MY_Controller
       $alerts_array = $this->config->item('messages_type');
       $html = $this->input->post('html');
       $type = $this->input->post('type');
+      $same_dsd = ($this->input->post('same_dsd')) ? $this->input->post('same_dsd'): false ;
       $template = str_replace(" ", "_", $alerts_array[$type]);
       $template_data = $this->email_template->get_template_by_sys_id($template);
       $multiple_station = $this->input->post('to');
@@ -159,6 +160,10 @@ class Messages extends MY_Controller
             foreach ($extra as $key => $value)
             {
               $replacebale[$key] = (isset($value) && !empty($value)) ? $value : '';
+            }
+            if($same_dsd==1){
+            $replacebale['ship_date'] = $station_details->start_date;
+            $replacebale['estimated_complete_date'] = $station_details->end_date;
             }
             $replacebale['station_name'] = isset($station_details->station_name) ? $station_details->station_name : '';
             if ($this->config->item('demo') == true)

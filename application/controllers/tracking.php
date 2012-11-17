@@ -1,24 +1,26 @@
 <?php
 
 /**
- * tracking controller.
- *
- * @package    AMS
- * @subpackage Tracking
- * @author     Nouman Tayyab
+ * AMS Tracking Controller
+ * 
+ * @package		AMS
+ * @subpackage	Tracking Controller
+ * @category	Controllers
+ * @author		Nouman Tayyab <nouman@geekschicago.com>
  */
-class Tracking extends MY_Controller {
+class Tracking extends MY_Controller
+{
 
     /**
-     * constructor. Load layout,Model,Library and helpers
+     * Constructor
+     * 
+     * Load the layout and tracking model
      * 
      */
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
-        error_reporting(E_ALL);
-        error_reporting(1);
         $this->layout = 'main_layout.php';
-
         $this->load->model('tracking_model', 'tracking');
     }
 
@@ -27,7 +29,8 @@ class Tracking extends MY_Controller {
      * Get station_id as uri segment 3
      *  
      */
-    public function add() {
+    public function add()
+    {
         $this->layout = 'default.php';
         $data['station_id'] = $this->uri->segment(3);
         $val = $this->form_validation;
@@ -38,8 +41,10 @@ class Tracking extends MY_Controller {
         $val->set_rules('tracking_no', 'Last Name', 'trim|required|xss_clean');
         $val->set_rules('no_box_shipped', 'Phone #', 'trim|required|is_natural|xss_clean');
 
-        if ($this->input->post()) {
-            if ($val->run()) {
+        if ($this->input->post())
+        {
+            if ($val->run())
+            {
 
                 $record = array('ship_date' => date('Y-m-d', strtotime($val->set_value('tracking_ship_date'))),
                     'ship_to' => $val->set_value('ship_to'),
@@ -54,7 +59,8 @@ class Tracking extends MY_Controller {
                 $this->shipment_tracking_email($tracking_info);
                 echo 'done';
                 exit;
-            } else {
+            } else
+            {
                 $errors = $val->error_string();
                 $data['errors'] = $errors;
             }
@@ -68,7 +74,8 @@ class Tracking extends MY_Controller {
      * Get tracking_id as uri segment 3
      * 
      */
-    public function edit() {
+    public function edit()
+    {
         $this->layout = 'default.php';
         $tracking_id = $this->uri->segment(3);
         $val = $this->form_validation;
@@ -79,8 +86,10 @@ class Tracking extends MY_Controller {
         $val->set_rules('tracking_no', 'Last Name', 'trim|required|xss_clean');
         $val->set_rules('no_box_shipped', 'Phone #', 'trim|required|is_natural|xss_clean');
 
-        if ($this->input->post()) {
-            if ($val->run()) {
+        if ($this->input->post())
+        {
+            if ($val->run())
+            {
 
                 $record = array('ship_date' => date('Y-m-d', strtotime($val->set_value('tracking_ship_date'))),
                     'ship_to' => $val->set_value('ship_to'),
@@ -94,7 +103,8 @@ class Tracking extends MY_Controller {
                 $this->shipment_tracking_email($tracking_info);
                 echo 'done';
                 exit;
-            } else {
+            } else
+            {
                 $errors = $val->error_string();
                 $data['errors'] = $errors;
             }
@@ -110,7 +120,8 @@ class Tracking extends MY_Controller {
      * Get tracking_id as uri segment 3
      *  
      */
-    public function delete() {
+    public function delete()
+    {
         $tracking_id = $this->uri->segment(3);
         $staion_id = $this->uri->segment(4);
         $this->tracking->delete_record($tracking_id);
@@ -123,12 +134,14 @@ class Tracking extends MY_Controller {
      * @param array $record
      * @return boolean 
      */
-    function shipment_tracking_email($record) {
+    function shipment_tracking_email($record)
+    {
 
         $template = '_Tracking_Ship_Date';
         $template_data = $this->email_template->get_template_by_sys_id($template);
 
-        if (isset($template_data) && !empty($template_data)) {
+        if (isset($template_data) && !empty($template_data))
+        {
             $station_details = $this->station_model->get_station_by_id($record->station_id);
             $subject = $template_data->subject;
 
@@ -139,11 +152,13 @@ class Tracking extends MY_Controller {
             $replacebale['station_name'] = isset($station_details->station_name) ? $station_details->station_name : '';
 
 
-            if ($this->config->item('demo') == true) {
+            if ($this->config->item('demo') == true)
+            {
                 $to_email = $this->config->item('to_email');
                 $from_email = $this->config->item('from_email');
                 $replacebale['user_name'] = 'AMS';
-            } else {
+            } else
+            {
                 $to_email = $station_details->contact_email;
                 $from_email = $this->user_detail->email;
                 $replacebale['user_name'] = $this->user_detail->first_name . ' ' . $this->user_detail->last_name;
@@ -152,10 +167,15 @@ class Tracking extends MY_Controller {
             $this->emailtemplates->sent_now = true;
             $email_queue_id = $this->emailtemplates->queue_email($template, $to_email, $replacebale);
             return true;
-        } else {
+        } else
+        {
             return false;
         }
     }
 
 }
-?>
+
+// END Tracking Controller
+
+/* End of file tracking.php */
+/* Location: ./application/controllers/tracking.php */

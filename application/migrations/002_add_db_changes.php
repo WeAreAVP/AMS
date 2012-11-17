@@ -12,12 +12,13 @@ if (!defined('BASEPATH'))
  * @category	Migrations
  * @author		Nouman Tayyab <nouman@geekschicago.com>
  */
-class Migration_Add_Db_Changes extends CI_Migration {
+class Migration_Add_Db_Changes extends CI_Migration
+{
 
-  public function up()
-  {
-    
-    $this->dbforge->add_field('id');
+    public function up()
+    {
+
+        $this->dbforge->add_field('id');
         $this->dbforge->add_field(array(
             'date' => array(
                 'type' => 'DATE',
@@ -34,16 +35,15 @@ class Migration_Add_Db_Changes extends CI_Migration {
             ),
         ));
         $this->dbforge->create_table('sample_table');
-  }
+    }
 
-  public function down()
-  {
-    
-    $this->dbforge->drop_table('sample_table');
-    
-  }
+    public function down()
+    {
 
-} 
+        $this->dbforge->drop_table('sample_table');
+    }
+
+}
 
 // END Migration_Add_Db_Changes
 

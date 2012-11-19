@@ -68,7 +68,7 @@ if (ENVIRONMENT == 'testing') {
     $db['default']['hostname'] = 'localhost';
     $db['default']['username'] = 'root';
     $db['default']['password'] = 'pl@123';
-    $db['default']['database'] = 'ams';
+    $db['default']['database'] = 'ams_test';
     $db['default']['dbdriver'] = 'mysql';
     $db['default']['db_debug'] = FALSE;
 } else {

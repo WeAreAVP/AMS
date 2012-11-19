@@ -19,8 +19,7 @@
  *
  */
 
-define('ENVIRONMENT', getenv('ENVIRONMENT'));
-
+define('ENVIRONMENT', 'development');//getenv('ENVIRONMENT'));
 /**
  * Setting the default timezone
  *  

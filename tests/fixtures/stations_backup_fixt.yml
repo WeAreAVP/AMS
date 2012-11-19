@@ -1,24 +1,15 @@
-1:
-    id: 
-    station_id: 
-    start_date: 
-    end_date: 
-    is_certified: 
-    is_agreed: 
 
-2:
-    id: 
-    station_id: 
-    start_date: 
-    end_date: 
-    is_certified: 
-    is_agreed: 
-
-3:
-    id: 
-    station_id: 
-    start_date: 
-    end_date: 
-    is_certified: 
-    is_agreed: 
-
+row1: 
+  id: 5
+  station_id: 1
+  start_date: "2012-11-22"
+  end_date: "2012-11-22"
+  is_certified: 0
+  is_agreed: 0
+row2: 
+  id: 6
+  station_id: 2
+  start_date: "2012-11-22"
+  end_date: "2012-11-22"
+  is_certified: 0
+  is_agreed: 0

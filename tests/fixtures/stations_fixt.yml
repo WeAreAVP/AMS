@@ -1,75 +1,2399 @@
-1:
-    id: 
-    cpb_id: 
-    station_name: 
-    contact_name: 
-    contact_title: 
-    type: 
-    address_primary: 
-    address_secondary: 
-    city: 
-    state: 
-    zip: 
-    contact_phone: 
-    contact_fax: 
-    contact_email: 
-    allocated_hours: 
-    allocated_buffer: 
-    total_allocated: 
-    is_certified: 
-    is_agreed: 
-    start_date: 
-    end_date: 
-    created_at: 
-    updated_at: 
 
-2:
-    id: 
-    cpb_id: 
-    station_name: 
-    contact_name: 
-    contact_title: 
-    type: 
-    address_primary: 
-    address_secondary: 
-    city: 
-    state: 
-    zip: 
-    contact_phone: 
-    contact_fax: 
-    contact_email: 
-    allocated_hours: 
-    allocated_buffer: 
-    total_allocated: 
-    is_certified: 
-    is_agreed: 
-    start_date: 
-    end_date: 
-    created_at: 
-    updated_at: 
-
-3:
-    id: 
-    cpb_id: 
-    station_name: 
-    contact_name: 
-    contact_title: 
-    type: 
-    address_primary: 
-    address_secondary: 
-    city: 
-    state: 
-    zip: 
-    contact_phone: 
-    contact_fax: 
-    contact_email: 
-    allocated_hours: 
-    allocated_buffer: 
-    total_allocated: 
-    is_certified: 
-    is_agreed: 
-    start_date: 
-    end_date: 
-    created_at: 
-    updated_at: 
-
+row1: 
+  id: 1
+  cpb_id: 1259
+  station_name: "KDLG-AM"
+  contact_name: "Rob Carpenter"
+  contact_title: "General Manager"
+  type: 0
+  address_primary: "PO Box 670"
+  address_secondary: ""
+  city: "Dillingham"
+  state: "AK"
+  zip: "99576"
+  contact_phone: "907-842-5281"
+  contact_fax: "907-842-5645"
+  contact_email: "rob@dlgsd.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: "2012-11-07"
+  end_date: "2012-11-21"
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-11-16 06:28:29"
+row2: 
+  id: 2
+  cpb_id: 1271
+  station_name: >
+    "KCAW-FM  (Raven Radio Foundation,
+    Inc.)"
+  contact_name: "Ken Fate"
+  contact_title: "General Manager"
+  type: 0
+  address_primary: "2 Lincoln Street"
+  address_secondary: "Suite B"
+  city: "Sitka"
+  state: "AK"
+  zip: "99835"
+  contact_phone: "907-747-5877"
+  contact_fax: "907-747-5977"
+  contact_email: "ken@kcaw.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: "2012-11-07"
+  end_date: "2012-11-21"
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-11-16 06:28:29"
+row3: 
+  id: 3
+  cpb_id: 1275
+  station_name: >
+    "KUCB (Unalaska Community
+    Broadcasting/KIAL)"
+  contact_name: "Lauren Adams"
+  contact_title: "General Manager"
+  type: 0
+  address_primary: "PO Box 181"
+  address_secondary: ""
+  city: "Unalaska"
+  state: "AK"
+  zip: "99685"
+  contact_phone: "907-581-1888"
+  contact_fax: "907-581-1634"
+  contact_email: "gm@kucb.org"
+  allocated_hours: 79
+  allocated_buffer: 20
+  total_allocated: 95
+  is_certified: 0
+  is_agreed: 0
+  start_date: "2012-11-22"
+  end_date: "2012-11-22"
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-11-16 05:02:38"
+row4: 
+  id: 4
+  cpb_id: 1293
+  station_name: "Radio Bilingue"
+  contact_name: "Samuel Orozco"
+  contact_title: "Executive Producer"
+  type: 0
+  address_primary: "5005 E. Belmont Ave."
+  address_secondary: ""
+  city: "Fresno"
+  state: "CA"
+  zip: "93727"
+  contact_phone: "510-271-8885"
+  contact_fax: "559-455-5750"
+  contact_email: "sorozco@radiobilingue.org"
+  allocated_hours: 263
+  allocated_buffer: 66
+  total_allocated: 316
+  is_certified: 0
+  is_agreed: 0
+  start_date: "2012-11-23"
+  end_date: "2012-11-23"
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-11-09 11:09:20"
+row5: 
+  id: 5
+  cpb_id: 1297
+  station_name: "KUSC-FM"
+  contact_name: "Eric DeWeese"
+  contact_title: "General Manager"
+  type: 0
+  address_primary: "POB 77913"
+  address_secondary: ""
+  city: "Los Angeles"
+  state: "CA"
+  zip: "90007"
+  contact_phone: "213-225-7400 ext 530"
+  contact_fax: "213-225-7531"
+  contact_email: "edeweese@kusc.org"
+  allocated_hours: 53
+  allocated_buffer: 13
+  total_allocated: 64
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-10-22 06:52:15"
+row6: 
+  id: 6
+  cpb_id: 1315
+  station_name: "KUSP-FM"
+  contact_name: "Duncan Lively"
+  contact_title: "Operations Director"
+  type: 0
+  address_primary: "203 8th Ave"
+  address_secondary: ""
+  city: "Santa Cruz"
+  state: "CA"
+  zip: "95062"
+  contact_phone: "831-476-2800-x210"
+  contact_fax: "831-476-2802"
+  contact_email: "duncan@kusp.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-10-22 06:52:15"
+row7: 
+  id: 7
+  cpb_id: 1323
+  station_name: "KGNU-FM"
+  contact_name: "Sam Fuqua"
+  contact_title: "Station Manager"
+  type: 0
+  address_primary: "4700 Walnut St."
+  address_secondary: ""
+  city: "Boulder"
+  state: "CO"
+  zip: "80301"
+  contact_phone: "303-449-4885"
+  contact_fax: "303-447-9955"
+  contact_email: "sam@kgnu.org"
+  allocated_hours: 54
+  allocated_buffer: 14
+  total_allocated: 65
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-10-22 06:52:15"
+row8: 
+  id: 8
+  cpb_id: 1328
+  station_name: "KUVO-FM"
+  contact_name: "Carlos Lando"
+  contact_title: "COO/ Program Director"
+  type: 0
+  address_primary: "P.O. Box 2040"
+  address_secondary: ""
+  city: "Denver"
+  state: "CO"
+  zip: "80201"
+  contact_phone: "303-446-7618"
+  contact_fax: ""
+  contact_email: "carlos@kuvo.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: "2012-10-24"
+  end_date: "2012-10-26"
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-10-23 09:42:55"
+row9: 
+  id: 9
+  cpb_id: 1344
+  station_name: "WGCU Public Media (WGCU-TV)"
+  contact_name: "Barbara Linstrom"
+  contact_title: >
+    "Executive Producer, Television & New
+    Media"
+  type: 2
+  address_primary: "10501 FGCU Blvd South"
+  address_secondary: ""
+  city: "Fort Meyers"
+  state: "FL"
+  zip: "33965"
+  contact_phone: "239-590-2316"
+  contact_fax: "239-590-2310"
+  contact_email: "blinstro@wgcu.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-10-22 06:52:15"
+row10: 
+  id: 10
+  cpb_id: 1347
+  station_name: "WJCT-FM"
+  contact_name: "Circe LeNoble"
+  contact_title: "Grants Manager"
+  type: 0
+  address_primary: "100 Festival Park Avenue"
+  address_secondary: ""
+  city: "Jacksonville"
+  state: "FL"
+  zip: "32202"
+  contact_phone: "904-353-7770"
+  contact_fax: "904-358-6331"
+  contact_email: "clenoble@wjct.org"
+  allocated_hours: 165
+  allocated_buffer: 41
+  total_allocated: 198
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-10-22 06:52:15"
+row11: 
+  id: 11
+  cpb_id: 1370
+  station_name: >
+    "Chicago Public Radio (WBEZ-FM) and
+    Vocalo.org"
+  contact_name: "Beth Maggard"
+  contact_title: "Grants Manager"
+  type: 0
+  address_primary: "Navy Pier"
+  address_secondary: "848 East Grand Avenue"
+  city: "Chicago"
+  state: "IL"
+  zip: "60611"
+  contact_phone: "312.948.4750"
+  contact_fax: ""
+  contact_email: "bmaggard@wbez.org"
+  allocated_hours: 512
+  allocated_buffer: 128
+  total_allocated: 614
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-10-22 06:52:15"
+row12: 
+  id: 12
+  cpb_id: 1383
+  station_name: >
+    "WFIU-FM (Public Radio from Indiana
+    University)"
+  contact_name: "Perry Metz"
+  contact_title: "Executive Director"
+  type: 0
+  address_primary: "Radio-Television Services"
+  address_secondary: "1229 E. Seventh St"
+  city: "Bloomington"
+  state: "IN"
+  zip: "47405"
+  contact_phone: "812-855-8000"
+  contact_fax: "812-855-9943"
+  contact_email: "metz@indiana.edu"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row13: 
+  id: 13
+  cpb_id: 1388
+  station_name: "WFYI-FM"
+  contact_name: "Jim Brown"
+  contact_title: "Grant Specialist"
+  type: 0
+  address_primary: "1630 N. Meridian Street"
+  address_secondary: ""
+  city: "Indianapolis"
+  state: "IN"
+  zip: "46202"
+  contact_phone: "317-636-2020"
+  contact_fax: "317-283-2045"
+  contact_email: "jbrown@wfyi.org"
+  allocated_hours: 140
+  allocated_buffer: 35
+  total_allocated: 168
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row14: 
+  id: 14
+  cpb_id: 1393
+  station_name: "Iowa Public Radio"
+  contact_name: "Matt Sieren"
+  contact_title: "Administrative Services Manager"
+  type: 0
+  address_primary: "2111 Grand Avenue"
+  address_secondary: "Suite 100"
+  city: "Des Moines"
+  state: "IA"
+  zip: "50312"
+  contact_phone: "515-725-1707"
+  contact_fax: "515-725-1714"
+  contact_email: "msieren@iowapublicradio.org"
+  allocated_hours: 120
+  allocated_buffer: 30
+  total_allocated: 144
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row15: 
+  id: 15
+  cpb_id: 1419
+  station_name: >
+    "Appalshop, Inc. (WMMT and Appalshop
+    Films)"
+  contact_name: "Caroline Rubens"
+  contact_title: "Archivist"
+  type: 0
+  address_primary: "91 Madison Avenue"
+  address_secondary: ""
+  city: "Whitesburg"
+  state: "KY"
+  zip: "41858"
+  contact_phone: "606-633-0108"
+  contact_fax: "606-633-1009"
+  contact_email: "crubens@appalshop.org"
+  allocated_hours: 254
+  allocated_buffer: 64
+  total_allocated: 305
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row16: 
+  id: 16
+  cpb_id: 1430
+  station_name: "WERU-FM (WERU Community Radio)"
+  contact_name: "Matt Murphy"
+  contact_title: "General Manager"
+  type: 0
+  address_primary: "P.O. Box 170"
+  address_secondary: "1186 Acadia Highway"
+  city: "East Orland"
+  state: "ME"
+  zip: "04431"
+  contact_phone: "207-469-6600"
+  contact_fax: ""
+  contact_email: "matt@weru.org"
+  allocated_hours: 86
+  allocated_buffer: 22
+  total_allocated: 103
+  is_certified: 1
+  is_agreed: 0
+  start_date: "2012-10-23"
+  end_date: "2012-10-30"
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-10-23 11:11:44"
+row17: 
+  id: 17
+  cpb_id: 1438
+  station_name: "WFCR"
+  contact_name: "Robert Cox"
+  contact_title: "Head of Special Collections"
+  type: 0
+  address_primary: "Hampshire House"
+  address_secondary: "131 County Circle"
+  city: "Amherst"
+  state: "MA"
+  zip: "01003-9257"
+  contact_phone: "413-545-6842"
+  contact_fax: "413-545-2546"
+  contact_email: "rscox@library.umass.edu"
+  allocated_hours: 91
+  allocated_buffer: 23
+  total_allocated: 109
+  is_certified: 1
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row18: 
+  id: 18
+  cpb_id: 1441
+  station_name: "WUMB-FM"
+  contact_name: "Joanne Riley"
+  contact_title: "Archivist"
+  type: 0
+  address_primary: "UMass Boston"
+  address_secondary: "100 Morrissey Blvd"
+  city: "Boston"
+  state: "MA"
+  zip: "02125-3393"
+  contact_phone: "617-287-5927"
+  contact_fax: ""
+  contact_email: "joanne.riley@umb.edu"
+  allocated_hours: 70
+  allocated_buffer: 18
+  total_allocated: 84
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row19: 
+  id: 19
+  cpb_id: 1451
+  station_name: "WIAA-FM"
+  contact_name: "Anne Hurd"
+  contact_title: >
+    "Technical Services Librarian &
+    Associate Archivist"
+  type: 0
+  address_primary: "P.O. Box 199"
+  address_secondary: ""
+  city: "Interlochen"
+  state: "MI"
+  zip: "49643"
+  contact_phone: "231.276.7420"
+  contact_fax: ""
+  contact_email: "anne.hurd@interlochen.org"
+  allocated_hours: 439
+  allocated_buffer: 110
+  total_allocated: 527
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row20: 
+  id: 20
+  cpb_id: 1455
+  station_name: "WBLV-FM (Blue Lake Public Radio)"
+  contact_name: "David Myers"
+  contact_title: "General Manager"
+  type: 0
+  address_primary: "300 East Crystal Lake Rd"
+  address_secondary: ""
+  city: "Twin Lake"
+  state: "MI"
+  zip: "49457"
+  contact_phone: "231-894-2616"
+  contact_fax: ""
+  contact_email: "myers@bluelake.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row21: 
+  id: 21
+  cpb_id: 1466
+  station_name: "KSJN-FM (Minnesota Public Radio)"
+  contact_name: "Kyle Wesloh"
+  contact_title: "Director of Broadcast Ops"
+  type: 0
+  address_primary: "480 Cedar St."
+  address_secondary: ""
+  city: "Saint Paul"
+  state: "MN"
+  zip: "55101"
+  contact_phone: ""
+  contact_fax: ""
+  contact_email: "kwesloh@mpr.org"
+  allocated_hours: 1517
+  allocated_buffer: 379
+  total_allocated: 1820
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-10-19 10:30:54"
+row22: 
+  id: 22
+  cpb_id: 1502
+  station_name: "New Hampshire Public Radio"
+  contact_name: "Andrew Parella"
+  contact_title: >
+    "Production Manager/Fundraising
+    Producer"
+  type: 0
+  address_primary: "2 Pillsbury Street"
+  address_secondary: ""
+  city: "Concord"
+  state: "NH"
+  zip: "03301"
+  contact_phone: "603-223-2447"
+  contact_fax: ""
+  contact_email: "aparrella@nhpr.org"
+  allocated_hours: 197
+  allocated_buffer: 49
+  total_allocated: 236
+  is_certified: 1
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-10-19 10:30:54"
+row23: 
+  id: 23
+  cpb_id: 1507
+  station_name: "KUNM (aka KNME-FM)"
+  contact_name: "Richard Towne"
+  contact_title: "General Manager"
+  type: 0
+  address_primary: "1700 Lomas NE"
+  address_secondary: "Suite 2200, MSC01 1247"
+  city: "Albuquerque"
+  state: "NM"
+  zip: "87131"
+  contact_phone: "505-277-8009"
+  contact_fax: "505-277-6393"
+  contact_email: "richardtowne@kunm.org"
+  allocated_hours: 66
+  allocated_buffer: 17
+  total_allocated: 79
+  is_certified: 1
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row24: 
+  id: 24
+  cpb_id: 1527
+  station_name: "WNYC-FM"
+  contact_name: "John Passmore"
+  contact_title: "Archives Manager"
+  type: 0
+  address_primary: "160 Varick Street"
+  address_secondary: ""
+  city: "New York"
+  state: "NY"
+  zip: "10013"
+  contact_phone: "646-829-4537"
+  contact_fax: "646-829-4146"
+  contact_email: "jpassmore@nypublicradio.org"
+  allocated_hours: 2113
+  allocated_buffer: 528
+  total_allocated: 2536
+  is_certified: 1
+  is_agreed: 1
+  start_date: "2012-11-16"
+  end_date: "2012-11-23"
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-11-02 10:53:17"
+row25: 
+  id: 25
+  cpb_id: 1531
+  station_name: "WXXI Public Broadcasting (WXXI-TV)"
+  contact_name: "Irene Fink"
+  contact_title: "TV Program Director"
+  type: 2
+  address_primary: "280 State Street"
+  address_secondary: ""
+  city: "Rochester"
+  state: "NY"
+  zip: "14614"
+  contact_phone: "585-258-0275"
+  contact_fax: "585-258-0385"
+  contact_email: "Ifink@wxxi.org"
+  allocated_hours: 258
+  allocated_buffer: 65
+  total_allocated: 310
+  is_certified: 0
+  is_agreed: 0
+  start_date: "2013-01-19"
+  end_date: "2013-01-31"
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-11-09 11:09:37"
+row26: 
+  id: 26
+  cpb_id: 1570
+  station_name: "WYSO-FM (WYSO Public Radio)"
+  contact_name: "Neenah Ellis"
+  contact_title: "General Manager"
+  type: 0
+  address_primary: "150 E. South College"
+  address_secondary: ""
+  city: "Yellow Springs"
+  state: "OH"
+  zip: "45387"
+  contact_phone: "937-769-1391"
+  contact_fax: "937-769-1382"
+  contact_email: "nellis@wyso.org"
+  allocated_hours: 62
+  allocated_buffer: 16
+  total_allocated: 74
+  is_certified: 0
+  is_agreed: 0
+  start_date: "2013-01-19"
+  end_date: "2013-01-31"
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-11-09 11:09:37"
+row27: 
+  id: 27
+  cpb_id: 1589
+  station_name: "WDIY-FM"
+  contact_name: "Neil Hever"
+  contact_title: "Operations Director"
+  type: 0
+  address_primary: "301 Broadway"
+  address_secondary: ""
+  city: "Bethlehem"
+  state: "PA"
+  zip: "18015"
+  contact_phone: "610-694-8100-x3"
+  contact_fax: "610-954-9474"
+  contact_email: "neil@wdiy.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: "2013-01-19"
+  end_date: "2013-01-31"
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-11-09 11:09:37"
+row28: 
+  id: 28
+  cpb_id: 1595
+  station_name: "WXPN-FM"
+  contact_name: "Kim Junod"
+  contact_title: "Senior Producer"
+  type: 0
+  address_primary: "University of Pennsylvania"
+  address_secondary: "3025 Walnut Street"
+  city: "Philadelphia"
+  state: "PA"
+  zip: "19104"
+  contact_phone: "215-898-6677"
+  contact_fax: "215-898-0707"
+  contact_email: "kimberly@xpn.org"
+  allocated_hours: 212
+  allocated_buffer: 53
+  total_allocated: 254
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row29: 
+  id: 29
+  cpb_id: 1616
+  station_name: "KUT Radio"
+  contact_name: "Melinda Chow"
+  contact_title: "Administrative Associate"
+  type: 0
+  address_primary: "1 University Station, Box A0704"
+  address_secondary: ""
+  city: "Austin"
+  state: "TX"
+  zip: "78712"
+  contact_phone: "512-471-6689"
+  contact_fax: "512-471-3700"
+  contact_email: "mchow@kut.org"
+  allocated_hours: 73
+  allocated_buffer: 18
+  total_allocated: 88
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row30: 
+  id: 30
+  cpb_id: 1627
+  station_name: "KUHF-FM"
+  contact_name: "Dacia Clay"
+  contact_title: "Audio Librarian"
+  type: 0
+  address_primary: "4343 Elgen"
+  address_secondary: "3rd Floor"
+  city: "Houston"
+  state: "TX"
+  zip: "77204"
+  contact_phone: "713-743-8084"
+  contact_fax: "713-743-0868"
+  contact_email: "dclay@kuhf.org"
+  allocated_hours: 308
+  allocated_buffer: 77
+  total_allocated: 370
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row31: 
+  id: 31
+  cpb_id: 1642
+  station_name: '"Vermont Public Radio - WVPR"'
+  contact_name: "John Van Hoesen"
+  contact_title: "Vice President for News & Programming"
+  type: 0
+  address_primary: "365 Troy Avenue"
+  address_secondary: ""
+  city: "Colchester"
+  state: "VT"
+  zip: "05446"
+  contact_phone: "802-654-4347"
+  contact_fax: ""
+  contact_email: "jvanhoesen@vpr.net"
+  allocated_hours: 253
+  allocated_buffer: 63
+  total_allocated: 304
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row32: 
+  id: 32
+  cpb_id: 1653
+  station_name: "KDNA-FM"
+  contact_name: "Gabriel Martinez"
+  contact_title: "Station Manager"
+  type: 0
+  address_primary: "P.O. Box 800"
+  address_secondary: ""
+  city: "Granger"
+  state: "WA"
+  zip: "98932"
+  contact_phone: "509-854-2222"
+  contact_fax: "509-854-2223"
+  contact_email: "gmartinez@kdna.org"
+  allocated_hours: 101
+  allocated_buffer: 25
+  total_allocated: 121
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row33: 
+  id: 33
+  cpb_id: 1658
+  station_name: "KEXP-FM"
+  contact_name: "Carolyn Wennblom"
+  contact_title: "Director of Leadership Giving"
+  type: 0
+  address_primary: "113 Dexter Ave N"
+  address_secondary: ""
+  city: "Seattle"
+  state: "WA"
+  zip: "98109"
+  contact_phone: "206-520-5886"
+  contact_fax: "206-520-5899"
+  contact_email: "grants@kexp.org"
+  allocated_hours: 151
+  allocated_buffer: 38
+  total_allocated: 181
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row34: 
+  id: 34
+  cpb_id: 1666
+  station_name: "WOJB-FM"
+  contact_name: "Sidnee Kellar"
+  contact_title: "General Manager"
+  type: 0
+  address_primary: "13386 W Trepania Road"
+  address_secondary: ""
+  city: "Hayward"
+  state: "WI"
+  zip: "54843"
+  contact_phone: "715-634-2100"
+  contact_fax: "715-634-4070"
+  contact_email: "generalmanager@wojb.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row35: 
+  id: 35
+  cpb_id: 1702
+  station_name: "KAKM (Alaska Public Media)"
+  contact_name: "Pat Yack"
+  contact_title: "VP News and Public Media"
+  type: 2
+  address_primary: "3877 University Drive"
+  address_secondary: ""
+  city: "Anchorage"
+  state: "AK"
+  zip: "99508"
+  contact_phone: "907-550-8461"
+  contact_fax: "907-550-8401"
+  contact_email: "pyack@alaskapublic.org"
+  allocated_hours: 422
+  allocated_buffer: 106
+  total_allocated: 506
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row36: 
+  id: 36
+  cpb_id: 1703
+  station_name: "KYUK"
+  contact_name: "Mike Martz"
+  contact_title: "General Manager"
+  type: 2
+  address_primary: "PO Box 468"
+  address_secondary: "640 Radio Street"
+  city: "Bethel"
+  state: "AK"
+  zip: "99559"
+  contact_phone: "907-543-0222"
+  contact_fax: "907-543-3130"
+  contact_email: "mike@kyuk.org"
+  allocated_hours: 98
+  allocated_buffer: 25
+  total_allocated: 118
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row37: 
+  id: 37
+  cpb_id: 1708
+  station_name: "Arkansas Educational TV Network (AETN)"
+  contact_name: "DeWayne Wilbur"
+  contact_title: "Director of Operations"
+  type: 1
+  address_primary: "350 S. Donaghey Avenue"
+  address_secondary: ""
+  city: "Conway"
+  state: "AR"
+  zip: "72034"
+  contact_phone: "501-682-4170"
+  contact_fax: "501-682-4122"
+  contact_email: "dwilbur@aetn.org"
+  allocated_hours: 200
+  allocated_buffer: 50
+  total_allocated: 240
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row38: 
+  id: 38
+  cpb_id: 1709
+  station_name: "KRCB"
+  contact_name: "Stan Marvin"
+  contact_title: "TV Program Director"
+  type: 2
+  address_primary: "5850 Labath Avenue"
+  address_secondary: ""
+  city: "Rohnert park"
+  state: "CA"
+  zip: "94928"
+  contact_phone: "707-584-2010"
+  contact_fax: "707-585-1363"
+  contact_email: "stan_marvin@krcb.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row39: 
+  id: 39
+  cpb_id: 1710
+  station_name: "KOCE/PBS SoCal"
+  contact_name: "Lisa Mayeda-Nichols"
+  contact_title: >
+    "Sr. Director, Corporate/Foundation
+    Relations"
+  type: 1
+  address_primary: "3080 Bristol Street"
+  address_secondary: "Suite 400"
+  city: "Huntington Beach"
+  state: "CA"
+  zip: "92626"
+  contact_phone: "714-241-4115"
+  contact_fax: "714-668-0573"
+  contact_email: "lnichols@koce.org"
+  allocated_hours: 239
+  allocated_buffer: 60
+  total_allocated: 287
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row40: 
+  id: 40
+  cpb_id: 1711
+  station_name: "KEET"
+  contact_name: "Karen Barnes"
+  contact_title: >
+    "Director of Programming and
+    Development"
+  type: 1
+  address_primary: "7246 Humboldt Hill Road"
+  address_secondary: ""
+  city: "Eureka"
+  state: "CA"
+  zip: "95503"
+  contact_phone: "707-445-0813"
+  contact_fax: "707-445-8977"
+  contact_email: "kbarnes@keet-tv.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row41: 
+  id: 41
+  cpb_id: 1716
+  station_name: "KVIE"
+  contact_name: "Michael Sanford"
+  contact_title: "V.P. of Content Creation"
+  type: 1
+  address_primary: "2030 W. El Camino Ave."
+  address_secondary: ""
+  city: "Sacramento"
+  state: "CA"
+  zip: "95833"
+  contact_phone: "916-641-3546"
+  contact_fax: "916-929-7215"
+  contact_email: "msanford@kvie.org"
+  allocated_hours: 247
+  allocated_buffer: 62
+  total_allocated: 296
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row42: 
+  id: 42
+  cpb_id: 1717
+  station_name: "KVCR"
+  contact_name: "Kenn Couch"
+  contact_title: "Station Manager"
+  type: 2
+  address_primary: "701 S. Mt. Vernon Ave."
+  address_secondary: ""
+  city: "San Bernardino"
+  state: "CA"
+  zip: "92410"
+  contact_phone: "909-384-4332"
+  contact_fax: "909-885-2116"
+  contact_email: "kcouch@kvcr.org"
+  allocated_hours: 87
+  allocated_buffer: 22
+  total_allocated: 104
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row43: 
+  id: 43
+  cpb_id: 1720
+  station_name: "KQED"
+  contact_name: "Sandy Schonning"
+  contact_title: "Project Manager"
+  type: 1
+  address_primary: "2601 Mariposa St."
+  address_secondary: ""
+  city: "San Francisco"
+  state: "CA"
+  zip: "94110"
+  contact_phone: "415-553-2391"
+  contact_fax: ""
+  contact_email: "sschonning@KQED.org"
+  allocated_hours: 792
+  allocated_buffer: 198
+  total_allocated: 950
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row44: 
+  id: 44
+  cpb_id: 1724
+  station_name: "Rocky Mountain PBS (KRMA)"
+  contact_name: "Diane Cerafici"
+  contact_title: "Production Admin Assistant"
+  type: 1
+  address_primary: "1089 Bannock St."
+  address_secondary: ""
+  city: "Denver"
+  state: "CO"
+  zip: "80204"
+  contact_phone: "303-620-5649"
+  contact_fax: ""
+  contact_email: "dianecerafici@rmpbs.org"
+  allocated_hours: 148
+  allocated_buffer: 37
+  total_allocated: 178
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row45: 
+  id: 45
+  cpb_id: 1727
+  station_name: "Connecticut Public Broadcasting"
+  contact_name: "Joanne Whitehead"
+  contact_title: "Program Director"
+  type: 2
+  address_primary: "1049 Asylum Avenue"
+  address_secondary: ""
+  city: "Hartford"
+  state: "CT"
+  zip: "06105-2411"
+  contact_phone: "860-275-7270"
+  contact_fax: "860-275-7403"
+  contact_email: "jwhitehead@cptv.org"
+  allocated_hours: 546
+  allocated_buffer: 137
+  total_allocated: 655
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row46: 
+  id: 46
+  cpb_id: 1731
+  station_name: "WHUT-TV (Howard University Television)"
+  contact_name: "Luma Haj"
+  contact_title: "Director of Administration"
+  type: 1
+  address_primary: "2222 4th St NW"
+  address_secondary: ""
+  city: "Washington"
+  state: "DC"
+  zip: "20059"
+  contact_phone: "202-806-3460"
+  contact_fax: "202-806-3300"
+  contact_email: "lhaj@howard.edu"
+  allocated_hours: 113
+  allocated_buffer: 28
+  total_allocated: 136
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row47: 
+  id: 47
+  cpb_id: 1742
+  station_name: "WEDU Florida Public Media"
+  contact_name: "Jack Conely"
+  contact_title: "Vice-President of Content"
+  type: 1
+  address_primary: "1300 North Boulevard"
+  address_secondary: ""
+  city: "Tampa"
+  state: "FL"
+  zip: "33607"
+  contact_phone: "813-739-2964"
+  contact_fax: "813-253-0826"
+  contact_email: "jconely@wedu.org"
+  allocated_hours: 107
+  allocated_buffer: 27
+  total_allocated: 128
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row48: 
+  id: 48
+  cpb_id: 1744
+  station_name: "WUSF"
+  contact_name: "JoAnn Urofsky"
+  contact_title: "General Manager"
+  type: 2
+  address_primary: "University of South Florida"
+  address_secondary: "4202 E Fowler Avenue, TVB-100"
+  city: "Tampa"
+  state: "FL"
+  zip: "33620-6870"
+  contact_phone: "813-974-2897"
+  contact_fax: "813-974-4962"
+  contact_email: "jurofsky@wusf.org"
+  allocated_hours: 138
+  allocated_buffer: 35
+  total_allocated: 166
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row49: 
+  id: 49
+  cpb_id: 1750
+  station_name: "Idaho Public Television"
+  contact_name: "Jeff Tucker"
+  contact_title: "Production Manager"
+  type: 1
+  address_primary: "1455 N Orchard St"
+  address_secondary: ""
+  city: "Boise"
+  state: "ID"
+  zip: "83706"
+  contact_phone: "208-373-7220"
+  contact_fax: "208-373-7245"
+  contact_email: "Jeff.Tucker@idahoptv.org"
+  allocated_hours: 198
+  allocated_buffer: 50
+  total_allocated: 238
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row50: 
+  id: 50
+  cpb_id: 1752
+  station_name: "WSIU Public Broadcasting"
+  contact_name: "Delores Kerstein"
+  contact_title: >
+    "Associate Director for Finance and
+    Administration"
+  type: 2
+  address_primary: "1003 Communications Bldg, MC6602"
+  address_secondary: "Southern Illinois University"
+  city: "Carbondale"
+  state: "IL"
+  zip: "62903"
+  contact_phone: "618-458-6183"
+  contact_fax: "618-453-6186"
+  contact_email: "delores.kerstein@wsiu.org"
+  allocated_hours: 108
+  allocated_buffer: 27
+  total_allocated: 130
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row51: 
+  id: 51
+  cpb_id: 1760
+  station_name: "Illinois Public Media  (WILL)"
+  contact_name: "Jack Brighton"
+  contact_title: "Director of New Media & Innovation"
+  type: 2
+  address_primary: "300 N. Goodwin"
+  address_secondary: ""
+  city: "Urbana"
+  state: "IL"
+  zip: "61801"
+  contact_phone: "217-333-7300"
+  contact_fax: "217-244-2656"
+  contact_email: "jackb@illinois.edu"
+  allocated_hours: 401
+  allocated_buffer: 100
+  total_allocated: 481
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row52: 
+  id: 52
+  cpb_id: 1761
+  station_name: >
+    "WTIU (Public Television from Indiana
+    University)"
+  contact_name: "Perry Metz"
+  contact_title: >
+    "Executive Director, Radio and
+    Television Services"
+  type: 1
+  address_primary: "Radio-Television Services"
+  address_secondary: "1229 E. 7th St."
+  city: "Bloomington"
+  state: "IN"
+  zip: "47405"
+  contact_phone: "812-855-0516"
+  contact_fax: "812-855-9943"
+  contact_email: "metz@indiana.edu"
+  allocated_hours: 175
+  allocated_buffer: 44
+  total_allocated: 210
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row53: 
+  id: 53
+  cpb_id: 1770
+  station_name: "Iowa Public Television"
+  contact_name: "Wayne Bruns"
+  contact_title: "Production Manager"
+  type: 1
+  address_primary: "P.O. Box 6450"
+  address_secondary: ""
+  city: "Johnston"
+  state: "IA"
+  zip: "50131"
+  contact_phone: "515-242-4183"
+  contact_fax: "515-242-6170"
+  contact_email: "wayne@iptv.org"
+  allocated_hours: 416
+  allocated_buffer: 104
+  total_allocated: 499
+  is_certified: 1
+  is_agreed: 0
+  start_date: "2012-10-16"
+  end_date: "2012-10-25"
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-10-23 11:13:31"
+row54: 
+  id: 54
+  cpb_id: 1775
+  station_name: '"KET - The Kentucky Network"'
+  contact_name: "Craig Cornwell"
+  contact_title: "Sr Dir. Programming"
+  type: 1
+  address_primary: "600 Cooper Dr."
+  address_secondary: ""
+  city: "Lexington"
+  state: "KY"
+  zip: "40502"
+  contact_phone: "859-258-7276"
+  contact_fax: ""
+  contact_email: "CCornwell@ket.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row55: 
+  id: 55
+  cpb_id: 1777
+  station_name: "Louisiana Public Broadcasting"
+  contact_name: "Christina Melton"
+  contact_title: "Producer / Archive Project Manager"
+  type: 1
+  address_primary: "7733 Perkins Road"
+  address_secondary: ""
+  city: "Baton Rouge"
+  state: "LA"
+  zip: "70810"
+  contact_phone: "225-767-4248"
+  contact_fax: "225-767-4246"
+  contact_email: "cmelton@lpb.org"
+  allocated_hours: 334
+  allocated_buffer: 84
+  total_allocated: 401
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row56: 
+  id: 56
+  cpb_id: 1781
+  station_name: "Maine Public Broadcasting"
+  contact_name: "Erin Merrill"
+  contact_title: "Major Gifts and Foundations"
+  type: 1
+  address_primary: "1450 Lisbon Street"
+  address_secondary: ""
+  city: "Lewiston"
+  state: "ME"
+  zip: "04240"
+  contact_phone: "207-330-4550"
+  contact_fax: "207-783-5193"
+  contact_email: "emerrill@mpbn.net"
+  allocated_hours: 293
+  allocated_buffer: 73
+  total_allocated: 352
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row57: 
+  id: 57
+  cpb_id: 1783
+  station_name: "Maryland Public Television"
+  contact_name: "Christina Bildstein"
+  contact_title: "Archive Team Coordinator"
+  type: 1
+  address_primary: "11767 Owings Mills Blvd"
+  address_secondary: ""
+  city: "Owings Mills"
+  state: "MD"
+  zip: "21117-1499"
+  contact_phone: "410-581-4185"
+  contact_fax: "410-581-0326"
+  contact_email: "cbildstein@mpt.org"
+  allocated_hours: 888
+  allocated_buffer: 222
+  total_allocated: 1066
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row58: 
+  id: 58
+  cpb_id: 1784
+  station_name: "WGBY"
+  contact_name: "Lynn Page"
+  contact_title: "Deputy GM of Content & Delivery"
+  type: 1
+  address_primary: "44 Hampden St."
+  address_secondary: ""
+  city: "Boston"
+  state: "MA"
+  zip: "01103"
+  contact_phone: "413-781-2801-x264"
+  contact_fax: "413-781-5211"
+  contact_email: "lpage@wgby.org"
+  allocated_hours: 72
+  allocated_buffer: 18
+  total_allocated: 86
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row59: 
+  id: 59
+  cpb_id: 1786
+  station_name: >
+    "Detroit Public Television (aka DPTV and
+    WTVS)"
+  contact_name: "Carlota Almanza-Lumpkin"
+  contact_title: "Production Manager"
+  type: 1
+  address_primary: "1 Clover Court"
+  address_secondary: ""
+  city: "Wixom"
+  state: "MI"
+  zip: "48393-2247"
+  contact_phone: "248-305-3826"
+  contact_fax: "248-305-3981"
+  contact_email: "calmanza@dptv.org"
+  allocated_hours: 164
+  allocated_buffer: 41
+  total_allocated: 197
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row60: 
+  id: 60
+  cpb_id: 1787
+  station_name: "WKAR"
+  contact_name: "Susi Elkins"
+  contact_title: >
+    "Content and Community Engagement
+    Manager"
+  type: 2
+  address_primary: >
+    "283 Communication Arts & Sciences
+    Bldg."
+  address_secondary: "Michigan State University"
+  city: "East Lansing"
+  state: "MI"
+  zip: "48824-1212"
+  contact_phone: "517-884-4750"
+  contact_fax: "517-353-7124"
+  contact_email: "susi@wkar.org"
+  allocated_hours: 109
+  allocated_buffer: 27
+  total_allocated: 131
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row61: 
+  id: 61
+  cpb_id: 1797
+  station_name: >
+    "Twin Cities Public Television
+    (KTCA-TV)"
+  contact_name: "Bruce Jacobs"
+  contact_title: "Chief Technologist"
+  type: 1
+  address_primary: "172 E 4th Street"
+  address_secondary: ""
+  city: "St. Paul"
+  state: "MN"
+  zip: "55101"
+  contact_phone: "651-229-1244"
+  contact_fax: "651-229-1282"
+  contact_email: "bjacobs@tpt.org"
+  allocated_hours: 819
+  allocated_buffer: 205
+  total_allocated: 983
+  is_certified: 1
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row62: 
+  id: 62
+  cpb_id: 1798
+  station_name: "Mississippi Public Broadcasting"
+  contact_name: "Shirley Mixon"
+  contact_title: "Program Director"
+  type: 2
+  address_primary: "3825 Ridgewood Road"
+  address_secondary: ""
+  city: "Jackson"
+  state: "MI"
+  zip: "39211"
+  contact_phone: "601-432-6565"
+  contact_fax: "601-432-6907"
+  contact_email: "shirley.mixon@mpbonline.org"
+  allocated_hours: 209
+  allocated_buffer: 52
+  total_allocated: 251
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row63: 
+  id: 63
+  cpb_id: 1799
+  station_name: "KCPT (KCPT Public Television 19)"
+  contact_name: "Angee Simmons"
+  contact_title: >
+    "Executive Producer, Branding &
+    Multimedia"
+  type: 1
+  address_primary: "125 East 31st Street"
+  address_secondary: ""
+  city: "Kansas City"
+  state: "MO"
+  zip: "64108"
+  contact_phone: "816-398-4249"
+  contact_fax: "816-931-2500"
+  contact_email: "asimmons@kcpt.org"
+  allocated_hours: 140
+  allocated_buffer: 35
+  total_allocated: 168
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row64: 
+  id: 64
+  cpb_id: 1801
+  station_name: "Ozarks Public Broadcasting (KOZK/KOZJ)"
+  contact_name: "Steve Wynn"
+  contact_title: >
+    "Assistant Manager, Programming &
+    Production"
+  type: 1
+  address_primary: "901 S. National"
+  address_secondary: ""
+  city: "Springfield"
+  state: "MO"
+  zip: "65897"
+  contact_phone: "417-836-4619"
+  contact_fax: "417-836-3569"
+  contact_email: "SteveWynn@MissouriState.edu"
+  allocated_hours: 144
+  allocated_buffer: 36
+  total_allocated: 173
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row65: 
+  id: 65
+  cpb_id: 1802
+  station_name: "KMOS"
+  contact_name: "Rosemary Olas"
+  contact_title: "Education & Outreach Manager"
+  type: 2
+  address_primary: "KMOS-TV/ KTBG-FM Wood 11"
+  address_secondary: ""
+  city: "Warrensburg"
+  state: "MO"
+  zip: "64093"
+  contact_phone: "660-543-4155"
+  contact_fax: "660-543-8863"
+  contact_email: "rolas@ucmo.edu"
+  allocated_hours: 62
+  allocated_buffer: 16
+  total_allocated: 74
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "2012-10-18 14:21:21"
+row66: 
+  id: 66
+  cpb_id: 1806
+  station_name: "Vegas PBS (KLVX)"
+  contact_name: "Dave Molinaro"
+  contact_title: "Production Manager"
+  type: 1
+  address_primary: "3050 E. Flamingo Rd."
+  address_secondary: ""
+  city: "Las Vegas"
+  state: "NV"
+  zip: "89121"
+  contact_phone: "702-799-1010-x5368"
+  contact_fax: "702-799-5586"
+  contact_email: "dmolinaro@vegaspbs.org"
+  allocated_hours: 96
+  allocated_buffer: 24
+  total_allocated: 115
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row67: 
+  id: 67
+  cpb_id: 1808
+  station_name: "New Hampshire Public Television"
+  contact_name: "Adam Frost"
+  contact_title: ""
+  type: 1
+  address_primary: "268 Mast Road"
+  address_secondary: ""
+  city: "Durham"
+  state: "NH"
+  zip: "03824"
+  contact_phone: "(603) 868-1100"
+  contact_fax: ""
+  contact_email: "afrost@nhptv.org"
+  allocated_hours: 159
+  allocated_buffer: 40
+  total_allocated: 191
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row68: 
+  id: 68
+  cpb_id: 1810
+  station_name: "KNME"
+  contact_name: "Franz Joachim"
+  contact_title: "Director of Content"
+  type: 1
+  address_primary: "1130 University Blvd. NE"
+  address_secondary: ""
+  city: "Albuquerque"
+  state: "NM"
+  zip: "87102"
+  contact_phone: "505-277-2121"
+  contact_fax: "505-277-2191"
+  contact_email: "fjoachim@knme.org"
+  allocated_hours: 114
+  allocated_buffer: 29
+  total_allocated: 137
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row69: 
+  id: 69
+  cpb_id: 1813
+  station_name: "WSKG Public Broadcasting"
+  contact_name: "Brian Frey"
+  contact_title: "Director of Television Operations"
+  type: 2
+  address_primary: "601 Gates Road"
+  address_secondary: ""
+  city: "Binghamton"
+  state: "NY"
+  zip: "13902-3000"
+  contact_phone: "607-729-0100-x359"
+  contact_fax: "607-729-7328"
+  contact_email: "bfrey@wskg.org"
+  allocated_hours: 59
+  allocated_buffer: 15
+  total_allocated: 71
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row70: 
+  id: 70
+  cpb_id: 1815
+  station_name: "WNED"
+  contact_name: "Phil Teibel"
+  contact_title: "Project Coordinator"
+  type: 2
+  address_primary: "PO Box 1263"
+  address_secondary: "140 Lower Terrace"
+  city: "Buffalo"
+  state: "NY"
+  zip: "14240"
+  contact_phone: "716-845-7000-x242"
+  contact_fax: "716-845-7036"
+  contact_email: "pteibel@wned.org"
+  allocated_hours: 207
+  allocated_buffer: 52
+  total_allocated: 248
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row71: 
+  id: 71
+  cpb_id: 1817
+  station_name: '"Thirteen - New York Public Media (WNET)"'
+  contact_name: "Winter Shanck"
+  contact_title: "Senior Specialist, Archivist"
+  type: 1
+  address_primary: "450 W 33rd St, 6th Floor"
+  address_secondary: ""
+  city: "New York"
+  state: "NY"
+  zip: "10001"
+  contact_phone: "212-560-3067"
+  contact_fax: "212-560-2001"
+  contact_email: "shanck@thirteen.org"
+  allocated_hours: 1800
+  allocated_buffer: 450
+  total_allocated: 2160
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row72: 
+  id: 72
+  cpb_id: 1818
+  station_name: "Mountain Lake PBS (WCFE)"
+  contact_name: "Daniel Swinton"
+  contact_title: >
+    "Executive Director of Production &
+    Content"
+  type: 1
+  address_primary: "1 Sesame St."
+  address_secondary: ""
+  city: "Plattsburgh"
+  state: "NY"
+  zip: "12901"
+  contact_phone: "518-563-9770-x126"
+  contact_fax: "518-324-0109"
+  contact_email: "dswinton@mlpbs.org"
+  allocated_hours: 195
+  allocated_buffer: 49
+  total_allocated: 234
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row73: 
+  id: 73
+  cpb_id: 1820
+  station_name: "WMHT"
+  contact_name: "Joanne Durfee"
+  contact_title: "Producer / Director"
+  type: 2
+  address_primary: "4 Global View"
+  address_secondary: ""
+  city: "Troy"
+  state: "NY"
+  zip: "12180-8368"
+  contact_phone: "518-880-3400"
+  contact_fax: "518-880-3429"
+  contact_email: "jdurfee@wmht.org"
+  allocated_hours: 163
+  allocated_buffer: 41
+  total_allocated: 196
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row74: 
+  id: 74
+  cpb_id: 1822
+  station_name: "WCNY"
+  contact_name: "Liz Ayers"
+  contact_title: >
+    "Vice President Broadcast Development
+    and Grants"
+  type: 2
+  address_primary: "506 Old Liverpool Road"
+  address_secondary: ""
+  city: "Syracuse"
+  state: "NY"
+  zip: "13088"
+  contact_phone: "315-453-2424"
+  contact_fax: "315-451-8824"
+  contact_email: "Liz_ayers@wcny.org"
+  allocated_hours: 82
+  allocated_buffer: 21
+  total_allocated: 98
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row75: 
+  id: 75
+  cpb_id: 1823
+  station_name: "WPBS"
+  contact_name: "Tracy DuFlo"
+  contact_title: "Director of Production"
+  type: 1
+  address_primary: "1056 Arsenal St."
+  address_secondary: ""
+  city: "Watertown"
+  state: "NY"
+  zip: "13601"
+  contact_phone: "315-782-3142-x219"
+  contact_fax: "315-782-2491"
+  contact_email: "tduflo@wpbstv.org"
+  allocated_hours: 193
+  allocated_buffer: 48
+  total_allocated: 232
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row76: 
+  id: 76
+  cpb_id: 1824
+  station_name: "UNC-TV"
+  contact_name: "Scott Marsh"
+  contact_title: "Post Production Operations Manager"
+  type: 1
+  address_primary: "10 T. W. Alexander Drive"
+  address_secondary: ""
+  city: "Research Triangle Park"
+  state: "NC"
+  zip: "27709-4900"
+  contact_phone: "919-549-7840"
+  contact_fax: "919-549-7207"
+  contact_email: "smarsh@unctv.org"
+  allocated_hours: 494
+  allocated_buffer: 124
+  total_allocated: 593
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row77: 
+  id: 77
+  cpb_id: 1831
+  station_name: "WVIZ/ideastream"
+  contact_name: "Tom Furnas"
+  contact_title: "Senior Director of Technology"
+  type: 2
+  address_primary: "1375 Euclid Avenue, LL"
+  address_secondary: ""
+  city: "Cleveland"
+  state: "OH"
+  zip: "44115-1835"
+  contact_phone: "216-916-6470"
+  contact_fax: "216-916-6471"
+  contact_email: "tom.furnas@ideastream.org"
+  allocated_hours: 610
+  allocated_buffer: 153
+  total_allocated: 732
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row78: 
+  id: 78
+  cpb_id: 1839
+  station_name: >
+    "Southern Oregon Public Television
+    (KSYS/KFTS)"
+  contact_name: "Brad Fay"
+  contact_title: "Director of Content"
+  type: 1
+  address_primary: "28 S. Fir Street"
+  address_secondary: ""
+  city: "Medford"
+  state: "OR"
+  zip: "97504"
+  contact_phone: "541-779-0808-x224"
+  contact_fax: "541-779-2178"
+  contact_email: "bfay@soptv.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row79: 
+  id: 79
+  cpb_id: 1840
+  station_name: "Oregon Public Broadcasting (OPB)"
+  contact_name: "Lynne Pollard"
+  contact_title: "Head of Interactive / Web Services"
+  type: 2
+  address_primary: "7140 SW Macadam Ave"
+  address_secondary: ""
+  city: "Portland"
+  state: "OR"
+  zip: "97219-3099"
+  contact_phone: "503-977-7758"
+  contact_fax: ""
+  contact_email: "lpollard@opb.org"
+  allocated_hours: 359
+  allocated_buffer: 90
+  total_allocated: 431
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row80: 
+  id: 80
+  cpb_id: 1841
+  station_name: "WLVT (PBS39)"
+  contact_name: "Jonathan Bush"
+  contact_title: ""
+  type: 1
+  address_primary: "123 Sesame St."
+  address_secondary: ""
+  city: "Bethlehem"
+  state: "PA"
+  zip: "18015"
+  contact_phone: "610-867-4677 ext 114"
+  contact_fax: ""
+  contact_email: "jbush@wlvt.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row81: 
+  id: 81
+  cpb_id: 1846
+  station_name: "WQED-TV"
+  contact_name: "Paul Byers"
+  contact_title: "Director of Engineering"
+  type: 1
+  address_primary: "4802 Fifth Avenue"
+  address_secondary: ""
+  city: "Pittsburgh"
+  state: "PA"
+  zip: "15213"
+  contact_phone: "412-622-1530"
+  contact_fax: "412-622-1427"
+  contact_email: "pbyers@wqed.org"
+  allocated_hours: 371
+  allocated_buffer: 93
+  total_allocated: 445
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row82: 
+  id: 82
+  cpb_id: 1848
+  station_name: "WVIA"
+  contact_name: "Andrea O\'Neill"
+  contact_title: "Director of Education"
+  type: 2
+  address_primary: "100 WVIA Way"
+  address_secondary: ""
+  city: "Pittston"
+  state: "PA"
+  zip: "18660"
+  contact_phone: "570-602-1182"
+  contact_fax: "570-655-1180"
+  contact_email: "andreao\'neill@wvia.org"
+  allocated_hours: 218
+  allocated_buffer: 55
+  total_allocated: 262
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row83: 
+  id: 83
+  cpb_id: 1851
+  station_name: "South Carolina Network (SCETV) (WRLK)"
+  contact_name: "Kerry Feduk"
+  contact_title: "Vice President for Content"
+  type: 2
+  address_primary: "1101 George Rogers Blvd"
+  address_secondary: ""
+  city: "Columbia"
+  state: "SC"
+  zip: "29201"
+  contact_phone: "803-737-3240"
+  contact_fax: "803-737-8298"
+  contact_email: "feduk@scetv.org"
+  allocated_hours: 1200
+  allocated_buffer: 10
+  total_allocated: 1440
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row84: 
+  id: 84
+  cpb_id: 1864
+  station_name: "WCTE"
+  contact_name: "Ralph Welch"
+  contact_title: "Director of Engineering / Technology"
+  type: 1
+  address_primary: "P.O. Box 2040"
+  address_secondary: ""
+  city: "Cookeville"
+  state: "TN"
+  zip: "38502"
+  contact_phone: "931-528-2222"
+  contact_fax: "931-372-6284"
+  contact_email: "rwelch@wcte.org"
+  allocated_hours: 122
+  allocated_buffer: 31
+  total_allocated: 146
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row85: 
+  id: 85
+  cpb_id: 1881
+  station_name: "KUED"
+  contact_name: "Bill Lauer"
+  contact_title: "Video Post Production Supervisor"
+  type: 1
+  address_primary: "101 S. Wasatch Dr."
+  address_secondary: ""
+  city: "Salt Lake City"
+  state: "UT"
+  zip: "84112"
+  contact_phone: "801-581-3268 / 801-556-1924"
+  contact_fax: "801-581-3576"
+  contact_email: "blauer@kued.org"
+  allocated_hours: 661
+  allocated_buffer: 165
+  total_allocated: 793
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row86: 
+  id: 86
+  cpb_id: 1882
+  station_name: "Vermont Public Television"
+  contact_name: "Kathryn Scott"
+  contact_title: "Head of Production"
+  type: 1
+  address_primary: "204 Ethan Allen Avenue"
+  address_secondary: ""
+  city: "Colchester"
+  state: "VT"
+  zip: "05446"
+  contact_phone: "802-654-3682"
+  contact_fax: ""
+  contact_email: "kscott@vpt.org"
+  allocated_hours: 170
+  allocated_buffer: 43
+  total_allocated: 204
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row87: 
+  id: 87
+  cpb_id: 1886
+  station_name: "WHRO"
+  contact_name: "Mark Burnett"
+  contact_title: "Grants Writer"
+  type: 2
+  address_primary: "5200 Hampton Boulevard"
+  address_secondary: ""
+  city: "Norfolk"
+  state: "VA"
+  zip: "23508"
+  contact_phone: "757 889 9416"
+  contact_fax: "757-489-0007"
+  contact_email: "mark.burnett@whro.org"
+  allocated_hours: 54
+  allocated_buffer: 14
+  total_allocated: 65
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row88: 
+  id: 88
+  cpb_id: 1888
+  station_name: "WBRA-TV"
+  contact_name: "Carol Jenning"
+  contact_title: "Production Manager"
+  type: 1
+  address_primary: "1215 McNeil Drive"
+  address_secondary: ""
+  city: "Roanoke"
+  state: "VA"
+  zip: "24015"
+  contact_phone: "540-983-1779"
+  contact_fax: "540-344-2148"
+  contact_email: "cjennings@blueridgepbs.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row89: 
+  id: 89
+  cpb_id: 1889
+  station_name: >
+    "KWSU/KTNW (Northwest Public
+    Television)"
+  contact_name: "Thomas Hungate"
+  contact_title: "Program Manager"
+  type: 1
+  address_primary: "PO Box 642530"
+  address_secondary: ""
+  city: "Pullman"
+  state: "WA"
+  zip: "99164-2530"
+  contact_phone: "509-335-6537"
+  contact_fax: "509-335-3772"
+  contact_email: "hungate@wsu.edu"
+  allocated_hours: 85
+  allocated_buffer: 21
+  total_allocated: 102
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row90: 
+  id: 90
+  cpb_id: 1890
+  station_name: "KCTS 9"
+  contact_name: "John Booth"
+  contact_title: "Head of Production"
+  type: 1
+  address_primary: "401 Mercer St."
+  address_secondary: ""
+  city: "Seattle"
+  state: "WA"
+  zip: "98109"
+  contact_phone: "206-443-4812"
+  contact_fax: ""
+  contact_email: "JBooth@kcts9.org"
+  allocated_hours: 461
+  allocated_buffer: 115
+  total_allocated: 553
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row91: 
+  id: 91
+  cpb_id: 1896
+  station_name: "Wisconsin Public Television (WHA-TV)"
+  contact_name: "Ann Wilkens"
+  contact_title: "Media Archivist"
+  type: 2
+  address_primary: "821 University Avenue Vilas Hall"
+  address_secondary: ""
+  city: "Madison"
+  state: "WI"
+  zip: "53706"
+  contact_phone: "608-263-2121"
+  contact_fax: "608-263-7872"
+  contact_email: "wilkens@wpt.org"
+  allocated_hours: 887
+  allocated_buffer: 222
+  total_allocated: 1064
+  is_certified: 1
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row92: 
+  id: 92
+  cpb_id: 1898
+  station_name: "Wyoming PBS (KCWC)"
+  contact_name: "Bob Connelly"
+  contact_title: "Assistant General Manager"
+  type: 1
+  address_primary: "2660 Peck Avenue"
+  address_secondary: ""
+  city: "Riverton"
+  state: "WY"
+  zip: "82501"
+  contact_phone: "307-856-6944"
+  contact_fax: "307-856-3893"
+  contact_email: "bconnell@cwc.edu"
+  allocated_hours: 88
+  allocated_buffer: 22
+  total_allocated: 106
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row93: 
+  id: 93
+  cpb_id: 1900
+  station_name: "KGTF (PBS Guam)"
+  contact_name: "Cathyann Gogue"
+  contact_title: "General Manager/Executive Director"
+  type: 1
+  address_primary: "P.O. Box 21449 GMF"
+  address_secondary: ""
+  city: "Barrigada"
+  state: "GU"
+  zip: "96921"
+  contact_phone: "671-734-3718"
+  contact_fax: ""
+  contact_email: "cgogue@pbsguam.org"
+  allocated_hours: 86
+  allocated_buffer: 22
+  total_allocated: 103
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row94: 
+  id: 94
+  cpb_id: 4502
+  station_name: "KWSO-FM (Warm Springs Community Radio)"
+  contact_name: "Sue Matters"
+  contact_title: "Station Manager"
+  type: 0
+  address_primary: "PO Box 489"
+  address_secondary: "4174 Highway 3"
+  city: "Warm Springs"
+  state: "OR"
+  zip: "97761"
+  contact_phone: "541-553-1968"
+  contact_fax: "541-553-3348"
+  contact_email: "smatters@wstribes.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 1
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row95: 
+  id: 95
+  cpb_id: 4602
+  station_name: "WTIP (North Shore Community Radio)"
+  contact_name: "Melanie Steele"
+  contact_title: "Development Director"
+  type: 0
+  address_primary: "PO Box 1005"
+  address_secondary: ""
+  city: "Grand Marais"
+  state: "MN"
+  zip: "55604"
+  contact_phone: "218-387-1070"
+  contact_fax: "218-387-1120"
+  contact_email: "melanie@wtip.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row96: 
+  id: 96
+  cpb_id: 4721
+  station_name: "WDVX-FM"
+  contact_name: "Linda Billman"
+  contact_title: "General Manager/Executive Director"
+  type: 0
+  address_primary: "POB 27568"
+  address_secondary: ""
+  city: "Knoxville"
+  state: "TN"
+  zip: "37927"
+  contact_phone: "865-544-1029"
+  contact_fax: ""
+  contact_email: "gm@wdvx.com"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row97: 
+  id: 97
+  cpb_id: 4844
+  station_name: "WRNI (Rhode Island Public Radio)"
+  contact_name: "James Baumgartner"
+  contact_title: "Operations Manager"
+  type: 0
+  address_primary: "One Union Station"
+  address_secondary: ""
+  city: "Providence"
+  state: "RI"
+  zip: "02903"
+  contact_phone: "401-751-1547"
+  contact_fax: "401-351-0246"
+  contact_email: "james@ripr.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"
+row98: 
+  id: 98
+  cpb_id: 4857
+  station_name: "WFMU"
+  contact_name: "Jason Sigal"
+  contact_title: ""
+  type: 0
+  address_primary: "P.O. Box 2011"
+  address_secondary: ""
+  city: "Jersey City"
+  state: "NJ"
+  zip: "07303"
+  contact_phone: "201 521-1416 x243"
+  contact_fax: ""
+  contact_email: "jason@freemusicarchive.org"
+  allocated_hours: 50
+  allocated_buffer: 13
+  total_allocated: 60
+  is_certified: 0
+  is_agreed: 0
+  start_date: ""
+  end_date: ""
+  created_at: "0000-00-00 00:00:00"
+  updated_at: "0000-00-00 00:00:00"

@@ -1,45 +1,252 @@
-1:
-    id: 
-    template_id: 
-    email_from: 
-    email_reply_to: 
-    email_to: 
-    email_subject: 
-    email_type: 
-    email_body: 
-    created_at: 
-    sent_at: 
-    is_sent: 
-    is_email_read: 
-    read_at: 
 
-2:
-    id: 
-    template_id: 
-    email_from: 
-    email_reply_to: 
-    email_to: 
-    email_subject: 
-    email_type: 
-    email_body: 
-    created_at: 
-    sent_at: 
-    is_sent: 
-    is_email_read: 
-    read_at: 
-
-3:
-    id: 
-    template_id: 
-    email_from: 
-    email_reply_to: 
-    email_to: 
-    email_subject: 
-    email_type: 
-    email_body: 
-    created_at: 
-    sent_at: 
-    is_sent: 
-    is_email_read: 
-    read_at: 
-
+row1: 
+  id: 1
+  template_id: 3
+  email_from: "ssapienza@cpb.org"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "ssapienza@cpb.org"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KDLG-AM,<br><br>We are pleased to inform you that your records have started their digitization process on 11/08/2012.<br><br>Ship Date: 11/08/2012<br><br>Shipping Instructions: test<br><br>Comments: test comment<br><br>Estimated Complete Date: 11/22/2012<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-08 09:21:26"
+  sent_at: "2012-11-08 09:39:59"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""
+row2: 
+  id: 2
+  template_id: 3
+  email_from: "ssapienza@cpb.org"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "ssapienza@cpb.org"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KCAW-FM  (Raven Radio Foundation, Inc.),<br><br>We are pleased to inform you that your records have started their digitization process on 11/08/2012.<br><br>Ship Date: 11/08/2012<br><br>Shipping Instructions: test<br><br>Comments: test comment<br><br>Estimated Complete Date: 11/22/2012<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-08 09:21:26"
+  sent_at: "2012-11-08 09:39:59"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""
+row3: 
+  id: 3
+  template_id: 3
+  email_from: "ssapienza@cpb.org"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "ssapienza@cpb.org"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KUCB (Unalaska Community Broadcasting/KIAL),<br><br>We are pleased to inform you that your records have started their digitization process on 11/08/2012.<br><br>Ship Date: 11/08/2012<br><br>Shipping Instructions: test<br><br>Comments: test comment<br><br>Estimated Complete Date: 11/22/2012<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-08 09:21:26"
+  sent_at: "2012-11-08 09:39:59"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""
+row4: 
+  id: 4
+  template_id: 3
+  email_from: >
+    "noreply@ec2-174-129-139-234.compute-1.amazonaws.com"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "ssapienza@cpb.org"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KCAW-FM  (Raven Radio Foundation, Inc.),<br><br>We are pleased to inform you that your records have started their digitization process on 11/15/2012.<br><br>Ship Date: 11/15/2012<br><br>Shipping Instructions: test<br><br>Comments: test<br><br>Estimated Complete Date: 11/29/2012<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-08 09:44:50"
+  sent_at: "2012-11-08 09:44:58"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""
+row5: 
+  id: 5
+  template_id: 3
+  email_from: >
+    "noreply@ec2-174-129-139-234.compute-1.amazonaws.com"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "ssapienza@cpb.org"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KUSC-FM,<br><br>We are pleased to inform you that your records have started their digitization process on 11/16/2012.<br><br>Ship Date: 11/16/2012<br><br>Shipping Instructions: test<br><br>Comments: test<br><br>Estimated Complete Date: 11/24/2012<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-08 09:49:32"
+  sent_at: "2012-11-08 09:49:42"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""
+row6: 
+  id: 6
+  template_id: 3
+  email_from: >
+    "noreply@ec2-174-129-139-234.compute-1.amazonaws.com"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "ssapienza@cpb.org"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KUCB (Unalaska Community Broadcasting/KIAL),<br><br>We are pleased to inform you that your records have started their digitization process on 11/14/2012.<br><br>Ship Date: 11/14/2012<br><br>Shipping Instructions: test<br><br>Comments: test<br><br>Estimated Complete Date: 11/15/2012<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-08 09:53:29"
+  sent_at: "2012-11-08 09:53:34"
+  is_sent: 2
+  is_email_read: 2
+  read_at: "2012-11-08 09:55:19"
+row7: 
+  id: 7
+  template_id: 15
+  email_from: "ssapienza@cpb.org"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "ssapienza@cpb.org"
+  email_subject: "Station Shipment Date"
+  email_type: "plain"
+  email_body: '"Hello Radio Bilingue,<br><br>We are pleased to inform you.<br><br>Ship Date: 2012-11-08<br><br>Ship Via: fedex<br><br>Tracking #:AB565DE<br><br>No. of Box Shipped:12<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-08 10:06:24"
+  sent_at: "2012-11-08 10:06:24"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""
+row8: 
+  id: 8
+  template_id: 3
+  email_from: >
+    "noreply@ec2-174-129-139-234.compute-1.amazonaws.com"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "nouman.tayyab@purelogics.net"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KDLG-AM,<br><br>We are pleased to inform you that your records have started their digitization process on 11/16/2012.<br><br>Ship Date: 11/16/2012<br><br>Shipping Instructions: gdfg<br><br>Comments: fdfasd<br><br>Estimated Complete Date: 11/15/2012<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-16 05:33:05"
+  sent_at: "2012-11-16 06:18:06"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""
+row9: 
+  id: 9
+  template_id: 3
+  email_from: >
+    "noreply@ec2-174-129-139-234.compute-1.amazonaws.com"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "nouman.tayyab@purelogics.net"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KCAW-FM  (Raven Radio Foundation, Inc.),<br><br>We are pleased to inform you that your records have started their digitization process on 11/16/2012.<br><br>Ship Date: 11/16/2012<br><br>Shipping Instructions: gdfg<br><br>Comments: fdfasd<br><br>Estimated Complete Date: 11/15/2012<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-16 05:33:05"
+  sent_at: "2012-11-16 06:18:07"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""
+row10: 
+  id: 10
+  template_id: 3
+  email_from: >
+    "noreply@ec2-174-129-139-234.compute-1.amazonaws.com"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "nouman.tayyab@purelogics.net"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KDLG-AM,<br><br>We are pleased to inform you that your records have started their digitization process on 2012-11-22.<br><br>Ship Date: 2012-11-22<br><br>Shipping Instructions: dfasdfads<br><br>Comments: dfadfasdfasdf<br><br>Estimated Complete Date: 2012-11-22<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-16 06:17:20"
+  sent_at: "2012-11-16 06:18:07"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""
+row11: 
+  id: 11
+  template_id: 3
+  email_from: >
+    "noreply@ec2-174-129-139-234.compute-1.amazonaws.com"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "nouman.tayyab@purelogics.net"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KCAW-FM  (Raven Radio Foundation, Inc.),<br><br>We are pleased to inform you that your records have started their digitization process on 2012-11-22.<br><br>Ship Date: 2012-11-22<br><br>Shipping Instructions: dfasdfads<br><br>Comments: dfadfasdfasdf<br><br>Estimated Complete Date: 2012-11-22<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-16 06:17:20"
+  sent_at: "2012-11-16 06:18:07"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""
+row12: 
+  id: 12
+  template_id: 3
+  email_from: >
+    "noreply@ec2-174-129-139-234.compute-1.amazonaws.com"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "nouman.tayyab@purelogics.net"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KDLG-AM,<br><br>We are pleased to inform you that your records have started their digitization process on 2012-11-07.<br><br>Ship Date: 2012-11-07<br><br>Shipping Instructions: heloo<br><br>Comments: bye<br><br>Estimated Complete Date: 2012-11-21<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-16 06:29:33"
+  sent_at: "2012-11-16 06:30:00"
+  is_sent: 2
+  is_email_read: 2
+  read_at: "2012-11-16 06:30:09"
+row13: 
+  id: 13
+  template_id: 3
+  email_from: >
+    "noreply@ec2-174-129-139-234.compute-1.amazonaws.com"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "nouman.tayyab@purelogics.net"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KCAW-FM  (Raven Radio Foundation, Inc.),<br><br>We are pleased to inform you that your records have started their digitization process on 2012-11-07.<br><br>Ship Date: 2012-11-07<br><br>Shipping Instructions: heloo<br><br>Comments: bye<br><br>Estimated Complete Date: 2012-11-21<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-16 06:29:33"
+  sent_at: "2012-11-16 06:30:00"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""
+row14: 
+  id: 14
+  template_id: 3
+  email_from: >
+    "noreply@ec2-174-129-139-234.compute-1.amazonaws.com"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "nouman.tayyab@purelogics.net"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KDLG-AM,<br><br>We are pleased to inform you that your records have started their digitization process on 2012-11-07.<br><br>Ship Date: 2012-11-07<br><br>Shipping Instructions: dfdafadf<br><br>Comments: dsfasdfafaf<br><br>Estimated Complete Date: 2012-11-21<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-16 08:41:20"
+  sent_at: "2012-11-16 08:41:30"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""
+row15: 
+  id: 15
+  template_id: 3
+  email_from: >
+    "noreply@ec2-174-129-139-234.compute-1.amazonaws.com"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "nouman.tayyab@purelogics.net"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KCAW-FM  (Raven Radio Foundation, Inc.),<br><br>We are pleased to inform you that your records have started their digitization process on 2012-11-07.<br><br>Ship Date: 2012-11-07<br><br>Shipping Instructions: dfdafadf<br><br>Comments: dsfasdfafaf<br><br>Estimated Complete Date: 2012-11-21<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-16 08:41:20"
+  sent_at: "2012-11-16 08:41:30"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""
+row16: 
+  id: 16
+  template_id: 3
+  email_from: >
+    "noreply@ec2-174-129-139-234.compute-1.amazonaws.com"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "nouman.tayyab@purelogics.net"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KDLG-AM,<br><br>We are pleased to inform you that your records have started their digitization process on 2012-11-07.<br><br>Ship Date: 2012-11-07<br><br>Shipping Instructions: dfadfadfadf<br><br>Comments: dfdfdfadfadfad<br><br>Estimated Complete Date: 2012-11-21<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-17 07:52:42"
+  sent_at: "2012-11-17 07:53:19"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""
+row17: 
+  id: 17
+  template_id: 3
+  email_from: >
+    "noreply@ec2-174-129-139-234.compute-1.amazonaws.com"
+  email_reply_to: "ssapienza@cpb.org"
+  email_to: "nouman.tayyab@purelogics.net"
+  email_subject: "Digitization Start Date"
+  email_type: "plain"
+  email_body: '"Hello KDLG-AM,<br><br>We are pleased to inform you that your records have started their digitization process on 2012-11-07.<br><br>Ship Date: 2012-11-07<br><br>Shipping Instructions: final testing<br><br>Comments: final testing<br><br>Estimated Complete Date: 2012-11-21<br><br><br>If you have any questions please, inform ssapienza@cpb.org<br><br><br>Sincerely,<br>AMS"'
+  created_at: "2012-11-17 08:26:20"
+  sent_at: "2012-11-17 08:26:40"
+  is_sent: 2
+  is_email_read: 1
+  read_at: ""

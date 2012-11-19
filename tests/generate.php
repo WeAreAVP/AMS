@@ -79,8 +79,8 @@ class Generate
 
 	function fixtures($args = Array())
 	{
-        echo $this->CI->db->database;exit;
-		if (substr($this->CI->db->database, -5, 5) != '_test')
+        
+		if (substr($this->CI->db->database.'_test', -5, 5) != '_test')
 		{
 		   die("\nSorry, the name of your test database must end on '_test'.\n".
 		   "This prevents deleting important data by accident.\n");

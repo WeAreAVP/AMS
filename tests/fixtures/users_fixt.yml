@@ -1,0 +1,51 @@
+1:
+    id: 
+    role_id: 
+    station_id: 
+    username: 
+    password: 
+    email: 
+    banned: 
+    ban_reason: 
+    newpass: 
+    newpass_key: 
+    newpass_time: 
+    last_ip: 
+    last_login: 
+    created: 
+    modified: 
+
+2:
+    id: 
+    role_id: 
+    station_id: 
+    username: 
+    password: 
+    email: 
+    banned: 
+    ban_reason: 
+    newpass: 
+    newpass_key: 
+    newpass_time: 
+    last_ip: 
+    last_login: 
+    created: 
+    modified: 
+
+3:
+    id: 
+    role_id: 
+    station_id: 
+    username: 
+    password: 
+    email: 
+    banned: 
+    ban_reason: 
+    newpass: 
+    newpass_key: 
+    newpass_time: 
+    last_ip: 
+    last_login: 
+    created: 
+    modified: 
+

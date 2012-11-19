@@ -1,0 +1,45 @@
+1:
+    id: 
+    template_id: 
+    email_from: 
+    email_reply_to: 
+    email_to: 
+    email_subject: 
+    email_type: 
+    email_body: 
+    created_at: 
+    sent_at: 
+    is_sent: 
+    is_email_read: 
+    read_at: 
+
+2:
+    id: 
+    template_id: 
+    email_from: 
+    email_reply_to: 
+    email_to: 
+    email_subject: 
+    email_type: 
+    email_body: 
+    created_at: 
+    sent_at: 
+    is_sent: 
+    is_email_read: 
+    read_at: 
+
+3:
+    id: 
+    template_id: 
+    email_from: 
+    email_reply_to: 
+    email_to: 
+    email_subject: 
+    email_type: 
+    email_body: 
+    created_at: 
+    sent_at: 
+    is_sent: 
+    is_email_read: 
+    read_at: 
+

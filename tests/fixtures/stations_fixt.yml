@@ -1,0 +1,75 @@
+1:
+    id: 
+    cpb_id: 
+    station_name: 
+    contact_name: 
+    contact_title: 
+    type: 
+    address_primary: 
+    address_secondary: 
+    city: 
+    state: 
+    zip: 
+    contact_phone: 
+    contact_fax: 
+    contact_email: 
+    allocated_hours: 
+    allocated_buffer: 
+    total_allocated: 
+    is_certified: 
+    is_agreed: 
+    start_date: 
+    end_date: 
+    created_at: 
+    updated_at: 
+
+2:
+    id: 
+    cpb_id: 
+    station_name: 
+    contact_name: 
+    contact_title: 
+    type: 
+    address_primary: 
+    address_secondary: 
+    city: 
+    state: 
+    zip: 
+    contact_phone: 
+    contact_fax: 
+    contact_email: 
+    allocated_hours: 
+    allocated_buffer: 
+    total_allocated: 
+    is_certified: 
+    is_agreed: 
+    start_date: 
+    end_date: 
+    created_at: 
+    updated_at: 
+
+3:
+    id: 
+    cpb_id: 
+    station_name: 
+    contact_name: 
+    contact_title: 
+    type: 
+    address_primary: 
+    address_secondary: 
+    city: 
+    state: 
+    zip: 
+    contact_phone: 
+    contact_fax: 
+    contact_email: 
+    allocated_hours: 
+    allocated_buffer: 
+    total_allocated: 
+    is_certified: 
+    is_agreed: 
+    start_date: 
+    end_date: 
+    created_at: 
+    updated_at: 
+

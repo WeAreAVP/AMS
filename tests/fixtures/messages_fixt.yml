@@ -1,0 +1,45 @@
+1:
+    id: 
+    sender_id: 
+    receiver_id: 
+    msg_type: 
+    msg_status: 
+    subject: 
+    msg_extras: 
+    receiver_folder: 
+    sender_folder: 
+    message: 
+    created_at: 
+    read_at: 
+    email_queue_id: 
+
+2:
+    id: 
+    sender_id: 
+    receiver_id: 
+    msg_type: 
+    msg_status: 
+    subject: 
+    msg_extras: 
+    receiver_folder: 
+    sender_folder: 
+    message: 
+    created_at: 
+    read_at: 
+    email_queue_id: 
+
+3:
+    id: 
+    sender_id: 
+    receiver_id: 
+    msg_type: 
+    msg_status: 
+    subject: 
+    msg_extras: 
+    receiver_folder: 
+    sender_folder: 
+    message: 
+    created_at: 
+    read_at: 
+    email_queue_id: 
+

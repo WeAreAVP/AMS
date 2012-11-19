@@ -23,7 +23,8 @@ class Crons extends CI_Controller
 		$this->load->model('email_template_model', 'email_template');
 		$this->load->model('cron_model');
 		$this->load->model('assets_model');
-		$this->load->model('instantiations_Model','instant');
+		$this->load->model('instantiations_model','instant');
+		$this->load->model('essence_track_model','essence');
 		$this->load->model('station_model');
 		$this->assets_path = 'assets/';
 	}
@@ -104,8 +105,8 @@ class Crons extends CI_Controller
 								if ($d_file->is_processed == 0)
 								{
 									$file_path = '';
-									$folder->folder_path='assets/';
-									$d_file->file_path='sample_1-3';
+									//$folder->folder_path='assets/';
+									//$d_file->file_path='sample_1-3';
 									$file_path = trim($folder->folder_path . $d_file->file_path);
 									if (is_file($file_path))
 									{
@@ -123,16 +124,14 @@ class Crons extends CI_Controller
 											
 											$asset_xml_data = @simplexml_load_string($asset_data);
 											$asset_d = xmlObjToArr($asset_xml_data);
-											$asset_id=1;
-											//$asset_id=$this->assets_model->insert_assets(array("stations_id"=>$station_data->id,"created"=>date("Y-m-d H:i:s")));
+											$asset_id=$this->assets_model->insert_assets(array("stations_id"=>$station_data->id,"created"=>date("Y-m-d H:i:s")));
 											if (!isset($asset_d['attributes']['version']) || $asset_d['attributes']['version'] == '1.3')
 											{
 												$asset_children = $asset_d['children'];
 												if(isset($asset_children))
 												{
-													
 													// Instantiation Start
-													//$this->process_assets($asset_children,$asset_id);
+													$this->process_assets($asset_children,$asset_id);
 													// Instantiation End
 													
 													// Instantiation Start
@@ -145,10 +144,10 @@ class Crons extends CI_Controller
 												unset($asset_xml_data);
 												unset($asset_data);
 												unlink($des);
-												//$this->db->where('id',$d_file->id);
-												//$this->db->update('process_pbcore_data',array('is_processed'=>1));
-												//echo $this->db->last_query();
-												echo "<br/>";
+												$this->db->where('id',$d_file->id);
+												$this->db->update('process_pbcore_data',array('is_processed'=>1));
+												echo $this->db->last_query();
+												echo "<br/>\n<br/>";
 											}
 										
 										
@@ -159,11 +158,440 @@ class Crons extends CI_Controller
 							}
 						}
 					}
-					exit();
 				}
 			}
 		}
 	}
+	/*
+	* Process Instantiation Elements
+	*/
+	function process_instantiation($asset_children,$asset_id)
+	{
+		// pbcoreAssetType Start here
+		if (isset($asset_children['pbcoreinstantiation']))
+		{
+			foreach ($asset_children['pbcoreinstantiation'] as $pbcoreinstantiation)
+			{
+				if(isset($pbcoreinstantiation['children']) && !empty($pbcoreinstantiation['children']))
+				{
+					
+					$pbcoreinstantiation_child=$pbcoreinstantiation['children'];
+					//pbcoreInstantiation Start
+					$instantiations_d=array();
+					$instantiations_d['assets_id']=$asset_id;
+					//Instantiation formatLocation
+					if(isset($pbcoreinstantiation_child['formatlocation']))
+					{
+						if(isset($pbcoreinstantiation_child['formatlocation'][0]['text']))
+						{
+							$instantiations_d['location']=$pbcoreinstantiation_child['formatlocation'][0]['text'];
+						}
+						
+					}
+					
+					//Instantiation formatMediaType
+					if(isset($pbcoreinstantiation_child['formatmediatype'][0]['text']))
+					{
+						$inst_media_type=$this->instant->get_instantiation_media_types_by_media_type($pbcoreinstantiation_child['formatmediatype'][0]['text']);
+						if($inst_media_type)
+						{
+							$instantiations_d['instantiation_media_type_id']=$inst_media_type->id;
+						}
+						else
+						{
+							$instantiations_d['instantiation_media_type_id']=$this->instant->insert_instantiation_media_types(array("media_type"=>$pbcoreinstantiation_child['formatmediatype'][0]['text']));
+							
+						}
+					}
+					
+					//Instantiation formatFileSize Start
+					if(isset($pbcoreinstantiation_child['formatfilesize'][0]['text']))
+					{
+						$files_size_perm=explode(" ",$pbcoreinstantiation_child['formatfilesize'][0]['text']);
+						if(isset($files_size_perm[0]))
+						{
+							$instantiations_d['file_size']=$files_size_perm[0];
+						}
+						if(isset($files_size_perm[1]))
+						{
+							$instantiations_d['file_size_unit_of_measure']=$files_size_perm[1];
+						}
+						
+					}
+					
+					//Instantiation formatTimeStart Start
+					if(isset($pbcoreinstantiation_child['formattimestart'][0]['text']))
+					{
+						$instantiations_d['time_start']=$pbcoreinstantiation_child['formattimestart'][0]['text'];
+					}
+					
+					//Instantiation formatDuration Start
+					if(isset($pbcoreinstantiation_child['formatduration'][0]['text']))
+					{
+						$instantiations_d['projected_duration']=$pbcoreinstantiation_child['formatduration'][0]['text'];
+					}
+					
+					//Instantiation formatDataRate Start
+					if(isset($pbcoreinstantiation_child['formatdatarate'][0]['text']))
+					{
+						$format_data_rate_perm=explode(" ",$pbcoreinstantiation_child['formatdatarate'][0]['text']);
+						if(isset($format_data_rate_perm[0]))
+						{
+							$instantiations_d['data_rate']=$format_data_rate_perm[0];
+						}
+						if(isset($format_data_rate_perm[1]))
+						{
+							$data_rate_unit_d=$this->instant->get_data_rate_units_by_unit($format_data_rate_perm[1]);
+							if($data_rate_unit_d)
+							{
+								$instantiations_d['data_rate_units_id']=$data_rate_unit_d->id;
+							}
+							else
+							{
+								$instantiations_d['data_rate_units_id']=$this->instant->insert_data_rate_units(array("unit_of_measure"=>$format_data_rate_perm[1]));
+							}
+						}
+						
+					}
+					
+					//Instantiation formatcolors Start
+					if(isset($pbcoreinstantiation_child['formatcolors'][0]['text']))
+					{
+						$inst_color_d=$this->instant->get_instantiation_colors_by_color($pbcoreinstantiation_child['formatcolors'][0]['text']);
+						if($inst_color_d)
+						{
+							$instantiations_d['instantiation_colors_id']=$inst_color_d->id;
+						}
+						else
+						{
+							$instantiations_d['instantiation_colors_id']=$this->instant->insert_instantiation_colors(array('color'=>$pbcoreinstantiation_child['formatcolors'][0]['text']));	
+						}
+					}
+					
+					//Instantiation formattracks Start
+					if(isset($pbcoreinstantiation_child['formattracks'][0]['text']))
+					{
+						$instantiations_d['tracks']=$pbcoreinstantiation_child['formattracks'][0]['text'];
+					}
+					
+					//Instantiation formatchannelconfiguration Start
+					if(isset($pbcoreinstantiation_child['formatchannelconfiguration'][0]['text']))
+					{
+						$instantiations_d['channel_configuration']=$pbcoreinstantiation_child['formatchannelconfiguration'][0]['text'];
+					}
+					
+					//Instantiation language Start
+					if(isset($pbcoreinstantiation_child['language'][0]['text']))
+					{
+						$instantiations_d['language']=$pbcoreinstantiation_child['language'][0]['text'];
+					}
+					
+					//Instantiation alternativemodes Start
+					if(isset($pbcoreinstantiation_child['alternativemodes'][0]['text']))
+					{
+						$instantiations_d['alternative_modes']=$pbcoreinstantiation_child['alternativemodes'][0]['text'];
+					}
+					
+					$instantiations_id=$this->instant->insert_instantiations($instantiations_d);
+					
+					//pbcoreInstantiation End
+					
+					
+					
+					
+					
+					if(isset($pbcoreinstantiation_child['pbcoreformatid']))
+					{
+						
+						foreach($pbcoreinstantiation_child['pbcoreformatid'] as $pbcoreformatid)
+						{
+							$instantiation_identifier_d=array();
+							$instantiation_identifier_d['instantiations_id']=$instantiations_id;
+							if(isset($pbcoreformatid['children']) && !empty($pbcoreformatid['children']))
+							{
+								if($pbcoreformatid['children']['formatidentifier'][0]['text'])
+								{
+									$instantiation_identifier_d['instantiation_identifier']=$pbcoreformatid['children']['formatidentifier'][0]['text'];
+								}
+								if($pbcoreformatid['children']['formatidentifiersource'][0]['text'])
+								{
+									$instantiation_identifier_d['instantiation_source']=$pbcoreformatid['children']['formatidentifiersource'][0]['text'];
+								}
+								//print_r($instantiation_identifier_d);
+								$instantiation_identifier_id=$this->instant->insert_instantiation_identifier($instantiation_identifier_d);
+							}
+						}
+					}
+					//Instantiation Date Created Start
+					if(isset($pbcoreinstantiation_child['datecreated']))
+					{
+						$instantiation_dates_d=array();
+						$instantiation_dates_d['instantiations_id']=$instantiations_id;
+						
+						if(isset($pbcoreinstantiation_child['datecreated'][0]['text']))
+						{
+							$instantiation_dates_d['instantiation_date']=$pbcoreinstantiation_child['datecreated'][0]['text'];
+							$date_type=$this->instant->get_date_types_by_type('created');
+							if($date_type)
+							{
+								$instantiation_dates_d['date_types_id']=$date_type->id;
+							}
+							else
+							{
+								$instantiation_dates_d['date_types_id']=$this->instant->insert_date_types(array('date_type'=>'created'));
+							}
+							$instantiation_date_created_id=$this->instant->insert_instantiation_dates($instantiation_dates_d);
+						}
+						
+					}
+					//Instantiation Date Created End
+					
+					//Instantiation Date Issued Start
+					if(isset($pbcoreinstantiation_child['dateissued']))
+					{
+						$instantiation_dates_d=array();
+						$instantiation_dates_d['instantiations_id']=$instantiations_id;
+						
+						if(isset($pbcoreinstantiation_child['dateissued'][0]['text']))
+						{
+							$instantiation_dates_d['instantiation_date']=$pbcoreinstantiation_child['dateissued'][0]['text'];
+							$date_type=$this->instant->get_date_types_by_type('issued');
+							if($date_type)
+							{
+								$instantiation_dates_d['date_types_id']=$date_type->id;
+							}
+							else
+							{
+								$instantiation_dates_d['date_types_id']=$this->instant->insert_date_types(array('date_type'=>'issued'));
+							}
+							$instantiation_date_issued_id=$this->instant->insert_instantiation_dates($instantiation_dates_d);
+						}
+						
+					}
+					//Instantiation Date Issued End
+					
+					//Instantiation formatPhysical  Start
+					if(isset($pbcoreinstantiation_child['formatphysical'][0]['text']))
+					{
+						$instantiation_format_physical_d=array();
+						$instantiation_format_physical_d['instantiations_id']=$instantiations_id;
+						$instantiation_format_physical_d['format_name']=$pbcoreinstantiation_child['formatphysical'][0]['text'];
+						$instantiation_format_physical_d['format_type']='physical';
+						$instantiation_format_physical_id=$this->instant->insert_instantiation_formats($instantiation_format_physical_d);
+						
+					}
+					
+					//Instantiation formatdigital  Start
+					if(isset($pbcoreinstantiation_child['formatdigital'][0]['text']))
+					{
+						$instantiation_format_digital_d=array();
+						$instantiation_format_digital_d['instantiations_id']=$instantiations_id;
+						$instantiation_format_digital_d['format_name']=$pbcoreinstantiation_child['formatdigital'][0]['text'];
+						$instantiation_format_digital_d['format_type']='digital';
+						$instantiation_format_digital_id=$this->instant->insert_instantiation_formats($instantiation_format_physical_d);
+						
+					}
+					
+					//Instantiation formatgenerations  Start
+					if(isset($pbcoreinstantiation_child['formatgenerations']))
+					{
+						foreach($pbcoreinstantiation_child['formatgenerations'] as $format_generations)
+						{
+							if(isset($format_generations['text']) && !empty($format_generations['text']))
+							{
+								$instantiation_format_generations_d=array();
+								$instantiation_format_generations_d['instantiations_id']=$instantiations_id;
+								$generations_d=$this->instant->get_generations_by_generation($format_generations['text']);
+								if($generations_d)
+								{
+									$instantiation_format_generations_d['generations_id']=$generations_d->id;
+								}
+								else
+								{
+									$instantiation_format_generations_d['generations_id']=$this->instant->insert_generations(array("generation"=>$format_generations['text']));
+								}
+								$instantiation_format_generations_ids[]=$this->instant->insert_instantiation_generations($instantiation_format_generations_d);
+							}
+						}
+					}
+					//Instantiation pbcoreAnnotation  Start
+					if(isset($pbcoreinstantiation_child['pbcoreannotation']))
+					{
+						foreach($pbcoreinstantiation_child['pbcoreannotation'] as $pbcore_annotation)
+						{
+							if(isset($pbcore_annotation['children']['annotation'][0]['text']) && !empty($pbcore_annotation['children']['annotation'][0]['text']))
+							{
+								$instantiation_annotation_d=array();
+								$instantiation_annotation_d['instantiations_id']=$instantiations_id;
+								$instantiation_annotation_d['annotation']=$pbcore_annotation['children']['annotation'][0]['text'];
+								$instantiation_annotation_ids[]=$this->instant->insert_instantiation_annotations($instantiation_annotation_d);
+								
+							}
+						}
+					}
+				//Instantiation pbcoreAnnotation  Start
+					if(isset($pbcoreinstantiation_child['pbcoreessencetrack']))
+					{
+						foreach($pbcoreinstantiation_child['pbcoreessencetrack'] as $pbcore_essence_track)
+						{
+							if(isset($pbcore_essence_track['children']) && !empty($pbcore_essence_track['children']))
+							{
+								$pbcore_essence_child=$pbcore_essence_track['children'];
+								$essence_tracks_d=array();
+								$essence_tracks_d['instantiations_id']=$instantiations_id;
+								//essenceTrackType start
+								if($pbcore_essence_child['essencetracktype'][0]['text'])
+								{
+									$essence_track_type_d=$this->essence->get_essence_track_by_type($pbcore_essence_child['essencetracktype'][0]['text']);
+									if($essence_track_type_d)
+									{
+										$essence_tracks_d['essence_track_types_id']=$essence_track_type_d->id;
+									}
+									else
+									{
+										$essence_tracks_d['essence_track_types_id']=$this->essence->insert_essence_track_types(array('essence_track_type'=>$pbcore_essence_child['essencetracktype'][0]['text']));
+									}
+									
+								}
+							}
+							//essenceTrackStandard Start
+							if(isset($pbcore_essence_child['essencetrackstandard'][0]['text']))
+							{
+								$essence_tracks_d['standard']=$pbcore_essence_child['essencetrackstandard'][0]['text'];
+							}
+							//essenceRrackDatarate Start
+							if(isset($pbcore_essence_child['essencetrackdatarate'][0]['text']))
+							{
+								$format_data_rate_perm='';
+								$format_data_rate_perm=explode(" ",$pbcore_essence_child['essencetrackdatarate'][0]['text']);
+								if(isset($format_data_rate_perm[0]))
+								{
+									$essence_tracks_d['data_rate']=$format_data_rate_perm[0];
+								}
+								if(isset($format_data_rate_perm[1]))
+								{
+									$data_rate_unit_d=$this->instant->get_data_rate_units_by_unit($format_data_rate_perm[1]);
+									if($data_rate_unit_d)
+									{
+										$essence_tracks_d['data_rate_units_id']=$data_rate_unit_d->id;
+									}
+									else
+									{
+										$essence_tracks_d['data_rate_units_id']=$this->instant->insert_data_rate_units(array("unit_of_measure"=>$format_data_rate_perm[1]));
+									}
+								}
+								
+							}
+						
+							//essencetrackframerate Start
+							if(isset($pbcore_essence_child['essencetrackframerate'][0]['text']))
+							{
+								$frame_rate=explode(" ",$pbcore_essence_child['essencetrackframerate'][0]['text']);
+								$essence_tracks_d['frame_rate']=trim($frame_rate[0]);
+							}
+							
+							//essencetrackframerate Start
+							if(isset($pbcore_essence_child['essencetracksamplingrate'][0]['text']))
+							{
+								$essence_tracks_d['sampling_rate']=$pbcore_essence_child['essencetracksamplingrate'][0]['text'];
+							}
+							
+							//essenceTrackBitDepth Start
+							if(isset($pbcore_essence_child['essencetrackbitdepth'][0]['text']))
+							{
+								$essence_tracks_d['bit_depth']=$pbcore_essence_child['essencetrackbitdepth'][0]['text'];
+							}
+							
+							//essenceTrackBitDepth Start
+							if(isset($pbcore_essence_child['essencetrackframesize'][0]['text']))
+							{
+								$frame_sizes=explode("x",strtolower($pbcore_essence_child['essencetrackframesize'][0]['text']));
+								if(isset($frame_sizes[0]) && isset($frame_sizes[1]))
+								{
+									$track_frame_size_d=$this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame_sizes[0]),trim($frame_sizes[1]));
+									if($track_frame_size_d)
+									{
+										$essence_tracks_d['essence_track_frame_sizes_id']=$track_frame_size_d->id;
+									}
+									else
+									{
+										$essence_tracks_d['essence_track_frame_sizes_id']=$this->essence->insert_essence_track_frame_sizes(array("width"=>$frame_sizes[0],"height"=>$frame_sizes[1]));
+									}
+								}
+							}
+							
+							//essencetrackaspectratio Start
+							if(isset($pbcore_essence_child['essencetrackaspectratio'][0]['text']))
+							{
+								$essence_tracks_d['aspect_ratio']=$pbcore_essence_child['essencetrackaspectratio'][0]['text'];
+							}
+							
+							//essencetracktimestart Start
+							if(isset($pbcore_essence_child['essencetracktimestart'][0]['text']))
+							{
+								$essence_tracks_d['time_start']=$pbcore_essence_child['essencetracktimestart'][0]['text'];
+							}
+							
+							//essencetrackduration Start
+							if(isset($pbcore_essence_child['essencetrackduration'][0]['text']))
+							{
+								$essence_tracks_d['duration']=$pbcore_essence_child['essencetrackduration'][0]['text'];
+							}
+							
+							//essencetracklanguage Start
+							if(isset($pbcore_essence_child['essencetracklanguage'][0]['text']))
+							{
+								$essence_tracks_d['language']=$pbcore_essence_child['essencetracklanguage'][0]['text'];
+							}
+							
+							$essence_tracks_id=$this->essence->insert_essence_tracks($essence_tracks_d);
+							
+							
+							
+							//essenceTrackIdentifier Start 
+							if(isset($pbcore_essence_child['essencetrackidentifier'][0]['text']) && isset($pbcore_essence_child['essencetrackidentifiersource'][0]['text']))
+							{
+								$essence_track_identifiers_d=array();
+								$essence_track_identifiers_d['essence_tracks_id']=$essence_tracks_id;
+								$essence_track_identifiers_d['essence_track_identifiers']=$pbcore_essence_child['essencetrackidentifier'][0]['text'];
+								$essence_track_identifiers_d['essence_track_identifier_source']=$pbcore_essence_child['essencetrackidentifier'][0]['text'];
+								$this->essence->insert_essence_track_identifiers($essence_track_identifiers_d);
+								
+							}
+							//essencetrackstandard Start 
+							if(isset($pbcore_essence_child['essencetrackstandard'][0]['text']))
+							{
+								$essence_track_standard_d=array();
+								$essence_track_standard_d['essence_tracks_id']=$essence_tracks_id;
+								$essence_track_standard_d['encoding']=$pbcore_essence_child['essencetrackstandard'][0]['text'];
+								if(isset($pbcore_essence_child['essencetrackencoding'][0]['text']))
+								{
+									$essence_track_standard_d['encoding_source']=$pbcore_essence_child['essencetrackencoding'][0]['text'];
+								}
+								$this->essence->insert_essence_track_encodings($essence_track_identifiers_d);	
+							}
+							
+							//essenceTrackAnnotation Start
+							if(isset($pbcore_essence_child['essencetrackannotation']))
+							{
+								foreach($pbcore_essence_child['essencetrackannotation'] as $trackannotation )
+								{
+									$essencetrackannotation=array();
+									$essencetrackannotation['essence_tracks_id']=$essence_tracks_id;
+									$essencetrackannotation['annotation']=$trackannotation['text'];
+									$this->essence->insert_essence_track_annotations($essencetrackannotation);
+								}
+							}
+							
+						}
+					}
+				}
+			}
+		}
+	}
+	/*
+	* Process Assets Elements
+	*/
 	function process_assets($asset_children,$asset_id)
 	{
 		// pbcoreAssetType Start here
@@ -263,7 +691,7 @@ class Crons extends CI_Controller
 							{
 								$subject_d['subject_source']=$pbcore_subject['children']['subjectauthorityused'][0]['text'];
 							}
-							$subject_id = $this->assets_model->insert_subjects(array($subject_d));
+							$subject_id = $this->assets_model->insert_subjects($subject_d);
 						}
 						$pbcoreSubject_d['subjects_id'] = $subject_id;
 						//Add Data into insert_assets_subjects
@@ -351,7 +779,7 @@ class Crons extends CI_Controller
 					$coverage['coverage'] = $pbcore_coverage['children']['coverage'][0]['text'];
 					if (isset($pbcore_coverage['children']['coveragetype'][0]))
 					{
-						$coverage['genre_source'] = $pbcore_coverage['children']['coveragetype'][0]['text'];
+						$coverage['coverage_type'] = $pbcore_coverage['children']['coveragetype'][0]['text'];
 					}
 					$asset_coverage = $this->assets_model->insert_coverage($coverage);
 				}
@@ -362,28 +790,26 @@ class Crons extends CI_Controller
 		// pbcoreAudienceLevel Start
 		if (isset($asset_children['pbcoreaudiencelevel']))
 		{
-		
-		  foreach ($asset_children['pbcoreaudiencelevel'] as $pbcore_aud_level)
-		  {
-			$audience_level = array();
-			$asset_audience_level = array();
-			$asset_audience_level['assets_id'] = $asset_id;
-			if (isset($pbcore_aud_level['children']['audiencelevel'][0]))
+			foreach ($asset_children['pbcoreaudiencelevel'] as $pbcore_aud_level)
 			{
-		
-			  $audience_level['audience_level'] = $pbcore_aud_level['children']['audiencelevel'][0]['text'];
-			  $db_audience_level = $this->assets_model->get_audience_level($audience_level['audience_level']);
-			  if ($db_audience_level)
-			  {
-				$asset_audience_level['audience_levels_id'] = $db_audience_level->id;
-			  }
-			  else
-			  {
-				$asset_audience_level['audience_levels_id'] = $this->assets_model->insert_audience_level($audience_level);
-			  }
-			  $asset_audience = $this->assets_model->insert_asset_audience($asset_audience_level);
+				$audience_level = array();
+				$asset_audience_level = array();
+				$asset_audience_level['assets_id'] = $asset_id;
+				if (isset($pbcore_aud_level['children']['audiencelevel'][0]))
+				{
+					$audience_level['audience_level'] = $pbcore_aud_level['children']['audiencelevel'][0]['text'];
+					$db_audience_level = $this->assets_model->get_audience_level($audience_level['audience_level']);
+					if ($db_audience_level)
+					{
+						$asset_audience_level['audience_levels_id'] = $db_audience_level->id;
+					}
+					else
+					{
+						$asset_audience_level['audience_levels_id'] = $this->assets_model->insert_audience_level($audience_level);
+					}
+					$asset_audience = $this->assets_model->insert_asset_audience($asset_audience_level);
+				}
 			}
-		  }
 		}
 		// pbcoreAudienceLevel End
 		
@@ -391,27 +817,26 @@ class Crons extends CI_Controller
 		if (isset($asset_children['pbcoreaudiencerating']))
 		{
 		
-		  foreach ($asset_children['pbcoreaudiencerating'] as $pbcore_aud_rating)
-		  {
-			$audience_rating = array();
-			$asset_audience_rating = array();
-			$asset_audience_rating['assets_id'] = $asset_id;
-			if (isset($pbcore_aud_rating['children']['audiencerating'][0]))
+			foreach ($asset_children['pbcoreaudiencerating'] as $pbcore_aud_rating)
 			{
-		
-			  $audience_rating['audience_rating'] = $pbcore_aud_rating['children']['audiencerating'][0]['text'];
-			  $db_audience_rating = $this->assets_model->get_audience_rating($audience_rating['audience_rating']);
-			  if ($db_audience_rating)
-			  {
-				$asset_audience_rating['audience_ratings_id'] = $db_audience_rating->id;
-			  }
-			  else
-			  {
-				$asset_audience_rating['audience_ratings_id'] = $this->assets_model->insert_audience_rating($audience_rating);
-			  }
-			  $asset_audience_rate = $this->assets_model->insert_asset_audience_rating($asset_audience_rating);
+				$audience_rating = array();
+				$asset_audience_rating = array();
+				$asset_audience_rating['assets_id'] = $asset_id;
+				if (isset($pbcore_aud_rating['children']['audiencerating'][0]))
+				{
+					$audience_rating['audience_rating'] = $pbcore_aud_rating['children']['audiencerating'][0]['text'];
+					$db_audience_rating = $this->assets_model->get_audience_rating($audience_rating['audience_rating']);
+					if ($db_audience_rating)
+					{
+						$asset_audience_rating['audience_ratings_id'] = $db_audience_rating->id;
+					}
+					else
+					{
+						$asset_audience_rating['audience_ratings_id'] = $this->assets_model->insert_audience_rating($audience_rating);
+					}
+					$asset_audience_rate = $this->assets_model->insert_asset_audience_rating($asset_audience_rating);
+				}
 			}
-		  }
 		}
 		// pbcoreAudienceRating End
 		
@@ -419,18 +844,16 @@ class Crons extends CI_Controller
 		if (isset($asset_children['pbcoreannotation']))
 		{
 		
-		  foreach ($asset_children['pbcoreannotation'] as $pbcore_annotation)
-		  {
-			$annotation = array();
-			$annotation['assets_id'] = $asset_id;
-			if (isset($pbcore_annotation['children']['annotation'][0]))
+			foreach ($asset_children['pbcoreannotation'] as $pbcore_annotation)
 			{
-		
-			  $annotation['annotation'] = $pbcore_annotation['children']['annotation'][0]['text'];
-		
-			  $asset_annotation = $this->assets_model->insert_annotation($annotation);
+				$annotation = array();
+				$annotation['assets_id'] = $asset_id;
+				if (isset($pbcore_annotation['children']['annotation'][0]))
+				{
+					$annotation['annotation'] = $pbcore_annotation['children']['annotation'][0]['text'];
+					$asset_annotation = $this->assets_model->insert_annotation($annotation);
+				}
 			}
-		  }
 		}
 		// pbcoreAnnotation End
 		
@@ -460,8 +883,6 @@ class Crons extends CI_Controller
 						$assets_relation['relation_identifier'] = $pbcore_relation['children']['relationidentifier'][0]['text'];
 						$this->assets_model->insert_asset_relation($assets_relation);
 					}
-					// Insert Data into asset_description
-					//print_r($asset_descriptions_d);
 				}
 			}
 		}
@@ -490,8 +911,6 @@ class Crons extends CI_Controller
 						// creator_affiliation , creator_source ,creator_ref
 						$assets_creators_roles_d['creators_id']=$this->assets_model->insert_creators(array('creator_name'=>$pbcore_creator['children']['creator'][0]['text']));
 					}
-					//Insert Data into asset_description
-					//print_r($asset_descriptions_d);
 				}
 				if (isset($pbcore_creator['children']['creatorrole'][0]))
 				{
@@ -505,8 +924,6 @@ class Crons extends CI_Controller
 						// creator_role_ref , creator_role_source
 						$assets_creators_roles_d['creator_roles_id']=$this->assets_model->insert_creator_roles(array('creator_role'=>$pbcore_creator['children']['creatorrole'][0]['text']));
 					}
-					//Insert Data into asset_description
-					//print_r($asset_descriptions_d);
 				}
 				//print_r($assets_creators_roles_d);
 				$assets_creators_roles_id=$this->assets_model->insert_assets_creators_roles($assets_creators_roles_d);
@@ -535,8 +952,6 @@ class Crons extends CI_Controller
 						// contributor_affiliation ,	contributor_source, 	contributor_ref 
 						$assets_contributors_d['contributors_id']=$this->assets_model->insert_contributors(array('contributor_name'=>$pbcore_contributor['children']['contributor'][0]['text']));
 					}
-					//Insert Data into asset_description
-					//print_r($asset_descriptions_d);
 				}
 				if (isset($pbcore_contributor['children']['contributorrole'][0]))
 				{
@@ -550,8 +965,6 @@ class Crons extends CI_Controller
 						// contributor_role_source ,	contributor_role_ref 
 						$assets_contributors_d['contributor_roles_id']=$this->assets_model->insert_contributor_roles(array('contributor_role'=>$pbcore_contributor['children']['contributorrole'][0]['text']));
 					}
-					//Insert Data into asset_description
-					//print_r($asset_descriptions_d);
 				}
 				$assets_contributors_roles_id=$this->assets_model->insert_assets_contributors_roles($assets_contributors_d);
 			}
@@ -611,20 +1024,57 @@ class Crons extends CI_Controller
 				{
 					$rights_summary_d['rights'] = $pbcore_rights_summary['children']['rightssummary'][0]['text'];
 					//print_r($rights_summary_d);
-					$rights_summary_ids[] = $this->assets_model->insert_rights_summaries($coverage);
+					$rights_summary_ids[] = $this->assets_model->insert_rights_summaries($rights_summary_d);
 				}
 			}
 		}
 		// pbcoreRightsSummary End
 		
+		//pbcoreExtension Start
+		if (isset($asset_children['pbcoreextension']) && !empty($asset_children['pbcoreextension']))
+		{
+			foreach ($asset_children['pbcoreextension'] as $pbcore_extension)
+			{
+				if (isset($pbcore_extension['children']['extensionauthorityused'][0]))
+				{
+					
+					if(strtolower($pbcore_extension['children']['extensionauthorityused'][0]['text'])!=strtolower('AACIP Record Nomination Status'))
+					{
+						$extension_d = array();
+						$extension_d['assets_id'] = $asset_id;
+						$extension_d['extension_element'] = $pbcore_extension['children']['extensionauthorityused'][0]['text'];
+						if (isset($pbcore_extension['children']['extension'][0]['text']))
+						{
+							$extension_d['extension_value'] = $pbcore_extension['children']['extension'][0]['text'];
+						}
+						
+						$this->assets_model->insert_extensions($extension_d);
+					}
+					else
+					{
+						$nomination_d = array();
+						$nomination_d['assets_id'] = $asset_id;
+						if (isset($pbcore_extension['children']['extension'][0]['text']))
+						{
+							
+							$nomunation_status=$this->assets_model->get_nomination_status_by_status($pbcore_extension['children']['extension'][0]['text']);
+							if($nomunation_status)
+							{
+								$nomination_d['nomination_status_id'] =$nomunation_status->id;
+							}
+							else
+							{
+								$nomination_d['nomination_status_id']=$this->assets_model->insert_nomination_status(array("status"=>$pbcore_extension['children']['extension'][0]['text']));
+							}
+							$this->assets_model->insert_nominations($nomination_d);
+						}						
+					}
+				}
+			}
+		}
+		//pbcoreExtension End
 		// End By Ali Raza
 	}
-	/*
-	Process Instantiation Elements
-	*/
-	function process_instantiation($asset_data,$asset_id)
-	{
-		$asset_children;
-	}
+	
 
 }

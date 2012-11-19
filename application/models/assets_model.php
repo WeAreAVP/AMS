@@ -47,6 +47,13 @@ class Assets_Model extends CI_Model
 		$this->_table_assets_publishers_role = 'assets_publishers_role';
 		$this->_table_publisher_roles = 'publisher_roles';
 		$this->_table_rights_summaries = 'rights_summaries';
+		$this->_table_extensions = 'extensions';
+		$this->_table_nominations = 'nominations';
+		$this->_table_nomination_status = 'nomination_status';
+		$this->_table_asset_titles = 'asset_titles';
+		
+		
+		
 		
 	}
 	
@@ -60,6 +67,24 @@ class Assets_Model extends CI_Model
 		return $query = $this->db->get($this->_assets_table)->result();
 	}
 	/**
+	* search nomination_status by @status
+	* 
+	* @param type $status
+	* @return object 
+	*/
+	function get_nomination_status_by_status($status)
+	{
+		$this->db->where('status LIKE', $status);
+		$res = $this->db->get($this->_table_nomination_status);
+		if (isset($res) && !empty($res))
+		{
+			return $res->row();
+		}
+		return false;
+	}
+	
+	
+	/**
 	* search publishers by @publisher
 	* 
 	* @param type $publisher
@@ -67,7 +92,7 @@ class Assets_Model extends CI_Model
 	*/
 	function get_publishers_by_publisher($publisher)
 	{
-		$this->db->where('publisher', $publisher);
+		$this->db->where('publisher LIKE', $publisher);
 		$res = $this->db->get($this->_table_publishers);
 		if (isset($res) && !empty($res))
 		{
@@ -306,8 +331,8 @@ class Assets_Model extends CI_Model
 	
 	function insert_subjects($data)
 	{
-	$this->db->insert($this->_table_subjects, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_subjects, $data);
+		return $this->db->insert_id();
 	}
 	
 	/*
@@ -320,8 +345,9 @@ class Assets_Model extends CI_Model
 	
 	function insert_assets_subjects($data)
 	{
-	$this->db->insert($this->_table_assets_subjects, $data);
-	return $this->db->insert_id();
+		print_r($data);
+		$this->db->insert($this->_table_assets_subjects, $data);
+		return $this->db->insert_id();
 	}
 	
 	/*
@@ -334,8 +360,8 @@ class Assets_Model extends CI_Model
 	
 	function insert_asset_descriptions($data)
 	{
-	$this->db->insert($this->_table_asset_descriptions, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_asset_descriptions, $data);
+		return $this->db->insert_id();
 	}
 	
 	/*
@@ -348,8 +374,8 @@ class Assets_Model extends CI_Model
 	
 	function insert_description_types($data)
 	{
-	$this->db->insert($this->_table_description_types, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_description_types, $data);
+		return $this->db->insert_id();
 	}
 	
 	/*
@@ -362,8 +388,8 @@ class Assets_Model extends CI_Model
 	
 	function insert_identifiers($data)
 	{
-	$this->db->insert($this->_table_identifiers, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_identifiers, $data);
+		return $this->db->insert_id();
 	}
 	
 	/*
@@ -376,8 +402,8 @@ class Assets_Model extends CI_Model
 	
 	function insert_asset_titles($data)
 	{
-	$this->db->insert($this->_table_asset_titles, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_asset_titles, $data);
+		return $this->db->insert_id();
 	}
 	/*
 	*
@@ -389,8 +415,8 @@ class Assets_Model extends CI_Model
 	
 	function insert_asset_types($data)
 	{
-	$this->db->insert($this->_table_asset_types, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_asset_types, $data);
+		return $this->db->insert_id();
 	}
 	
 	
@@ -403,13 +429,13 @@ class Assets_Model extends CI_Model
 	*/
 	function get_genre_type($genre)
 	{
-	$this->db->where('genre', $genre);
-	$result = $this->db->get($this->_table_genres);
-	if (isset($result) && !empty($result))
-	{
-	return $result->row();
-	}
-	return false;
+		$this->db->where('genre', $genre);
+		$result = $this->db->get($this->_table_genres);
+		if (isset($result) && !empty($result))
+		{
+		return $result->row();
+		}
+		return false;
 	}
 	
 	/**
@@ -420,8 +446,8 @@ class Assets_Model extends CI_Model
 	*/
 	function insert_genre($data)
 	{
-	$this->db->insert($this->_table_genres, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_genres, $data);
+		return $this->db->insert_id();
 	}
 	
 	/**
@@ -432,8 +458,8 @@ class Assets_Model extends CI_Model
 	*/
 	function insert_asset_genre($data)
 	{
-	$this->db->insert($this->_table_assets_genres, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_assets_genres, $data);
+		return $this->db->insert_id();
 	}
 	
 	/**
@@ -444,8 +470,8 @@ class Assets_Model extends CI_Model
 	*/
 	function insert_coverage($data)
 	{
-	$this->db->insert($this->_table_coverages, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_coverages, $data);
+		return $this->db->insert_id();
 	}
 	
 	/**
@@ -456,13 +482,13 @@ class Assets_Model extends CI_Model
 	*/
 	function get_audience_level($audience_level)
 	{
-	$this->db->where('audience_level', $audience_level);
-	$result = $this->db->get($this->_table_audience_levels);
-	if (isset($result) && !empty($result))
-	{
-	return $result->row();
-	}
-	return false;
+		$this->db->where('audience_level', $audience_level);
+		$result = $this->db->get($this->_table_audience_levels);
+		if (isset($result) && !empty($result))
+		{
+			return $result->row();
+		}
+		return false;
 	}
 	
 	/**
@@ -473,8 +499,8 @@ class Assets_Model extends CI_Model
 	*/
 	function insert_audience_level($data)
 	{
-	$this->db->insert($this->_table_audience_levels, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_audience_levels, $data);
+		return $this->db->insert_id();
 	}
 	
 	/**
@@ -485,8 +511,8 @@ class Assets_Model extends CI_Model
 	*/
 	function insert_asset_audience($data)
 	{
-	$this->db->insert($this->_table_assets_audience_levels, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_assets_audience_levels, $data);
+		return $this->db->insert_id();
 	}
 	/**
 	*  Insert get genre type for audience_levels table
@@ -496,13 +522,13 @@ class Assets_Model extends CI_Model
 	*/
 	function get_audience_rating($audience_rating)
 	{
-	$this->db->where('audience_rating', $audience_rating);
-	$result = $this->db->get($this->_table_audience_ratings);
-	if (isset($result) && !empty($result))
-	{
-	return $result->row();
-	}
-	return false;
+		$this->db->where('audience_rating', $audience_rating);
+		$result = $this->db->get($this->_table_audience_ratings);
+		if (isset($result) && !empty($result))
+		{
+			return $result->row();
+		}
+		return false;
 	}
 	
 	/**
@@ -513,8 +539,8 @@ class Assets_Model extends CI_Model
 	*/
 	function insert_audience_rating($data)
 	{
-	$this->db->insert($this->_table_audience_ratings, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_audience_ratings, $data);
+		return $this->db->insert_id();
 	}
 	
 	/**
@@ -525,8 +551,8 @@ class Assets_Model extends CI_Model
 	*/
 	function insert_asset_audience_rating($data)
 	{
-	$this->db->insert($this->_table_assets_audience_ratings, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_assets_audience_ratings, $data);
+		return $this->db->insert_id();
 	}
 	/**
 	*  Insert the record in annotations table
@@ -536,8 +562,8 @@ class Assets_Model extends CI_Model
 	*/
 	function insert_annotation($data)
 	{
-	$this->db->insert($this->_table_annotations, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_annotations, $data);
+		return $this->db->insert_id();
 	}
 	/**
 	*  Insert get genre type for relation_types table
@@ -547,13 +573,13 @@ class Assets_Model extends CI_Model
 	*/
 	function get_relation_types($relation_type)
 	{
-	$this->db->where('relation_type', $relation_type);
-	$result = $this->db->get($this->_table_relation_types);
-	if (isset($result) && !empty($result))
-	{
-	return $result->row();
-	}
-	return false;
+		$this->db->where('relation_type', $relation_type);
+		$result = $this->db->get($this->_table_relation_types);
+		if (isset($result) && !empty($result))
+		{
+			return $result->row();
+		}
+		return false;
 	}
 	
 	/**
@@ -564,8 +590,8 @@ class Assets_Model extends CI_Model
 	*/
 	function insert_relation_types($data)
 	{
-	$this->db->insert($this->_table_relation_types, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_relation_types, $data);
+		return $this->db->insert_id();
 	}
 	
 	/**
@@ -576,8 +602,8 @@ class Assets_Model extends CI_Model
 	*/
 	function insert_asset_relation($data)
 	{
-	$this->db->insert($this->_table_assets_relations, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_assets_relations, $data);
+		return $this->db->insert_id();
 	}
 	// End Nouman Tayyab
 	// Start Ali Raza 
@@ -689,6 +715,41 @@ class Assets_Model extends CI_Model
 	function insert_rights_summaries($data)
 	{
 		$this->db->insert($this->_table_rights_summaries, $data);
+		return $this->db->insert_id();
+	}
+	
+	/**
+	*  Insert the records in extensions  table
+	*  @param array $data
+	*  @return integer last_inserted id
+	* 
+	*/
+	function insert_extensions($data)
+	{
+		print_r($data);
+		$this->db->insert($this->_table_extensions, $data);
+		return $this->db->insert_id();
+	}
+	/**
+	*  Insert the records in nominations  table
+	*  @param array $data
+	*  @return integer last_inserted id
+	* 
+	*/
+	function insert_nominations($data)
+	{
+		$this->db->insert($this->_table_nominations, $data);
+		return $this->db->insert_id();
+	}
+	/**
+	*  Insert the record in nomination_status  table
+	*  @param array $data
+	*  @return integer last_inserted id
+	* 
+	*/
+	function insert_nomination_status($data)
+	{
+		$this->db->insert($this->_table_nomination_status, $data);
 		return $this->db->insert_id();
 	}
 	

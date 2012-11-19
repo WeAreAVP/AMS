@@ -1,45 +1,337 @@
-1:
-    id: 
-    sender_id: 
-    receiver_id: 
-    msg_type: 
-    msg_status: 
-    subject: 
-    msg_extras: 
-    receiver_folder: 
-    sender_folder: 
-    message: 
-    created_at: 
-    read_at: 
-    email_queue_id: 
 
-2:
-    id: 
-    sender_id: 
-    receiver_id: 
-    msg_type: 
-    msg_status: 
-    subject: 
-    msg_extras: 
-    receiver_folder: 
-    sender_folder: 
-    message: 
-    created_at: 
-    read_at: 
-    email_queue_id: 
-
-3:
-    id: 
-    sender_id: 
-    receiver_id: 
-    msg_type: 
-    msg_status: 
-    subject: 
-    msg_extras: 
-    receiver_folder: 
-    sender_folder: 
-    message: 
-    created_at: 
-    read_at: 
-    email_queue_id: 
-
+row1: 
+  id: 1
+  sender_id: 1
+  receiver_id: 1
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"ship_date\":\"11\\/08\\/2012\",\"shipping_instructions\":\"test\",\"comments\":\"test comment\",\"estimated_complete_date\":\"11\\/22\\/2012\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-08 09:11:21"
+  read_at: ""
+  email_queue_id: 1
+row2: 
+  id: 2
+  sender_id: 1
+  receiver_id: 2
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"ship_date\":\"11\\/08\\/2012\",\"shipping_instructions\":\"test\",\"comments\":\"test comment\",\"estimated_complete_date\":\"11\\/22\\/2012\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-08 09:11:21"
+  read_at: ""
+  email_queue_id: 2
+row3: 
+  id: 3
+  sender_id: 1
+  receiver_id: 3
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"ship_date\":\"11\\/08\\/2012\",\"shipping_instructions\":\"test\",\"comments\":\"test comment\",\"estimated_complete_date\":\"11\\/22\\/2012\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-08 09:11:21"
+  read_at: ""
+  email_queue_id: 3
+row4: 
+  id: 4
+  sender_id: 1
+  receiver_id: 2
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"ship_date\":\"11\\/15\\/2012\",\"shipping_instructions\":\"test\",\"comments\":\"test\",\"estimated_complete_date\":\"11\\/29\\/2012\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-08 09:11:44"
+  read_at: ""
+  email_queue_id: 4
+row5: 
+  id: 5
+  sender_id: 1
+  receiver_id: 5
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"ship_date\":\"11\\/16\\/2012\",\"shipping_instructions\":\"test\",\"comments\":\"test\",\"estimated_complete_date\":\"11\\/24\\/2012\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-08 09:11:49"
+  read_at: ""
+  email_queue_id: 5
+row6: 
+  id: 6
+  sender_id: 1
+  receiver_id: 3
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"ship_date\":\"11\\/14\\/2012\",\"shipping_instructions\":\"test\",\"comments\":\"test\",\"estimated_complete_date\":\"11\\/15\\/2012\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-08 09:11:53"
+  read_at: ""
+  email_queue_id: 6
+row7: 
+  id: 7
+  sender_id: 1
+  receiver_id: 1
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"ship_date\":\"\",\"shipping_instructions\":\"\",\"comments\":\"\",\"estimated_complete_date\":\"\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-09 11:11:10"
+  read_at: ""
+  email_queue_id: 
+row8: 
+  id: 8
+  sender_id: 1
+  receiver_id: 2
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"ship_date\":\"\",\"shipping_instructions\":\"\",\"comments\":\"\",\"estimated_complete_date\":\"\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-09 11:11:10"
+  read_at: ""
+  email_queue_id: 
+row9: 
+  id: 9
+  sender_id: 1
+  receiver_id: 3
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"ship_date\":\"\",\"shipping_instructions\":\"\",\"comments\":\"\",\"estimated_complete_date\":\"\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-09 11:11:10"
+  read_at: ""
+  email_queue_id: 
+row10: 
+  id: 10
+  sender_id: 1
+  receiver_id: 4
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"ship_date\":\"\",\"shipping_instructions\":\"\",\"comments\":\"\",\"estimated_complete_date\":\"\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-09 11:11:10"
+  read_at: ""
+  email_queue_id: 
+row11: 
+  id: 11
+  sender_id: 1
+  receiver_id: 1
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"ship_date\":\"11\\/16\\/2012\",\"shipping_instructions\":\"gdfg\",\"comments\":\"fdfasd\",\"estimated_complete_date\":\"11\\/15\\/2012\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-16 05:11:33"
+  read_at: ""
+  email_queue_id: 8
+row12: 
+  id: 12
+  sender_id: 1
+  receiver_id: 2
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"ship_date\":\"11\\/16\\/2012\",\"shipping_instructions\":\"gdfg\",\"comments\":\"fdfasd\",\"estimated_complete_date\":\"11\\/15\\/2012\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-16 05:11:33"
+  read_at: ""
+  email_queue_id: 9
+row13: 
+  id: 13
+  sender_id: 1
+  receiver_id: 1
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"shipping_instructions\":\"dfasdfads\",\"comments\":\"dfadfasdfasdf\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-16 06:11:17"
+  read_at: ""
+  email_queue_id: 10
+row14: 
+  id: 14
+  sender_id: 1
+  receiver_id: 2
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"shipping_instructions\":\"dfasdfads\",\"comments\":\"dfadfasdfasdf\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-16 06:11:17"
+  read_at: ""
+  email_queue_id: 11
+row15: 
+  id: 15
+  sender_id: 1
+  receiver_id: 1
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"shipping_instructions\":\"heloo\",\"comments\":\"bye\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-16 06:11:29"
+  read_at: ""
+  email_queue_id: 12
+row16: 
+  id: 16
+  sender_id: 1
+  receiver_id: 2
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"shipping_instructions\":\"heloo\",\"comments\":\"bye\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-16 06:11:29"
+  read_at: ""
+  email_queue_id: 13
+row17: 
+  id: 17
+  sender_id: 1
+  receiver_id: 1
+  msg_type: ""
+  msg_status: "unread"
+  subject: ""
+  msg_extras: '"{\"shipping_instructions\":\"dfadfa\",\"comments\":\"dfadfadf\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-16 08:11:36"
+  read_at: ""
+  email_queue_id: 
+row18: 
+  id: 18
+  sender_id: 1
+  receiver_id: 2
+  msg_type: ""
+  msg_status: "unread"
+  subject: ""
+  msg_extras: '"{\"shipping_instructions\":\"fadfafasfaf\",\"comments\":\"dfsfadfasdfasdfasdf\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-16 08:11:37"
+  read_at: ""
+  email_queue_id: 
+row19: 
+  id: 19
+  sender_id: 1
+  receiver_id: 1
+  msg_type: ""
+  msg_status: "unread"
+  subject: ""
+  msg_extras: '"{\"shipping_instructions\":\"fadfsadf\",\"comments\":\"fsadfsdfasdf\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-16 08:11:38"
+  read_at: ""
+  email_queue_id: 
+row20: 
+  id: 20
+  sender_id: 1
+  receiver_id: 1
+  msg_type: ""
+  msg_status: "unread"
+  subject: ""
+  msg_extras: '"{\"shipping_instructions\":\"fadfadsf\",\"comments\":\"dafadfadfasdf\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-16 08:11:39"
+  read_at: ""
+  email_queue_id: 
+row21: 
+  id: 21
+  sender_id: 1
+  receiver_id: 1
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"shipping_instructions\":\"dfdafadf\",\"comments\":\"dsfasdfafaf\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-16 08:11:41"
+  read_at: ""
+  email_queue_id: 14
+row22: 
+  id: 22
+  sender_id: 1
+  receiver_id: 2
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"shipping_instructions\":\"dfdafadf\",\"comments\":\"dsfasdfafaf\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-16 08:11:41"
+  read_at: ""
+  email_queue_id: 15
+row23: 
+  id: 23
+  sender_id: 1
+  receiver_id: 1
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"shipping_instructions\":\"dfadfadfadf\",\"comments\":\"dfdfdfadfadfad\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-17 07:11:52"
+  read_at: ""
+  email_queue_id: 16
+row24: 
+  id: 24
+  sender_id: 1
+  receiver_id: 1
+  msg_type: "1"
+  msg_status: "unread"
+  subject: "Digitization Start Date"
+  msg_extras: '"{\"shipping_instructions\":\"final testing\",\"comments\":\"final testing\"}"'
+  receiver_folder: "inbox"
+  sender_folder: "sent"
+  message: ""
+  created_at: "2012-11-17 08:11:26"
+  read_at: ""
+  email_queue_id: 17

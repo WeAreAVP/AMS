@@ -1,36 +1,90 @@
-1:
-    id: 
-    system_id: 
-    subject: 
-    body_plain: 
-    body_html: 
-    email_type: 
-    email_from: 
-    reply_to: 
-    replaceables: 
-    created_date: 
 
-2:
-    id: 
-    system_id: 
-    subject: 
-    body_plain: 
-    body_html: 
-    email_type: 
-    email_from: 
-    reply_to: 
-    replaceables: 
-    created_date: 
-
-3:
-    id: 
-    system_id: 
-    subject: 
-    body_plain: 
-    body_html: 
-    email_type: 
-    email_from: 
-    reply_to: 
-    replaceables: 
-    created_date: 
-
+row1: 
+  id: 1
+  system_id: "Forget_Password"
+  subject: "New password request"
+  body_plain: '"{web_name} ,<br><br>You have requested your password to be changed, <br>because you forgot the password.<br>Please follow this link in order to complete change password process:{uri}<br><br>Your New Password: {new_password} <br>Key for Activation: {key} <br><br>After you successfully complete the process, <br>you can change this new password into password that you want.<br><br>If you have any more problems with gaining access to your account please contact {web_master}.<br><br>Regards,<br>The {web_name} Team"'
+  body_html: ""
+  email_type: "plain"
+  email_from: "ssapienza@cpb.org"
+  reply_to: "ssapienza@cpb.org"
+  replaceables: '"[\"web_name\",\"uri\",\"new_password\",\"key\",\"web_master\"]"'
+  created_date: "2012-10-31 10:55:10"
+row2: 
+  id: 2
+  system_id: "General"
+  subject: "General Email Alerts From AMS"
+  body_plain: '"{body}"'
+  body_html: ""
+  email_type: "plain"
+  email_from: "ssapienza@cpb.org"
+  reply_to: "ssapienza@cpb.org"
+  replaceables: '"[\"body\"]"'
+  created_date: "2012-10-31 10:57:12"
+row3: 
+  id: 3
+  system_id: "Digitization_Start_Date"
+  subject: "Digitization Start Date"
+  body_plain: '"Hello {station_name},<br><br>We are pleased to inform you that your records have started their digitization process on {ship_date}.<br><br>Ship Date: {ship_date}<br><br>Shipping Instructions: {shipping_instructions}<br><br>Comments: {comments}<br><br>Estimated Complete Date: {estimated_complete_date}<br><br><br>If you have any questions please, inform {inform_to}<br><br><br>Sincerely,<br>{user_name}"'
+  body_html: ""
+  email_type: "plain"
+  email_from: >
+    "noreply@ec2-174-129-139-234.compute-1.amazonaws.com"
+  reply_to: "ssapienza@cpb.org"
+  replaceables: '"[\"station_name\",\"ship_date\",\"shipping_instructions\",\"comments\",\"estimated_complete_date\",\"inform_to\",\"user_name\"]"'
+  created_date: "2012-10-31 11:02:11"
+row4: 
+  id: 9
+  system_id: "Materials_Received_Digitization_Vendor"
+  subject: "Materials Received Digitization Vendor"
+  body_plain: '"Hello {station_name},<br><br>We are pleased to inform you that your materials received  {date_received}.<br><br>Media Received Date: {date_received}<br><br>Comments: {comments}<br><br>Crawford Contact Details: {crawford_contact_details}<br><br><br>If you have any questions please, inform {inform_to}<br><br><br>Sincerely,<br>{user_name}"'
+  body_html: ""
+  email_type: "plain"
+  email_from: "ssapienza@cpb.org"
+  reply_to: "ssapienza@cpb.org"
+  replaceables: '"[\"date_received\",\"comments\",\"crawford_contact_details\",\"inform_to\",\"user_name\",\"station_name\"]"'
+  created_date: "2012-10-31 11:07:05"
+row5: 
+  id: 11
+  system_id: "Assets_Ready_to_Ship_Back"
+  subject: "Assets Ready to Ship Back"
+  body_plain: '"Hello {station_name},<br><br>We are pleased to inform you.<br><br>Est. Ship Date: {est_ship_date}<br><br>Actual Ship Date:{actual_ship_date}<br><br>Comments:{comments}<br><br>Crawford Contact Details:{crawford_contact_details}<br><br>30 day Digitization review:{digitization_review_date}<br><br>30 day Material Review: {material_review_date}<br><br>Material Return Date: {return_date}<br><br>Asset List:{asset_list}<br><br><br>If you have any questions please, inform {inform_to}<br><br><br>Sincerely,<br>{user_name}"'
+  body_html: ""
+  email_type: "plain"
+  email_from: "ssapienza@cpb.org"
+  reply_to: "ssapienza@cpb.org"
+  replaceables: '"[\"est_ship_date\",\"actual_ship_date\",\"comments\",\"crawford_contact_details\",\"day_digitization_review\",\"day_material_review\",\"material_return_date\",\"asse"'
+  created_date: "2012-10-31 11:08:28"
+row6: 
+  id: 12
+  system_id: "Hard_Drive_Return_Date"
+  subject: "Hard Drive Return Date"
+  body_plain: '"Hello {station_name},<br><br>We are pleased to inform you that hard drive return on {return_date}.<br><br>Return Date: {return_date}<br><br>Comments:{comments}<br><br>Crawford Contact Details: {crawford_contact_details}<br><br>Hard Drive List:{hard_drive_list}<br><br>If you have any questions please, inform {inform_to}<br><br><br>Sincerely,<br>{user_name}"'
+  body_html: ""
+  email_type: "plain"
+  email_from: "ssapienza@cpb.org"
+  reply_to: "ssapienza@cpb.org"
+  replaceables: '"[\"return_date\",\"comments\",\"hard_drive_list\",\"crawford_contact_details\",\"station_name\",\"inform_to\",\"user_name\"]"'
+  created_date: "2012-10-31 11:09:18"
+row7: 
+  id: 14
+  system_id: "Audio_FTP_Review"
+  subject: "Audio FTP Review"
+  body_plain: '"Hello {station_name},<br><br>We are pleased to inform you.<br><br>Review End Date: {review_end_date}<br>Comments: {comments}<br>FTP Details: {ftp_detail}<br>Media List: {media_list}<br><br>If you have any questions please, inform {inform_to}<br><br><br>Sincerely,<br>{user_name}"'
+  body_html: ""
+  email_type: "plain"
+  email_from: "ssapienza@cpb.org"
+  reply_to: "ssapienza@cpb.org"
+  replaceables: '"[\"review_end_date\",\"comments\",\"ftp_detail\",\"media_list\",\"station_name\",\"inform_to\",\"user_name\"]"'
+  created_date: "2012-10-31 11:10:34"
+row8: 
+  id: 15
+  system_id: "_Tracking_Ship_Date"
+  subject: "Station Shipment Date"
+  body_plain: '"Hello {station_name},<br><br>We are pleased to inform you.<br><br>Ship Date: {ship_date}<br><br>Ship Via: {ship_via}<br><br>Tracking #:{tracking_no}<br><br>No. of Box Shipped:{no_box_shipped}<br><br><br>If you have any questions please, inform {inform_to}<br><br><br>Sincerely,<br>{user_name}"'
+  body_html: ""
+  email_type: "plain"
+  email_from: "ssapienza@cpb.org"
+  reply_to: "ssapienza@cpb.org"
+  replaceables: '"[\"station_name\",\"ship_date\",\"ship_via\",\"tracking_no\",\"no_box_shipped\",\"inform_to\",\"user_name\"]"'
+  created_date: "2012-11-05 03:44:47"

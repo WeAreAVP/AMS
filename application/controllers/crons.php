@@ -95,7 +95,7 @@ class Crons extends CI_Controller
 				if (isset($station_cpb_id))
 				{
 					$station_data = $this->station_model->get_station_by_cpb_id($station_cpb_id);
-					if (isset($station_data))
+					if (isset($station_data) && !empty($station_data) && isset($station_data->id))
 					{
 						$data_files = $this->cron_model->get_pbcore_file_by_folder_id($folder->id);
 						if (isset($data_files))

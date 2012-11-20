@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
   exit('No direct script access allowed');
 
-class SomeControllerTest extends CIUnit_TestCase
+class Citest extends CIUnit_TestCase
 {
 	public function setUp()
 	{

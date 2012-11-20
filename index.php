@@ -20,6 +20,7 @@
  */
 
 define('ENVIRONMENT',getenv('ENVIRONMENT'));//getenv('ENVIRONMENT'));
+echo 'Hello';
 echo ENVIRONMENT;exit; /**
  * Setting the default timezone
  *  

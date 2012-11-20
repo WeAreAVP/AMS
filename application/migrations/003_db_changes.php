@@ -12,7 +12,7 @@ if (!defined('BASEPATH'))
  * @category	Migrations
  * @author		Nouman Tayyab <nouman@geekschicago.com>
  */
-class Migration_Add_Db_Changes extends CI_Migration
+class Migration_Db_Changes extends CI_Migration
 {
 
     public function up()
@@ -41,7 +41,7 @@ class Migration_Add_Db_Changes extends CI_Migration
         );
 
         $this->dbforge->add_column('events', $fields);
-        
+
         $this->dbforge->add_field('id');
         $this->dbforge->add_field(array(
             'assets_id' => array(
@@ -64,10 +64,8 @@ class Migration_Add_Db_Changes extends CI_Migration
                 'constraint' => '45',
                 'null' => TRUE,
             ),
-           
-            
         ));
-        
+
         $this->dbforge->create_table('extensions');
     }
 
@@ -75,8 +73,8 @@ class Migration_Add_Db_Changes extends CI_Migration
     {
 
         $this->dbforge->drop_table('data_folders');
-         $this->dbforge->drop_column('events', 'event_note');
-         $this->dbforge->drop_table('extensions');
+        $this->dbforge->drop_column('events', 'event_note');
+        $this->dbforge->drop_table('extensions');
     }
 
 }

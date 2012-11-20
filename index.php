@@ -19,7 +19,9 @@
  *
  */
 
-define('ENVIRONMENT', 'development');//getenv('ENVIRONMENT'));
+define('ENVIRONMENT',getenv('ENVIRONMENT'));//getenv('ENVIRONMENT'));
+print_r($_ENV);exit;
+
 /**
  * Setting the default timezone
  *  

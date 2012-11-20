@@ -67,6 +67,7 @@ class Migration_Add_Db_Changes extends CI_Migration
            
             
         ));
+        
         $this->dbforge->create_table('extensions');
     }
 

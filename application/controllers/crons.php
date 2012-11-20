@@ -117,7 +117,7 @@ class Crons extends CI_Controller
 											$des = ($server_root_path . '/' . $file_path . '.xml');
 											copy($src, $des);
 										}*/
-										$asset_data = file_get_contents($file_path );
+										$asset_data = @file_get_contents($file_path );
 										if (isset($asset_data) && !empty($asset_data))
 										{
 											
@@ -137,12 +137,9 @@ class Crons extends CI_Controller
 													$this->process_instantiation($asset_children,$asset_id);
 													// Instantiation End
 												}
-												
-												
 												unset($asset_d);
 												unset($asset_xml_data);
 												unset($asset_data);
-												unlink($des);
 												$this->db->where('id',$d_file->id);
 												$this->db->update('process_pbcore_data',array('is_processed'=>1));
 												echo $this->db->last_query();

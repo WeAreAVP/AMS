@@ -19,7 +19,7 @@
  *
  */
 
-define('ENVIRONMENT',getenv('ENVIRONMENT'));//getenv('ENVIRONMENT'));
+define('ENVIRONMENT','development');//getenv('ENVIRONMENT'));
 echo 'Hello';
 echo ENVIRONMENT;exit; /**
  * Setting the default timezone

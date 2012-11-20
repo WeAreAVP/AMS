@@ -726,7 +726,6 @@ class Assets_Model extends CI_Model
 	*/
 	function insert_extensions($data)
 	{
-		print_r($data);
 		$this->db->insert($this->_table_extensions, $data);
 		return $this->db->insert_id();
 	}

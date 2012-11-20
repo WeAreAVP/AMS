@@ -20,12 +20,12 @@
  */
 
 define('ENVIRONMENT',getenv('ENVIRONMENT'));//getenv('ENVIRONMENT'));
-echo 'Hello';
-echo ENVIRONMENT;exit; /**
+
+/**
  * Setting the default timezone
  *  
  */
-date_default_timezone_set('America/New_York');
+@date_default_timezone_set('America/New_York');
 
 /*
  * ---------------------------------------------------------------

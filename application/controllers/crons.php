@@ -97,6 +97,7 @@ class Crons extends CI_Controller
 					$station_data = $this->station_model->get_station_by_cpb_id($station_cpb_id);
 					if (isset($station_data) && !empty($station_data) && isset($station_data->id))
 					{
+						
 						$data_files = $this->cron_model->get_pbcore_file_by_folder_id($folder->id);
 						if (isset($data_files))
 						{
@@ -105,20 +106,18 @@ class Crons extends CI_Controller
 								if ($d_file->is_processed == 0)
 								{
 									$file_path = '';
-									//$folder->folder_path='assets/';
-									//$d_file->file_path='sample_1-3';
 									$file_path = trim($folder->folder_path . $d_file->file_path);
 									if (is_file($file_path))
 									{
-										$file_parts = pathinfo($file_path);
-										if (!isset($file_parts['extension']))
+										//$file_parts = pathinfo($file_path);
+										/*if (!isset($file_parts['extension']))
 										{
 											$server_root_path = trim(shell_exec('pwd'));
 											$src = ($server_root_path . '/' . $file_path);
 											$des = ($server_root_path . '/' . $file_path . '.xml');
 											copy($src, $des);
-										}
-										$asset_data = file_get_contents($file_path . '.xml');
+										}*/
+										$asset_data = @file_get_contents($file_path );
 										if (isset($asset_data) && !empty($asset_data))
 										{
 											
@@ -138,12 +137,9 @@ class Crons extends CI_Controller
 													$this->process_instantiation($asset_children,$asset_id);
 													// Instantiation End
 												}
-												
-												
 												unset($asset_d);
 												unset($asset_xml_data);
 												unset($asset_data);
-												unlink($des);
 												$this->db->where('id',$d_file->id);
 												$this->db->update('process_pbcore_data',array('is_processed'=>1));
 												echo $this->db->last_query();

@@ -345,7 +345,6 @@ class Assets_Model extends CI_Model
 	
 	function insert_assets_subjects($data)
 	{
-		print_r($data);
 		$this->db->insert($this->_table_assets_subjects, $data);
 		return $this->db->insert_id();
 	}

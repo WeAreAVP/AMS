@@ -13,7 +13,7 @@ if (!defined('BASEPATH'))
  * @category	Controllers
  * @author		Nouman Tayyab <nouman@geekschicago.com>
  */
-class Migrate extends CI_Controller
+class Migrate extends MY_Controller
 {
 
     /**
@@ -41,6 +41,9 @@ class Migrate extends CI_Controller
         {
             echo 'Migrations changes are successfully applied.<br/>';
         }
+    }
+    function export_fixtures(){
+        $this->load->library('yaml');
     }
 
 }

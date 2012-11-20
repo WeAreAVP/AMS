@@ -56,7 +56,87 @@ class Assets_Model extends CI_Model
 		
 		
 	}
+	/**
+	* Get aa guid by assets_id
+	* 
+	* @return array 
+	*/
+	function get_title_by_asset_id($asset_id)
+	{
+		$this->db->where('assets_id',$asset_id);
+		$query = $this->db->get($this->_table_asset_titles);
+		if(isset($query) && !empty($query))
+		{
+			$res=$query->row();
+			if(isset($res) && !empty($res))
+			{
+				return $res->title;
+			}
+		}
+		return false;
+	}
 	
+	
+	/**
+	* Get aa guid by assets_id
+	* 
+	* @return array 
+	*/
+	function get_descriptions_by_asset_id($asset_id)
+	{
+		$this->db->where('assets_id',$asset_id);
+		$query = $this->db->get($this->_table_asset_descriptions);
+		if(isset($query) && !empty($query))
+		{
+			$res=$query->row();
+			if(isset($res) && !empty($res))
+			{
+				return $res->description;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	* Get aa guid by assets_id
+	* 
+	* @return array 
+	*/
+	function get_aa_guid_by_asset_id($asset_id)
+	{
+		$this->db->where('assets_id',$asset_id);
+		$this->db->where('identifier',"http://americanarchiveinventory.org");
+		$query = $this->db->get($this->_table_identifiers);
+		if(isset($query) && !empty($query))
+		{
+			$res=$query->row();
+			if(isset($res) && !empty($res))
+			{
+				return $res->identifier;
+			}
+		}
+		return false;
+	}
+	/**
+	* Get list of all the Assets
+	* 
+	* @return array 
+	*/
+	function get_local_id_by_asset_id($asset_id)
+	{
+		$this->db->where('assets_id',$asset_id);
+		$this->db->where('identifier !=',"http://americanarchiveinventory.org");
+		$query = $this->db->get($this->_table_identifiers);
+		if(isset($query) && !empty($query))
+		{
+			$res=$query->row();
+			if(isset($res) && !empty($res))
+			{
+				return $res->identifier;
+			}
+		}
+		return false;
+	}
 	/**
 	* Get list of all the Assets
 	* 
@@ -64,6 +144,7 @@ class Assets_Model extends CI_Model
 	*/
 	function get_all()
 	{
+		$this->db->limit(100);
 		return $query = $this->db->get($this->_assets_table)->result();
 	}
 	/**

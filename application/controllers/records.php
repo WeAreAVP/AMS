@@ -15,11 +15,12 @@ class Records extends MY_Controller
      * Constructor
      * 
      */
-    function Records()
+		function Records()
 		{
 			parent::__construct();
+			$this->load->model('assets_model');
 			$this->layout = 'main_layout.php';
-    }
+		}
 		/*
 		*
 		*To List All Assets
@@ -27,7 +28,9 @@ class Records extends MY_Controller
 		*/
 		function index()
 		{
-			$this->load->view('records/index');
+			$data['assets']=$this->assets_model->get_all();
+			$this->load->view('records/index',$data);
+			
 		}
 	 /*
 		*

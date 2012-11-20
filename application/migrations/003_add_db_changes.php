@@ -83,5 +83,5 @@ class Migration_Add_Db_Changes extends CI_Migration
 
 // END Migration_Add_Db_Changes
 
-/* End of file 002_add_db_changes.php */
-/* Location: ./application/migration/002_add_db_changes.php */
+/* End of file 003_add_db_changes.php */
+/* Location: ./application/migration/003_add_db_changes.php */

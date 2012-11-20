@@ -21,10 +21,10 @@ $out = output();
 
     public function users()
     {
-        $this->load->model('dx_auth/users', 'users');
-        $this->load->model('dx_auth/user_profile', 'user_profile');
-        $this->load->model('dx_auth/roles', 'roles');
-        $this->load->model('station_model');
+        $this->CI->load->model('dx_auth/users', 'users');
+        $this->CI->load->model('dx_auth/user_profile', 'user_profile');
+        $this->CI->load->model('dx_auth/roles', 'roles');
+        $this->CI->load->model('station_model');
         $data['current_role'] = $currentRoleID = $this->role_id;
         $data['is_ajax'] = false;
         $roles = $this->roles->get_roles_list($currentRoleID)->result();
@@ -50,10 +50,10 @@ $out = output();
         }
         if (isAjax())
         {
-            echo $this->load->view('settings/user', $data, TRUE);
+            echo $this->CI->load->view('settings/user', $data, TRUE);
             exit;
         }
-        $this->load->view('settings/user', $data);
+        $this->CI->load->view('settings/user', $data);
     }
 
 }

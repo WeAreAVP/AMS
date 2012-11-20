@@ -58,8 +58,8 @@
   <ul class="nav nav-tabs">
    <li ><a href="javascript:;" style="color:#000;cursor:default;">View type :</a></li>
    <li id="simple_li" class="active"><a href="javascript:;" onClick="change_view('simple')">Simple Table</a></li>
-   <li id="full_table_li"><a href="javascript:;" onClick="change_view('full_table')">Full Table</a></li>
-   <li id="thumbnails_li"><a href="javascript:;" onClick="change_view('thumbnails')">Thumbnails</a></li>
+   <li id="full_table_li"><a href="javascript:;" >Full Table</a></li>
+   <li id="thumbnails_li"><a href="javascript:;" >Thumbnails</a></li>
   </ul>
   <div style="overflow: auto;height: 400px;" id="simple_view">
    <table class="tablesorter table table-bordered" >

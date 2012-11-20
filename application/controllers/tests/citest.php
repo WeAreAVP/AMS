@@ -9,9 +9,9 @@ class Citest extends CIUnit_TestCase
     public function index()
     {
 
-        $this->CI = set_controller('settings');
-        $this->CI->index();
-        $this->CI->add_user();
+        $this->CI = set_controller('unit_testing');
+        $this->CI->usertesting();
+        
         
 		
 		// Fetch the buffered output

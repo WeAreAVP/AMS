@@ -43,30 +43,30 @@ class Migration_Db_Changes extends CI_Migration
         $this->dbforge->add_column('events', $fields);
 
         $this->dbforge->add_field('id');
-        $this->dbforge->add_field(array(
-            'assets_id' => array(
-                'type' => 'INT',
-                'constraint' => '11',
-                'null' => FALSE,
-            ),
-            'extension_element' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '45',
-                'null' => TRUE,
-            ),
-            'extension_value' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '45',
-                'null' => FALSE,
-            ),
-            'extension_authority' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '45',
-                'null' => TRUE,
-            ),
-        ));
-
-        $this->dbforge->create_table('extensions');
+//        $this->dbforge->add_field(array(
+//            'assets_id' => array(
+//                'type' => 'INT',
+//                'constraint' => '11',
+//                'null' => FALSE,
+//            ),
+//            'extension_element' => array(
+//                'type' => 'VARCHAR',
+//                'constraint' => '45',
+//                'null' => TRUE,
+//            ),
+//            'extension_value' => array(
+//                'type' => 'VARCHAR',
+//                'constraint' => '45',
+//                'null' => FALSE,
+//            ),
+//            'extension_authority' => array(
+//                'type' => 'VARCHAR',
+//                'constraint' => '45',
+//                'null' => TRUE,
+//            ),
+//        ));
+//
+//        $this->dbforge->create_table('extensions');
     }
 
     public function down()
@@ -74,7 +74,7 @@ class Migration_Db_Changes extends CI_Migration
 
         $this->dbforge->drop_table('data_folders');
         $this->dbforge->drop_column('events', 'event_note');
-        $this->dbforge->drop_table('extensions');
+//        $this->dbforge->drop_table('extensions');
     }
 
 }

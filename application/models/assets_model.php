@@ -144,7 +144,7 @@ class Assets_Model extends CI_Model
 	*/
 	function get_all()
 	{
-		$sql="SELECT ast.* FROM {$this->_assets_table} ast  LIMIT 100 ";
+		$sql="SELECT ast.* FROM {$this->_assets_table} ast INNER JOIN {$this->_table_identifiers} idt ON ast.id=idt.assets_id LIMIT 100 ";
 		$res=$this->db->query($sql);
 		if(isset($res) && !empty($res))
 		{

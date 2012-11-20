@@ -20,7 +20,7 @@
  */
 
 define('ENVIRONMENT',getenv('ENVIRONMENT'));//getenv('ENVIRONMENT'));
-echo ENVIRONMENT;exit;
+echo apache_getenv('ENVIRONMENT');exit;
 
 /**
  * Setting the default timezone

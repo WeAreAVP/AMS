@@ -11,6 +11,7 @@ class Citest extends CIUnit_TestCase
 
         $this->CI = set_controller('settings');
         $this->CI->index();
+        $this->CI->add_user();
         
 		
 		// Fetch the buffered output

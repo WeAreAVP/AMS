@@ -117,6 +117,7 @@ class Crons extends CI_Controller
 											$des = ($server_root_path . '/' . $file_path . '.xml');
 											copy($src, $des);
 										}*/
+										echo "Currently Parsing Files ".$file_path."\n";
 										$asset_data = @file_get_contents($file_path );
 										if (isset($asset_data) && !empty($asset_data))
 										{
@@ -384,7 +385,7 @@ class Crons extends CI_Controller
 						$instantiation_format_digital_d['instantiations_id']=$instantiations_id;
 						$instantiation_format_digital_d['format_name']=$pbcoreinstantiation_child['formatdigital'][0]['text'];
 						$instantiation_format_digital_d['format_type']='digital';
-						$instantiation_format_digital_id=$this->instant->insert_instantiation_formats($instantiation_format_physical_d);
+						$instantiation_format_digital_id=$this->instant->insert_instantiation_formats($instantiation_format_digital_d);
 						
 					}
 					
@@ -425,7 +426,7 @@ class Crons extends CI_Controller
 							}
 						}
 					}
-				//Instantiation pbcoreAnnotation  Start
+					//Instantiation pbcoreAnnotation  Start
 					if(isset($pbcoreinstantiation_child['pbcoreessencetrack']))
 					{
 						foreach($pbcoreinstantiation_child['pbcoreessencetrack'] as $pbcore_essence_track)
@@ -436,7 +437,8 @@ class Crons extends CI_Controller
 								$essence_tracks_d=array();
 								$essence_tracks_d['instantiations_id']=$instantiations_id;
 								//essenceTrackType start
-								if($pbcore_essence_child['essencetracktype'][0]['text'])
+								// Required Fields 1.essencetracktype If this not set then no record enter for essence_track
+								if(isset($pbcore_essence_child['essencetracktype'][0]['text']) && !empty($pbcore_essence_child['essencetracktype'][0]['text']))
 								{
 									$essence_track_type_d=$this->essence->get_essence_track_by_type($pbcore_essence_child['essencetracktype'][0]['text']);
 									if($essence_track_type_d)
@@ -447,138 +449,136 @@ class Crons extends CI_Controller
 									{
 										$essence_tracks_d['essence_track_types_id']=$this->essence->insert_essence_track_types(array('essence_track_type'=>$pbcore_essence_child['essencetracktype'][0]['text']));
 									}
+									//essenceTrackStandard Start
+									if(isset($pbcore_essence_child['essencetrackstandard'][0]['text']))
+									{
+										$essence_tracks_d['standard']=$pbcore_essence_child['essencetrackstandard'][0]['text'];
+									}
+									//essenceRrackDatarate Start
+									if(isset($pbcore_essence_child['essencetrackdatarate'][0]['text']))
+									{
+										$format_data_rate_perm='';
+										$format_data_rate_perm=explode(" ",$pbcore_essence_child['essencetrackdatarate'][0]['text']);
+										if(isset($format_data_rate_perm[0]))
+										{
+											$essence_tracks_d['data_rate']=$format_data_rate_perm[0];
+										}
+										if(isset($format_data_rate_perm[1]))
+										{
+											$data_rate_unit_d=$this->instant->get_data_rate_units_by_unit($format_data_rate_perm[1]);
+											if($data_rate_unit_d)
+											{
+												$essence_tracks_d['data_rate_units_id']=$data_rate_unit_d->id;
+											}
+											else
+											{
+												$essence_tracks_d['data_rate_units_id']=$this->instant->insert_data_rate_units(array("unit_of_measure"=>$format_data_rate_perm[1]));
+											}
+										}
+										
+									}
+								
+									//essencetrackframerate Start
+									if(isset($pbcore_essence_child['essencetrackframerate'][0]['text']))
+									{
+										$frame_rate=explode(" ",$pbcore_essence_child['essencetrackframerate'][0]['text']);
+										$essence_tracks_d['frame_rate']=trim($frame_rate[0]);
+									}
 									
-								}
-							}
-							//essenceTrackStandard Start
-							if(isset($pbcore_essence_child['essencetrackstandard'][0]['text']))
-							{
-								$essence_tracks_d['standard']=$pbcore_essence_child['essencetrackstandard'][0]['text'];
-							}
-							//essenceRrackDatarate Start
-							if(isset($pbcore_essence_child['essencetrackdatarate'][0]['text']))
-							{
-								$format_data_rate_perm='';
-								$format_data_rate_perm=explode(" ",$pbcore_essence_child['essencetrackdatarate'][0]['text']);
-								if(isset($format_data_rate_perm[0]))
-								{
-									$essence_tracks_d['data_rate']=$format_data_rate_perm[0];
-								}
-								if(isset($format_data_rate_perm[1]))
-								{
-									$data_rate_unit_d=$this->instant->get_data_rate_units_by_unit($format_data_rate_perm[1]);
-									if($data_rate_unit_d)
+									//essencetrackframerate Start
+									if(isset($pbcore_essence_child['essencetracksamplingrate'][0]['text']))
 									{
-										$essence_tracks_d['data_rate_units_id']=$data_rate_unit_d->id;
+										$essence_tracks_d['sampling_rate']=$pbcore_essence_child['essencetracksamplingrate'][0]['text'];
 									}
-									else
+									
+									//essenceTrackBitDepth Start
+									if(isset($pbcore_essence_child['essencetrackbitdepth'][0]['text']))
 									{
-										$essence_tracks_d['data_rate_units_id']=$this->instant->insert_data_rate_units(array("unit_of_measure"=>$format_data_rate_perm[1]));
+										$essence_tracks_d['bit_depth']=$pbcore_essence_child['essencetrackbitdepth'][0]['text'];
 									}
-								}
-								
-							}
-						
-							//essencetrackframerate Start
-							if(isset($pbcore_essence_child['essencetrackframerate'][0]['text']))
-							{
-								$frame_rate=explode(" ",$pbcore_essence_child['essencetrackframerate'][0]['text']);
-								$essence_tracks_d['frame_rate']=trim($frame_rate[0]);
-							}
-							
-							//essencetrackframerate Start
-							if(isset($pbcore_essence_child['essencetracksamplingrate'][0]['text']))
-							{
-								$essence_tracks_d['sampling_rate']=$pbcore_essence_child['essencetracksamplingrate'][0]['text'];
-							}
-							
-							//essenceTrackBitDepth Start
-							if(isset($pbcore_essence_child['essencetrackbitdepth'][0]['text']))
-							{
-								$essence_tracks_d['bit_depth']=$pbcore_essence_child['essencetrackbitdepth'][0]['text'];
-							}
-							
-							//essenceTrackBitDepth Start
-							if(isset($pbcore_essence_child['essencetrackframesize'][0]['text']))
-							{
-								$frame_sizes=explode("x",strtolower($pbcore_essence_child['essencetrackframesize'][0]['text']));
-								if(isset($frame_sizes[0]) && isset($frame_sizes[1]))
-								{
-									$track_frame_size_d=$this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame_sizes[0]),trim($frame_sizes[1]));
-									if($track_frame_size_d)
+									
+									//essenceTrackBitDepth Start
+									if(isset($pbcore_essence_child['essencetrackframesize'][0]['text']))
 									{
-										$essence_tracks_d['essence_track_frame_sizes_id']=$track_frame_size_d->id;
+										$frame_sizes=explode("x",strtolower($pbcore_essence_child['essencetrackframesize'][0]['text']));
+										if(isset($frame_sizes[0]) && isset($frame_sizes[1]))
+										{
+											$track_frame_size_d=$this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame_sizes[0]),trim($frame_sizes[1]));
+											if($track_frame_size_d)
+											{
+												$essence_tracks_d['essence_track_frame_sizes_id']=$track_frame_size_d->id;
+											}
+											else
+											{
+												$essence_tracks_d['essence_track_frame_sizes_id']=$this->essence->insert_essence_track_frame_sizes(array("width"=>$frame_sizes[0],"height"=>$frame_sizes[1]));
+											}
+										}
 									}
-									else
+									
+									//essencetrackaspectratio Start
+									if(isset($pbcore_essence_child['essencetrackaspectratio'][0]['text']))
 									{
-										$essence_tracks_d['essence_track_frame_sizes_id']=$this->essence->insert_essence_track_frame_sizes(array("width"=>$frame_sizes[0],"height"=>$frame_sizes[1]));
+										$essence_tracks_d['aspect_ratio']=$pbcore_essence_child['essencetrackaspectratio'][0]['text'];
+									}
+									
+									//essencetracktimestart Start
+									if(isset($pbcore_essence_child['essencetracktimestart'][0]['text']))
+									{
+										$essence_tracks_d['time_start']=$pbcore_essence_child['essencetracktimestart'][0]['text'];
+									}
+									
+									//essencetrackduration Start
+									if(isset($pbcore_essence_child['essencetrackduration'][0]['text']))
+									{
+										$essence_tracks_d['duration']=$pbcore_essence_child['essencetrackduration'][0]['text'];
+									}
+									
+									//essencetracklanguage Start
+									if(isset($pbcore_essence_child['essencetracklanguage'][0]['text']))
+									{
+										$essence_tracks_d['language']=$pbcore_essence_child['essencetracklanguage'][0]['text'];
+									}
+									
+									$essence_tracks_id=$this->essence->insert_essence_tracks($essence_tracks_d);
+									
+									
+									
+									//essenceTrackIdentifier Start 
+									if(isset($pbcore_essence_child['essencetrackidentifier'][0]['text']) && isset($pbcore_essence_child['essencetrackidentifiersource'][0]['text']))
+									{
+										$essence_track_identifiers_d=array();
+										$essence_track_identifiers_d['essence_tracks_id']=$essence_tracks_id;
+										$essence_track_identifiers_d['essence_track_identifiers']=$pbcore_essence_child['essencetrackidentifier'][0]['text'];
+										$essence_track_identifiers_d['essence_track_identifier_source']=$pbcore_essence_child['essencetrackidentifiersource'][0]['text'];
+										$this->essence->insert_essence_track_identifiers($essence_track_identifiers_d);
+										
+									}
+									//essencetrackstandard Start 
+									if(isset($pbcore_essence_child['essencetrackstandard'][0]['text']))
+									{
+										$essence_track_standard_d=array();
+										$essence_track_standard_d['essence_tracks_id']=$essence_tracks_id;
+										$essence_track_standard_d['encoding']=$pbcore_essence_child['essencetrackstandard'][0]['text'];
+										if(isset($pbcore_essence_child['essencetrackencoding'][0]['text']))
+										{
+											$essence_track_standard_d['encoding_source']=$pbcore_essence_child['essencetrackencoding'][0]['text'];
+										}
+										$this->essence->insert_essence_track_encodings($essence_track_identifiers_d);	
+									}
+									
+									//essenceTrackAnnotation Start
+									if(isset($pbcore_essence_child['essencetrackannotation']))
+									{
+										foreach($pbcore_essence_child['essencetrackannotation'] as $trackannotation )
+										{
+											$essencetrackannotation=array();
+											$essencetrackannotation['essence_tracks_id']=$essence_tracks_id;
+											$essencetrackannotation['annotation']=$trackannotation['text'];
+											$this->essence->insert_essence_track_annotations($essencetrackannotation);
+										}
 									}
 								}
 							}
-							
-							//essencetrackaspectratio Start
-							if(isset($pbcore_essence_child['essencetrackaspectratio'][0]['text']))
-							{
-								$essence_tracks_d['aspect_ratio']=$pbcore_essence_child['essencetrackaspectratio'][0]['text'];
-							}
-							
-							//essencetracktimestart Start
-							if(isset($pbcore_essence_child['essencetracktimestart'][0]['text']))
-							{
-								$essence_tracks_d['time_start']=$pbcore_essence_child['essencetracktimestart'][0]['text'];
-							}
-							
-							//essencetrackduration Start
-							if(isset($pbcore_essence_child['essencetrackduration'][0]['text']))
-							{
-								$essence_tracks_d['duration']=$pbcore_essence_child['essencetrackduration'][0]['text'];
-							}
-							
-							//essencetracklanguage Start
-							if(isset($pbcore_essence_child['essencetracklanguage'][0]['text']))
-							{
-								$essence_tracks_d['language']=$pbcore_essence_child['essencetracklanguage'][0]['text'];
-							}
-							
-							$essence_tracks_id=$this->essence->insert_essence_tracks($essence_tracks_d);
-							
-							
-							
-							//essenceTrackIdentifier Start 
-							if(isset($pbcore_essence_child['essencetrackidentifier'][0]['text']) && isset($pbcore_essence_child['essencetrackidentifiersource'][0]['text']))
-							{
-								$essence_track_identifiers_d=array();
-								$essence_track_identifiers_d['essence_tracks_id']=$essence_tracks_id;
-								$essence_track_identifiers_d['essence_track_identifiers']=$pbcore_essence_child['essencetrackidentifier'][0]['text'];
-								$essence_track_identifiers_d['essence_track_identifier_source']=$pbcore_essence_child['essencetrackidentifier'][0]['text'];
-								$this->essence->insert_essence_track_identifiers($essence_track_identifiers_d);
-								
-							}
-							//essencetrackstandard Start 
-							if(isset($pbcore_essence_child['essencetrackstandard'][0]['text']))
-							{
-								$essence_track_standard_d=array();
-								$essence_track_standard_d['essence_tracks_id']=$essence_tracks_id;
-								$essence_track_standard_d['encoding']=$pbcore_essence_child['essencetrackstandard'][0]['text'];
-								if(isset($pbcore_essence_child['essencetrackencoding'][0]['text']))
-								{
-									$essence_track_standard_d['encoding_source']=$pbcore_essence_child['essencetrackencoding'][0]['text'];
-								}
-								$this->essence->insert_essence_track_encodings($essence_track_identifiers_d);	
-							}
-							
-							//essenceTrackAnnotation Start
-							if(isset($pbcore_essence_child['essencetrackannotation']))
-							{
-								foreach($pbcore_essence_child['essencetrackannotation'] as $trackannotation )
-								{
-									$essencetrackannotation=array();
-									$essencetrackannotation['essence_tracks_id']=$essence_tracks_id;
-									$essencetrackannotation['annotation']=$trackannotation['text'];
-									$this->essence->insert_essence_track_annotations($essencetrackannotation);
-								}
-							}
-							
 						}
 					}
 				}
@@ -618,7 +618,11 @@ class Crons extends CI_Controller
 				{
 					$identifier_d['assets_id'] = $asset_id;
 					$identifier_d['identifier'] = $pbcoreidentifier['children']['identifier'][0]['text'];
-					$identifier_d['identifier_source'] = $pbcoreidentifier['children']['identifiersource'][0]['text'];
+					$identifier_d['identifier_source']='';
+					if(isset($pbcoreidentifier['children']['identifiersource'][0]['text']) && !empty($pbcoreidentifier['children']['identifiersource'][0]['text']))
+					{
+						$identifier_d['identifier_source'] = $pbcoreidentifier['children']['identifiersource'][0]['text'];
+					}
 					//print_r($identifier_d);	
 					$this->assets_model->insert_identifiers($identifier_d);
 				}
@@ -648,13 +652,14 @@ class Crons extends CI_Controller
 							$asset_title_types_id = $this->assets_model->insert_asset_title_types(array("title_type" => $pbcoretitle['children']['titletype'][0]['text']));
 						}
 						$pbcore_title_d['asset_title_types_id'] = $asset_title_types_id;
+						$pbcore_title_d['created'] = date('Y-m-d H:i:s');
+						//For 2.0 
+						// $pbcore_title_d['title_source'] 
+						// $pbcore_title_d['title_ref']
+						//print_r($pbcore_title_d);	
+						$this->assets_model->insert_asset_titles($pbcore_title_d);
 					}
-					$pbcore_title_d['created'] = date('Y-m-d H:i:s');
-					//For 2.0 
-					// $pbcore_title_d['title_source'] 
-					// $pbcore_title_d['title_ref']
-					//print_r($pbcore_title_d);	
-					$this->assets_model->insert_asset_titles($pbcore_title_d);
+					
 				}
 			}
 		}

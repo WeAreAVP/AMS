@@ -17,22 +17,6 @@ row1:
   modified: "2012-11-17 07:52:23"
 row2: 
   id: 2
-  role_id: 1
-  station_id: 1
-  username: "user"
-  password: "$1$bO..IR4.$CxjJBjKJ5QW2/BaYKDS7f."
-  email: "user@localhost.com"
-  banned: 0
-  ban_reason: ""
-  newpass: ""
-  newpass_key: ""
-  newpass_time: ""
-  last_ip: "127.0.0.1"
-  last_login: "2008-12-01 14:04:14"
-  created: "2008-12-01 14:01:53"
-  modified: "2012-10-30 08:19:26"
-row3: 
-  id: 3
   role_id: 3
   station_id: 5
   username: ""
@@ -47,8 +31,8 @@ row3:
   last_login: "2012-11-02 15:43:32"
   created: "2012-10-17 16:23:38"
   modified: "2012-11-02 15:43:32"
-row4: 
-  id: 5
+row3: 
+  id: 3
   role_id: 2
   station_id: 
   username: ""
@@ -63,24 +47,8 @@ row4:
   last_login: "2012-11-12 20:11:39"
   created: "2012-10-18 16:38:18"
   modified: "2012-11-12 20:11:39"
-row5: 
-  id: 7
-  role_id: 4
-  station_id: 1
-  username: ""
-  password: "$1$CO0s6hqj$K1xRXNahlCgUlRpBnstAW0"
-  email: "kara@avpreserve.com"
-  banned: 0
-  ban_reason: ""
-  newpass: ""
-  newpass_key: ""
-  newpass_time: ""
-  last_ip: ""
-  last_login: "0000-00-00 00:00:00"
-  created: "2012-10-23 09:45:55"
-  modified: "2012-10-30 08:19:26"
-row6: 
-  id: 8
+row4: 
+  id: 4
   role_id: 4
   station_id: 1
   username: ""
@@ -95,8 +63,25 @@ row6:
   last_login: "2012-10-30 08:30:45"
   created: "2012-10-30 08:27:01"
   modified: "2012-10-30 08:30:45"
-row7: 
-  id: 10
+row5: 
+  id: 5
+  role_id: 4
+  station_id: 1
+  username: ""
+  password: "$1$CO0s6hqj$K1xRXNahlCgUlRpBnstAW0"
+  email: "kara@avpreserve.com"
+  banned: 0
+  ban_reason: ""
+  newpass: ""
+  newpass_key: ""
+  newpass_time: ""
+  last_ip: ""
+  last_login: "0000-00-00 00:00:00"
+  created: "2012-10-23 09:45:55"
+  modified: "2012-10-30 08:19:26"
+
+row6: 
+  id: 6
   role_id: 2
   station_id: 
   username: ""
@@ -111,19 +96,4 @@ row7:
   last_login: "0000-00-00 00:00:00"
   created: "2012-11-02 11:03:26"
   modified: "2012-11-02 11:03:26"
-row8: 
-  id: 11
-  role_id: 3
-  station_id: 4
-  username: ""
-  password: "$1$Kw113TsA$7DXBj7eYyJjQFS6Kr5mzZ/"
-  email: "test@test.com"
-  banned: 0
-  ban_reason: ""
-  newpass: ""
-  newpass_key: ""
-  newpass_time: ""
-  last_ip: "202.166.163.3"
-  last_login: "2012-11-08 10:02:20"
-  created: "2012-11-08 10:01:55"
-  modified: "2012-11-08 10:02:20"
+

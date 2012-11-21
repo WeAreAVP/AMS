@@ -42,8 +42,31 @@ class Migrate extends MY_Controller
             echo 'Migrations changes are successfully applied.<br/>';
         }
     }
-    function export_fixtures(){
+
+    /**
+     * Export Fixtures to database.
+     * 
+     */
+    function export_fixtures()
+    {
+
         $this->load->library('yaml');
+        $this->load->model('migrate_model');
+        $fixtures_folder = MAINPATH . '/tests/fixtures/';
+        $default_fixtures = array('users', 'user_profile', 'stations');
+        foreach ($default_fixtures as $value)
+        {
+            $input = $fixtures_folder . $value . '_fixt.yml';
+            $fixture_array = $this->yaml->load($input);
+            if (isset($fixture_array) && !empty($fixture_array))
+            {
+
+                foreach ($fixture_array as $key => $fixture)
+                {
+                    $this->migrate_model->insert_record($fixture, $value);
+                }
+            }
+        }
     }
 
 }

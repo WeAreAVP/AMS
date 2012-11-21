@@ -79,7 +79,9 @@ class Unit_Testing extends CI_Controller {
    *  
    */
   function usertesting() {
+    echo 'Testing the user list<br/>';
     $this->userlisttesting();
+    echo 'Test adding a new user<br/>';
     $this->addusertesting();
   }
 
@@ -119,6 +121,7 @@ class Unit_Testing extends CI_Controller {
     $test_name = 'Add New User';
     echo $this->unit->run($result, $expected_result, $test_name);
     echo '<br/>';
+    echo 'Test editing a user<br/>';
     $this->editusertesting($id);
   }
 
@@ -144,6 +147,7 @@ class Unit_Testing extends CI_Controller {
     $test_name = 'Edit User';
     echo $this->unit->run($result, $expected_result, $test_name);
     echo '<br/>';
+    echo 'Test deleting the user<br/>';
     $this->deleteusertesting($id);
   }
 
@@ -160,6 +164,7 @@ class Unit_Testing extends CI_Controller {
     $test_name = 'Delete User';
     echo $this->unit->run($result, $expected_result, $test_name);
     echo '<br/>';
+    echo 'Test Completed';
   }
 
   /**

@@ -121,12 +121,14 @@ class Crons extends CI_Controller
 										$asset_data = @file_get_contents($file_path );
 										if (isset($asset_data) && !empty($asset_data))
 										{
-											
 											$asset_xml_data = @simplexml_load_string($asset_data);
 											$asset_d = xmlObjToArr($asset_xml_data);
 											$asset_id=$this->assets_model->insert_assets(array("stations_id"=>$station_data->id,"created"=>date("Y-m-d H:i:s")));
-											if (!isset($asset_d['attributes']['version']) || $asset_d['attributes']['version'] == '1.3')
+											echo "Current Version " .$asset_d['attributes']['version']." \n ";
+
+											if (!isset($asset_d['attributes']['version']) || empty($asset_d['attributes']['version']) || $asset_d['attributes']['version'] == '1.3')
 											{
+												echo "\n in Process \n";
 												$asset_children = $asset_d['children'];
 												if(isset($asset_children))
 												{

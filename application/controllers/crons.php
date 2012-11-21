@@ -103,6 +103,8 @@ class Crons extends CI_Controller
 						{
 							foreach ($data_files as $d_file)
 							{
+								$this->db->where('id',$d_file->id);
+								$this->db->update('process_pbcore_data',array("processed_start_at"=>date('Y-m-d H:i:s')));
 								if ($d_file->is_processed == 0)
 								{
 									$file_path = '';
@@ -144,9 +146,7 @@ class Crons extends CI_Controller
 												unset($asset_xml_data);
 												unset($asset_data);
 												$this->db->where('id',$d_file->id);
-												$this->db->update('process_pbcore_data',array('is_processed'=>1));
-												echo $this->db->last_query();
-												echo "<br/>\n<br/>";
+												$this->db->update('process_pbcore_data',array('is_processed'=>1,"processed_at"=>date('Y-m-d H:i:s')));
 											}
 										
 										

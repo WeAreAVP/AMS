@@ -69,10 +69,10 @@
 			?>
             <tr>
              <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag "></i></td>
-     <th>AA GUID</th>
-     <td style="vertical-align:middle;font-weight:bold">Local ID</td>
-     <td style="vertical-align:middle;font-weight:bold">Title</td>
-     <td style="vertical-align:middle;font-weight:bold">Description</td>
+     <th style="width:30%">AA GUID</th>
+     <td style="vertical-align:middle;font-weight:bold;width:30%">Local ID</td>
+     <td style="vertical-align:middle;font-weight:bold;width:15%">Title</td>
+     <td style="vertical-align:middle;font-weight:bold;">Description</td>
 
      </tr>
      <tbody>
@@ -80,7 +80,7 @@
 			foreach($assets as $asset)
 			{
 				$aa_guid=$this->assets_model->get_aa_guid_by_asset_id($asset->id);
-				$local_id=$this->assets_model->get_local_id_by_asset_id($asset->id);
+				$local_ids=$this->assets_model->get_local_id_by_asset_id($asset->id);
 				$asset_description=$this->assets_model->get_descriptions_by_asset_id($asset->id);
 				$asset_title=$this->assets_model->get_title_by_asset_id($asset->id);			
 		?>
@@ -95,8 +95,13 @@
 			}else{echo 'N/A';}
 			?></td>
       <td><?php 
-			if($local_id){
-				echo $local_id;
+			if($local_ids){
+				$locals=array();
+				foreach($local_ids as $local_id)
+				{
+				  $locals[]=$local_id->identifier;
+				}
+				echo implode(" | ",$locals);
 			}else{echo 'N/A';}
 			?></td>
       <td><p><?php 

@@ -121,12 +121,14 @@ class Crons extends CI_Controller
 										$asset_data = @file_get_contents($file_path );
 										if (isset($asset_data) && !empty($asset_data))
 										{
-											
 											$asset_xml_data = @simplexml_load_string($asset_data);
 											$asset_d = xmlObjToArr($asset_xml_data);
 											$asset_id=$this->assets_model->insert_assets(array("stations_id"=>$station_data->id,"created"=>date("Y-m-d H:i:s")));
-											if (!isset($asset_d['attributes']['version']) || $asset_d['attributes']['version'] == '1.3')
+											echo "Current Version " .$asset_d['attributes']['version']." \n ";
+
+											if (!isset($asset_d['attributes']['version']) || empty($asset_d['attributes']['version']) || $asset_d['attributes']['version'] == '1.3')
 											{
+												echo "\n in Process \n";
 												$asset_children = $asset_d['children'];
 												if(isset($asset_children))
 												{
@@ -614,7 +616,8 @@ class Crons extends CI_Controller
 			foreach ($asset_children['pbcoreidentifier'] as $pbcoreidentifier)
 			{
 				$identifier_d = array();
-				if (isset($pbcoreidentifier['children']['identifier'][0]))
+				//As Identfier is Required and based on identifiersource so apply following checks 
+				if (isset($pbcoreidentifier['children']['identifier'][0]['text']) && !empty($pbcoreidentifier['children']['identifier'][0]['text']))
 				{
 					$identifier_d['assets_id'] = $asset_id;
 					$identifier_d['identifier'] = $pbcoreidentifier['children']['identifier'][0]['text'];
@@ -622,9 +625,10 @@ class Crons extends CI_Controller
 					if(isset($pbcoreidentifier['children']['identifiersource'][0]['text']) && !empty($pbcoreidentifier['children']['identifiersource'][0]['text']))
 					{
 						$identifier_d['identifier_source'] = $pbcoreidentifier['children']['identifiersource'][0]['text'];
+						$this->assets_model->insert_identifiers($identifier_d);
 					}
 					//print_r($identifier_d);	
-					$this->assets_model->insert_identifiers($identifier_d);
+					
 				}
 			}
 		}	
@@ -636,11 +640,12 @@ class Crons extends CI_Controller
 			foreach ($asset_children['pbcoretitle'] as $pbcoretitle)
 			{
 				$pbcore_title_d = array();
-				if (isset($pbcoretitle['children']['title'][0]))
+				if (isset($pbcoretitle['children']['title'][0]['text']) && !empty($pbcoretitle['children']['title'][0]['text']))
 				{						
 					$pbcore_title_d['assets_id'] = $asset_id;
 					$pbcore_title_d['title'] = $pbcoretitle['children']['title'][0]['text'];
-					if (isset($pbcoretitle['children']['titletype'][0]['text']))
+					// As this Field is not required so this can be empty
+					if(isset($pbcoretitle['children']['titletype'][0]['text']) && !empty($pbcoretitle['children']['titletype'][0]['text']))
 					{
 						$asset_title_types = $this->assets_model->get_asset_title_types_by_title_type($pbcoretitle['children']['titletype'][0]['text']);
 						if ($asset_title_types)
@@ -651,15 +656,14 @@ class Crons extends CI_Controller
 						{
 							$asset_title_types_id = $this->assets_model->insert_asset_title_types(array("title_type" => $pbcoretitle['children']['titletype'][0]['text']));
 						}
-						$pbcore_title_d['asset_title_types_id'] = $asset_title_types_id;
-						$pbcore_title_d['created'] = date('Y-m-d H:i:s');
-						//For 2.0 
-						// $pbcore_title_d['title_source'] 
-						// $pbcore_title_d['title_ref']
-						//print_r($pbcore_title_d);	
-						$this->assets_model->insert_asset_titles($pbcore_title_d);
+						$pbcore_title_d['asset_title_types_id'] = $asset_title_types_id; 
 					}
-					
+					$pbcore_title_d['created'] = date('Y-m-d H:i:s');
+					//For 2.0 
+					// $pbcore_title_d['title_source'] 
+					// $pbcore_title_d['title_ref']
+					//print_r($pbcore_title_d);	
+					$this->assets_model->insert_asset_titles($pbcore_title_d);
 				}
 			}
 		}
@@ -674,7 +678,7 @@ class Crons extends CI_Controller
 				if (isset($pbcore_subject['children']['subject'][0]))
 				{
 					$pbcoreSubject_d['assets_id'] = $asset_id;
-					if (isset($pbcore_subject['children']['subject'][0]['text']))
+					if (isset($pbcore_subject['children']['subject'][0]['text']) && !empty($pbcore_subject['children']['subject'][0]['text']))
 					{
 						$subjects = $this->assets_model->get_subjects_id_by_subject($pbcore_subject['children']['subject'][0]['text']);
 						if ($subjects)
@@ -688,7 +692,7 @@ class Crons extends CI_Controller
 							$subject_d=array();
 							$subject_d['subject']=$pbcore_subject['children']['subject'][0]['text'];
 							$subject_d['subject_source']='';																
-							if(isset($pbcore_subject['children']['subjectauthorityused'][0]['text']))
+							if(isset($pbcore_subject['children']['subjectauthorityused'][0]['text']) && !empty($pbcore_subject['children']['subjectauthorityused'][0]['text']))
 							{
 								$subject_d['subject_source']=$pbcore_subject['children']['subjectauthorityused'][0]['text'];
 							}
@@ -709,11 +713,11 @@ class Crons extends CI_Controller
 			foreach ($asset_children['pbcoredescription'] as $pbcore_description)
 			{
 				$asset_descriptions_d = array();
-				if (isset($pbcore_description['children']['description'][0]))
+				if (isset($pbcore_description['children']['description'][0]['text']) && !empty($pbcore_description['children']['description'][0]['text']))
 				{
 					$asset_descriptions_d['assets_id'] = $asset_id;
 					$asset_descriptions_d['description'] = $pbcore_description['children']['description'][0]['text'];
-					if (isset($pbcoretitle['children']['descriptiontype'][0]['text']))
+					if (isset($pbcoretitle['children']['descriptiontype'][0]['text']) && !empty($pbcoretitle['children']['descriptiontype'][0]['text']))
 					{
 						$asset_description_type = $this->assets_model->get_description_by_type($pbcoretitle['children']['descriptiontype'][0]['text']);
 						if ($asset_description_type)
@@ -744,14 +748,14 @@ class Crons extends CI_Controller
 				$asset_genre_d = array();
 				$asset_genre = array();
 				$asset_genre['assets_id'] = $asset_id;
-				if (isset($pbcore_genre['children']['genre'][0]))
+				if (isset($pbcore_genre['children']['genre'][0]) && !empty($pbcore_genre['children']['genre'][0]['text']))
 				{
 				
 					$asset_genre_d['genre'] = $pbcore_genre['children']['genre'][0]['text'];
 					$asset_genre_type = $this->assets_model->get_genre_type($asset_genre_d['genre']);
 					if ($asset_genre_type)
 					{
-					$asset_genre['genres_id'] = $asset_genre_type->id;
+						$asset_genre['genres_id'] = $asset_genre_type->id;
 					}
 					else
 					{
@@ -775,7 +779,7 @@ class Crons extends CI_Controller
 			{
 				$coverage = array();
 				$coverage['assets_id'] = $asset_id;
-				if (isset($pbcore_coverage['children']['coverage'][0]))
+				if (isset($pbcore_coverage['children']['coverage'][0]) && !empty($pbcore_coverage['children']['coverage'][0]['text']))
 				{
 					$coverage['coverage'] = $pbcore_coverage['children']['coverage'][0]['text'];
 					if (isset($pbcore_coverage['children']['coveragetype'][0]))
@@ -796,7 +800,7 @@ class Crons extends CI_Controller
 				$audience_level = array();
 				$asset_audience_level = array();
 				$asset_audience_level['assets_id'] = $asset_id;
-				if (isset($pbcore_aud_level['children']['audiencelevel'][0]))
+				if (isset($pbcore_aud_level['children']['audiencelevel'][0]) && !empty($pbcore_aud_level['children']['audiencelevel'][0]['text']))
 				{
 					$audience_level['audience_level'] = $pbcore_aud_level['children']['audiencelevel'][0]['text'];
 					$db_audience_level = $this->assets_model->get_audience_level($audience_level['audience_level']);
@@ -823,7 +827,7 @@ class Crons extends CI_Controller
 				$audience_rating = array();
 				$asset_audience_rating = array();
 				$asset_audience_rating['assets_id'] = $asset_id;
-				if (isset($pbcore_aud_rating['children']['audiencerating'][0]))
+				if (isset($pbcore_aud_rating['children']['audiencerating'][0]) && !empty($pbcore_aud_rating['children']['audiencerating'][0]['text']))
 				{
 					$audience_rating['audience_rating'] = $pbcore_aud_rating['children']['audiencerating'][0]['text'];
 					$db_audience_rating = $this->assets_model->get_audience_rating($audience_rating['audience_rating']);
@@ -849,7 +853,7 @@ class Crons extends CI_Controller
 			{
 				$annotation = array();
 				$annotation['assets_id'] = $asset_id;
-				if (isset($pbcore_annotation['children']['annotation'][0]))
+				if (isset($pbcore_annotation['children']['annotation'][0]) && !empty($pbcore_annotation['children']['annotation'][0]['text']))
 				{
 					$annotation['annotation'] = $pbcore_annotation['children']['annotation'][0]['text'];
 					$asset_annotation = $this->assets_model->insert_annotation($annotation);
@@ -867,7 +871,7 @@ class Crons extends CI_Controller
 				$assets_relation = array();
 				$assets_relation['assets_id'] = $asset_id;
 				$relation_types = array();
-				if (isset($pbcore_relation['children']['relationtype'][0]))
+				if (isset($pbcore_relation['children']['relationtype'][0]['text']) && !empty($pbcore_relation['children']['relationtype'][0]['text']))
 				{
 					$relation_types['relation_type'] = $pbcore_relation['children']['relationtype'][0]['text'];
 					$db_relations = $this->assets_model->get_relation_types($relation_types['relation_type']);
@@ -900,7 +904,7 @@ class Crons extends CI_Controller
 				$assets_creators_roles_d['assets_id'] = $asset_id;
 				$creator_d = array();
 				$creator_role = array();
-				if (isset($pbcore_creator['children']['creator'][0]))
+				if (isset($pbcore_creator['children']['creator'][0]['text']) && !empty($pbcore_creator['children']['creator'][0]['text']))
 				{
 					$creator_d=$this->assets_model->get_creator_by_creator_name($pbcore_creator['children']['creator'][0]['text']);
 					if($creator_d)
@@ -913,7 +917,7 @@ class Crons extends CI_Controller
 						$assets_creators_roles_d['creators_id']=$this->assets_model->insert_creators(array('creator_name'=>$pbcore_creator['children']['creator'][0]['text']));
 					}
 				}
-				if (isset($pbcore_creator['children']['creatorrole'][0]))
+				if (isset($pbcore_creator['children']['creatorrole'][0]) && !empty($pbcore_creator['children']['creatorrole'][0]['text']))
 				{
 					$creator_role=$this->assets_model->get_creator_role_by_role($pbcore_creator['children']['creatorrole'][0]['text']);
 					if($creator_role)
@@ -954,7 +958,7 @@ class Crons extends CI_Controller
 						$assets_contributors_d['contributors_id']=$this->assets_model->insert_contributors(array('contributor_name'=>$pbcore_contributor['children']['contributor'][0]['text']));
 					}
 				}
-				if (isset($pbcore_contributor['children']['contributorrole'][0]))
+				if (isset($pbcore_contributor['children']['contributorrole'][0]) && !empty($pbcore_contributor['children']['contributorrole'][0]['text']))
 				{
 					$contributor_role=$this->assets_model->get_contributor_role_by_role($pbcore_contributor['children']['contributorrole'][0]['text']);
 					if($contributor_role)
@@ -981,7 +985,7 @@ class Crons extends CI_Controller
 				$assets_publisher_d['assets_id'] = $asset_id;
 				$publisher_d = array();
 				$publisher_role = array();
-				if (isset($pbcore_publisher['children']['publisher'][0]))
+				if (isset($pbcore_publisher['children']['publisher'][0]) && !empty($pbcore_publisher['children']['publisher'][0]['text']))
 				{
 					$publisher_d=$this->assets_model->get_publishers_by_publisher($pbcore_publisher['children']['publisher'][0]['text']);
 					if($publisher_d)
@@ -995,7 +999,7 @@ class Crons extends CI_Controller
 					}
 					//Insert Data into asset_description
 				}
-				if (isset($pbcore_publisher['children']['publisherrole'][0]))
+				if (isset($pbcore_publisher['children']['publisherrole'][0]) && !empty($pbcore_publisher['children']['publisherrole'][0]['text']))
 				{
 					$publisher_role=$this->assets_model->get_publisher_role_by_role($pbcore_publisher['children']['publisherrole'][0]['text']);
 					if($publisher_role)
@@ -1021,7 +1025,7 @@ class Crons extends CI_Controller
 			{
 				$rights_summary_d = array();
 				$rights_summary_d['assets_id'] = $asset_id;
-				if (isset($pbcore_rights_summary['children']['rightssummary'][0]))
+				if (isset($pbcore_rights_summary['children']['rightssummary'][0]) && !empty($pbcore_rights_summary['children']['rightssummary'][0]['text']))
 				{
 					$rights_summary_d['rights'] = $pbcore_rights_summary['children']['rightssummary'][0]['text'];
 					//print_r($rights_summary_d);

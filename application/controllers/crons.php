@@ -290,7 +290,7 @@ class Crons extends CI_Controller
 					{
 						$instantiations_d['alternative_modes']=$pbcoreinstantiation_child['alternativemodes'][0]['text'];
 					}
-					
+					$instantiations_d['created']=date("Y-m-d H:i:s");
 					$instantiations_id=$this->instant->insert_instantiations($instantiations_d);
 					
 					//pbcoreInstantiation End

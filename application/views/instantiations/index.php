@@ -16,7 +16,7 @@
         </div>
     </div>
     <div  class="span9">
-        <div style="text-align: right;width: 860px;"><strong><?php echo $total; ?></strong></div>
+        <div style="text-align: right;width: 860px;"><strong><?php echo $total; ?></strong><a class="btn"><i class="icon-chevron-left"></i></a><a class="btn"><i class="icon-chevron-right"></i></a></div>
         <div style="overflow: auto;width:865px;" id="instantiation-main">
             <table class="tablesorter table table-bordered">
                 <thead>

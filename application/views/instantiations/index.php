@@ -53,8 +53,8 @@
                                 <td><?php echo ($value->file_size == 0) ? 'N/A' : $value->file_size; ?></td>
                                 <td><?php echo ($value->file_size_unit_of_measure) ? $value->file_size_unit_of_measure : 'N/A'; ?></td>
                                 <td><?php echo ($value->actual_duration) ? $value->actual_duration : 'N/A'; ?></td>
-                                <td><?php echo $value->color; ?></td>
-                                <td><?php echo $value->language; ?></td>
+                                <td><?php echo ($value->color) ? $value->color : 'N/A'; ?></td>
+                                <td><?php echo ($value->language) ? $value->language : 'N/A'; ?></td>
 
                             </tr>
                             <?php

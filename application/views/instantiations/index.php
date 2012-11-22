@@ -52,7 +52,7 @@
                                 <td><?php echo $value->format_type; ?></td>
                                 <td><?php echo ($value->file_size == 0) ? 'N/A' : $value->file_size; ?></td>
                                 <td><?php echo ($value->file_size_unit_of_measure) ? $value->file_size_unit_of_measure : 'N/A'; ?></td>
-                                <td><?php echo ($value->actual_duration == 0) ? 'No Source Date' : date('H:m:i', $value->actual_duration); ?><</td>
+                                <td><?php echo ($value->actual_duration) ? $value->actual_duration : 'N/A'; ?></td>
                                 <td><?php echo $value->color; ?></td>
                                 <td><?php echo $value->language; ?></td>
 

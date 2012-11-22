@@ -27,7 +27,6 @@
                         <th>Source Date</th>
                         <th>Date Type</th>
                         <th>Format Type</th>
-                        <th></th>
                         <th>file size</th>
                         <th>Unit of measure</th>
                         <th>Duration</th>
@@ -36,21 +35,36 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <?php
+                    if (count($records) > 0)
+                    {
+                        foreach ($records as $key => $value)
+                        {
+                            ?>
+                            <tr>
+                                <td><?php echo $value->asset_id; ?></td>
+                                <td><?php echo $value->organization; ?></td>
+                                <td><?php echo $value->asset_title; ?></td>
+                                <td><?php echo $value->id; ?></td>
+                                <td><?php echo $value->instantiation_date; ?></td>
+                                <td><?php echo $value->date_type; ?></td>
+                                <td><?php echo $value->format_type; ?></td>
+                                <td><?php echo $value->file_size; ?></td>
+                                <td><?php echo $value->file_size_unit_of_measure; ?></td>
+                                <td><?php echo $value->actual_duration; ?></td>
+                                <td><?php echo $value->color; ?></td>
+                                <td><?php echo $value->language; ?></td>
+
+                            </tr>
+                            <?php
+                        }
+                    } else
+                    {
+                        ?>
+                        <tr>
+                            <td colspan="12">No instantiation record found.</td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
 
             </table>

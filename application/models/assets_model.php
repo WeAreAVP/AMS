@@ -153,7 +153,6 @@ class Assets_Model extends CI_Model
         
         $this->db->select("$this->_assets_table.id as asset_id", FALSE);
         $this->db->select("$this->_table_identifiers.identifier as guid_identifier", FALSE);
-        
         $this->db->select("GROUP_CONCAT(local.identifier SEPARATOR ' | ') as local_identifier", FALSE);
         $this->db->select("$this->_table_asset_descriptions.description", FALSE);
         $this->db->select("$this->_table_asset_titles.title", FALSE);
@@ -163,12 +162,16 @@ class Assets_Model extends CI_Model
         $this->db->join($this->_table_identifiers, "$this->_table_identifiers.assets_id = $this->_assets_table.id",'left');
         $this->db->join($this->_table_asset_descriptions, "$this->_table_asset_descriptions.assets_id = $this->_assets_table.id",'left');
         $this->db->join($this->_table_asset_titles, "$this->_table_asset_titles.assets_id = $this->_assets_table.id",'left');
+        
         $this->db->where("$this->_table_identifiers.identifier_source","http://americanarchiveinventory.org");
         $this->db->where("local.identifier_source !=","http://americanarchiveinventory.org");
+        
         $this->db->limit(100);
+        
         $this->db->group_by("$this->_assets_table.id");
+        
         $result = $this->db->get($this->_assets_table)->result();
-        echo '<pre>';print_r($result);exit;
+        echo $this->db->last_query();exit;
         return $result;
         
         

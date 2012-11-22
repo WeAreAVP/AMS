@@ -62,7 +62,7 @@ class Instantiations_Model extends CI_Model
         $this->db->join($this->table_instantiation_formats, "$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id",'left');
         $this->db->join($this->table_instantiation_colors, "$this->table_instantiation_colors.id = $this->table_instantiations.instantiation_colors_id",'left');
         $this->db->limit(10);
-        $this->group_by("$this->_assets_table.id");
+        $this->db->group_by("$this->_assets_table.id");
         $result = $this->db->get($this->table_instantiations)->result();
         
         return $result;

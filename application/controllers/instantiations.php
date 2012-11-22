@@ -30,7 +30,7 @@ class Instantiations extends MY_Controller
      */
     public function index()
     {
-        
+        $this->load->view('instantiations/index');
     }
 
     public function detail()

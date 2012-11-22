@@ -23,6 +23,7 @@ class Instantiations extends MY_Controller
         $this->layout = 'main_layout.php';
         $this->load->model('instantiations_model', 'instantiation');
     }
+
     /**
      * 
      * 
@@ -31,15 +32,11 @@ class Instantiations extends MY_Controller
     {
         
     }
+
     public function detail()
     {
         
     }
-
-    
-
-   
-   
 
 }
 

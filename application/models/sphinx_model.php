@@ -96,6 +96,7 @@ class Sphinx_Model extends CI_Model
 
     function instantiations_list($params, $offset = 0, $limit = 100)
     {
+//        /usr/bin/indexer --all --rotate
         $instantiations=array();
         $total_record = 0;
         $this->sphinxsearch->reset_filters();

@@ -26,8 +26,8 @@
                         <th>Instantiation ID</th>
                         <th>Source Date</th>
                         <th>Date Type</th>
-                        <th>Physical format</th>
-                        <th>digital format</th>
+                        <th>Format Type</th>
+                        <th></th>
                         <th>file size</th>
                         <th>Unit of measure</th>
                         <th>Duration</th>

@@ -33,7 +33,7 @@ class Instantiations_Model extends CI_Model
         $this->table_instantiation_media_types = 'instantiation_media_types';
         $this->table_instantiation_generations = 'instantiation_generations';
         $this->table_instantiation_annotations = 'instantiation_annotations';
-        
+
         $this->_assets_table = 'assets';
         $this->asset_titles = 'asset_titles';
         $this->stations = 'stations';
@@ -45,9 +45,21 @@ class Instantiations_Model extends CI_Model
         $this->db->select("$this->_assets_table.id as asset_id", FALSE);
         $this->db->select("$this->asset_titles.title AS asset_title", FALSE);
         $this->db->select("$this->stations.station_name", FALSE);
+        $this->db->select("$this->table_instantiation_dates.instantiation_date", FALSE);
+        $this->db->select("$this->table_date_types.date_type", FALSE);
+        $this->db->select("$this->table_instantiation_media_types.media_type", FALSE);
+        $this->db->select("$this->table_instantiation_formats.format_type", FALSE);
+        $this->db->select("$this->table_instantiation_colors.color", FALSE);
+        
+        
         $this->db->join($this->_assets_table, "$this->_assets_table.id = $this->table_instantiations.assets_id");
         $this->db->join($this->asset_titles, "$this->asset_titles.assets_id	 = $this->table_instantiations.assets_id");
-        $this->db->join($this->stations, "$this->stations.id = $this->_assets_table.stations_id	");
+        $this->db->join($this->stations, "$this->stations.id = $this->_assets_table.stations_id");
+        $this->db->join($this->table_instantiation_dates, "$this->table_instantiation_dates.instantiations_id = $this->table_instantiations.id");
+        $this->db->join($this->table_date_types, "$this->table_date_types.id = $this->table_instantiation_dates.date_types_id");
+        $this->db->join($this->table_instantiation_media_types, "$this->table_instantiation_media_types.id = $this->table_instantiations.instantiation_media_type_id");
+        $this->db->join($this->table_instantiation_formats, "$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id");
+        $this->db->join($this->table_instantiation_colors, "$this->table_instantiation_colors.id = $this->table_instantiations.instantiation_colors_id");
         $this->db->limit(10);
         $result = $this->db->get($this->table_instantiations)->result();
         return $result;

@@ -37,7 +37,7 @@ class Stations extends MY_Controller
      */
     public function index()
     {
-//        echo '<pre>';print_r(current_url());exit;
+
         $param = array('search_kewords' => '', 'certified' => '', 'agreed' => '');
         $value = $this->form_validation;
         $value->set_rules('search_keyword', 'Search Keyword', 'trim|xss_clean');

@@ -32,9 +32,11 @@ class Instantiations extends MY_Controller
     public function index()
     {
         $param = array('search' => '');
-        $records = $this->sphinx->instantiations_list($param);
-        echo '<pre>';print_r($records);exit;
+//        $records = $this->sphinx->instantiations_list($param);
+//        echo '<pre>';print_r($records);exit;
+        // List all the instantiations records active records
         $data['records'] = $this->instantiation->list_all();
+         echo '<pre>';print_r($data['records']);exit;
         $this->load->view('instantiations/index', $data);
     }
 

@@ -14,7 +14,7 @@ class Instantiations extends MY_Controller
     /**
      * Constructor
      * 
-     * Load the layout and Instantiations model
+     * Load the layout, Instantiations model,sphinx_model
      * 
      */
     function __construct()

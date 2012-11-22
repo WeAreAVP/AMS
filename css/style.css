@@ -263,8 +263,8 @@ html, body {
 #search-bar{float:right;}
 .input{width:800px;}
 .form-1{margin:0 !important;}
-.table{margin-top:15px}
-.table th{font-size:15px}
+/*.table{margin-top:15px}*/
+/*.table th{font-size:15px}*/
 .disabled-field{background:#D6D5D4;width:790px;float:left;padding:10px;border-radius:3px;margin-bottom:10px}
 .button-submit{float:left;}.black-btn{padding:5px}
 .btn-group{margin:0 0 10px 0 !important}

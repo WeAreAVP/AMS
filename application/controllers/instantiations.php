@@ -22,6 +22,7 @@ class Instantiations extends MY_Controller
         parent::__construct();
         $this->layout = 'main_layout.php';
         $this->load->model('instantiations_model', 'instantiation');
+        $this->load->model('sphinx_model', 'sphinx');
     }
 
     /**
@@ -30,6 +31,9 @@ class Instantiations extends MY_Controller
      */
     public function index()
     {
+        $param = array('search' => '');
+        $records = $this->sphinx->instantiations_list($param);
+        echo '<pre>';print_r($records);exit;
         $data['records'] = $this->instantiation->list_all();
         $this->load->view('instantiations/index', $data);
     }

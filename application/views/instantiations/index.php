@@ -44,7 +44,7 @@
                             <tr>
                                 <td><?php echo $value->asset_id; ?></td>
                                 <td><?php echo $value->organization; ?></td>
-                                <td><?php echo $value->title; ?></td>
+                                <td><?php echo $value->asset_title; ?></td>
                                 <td><?php echo $value->id; ?></td>
                                 <td><?php echo $value->instantiation_date; ?></td>
                                 <td><?php echo $value->date_type; ?></td>

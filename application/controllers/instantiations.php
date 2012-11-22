@@ -30,7 +30,7 @@ class Instantiations extends MY_Controller
      */
     public function index()
     {
-        $records=$this->instantiation->list_all(10,1);
+        $records=$this->instantiation->list_all(10,0);
         echo '<pre>';print_r($records);exit;
         $this->load->view('instantiations/index');
     }

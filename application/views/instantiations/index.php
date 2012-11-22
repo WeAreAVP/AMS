@@ -16,8 +16,8 @@
         </div>
     </div>
     <div  class="span9">
-        <div style="overflow: auto;height: 600px;" id="instantiation-main">
-            <table class="tablesorter table table-bordered" style="width:850px;overflow: scroll;">
+        <div style="overflow: auto;width:800px;" id="instantiation-main">
+            <table class="tablesorter table table-bordered">
                 <thead>
                     <tr>
                         <th style="width: 60px;">Asset ID</th>

@@ -16,7 +16,7 @@
         </div>
     </div>
     <div  class="span9">
-        <div style="text-align: right;"><?php echo $total_count; ?></div>
+        <div style="text-align: right;"><?php echo $total; ?></div>
         <div style="overflow: auto;width:865px;" id="instantiation-main">
             <table class="tablesorter table table-bordered">
                 <thead>

@@ -110,6 +110,7 @@
                 <li class="<?php echo active_anchor('dashboard', 'index'); ?>"><a href="<?php echo site_url('dashboard/index') ?>">Dashboard</a></li>
   <?php } ?>
               <li class="<?php echo active_anchor('records', 'index'); ?>"><a href="<?php echo site_url('records/index') ?>">Assets</a></li>
+              <li class="<?php echo active_anchor('instantiations', 'index'); ?>"><a href="<?php echo site_url('instantiations/index') ?>">Instantiations</a></li>
 
               <li class="<?php echo active_anchor('stations', array('index', 'detail')); ?>"><a href="<?php echo site_url('stations/index') ?>">Stations</a></li>
               <li class="<?php echo active_anchor('reports', 'index'); ?>"><a href="<?php echo site_url('reports/index') ?>">Reports</a></li>

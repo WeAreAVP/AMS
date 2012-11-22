@@ -48,6 +48,10 @@ class Instantiations extends MY_Controller
         $config['prev_link'] = 'Pre';
         $config['next_link'] = 'Next';
         $config['use_page_numbers'] = FALSE;
+        $config['num_links'] = 0;
+        $config['first_link'] =FALSE;
+        $config['last_link'] = FALSE;
+        $config['display_pages'] = FALSE;
         $this->pagination->initialize($config);
         $this->load->view('instantiations/index', $data);
     }

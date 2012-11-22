@@ -20,18 +20,18 @@
             <table class="tablesorter table table-bordered">
                 <thead>
                     <tr>
-                        <th><span style="width: 100px;">Asset ID</span></th>
-                        <th><span style="width: 100px;">Organization</span></th>
-                        <th><span style="width: 100px;">Asset Title</span></th>
-                        <th><span style="width: 100px;">Instantiation ID</span></th>
-                        <th><span style="width: 100px;">Source Date</span></th>
-                        <th><span style="width: 100px;">Date Type</span></th>
-                        <th><span style="width: 100px;">Format Type</span></th>
-                        <th><span style="width: 100px;">File size</span></th>
-                        <th><span style="width: 100px;">Unit of measure</span></th>
-                        <th><span style="width: 100px;">Duration</span></th>
-                        <th><span style="width: 100px;">Colors</span></th>
-                        <th><span style="width: 100px;">Language</span></th>
+                        <th><span style="float:left;min-width: 100px;">Asset ID</span></th>
+                        <th><span style="float:left;min-width: 100px;">Organization</span></th>
+                        <th><span style="float:left;min-width: 100px;">Asset Title</span></th>
+                        <th><span style="float:left;min-width: 100px;">Instantiation ID</span></th>
+                        <th><span style="float:left;min-width: 100px;">Source Date</span></th>
+                        <th><span style="float:left;min-width: 100px;">Date Type</span></th>
+                        <th><span style="float:left;min-width: 100px;">Format Type</span></th>
+                        <th><span style="float:left;min-width: 100px;">File size</span></th>
+                        <th><span style="float:left;min-width: 100px;">Unit of measure</span></th>
+                        <th><span style="float:left;min-width: 100px;">Duration</span></th>
+                        <th><span style="float:left;min-width: 100px;">Colors</span></th>
+                        <th><span style="float:left;min-width: 100px;">Language</span></th>
                     </tr>
                 </thead>
                 <tbody>

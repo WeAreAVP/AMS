@@ -40,7 +40,7 @@ class Instantiations extends MY_Controller
 
 }
 
-// END Tracking Controller
+// END Instantiations Controller
 
 /* End of file instantiations.php */
 /* Location: ./application/controllers/instantiations.php */

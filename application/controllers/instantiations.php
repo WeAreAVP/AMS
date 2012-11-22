@@ -45,11 +45,13 @@ class Instantiations extends MY_Controller
         $data['count'] = count($data['records']);
         // List all the instantiations records active records
 //        $data['records'] = $this->instantiation->list_all();
-        $config['prev_link'] = 'Pre';
+        $config['prev_link'] = '';
+        $config['prev_tag_open'] = '<span class="btn"><i class="icon-chevron-left"></i>';
+        $config['prev_tag_close'] = '</span>';
         $config['next_link'] = 'Next';
         $config['use_page_numbers'] = FALSE;
 //        $config['num_links'] = 0;
-        $config['first_link'] =FALSE;
+        $config['first_link'] = FALSE;
         $config['last_link'] = FALSE;
         $config['display_pages'] = FALSE;
         $this->pagination->initialize($config);

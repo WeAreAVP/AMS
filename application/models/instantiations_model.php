@@ -48,7 +48,7 @@ class Instantiations_Model extends CI_Model
         $this->db->join($this->_assets_table, "$this->_assets_table.id = $this->table_instantiations.assets_id");
         $this->db->join($this->asset_titles, "$this->asset_titles.assets_id	 = $this->table_instantiations.assets_id");
         $this->db->join($this->stations, "$this->stations.id = $this->_assets_table.stations_id	");
-        $this->limit(10);
+        $this->db->limit(10);
         $result = $this->db->get($this->table_instantiations)->result();
         return $result;
     }

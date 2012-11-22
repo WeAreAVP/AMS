@@ -144,12 +144,12 @@ class Assets_Model extends CI_Model
 	*/
 	function get_all()
 	{
-//		$sql="SELECT DISTINCT ast.id AS ast_id, ast . * FROM {$this->_assets_table} ast INNER JOIN {$this->_table_identifiers} idt ON ast.id=idt.assets_id LIMIT 100 ";
-//		$res=$this->db->query($sql);
-//		if(isset($res) && !empty($res))
-//		{
-//			return $res->result();
-//		}return false;
+		$sql="SELECT DISTINCT ast.id AS ast_id, ast . * FROM {$this->_assets_table} ast INNER JOIN {$this->_table_identifiers} idt ON ast.id=idt.assets_id LIMIT 100 ";
+		$res=$this->db->query($sql);
+		if(isset($res) && !empty($res))
+		{
+			return $res->result();
+		}return false;
         
         $this->db->select("$this->_assets_table.id as asset_id", FALSE);
         $this->db->select("$this->_table_identifiers.identifier as guid_identifier", FALSE);

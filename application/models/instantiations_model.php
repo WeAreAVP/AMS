@@ -43,8 +43,8 @@ class Instantiations_Model extends CI_Model
     {
         $this->db->select("$this->table_instantiations.*", FALSE);
         $this->db->select("$this->_assets_table.id as asset_id", FALSE);
-//        $this->db->select("GROUP_CONCAT($this->asset_titles.title SEPARATOR ',')", FALSE);
-        $this->db->select("$this->asset_titles.title AS asset_title", FALSE);
+        $this->db->select("GROUP_CONCAT($this->asset_titles.title SEPARATOR ',')", FALSE);
+//        $this->db->select("$this->asset_titles.title AS asset_title", FALSE);
         $this->db->select("$this->stations.station_name as organization", FALSE);
         $this->db->select("$this->table_instantiation_dates.instantiation_date", FALSE);
         $this->db->select("$this->table_date_types.date_type", FALSE);
@@ -64,8 +64,10 @@ class Instantiations_Model extends CI_Model
         $this->db->join($this->table_instantiation_colors, "$this->table_instantiation_colors.id = $this->table_instantiations.instantiation_colors_id",'left');
 //        $this->db->limit($limit,$offset);
         $this->db->limit(10);
+        
         $result = $this->db->get($this->table_instantiations)->result();
-        return $result;
+        
+        return $this->db->last_query();
     }
 
     /**

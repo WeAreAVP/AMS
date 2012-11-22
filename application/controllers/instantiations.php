@@ -38,7 +38,7 @@ class Instantiations extends MY_Controller
 //        }
 
         $data['records'] = $this->instantiation->list_all();
-       
+       echo '<pre>';print_r( $data['records']);exit;
         $this->load->view('instantiations/index', $data);
     }
 

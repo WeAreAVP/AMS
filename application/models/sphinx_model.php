@@ -110,7 +110,7 @@ class Sphinx_Model extends CI_Model
 //            $this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
 
-        $res = $this->sphinxsearch->query($params['search'], 'assets_list');
+        $res = $this->sphinxsearch->query($params['search'], 'instantiations_list');
 
 
         $execution_time = $res['time'];

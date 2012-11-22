@@ -171,7 +171,7 @@ class Assets_Model extends CI_Model
         $this->db->group_by("$this->_assets_table.id");
         
         $result = $this->db->get($this->_assets_table)->result();
-        echo $this->db->last_query();exit;
+        
         return $result;
         
         

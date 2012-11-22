@@ -164,7 +164,7 @@ class Assets_Model extends CI_Model
         $this->db->join($this->_table_asset_titles, "$this->_table_asset_titles.assets_id = $this->_assets_table.id",'left');
         $this->db->where("$this->_table_identifiers.identifier_source","http://americanarchiveinventory.org");
         $this->db->limit(100);
-        
+        $this->db->group_by("$this->_assets_table.id");
         $result = $this->db->get($this->_assets_table)->result();
         echo '<pre>';print_r($result);exit;
         return $result;

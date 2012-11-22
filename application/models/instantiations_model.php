@@ -47,7 +47,7 @@ class Instantiations_Model extends CI_Model
         $this->db->select("$this->stations.station_name", FALSE);
         $this->db->select("$this->table_instantiation_dates.instantiation_date", FALSE);
         $this->db->select("$this->table_date_types.date_type", FALSE);
-        $this->db->select("$this->table_instantiation_media_types.media_type", FALSE);
+//        $this->db->select("$this->table_instantiation_media_types.media_type", FALSE);
         $this->db->select("$this->table_instantiation_formats.format_type", FALSE);
         $this->db->select("$this->table_instantiation_colors.color", FALSE);
         
@@ -57,7 +57,7 @@ class Instantiations_Model extends CI_Model
         $this->db->join($this->stations, "$this->stations.id = $this->_assets_table.stations_id");
         $this->db->join($this->table_instantiation_dates, "$this->table_instantiation_dates.instantiations_id = $this->table_instantiations.id");
         $this->db->join($this->table_date_types, "$this->table_date_types.id = $this->table_instantiation_dates.date_types_id");
-        $this->db->join($this->table_instantiation_media_types, "$this->table_instantiation_media_types.id = $this->table_instantiations.instantiation_media_type_id");
+//        $this->db->join($this->table_instantiation_media_types, "$this->table_instantiation_media_types.id = $this->table_instantiations.instantiation_media_type_id");
         $this->db->join($this->table_instantiation_formats, "$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id");
         $this->db->join($this->table_instantiation_colors, "$this->table_instantiation_colors.id = $this->table_instantiations.instantiation_colors_id");
         $this->db->limit(10);

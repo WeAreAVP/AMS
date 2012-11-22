@@ -33,6 +33,7 @@ class Instantiations extends MY_Controller
     {
         $param = array('search' => '');
         $records = $this->sphinx->instantiations_list($param);
+        $data['total']=$records['total_count'];
 //        echo '<pre>';print_r($records);exit;
         $data['records']=$records['records'];
         

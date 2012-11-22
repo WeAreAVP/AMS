@@ -41,4 +41,12 @@ class Records extends MY_Controller
 		{
 			$this->load->view('records/flagged');
 		}
+		/*
+		*To Display Assets details
+		*
+		*/
+		function details()
+		{
+			$this->load->view('records/assets_details');
+		}
 }

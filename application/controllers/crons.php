@@ -1071,6 +1071,7 @@ class Crons extends CI_Controller
 							{
 								$nomination_d['nomination_status_id']=$this->assets_model->insert_nomination_status(array("status"=>$pbcore_extension['children']['extension'][0]['text']));
 							}
+							$nomination_d['created']=date("Y-m-d H:i:s");
 							$this->assets_model->insert_nominations($nomination_d);
 						}						
 					}

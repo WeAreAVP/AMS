@@ -42,7 +42,7 @@
                         {
                             ?>
                             <tr>
-                                <td><?php echo $value->asset_id; ?></td>
+                                <td><?php echo $value->assets_id; ?></td>
                                 <td><?php echo $value->organization; ?></td>
                                 <td><?php echo $value->multi_assets; ?></td>
                                 <td><?php echo $value->id; ?></td>

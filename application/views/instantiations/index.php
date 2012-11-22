@@ -20,18 +20,18 @@
             <table class="tablesorter table table-bordered">
                 <thead>
                     <tr>
-                        <th style="width: 60px;">Asset ID</th>
-                        <th style="width: 90px;">Organization</th>
+                        <th style="width: 100px;">Asset ID</th>
+                        <th style="width: 100px;">Organization</th>
                         <th style="width: 250px;">Asset Title</th>
                         <th style="width: 120px;">Instantiation ID</th>
-                        <th style="width: 95px;">Source Date</th>
-                        <th style="width: 95px;">Date Type</th>
-                        <th style="width: 85px;">Format Type</th>
-                        <th style="width: 95px;">File size</th>
-                        <th style="width: 120px;">Unit of measure</th>
-                        <th style="width: 75px;">Duration</th>
-                        <th style="width: 75px;">Colors</th>
-                        <th style="width: 75px;">Language</th>
+                        <th style="width: 100px;">Source Date</th>
+                        <th style="width: 100px;">Date Type</th>
+                        <th style="width: 100px;">Format Type</th>
+                        <th style="width: 100px;">File size</th>
+                        <th style="width: 100px;">Unit of measure</th>
+                        <th style="width: 100px;">Duration</th>
+                        <th style="width: 100px;">Colors</th>
+                        <th style="width: 100px;">Language</th>
                     </tr>
                 </thead>
                 <tbody>

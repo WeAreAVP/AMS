@@ -33,7 +33,7 @@ class Instantiations extends MY_Controller
     {
         $param = array('search' => '');
         $records = $this->sphinx->instantiations_list($param);
-        echo '<pre>';print_r($records);exit;
+//        echo '<pre>';print_r($records);exit;
         $data['records']=$records['records'];
         
         // List all the instantiations records active records

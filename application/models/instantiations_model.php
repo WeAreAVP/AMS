@@ -43,7 +43,7 @@ class Instantiations_Model extends CI_Model
     {
         $this->db->select("$this->table_instantiations.*", FALSE);
         $this->db->select("$this->_assets_table.id as asset_id", FALSE);
-        $this->db->select("GROUP_CONCAT($this->asset_titles.title SEPARATOR ',') as multi_asset_titles", FALSE);
+        $this->db->select("GROUP_CONCAT($this->asset_titles.title SEPARATOR ',') as $this->asset_titles.title", FALSE);
 //        $this->db->select("$this->asset_titles.title AS asset_title", FALSE);
         $this->db->select("$this->stations.station_name as organization", FALSE);
         $this->db->select("$this->table_instantiation_dates.instantiation_date", FALSE);

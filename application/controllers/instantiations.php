@@ -47,6 +47,7 @@ class Instantiations extends MY_Controller
 //        $data['records'] = $this->instantiation->list_all();
         $config['prev_link'] = 'Pre';
         $config['next_link'] = 'Next';
+        $config['use_page_numbers'] = FALSE;
         $this->pagination->initialize($config);
         $this->load->view('instantiations/index', $data);
     }

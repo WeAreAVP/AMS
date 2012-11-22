@@ -16,7 +16,7 @@
         </div>
     </div>
     <div  class="span9">
-        <div style="overflow: auto;width:800px;" id="instantiation-main">
+        <div id="instantiation-main">
             <table class="tablesorter table table-bordered">
                 <thead>
                     <tr>

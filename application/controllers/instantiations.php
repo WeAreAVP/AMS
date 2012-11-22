@@ -30,15 +30,7 @@ class Instantiations extends MY_Controller
      */
     public function index()
     {
-//        $limit = 10;
-//        $offset = 0;
-//        if (isset($this->uri->segment(3)) && is_numeric($this->uri->segment(3)))
-//        {
-//            $offset = $this->uri->segment(3);
-//        }
-
         $data['records'] = $this->instantiation->list_all();
-       echo '<pre>';print_r( $data['records']);exit;
         $this->load->view('instantiations/index', $data);
     }
 

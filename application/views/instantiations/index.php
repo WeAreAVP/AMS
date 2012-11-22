@@ -20,7 +20,7 @@
             <table class="tablesorter table table-bordered">
                 <thead>
                     <tr>
-                        <th>Asset ID</th>
+                        <th style="width: 45px;">Asset ID</th>
                         <th>Organization</th>
                         <th>Asset Title</th>
                         <th>Instantiation ID</th>

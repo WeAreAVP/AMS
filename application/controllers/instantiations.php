@@ -36,7 +36,7 @@ class Instantiations extends MY_Controller
         $data['total']=$records['total_count'];
 //        echo '<pre>';print_r($records);exit;
         $data['records']=$records['records'];
-        
+        $data['count']=count($data['records']);
         // List all the instantiations records active records
 //        $data['records'] = $this->instantiation->list_all();
         $this->load->view('instantiations/index', $data);

@@ -39,6 +39,8 @@ class Instantiations_Model extends CI_Model
         $this->stations = 'stations';
         $this->table_nominations = 'nominations';
         $this->table_nomination_status = 'nomination_status';
+        $this->table_events = 'events';
+        $this->table_event_types = 'event_types';
     }
 
     function list_all()
@@ -54,6 +56,8 @@ class Instantiations_Model extends CI_Model
         $this->db->select("$this->table_instantiation_colors.color", FALSE);
         $this->db->select("$this->table_generations.generation", FALSE);
         $this->db->select("$this->table_nomination_status.status", FALSE);
+        $this->db->select("$this->table_events.event_outcome", FALSE);
+        $this->db->select("$this->table_event_types.event_type", FALSE);
 
 
 
@@ -70,6 +74,8 @@ class Instantiations_Model extends CI_Model
         $this->db->join($this->table_generations, "$this->table_generations.id = $this->table_instantiation_generations.generations_id", 'left');
         $this->db->join($this->table_nominations, "$this->table_nominations.instantiations_id = $this->table_instantiations.id", 'left');
         $this->db->join($this->table_nomination_status, "$this->table_nomination_status.id = $this->table_nominations.nomination_status_id", 'left');
+        $this->db->join($this->table_events, "$this->table_events.instantiations_id	 = $this->table_instantiations.id", 'left');
+        $this->db->join($this->table_event_types, "$this->table_event_types.id	 = $this->table_events.event_types_id", 'left');
         $this->db->limit(5);
         $this->db->group_by("$this->_assets_table.id");
         $result = $this->db->get($this->table_instantiations)->result();

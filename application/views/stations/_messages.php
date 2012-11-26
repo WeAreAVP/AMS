@@ -113,7 +113,7 @@
             to_name=implode(", ",temp_to_name)
             subject=$("#msg_type option[value='"+type+"']").text();//$('#subject').val();
             confirmBody();                      
-            $('#confirm_anchor').trigger('click');
+            $('#compose_confirm').modal();
             
         }
                                     

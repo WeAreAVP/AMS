@@ -48,7 +48,7 @@ class Instantiations_Model extends CI_Model
         $this->db->select("$this->table_instantiation_dates.instantiation_date", FALSE);
         $this->db->select("$this->table_date_types.date_type", FALSE);
         $this->db->select("$this->table_instantiation_media_types.media_type", FALSE);
-        $this->db->select("$this->table_instantiation_formats.format_type", FALSE);
+        $this->db->select("$this->table_instantiation_formats.format_type,$this->table_instantiation_formats.format_name", FALSE);
         $this->db->select("$this->table_instantiation_colors.color", FALSE);
         
         

@@ -31,24 +31,26 @@ class Instantiations extends MY_Controller
      */
     public function index()
     {
+
         $this->load->library('pagination');
-
-
-
         $param = array('search' => '');
+
         $records = $this->sphinx->instantiations_list($param);
         $data['total'] = $records['total_count'];
         $config['total_rows'] = $data['total'];
         $config['per_page'] = 100;
-//        echo '<pre>';print_r($records);exit;
         $data['records'] = $records['records'];
         $data['count'] = count($data['records']);
+
         // List all the instantiations records active records
 //        $data['records'] = $this->instantiation->list_all();
+        $config['base_url'] = "http://".gethostname()."/instantiations/index/";
         $config['prev_link'] = '';
         $config['prev_tag_open'] = '<span class="btn"><i class="icon-chevron-left"></i>';
         $config['prev_tag_close'] = '</span>';
-        $config['next_link'] = 'Next';
+        $config['next_link'] = '';
+        $config['prev_tag_open'] = '<span class="btn"><i class="icon-chevron-right"></i>';
+        $config['prev_tag_close'] = '</span>';
         $config['use_page_numbers'] = FALSE;
 //        $config['num_links'] = 0;
         $config['first_link'] = FALSE;

@@ -17,9 +17,16 @@ class Assets_Model extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
+		
 		$this->_prefix = '';
+		$this->stations = 'stations';
 		$this->_assets_table = 'assets';
+		$this->_table_asset_dates = 'asset_dates';
+		$this->_table_date_types = 'date_types';
+		
 		$this->_table_asset_types = 'asset_types';
+		$this->_table_assets_asset_types = 'assets_asset_types';
+		
 		$this->_table_backup = 'stations_backup';
 		$this->_table_asset_title_types = 'asset_title_types';
 		$this->_table_subjects = 'subjects';
@@ -179,6 +186,141 @@ class Assets_Model extends CI_Model
         
 	}
 	/**
+	* Get asset by asset_id
+	* 
+	* @return array 
+	*/
+	function get_asset_by_asset_id($asset_id)
+	{
+		$sql="SELECT $this->_assets_table.id AS asset_id, $this->_table_identifiers.identifier AS guid_identifier, 
+								$this->stations.station_name as organization,
+                                GROUP_CONCAT(local.identifier SEPARATOR ' | ') AS local_identifier, 
+								GROUP_CONCAT(local.identifier_source SEPARATOR ' | ') AS local_identifier_source, 
+								GROUP_CONCAT(local.identifier_ref SEPARATOR ' | ') AS local_identifier_ref, 
+                                $this->_table_asset_descriptions.description, $this->_table_asset_titles.title ,
+								$this->_table_asset_titles.title_source ,$this->_table_asset_titles.title_ref ,$this->_table_assets_asset_types.title_type,
+								GROUP_CONCAT($this->_table_asset_types.asset_type SEPARATOR ' | ') AS asset_type
+								FROM (`$this->_assets_table`) 
+                                LEFT JOIN {$this->_table_identifiers} AS `local` ON `local`.`assets_id` = `$this->_assets_table`.`id` 
+                                LEFT JOIN {$this->_table_identifiers} ON `identifiers`.`assets_id` = `$this->_assets_table`.`id` 
+                                LEFT JOIN {$this->_table_asset_descriptions} ON `asset_descriptions`.`assets_id` = `$this->_assets_table`.`id` 
+                                LEFT JOIN {$this->_table_asset_titles} ON `asset_titles`.`assets_id` = `$this->_assets_table`.`id` 
+								LEFT JOIN {$this->_table_asset_title_types} ON `$this->_table_asset_title_types`.`id` = `$this->_table_asset_titles`.`asset_title_types_id` 
+								LEFT JOIN {$this->stations} ON {$this->stations}.id = {$this->_assets_table}.stations_id
+								LEFT JOIN {$this->_table_assets_asset_types} ON $this->_table_assets_asset_types.assets_id = `$this->_assets_table`.`id`
+								LEFT JOIN {$this->_table_asset_types} ON $this->_table_assets_asset_types.asset_types_id = $this->_table_asset_types.`id`
+                        WHERE `identifiers`.`identifier_source` = 'http://americanarchiveinventory.org' 
+                        AND `local`.`identifier_source` != 'http://americanarchiveinventory.org' 
+						AND assets.id='".$asset_id."'
+                        GROUP BY `assets`.`id` ";
+		$res=$this->db->query($sql);
+		if(isset($res) && !empty($res))
+		{
+			return $res->row();
+		}return false;
+	}
+	/**
+	* search aseet_dates by assets_id
+	* 
+	* @param type $assets_id
+	* @return object 
+	*/
+	function get_assets_dates_by_assets_id($assets_id)
+	{
+		$this->db->select('$this->_table_asset_dates.asset_date,$this->_table_date_types.date_type');
+		$this->db->from($this->_table_asset_dates);
+		$this->db->join($this->_table_date_types, "$this->_table_asset_dates.date_types_id=$this->_table_date_types.id",'left');
+		$this->db->where('$this->_table_asset_dates.assets_id', $assets_id);
+		$res = $this->db->get();
+		if (isset($res) && !empty($res))
+		{
+			return $res->result();
+		}
+		return false;
+	}
+	/**
+	* search assets_genres by assets_id
+	* 
+	* @param type $assets_id
+	* @return object 
+	*/
+	function get_assets_genres_by_assets_id($assets_id)
+	{
+		$this->db->select('genre,genre_source,genre_ref');
+		$this->db->from($this->_table_assets_genres);
+		$this->db->join($this->_table_genres, "$this->_table_assets_genres.genres_id=$this->_table_genres.id",'left');
+		$this->db->where('$this->_table_assets_genres.assets_id', $assets_id);
+		$res = $this->db->get();
+		if (isset($res) && !empty($res))
+		{
+			return $res->result();
+		}
+		return false;
+	}
+	/**
+	* search assets_creators_roles by assets_id
+	* 
+	* @param type $assets_id
+	* @return object 
+	*/
+	function get_assets_creators_roles_by_assets_id($assets_id)
+	{
+		$this->db->select('creator_affiliation,creator_ref,creator_role ,creator_role_source,creator_role_ref,creators_id');
+		$this->db->from($this->_table_assets_creators_roles);
+		$this->db->join($this->_table_creator_roles, "$this->_table_assets_creators_roles.creator_roles_id=$this->_table_creator_roles.id",'left');
+		$this->db->join($this->_table_creators, "$this->_table_assets_creators_roles.creators_id=$this->_table_creators.id",'left');
+		$this->db->where('$this->_table_assets_creators_roles.assets_id', $assets_id);
+		$res = $this->db->get();
+		if (isset($res) && !empty($res))
+		{
+			return $res->result();
+		}
+		return false;
+	}
+	/**
+	* search assets_contributor_roles by assets_id
+	* 
+	* @param type $assets_id
+	* @return object 
+	*/
+	function get_assets_contributor_roles_by_assets_id($assets_id)
+	{
+		$this->db->select('contributor_role,contributor_role_source,contributor_role_ref ,contributor_name,contributor_affiliation,contributor_source,contributor_ref');
+		$this->db->from($this->_table_assets_contributors_roles);
+		$this->db->join($this->_table_contributor_roles, "$this->_table_assets_contributors_roles.contributor_roles_id=$this->_table_contributor_roles.id",'left');
+		$this->db->join($this->_table_contributors, "$this->_table_assets_contributors_roles.contributors_id=$this->_table_contributors.id",'left');
+		$this->db->where('$this->_table_assets_contributors_roles.assets_id', $assets_id);
+		$res = $this->db->get();
+		if (isset($res) && !empty($res))
+		{
+			return $res->result();
+		}
+		return false;
+	}
+	/**
+	* search assets_publishers_role by assets_id
+	* 
+	* @param type $assets_id
+	* @return object 
+	*/
+	function get_assets_publishers_role_by_assets_id($assets_id)
+	{
+		$this->db->select('publisher_role,publisher_role_source,publisher_role_ref ,publisher,publisher_affiliation,publisher_ref');
+		$this->db->from($this->_table_assets_publishers_role);
+		$this->db->join($this->_table_publisher_roles, "$this->_table_assets_publishers_role.publisher_roles_id=$this->_table_publisher_roles.id",'left');
+		$this->db->join($this->_table_publishers, "$this->_table_assets_publishers_role.publishers_id=$this->_table_publishers.id",'left');
+		$this->db->where('$this->_table_assets_publishers_role.assets_id', $assets_id);
+		$res = $this->db->get();
+		if (isset($res) && !empty($res))
+		{
+			return $res->result();
+		}
+		return false;
+	}
+	
+	
+	
+	/**
 	* search nomination_status by @status
 	* 
 	* @param type $status
@@ -302,13 +444,13 @@ class Assets_Model extends CI_Model
 	*/
 	function get_description_id_by_type($description_type)
 	{
-	$this->db->where('description_type', $description_type);
-	$res = $this->db->get($this->_table_description_types);
-	if (isset($res) && !empty($res))
-	{
-	return $res->row();
-	}
-	return false;
+		$this->db->where('description_type', $description_type);
+		$res = $this->db->get($this->_table_description_types);
+		if (isset($res) && !empty($res))
+		{
+			return $res->row();
+		}
+		return false;
 	}
 	/**
 	* search assets tyoe by type
@@ -318,30 +460,49 @@ class Assets_Model extends CI_Model
 	*/
 	function get_assets_type_by_type($asset_type)
 	{
-	$this->db->where('asset_type', $asset_type);
-	$res = $this->db->get($this->_table_asset_types);
-	if (isset($res) && !empty($res))
-	{
-	return $res->row();
-	}
-	return false;
+		$this->db->where('asset_type', $asset_type);
+		$res = $this->db->get($this->_table_asset_types);
+		if (isset($res) && !empty($res))
+		{
+			return $res->row();
+		}
+		return false;
 	}
 	
 	/**
-	* search asset_title_types by title_type
+	* search subjects by subject
 	* 
-	* @param type $title_type
+	* @param type $subject
 	* @return object 
 	*/
 	function get_subjects_id_by_subject($subject)
 	{
-	$this->db->where('subject', $subject);
-	$res = $this->db->get($this->_table_subjects);
-	if (isset($res) && !empty($res))
-	{
-	return $res->row();
+		$this->db->where('subject', $subject);
+		$res = $this->db->get($this->_table_subjects);
+		if (isset($res) && !empty($res))
+		{
+			return $res->row();
+		}
+		return false;
 	}
-	return false;
+	/**
+	* search subject by assets_id
+	* 
+	* @param type $title_type
+	* @return object 
+	*/
+	function get_subjects_by_assets_id($assets_id)
+	{
+		$this->db->select('subject,subject_source,subject_ref');
+		$this->db->from($this->_table_assets_subjects);
+		$this->db->join($this->_table_subjects, "$this->_table_assets_subjects.subjects_id = $this->_table_subjects.id",'left');
+		$this->db->where('$this->_table_subjects.assets_id', $assets_id);
+		$res = $this->db->get();
+		if (isset($res) && !empty($res))
+		{
+			return $res->result();
+		}
+		return false;
 	}
 	
 	/**
@@ -352,13 +513,13 @@ class Assets_Model extends CI_Model
 	*/
 	function get_asset_title_types_by_title_type($title_type)
 	{
-	$this->db->where('title_type', $title_type);
-	$res = $this->db->get($this->_table_asset_title_types);
-	if (isset($res) && !empty($res))
-	{
-	return $res->row();
-	}
-	return false;
+		$this->db->where('title_type', $title_type);
+		$res = $this->db->get($this->_table_asset_title_types);
+		if (isset($res) && !empty($res))
+		{
+			return $res->row();
+		}
+		return false;
 	}
 	
 	/**
@@ -369,13 +530,13 @@ class Assets_Model extends CI_Model
 	*/
 	function get_asset_by_id($assets_id)
 	{
-	$this->db->where('id', $station_id);
-	$res = $this->db->get($this->_assets_table);
-	if (isset($res) && !empty($res))
-	{
-	return $res->row();
-	}
-	return false;
+		$this->db->where('id', $station_id);
+		$res = $this->db->get($this->_assets_table);
+		if (isset($res) && !empty($res))
+		{
+			return $res->row();
+		}
+		return false;
 	}
 	
 	/**
@@ -386,9 +547,9 @@ class Assets_Model extends CI_Model
 	*/
 	function get_assets_by_station_id($station_id)
 	{
-	$this->db->select('*');
-	$this->db->where('stations_id', $station_id);
-	return $this->db->get($this->_assets_table)->result();
+		$this->db->select('*');
+		$this->db->where('stations_id', $station_id);
+		return $this->db->get($this->_assets_table)->result();
 	}
 	
 	/**
@@ -400,9 +561,9 @@ class Assets_Model extends CI_Model
 	*/
 	function update_assets($id, $data)
 	{
-	$data['updated'] = date('Y-m-d H:i:s');
-	$this->db->where('id', $id);
-	return $this->db->update($this->_assets_table, $data);
+		$data['updated'] = date('Y-m-d H:i:s');
+		$this->db->where('id', $id);
+		return $this->db->update($this->_assets_table, $data);
 	}
 	
 	/*
@@ -415,8 +576,8 @@ class Assets_Model extends CI_Model
 	
 	function insert_assets($data)
 	{
-	$this->db->insert($this->_assets_table, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_assets_table, $data);
+		return $this->db->insert_id();
 	}
 	
 	/*
@@ -429,8 +590,8 @@ class Assets_Model extends CI_Model
 	
 	function insert_asset_title_types($data)
 	{
-	$this->db->insert($this->_table_asset_title_types, $data);
-	return $this->db->insert_id();
+		$this->db->insert($this->_table_asset_title_types, $data);
+		return $this->db->insert_id();
 	}
 	
 	/*

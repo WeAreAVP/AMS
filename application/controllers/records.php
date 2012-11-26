@@ -66,8 +66,24 @@ class Records extends MY_Controller
 		*To Display Assets details
 		*
 		*/
-		function details()
+		function details($asset_id)
 		{
-			$this->load->view('records/assets_details');
+			if($asset_id)
+			{
+				$data['asset_details']=$this->assets_model->get_asset_by_asset_id($asset_id);
+				//print_r($data['asset_details']);
+				$data['asset_subjects']=$this->assets_model->get_subjects_by_assets_id($asset_id);
+				$data['asset_dates']=$this->assets_model->get_assets_dates_by_assets_id($asset_id);
+				$data['asset_genres']=$this->assets_model->get_assets_genres_by_assets_id($asset_id);
+				$data['asset_creators_roles']=$this->assets_model->get_assets_creators_roles_by_assets_id($asset_id);
+				$data['asset_contributor_roles']=$this->assets_model->get_assets_contributor_roles_by_assets_id($asset_id);
+				$data['asset_publishers_roles']=$this->assets_model->get_assets_publishers_role_by_assets_id($asset_id);
+								
+				$this->load->view('records/assets_details',$data);
+			}
+			else
+			{
+				show_404();
+			}
 		}
 }

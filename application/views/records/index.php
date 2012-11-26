@@ -75,21 +75,21 @@
      <?php 
 			foreach($records as $asset)
 			{
-				$aa_guid=$asset->guid_identifier;
-				$local_ids=$asset->local_identifier;
+				$guid_identifier=$asset->guid_identifier;
+				$local_identifier=$asset->local_identifier;
 				$asset_description=$asset->description;
 				$asset_title=$asset->title;			
 		?>
      <tr style="cursor: pointer;">
       <td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>
       <td><?php 
-			if($aa_guid){
-				echo $aa_guid;
+			if($guid_identifier){
+				echo $guid_identifier;
 			}else{echo 'N/A';}
 			?></td>
       <td><?php 
-			if($local_ids){
-				echo $locals;
+			if($local_identifier){
+				echo $local_identifier;
 			}else{echo 'N/A';}
 			?></td>
       <td><p>

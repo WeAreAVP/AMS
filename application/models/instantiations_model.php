@@ -56,7 +56,7 @@ class Instantiations_Model extends CI_Model
         $this->db->select("$this->table_instantiation_colors.color", FALSE);
         $this->db->select("$this->table_generations.generation", FALSE);
         $this->db->select("$this->table_nomination_status.status", FALSE);
-        $this->db->select("CASE WHEN $this->table_events.event_outcome=0 THEN FAIL WHEN $this->table_events.event_outcome=1 THEN PASS END AS event_outcome", FALSE);
+        $this->db->select("CASE WHEN $this->table_events.event_outcome=0 THEN 'FAIL' WHEN $this->table_events.event_outcome=1 THEN 'PASS' END AS outcome_evnet", FALSE);
         $this->db->select("$this->table_event_types.event_type", FALSE);
 
 

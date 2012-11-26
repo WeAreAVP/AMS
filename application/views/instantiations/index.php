@@ -1,21 +1,26 @@
-<div class="row-fluid">
-    <div class="span3">
-        <div id="search_bar"> 
-            <b>
-                <h4>Filter Instantiations</h4>
-            </b>
-            <div class="filter-fileds">
-                <div>Search:</div>
-                <div>
-                    <input type="text" name="search" id="search" value=""/>
+<?php
+if (!$isAjax)
+{
+    ?>
+    <div class="row-fluid">
+        <div class="span3">
+            <div id="search_bar"> 
+                <b>
+                    <h4>Filter Instantiations</h4>
+                </b>
+                <div class="filter-fileds">
+                    <div>Search:</div>
+                    <div>
+                        <input type="text" name="search" id="search" value=""/>
+                    </div>
+                </div>
+                <div class="filter-fileds">
+                    <div><input type="button" name="reset" value="Reset" class="btn"/></div>
                 </div>
             </div>
-            <div class="filter-fileds">
-                <div><input type="button" name="reset" value="Reset" class="btn"/></div>
-            </div>
         </div>
-    </div>
-    <div  class="span9">
+        <div  class="span9" id="instantiation-container">
+        <?php } ?>
         <div style="text-align: right;width: 860px;">
             <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
             <?php echo $this->pagination->create_links(); ?>
@@ -78,5 +83,10 @@
             <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
             <?php echo $this->pagination->create_links(); ?>
         </div>
+        <?php
+        if (!$isAjax)
+        {
+            ?>
+        </div>
     </div>
-</div>
+<?php } ?>

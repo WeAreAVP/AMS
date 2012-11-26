@@ -26,11 +26,14 @@ class Instantiations extends MY_Controller
     }
 
     /**
-     * List all the instantiations
+     * List all the instantiation records with pagination and filters. 
      * 
      */
     public function index()
     {
+        // List all the instantiations records active records
+//        $data['records'] = $this->instantiation->list_all();
+        $data['isAjax'] = FALSE;
         $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $this->load->library('pagination');
         $param = array('search' => '');
@@ -50,8 +53,7 @@ class Instantiations extends MY_Controller
             $data['start'] = $offset;
             $data['end'] = intval($offset) + intval($data['count']);
         }
-        // List all the instantiations records active records
-//        $data['records'] = $this->instantiation->list_all();
+
         $config['base_url'] = $this->config->item('base_url') . $this->config->item('index_page') . "instantiations/index/";
         $config['prev_link'] = '<i class="icon-chevron-left"></i>';
         $config['prev_tag_open'] = '<span class="btn">';
@@ -64,6 +66,12 @@ class Instantiations extends MY_Controller
         $config['last_link'] = FALSE;
         $config['display_pages'] = FALSE;
         $this->pagination->initialize($config);
+        if (isAjax())
+        {
+            $data['isAjax'] = TRUE;
+            echo $this->load->view('instantiations/index', $data, TRUE);
+            exit;
+        }
         $this->load->view('instantiations/index', $data);
     }
 

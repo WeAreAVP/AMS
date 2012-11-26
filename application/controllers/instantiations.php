@@ -77,8 +77,8 @@ class Instantiations extends MY_Controller
 
     public function detail()
     {
-       $records = $this->sphinx->instantiations_list($param);
-       echo '<pre>';print_r($records);exit;
+       
+       
        
     }
 

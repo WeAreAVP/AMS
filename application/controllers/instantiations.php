@@ -44,12 +44,12 @@ class Instantiations extends MY_Controller
 
         // List all the instantiations records active records
 //        $data['records'] = $this->instantiation->list_all();
-        $config['base_url'] = "http://".gethostname()."/instantiations/index/";
-        $config['prev_link'] = 'Prev';
-        $config['prev_tag_open'] = '<span class="btn"><i class="icon-chevron-left"></i>';
+        $config['base_url'] = $this->config->item('base_url')."instantiations/index/";
+        $config['prev_link'] = '<i class="icon-chevron-left"></i>';
+        $config['prev_tag_open'] = '<span class="btn">';
         $config['prev_tag_close'] = '</span>';
-        $config['next_link'] = 'Next';
-        $config['prev_tag_open'] = '<span class="btn"><i class="icon-chevron-right"></i>';
+        $config['next_link'] = '<i class="icon-chevron-right"></i>';
+        $config['prev_tag_open'] = '<span class="btn">';
         $config['prev_tag_close'] = '</span>';
         $config['use_page_numbers'] = FALSE;
 //        $config['num_links'] = 0;

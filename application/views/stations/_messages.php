@@ -65,7 +65,7 @@
             stations[index]=$(this).val();
         });
         if(stations.length>0){
-            $('#compose_to_type').model();
+            $('#compose_to_type').modal();
         }
     }
     function typeForm(){

@@ -4,7 +4,7 @@
             <li><a href="<?php echo site_url('stations/index'); ?>">Stations</a> <span class="divider">/</span></li>
             <li class="active"><?php echo $station_detail->station_name; ?></li>
         </ul> 
-        <h2 class="my-navbar">Station Information</h2>
+        <h2 class="my-navbar station-detail">Station Information</h2>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -61,7 +61,7 @@
                 <div style="text-align: center;">No Station Contact Available.</div>
             <?php } ?>
         </div>
-        <h2 class="my-navbar">Tracking</h2>
+        <h2 class="my-navbar station-detail">Tracking</h2>
         <?php if (count($station_tracking) > 0) { ?>
             <table class="table table-bordered">
                 <thead>

@@ -35,19 +35,6 @@
                 </tr>
             </tbody> 
         </table>
-        <h2>Station Address</h2>
-        <div class="row">
-            <div class="span4">
-                <!--          <h2>Heading</h2>-->
-                <p>
-                    <?php echo $station_detail->address_primary; ?><br/><?php echo $station_detail->city; ?>, <?php echo $station_detail->state; ?> <?php echo $station_detail->zip; ?>
-                    <br/>Phone: <?php echo $station_detail->contact_phone; ?>
-                    <br/>Fax: <?php echo $station_detail->contact_fax; ?>
-                    <br/>Email: <?php echo $station_detail->contact_email; ?>
-                </p>
-            </div>
-
-        </div>
         <h2>Station Contacts</h2>
         <div class="row">
             <?php if (count($station_contacts) > 0) { ?>

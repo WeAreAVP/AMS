@@ -70,11 +70,10 @@
     }
     function typeForm(){
         type=$('#msg_type').val();
-        
         if(type=='')
         {
             $('#message_type_error').show();
-            return;
+            return false;
         }
         else
         {
@@ -96,19 +95,14 @@
         temp_to_name=new Array();                
         type=$('#msg_type').val();
         to=$('#receiver_id').val();
-        if(to=='' || to==null)
-        {
-            $('#message_station_error').show();
-            return false;
-        }
-        else if(type=='')
+        
+        if(type=='')
         {
             $('#message_type_error').show();
             return false;
         }
         else
         {
-            $('#message_station_error').hide();
             $('#message_type_error').hide();
             $('#compose_anchor').trigger('click');
             
@@ -119,7 +113,6 @@
             to_name=implode(", ",temp_to_name)
             subject=$("#msg_type option[value='"+type+"']").text();//$('#subject').val();
             confirmBody();                      
-            
             $('#confirm_anchor').trigger('click');
             
         }

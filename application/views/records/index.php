@@ -93,7 +93,7 @@
 			}else{echo 'N/A';}
 			?></td>
       <td><p>
-        <a href="<?php echo site_url('records/details/'.$asset->asset_id)?>" ><?php 
+        <a href="<?php echo site_url('records/details/'.$asset->id)?>" ><?php 
 			if($asset_title){
 				echo $asset_title;
 			}else{echo 'N/A';}

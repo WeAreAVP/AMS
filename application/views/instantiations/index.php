@@ -5,9 +5,9 @@
                 <h4>Filter Instantiations</h4>
             </b>
             <div class="filter-fileds">
-                <div> Search </div>
+                <div>Search:</div>
                 <div>
-                    <input type="text"/>
+                    <input type="text" name="search" id="search" value=""/>
                 </div>
             </div>
             <div class="filter-fileds">

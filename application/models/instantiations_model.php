@@ -78,6 +78,7 @@ class Instantiations_Model extends CI_Model
         $this->db->join($this->table_event_types, "$this->table_event_types.id	 = $this->table_events.event_types_id", 'left');
         $this->db->limit(5);
         $this->db->group_by("$this->_assets_table.id");
+        return $this->db->last_query();
         $result = $this->db->get($this->table_instantiations)->result();
 
         return $result;

@@ -17,7 +17,7 @@
     </div>
     <div  class="span9">
         <div style="text-align: right;width: 860px;">
-            <strong>1 - <?php echo $count; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
+            <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
             <?php echo $this->pagination->create_links(); ?>
         </div>
         <div style="overflow: auto;width:865px;" id="instantiation-main">

@@ -26,7 +26,7 @@ class Instantiations extends MY_Controller
     }
 
     /**
-     * 
+     * List all the instantiations
      * 
      */
     public function index()
@@ -35,13 +35,21 @@ class Instantiations extends MY_Controller
         $this->load->library('pagination');
         $param = array('search' => '');
 
-        $records = $this->sphinx->instantiations_list($param,$offset);
+        $records = $this->sphinx->instantiations_list($param, $offset);
         $data['total'] = $records['total_count'];
         $config['total_rows'] = $data['total'];
         $config['per_page'] = 100;
         $data['records'] = $records['records'];
         $data['count'] = count($data['records']);
-
+        if ($data['count'] > 0 && $offset == 0)
+        {
+            $data['start'] = 1;
+            $data['end'] = $data['count'];
+        } else
+        {
+            $data['start'] = $offset;
+            $data['end'] = intval($offset) + intval($data['count']);
+        }
         // List all the instantiations records active records
 //        $data['records'] = $this->instantiation->list_all();
         $config['base_url'] = $this->config->item('base_url') . $this->config->item('index_page') . "instantiations/index/";
@@ -52,7 +60,6 @@ class Instantiations extends MY_Controller
         $config['next_tag_open'] = '<span class="btn">';
         $config['next_tag_close'] = '</span>';
         $config['use_page_numbers'] = FALSE;
-//        $config['num_links'] = 0;
         $config['first_link'] = FALSE;
         $config['last_link'] = FALSE;
         $config['display_pages'] = FALSE;

@@ -44,7 +44,7 @@ class Instantiations extends MY_Controller
 
         // List all the instantiations records active records
 //        $data['records'] = $this->instantiation->list_all();
-        $config['base_url'] = $this->config->item('base_url')."instantiations/index/";
+        $config['base_url'] = $this->config->item('base_url').$this->config->item('index_page')."instantiations/index/";
         $config['prev_link'] = '<i class="icon-chevron-left"></i>';
         $config['prev_tag_open'] = '<span class="btn">';
         $config['prev_tag_close'] = '</span>';

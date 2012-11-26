@@ -112,7 +112,8 @@
             }
             to_name=implode(", ",temp_to_name)
             subject=$("#msg_type option[value='"+type+"']").text();//$('#subject').val();
-            confirmBody();                      
+            confirmBody();
+             $('#compose_to_type').modal();
             $('#compose_confirm').modal();
             
         }

@@ -4,7 +4,7 @@
             <li><a href="<?php echo site_url('stations/index'); ?>">Stations</a> <span class="divider">/</span></li>
             <li class="active"><?php echo $station_detail->station_name; ?></li>
         </ul> 
-        <h2>Station Information</h2>
+        <h2 class="my-navbar station-detail">Station Information</h2>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -35,20 +35,7 @@
                 </tr>
             </tbody> 
         </table>
-        <h2>Station Address</h2>
-        <div class="row">
-            <div class="span4">
-                <!--          <h2>Heading</h2>-->
-                <p>
-                    <?php echo $station_detail->address_primary; ?><br/><?php echo $station_detail->city; ?>, <?php echo $station_detail->state; ?> <?php echo $station_detail->zip; ?>
-                    <br/>Phone: <?php echo $station_detail->contact_phone; ?>
-                    <br/>Fax: <?php echo $station_detail->contact_fax; ?>
-                    <br/>Email: <?php echo $station_detail->contact_email; ?>
-                </p>
-            </div>
-
-        </div>
-        <h2>Station Contacts</h2>
+        <h2 class="my-navbar station-detail">Station Contacts</h2>
         <div class="row">
             <?php if (count($station_contacts) > 0) { ?>
 
@@ -74,7 +61,7 @@
                 <div style="text-align: center;">No Station Contact Available.</div>
             <?php } ?>
         </div>
-        <h2>Tracking Information</h2>
+        <h2 class="my-navbar station-detail">Tracking</h2>
         <?php if (count($station_tracking) > 0) { ?>
             <table class="table table-bordered">
                 <thead>

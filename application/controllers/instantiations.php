@@ -77,7 +77,9 @@ class Instantiations extends MY_Controller
 
     public function detail()
     {
-        
+       
+       
+       
     }
 
 }

@@ -16,7 +16,10 @@
         </div>
     </div>
     <div  class="span9">
-        <div style="text-align: right;width: 860px;"><strong>1 - <?php echo $count; ?></strong> of <strong><?php echo $total; ?></strong><?php echo $this->pagination->create_links(); ?></div>
+        <div style="text-align: right;width: 860px;">
+            <div style="margin-right: 10px;"><strong>1 - <?php echo $count; ?></strong> of <strong><?php echo $total; ?></strong></div>
+            <?php echo $this->pagination->create_links(); ?>
+        </div>
         <div style="overflow: auto;width:865px;" id="instantiation-main">
             <table class="tablesorter table table-bordered">
                 <thead>
@@ -71,6 +74,9 @@
             </table>
         </div>
 
-
+        <div style="text-align: right;width: 860px;">
+            <div style="margin-right: 10px;"><strong>1 - <?php echo $count; ?></strong> of <strong><?php echo $total; ?></strong></div>
+            <?php echo $this->pagination->create_links(); ?>
+        </div>
     </div>
 </div>

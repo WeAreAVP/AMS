@@ -144,7 +144,7 @@ if (!$is_ajax)
         </div>
     </div>
     <?php $this->load->view('stations/_edit_station'); ?>
-    <?php $this->load->view('messages/compose'); ?>
+    <?php $this->load->view('stations/_messages'); ?>
 
 
     <script type="text/javascript">

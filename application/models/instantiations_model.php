@@ -38,18 +38,7 @@ class Instantiations_Model extends CI_Model
         $this->asset_titles = 'asset_titles';
         $this->stations = 'stations';
         $this->table_nominations = 'nominations';
-    }
-
-    function update_nominations()
-    {
-        $query = $this->db->get($this->table_nominations)->result();
-        foreach ($query as $key=>$value)
-        {
-            $data['instantiations_id']=$key+1;
-            $this->db->where('id', $value->id);
-            $this->db->update($this->table_nominations, $data);
-        }
-        return true;
+        $this->table_nomination_status = 'nomination_status';
     }
 
     function list_all()
@@ -64,6 +53,7 @@ class Instantiations_Model extends CI_Model
         $this->db->select("$this->table_instantiation_formats.format_type,$this->table_instantiation_formats.format_name", FALSE);
         $this->db->select("$this->table_instantiation_colors.color", FALSE);
         $this->db->select("$this->table_generations.generation", FALSE);
+        $this->db->select("$this->table_nomination_status.status", FALSE);
 
 
 
@@ -78,8 +68,9 @@ class Instantiations_Model extends CI_Model
         $this->db->join($this->table_instantiation_colors, "$this->table_instantiation_colors.id = $this->table_instantiations.instantiation_colors_id", 'left');
         $this->db->join($this->table_instantiation_generations, "$this->table_instantiation_generations.instantiations_id = $this->table_instantiations.id", 'left');
         $this->db->join($this->table_generations, "$this->table_generations.id = $this->table_instantiation_generations.generations_id", 'left');
-        $this->db->join($this->table_nominations, "$this->table_nominations.id = $this->table_instantiation_generations.generations_id", 'left');
-        $this->db->limit(10);
+        $this->db->join($this->table_nominations, "$this->table_nominations.instantiations_id = $this->table_instantiations.id", 'left');
+        $this->db->join($this->table_nomination_status, "$this->table_nomination_status.id = $this->table_nominations.nomination_status_id", 'left');
+        $this->db->limit(5);
         $this->db->group_by("$this->_assets_table.id");
         $result = $this->db->get($this->table_instantiations)->result();
 

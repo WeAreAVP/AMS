@@ -77,7 +77,9 @@ class Instantiations extends MY_Controller
 
     public function detail()
     {
-        $this->instantiation->update_nominations();
+        $records=$this->instantiation->list_all();
+        echo '<pre>';print_r($records);
+        exit;
     }
 
 }

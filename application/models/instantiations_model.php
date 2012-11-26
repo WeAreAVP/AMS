@@ -37,6 +37,19 @@ class Instantiations_Model extends CI_Model
         $this->_assets_table = 'assets';
         $this->asset_titles = 'asset_titles';
         $this->stations = 'stations';
+        $this->table_nominations = 'nominations';
+    }
+
+    function update_nominations()
+    {
+        $query = $this->db->get($this->table_nominations)->result();
+        foreach ($query as $key=>$value)
+        {
+            $data['instantiations_id']=$key+1;
+            $this->db->where('id', $value->id);
+            $this->db->update($this->table_nominations, $data);
+        }
+        return true;
     }
 
     function list_all()
@@ -50,21 +63,26 @@ class Instantiations_Model extends CI_Model
         $this->db->select("$this->table_instantiation_media_types.media_type", FALSE);
         $this->db->select("$this->table_instantiation_formats.format_type,$this->table_instantiation_formats.format_name", FALSE);
         $this->db->select("$this->table_instantiation_colors.color", FALSE);
-        
-        
-        
-        $this->db->join($this->_assets_table, "$this->_assets_table.id = $this->table_instantiations.assets_id",'left');
-        $this->db->join($this->asset_titles, "$this->asset_titles.assets_id	 = $this->table_instantiations.assets_id",'left');
-        $this->db->join($this->stations, "$this->stations.id = $this->_assets_table.stations_id",'left');
-        $this->db->join($this->table_instantiation_dates, "$this->table_instantiation_dates.instantiations_id = $this->table_instantiations.id",'left');
-        $this->db->join($this->table_date_types, "$this->table_date_types.id = $this->table_instantiation_dates.date_types_id",'left');
-        $this->db->join($this->table_instantiation_media_types, "$this->table_instantiation_media_types.id = $this->table_instantiations.instantiation_media_type_id",'left');
-        $this->db->join($this->table_instantiation_formats, "$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id",'left');
-        $this->db->join($this->table_instantiation_colors, "$this->table_instantiation_colors.id = $this->table_instantiations.instantiation_colors_id",'left');
+        $this->db->select("$this->table_generations.generation", FALSE);
+
+
+
+
+        $this->db->join($this->_assets_table, "$this->_assets_table.id = $this->table_instantiations.assets_id", 'left');
+        $this->db->join($this->asset_titles, "$this->asset_titles.assets_id	 = $this->table_instantiations.assets_id", 'left');
+        $this->db->join($this->stations, "$this->stations.id = $this->_assets_table.stations_id", 'left');
+        $this->db->join($this->table_instantiation_dates, "$this->table_instantiation_dates.instantiations_id = $this->table_instantiations.id", 'left');
+        $this->db->join($this->table_date_types, "$this->table_date_types.id = $this->table_instantiation_dates.date_types_id", 'left');
+        $this->db->join($this->table_instantiation_media_types, "$this->table_instantiation_media_types.id = $this->table_instantiations.instantiation_media_type_id", 'left');
+        $this->db->join($this->table_instantiation_formats, "$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id", 'left');
+        $this->db->join($this->table_instantiation_colors, "$this->table_instantiation_colors.id = $this->table_instantiations.instantiation_colors_id", 'left');
+        $this->db->join($this->table_instantiation_generations, "$this->table_instantiation_generations.instantiations_id = $this->table_instantiations.id", 'left');
+        $this->db->join($this->table_generations, "$this->table_generations.id = $this->table_instantiation_generations.generations_id", 'left');
+        $this->db->join($this->table_nominations, "$this->table_nominations.id = $this->table_instantiation_generations.generations_id", 'left');
         $this->db->limit(10);
         $this->db->group_by("$this->_assets_table.id");
         $result = $this->db->get($this->table_instantiations)->result();
-        
+
         return $result;
     }
 

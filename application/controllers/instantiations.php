@@ -77,7 +77,7 @@ class Instantiations extends MY_Controller
 
     public function detail()
     {
-        
+        $this->instantiation->update_nominations();
     }
 
 }

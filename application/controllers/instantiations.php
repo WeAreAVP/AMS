@@ -49,8 +49,8 @@ class Instantiations extends MY_Controller
         $config['prev_tag_open'] = '<span class="btn">';
         $config['prev_tag_close'] = '</span>';
         $config['next_link'] = '<i class="icon-chevron-right"></i>';
-        $config['prev_tag_open'] = '<span class="btn">';
-        $config['prev_tag_close'] = '</span>';
+        $config['next_tag_open'] = '<span class="btn">';
+        $config['next_tag_close'] = '</span>';
         $config['use_page_numbers'] = FALSE;
 //        $config['num_links'] = 0;
         $config['first_link'] = FALSE;

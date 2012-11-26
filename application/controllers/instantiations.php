@@ -31,11 +31,11 @@ class Instantiations extends MY_Controller
      */
     public function index()
     {
-
+        $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $this->load->library('pagination');
         $param = array('search' => '');
 
-        $records = $this->sphinx->instantiations_list($param);
+        $records = $this->sphinx->instantiations_list($param,$offset);
         $data['total'] = $records['total_count'];
         $config['total_rows'] = $data['total'];
         $config['per_page'] = 100;
@@ -44,7 +44,7 @@ class Instantiations extends MY_Controller
 
         // List all the instantiations records active records
 //        $data['records'] = $this->instantiation->list_all();
-        $config['base_url'] = $this->config->item('base_url').$this->config->item('index_page')."instantiations/index/";
+        $config['base_url'] = $this->config->item('base_url') . $this->config->item('index_page') . "instantiations/index/";
         $config['prev_link'] = '<i class="icon-chevron-left"></i>';
         $config['prev_tag_open'] = '<span class="btn">';
         $config['prev_tag_close'] = '</span>';

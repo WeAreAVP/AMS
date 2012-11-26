@@ -24,42 +24,22 @@
     <div class="modal-body compose" >
         <form class="form-horizontal">
             <div class="control-group">
-                <label class="control-label" for="receiver_id">To:</label>
-                <div class="controls">
-                    <select id="receiver_id" name="receiver_id" multiple="multiple">
-                        <?php foreach ($station_records as $value)
-                        {
-                            ?>
-                            <option value="<?php echo $value->id; ?>"><?php echo $value->station_name; ?></option>
-                            <?php
-                        }
-                        ?>
-                    </select>
-                    <span id="message_station_error" style="display: none;">Please select at least one station</span>
-                </div>
-            </div>
-            <div class="control-group">
                 <label class="control-label"  for="msg_type">Message Type:</label>
                 <div class="controls">
                     <select id="msg_type" style="width: 237px;" name="msg_type" onchange="typeForm();">
                         <option value="">Select</option>
-                        <?php foreach ($this->config->item('messages_type') as $key => $value)
+                        <?php
+                        foreach ($this->config->item('messages_type') as $key => $value)
                         {
                             ?>
                             <option value="<?php echo $key; ?>"><?php echo $value; ?></option>           
-<?php } ?>
+                        <?php } ?>
 
                     </select>
                     <span id="message_type_error">Please select message type</span>
                 </div>
             </div>
-            <?php /* ?><div class="control-group" id="subject_div" style="display: none;">
-              <label class="control-label" for="subject">Subject:</label>
-              <div class="controls">
-              <input id="subject" name="subject"/>
 
-              </div>
-              </div><?php */ ?>
             <div id="alert_type"></div>
         </form>
     </div>
@@ -80,12 +60,8 @@
     var type=null;
     var msg_body=null;
     
-    $(function(){
-        $("#receiver_id").multiselect(); 
-        $(".ui-multiselect-menu").width('400px');
-    });
     function typeForm(){
-        // $('#subject_div').show();
+    
         type=$('#msg_type').val();
         to=$('#receiver_id').val();
         if(type=='')

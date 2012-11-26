@@ -35,7 +35,7 @@
                 </tr>
             </tbody> 
         </table>
-        <h2 class="my-navbar">Station Contacts</h2>
+        <h2 class="my-navbar station-detail">Station Contacts</h2>
         <div class="row">
             <?php if (count($station_contacts) > 0) { ?>
 

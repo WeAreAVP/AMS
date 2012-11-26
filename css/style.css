@@ -268,3 +268,7 @@ html, body {
 .disabled-field{background:#D6D5D4;width:790px;float:left;padding:10px;border-radius:3px;margin-bottom:10px}
 .button-submit{float:left;}.black-btn{padding:5px}
 .btn-group{margin:0 0 10px 0 !important}
+.station-detail{
+    color: white;
+    margin: 10px 0px;
+}

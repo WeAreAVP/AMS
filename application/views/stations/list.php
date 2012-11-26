@@ -90,7 +90,7 @@ if (!$is_ajax)
             <div class="row" style="margin:5px 0px;">
                 <a href="javascript://" class="btn btn-large" onclick="editStations();">Batch Edit</a>
                 <!--                <a href="javascript://" class="btn btn-large" onclick="sendMessage();">Send Message</a>-->
-                <a href="#compose_to_type" class="btn btn-large" data-toggle="modal">Send Message</a>
+                <a href="javascript://" class="btn btn-large" onclick="checkStations();">Send Message</a>
             </div>
 
 

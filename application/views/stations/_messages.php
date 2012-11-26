@@ -59,19 +59,25 @@
     var subject=null;
     var type=null;
     var msg_body=null;
-    
+    function checkStations(){
+        var stations=new Array();
+        $('input[name="station[]"]:checked').each(function(index,a){
+            stations[index]=$(this).val();
+        });
+        if(stations.length>0){
+            $('#compose_to_type').model();
+        }
+    }
     function typeForm(){
-    
         type=$('#msg_type').val();
-        to=$('#receiver_id').val();
+        
         if(type=='')
         {
             $('#message_type_error').show();
-            return ;
+            return;
         }
         else
         {
-            $('#message_station_error').hide();
             $('#message_type_error').hide();
             $.ajax({
                 type: 'POST', 

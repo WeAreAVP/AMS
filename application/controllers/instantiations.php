@@ -67,6 +67,8 @@ class Instantiations extends MY_Controller
         $config['first_link'] = FALSE;
         $config['last_link'] = FALSE;
         $config['display_pages'] = FALSE;
+        $config['js_method'] = 'instantiation_search';
+        $config['postVar'] = 'page';
         $this->pagination->initialize($config);
         if (isAjax())
         {

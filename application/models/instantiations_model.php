@@ -58,10 +58,6 @@ class Instantiations_Model extends CI_Model
         $this->db->select("$this->table_nomination_status.status", FALSE);
         $this->db->select("CASE WHEN $this->table_events.event_outcome=0 THEN 'FAIL' WHEN $this->table_events.event_outcome=1 THEN 'PASS' END AS outcome_evnet", FALSE);
         $this->db->select("$this->table_event_types.event_type", FALSE);
-
-
-
-
         $this->db->join($this->_assets_table, "$this->_assets_table.id = $this->table_instantiations.assets_id", 'left');
         $this->db->join($this->asset_titles, "$this->asset_titles.assets_id	 = $this->table_instantiations.assets_id", 'left');
         $this->db->join($this->stations, "$this->stations.id = $this->_assets_table.stations_id", 'left');
@@ -77,11 +73,13 @@ class Instantiations_Model extends CI_Model
         $this->db->join($this->table_events, "$this->table_events.instantiations_id	 = $this->table_instantiations.id", 'left');
         $this->db->join($this->table_event_types, "$this->table_event_types.id	 = $this->table_events.event_types_id", 'left');
         $this->db->limit(5);
-        $this->db->group_by("$this->_assets_table.id");
-        
-        $result = $this->db->get($this->table_instantiations)->result();
-return $this->db->last_query();
-        return $result;
+        $this->db->group_by("$this->_assets_table.id"); 
+        $result = $this->db->get($this->table_instantiations);
+		if(isset($result) && !empty($result))
+		{
+			return $result->result();
+		}
+		return $result;
     }
 
     /**

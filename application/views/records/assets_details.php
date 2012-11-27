@@ -1,4 +1,7 @@
-<div class="row-fluid">
+<?php 
+echo "<pre>";
+print_r($asset_instantiations);
+?><div class="row-fluid">
  <h2><?php echo $asset_details->title?></h2>
   <div class="span12 form-row">
   <div class="span3">
@@ -8,19 +11,19 @@
         </div>
         <div class="container-sidebar">
         <h4>Instantiation Name</h4>
-        ID: test_file_name_12345.mov
-        Format: Betacam SP
-        Generation: Preservation Mater
+        ID: test_file_name_12345.mov<br/>
+        Format: Betacam SP<br/>
+        Generation: Preservation Mater<br/>
         Duration: 0:28:33
-        <h4>Instantiation Name</h4>
-        ID: test_file_name_12345.mov
-        Format: Betacam SP
-        Generation: Preservation Mater
+         <h4>Instantiation Name</h4>
+        ID: test_file_name_12345.mov<br/>
+        Format: Betacam SP<br/>
+        Generation: Preservation Mater<br/>
         Duration: 0:28:33
-        <h4>Instantiation Name</h4>
-        ID: test_file_name_12345.mov
-        Format: Betacam SP
-        Generation: Preservation Mater
+          <h4>Instantiation Name</h4>
+        ID: test_file_name_12345.mov<br/>
+        Format: Betacam SP<br/>
+        Generation: Preservation Mater<br/>
         Duration: 0:28:33
         </div>
     </div><!--end of sidebar-->

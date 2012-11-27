@@ -265,7 +265,7 @@ html, body {
 .form-1{margin:0 !important;}
 /*.table{margin-top:15px}*/
 /*.table th{font-size:15px}*/
-.disabled-field{background:#D6D5D4;width:790px;float:left;padding:10px;border-radius:3px;margin-bottom:10px}
+.disabled-field{background:#D6D5D4;width:650px;float:left;padding:10px;border-radius:3px;margin-bottom:10px}
 .button-submit{float:left;}.black-btn{padding:5px}
 .btn-group{margin:0 0 10px 0 !important}
 .station-detail{
@@ -280,13 +280,14 @@ html, body {
     margin: 0px 5px;
     color: red;
 }
-.fbProxyElement {
-
-    position: fixed !important;
-
-    pointer-events: auto !important;
-
-}
+.players{
+	background:#D6D5D4;
+	width:900px;
+	height:300px;
+	text-align:center;
+	vertical-align:middle;
+	display:table-cell;
+	}
 .my-navbar {margin-top:15px;}
 .button-after-player {margin:15px 0 0 !important;}
 .my-navbar {margin:15px 0 0 !important;}

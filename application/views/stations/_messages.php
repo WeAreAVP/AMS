@@ -8,7 +8,7 @@
 
     </div>
     <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="$('#compose_to_type').model('toggle');">Back</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="$('#compose_to_type').modal('toggle');">Back</button>
         <button class="btn btn-primary"  data-dismiss="modal" onclick="sentEmail();">Send</button>
     </div>
 </div>
@@ -106,11 +106,14 @@
         else
         {
             $('#message_type_error').hide();
-            subject=$("#msg_type option[value='"+type+"']").text();//$('#subject').val();
-            confirmBody();
+            validateFields=checkFields();
+            if(validateFields){
+                subject=$("#msg_type option[value='"+type+"']").text();//$('#subject').val();
+                confirmBody();
              
-            $('#compose_to_type').modal("toggle");
-            $('#compose_confirm').modal("toggle");
+                $('#compose_to_type').modal("toggle");
+                $('#compose_confirm').modal("toggle");
+            }
             
         }
                                     

@@ -31,7 +31,33 @@
         $( "#estimated_complete_date" ).datepicker();
         
     });
-    
+    function checkFields(){
+        if($('#shipping_instructions').val()==''){
+            $('#shipping_instructions_error').show();
+            return false;
+        }
+        else {
+            $('#shipping_instructions_error').hide();
+            return true;
+        }
+            
+        if($('#comments').val()==''){
+            $('#comments_error').show();
+            return false;
+        } else {
+            $('#comments_error').hide();
+            return true;
+        }
+            
+        if($('#estimated_complete_date').val()==''){
+            $('#estimated_complete_date_error').show();
+            return false;
+        } else {
+            $('#estimated_complete_date_error').hide();
+            return true;
+        }
+            
+    }
     function confirmBody(){
         shipping_instructions=$('#shipping_instructions').val();
         comments=$('#comments').val();

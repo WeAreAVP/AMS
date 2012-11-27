@@ -2,13 +2,15 @@
     <div class="control-group">
         <label class="control-label" for="shipping_instructions">Shipping Instructions:</label>
         <div class="controls">
-            <textarea id="shipping_instructions" name="shipping_instructions"  rows="5" cols="50"></textarea>
+            <textarea id="shipping_instructions" name="shipping_instructions"  rows="4" cols="80" onblur="checkFields('shipping_instructions')"></textarea>
+            <span id="shipping_instructions_error" style="display: none;">Please Enter Shipping Instructions</span>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="comments">Comments:</label>
         <div class="controls">
-            <textarea id="comments" name="comments"></textarea>
+            <textarea id="comments" name="comments" rows="4" cols="80" onblur="checkFields('comments')"></textarea>
+            <span id="comments_error" style="display: none;">Please Enter Comments</span>
 
 
         </div>
@@ -16,7 +18,8 @@
     <div class="control-group">
         <label class="control-label" for="estimated_complete_date">Estimated Complete Date:</label>
         <div class="controls">
-            <input id="estimated_complete_date" name="estimated_complete_date"/>
+            <input id="estimated_complete_date" name="estimated_complete_date" onblur="checkFields('estimated_complete_date')"/>
+            <span id="estimated_complete_date_error" style="display: none;">Please Enter Estimated Complete Date</span>
 
         </div>
     </div>
@@ -28,6 +31,15 @@
         $( "#estimated_complete_date" ).datepicker();
         
     });
+    function checkFields(fieldName){
+        if(fieldName==''){
+            $('#'+fieldName+'_error').show();
+            return false;
+        }
+        else{
+            $('#'+fieldName+'_error').hide();
+        }
+    }
     function confirmBody(){
         shipping_instructions=$('#shipping_instructions').val();
         comments=$('#comments').val();

@@ -1,22 +1,17 @@
 <div id="type_1">
     <div class="control-group">
-        <label class="control-label" for="ship_date">Ship Date:</label>
-        <div class="controls">
-            <input id="ship_date" name="ship_date"/>
-
-        </div>
-    </div>
-    <div class="control-group">
         <label class="control-label" for="shipping_instructions">Shipping Instructions:</label>
         <div class="controls">
-            <input id="shipping_instructions" name="shipping_instructions"/>
+            
+            <textarea id="shipping_instructions" name="shipping_instructions"></textarea>
 
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="comments">Comments:</label>
         <div class="controls">
-            <input id="comments" name="comments"/>
+            <textarea id="comments" name="comments"></textarea>
+
 
         </div>
     </div>
@@ -32,7 +27,6 @@
 
 <script type="text/javascript">
     $(function() {
-        $( "#ship_date" ).datepicker();
         $( "#estimated_complete_date" ).datepicker();
         
     });

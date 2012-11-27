@@ -139,8 +139,7 @@ function search_assets(parem)
 	var objJSON = eval("(function(){return " + parem + ";})()");
 	$.ajax({
     	type: 'POST', 
-        url: '<?php echo site_url('records/index') ?>',
-        data:{"page":objJSON.page,"from_fields":$('#asset_frm').serialize()},
+        url: '<?php echo site_url('records/index') ?>/'+objJSON.page+'?'+$('#asset_frm').serialize(),
         success: function (result)
 		{ 
           $('#assets_container').html(result);$('#assets_container').show();

@@ -15,6 +15,7 @@
         echo link_js('jquery.freezetablecolumns.1.1.js');
         echo link_js('highcharts.js');
         echo link_js('modules/exporting.js');
+        echo link_js('jquery.blockUI.js');
 
         echo link_js('jquery.multiselect.min.js');
         echo link_tag("css/tableSorter.css");

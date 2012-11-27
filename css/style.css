@@ -115,14 +115,14 @@ html, body {
     float:right;
     margin:-14px -23px 0 0;
 }
-.table-station {
+.table-freeze-custom {
 
     margin-bottom: 18px;
     /*    border-collapse: collapse;*/
 }
 
-.table-station th,
-.table-station td {
+.table-freeze-custom th,
+.table-freeze-custom td {
     padding: 8px;
     line-height: 18px;
     text-align: left;
@@ -130,19 +130,19 @@ html, body {
     border-top: 1px solid #dddddd;
 }
 
-.table-station th {
+.table-freeze-custom th {
     font-weight: bold;
 }
 
-.table-station thead th {
+.table-freeze-custom thead th {
     vertical-align: bottom;
 }
 
-.table-station caption + thead tr:first-child th,
-.table-station caption + thead tr:first-child td,
-.table-station colgroup + thead tr:first-child th,
-.table-station colgroup + thead tr:first-child td,
-.table-station.table-station thead:first-child tr:first-child td {
+.table-freeze-custom caption + thead tr:first-child th,
+.table-freeze-custom caption + thead tr:first-child td,
+.table-freeze-custom colgroup + thead tr:first-child th,
+.table-freeze-custom colgroup + thead tr:first-child td,
+.table-freeze-custom.table-freeze-custom thead:first-child tr:first-child td {
     border-top: 0;
 }
 

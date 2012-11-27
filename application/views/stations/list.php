@@ -87,6 +87,8 @@ if (!$is_ajax)
         <?php echo form_close(); ?>
         <div  class="span9">
             <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
+            <?php if (isset($this->session->userdata['sent']))
+            { ?><div class="alert" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['sent']; ?></div><br/><?php } $this->session->unset_userdata('sent'); ?>
             <div class="row" style="margin:5px 0px;">
                 <a href="javascript://" class="btn btn-large" onclick="editStations();">Batch Edit</a>
                 <a href="javascript://" class="btn btn-large" onclick="checkStations();">Send Message</a>
@@ -124,7 +126,7 @@ if (!$is_ajax)
                             <td id="certified_<?php echo $data->id; ?>"><?php echo ($data->is_certified) ? 'Yes' : 'No'; ?>
                             <td id="agreed_<?php echo $data->id; ?>"><?php echo ($data->is_agreed) ? 'Yes' : 'No'; ?>
                             <td id="start_date_<?php echo $data->id; ?>">
-                                <?php echo ($data->start_date == 0) ? 'No DSD' : date('Y-m-d', $data->start_date); ?>
+        <?php echo ($data->start_date == 0) ? 'No DSD' : date('Y-m-d', $data->start_date); ?>
                             </td>
                         </tr>
                         <?php
@@ -174,7 +176,7 @@ if (!$is_ajax)
                 $('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'</span><span class="btn-close-img" onclick="remove_keword(\''+search_id+'\')"></span></div>');
             }
             $('#search_keyword').val('');
-                                                                                                                                                              			
+                                                                                                                                                                  			
             $(".search_keys").each(function() {
                 if(token==0)
                     my_search_words=$(this).text();
@@ -206,7 +208,7 @@ if (!$is_ajax)
             search_words=$('#search_words').val();
             certified=$('#certified').val();
             agreed=$('#agreed').val();
-                                                          
+                                                              
             $.ajax({
                 type: 'POST', 
                 url: '<?php echo site_url('stations/index') ?>',
@@ -214,11 +216,11 @@ if (!$is_ajax)
                 success: function (result) { 
                     $('#append_record').html(result);
                     $("#station_table").trigger("update");  
-                                                                              
+                                                                                  
                 }
             });
         }
-                                                      
+                                                          
         function resetStationFilter(){
             $('#search_words').val('');
             $('#search_keyword').val('');
@@ -227,8 +229,8 @@ if (!$is_ajax)
             $('#tokens').html('');
             search_station();
         }
-                    
-                            
+                        
+                                
     </script>
 
 <?php }

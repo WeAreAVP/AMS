@@ -38,6 +38,18 @@ class Records extends MY_Controller
         	$config['per_page'] = 100;
         	$data['records'] = $records['records'];
         	$data['count'] = count($data['records']);
+			if ($data['count'] > 0 && $offset == 0)
+			{
+				$data['start'] = 1;
+				$data['end'] = $data['count'];
+			}
+			else
+			{
+				$data['start'] = $offset;
+				$data['end'] = intval($offset) + intval($data['count']);
+			}
+			
+			
 	        $config['base_url'] = $this->config->item('base_url') . $this->config->item('index_page') . "records/index/";
     	    $config['prev_link'] = '<i class="icon-chevron-left"></i>';
         	$config['prev_tag_open'] = '<span class="btn">';

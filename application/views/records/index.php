@@ -57,7 +57,7 @@
  </div>
  <div  class="span9">
   <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
-  <div style="text-align: right;width: 860px;"> <strong>1 - <?php echo $count; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong> <?php echo $this->pagination->create_links(); ?> </div>
+  <div style="text-align: right;width: 860px;"> <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong> <?php echo $this->pagination->create_links(); ?> </div>
   <div style="overflow: auto;height: 400px;" id="simple_view">
    <table class="tablesorter table table-bordered" >
     <?php 
@@ -123,7 +123,7 @@
 		if(isset($records) && ($total>0))
 		{
 			?>
-  <div style="text-align: right;width: 860px;"> <strong>1 - <?php echo $count; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong> <?php echo $this->pagination->create_links(); ?> </div>
+  <div style="text-align: right;width: 860px;"> <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong> <?php echo $this->pagination->create_links(); ?> </div>
   <?php }?>
  </div>
 </div>

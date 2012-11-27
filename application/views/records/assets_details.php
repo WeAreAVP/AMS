@@ -17,8 +17,8 @@
 					echo (isset($asset_instantiation->instantiation_identifier) && ($asset_instantiation->instantiation_identifier!=NULL))?"ID: ".$asset_instantiation->instantiation_identifier.'<br/>':'';
 					echo (isset($asset_instantiation->format_name) && ($asset_instantiation->format_name!=NULL) )?"Format: ".$asset_instantiation->format_name.'<br/>':'';
 					echo (isset($asset_instantiation->generation) && ($asset_instantiation->generation!=NULL) ) ?"Generation: ".$asset_instantiation->generation.'<br/>':'';
-					echo ($asset_instantiation->actual_duration>0)?"Actual Duration: ".gmdate("H:i:s",$asset_instantiation->actual_duration).'<br/>':'';
-					echo ($asset_instantiation->projected_duration>0)?"Projected Duration: ".gmdate("H:i:s",$asset_instantiation->projected_duration).'<br/>':'';?><?php 
+					echo ($asset_instantiation->actual_duration>0)?"Actual Duration: ".duration($asset_instantiation->actual_duration).'<br/>':'';
+					echo ($asset_instantiation->projected_duration>0)?"Projected Duration: ".duration($asset_instantiation->projected_duration).'<br/>':'';?><?php 
 				}?>
              </div>
         <?php }?>

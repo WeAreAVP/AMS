@@ -112,4 +112,25 @@ function xmlObjToArr($obj)
 	}
 	return array('name'=>$name,'text'=>$text,'attributes'=>$attributes,'children'=>$children);
 } 
+function duration($seconds_count)
+{
+ 		$delimiter  = ':';
+ 		$seconds = $seconds_count % 60;
+ 		$minutes = floor($seconds_count/60);
+ 		$hours   = floor($seconds_count/3600);
+ 
+ 		$seconds = str_pad($seconds, 2, "0", STR_PAD_LEFT);
+ 		$minutes = str_pad($minutes, 2, "0", STR_PAD_LEFT).$delimiter;
+ 
+ 		if($hours > 0)
+ 		{
+ 			$hours = str_pad($hours, 2, "0", STR_PAD_LEFT).$delimiter;
+ 		}
+ 		else
+ 		{
+ 			$hours = '';
+ 		}
+ 
+ 		return $hours.":".$minutes.":".$seconds;
+ }
 

@@ -48,7 +48,7 @@
         
         $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+
             '<div><strong>Subject: '+subject+'</strong></div><br/>'+
-            '<div>Ship Date: '+ship_date+'</div>'+
+           
             '<div>Shipping Instructions: '+shipping_instructions+'</div>'+
             '<div>Comments: '+comments+'</div>'+
             '<div>Estimated Complete Date: '+estimated_complete_date+'</div>');

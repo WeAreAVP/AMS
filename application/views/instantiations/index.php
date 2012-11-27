@@ -28,7 +28,7 @@ if (!$isAjax)
             <?php echo $this->ajax_pagination->create_links(); ?>
         </div>
         <div style="overflow: auto;width:865px;" id="instantiation-main">
-            <table class="tablesorter table-station table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
+            <table class="tablesorter table-freeze-custom table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
                 <thead>
                     <tr>
                         <th><span style="float:left;min-width: 80px;">Asset ID</span></th>
@@ -94,16 +94,16 @@ if (!$isAjax)
     <script type="text/javascript">
            
             
-        $(function() {
-    			 
-            $('#instantiation_table').freezeTableColumns({
-                width:       870,   // required
-                height:      600,   // required
-                numFrozen:   2,     // optional
-                //            frozenWidth: 150,   // optional
-                clearWidths: true  // optional
-            });//freezeTableColumns
-        });
+//        $(function() {
+//    			 
+//            $('#instantiation_table').freezeTableColumns({
+//                width:       870,   // required
+//                height:      600,   // required
+//                numFrozen:   2,     // optional
+//                //            frozenWidth: 150,   // optional
+//                clearWidths: true  // optional
+//            });//freezeTableColumns
+//        });
         function instantiation_search(param)
         {
             console.log(param)

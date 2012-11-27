@@ -102,6 +102,10 @@ class Sphinx_Model extends CI_Model
         $this->sphinxsearch->reset_filters();
         $this->sphinxsearch->reset_group_by();
         //$where = $this->get_sphinx_search_condtion($params);
+		if(isset($params['asset_id']))
+		{
+				$this->sphinxsearch->set_filter("asset_id",array($params['asset_id']));
+		}
         $mode = SPH_MATCH_EXTENDED;
         $this->sphinxsearch->set_array_result(true);
         $this->sphinxsearch->set_match_mode($mode);

@@ -100,6 +100,7 @@ class Records extends MY_Controller
 				$data['asset_creators_roles']=$this->assets_model->get_assets_creators_roles_by_assets_id($asset_id);
 				$data['asset_contributor_roles']=$this->assets_model->get_assets_contributor_roles_by_assets_id($asset_id);
 				$data['asset_publishers_roles']=$this->assets_model->get_assets_publishers_role_by_assets_id($asset_id);
+				$this->sphinx->instantiations_list()
 								
 				$this->load->view('records/assets_details',$data);
 			}

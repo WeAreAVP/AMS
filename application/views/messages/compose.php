@@ -49,7 +49,7 @@
                         {
                             ?>
                             <option value="<?php echo $key; ?>"><?php echo $value; ?></option>           
-<?php } ?>
+                        <?php } ?>
 
                     </select>
                     <span id="message_type_error">Please select message type</span>
@@ -164,7 +164,7 @@
             success: function (result) { 
                 if(result.success)
                 {
-                    //								 window.location.reload();
+                    window.location.reload();
                 }
                 else
                 {

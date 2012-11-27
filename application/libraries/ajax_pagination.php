@@ -369,12 +369,14 @@ class Ajax_pagination {
 	{
         if($pars !== NULL):
         foreach($pars as $k=>$v):
-            $par = '"'.$k.'":'.$v;        
+            $par[] = '"'.$k.'":'.$v;        
         endforeach;        
-        
+        $final_perm=implode(",",$par);
+		$final_perm = '{'.$final_perm.'}';
+		$click= $method.'('.$final_perm.'); return false;';
         //onclick='new Ajax.Updater('$div','$url',{method: 'post', parameters:{'.$par.'}, evalScripts:true}); return false;'
        
-        $html = "<a href='javascript:;' onclick=\"$method('{$par}'); return false;\">$text</a>";
+        $html = '<a href="javascript:void(0);" onclick="'.$click.'" >'.$text.'</a>';
         else:
         $html = "<a href='javascript:;'  onclick='".$method."(); return false;'>$text</a>";
         endif;

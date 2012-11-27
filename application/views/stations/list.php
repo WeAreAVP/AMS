@@ -119,7 +119,7 @@ if (!$is_ajax)
                         <tr>
                             <td><input style='margin-left:18px;margin-right: 4px;' type='checkbox' name='station[]' value='<?php echo $data->id; ?>'  class='checkboxes'/></td>
                             <td><?php echo $data->cpb_id; ?></td>
-                            <td><a href="<?php echo site_url('stations/detail/' . $data->id); ?>" id="station_name_<? echo $data->id; ?>"><?php echo $data->station_name; ?></a></td>
+                            <td><a href="<?php echo site_url('stations/detail/' . $data->id); ?>" id="station_name_<?php echo $data->id; ?>"><?php echo $data->station_name; ?></a></td>
                             <td><?php echo $data->total_allocated; ?></td>
                             <td id="certified_<?php echo $data->id; ?>"><?php echo ($data->is_certified) ? 'Yes' : 'No'; ?>
                             <td id="agreed_<?php echo $data->id; ?>"><?php echo ($data->is_agreed) ? 'Yes' : 'No'; ?>

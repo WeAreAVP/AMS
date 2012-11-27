@@ -374,9 +374,9 @@ class Ajax_pagination {
         
         //onclick='new Ajax.Updater('$div','$url',{method: 'post', parameters:{'.$par.'}, evalScripts:true}); return false;'
        
-        $html = "<a href='javascript:;' onclick='".$method."(".$pars."); return false;'>$text</a>";
+        $html = "<a href='javascript:;' onclick='".$method."(parameters:{".$par."}); return false;'>$text</a>";
         else:
-        $html = "<a href='javascript:;'  onclick='".$method."(".$pars."); return false;'>$text</a>";
+        $html = "<a href='javascript:;'  onclick='".$method."(); return false;'>$text</a>";
         endif;
     	return $html;
     }

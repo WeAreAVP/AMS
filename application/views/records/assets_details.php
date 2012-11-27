@@ -1,31 +1,27 @@
-<?php 
-echo "<pre>";
-print_r($asset_instantiations);
-?><div class="row-fluid">
+<div class="row-fluid">
  <h2><?php echo $asset_details->title?></h2>
   <div class="span12 form-row">
   <div class="span3">
   	<div class="sidebar">
         <div class="my-navbar span12">
-        <div> Intellectual Content </div>
+        	<div> Intellectual Content </div>
         </div>
-        <div class="container-sidebar">
-        <h4>Instantiation Name</h4>
-        ID: test_file_name_12345.mov<br/>
-        Format: Betacam SP<br/>
-        Generation: Preservation Mater<br/>
-        Duration: 0:28:33
-         <h4>Instantiation Name</h4>
-        ID: test_file_name_12345.mov<br/>
-        Format: Betacam SP<br/>
-        Generation: Preservation Mater<br/>
-        Duration: 0:28:33
-          <h4>Instantiation Name</h4>
-        ID: test_file_name_12345.mov<br/>
-        Format: Betacam SP<br/>
-        Generation: Preservation Mater<br/>
-        Duration: 0:28:33
-        </div>
+        <?php 
+		if(isset($asset_instantiations['records']) && !empty($asset_instantiations['records']))
+		{?>
+	        <div class="container-sidebar"><?php
+              	foreach($asset_instantiations['records'] as $asset_instantiation)
+				{?>
+            		<h4><?php $asset_instantiation->multi_assets?></h4>
+                    <?php 
+					echo isset($asset_instantiation->instantiation_identifier)?"ID: ".$asset_instantiation->instantiation_identifier.'<br/>':'';
+					echo isset($asset_instantiation->format_name)?"Format: ".$asset_instantiation->format_name.'<br/>':'';
+					echo isset($asset_instantiation->generation)?"Generation: ".$asset_instantiation->generation.'<br/>':'';
+					echo ($asset_instantiation->actual_duration>0)?"Actual Duration: ".gmdate("H:i:s",$asset_instantiation->actual_duration).'<br/>':'';
+					echo ($asset_instantiation->projected_duration>0)?"Projected Duration: ".gmdate("H:i:s",$asset_instantiation->projected_duration).'<br/>':'';?><?php 
+				}?>
+             </div>
+        <?php }?>
     </div><!--end of sidebar-->
   </div>
 

@@ -30,6 +30,7 @@ class Records extends MY_Controller
 		*/
 		function index()
 		{
+			$data['isAjax'] = FALSE;
 			$offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         	$param = array('search' => '','index'=>'assets_list');
 		    $records=$this->sphinx->assets_listing($param,$offset);
@@ -48,8 +49,6 @@ class Records extends MY_Controller
 				$data['start'] = $offset;
 				$data['end'] = intval($offset) + intval($data['count']);
 			}
-			
-			
 	        $config['base_url'] = $this->config->item('base_url') . $this->config->item('index_page') . "records/index/";
     	    $config['prev_link'] = '<i class="icon-chevron-left"></i>';
         	$config['prev_tag_open'] = '<span class="btn">';
@@ -62,7 +61,12 @@ class Records extends MY_Controller
     	    $config['last_link'] = FALSE;
       		$config['display_pages'] = FALSE;
       	  	$this->pagination->initialize($config);
-			
+			if (isAjax())
+			{
+				$data['isAjax'] = TRUE;
+				echo $this->load->view('instantiations/index', $data, TRUE);
+				exit;
+			}
 			$this->load->view('records/index',$data);
 		}
 	 /*

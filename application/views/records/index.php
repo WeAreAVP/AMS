@@ -1,4 +1,7 @@
-
+<?php
+if (!$isAjax)
+{
+    ?>
 <div class="row-fluid">
  <div class="span3">
   <div id="search_bar"> <b>
@@ -55,7 +58,9 @@
    </form>
   </div>
  </div>
- <div  class="span9">
+
+ <div  class="span9" id="assets_container">
+  <?php } ?>
   <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
   <div style="text-align: right;width: 860px;"> <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong> <?php echo $this->pagination->create_links(); ?> </div>
   <div style="overflow: auto;height: 400px;" id="simple_view">
@@ -125,19 +130,10 @@
 			?>
   <div style="text-align: right;width: 860px;"> <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong> <?php echo $this->pagination->create_links(); ?> </div>
   <?php }?>
+    <?php
+        if (!$isAjax)
+        {
+            ?>
  </div>
 </div>
-<script>
-function change_view(id)
-{
-	$('#simple_view').hide();
-	$('#full_table_view').hide();
-	$('#thumbnails_view').hide();
-	$('#simple_li').removeClass("active");
-	$('#full_table_li').removeClass("active");
-	$('#thumbnails_li').removeClass("active");
-	$('#'+id+'_view').show();
-	$('#'+id+'_li').addClass("active");
-	
-}
-</script> 
+  <?php }?>

@@ -132,7 +132,7 @@
     <?php 
         if(isset($asset_genre->genre) && !empty($asset_genre->genre)){?>
     <strong>Genre:</strong><br/>
-    <?php echo $asset_genre->genre;?><strong><br/>
+    <?php echo $asset_genre->genre;?><br/>
     <br/>
     <?php }
         if(isset($asset_genre->genre_source) && !empty($asset_genre->genre_source)){?>
@@ -161,7 +161,7 @@
     <?php 
         if(isset($asset_creators_role->creators_id) && !empty($asset_creators_role->creators_id)){?>
     <strong>Creator Id:</strong><br/>
-    <?php echo $asset_creators_role->genre;?><strong><br/>
+    <?php echo $asset_creators_role->creators_id;?><br/>
     <br/>
     <?php }
         if(isset($asset_creators_role->creator_affiliation) && !empty($asset_creators_role->creator_affiliation)){?>
@@ -175,7 +175,7 @@
     <?php 
         if(isset($asset_creators_role->creator_role) && !empty($asset_creators_role->creator_role)){?>
     <strong>Creator Role:</strong><br/>
-    <?php echo $asset_creators_role->creator_role;?><strong><br/>
+    <?php echo $asset_creators_role->creator_role;?><br/>
     <br/>
     <?php }
         if(isset($asset_creators_role->creator_role_source) && !empty($asset_creators_role->creator_role_source)){?>
@@ -204,7 +204,7 @@
     <?php 
         if(isset($asset_contributor_role->contributor_name) && !empty($asset_contributor_role->contributor_name)){?>
     <strong>Contributor Name:</strong><br/>
-    <?php echo $asset_contributor_role->contributor_name;?><strong><br/>
+    <?php echo $asset_contributor_role->contributor_name;?><br/>
     <br/>
     <?php }
         if(isset($asset_contributor_role->contributor_affiliation) && !empty($asset_contributor_role->contributor_affiliation)){?>
@@ -218,7 +218,7 @@
     <?php 
         if(isset($asset_contributor_role->contributor_role) && !empty($asset_contributor_role->contributor_role)){?>
     <strong>Contributor Role:</strong><br/>
-    <?php echo $asset_contributor_role->contributor_role;?><strong><br/>
+    <?php echo $asset_contributor_role->contributor_role;?><br/>
     <br/>
     <?php }
         if(isset($asset_contributor_role->contributor_role_source) && !empty($asset_contributor_role->contributor_role_source)){?>
@@ -247,7 +247,7 @@
     <?php 
         if(isset($asset_publishers_role->publisher) && !empty($asset_publishers_role->publisher)){?>
     <strong>Publisher:</strong><br/>
-    <?php echo $asset_publishers_role->publisher;?><strong><br/>
+    <?php echo $asset_publishers_role->publisher;?><br/>
     <br/>
     <?php }
         if(isset($asset_publishers_role->publisher_affiliation) && !empty($asset_publishers_role->publisher_affiliation)){?>
@@ -261,7 +261,7 @@
     <?php 
         if(isset($asset_publishers_role->publisher_role) && !empty($asset_publishers_role->publisher_role)){?>
     <strong>Publisher Role:</strong><br/>
-    <?php echo $asset_publishers_role->publisher_role;?><strong><br/>
+    <?php echo $asset_publishers_role->publisher_role;?><br/>
     <br/>
     <?php }
         if(isset($asset_publishers_role->publisher_role_source) && !empty($asset_publishers_role->publisher_role_source)){?>
@@ -290,7 +290,7 @@
     <?php 
         if(isset($asset_dates->asset_date) && !empty($asset_dates->asset_date)){?>
     <strong>ASSET DATE:</strong><br/>
-    <?php echo $asset_dates->asset_date;?><strong><br/>
+    <?php echo $asset_dates->asset_date;?><br/>
     <br/>
     <?php }
         if(isset($asset_dates->date_type) && !empty($asset_dates->date_type)){?>
@@ -315,7 +315,7 @@
     <?php 
         if(isset($asset_subject->subject) && !empty($asset_subject->subject)){?>
     <strong>Subject:</strong><br/>
-    <?php echo $asset_subject->subject;?><strong><br/>
+    <?php echo $asset_subject->subject;?><br/>
     <br/>
     <?php }
         if(isset($asset_subject->subject_source) && !empty($asset_subject->subject_source)){?>

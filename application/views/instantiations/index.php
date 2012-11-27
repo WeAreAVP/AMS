@@ -28,7 +28,7 @@ if (!$isAjax)
             <?php echo $this->ajax_pagination->create_links(); ?>
         </div>
         <div style="overflow: auto;width:865px;" id="instantiation-main">
-            <table class="tablesorter table table-bordered">
+            <table class="tablesorter table table-bordered table-station" id="instantiation_table">
                 <thead>
                     <tr>
                         <th><span style="float:left;min-width: 80px;">Asset ID</span></th>
@@ -92,10 +92,22 @@ if (!$isAjax)
         </div>
     </div>
     <script type="text/javascript">
+           
+            
+        $(function() {
+    			 
+            $('#instantiation_table').freezeTableColumns({
+                width:       870,   // required
+                height:      600,   // required
+                numFrozen:   2,     // optional
+                //            frozenWidth: 150,   // optional
+                clearWidths: true  // optional
+            });//freezeTableColumns
+        });
         function instantiation_search(param)
         {
             console.log(param)
-            $('#instantiation-container').hide();
+                    
             var objJSON = eval("(function(){return " + param + ";})()");
             $.ajax({
                 type: 'POST', 
@@ -103,7 +115,7 @@ if (!$isAjax)
                 success: function (result)
                 { 
                     $('#instantiation-container').html(result);
-                    $('#instantiation-container').show();
+                            
                 }
             });
         }

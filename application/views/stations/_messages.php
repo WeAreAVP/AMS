@@ -83,6 +83,7 @@
         else
         {
             $('#message_type_error').hide();
+            $('#alert_type').html('');
             $.ajax({
                 type: 'POST', 
                 url: '<?php echo site_url('messages/get_message_type') ?>',

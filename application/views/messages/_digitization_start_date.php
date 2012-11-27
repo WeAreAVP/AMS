@@ -3,14 +3,14 @@
         <label class="control-label" for="shipping_instructions">Shipping Instructions:</label>
         <div class="controls">
             <textarea id="shipping_instructions" name="shipping_instructions"  rows="4" cols="80"></textarea>
-            <span id="shipping_instructions_error" style="display: none;">Please Enter Shipping Instructions</span>
+            <span id="shipping_instructions_error" style="display: none;" class="message-type_error">Please Enter Shipping Instructions</span>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="comments">Comments:</label>
         <div class="controls">
             <textarea id="comments" name="comments" rows="4" cols="80"></textarea>
-            <span id="comments_error" style="display: none;">Please Enter Comments</span>
+            <span id="comments_error" style="display: none;" class="message-type_error">Please Enter Comments</span>
 
 
         </div>
@@ -19,7 +19,7 @@
         <label class="control-label" for="estimated_complete_date">Estimated Complete Date:</label>
         <div class="controls">
             <input id="estimated_complete_date" name="estimated_complete_date"/>
-            <span id="estimated_complete_date_error" style="display: none;">Please Enter Estimated Complete Date</span>
+            <span id="estimated_complete_date_error" style="display: none;" class="message-type_error">Please Enter Estimated Complete Date</span>
 
         </div>
     </div>
@@ -38,7 +38,6 @@
         }
         else {
             $('#shipping_instructions_error').hide();
-            return true;
         }
             
         if($('#comments').val()==''){
@@ -46,7 +45,6 @@
             return false;
         } else {
             $('#comments_error').hide();
-            return true;
         }
             
         if($('#estimated_complete_date').val()==''){
@@ -54,8 +52,8 @@
             return false;
         } else {
             $('#estimated_complete_date_error').hide();
-            return true;
         }
+        return true;
             
     }
     function confirmBody(){

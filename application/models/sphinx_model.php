@@ -104,7 +104,7 @@ class Sphinx_Model extends CI_Model
         //$where = $this->get_sphinx_search_condtion($params);
 		if(isset($params['asset_id']))
 		{
-				$this->sphinxsearch->set_filter("asset_id",array($params['asset_id']));
+			$this->sphinxsearch->set_filter("assets_id",array($params['asset_id']));
 		}
         $mode = SPH_MATCH_EXTENDED;
         $this->sphinxsearch->set_array_result(true);

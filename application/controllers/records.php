@@ -61,11 +61,13 @@ class Records extends MY_Controller
 	        $config['first_link'] = FALSE;
     	    $config['last_link'] = FALSE;
       		$config['display_pages'] = FALSE;
+			$config['js_method'] = 'search_assets';
+			
       	  	$this->ajax_pagination->initialize($config);
 			if (isAjax())
 			{
 				$data['isAjax'] = TRUE;
-				echo $this->load->view('instantiations/index', $data, TRUE);
+				echo $this->load->view('records/index', $data, TRUE);
 				exit;
 			}
 			$this->load->view('records/index',$data);

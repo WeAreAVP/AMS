@@ -5,18 +5,20 @@ if (!$isAjax)
     <div class="row-fluid">
         <div class="span3">
             <div id="search_bar"> 
-                <b>
-                    <h4>Filter Instantiations</h4>
-                </b>
-                <div class="filter-fileds">
-                    <div>Search:</div>
-                    <div>
-                        <input type="text" name="search" id="search" value=""/>
+                <form name="form_search_instantiation" id="form_search_instantiation" method="post">
+                    <b>
+                        <h4>Filter Instantiations</h4>
+                    </b>
+                    <div class="filter-fileds">
+                        <div>Search:</div>
+                        <div>
+                            <input type="text" name="search" id="search" value=""/>
+                        </div>
                     </div>
-                </div>
-                <div class="filter-fileds">
-                    <div><input type="button" name="reset" value="Reset" class="btn"/></div>
-                </div>
+                    <div class="filter-fileds">
+                        <div><input type="button" name="reset" value="Reset" class="btn"/></div>
+                    </div>
+                </form>
             </div>
         </div>
         <div  class="span9" id="instantiation-container">
@@ -89,19 +91,21 @@ if (!$isAjax)
             ?>
         </div>
     </div>
-<!--<script type="text/javascript">
-function search_assets(parem)
-{
-	$('#assets_container').hide();
-	var objJSON = eval("(function(){return " + parem + ";})()");
-	$.ajax({
-    	type: 'POST', 
-        url: '<?php echo site_url('records/index') ?>/'+objJSON.page+'?'+$('#asset_frm').serialize(),
-        success: function (result)
-		{ 
-          $('#assets_container').html(result);$('#assets_container').show();
+    <script type="text/javascript">
+        function instantiation_search(param)
+        {
+            console.log(param)
+            $('#instantiation-container').hide();
+            var objJSON = eval("(function(){return " + param + ";})()");
+            $.ajax({
+                type: 'POST', 
+                url: '<?php echo site_url('instantiations/index') ?>/'+objJSON.page+'?'+$('#form_search_instantiation').serialize(),
+                success: function (result)
+                { 
+                    $('#instantiation-container').html(result);
+                    $('#instantiation-container').show();
+                }
+            });
         }
-    });
-}
-</script>-->
+    </script>
 <?php } ?>

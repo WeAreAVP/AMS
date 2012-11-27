@@ -140,11 +140,11 @@ print_r($asset_instantiations);
     <br/>
     <?php }
         if(isset($asset_genre->genre_source) && !empty($asset_genre->genre_source)){?>
-    Genre Source:</strong><br/>
+    <strong>Genre Source:</strong><br/>
     <?php echo $asset_genre->genre_source;?>
     <?php }
 		if(isset($asset_genre->genre_ref) && !empty($asset_genre->genre_ref)){?>
-    Genre Ref:</strong><br/>
+    <strong>Genre Ref:</strong><br/>
     <?php echo $asset_genre->genre_ref;?>
     <?php }?>
    </div>
@@ -169,11 +169,11 @@ print_r($asset_instantiations);
     <br/>
     <?php }
         if(isset($asset_creators_role->creator_affiliation) && !empty($asset_creators_role->creator_affiliation)){?>
-    Creator Affiliation:</strong><br/>
+    <strong>Creator Affiliation:</strong><br/>
     <?php echo $asset_creators_role->creator_affiliation;?>
     <?php }
 		if(isset($asset_creators_role->creator_ref) && !empty($asset_creators_role->creator_ref)){?>
-    Creator Ref:</strong><br/>
+    <strong>Creator Ref:</strong><br/>
     <?php echo $asset_creators_role->creator_ref;?>
     <?php }?>
     <?php 
@@ -183,11 +183,11 @@ print_r($asset_instantiations);
     <br/>
     <?php }
         if(isset($asset_creators_role->creator_role_source) && !empty($asset_creators_role->creator_role_source)){?>
-    Creator Role Source:</strong><br/>
+    <strong>Creator Role Source:</strong><br/>
     <?php echo $asset_creators_role->creator_role_source;?>
     <?php }
 		if(isset($asset_creators_role->creator_role_ref) && !empty($asset_creators_role->creator_role_ref)){?>
-    Creator Role Ref:</strong><br/>
+    <strong>Creator Role Ref:</strong><br/>
     <?php echo $asset_creators_role->creator_role_ref;?>
     <?php }?>
    </div>
@@ -212,11 +212,11 @@ print_r($asset_instantiations);
     <br/>
     <?php }
         if(isset($asset_contributor_role->contributor_affiliation) && !empty($asset_contributor_role->contributor_affiliation)){?>
-    Contributor Affiliation:</strong><br/>
+    <strong>Contributor Affiliation:</strong><br/>
     <?php echo $asset_contributor_role->contributor_affiliation;?>
     <?php }
 		if(isset($asset_contributor_role->contributor_ref) && !empty($asset_contributor_role->contributor_ref)){?>
-    Contributor Ref:</strong><br/>
+    <strong>Contributor Ref:</strong><br/>
     <?php echo $asset_contributor_role->contributor_ref;?>
     <?php }?>
     <?php 
@@ -226,11 +226,11 @@ print_r($asset_instantiations);
     <br/>
     <?php }
         if(isset($asset_contributor_role->contributor_role_source) && !empty($asset_contributor_role->contributor_role_source)){?>
-    Contributor Role Source:</strong><br/>
+    <strong>Contributor Role Source:</strong><br/>
     <?php echo $asset_contributor_role->contributor_role_source;?>
     <?php }
 		if(isset($asset_contributor_role->contributor_role_ref) && !empty($asset_contributor_role->contributor_role_ref)){?>
-    Contributor Role Ref:</strong><br/>
+    <strong>Contributor Role Ref:</strong><br/>
     <?php echo $asset_contributor_role->contributor_role_ref;?>
     <?php }?>
    </div>
@@ -255,11 +255,11 @@ print_r($asset_instantiations);
     <br/>
     <?php }
         if(isset($asset_publishers_role->publisher_affiliation) && !empty($asset_publishers_role->publisher_affiliation)){?>
-    Publisher Affiliation:</strong><br/>
+    <strong>Publisher Affiliation:</strong><br/>
     <?php echo $asset_publishers_role->publisher_affiliation;?>
     <?php }
 		if(isset($asset_publishers_role->publisher_ref) && !empty($asset_publishers_role->publisher_ref)){?>
-    Publisher Ref:</strong><br/>
+   <strong> Publisher Ref:</strong><br/>
     <?php echo $asset_publishers_role->publisher_ref;?>
     <?php }?>
     <?php 
@@ -269,11 +269,11 @@ print_r($asset_instantiations);
     <br/>
     <?php }
         if(isset($asset_publishers_role->publisher_role_source) && !empty($asset_publishers_role->publisher_role_source)){?>
-    Publisher Role Source:</strong><br/>
+   <strong> Publisher Role Source:</strong><br/>
     <?php echo $asset_publishers_role->publisher_role_source;?>
     <?php }
 		if(isset($asset_publishers_role->publisher_role_ref) && !empty($asset_publishers_role->publisher_role_ref)){?>
-    Publisher Role Ref:</strong><br/>
+    <strong>Publisher Role Ref:</strong><br/>
     <?php echo $asset_publishers_role->publisher_role_ref;?>
     <?php }?>
    </div>
@@ -298,7 +298,7 @@ print_r($asset_instantiations);
     <br/>
     <?php }
         if(isset($asset_dates->date_type) && !empty($asset_dates->date_type)){?>
-    ASSET DATE TYPE:</strong><br/>
+    <strong>ASSET DATE TYPE:</strong><br/>
     <?php echo $asset_dates->date_type;?>
     <?php }?>
    </div>
@@ -323,18 +323,169 @@ print_r($asset_instantiations);
     <br/>
     <?php }
         if(isset($asset_subject->subject_source) && !empty($asset_subject->subject_source)){?>
-    Subject Source:</strong><br/>
+     <strong>Subject Source:</strong><br/>
     <?php echo $asset_subject->subject_source;?>
     <?php }
 		if(isset($asset_subject->subject_ref) && !empty($asset_subject->subject_ref)){?>
-    Subject Ref:</strong><br/>
+     <strong>Subject Ref:</strong><br/>
     <?php echo $asset_subject->subject_ref;?>
     <?php }?>
    </div>
    <?php }?>
   </div>
  </div>
- <?php }?>
+ <?php }
+	if(isset($asset_coverages) && !empty($asset_coverages))
+	{?>
+        <div class="span12 form-row">
+            <div class="span2 form-label">
+            	<label><i class="icon-question-sign"></i> Coveragee:</label>
+            </div>
+            <!--end of span3-->
+            <div id="search_bar" class="span10"><?php 
+	            foreach($asset_coverages as $asset_coverage)
+				{?>
+        		    <div class="disabled-field"><?php 
+						if(isset( $asset_coverage->coverage))
+						{?>
+                            <strong>Coverage:</strong><br/><?php	
+							echo $asset_coverage->coverage;?><br/><br/>
+                         <?php }
+						if(isset($asset_coverage->coverage_type))
+						{
+						?>
+						 
+                            <strong>Coverage Type:</strong><br/>
+                           <?php	echo $asset_coverage->coverage_type;?><br/><br/><?php 
+						}?>   
+					</div><?php 
+				}?>
+            </div>
+        </div>
+ <?php }
+ if(isset($rights_summaries) && !empty($rights_summaries))
+	{?>
+        <div class="span12 form-row">
+            <div class="span2 form-label">
+            	<label><i class="icon-question-sign"></i> Rights Summaries:</label>
+            </div>
+            <!--end of span3-->
+            <div id="search_bar" class="span10"><?php 
+	            foreach($rights_summaries as $rights_summarie)
+				{?>
+        		    <div class="disabled-field"><?php 
+						if(isset( $rights_summarie->rights))
+						{?>
+                         	
+                            <strong>Rights:</strong><br/><?php	
+							echo $rights_summarie->rights;?><br/><br/>
+                        <?php
+						}
+                        if(isset( $rights_summarie->rights_link))
+						{?>
+                            <strong>Rights Link:</strong><br/>
+                           <?php	echo $rights_summarie->rights_link;?><br/><br/><?php 
+						}?>   
+					</div><?php 
+				}?>
+            </div>
+        </div><?php 
+	}
+ 	if((isset($asset_audience_level) && !empty($asset_audience_level)) || (isset($asset_audience_rating) && !empty($asset_audience_rating)))
+	{?>
+ 		<div class="span12 form-row">
+        	<div class="span2 form-label">
+   				<label><i class="icon-question-sign"></i> Audience:</label>
+            </div>
+  			<div id="search_bar" class="span10"><?php 
+				if(isset($asset_audience_level) && !empty($asset_audience_level))
+	 			{
+					foreach($asset_audience_levels as $asset_audience_level)
+					{?>
+                    	<div class="disabled-field"><?php	
+							if(isset($asset_audience_level->audience_level) && !empty($asset_audience_level->pubaudience_levellisher))
+							{?>
+								<strong>Audience Level:</strong><br/><?php echo $asset_audience_level->audience_level;?><br/><br/><?php 
+							}
+							if(isset($asset_audience_level->audience_level_source) && !empty($asset_audience_level->audience_level_source))
+							{?>
+								<strong>Audience Level Source:</strong><br/>
+								<?php echo $asset_audience_level->audience_level_source;
+							}
+							if(isset($asset_audience_level->audience_level_ref) && !empty($asset_audience_level->audience_level_ref))
+							{?>
+								<strong>Audience Level Ref:</strong><br/>
+								<?php echo $asset_audience_level->audience_level_ref;
+							}?>
+						</div><?php 
+					}
+				}
+				if(isset($asset_audience_rating) && !empty($asset_audience_rating))
+				{
+					foreach($asset_audience_rating as $asset_audience_rating)
+					{?>
+                     	 	 
+						<div class="disabled-field"><?php 
+							if(isset($asset_audience_rating->audience_rating) && !empty($asset_audience_rating->audience_rating))
+							{?>
+								<strong>Audience Rating:</strong><br/>
+								<?php echo $asset_audience_rating->audience_rating;?><br/><br/><?php
+							}
+							if(isset($asset_audience_rating->audience_rating_source) && !empty($asset_audience_rating->audience_rating_source))
+							{?>
+								<strong>Audience Rating Source:</strong><br/><?php
+								echo $asset_audience_rating->audience_rating_source;
+							}
+							if(isset($asset_audience_rating->audience_rating_ref) && !empty($asset_audience_rating->audience_rating_ref))
+							{?>
+								<strong>Audience Rating Ref:</strong><br/><?php 
+								echo $asset_audience_rating->audience_rating_ref;
+							}?>
+						</div><?php
+					}
+				}?>
+  			</div>
+		</div><?php 
+	}
+	if(isset($annotations) && !empty($annotations))
+	{?>
+        <div class="span12 form-row">
+            <div class="span2 form-label">
+            	<label><i class="icon-question-sign"></i> Annotation:</label>
+            </div>
+            <!--end of span3-->
+            <div id="search_bar" class="span10"><?php 
+	            foreach($annotations as $annotation)
+				{?>
+        		    <div class="disabled-field"><?php 
+						if(isset( $rights_summarie->rights))
+						{?>
+                         	
+                            <strong>Rights:</strong><br/><?php	
+							echo $rights_summarie->rights;?><br/><br/>
+                        <?php
+						}
+                        if(isset( $rights_summarie->rights_link))
+						{?>
+                            <strong>Rights Link:</strong><br/>
+                           <?php	echo $rights_summarie->rights_link;?><br/><br/><?php 
+						}?>   
+					</div><?php 
+				}?>
+            </div>
+        </div><?php 
+	}?>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  <?php 
    if(
    (isset($asset_details->local_identifier) && !empty($asset_details->local_identifier)) ||

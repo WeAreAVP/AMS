@@ -21,6 +21,7 @@ class Records extends MY_Controller
 			$this->load->model('assets_model');
 			$this->load->model('sphinx_model', 'sphinx');
 			$this->load->library('pagination');
+			$this->load->library('Ajax_pagination');
 			$this->layout = 'main_layout.php';
 		}
 		/*
@@ -60,7 +61,7 @@ class Records extends MY_Controller
 	        $config['first_link'] = FALSE;
     	    $config['last_link'] = FALSE;
       		$config['display_pages'] = FALSE;
-      	  	$this->pagination->initialize($config);
+      	  	$this->ajax_pagination->initialize($config);
 			if (isAjax())
 			{
 				$data['isAjax'] = TRUE;

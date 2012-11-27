@@ -1,7 +1,7 @@
 <?php
 if (!$isAjax)
-{
-    ?>
+{?>
+
 <div class="row-fluid">
  <div class="span3">
   <div id="search_bar"> <b>
@@ -58,11 +58,10 @@ if (!$isAjax)
    </form>
   </div>
  </div>
-
  <div  class="span9" id="assets_container">
   <?php } ?>
   <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
-  <div style="text-align: right;width: 860px;"> <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong> <?php echo $this->pagination->create_links(); ?> </div>
+  <div style="text-align: right;width: 860px;"> <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong> <?php echo $this->ajax_pagination->create_links(); ?> </div>
   <div style="overflow: auto;height: 400px;" id="simple_view">
    <table class="tablesorter table table-bordered" >
     <?php 
@@ -97,14 +96,13 @@ if (!$isAjax)
 				echo $local_identifier;
 			}else{echo 'N/A';}
 			?></td>
-      <td><p>
-        <a href="<?php echo site_url('records/details/'.$asset->id)?>" ><?php 
+      <td><p> <a href="<?php echo site_url('records/details/'.$asset->id)?>" >
+        <?php 
 			if($asset_title){
 				echo $asset_title;
 			}else{echo 'N/A';}
 			?>
-            </a>
-       </p></td>
+        </a> </p></td>
       <td><p>
         <?php 
 			if($asset_description){
@@ -118,22 +116,34 @@ if (!$isAjax)
 	 ?>
     </tbody>
     <?php }
-		else
+		else if($start>=1000)
 		{?>
+    Please refine your search
+    <?php
+    }else{?>
     No Assets Found
     <?php }?>
    </table>
   </div>
-  <?php 
-		if(isset($records) && ($total>0))
-		{
-			?>
-  <div style="text-align: right;width: 860px;"> <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong> <?php echo $this->pagination->create_links(); ?> </div>
-  <?php }?>
-    <?php
+  <div style="text-align: right;width: 860px;"> <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong> <?php echo $this->ajax_pagination->create_links(); ?> </div>
+  <?php
         if (!$isAjax)
         {
             ?>
  </div>
 </div>
-  <?php }?>
+<script type="text/javascript">
+function search_assets()
+{
+	$.ajax({
+    	type: 'POST', 
+        url: '<?php echo site_url('stations/index') ?>',
+        data:{"search_words":search_words,certified:certified,agreed:agreed},
+        success: function (result)
+		{ 
+                                                
+        }
+    });
+}
+</script>
+<?php }?>

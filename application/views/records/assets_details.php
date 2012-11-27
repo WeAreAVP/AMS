@@ -1,8 +1,45 @@
 <div class="row-fluid">
  <h2><?php echo $asset_details->title?></h2>
- <div align="center" style="background: none repeat scroll 0% 0% rgb(214, 213, 212); width: 550px; height: 300px; padding-top: 150px; text-align: center; margin: 10px auto 10px 300px;" class="span8">AUDIO/VIDEO PLAYER</div>
- <br clear="all">
- <div class="my-navbar">
+  <div class="span12 form-row">
+  <div class="span3">
+  	<div class="sidebar">
+        <div class="my-navbar span12">
+        <div> Intellectual Content </div>
+        </div>
+        <div class="container-sidebar">
+        <h4>Instantiation Name</h4>
+        ID: test_file_name_12345.mov
+        Format: Betacam SP
+        Generation: Preservation Mater
+        Duration: 0:28:33
+        <h4>Instantiation Name</h4>
+        ID: test_file_name_12345.mov
+        Format: Betacam SP
+        Generation: Preservation Mater
+        Duration: 0:28:33
+        <h4>Instantiation Name</h4>
+        ID: test_file_name_12345.mov
+        Format: Betacam SP
+        Generation: Preservation Mater
+        Duration: 0:28:33
+        </div>
+    </div><!--end of sidebar-->
+  </div>
+
+  <div class="span9">
+  	<div class="players">
+    	AUDIO/VIDEO PLAYER
+    </div><!--end of players-->
+    <div class="span12 button-after-player">
+    	<button class="btn btn-large"><span class="icon-pencil"></span>Edit Asset</button>
+    	<button class="btn btn-large"><span class="icon-download-alt"></span>Export Asset</button>
+    </div>
+    
+ 
+ 
+ 
+ 
+ <div class="my-navbar span12">
   <div> Intellectual Content </div>
  </div>
  <div class="span12 form-row">
@@ -350,28 +387,6 @@
   <!--end of span9--> 
  </div>
  <?php }?>
- <br clear="all">
- <div class="my-navbar">
-  <div>Instantiations</div>
  </div>
- <br clear="all">
- <table class="table table-bordered">
-  <tbody>
-   <tr>
-    <th width="20%">ID</th>
-    <th width="20%">Format</th>
-    <th width="60%">Generation</th>
-   </tr>
-   <tr>
-    <td>123456</td>
-    <td>Laquer Disk 3 </td>
-    <td>Generation</td>
-   </tr>
-   <tr>
-    <td>564342</td>
-    <td>DVD</td>
-    <td>Generation</td>
-   </tr>
-  </tbody>
- </table>
+</div>
 </div>

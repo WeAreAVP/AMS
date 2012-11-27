@@ -280,3 +280,27 @@ html, body {
     margin: 0px 5px;
     color: red;
 }
+.fbProxyElement {
+
+    position: fixed !important;
+
+    pointer-events: auto !important;
+
+}
+
+.players{
+	background:#D6D5D4;
+	width:900px;
+	height:300px;
+	text-align:center;
+	vertical-align:middle;
+	display:table-cell;
+	}
+.my-navbar {margin-top:15px;}
+.button-after-player {margin:15px 0 0 !important;}
+.my-navbar {margin:15px 0 0 !important;}
+.sidebar{background:#F8F9F9;}
+.sidebar .my-navbar{background:#1797D2;margin-top:0 !important}
+.container-sidebar{padding:0 10px;color:#919091;font-size:12px;padding-bottom:10px}
+.container-sidebar h4{color:#1797D2;font-size:16px;float:left;margin-top:15px;width:100%}
+</style>

@@ -31,20 +31,17 @@
         
     });
     function confirmBody(){
-        ship_date=$('#ship_date').val();
         shipping_instructions=$('#shipping_instructions').val();
         comments=$('#comments').val();
         estimated_complete_date=$('#estimated_complete_date').val();
         
         extras= {
-            ship_date: ship_date,
             shipping_instructions: shipping_instructions,
             comments: comments,
 						estimated_complete_date: estimated_complete_date
         };
                 
-        msg_body='Ship Date: '+ship_date+'\n'+
-            'Shipping Instructions: '+shipping_instructions+'\n'+
+        msg_body='Shipping Instructions: '+shipping_instructions+'\n'+
             'Comments: '+comments+'\n' 
         		'Estimated Complete Date: '+estimated_complete_date+'\n'; 
         

@@ -23,6 +23,8 @@ class Instantiations extends MY_Controller
         $this->layout = 'main_layout.php';
         $this->load->model('instantiations_model', 'instantiation');
         $this->load->model('sphinx_model', 'sphinx');
+        $this->load->library('pagination');
+			$this->load->library('Ajax_pagination');
     }
 
     /**
@@ -35,7 +37,7 @@ class Instantiations extends MY_Controller
 //        $data['records'] = $this->instantiation->list_all();
         $data['isAjax'] = FALSE;
         $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $this->load->library('pagination');
+        
         $param = array('search' => '');
 
         $records = $this->sphinx->instantiations_list($param, $offset);

@@ -108,7 +108,7 @@ class Assets_Model extends CI_Model
 	* @param type $title_type
 	* @return object 
 	*/
-	function get_audience_level_asset_id($assets_id)
+	function get_audience_level_by_asset_id($assets_id)
 	{
 		$this->db->select("audience_level ,audience_level_source ,audience_level_ref ");
 		$this->db->from($this->_table_assets_audience_levels);

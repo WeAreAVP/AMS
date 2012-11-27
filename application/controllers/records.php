@@ -80,7 +80,9 @@ class Records extends MY_Controller
 		*/
 		function flagged()
 		{
-			$this->load->view('records/flagged');
+			print_r($_REQUEST);
+			exit();
+//			$this->load->view('records/flagged');
 		}
 		/*
 		*To Display Assets details

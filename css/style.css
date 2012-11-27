@@ -287,15 +287,6 @@ html, body {
     pointer-events: auto !important;
 
 }
-
-.players{
-	background:#D6D5D4;
-	width:900px;
-	height:300px;
-	text-align:center;
-	vertical-align:middle;
-	display:table-cell;
-	}
 .my-navbar {margin-top:15px;}
 .button-after-player {margin:15px 0 0 !important;}
 .my-navbar {margin:15px 0 0 !important;}

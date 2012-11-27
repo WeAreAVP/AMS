@@ -37,17 +37,16 @@
     
  
  
- 
- 
  <div class="my-navbar span12">
   <div> Intellectual Content </div>
  </div>
- <div class="span12 form-row">
-  <div class="span3 form-label">
+ 
+  <div class="span12 form-row">
+  <div class="span2 form-label">
    <label><i class="icon-question-sign"></i>* Organization:</label>
   </div>
   <!--end of span3-->
-  <div id="search_bar" class="span9">
+  <div id="search_bar" class="span10">
    <div class="disabled-field"> <?php echo $asset_details->organization;?><!--end of btn_group--> 
    </div>
    <!--end of disabled-field--> 
@@ -57,11 +56,11 @@
  <?php 
   if(isset($asset_details->asset_type) && !empty($asset_details->asset_type)){?>
  <div class="span12 form-row">
-  <div class="span3 form-label">
+  <div class="span2 form-label">
    <label><i class="icon-question-sign"></i> Asset Type:</label>
   </div>
   <!--end of span3-->
-  <div id="search_bar" class="span9">
+  <div id="search_bar" class="span10">
    <?php 
 	$asset_types =explode(" | ",$asset_details->asset_type);
 	foreach($asset_types as $asset_type){?>
@@ -78,11 +77,11 @@
   (isset($asset_details->title_source) && !empty($asset_details->title_source))
   ){?>
  <div class="span12 form-row">
-  <div class="span3 form-label">
+  <div class="span2 form-label">
    <label><i class="icon-question-sign"></i>* Title:</label>
   </div>
   <!--end of span3-->
-  <div id="search_bar" class="span9">
+  <div id="search_bar" class="span10">
    <div class="disabled-field">
     <?php if($asset_details->title){?>
     <strong>TITLE:</strong><br/>
@@ -110,11 +109,11 @@
  <?php 
    if(isset($asset_details->description) && !empty($asset_details->description)){?>
  <div class="span12 form-row">
-  <div class="span3 form-label">
+  <div class="span2 form-label">
    <label><i class="icon-question-sign"></i> Description:</label>
   </div>
   <!--end of span3-->
-  <div id="search_bar" class="span9">
+  <div id="search_bar" class="span10">
    <div class="disabled-field">
     <p><?php echo $asset_details->description;?></p>
    </div>
@@ -124,11 +123,11 @@
  <?php 
    if(isset($asset_genres) && !empty($asset_genres)){?>
  <div class="span12 form-row">
-  <div class="span3 form-label">
+  <div class="span2 form-label">
    <label><i class="icon-question-sign"></i>* Asset Genres:</label>
   </div>
   <!--end of span3-->
-  <div id="search_bar" class="span9">
+  <div id="search_bar" class="span10">
    <?php foreach($asset_genres as $asset_genre){?>
    <div class="disabled-field">
     <?php 
@@ -153,11 +152,11 @@
  <?php 
    if(isset($asset_creators_roles) && !empty($asset_creators_roles)){?>
  <div class="span12 form-row">
-  <div class="span3 form-label">
+  <div class="span2 form-label">
    <label><i class="icon-question-sign"></i> Creator:</label>
   </div>
   <!--end of span3-->
-  <div id="search_bar" class="span9">
+  <div id="search_bar" class="span10">
    <?php foreach($asset_creators_roles as $asset_creators_role){?>
    <div class="disabled-field">
     <?php 
@@ -196,11 +195,11 @@
  <?php 
    if(isset($asset_contributor_roles) && !empty($asset_contributor_roles)){?>
  <div class="span12 form-row">
-  <div class="span3 form-label">
+  <div class="span2 form-label">
    <label><i class="icon-question-sign"></i> Contributor:</label>
   </div>
   <!--end of span3-->
-  <div id="search_bar" class="span9">
+  <div id="search_bar" class="span10">
    <?php foreach($asset_contributor_roles as $asset_contributor_role){?>
    <div class="disabled-field">
     <?php 
@@ -239,11 +238,11 @@
  <?php 
    if(isset($asset_publishers_roles) && !empty($asset_publishers_roles)){?>
  <div class="span12 form-row">
-  <div class="span3 form-label">
+  <div class="span2 form-label">
    <label><i class="icon-question-sign"></i> Publisher:</label>
   </div>
   <!--end of span3-->
-  <div id="search_bar" class="span9">
+  <div id="search_bar" class="span10">
    <?php foreach($asset_publishers_roles as $asset_publishers_role){?>
    <div class="disabled-field">
     <?php 
@@ -282,11 +281,11 @@
  <?php 
    if(isset($asset_dates) && !empty($asset_dates)){?>
  <div class="span12 form-row">
-  <div class="span3 form-label">
+  <div class="span2 form-label">
    <label><i class="icon-question-sign"></i>* Asset Date:</label>
   </div>
   <!--end of span3-->
-  <div id="search_bar" class="span9">
+  <div id="search_bar" class="span10">
    <?php foreach($asset_dates as $asset_date){?>
    <div class="disabled-field">
     <?php 
@@ -307,11 +306,11 @@
  <?php 
    if(isset($asset_subjects) && !empty($asset_subjects)){?>
  <div class="span12 form-row">
-  <div class="span3 form-label">
+  <div class="span2 form-label">
    <label><i class="icon-question-sign"></i>* Subjects:</label>
   </div>
   <!--end of span3-->
-  <div id="search_bar" class="span9">
+  <div id="search_bar" class="span10">
    <?php foreach($asset_subjects as $asset_subject){?>
    <div class="disabled-field">
     <?php 
@@ -341,11 +340,11 @@
    
    ){?>
  <div class="span12 form-row">
-  <div class="span3 form-label">
+  <div class="span2 form-label">
    <label><i class="icon-question-sign"></i>* Local ID:</label>
   </div>
   <!--end of span3-->
-  <div id="search_bar" class="span9">
+  <div id="search_bar" class="span10">
    <div class="disabled-field">
     <?php 
    if(isset($asset_details->local_identifier) && !empty($asset_details->local_identifier)){?>
@@ -375,11 +374,11 @@
   <div>Organiztion</div>
  </div>
  <div class="span12 form-row">
-  <div class="span3 form-label">
+  <div class="span2 form-label">
    <label><i class="icon-question-sign"></i>American Archive GUID:</label>
   </div>
   <!--end of span3-->
-  <div id="search_bar" class="span9">
+  <div id="search_bar" class="span10">
    <div class="disabled-field"> <?php echo $asset_details->guid_identifier?><!--end of btn_group--> 
    </div>
    <!--end of disabled-field--> 

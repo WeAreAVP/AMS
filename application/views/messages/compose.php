@@ -27,7 +27,8 @@
                 <label class="control-label" for="receiver_id">To:</label>
                 <div class="controls">
                     <select id="receiver_id" name="receiver_id" multiple="multiple">
-                        <?php foreach ($station_records as $value)
+                        <?php
+                        foreach ($station_records as $value)
                         {
                             ?>
                             <option value="<?php echo $value->id; ?>"><?php echo $value->station_name; ?></option>
@@ -43,7 +44,8 @@
                 <div class="controls">
                     <select id="msg_type" style="width: 237px;" name="msg_type" onchange="typeForm();">
                         <option value="">Select</option>
-                        <?php foreach ($this->config->item('messages_type') as $key => $value)
+                        <?php
+                        foreach ($this->config->item('messages_type') as $key => $value)
                         {
                             ?>
                             <option value="<?php echo $key; ?>"><?php echo $value; ?></option>           
@@ -133,14 +135,15 @@
         {
             $('#message_station_error').hide();
             $('#message_type_error').hide();
-            $('#compose_anchor').trigger('click');
             
-            for(i in to)
-            {
-                temp_to_name[i]= $("#receiver_id option[value='"+to[i]+"']").text();
-            }
             validateFields=checkFields();
             if(validateFields){
+                $('#compose_anchor').trigger('click');
+            
+                for(i in to)
+                {
+                    temp_to_name[i]= $("#receiver_id option[value='"+to[i]+"']").text();
+                }
                 to_name=implode(", ",temp_to_name);
                 subject=$("#msg_type option[value='"+type+"']").text();
                 confirmBody();                      

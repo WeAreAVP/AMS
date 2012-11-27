@@ -361,7 +361,7 @@ class Assets_Model extends CI_Model
 	*/
 	function get_assets_creators_roles_by_assets_id($assets_id)
 	{
-		$this->db->select("creator_affiliation,creator_ref,creator_role ,creator_role_source,creator_role_ref,creators_id");
+		$this->db->select("creator_name,creator_affiliation,creator_ref,creator_role ,creator_role_source,creator_role_ref,creators_id");
 		$this->db->from($this->_table_assets_creators_roles);
 		$this->db->join($this->_table_creator_roles, "$this->_table_assets_creators_roles.creator_roles_id=$this->_table_creator_roles.id","left");
 		$this->db->join($this->_table_creators, "$this->_table_assets_creators_roles.creators_id=$this->_table_creators.id","left");

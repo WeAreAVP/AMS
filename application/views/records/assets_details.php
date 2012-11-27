@@ -159,9 +159,9 @@
    <?php foreach($asset_creators_roles as $asset_creators_role){?>
    <div class="disabled-field">
     <?php 
-        if(isset($asset_creators_role->creators_id) && !empty($asset_creators_role->creators_id)){?>
-    <strong>Creator Id:</strong><br/>
-    <?php echo $asset_creators_role->creators_id;?><br/>
+        if(isset($asset_creators_role->creator_name) && !empty($asset_creators_role->creator_name)){?>
+    <strong>Creator Name:</strong><br/>
+    <?php echo $asset_creators_role->creator_name;?><br/>
     <br/>
     <?php }
         if(isset($asset_creators_role->creator_affiliation) && !empty($asset_creators_role->creator_affiliation)){?>

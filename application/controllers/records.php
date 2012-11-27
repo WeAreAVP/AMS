@@ -62,6 +62,7 @@ class Records extends MY_Controller
     	    $config['last_link'] = FALSE;
       		$config['display_pages'] = FALSE;
 			$config['js_method'] = 'search_assets';
+			$config['postVar'] = 'page';
 			
       	  	$this->ajax_pagination->initialize($config);
 			if (isAjax())

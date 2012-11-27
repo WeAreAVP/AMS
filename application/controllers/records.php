@@ -32,7 +32,9 @@ class Records extends MY_Controller
 		function index()
 		{
 			$data['isAjax'] = FALSE;
-			$offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+			$offset=0;
+			if(isset($_POST['page']) && $_POST['page']>0)
+				$offset = $_POST['page'];
         	$param = array('search' => '','index'=>'assets_list');
 		    $records=$this->sphinx->assets_listing($param,$offset);
         	$data['total'] = $records['total_count'];

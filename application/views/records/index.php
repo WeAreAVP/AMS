@@ -135,14 +135,15 @@ if (!$isAjax)
 <script type="text/javascript">
 function search_assets(parem)
 {
+	$('#assets_container').hide();
 	var objJSON = eval("(function(){return " + parem + ";})()");
 	$.ajax({
     	type: 'POST', 
-        url: '<?php echo site_url('records/flagged') ?>',
+        url: '<?php echo site_url('records/index') ?>',
         data:{"page":objJSON.page,"from_fields":$('#asset_frm').serialize()},
         success: function (result)
 		{ 
-                                                
+          $('#assets_container').html(result);$('#assets_container').show();
         }
     });
 }

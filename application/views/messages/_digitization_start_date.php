@@ -2,9 +2,7 @@
     <div class="control-group">
         <label class="control-label" for="shipping_instructions">Shipping Instructions:</label>
         <div class="controls">
-            
-            <textarea id="shipping_instructions" name="shipping_instructions"></textarea>
-
+            <textarea id="shipping_instructions" name="shipping_instructions"  rows="5" cols="50"></textarea>
         </div>
     </div>
     <div class="control-group">
@@ -38,12 +36,12 @@
         extras= {
             shipping_instructions: shipping_instructions,
             comments: comments,
-						estimated_complete_date: estimated_complete_date
+            estimated_complete_date: estimated_complete_date
         };
                 
         msg_body='Shipping Instructions: '+shipping_instructions+'\n'+
             'Comments: '+comments+'\n' 
-        		'Estimated Complete Date: '+estimated_complete_date+'\n'; 
+        'Estimated Complete Date: '+estimated_complete_date+'\n'; 
         
         
         $('#confirm_body').html('<div><strong>To: '+to_name+'</strong></div>'+

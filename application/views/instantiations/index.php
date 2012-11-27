@@ -23,7 +23,7 @@ if (!$isAjax)
         <?php } ?>
         <div style="text-align: right;width: 860px;">
             <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
-            <?php echo $this->pagination->create_links(); ?>
+            <?php echo $this->ajax_pagination->create_links(); ?>
         </div>
         <div style="overflow: auto;width:865px;" id="instantiation-main">
             <table class="tablesorter table table-bordered">
@@ -81,7 +81,7 @@ if (!$isAjax)
 
         <div style="text-align: right;width: 860px;">
             <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
-            <?php echo $this->pagination->create_links(); ?>
+            <?php echo $this->ajax_pagination->create_links(); ?>
         </div>
         <?php
         if (!$isAjax)
@@ -89,4 +89,19 @@ if (!$isAjax)
             ?>
         </div>
     </div>
+<!--<script type="text/javascript">
+function search_assets(parem)
+{
+	$('#assets_container').hide();
+	var objJSON = eval("(function(){return " + parem + ";})()");
+	$.ajax({
+    	type: 'POST', 
+        url: '<?php echo site_url('records/index') ?>/'+objJSON.page+'?'+$('#asset_frm').serialize(),
+        success: function (result)
+		{ 
+          $('#assets_container').html(result);$('#assets_container').show();
+        }
+    });
+}
+</script>-->
 <?php } ?>

@@ -276,3 +276,7 @@ html, body {
     padding-left: 5px;
 
 }
+.message-type_error{
+    margin: 0px 5px;
+    color: red;
+}

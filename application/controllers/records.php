@@ -36,7 +36,7 @@ class Records extends MY_Controller
         	$param = array('search' => '','index'=>'assets_list');
 		    $records=$this->sphinx->assets_listing($param,$offset);
         	$data['total'] = $records['total_count'];
-        	$config['total_rows'] = $data['total'];
+        	$config['total_rows'] =$data['total'];
         	$config['per_page'] = 100;
         	$data['records'] = $records['records'];
         	$data['count'] = count($data['records']);

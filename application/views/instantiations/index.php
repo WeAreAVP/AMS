@@ -95,7 +95,7 @@ if (!$isAjax)
         function instantiation_search(param)
         {
             console.log(param)
-            $('#instantiation-container').hide();
+            
             var objJSON = eval("(function(){return " + param + ";})()");
             $.ajax({
                 type: 'POST', 
@@ -103,7 +103,7 @@ if (!$isAjax)
                 success: function (result)
                 { 
                     $('#instantiation-container').html(result);
-                    $('#instantiation-container').show();
+                    
                 }
             });
         }

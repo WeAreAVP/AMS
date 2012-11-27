@@ -139,7 +139,7 @@ function search_assets(parem)
 	$.ajax({
     	type: 'POST', 
         url: '<?php echo site_url('records/flagged') ?>',
-        data:{"parem":parem,:"from_fields",$('#asset_frm').serialize()},
+        data:{"parem":parem,"from_fields":$('#asset_frm').serialize()},
         success: function (result)
 		{ 
                                                 

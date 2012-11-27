@@ -25,31 +25,39 @@
  */
 class Ajax_pagination {
 
-    var $base_url            = ''; // The page we are linking to
-    var $total_rows          = ''; // Total number of items (database results)
-    var $per_page             = 10; // Max number of items you want shown per page
-    var $num_links            =  2; // Number of "digit" links to show before/after the currently viewed page
-    var $cur_page             =  0; // The current page being viewed
-    var $first_link           = '&lsaquo; First';
-    var $next_link            = '&gt;';
-    var $prev_link            = '&lt;';
-    var $last_link            = 'Last &rsaquo;';
-    var $uri_segment        = 3;
-    var $full_tag_open        = '';
-    var $full_tag_close        = '';
-    var $first_tag_open        = '';
-    var $first_tag_close    = '&nbsp;';
-    var $last_tag_open        = '&nbsp;';
-    var $last_tag_close        = '';
-    var $cur_tag_open        = '&nbsp;<b>';
-    var $cur_tag_close        = '</b>';
-    var $next_tag_open        = '&nbsp;';
-    var $next_tag_close        = '&nbsp;';
-    var $prev_tag_open        = '&nbsp;';
-    var $prev_tag_close        = '';
-    var $num_tag_open        = '&nbsp;';
-    var $num_tag_close        = '';
+   var $base_url			= ''; // The page we are linking to
+	var $prefix				= ''; // A custom prefix added to the path.
+	var $suffix				= ''; // A custom suffix added to the path.
+
+	var $total_rows			=  0; // Total number of items (database results)
+	var $per_page			= 10; // Max number of items you want shown per page
+	var $num_links			=  2; // Number of "digit" links to show before/after the currently viewed page
+	var $cur_page			=  0; // The current page being viewed
+	var $use_page_numbers	= FALSE; // Use page number for segment instead of offset
+	var $first_link			= '&lsaquo; First';
+	var $next_link			= '&gt;';
+	var $prev_link			= '&lt;';
+	var $last_link			= 'Last &rsaquo;';
+	var $uri_segment		= 3;
+	var $full_tag_open		= '';
+	var $full_tag_close		= '';
+	var $first_tag_open		= '';
+	var $first_tag_close	= '&nbsp;';
+	var $last_tag_open		= '&nbsp;';
+	var $last_tag_close		= '';
+	var $first_url			= ''; // Alternative URL for the First Page.
+	var $cur_tag_open		= '&nbsp;<strong>';
+	var $cur_tag_close		= '</strong>';
+	var $next_tag_open		= '&nbsp;';
+	var $next_tag_close		= '&nbsp;';
+	var $prev_tag_open		= '&nbsp;';
+	var $prev_tag_close		= '';
+	var $num_tag_open		= '&nbsp;';
+	var $num_tag_close		= '';
+	var $page_query_string	= FALSE;
+	var $query_string_segment = 'per_page';
 	var $display_pages		= TRUE;
+	var $anchor_class		= '';
     //ADDED BY GIN2
     var $js_method                = '';
     var $postVar             = '';

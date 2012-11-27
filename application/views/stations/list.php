@@ -119,7 +119,7 @@ if (!$is_ajax)
                         <tr>
                             <td><input style='margin-left:18px;margin-right: 4px;' type='checkbox' name='station[]' value='<?php echo $data->id; ?>'  class='checkboxes'/></td>
                             <td><?php echo $data->cpb_id; ?></td>
-                            <td><a href="<?php echo site_url('stations/detail/' . $data->id); ?>"><?php echo $data->station_name; ?></a></td>
+                            <td><a href="<?php echo site_url('stations/detail/' . $data->id); ?>" id="station_name_<? echo $data->id; ?>"><?php echo $data->station_name; ?></a></td>
                             <td><?php echo $data->total_allocated; ?></td>
                             <td id="certified_<?php echo $data->id; ?>"><?php echo ($data->is_certified) ? 'Yes' : 'No'; ?>
                             <td id="agreed_<?php echo $data->id; ?>"><?php echo ($data->is_agreed) ? 'Yes' : 'No'; ?>
@@ -174,7 +174,7 @@ if (!$is_ajax)
                 $('#tokens').append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+$('#search_keyword').val()+'</span><span class="btn-close-img" onclick="remove_keword(\''+search_id+'\')"></span></div>');
             }
             $('#search_keyword').val('');
-                                                                                                                                                          			
+                                                                                                                                                              			
             $(".search_keys").each(function() {
                 if(token==0)
                     my_search_words=$(this).text();
@@ -206,7 +206,7 @@ if (!$is_ajax)
             search_words=$('#search_words').val();
             certified=$('#certified').val();
             agreed=$('#agreed').val();
-                                                      
+                                                          
             $.ajax({
                 type: 'POST', 
                 url: '<?php echo site_url('stations/index') ?>',
@@ -214,11 +214,11 @@ if (!$is_ajax)
                 success: function (result) { 
                     $('#append_record').html(result);
                     $("#station_table").trigger("update");  
-                                                                          
+                                                                              
                 }
             });
         }
-                                                  
+                                                      
         function resetStationFilter(){
             $('#search_words').val('');
             $('#search_keyword').val('');
@@ -227,8 +227,8 @@ if (!$is_ajax)
             $('#tokens').html('');
             search_station();
         }
-                
-                        
+                    
+                            
     </script>
 
 <?php }

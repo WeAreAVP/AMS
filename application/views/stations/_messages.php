@@ -59,13 +59,18 @@
     var subject=null;
     var type=null;
     var msg_body=null;
+    var to_name=null;
     function checkStations(){
         var stations=new Array();
+        var station_names=new Array();
         $('input[name="station[]"]:checked').each(function(index,a){
             stations[index]=$(this).val();
+            station_names[index]=$('#station_name_'+this.val());
         });
         if(stations.length>0){
-            $('#compose_to_type').modal();
+            to_name=implode(", ",station_names);
+            to=stations;
+            $('#compose_to_type').modal("toggle");
         }
     }
     function typeForm(){
@@ -92,10 +97,7 @@
    
     function validateFormType(){
         extras=new Array();
-        temp_to_name=new Array();                
         type=$('#msg_type').val();
-        to=$('#receiver_id').val();
-        
         if(type=='')
         {
             $('#message_type_error').show();
@@ -105,16 +107,11 @@
         {
             $('#message_type_error').hide();
             $('#compose_anchor').trigger('click');
-            
-            for(i in to)
-            {
-                temp_to_name[i]= $("#receiver_id option[value='"+to[i]+"']").text();
-            }
-            to_name=implode(", ",temp_to_name)
             subject=$("#msg_type option[value='"+type+"']").text();//$('#subject').val();
             confirmBody();
              
-            $('#compose_confirm').modal();
+            $('#compose_to_type').modal("toggle");
+            $('#compose_confirm').modal("toggle");
             
         }
                                     
@@ -128,7 +125,7 @@
             success: function (result) { 
                 if(result.success)
                 {
-                    //								 window.location.reload();
+                    window.location.reload();
                 }
                 else
                 {

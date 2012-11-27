@@ -65,7 +65,7 @@
         var station_names=new Array();
         $('input[name="station[]"]:checked').each(function(index,a){
             stations[index]=$(this).val();
-            station_names[index]=$('#station_name_'+this.val()).html();
+            station_names[index]=$('#station_name_'+stations[index]).html();
         });
         if(stations.length>0){
             to_name=implode(", ",station_names);

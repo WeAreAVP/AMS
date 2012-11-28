@@ -118,7 +118,7 @@ class Instantiations_Model extends CI_Model
     }
     function get_file_size(){
         $this->db->select("file_size");
-        $this->db->where('file_size !=''NULL');
+        $this->db->where('file_size !=','NULL');
         $this->db->order_by("file_size");
         $this->db->distinct();
          $result = $this->db->get($this->table_instantiations);

@@ -110,6 +110,18 @@ class Instantiations_Model extends CI_Model
         return $query = $this->db->get($this->table_instantiation_formats)->result();
     }
 
+    function get_generations()
+    {
+        $this->db->order_by("generation");
+        $this->db->group_by('generation');
+        return $query = $this->db->get($this->table_generations)->result();
+    }
+    function get_file_size(){
+        $this->db->select("file_size");
+        $this->db->order_by("file_size");
+        $this->db->group_by('file_size');
+         $result = $this->db->get($this->table_instantiations);
+    }
     /**
      * search generations by @generation
      * 

@@ -43,6 +43,8 @@ class Instantiations extends MY_Controller
         $data['media_types']=$this->instantiation->get_media_types();
         $data['physical_formats']=$this->instantiation->get_physical_formats();
         $data['digital_formats']=$this->instantiation->get_digital_formats();
+        $data['generations']=$this->instantiation->get_generations();
+        $data['file_size']=$this->instantiation->get_file_size();
         
         
         

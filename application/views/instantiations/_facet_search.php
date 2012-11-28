@@ -167,7 +167,7 @@
         <!-- Physical Format End      -->
         <!--  Digital Format Start      -->
         <div class="filter-fileds">
-            <b>Physical Format</b>
+            <b>Digital Format</b>
         </div>
         <div class="filter-fileds">
             <?php
@@ -203,6 +203,86 @@
             <?php } ?>
         </div>
         <!-- Digital Format End      -->
+        <!--  Generation Start      -->
+        <div class="filter-fileds">
+            <b>Generations</b>
+        </div>
+        <div class="filter-fileds">
+            <?php
+            foreach ($generations as $key => $value)
+            {
+                if ($key < 4)
+                {
+                    ?>
+                    <div><a href="#"><?php echo $value->generation; ?></a></div>
+                    <?php
+                } else if ($key == 4)
+                {
+                    ?>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
+                            More
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <?php
+                        } else
+                        {
+                            ?>
+                            <li><a href="#"><?php echo $value->generation; ?></a></li>  
+                            <?php
+                        }
+                    }
+                    if (count($generations) > 4)
+                    {
+                        ?>
+                    </ul>
+                </div>
+            <?php } ?>
+        </div>
+        <!-- Generation End      -->
+        <!--  File Size Start      -->
+        <?php if (count($file_size) > 0)
+        {
+            ?>
+            <div class="filter-fileds">
+                <b>File Size</b>
+            </div>
+            <div class="filter-fileds">
+                <?php
+                foreach ($file_size as $key => $value)
+                {
+                    if ($key < 4)
+                    {
+                        ?>
+                        <div><a href="#"><?php echo $value->file_size; ?></a></div>
+                        <?php
+                    } else if ($key == 4)
+                    {
+                        ?>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
+                                More
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <?php
+                            } else
+                            {
+                                ?>
+                                <li><a href="#"><?php echo $value->file_size; ?></a></li>  
+                                <?php
+                            }
+                        }
+                        if (count($file_size) > 4)
+                        {
+                            ?>
+                        </ul>
+                    </div>
+            <?php } ?>
+            </div>
+            <?php } ?>
+        <!-- File Size End      -->
     </form>
 </div>
 

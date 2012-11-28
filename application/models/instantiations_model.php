@@ -116,13 +116,32 @@ class Instantiations_Model extends CI_Model
         $this->db->group_by('generation');
         return $query = $this->db->get($this->table_generations)->result();
     }
-    function get_file_size(){
+
+    function get_file_size()
+    {
         $this->db->select("file_size");
-        $this->db->where('file_size !=','NULL');
+        $this->db->where('file_size !=', 'NULL');
         $this->db->order_by("file_size");
         $this->db->distinct();
-         $result = $this->db->get($this->table_instantiations);
+        $result = $this->db->get($this->table_instantiations)->result();
+        return $result;
     }
+
+    function get_event_type()
+    {
+        $this->db->order_by("event");
+        $this->db->group_by('event');
+        return $query = $this->db->get($this->table_event_types)->result();
+    }
+
+    function get_event_outcome()
+    {
+        $this->db->select("CASE WHEN event_outcome=0 THEN 'FAIL' WHEN event_outcome=1 THEN 'PASS' END AS event_outcome", FALSE);
+        $this->db->order_by("event_outcome");
+        $query = $this->db->get($this->table_events)->result();
+        return $query;
+    }
+
     /**
      * search generations by @generation
      * 

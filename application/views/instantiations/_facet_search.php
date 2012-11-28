@@ -12,7 +12,7 @@
             <div class="clearfix"></div>
             <div id="organization_main" style="display: none;">
                 <div class="filter-fileds"><b>Organization</b></div>
-                <input type="hidden" id="organization_main_search" name="organization_main_search" value="<?php echo $searched['organization_main_search'] ?>"/>
+                <input type="hidden" id="organization_main_search" name="organization_main_search"/>
             </div>
             <div class="clearfix"></div>
             <div id="nomination_status_main" style="display: none;">

@@ -4,7 +4,7 @@ if (!$isAjax)
 
 <div class="row-fluid">
  <div class="span3">
-    <?php $this->load->view('instantiations/_facet_search',array("searched"=>array("organization_main_search"=>'some tesrt'))); ?>
+    <?php $this->load->view('instantiations/_facet_search'); ?>
  </div>
  <div  class="span9" id="assets_container">
   <?php } ?>

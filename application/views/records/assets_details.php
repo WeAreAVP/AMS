@@ -4,7 +4,7 @@
   <div class="span3">
   	<div class="sidebar">
         <div class="my-navbar span12">
-        	<div> Intellectual Content </div>
+        	<div>Asset Information</div>
         </div>
         <?php 
 		if(isset($asset_instantiations['records']) && !empty($asset_instantiations['records']))

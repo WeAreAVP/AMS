@@ -4,59 +4,7 @@ if (!$isAjax)
 
 <div class="row-fluid">
  <div class="span3">
-  <div id="search_bar"> <b>
-   <h4>Assets</h4>
-   </b>
-   <?php /*?><div style="padding: 8px;background: none repeat scroll 0% 0% rgb(0, 152, 214); " ><a style="color: white;" href="<?php echo site_url('records/index') ?>" >All Assets</a></div>
-   <div style="padding: 8px;" > <a href="<?php echo site_url('records/flagged') ?>" >Flagged</a></div>
-   <br/><?php */?>
-   <br/>
-   <b>
-   <h4>FILTER ASSETS</h4>
-   </b>
-   <form name="asset_frm" id="asset_frm" method="post" >
-    <div>
-     <div> GUID </div>
-     <div>
-      <input type="text" name="guid" id="guid"/>
-     </div>
-     <div> FORMAT </div>
-     <div>
-      <input type="text" name="format" id="format"/>
-     </div>
-     <div> TITLE </div>
-     <div>
-      <input type="text" name="title" id="title"/>
-     </div>
-     <div> STATION NAME </div>
-     <div>
-      <input type="text" name="station_name" id="station_name"/>
-     </div>
-     <div> STATION ID </div>
-     <div>
-      <input type="text" name="station_id" id="station_id"/>
-     </div>
-     <div> NOMINATION STATUS </div>
-     <div>
-      <input type="text" name="nomination_status" id="nomination_status"/>
-     </div>
-     <div> DIGITIZED </div>
-     <div>
-      <input type="text" name="digitized" id="digitized"/>
-     </div>
-     <div> MEDIA TYPE </div>
-     <div>
-      <input type="text" name="media_type" id="media_type"/>
-     </div>
-     <div> STATE </div>
-     <div>
-      <input type="text" name="state" id="state"/>
-     </div>
-    </div>
-    <br/>
-    <input type="button" name"search" value="Search" />
-   </form>
-  </div>
+    <?php $this->load->view('instantiations/_facet_search',array("searched"=>array("organization_main_search"=>'some tesrt'))); ?>
  </div>
  <div  class="span9" id="assets_container">
   <?php } ?>

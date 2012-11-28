@@ -129,8 +129,8 @@ class Instantiations_Model extends CI_Model
 
     function get_event_type()
     {
-        $this->db->order_by("event");
-        $this->db->group_by('event');
+        $this->db->order_by("event_type");
+        $this->db->group_by('event_type');
         return $query = $this->db->get($this->table_event_types)->result();
     }
 

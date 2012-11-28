@@ -35,6 +35,17 @@ class Instantiations extends MY_Controller
     {
         // List all the instantiations records active records
 //        $data['records'] = $this->instantiation->list_all();
+        
+        
+        
+        $data['stations']=$this->station_model->get_all();
+        $data['nomination_status']=$this->instantiation->get_nomination_status();
+        $data['media_types']=$this->instantiation->get_media_types();
+        $data['physical_formats']=$this->instantiation->get_physical_formats();
+        $data['digital_formats']=$this->instantiation->get_digital_formats();
+        
+        
+        
         $data['isAjax'] = FALSE;
         $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 

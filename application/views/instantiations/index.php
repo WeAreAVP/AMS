@@ -4,22 +4,7 @@ if (!$isAjax)
     ?>
     <div class="row-fluid">
         <div class="span3">
-            <div id="search_bar"> 
-                <form name="form_search_instantiation" id="form_search_instantiation" method="post">
-                    <b>
-                        <h4>Filter Instantiations</h4>
-                    </b>
-                    <div class="filter-fileds">
-                        <div>Search:</div>
-                        <div>
-                            <input type="text" name="search" id="search" value=""/>
-                        </div>
-                    </div>
-                    <div class="filter-fileds">
-                        <div><input type="button" name="reset" value="Reset" class="btn"/></div>
-                    </div>
-                </form>
-            </div>
+           <?php $this->load->view('instantiations/_facet_search'); ?>
         </div>
         <div  class="span9" id="instantiation-container">
         <?php } ?>

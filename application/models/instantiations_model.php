@@ -73,13 +73,41 @@ class Instantiations_Model extends CI_Model
         $this->db->join($this->table_events, "$this->table_events.instantiations_id	 = $this->table_instantiations.id", 'left');
         $this->db->join($this->table_event_types, "$this->table_event_types.id	 = $this->table_events.event_types_id", 'left');
         $this->db->limit(5);
-        $this->db->group_by("$this->_assets_table.id"); 
+        $this->db->group_by("$this->_assets_table.id");
         $result = $this->db->get($this->table_instantiations);
-		if(isset($result) && !empty($result))
-		{
-			return $result->result();
-		}
-		return $result;
+        if (isset($result) && !empty($result))
+        {
+            return $result->result();
+        }
+        return $result;
+    }
+
+    function get_nomination_status()
+    {
+        $this->db->order_by("status");
+        return $query = $this->db->get($this->table_nomination_status)->result();
+    }
+
+    function get_media_types()
+    {
+        $this->db->order_by("media_type");
+        return $query = $this->db->get($this->table_instantiation_media_types)->result();
+    }
+
+    function get_physical_formats()
+    {
+        $this->db->order_by("format_name");
+        $this->db->where('format_type ', 'physical');
+        $this->db->distinct();
+        return $query = $this->db->get($this->table_instantiation_formats)->result();
+    }
+
+    function get_digital_formats()
+    {
+        $this->db->order_by("format_name");
+        $this->db->where('format_type ', 'digital');
+        $this->db->distinct();
+        return $query = $this->db->get($this->table_instantiation_formats)->result();
     }
 
     /**

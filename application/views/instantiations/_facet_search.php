@@ -493,7 +493,7 @@
         var random_id=rand(0,1000365);
         slugName=make_slug_name(name);
         var search_id=slugName+random_id;
-        $('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" onclick="remove_token(\''+search_id+'\',\''+type+'\')"></i></div>');
+        $('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+search_id+'\',\''+type+'\')"></i></div>');
         $('#'+type).show();
         $("#"+type+" .search_keys").each(function(index) {
             if(index==0)

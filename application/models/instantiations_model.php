@@ -98,7 +98,7 @@ class Instantiations_Model extends CI_Model
     {
         $this->db->order_by("format_name");
         $this->db->where('format_type ', 'physical');
-        $this->db->distinct();
+        $this->db->group_by('format_name');
         return $query = $this->db->get($this->table_instantiation_formats)->result();
     }
 
@@ -106,7 +106,7 @@ class Instantiations_Model extends CI_Model
     {
         $this->db->order_by("format_name");
         $this->db->where('format_type ', 'digital');
-        $this->db->distinct();
+        $this->db->group_by('format_name');
         return $query = $this->db->get($this->table_instantiation_formats)->result();
     }
 

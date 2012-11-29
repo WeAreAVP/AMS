@@ -93,7 +93,7 @@ if (!$isAjax)
 		}?>
    </table>
   </div>
-   <div style="overflow: scroll;display:none;" id="full_table_view" >
+   <div style="display:none;overflow: scroll; height: 400px; width: 860px;" id="full_table_view" >
    	<table class="tablesorter table table-bordered" ><?php 
 		if(isset($records) && ($total>0))
 		{?>
@@ -202,12 +202,6 @@ if (!$isAjax)
 			       </p>
                   </td>
                   <td><?php 
-				  		echo $asset->asset_titles_source;?>
-                  </td>
-                    <td><?php 
-				  		echo $asset->asset_titles_source;?>
-                  </td>
-                   <td><?php 
 				  		echo $asset->asset_subject?>
                   </td>
                     <td><?php 

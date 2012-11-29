@@ -1,7 +1,7 @@
 
 <div id="search_bar"> 
     <form name="facet_search" id="form_search" method="post">
-    <input name="curent_tab" id="curent_tab" value="<?php isset($this->session->userdata['current_tab'])?$this->session->userdata['current_tab']:''?>"  />
+    <input name="current_tab" id="current_tab" value="<?php isset($this->session->userdata['current_tab'])?$this->session->userdata['current_tab']:''?>"  />
         <b>
             <h4>Filter</h4>
         </b>

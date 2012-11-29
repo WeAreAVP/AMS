@@ -381,7 +381,7 @@ if (!$isAjax)
 <script type="text/javascript">
 function change_view(id)
 {
-	$('curent_tab').val(id);
+	$('current_tab').val(id);
 	$('#simple_view').hide();
 	$('#full_table_view').hide();
 	$('#thumbnails_view').hide();

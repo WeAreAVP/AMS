@@ -809,6 +809,10 @@
 	function change_view(id)
 	{
 		$('#current_tab').val(id);
+		$.ajax({
+         	type: 'POST', 
+            url: '<?php echo site_url('records/set_current_tab')?>/'+id,
+         });
 		$('#simple_view').hide();
 		$('#full_table_view').hide();
 		$('#thumbnails_view').hide();

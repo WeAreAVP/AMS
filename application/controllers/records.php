@@ -36,7 +36,6 @@ class Records extends MY_Controller
 			if (isAjax())
 			{
 				$this->unset_facet_search();
-				$search['current_tab'] = $this->input->post('current_tab');
 				$search['organization'] = $this->input->post('organization_main_search');
 				$search['nomination'] = $this->input->post('nomination_status_main_search');
 				$search['media_type'] = $this->input->post('media_type_main_search');
@@ -112,6 +111,15 @@ class Records extends MY_Controller
 				exit;
 			}
 			$this->load->view('records/index',$data);
+		}
+		function set_current_tab($current_tab)
+		{
+			if (isAjax())
+			{
+				$this->session->set_userdata('current_tab', $current_tab);
+				exit;
+			}
+			
 		}
 		function unset_facet_search()
 		{

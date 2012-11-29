@@ -57,9 +57,11 @@ class Records extends MY_Controller
 			$data['current_tab']='simple';
 			if(isset($search['current_tab'])&& !empty($search['current_tab']))
 			{
+				
 				$data['current_tab']=$search['current_tab'];
+				
 			}
-			
+			$this->session->set_userdata('current_tab', $data['current_tab']);
 			$data['stations']=$this->station_model->get_all();
 			$data['nomination_status']=$this->instantiation->get_nomination_status();
 			$data['media_types']=$this->instantiation->get_media_types();

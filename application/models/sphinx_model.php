@@ -114,7 +114,7 @@ class Sphinx_Model extends CI_Model
             $this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
         if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
-            $this->sphinxsearch->set_filter("station_name", array(str_replace("|||", " | ", trim($this->session->userdata['organization']))));
+            $this->sphinxsearch->set_filter("station_name", array(str_replace("|||", " & ", trim($this->session->userdata['organization']))));
 
         if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
             $this->sphinxsearch->set_filter("status", array(str_replace("|||", " | ", trim($this->session->userdata['nomination']))));

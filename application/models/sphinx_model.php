@@ -113,11 +113,11 @@ class Sphinx_Model extends CI_Model
         if ($limit)
             $this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
-        if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
-        {
-            $station_name = str_replace("|||", " ", trim($this->session->userdata['organization']));
-            $this->sphinxsearch->set_filter('station_name', $this->crc32($station_name));
-        }
+//        if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
+//        {
+//            $station_name = str_replace("|||", " ", trim($this->session->userdata['organization']));
+//            $this->sphinxsearch->add_query($station_name, 'instantiations_list');
+//        }
 //        if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
 //            $this->sphinxsearch->set_filter("status", array(str_replace("|||", " | ", trim($this->session->userdata['nomination']))));
 //
@@ -200,7 +200,7 @@ class Sphinx_Model extends CI_Model
 
         return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
     }
-    public function crc32($val){
+    public static function crc32($val){
         $checksum = crc32($val);
         if($checksum < 0) $checksum += 4294967296;
         return $checksum;

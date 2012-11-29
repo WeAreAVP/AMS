@@ -114,31 +114,33 @@ class Sphinx_Model extends CI_Model
             $this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
         if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
-            $this->sphinxsearch->set_filter("station_name", array(str_replace("|||", " & ", trim($this->session->userdata['organization']))));
-
-        if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
-            $this->sphinxsearch->set_filter("status", array(str_replace("|||", " | ", trim($this->session->userdata['nomination']))));
-
-        if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
-            $this->sphinxsearch->set_filter("media_type", array(str_replace("|||", " | ", trim($this->session->userdata['media_type']))));
-
-        if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
-            $this->sphinxsearch->set_filter("format_name", array(str_replace("|||", " | ", trim($this->session->userdata['physical_format']))));
-
-        if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
-            $this->sphinxsearch->set_filter("format_name", array(str_replace("|||", " | ", trim($this->session->userdata['digital_format']))));
-
-        if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
-            $this->sphinxsearch->set_filter("generation", array(str_replace("|||", " | ", trim($this->session->userdata['generation']))));
-
-        if (isset($this->session->userdata['file_size']) && $this->session->userdata['file_size'] != '')
-            $this->sphinxsearch->set_filter("file_size", array(str_replace("|||", " | ", trim($this->session->userdata['file_size']))));
-
-        if (isset($this->session->userdata['event_type']) && $this->session->userdata['event_type'] != '')
-            $this->sphinxsearch->set_filter("event_type", array(str_replace("|||", " | ", trim($this->session->userdata['event_type']))));
-
-        if (isset($this->session->userdata['event_outcome']) && $this->session->userdata['event_outcome'] != '')
-            $this->sphinxsearch->set_filter("event_outcome", array(str_replace("|||", " | ", trim($this->session->userdata['event_outcome']))));
+        {
+            $station_name=str_replace("|||", " | ", trim($this->session->userdata['organization']));
+            $this->sphinxsearch->set_filter("station_name", array($station_name));
+        }
+//        if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
+//            $this->sphinxsearch->set_filter("status", array(str_replace("|||", " | ", trim($this->session->userdata['nomination']))));
+//
+//        if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
+//            $this->sphinxsearch->set_filter("media_type", array(str_replace("|||", " | ", trim($this->session->userdata['media_type']))));
+//
+//        if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
+//            $this->sphinxsearch->set_filter("format_name", array(str_replace("|||", " | ", trim($this->session->userdata['physical_format']))));
+//
+//        if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
+//            $this->sphinxsearch->set_filter("format_name", array(str_replace("|||", " | ", trim($this->session->userdata['digital_format']))));
+//
+//        if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
+//            $this->sphinxsearch->set_filter("generation", array(str_replace("|||", " | ", trim($this->session->userdata['generation']))));
+//
+//        if (isset($this->session->userdata['file_size']) && $this->session->userdata['file_size'] != '')
+//            $this->sphinxsearch->set_filter("file_size", array(str_replace("|||", " | ", trim($this->session->userdata['file_size']))));
+//
+//        if (isset($this->session->userdata['event_type']) && $this->session->userdata['event_type'] != '')
+//            $this->sphinxsearch->set_filter("event_type", array(str_replace("|||", " | ", trim($this->session->userdata['event_type']))));
+//
+//        if (isset($this->session->userdata['event_outcome']) && $this->session->userdata['event_outcome'] != '')
+//            $this->sphinxsearch->set_filter("event_outcome", array(str_replace("|||", " | ", trim($this->session->userdata['event_outcome']))));
 
         $res = $this->sphinxsearch->query($params['search'], 'instantiations_list');
 

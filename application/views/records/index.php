@@ -37,7 +37,7 @@ if (!$isAjax)
 				$guid_identifier=$asset->guid_identifier;
 				$local_identifier=$asset->local_identifier;
 				$asset_description=$asset->description;
-				$asset_title=$asset->asset_titles;?>
+				$asset_title=$asset->asset_title;?>
 				<tr style="cursor: pointer;">
 			      <td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>
                   <td><?php 
@@ -153,7 +153,7 @@ if (!$isAjax)
 				$guid_identifier=$asset->guid_identifier;
 				$local_identifier=$asset->local_identifier;
 				$asset_description=$asset->description;
-				$asset_title=$asset->asset_titles;?>
+				$asset_title=$asset->asset_title;?>
 				<tr style="cursor: pointer;">
 			      <td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>
                   <td><?php 
@@ -174,15 +174,15 @@ if (!$isAjax)
                     </p>
                   </td>
                    <td><?php 
-				  		echo $asset->asset_titles_type;
+				  		echo $asset->asset_title_type;
 					?>
                   </td>
                   <td><?php 		  	
-						echo $asset->asset_titles_ref;
+						echo $asset->asset_title_ref;
 					?>
                   </td>
                   <td><?php 
-				  		echo $asset->asset_titles_source;?>
+				  		echo $asset->asset_title_source;?>
                   </td>
                   <td><p><?php 
 					if($asset_description)

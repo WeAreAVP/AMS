@@ -115,9 +115,8 @@ class Sphinx_Model extends CI_Model
 
         if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
         {
-            $station_name=str_replace("|||", "' OR '", trim($this->session->userdata['organization']));
-            
-            $where="where station_name '$station_name'";
+            $station_name=str_replace("|||", " | ", trim($this->session->userdata['organization']));
+            $this->sphinxsearch->add_query( $station_name, 'station_name');
         }
 //        if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
 //            $this->sphinxsearch->set_filter("status", array(str_replace("|||", " | ", trim($this->session->userdata['nomination']))));
@@ -143,7 +142,7 @@ class Sphinx_Model extends CI_Model
 //        if (isset($this->session->userdata['event_outcome']) && $this->session->userdata['event_outcome'] != '')
 //            $this->sphinxsearch->set_filter("event_outcome", array(str_replace("|||", " | ", trim($this->session->userdata['event_outcome']))));
 
-        $res = $this->sphinxsearch->query($where, 'instantiations_list');
+        $res = $this->sphinxsearch->query($params['search'], 'instantiations_list');
 
 
         $execution_time = $res['time'];

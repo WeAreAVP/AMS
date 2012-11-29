@@ -7,7 +7,7 @@ if (!$isAjax)
  	<h4>Assets</h4>
    </b>
    <div style="padding: 8px;background: none repeat scroll 0% 0% rgb(0, 152, 214); " ><a style="color: white;" href="<?php echo site_url('records/index') ?>" >All Assets</a></div>
-   <div style="padding: 8px;" > <a href="<?php echo "javascrip:;";//echo site_url('records/flagged') ?>" >Flagged</a></div>
+   <div style="padding: 8px;" > <a href="<?php echo "javascript:;";//echo site_url('records/flagged') ?>" >Flagged</a></div>
     <?php $this->load->view('instantiations/_facet_search'); ?>
  </div>
  <div  class="span9" id="data_container">

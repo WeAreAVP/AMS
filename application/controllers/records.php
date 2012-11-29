@@ -54,7 +54,11 @@ class Records extends MY_Controller
 			   
 			}
 			$data['facet_search_url']=site_url('records/index');
-			$data['curent_tab']=isset($search['curent_tab'])?$search['curent_tab']:'simple';
+			$data['current_tab']='simple';
+			if(isset($search['curent_tab'])&& !empty($search['curent_tab']))
+			{
+				$data['current_tab']=$search['curent_tab'];
+			}
 			
 			$data['stations']=$this->station_model->get_all();
 			$data['nomination_status']=$this->instantiation->get_nomination_status();

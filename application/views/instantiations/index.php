@@ -100,7 +100,8 @@ if (!$isAjax)
                     '-webkit-border-radius': '10px', 
                     '-moz-border-radius': '10px', 
                     opacity: .5, 
-                    color: '#fff' 
+                    color: '#fff',
+                    zIndex:999999
                 }
             }); 
                         

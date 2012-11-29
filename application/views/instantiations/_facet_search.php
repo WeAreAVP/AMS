@@ -307,15 +307,23 @@
                 <ul class="dropdown-menu">
                     <li class="dropdown"><a href="#">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
                         <ul class="sub-menu dropdown-menu">
-
                             <li><a href="#">Title</a></li>
                             <li><a href="#">Subject</a></li>
-
+                            <li><a href="#">Coverage</a></li>
+                            <li><a href="#">Genre</a></li>
+                            <li><a href="#">Publisher</a></li>
+                            <li><a href="#">Description</a></li>
+                            <li><a href="#">Creator Name</a></li>
+                            <li><a href="#">Creator Affiliation</a></li>
+                            <li><a href="#">Contributor Name</a></li>
+                            <li><a href="#">Contributor Affiliation</a></li>
+                            <li><a href="#">Rights Summaries</a></li>
+                            <li><a href="#">Annotations</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
                         <ul class="sub-menu dropdown-menu">
-                            <li><a href="#">Sample</a></li>
+                            <li><a href="#">TBD</a></li>
 
                         </ul>
                     </li>

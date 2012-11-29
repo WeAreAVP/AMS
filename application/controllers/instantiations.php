@@ -56,7 +56,7 @@ class Instantiations extends MY_Controller
             }
            
         }
-       
+        
         $data['stations'] = $this->station_model->get_all();
         $data['nomination_status'] = $this->instantiation->get_nomination_status();
         $data['media_types'] = $this->instantiation->get_media_types();

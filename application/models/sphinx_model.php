@@ -29,7 +29,7 @@ class Sphinx_Model extends CI_Model
      */
     public function search_stations($params, $offset = 0, $limit = 100)
     {
-        $listing=array();
+        $listing = array();
         $total_record = 0;
         $this->sphinxsearch->reset_filters();
         $this->sphinxsearch->reset_group_by();
@@ -97,15 +97,15 @@ class Sphinx_Model extends CI_Model
     function instantiations_list($params, $offset = 0, $limit = 100)
     {
 //        /usr/bin/indexer --all --rotate
-        $instantiations=array();
+        $instantiations = array();
         $total_record = 0;
         $this->sphinxsearch->reset_filters();
         $this->sphinxsearch->reset_group_by();
         //$where = $this->get_sphinx_search_condtion($params);
-		if(isset($params['asset_id']))
-		{
-			$this->sphinxsearch->set_filter("assets_id",array($params['asset_id']));
-		}
+        if (isset($params['asset_id']))
+        {
+            $this->sphinxsearch->set_filter("assets_id", array($params['asset_id']));
+        }
         $mode = SPH_MATCH_EXTENDED;
         $this->sphinxsearch->set_array_result(true);
         $this->sphinxsearch->set_match_mode($mode);
@@ -113,6 +113,32 @@ class Sphinx_Model extends CI_Model
         if ($limit)
             $this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
+        if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
+            $this->sphinxsearch->set_filter("station_name", array(str_replace("|||", " | ", trim($this->session->userdata['organization']))));
+
+        if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
+            $this->sphinxsearch->set_filter("status", array(str_replace("|||", " | ", trim($this->session->userdata['nomination']))));
+
+        if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
+            $this->sphinxsearch->set_filter("media_type", array(str_replace("|||", " | ", trim($this->session->userdata['media_type']))));
+
+        if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
+            $this->sphinxsearch->set_filter("format_name", array(str_replace("|||", " | ", trim($this->session->userdata['physical_format']))));
+
+        if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
+            $this->sphinxsearch->set_filter("format_name", array(str_replace("|||", " | ", trim($this->session->userdata['digital_format']))));
+
+        if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
+            $this->sphinxsearch->set_filter("generation", array(str_replace("|||", " | ", trim($this->session->userdata['generation']))));
+
+        if (isset($this->session->userdata['file_size']) && $this->session->userdata['file_size'] != '')
+            $this->sphinxsearch->set_filter("file_size", array(str_replace("|||", " | ", trim($this->session->userdata['file_size']))));
+
+        if (isset($this->session->userdata['event_type']) && $this->session->userdata['event_type'] != '')
+            $this->sphinxsearch->set_filter("event_type", array(str_replace("|||", " | ", trim($this->session->userdata['event_type']))));
+
+        if (isset($this->session->userdata['event_outcome']) && $this->session->userdata['event_outcome'] != '')
+            $this->sphinxsearch->set_filter("event_outcome", array(str_replace("|||", " | ", trim($this->session->userdata['event_outcome']))));
 
         $res = $this->sphinxsearch->query($params['search'], 'instantiations_list');
 
@@ -135,9 +161,10 @@ class Sphinx_Model extends CI_Model
 
         return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
     }
-	function assets_listing($params, $offset = 0, $limit = 100)
+
+    function assets_listing($params, $offset = 0, $limit = 100)
     {
-        $instantiations=array();
+        $instantiations = array();
         $total_record = 0;
         $this->sphinxsearch->reset_filters();
         $this->sphinxsearch->reset_group_by();

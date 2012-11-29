@@ -299,28 +299,30 @@
             </div>
         </div>
         <div class="filter-fileds">
-            <div class="dropdown">
-                <a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
+            <div class="btn-group">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                     Limit Search to Field
-                    <b class="caret"></b>
+                    <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <li class="dropdown-submenu">
-                        <a tabindex="-1" href="#">Asset Fields</a>
-                        <ul class="dropdown-menu" role="submenu" aria-labelledby="ddLabel">
-                            <li tabindex="-1">1</li>
-                            <li tabindex="-1">2</li>
+                <ul class="dropdown-menu">
+                    <li class="dropdown"><a href="#">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+                        <ul class="sub-menu dropdown-menu">
+
+                            <li><a href="#">Title</a></li>
+                            <li><a href="#">Subject</a></li>
+
                         </ul>
                     </li>
-                    <!--                    <li class="dropdown-submenu">
-                                            <a tabindex="-1" href="#">Instantiation Fields</a>
-                                            <ul class="dropdown-menu">
-                                               <li tabindex="-1">1</li>
-                                                <li tabindex="-1">2</li>
-                                            </ul>
-                                        </li>-->
+                    <li class="dropdown"><a href="#">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+                        <ul class="sub-menu dropdown-menu">
+                            <li><a href="#">Sample</a></li>
+
+                        </ul>
+                    </li>
                 </ul>
             </div>
+
+
         </div>
         <div class="filter-fileds">
             <div><input type="button" name="reset" value="Add Keyword" class="btn btn-primary"/></div>

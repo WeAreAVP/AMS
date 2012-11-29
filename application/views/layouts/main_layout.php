@@ -12,6 +12,7 @@
         echo link_js('jquery-ui-1.9.0.custom.js');
         echo link_js('jquery.tablesorter.js');
         echo link_js('bootstrap/bootstrap.js');
+//        echo link_js('bootstrap-dropdown.js');
         echo link_js('jquery.freezetablecolumns.1.1.js');
         echo link_js('highcharts.js');
         echo link_js('modules/exporting.js');

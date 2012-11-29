@@ -29,7 +29,7 @@ class Sphinx_Model extends CI_Model
      */
     public function search_stations($params, $offset = 0, $limit = 100)
     {
-        $listing = array();
+        $stations_list = array();
         $total_record = 0;
         $this->sphinxsearch->reset_filters();
         $this->sphinxsearch->reset_group_by();
@@ -60,13 +60,13 @@ class Sphinx_Model extends CI_Model
                 {
                     foreach ($res['matches'] as $record)
                     {
-                        $listings[] = (object) array_merge(array('id' => $record['id']), $record['attrs']);
+                        $stations_list[] = (object) array_merge(array('id' => $record['id']), $record['attrs']);
                     }
                 }
             }
         }
 
-        return array("total_count" => $total_record, "records" => $listings, "query_time" => $execution_time);
+        return array("total_count" => $total_record, "records" => $stations_list, "query_time" => $execution_time);
     }
 
     /*
@@ -115,8 +115,8 @@ class Sphinx_Model extends CI_Model
 
         if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
         {
-            $station_name=str_replace("|||", " | ", trim($this->session->userdata['organization']));
-            $this->sphinxsearch->add_query( $station_name, 'station_name');
+            $station_name = str_replace("|||", " ", trim($this->session->userdata['organization']));
+            $this->sphinxsearch->add_query($station_name, 'station_name');
         }
 //        if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
 //            $this->sphinxsearch->set_filter("status", array(str_replace("|||", " | ", trim($this->session->userdata['nomination']))));

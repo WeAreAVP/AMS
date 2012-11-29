@@ -113,34 +113,12 @@ class Sphinx_Model extends CI_Model
         if ($limit)
             $this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
-        
-        echo $where=$this->make_where_clause();
-        
-//        if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
-//            $this->sphinxsearch->set_filter("status", array(str_replace("|||", " | ", trim($this->session->userdata['nomination']))));
-//
-//        if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
-//            $this->sphinxsearch->set_filter("media_type", array(str_replace("|||", " | ", trim($this->session->userdata['media_type']))));
-//
-//        if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
-//            $this->sphinxsearch->set_filter("format_name", array(str_replace("|||", " | ", trim($this->session->userdata['physical_format']))));
-//
-//        if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
-//            $this->sphinxsearch->set_filter("format_name", array(str_replace("|||", " | ", trim($this->session->userdata['digital_format']))));
-//
-//        if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
-//            $this->sphinxsearch->set_filter("generation", array(str_replace("|||", " | ", trim($this->session->userdata['generation']))));
-//
-//        if (isset($this->session->userdata['file_size']) && $this->session->userdata['file_size'] != '')
-//            $this->sphinxsearch->set_filter("file_size", array(str_replace("|||", " | ", trim($this->session->userdata['file_size']))));
-//
-//        if (isset($this->session->userdata['event_type']) && $this->session->userdata['event_type'] != '')
-//            $this->sphinxsearch->set_filter("event_type", array(str_replace("|||", " | ", trim($this->session->userdata['event_type']))));
-//
-//        if (isset($this->session->userdata['event_outcome']) && $this->session->userdata['event_outcome'] != '')
-//            $this->sphinxsearch->set_filter("event_outcome", array(str_replace("|||", " | ", trim($this->session->userdata['event_outcome']))));
 
-        $res = $this->sphinxsearch->query($where, 'instantiations_list');
+        $query = $this->make_where_clause();
+
+
+
+        $res = $this->sphinxsearch->query($query, 'instantiations_list');
 
 
         $execution_time = $res['time'];
@@ -161,15 +139,58 @@ class Sphinx_Model extends CI_Model
 
         return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
     }
-    function make_where_clause(){
-        $where='';
-        if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != ''){
+
+    function make_where_clause()
+    {
+        $where = '';
+        if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
+        {
             $station_name = str_replace("|||", "' | '", trim($this->session->userdata['organization']));
-            $where="@organization '$station_name'";
-            
+            $where .=" @organization '$station_name'";
+        }
+        if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
+        {
+            $nomination = str_replace("|||", "' | '", trim($this->session->userdata['nomination']));
+            $where .=" @status '$nomination'";
+        }
+        if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
+        {
+            $media_type = str_replace("|||", "' | '", trim($this->session->userdata['media_type']));
+            $where .=" @media_type '$media_type'";
+        }
+        if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
+        {
+            $physical_format = str_replace("|||", "' | '", trim($this->session->userdata['physical_format']));
+            $where .=" @format_type '$physical_format'";
+        }
+        if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
+        {
+            $digital_format= str_replace("|||", "' | '", trim($this->session->userdata['digital_format']));
+            $where .=" @format_type '$digital_format'";
+        }
+        if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
+        {
+            $generation = str_replace("|||", "' | '", trim($this->session->userdata['generation']));
+            $where .=" @generation '$generation'";
+        }
+        if (isset($this->session->userdata['file_size']) && $this->session->userdata['file_size'] != '')
+        {
+            $file_size = str_replace("|||", "' | '", trim($this->session->userdata['file_size']));
+            $where .=" @file_size '$file_size'";
+        }
+        if (isset($this->session->userdata['event_type']) && $this->session->userdata['event_type'] != '')
+        {
+            $event_type = str_replace("|||", "' | '", trim($this->session->userdata['event_type']));
+            $where .=" @event_type '$event_type'";
+        }
+        if (isset($this->session->userdata['event_outcome']) && $this->session->userdata['event_outcome'] != '')
+        {
+            $event_outcome = str_replace("|||", "' | '", trim($this->session->userdata['event_outcome']));
+            $where .=" @event_outcome '$event_outcome'";
         }
         return $where;
     }
+
     function assets_listing($params, $offset = 0, $limit = 100)
     {
         $instantiations = array();
@@ -206,9 +227,12 @@ class Sphinx_Model extends CI_Model
 
         return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
     }
-    public static function crc32($val){
+
+    public static function crc32($val)
+    {
         $checksum = crc32($val);
-        if($checksum < 0) $checksum += 4294967296;
+        if ($checksum < 0)
+            $checksum += 4294967296;
         return $checksum;
     }
 

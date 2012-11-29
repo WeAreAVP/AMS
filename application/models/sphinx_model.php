@@ -164,7 +164,7 @@ class Sphinx_Model extends CI_Model
     function make_where_clause(){
         $where='';
         if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != ''){
-            $station_name = str_replace("|||", "' '", trim($this->session->userdata['organization']));
+            $station_name = str_replace("|||", "' | '", trim($this->session->userdata['organization']));
             $where="@organization '$station_name'";
             
         }

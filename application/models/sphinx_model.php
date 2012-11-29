@@ -113,12 +113,9 @@ class Sphinx_Model extends CI_Model
         if ($limit)
             $this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
-        if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
-        {
-            $station_name = str_replace("|||", " ", trim($this->session->userdata['organization']));
-            echo $station_name;
-            $this->sphinxsearch->add_query($station_name, 'instantiations_list');
-        }
+        
+        echo $where=$this->make_where_clause();
+        
 //        if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
 //            $this->sphinxsearch->set_filter("status", array(str_replace("|||", " | ", trim($this->session->userdata['nomination']))));
 //
@@ -143,7 +140,7 @@ class Sphinx_Model extends CI_Model
 //        if (isset($this->session->userdata['event_outcome']) && $this->session->userdata['event_outcome'] != '')
 //            $this->sphinxsearch->set_filter("event_outcome", array(str_replace("|||", " | ", trim($this->session->userdata['event_outcome']))));
 
-        $res = $this->sphinxsearch->query($params['search'], 'instantiations_list');
+        $res = $this->sphinxsearch->query($where, 'instantiations_list');
 
 
         $execution_time = $res['time'];
@@ -164,7 +161,15 @@ class Sphinx_Model extends CI_Model
 
         return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
     }
-
+    function make_where_clause(){
+        $where='';
+        if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != ''){
+            $station_name = str_replace("|||", " ", trim($this->session->userdata['organization']));
+            $where='@station_name '.$station_name;
+            
+        }
+        return $where;
+    }
     function assets_listing($params, $offset = 0, $limit = 100)
     {
         $instantiations = array();

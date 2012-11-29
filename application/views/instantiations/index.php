@@ -89,7 +89,7 @@ if (!$isAjax)
         //                clearWidths: true  // optional
         //            });//freezeTableColumns
         //        });
-        function instantiation_search(param)
+        function facet_search(param)
         {
             console.log(param);
             $.blockUI({
@@ -107,7 +107,8 @@ if (!$isAjax)
             var objJSON = eval("(function(){return " + param + ";})()");
             $.ajax({
                 type: 'POST', 
-                url: '<?php echo site_url('instantiations/index') ?>/'+objJSON.page+'?'+$('#form_search_instantiation').serialize(),
+                url: '<?php echo site_url('instantiations/index') ?>/'+objJSON.page,
+                data:$('#form_search_instantiation').serialize(),
                 success: function (result)
                 { 
                     $('#instantiation-container').html(result);

@@ -33,29 +33,48 @@ class Instantiations extends MY_Controller
      */
     public function index()
     {
+//        echo '<pre>';print_r($this->session->userdata);exit;
         // List all the instantiations records active records
 //        $data['records'] = $this->instantiation->list_all();
-        
-        
-        
-        $data['stations']=$this->station_model->get_all();
-        $data['nomination_status']=$this->instantiation->get_nomination_status();
-        $data['media_types']=$this->instantiation->get_media_types();
-        $data['physical_formats']=$this->instantiation->get_physical_formats();
-        $data['digital_formats']=$this->instantiation->get_digital_formats();
-        $data['generations']=$this->instantiation->get_generations();
-        $data['file_size']=$this->instantiation->get_file_size();
-        $data['event_types']=$this->instantiation->get_event_type();
-        $data['event_outcome']=$this->instantiation->get_event_outcome();
-        
-        
-        
+        $params = array('search' => '');
+        if (isAjax())
+        {
+            $this->unset_facet_search();
+            $search['organization'] = $this->input->post('organization_main_search');
+            $search['nomination'] = $this->input->post('nomination_status_main_search');
+            $search['media_type'] = $this->input->post('media_type_main_search');
+            $search['physical_format'] = $this->input->post('physical_format_main_search');
+            $search['digital_format'] = $this->input->post('digital_format_main_search');
+            $search['generation'] = $this->input->post('generation_main_search');
+            $search['file_size'] = $this->input->post('file_size_main_search');
+            $search['event_type'] = $this->input->post('event_type_main_search');
+            $search['event_outcome'] = $this->input->post('event_outcome_main_search');
+            $this->set_facet_search($search);
+            foreach ($search as $key => $value)
+            {
+                $params[$key] = str_replace("|||", " | ", trim($value));
+            }
+           
+        }
+       
+        $data['stations'] = $this->station_model->get_all();
+        $data['nomination_status'] = $this->instantiation->get_nomination_status();
+        $data['media_types'] = $this->instantiation->get_media_types();
+        $data['physical_formats'] = $this->instantiation->get_physical_formats();
+        $data['digital_formats'] = $this->instantiation->get_digital_formats();
+        $data['generations'] = $this->instantiation->get_generations();
+        $data['file_size'] = $this->instantiation->get_file_size();
+        $data['event_types'] = $this->instantiation->get_event_type();
+        $data['event_outcome'] = $this->instantiation->get_event_outcome();
+
+
+
         $data['isAjax'] = FALSE;
         $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-        $param = array('search' => '');
 
-        $records = $this->sphinx->instantiations_list($param, $offset);
+
+        $records = $this->sphinx->instantiations_list($params, $offset);
         $data['total'] = $records['total_count'];
         $config['total_rows'] = $data['total'];
         $config['per_page'] = 100;
@@ -82,7 +101,7 @@ class Instantiations extends MY_Controller
         $config['first_link'] = FALSE;
         $config['last_link'] = FALSE;
         $config['display_pages'] = FALSE;
-        $config['js_method'] = 'instantiation_search';
+        $config['js_method'] = 'facet_search';
         $config['postVar'] = 'page';
         $this->ajax_pagination->initialize($config);
         if (isAjax())
@@ -96,7 +115,28 @@ class Instantiations extends MY_Controller
 
     public function detail()
     {
-        
+        show_404();
+    }
+
+    function unset_facet_search()
+    {
+        $this->session->unset_userdata('organization');
+        $this->session->unset_userdata('nomination');
+        $this->session->unset_userdata('media_type');
+        $this->session->unset_userdata('physical_format');
+        $this->session->unset_userdata('digital_format');
+        $this->session->unset_userdata('generation');
+        $this->session->unset_userdata('file_size');
+        $this->session->unset_userdata('event_type');
+        $this->session->unset_userdata('event_outcome');
+    }
+
+    function set_facet_search($search_values)
+    {
+        foreach ($search_values as $key => $value)
+        {
+            $this->session->set_userdata($key, $value);
+        }
     }
 
 }

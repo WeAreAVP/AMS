@@ -37,7 +37,6 @@ class Instantiations extends MY_Controller
         // List all the instantiations records active records
 //        $data['records'] = $this->instantiation->list_all();
         $params = array('search' => '');
-		echo $this->session->userdata['current_tab'];
         if (isAjax())
         {
             $this->unset_facet_search();

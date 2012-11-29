@@ -94,7 +94,7 @@ if (!$isAjax)
    </table>
   </div>
    <div style="display:none;overflow: scroll; height: 400px; width: 860px;" id="full_table_view" >
-   	<table class="tablesorter table table-bordered" ><?php 
+   	<table class="tablesorter table table-bordered" style="word-break: normal ;" ><?php 
 		if(isset($records) && ($total>0))
 		{?>
             <tr>

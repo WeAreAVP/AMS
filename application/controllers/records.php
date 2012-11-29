@@ -55,6 +55,7 @@ class Records extends MY_Controller
 			}
 			$data['facet_search_url']=site_url('records/index');
 			$data['curent_tab']=isset($search['curent_tab'])?$search['curent_tab']:'simple';
+			
 			$data['stations']=$this->station_model->get_all();
 			$data['nomination_status']=$this->instantiation->get_nomination_status();
 			$data['media_types']=$this->instantiation->get_media_types();
@@ -84,8 +85,7 @@ class Records extends MY_Controller
 				$data['start'] = $offset;
 				$data['end'] = intval($offset) + intval($data['count']);
 			}
-	        $config['base_url'] = $this->config->item('base_url') . $this->config->item('index_page') . "records/index/";
-    	    $config['prev_link'] = '<i class="icon-chevron-left"></i>';
+	        $config['prev_link'] = '<i class="icon-chevron-left"></i>';
         	$config['prev_tag_open'] = '<span class="btn">';
         	$config['prev_tag_close'] = '</span>';
         	$config['next_link'] = '<i class="icon-chevron-right"></i>';

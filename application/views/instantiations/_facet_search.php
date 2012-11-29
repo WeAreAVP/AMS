@@ -1,6 +1,7 @@
 
 <div id="search_bar"> 
-    <form name="facet_search_form" id="form_search_instantiation" method="post">
+    <form name="facet_search" id="form_search" method="post">
+    <input name="curent_tab" id="curent_tab" value="<?php isset($this->session->userdata['current_tab'])?$this->session->userdata['current_tab']:''?>"  />
         <b>
             <h4>Filter</h4>
         </b>
@@ -776,9 +777,33 @@
         if($('#'+type+' div').length<=1){
             $('#'+type).hide();
         }
-        add_token(name,type,1);
-        
-        
-        
+        add_token(name,type,1);        
     }
+	function facet_search(param)
+    {
+    	$.blockUI({
+        	css: { 
+            	border: 'none', 
+                padding: '15px', 
+                backgroundColor: '#000', 
+                '-webkit-border-radius': '10px', 
+                '-moz-border-radius': '10px', 
+                opacity: .5, 
+                color: '#fff',
+                zIndex:999999
+             }
+         }); 
+         var objJSON = eval("(function(){return " + param + ";})()");
+         $.ajax({
+         	type: 'POST', 
+            url: '<?php echo $facet_search_url ?>/'+objJSON.page,
+            data:$('#form_search').serialize(),
+                success: function (result)
+                { 
+                    $('#data_container').html(result);
+                    $.unblockUI();
+                                
+                }
+            });
+     }
 </script>

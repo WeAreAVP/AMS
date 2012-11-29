@@ -89,7 +89,7 @@ class Instantiations extends MY_Controller
             $data['start'] = $offset;
             $data['end'] = intval($offset) + intval($data['count']);
         }
-
+		$data['facet_search_url']=site_url('records/index');
         $config['base_url'] = $this->config->item('base_url') . $this->config->item('index_page') . "instantiations/index/";
         $config['prev_link'] = '<i class="icon-chevron-left"></i>';
         $config['prev_tag_open'] = '<span class="btn">';

@@ -10,17 +10,20 @@ if (!$isAjax)
    <div style="padding: 8px;" > <a href="<?php echo "javascrip:;";//echo site_url('records/flagged') ?>" >Flagged</a></div>
     <?php $this->load->view('instantiations/_facet_search'); ?>
  </div>
- <div  class="span9" id="assets_container">
+ <div  class="span9" id="data_container">
+ <?php } ?>
   <ul class="nav nav-tabs">
    <li ><a href="javascript:;" style="color:#000;cursor:default;">View type :</a></li>
-   <li id="simple_li" class="active"><a href="javascript:;" onClick="change_view('simple')">Simple Table</a></li>
-   <li id="full_table_li"><a href="javascript:;" onClick="change_view('full_table')">Full Table</a></li>
-   <li id="thumbnails_li"><a href="javascript:;" >Thumbnails</a></li>
+   <li id="simple_li" <?php if($current_tab=='simple'){?>class="active" <?php }?>><a href="javascript:;" onClick="change_view('simple')">Simple Table</a></li>
+   <li id="full_table_li" <?php if($current_tab=='full_table'){?>class="active" <?php }?>><a href="javascript:;" onClick="change_view('full_table')">Full Table</a></li>
+   <li id="thumbnails_li" <?php if($current_tab=='thumbnails'){?>class="active" <?php }?>><a href="javascript:;" >Thumbnails</a></li>
   </ul>
-<?php } ?>
-  <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
-  <div style="text-align: right;width: 860px;"> <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong> <?php echo $this->ajax_pagination->create_links(); ?> </div>
-   <div style="overflow: auto;height: 400px;" id="simple_view">
+
+  <div style="text-align: right;width: 860px;">
+  	<strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
+	<?php echo $this->ajax_pagination->create_links(); ?>
+  </div>
+   <div style="overflow: auto;height: 400px;display:<?php if($current_tab=='simple'){ echo 'block';}else{echo "none"; }?>;" id="simple_view">
    <table class="tablesorter table table-bordered" ><?php 
 		if(isset($records) && ($total>0))
 		{?>
@@ -93,7 +96,7 @@ if (!$isAjax)
 		}?>
    </table>
   </div>
-   <div style="display:none;overflow: scroll; height: 400px; width: 860px;" id="full_table_view" >
+   <div style="display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;overflow: scroll; height: 400px; width: 860px;" id="full_table_view" >
    	<table class="tablesorter table table-bordered" style="word-break: normal ;" ><?php 
 		if(isset($records) && ($total>0))
 		{?>
@@ -336,7 +339,7 @@ if (!$isAjax)
 		}?>
        </table>
 </div>
- 	<div style="overflow: auto;display:none;" id="thumbnails_view">
+ 	<div style="overflow: auto;display:<?php if($current_tab=='thumbnails'){ echo 'block';}else{echo "none"; }?>;" id="thumbnails_view">
         <div class="span3 title">
         <div class="unflag"></div>
         <img width="250px" src="http://placehold.it/140x140" alt="" />
@@ -376,21 +379,9 @@ if (!$isAjax)
  </div>
 </div>
 <script type="text/javascript">
-function search_assets(parem)
-{
-	$('#assets_container').hide();
-	var objJSON = eval("(function(){return " + parem + ";})()");
-	$.ajax({
-    	type: 'POST', 
-        url: '<?php echo site_url('records/index') ?>/'+objJSON.page+'?'+$('#asset_frm').serialize(),
-        success: function (result)
-		{ 
-          $('#assets_container').html(result);$('#assets_container').show();
-        }
-    });
-}
 function change_view(id)
 {
+	$('curent_tab').val(id);
 	$('#simple_view').hide();
 	$('#full_table_view').hide();
 	$('#thumbnails_view').hide();

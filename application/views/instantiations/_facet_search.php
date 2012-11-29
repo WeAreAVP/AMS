@@ -806,4 +806,16 @@
                 }
             });
      }
+	function change_view(id)
+	{
+		$('#current_tab').val(id);
+		$('#simple_view').hide();
+		$('#full_table_view').hide();
+		$('#thumbnails_view').hide();
+		$('#simple_li').removeClass("active");
+		$('#full_table_li').removeClass("active");
+		$('#thumbnails_li').removeClass("active");
+		$('#'+id+'_view').show();
+		$('#'+id+'_li').addClass("active");
+	}
 </script>

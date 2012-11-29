@@ -116,10 +116,10 @@ class Sphinx_Model extends CI_Model
         if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
         {
             $station_name = str_replace("|||", " ", trim($this->session->userdata['organization']));
-            $this->sphinxsearch->add_query($station_name, 'instantiations_list');  
+            $this->sphinxsearch->set_filter('station_name', $this->crc32($station_name));
         }
-        if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
-            $this->sphinxsearch->set_filter("status", array(str_replace("|||", " | ", trim($this->session->userdata['nomination']))));
+//        if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
+//            $this->sphinxsearch->set_filter("status", array(str_replace("|||", " | ", trim($this->session->userdata['nomination']))));
 //
 //        if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
 //            $this->sphinxsearch->set_filter("media_type", array(str_replace("|||", " | ", trim($this->session->userdata['media_type']))));
@@ -199,6 +199,11 @@ class Sphinx_Model extends CI_Model
         }
 
         return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
+    }
+    public function crc32($val){
+        $checksum = crc32($val);
+        if($checksum < 0) $checksum += 4294967296;
+        return $checksum;
     }
 
 }

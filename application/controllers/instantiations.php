@@ -37,10 +37,11 @@ class Instantiations extends MY_Controller
         // List all the instantiations records active records
 //        $data['records'] = $this->instantiation->list_all();
         $params = array('search' => '');
+		echo $this->session->userdata['current_tab'];
         if (isAjax())
         {
             $this->unset_facet_search();
-            $search['organization'] = $this->input->post('organization_main_search');
+		    $search['organization'] = $this->input->post('organization_main_search');
             $search['nomination'] = $this->input->post('nomination_status_main_search');
             $search['media_type'] = $this->input->post('media_type_main_search');
             $search['physical_format'] = $this->input->post('physical_format_main_search');
@@ -56,7 +57,6 @@ class Instantiations extends MY_Controller
             }
            
         }
-        
         $data['stations'] = $this->station_model->get_all();
         $data['nomination_status'] = $this->instantiation->get_nomination_status();
         $data['media_types'] = $this->instantiation->get_media_types();

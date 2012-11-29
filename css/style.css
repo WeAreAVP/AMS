@@ -6,12 +6,14 @@
         Purpose of the stylesheet follows.
 */
 html, body {
-    /*                background-color: #eee !important;*/
+/*     background-color: #eee !important;*/
+/*     min-width:1210px; */
 }
 .navbar-inner{padding-left: 20px !important;padding-right: 20px !important;}
 .container {
     zoom : 1;
     margin-top: 70px;
+/*    min-width:1170px !important; */
 }
 
 /* The white background content wrapper */

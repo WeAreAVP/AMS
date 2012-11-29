@@ -91,6 +91,7 @@ if (!$isAjax)
         //        });
         function instantiation_search(param)
         {
+            console.log(param);
             $.blockUI({
                 css: { 
                     border: 'none', 

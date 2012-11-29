@@ -507,7 +507,7 @@
             $('#'+type+'_search').val(my_search_words);
             
         }
-        
+        instantiation_search('');
         
     }
     function make_slug_name(string){

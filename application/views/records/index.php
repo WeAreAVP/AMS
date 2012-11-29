@@ -105,10 +105,47 @@ if (!$isAjax)
              <td style="vertical-align:middle;font-weight:bold;width:15%">Titles Type</td>
              <td style="vertical-align:middle;font-weight:bold;width:15%">Titles Ref</td>
              <td style="vertical-align:middle;font-weight:bold;width:15%">Titles Source</td>
-              <td style="vertical-align:middle;font-weight:bold;width:15%">Subjects</td>
-               <td style="vertical-align:middle;font-weight:bold;width:15%">Subjects Ref</td>
-                <td style="vertical-align:middle;font-weight:bold;width:15%">Subjects Source</td>
              <td style="vertical-align:middle;font-weight:bold;">Description</td>
+             <td style="vertical-align:middle;font-weight:bold;">Description Type</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Subjects</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Subjects Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Subjects Source</td>
+             <td style="vertical-align:middle;font-weight:bold;">Genre</td>
+             <td style="vertical-align:middle;font-weight:bold;">Genre Source</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Genre Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Creator Name</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Creator Affiliation</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Creator Source</td>         
+             <td style="vertical-align:middle;font-weight:bold;">Creator Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Creator Role</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Creator Role Source</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Contributor Name</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Contributor Affiliation</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Contributor Source</td>    
+             <td style="vertical-align:middle;font-weight:bold;">Contributor Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Contributor Role</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Contributor Role Source</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Contributor Role Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Publisher Name</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Publisher Affiliation</td>
+             <td style="vertical-align:middle;font-weight:bold;">Publisher Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Publisher Role</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Publisher Role Source</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Assets Date</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Date Type</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Coverage</td>
+             <td style="vertical-align:middle;font-weight:bold;">Coverage Type</td>
+             <td style="vertical-align:middle;font-weight:bold;">Audience Level</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Audience Level Source</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Audience Level Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Audience Rating</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Audience Rating Source</td>
+             <td style="vertical-align:middle;font-weight:bold;">Audience Rating Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Annotation</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Annotation Type</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Annotation Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Rights</td>
+             <td style="vertical-align:middle;font-weight:bold;width:15%">Rights Link</td>
             </tr>
             <tbody><?php 
 			foreach($records as $asset)
@@ -147,8 +184,6 @@ if (!$isAjax)
                   <td><?php 
 				  		echo $asset->asset_titles_source;?>
                   </td>
-                
-                 
                   <td><p><?php 
 					if($asset_description)
 					{
@@ -166,6 +201,133 @@ if (!$isAjax)
 						echo 'N/A';?>
 			       </p>
                   </td>
+                  <td><?php 
+				  		echo $asset->asset_titles_source;?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_titles_source;?>
+                  </td>
+                   <td><?php 
+				  		echo $asset->asset_subject?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_subject_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_subject_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_genre?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_genre_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_genre_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_creator_name?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_creator_affiliation?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_creator_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_creator_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_creator_role?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_creator_role_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_contributor_name?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_contributor_affiliation?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_contributor_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_contributor_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_contributor_role?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_contributor_role_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_contributor_role_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_publisher_name?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_publisher_affiliation?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_publisher_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_publisher_role?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_publisher_role_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_publisher_role_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_date?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_date_type?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_coverage?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_coverage_type?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_audience_level?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_audience_level_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_audience_level_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_audience_rating?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_audience_rating_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_audience_rating_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_annotation?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_annotation_type?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_annotation_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_rights?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_rights_link
+					?>
+                    </td>
      			</tr><?php 
 			}?>
 			</tbody>

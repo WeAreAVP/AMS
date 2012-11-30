@@ -117,7 +117,7 @@
                                 <li class="<?php echo active_anchor('dashboard', 'index'); ?>"><a href="<?php echo site_url('dashboard/index') ?>">Dashboard</a></li>
     <?php } ?>
 
-                            <li class="<?php echo (is_route_method(array('records' => array('index', 'flagged'), 'instantiations' => array('index', 'detail')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('records/index') ?>">Records</a></li>
+                            <li class="<?php echo (is_route_method(array('records' => array('index', 'flagged','details'), 'instantiations' => array('index', 'detail')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('records/index') ?>">Records</a></li>
 
 
                             <li class="<?php echo active_anchor('stations', array('index', 'detail')); ?>"><a href="<?php echo site_url('stations/index') ?>">Stations</a></li>

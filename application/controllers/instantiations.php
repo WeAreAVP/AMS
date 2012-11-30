@@ -40,7 +40,7 @@ class Instantiations extends MY_Controller
         if (isAjax())
         {
             $this->unset_facet_search();
-            $search['organization'] = $this->input->post('organization_main_search');
+		    $search['organization'] = $this->input->post('organization_main_search');
             $search['nomination'] = $this->input->post('nomination_status_main_search');
             $search['media_type'] = $this->input->post('media_type_main_search');
             $search['physical_format'] = $this->input->post('physical_format_main_search');
@@ -56,7 +56,6 @@ class Instantiations extends MY_Controller
             }
            
         }
-        
         $data['stations'] = $this->station_model->get_all();
         $data['nomination_status'] = $this->instantiation->get_nomination_status();
         $data['media_types'] = $this->instantiation->get_media_types();
@@ -89,8 +88,7 @@ class Instantiations extends MY_Controller
             $data['start'] = $offset;
             $data['end'] = intval($offset) + intval($data['count']);
         }
-
-        $config['base_url'] = $this->config->item('base_url') . $this->config->item('index_page') . "instantiations/index/";
+		$data['facet_search_url']=site_url('records/index');
         $config['prev_link'] = '<i class="icon-chevron-left"></i>';
         $config['prev_tag_open'] = '<span class="btn">';
         $config['prev_tag_close'] = '</span>';

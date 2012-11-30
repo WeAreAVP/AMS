@@ -6,7 +6,7 @@ if (!$isAjax)
         <div class="span3">
            <?php $this->load->view('instantiations/_facet_search'); ?>
         </div>
-        <div  class="span9" id="instantiation-container">
+        <div  class="span9" id="data_container">
         <?php } ?>
         <div style="text-align: right;width: 860px;">
             <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
@@ -89,34 +89,6 @@ if (!$isAjax)
         //                clearWidths: true  // optional
         //            });//freezeTableColumns
         //        });
-        function facet_search(param)
-        {
-            console.log(param);
-            $.blockUI({
-                css: { 
-                    border: 'none', 
-                    padding: '15px', 
-                    backgroundColor: '#000', 
-                    '-webkit-border-radius': '10px', 
-                    '-moz-border-radius': '10px', 
-                    opacity: .5, 
-                    color: '#fff',
-                    zIndex:999999
-                }
-            }); 
-                        
-            var objJSON = eval("(function(){return " + param + ";})()");
-            $.ajax({
-                type: 'POST', 
-                url: '<?php echo site_url('instantiations/index') ?>/'+objJSON.page,
-                data:$('#form_search_instantiation').serialize(),
-                success: function (result)
-                { 
-                    $('#instantiation-container').html(result);
-                    $.unblockUI();
-                                
-                }
-            });
-        }
+        
     </script>
 <?php } ?>

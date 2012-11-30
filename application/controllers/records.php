@@ -32,6 +32,33 @@ class Records extends MY_Controller
 		*/
 		function index()
 		{
+			$params = array('search' => '');
+			if (isAjax())
+			{
+				$this->unset_facet_search();
+				$search['organization'] = $this->input->post('organization_main_search');
+				$search['nomination'] = $this->input->post('nomination_status_main_search');
+				$search['media_type'] = $this->input->post('media_type_main_search');
+				$search['physical_format'] = $this->input->post('physical_format_main_search');
+				$search['digital_format'] = $this->input->post('digital_format_main_search');
+				$search['generation'] = $this->input->post('generation_main_search');
+				$search['file_size'] = $this->input->post('file_size_main_search');
+				$search['event_type'] = $this->input->post('event_type_main_search');
+				$search['event_outcome'] = $this->input->post('event_outcome_main_search');
+				$this->set_facet_search($search);
+				foreach ($search as $key => $value)
+				{
+					$params[$key] = str_replace("|||", " | ", trim($value));
+				}
+			   
+			}
+			$data['facet_search_url']=site_url('records/index');
+			$data['current_tab']='simple';
+			if(isset($this->session->userdata['current_tab'])&& !empty($this->session->userdata['current_tab']))
+			{
+				$data['current_tab']=$this->session->userdata['current_tab'];	
+			}
+			$this->session->set_userdata('current_tab', $data['current_tab']);
 			$data['stations']=$this->station_model->get_all();
 			$data['nomination_status']=$this->instantiation->get_nomination_status();
 			$data['media_types']=$this->instantiation->get_media_types();
@@ -61,8 +88,7 @@ class Records extends MY_Controller
 				$data['start'] = $offset;
 				$data['end'] = intval($offset) + intval($data['count']);
 			}
-	        $config['base_url'] = $this->config->item('base_url') . $this->config->item('index_page') . "records/index/";
-    	    $config['prev_link'] = '<i class="icon-chevron-left"></i>';
+	        $config['prev_link'] = '<i class="icon-chevron-left"></i>';
         	$config['prev_tag_open'] = '<span class="btn">';
         	$config['prev_tag_close'] = '</span>';
         	$config['next_link'] = '<i class="icon-chevron-right"></i>';
@@ -72,7 +98,7 @@ class Records extends MY_Controller
 	        $config['first_link'] = FALSE;
     	    $config['last_link'] = FALSE;
       		$config['display_pages'] = FALSE;
-			$config['js_method'] = 'search_assets';
+			$config['js_method'] = 'facet_search';
 			$config['postVar'] = 'page';
 			
       	  	$this->ajax_pagination->initialize($config);
@@ -84,7 +110,36 @@ class Records extends MY_Controller
 			}
 			$this->load->view('records/index',$data);
 		}
-	 /*
+		function set_current_tab($current_tab)
+		{
+			if (isAjax())
+			{
+				$this->session->set_userdata('current_tab', $current_tab);
+				exit;
+			}
+			
+		}
+		function unset_facet_search()
+		{
+			$this->session->unset_userdata('organization');
+			$this->session->unset_userdata('nomination');
+			$this->session->unset_userdata('media_type');
+			$this->session->unset_userdata('physical_format');
+			$this->session->unset_userdata('digital_format');
+			$this->session->unset_userdata('generation');
+			$this->session->unset_userdata('file_size');
+			$this->session->unset_userdata('event_type');
+			$this->session->unset_userdata('event_outcome');
+		}
+	
+		function set_facet_search($search_values)
+		{
+			foreach ($search_values as $key => $value)
+			{
+				$this->session->set_userdata($key, $value);
+			}
+		}
+	 	/*
 		*
 		*To List All flagged
 		*

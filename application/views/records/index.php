@@ -7,20 +7,23 @@ if (!$isAjax)
  	<h4>Assets</h4>
    </b>
    <div style="padding: 8px;background: none repeat scroll 0% 0% rgb(0, 152, 214); " ><a style="color: white;" href="<?php echo site_url('records/index') ?>" >All Assets</a></div>
-   <div style="padding: 8px;" > <a href="<?php echo "javascrip:;";//echo site_url('records/flagged') ?>" >Flagged</a></div>
+   <div style="padding: 8px;" > <a href="<?php echo "javascript:;";//echo site_url('records/flagged') ?>" >Flagged</a></div>
     <?php $this->load->view('instantiations/_facet_search'); ?>
  </div>
- <div  class="span9" id="assets_container">
+ <div  class="span9" id="data_container">
+ <?php } ?>
   <ul class="nav nav-tabs">
    <li ><a href="javascript:;" style="color:#000;cursor:default;">View type :</a></li>
-   <li id="simple_li" class="active"><a href="javascript:;" onClick="change_view('simple')">Simple Table</a></li>
-   <li id="full_table_li"><a href="javascript:;" onClick="change_view('full_table')">Full Table</a></li>
-   <li id="thumbnails_li"><a href="javascript:;" >Thumbnails</a></li>
+   <li id="simple_li" <?php if($current_tab=='simple'){?>class="active" <?php }?>><a href="javascript:;" onClick="change_view('simple')">Simple Table</a></li>
+   <li id="full_table_li" <?php if($current_tab=='full_table'){?>class="active" <?php }?>><a href="javascript:;" onClick="change_view('full_table')">Full Table</a></li>
+   <li id="thumbnails_li" <?php if($current_tab=='thumbnails'){?>class="active" <?php }?>><a href="javascript:;" >Thumbnails</a></li>
   </ul>
-<?php } ?>
-  <div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
-  <div style="text-align: right;width: 860px;"> <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong> <?php echo $this->ajax_pagination->create_links(); ?> </div>
-   <div style="overflow: auto;height: 400px;" id="simple_view">
+
+  <div style="text-align: right;width: 860px;">
+  	<strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
+	<?php echo $this->ajax_pagination->create_links(); ?>
+  </div>
+   <div style="overflow: auto;height: 400px;display:<?php if($current_tab=='simple'){ echo 'block';}else{echo "none"; }?>;" id="simple_view">
    <table class="tablesorter table table-bordered" ><?php 
 		if(isset($records) && ($total>0))
 		{?>
@@ -37,7 +40,7 @@ if (!$isAjax)
 				$guid_identifier=$asset->guid_identifier;
 				$local_identifier=$asset->local_identifier;
 				$asset_description=$asset->description;
-				$asset_title=$asset->asset_titles;?>
+				$asset_title=$asset->asset_title;?>
 				<tr style="cursor: pointer;">
 			      <td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>
                   <td><?php 
@@ -93,22 +96,59 @@ if (!$isAjax)
 		}?>
    </table>
   </div>
-   <div style="overflow: scroll;display:none;" id="full_table_view" >
-   	<table class="tablesorter table table-bordered" ><?php 
+   <div style="display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;overflow: scroll; height: 400px; width: 860px;" id="full_table_view" >
+   	<table class="tablesorter table table-bordered" style="word-break: normal ;" ><?php 
 		if(isset($records) && ($total>0))
 		{?>
             <tr>
              <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag "></i></td>
-             <th style="width:30%">AA GUID</th>
-             <td style="vertical-align:middle;font-weight:bold;width:30%">Local ID</td>
-             <td style="vertical-align:middle;font-weight:bold;width:15%">Titles</td>
-             <td style="vertical-align:middle;font-weight:bold;width:15%">Titles Type</td>
-             <td style="vertical-align:middle;font-weight:bold;width:15%">Titles Ref</td>
-             <td style="vertical-align:middle;font-weight:bold;width:15%">Titles Source</td>
-              <td style="vertical-align:middle;font-weight:bold;width:15%">Subjects</td>
-               <td style="vertical-align:middle;font-weight:bold;width:15%">Subjects Ref</td>
-                <td style="vertical-align:middle;font-weight:bold;width:15%">Subjects Source</td>
+             <th style="vertical-align:middle;font-weight:bold;width:30%">AA GUID</th>
+             <td style="vertical-align:middle;font-weight:bold;">Local ID</td>
+             <td style="vertical-align:middle;font-weight:bold;">Titles</td>
+             <td style="vertical-align:middle;font-weight:bold;">Titles Type</td>
+             <td style="vertical-align:middle;font-weight:bold;">Titles Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Titles Source</td>
              <td style="vertical-align:middle;font-weight:bold;">Description</td>
+             <td style="vertical-align:middle;font-weight:bold;">Description Type</td>
+             <td style="vertical-align:middle;font-weight:bold;">Subjects</td>
+             <td style="vertical-align:middle;font-weight:bold;">Subjects Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Subjects Source</td>
+             <td style="vertical-align:middle;font-weight:bold;">Genre</td>
+             <td style="vertical-align:middle;font-weight:bold;">Genre Source</td>
+             <td style="vertical-align:middle;font-weight:bold;">Genre Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Creator Name</td>
+             <td style="vertical-align:middle;font-weight:bold;">Creator Affiliation</td>
+             <td style="vertical-align:middle;font-weight:bold;">Creator Source</td>         
+             <td style="vertical-align:middle;font-weight:bold;">Creator Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Creator Role</td>
+             <td style="vertical-align:middle;font-weight:bold;">Creator Role Source</td>
+             <td style="vertical-align:middle;font-weight:bold;">Contributor Name</td>
+             <td style="vertical-align:middle;font-weight:bold;">Contributor Affiliation</td>
+             <td style="vertical-align:middle;font-weight:bold;">Contributor Source</td>    
+             <td style="vertical-align:middle;font-weight:bold;">Contributor Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Contributor Role</td>
+             <td style="vertical-align:middle;font-weight:bold;">Contributor Role Source</td>
+             <td style="vertical-align:middle;font-weight:bold;">Contributor Role Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Publisher Name</td>
+             <td style="vertical-align:middle;font-weight:bold;">Publisher Affiliation</td>
+             <td style="vertical-align:middle;font-weight:bold;">Publisher Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Publisher Role</td>
+             <td style="vertical-align:middle;font-weight:bold;">Publisher Role Source</td>
+             <td style="vertical-align:middle;font-weight:bold;">Assets Date</td>
+             <td style="vertical-align:middle;font-weight:bold;">Date Type</td>
+             <td style="vertical-align:middle;font-weight:bold;">Coverage</td>
+             <td style="vertical-align:middle;font-weight:bold;">Coverage Type</td>
+             <td style="vertical-align:middle;font-weight:bold;">Audience Level</td>
+             <td style="vertical-align:middle;font-weight:bold;">Audience Level Source</td>
+             <td style="vertical-align:middle;font-weight:bold;">Audience Level Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Audience Rating</td>
+             <td style="vertical-align:middle;font-weight:bold;">Audience Rating Source</td>
+             <td style="vertical-align:middle;font-weight:bold;">Audience Rating Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Annotation</td>
+             <td style="vertical-align:middle;font-weight:bold;">Annotation Type</td>
+             <td style="vertical-align:middle;font-weight:bold;">Annotation Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Rights</td>
+             <td style="vertical-align:middle;font-weight:bold;">Rights Link</td>
             </tr>
             <tbody><?php 
 			foreach($records as $asset)
@@ -116,7 +156,7 @@ if (!$isAjax)
 				$guid_identifier=$asset->guid_identifier;
 				$local_identifier=$asset->local_identifier;
 				$asset_description=$asset->description;
-				$asset_title=$asset->asset_titles;?>
+				$asset_title=$asset->asset_title;?>
 				<tr style="cursor: pointer;">
 			      <td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>
                   <td><?php 
@@ -137,18 +177,16 @@ if (!$isAjax)
                     </p>
                   </td>
                    <td><?php 
-				  		echo $asset->asset_titles_type;
+				  		echo $asset->asset_title_type;
 					?>
                   </td>
                   <td><?php 		  	
-						echo $asset->asset_titles_ref;
+						echo $asset->asset_title_ref;
 					?>
                   </td>
                   <td><?php 
-				  		echo $asset->asset_titles_source;?>
+				  		echo $asset->asset_title_source;?>
                   </td>
-                
-                 
                   <td><p><?php 
 					if($asset_description)
 					{
@@ -166,6 +204,127 @@ if (!$isAjax)
 						echo 'N/A';?>
 			       </p>
                   </td>
+                  <td><?php 
+				  		echo $asset->asset_subject?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_subject_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_subject_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_genre?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_genre_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_genre_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_creator_name?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_creator_affiliation?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_creator_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_creator_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_creator_role?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_creator_role_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_contributor_name?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_contributor_affiliation?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_contributor_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_contributor_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_contributor_role?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_contributor_role_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_contributor_role_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_publisher_name?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_publisher_affiliation?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_publisher_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_publisher_role?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_publisher_role_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_publisher_role_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_date?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_date_type?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_coverage?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_coverage_type?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_audience_level?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_audience_level_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_audience_level_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_audience_rating?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_audience_rating_source?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_audience_rating_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_annotation?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_annotation_type?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_annotation_ref?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_rights?>
+                  </td>
+                    <td><?php 
+				  		echo $asset->asset_rights_link
+					?>
+                    </td>
      			</tr><?php 
 			}?>
 			</tbody>
@@ -180,7 +339,7 @@ if (!$isAjax)
 		}?>
        </table>
 </div>
- 	<div style="overflow: auto;display:none;" id="thumbnails_view">
+ 	<div style="overflow: auto;display:<?php if($current_tab=='thumbnails'){ echo 'block';}else{echo "none"; }?>;" id="thumbnails_view">
         <div class="span3 title">
         <div class="unflag"></div>
         <img width="250px" src="http://placehold.it/140x140" alt="" />
@@ -219,30 +378,4 @@ if (!$isAjax)
         {?>
  </div>
 </div>
-<script type="text/javascript">
-function search_assets(parem)
-{
-	$('#assets_container').hide();
-	var objJSON = eval("(function(){return " + parem + ";})()");
-	$.ajax({
-    	type: 'POST', 
-        url: '<?php echo site_url('records/index') ?>/'+objJSON.page+'?'+$('#asset_frm').serialize(),
-        success: function (result)
-		{ 
-          $('#assets_container').html(result);$('#assets_container').show();
-        }
-    });
-}
-function change_view(id)
-{
-	$('#simple_view').hide();
-	$('#full_table_view').hide();
-	$('#thumbnails_view').hide();
-	$('#simple_li').removeClass("active");
-	$('#full_table_li').removeClass("active");
-	$('#thumbnails_li').removeClass("active");
-	$('#'+id+'_view').show();
-	$('#'+id+'_li').addClass("active");
-}
-</script>
 <?php }?>

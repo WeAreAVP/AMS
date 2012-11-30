@@ -311,45 +311,45 @@
                     <li class="dropdown"><a href="javascript://">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
                         <ul class="sub-menu dropdown-menu">
                             <li onclick="">Title</li>
-                            <li><a href="#">Subject</a></li>
-                            <li><a href="#">Coverage</a></li>
-                            <li><a href="#">Genre</a></li>
-                            <li><a href="#">Publisher</a></li>
-                            <li><a href="#">Description</a></li>
-                            <li><a href="#">Creator Name</a></li>
-                            <li><a href="#">Creator Affiliation</a></li>
-                            <li><a href="#">Contributor Name</a></li>
-                            <li><a href="#">Contributor Affiliation</a></li>
-                            <li><a href="#">Rights Summaries</a></li>
-                            <li><a href="#">Annotations</a></li>
+                            <li><a href="javascript://;">Subject</a></li>
+                            <li><a href="javascript://;">Coverage</a></li>
+                            <li><a href="javascript://;">Genre</a></li>
+                            <li><a href="javascript://;">Publisher</a></li>
+                            <li><a href="javascript://;">Description</a></li>
+                            <li><a href="javascript://;">Creator Name</a></li>
+                            <li><a href="javascript://;">Creator Affiliation</a></li>
+                            <li><a href="javascript://;">Contributor Name</a></li>
+                            <li><a href="javascript://;">Contributor Affiliation</a></li>
+                            <li><a href="javascript://;">Rights Summaries</a></li>
+                            <li><a href="javascript://;">Annotations</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="#">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+                    <li class="dropdown"><a href="javascript://;">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
                         <ul class="sub-menu dropdown-menu">
-                            <li><a href="#">ID</a></li>
-                            <li><a href="#">ID Source</a></li>
-                            <li><a href="#">Dimensions</a></li>
-                            <li><a href="#">Unit of Measure</a></li>
-                            <li><a href="#">Standard</a></li>
-                            <li><a href="#">Location</a></li>
-                            <li><a href="#">File Size</a></li>
-                            <li><a href="#">Duration</a></li>
-                            <li><a href="#">Data Rate</a></li>
-                            <li><a href="#">Tracks</a></li>
-                            <li><a href="#">Channel Configuration</a></li>
-                            <li><a href="#">Language</a></li>
-                            <li><a href="#">Alternative Modes</a></li>
-                            <li><a href="#">Annotation</a></li>
-                            <li><a href="#">Annotation Type</a></li>
-                            <li><a href="#">Track Type</a></li>
-                            <li><a href="#">Encoding</a></li>
-                            <li><a href="#">Track Standard</a></li>
-                            <li><a href="#">Frame Rate</a></li>
-                            <li><a href="#">Playback Speed</a></li>
-                            <li><a href="#">Sampling Rate</a></li>
-                            <li><a href="#">Bit Depth</a></li>
-                            <li><a href="#">Frame Size</a></li>
-                            <li><a href="#">Aspect Ratio</a></li>
+                            <li><a href="javascript://;">ID</a></li>
+                            <li><a href="javascript://;">ID Source</a></li>
+                            <li><a href="javascript://;">Dimensions</a></li>
+                            <li><a href="javascript://;">Unit of Measure</a></li>
+                            <li><a href="javascript://;">Standard</a></li>
+                            <li><a href="javascript://;">Location</a></li>
+                            <li><a href="javascript://;">File Size</a></li>
+                            <li><a href="javascript://;">Duration</a></li>
+                            <li><a href="javascript://;">Data Rate</a></li>
+                            <li><a href="javascript://;">Tracks</a></li>
+                            <li><a href="javascript://;">Channel Configuration</a></li>
+                            <li><a href="javascript://;">Language</a></li>
+                            <li><a href="javascript://;">Alternative Modes</a></li>
+                            <li><a href="javascript://;">Annotation</a></li>
+                            <li><a href="javascript://;">Annotation Type</a></li>
+                            <li><a href="javascript://;">Track Type</a></li>
+                            <li><a href="javascript://;">Encoding</a></li>
+                            <li><a href="javascript://;">Track Standard</a></li>
+                            <li><a href="javascript://;">Frame Rate</a></li>
+                            <li><a href="javascript://;">Playback Speed</a></li>
+                            <li><a href="javascript://;">Sampling Rate</a></li>
+                            <li><a href="javascript://;">Bit Depth</a></li>
+                            <li><a href="javascript://;">Frame Size</a></li>
+                            <li><a href="javascript://;">Aspect Ratio</a></li>
                            
                            
 

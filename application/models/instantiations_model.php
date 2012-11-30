@@ -58,7 +58,15 @@ class Instantiations_Model extends CI_Model
         $this->db->select("$this->table_nomination_status.status", FALSE);
         $this->db->select("CASE WHEN $this->table_events.event_outcome=0 THEN 'FAIL' WHEN $this->table_events.event_outcome=1 THEN 'PASS' END AS outcome_evnet", FALSE);
         $this->db->select("$this->table_event_types.event_type", FALSE);
+        
+        
+        
+        
+        
+        
         $this->db->join($this->_assets_table, "$this->_assets_table.id = $this->table_instantiations.assets_id", 'left');
+        $this->db->join($this->_table_asset_descriptions, "$this->_table_asset_descriptions.assets_id = $this->_assets_table.id",'left');
+        
         $this->db->join($this->asset_titles, "$this->asset_titles.assets_id	 = $this->table_instantiations.assets_id", 'left');
         $this->db->join($this->stations, "$this->stations.id = $this->_assets_table.stations_id", 'left');
         $this->db->join($this->table_instantiation_dates, "$this->table_instantiation_dates.instantiations_id = $this->table_instantiations.id", 'left');

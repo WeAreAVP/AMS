@@ -326,7 +326,32 @@
                     </li>
                     <li class="dropdown"><a href="#">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
                         <ul class="sub-menu dropdown-menu">
-                            <li><a href="#">TBD</a></li>
+                            <li><a href="#">ID</a></li>
+                            <li><a href="#">ID Source</a></li>
+                            <li><a href="#">Dimensions</a></li>
+                            <li><a href="#">Unit of Measure</a></li>
+                            <li><a href="#">Standard</a></li>
+                            <li><a href="#">Location</a></li>
+                            <li><a href="#">File Size</a></li>
+                            <li><a href="#">Duration</a></li>
+                            <li><a href="#">Data Rate</a></li>
+                            <li><a href="#">Tracks</a></li>
+                            <li><a href="#">Channel Configuration</a></li>
+                            <li><a href="#">Language</a></li>
+                            <li><a href="#">Alternative Modes</a></li>
+                            <li><a href="#">Annotation</a></li>
+                            <li><a href="#">Annotation Type</a></li>
+                            <li><a href="#">Track Type</a></li>
+                            <li><a href="#">Encoding</a></li>
+                            <li><a href="#">Track Standard</a></li>
+                            <li><a href="#">Frame Rate</a></li>
+                            <li><a href="#">Playback Speed</a></li>
+                            <li><a href="#">Sampling Rate</a></li>
+                            <li><a href="#">Bit Depth</a></li>
+                            <li><a href="#">Frame Size</a></li>
+                            <li><a href="#">Aspect Ratio</a></li>
+                           
+                           
 
                         </ul>
                     </li>

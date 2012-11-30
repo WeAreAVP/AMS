@@ -303,12 +303,12 @@
         </div>
         <div class="filter-fileds">
             <div class="btn-group">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript://;">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript://">
                     Limit Search to Field
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li class="dropdown"><a href="javascript://;">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+                    <li class="dropdown"><a href="javascript://">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
                         <ul class="sub-menu dropdown-menu">
                             <li onclick="">Title</li>
                             <li><a href="javascript://;">Subject</a></li>
@@ -324,7 +324,7 @@
                             <li><a href="javascript://;">Annotations</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="javascript://;">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+                    <li class="dropdown"><a href="javascript://">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
                         <ul class="sub-menu dropdown-menu">
                             <li><a href="javascript://;">ID</a></li>
                             <li><a href="javascript://;">ID Source</a></li>
@@ -350,8 +350,8 @@
                             <li><a href="javascript://;">Bit Depth</a></li>
                             <li><a href="javascript://;">Frame Size</a></li>
                             <li><a href="javascript://;">Aspect Ratio</a></li>
-                           
-                           
+
+
 
                         </ul>
                     </li>

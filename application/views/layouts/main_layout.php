@@ -152,7 +152,7 @@
 
 <?php } ?>
 <?php
-if (is_route_method(array('records' => array('index', 'flagged'), 'instantiations' => array('index', 'detail'))))
+if (is_route_method(array('records' => array('index', 'flagged','details'), 'instantiations' => array('index', 'detail'))))
 {
     ?>
                     <ul class="nav nav-tabs">

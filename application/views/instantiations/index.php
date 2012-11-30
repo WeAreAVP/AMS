@@ -58,7 +58,7 @@ if (!$isAjax)
                     {
                         ?>
                         <tr>
-                            <td colspan="12">No instantiation record found.</td>
+                            <td colspan="12" style="text-align: center;">No instantiation record found.</td>
                         </tr>
                     <?php } ?>
                 </tbody>

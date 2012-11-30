@@ -800,7 +800,7 @@
             data:$('#form_search').serialize(),
                 success: function (result)
                 { 
-                    $('#data_container').html(result);
+                    $('#data_container').html(result); 
                     $.unblockUI();
                                 
                 }

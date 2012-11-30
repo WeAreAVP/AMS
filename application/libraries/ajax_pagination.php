@@ -360,7 +360,9 @@ class Ajax_pagination
     {
         if ($pars !== NULL):
             $final_perm = json_encode($pars);
+            $final_perm=  str_replace('"', "'", $final_perm);
             $click = $method.'("'.$final_perm.'");';
+            $click=  str_replace('"', "'", $click);
             //onclick='new Ajax.Updater('$div','$url',{method: 'post', parameters:{'.$par.'}, evalScripts:true}); return false;'
             $html = '<a  href="javascript://" onclick="'.$click.'" >'.$text.'</a>';
         else:

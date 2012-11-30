@@ -36,7 +36,7 @@ class MY_Controller extends CI_Controller
         $this->load->model('dx_auth/roles', 'roles');
         $this->load->model('email_template_model', 'email_template');
         $this->load->model('report_model');
-        //if (!isset($this->user_id))
+        if (!isset($this->user_id))
         {
             $this->_assing_user_info();
         }

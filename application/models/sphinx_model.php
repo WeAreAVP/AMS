@@ -146,7 +146,7 @@ class Sphinx_Model extends CI_Model
         if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
         {
             $station_name = str_replace("|||", "' | '", trim($this->session->userdata['organization']));
-            $where .=" @organization '$station_name'";
+            $where .=" @organization \"$station_name\"";
         }
         if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
         {
@@ -161,7 +161,7 @@ class Sphinx_Model extends CI_Model
         if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
         {
             $physical_format = str_replace("|||", "' | '", trim($this->session->userdata['physical_format']));
-            $where .=" @format_name '$physical_format'";
+            $where .=" @format_name \"$physical_format\"";
         }
         if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
         {

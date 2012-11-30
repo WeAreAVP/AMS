@@ -136,7 +136,7 @@ class Sphinx_Model extends CI_Model
                 }
             }
         }
-
+        echo '<pre>';print_r($instantiations);echo '</pre>';
         return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
     }
 

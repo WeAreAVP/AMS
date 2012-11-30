@@ -8,7 +8,7 @@
             <h4>Filter</h4>
         </b>
         <div id="tokens">
-            <div id="keyword-field_main" style="display: none;">
+            <div id="keyword_field_main" style="display: none;">
                 <div class="filter-fileds"><b>Keyword</b></div>
                 <div class="btn-img" id="" ><span class="search_keys">abc</span><i class="icon-remove-sign" onclick=""></i></div>
             </div>
@@ -304,13 +304,13 @@
         <div class="filter-fileds">
             <div class="btn-group">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                    Limit Search to Field
+                    <span id="limit_field">Limit Search to Field</span>
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li class="dropdown"><a href="#">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
                         <ul class="sub-menu dropdown-menu">
-                            <li href="javascript://;" onclick="abc();"><a>Title</a></li>
+                            <li href="javascript://;" onclick="add_custom_token(this,'keyword_field_main');"><a>Title</a></li>
                             <li><a href="javascript://;">Subject</a></li>
                             <li><a href="javascript://;">Coverage</a></li>
                             <li><a href="javascript://;">Genre</a></li>
@@ -784,6 +784,7 @@
         facet_search('{"page":0}');
         
     }
+    
     function make_slug_name(string){
         string = string.split('/').join('-');
         string = string.split('??').join('q');

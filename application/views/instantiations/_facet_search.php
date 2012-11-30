@@ -303,12 +303,12 @@
         </div>
         <div class="filter-fileds">
             <div class="btn-group">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript://">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript://;">
                     Limit Search to Field
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li class="dropdown"><a href="javascript://">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+                    <li class="dropdown"><a href="javascript://;">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
                         <ul class="sub-menu dropdown-menu">
                             <li onclick="">Title</li>
                             <li><a href="javascript://;">Subject</a></li>

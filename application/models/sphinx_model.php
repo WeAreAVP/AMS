@@ -136,7 +136,6 @@ class Sphinx_Model extends CI_Model
                 }
             }
         }
-        echo '<pre>';print_r($instantiations);echo '</pre>';
         return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
     }
 
@@ -145,50 +144,49 @@ class Sphinx_Model extends CI_Model
         $where = '';
         if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
         {
-            $station_name = str_replace("|||", "' | '", trim($this->session->userdata['organization']));
+            $station_name = str_replace('|||', '" | "', trim($this->session->userdata['organization']));
             $where .=" @organization \"$station_name\"";
         }
         if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
         {
-            $nomination = str_replace("|||", "' | '", trim($this->session->userdata['nomination']));
-            $where .=" @status '$nomination'";
+            $nomination = str_replace('|||', '" | "', trim($this->session->userdata['nomination']));
+            $where .=" @status \"$nomination\"";
         }
         if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
         {
-            $media_type = str_replace("|||", "' | '", trim($this->session->userdata['media_type']));
-            $where .=" @media_type '$media_type'";
+            $media_type = str_replace('|||', '" | "', trim($this->session->userdata['media_type']));
+            $where .=" @media_type \"$media_type\"";
         }
         if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
         {
-            $physical_format = str_replace("|||", "' | '", trim($this->session->userdata['physical_format']));
+            $physical_format = str_replace('|||', '" | "', trim($this->session->userdata['physical_format']));
             $where .=" @format_name \"$physical_format\"";
         }
         if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
         {
-            $digital_format= str_replace("|||", "' | '", trim($this->session->userdata['digital_format']));
-            $where .=" @format_name '$digital_format'";
+            $digital_format= str_replace('|||', '" | "', trim($this->session->userdata['digital_format']));
+            $where .=" @format_name \"$digital_format\"";
         }
         if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
         {
-            $generation = str_replace("|||", "' | '", trim($this->session->userdata['generation']));
-            $where .=" @generation '$generation'";
+            $generation = str_replace('|||', '" | "', trim($this->session->userdata['generation']));
+            $where .=" @generation \"$generation\"";
         }
         if (isset($this->session->userdata['file_size']) && $this->session->userdata['file_size'] != '')
         {
-            $file_size = str_replace("|||", "' | '", trim($this->session->userdata['file_size']));
-            $where .=" @file_size '$file_size'";
+            $file_size = str_replace('|||', '" | "', trim($this->session->userdata['file_size']));
+            $where .=" @file_size \"$file_size\"";
         }
         if (isset($this->session->userdata['event_type']) && $this->session->userdata['event_type'] != '')
         {
-            $event_type = str_replace("|||", "' | '", trim($this->session->userdata['event_type']));
-            $where .=" @event_type '$event_type'";
+            $event_type = str_replace('|||', '" | "', trim($this->session->userdata['event_type']));
+            $where .=" @event_type \"$event_type\"";
         }
         if (isset($this->session->userdata['event_outcome']) && $this->session->userdata['event_outcome'] != '')
         {
-            $event_outcome = str_replace("|||", "' | '", trim($this->session->userdata['event_outcome']));
-            $where .=" @event_outcome '$event_outcome'";
+            $event_outcome = str_replace('|||', '" | "', trim($this->session->userdata['event_outcome']));
+            $where .=" @event_outcome \"$event_outcome\"";
         }
-        echo $where;
         return $where;
     }
 

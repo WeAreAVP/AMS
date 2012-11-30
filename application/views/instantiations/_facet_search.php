@@ -307,7 +307,7 @@
                 <ul class="dropdown-menu">
                     <li class="dropdown"><a href="javascript://">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
                         <ul class="sub-menu dropdown-menu">
-                            <li>Title</li>
+                            <li onclick="">Title</li>
                             <li><a href="#">Subject</a></li>
                             <li><a href="#">Coverage</a></li>
                             <li><a href="#">Genre</a></li>

@@ -188,6 +188,7 @@ class Sphinx_Model extends CI_Model
             $event_outcome = str_replace("|||", "' | '", trim($this->session->userdata['event_outcome']));
             $where .=" @event_outcome '$event_outcome'";
         }
+        echo $where;
         return $where;
     }
 

@@ -1,7 +1,12 @@
 
 <div id="search_bar"> 
     <form name="facet_search" id="form_search" method="post">
-    <input type="hidden" name="current_tab" id="current_tab" value="<?php echo isset($this->session->userdata['current_tab'])?$this->session->userdata['current_tab']:''?>"  />
+        <?php
+        if (!is_route_method(array('instantiations' => array('index', 'detail'))))
+        {
+            ?>
+            <input type="hidden" name="current_tab" id="current_tab" value="<?php echo isset($this->session->userdata['current_tab']) ? $this->session->userdata['current_tab'] : '' ?>"  />
+        <?php } ?>
         <b>
             <h4>Filter</h4>
         </b>
@@ -28,7 +33,7 @@
                         $search_id = name_slug($value);
                         ?>
                         <div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>','<?php echo $search_id ?>','organization_main')"></i></div>
-                    <?php } ?>
+                <?php } ?>
                 </div>
                 <?php
             } else
@@ -39,7 +44,7 @@
                     <div class="filter-fileds"><b>Organization</b></div>
                     <input type="hidden" id="organization_main_search" name="organization_main_search"/>
                 </div>
-            <?php } ?>
+<?php } ?>
             <!-- Organization Search Display End  -->
             <div class="clearfix"></div>
             <!-- Nomination Status Search Display Start  -->
@@ -59,7 +64,7 @@
                         $search_id = name_slug($value);
                         ?>
                         <div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>','<?php echo $search_id ?>','nomination_status_main')"></i></div>
-                    <?php } ?>
+                <?php } ?>
                 </div>
                 <?php
             } else
@@ -70,7 +75,7 @@
                     <div class="filter-fileds"><b>Nomination Status</b></div>
                     <input type="hidden" id="nomination_status_main_search" name="nomination_status_main_search"/>
                 </div>
-            <?php } ?>
+<?php } ?>
             <!-- Nomination Status Search Display End  -->
             <div class="clearfix"></div>
             <!-- Media Type Search Display Start  -->
@@ -90,7 +95,7 @@
                         $search_id = name_slug($value);
                         ?>
                         <div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>','<?php echo $search_id ?>','media_type_main')"></i></div>
-                    <?php } ?>
+                <?php } ?>
                 </div>
                 <?php
             } else
@@ -101,7 +106,7 @@
                     <div class="filter-fileds"><b>Media Type</b></div>
                     <input type="hidden" id="media_type_main_search" name="media_type_main_search"/>
                 </div>
-            <?php } ?>
+<?php } ?>
             <!-- Media Type Search Display End  -->
             <div class="clearfix"></div>
             <!-- Physical Format Search Display Start  -->
@@ -121,7 +126,7 @@
                         $search_id = name_slug($value);
                         ?>
                         <div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>','<?php echo $search_id ?>','physical_format_main')"></i></div>
-                    <?php } ?>
+                <?php } ?>
                 </div>
                 <?php
             } else
@@ -132,7 +137,7 @@
                     <div class="filter-fileds"><b>Physical Format</b></div>
                     <input type="hidden" id="physical_format_main_search" name="physical_format_main_search"/>
                 </div>
-            <?php } ?>
+<?php } ?>
             <!-- Physical Format Search Display End  -->
             <div class="clearfix"></div>
             <!-- Digital Format Search Display Start  -->
@@ -152,7 +157,7 @@
                         $search_id = name_slug($value);
                         ?>
                         <div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>','<?php echo $search_id ?>','digital_format_main')"></i></div>
-                    <?php } ?>
+                <?php } ?>
                 </div>
                 <?php
             } else
@@ -163,7 +168,7 @@
                     <div class="filter-fileds"><b>Digital Format</b></div>
                     <input type="hidden" id="digital_format_main_search" name="digital_format_main_search"/>
                 </div>
-            <?php } ?>
+<?php } ?>
             <!-- Digital Format Search Display End  -->
             <div class="clearfix"></div>
             <!-- Generation Search Display Start  -->
@@ -183,7 +188,7 @@
                         $search_id = name_slug($value);
                         ?>
                         <div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>','<?php echo $search_id ?>','generation_main')"></i></div>
-                    <?php } ?>
+                <?php } ?>
                 </div>
                 <?php
             } else
@@ -194,7 +199,7 @@
                     <div class="filter-fileds"><b>Generation</b></div>
                     <input type="hidden" id="generation_main_search" name="generation_main_search"/>
                 </div>
-            <?php } ?>
+<?php } ?>
             <!-- Generation Search Display End  -->
             <div class="clearfix"></div>
             <!-- File Size Search Display Start  -->
@@ -214,7 +219,7 @@
                         $search_id = name_slug($value);
                         ?>
                         <div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>','<?php echo $search_id ?>','file_size_main')"></i></div>
-                    <?php } ?>
+                <?php } ?>
                 </div>
                 <?php
             } else
@@ -225,7 +230,7 @@
                     <div class="filter-fileds"><b>File Size</b></div>
                     <input type="hidden" id="file_size_main_search" name="file_size_main_search"/>
                 </div>
-            <?php } ?>
+<?php } ?>
             <!-- File Size Search Display End  -->
             <div class="clearfix"></div>
             <!-- Event Type Search Display Start  -->
@@ -245,7 +250,7 @@
                         $search_id = name_slug($value);
                         ?>
                         <div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>','<?php echo $search_id ?>','event_type_main')"></i></div>
-                    <?php } ?>
+                <?php } ?>
                 </div>
                 <?php
             } else
@@ -256,7 +261,7 @@
                     <div class="filter-fileds"><b>Event Type</b></div>
                     <input type="hidden" id="event_type_main_search" name="event_type_main_search"/>
                 </div>
-            <?php } ?>
+<?php } ?>
             <!-- Event Type Search Display End  -->
             <div class="clearfix"></div>
             <!-- Event Outcome Search Display Start  -->
@@ -276,7 +281,7 @@
                         $search_id = name_slug($value);
                         ?>
                         <div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>','<?php echo $search_id ?>','event_outcome_main')"></i></div>
-                    <?php } ?>
+                <?php } ?>
                 </div>
                 <?php
             } else
@@ -287,7 +292,7 @@
                     <div class="filter-fileds"><b>Event Outcome</b></div>
                     <input type="hidden" id="event_outcome_main_search" name="event_outcome_main_search"/>
                 </div>
-            <?php } ?>
+<?php } ?>
             <!-- Event Outcome Search Display End  -->
             <div class="clearfix"></div>
 
@@ -377,7 +382,7 @@
                     </ul>
                 </div>
             </div>
-        <?php } ?>
+<?php } ?>
         <!-- Organization  End      -->
         <!--  Nomination Status Start      -->
         <?php
@@ -419,9 +424,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!--  Nomination Status End      -->
         <!--  Media Type Start      -->
         <?php
@@ -462,9 +467,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!--  Media Type End      -->
         <!--  Physical Format Start      -->
         <?php
@@ -505,9 +510,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!-- Physical Format End      -->
         <!--  Digital Format Start      -->
         <?php
@@ -548,9 +553,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!-- Digital Format End      -->
         <!--  Generation Start      -->
         <?php
@@ -591,9 +596,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!-- Generation End      -->
         <!--  File Size Start      -->
         <?php
@@ -634,9 +639,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!-- File Size End      -->
         <!--  Event Type Start      -->
         <?php
@@ -677,9 +682,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!-- Event Type End      -->
         <!--  Event Type Start      -->
         <?php
@@ -720,9 +725,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!-- Event Type End      -->
     </form>
 </div>
@@ -779,11 +784,11 @@
         }
         add_token(name,type,1);        
     }
-	function facet_search(param)
+    function facet_search(param)
     {
-    	$.blockUI({
-        	css: { 
-            	border: 'none', 
+        $.blockUI({
+            css: { 
+                border: 'none', 
                 padding: '15px', 
                 backgroundColor: '#000', 
                 '-webkit-border-radius': '10px', 
@@ -791,35 +796,35 @@
                 opacity: .5, 
                 color: '#fff',
                 zIndex:999999
-             }
-         }); 
-         var objJSON = eval("(function(){return " + param + ";})()");
-         $.ajax({
-         	type: 'POST', 
+            }
+        }); 
+        var objJSON = eval("(function(){return " + param + ";})()");
+        $.ajax({
+            type: 'POST', 
             url: '<?php echo $facet_search_url ?>/'+objJSON.page,
             data:$('#form_search').serialize(),
-                success: function (result)
-                { 
-                    $('#data_container').html(result); 
-                    $.unblockUI();
+            success: function (result)
+            { 
+                $('#data_container').html(result); 
+                $.unblockUI();
                                 
-                }
-            });
-     }
-	function change_view(id)
-	{
-		$('#current_tab').val(id);
-		$.ajax({
-         	type: 'POST', 
-            url: '<?php echo site_url('records/set_current_tab')?>/'+id,
-         });
-		$('#simple_view').hide();
-		$('#full_table_view').hide();
-		$('#thumbnails_view').hide();
-		$('#simple_li').removeClass("active");
-		$('#full_table_li').removeClass("active");
-		$('#thumbnails_li').removeClass("active");
-		$('#'+id+'_view').show();
-		$('#'+id+'_li').addClass("active");
-	}
+            }
+        });
+    }
+    function change_view(id)
+    {
+        $('#current_tab').val(id);
+        $.ajax({
+            type: 'POST', 
+            url: '<?php echo site_url('records/set_current_tab') ?>/'+id,
+        });
+        $('#simple_view').hide();
+        $('#full_table_view').hide();
+        $('#thumbnails_view').hide();
+        $('#simple_li').removeClass("active");
+        $('#full_table_li').removeClass("active");
+        $('#thumbnails_li').removeClass("active");
+        $('#'+id+'_view').show();
+        $('#'+id+'_li').addClass("active");
+    }
 </script>

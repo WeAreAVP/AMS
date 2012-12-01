@@ -12,7 +12,6 @@
         echo link_js('jquery-ui-1.9.0.custom.js');
         echo link_js('jquery.tablesorter.js');
         echo link_js('bootstrap/bootstrap.js');
-//        echo link_js('bootstrap-dropdown.js');
         echo link_js('jquery.freezetablecolumns.1.1.js');
         echo link_js('highcharts.js');
         echo link_js('modules/exporting.js');
@@ -111,11 +110,11 @@
                             ?>
                     <div class="nav-collapse">
                         <ul class="nav">
-    <?php //if ($this->role_id == 1 || $this->role_id == 2 || $this->role_id == 5)
-    //{
-        ?>
+   
+   
+   
                                 <li class="<?php echo active_anchor('dashboard', 'index'); ?>"><a href="<?php echo site_url('dashboard/index') ?>">Dashboard</a></li>
-    <?php// } ?>
+   
 
                             <li class="<?php echo (is_route_method(array('records' => array('index', 'flagged','details'), 'instantiations' => array('index', 'detail')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('records/index') ?>">Records</a></li>
 

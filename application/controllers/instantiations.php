@@ -40,7 +40,8 @@ class Instantiations extends MY_Controller
         if (isAjax())
         {
             $this->unset_facet_search();
-		    $search['organization'] = $this->input->post('organization_main_search');
+            $search['custom_search'] = $this->input->post('keyword_field_main_search');
+            $search['organization'] = $this->input->post('organization_main_search');
             $search['nomination'] = $this->input->post('nomination_status_main_search');
             $search['media_type'] = $this->input->post('media_type_main_search');
             $search['physical_format'] = $this->input->post('physical_format_main_search');
@@ -54,8 +55,8 @@ class Instantiations extends MY_Controller
             {
                 $params[$key] = str_replace("|||", " | ", trim($value));
             }
-           
         }
+        $data['get_column_name']=$this->make_array();
         $data['stations'] = $this->station_model->get_all();
         $data['nomination_status'] = $this->instantiation->get_nomination_status();
         $data['media_types'] = $this->instantiation->get_media_types();
@@ -89,7 +90,7 @@ class Instantiations extends MY_Controller
             $data['start'] = $offset;
             $data['end'] = intval($offset) + intval($data['count']);
         }
-		$data['facet_search_url']=site_url('instantiations/index');
+        $data['facet_search_url'] = site_url('instantiations/index');
         $config['prev_link'] = '<i class="icon-chevron-left"></i>';
         $config['prev_tag_open'] = '<span class="btn" style="margin:10px 0px;">';
         $config['prev_tag_close'] = '</span>';
@@ -119,6 +120,7 @@ class Instantiations extends MY_Controller
 
     function unset_facet_search()
     {
+        $this->session->unset_userdata('custom_search');
         $this->session->unset_userdata('organization');
         $this->session->unset_userdata('nomination');
         $this->session->unset_userdata('media_type');
@@ -136,6 +138,23 @@ class Instantiations extends MY_Controller
         {
             $this->session->set_userdata($key, $value);
         }
+    }
+
+    function make_array()
+    {
+       return array('asset_title' => 'Title',
+            'asset_subject' => 'Subject',
+            'asset_coverage' => 'Coverage',
+            'asset_genre' => 'Genre',
+            'asset_publisher_name' => 'Publisher',
+            'asset_description' => 'Description',
+            'asset_creator_name' => 'Creator Name',
+            'asset_creator_affiliation' => 'Creator Affiliation',
+            'asset_contributor_name' => 'Contributor Name',
+            'asset_contributor_affiliation' => 'Contributor Affiliation',
+            'asset_rights' => 'Rights Summaries',
+            'asset_annotation' => 'Annotations'
+        );
     }
 
 }

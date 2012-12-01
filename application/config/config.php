@@ -25,6 +25,7 @@ if (ENVIRONMENT == 'testing') {
   $config['from_email'] = 'nouman@geekschicago.com';
   $config['path'] = '/home/ams/public_html/';
 } else if (ENVIRONMENT == 'development') {
+  $config['index_page'] = '';
   $config['base_url'] = "http://ec2-54-242-106-197.compute-1.amazonaws.com/";
   $config['to_email'] = 'nouman.tayyab@purelogics.net';
   $config['from_email'] = 'nouman@geekschicago.com';

@@ -17,21 +17,19 @@ if (!defined('BASEPATH'))
   | path to your installation.
   |
  */
-$config['index_page'] = 'index.php/';
+$config['index_page'] = '';
 if (ENVIRONMENT == 'testing') {
-  $config['index_page'] = '';
   $config['base_url'] = "http://ams.iserver.purelogics.info/";
   $config['to_email'] = 'nouman@geekschicago.com';
   $config['from_email'] = 'nouman@geekschicago.com';
   $config['path'] = '/home/ams/public_html/';
 } else if (ENVIRONMENT == 'development') {
-  $config['index_page'] = '';
-  $config['base_url'] = "http://ec2-54-242-106-197.compute-1.amazonaws.com/";
+  $config['base_url'] = "http://amsdev.avpreserve.com/";
   $config['to_email'] = 'nouman.tayyab@purelogics.net';
   $config['from_email'] = 'nouman@geekschicago.com';
   $config['path'] = '/var/www/html/';
 } else if (ENVIRONMENT == 'qatesting') {
-  $config['base_url'] = "http://ec2-174-129-139-234.compute-1.amazonaws.com/";
+  $config['base_url'] = "http://amsqa.avpreserve.com/";
   $config['to_email'] = 'ssapienza@cpb.org';
   $config['from_email'] = 'nouman@geekschicago.com';
   $config['path'] = '/var/www/html/';

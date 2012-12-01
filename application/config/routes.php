@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "stations";
+$route['default_controller'] = "dashboard";
 $route['404_override'] = '';
 $route['emailtracking/(:any).png'] = "emailtracking/index/$1";
 

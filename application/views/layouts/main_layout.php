@@ -111,11 +111,11 @@
                             ?>
                     <div class="nav-collapse">
                         <ul class="nav">
-    <?php if ($this->role_id == 1 || $this->role_id == 2 || $this->role_id == 5)
-    {
+    <?php //if ($this->role_id == 1 || $this->role_id == 2 || $this->role_id == 5)
+    //{
         ?>
                                 <li class="<?php echo active_anchor('dashboard', 'index'); ?>"><a href="<?php echo site_url('dashboard/index') ?>">Dashboard</a></li>
-    <?php } ?>
+    <?php// } ?>
 
                             <li class="<?php echo (is_route_method(array('records' => array('index', 'flagged','details'), 'instantiations' => array('index', 'detail')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('records/index') ?>">Records</a></li>
 

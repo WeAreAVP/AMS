@@ -79,7 +79,9 @@ class Instantiations extends MY_Controller
         $config['total_rows'] = $data['total'];
         $config['per_page'] = 100;
         $data['records'] = $records['records'];
-        echo '<pre>';print_r($data['records']);exit;
+        echo '<pre>';
+        print_r($data['records']);
+        exit;
         $data['count'] = count($data['records']);
         if ($data['count'] > 0 && $offset == 0)
         {
@@ -119,14 +121,20 @@ class Instantiations extends MY_Controller
         if ($instantiation_id)
         {
 //            $data['asset_id'] = $asset_id;
-            
-            $data['instantiation_detail'] = $this->sphinx->instantiations_list(array('instantiation_id' => $instantiation_id, 'search' => ''));
-            echo '<pre>';print_r($data['instantiation_detail']);exit;
-            $data['asset_details'] = $this->assets_model->get_asset_by_asset_id($asset_id);
-            $data['asset_instantiations'] = $this->sphinx->instantiations_list(array('asset_id' => $asset_id, 'search' => ''));
-            
-            
-            $this->load->view('records/assets_details', $data);
+            $detail = $this->instantiation->get_by_id($instantiation_id);
+            if (count($detail) > 0)
+            {
+                $data['instantiation_detail'] = $this->sphinx->instantiations_list(array('asset_id' => $detail->assets_id, 'search' => ''));
+                echo '<pre>';
+                print_r($data['instantiation_detail']);
+                exit;
+                $data['asset_details'] = $this->assets_model->get_asset_by_asset_id($asset_id);
+                $data['asset_instantiations'] = $this->sphinx->instantiations_list(array('asset_id' => $asset_id, 'search' => ''));
+                $this->load->view('records/assets_details', $data);
+            } else
+            {
+                show_404();
+            }
         } else
         {
             show_404();
@@ -192,7 +200,6 @@ class Instantiations extends MY_Controller
             'track_bit_depth' => 'Bit Depth',
             'track_width' => 'Frame Size',
             'track_aspect_ratio' => 'Aspect Ratio',
-           
         );
     }
 

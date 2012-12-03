@@ -36,6 +36,7 @@ class Records extends MY_Controller
 			if (isAjax())
 			{
 				$this->unset_facet_search();
+				$search['custom_search'] = $this->input->post('keyword_field_main_search');
 				$search['organization'] = $this->input->post('organization_main_search');
 				$search['nomination'] = $this->input->post('nomination_status_main_search');
 				$search['media_type'] = $this->input->post('media_type_main_search');

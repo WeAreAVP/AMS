@@ -208,8 +208,7 @@ class Sphinx_Model extends CI_Model
         $total_record = 0;
         $this->sphinxsearch->reset_filters();
         $this->sphinxsearch->reset_group_by();
-        //$where = $this->get_sphinx_search_condtion($params);
-        $mode = SPH_MATCH_EXTENDED;
+          $mode = SPH_MATCH_EXTENDED;
         $this->sphinxsearch->set_array_result(true);
         $this->sphinxsearch->set_match_mode($mode);
         $this->sphinxsearch->set_connect_timeout(120);
@@ -217,7 +216,9 @@ class Sphinx_Model extends CI_Model
             $this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
 
-        $query = $this->make_where_clause();
+        echo $query = $this->make_where_clause();
+		echo $params['index'];
+		exit();
         $res = $this->sphinxsearch->query($query, $params['index']);
 
 

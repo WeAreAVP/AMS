@@ -71,7 +71,7 @@ class Records extends MY_Controller
 			
 			$data['isAjax'] = FALSE;
 			$offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        	$param = array('search' => '','index'=>'assets_list');
+        	$param = array('index'=>'assets_list');
 		    $records=$this->sphinx->assets_listing($param,$offset);
         	$data['total'] = $records['total_count'];
         	$config['total_rows'] =$data['total'];

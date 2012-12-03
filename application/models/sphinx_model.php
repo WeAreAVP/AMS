@@ -198,7 +198,7 @@ class Sphinx_Model extends CI_Model
             $custom_search = str_replace('|||', ' "', trim($this->session->userdata['custom_search']));
             $where .="$custom_search\"";
         }
-        
+        echo $where;
         return $where;
     }
 

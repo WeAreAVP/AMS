@@ -11,11 +11,11 @@
         foreach ($asset_instantiations['records'] as $asset_instantiation)
         {
             if ($asset_instantiation->id == $inst_id)
-                $style = 'background-color:#005580;color:white;';
+                $style = 'background-color:#1797D2;color:white;';
             else
                 $style = '';
                 ?>
-                    <div style="<?php echo $style; ?>"><h4><a href="<?php echo site_url('instantiations/detail/' . $asset_instantiation->id) ?>"><?php echo $asset_details->guid_identifier ?></a></h4>
+                    <div style="<?php echo $style; ?>"><h4><a style="<?php echo $style; ?>" href="<?php echo site_url('instantiations/detail/' . $asset_instantiation->id) ?>"><?php echo $asset_details->guid_identifier ?></a></h4>
                         <?php
                         echo (isset($asset_instantiation->asset_title) && ($asset_instantiation->asset_title != NULL)) ? "Title: " . $asset_instantiation->asset_title . '<br/>' : '';
                         echo (isset($asset_instantiation->instantiation_identifier) && ($asset_instantiation->instantiation_identifier != NULL)) ? "Instantiation ID: " . $asset_instantiation->instantiation_identifier . '<br/>' : '';

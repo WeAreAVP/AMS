@@ -1,7 +1,16 @@
 <div class="span3">
     <div class="sidebar">
         <div class="my-navbar span12">
-            <div><a style="color:white" href="<?php echo site_url('records/details/' . $asset_id) ?>">Asset Information</a></div>
+            <?php
+            if (!isset($inst_id) && empty($inst_id))
+            {
+                $inst_id = FALSE;
+                $style = 'color:white;';
+            }
+            else
+                $style = 'background:#F8F9F9;color:#08C;';
+            ?>
+            <div><a style="<?php echo $style; ?>" href="<?php echo site_url('records/details/' . $asset_id) ?>">Asset Information</a></div>
         </div>
         <?php
         if (isset($asset_instantiations['records']) && !empty($asset_instantiations['records']))
@@ -25,8 +34,8 @@
                     echo ($asset_instantiation->projected_duration > 0) ? "Projected Duration: " . duration($asset_instantiation->projected_duration) . '<br/>' : '';
                     echo '</div>'
                     ?><?php }
-                ?>
+        ?>
             </div>
-        <?php } ?>
+<?php } ?>
 
     </div>

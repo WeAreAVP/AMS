@@ -8,7 +8,7 @@
 
             <div class="span12 button-after-player">
                 <button class="btn btn-large"><span class="icon-pencil"></span>Edit Instantiation</button>
-                <button class="btn btn-large"><span class="icon-download-alt"></span>Edit Instantiation</button>
+                <button class="btn btn-large"><span class="icon-download-alt"></span>Export Instantiation</button>
             </div>
 
 

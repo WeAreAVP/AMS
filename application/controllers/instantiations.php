@@ -22,6 +22,7 @@ class Instantiations extends MY_Controller
         parent::__construct();
         $this->layout = 'main_layout.php';
         $this->load->model('instantiations_model', 'instantiation');
+        $this->load->model('assets_model');
         $this->load->model('sphinx_model', 'sphinx');
         $this->load->library('pagination');
         $this->load->library('Ajax_pagination');

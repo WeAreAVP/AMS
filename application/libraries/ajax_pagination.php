@@ -377,10 +377,10 @@ class Ajax_pagination {
 				}
 			}
         	//onclick='new Ajax.Updater('$div','$url',{method: 'post', parameters:{'.$par.'}, evalScripts:true}); return false;'
-            $html = '<a  href="javascript:;" onclick='.$click.' >'.$text.'</a>';
+            $html = '<a class="btn" style="margin:10px 0px;" href="javascript:;" onclick='.$click.' >'.$text.'</a>';
 			
         else:
-      	  $html = "<a href='javascript:;'  onclick='".$method."(); return false;'>$text</a>";
+      	  $html = "<a href='javascript:;' class='btn' style='margin:10px 0px;' onclick='".$method."(); return false;'>$text</a>";
         endif;
     	return $html;
     }

@@ -90,11 +90,11 @@ class Records extends MY_Controller
 				$data['end'] = intval($offset) + intval($data['count']);
 			}
 	        $config['prev_link'] = '<i class="icon-chevron-left"></i>';
-        	$config['prev_tag_open'] = '<span class="btn">';
-        	$config['prev_tag_close'] = '</span>';
+        	//$config['prev_tag_open'] = '<span class="btn">';
+        	//$config['prev_tag_close'] = '</span>';
         	$config['next_link'] = '<i class="icon-chevron-right"></i>';
-        	$config['next_tag_open'] = '<span class="btn">';
-        	$config['next_tag_close'] = '</span>';
+        	//$config['next_tag_open'] = '<span class="btn">';
+        	//$config['next_tag_close'] = '</span>';
         	$config['use_page_numbers'] = FALSE;
 	        $config['first_link'] = FALSE;
     	    $config['last_link'] = FALSE;

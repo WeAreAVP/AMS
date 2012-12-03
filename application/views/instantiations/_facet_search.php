@@ -365,7 +365,7 @@
                             <li><a href="javascript://;" onclick="add_custom_token('Contributor Name','asset_contributor_name');">Contributor Name</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Contributor Affiliation','asset_contributor_affiliation');">Contributor Affiliation</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Rights Summaries','asset_rights');">Rights Summaries</a></li>
-                            
+
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
@@ -813,6 +813,8 @@
                 $('#limit_field_dropdown').show();
                 $('#search').val('');
                 $('#limit_field_div').show();
+                customColumnName='';
+                customFieldName='';
                     
             }
             else{
@@ -912,15 +914,16 @@
         $('#search').val('');
         $('#keyword_field_main').hide();
         $('#limit_field_div').show();
-       
+        customColumnName='';
+        customFieldName='';
         facet_search('0');
     }
     function facet_search(page)
     {
         if(typeof(page) == undefined)
-		{
-			page=0;
-		}
+        {
+            page=0;
+        }
         $.blockUI({
             css: { 
                 border: 'none', 

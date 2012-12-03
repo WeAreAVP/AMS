@@ -97,21 +97,21 @@ if (!$isAjax)
    </table>
   </div>
    <div style="display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;overflow: scroll; height: 400px; width: 860px;" id="full_table_view" >
-   	<table class="tablesorter table table-bordered" style="word-break: normal ;" ><?php 
+   	<table class="tablesorter table table-bordered" style="word-break: normal ;width:100%" ><?php 
 		if(isset($records) && ($total>0))
 		{?>
             <tr>
              <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag "></i></td>
              <th style="vertical-align:middle;font-weight:bold;width:30%">AA GUID</th>
-             <td style="vertical-align:middle;font-weight:bold;">Local ID</td>
-             <td style="vertical-align:middle;font-weight:bold;">Titles</td>
-             <td style="vertical-align:middle;font-weight:bold;">Titles Type</td>
-             <td style="vertical-align:middle;font-weight:bold;">Titles Ref</td>
-             <td style="vertical-align:middle;font-weight:bold;">Titles Source</td>
-             <td style="vertical-align:middle;font-weight:bold;">Description</td>
-             <td style="vertical-align:middle;font-weight:bold;">Description Type</td>
-             <td style="vertical-align:middle;font-weight:bold;">Subjects</td>
-             <td style="vertical-align:middle;font-weight:bold;">Subjects Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;width:30%">Local ID</td>
+             <td style="vertical-align:middle;font-weight:bold;width:30%">Titles</td>
+             <td style="vertical-align:middle;font-weight:bold;width:30%">Titles Type</td>
+             <td style="vertical-align:middle;font-weight:bold;width:30%">Titles Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;width:30%">Titles Source</td>
+             <td style="vertical-align:middle;font-weight:bold;width:30%">Description</td>
+             <td style="vertical-align:middle;font-weight:bold;width:30%">Description Type</td>
+             <td style="vertical-align:middle;font-weight:bold;width:30%">Subjects</td>
+             <td style="vertical-align:middle;font-weight:bold;width:30%">Subjects Ref</td>
              <td style="vertical-align:middle;font-weight:bold;">Subjects Source</td>
              <td style="vertical-align:middle;font-weight:bold;">Genre</td>
              <td style="vertical-align:middle;font-weight:bold;">Genre Source</td>

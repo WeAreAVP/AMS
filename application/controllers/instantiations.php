@@ -168,7 +168,25 @@ class Instantiations extends MY_Controller
             'asset_contributor_name' => 'Contributor Name',
             'asset_contributor_affiliation' => 'Contributor Affiliation',
             'asset_rights' => 'Rights Summaries',
-            'asset_annotation' => 'Annotations'
+            'asset_annotation' => 'Annotations',
+            'id' => 'ID',
+            'instantiation_identifier' => 'ID Source',
+            'instantiation_dimension' => 'Dimensions',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+           
         );
     }
 

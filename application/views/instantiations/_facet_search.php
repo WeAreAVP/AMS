@@ -373,27 +373,27 @@
                             <li><a href="javascript://;" onclick="add_custom_token('ID','id');">ID</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_identifier');">Identifier Source</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Dimensions','instantiation_dimension');">Dimensions</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Unit of Measure','multi_assets');">Unit of Measure</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Standard','multi_assets');">Standard</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Location','multi_assets');">Location</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('File Size','multi_assets');">File Size</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Duration','multi_assets');">Duration</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Data Rate','multi_assets');">Data Rate</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Tracks','multi_assets');">Tracks</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Channel Configuration','multi_assets');">Channel Configuration</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Language','multi_assets');">Language</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Alternative Modes','multi_assets');">Alternative Modes</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Annotation','multi_assets');">Annotation</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Annotation Type','multi_assets');">Annotation Type</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Track Type','multi_assets');">Track Type</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Encoding','multi_assets');">Encoding</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Track Standard','multi_assets');">Track Standard</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Frame Rate','multi_assets');">Frame Rate</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Playback Speed','multi_assets');">Playback Speed</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Sampling Rate','multi_assets');">Sampling Rate</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Bit Depth','multi_assets');">Bit Depth</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Frame Size','multi_assets');">Frame Size</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Aspect Ratio','multi_assets');">Aspect Ratio</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Unit of Measure','unit_of_measure track_unit_of_measure');">Unit of Measure</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Standard','standard');">Standard</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Location','location');">Location</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('File Size','file_size');">File Size</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Duration','actual_duration');">Duration</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Data Rate','track_data_rate');">Data Rate</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Tracks','tracks');">Tracks</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Channel Configuration','channel_configuration');">Channel Configuration</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Language','language track_language');">Language</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Alternative Modes','alternative_modes');">Alternative Modes</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Annotation','asset_annotation');">Annotation</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Annotation Type','asset_annotation_type');">Annotation Type</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Track Type','track_essence_track_type');">Track Type</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Encoding','track_encoding');">Encoding</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Track Standard','track_standard');">Track Standard</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Frame Rate','track_frame_rate');">Frame Rate</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Playback Speed','track_playback_speed');">Playback Speed</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Sampling Rate','track_sampling_rate');">Sampling Rate</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Bit Depth','track_bit_depth');">Bit Depth</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Frame Size','track_width track_height');">Frame Size</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Aspect Ratio','track_aspect_ratio');">Aspect Ratio</a></li>
 
 
 
@@ -828,9 +828,10 @@
                     $('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
                     $('#'+type).show();
                     var searchString='';
-                    if(customColumnName!='')
+                    if(customColumnName!=''){
                         searchString+='||||'+customColumnName;
-                    
+                        searchString+= searchString.split(' ').join('||||');
+                    }
                     searchString+='|||'+$('#search').val();
                     $('#keyword_field_main_search').val(searchString);
                         

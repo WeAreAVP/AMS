@@ -116,12 +116,12 @@ class Instantiations extends MY_Controller
     public function detail()
     {
         $instantiation_id = (is_numeric($this->uri->segment(3))) ? $this->uri->segment(3) : FALSE;
-        exit;
         if ($instantiation_id)
         {
-            $data['asset_id'] = $asset_id;
+//            $data['asset_id'] = $asset_id;
             
-            $data['asset_details'] = $this->sphinx->instantiations_list(array('asset_id' => $asset_id, 'search' => ''));
+            $data['instantiation_detail'] = $this->sphinx->instantiations_list(array('instantiation_id' => $instantiation_id, 'search' => ''));
+            echo '<pre>';print_r($data['instantiation_detail']);exit;
             $data['asset_details'] = $this->assets_model->get_asset_by_asset_id($asset_id);
             $data['asset_instantiations'] = $this->sphinx->instantiations_list(array('asset_id' => $asset_id, 'search' => ''));
             
@@ -168,7 +168,25 @@ class Instantiations extends MY_Controller
             'asset_contributor_name' => 'Contributor Name',
             'asset_contributor_affiliation' => 'Contributor Affiliation',
             'asset_rights' => 'Rights Summaries',
-            'asset_annotation' => 'Annotations'
+            'asset_annotation' => 'Annotations',
+            'id' => 'ID',
+            'instantiation_identifier' => 'ID Source',
+            'instantiation_dimension' => 'Dimensions',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+            'unit_of_measure' => 'Annotations',
+           
         );
     }
 

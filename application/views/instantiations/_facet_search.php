@@ -804,6 +804,7 @@
             
             name=$('#search').val();  
             if(isRemoved==1){
+                $('#keyword_field_main btn-img').remove();
                 $('#keyword_field_main_search').val('');
                 $('#limit_btn').show(); 
                 $('#add_keyword').show(); 

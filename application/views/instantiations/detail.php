@@ -49,9 +49,23 @@
                         {
                             ?>
                             <strong>Instantiation ID Source:</strong><br/>
-                            <p><?php echo $asset_details->instantiation_source; ?></p>
+                            <p><?php echo $instantiation_detail->instantiation_source; ?></p>
                             <br/>
                         <?php } ?>
+
+                    </div>
+                </div>
+                <div id="search_bar" class="span10">
+                    <div class="disabled-field">
+                        <?php
+                        if ($instantiation_detail->media_type)
+                        {
+                            ?>
+                            <strong>Media Type:</strong><br/>
+                            <p><?php echo $instantiation_detail->media_type; ?></p>
+                            <br/>
+                        <?php } ?>
+                        
 
                     </div>
                 </div>

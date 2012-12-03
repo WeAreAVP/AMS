@@ -123,6 +123,7 @@ class Instantiations extends MY_Controller
             if (count($detail) > 0)
             {
                 $data['asset_id']=$detail->assets_id;
+                $data['inst_id']=$instantiation_id;
                 $data['instantiation_detail'] = $this->sphinx->instantiations_list(array('asset_id' => $detail->assets_id, 'search' => ''));
                 $data['instantiation_detail'] =$data['instantiation_detail']['records'][0];
                 echo '<pre>';print_r($data['instantiation_detail']);echo '</pre>';

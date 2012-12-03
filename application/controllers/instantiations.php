@@ -115,7 +115,7 @@ class Instantiations extends MY_Controller
 
     public function detail()
     {
-        show_404();
+        echo $this->uri->segment(3);exit;
     }
 
     function unset_facet_search()

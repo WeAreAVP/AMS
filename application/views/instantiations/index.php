@@ -40,7 +40,7 @@ if (!$isAjax)
                             <tr>
                                 <td><?php echo $value->assets_id; ?></td>
                                 <td><?php echo $value->organization; ?></td>
-                                <td><?php echo $value->asset_title; ?></td>
+                                <td><a href="<?php echo site_url('instantiations/detail/'.$value->id); ?>"><?php echo $value->asset_title; ?></a></td>
                                 <td><?php echo $value->id; ?></td>
                                 <td><?php echo ($value->instantiation_date == 0) ? 'No Source Date' : date('Y-m-d', $value->instantiation_date); ?></td>
                                 <td><?php echo $value->date_type; ?></td>

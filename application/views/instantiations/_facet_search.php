@@ -1,6 +1,6 @@
 
 <div id="search_bar"> 
-    <form name="facet_search" id="form_search" method="post">
+    <form name="facet_search" id="form_search" method="post" onsubmit="return false;">
 
         <input type="hidden" name="current_tab" id="current_tab" value="<?php echo isset($this->session->userdata['current_tab']) ? $this->session->userdata['current_tab'] : '' ?>"  />
 
@@ -13,20 +13,26 @@
             {
 
                 $custom_search = $this->session->userdata['custom_search'];
-                $column_name = explode('||||', $custom_search);
 
+                $column_name = explode('||||', $custom_search);
                 if (count($column_name) > 1)
-                    $column_name = ': ' . $get_column_name[$column_name[1]];
+                {
+                    $column_name = implode('', $column_name);
+                    $column_name = explode('|||', $column_name);
+
+                    $column_name = ': ' . $get_column_name[$column_name[0]];
+                }
+
                 else
                     $column_name = ': All';
-                $custom_search=  str_replace('||||',' ', $custom_search);
+                $custom_search = str_replace('||||', ' ', $custom_search);
                 $custom_search = explode('|||', $custom_search);
                 $custom_search = $custom_search[count($custom_search) - 1];
                 $search_id = name_slug($custom_search);
                 ?>
                 <div id="keyword_field_main">
                     <div class="filter-fileds"><b id="keyword_field_name">Keyword<?php echo $column_name; ?></b></div>
-                    <div class="btn-img" id="<?php echo $search_id; ?>" ><span class="search_keys"><?php echo $custom_search; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($custom_search); ?>','<?php echo $search_id; ?>','keyword_field_main')"></i></div>
+                    <div class="btn-img" id="<?php echo $search_id; ?>" ><span class="search_keys"><?php echo $custom_search; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($custom_search); ?>','<?php echo $search_id; ?>','keyword_field_main');"></i></div>
                     <input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php $custom_search; ?>" />
                 </div>
                 <?php
@@ -323,79 +329,85 @@
         </div>
         <div class="clearfix"></div>
         <?php
-        if (!isset($this->session->userdata['custom_search']))
+        if (isset($this->session->userdata['custom_search']) && $this->session->userdata['custom_search'] != '')
         {
-            ?>
-            <div class="filter-fileds" id="limit_field_div">
-                <div><b>Search</b></div>
-                <div>
-                    <input type="text" name="search" id="search" value=""/>
-                </div>
+
+            $style = "none;";
+        } else
+        {
+            $style = "block;";
+        }
+        ?>
+        <div class="filter-fileds" id="limit_field_div" style="display:<?php echo $style; ?>">
+            <div><b>Search</b></div>
+            <div>
+                <input type="text" name="search" id="search" value=""/>
             </div>
-            <div class="filter-fileds">
-                <div class="btn-group" id="limit_field_dropdown">
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span id="limit_field_text">Limit Search to Field</span>
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown"><a href="#">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
-                            <ul class="sub-menu dropdown-menu">
-                                <li href="javascript://;" onclick="add_custom_token('Title','asset_title');"><a>Title</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Subject','asset_subject');">Subject</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Coverage','asset_coverage');">Coverage</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Genre','asset_genre');">Genre</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Publisher','asset_publisher_name');">Publisher</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Description','asset_description');">Description</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Creator Name','asset_creator_name');">Creator Name</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Creator Affiliation','asset_creator_affiliation');">Creator Affiliation</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Contributor Name','asset_contributor_name');">Contributor Name</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Contributor Affiliation','asset_contributor_affiliation');">Contributor Affiliation</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Rights Summaries','asset_rights');">Rights Summaries</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Annotations','asset_annotation');">Annotations</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="#">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
-                            <ul class="sub-menu dropdown-menu">
-                                <li><a href="javascript://;" onclick="add_custom_token('ID','id');">ID</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_identifier');">Identifier Source</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Dimensions','instantiation_dimension');">Dimensions</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Unit of Measure','multi_assets');">Unit of Measure</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Standard','multi_assets');">Standard</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Location','multi_assets');">Location</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('File Size','multi_assets');">File Size</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Duration','multi_assets');">Duration</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Data Rate','multi_assets');">Data Rate</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Tracks','multi_assets');">Tracks</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Channel Configuration','multi_assets');">Channel Configuration</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Language','multi_assets');">Language</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Alternative Modes','multi_assets');">Alternative Modes</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Annotation','multi_assets');">Annotation</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Annotation Type','multi_assets');">Annotation Type</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Track Type','multi_assets');">Track Type</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Encoding','multi_assets');">Encoding</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Track Standard','multi_assets');">Track Standard</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Frame Rate','multi_assets');">Frame Rate</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Playback Speed','multi_assets');">Playback Speed</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Sampling Rate','multi_assets');">Sampling Rate</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Bit Depth','multi_assets');">Bit Depth</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Frame Size','multi_assets');">Frame Size</a></li>
-                                <li><a href="javascript://;" onclick="add_custom_token('Aspect Ratio','multi_assets');">Aspect Ratio</a></li>
+        </div>
+        <div class="filter-fileds">
+            <div class="btn-group" id="limit_field_dropdown" style="display:<?php echo $style; ?>">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span id="limit_field_text">Limit Search to Field</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown"><a href="#">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+                        <ul class="sub-menu dropdown-menu">
+                            <li href="javascript://;" onclick="add_custom_token('Title','asset_title');"><a>Title</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Subject','asset_subject');">Subject</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Coverage','asset_coverage');">Coverage</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Genre','asset_genre');">Genre</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Publisher','asset_publisher_name');">Publisher</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Description','asset_description');">Description</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Creator Name','asset_creator_name');">Creator Name</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Creator Affiliation','asset_creator_affiliation');">Creator Affiliation</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Contributor Name','asset_contributor_name');">Contributor Name</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Contributor Affiliation','asset_contributor_affiliation');">Contributor Affiliation</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Rights Summaries','asset_rights');">Rights Summaries</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Annotations','asset_annotation');">Annotations</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+                        <ul class="sub-menu dropdown-menu">
+                            <li><a href="javascript://;" onclick="add_custom_token('ID','id');">ID</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_identifier');">Identifier Source</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Dimensions','instantiation_dimension');">Dimensions</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Unit of Measure','multi_assets');">Unit of Measure</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Standard','multi_assets');">Standard</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Location','multi_assets');">Location</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('File Size','multi_assets');">File Size</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Duration','multi_assets');">Duration</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Data Rate','multi_assets');">Data Rate</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Tracks','multi_assets');">Tracks</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Channel Configuration','multi_assets');">Channel Configuration</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Language','multi_assets');">Language</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Alternative Modes','multi_assets');">Alternative Modes</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Annotation','multi_assets');">Annotation</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Annotation Type','multi_assets');">Annotation Type</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Track Type','multi_assets');">Track Type</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Encoding','multi_assets');">Encoding</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Track Standard','multi_assets');">Track Standard</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Frame Rate','multi_assets');">Frame Rate</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Playback Speed','multi_assets');">Playback Speed</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Sampling Rate','multi_assets');">Sampling Rate</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Bit Depth','multi_assets');">Bit Depth</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Frame Size','multi_assets');">Frame Size</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Aspect Ratio','multi_assets');">Aspect Ratio</a></li>
 
 
 
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-
-
+                        </ul>
+                    </li>
+                </ul>
             </div>
-            <div class="filter-fileds">
-                <div><input type="button" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
-                <div><input type="reset" style="display: none;" id="reset_search" name="reset_search" value="Reset" class="btn" onclick="facet_search('reset');"/></div>
-            </div>
-        <?php } ?>
+
+
+        </div>
+        <div class="filter-fileds" id="limit_btn" style="display:<?php echo $style; ?>">
+            <div><input type="button" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
+            <div><input type="reset" style="display: none;" id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
+        </div>
+
         <!-- Organization  Start      -->
         <?php
         if (count($stations) > 0)
@@ -436,7 +448,7 @@
                     </ul>
                 </div>
             </div>
-<?php } ?>
+        <?php } ?>
         <!-- Organization  End      -->
         <!--  Nomination Status Start      -->
         <?php
@@ -478,9 +490,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!--  Nomination Status End      -->
         <!--  Media Type Start      -->
         <?php
@@ -521,9 +533,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!--  Media Type End      -->
         <!--  Physical Format Start      -->
         <?php
@@ -564,9 +576,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!-- Physical Format End      -->
         <!--  Digital Format Start      -->
         <?php
@@ -607,9 +619,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!-- Digital Format End      -->
         <!--  Generation Start      -->
         <?php
@@ -650,9 +662,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!-- Generation End      -->
         <!--  File Size Start      -->
         <?php
@@ -693,9 +705,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!-- File Size End      -->
         <!--  Event Type Start      -->
         <?php
@@ -736,9 +748,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!-- Event Type End      -->
         <!--  Event Type Start      -->
         <?php
@@ -779,54 +791,53 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!-- Event Type End      -->
     </form>
 </div>
 <script type="text/javascript">
     function add_token(name,type,isRemoved){
         if(type=='keyword_field_main'){
-            if($('#search').val()!=''){
-                name=$('#search').val();
-                $('#add_keyword').hide(); 
-                $('#reset_search').show();
-                $('#limit_field_dropdown').hide();
-                $('#limit_field_div').hide();
-                
-                if(isRemoved==1){
-                    $('#add_keyword').show(); 
-                    $('#reset_search').hide();
-                    $('#limit_field_text').html('Limit Search to Field');
-                    $('#limit_field_dropdown').show();
-                    $('#search').val('');
-                    $('#limit_field_div').show();
+            
+            name=$('#search').val();  
+            if(isRemoved==1){
+                $('#keyword_field_main_search').val('');
+                $('#limit_btn').show(); 
+                $('#add_keyword').show(); 
+                $('#reset_search').hide();
+                $('#limit_field_text').html('Limit Search to Field');
+                $('#limit_field_dropdown').show();
+                $('#search').val('');
+                $('#limit_field_div').show();
                     
-                }
-                else{
-                    if($('#'+type+'_search').val().indexOf(name) < 0){
-                        var random_id=rand(0,1000365);
-                        slugName=make_slug_name(name);
-                        var search_id=slugName+random_id;
-                        $('#keyword_field_name').html('Keyword: '+customFieldName);
-                        $('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\')"></i></div>');
-                        $('#'+type).show();
-                        
-                    }
+            }
+            else{
+                if($('#search').val()!=''){
+                     
+                    $('#add_keyword').hide(); 
+                    $('#reset_search').show();
+                    $('#limit_field_dropdown').hide();
+                    $('#limit_field_div').hide();
+                    var random_id=rand(0,1000365);
+                    slugName=make_slug_name(name);
+                    var search_id=slugName+random_id;
+                    $('#keyword_field_name').html('Keyword: '+customFieldName);
+                    $('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
+                    $('#'+type).show();
                     var searchString='';
                     if(customColumnName!='')
                         searchString+='||||'+customColumnName;
                     
                     searchString+='|||'+$('#search').val();
                     $('#keyword_field_main_search').val(searchString);
-                    
+                        
+                }
+                else{
+                    return false;
                 }
             }
-            else{
-                return false;
-            }
-           
         }
         else{
             if(isRemoved!=1){
@@ -884,7 +895,7 @@
         if($('#'+type+' div').length<=1){
             $('#'+type).hide();
         }
-        add_token(name,type,1);        
+        add_token(unescape(name),type,1);        
     }
     function resetKeyword(){
         $('#keyword_field_main_search').val('');

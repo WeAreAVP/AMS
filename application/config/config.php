@@ -17,22 +17,31 @@ if (!defined('BASEPATH'))
   | path to your installation.
   |
  */
+if(isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443 )
+{
+	define( "HTTP_PREFIX_STR", "https://");
+} else {
+	define( "HTTP_PREFIX_STR", "http://");
+}
 $config['index_page'] = '';
 if (ENVIRONMENT == 'testing') {
-  $config['base_url'] = "http://ams.iserver.purelogics.info/";
+  $config['base_url'] = HTTP_PREFIX_STR."ams.iserver.purelogics.info/";
   $config['to_email'] = 'nouman@geekschicago.com';
   $config['from_email'] = 'nouman@geekschicago.com';
   $config['path'] = '/home/ams/public_html/';
+  $config['cookie_domain'] = ".ams.iserver.purelogics.info";
 } else if (ENVIRONMENT == 'development') {
-  $config['base_url'] = "http://amsdev.avpreserve.com/";
+  $config['base_url'] = HTTP_PREFIX_STR."amsdev.avpreserve.com/";
   $config['to_email'] = 'nouman.tayyab@purelogics.net';
   $config['from_email'] = 'nouman@geekschicago.com';
   $config['path'] = '/var/www/html/';
+  $config['cookie_domain'] = ".amsdev.avpreserve.com";
 } else if (ENVIRONMENT == 'qatesting') {
-  $config['base_url'] = "http://amsqa.avpreserve.com/";
+  $config['base_url'] = HTTP_PREFIX_STR."amsqa.avpreserve.com/";
   $config['to_email'] = 'ssapienza@cpb.org';
   $config['from_email'] = 'nouman@geekschicago.com';
   $config['path'] = '/var/www/html/';
+  $config['cookie_domain'] = ".amsqa.avpreserve.com";
 } else {
   
 }
@@ -278,7 +287,7 @@ $config['sess_time_to_update'] = 300;
   |
  */
 $config['cookie_prefix'] = "";
-$config['cookie_domain'] = "";
+
 $config['cookie_path'] = "/";
 $config['cookie_secure'] = FALSE;
 

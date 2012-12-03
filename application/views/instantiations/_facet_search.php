@@ -830,7 +830,7 @@
                     $('#'+type).show();
                     var searchString='';
                     if(customColumnName!=''){
-                        searchString+='||||'+customColumnName;
+                        searchString='||||'+customColumnName;
                         
                     }
                     searchString+='|||'+$('#search').val();

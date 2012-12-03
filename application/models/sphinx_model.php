@@ -218,8 +218,7 @@ class Sphinx_Model extends CI_Model
 
         echo $query = $this->make_where_clause();
 		echo $params['index'];
-		exit();
-        $res = $this->sphinxsearch->query($query, $params['index']);
+		$res = $this->sphinxsearch->query($query, $params['index']);
 
 
         $execution_time = $res['time'];

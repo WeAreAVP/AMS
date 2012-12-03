@@ -370,7 +370,7 @@ class Ajax_pagination {
         if($pars !== NULL):
 			foreach($pars as $key=>$par) 
 			{
-				if($key==$this->$postVar)
+				if($key==$this->postVar)
 				{
         			//$final_perm=json_encode($pars);
 					$click= $method.'(\''.$par.'\');';

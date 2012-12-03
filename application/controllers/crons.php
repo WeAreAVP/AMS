@@ -147,10 +147,7 @@ class Crons extends CI_Controller
 												unset($asset_data);
 												$this->db->where('id',$d_file->id);
 												$this->db->update('process_pbcore_data',array('is_processed'=>1,"processed_at"=>date('Y-m-d H:i:s')));
-											}
-										
-										
-											
+											}	
 										}
 									}
 								}

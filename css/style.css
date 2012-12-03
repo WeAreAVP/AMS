@@ -322,4 +322,13 @@ ul.dropdown-menu .sub-menu-caret {
 	
 	font-size: 9px;
 }
-
+.facet-search a{
+    color: black;
+    text-decoration: underline;
+}
+.facet-search b{
+    color: black;
+}
+#limit_field_dropdown a{
+    text-decoration: none;
+}

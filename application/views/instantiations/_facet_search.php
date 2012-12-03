@@ -1,5 +1,5 @@
 
-<div id="search_bar"> 
+<div id="search_bar" class="facet-search"> 
     <form name="facet_search" id="form_search" method="post" onsubmit="return false;">
 
         <input type="hidden" name="current_tab" id="current_tab" value="<?php echo isset($this->session->userdata['current_tab']) ? $this->session->userdata['current_tab'] : '' ?>"  />
@@ -34,6 +34,7 @@
                     <div class="filter-fileds"><b id="keyword_field_name">Keyword<?php echo $column_name; ?></b></div>
                     <div class="btn-img" id="<?php echo $search_id; ?>" ><span class="search_keys"><?php echo $custom_search; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($custom_search); ?>','<?php echo $search_id; ?>','keyword_field_main');"></i></div>
                     <input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php $custom_search; ?>" />
+                    <div class="clearfix"></div>
                 </div>
                 <?php
             } else
@@ -898,7 +899,18 @@
         add_token(unescape(name),type,1);        
     }
     function resetKeyword(){
+        
+        $('#keyword_field_main btn-img').remove();
         $('#keyword_field_main_search').val('');
+        $('#limit_btn').show(); 
+        $('#add_keyword').show(); 
+        $('#reset_search').hide();
+        $('#limit_field_text').html('Limit Search to Field');
+        $('#limit_field_dropdown').show();
+        $('#search').val('');
+        $('#keyword_field_main').hide();
+        $('#limit_field_div').show();
+       
         facet_search('{"page":0}');
     }
     function facet_search(param)

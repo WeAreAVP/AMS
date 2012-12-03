@@ -80,7 +80,6 @@ class Instantiations extends MY_Controller
         $config['total_rows'] = $data['total'];
         $config['per_page'] = 100;
         $data['records'] = $records['records'];
-        echo '<pre>';print_r($data['records']);exit;
         $data['count'] = count($data['records']);
         if ($data['count'] > 0 && $offset == 0)
         {
@@ -93,11 +92,7 @@ class Instantiations extends MY_Controller
         }
         $data['facet_search_url'] = site_url('instantiations/index');
         $config['prev_link'] = '<i class="icon-chevron-left"></i>';
-        $config['prev_tag_open'] = '<span class="btn" style="margin:10px 0px;">';
-        $config['prev_tag_close'] = '</span>';
         $config['next_link'] = '<i class="icon-chevron-right"></i>';
-        $config['next_tag_open'] = '<span class="btn" style="margin:10px 0px;">';
-        $config['next_tag_close'] = '</span>';
         $config['use_page_numbers'] = FALSE;
         $config['first_link'] = FALSE;
         $config['last_link'] = FALSE;

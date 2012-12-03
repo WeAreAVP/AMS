@@ -106,10 +106,7 @@ class Sphinx_Model extends CI_Model
         {
             $this->sphinxsearch->set_filter("assets_id", array($params['asset_id']));
         }
-        if (isset($params['instantiation_id']))
-        {
-            $this->sphinxsearch->set_filter("id", array($params['instantiation_id']));
-        }
+
         $mode = SPH_MATCH_EXTENDED;
         $this->sphinxsearch->set_array_result(true);
         $this->sphinxsearch->set_match_mode($mode);
@@ -118,7 +115,7 @@ class Sphinx_Model extends CI_Model
             $this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
 
-        $query = $this->make_where_clause();
+        $query = $this->make_where_clause($params);
 
 
 
@@ -140,13 +137,18 @@ class Sphinx_Model extends CI_Model
                 }
             }
         }
-        
+
         return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
     }
 
     function make_where_clause()
     {
         $where = '';
+        if (isset($params['instantiation_id']))
+        {
+            $id = $params['instantiation_id'];
+            $where .=" @id \"$id\"";
+        }
         if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
         {
             $station_name = str_replace('|||', '" | "', trim($this->session->userdata['organization']));
@@ -197,7 +199,7 @@ class Sphinx_Model extends CI_Model
             $custom_search = str_replace('|||', ' "', trim($this->session->userdata['custom_search']));
             $where .="$custom_search\"";
         }
-       
+
         return $where;
     }
 
@@ -215,8 +217,8 @@ class Sphinx_Model extends CI_Model
         if ($limit)
             $this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
-		
-		$query = $this->make_where_clause();
+
+        $query = $this->make_where_clause();
         $res = $this->sphinxsearch->query($query, $params['index']);
 
 
@@ -237,7 +239,8 @@ class Sphinx_Model extends CI_Model
         }
 
         return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
-	}
+    }
+
 }
 
 ?>

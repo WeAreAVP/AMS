@@ -194,8 +194,6 @@ class Sphinx_Model extends CI_Model
         }
         if (isset($this->session->userdata['custom_search']) && $this->session->userdata['custom_search'] != '')
         {
-            $custom_search = str_replace('||||', '@', trim($this->session->userdata['custom_search']));
-            
             $custom_search = str_replace('|||', ' "', trim($this->session->userdata['custom_search']));
             $where .="$custom_search\"";
         }

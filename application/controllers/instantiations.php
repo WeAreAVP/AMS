@@ -56,7 +56,7 @@ class Instantiations extends MY_Controller
                 $params[$key] = str_replace("|||", " | ", trim($value));
             }
         }
-        $data['get_column_name']=$this->make_array();
+        $data['get_column_name'] = $this->make_array();
         $data['stations'] = $this->station_model->get_all();
         $data['nomination_status'] = $this->instantiation->get_nomination_status();
         $data['media_types'] = $this->instantiation->get_media_types();
@@ -115,7 +115,22 @@ class Instantiations extends MY_Controller
 
     public function detail()
     {
-        echo $this->uri->segment(3);exit;
+        $instantiation_id = (is_numeric($this->uri->segment(3))) ? $this->uri->segment(3) : FALSE;
+        exit;
+        if ($instantiation_id)
+        {
+            $data['asset_id'] = $asset_id;
+            
+            $data['asset_details'] = $this->sphinx->instantiations_list(array('asset_id' => $asset_id, 'search' => ''));
+            $data['asset_details'] = $this->assets_model->get_asset_by_asset_id($asset_id);
+            $data['asset_instantiations'] = $this->sphinx->instantiations_list(array('asset_id' => $asset_id, 'search' => ''));
+            
+            
+            $this->load->view('records/assets_details', $data);
+        } else
+        {
+            show_404();
+        }
     }
 
     function unset_facet_search()
@@ -142,7 +157,7 @@ class Instantiations extends MY_Controller
 
     function make_array()
     {
-       return array('asset_title' => 'Title',
+        return array('asset_title' => 'Title',
             'asset_subject' => 'Subject',
             'asset_coverage' => 'Coverage',
             'asset_genre' => 'Genre',

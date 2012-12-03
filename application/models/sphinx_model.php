@@ -106,6 +106,10 @@ class Sphinx_Model extends CI_Model
         {
             $this->sphinxsearch->set_filter("assets_id", array($params['asset_id']));
         }
+        if (isset($params['instantiation_id']))
+        {
+            $this->sphinxsearch->set_filter("id", array($params['instantiation_id']));
+        }
         $mode = SPH_MATCH_EXTENDED;
         $this->sphinxsearch->set_array_result(true);
         $this->sphinxsearch->set_match_mode($mode);
@@ -164,7 +168,7 @@ class Sphinx_Model extends CI_Model
         }
         if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
         {
-            $digital_format= str_replace('|||', '" | "', trim($this->session->userdata['digital_format']));
+            $digital_format = str_replace('|||', '" | "', trim($this->session->userdata['digital_format']));
             $where .=" @format_name \"$digital_format\"";
         }
         if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')

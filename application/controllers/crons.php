@@ -155,9 +155,13 @@ class Crons extends CI_Controller
 									}
 								}
 							}
+							unset($data_files);
 						}
+						unset($station_data);
 					}
 				}
+				unset($x);
+				unset($data);
 			}
 		}
 	}

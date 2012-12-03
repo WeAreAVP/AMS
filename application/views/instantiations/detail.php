@@ -69,7 +69,7 @@
                     <div id="search_bar" class="span10">
                         <div class="disabled-field">
 
-                            <strong>Instantiation ID:</strong><br/>
+                            <strong>Media Type:</strong><br/>
                             <p><?php echo $instantiation_detail->media_type; ?></p>
                             <br/>
 
@@ -82,7 +82,7 @@
 
 
             <?php
-            if ($instantiation_detail->format_type && $instantiation_detail->format_type!='')
+            if ($instantiation_detail->format_type && $instantiation_detail->format_type != '')
             {
                 ?>
                 <div class="span12 form-row">
@@ -112,6 +112,224 @@
                         </div>
                     </div>
 
+                </div>
+            <?php } ?>
+
+            <?php
+            if ($instantiation_detail->generation)
+            {
+                ?>
+                <div class="span12 form-row">
+                    <div class="span2 form-label">
+                        <label><i class="icon-question-sign"></i>* Generation:</label>
+                    </div>
+                    <!--end of span3-->
+                    <div id="search_bar" class="span10">
+                        <div class="disabled-field">
+
+                            <strong>Generation:</strong><br/>
+                            <p><?php echo $instantiation_detail->generation; ?></p>
+                            <br/>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            <?php } ?>
+
+            <?php
+            if ($instantiation_detail->actual_duration || $instantiation_detail->projected_duration)
+            {
+                ?>
+                <div class="span12 form-row">
+                    <div class="span2 form-label">
+                        <label><i class="icon-question-sign"></i>* Duration:</label>
+                    </div>
+                    <!--end of span3-->
+                    <?php
+                    if ($instantiation_detail->actual_duration)
+                    {
+                        ?>
+                        <div id="search_bar" class="span10">
+                            <div class="disabled-field">
+
+                                <strong>Actual Duration:</strong><br/>
+                                <p><?php echo $instantiation_detail->actual_duration; ?></p>
+                                <br/>
+
+
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <?php
+                    if ($instantiation_detail->projected_duration)
+                    {
+                        ?>
+                        <div id="search_bar" class="span10">
+                            <div class="disabled-field">
+
+                                <strong>Projected Duration:</strong><br/>
+                                <p><?php echo $instantiation_detail->projected_duration; ?></p>
+                                <br/>
+
+
+                            </div>
+                        </div>
+                    <?php } ?>
+
+
+                </div>
+            <?php } ?>
+            <?php
+            if ($instantiation_detail->instantiation_date || $instantiation_detail->date_type)
+            {
+                ?>
+                <div class="span12 form-row">
+                    <div class="span2 form-label">
+                        <label><i class="icon-question-sign"></i> Date:</label>
+                    </div>
+                    <!--end of span3-->
+                    <?php
+                    if ($instantiation_detail->instantiation_date)
+                    {
+                        ?>
+                        <div id="search_bar" class="span10">
+                            <div class="disabled-field">
+
+                                <strong>Date:</strong><br/>
+                                <p><?php echo $instantiation_detail->instantiation_date; ?></p>
+                                <br/>
+
+
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <?php
+                    if ($instantiation_detail->date_type)
+                    {
+                        ?>
+                        <div id="search_bar" class="span10">
+                            <div class="disabled-field">
+
+                                <strong>Date Type:</strong><br/>
+                                <p><?php echo $instantiation_detail->date_type; ?></p>
+                                <br/>
+
+
+                            </div>
+                        </div>
+                    <?php } ?>
+
+
+                </div>
+            <?php } ?>
+            <?php
+            if ($instantiation_detail->location)
+            {
+                ?>
+                <div class="span12 form-row">
+                    <div class="span2 form-label">
+                        <label><i class="icon-question-sign"></i> Location:</label>
+                    </div>
+                    <!--end of span3-->
+                    <div id="search_bar" class="span10">
+                        <div class="disabled-field">
+
+                            <strong>Date:</strong><br/>
+                            <p><?php echo $instantiation_detail->location; ?></p>
+                            <br/>
+
+
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+
+            <?php
+            if ($instantiation_detail->file_size || $instantiation_detail->file_size_unit_of_measure)
+            {
+                ?>
+                <div class="span12 form-row">
+                    <div class="span2 form-label">
+                        <label><i class="icon-question-sign"></i> File Size:</label>
+                    </div>
+                    <!--end of span3-->
+                    <?php
+                    if ($instantiation_detail->file_size)
+                    {
+                        ?>
+                        <div id="search_bar" class="span10">
+                            <div class="disabled-field">
+
+                                <strong>Date:</strong><br/>
+                                <p><?php echo $instantiation_detail->file_size; ?></p>
+                                <br/>
+
+
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <?php
+                    if ($instantiation_detail->file_size_unit_of_measure)
+                    {
+                        ?>
+                        <div id="search_bar" class="span10">
+                            <div class="disabled-field">
+
+                                <strong>Unit of Measure:</strong><br/>
+                                <p><?php echo $instantiation_detail->file_size_unit_of_measure; ?></p>
+                                <br/>
+
+
+                            </div>
+                        </div>
+                    <?php } ?>
+
+
+                </div>
+            <?php } ?>
+
+            <?php
+            if ($instantiation_detail->color)
+            {
+                ?>
+                <div class="span12 form-row">
+                    <div class="span2 form-label">
+                        <label><i class="icon-question-sign"></i> Color:</label>
+                    </div>
+                    <!--end of span3-->
+                    <div id="search_bar" class="span10">
+                        <div class="disabled-field">
+
+                            <strong>Date:</strong><br/>
+                            <p><?php echo $instantiation_detail->color; ?></p>
+                            <br/>
+
+
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+            <?php
+            if ($instantiation_detail->language)
+            {
+                ?>
+                <div class="span12 form-row">
+                    <div class="span2 form-label">
+                        <label><i class="icon-question-sign"></i> Language:</label>
+                    </div>
+                    <!--end of span3-->
+                    <div id="search_bar" class="span10">
+                        <div class="disabled-field">
+
+                            <strong>Language:</strong><br/>
+                            <p><?php echo $instantiation_detail->language; ?></p>
+                            <br/>
+
+
+                        </div>
+                    </div>
                 </div>
             <?php } ?>
         </div>

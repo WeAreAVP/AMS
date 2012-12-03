@@ -120,7 +120,7 @@ class Instantiations extends MY_Controller
         {
 //            $data['asset_id'] = $asset_id;
             $detail = $this->instantiation->get_by_id($instantiation_id);
-            echo '<pre>';print_r($detail);exit;
+            
             if (count($detail) > 0)
             {
                 $data['instantiation_detail'] = $this->sphinx->instantiations_list(array('asset_id' => $detail->assets_id, 'search' => ''));

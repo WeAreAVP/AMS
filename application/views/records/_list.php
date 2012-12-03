@@ -1,7 +1,6 @@
 <div class="span3">
     <div class="sidebar">
-        <div class="my-navbar span12">
-            <?php
+        <?php
             if (!isset($inst_id) && empty($inst_id))
             {
                 $inst_id = FALSE;
@@ -10,6 +9,8 @@
             else
                 $style = 'background:#F8F9F9;color:#08C;';
             ?>
+        <div class="my-navbar span12" style="<?php echo $style; ?>">
+            
             <div><a style="<?php echo $style; ?>" href="<?php echo site_url('records/details/' . $asset_id) ?>">Asset Information</a></div>
         </div>
         <?php

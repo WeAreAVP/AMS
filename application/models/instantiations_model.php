@@ -46,7 +46,7 @@ class Instantiations_Model extends CI_Model
     function get_by_id($id)
     {
         $this->db->where('id ', $id);
-        return $this->db->get($this->table_instantiation_formats)->row();
+        return $this->db->get($this->table_instantiations)->row();
     }
 
     function list_all()

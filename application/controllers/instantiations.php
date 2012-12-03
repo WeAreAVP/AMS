@@ -79,9 +79,7 @@ class Instantiations extends MY_Controller
         $config['total_rows'] = $data['total'];
         $config['per_page'] = 100;
         $data['records'] = $records['records'];
-        echo '<pre>';
-        print_r($data['records']);
-        exit;
+        
         $data['count'] = count($data['records']);
         if ($data['count'] > 0 && $offset == 0)
         {
@@ -122,6 +120,7 @@ class Instantiations extends MY_Controller
         {
 //            $data['asset_id'] = $asset_id;
             $detail = $this->instantiation->get_by_id($instantiation_id);
+            echo '<pre>';print_r($detail);exit;
             if (count($detail) > 0)
             {
                 $data['instantiation_detail'] = $this->sphinx->instantiations_list(array('asset_id' => $detail->assets_id, 'search' => ''));

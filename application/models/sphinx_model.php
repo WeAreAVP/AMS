@@ -141,7 +141,7 @@ class Sphinx_Model extends CI_Model
         return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
     }
 
-    function make_where_clause()
+    function make_where_clause($params)
     {
         $where = '';
         if (isset($params['instantiation_id']))

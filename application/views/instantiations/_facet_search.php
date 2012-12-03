@@ -365,7 +365,7 @@
                             <li><a href="javascript://;" onclick="add_custom_token('Contributor Name','asset_contributor_name');">Contributor Name</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Contributor Affiliation','asset_contributor_affiliation');">Contributor Affiliation</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Rights Summaries','asset_rights');">Rights Summaries</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Annotations','asset_annotation');">Annotations</a></li>
+                            
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
@@ -831,7 +831,7 @@
                     var searchString='';
                     if(customColumnName!=''){
                         searchString+='||||'+customColumnName;
-                        searchString+= searchString.split(' ').join('||||');
+                        
                     }
                     searchString+='|||'+$('#search').val();
                     $('#keyword_field_main_search').val(searchString);

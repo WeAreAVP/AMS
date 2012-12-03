@@ -214,8 +214,9 @@ class Sphinx_Model extends CI_Model
         if ($limit)
             $this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
-
-        $res = $this->sphinxsearch->query($params['search'], $params['index']);
+		
+		$query = $this->make_where_clause();
+        $res = $this->sphinxsearch->query($query, $params['index']);
 
 
         $execution_time = $res['time'];
@@ -235,16 +236,7 @@ class Sphinx_Model extends CI_Model
         }
 
         return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
-    }
-
-    public static function crc32($val)
-    {
-        $checksum = crc32($val);
-        if ($checksum < 0)
-            $checksum += 4294967296;
-        return $checksum;
-    }
-
+	}
 }
 
 ?>

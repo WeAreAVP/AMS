@@ -914,7 +914,7 @@
        
         facet_search('{"page":0}');
     }
-    function facet_search(param)
+    function facet_search(page)
     {
         
         $.blockUI({
@@ -929,11 +929,9 @@
                 zIndex:999999
             }
         });
-        
-        var objJSON = eval("(function(){return " + param + ";})()");
         $.ajax({
             type: 'POST', 
-            url: '<?php echo $facet_search_url ?>/'+objJSON.page,
+            url: '<?php echo $facet_search_url ?>/'+page,
             data:$('#form_search').serialize(),
             success: function (result)
             { 

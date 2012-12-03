@@ -368,10 +368,17 @@ class Ajax_pagination {
     function my_link_to_remote($text, $method, $pars=array())
 	{
         if($pars !== NULL):
-        	$final_perm=json_encode($pars);
-			$click= $method.'(\''.$final_perm.'\');';
+			foreach($pars as $key=>$par) 
+			{
+				if($key==$this->$postVar)
+				{
+        			//$final_perm=json_encode($pars);
+					$click= $method.'(\''.$par.'\');';
+				}
+			}
         	//onclick='new Ajax.Updater('$div','$url',{method: 'post', parameters:{'.$par.'}, evalScripts:true}); return false;'
             $html = '<a  href="javascript:;" onclick='.$click.' >'.$text.'</a>';
+			
         else:
       	  $html = "<a href='javascript:;'  onclick='".$method."(); return false;'>$text</a>";
         endif;

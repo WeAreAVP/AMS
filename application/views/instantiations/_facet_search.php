@@ -817,7 +817,7 @@
             }
             else{
                 if($('#search').val()!=''){
-                     
+                    $('#keyword_field_main btn-img').remove(); 
                     $('#add_keyword').hide(); 
                     $('#reset_search').show();
                     $('#limit_field_dropdown').hide();

@@ -55,22 +55,65 @@
 
                     </div>
                 </div>
-                <div id="search_bar" class="span10">
-                    <div class="disabled-field">
-                        <?php
-                        if ($instantiation_detail->media_type)
-                        {
-                            ?>
-                            <strong>Media Type:</strong><br/>
+
+            </div>
+            <?php
+            if ($instantiation_detail->media_type)
+            {
+                ?>
+                <div class="span12 form-row">
+                    <div class="span2 form-label">
+                        <label><i class="icon-question-sign"></i>* Media Type:</label>
+                    </div>
+                    <!--end of span3-->
+                    <div id="search_bar" class="span10">
+                        <div class="disabled-field">
+
+                            <strong>Instantiation ID:</strong><br/>
                             <p><?php echo $instantiation_detail->media_type; ?></p>
                             <br/>
-                        <?php } ?>
-                        
 
+
+                        </div>
                     </div>
-                </div>
-            </div>
 
+                </div>
+            <?php } ?>
+
+
+            <?php
+            if ($instantiation_detail->format_type && $instantiation_detail->format_type!='')
+            {
+                ?>
+                <div class="span12 form-row">
+                    <div class="span2 form-label">
+                        <label><i class="icon-question-sign"></i>* Format:</label>
+                    </div>
+                    <!--end of span3-->
+                    <div id="search_bar" class="span10">
+                        <div class="disabled-field">
+                            <?php
+                            if ($instantiation_detail->format_type)
+                            {
+                                ?>
+                                <strong>Format Type:</strong><br/>
+                                <p><?php echo $instantiation_detail->format_type; ?></p>
+                                <br/>
+                            <?php } ?>
+                            <?php
+                            if ($instantiation_detail->format_name)
+                            {
+                                ?>
+                                <strong>Format Name:</strong><br/>
+                                <p><?php echo $instantiation_detail->format_name; ?></p>
+                                <br/>
+                            <?php } ?>
+
+                        </div>
+                    </div>
+
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>

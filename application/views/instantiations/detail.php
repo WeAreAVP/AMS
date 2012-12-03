@@ -87,7 +87,7 @@
                 ?>
                 <div class="span12 form-row">
                     <div class="span2 form-label">
-                        <label><i class="icon-question-sign"></i>* Format:</label>
+                        <label><i class="icon-question-sign"></i>Format:</label>
                     </div>
                     <!--end of span3-->
                     <div id="search_bar" class="span10">
@@ -121,7 +121,7 @@
                 ?>
                 <div class="span12 form-row">
                     <div class="span2 form-label">
-                        <label><i class="icon-question-sign"></i>* Generation:</label>
+                        <label><i class="icon-question-sign"></i>Generation:</label>
                     </div>
                     <!--end of span3-->
                     <div id="search_bar" class="span10">
@@ -144,7 +144,7 @@
                 ?>
                 <div class="span12 form-row">
                     <div class="span2 form-label">
-                        <label><i class="icon-question-sign"></i>* Duration:</label>
+                        <label><i class="icon-question-sign"></i>Duration:</label>
                     </div>
                     <!--end of span3-->
                     <?php
@@ -187,7 +187,7 @@
                 ?>
                 <div class="span12 form-row">
                     <div class="span2 form-label">
-                        <label><i class="icon-question-sign"></i> Date:</label>
+                        <label><i class="icon-question-sign"></i>Date:</label>
                     </div>
                     <!--end of span3-->
                     <?php
@@ -230,7 +230,7 @@
                 ?>
                 <div class="span12 form-row">
                     <div class="span2 form-label">
-                        <label><i class="icon-question-sign"></i> Location:</label>
+                        <label><i class="icon-question-sign"></i>* Location:</label>
                     </div>
                     <!--end of span3-->
                     <div id="search_bar" class="span10">
@@ -252,7 +252,7 @@
                 ?>
                 <div class="span12 form-row">
                     <div class="span2 form-label">
-                        <label><i class="icon-question-sign"></i> File Size:</label>
+                        <label><i class="icon-question-sign"></i>File Size:</label>
                     </div>
                     <!--end of span3-->
                     <?php
@@ -296,7 +296,7 @@
                 ?>
                 <div class="span12 form-row">
                     <div class="span2 form-label">
-                        <label><i class="icon-question-sign"></i> Color:</label>
+                        <label><i class="icon-question-sign"></i>Color:</label>
                     </div>
                     <!--end of span3-->
                     <div id="search_bar" class="span10">
@@ -317,7 +317,7 @@
                 ?>
                 <div class="span12 form-row">
                     <div class="span2 form-label">
-                        <label><i class="icon-question-sign"></i> Language:</label>
+                        <label><i class="icon-question-sign"></i>Language:</label>
                     </div>
                     <!--end of span3-->
                     <div id="search_bar" class="span10">

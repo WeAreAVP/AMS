@@ -156,7 +156,7 @@ if (is_route_method(array('records' => array('index', 'flagged'), 'instantiation
     ?>
                     <ul class="nav nav-tabs">
                         <li class="<?php echo active_anchor('records', array('index', 'flagged')); ?>"><a href="<?php echo site_url('records/index'); ?>">Assets</a></li>
-                        <li class="<?php echo active_anchor('instantiations', array('index', 'detail')); ?>"><a href="<?php echo site_url('instantiations/index'); ?>">Instantiations</a></li>
+                        <li class="<?php echo active_anchor('instantiations', array('index')); ?>"><a href="<?php echo site_url('instantiations/index'); ?>">Instantiations</a></li>
 
                     </ul>
 

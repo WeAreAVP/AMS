@@ -115,7 +115,7 @@ class Sphinx_Model extends CI_Model
             $this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
 
-        $query = $this->make_where_clause($params);
+        $query = $this->make_where_clause();
 
 
 
@@ -141,14 +141,9 @@ class Sphinx_Model extends CI_Model
         return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
     }
 
-    function make_where_clause($params)
+    function make_where_clause()
     {
         $where = '';
-        if (isset($params['instantiation_id']))
-        {
-            $id = $params['instantiation_id'];
-            $where .=" @id \"$id\"";
-        }
         if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
         {
             $station_name = str_replace('|||', '" | "', trim($this->session->userdata['organization']));

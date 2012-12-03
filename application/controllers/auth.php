@@ -103,7 +103,7 @@ class Auth extends CI_Controller {
 			if ($val->run() AND $this->dx_auth->login($val->set_value('username'), $val->set_value('password'), $val->set_value('remember')))
 			{
 				// Redirect to homepage
-				redirect('stations/index', 'location');
+				redirect('dashboard/index', 'location');
 			}
 			else
 			{
@@ -135,7 +135,7 @@ class Auth extends CI_Controller {
 		}
 		else
 		{
-                    redirect('stations/index','location');
+                    redirect('dashboard/index','location');
 //			$data['auth_message'] = 'You are already logged in.';   // Default DX_Auth Message.	
 //			$this->load->view($this->dx_auth->logged_in_view, $data);   // Default view DX_Auth 
 		}

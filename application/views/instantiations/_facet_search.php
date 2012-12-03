@@ -1,6 +1,6 @@
 
 <div id="search_bar" class="facet-search"> 
-    <form name="facet_search" id="form_search" method="post" onsubmit="return false;">
+    <form name="form_search" id="form_search" method="post" onsubmit="return false;">
 
         <input type="hidden" name="current_tab" id="current_tab" value="<?php echo isset($this->session->userdata['current_tab']) ? $this->session->userdata['current_tab'] : '' ?>"  />
 
@@ -865,7 +865,7 @@
                 $('#'+type+'_search').val(my_search_words);
             }
         }
-        facet_search('{"page":0}');
+        facet_search('0');
         
     }
     var customFieldName='All';
@@ -912,11 +912,14 @@
         $('#keyword_field_main').hide();
         $('#limit_field_div').show();
        
-        facet_search('{"page":0}');
+        facet_search('0');
     }
     function facet_search(page)
     {
-        
+        if(typeof(page) == undefined)
+		{
+			page=0;
+		}
         $.blockUI({
             css: { 
                 border: 'none', 

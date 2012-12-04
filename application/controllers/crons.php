@@ -297,7 +297,37 @@ class Crons extends CI_Controller
 					
 					//pbcoreInstantiation End
 					
-					
+					//pbcoreExtension Start
+					if (isset($asset_children['pbcoreextension']) && !empty($asset_children['pbcoreextension']))
+					{
+						foreach ($asset_children['pbcoreextension'] as $pbcore_extension)
+						{
+							if (isset($pbcore_extension['children']['extensionauthorityused'][0]))
+							{
+								
+								if(strtolower($pbcore_extension['children']['extensionauthorityused'][0]['text'])==strtolower('AACIP Record Nomination Status'))
+								{
+									$nomination_d = array();
+									$nomination_d['instantiations_id'] = $instantiations_id;
+									if (isset($pbcore_extension['children']['extension'][0]['text']))
+									{
+										
+										$nomunation_status=$this->assets_model->get_nomination_status_by_status($pbcore_extension['children']['extension'][0]['text']);
+										if($nomunation_status)
+										{
+											$nomination_d['nomination_status_id'] =$nomunation_status->id;
+										}
+										else
+										{
+											$nomination_d['nomination_status_id']=$this->assets_model->insert_nomination_status(array("status"=>$pbcore_extension['children']['extension'][0]['text']));
+										}
+										$nomination_d['created']=date("Y-m-d H:i:s");
+										$this->assets_model->insert_nominations($nomination_d);
+									}						
+								}
+							}
+						}
+					}
 					
 					
 					
@@ -1057,32 +1087,10 @@ class Crons extends CI_Controller
 						
 						$this->assets_model->insert_extensions($extension_d);
 					}
-					else
-					{
-						$nomination_d = array();
-						$nomination_d['assets_id'] = $asset_id;
-						if (isset($pbcore_extension['children']['extension'][0]['text']))
-						{
-							
-							$nomunation_status=$this->assets_model->get_nomination_status_by_status($pbcore_extension['children']['extension'][0]['text']);
-							if($nomunation_status)
-							{
-								$nomination_d['nomination_status_id'] =$nomunation_status->id;
-							}
-							else
-							{
-								$nomination_d['nomination_status_id']=$this->assets_model->insert_nomination_status(array("status"=>$pbcore_extension['children']['extension'][0]['text']));
-							}
-							$nomination_d['created']=date("Y-m-d H:i:s");
-							$this->assets_model->insert_nominations($nomination_d);
-						}						
-					}
 				}
 			}
 		}
 		//pbcoreExtension End
 		// End By Ali Raza
 	}
-	
-
 }

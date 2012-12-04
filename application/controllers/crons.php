@@ -130,6 +130,7 @@ class Crons extends CI_Controller
 
 											if (!isset($asset_d['attributes']['version']) || empty($asset_d['attributes']['version']) || $asset_d['attributes']['version'] == '1.3')
 											{
+												$this->db->trans_start();
 												echo "\n in Process \n";
 												$asset_children = $asset_d['children'];
 												if(isset($asset_children))
@@ -142,11 +143,12 @@ class Crons extends CI_Controller
 													$this->process_instantiation($asset_children,$asset_id);
 													// Instantiation End
 												}
+												$this->db->where('id',$d_file->id);
+												$this->db->update('process_pbcore_data',array('is_processed'=>1,"processed_at"=>date('Y-m-d H:i:s')));
+												$this->db->trans_complete();
 												unset($asset_d);
 												unset($asset_xml_data);
 												unset($asset_data);
-												$this->db->where('id',$d_file->id);
-												$this->db->update('process_pbcore_data',array('is_processed'=>1,"processed_at"=>date('Y-m-d H:i:s')));
 											}	
 										}
 									}

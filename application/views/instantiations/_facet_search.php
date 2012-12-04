@@ -910,6 +910,7 @@
     {
         if(type=='keyword_field_main'){
             $('#'+type).hide();
+            $('#keyword_field_main btn-img').remove(); 
         }
         $("#"+id).remove();
         if($('#'+type+' div').length<=1){

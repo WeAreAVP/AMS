@@ -20,7 +20,7 @@ if (!$isAjax)
                         <th><span style="float:left;min-width: 100px;">Organization</span></th>
                         <th><span style="float:left;min-width: 250px;">Asset Title</span></th>
                         <th><span style="float:left;min-width: 100px;">Instantiation ID</span></th>
-                        <th><span style="float:left;min-width: 100px;">Instantiation ID Source</span></th>
+                        <th><span style="float:left;min-width: 130px;">Instantiation ID Source</span></th>
                         <th><span style="float:left;min-width: 90px;">Format Type</span></th>
                         <th><span style="float:left;min-width: 70px;">Duration</span></th>
                         <th><span style="float:left;min-width: 90px;">Date</span></th>

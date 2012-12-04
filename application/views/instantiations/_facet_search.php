@@ -843,7 +843,7 @@
                         
                     }
                     else{
-                        searchString+=' '+$('#search').val();
+                        searchString+='|||'+$('#search').val();
                     }
                     
                     $('#keyword_field_main_search').val(searchString);

@@ -18,7 +18,7 @@
                 if (count($column_name) > 1)
                 {
                     $column_name = implode('', $column_name);
-                    $column_name = explode('"', $column_name);
+                    $column_name = explode('|||', $column_name);
 
                     $column_name = ': ' . $get_column_name[$column_name[0]];
                 }
@@ -26,7 +26,7 @@
                 else
                     $column_name = ': All';
                 
-                $custom_search = explode('"', $custom_search);
+                $custom_search = explode('|||', $custom_search);
                 $custom_search = $custom_search[count($custom_search) - 1];
                 $search_id = name_slug($custom_search);
                 ?>
@@ -834,11 +834,11 @@
                     if(customColumnName!=''){
                         customColumnName= customColumnName.split(' ');
                         if(customColumnName.length>1){
-                            searchString='@'+customColumnName[0]+' "'+$('#search').val()+'"';
-                            searchString='@'+customColumnName[1]+' "'+$('#search').val()+'"';
+                            searchString='@'+customColumnName[0]+' |||'+$('#search').val()+'|||';
+                            searchString='@'+customColumnName[1]+' |||'+$('#search').val()+'|||';
                         }
                         else{
-                            searchString='@'+customColumnName[0]+' "'+$('#search').val()+'"';
+                            searchString='@'+customColumnName[0]+' |||'+$('#search').val()+'|||';
                         }
                         
                     }

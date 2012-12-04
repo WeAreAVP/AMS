@@ -98,7 +98,7 @@ if (!$isAjax)
 		}?>
    </table>
   </div>
-   <div style="display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;overflow: auto;width:865px;height: 400px;" id="full_table_view" >
+   <div style="display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;overflow: auto;width:865px;height: 450px;" id="full_table_view" >
    	<table class="tablesorter table table-bordered" style="word-break: normal ;width:100%" ><?php 
 		if(isset($records) && ($total>0))
 		{?>

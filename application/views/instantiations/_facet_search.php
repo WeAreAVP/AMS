@@ -807,6 +807,7 @@
             if(isRemoved==1){
                 $('#keyword_field_main btn-img').remove();
                 $('#keyword_field_main_search').val('');
+                $('#keyword_field_name').html();
                 $('#limit_btn').show(); 
                 $('#add_keyword').show(); 
                 $('#reset_search').hide();

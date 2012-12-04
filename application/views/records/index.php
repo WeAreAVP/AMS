@@ -27,13 +27,15 @@ if (!$isAjax)
    <table class="tablesorter table table-bordered" ><?php 
 		if(isset($records) && ($total>0))
 		{?>
+        <thead>
             <tr>
-             <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag "></i></td>
-             <th style="width:30%">AA GUID</th>
-             <td style="vertical-align:middle;font-weight:bold;width:30%">Local ID</td>
-             <td style="vertical-align:middle;font-weight:bold;width:15%">Titles</td>
-             <td style="vertical-align:middle;font-weight:bold;">Description</td>
+	             <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag "></i></td>
+    	         <th style="width:30%">AA GUID</th>
+        	     <td style="vertical-align:middle;font-weight:bold;width:30%">Local ID</td>
+            	 <td style="vertical-align:middle;font-weight:bold;width:15%">Titles</td>
+             	<td style="vertical-align:middle;font-weight:bold;">Description</td>
             </tr>
+            </thead>
             <tbody><?php 
 			foreach($records as $asset)
 			{
@@ -56,7 +58,7 @@ if (!$isAjax)
 						echo 'N/A';?>
                   </td>
 			      <td>
-                  	<p>
+                  	<p style="200px">
                     	<a href="<?php echo site_url('records/details/'.$asset->id)?>" ><?php 
 							if($asset_title)
 								echo $asset_title;
@@ -65,7 +67,7 @@ if (!$isAjax)
 						</a>
                     </p>
                   </td>
-                  <td><p><?php 
+                  <td><p style="200px"><?php 
 					if($asset_description)
 					{
 						if(strlen($asset_description)>160)
@@ -100,18 +102,19 @@ if (!$isAjax)
    	<table class="tablesorter table table-bordered" style="word-break: normal ;width:100%" ><?php 
 		if(isset($records) && ($total>0))
 		{?>
+        <thead>
             <tr>
              <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag "></i></td>
-             <th style="vertical-align:middle;font-weight:bold;width:30%">AA GUID</th>
-             <td style="vertical-align:middle;font-weight:bold;width:30%">Local ID</td>
-             <td style="vertical-align:middle;font-weight:bold;width:30%">Titles</td>
-             <td style="vertical-align:middle;font-weight:bold;width:30%">Titles Type</td>
-             <td style="vertical-align:middle;font-weight:bold;width:30%">Titles Ref</td>
-             <td style="vertical-align:middle;font-weight:bold;width:30%">Titles Source</td>
-             <td style="vertical-align:middle;font-weight:bold;width:30%">Description</td>
-             <td style="vertical-align:middle;font-weight:bold;width:30%">Description Type</td>
-             <td style="vertical-align:middle;font-weight:bold;width:30%">Subjects</td>
-             <td style="vertical-align:middle;font-weight:bold;width:30%">Subjects Ref</td>
+             <th style="vertical-align:middle;font-weight:bold;">AA GUID</th>
+             <td style="vertical-align:middle;font-weight:bold;">Local ID</td>
+             <td style="vertical-align:middle;font-weight:bold;" width="200">Titles</td>
+             <td style="vertical-align:middle;font-weight:bold;" >Titles Type</td>
+             <td style="vertical-align:middle;font-weight:bold;">Titles Ref</td>
+             <td style="vertical-align:middle;font-weight:bold;">Titles Source</td>
+             <td style="vertical-align:middle;font-weight:bold;" width="200">Description</td>
+             <td style="vertical-align:middle;font-weight:bold;">Description Type</td>
+             <td style="vertical-align:middle;font-weight:bold;">Subjects</td>
+             <td style="vertical-align:middle;font-weight:bold;">Subjects Ref</td>
              <td style="vertical-align:middle;font-weight:bold;">Subjects Source</td>
              <td style="vertical-align:middle;font-weight:bold;">Genre</td>
              <td style="vertical-align:middle;font-weight:bold;">Genre Source</td>
@@ -149,7 +152,8 @@ if (!$isAjax)
              <td style="vertical-align:middle;font-weight:bold;">Annotation Ref</td>
              <td style="vertical-align:middle;font-weight:bold;">Rights</td>
              <td style="vertical-align:middle;font-weight:bold;">Rights Link</td>
-            </tr>
+           </tr>
+           </thead>
             <tbody><?php 
 			foreach($records as $asset)
 			{
@@ -172,7 +176,7 @@ if (!$isAjax)
 						echo 'N/A';?>
                   </td>
 			      <td>
-                  	<p>
+                  	<p style="200px">
                     	<a href="<?php echo site_url('records/details/'.$asset->id)?>" ><?php echo $asset_title;?>	</a>
                     </p>
                   </td>
@@ -187,7 +191,7 @@ if (!$isAjax)
                   <td><?php 
 				  		echo $asset->asset_title_source;?>
                   </td>
-                  <td><p><?php 
+                  <td><p style="200px"><?php 
 					if($asset_description)
 					{
 						if(strlen($asset_description)>160)

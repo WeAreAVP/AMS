@@ -58,7 +58,7 @@ if (!$isAjax)
 						echo 'N/A';?>
                   </td>
 			      <td>
-                  	<p>
+                  	<p style="200px">
                     	<a href="<?php echo site_url('records/details/'.$asset->id)?>" ><?php 
 							if($asset_title)
 								echo $asset_title;
@@ -67,7 +67,7 @@ if (!$isAjax)
 						</a>
                     </p>
                   </td>
-                  <td><p><?php 
+                  <td><p style="200px"><?php 
 					if($asset_description)
 					{
 						if(strlen($asset_description)>160)
@@ -176,7 +176,7 @@ if (!$isAjax)
 						echo 'N/A';?>
                   </td>
 			      <td>
-                  	<p>
+                  	<p style="200px">
                     	<a href="<?php echo site_url('records/details/'.$asset->id)?>" ><?php echo $asset_title;?>	</a>
                     </p>
                   </td>
@@ -191,7 +191,7 @@ if (!$isAjax)
                   <td><?php 
 				  		echo $asset->asset_title_source;?>
                   </td>
-                  <td><p><?php 
+                  <td><p style="200px"><?php 
 					if($asset_description)
 					{
 						if(strlen($asset_description)>160)

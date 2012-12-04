@@ -908,6 +908,9 @@
     }
     function remove_token(name,id,type)
     {
+        if(type='keyword_field_main'){
+            $('#'+type).hide();
+        }
         $("#"+id).remove();
         if($('#'+type+' div').length<=1){
             $('#'+type).hide();

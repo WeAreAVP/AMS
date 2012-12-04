@@ -29,9 +29,9 @@ class Cron_Model extends CI_Model
 	{
 		$this->db->select("*");
 		$this->db->from($this->_table);
-		$this->db->where("file_path LIKE ",$file_path);
+		$this->db->where("file_path",$file_path);
 		$res=$this->db->get();
-		if(isset($res))
+		if(isset($res) && !empty($res))
 		{
 			return $res->row();
 		}

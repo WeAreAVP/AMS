@@ -23,7 +23,7 @@
 
 
         echo link_tag("css/bootstrap/bootstrap.css");
-        echo link_tag("css/bootstrap/bootstrap-responsive.css");
+//        echo link_tag("css/bootstrap/bootstrap-responsive.css");
         echo link_tag("css/style.css");
         ?> 
         <script src="<?php echo base_url('tiny_mce/tiny_mce.js') ?>" type="text/javascript"></script>
@@ -129,7 +129,7 @@
 
             </div>
         </div>
-        <div class="container">
+        <div class="container" style="width:1170px;margin:0 auto;margin-top: 70px;">
 
             <div class="content" >
                 <?php

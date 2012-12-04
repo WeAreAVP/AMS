@@ -833,11 +833,11 @@
                     if(customColumnName!=''){
                         customColumnName= customColumnName.split(' ');
                         if(customColumnName.length>1){
-                            searchString=' @'+customColumnName[0]+' |||'+$('#search').val()+'|||';
-                            searchString +=' @'+customColumnName[1]+' |||'+$('#search').val()+'|||';
+                            searchString=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
+                            searchString +=' @'+customColumnName[1]+' |||'+$('#search').val()+'||| ';
                         }
                         else{
-                            searchString=' @'+customColumnName[0]+' |||'+$('#search').val()+'|||';
+                            searchString=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
                         }
                         
                     }

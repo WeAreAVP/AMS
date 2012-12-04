@@ -14,7 +14,7 @@ class Instantiations extends MY_Controller
     /**
      * Constructor
      * 
-     * Load the layout, Instantiations model,sphinx_model
+     * Load the layout, Models and Libraries
      * 
      */
     function __construct()
@@ -34,9 +34,7 @@ class Instantiations extends MY_Controller
      */
     public function index()
     {
-//        echo '<pre>';print_r($this->session->userdata);exit;
-        // List all the instantiations records active records
-//        $data['records'] = $this->instantiation->list_all();
+
         $params = array('search' => '');
         if (isAjax())
         {
@@ -108,7 +106,10 @@ class Instantiations extends MY_Controller
         }
         $this->load->view('instantiations/index', $data);
     }
-
+    /**
+     * Show the detail of an instantiation
+     *  
+     */
     public function detail()
     {
         $instantiation_id = (is_numeric($this->uri->segment(3))) ? $this->uri->segment(3) : FALSE;
@@ -117,11 +118,10 @@ class Instantiations extends MY_Controller
             $detail = $this->instantiation->get_by_id($instantiation_id);
             if (count($detail) > 0)
             {
-                $data['asset_id']=$detail->assets_id;
-                $data['inst_id']=$instantiation_id;
+                $data['asset_id'] = $detail->assets_id;
+                $data['inst_id'] = $instantiation_id;
                 $data['instantiation_detail'] = $this->sphinx->instantiations_list(array('asset_id' => $detail->assets_id, 'search' => ''));
-                $data['instantiation_detail'] =$data['instantiation_detail']['records'][0];
-//                echo '<pre>';print_r($data['instantiation_detail']);echo '</pre>';
+                $data['instantiation_detail'] = $data['instantiation_detail']['records'][0];
                 $data['asset_details'] = $this->assets_model->get_asset_by_asset_id($detail->assets_id);
                 $data['asset_instantiations'] = $this->sphinx->instantiations_list(array('asset_id' => $detail->assets_id, 'search' => ''));
                 $this->load->view('instantiations/detail', $data);
@@ -134,7 +134,10 @@ class Instantiations extends MY_Controller
             show_404();
         }
     }
-
+    /**
+     * Remove the session variables of facet search
+     *  
+     */
     function unset_facet_search()
     {
         $this->session->unset_userdata('custom_search');
@@ -148,7 +151,11 @@ class Instantiations extends MY_Controller
         $this->session->unset_userdata('event_type');
         $this->session->unset_userdata('event_outcome');
     }
-
+    /**
+     * Set the session variables of facet search
+     * 
+     * @param array $search_values 
+     */
     function set_facet_search($search_values)
     {
         foreach ($search_values as $key => $value)
@@ -156,8 +163,6 @@ class Instantiations extends MY_Controller
             $this->session->set_userdata($key, $value);
         }
     }
-
-    
 
 }
 

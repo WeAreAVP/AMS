@@ -333,9 +333,11 @@
         {
 
             $style = "none;";
+            $reset="block;";
         } else
         {
             $style = "block;";
+            $reset="none;";
         }
         ?>
         <div class="filter-fileds" id="limit_field_div" style="display:<?php echo $style; ?>">
@@ -403,9 +405,9 @@
 
 
         </div>
-        <div class="filter-fileds" id="limit_btn" style="display:<?php echo $style; ?>">
-            <div><input type="button" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
-            <div><input type="reset" style="display: none;" id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
+        <div class="filter-fileds" id="limit_btn">
+            <div><input type="button"  style="display:<?php echo $style; ?>" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
+            <div><input type="reset" style="display:<?php echo $reset; ?>" id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
         </div>
 
         <!-- Organization  Start      -->

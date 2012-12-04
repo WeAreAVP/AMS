@@ -23,7 +23,7 @@ if (!$isAjax)
   	<strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
 	<?php echo $this->ajax_pagination->create_links(); ?>
   </div>
-   <div style="overflow: auto;width:865px;display:<?php if($current_tab=='simple'){ echo 'block';}else{echo "none"; }?>;" id="simple_view">
+   <div style="overflow: auto;width:865px;height: 400px;display:<?php if($current_tab=='simple'){ echo 'block';}else{echo "none"; }?>;" id="simple_view">
    <table class="tablesorter table table-bordered" ><?php 
 		if(isset($records) && ($total>0))
 		{?>

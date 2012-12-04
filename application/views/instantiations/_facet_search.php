@@ -373,17 +373,17 @@
                             <li><a href="javascript://;" onclick="add_custom_token('ID','instantiation_identifier');">ID</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_source');">Identifier Source</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Dimensions','instantiation_dimension');">Dimensions</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Unit of Measure','unit_of_measure track_unit_of_measure');">Unit of Measure</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Unit of Measure','unit_of_measure');">Unit of Measure</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Standard','standard');">Standard</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Location','location');">Location</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('File Size','file_size');">File Size</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Duration','actual_duration');">Duration</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Data Rate','track_data_rate');">Data Rate</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Duration','actual_duration track_duration');">Duration</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Data Rate','track_data_rate data_rate');">Data Rate</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Tracks','tracks');">Tracks</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Channel Configuration','channel_configuration');">Channel Configuration</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Language','language track_language');">Language</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Alternative Modes','alternative_modes');">Alternative Modes</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Annotation','asset_annotation');">Annotation</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Annotation','ins_annotation track_annotation');">Annotation</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Annotation Type','asset_annotation_type');">Annotation Type</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Track Type','track_essence_track_type');">Track Type</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Encoding','track_encoding');">Encoding</a></li>
@@ -832,10 +832,20 @@
                     $('#'+type).show();
                     var searchString='';
                     if(customColumnName!=''){
-                        searchString='@'+customColumnName;
+                        customColumnName= customColumnName.split(' ');
+                        if(customColumnName.length>1){
+                            searchString='@'+customColumnName[0]+'"'+$('#search').val()+'"';
+                            searchString='@'+customColumnName[1]+'"'+$('#search').val()+'"';
+                        }
+                        else{
+                            searchString='@'+customColumnName[0]+'"'+$('#search').val()+'"';
+                        }
                         
                     }
-                    searchString+='|||'+$('#search').val();
+                    else{
+                        searchString+=' '+$('#search').val();
+                    }
+                    
                     $('#keyword_field_main_search').val(searchString);
                         
                 }
@@ -953,7 +963,7 @@
         $('#current_tab').val(id);
         $.ajax({
             type: 'POST', 
-            url: '<?php echo site_url('records/set_current_tab') ?>/'+id,
+            url: '<?php echo site_url('records/set_current_tab') ?>/'+id
         });
         $('#simple_view').hide();
         $('#full_table_view').hide();

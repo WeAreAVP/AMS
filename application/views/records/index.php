@@ -31,9 +31,9 @@ if (!$isAjax)
             <tr>
 	             <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag "></i></td>
     	         <th style="width:100px;">AA GUID</th>
-        	     <td style="vertical-align:middle;font-weight:bold;width:100px;">Local ID</td>
-            	 <td style="vertical-align:middle;font-weight:bold;width:100px;">Titles</td>
-             	<td style="vertical-align:middle;font-weight:bold;width:100px;">Description</td>
+        	     <td style="vertical-align:middle;font-weight:bold;">Local ID</td>
+            	 <td style="vertical-align:middle;font-weight:bold;">Titles</td>
+             	<td style="vertical-align:middle;font-weight:bold;">Description</td>
             </tr>
             </thead>
             <tbody><?php 
@@ -58,16 +58,16 @@ if (!$isAjax)
 						echo 'N/A';?>
                   </td>
 			      <td>
-                  	<p>
+                  	
                     	<a href="<?php echo site_url('records/details/'.$asset->id)?>" ><?php 
 							if($asset_title)
 								echo $asset_title;
 							else
 								echo 'N/A';?>
 						</a>
-                    </p>
+                    
                   </td>
-                  <td><p><?php 
+                  <td><?php 
 					if($asset_description)
 					{
 						if(strlen($asset_description)>160)
@@ -82,7 +82,7 @@ if (!$isAjax)
 					}
 					else 
 						echo 'N/A';?>
-			       </p>
+
                   </td>
      			</tr><?php 
 			}?>
@@ -111,8 +111,8 @@ if (!$isAjax)
              <td style="vertical-align:middle;font-weight:bold;width:100px;">Titles Type</td>
              <td style="vertical-align:middle;font-weight:bold;width:100px;">Titles Ref</td>
              <td style="vertical-align:middle;font-weight:bold;width:100px;">Titles Source</td>
-             <td style="vertical-align:middle;font-weight:bold;width:100px;">Description</td>
-             <td style="vertical-align:middle;font-weight:bold;width:100px;">Description Type</td>
+             <td style="vertical-align:middle;font-weight:bold;width:">Description</td>
+             <td style="vertical-align:middle;font-weight:bold;width:">Description Type</td>
              <td style="vertical-align:middle;font-weight:bold;width:100px;">Subjects</td>
              <td style="vertical-align:middle;font-weight:bold;width:100px;">Subjects Ref</td>
              <td style="vertical-align:middle;font-weight:bold;width:100px;">Subjects Source</td>
@@ -176,9 +176,9 @@ if (!$isAjax)
 						echo 'N/A';?>
                   </td>
 			      <td>
-                  	<p>
+
                     	<a href="<?php echo site_url('records/details/'.$asset->id)?>" ><?php echo $asset_title;?>	</a>
-                    </p>
+
                   </td>
                    <td><?php 
 				  		echo $asset->asset_title_type;
@@ -191,7 +191,7 @@ if (!$isAjax)
                   <td><?php 
 				  		echo $asset->asset_title_source;?>
                   </td>
-                  <td><p><?php 
+                  <td><?php 
 					if($asset_description)
 					{
 						if(strlen($asset_description)>160)
@@ -206,7 +206,6 @@ if (!$isAjax)
 					}
 					else 
 						echo 'N/A';?>
-			       </p>
                   </td>
                   <td><?php 
 				  		echo $asset->asset_subject?>

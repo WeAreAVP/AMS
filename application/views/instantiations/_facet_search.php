@@ -816,7 +816,7 @@
                 $('#search').val('');
                 $('#limit_field_div').show();
                 customColumnName='';
-                customFieldName='';
+                customFieldName='All';
                     
             }
             else{
@@ -930,7 +930,7 @@
         $('#keyword_field_main').hide();
         $('#limit_field_div').show();
         customColumnName='';
-        customFieldName='';
+        customFieldName='All';
         facet_search('0');
     }
     function facet_search(page)

@@ -60,6 +60,7 @@ class Records extends MY_Controller
 				$data['current_tab']=$this->session->userdata['current_tab'];	
 			}
 			$this->session->set_userdata('current_tab', $data['current_tab']);
+             $data['get_column_name'] = $this->make_array();
 			$data['stations']=$this->station_model->get_all();
 			$data['nomination_status']=$this->instantiation->get_nomination_status();
 			$data['media_types']=$this->instantiation->get_media_types();

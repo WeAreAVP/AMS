@@ -19,7 +19,7 @@
                 {
                     $column_name = implode('', $column_name);
                     $column_name = explode('|||', $column_name);
-                    echo'<pre>'; print_r($column_name);exit;
+                    $column_name=trim($column_name);
                     $column_name = ': ' . $get_column_name[$column_name[0]];
                 }
 

@@ -18,15 +18,15 @@
                 if (count($column_name) > 1)
                 {
                     $column_name = implode('', $column_name);
-                    $column_name = explode('|||', $column_name);
+                    $column_name = explode('"', $column_name);
 
                     $column_name = ': ' . $get_column_name[$column_name[0]];
                 }
 
                 else
                     $column_name = ': All';
-                $custom_search = str_replace('||||', ' ', $custom_search);
-                $custom_search = explode('|||', $custom_search);
+                
+                $custom_search = explode('"', $custom_search);
                 $custom_search = $custom_search[count($custom_search) - 1];
                 $search_id = name_slug($custom_search);
                 ?>
@@ -384,7 +384,7 @@
                             <li><a href="javascript://;" onclick="add_custom_token('Language','language track_language');">Language</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Alternative Modes','alternative_modes');">Alternative Modes</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Annotation','ins_annotation track_annotation');">Annotation</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Annotation Type','asset_annotation_type');">Annotation Type</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Annotation Type','ins_annotation_type');">Annotation Type</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Track Type','track_essence_track_type');">Track Type</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Encoding','track_encoding');">Encoding</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Track Standard','track_standard');">Track Standard</a></li>

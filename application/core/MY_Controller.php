@@ -63,6 +63,46 @@ class MY_Controller extends CI_Controller
             $this->can_compose_alert = true;
         }
     }
+    
+    function make_array()
+    {
+        return array('asset_title' => 'Title',
+            'asset_subject' => 'Subject',
+            'asset_coverage' => 'Coverage',
+            'asset_genre' => 'Genre',
+            'asset_publisher_name' => 'Publisher',
+            'asset_description' => 'Description',
+            'asset_creator_name' => 'Creator Name',
+            'asset_creator_affiliation' => 'Creator Affiliation',
+            'asset_contributor_name' => 'Contributor Name',
+            'asset_contributor_affiliation' => 'Contributor Affiliation',
+            'asset_rights' => 'Rights Summaries',
+            'asset_annotation' => 'Annotations',
+            'instantiation_identifier' => 'ID',
+            'instantiation_source' => 'ID Source',
+            'unit_of_measure' => 'Unit of Measure',
+            'standard' => 'Standard',
+            'location' => 'Location',
+            'file_size' => 'File Size',
+            'actual_duration' => 'Duration',
+            'track_data_rate' => 'Data Rate',
+            'tracks' => 'Tracks',
+            'channel_configuration' => 'Channel Configuration',
+            'track_language' => 'Language',
+            'alternative_modes' => 'Alternative Modes',
+            'ins_annotation' => 'Annotation',
+            'ins_annotation_type' => 'Annotation Type',
+            'track_essence_track_type' => 'Track Type',
+            'track_encoding' => 'Encoding',
+            'track_standard' => 'Track Standard',
+            'track_frame_rate' => 'Frame Rate',
+            'track_playback_speed' => 'Playback Speed',
+            'track_sampling_rate' => 'Sampling Rate',
+            'track_bit_depth' => 'Bit Depth',
+            'track_width' => 'Frame Size',
+            'track_aspect_ratio' => 'Aspect Ratio',
+        );
+    }
 
 }
 

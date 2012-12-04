@@ -106,11 +106,7 @@ class Sphinx_Model extends CI_Model
         {
             $this->sphinxsearch->set_filter("assets_id", array($params['asset_id']));
         }
-        if (isset($params['instantiation_id']))
-        {
-            $this->sphinxsearch->set_filter("id", array($params['instantiation_id']));
-        }
-
+        
         $mode = SPH_MATCH_EXTENDED;
         $this->sphinxsearch->set_array_result(true);
         $this->sphinxsearch->set_match_mode($mode);
@@ -195,10 +191,9 @@ class Sphinx_Model extends CI_Model
         }
         if (isset($this->session->userdata['custom_search']) && $this->session->userdata['custom_search'] != '')
         {
-            $custom_search = str_replace('|||', ' "', trim($this->session->userdata['custom_search']));
-            $where .="$custom_search\"";
+            $custom_search = str_replace('|||', '"', trim($this->session->userdata['custom_search']));
+            $where .=$custom_search;
         }
-
         return $where;
     }
 
@@ -208,7 +203,7 @@ class Sphinx_Model extends CI_Model
         $total_record = 0;
         $this->sphinxsearch->reset_filters();
         $this->sphinxsearch->reset_group_by();
-          $mode = SPH_MATCH_EXTENDED;
+        $mode = SPH_MATCH_EXTENDED;
         $this->sphinxsearch->set_array_result(true);
         $this->sphinxsearch->set_match_mode($mode);
         $this->sphinxsearch->set_connect_timeout(120);
@@ -217,7 +212,7 @@ class Sphinx_Model extends CI_Model
 
 
         $query = $this->make_where_clause();
-		$res = $this->sphinxsearch->query($query, $params['index']);
+        $res = $this->sphinxsearch->query($query, $params['index']);
 
 
         $execution_time = $res['time'];

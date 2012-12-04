@@ -19,15 +19,14 @@
                 {
                     $column_name = implode('', $column_name);
                     $column_name = explode('|||', $column_name);
-
-                    $column_name = ': ' . $get_column_name[$column_name[0]];
+                    $column_name = ': ' . $get_column_name[trim($column_name[0])];
                 }
 
                 else
                     $column_name = ': All';
-                $custom_search = str_replace('||||', ' ', $custom_search);
+
                 $custom_search = explode('|||', $custom_search);
-                $custom_search = $custom_search[count($custom_search) - 1];
+                $custom_search = $custom_search[count($custom_search) - 2];
                 $search_id = name_slug($custom_search);
                 ?>
                 <div id="keyword_field_main">
@@ -334,9 +333,11 @@
         {
 
             $style = "none;";
+            $reset="block;";
         } else
         {
             $style = "block;";
+            $reset="none;";
         }
         ?>
         <div class="filter-fileds" id="limit_field_div" style="display:<?php echo $style; ?>">
@@ -370,21 +371,21 @@
                     </li>
                     <li class="dropdown"><a href="#">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
                         <ul class="sub-menu dropdown-menu">
-                            <li><a href="javascript://;" onclick="add_custom_token('ID','id');">ID</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_identifier');">Identifier Source</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('ID','instantiation_identifier');">ID</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_source');">Identifier Source</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Dimensions','instantiation_dimension');">Dimensions</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Unit of Measure','unit_of_measure track_unit_of_measure');">Unit of Measure</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Unit of Measure','unit_of_measure');">Unit of Measure</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Standard','standard');">Standard</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Location','location');">Location</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('File Size','file_size');">File Size</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Duration','actual_duration');">Duration</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Data Rate','track_data_rate');">Data Rate</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Duration','actual_duration track_duration');">Duration</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Data Rate','track_data_rate data_rate');">Data Rate</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Tracks','tracks');">Tracks</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Channel Configuration','channel_configuration');">Channel Configuration</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Language','language track_language');">Language</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Alternative Modes','alternative_modes');">Alternative Modes</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Annotation','asset_annotation');">Annotation</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Annotation Type','asset_annotation_type');">Annotation Type</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Annotation','ins_annotation track_annotation');">Annotation</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('Annotation Type','ins_annotation_type');">Annotation Type</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Track Type','track_essence_track_type');">Track Type</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Encoding','track_encoding');">Encoding</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Track Standard','track_standard');">Track Standard</a></li>
@@ -404,9 +405,9 @@
 
 
         </div>
-        <div class="filter-fileds" id="limit_btn" style="display:<?php echo $style; ?>">
-            <div><input type="button" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
-            <div><input type="reset" style="display: none;" id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
+        <div class="filter-fileds" id="limit_btn">
+            <div><input type="button"  style="display:<?php echo $style; ?>" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
+            <div><input type="reset" style="display:<?php echo $reset; ?>" id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
         </div>
 
         <!-- Organization  Start      -->
@@ -806,6 +807,7 @@
             if(isRemoved==1){
                 $('#keyword_field_main btn-img').remove();
                 $('#keyword_field_main_search').val('');
+                $('#keyword_field_name').html();
                 $('#limit_btn').show(); 
                 $('#add_keyword').show(); 
                 $('#reset_search').hide();
@@ -814,7 +816,7 @@
                 $('#search').val('');
                 $('#limit_field_div').show();
                 customColumnName='';
-                customFieldName='';
+                customFieldName='All';
                     
             }
             else{
@@ -832,10 +834,20 @@
                     $('#'+type).show();
                     var searchString='';
                     if(customColumnName!=''){
-                        searchString='@'+customColumnName;
+                        customColumnName= customColumnName.split(' ');
+                        if(customColumnName.length>1){
+                            searchString=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
+                            searchString +=' @'+customColumnName[1]+' |||'+$('#search').val()+'||| ';
+                        }
+                        else{
+                            searchString=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
+                        }
                         
                     }
-                    searchString+='|||'+$('#search').val();
+                    else{
+                        searchString+=' |||'+$('#search').val()+'||| ';
+                    }
+                    
                     $('#keyword_field_main_search').val(searchString);
                         
                 }
@@ -896,6 +908,10 @@
     }
     function remove_token(name,id,type)
     {
+        if(type=='keyword_field_main'){
+            $('#'+type).hide();
+            $('#keyword_field_main btn-img').remove(); 
+        }
         $("#"+id).remove();
         if($('#'+type+' div').length<=1){
             $('#'+type).hide();
@@ -915,7 +931,7 @@
         $('#keyword_field_main').hide();
         $('#limit_field_div').show();
         customColumnName='';
-        customFieldName='';
+        customFieldName='All';
         facet_search('0');
     }
     function facet_search(page)
@@ -953,7 +969,7 @@
         $('#current_tab').val(id);
         $.ajax({
             type: 'POST', 
-            url: '<?php echo site_url('records/set_current_tab') ?>/'+id,
+            url: '<?php echo site_url('records/set_current_tab') ?>/'+id
         });
         $('#simple_view').hide();
         $('#full_table_view').hide();

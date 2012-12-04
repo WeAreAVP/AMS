@@ -146,18 +146,18 @@ function duration($seconds_count)
 function name_slug($name)
 {
     $random = rand(0, 1000365);
-    $name = str_replace("/", "-", trim($name));
+    $name = str_replace("/", "", trim($name));
     $name = str_replace("??", "q", trim($name));
-    $name = str_replace(" ", "-", trim($name));
-    $name = str_replace("(", "-", trim($name));
-    $name = str_replace(")", "-", trim($name));
-    $name = str_replace(",", "-", trim($name));
-    $name = str_replace(".", "-", trim($name));
+    $name = str_replace(" ", "", trim($name));
+    $name = str_replace("(", "", trim($name));
+    $name = str_replace(")", "", trim($name));
+    $name = str_replace(",", "", trim($name));
+    $name = str_replace(".", "", trim($name));
 //    $name = str_replace("'", "-", trim($name));
 //    $name = str_replace("\"", "-", trim($name));
-    $name = str_replace(";", "-", trim($name));
-    $name = str_replace(":", "-", trim($name));
+    $name = str_replace(";", "", trim($name));
+    $name = str_replace(":", "", trim($name));
     $name = strtolower($name);
-    return $name . '_' . $random;
+    return $name . $random;
 }
 

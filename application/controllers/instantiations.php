@@ -14,7 +14,7 @@ class Instantiations extends MY_Controller
     /**
      * Constructor
      * 
-     * Load the layout, Instantiations model,sphinx_model
+     * Load the layout, Models and Libraries
      * 
      */
     function __construct()
@@ -34,9 +34,7 @@ class Instantiations extends MY_Controller
      */
     public function index()
     {
-//        echo '<pre>';print_r($this->session->userdata);exit;
-        // List all the instantiations records active records
-//        $data['records'] = $this->instantiation->list_all();
+
         $params = array('search' => '');
         if (isAjax())
         {
@@ -108,7 +106,10 @@ class Instantiations extends MY_Controller
         }
         $this->load->view('instantiations/index', $data);
     }
-
+    /**
+     * Show the detail of an instantiation
+     *  
+     */
     public function detail()
     {
         $instantiation_id = (is_numeric($this->uri->segment(3))) ? $this->uri->segment(3) : FALSE;
@@ -117,11 +118,10 @@ class Instantiations extends MY_Controller
             $detail = $this->instantiation->get_by_id($instantiation_id);
             if (count($detail) > 0)
             {
-                $data['asset_id']=$detail->assets_id;
-                $data['inst_id']=$instantiation_id;
+                $data['asset_id'] = $detail->assets_id;
+                $data['inst_id'] = $instantiation_id;
                 $data['instantiation_detail'] = $this->sphinx->instantiations_list(array('asset_id' => $detail->assets_id, 'search' => ''));
-                $data['instantiation_detail'] =$data['instantiation_detail']['records'][0];
-//                echo '<pre>';print_r($data['instantiation_detail']);echo '</pre>';
+                $data['instantiation_detail'] = $data['instantiation_detail']['records'][0];
                 $data['asset_details'] = $this->assets_model->get_asset_by_asset_id($detail->assets_id);
                 $data['asset_instantiations'] = $this->sphinx->instantiations_list(array('asset_id' => $detail->assets_id, 'search' => ''));
                 $this->load->view('instantiations/detail', $data);
@@ -134,7 +134,10 @@ class Instantiations extends MY_Controller
             show_404();
         }
     }
-
+    /**
+     * Remove the session variables of facet search
+     *  
+     */
     function unset_facet_search()
     {
         $this->session->unset_userdata('custom_search');
@@ -148,53 +151,17 @@ class Instantiations extends MY_Controller
         $this->session->unset_userdata('event_type');
         $this->session->unset_userdata('event_outcome');
     }
-
+    /**
+     * Set the session variables of facet search
+     * 
+     * @param array $search_values 
+     */
     function set_facet_search($search_values)
     {
         foreach ($search_values as $key => $value)
         {
             $this->session->set_userdata($key, $value);
         }
-    }
-
-    function make_array()
-    {
-        return array('asset_title' => 'Title',
-            'asset_subject' => 'Subject',
-            'asset_coverage' => 'Coverage',
-            'asset_genre' => 'Genre',
-            'asset_publisher_name' => 'Publisher',
-            'asset_description' => 'Description',
-            'asset_creator_name' => 'Creator Name',
-            'asset_creator_affiliation' => 'Creator Affiliation',
-            'asset_contributor_name' => 'Contributor Name',
-            'asset_contributor_affiliation' => 'Contributor Affiliation',
-            'asset_rights' => 'Rights Summaries',
-            'asset_annotation' => 'Annotations',
-            'id' => 'ID',
-            'instantiation_identifier' => 'ID Source',
-            'unit_of_measure track_unit_of_measure' => 'Unit of Measure',
-            'standard' => 'Standard',
-            'location' => 'Location',
-            'file_size' => 'File Size',
-            'actual_duration' => 'Duration',
-            'track_data_rate' => 'Data Rate',
-            'tracks' => 'Tracks',
-            'channel_configuration' => 'Channel Configuration',
-            'track_language' => 'Language',
-            'alternative_modes' => 'Alternative Modes',
-            'asset_annotation' => 'Annotation',
-            'asset_annotation_type' => 'Annotation Type',
-            'track_essence_track_type' => 'Track Type',
-            'track_encoding' => 'Encoding',
-            'track_standard' => 'Track Standard',
-            'track_frame_rate' => 'Frame Rate',
-            'track_playback_speed' => 'Playback Speed',
-            'track_sampling_rate' => 'Sampling Rate',
-            'track_bit_depth' => 'Bit Depth',
-            'track_width' => 'Frame Size',
-            'track_aspect_ratio' => 'Aspect Ratio',
-        );
     }
 
 }

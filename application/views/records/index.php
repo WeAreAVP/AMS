@@ -3,8 +3,8 @@ if (!$isAjax)
 {?>
 
 <div class="row-fluid">
- <div class="span3">
- 	<h4>Assets</h4>
+ <div class="span3" style="background-color: whiteSmoke;">
+     <h4 style="margin: 6px 14px;">Assets</h4>
    </b>
    <div style="padding: 8px;background: none repeat scroll 0% 0% rgb(0, 152, 214); " ><a style="color: white;" href="<?php echo site_url('records/index') ?>" >All Assets</a></div>
    <div style="padding: 8px;" > <a href="<?php echo "javascript:;";//echo site_url('records/flagged') ?>" >Flagged</a></div>

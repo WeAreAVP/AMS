@@ -370,8 +370,8 @@
                     </li>
                     <li class="dropdown"><a href="#">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
                         <ul class="sub-menu dropdown-menu">
-                            <li><a href="javascript://;" onclick="add_custom_token('ID','id');">ID</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_identifier');">Identifier Source</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('ID','instantiation_identifier');">ID</a></li>
+                            <li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_source');">Identifier Source</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Dimensions','instantiation_dimension');">Dimensions</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Unit of Measure','unit_of_measure track_unit_of_measure');">Unit of Measure</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Standard','standard');">Standard</a></li>

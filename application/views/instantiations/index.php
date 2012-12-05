@@ -21,7 +21,7 @@ if (!$isAjax)
                     <thead>
                         <tr>
     <!--                        <th><span style="float:left;min-width: 80px;">Asset ID</span></th>-->
-                            <th><span style="float:left;min-width: 100px;">Nomination Status</span></th>
+                            <th><span style="float:left;min-width: 100px;">Nomination </span></th>
                             <th><span style="float:left;min-width: 100px;">Organization</span></th>
                             <th><span style="float:left;min-width: 250px;">Asset Title</span></th>
                             <th><span style="float:left;min-width: 100px;">Instantiation ID</span></th>
@@ -42,8 +42,8 @@ if (!$isAjax)
                         {
                             ?>
                             <tr>
-                                <td></td>
                                 <td><?php echo $value->status; ?></td>
+                                <td><?php echo $value->organization; ?></td>
                                 <td><a href="<?php echo site_url('instantiations/detail/' . $value->id); ?>"><?php echo $value->asset_title; ?></a></td>
                                 <td><?php echo $value->instantiation_identifier; ?></td>
                                 <td><?php echo $value->instantiation_source; ?></td>

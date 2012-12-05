@@ -333,11 +333,11 @@
         {
 
             $style = "none;";
-            $reset="block;";
+            $reset = "block;";
         } else
         {
             $style = "block;";
-            $reset="none;";
+            $reset = "none;";
         }
         ?>
         <div class="filter-fileds" id="limit_field_div" style="display:<?php echo $style; ?>">
@@ -805,7 +805,9 @@
             
             name=$('#search').val();  
             if(isRemoved==1){
-                $('#keyword_field_main btn-img').remove();
+                $('#keyword_field_main btn-img').each(function(){
+                    $(this).remove();
+                });
                 $('#keyword_field_main_search').val('');
                 $('#keyword_field_name').html();
                 $('#limit_btn').show(); 
@@ -821,7 +823,9 @@
             }
             else{
                 if($('#search').val()!=''){
-                    $('#keyword_field_main btn-img').remove(); 
+                    $('#keyword_field_main btn-img').each(function(){
+                        $(this).remove();
+                    });
                     $('#add_keyword').hide(); 
                     $('#reset_search').show();
                     $('#limit_field_dropdown').hide();
@@ -910,7 +914,9 @@
     {
         if(type=='keyword_field_main'){
             $('#'+type).hide();
-            $('#keyword_field_main btn-img').remove(); 
+            $('#keyword_field_main btn-img').each(function(){
+                $(this).remove();
+            });
         }
         $("#"+id).remove();
         if($('#'+type+' div').length<=1){
@@ -920,7 +926,9 @@
     }
     function resetKeyword(){
         
-        $('#keyword_field_main btn-img').remove();
+        $('#keyword_field_main btn-img').each(function(){
+            $(this).remove();
+        });
         $('#keyword_field_main_search').val('');
         $('#limit_btn').show(); 
         $('#add_keyword').show(); 

@@ -406,13 +406,17 @@ if (!$isAjax)
        $(window).load(function(){
            tab='<?php echo $current_tab;?>';
            if(tab=='simple'){
-               $('#simple_view').show();
-               $('#full_table_view').hide();
-           }
-           else if(tab=='full_table'){
-               $('#simple_view').hide();
-               $('#full_table_view').show();
-           }
+				   $('#simple_view').show();
+				   $('#full_table_view').hide();
+				   $('#simple_li').addClass("active");
+				   $('#full_table_li').removeClass("active");
+			   }
+			   else if(tab=='full_table'){
+				   $('#simple_view').hide();
+				   $('#full_table_view').show();
+				   $('#full_table_li').addClass("active");
+				   $('#simple_li').removeClass("active");
+			   }
        });                     
     </script>
 <?php }?>

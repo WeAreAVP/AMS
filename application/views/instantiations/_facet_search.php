@@ -986,10 +986,14 @@
 			   if(tab=='simple'){
 				   $('#simple_view').show();
 				   $('#full_table_view').hide();
+				   $('#simple_li').addClass("active");
+				   $('#full_table_li').removeClass("active");
 			   }
 			   else if(tab=='full_table'){
 				   $('#simple_view').hide();
 				   $('#full_table_view').show();
+				   $('#full_table_li').addClass("active");
+				   $('#simple_li').removeClass("active");
 			   }
                 $.unblockUI();
                                 

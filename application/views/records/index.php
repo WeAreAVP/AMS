@@ -37,8 +37,9 @@ if (!$isAjax)
             </tr>
             </thead>
             <tbody><?php 
-			foreach($records as $asset)
+			foreach($records as $asse)
 			{
+				$asset = str_replace("(**)","N/A",$asse);
 				$guid_identifier=$asset->guid_identifier;
 				$local_identifier=$asset->local_identifier;
 				$asset_description=$asset->description;

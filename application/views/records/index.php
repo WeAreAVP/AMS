@@ -34,7 +34,7 @@ if (!$isAjax)
                 {
                     echo "none";
                 } ?>;" id="simple_view">
-            <table class="tablesorter table table-bordered" ><?php
+            <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="simple_view_table"><?php
                 if (isset($records) && ($total > 0))
                 {
                     ?>
@@ -124,7 +124,7 @@ else if ($start >= 1000)
 {
     echo "none";
 } ?>;overflow: auto;width:865px;height: 450px;" id="full_table_view" >
-            <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" style="word-break: normal ;width:100%" ><?php
+            <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="full_view_table" style="word-break: normal ;width:100%" ><?php
 if (isset($records) && ($total > 0))
 {
     ?>

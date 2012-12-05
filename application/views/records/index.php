@@ -34,7 +34,7 @@ if (!$isAjax)
                 {
                     echo "none";
                 } ?>;" id="simple_view">
-            <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="simple_view_table"><?php
+            <table class="tablesorter table table-bordered" id="simple_view_table"><?php
                 if (isset($records) && ($total > 0))
                 {
                     ?>

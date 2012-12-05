@@ -398,7 +398,7 @@ if (!$isAjax)
 		$(function() {
                         			 
             $('.freeze-my-column1').freezeTableColumns({
-                width:       1500,   // required
+                width:       860,   // required
                 height:      450,   // required
                 numFrozen:   0,     // optional
                 //            frozenWidth: 150,   // optional

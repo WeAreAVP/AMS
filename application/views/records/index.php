@@ -59,16 +59,16 @@ if (!$isAjax)
 						echo 'N/A';?>
                   </td>
 			      <td>
-                  	<p style="width:200px">
+                  	
                     	<a href="<?php echo site_url('records/details/'.$asset->id)?>" ><?php 
 							if($asset_title)
 								echo $asset_title;
 							else
 								echo 'N/A';?>
 						</a>
-                    </p>
+                    
                   </td>
-                  <td><p style="width:200px"><?php 
+                  <td><?php 
 					if($asset_description)
 					{
 						
@@ -84,7 +84,6 @@ if (!$isAjax)
 					}
 					else 
 						echo 'N/A';?>
-			       </p>
                   </td>
      			</tr><?php 
 			}?>
@@ -178,9 +177,9 @@ if (!$isAjax)
 						echo 'N/A';?>
                   </td>
 			      <td>
-                  	<p style="width:200px">
+                  	
                     	<a href="<?php echo site_url('records/details/'.$asset->id)?>" ><?php echo $asset_title;?>	</a>
-                    </p>
+                    
                   </td>
                    <td><?php 
 				  		echo str_replace("(**)","N/A",$asset->asset_title_type);
@@ -193,7 +192,7 @@ if (!$isAjax)
                   <td><?php 
 				  		echo str_replace("(**)","N/A",$asset->asset_title_source);?>
                   </td>
-                  <td><p style="width:200px"><?php 
+                  <td><?php 
 					if($asset_description)
 					{
 						if(strlen($asset_description)>160)
@@ -208,7 +207,7 @@ if (!$isAjax)
 					}
 					else 
 						echo 'N/A';?>
-			       </p>
+
                   </td>
                   <td><?php 
 				  		echo str_replace("(**)","N/A",$asset->asset_subject); ?>

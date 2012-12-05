@@ -23,7 +23,7 @@ if (!$isAjax)
     <!--                        <th><span style="float:left;min-width: 80px;">Asset ID</span></th>-->
                             <th><span style="float:left;min-width: 100px;">Nomination </span></th>
                             <th><span style="float:left;min-width: 100px;">Organization</span></th>
-                            <th><span style="float:left;min-width: 250px;">Asset Title</span></th>
+                            <th style="min-width: 250px;">Asset Title</th>
                             <th><span style="float:left;min-width: 100px;">Instantiation ID</span></th>
                             <th><span style="float:left;min-width: 130px;">Instantiation ID Source</span></th>
                             <th><span style="float:left;min-width: 90px;">Format Type</span></th>

@@ -24,7 +24,7 @@ if (!$isAjax)
 	<?php echo $this->ajax_pagination->create_links(); ?>
   </div>
    <div style="overflow: auto;width:865px;display:<?php if($current_tab=='simple'){ echo 'block';}else{echo "none"; }?>;" id="simple_view">
-   <table class="tablesorter table table-bordered" ><?php 
+   <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" ><?php 
 		if(isset($records) && ($total>0))
 		{?>
         <thead>

@@ -236,7 +236,7 @@
                     <div id="search_bar" class="span10">
                         <div class="disabled-field">
 
-                            <strong>Date:</strong><br/>
+                            <strong>Location:</strong><br/>
                             <p><?php echo $instantiation_detail->location; ?></p>
                             <br/>
 
@@ -262,7 +262,7 @@
                         <div id="search_bar" class="span10">
                             <div class="disabled-field">
 
-                                <strong>Date:</strong><br/>
+                                <strong>File Size:</strong><br/>
                                 <p><?php echo $instantiation_detail->file_size; ?></p>
                                 <br/>
 
@@ -302,7 +302,7 @@
                     <div id="search_bar" class="span10">
                         <div class="disabled-field">
 
-                            <strong>Date:</strong><br/>
+                            <strong>Color:</strong><br/>
                             <p><?php echo $instantiation_detail->color; ?></p>
                             <br/>
 

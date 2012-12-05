@@ -42,7 +42,7 @@ if (!$isAjax)
                         {
                             ?>
                             <tr>
-                                <td><?php echo $value->status; ?></td>
+                                <td><?php echo ($value->status) ? $value->status : 'N/A'; ?></td>
                                 <td><?php echo $value->organization; ?></td>
                                 <td><a href="<?php echo site_url('instantiations/detail/' . $value->id); ?>"><?php echo $value->asset_title; ?></a></td>
                                 <td><?php echo $value->instantiation_identifier; ?></td>

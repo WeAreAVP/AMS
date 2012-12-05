@@ -1544,9 +1544,9 @@ class SphinxClient
 				{
 					assert ( is_array($v) );
 					foreach ( $v as $vv )
-						@assert ( is_int($vv) );
+						assert ( is_int($vv) );
 				} else
-					@assert ( is_int($v) );
+					assert ( is_int($v) );
 			}
 		}
 

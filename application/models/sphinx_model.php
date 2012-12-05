@@ -78,7 +78,7 @@ class Sphinx_Model extends CI_Model
 
     public function update_indexes($index, $attr, $values)
     {
-        $this->sphinxsearch->update_attributes($index, $attr, $values, true);
+        $this->sphinxsearch->update_attributes($index, $attr, $values, false);
     }
 
     /*

@@ -37,13 +37,13 @@ if (!$isAjax)
             </tr>
             </thead>
             <tbody><?php 
-			foreach($records as $asse)
+			foreach($records as $asset)
 			{
-				$asset = str_replace("(**)","N/A",$asse);
-				$guid_identifier=$asset->guid_identifier;
-				$local_identifier=$asset->local_identifier;
-				$asset_description=$asset->description;
-				$asset_title=$asset->asset_title;?>
+				
+				$guid_identifier= str_replace("(**)","N/A",$asset->guid_identifier);
+				$local_identifier= str_replace("(**)","N/A",$asset->local_identifier);
+				$asset_description=str_replace("(**)","N/A",$asset->description);
+				$asset_title=str_replace("(**)","N/A",$asset->asset_title);?>
 				<tr style="cursor: pointer;">
 			      <td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>
                   <td><?php 
@@ -71,6 +71,7 @@ if (!$isAjax)
                   <td><p style="width:200px"><?php 
 					if($asset_description)
 					{
+						
 						if(strlen($asset_description)>160)
 						{
 							$messages = str_split($asset_description , 160);
@@ -158,10 +159,10 @@ if (!$isAjax)
             <tbody><?php 
 			foreach($records as $asset)
 			{
-				$guid_identifier=$asset->guid_identifier;
-				$local_identifier=$asset->local_identifier;
-				$asset_description=$asset->description;
-				$asset_title=$asset->asset_title;?>
+				$guid_identifier= str_replace("(**)","N/A",$asset->guid_identifier);
+				$local_identifier= str_replace("(**)","N/A",$asset->local_identifier);
+				$asset_description=str_replace("(**)","N/A",$asset->description);
+				$asset_title=str_replace("(**)","N/A",$asset->asset_title);?>
 				<tr style="cursor: pointer;">
 			      <td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>
                   <td><?php 
@@ -182,15 +183,15 @@ if (!$isAjax)
                     </p>
                   </td>
                    <td><?php 
-				  		echo $asset->asset_title_type;
+				  		echo str_replace("(**)","N/A",$asset->asset_title_type);
 					?>
                   </td>
                   <td><?php 		  	
-						echo $asset->asset_title_ref;
+						echo str_replace("(**)","N/A",$asset->asset_title_ref);
 					?>
                   </td>
                   <td><?php 
-				  		echo $asset->asset_title_source;?>
+				  		echo str_replace("(**)","N/A",$asset->asset_title_source);?>
                   </td>
                   <td><p style="width:200px"><?php 
 					if($asset_description)
@@ -210,125 +211,124 @@ if (!$isAjax)
 			       </p>
                   </td>
                   <td><?php 
-				  		echo $asset->asset_subject?>
+				  		echo str_replace("(**)","N/A",$asset->asset_subject); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_subject_source?>
+				  		echo str_replace("(**)","N/A",$asset->asset_subject_source); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_subject_ref?>
+				  		echo str_replace("(**)","N/A",$asset->asset_subject_ref); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_genre?>
+				  		echo str_replace("(**)","N/A",$asset->asset_genre); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_genre_source?>
+				  		echo str_replace("(**)","N/A",$asset->asset_genre_source); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_genre_ref?>
+				  		echo str_replace("(**)","N/A",$asset->asset_genre_ref); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_creator_name?>
+				  		echo str_replace("(**)","N/A",$asset->asset_creator_name); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_creator_affiliation?>
+				  		echo str_replace("(**)","N/A",$asset->asset_creator_affiliation); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_creator_source?>
+				  		echo str_replace("(**)","N/A",$asset->asset_creator_source); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_creator_ref?>
+				  		echo str_replace("(**)","N/A",$asset->asset_creator_ref); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_creator_role?>
+				  		echo str_replace("(**)","N/A",$asset->asset_creator_role); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_creator_role_source?>
+				  		echo str_replace("(**)","N/A",$asset->asset_creator_role_source); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_contributor_name?>
+				  		echo str_replace("(**)","N/A",$asset->asset_contributor_name); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_contributor_affiliation?>
+				  		echo str_replace("(**)","N/A",$asset->asset_contributor_affiliation); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_contributor_source?>
+				  		echo str_replace("(**)","N/A",$asset->asset_contributor_source); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_contributor_ref?>
+				  		echo str_replace("(**)","N/A",$asset->asset_contributor_ref); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_contributor_role?>
+				  		echo str_replace("(**)","N/A",$asset->asset_contributor_role); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_contributor_role_source?>
+				  		echo str_replace("(**)","N/A",$asset->asset_contributor_role_source); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_contributor_role_ref?>
+				  		echo str_replace("(**)","N/A",$asset->asset_contributor_role_ref); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_publisher_name?>
+				  		echo str_replace("(**)","N/A",$asset->asset_publisher_name); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_publisher_affiliation?>
+				  		echo str_replace("(**)","N/A",$asset->asset_publisher_affiliation); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_publisher_ref?>
+				  		echo str_replace("(**)","N/A",$asset->asset_publisher_ref); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_publisher_role?>
+				  		echo str_replace("(**)","N/A",$asset->asset_publisher_role); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_publisher_role_source?>
+				  		echo str_replace("(**)","N/A",$asset->asset_publisher_role_source); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_publisher_role_ref?>
+				  		echo str_replace("(**)","N/A",$asset->asset_publisher_role_ref); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_date?>
+				  		echo str_replace("(**)","N/A",$asset->asset_date); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_date_type?>
+				  		echo str_replace("(**)","N/A",$asset->asset_date_type); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_coverage?>
+				  		echo str_replace("(**)","N/A",$asset->asset_coverage); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_coverage_type?>
+				  		echo str_replace("(**)","N/A",$asset->asset_coverage_type); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_audience_level?>
+				  		echo str_replace("(**)","N/A",$asset->asset_audience_level); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_audience_level_source?>
+				  		echo str_replace("(**)","N/A",$asset->asset_audience_level_source); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_audience_level_ref?>
+				  		echo str_replace("(**)","N/A",$asset->asset_audience_level_ref); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_audience_rating?>
+				  		echo str_replace("(**)","N/A",$asset->asset_audience_rating); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_audience_rating_source?>
+				  		echo str_replace("(**)","N/A",$asset->asset_audience_rating_source); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_audience_rating_ref?>
+				  		echo str_replace("(**)","N/A",$asset->asset_audience_rating_ref); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_annotation?>
+				  		echo str_replace("(**)","N/A",$asset->asset_annotation); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_annotation_type?>
+				  		echo str_replace("(**)","N/A",$asset->asset_annotation_type); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_annotation_ref?>
+				  		echo str_replace("(**)","N/A",$asset->asset_annotation_ref); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_rights?>
+				  		echo str_replace("(**)","N/A",$asset->asset_rights); ?>
                   </td>
                     <td><?php 
-				  		echo $asset->asset_rights_link
-					?>
+				  		echo str_replace("(**)","N/A",$asset->asset_rights_link); ?>
                     </td>
      			</tr><?php 
 			}?>

@@ -29,11 +29,11 @@ if (!$isAjax)
 		{?>
         <thead>
             <tr>
-	             <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag "></i></td>
-    	         <th style="width:30%">AA GUID</th>
-        	     <td style="vertical-align:middle;font-weight:bold;width:30%">Local ID</td>
-            	 <td style="vertical-align:middle;font-weight:bold;width:15%">Titles</td>
-             	<td style="vertical-align:middle;font-weight:bold;">Description</td>
+	             <th><span style="float:left;min-width: 100px;" ><i class="icon-flag "></i></span></th>
+    	         <th><span style="float:left;min-width: 100px;" >AA GUID</span></th>
+        	     <th><span style="float:left;min-width: 100px;" >Local ID</span></th>
+            	<th><span style="float:left;min-width: 100px;" >Titles</span></th>
+             	<th><span style="float:left;min-width: 100px;" >Description</span></th>
             </tr>
             </thead>
             <tbody><?php 
@@ -101,59 +101,59 @@ if (!$isAjax)
    </table>
   </div>
    <div style="display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;overflow: auto;width:865px;height: 450px;" id="full_table_view" >
-   	<table class="tablesorter table table-bordered" style="word-break: normal ;width:100%" ><?php 
+   	<table class="tablesorter table-freeze-custom table-bordered freeze-my-column" style="margin-top:0px;margin-left: 1px;" ><?php 
 		if(isset($records) && ($total>0))
 		{?>
         <thead>
             <tr>
-             <td style="vertical-align:middle;font-weight:bold"><i class="icon-flag "></i></td>
-             <th style="vertical-align:middle;font-weight:bold;">AA GUID</th>
-             <td style="vertical-align:middle;font-weight:bold;">Local ID</td>
-             <td style="vertical-align:middle;font-weight:bold;" width="200">Titles</td>
-             <td style="vertical-align:middle;font-weight:bold;" >Titles Type</td>
-             <td style="vertical-align:middle;font-weight:bold;">Titles Ref</td>
-             <td style="vertical-align:middle;font-weight:bold;">Titles Source</td>
-             <td style="vertical-align:middle;font-weight:bold;" width="200">Description</td>
-             <td style="vertical-align:middle;font-weight:bold;">Description Type</td>
-             <td style="vertical-align:middle;font-weight:bold;">Subjects</td>
-             <td style="vertical-align:middle;font-weight:bold;">Subjects Ref</td>
-             <td style="vertical-align:middle;font-weight:bold;">Subjects Source</td>
-             <td style="vertical-align:middle;font-weight:bold;">Genre</td>
-             <td style="vertical-align:middle;font-weight:bold;">Genre Source</td>
-             <td style="vertical-align:middle;font-weight:bold;">Genre Ref</td>
-             <td style="vertical-align:middle;font-weight:bold;">Creator Name</td>
-             <td style="vertical-align:middle;font-weight:bold;">Creator Affiliation</td>
-             <td style="vertical-align:middle;font-weight:bold;">Creator Source</td>         
-             <td style="vertical-align:middle;font-weight:bold;">Creator Ref</td>
-             <td style="vertical-align:middle;font-weight:bold;">Creator Role</td>
-             <td style="vertical-align:middle;font-weight:bold;">Creator Role Source</td>
-             <td style="vertical-align:middle;font-weight:bold;">Contributor Name</td>
-             <td style="vertical-align:middle;font-weight:bold;">Contributor Affiliation</td>
-             <td style="vertical-align:middle;font-weight:bold;">Contributor Source</td>    
-             <td style="vertical-align:middle;font-weight:bold;">Contributor Ref</td>
-             <td style="vertical-align:middle;font-weight:bold;">Contributor Role</td>
-             <td style="vertical-align:middle;font-weight:bold;">Contributor Role Source</td>
-             <td style="vertical-align:middle;font-weight:bold;">Contributor Role Ref</td>
-             <td style="vertical-align:middle;font-weight:bold;">Publisher Name</td>
-             <td style="vertical-align:middle;font-weight:bold;">Publisher Affiliation</td>
-             <td style="vertical-align:middle;font-weight:bold;">Publisher Ref</td>
-             <td style="vertical-align:middle;font-weight:bold;">Publisher Role</td>
-             <td style="vertical-align:middle;font-weight:bold;">Publisher Role Source</td>
-             <td style="vertical-align:middle;font-weight:bold;">Assets Date</td>
-             <td style="vertical-align:middle;font-weight:bold;">Date Type</td>
-             <td style="vertical-align:middle;font-weight:bold;">Coverage</td>
-             <td style="vertical-align:middle;font-weight:bold;">Coverage Type</td>
-             <td style="vertical-align:middle;font-weight:bold;">Audience Level</td>
-             <td style="vertical-align:middle;font-weight:bold;">Audience Level Source</td>
-             <td style="vertical-align:middle;font-weight:bold;">Audience Level Ref</td>
-             <td style="vertical-align:middle;font-weight:bold;">Audience Rating</td>
-             <td style="vertical-align:middle;font-weight:bold;">Audience Rating Source</td>
-             <td style="vertical-align:middle;font-weight:bold;">Audience Rating Ref</td>
-             <td style="vertical-align:middle;font-weight:bold;">Annotation</td>
-             <td style="vertical-align:middle;font-weight:bold;">Annotation Type</td>
-             <td style="vertical-align:middle;font-weight:bold;">Annotation Ref</td>
-             <td style="vertical-align:middle;font-weight:bold;">Rights</td>
-             <td style="vertical-align:middle;font-weight:bold;">Rights Link</td>
+             <th><span style="float:left;min-width: 100px;" ><i class="icon-flag "></i></span></th>
+             <th><span style="float:left;min-width: 100px;" >AA GUID</span></th>
+             <th><span style="float:left;min-width: 100px;" >Local ID</span></th>
+             <th><span style="float:left;min-width: 100px;"  width="200">Titles</span></th>
+             <th><span style="float:left;min-width: 100px;"  >Titles Type</span></th>
+             <th><span style="float:left;min-width: 100px;" >Titles Ref</span></th>
+             <th><span style="float:left;min-width: 100px;" >Titles Source</span></th>
+             <th><span style="float:left;min-width: 100px;"  width="200">Description</span></th>
+             <th><span style="float:left;min-width: 100px;" >Description Type</span></th>
+             <th><span style="float:left;min-width: 100px;" >Subjects</span></th>
+             <th><span style="float:left;min-width: 100px;" >Subjects Ref</span></th>
+             <th><span style="float:left;min-width: 100px;" >Subjects Source</span></th>
+             <th><span style="float:left;min-width: 100px;" >Genre</span></th>
+             <th><span style="float:left;min-width: 100px;" >Genre Source</span></th>
+             <th><span style="float:left;min-width: 100px;" >Genre Ref</span></th>
+             <th><span style="float:left;min-width: 100px;" >Creator Name</span></th>
+             <th><span style="float:left;min-width: 100px;" >Creator Affiliation</span></th>
+             <th><span style="float:left;min-width: 100px;" >Creator Source</span></th>         
+             <th><span style="float:left;min-width: 100px;" >Creator Ref</span></th>
+             <th><span style="float:left;min-width: 100px;" >Creator Role</span></th>
+             <th><span style="float:left;min-width: 100px;" >Creator Role Source</span></th>
+             <th><span style="float:left;min-width: 100px;" >Contributor Name</span></th>
+             <th><span style="float:left;min-width: 100px;" >Contributor Affiliation</span></th>
+             <th><span style="float:left;min-width: 100px;" >Contributor Source</span></th>    
+             <th><span style="float:left;min-width: 100px;" >Contributor Ref</span></th>
+             <th><span style="float:left;min-width: 100px;" >Contributor Role</span></th>
+             <th><span style="float:left;min-width: 100px;" >Contributor Role Source</span></th>
+             <th><span style="float:left;min-width: 100px;" >Contributor Role Ref</span></th>
+             <th><span style="float:left;min-width: 100px;" >Publisher Name</span></th>
+             <th><span style="float:left;min-width: 100px;" >Publisher Affiliation</span></th>
+             <th><span style="float:left;min-width: 100px;" >Publisher Ref</span></th>
+             <th><span style="float:left;min-width: 100px;" >Publisher Role</span></th>
+             <th><span style="float:left;min-width: 100px;" >Publisher Role Source</span></th>
+             <th><span style="float:left;min-width: 100px;" >Assets Date</span></th>
+             <th><span style="float:left;min-width: 100px;" >Date Type</span></th>
+             <th><span style="float:left;min-width: 100px;" >Coverage</span></th>
+             <th><span style="float:left;min-width: 100px;" >Coverage Type</span></th>
+             <th><span style="float:left;min-width: 100px;" >Audience Level</span></th>
+             <th><span style="float:left;min-width: 100px;" >Audience Level Source</span></th>
+             <th><span style="float:left;min-width: 100px;" >Audience Level Ref</span></th>
+             <th><span style="float:left;min-width: 100px;" >Audience Rating</span></th>
+             <th><span style="float:left;min-width: 100px;" >Audience Rating Source</span></th>
+             <th><span style="float:left;min-width: 100px;" >Audience Rating Ref</span></th>
+             <th><span style="float:left;min-width: 100px;" >Annotation</span></th>
+             <th><span style="float:left;min-width: 100px;" >Annotation Type</span></th>
+             <th><span style="float:left;min-width: 100px;" >Annotation Ref</span></th>
+             <th><span style="float:left;min-width: 100px;" >Rights</span></th>
+             <th><span style="float:left;min-width: 100px;" >Rights Link</span></th>
            </tr>
            </thead>
             <tbody><?php 

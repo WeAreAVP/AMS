@@ -185,7 +185,7 @@
                                 {
                                     ?>
                                     <strong>Date:</strong><br/>
-                                    <p><?php echo $instantiation_detail->instantiation_date; ?></p>
+                                    <p><?php echo date('Y-m-d', $instantiation_detail->instantiation_date); ?></p>
                                     <br/>
                                 <?php } ?>
                                 <?php

@@ -4,7 +4,7 @@
        
         <?php $this->load->view('records/_list'); ?>
     </div>
-        <div class="span9">
+    <div class="span9" style="margin-left: 285px;">
             <?php /*?><div class="players">
                 AUDIO/VIDEO PLAYER
             </div><?php */?><!--end of players-->

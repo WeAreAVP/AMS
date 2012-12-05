@@ -78,7 +78,7 @@ class Sphinx_Model extends CI_Model
 
     public function update_indexes($index, $attr, $values)
     {
-        $this->sphinxsearch->update_attributes($index, $attr, $values ,true);
+        $this->sphinxsearch->update_attributes($index, $attr, $values, true);
     }
 
     /*
@@ -106,7 +106,7 @@ class Sphinx_Model extends CI_Model
         {
             $this->sphinxsearch->set_filter("assets_id", array($params['asset_id']));
         }
-        
+
         $mode = SPH_MATCH_EXTENDED;
         $this->sphinxsearch->set_array_result(true);
         $this->sphinxsearch->set_match_mode($mode);

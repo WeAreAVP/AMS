@@ -103,6 +103,35 @@ class MY_Controller extends CI_Controller
             'track_aspect_ratio' => 'Aspect Ratio',
         );
     }
+	/**
+	* Remove the session variables of facet search
+	*  
+	*/
+	function unset_facet_search()
+	{
+		$this->session->unset_userdata('custom_search');
+		$this->session->unset_userdata('organization');
+		$this->session->unset_userdata('nomination');
+		$this->session->unset_userdata('media_type');
+		$this->session->unset_userdata('physical_format');
+		$this->session->unset_userdata('digital_format');
+		$this->session->unset_userdata('generation');
+		$this->session->unset_userdata('file_size');
+		$this->session->unset_userdata('event_type');
+		$this->session->unset_userdata('event_outcome');
+	}
+	/**
+	* Set the session variables of facet search
+	* 
+	* @param array $search_values 
+	*/
+	function set_facet_search($search_values)
+	{
+		foreach ($search_values as $key => $value)
+		{
+			$this->session->set_userdata($key, $value);
+		}
+	}
 
 }
 

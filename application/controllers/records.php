@@ -119,28 +119,6 @@ class Records extends MY_Controller
             exit;
         }
     }
-
-    function unset_facet_search()
-    {
-        $this->session->unset_userdata('organization');
-        $this->session->unset_userdata('nomination');
-        $this->session->unset_userdata('media_type');
-        $this->session->unset_userdata('physical_format');
-        $this->session->unset_userdata('digital_format');
-        $this->session->unset_userdata('generation');
-        $this->session->unset_userdata('file_size');
-        $this->session->unset_userdata('event_type');
-        $this->session->unset_userdata('event_outcome');
-    }
-
-    function set_facet_search($search_values)
-    {
-        foreach ($search_values as $key => $value)
-        {
-            $this->session->set_userdata($key, $value);
-        }
-    }
-
     /*
      *
      * To List All flagged

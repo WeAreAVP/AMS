@@ -1,5 +1,5 @@
 <div class="row-fluid">
-    <h2><?php echo $asset_details->title ?></h2>
+    <h2>Instantiation Details:<?php echo $asset_details->title ?></h2>
     <div class="span12 form-row">
 
         <?php $this->load->view('records/_list'); ?>
@@ -14,7 +14,7 @@
 
 
             <div class="my-navbar span12">
-                <div> Intellectual Content </div>
+                <div>Instantiation Details</div>
             </div>
 
             <div class="span12 form-row">

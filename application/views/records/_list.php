@@ -5,13 +5,14 @@
             {
                 $inst_id = FALSE;
                 $style = 'color:white;';
+				$heading='Instantiations';
             }
             else
                 $style = 'background:#F8F9F9;color:#08C;';
             ?>
-        <div class="my-navbar span12" style="<?php echo $style; ?>">
+        <div class="my-navbar span12" style=";<?php echo $style; ?>">
             
-            <div><a style="<?php echo $style; ?>" href="<?php echo site_url('records/details/' . $asset_id) ?>">Asset Information</a></div>
+            <div><a style=";<?php echo $style; ?>" href="<?php echo site_url('records/details/' . $asset_id) ?>">Instantiations</a></div>
         </div>
         <?php
         if (isset($asset_instantiations['records']) && !empty($asset_instantiations['records']))
@@ -27,6 +28,8 @@
                 ?>
                 <div class="container-sidebar" style="<?php echo $style; ?>"><h4><a style="<?php echo $style; ?>" href="<?php echo site_url('instantiations/detail/' . $asset_instantiation->id) ?>"><?php echo $asset_details->guid_identifier ?></a></h4>
                     <?php
+					 
+					 echo (isset($asset_instantiation->organization) && ($asset_instantiation->organization != NULL)) ? "Organization: " . $asset_instantiation->organization . '<br/>' : '';
                     echo (isset($asset_instantiation->asset_title) && ($asset_instantiation->asset_title != NULL)) ? "Title: " . $asset_instantiation->asset_title . '<br/>' : '';
                     echo (isset($asset_instantiation->instantiation_identifier) && ($asset_instantiation->instantiation_identifier != NULL)) ? "Instantiation ID: " . $asset_instantiation->instantiation_identifier . '<br/>' : '';
                     echo (isset($asset_instantiation->format_name) && ($asset_instantiation->format_name != NULL) ) ? "Format: " . $asset_instantiation->format_name . '<br/>' : '';

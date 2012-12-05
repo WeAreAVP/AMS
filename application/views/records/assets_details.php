@@ -1,13 +1,13 @@
 <div class="row-fluid">
-    <h2><?php echo $asset_details->title ?></h2>
+    <h2>Asset Details:<?php echo $asset_details->title ?></h2>
     <div class="span12 form-row">
        
         <?php $this->load->view('records/_list'); ?>
 
         <div class="span9">
-            <div class="players">
+            <?php /*?><div class="players">
                 AUDIO/VIDEO PLAYER
-            </div><!--end of players-->
+            </div><?php */?><!--end of players-->
             <div class="span12 button-after-player">
                 <button class="btn btn-large"><span class="icon-pencil"></span>Edit Asset</button>
                 <button class="btn btn-large"><span class="icon-download-alt"></span>Export Asset</button>

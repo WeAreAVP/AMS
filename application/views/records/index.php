@@ -32,8 +32,8 @@ if (!$isAjax)
 	             <th><span style="float:left;" ><i class="icon-flag "></i></span></th>
     	         <th><span style="float:left;min-width: 100px;" >AA GUID</span></th>
         	     <th><span style="float:left;min-width: 100px;" >Local ID</span></th>
-            	<th width="30%"><span style="float:left;min-width: 100px;" >Titles</span></th>
-             	<th width="20%"><span style="float:left;min-width: 100px;" >Description</span></th>
+            	<th ><span style="float:left;min-width: 100px;" >Titles</span></th>
+             	<th ><span style="float:left;min-width: 100px;" >Description</span></th>
             </tr>
             </thead>
             <tbody><?php 
@@ -100,8 +100,8 @@ if (!$isAjax)
 		}?>
    </table>
   </div>
-   <div style="display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;overflow: auto;width:865px;height: 450px;" id="full_table_view" >
-   	<table class="tablesorter table-freeze-custom table-bordered freeze-my-column1" id="assets_table1" style="margin-top:0px;margin-left: 1px; word-break: keep-all;"  ><?php 
+   <div style="display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;overflow: auto;width:865px;" id="full_table_view" >
+   	<table class="tablesorter table-freeze-custom table-bordered freeze-my-column1" id="assets_table1" style="margin-top:0px;margin-left: 1px; "  ><?php 
 		if(isset($records) && ($total>0))
 		{?>
         <thead>

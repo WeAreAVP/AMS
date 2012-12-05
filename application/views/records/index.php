@@ -394,10 +394,7 @@ if (!$isAjax)
                 //            frozenWidth: 150,   // optional
                 clearWidths: false  // optional
             });//freezeTableColumns
-        });
-		$(function() {
-                        			 
-            $('.freeze-my-column1').freezeTableColumns({
+             $('.freeze-my-column1').freezeTableColumns({
                 width:       860,   // required
                 height:      450,   // required
                 numFrozen:   0,     // optional
@@ -405,6 +402,7 @@ if (!$isAjax)
                 clearWidths: false  // optional
             });//freezeTableColumns
         });
+		
        $(window).load(function(){
            tab='<?php echo $current_tab;?>';
            if(tab=='simple'){

@@ -92,7 +92,7 @@ if (!$isAjax)
                 height:      600,   // required
                 numFrozen:   0,     // optional
                 //            frozenWidth: 150,   // optional
-                clearWidths: true  // optional
+                clearWidths: false  // optional
             });//freezeTableColumns
         });
                             

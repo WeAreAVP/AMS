@@ -106,7 +106,7 @@ if (!$isAjax)
 		{?>
         <thead>
             <tr>
-             <th><span style="float:left;min-width: 100px;" ><i class="icon-flag "></i></span></th>
+             <th><span style="float:left;" ><i class="icon-flag "></i></span></th>
              <th><span style="float:left;min-width: 100px;" >AA GUID</span></th>
              <th><span style="float:left;min-width: 100px;" >Local ID</span></th>
              <th><span style="float:left;min-width: 100px;"  width="200">Titles</span></th>
@@ -164,7 +164,7 @@ if (!$isAjax)
 				$asset_description=str_replace("(**)","N/A",$asset->description);
 				$asset_title=str_replace("(**)","N/A",$asset->asset_title);?>
 				<tr style="cursor: pointer;">
-			      <td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>
+			      <td ><i style="margin:0px" class="unflag"></i></td>
                   <td><?php 
 					if($guid_identifier)
 						echo $guid_identifier;

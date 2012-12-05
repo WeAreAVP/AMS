@@ -967,6 +967,14 @@
             success: function (result)
             { 
                 $('#data_container').html(result); 
+                	 
+                $('#instantiation_table').freezeTableColumns({
+                    width:       860,   // required
+                    height:      600,   // required
+                    numFrozen:   0,     // optional
+                    //            frozenWidth: 150,   // optional
+                    clearWidths: true  // optional
+                });//freezeTableColumns
                 $.unblockUI();
                                 
             }

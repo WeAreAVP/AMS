@@ -1,4 +1,4 @@
-<div class="span3 sticky" >
+<div class="span3 " id="comment" >
     <div class="sidebar">
         <?php
             if (!isset($inst_id) && empty($inst_id))
@@ -45,26 +45,20 @@
     </div>
     
     <script>
-	$(function(){ // document ready
- 
-		  if (!!$('.sticky').offset()) { // make sure ".sticky" element exists
-		 
-			var stickyTop = $('.sticky').offset().top; // returns number
-		 
-			$(window).scroll(function(){ // scroll event
-		 
-			  var windowTop = $(window).scrollTop(); // returns number
-		 
-			  if (stickyTop < windowTop){
-				$('.sticky').css({ position: 'fixed', top: 0 });
-			  }
-			  else {
-				$('.sticky').css('position','static');
-			  }
-		 
-			});
-		 
-		  }
- 
-		});
+	$(document).ready(function () {  
+  var top = $('#comment').offset().top - parseFloat($('#comment').css('marginTop').replace(/auto/, 0));
+  $(window).scroll(function (event) {
+    // what the y position of the scroll is
+    var y = $(this).scrollTop();
+  
+    // whether that's below the form
+    if (y >= top) {
+      // if so, ad the fixed class
+      $('#comment').addClass('fixed');
+    } else {
+      // otherwise remove it
+      $('#comment').removeClass('fixed');
+    }
+  });
+});
     </script>

@@ -1,5 +1,5 @@
 <div class="row-fluid">
-    <h2>Asset Details:<?php echo $asset_details->title ?></h2>
+    <h2>Asset Details: <?php echo $asset_details->title ?></h2>
     <div class="span12 form-row">
        
         <?php $this->load->view('records/_list'); ?>

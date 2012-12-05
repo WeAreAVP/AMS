@@ -5,14 +5,14 @@
             {
                 $inst_id = FALSE;
                 $style = 'color:white;';
-				$heading='Instantiations';
+				
             }
             else
                 $style = 'background:#F8F9F9;color:#08C;';
             ?>
         <div class="my-navbar span12" style=";<?php echo $style; ?>">
             
-            <div><a style=";<?php echo $style; ?>" href="<?php echo site_url('records/details/' . $asset_id) ?>">Instantiations</a></div>
+            <div><a style=";<?php echo $style; ?>" href="javascript:void(0);">Instantiations</a></div>
         </div>
         <?php
         if (isset($asset_instantiations['records']) && !empty($asset_instantiations['records']))

@@ -23,7 +23,7 @@ if (!$isAjax)
   	<strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
 	<?php echo $this->ajax_pagination->create_links(); ?>
   </div>
-   <div style="overflow: auto;width:865px;display:<?php if($current_tab=='simple'){ echo 'block';}else{echo "none"; }?>;" id="simple_view">
+   <div style="width:865px;display:<?php if($current_tab=='simple'){ echo 'block';}else{echo "none"; }?>;" id="simple_view">
    <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="assets_table" ><?php 
 		if(isset($records) && ($total>0))
 		{?>
@@ -99,7 +99,7 @@ if (!$isAjax)
 		}?>
    </table>
   </div>
-   <div style="display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;overflow: auto;width:865px;" id="full_table_view" >
+   <div style="display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;width:865px;" id="full_table_view" >
    	<table class="tablesorter table-freeze-custom table-bordered freeze-my-column1" id="assets_table1" style="margin-top:0px;margin-left: 1px; "  ><?php 
 		if(isset($records) && ($total>0))
 		{?>
@@ -389,7 +389,7 @@ if (!$isAjax)
                         			 
             $('.freeze-my-column').freezeTableColumns({
                 width:       860,   // required
-                height:      600,   // required
+                height:      450,   // required
                 numFrozen:   0,     // optional
                 //            frozenWidth: 150,   // optional
                 clearWidths: false  // optional

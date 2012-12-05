@@ -1,4 +1,4 @@
-<div class="span3 " id="comment" >
+<div class="span3">
     <div class="sidebar">
         <?php
             if (!isset($inst_id) && empty($inst_id))
@@ -43,28 +43,3 @@
 <?php } ?>
 
     </div>
-    
-    <script>
-	$(document).ready(function () {  
-  var top = $('#comment').offset().top - parseFloat($('#comment').css('marginTop').replace(/auto/, 0));
-  $(window).scroll(function (event) {
-    // what the y position of the scroll is
-    var y = $(this).scrollTop();
-  
-    // whether that's below the form
-    if (y >= top) {
-      // if so, ad the fixed class
-      $('#comment').addClass('fixed');
-    } else {
-      // otherwise remove it
-      $('#comment').removeClass('fixed');
-    }
-  });
-});
-    </script>
-    <style>
-    
-#comment.fixed {
-  position: fixed;
-  top: 0;
-}</style>

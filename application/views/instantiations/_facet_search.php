@@ -805,7 +805,7 @@
             
             name=$('#search').val();  
             if(isRemoved==1){
-                $('#keyword_field_main btn-img').each(function(){
+                $('#keyword_field_main .btn-img').each(function(){
                     $(this).remove();
                 });
                 $('#keyword_field_main_search').val('');
@@ -823,7 +823,7 @@
             }
             else{
                 if($('#search').val()!=''){
-                    $('#keyword_field_main btn-img').each(function(){
+                    $('#keyword_field_main .btn-img').each(function(){
                         $(this).remove();
                     });
                     $('#add_keyword').hide(); 
@@ -914,7 +914,7 @@
     {
         if(type=='keyword_field_main'){
             $('#'+type).hide();
-            $('#keyword_field_main btn-img').each(function(){
+            $('#keyword_field_main .btn-img').each(function(){
                 $(this).remove();
             });
         }
@@ -926,7 +926,7 @@
     }
     function resetKeyword(){
         
-        $('#keyword_field_main btn-img').each(function(){
+        $('#keyword_field_main .btn-img').each(function(){
             $(this).remove();
         });
         $('#keyword_field_main_search').val('');

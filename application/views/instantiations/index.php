@@ -17,7 +17,7 @@ if (!$isAjax)
                 <?php echo $this->ajax_pagination->create_links(); ?>
             </div>
             <div style="overflow: auto;width:865px;" id="instantiation-main">
-                <table class="table-freeze-custom table-bordered freeze-my-column" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
+                <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
                     <thead>
                         <tr>
     <!--                        <th><span style="float:left;min-width: 80px;">Asset ID</span></th>-->

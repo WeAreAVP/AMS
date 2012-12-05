@@ -353,7 +353,7 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li class="dropdown"><a href="#">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+                    <li class="dropdown"><a href="#" style="white-space: normal;">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
                         <ul class="sub-menu dropdown-menu">
                             <li href="javascript://;" onclick="add_custom_token('Title','asset_title');"><a>Title</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('Subject','asset_subject');">Subject</a></li>
@@ -369,7 +369,7 @@
 
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="#">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+                    <li class="dropdown"><a href="#"  style="white-space: normal;">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
                         <ul class="sub-menu dropdown-menu">
                             <li><a href="javascript://;" onclick="add_custom_token('ID','instantiation_identifier');">ID</a></li>
                             <li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_source');">Identifier Source</a></li>

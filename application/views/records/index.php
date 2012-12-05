@@ -29,11 +29,11 @@ if (!$isAjax)
 		{?>
         <thead>
             <tr>
-	             <th><span style="float:left;min-width: 100px;" ><i class="icon-flag "></i></span></th>
+	             <th><span style="float:left;" ><i class="icon-flag "></i></span></th>
     	         <th><span style="float:left;min-width: 100px;" >AA GUID</span></th>
         	     <th><span style="float:left;min-width: 100px;" >Local ID</span></th>
-            	<th><span style="float:left;min-width: 100px;" >Titles</span></th>
-             	<th><span style="float:left;min-width: 100px;" >Description</span></th>
+            	<th width="30%"><span style="float:left;min-width: 100px;" >Titles</span></th>
+             	<th width="20%"><span style="float:left;min-width: 100px;" >Description</span></th>
             </tr>
             </thead>
             <tbody><?php 

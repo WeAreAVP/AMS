@@ -101,7 +101,7 @@ if (!$isAjax)
    </table>
   </div>
    <div style="display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;overflow: auto;width:865px;height: 450px;" id="full_table_view" >
-   	<table class="tablesorter table-freeze-custom table-bordered freeze-my-column" style="margin-top:0px;margin-left: 1px; word-break: keep-all;"  ><?php 
+   	<table class="tablesorter table-freeze-custom table-bordered freeze-my-column1" style="margin-top:0px;margin-left: 1px; word-break: keep-all;"  ><?php 
 		if(isset($records) && ($total>0))
 		{?>
         <thead>
@@ -383,4 +383,30 @@ if (!$isAjax)
         {?>
  </div>
 </div>
+ <script type="text/javascript">
+                                   
+                                    
+        $(function() {
+                        			 
+            $('.freeze-my-column').freezeTableColumns({
+                width:       860,   // required
+                height:      600,   // required
+                numFrozen:   0,     // optional
+                //            frozenWidth: 150,   // optional
+                clearWidths: false  // optional
+            });//freezeTableColumns
+        });
+		$(function() {
+                        			 
+            $('.freeze-my-column1').freezeTableColumns({
+                width:       860,   // required
+                height:      600,   // required
+                numFrozen:   0,     // optional
+                //            frozenWidth: 150,   // optional
+                clearWidths: false  // optional
+            });//freezeTableColumns
+        });
+                            
+    </script>
 <?php }?>
+

@@ -982,6 +982,15 @@
                 //            frozenWidth: 150,   // optional
                 clearWidths: false  // optional
             });//freezeTableColumns
+			 tab='<?php echo $current_tab;?>';
+			   if(tab=='simple'){
+				   $('#simple_view').show();
+				   $('#full_table_view').hide();
+			   }
+			   else if(tab=='full_table'){
+				   $('#simple_view').hide();
+				   $('#full_table_view').show();
+			   }
                 $.unblockUI();
                                 
             }

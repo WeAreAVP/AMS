@@ -3,7 +3,7 @@
     <div class="span12 form-row">
        
         <?php $this->load->view('records/_list'); ?>
-
+    </div>
         <div class="span9">
             <?php /*?><div class="players">
                 AUDIO/VIDEO PLAYER

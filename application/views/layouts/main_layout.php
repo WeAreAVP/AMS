@@ -21,6 +21,7 @@
 //        echo link_js('jquery-powertable.js');
         echo link_js('jquery.multiselect.min.js');
         echo link_js('jquery.dataTables.js');
+        echo link_js('FixedColumns.js');
 
 
         echo link_tag("css/tableSorter.css");

@@ -94,7 +94,7 @@ if (!$isAjax)
                  "bSort": false,
                 "sScrollY": 200,
                 "sScrollX": "100%",
-                "sScrollXInner": "110%"
+//                "sScrollXInner": "110%"
             });
              new FixedHeader( oTable );
             $.extend( $.fn.dataTableExt.oStdClasses, {

@@ -87,7 +87,7 @@ if (!$isAjax)
     <script type="text/javascript">
         $(function() {
             oTable = $('#instantiation_table').dataTable({
-                    "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>"
+                    "sDom": "<'row'<'span9'l><'span9'f>r>t<'row'<'span9'i><'span9'p>>"
                 });
                 $.extend( $.fn.dataTableExt.oStdClasses, {
     "sWrapper": "dataTables_wrapper form-inline"

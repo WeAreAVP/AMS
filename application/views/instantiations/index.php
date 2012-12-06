@@ -17,8 +17,8 @@ if (!$isAjax)
                 <?php echo $this->ajax_pagination->create_links(); ?>
             </div>
             <div style="overflow:hidden;width:865px;" id="instantiation-main">
-                <div  id="jui" class="demo_jui">
-                <table class="tablesorter table table-bordered display" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
+               
+                <table class="tablesorter table table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
                     <thead>
                         <tr>
     <!--                        <th><span style="float:left;min-width: 80px;">Asset ID</span></th>-->
@@ -64,7 +64,7 @@ if (!$isAjax)
                     </tbody>
 
                 </table>
-                    </div>
+                    
             </div>
 
             <div style="text-align: right;width: 860px;">

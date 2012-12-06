@@ -6,7 +6,7 @@ class User_Settings extends CI_Model
 		parent::__construct();
 
 		$this->_prefix = '';		
-		$this->_table = $this->_prefix.$this->config->item('user_settings');
+		$this->_table = $this->_prefix.'user_settings';
 	}
 	
 	function add_settings($data)
@@ -19,6 +19,7 @@ class User_Settings extends CI_Model
 	{
 		$this->db->where('user_id', $user_id);
 		$this->db->where('table_type', $table_type);
+		
 		if(!empty($table_subtype) )
 			$this->db->where('table_subtype', $table_subtype);
 		return $this->db->get($this->_table);

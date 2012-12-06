@@ -78,12 +78,7 @@ class Records extends MY_Controller
         $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $param = array('index' => 'assets_list');
         $records = $this->sphinx->assets_listing($param, $offset);
-		if($records['total_count']>0)
-		{
-			$this->
-			$data['table_order']=$this->config->item('assets_setting');
-		}
-        $data['total'] = $records['total_count'];
+		$data['total'] = $records['total_count'];
         $config['total_rows'] = $data['total'];
         $config['per_page'] = 100;
         $data['records'] = $records['records'];

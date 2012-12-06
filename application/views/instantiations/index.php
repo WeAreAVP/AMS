@@ -91,17 +91,19 @@ if (!$isAjax)
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
-                 "bSort": false,
-//                "sScrollY": 200,
-//                "sScrollX": "100%",
-//                "sScrollXInner": "110%"
+                "bSort": false,
+                //                "sScrollY": 200,
+                //                "sScrollX": "100%",
+                //                "sScrollXInner": "110%"
             });
-             new FixedHeader( oTable );
+            new FixedHeader( oTable,{
+                "offsetTop": 80
+            } );
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
         });
-                    
-                                    
+                        
+                                        
     </script>
 <?php } ?>

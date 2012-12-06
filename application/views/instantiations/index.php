@@ -1,5 +1,5 @@
 <style type="text/css">
-    .tablewrapper{ width: 860; height: 500px; overflow: auto; border: solid 2px #999; }
+    .tablewrapper{ width: 860; height: 500px; overflow: auto; }
 
     table{ width: 900px; font-size: 11px; }
     table th, 
@@ -42,7 +42,7 @@ if (!$isAjax)
             </div>
             <div id="instantiation-main" class="tablewrapper">
     <!--                <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">-->
-                <table class="freeze-my-column" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
+                <table class=" tablesorter table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
                     <thead>
                         <tr>
                             <th data-ptcolumn="nomination"><span style="float:left;min-width: 100px;">Nomination </span></th>

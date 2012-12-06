@@ -96,6 +96,7 @@ if (!$isAjax)
                 "sScrollX": "100%",
                 "sScrollXInner": "110%"
             });
+             new FixedHeader( oTable );
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );

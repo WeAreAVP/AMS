@@ -11,7 +11,7 @@ class User_Settings extends CI_Model
 	
 	function add_settings($data)
 	{
-		$this->db->insert($this->_table);
+		$this->db->insert($this->_table,$data);
 		return $this->db->insert_id();
 	}
 

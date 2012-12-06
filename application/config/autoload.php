@@ -83,7 +83,7 @@ $autoload['helper'] = array('html', 'url', 'form', 'common_helper','email');
   |
  */
 
-$autoload['config'] = array('sphinxsearch');
+$autoload['config'] = array('sphinxsearch','user_setting');
 
 
 /*

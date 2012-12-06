@@ -91,6 +91,7 @@ if (!$isAjax)
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
+                 "bSort": false,
                 "sScrollY": 200,
                 "sScrollX": "100%",
                 "sScrollXInner": "110%"

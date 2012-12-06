@@ -14,6 +14,13 @@
 			table .ptdragover{ border-left: dashed 2px #A04334; padding-left: 8px; }
 			table th .ptdraghandle{ text-decoration: none; font-weight: bold; font-size: 14px; padding: 0 4px; cursor: move; }
 			table th .ptshowhide{ text-decoration: none; font-weight: bold; font-size: 14px; padding: 0 4px; }
+            
+            ul#tableController{ float: right; padding: 0; width: 175px; }
+			ul#tableController li{ list-style: none; margin: 5px 0; padding: 5px 5px; color: #777; border-bottom: solid 2px #eee; }
+			ul#tableController li[data-ptcolumnvisible='true']{ color: #000; border-bottom: solid 2px #aaa; }
+			ul#tableController li.ptdragover{ border: dashed 2px #A04334; padding: 3px 3px 5px 3px; }
+			ul#tableController li .ptdraghandle{ text-decoration: none; font-weight: bold; padding: 0 4px; font-size: 14px; cursor: move; float: right;}
+			ul#tableController li .ptshowhide{ text-decoration: none; font-weight: bold; padding: 0 4px; font-size: 14px;  }
 </style>
 <?php
 if (!$isAjax)
@@ -33,7 +40,7 @@ if (!$isAjax)
                 <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
     <?php echo $this->ajax_pagination->create_links(); ?>
             </div>
-            <div style="overflow:hidden;width:865px;" id="instantiation-main" class="tablewrapper">
+            <div id="instantiation-main" class="tablewrapper">
     <!--                <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">-->
                 <table class="" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
                     <thead>

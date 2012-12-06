@@ -119,6 +119,13 @@ if (!$isAjax)
             });
 
             $('pre').litelighter({  });
+            $('.freeze-my-column').freezeTableColumns({
+                width:       860,   // required
+                height:      600,   // required
+                numFrozen:   0,     // optional
+                //            frozenWidth: 150,   // optional
+                clearWidths: false  // optional
+            });//freezeTableColumns
         });                                   
                                                         
         //        $(function() {

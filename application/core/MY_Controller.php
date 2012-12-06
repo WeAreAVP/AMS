@@ -77,6 +77,7 @@ class MY_Controller extends CI_Controller
 				}
 				$assets_tables_data['view_settings']=json_encode($views_settings);
 				$assets_tables_data['created_at']=date('Y-m-d H:i:s');
+				print_r($assets_tables_data);
 				$this->user_settings->insert_settings($assets_tables_data);
 			}
 		}

@@ -1,3 +1,20 @@
+<style type="text/css">
+    .tablewrapper{ width: 500px; height: 500px; overflow: auto; border: solid 2px #999; }
+
+			table{ width: 900px; font-size: 11px; }
+			table th, 
+			table td{ padding: 5px 5px 5px 10px; min-width: 80px;}
+			table th{ background-color: #f8f8f8; text-align: left; }
+			table tr.bg0 td{ background-color: #fff; }
+			table tr.bg1 td{ background-color: #f4f4f4; }
+			/* pt specific styles: ptfixed, ptdragover, ptdraghandle, ptshowhide */
+			table tr th.ptfixed{ background-color: #F1F8FA; border-bottom: solid 1px #aaa; opacity: 0.95; filter: alpha(95); }
+			table tr.bg0 td.ptfixed{ background-color: #eee; border-right: solid 1px #aaa;  opacity: 0.95; filter: alpha(95); }
+			table tr.bg1 td.ptfixed{ background-color: #e4e4e4; border-right: solid 1px #aaa;  opacity: 0.95; filter: alpha(95); }
+			table .ptdragover{ border-left: dashed 2px #A04334; padding-left: 8px; }
+			table th .ptdraghandle{ text-decoration: none; font-weight: bold; font-size: 14px; padding: 0 4px; cursor: move; }
+			table th .ptshowhide{ text-decoration: none; font-weight: bold; font-size: 14px; padding: 0 4px; }
+</style>
 <?php
 if (!$isAjax)
 {
@@ -16,9 +33,9 @@ if (!$isAjax)
                 <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
     <?php echo $this->ajax_pagination->create_links(); ?>
             </div>
-            <div style="overflow:hidden;width:865px;" id="instantiation-main">
+            <div style="overflow:hidden;width:865px;" id="instantiation-main" class="tablewrapper">
     <!--                <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">-->
-                <table class="tablesorter table table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
+                <table class="" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
                     <thead>
                         <tr>
                             <th data-ptcolumn="nomination"><span style="float:left;min-width: 100px;">Nomination </span></th>

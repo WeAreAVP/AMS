@@ -88,6 +88,9 @@ if (!$isAjax)
         $(function() {
             oTable = $('#instantiation_table').dataTable({
                 "sDom": "Rlfrtip",
+                "oColReorder": {
+                    "aiOrder": [ 0, 1, 2, 3, 4,5,6,7,8,9,10,11,12]
+                },
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
@@ -96,14 +99,14 @@ if (!$isAjax)
                 "sScrollX": "100%",
                 //                "sScrollXInner": "110%"
             });
-//            new FixedHeader( oTable,{
-//                "offsetTop": 80
-//            } );
+            //            new FixedHeader( oTable,{
+            //                "offsetTop": 80
+            //            } );
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
         });
-                        
-                                        
+                            
+                                            
     </script>
 <?php } ?>

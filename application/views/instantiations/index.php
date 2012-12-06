@@ -17,7 +17,7 @@ if (!$isAjax)
                 <?php echo $this->ajax_pagination->create_links(); ?>
             </div>
             <div style="overflow:hidden;width:865px;" id="instantiation-main">
-               
+
                 <table class="table table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
                     <thead>
                         <tr>
@@ -64,14 +64,14 @@ if (!$isAjax)
                     </tbody>
 
                 </table>
-                    
+
             </div>
 
             <div style="text-align: right;width: 860px;">
                 <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
                 <?php echo $this->ajax_pagination->create_links(); ?>
             </div>
-        <?php
+            <?php
         } else
         {
             ?>
@@ -87,13 +87,16 @@ if (!$isAjax)
     <script type="text/javascript">
         $(function() {
             oTable = $('#instantiation_table').dataTable({
-                    "sDom": "<'row'<'span9'l><'span9'f>r>t<'row'<'span9'i><'span9'p>>"
-                });
-                $.extend( $.fn.dataTableExt.oStdClasses, {
-    "sWrapper": "dataTables_wrapper form-inline"
-} );
+                "sDom": "<'row'<'span9'l><'span9'f>r>t<'row'<'span9'i><'span9'p>>",
+                'bPaginate':false,
+                'bInfo':false,
+                'bFilter': false
+            });
+            $.extend( $.fn.dataTableExt.oStdClasses, {
+                "sWrapper": "dataTables_wrapper form-inline"
+            } );
         });
-            
-                            
+                
+                                
     </script>
 <?php } ?>

@@ -58,7 +58,8 @@ class MY_Controller extends CI_Controller
 		if (is_route_method(array('records' => array('index'))))
         {
 			$res=$this->user_settings->get_setting($this->user_id,'assets','full');
-			if(isset($res) && !empty($res))
+			var_dump($res);
+			if($res)
 			{
 				
 			}
@@ -103,7 +104,7 @@ class MY_Controller extends CI_Controller
 				}
 				$assets_tables_data['view_settings']=json_encode($views_settings);
 				$assets_tables_data['created_at']=date('Y-m-d H:i:s');
-				$this->user_settings->add_settings($assets_tables_data);
+				$this->user_settings->insert_settings($assets_tables_data);
 			}
 		}
 	}

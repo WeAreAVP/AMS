@@ -22,7 +22,10 @@ class User_Settings extends CI_Model
 		
 		if(!empty($table_subtype) )
 			$this->db->where('table_subtype', $table_subtype);
-		return $this->db->get($this->_table);
+		$res=$this->db->get($this->_table);
+		if(isset($res) && !empty($res))
+			return $res->row();
+		return false;
 	}
 
 	function delete_setting($id)

@@ -16,7 +16,7 @@ if (!$isAjax)
                 <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
                 <?php echo $this->ajax_pagination->create_links(); ?>
             </div>
-            <div id="instantiation-main">
+            <div style="width: 865px;overflow: hidden;" id="instantiation-main">
 
                 <table class="table table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
                     <thead>
@@ -90,13 +90,16 @@ if (!$isAjax)
                 "sDom": "<'row'<'span9'l><'span9'f>r>t<'row'<'span9'i><'span9'p>>",
                 'bPaginate':false,
                 'bInfo':false,
-                'bFilter': false
+                'bFilter': false,
+                "sScrollY": 200,
+                "sScrollX": "100%",
+                "sScrollXInner": "110%"
             });
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
         });
-                
-                                
+                    
+                                    
     </script>
 <?php } ?>

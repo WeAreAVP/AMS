@@ -12,20 +12,24 @@
         echo link_js('jquery-ui-1.9.0.custom.js');
         echo link_js('jquery.tablesorter.js');
         echo link_js('bootstrap/bootstrap.js');
-        echo link_js('jquery.freezetablecolumns.1.1.js');
+//        echo link_js('jquery.freezetablecolumns.1.1.js');
         echo link_js('highcharts.js');
         echo link_js('modules/exporting.js');
         echo link_js('jquery.blockUI.js');
         echo link_js('jquery.blockUI.js');
-        echo link_js('resources/jquery-litelighter.js');
-        echo link_js('jquery-powertable.js');
+//        echo link_js('resources/jquery-litelighter.js');
+//        echo link_js('jquery-powertable.js');
         echo link_js('jquery.multiselect.min.js');
+        echo link_js('jquery.dataTables.js');
 
 
         echo link_tag("css/tableSorter.css");
         echo link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
         echo link_tag("css/bootstrap/bootstrap.css");
         echo link_tag("css/style.css");
+        echo link_tag("css/demo_table.css");
+        echo link_tag("css/demo_table_jui.css");
+        echo link_tag("css/demo_page.css");
         ?> 
         <script src="<?php echo base_url('tiny_mce/tiny_mce.js') ?>" type="text/javascript"></script>
         <?php echo link_js('custom.js'); ?>

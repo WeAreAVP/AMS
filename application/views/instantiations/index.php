@@ -42,7 +42,7 @@ if (!$isAjax)
             </div>
             <div id="instantiation-main" class="tablewrapper">
     <!--                <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">-->
-                <table class="" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
+                <table class="freeze-my-column" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
                     <thead>
                         <tr>
                             <th data-ptcolumn="nomination"><span style="float:left;min-width: 100px;">Nomination </span></th>

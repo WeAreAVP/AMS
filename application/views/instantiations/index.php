@@ -87,7 +87,7 @@ if (!$isAjax)
     <script type="text/javascript">
         $(function() {
             oTable = $('#instantiation_table').dataTable({
-                "sDom": "<'row'<'span9'l><'span9'f>r>t<'row'<'span9'i><'span9'p>>",
+                "sDom": "<'row'<'span9'l><'span9'f>r>t<'row'<'span9'i><'span9'p>> Rlfrtip",
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,

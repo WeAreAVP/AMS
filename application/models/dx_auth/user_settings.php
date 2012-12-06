@@ -9,7 +9,7 @@ class User_Settings extends CI_Model
 		$this->_table = $this->_prefix.'user_settings';
 	}
 	
-	function add_settings($data)
+	function insert_settings($data)
 	{
 		$this->db->insert($this->_table,$data);
 		return $this->db->insert_id();

@@ -18,7 +18,7 @@ if (!$isAjax)
             </div>
             <div style="width: 865px;overflow: hidden;" id="instantiation-main">
 
-                <table class="table table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
+                <table class="table table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 2px;">
                     <thead>
                         <tr>
     <!--                        <th><span style="float:left;min-width: 80px;">Asset ID</span></th>-->
@@ -91,9 +91,10 @@ if (!$isAjax)
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
-                "sScrollY": 200,
+                "sScrollY": '100%',
                 "sScrollX": "100%",
-                "sScrollXInner": "110%"
+                "sScrollXInner": "110%",
+                "sScrollYInner": "110%"
             });
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"

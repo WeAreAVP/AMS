@@ -61,12 +61,14 @@ if (!$isAjax)
                         ?>
                     </tbody>
                 </table>
-                <pre class="code example" data-lllanguage="js" style="display: none;">$pt = $('#instantiation_table').powertable({
+                <div style="display: none;">
+                <pre class="code example" data-lllanguage="js">$pt = $('#instantiation_table').powertable({
 	fixedColumns: ['nomination'],
 	fixedRows: [0],
 	moveDisabled: ['nomination'],
 	showHideDisabled: ['nomination']
 });</pre>
+                    </div>
             </div>
 
             <div style="text-align: right;width: 860px;">

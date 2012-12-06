@@ -22,6 +22,7 @@
         echo link_js('jquery.multiselect.min.js');
         echo link_js('jquery.dataTables.js');
         echo link_js('FixedHeader.js');
+        echo link_js('ColReorder.js');
 
 
         echo link_tag("css/tableSorter.css");

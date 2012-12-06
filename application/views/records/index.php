@@ -23,7 +23,7 @@ if (!$isAjax)
   	<strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
 	<?php echo $this->ajax_pagination->create_links(); ?>
   </div>
-   <div style="width:865px;overflow:hidden;" id="simple_view">
+   <div style="width:865px;overflow:hidden;display:<?php if($current_tab=='simple'){ echo 'block';}else{echo "none"; }?>;" id="simple_view">
    <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="assets_table" ><?php 
 		if(isset($records) && ($total>0))
 		{?>
@@ -99,7 +99,7 @@ if (!$isAjax)
 		}?>
    </table>
   </div>
-   <div style="width:865px;overflow:hidden;" id="full_table_view" >
+   <div style="width:865px;overflow:hidden;display:<?php if($current_tab=='full_table_view'){ echo 'block';}else{echo "none"; }?>;" id="full_table_view" >
    	<table class="tablesorter table-freeze-custom table-bordered freeze-my-column1" id="assets_table1" style="margin-top:0px;margin-left: 1px; "  ><?php 
 		if(isset($records) && ($total>0))
 		{?>
@@ -382,42 +382,5 @@ if (!$isAjax)
         {?>
  </div>
 </div>
- <script type="text/javascript">
-                                   
-                                    
-        $(function() {
-                        			 
-            $('.freeze-my-column').freezeTableColumns({
-                width:       860,   // required
-                height:      450,   // required
-                numFrozen:   0,     // optional
-                //            frozenWidth: 150,   // optional
-                clearWidths: false  // optional
-            });//freezeTableColumns
-             $('.freeze-my-column1').freezeTableColumns({
-                width:       860,   // required
-                height:      450,   // required
-                numFrozen:   0,     // optional
-                //            frozenWidth: 150,   // optional
-                clearWidths: false  // optional
-            });//freezeTableColumns
-        });
-		
-       $(window).load(function(){
-           tab='<?php echo $current_tab;?>';
-           if(tab=='simple'){
-				   $('#simple_view').show();
-				   $('#full_table_view').hide();
-				   $('#simple_li').addClass("active");
-				   $('#full_table_li').removeClass("active");
-			   }
-			   else if(tab=='full_table'){
-				   $('#simple_view').hide();
-				   $('#full_table_view').show();
-				   $('#full_table_li').addClass("active");
-				   $('#simple_li').removeClass("active");
-			   }
-       });                     
-    </script>
 <?php }?>
 

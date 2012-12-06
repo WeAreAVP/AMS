@@ -967,34 +967,6 @@
             success: function (result)
             { 
                 $('#data_container').html(result); 
-                	 
-//                $('.freeze-my-column').freezeTableColumns({
-//                    width:       860,   // required
-//                    height:      600,   // required
-//                    numFrozen:   0,     // optional
-//                    //            frozenWidth: 150,   // optional
-//                    clearWidths: true  // optional
-//                });//freezeTableColumns
-//                 $('.freeze-my-column1').freezeTableColumns({
-//                width:       860,   // required
-//                height:      450,   // required
-//                numFrozen:   0,     // optional
-//                //            frozenWidth: 150,   // optional
-//                clearWidths: false  // optional
-//            });//freezeTableColumns
-//			 tab='<?php echo $current_tab;?>';
-//			   if(tab=='simple'){
-//				   $('#simple_view').show();
-//				   $('#full_table_view').hide();
-//				   $('#simple_li').addClass("active");
-//				   $('#full_table_li').removeClass("active");
-//			   }
-//			   else if(tab=='full_table'){
-//				   $('#simple_view').hide();
-//				   $('#full_table_view').show();
-//				   $('#full_table_li').addClass("active");
-//				   $('#simple_li').removeClass("active");
-//			   }
                 $.unblockUI();
                                 
             }

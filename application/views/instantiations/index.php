@@ -87,12 +87,11 @@ if (!$isAjax)
     <script type="text/javascript">
         $(function() {
             oTable = $('#instantiation_table').dataTable({
-                    "bJQueryUI": true,
-                    'bAutoWidth': false,                    
-                    "sPaginationType": "full_numbers",
-                    "bLengthChange": false,
-                    "iDisplayLength": 100,
+                    "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>"
                 });
+                $.extend( $.fn.dataTableExt.oStdClasses, {
+    "sWrapper": "dataTables_wrapper form-inline"
+} );
         });
             
                             

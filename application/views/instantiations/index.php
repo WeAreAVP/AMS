@@ -16,7 +16,7 @@ if (!$isAjax)
                 <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
                 <?php echo $this->ajax_pagination->create_links(); ?>
             </div>
-            <div id="instantiation-main">
+            <div style="width: 865px;overflow: scroll;" id="instantiation-main">
 
                 <table class="table table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;">
                     <thead>

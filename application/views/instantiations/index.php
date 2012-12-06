@@ -92,8 +92,8 @@ if (!$isAjax)
                 'bInfo':false,
                 'bFilter': false,
                  "bSort": false,
-                "sScrollY": 200,
-                "sScrollX": "100%",
+//                "sScrollY": 200,
+//                "sScrollX": "100%",
 //                "sScrollXInner": "110%"
             });
              new FixedHeader( oTable );

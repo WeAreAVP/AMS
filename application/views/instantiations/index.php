@@ -21,19 +21,19 @@ if (!$isAjax)
                 <table class="tablesorter table table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
                     <thead>
                         <tr>
-                            <th><span style="float:left;min-width: 100px;">Nomination </span></th>
-                            <th><span style="float:left;min-width: 100px;">Organization</span></th>
-                            <th style="min-width: 250px;">Asset Title</th>
-                            <th><span style="float:left;min-width: 100px;">Instantiation ID</span></th>
-                            <th><span style="float:left;min-width: 130px;">Instantiation ID Source</span></th>
-                            <th><span style="float:left;min-width: 90px;">Format Type</span></th>
-                            <th><span style="float:left;min-width: 70px;">Duration</span></th>
-                            <th><span style="float:left;min-width: 90px;">Date</span></th>
-                            <th><span style="float:left;min-width: 90px;">Date Type</span></th>
-                            <th><span style="float:left;min-width: 90px;">File size</span></th>
-                            <th><span style="float:left;min-width: 100px;">Unit of measure</span></th>
-                            <th><span style="float:left;min-width: 70px;">Colors</span></th>
-                            <th><span style="float:left;min-width: 70px;">Language</span></th>
+                            <th data-ptcolumn="nomination"><span style="float:left;min-width: 100px;">Nomination </span></th>
+                            <th data-ptcolumn="organization"><span style="float:left;min-width: 100px;">Organization</span></th>
+                            <th data-ptcolumn="asset_title">Asset Title</th>
+                            <th data-ptcolumn="instantiation_id"><span style="float:left;min-width: 100px;">Instantiation ID</span></th>
+                            <th data-ptcolumn="instantiation_id_source"><span style="float:left;min-width: 130px;">Instantiation ID Source</span></th>
+                            <th data-ptcolumn="format_type"><span style="float:left;min-width: 90px;">Format Type</span></th>
+                            <th data-ptcolumn="duration"><span style="float:left;min-width: 70px;">Duration</span></th>
+                            <th data-ptcolumn="date"><span style="float:left;min-width: 90px;">Date</span></th>
+                            <th data-ptcolumn="date_type"><span style="float:left;min-width: 90px;">Date Type</span></th>
+                            <th data-ptcolumn="file_size"><span style="float:left;min-width: 90px;">File size</span></th>
+                            <th data-ptcolumn="unit_of_measure"><span style="float:left;min-width: 100px;">Unit of measure</span></th>
+                            <th data-ptcolumn="color"><span style="float:left;min-width: 70px;">Colors</span></th>
+                            <th data-ptcolumn="language"><span style="float:left;min-width: 70px;">Language</span></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,10 +62,10 @@ if (!$isAjax)
                     </tbody>
                 </table>
                 <pre class="code example" data-lllanguage="js">$pt = $('#instantiation_table').powertable({
-	fixedColumns: ['description'],
+	fixedColumns: ['nomination'],
 	fixedRows: [0],
-	moveDisabled: ['description'],
-	showHideDisabled: ['description']
+	moveDisabled: ['nomination'],
+	showHideDisabled: ['nomination']
 });</pre>
             </div>
 

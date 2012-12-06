@@ -55,7 +55,7 @@ $config['assets_setting']=array("full"=>array(
         	     						"Titles"=>"asset_title",
 										"Description"=>"description"
 										));
-$config['instantiation_setting']=array(
+$config['instantiation_setting']=array("full"=>array(
 											"Nomination"=>"status",
 											"Organization"=>"organization",
 											"Asset_Title"=>"asset_title",
@@ -68,4 +68,4 @@ $config['instantiation_setting']=array(
                             				"File_size"=>"file_size",
 				                            "Unit_of_measure"=>"file_size_unit_of_measure",
                 				            "Colors"=>"color",
-				                            "Language"=>"language");
+				                            "Language"=>"language"));

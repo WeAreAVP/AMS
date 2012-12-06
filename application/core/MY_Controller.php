@@ -19,6 +19,7 @@ class MY_Controller extends CI_Controller
     public $station_id;
     public $user_details;
     public $can_compose_alert;
+	public $views_settings;
 
     function __construct()
     {
@@ -36,12 +37,75 @@ class MY_Controller extends CI_Controller
         $this->load->model('dx_auth/roles', 'roles');
         $this->load->model('email_template_model', 'email_template');
         $this->load->model('report_model');
+		$this->load->model('dx_auth/user_settings', 'user_settings');
+		
         if (!isset($this->user_id))
         {
             $this->_assing_user_info();
         }
+		if (is_route_method(array('records' => array('index'), 'instantiations' => array('index'))))
+		{
+			$this->_table_view_settings();
+		}
     }
-
+	/*
+		*
+		* To Create Assets and instantiation list view
+		*
+    */
+	function _table_view_settings()
+	{
+		if (is_route_method(array('records' => array('index'))))
+        {
+			$res=$this->user_settings->get_setting($this->user_id,'assets','full');
+			if(isset($res) && !empty($res))
+			{
+				
+			}
+			else
+			{
+				$assets_tables_data=array();
+				$assets_tables_data['user_id']=$this->user_id;
+				$assets_tables_data['table_type']='assets';
+				$assets_tables_data['table_subtype']='full';
+				$assets_tables_data['frozen_column']='0';
+				$table_order=$this->config->item('assets_setting');
+				$full_table_order=$table_order['full']; 
+				foreach($full_table_order as $key=>$value)
+				{
+					$views_settings[]=array("title"=>$key,"field"=>$value,"hidden"=>0);
+				}
+				$assets_tables_data['view_settings']=json_encode($views_settings);
+				$assets_tables_data['created_at']=date('Y-m-d H:i:s');
+				$this->user_settings->add_settings($assets_tables_data);
+			}
+		}
+		if (is_route_method(array('instantiations' => array('index'))))
+        {
+			$res=$this->user_settings->get_setting($this->user_id,'assets','full');
+			if(isset($res) && !empty($res))
+			{
+			
+			}
+			else
+			{
+				$assets_tables_data=array();
+				$assets_tables_data['user_id']=$this->user_id;
+				$assets_tables_data['table_type']='instantiation';
+				$assets_tables_data['table_subtype']='full';
+				$assets_tables_data['frozen_column']='0';
+				$table_order=$this->config->item('instantiation_setting');
+				$full_table_order=$table_order['full']; 
+				foreach($full_table_order as $key=>$value)
+				{
+					$views_settings[]=array("title"=>$key,"field"=>$value,"hidden"=>0);
+				}
+				$assets_tables_data['view_settings']=json_encode($views_settings);
+				$assets_tables_data['created_at']=date('Y-m-d H:i:s');
+				$this->user_settings->add_settings($assets_tables_data);
+			}
+		}
+	}
     /*
      * To Assign Current Login user info
      */

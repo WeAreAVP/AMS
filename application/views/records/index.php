@@ -26,31 +26,65 @@ if (!$isAjax)
    <div style="width:865px;overflow:hidden;display:<?php if($current_tab=='simple'){ echo 'block';}else{echo "none"; }?>;" id="simple_view">
    <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="assets_table" ><?php 
 		if(isset($records) && ($total>0))
-		{
-			$table_order=$this->config->item('assets_setting');
-			$simple_table_order=$table_order['simple'];
-			?>
-        	<thead>
+		{?>
+        <thead>
             <tr>
 	             <th><span style="float:left;" ><i class="icon-flag "></i></span></th>
-                 <?php 
-				 foreach($simple_table_order as $key=>$value)
-				 {?>
-    	         	<th><span style="float:left;min-width: 100px;" ><?php echo $key;?></span></th>
-				<?php }
-				?>
+    	         <th><span style="float:left;min-width: 100px;" >AA GUID</span></th>
+        	     <th><span style="float:left;min-width: 100px;" >Local ID</span></th>
+            	<th ><span style="float:left;min-width: 100px;" >Titles</span></th>
+             	<th ><span style="float:left;min-width: 100px;" >Description</span></th>
             </tr>
             </thead>
             <tbody><?php 
 			foreach($records as $asset)
-			{?>
+			{
+				
+				$guid_identifier= str_replace("(**)","N/A",$asset->guid_identifier);
+				$local_identifier= str_replace("(**)","N/A",$asset->local_identifier);
+				$asset_description=str_replace("(**)","N/A",$asset->description);
+				$asset_title=str_replace("(**)","N/A",$asset->asset_title);?>
 				<tr style="cursor: pointer;">
-			    	<td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>
-					<?php 
-			 		foreach($simple_table_order as $key=>$value)
-				 	{?>
-	                  <td><?php echo str_replace("(**)","N/A",$asset->$value);?></td><?php 
-					}?>
+			      <td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>
+                  <td><?php 
+					if($guid_identifier)
+						echo $guid_identifier;
+					else
+						echo 'N/A';?>
+                  </td>
+                  <td><?php 
+				  	if($local_identifier)
+						echo $local_identifier;
+					else
+						echo 'N/A';?>
+                  </td>
+			      <td>
+                  	
+                    	<a href="<?php echo site_url('records/details/'.$asset->id)?>" ><?php 
+							if($asset_title)
+								echo $asset_title;
+							else
+								echo 'N/A';?>
+						</a>
+                    
+                  </td>
+                  <td><?php 
+					if($asset_description)
+					{
+						
+						if(strlen($asset_description)>160)
+						{
+							$messages = str_split($asset_description , 160);
+							echo $messages[0].' ...';
+						}
+						else
+						{
+							echo $asset_description;
+						}
+					}
+					else 
+						echo 'N/A';?>
+                  </td>
      			</tr><?php 
 			}?>
 			</tbody>

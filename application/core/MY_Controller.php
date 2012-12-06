@@ -58,7 +58,6 @@ class MY_Controller extends CI_Controller
 		if (is_route_method(array('records' => array('index'))))
         {
 			$res=$this->user_settings->get_setting($this->user_id,'assets','full');
-			var_dump($res);
 			if($res)
 			{
 				

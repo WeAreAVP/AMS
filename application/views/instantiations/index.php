@@ -4,7 +4,7 @@ if (!$isAjax)
     ?>
     <div class="row-fluid">
         <div class="span3">
-            <?php $this->load->view('instantiations/_facet_search'); ?>
+    <?php $this->load->view('instantiations/_facet_search'); ?>
         </div>
         <div  class="span9" id="data_container">
         <?php } ?>
@@ -14,14 +14,13 @@ if (!$isAjax)
             ?>
             <div style="text-align: right;width: 860px;">
                 <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
-                <?php echo $this->ajax_pagination->create_links(); ?>
+    <?php echo $this->ajax_pagination->create_links(); ?>
             </div>
             <div style="overflow:hidden;width:865px;" id="instantiation-main">
-<!--                <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">-->
+    <!--                <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">-->
                 <table class="tablesorter table table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
                     <thead>
                         <tr>
-    <!--                        <th><span style="float:left;min-width: 80px;">Asset ID</span></th>-->
                             <th><span style="float:left;min-width: 100px;">Nomination </span></th>
                             <th><span style="float:left;min-width: 100px;">Organization</span></th>
                             <th style="min-width: 250px;">Asset Title</th>
@@ -56,21 +55,25 @@ if (!$isAjax)
                                 <td><?php echo ($value->file_size_unit_of_measure) ? $value->file_size_unit_of_measure : 'N/A'; ?></td>
                                 <td><?php echo ($value->color) ? $value->color : 'N/A'; ?></td>
                                 <td><?php echo ($value->language) ? $value->language : 'N/A'; ?></td>
-
                             </tr>
                             <?php
                         }
                         ?>
                     </tbody>
-
                 </table>
+                <pre class="code example" data-lllanguage="js">$pt = $('#instantiation_table').powertable({
+	fixedColumns: ['description'],
+	fixedRows: [0],
+	moveDisabled: ['description'],
+	showHideDisabled: ['description']
+});</pre>
             </div>
 
             <div style="text-align: right;width: 860px;">
                 <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
-                <?php echo $this->ajax_pagination->create_links(); ?>
+            <?php echo $this->ajax_pagination->create_links(); ?>
             </div>
-        <?php
+            <?php
         } else
         {
             ?>
@@ -84,18 +87,24 @@ if (!$isAjax)
         </div>
     </div>
     <script type="text/javascript">
-                                   
-                                    
-//        $(function() {
-//                        			 
-//            $('.freeze-my-column').freezeTableColumns({
-//                width:       860,   // required
-//                height:      600,   // required
-//                numFrozen:   0,     // optional
-//                //            frozenWidth: 150,   // optional
-//                clearWidths: false  // optional
-//            });//freezeTableColumns
-//        });
-                            
+                	$(document).ready(function(){
+				$('pre.example').each(function(){
+					eval($(this).text());
+				});
+
+				$('pre').litelighter({  });
+			});                                   
+                                                    
+        //        $(function() {
+        //                        			 
+        //            $('.freeze-my-column').freezeTableColumns({
+        //                width:       860,   // required
+        //                height:      600,   // required
+        //                numFrozen:   0,     // optional
+        //                //            frozenWidth: 150,   // optional
+        //                clearWidths: false  // optional
+        //            });//freezeTableColumns
+        //        });
+                                            
     </script>
 <?php } ?>

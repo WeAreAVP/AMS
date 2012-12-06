@@ -91,10 +91,9 @@ if (!$isAjax)
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
-                "sScrollY": '100%',
+                "sScrollY": 200,
                 "sScrollX": "100%",
-                "sScrollXInner": "110%",
-                "sScrollYInner": "110%"
+                "sScrollXInner": "110%"
             });
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"

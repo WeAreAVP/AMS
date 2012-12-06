@@ -27,9 +27,9 @@
         echo link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
         echo link_tag("css/bootstrap/bootstrap.css");
         echo link_tag("css/style.css");
-        echo link_tag("css/demo_table.css");
-        echo link_tag("css/demo_table_jui.css");
-        echo link_tag("css/demo_page.css");
+//        echo link_tag("css/demo_table.css");
+//        echo link_tag("css/demo_table_jui.css");
+//        echo link_tag("css/demo_page.css");
         ?> 
         <script src="<?php echo base_url('tiny_mce/tiny_mce.js') ?>" type="text/javascript"></script>
         <?php echo link_js('custom.js'); ?>

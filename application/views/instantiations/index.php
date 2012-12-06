@@ -17,7 +17,8 @@ if (!$isAjax)
                 <?php echo $this->ajax_pagination->create_links(); ?>
             </div>
             <div style="overflow:hidden;width:865px;" id="instantiation-main">
-                <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
+<!--                <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">-->
+                <table class="tablesorter table table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;">
                     <thead>
                         <tr>
     <!--                        <th><span style="float:left;min-width: 80px;">Asset ID</span></th>-->
@@ -85,16 +86,16 @@ if (!$isAjax)
     <script type="text/javascript">
                                    
                                     
-        $(function() {
-                        			 
-            $('.freeze-my-column').freezeTableColumns({
-                width:       860,   // required
-                height:      600,   // required
-                numFrozen:   0,     // optional
-                //            frozenWidth: 150,   // optional
-                clearWidths: false  // optional
-            });//freezeTableColumns
-        });
+//        $(function() {
+//                        			 
+//            $('.freeze-my-column').freezeTableColumns({
+//                width:       860,   // required
+//                height:      600,   // required
+//                numFrozen:   0,     // optional
+//                //            frozenWidth: 150,   // optional
+//                clearWidths: false  // optional
+//            });//freezeTableColumns
+//        });
                             
     </script>
 <?php } ?>

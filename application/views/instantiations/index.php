@@ -18,7 +18,7 @@ if (!$isAjax)
             </div>
             <div style="width: 865px;overflow: hidden;" id="instantiation-main">
 
-                <table class="table table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 2px;">
+                <table class="table table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;">
                     <thead>
                         <tr>
     <!--                        <th><span style="float:left;min-width: 80px;">Asset ID</span></th>-->

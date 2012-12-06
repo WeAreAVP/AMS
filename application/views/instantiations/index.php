@@ -23,7 +23,7 @@ if (!$isAjax)
                         <tr>
                             <th data-ptcolumn="nomination"><span style="float:left;min-width: 100px;">Nomination </span></th>
                             <th data-ptcolumn="organization"><span style="float:left;min-width: 100px;">Organization</span></th>
-                            <th data-ptcolumn="asset_title">Asset Title</th>
+                            <th data-ptcolumn="asset_title"><span style="float:left;min-width: 300px;">Asset Title</span></th>
                             <th data-ptcolumn="instantiation_id"><span style="float:left;min-width: 100px;">Instantiation ID</span></th>
                             <th data-ptcolumn="instantiation_id_source"><span style="float:left;min-width: 130px;">Instantiation ID Source</span></th>
                             <th data-ptcolumn="format_type"><span style="float:left;min-width: 90px;">Format Type</span></th>

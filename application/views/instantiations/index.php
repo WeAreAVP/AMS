@@ -89,8 +89,10 @@ if (!$isAjax)
             oTable = $('#instantiation_table').dataTable({
                 "sDom": "Rlfrtip",
                 "oColReorder": {
-                    "aiOrder": [ 0, 1, 2, 3, 4,5,6,7,8,9,10,11,12]
+                    "aiOrder": [ 0, 1, 2, 3, 4,5,6,7,8,9,10,11,12],
+                    "iFixedColumns": 1
                 },
+                
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
@@ -99,6 +101,7 @@ if (!$isAjax)
                 "sScrollX": "100%",
                 //                "sScrollXInner": "110%"
             });
+            new FixedColumns( oTable );
             //            new FixedHeader( oTable,{
             //                "offsetTop": 80
             //            } );

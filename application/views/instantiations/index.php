@@ -92,13 +92,13 @@ if (!$isAjax)
                 'bInfo':false,
                 'bFilter': false,
                 "bSort": false,
-                //                "sScrollY": 200,
-                //                "sScrollX": "100%",
+                "sScrollY": 400,
+                "sScrollX": "100%",
                 //                "sScrollXInner": "110%"
             });
-            new FixedHeader( oTable,{
-                "offsetTop": 80
-            } );
+//            new FixedHeader( oTable,{
+//                "offsetTop": 80
+//            } );
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );

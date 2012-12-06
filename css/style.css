@@ -351,6 +351,3 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .row{
     display: none;
 }
-.dataTables_scrollBody{
-    height: 450px;
-}

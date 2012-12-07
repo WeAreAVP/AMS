@@ -85,6 +85,7 @@ class MY_Controller extends CI_Controller
 				$this->frozen_column=0;
 				$this->column_order=$views_settings;
 			}
+			print_r($this->column_order);
 		}
 		if (is_route_method(array('instantiations' => array('index'))))
         {

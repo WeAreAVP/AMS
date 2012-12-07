@@ -99,7 +99,7 @@ if (!$isAjax)
                 "bSort": false,
                 "sScrollY": 400,
                 "sScrollX": "100%",
-                //                "sScrollXInner": "110%"
+                
             });
             new FixedColumns( oTable );
             //            new FixedHeader( oTable,{

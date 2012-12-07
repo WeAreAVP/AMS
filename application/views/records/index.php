@@ -129,7 +129,7 @@ if (!$isAjax)
 			foreach($records as $asset)
 			{ 
 				
-				$body .='<tr>';
+				$body .='<tr><td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>';
 				foreach($this->column_order as $row)
 				{
 					if($row['hidden']==0)

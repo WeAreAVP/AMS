@@ -86,6 +86,7 @@ if (!$isAjax)
     </div>
     <script type="text/javascript">
         columnsOrder=new Array();
+        orderString='';
         $(function() {
             oTable = $('#instantiation_table').dataTable({
                 "sDom": 'RC<"clear">lfrtip',
@@ -96,14 +97,20 @@ if (!$isAjax)
                     "aiOrder": [ 0, 1, 2, 3, 4,5,6,7,8,9,10,11,12],
                     "iFixedColumns": 1,
                     "fnReorderCallback": function () {
-                                
-                        $('#instantiation_table th').each(function(index){
-                            
-                            columnsOrder.push(this.id);
+                        $('table th').each(function(index){
+                            if(index==0)
+                                orderString=this.id;
+                            else{
+                                if(orderString.indexOf(this.id)<0){
+                                    orderString+=','+this.id;
+                                }
+                            }
+                           
                             
                                 
                             
                         }); 
+                        columnsOrder=orderString.split(',');
                         console.log(columnsOrder);   
                     }
                 },

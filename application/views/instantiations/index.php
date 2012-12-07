@@ -147,35 +147,42 @@ if (!$isAjax)
                                     orderString+=','+this.id;
                                 }
                             }
-                                           
-                                            
-                                                
-                                            
+                                                   
+                                                    
+                                                        
+                                                    
                         }); 
                         columnsOrder=orderString.split(',');
-                                        
+                                                
                     }
                 },
-                                            
+                                                    
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
                 "bSort": false,
                 "sScrollY": 400,
                 "sScrollX": "100%"
-                                            
+                                                    
             });
             new FixedColumns( oTable );
-                    
+                            
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
         });
         function showHideColumns(column){
             $('#instantiation_table').dataTable().fnSetColumnVis(column,true);
-            console.log($('#'+column+'_column i').toggle());
+            $('#'+column+'_column i').toggle();
+            if ($('#'+column+'_column i').css('display') == "none") {
+                $('#instantiation_table').dataTable().fnSetColumnVis(column,false);
+            }
+            else{
+                $('#instantiation_table').dataTable().fnSetColumnVis(column,true);
+            }
                 
+                        
         }                                        
-                                                                        
+                                                                                
     </script>
 <?php } ?>

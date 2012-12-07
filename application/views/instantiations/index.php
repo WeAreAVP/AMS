@@ -90,7 +90,14 @@ if (!$isAjax)
                 "sDom": "Rlfrtip",
                 "oColReorder": {
                     "aiOrder": [ 0, 1, 2, 3, 4,5,6,7,8,9,10,11,12],
-                    "iFixedColumns": 1
+                    "iFixedColumns": 1,
+                     "fnReorderCallback": function (a,b,c) {
+                         console.log(a);
+                         console.log(b);
+                         console.log(c);
+                     }
+                alert('Columns reordered');
+            }
                 },
                 
                 'bPaginate':false,

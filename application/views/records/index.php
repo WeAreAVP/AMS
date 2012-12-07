@@ -129,6 +129,7 @@ if (!$isAjax)
 			foreach($records as $asset)
 			{ 
 				
+				$body .='<tr>';
 				foreach($this->column_order as $row)
 				{
 					if($row['hidden']==0)
@@ -152,9 +153,10 @@ if (!$isAjax)
 					{
 						$body .='<td style="display:none">'.str_replace("(**)","N/A",$asset->$row['field']).'</td>';
 					}
-				}?>
-     			<tr><?php echo $body ?></tr><?php 
+				}
+				$body .='</tr>';
 			}?>
+            <?php echo $body; ?>
 			</tbody>
     <?php }
 		else if($start>=1000)

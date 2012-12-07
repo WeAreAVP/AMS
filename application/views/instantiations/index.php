@@ -13,6 +13,7 @@ if (!$isAjax)
         {
             ?>
             <div style="text-align: right;width: 860px;">
+                <div style="text-align: left;"><i class="btn icon-cog"></i></div>
                 <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
                 <?php echo $this->ajax_pagination->create_links(); ?>
             </div>

@@ -17,7 +17,6 @@ if (!$isAjax)
                      <div class="btn-group">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                     <span><i class="icon-cog"></i></span>
-                    <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li class="dropdown"><a href="#" style="white-space: normal;">Show/Hide Fields <i class="icon-play" style="float: right;"></i></a>

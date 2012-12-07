@@ -967,6 +967,9 @@
             success: function (result)
             { 
                 $('#data_container').html(result); 
+                if(updateInstantiationsTable && updateInstantiationsTable==1){
+                    updateDataTable();
+                }
                 $.unblockUI();
                                 
             }

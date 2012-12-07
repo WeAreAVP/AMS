@@ -96,7 +96,7 @@ if (!$isAjax)
                     "iFixedColumns": 1,
                     "fnReorderCallback": function () {
                             
-                        $('#instantiation_table th').each(function(){
+                        $('table th').each(function(){
                             console.log(this.id);
                         }) 
                            

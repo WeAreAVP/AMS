@@ -136,12 +136,21 @@ if (!$isAjax)
 					{
 						if($row['field']!='description')
 						{
-								$body .='<td>'.str_replace("(**)","N/A",$asset->$row['field']).'</td>';
+								$val=trim(str_replace("(**)","N/A",$asset->$row['field']));
+								if(isset($val) && !empty($val))
+								{
+									$body .='<td>'.$val.'</td>';
+								}
+								else
+								{
+									$body .='<td>N/A</td>';
+								}
 						}
 						else
 						{
 							$des=str_replace("(**)","N/A",$asset->$row['field']);
-							if(strlen($asset->$row['field'])>160)
+							
+							if(isset($des) && !empty($des) && strlen($asset->$row['field'])>160)
 							{
 								$messages = str_split($asset->$row['field'] , 160);
 								$des=$messages[0].' ...';

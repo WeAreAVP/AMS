@@ -144,21 +144,26 @@ if (!$isAjax)
                     "iFixedColumns": frozen,
                     "fnReorderCallback": function () {
                         columnArray= getColumnOrder();
-                                   
-                                                                    
+                        $('#show_hide_li').html('');
+                        for(cnt in columnArray){
+                            name=columnArray[cnt].split('_').join(' ');
+                            $('#show_hide_li').append('<li><a href="javascript://;" onclick="showHideColumns('+cnt+');" id="'+cnt+'_column"><i class="icon-ok"></i>'+name+'</a></li>');
+                        }
+                                       
+                                                                        
                     }
                 },
-                                                                        
+                                                                            
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
                 "bSort": false,
                 "sScrollY": 400,
                 "sScrollX": "100%"
-                                                                        
+                                                                            
             });
             new FixedColumns( oTable );
-                                                
+                                                    
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
@@ -173,13 +178,9 @@ if (!$isAjax)
                 else{
                     $('#instantiation_table').dataTable().fnSetColumnVis(column,true);
                 }
-                columnArray= getColumnOrder();
-                $('#show_hide_li').html('');
-                for(cnt in columnArray){
-                    name=columnArray.split('_').join(' ');
-                    $('#show_hide_li').append('<li><a href="javascript://;" onclick="showHideColumns('+cnt+');" id="'+cnt+'_column"><i class="icon-ok"></i>'+name+'</a></li>');
-                }
-                                    
+                    
+                    
+                                        
             }
             else{
                 alert('Frozen Column will not take any affect');
@@ -194,10 +195,10 @@ if (!$isAjax)
                         orderString+=','+this.id;
                     }
                 }
-                                                                       
-                                                                        
+                                                                           
                                                                             
-                                                                        
+                                                                                
+                                                                            
             }); 
             return columnsOrder=orderString.split(',');
         }                                                                              

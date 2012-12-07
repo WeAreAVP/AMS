@@ -197,7 +197,9 @@ if (!$isAjax)
                 'bFilter': false,
                 "bSort": false,
                 "sScrollY": 400,
-                "sScrollX": "100%"
+                "sScrollX": "100%",
+                "bScrollInfinite": true
+                
                                                                                                                             
             });
             if(frozen>0){

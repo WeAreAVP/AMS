@@ -13,7 +13,7 @@ if (!$isAjax)
         {
             ?>
             <div style="width: 860px;">
-                <div style="text-align: left;">
+                <div style="float: left;margin-top: 10px;">
                     <div class="btn-group">
                         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                             <span><i class="icon-cog"></i></span>
@@ -55,7 +55,7 @@ if (!$isAjax)
                     </div>
 
                 </div>
-                <div style="text-align: right;">
+                <div style="float: right;">
                     <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
                     <?php echo $this->ajax_pagination->create_links(); ?>
                 </div>

@@ -24,7 +24,7 @@ class User_Settings extends CI_Model
 			$this->db->where('table_subtype', $table_subtype);
 		$res=$this->db->get($this->_table);
 		if(isset($res) && !empty($res))
-			return $res->row_array();
+			return $res->row();
 		return false;
 	}
 

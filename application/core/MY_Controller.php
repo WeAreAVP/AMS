@@ -64,7 +64,7 @@ class MY_Controller extends CI_Controller
 			if($res)
 			{
 				$this->frozen_column=$res->frozen_column;
-				$this->column_order=json_decode($res->view_settings);
+				$this->column_order=json_decode($res->view_settings,true);
 			}
 			else
 			{
@@ -93,7 +93,7 @@ class MY_Controller extends CI_Controller
 			if($res)
 			{
 				$this->frozen_column=$res->frozen_column;
-				$this->column_order=json_decode($res->view_settings);
+				$this->column_order=json_decode($res->view_settings,true);
 			}
 			else
 			{

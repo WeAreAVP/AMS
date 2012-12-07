@@ -21,19 +21,19 @@ if (!$isAjax)
                         <ul class="dropdown-menu">
                             <li class="dropdown"><a href="#" style="white-space: normal;">Show/Hide Fields <i class="icon-play" style="float: right;"></i></a>
                                 <ul class="sub-menu dropdown-menu">
-                                    <li><a href="javascript://;" onclick="showHideColumns(0);"><i class="icon-ok"></i>Nomination</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(1);"><i class="icon-ok"></i>Organization</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(2);"><i class="icon-ok"></i>Asset Title</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(3);"><i class="icon-ok"></i>Instantiation ID</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(4);"><i class="icon-ok"></i>Instantiation ID Source</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(5);"><i class="icon-ok"></i>Format Type</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(6);"><i class="icon-ok"></i>Duration</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(7);"><i class="icon-ok"></i>Date</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(8);"><i class="icon-ok"></i>Date Type</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(9);"><i class="icon-ok"></i>File Size</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(10);"><i class="icon-ok"></i>Unit of measure</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(11);"><i class="icon-ok"></i>Color</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(12);"><i class="icon-ok"></i>Language</a></li>
+                                    <li><a href="javascript://;" onclick="showHideColumns(0);" id="0_column"><i class="icon-ok"></i>Nomination</a></li>
+                                    <li><a href="javascript://;" onclick="showHideColumns(1);" id="1_column"><i class="icon-ok"></i>Organization</a></li>
+                                    <li><a href="javascript://;" onclick="showHideColumns(2);" id="2_column"><i class="icon-ok"></i>Asset Title</a></li>
+                                    <li><a href="javascript://;" onclick="showHideColumns(3);" id="3_column"><i class="icon-ok"></i>Instantiation ID</a></li>
+                                    <li><a href="javascript://;" onclick="showHideColumns(4);" id="4_column"><i class="icon-ok"></i>Instantiation ID Source</a></li>
+                                    <li><a href="javascript://;" onclick="showHideColumns(5);" id="5_column"><i class="icon-ok"></i>Format Type</a></li>
+                                    <li><a href="javascript://;" onclick="showHideColumns(6);" id="6_column"><i class="icon-ok"></i>Duration</a></li>
+                                    <li><a href="javascript://;" onclick="showHideColumns(7);" id="7_column"><i class="icon-ok"></i>Date</a></li>
+                                    <li><a href="javascript://;" onclick="showHideColumns(8);" id="8_column"><i class="icon-ok"></i>Date Type</a></li>
+                                    <li><a href="javascript://;" onclick="showHideColumns(9);" id="9_column"><i class="icon-ok"></i>File Size</a></li>
+                                    <li><a href="javascript://;" onclick="showHideColumns(10);" id="10_column"><i class="icon-ok"></i>Unit of measure</a></li>
+                                    <li><a href="javascript://;" onclick="showHideColumns(11);" id="11_column"><i class="icon-ok"></i>Color</a></li>
+                                    <li><a href="javascript://;" onclick="showHideColumns(12);" id="12_column"><i class="icon-ok"></i>Language</a></li>
 
 
                                 </ul>
@@ -147,34 +147,35 @@ if (!$isAjax)
                                     orderString+=','+this.id;
                                 }
                             }
-                                       
-                                        
+                                           
                                             
-                                        
+                                                
+                                            
                         }); 
                         columnsOrder=orderString.split(',');
-                                    
+                                        
                     }
                 },
-                                        
+                                            
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
                 "bSort": false,
                 "sScrollY": 400,
                 "sScrollX": "100%"
-                                        
+                                            
             });
             new FixedColumns( oTable );
-                
+                    
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
         });
         function showHideColumns(column){
             $('#instantiation_table').dataTable().fnSetColumnVis(column,true);
-            console.log($(this));
+            console.log($('#'+column+'_column i').toggle());
+                
         }                                        
-                                                                    
+                                                                        
     </script>
 <?php } ?>

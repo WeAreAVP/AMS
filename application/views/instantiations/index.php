@@ -20,7 +20,7 @@ if (!$isAjax)
                         </a>
                         <ul class="dropdown-menu">
                             <li class="dropdown"><a href="#" style="white-space: normal;">Show/Hide Fields <i class="icon-play" style="float: right;"></i></a>
-                                <ul class="sub-menu dropdown-menu">
+                                <ul class="sub-menu dropdown-menu" id="show_hide_li">
                                     <li><a href="javascript://;" onclick="showHideColumns(0);" id="0_column"><i class="icon-ok"></i>Nomination</a></li>
                                     <li><a href="javascript://;" onclick="showHideColumns(1);" id="1_column"><i class="icon-ok"></i>Organization</a></li>
                                     <li><a href="javascript://;" onclick="showHideColumns(2);" id="2_column"><i class="icon-ok"></i>Asset Title</a></li>
@@ -143,34 +143,22 @@ if (!$isAjax)
                     "aiOrder": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                     "iFixedColumns": frozen,
                     "fnReorderCallback": function () {
-                        $('table th').each(function(index){
-                            if(index==0)
-                                orderString=this.id;
-                            else{
-                                if(orderString.indexOf(this.id)<0){
-                                    orderString+=','+this.id;
-                                }
-                            }
-                                                           
-                                                            
-                                                                
-                                                            
-                        }); 
-                        columnsOrder=orderString.split(',');
-                                                        
+                        columnArray= getColumnOrder();
+                                   
+                                                                    
                     }
                 },
-                                                            
+                                                                        
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
                 "bSort": false,
                 "sScrollY": 400,
                 "sScrollX": "100%"
-                                                            
+                                                                        
             });
             new FixedColumns( oTable );
-                                    
+                                                
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
@@ -185,12 +173,33 @@ if (!$isAjax)
                 else{
                     $('#instantiation_table').dataTable().fnSetColumnVis(column,true);
                 }
-                        
+                columnArray= getColumnOrder();
+                $('#show_hide_li').html('');
+                for(cnt in columnArray){
+                    name=columnArray.split('_').join(' ');
+                    $('#show_hide_li').append('<li><a href="javascript://;" onclick="showHideColumns('+cnt+');" id="'+cnt+'_column"><i class="icon-ok"></i>'+name+'</a></li>');
+                }
+                                    
             }
             else{
                 alert('Frozen Column will not take any affect');
             }
         }                                        
-                                                                                        
+        function getColumnOrder(){
+            $('table th').each(function(index){
+                if(index==0)
+                    orderString=this.id;
+                else{
+                    if(orderString.indexOf(this.id)<0){
+                        orderString+=','+this.id;
+                    }
+                }
+                                                                       
+                                                                        
+                                                                            
+                                                                        
+            }); 
+            return columnsOrder=orderString.split(',');
+        }                                                                              
     </script>
 <?php } ?>

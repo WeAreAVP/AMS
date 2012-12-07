@@ -102,233 +102,56 @@ if (!$isAjax)
    <div style="width:865px;overflow:hidden;display:<?php if($current_tab=='full_table_view'){ echo 'block';}else{echo "none"; }?>;" id="full_table_view" >
    	<table class="tablesorter table-freeze-custom table-bordered freeze-my-column1" id="assets_table1" style="margin-top:0px;margin-left: 1px; "  ><?php 
 		if(isset($records) && ($total>0))
-		{?>
+		{
+			if(!empty($this->column_order))
+			{
+				$titles ='<th><span style="float:left;"><i class="icon-flag "></i></span></th>';
+				foreach($this->column_order as $row)
+				{
+					if($row['hidden']==0)
+					{
+						$titles .=	'<th><span style="float:left;min-width: 100px;" >'.str_replace("_",' ',$row['title']).'</span></th>';
+					}
+					else
+					{
+						$titles .=	'<th style="display:none"><span style="float:left;min-width: 100px;" >'.str_replace("_",' ',$row['title']).'</span></th>';
+					}
+				}
+			}?>
         <thead>
             <tr >
-             <th><span style="float:left;" ><i class="icon-flag "></i></span></th>
-             <th><span style="float:left;min-width: 100px;" >AA GUID</span></th>
-             <th><span style="float:left;min-width: 100px;" >Local ID</span></th>
-             <th><span style="float:left;min-width: 100px;"  width="200">Titles</span></th>
-             <th><span style="float:left;min-width: 100px;"  >Titles Type</span></th>
-             <th><span style="float:left;min-width: 100px;" >Titles Ref</span></th>
-             <th><span style="float:left;min-width: 100px;" >Titles Source</span></th>
-             <th><span style="float:left;min-width: 100px;"  width="200">Description</span></th>
-             <th><span style="float:left;min-width: 100px;" >Description Type</span></th>
-             <th><span style="float:left;min-width: 100px;" >Subjects</span></th>
-             <th><span style="float:left;min-width: 100px;" >Subjects Ref</span></th>
-             <th><span style="float:left;min-width: 100px;" >Subjects Source</span></th>
-             <th><span style="float:left;min-width: 100px;" >Genre</span></th>
-             <th><span style="float:left;min-width: 100px;" >Genre Source</span></th>
-             <th><span style="float:left;min-width: 100px;" >Genre Ref</span></th>
-             <th><span style="float:left;min-width: 100px;" >Creator Name</span></th>
-             <th><span style="float:left;min-width: 100px;" >Creator Affiliation</span></th>
-             <th><span style="float:left;min-width: 100px;" >Creator Source</span></th>         
-             <th><span style="float:left;min-width: 100px;" >Creator Ref</span></th>
-             <th><span style="float:left;min-width: 100px;" >Creator Role</span></th>
-             <th><span style="float:left;min-width: 100px;" >Creator Role Source</span></th>
-             <th><span style="float:left;min-width: 100px;" >Contributor Name</span></th>
-             <th><span style="float:left;min-width: 100px;" >Contributor Affiliation</span></th>
-             <th><span style="float:left;min-width: 100px;" >Contributor Source</span></th>    
-             <th><span style="float:left;min-width: 100px;" >Contributor Ref</span></th>
-             <th><span style="float:left;min-width: 100px;" >Contributor Role</span></th>
-             <th><span style="float:left;min-width: 100px;" >Contributor Role Source</span></th>
-             <th><span style="float:left;min-width: 100px;" >Contributor Role Ref</span></th>
-             <th><span style="float:left;min-width: 100px;" >Publisher Name</span></th>
-             <th><span style="float:left;min-width: 100px;" >Publisher Affiliation</span></th>
-             <th><span style="float:left;min-width: 100px;" >Publisher Ref</span></th>
-             <th><span style="float:left;min-width: 100px;" >Publisher Role</span></th>
-             <th><span style="float:left;min-width: 100px;" >Publisher Role Source</span></th>
-             <th><span style="float:left;min-width: 100px;" >Assets Date</span></th>
-             <th><span style="float:left;min-width: 100px;" >Date Type</span></th>
-             <th><span style="float:left;min-width: 100px;" >Coverage</span></th>
-             <th><span style="float:left;min-width: 100px;" >Coverage Type</span></th>
-             <th><span style="float:left;min-width: 100px;" >Audience Level</span></th>
-             <th><span style="float:left;min-width: 100px;" >Audience Level Source</span></th>
-             <th><span style="float:left;min-width: 100px;" >Audience Level Ref</span></th>
-             <th><span style="float:left;min-width: 100px;" >Audience Rating</span></th>
-             <th><span style="float:left;min-width: 100px;" >Audience Rating Source</span></th>
-             <th><span style="float:left;min-width: 100px;" >Audience Rating Ref</span></th>
-             <th><span style="float:left;min-width: 100px;" >Annotation</span></th>
-             <th><span style="float:left;min-width: 100px;" >Annotation Type</span></th>
-             <th><span style="float:left;min-width: 100px;" >Annotation Ref</span></th>
-             <th><span style="float:left;min-width: 100px;" >Rights</span></th>
-             <th><span style="float:left;min-width: 100px;" >Rights Link</span></th>
+             <?php echo $titles;?>
            </tr>
            </thead>
             <tbody><?php 
+			$body='';
 			foreach($records as $asset)
-			{
-				$guid_identifier= str_replace("(**)","N/A",$asset->guid_identifier);
-				$local_identifier= str_replace("(**)","N/A",$asset->local_identifier);
-				$asset_description=str_replace("(**)","N/A",$asset->description);
-				$asset_title=str_replace("(**)","N/A",$asset->asset_title);?>
-				<tr style="cursor: pointer;">
-			      <td ><i style="margin:0px" class="unflag"></i></td>
-                  <td><?php 
-					if($guid_identifier)
-						echo $guid_identifier;
-					else
-						echo 'N/A';?>
-                  </td>
-                  <td><?php 
-				  	if($local_identifier)
-						echo $local_identifier;
-					else
-						echo 'N/A';?>
-                  </td>
-			      <td>
-                  	
-                    	<a href="<?php echo site_url('records/details/'.$asset->id)?>" ><?php echo $asset_title;?>	</a>
-                    
-                  </td>
-                   <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_title_type);
-					?>
-                  </td>
-                  <td><?php 		  	
-						echo str_replace("(**)","N/A",$asset->asset_title_ref);
-					?>
-                  </td>
-                  <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_title_source);?>
-                  </td>
-                  <td><?php 
-					if($asset_description)
+			{ 
+				
+				foreach($this->column_order as $row)
+				{
+					if($row['hidden']==0)
 					{
-						if(strlen($asset_description)>160)
+						if($row['field']!='description')
 						{
-							$messages = str_split($asset_description , 160);
-							echo $messages[0].' ...';
+								$body .='<td>'.str_replace("(**)","N/A",$asset->$row['field']).'</td>';
 						}
 						else
 						{
-							echo $asset_description;
+							$des=str_replace("(**)","N/A",$asset->$row['field']);
+							if(strlen($asset->$row['field'])>160)
+							{
+								$messages = str_split($asset->$row['field'] , 160);
+								$des=$messages[0].' ...';
+							}
+							$body .='<td>'.$des.'</td>';
 						}
 					}
-					else 
-						echo 'N/A';?>
-
-                  </td>
-                  <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_subject); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_subject_source); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_subject_ref); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_genre); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_genre_source); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_genre_ref); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_creator_name); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_creator_affiliation); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_creator_source); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_creator_ref); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_creator_role); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_creator_role_source); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_contributor_name); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_contributor_affiliation); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_contributor_source); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_contributor_ref); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_contributor_role); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_contributor_role_source); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_contributor_role_ref); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_publisher_name); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_publisher_affiliation); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_publisher_ref); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_publisher_role); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_publisher_role_source); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_publisher_role_ref); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_date); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_date_type); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_coverage); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_coverage_type); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_audience_level); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_audience_level_source); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_audience_level_ref); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_audience_rating); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_audience_rating_source); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_audience_rating_ref); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_annotation); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_annotation_type); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_annotation_ref); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_rights); ?>
-                  </td>
-                    <td><?php 
-				  		echo str_replace("(**)","N/A",$asset->asset_rights_link); ?>
-                    </td>
+					else
+					{
+						$body .='<td style="display:none">'.str_replace("(**)","N/A",$asset->$row['field']).'</td>';
+					}
+				}?>
      			</tr><?php 
 			}?>
 			</tbody>

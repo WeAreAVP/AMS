@@ -22,19 +22,19 @@ if (!$isAjax)
                     <thead>
                         <tr>
     <!--                        <th><span style="float:left;min-width: 80px;">Asset ID</span></th>-->
-                            <th><span style="float:left;min-width: 100px;">Nomination </span></th>
-                            <th><span style="float:left;min-width: 100px;">Organization</span></th>
-                            <th style="min-width: 250px;">Asset Title</th>
-                            <th><span style="float:left;min-width: 100px;">Instantiation ID</span></th>
-                            <th><span style="float:left;min-width: 130px;">Instantiation ID Source</span></th>
-                            <th><span style="float:left;min-width: 90px;">Format Type</span></th>
-                            <th><span style="float:left;min-width: 70px;">Duration</span></th>
-                            <th><span style="float:left;min-width: 90px;">Date</span></th>
-                            <th><span style="float:left;min-width: 90px;">Date Type</span></th>
-                            <th><span style="float:left;min-width: 90px;">File size</span></th>
-                            <th><span style="float:left;min-width: 100px;">Unit of measure</span></th>
-                            <th><span style="float:left;min-width: 70px;">Colors</span></th>
-                            <th><span style="float:left;min-width: 70px;">Language</span></th>
+                            <th id="Nomination"><span style="float:left;min-width: 100px;">Nomination </span></th>
+                            <th id="Organization"><span style="float:left;min-width: 100px;">Organization</span></th>
+                            <th id="Asset_Title">Asset Title</th>
+                            <th id="Instantiation_ID"><span style="float:left;min-width: 100px;">Instantiation ID</span></th>
+                            <th id="Instantiation_ID_Source"><span style="float:left;min-width: 130px;">Instantiation ID Source</span></th>
+                            <th id="Format_Type"><span style="float:left;min-width: 90px;">Format Type</span></th>
+                            <th id="Duration"><span style="float:left;min-width: 70px;">Duration</span></th>
+                            <th id="Date"><span style="float:left;min-width: 90px;">Date</span></th>
+                            <th id="Date_Type"><span style="float:left;min-width: 90px;">Date Type</span></th>
+                            <th id="File_size"><span style="float:left;min-width: 90px;">File size</span></th>
+                            <th id="Unit_of_measure"><span style="float:left;min-width: 100px;">Unit of measure</span></th>
+                            <th id="Colors"><span style="float:left;min-width: 70px;">Colors</span></th>
+                            <th id="Language"><span style="float:left;min-width: 70px;">Language</span></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,25 +89,27 @@ if (!$isAjax)
             oTable = $('#instantiation_table').dataTable({
                 "sDom": 'RC<"clear">lfrtip',
                 "aoColumnDefs": [
-			{ "bVisible": false, "aTargets": [ 1 ] }
-		],
+                    { "bVisible": false, "aTargets": [ 1 ] }
+                ],
                 "oColReorder": {
                     "aiOrder": [ 0, 1, 2, 3, 4,5,6,7,8,9,10,11,12],
                     "iFixedColumns": 1,
-                     "fnReorderCallback": function () {
-                         console.log(oTable.oColReorder.aiOrder);
-                    
-                alert('Columns reordered');
-            }
+                    "fnReorderCallback": function () {
+                            
+                        $('#instantiation_table th').each(function(){
+                            console.log(this.id);
+                        }) 
+                           
+                    }
                 },
-                
+                        
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
                 "bSort": false,
                 "sScrollY": 400,
                 "sScrollX": "100%"
-                
+                        
             });
             new FixedColumns( oTable );
             //            new FixedHeader( oTable,{
@@ -117,7 +119,7 @@ if (!$isAjax)
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
         });
-                            
-                                            
+                                    
+                                                    
     </script>
 <?php } ?>

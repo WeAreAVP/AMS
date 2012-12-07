@@ -87,10 +87,18 @@ if (!$isAjax)
     <script type="text/javascript">
         $(function() {
             oTable = $('#instantiation_table').dataTable({
-                "sDom": "Rlfrtip",
+                "sDom": 'RC<"clear">lfrtip',
+                "aoColumnDefs": [
+			{ "bVisible": false, "aTargets": [ 1 ] }
+		],
                 "oColReorder": {
                     "aiOrder": [ 0, 1, 2, 3, 4,5,6,7,8,9,10,11,12],
-                    "iFixedColumns": 1
+                    "iFixedColumns": 1,
+                     "fnReorderCallback": function () {
+                         console.log(oTable.oColReorder.aiOrder);
+                    
+                alert('Columns reordered');
+            }
                 },
                 
                 'bPaginate':false,
@@ -98,8 +106,8 @@ if (!$isAjax)
                 'bFilter': false,
                 "bSort": false,
                 "sScrollY": 400,
-                "sScrollX": "100%",
-                //                "sScrollXInner": "110%"
+                "sScrollX": "100%"
+                
             });
             new FixedColumns( oTable );
             //            new FixedHeader( oTable,{

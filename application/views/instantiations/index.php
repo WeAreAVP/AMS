@@ -148,18 +148,18 @@ if (!$isAjax)
                         reOrderDropDown(columnArray);
                     }
                 },
-                                                                                                        
+                                                                                                            
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
                 "bSort": false,
                 "sScrollY": 400,
                 "sScrollX": "100%"
-                                                                                                        
+                                                                                                            
             });
             if(frozen>0)
                 new FixedColumns( oTable );
-                                                                                
+                                                                                    
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
@@ -200,9 +200,10 @@ if (!$isAjax)
         }
         function freezeColumns(count){
             frozen=count;
+            new FixedColumns(null);
             new FixedColumns( oTable, {
                 "iLeftColumns": count
-            } );
+            });
         }
     </script>
 <?php } ?>

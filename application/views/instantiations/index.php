@@ -14,9 +14,9 @@ if (!$isAjax)
             ?>
             <div style="text-align: right;width: 860px;">
                 <div style="text-align: left;">
-                     <div class="btn-group" id="limit_field_dropdown" style="display:<?php echo $style; ?>">
+                     <div class="btn-group">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                    <span id="limit_field_text"><i class="icon-cog"></i></span>
+                    <span><i class="icon-cog"></i></span>
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">

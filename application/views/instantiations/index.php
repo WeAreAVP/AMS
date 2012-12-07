@@ -12,7 +12,7 @@ if (!$isAjax)
         if (count($records) > 0)
         {
             ?>
-            <div style="text-align: right;width: 860px;">
+            <div style="width: 860px;">
                 <div style="text-align: left;">
                     <div class="btn-group">
                         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -55,8 +55,10 @@ if (!$isAjax)
                     </div>
 
                 </div>
-                <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
-                <?php echo $this->ajax_pagination->create_links(); ?>
+                <div style="text-align: right;">
+                    <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
+                    <?php echo $this->ajax_pagination->create_links(); ?>
+                </div>
             </div>
             <div style="width: 865px;overflow: hidden;" id="instantiation-main">
 
@@ -149,26 +151,26 @@ if (!$isAjax)
                                     orderString+=','+this.id;
                                 }
                             }
-                                                       
-                                                        
+                                                           
                                                             
-                                                        
+                                                                
+                                                            
                         }); 
                         columnsOrder=orderString.split(',');
-                                                    
+                                                        
                     }
                 },
-                                                        
+                                                            
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
                 "bSort": false,
                 "sScrollY": 400,
                 "sScrollX": "100%"
-                                                        
+                                                            
             });
             new FixedColumns( oTable );
-                                
+                                    
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
@@ -183,12 +185,12 @@ if (!$isAjax)
                 else{
                     $('#instantiation_table').dataTable().fnSetColumnVis(column,true);
                 }
-                    
+                        
             }
             else{
                 alert('Frozen Column will not take any affect');
             }
         }                                        
-                                                                                    
+                                                                                        
     </script>
 <?php } ?>

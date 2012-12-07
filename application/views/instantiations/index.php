@@ -40,11 +40,11 @@ if (!$isAjax)
                             </li>
                             <li class="dropdown"><a href="#"  style="white-space: normal;">Freeze Columns <i class="icon-play" style="float: right;"></i></a>
                                 <ul class="sub-menu dropdown-menu">
-                                    <li><a href="javascript://;">None</a></li>
-                                    <li><a href="javascript://;">Freeze 1 Column</a></li>
-                                    <li><a href="javascript://;">Freeze 2 Columns</a></li>
-                                    <li><a href="javascript://;">Freeze 3 Columns</a></li>
-                                    <li><a href="javascript://;">Freeze 4 Columns</a></li>
+                                    <li><a href="javascript://;" onclick="freezeColumns(0);">None</a></li>
+                                    <li><a href="javascript://;" onclick="freezeColumns(1);">Freeze 1 Column</a></li>
+                                    <li><a href="javascript://;" onclick="freezeColumns(2);">Freeze 2 Columns</a></li>
+                                    <li><a href="javascript://;" onclick="freezeColumns(3);">Freeze 3 Columns</a></li>
+                                    <li><a href="javascript://;" onclick="freezeColumns(4);">Freeze 4 Columns</a></li>
 
 
 
@@ -131,7 +131,8 @@ if (!$isAjax)
     <script type="text/javascript">
         columnsOrder=new Array();
         orderString='';
-        frozen=1;
+        frozen=0;
+        oTable=null;
         $(function() {
             oTable = $('#instantiation_table').dataTable({
                 //                "sDom": 'RC<"clear">lfrtip',
@@ -147,17 +148,17 @@ if (!$isAjax)
                         reOrderDropDown(columnArray);
                     }
                 },
-                                                                                            
+                                                                                                    
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
                 "bSort": false,
                 "sScrollY": 400,
                 "sScrollX": "100%"
-                                                                                            
+                                                                                                    
             });
             new FixedColumns( oTable );
-                                                                    
+                                                                            
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
@@ -195,6 +196,12 @@ if (!$isAjax)
                 name=columnArray[cnt].split('_').join(' ');
                 $('#show_hide_li').append('<li><a href="javascript://;" onclick="showHideColumns('+cnt+');" id="'+cnt+'_column"><i class="icon-ok"></i>'+name+'</a></li>');
             }
+        }
+        function freezeColumns(count){
+            frozen=count;
+            new FixedColumns( oTable, {
+                "iLeftColumns": count
+            } );
         }
     </script>
 <?php } ?>

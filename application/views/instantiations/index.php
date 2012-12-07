@@ -95,7 +95,7 @@ if (!$isAjax)
                          console.log(a);
                          console.log(b);
                          console.log(c);
-                     }
+                    
                 alert('Columns reordered');
             }
                 },

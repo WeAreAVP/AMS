@@ -13,7 +13,49 @@ if (!$isAjax)
         {
             ?>
             <div style="text-align: right;width: 860px;">
-                <div style="text-align: left;"><span class="btn"><i class="icon-cog"></i></span></div>
+                <div style="text-align: left;">
+                     <div class="btn-group" id="limit_field_dropdown" style="display:<?php echo $style; ?>">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span id="limit_field_text"><i class="icon-cog"></i></span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown"><a href="#" style="white-space: normal;">Show/Hide Fields <i class="icon-play" style="float: right;"></i></a>
+                        <ul class="sub-menu dropdown-menu">
+                            <li href="javascript://;"><a><i class="icon-ok"></i>Nomination</a></li>
+                            <li href="javascript://;"><a><i class="icon-ok"></i>Organization</a></li>
+                            <li href="javascript://;"><a><i class="icon-ok"></i>Asset Title</a></li>
+                            <li href="javascript://;"><a><i class="icon-ok"></i>Instantiation ID</a></li>
+                            <li href="javascript://;"><a><i class="icon-ok"></i>Instantiation ID Source</a></li>
+                            <li href="javascript://;"><a><i class="icon-ok"></i>Format Type</a></li>
+                            <li href="javascript://;"><a><i class="icon-ok"></i>Duration</a></li>
+                            <li href="javascript://;"><a><i class="icon-ok"></i>Date</a></li>
+                            <li href="javascript://;"><a><i class="icon-ok"></i>Date Type</a></li>
+                            <li href="javascript://;"><a><i class="icon-ok"></i>File Size</a></li>
+                            <li href="javascript://;"><a><i class="icon-ok"></i>Unit of measure</a></li>
+                            <li href="javascript://;"><a><i class="icon-ok"></i>Color</a></li>
+                            <li href="javascript://;"><a><i class="icon-ok"></i>Language</a></li>
+                           
+
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#"  style="white-space: normal;">Freeze Columns <i class="icon-play" style="float: right;"></i></a>
+                        <ul class="sub-menu dropdown-menu">
+                            <li><a href="javascript://;">None</a></li>
+                            <li><a href="javascript://;">Freeze 1 Column</a></li>
+                            <li><a href="javascript://;">Freeze 2 Columns</a></li>
+                            <li><a href="javascript://;">Freeze 3 Columns</a></li>
+                            <li><a href="javascript://;">Freeze 4 Columns</a></li>
+                           
+
+
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+                    
+                </div>
                 <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
                 <?php echo $this->ajax_pagination->create_links(); ?>
             </div>

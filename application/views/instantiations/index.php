@@ -87,14 +87,15 @@ if (!$isAjax)
     <script type="text/javascript">
         $(function() {
             oTable = $('#instantiation_table').dataTable({
-                "sDom": "Rlfrtip",
+                "sDom": 'RC<"clear">lfrtip',
+                "aoColumnDefs": [
+			{ "bVisible": false, "aTargets": [ 1 ] }
+		],
                 "oColReorder": {
                     "aiOrder": [ 0, 1, 2, 3, 4,5,6,7,8,9,10,11,12],
                     "iFixedColumns": 1,
-                     "fnReorderCallback": function (a,b,c) {
-                         console.log(a);
-                         console.log(b);
-                         console.log(c);
+                     "fnReorderCallback": function () {
+                         
                     
                 alert('Columns reordered');
             }

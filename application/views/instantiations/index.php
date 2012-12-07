@@ -129,16 +129,17 @@ if (!$isAjax)
     <script type="text/javascript">
         columnsOrder=new Array();
         orderString='';
+        frozen=1;
         $(function() {
             oTable = $('#instantiation_table').dataTable({
-//                "sDom": 'RC<"clear">lfrtip',
+                //                "sDom": 'RC<"clear">lfrtip',
                 "sDom": 'Rlfrtip',
                 "aoColumnDefs": [
                     //                    { "bVisible": false, "aTargets": [ 1 ] }
                 ],
                 "oColReorder": {
                     "aiOrder": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                    "iFixedColumns": 1,
+                    "iFixedColumns": frozen,
                     "fnReorderCallback": function () {
                         $('table th').each(function(index){
                             if(index==0)
@@ -148,42 +149,46 @@ if (!$isAjax)
                                     orderString+=','+this.id;
                                 }
                             }
-                                                   
-                                                    
+                                                       
                                                         
-                                                    
+                                                            
+                                                        
                         }); 
                         columnsOrder=orderString.split(',');
-                                                
+                                                    
                     }
                 },
-                                                    
+                                                        
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
                 "bSort": false,
                 "sScrollY": 400,
                 "sScrollX": "100%"
-                                                    
+                                                        
             });
             new FixedColumns( oTable );
-                            
+                                
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
         });
         function showHideColumns(column){
-            $('#instantiation_table').dataTable().fnSetColumnVis(column,true);
-            $('#'+column+'_column i').toggle();
-            if ($('#'+column+'_column i').css('display') == "none") {
-                $('#instantiation_table').dataTable().fnSetColumnVis(column,false);
+            if(frozen>column+1){
+                $('#instantiation_table').dataTable().fnSetColumnVis(column,true);
+                $('#'+column+'_column i').toggle();
+                if ($('#'+column+'_column i').css('display') == "none") {
+                    $('#instantiation_table').dataTable().fnSetColumnVis(column,false);
+                }
+                else{
+                    $('#instantiation_table').dataTable().fnSetColumnVis(column,true);
+                }
+                    
             }
             else{
-                $('#instantiation_table').dataTable().fnSetColumnVis(column,true);
+                alert('Frozen Column will not take any affect');
             }
-                
-                        
         }                                        
-                                                                                
+                                                                                    
     </script>
 <?php } ?>

@@ -135,35 +135,7 @@ if (!$isAjax)
         updateInstantiationsTable=1;
         oTable=null;
         $(function() {
-            oTable = $('#instantiation_table').dataTable({
-                //                "sDom": 'RC<"clear">lfrtip',
-                "sDom": 'Rlfrtip',
-                "aoColumnDefs": [
-                    //                    { "bVisible": false, "aTargets": [ 1 ] }
-                ],
-                "oColReorder": {
-                    "aiOrder": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                    "iFixedColumns": frozen,
-                    "fnReorderCallback": function () {
-                        columnArray= getColumnOrder();
-                        reOrderDropDown(columnArray);
-                    }
-                },
-                                                                                                                    
-                'bPaginate':false,
-                'bInfo':false,
-                'bFilter': false,
-                "bSort": false,
-                "sScrollY": 400,
-                "sScrollX": "100%"
-                                                                                                                    
-            });
-            if(frozen>0)
-                new FixedColumns( oTable );
-                                                                                            
-            $.extend( $.fn.dataTableExt.oStdClasses, {
-                "sWrapper": "dataTables_wrapper form-inline"
-            } );
+            updateDataTable();
         });
         function showHideColumns(column){
             if(frozen<column+1){
@@ -202,7 +174,7 @@ if (!$isAjax)
         function freezeColumns(count){
             frozen=count;
             facet_search('0');
-                
+                        
         }
         function updateDataTable(){
             oTable = $('#instantiation_table').dataTable({
@@ -219,18 +191,20 @@ if (!$isAjax)
                         reOrderDropDown(columnArray);
                     }
                 },
-                                                                                                                    
+                                                                                                                            
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
                 "bSort": false,
                 "sScrollY": 400,
                 "sScrollX": "100%"
-                                                                                                                    
+                                                                                                                            
             });
-            if(frozen>0)
-                new FixedColumns( oTable );
-                                                                                            
+            if(frozen>0){
+                new FixedColumns( oTable, {
+                    "iLeftColumns": frozen
+                } );}
+                                                                                                    
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );

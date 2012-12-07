@@ -117,6 +117,7 @@ if (!$isAjax)
 						$titles .=	'<th style="display:none"><span style="float:left;min-width: 100px;" >'.str_replace("_",' ',$row['title']).'</span></th>';
 					}
 				}
+				
 			}?>
         <thead>
             <tr >
@@ -152,7 +153,7 @@ if (!$isAjax)
 						$body .='<td style="display:none">'.str_replace("(**)","N/A",$asset->$row['field']).'</td>';
 					}
 				}?>
-     			</tr><?php 
+     			<tr><?php echo $body ?></tr><?php 
 			}?>
 			</tbody>
     <?php }

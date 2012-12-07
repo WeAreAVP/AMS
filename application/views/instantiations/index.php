@@ -98,11 +98,11 @@ if (!$isAjax)
                     "fnReorderCallback": function () {
                                 
                         $('table th').each(function(index){
-                            id=this.id;
-                            columnsOrder= {
-                                id : id
+                            
+                            columnsOrder.push(this.id);
+                            
                                 
-                            };
+                            
                         }); 
                         console.log(columnsOrder);   
                     }

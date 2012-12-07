@@ -85,6 +85,7 @@ if (!$isAjax)
         </div>
     </div>
     <script type="text/javascript">
+        columnsOrder=new Array();
         $(function() {
             oTable = $('#instantiation_table').dataTable({
                 "sDom": 'RC<"clear">lfrtip',
@@ -96,10 +97,11 @@ if (!$isAjax)
                     "iFixedColumns": 1,
                     "fnReorderCallback": function () {
                             
-                        $('dataTable th').each(function(){
-                            console.log(this.id);
-                        }) 
-                           
+                        $('table th').each(function(index){
+                            if(columnsOrder[index] && columnsOrder[index]!=this.id)
+                                columnsOrder[index]=this.id;
+                        }); 
+                        console.log(columnsOrder);   
                     }
                 },
                         

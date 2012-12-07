@@ -20,6 +20,8 @@ class MY_Controller extends CI_Controller
     public $user_details;
     public $can_compose_alert;
 	public $views_settings;
+	public $frozen_column;
+	public $column_order;
 
     function __construct()
     {
@@ -38,7 +40,8 @@ class MY_Controller extends CI_Controller
         $this->load->model('email_template_model', 'email_template');
         $this->load->model('report_model');
 		$this->load->model('dx_auth/user_settings', 'user_settings');
-		
+		$this->frozen_column=0;
+		$this->column_order='';
         if (!isset($this->user_id))
         {
             $this->_assing_user_info();
@@ -60,7 +63,8 @@ class MY_Controller extends CI_Controller
 			$res=$this->user_settings->get_setting($this->user_id,'assets','full');
 			if($res)
 			{
-				
+				$this->frozen_column=$res->frozen_column;
+				$this->column_order=json_decode($res->view_settings);
 			}
 			else
 			{
@@ -78,6 +82,8 @@ class MY_Controller extends CI_Controller
 				$assets_tables_data['view_settings']=json_encode($views_settings);
 				$assets_tables_data['created_at']=date('Y-m-d H:i:s');
 				$this->user_settings->insert_settings($assets_tables_data);
+				$this->frozen_column=0;
+				$this->column_order=$views_settings;
 			}
 		}
 		if (is_route_method(array('instantiations' => array('index'))))
@@ -85,7 +91,8 @@ class MY_Controller extends CI_Controller
 			$res=$this->user_settings->get_setting($this->user_id,'instantiation','full');
 			if($res)
 			{
-			
+				$this->frozen_column=$res->frozen_column;
+				$this->column_order=json_decode($res->view_settings);
 			}
 			else
 			{
@@ -103,6 +110,8 @@ class MY_Controller extends CI_Controller
 				$assets_tables_data['view_settings']=json_encode($views_settings);
 				$assets_tables_data['created_at']=date('Y-m-d H:i:s');
 				$this->user_settings->insert_settings($assets_tables_data);
+				$this->frozen_column=0;
+				$this->column_order=$views_settings;
 			}
 		}
 	}

@@ -211,7 +211,7 @@ if (!$isAjax)
         function freezeColumns(count){
             frozen=count;
             facet_search('0');
-                                                                                                                                                        
+                                                                                                                                                                    
         }
         function updateDataTable(){
             oTable = $('#instantiation_table').dataTable({
@@ -228,7 +228,7 @@ if (!$isAjax)
                         reOrderDropDown(columnArray);
                     }
                 },
-                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                        
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
@@ -236,35 +236,34 @@ if (!$isAjax)
                 "sScrollY": 400,
                 "sScrollX": "100%",
                 "bScrollInfinite": true
-                                                                                                                                                
-                                                                                                                                                                                                                                                            
+                                                                                                                                                            
+                                                                                                                                                                                                                                                                        
             });
             if(frozen>0){
                 new FixedColumns( oTable, {
                     "iLeftColumns": frozen
                 } );}
-                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
         }
         function updateDatabase(){
-        userSettings=new Array();
+            userSettings=new Array();
             $('#show_hide_li a').each(function(index,id){
-               console.log(index);
-               console.log(id)
-//                if ($('#'+liName+' i').css('display') == "none") {
-//                    1;
-//                    userSettings[index]= {
-//            review_end_date: review_end_date,
-//            comments: comments,
-//            ftp_details: ftp_detail,
-//            media_list:media_list
-//        };
-//                }
-//                else{
-//                    0
-//                }
+                columnAnchorID=this.id;
+                if ($('#'+columnAnchorID+' i').css('display') == "none") {
+                    userSettings[index]= {
+                        title: $(this).text().replace(' ','_'),
+                        hidden: 1
+                    };
+                }
+                else{
+                    userSettings[index]= {
+                        title: $(this).text().replace(' ','_'),
+                        hidden: 0
+                    };
+                }
             }); 
             console.log(userSettings);
             return;
@@ -279,7 +278,7 @@ if (!$isAjax)
                         updateDataTable();
                     }
                     $.unblockUI();
-                                                
+                                                            
                 }
             });
         }

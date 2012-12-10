@@ -19,7 +19,7 @@ if (!$isAjax)
                     <?php echo $this->ajax_pagination->create_links(); ?>
                 </div>
             </div>
-            <div style="width: 865px;overflow: hidden;" id="instantiation-main">
+            <div style="width: 865px;" id="instantiation-main">
 
                 <table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;width: 860px;">
                     <thead>
@@ -96,7 +96,23 @@ if (!$isAjax)
                                     {
                                         $column = ($value->language) ? $value->language : 'N/A';
                                     }
-                                    echo '<td>' . $column . '</td>';
+									if ($type == 'Nomination' || $type == 'Organization' || $type == 'Instantiation_ID' || $type == 'Format_Type' || $type == 'Date' || $type == 'Date_Type' || $type == 'File_size' || $type == 'Unit_of_measure')
+									{
+										$width = 'min-width:100px;';
+									}
+									else if ($type == 'Duration' || $type == 'Colors' || $type == 'Language')
+									{
+										$width = 'min-width:70px;';
+									}
+									else if ($type == 'Asset_Title')
+									{
+										$width = 'min-width:300px;';
+									}
+									else if ($type == 'Instantiation_ID_Source')
+									{
+										$width = 'min-width:145px;';
+									}
+                                    echo '<td><span style="float:left;' . $width . '">' . $column . '</span></td>';
                                 }
                                 ?>
                             </tr>

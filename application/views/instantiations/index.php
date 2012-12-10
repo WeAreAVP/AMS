@@ -265,19 +265,14 @@ if (!$isAjax)
                     };
                 }
             }); 
-            console.log(userSettings);
-            return;
+            
             $.ajax({
                 type: 'POST', 
                 url: site_url+'instantiations/update_user_settings',
-                data:$('#form_search').serialize(),
+                data:{settings:userSettings},
                 success: function (result)
                 { 
-                    $('#data_container').html(result); 
-                    if(typeof updateInstantiationsTable != 'undefined' && updateInstantiationsTable==1){
-                        updateDataTable();
-                    }
-                    $.unblockUI();
+                   console.log(result);
                                                             
                 }
             });

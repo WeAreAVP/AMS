@@ -147,6 +147,8 @@ class Instantiations extends MY_Controller
     {
         if(isAjax()){
             $user_id=$this->user_id;
+            $settings=  $this->input->post('settings');
+            echo '<pre>';print_r($settings);exit;
         }
         show_404();
     }

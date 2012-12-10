@@ -205,7 +205,6 @@ class MY_Controller extends CI_Controller
 			$this->session->set_userdata($key, $value);
 		}
 	}
-
 }
 
 ?>

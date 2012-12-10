@@ -161,29 +161,4 @@ class Records extends MY_Controller
             show_404();
         }
     }
-	/*
-     * To update Orders of column
-     *
-     */
-	 function update_assets_order()
-	 {
-		if (isAjax())
-        {
-			$update_settings=array();
-			if(isset($_REQUEST['forzen']) && !empty($_REQUEST['forzen']))
-			{
-            	$update_settings=$_REQUEST['forzen'];
-			}
-			if(isset($_REQUEST['hide_show']) && !empty($_REQUEST['hide_show']))
-			{
-            	foreach($this->frozen_column as $row)
-				{
-					if(in_array($row['title'],$_REQUEST['hide_show'])){}
-				}
-			}
-			
-        }
-		exit;
-	 }
-
 }

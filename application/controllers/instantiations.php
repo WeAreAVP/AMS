@@ -143,23 +143,25 @@ class Instantiations extends MY_Controller
             show_404();
         }
     }
-
-    public function update_user_settings()
-    {
-        if (isAjax())
-        {
-            $user_id = $this->user_id;
-            $settings = $this->input->post('settings');
-            $freeze_columns = $this->input->post('frozen_column');
-            $settings = json_encode($settings);
-            $data = array('view_settings' => $settings, 'frozen_column' => $freeze_columns);
-            $this->user_settings->update_setting($user_id, 'instantiation', $data);
-            echo json_encode(array('success' => true));
-            exit;
-        }
-        show_404();
-    }
-
+	/*
+	Set last state of table view
+	*/
+	public function update_user_settings()
+	{
+		if (isAjax())
+		{
+			$user_id = $this->user_id;
+			$settings = $this->input->post('settings');
+			$freeze_columns = $this->input->post('frozen_column');
+			$table_type = $this->input->post('table_type');
+			$settings = json_encode($settings);
+			$data = array('view_settings' => $settings, 'frozen_column' => $freeze_columns);
+			$this->user_settings->update_setting($user_id, $table_type, $data);
+			echo json_encode(array('success' => true));
+			exit;
+		}
+		show_404();
+	}
 }
 
 // END Instantiations Controller

@@ -13,7 +13,7 @@ if (!$isAjax)
         {
             ?>
             <div style="width: 860px;">
-                <?php $this->load->view('instantiations/_gear_dropdown'); ?>
+                 <?php if(!$isAjax){$this->load->view('instantiations/_gear_dropdown');} ?>
                 <div style="float: right;">
                     <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
                     <?php echo $this->ajax_pagination->create_links(); ?>

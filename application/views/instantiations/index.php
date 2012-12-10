@@ -218,7 +218,7 @@ if (!$isAjax)
                 //                "sDom": 'RC<"clear">lfrtip',
                 "sDom": 'Rlfrtip',
                 "aoColumnDefs": [
-                    { "bVisible": false, "aTargets": '<?php echo $hidden_fields; ?>' }
+                    { "bVisible": false, "aTargets": '<?php echo json_encode($hidden_fields); ?>' }
                 ],
                 "oColReorder": {
                     "aiOrder": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],

@@ -141,9 +141,10 @@ if (!$isAjax)
 					$type = $row['title'];
 					if($type!='Description')
 					{
-						$val=trim(str_replace("(**)","N/A",$asset->$def_setting[$row['title']]));
-						if(isset($val) && !empty($val))
+										
+						if(isset($asset->$def_setting[$row['title']]) && !empty($asset->$def_setting[$row['title']]))
 						{
+							$val=trim(str_replace("(**)","N/A",$asset->$def_setting[$row['title']]));
 							$column =$val;
 						}
 						else

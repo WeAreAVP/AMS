@@ -21,21 +21,19 @@ if (!$isAjax)
                         <ul class="dropdown-menu">
                             <li class="dropdown"><a href="#" style="white-space: normal;">Show/Hide Fields <i class="icon-play" style="float: right;"></i></a>
                                 <ul class="sub-menu dropdown-menu" id="show_hide_li">
-                                    <li><a href="javascript://;" onclick="showHideColumns(0);" id="0_column"><i class="icon-ok"></i>Nomination</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(1);" id="1_column"><i class="icon-ok"></i>Organization</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(2);" id="2_column"><i class="icon-ok"></i>Asset Title</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(3);" id="3_column"><i class="icon-ok"></i>Instantiation ID</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(4);" id="4_column"><i class="icon-ok"></i>Instantiation ID Source</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(5);" id="5_column"><i class="icon-ok"></i>Format Type</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(6);" id="6_column"><i class="icon-ok"></i>Duration</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(7);" id="7_column"><i class="icon-ok"></i>Date</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(8);" id="8_column"><i class="icon-ok"></i>Date Type</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(9);" id="9_column"><i class="icon-ok"></i>File Size</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(10);" id="10_column"><i class="icon-ok"></i>Unit of measure</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(11);" id="11_column"><i class="icon-ok"></i>Color</a></li>
-                                    <li><a href="javascript://;" onclick="showHideColumns(12);" id="12_column"><i class="icon-ok"></i>Language</a></li>
-
-
+                                    <?php
+                                    foreach ($this->column_order as $key => $row)
+                                    {
+                                        if ($row['hidden'] == 0)
+                                        {
+                                            $display = 'style="display:block;"';
+                                        } else
+                                        {
+                                            $display = 'style="display:none;"';
+                                        }
+                                        echo '<li><a href="javascript://;" onclick="showHideColumns(' . $key . ');" id="' . $key . '_column"><i class="icon-ok" ' . $display . '></i>' . str_replace("_", ' ', $row['title']) . '</a></li>';
+                                    }
+                                    ?>
                                 </ul>
                             </li>
                             <li class="dropdown"><a href="#"  style="white-space: normal;">Freeze Columns <i class="icon-play" style="float: right;"></i></a>
@@ -213,7 +211,7 @@ if (!$isAjax)
         function freezeColumns(count){
             frozen=count;
             facet_search('0');
-                                                                                                    
+                                                                                                                            
         }
         function updateDataTable(){
             oTable = $('#instantiation_table').dataTable({
@@ -230,7 +228,7 @@ if (!$isAjax)
                         reOrderDropDown(columnArray);
                     }
                 },
-                                                                                                                                                                                                        
+                                                                                                                                                                                                                                
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
@@ -238,14 +236,14 @@ if (!$isAjax)
                 "sScrollY": 400,
                 "sScrollX": "100%",
                 "bScrollInfinite": true
-                                                                                            
-                                                                                                                                                                                                        
+                                                                                                                    
+                                                                                                                                                                                                                                
             });
             if(frozen>0){
                 new FixedColumns( oTable, {
                     "iLeftColumns": frozen
                 } );}
-                                                                                                                                                                                
+                                                                                                                                                                                                        
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );

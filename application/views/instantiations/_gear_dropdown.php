@@ -16,7 +16,7 @@
                                         {
                                             $display = 'style="float: left;margin-right: 5px;display:none;"';
                                         }
-                                        echo '<li"><a href="javascript://;" onclick="showHideColumns(' . $key . ');" id="' . $key . '_column"><i class="icon-ok" ' . $display . '></i>' . str_replace("_", ' ', $row['title']) . '</a></li>';
+                                        echo '<li><a href="javascript://;" onclick="showHideColumns(' . $key . ');" id="' . $key . '_column"><i class="icon-ok" ' . $display . '></i>' . str_replace("_", ' ', $row['title']) . '</a></li>';
                                     }
                                     ?>
                                 </ul>

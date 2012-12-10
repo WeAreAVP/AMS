@@ -101,8 +101,8 @@ if (!$isAjax)
 		}?>
    </table>
   </div>
-   <div style="width: 865px;overflow: hidden;display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;" id="full_table_view" >
-   	<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;"  ><?php 
+   <div style="display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;" id="full_table_view" >
+   	<table id="listing_table" ><?php 
 		if(isset($records) && ($total>0))
 		{
 			?>

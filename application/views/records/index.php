@@ -144,11 +144,11 @@ if (!$isAjax)
 						$val=trim(str_replace("(**)","N/A",$asset->$def_setting[$row['title']]));
 						if(isset($val) && !empty($val))
 						{
-							$column ='<td>'.$val.'</td>';
+							$column =$val;
 						}
 						else
 						{
-							$column ='<td>N/A</td>';
+							$column ='N/A';
 						}
 					}
 					else
@@ -159,7 +159,7 @@ if (!$isAjax)
 							$messages = str_split($des , 160);
 							$des=$messages[0].' ...';
 						}
-						$column ='<td>'.$des.'</td>';
+						$column =$des;
 					}
 					echo '<td>' . $column . '</td>';
 				}

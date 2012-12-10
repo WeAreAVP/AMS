@@ -19,6 +19,7 @@ if (!$isAjax)
                     <?php echo $this->ajax_pagination->create_links(); ?>
                 </div>
             </div>
+            <br clear="all"/>
             <div style="width: 865px;" id="instantiation-main">
 
                 <table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;width: 860px;">

@@ -73,7 +73,8 @@ class Instantiations extends MY_Controller
             if ($value['hidden'] == 1)
                 $is_hidden[] = $key;
         }
-        $data['hidden_fields']=$is_hidden;
+
+        $data['hidden_fields'] = $is_hidden;
         $data['isAjax'] = FALSE;
         $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
@@ -140,6 +141,14 @@ class Instantiations extends MY_Controller
         {
             show_404();
         }
+    }
+
+    public function update_user_settings()
+    {
+        if(isAjax()){
+            $user_id=$this->user_id;
+        }
+        show_404();
     }
 
 }

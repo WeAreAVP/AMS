@@ -31,7 +31,7 @@ if (!$isAjax)
                                         {
                                             $display = 'style="float: left;margin-right: 5px;display:none;"';
                                         }
-                                        echo '<li><a href="javascript://;" onclick="showHideColumns(' . $key . ');" id="' . $key . '_column"><i class="icon-ok" ' . $display . '></i>' . str_replace("_", ' ', $row['title']) . '</a></li>';
+                                        echo '<li"><a href="javascript://;" onclick="showHideColumns(' . $key . ');" id="' . $key . '_column"><i class="icon-ok" ' . $display . '></i>' . str_replace("_", ' ', $row['title']) . '</a></li>';
                                     }
                                     ?>
                                 </ul>
@@ -168,7 +168,7 @@ if (!$isAjax)
     <script type="text/javascript">
         columnsOrder=new Array();
         orderString='';
-        frozen=0;
+        frozen='<?php $this->frozen_column; ?>';
         updateInstantiationsTable=1;
         oTable=null;
         $(function() {
@@ -211,7 +211,7 @@ if (!$isAjax)
         function freezeColumns(count){
             frozen=count;
             facet_search('0');
-                                                                                                                                
+                                                                                                                                                        
         }
         function updateDataTable(){
             oTable = $('#instantiation_table').dataTable({
@@ -228,7 +228,7 @@ if (!$isAjax)
                         reOrderDropDown(columnArray);
                     }
                 },
-                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                            
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
@@ -236,17 +236,52 @@ if (!$isAjax)
                 "sScrollY": 400,
                 "sScrollX": "100%",
                 "bScrollInfinite": true
-                                                                                                                        
-                                                                                                                                                                                                                                    
+                                                                                                                                                
+                                                                                                                                                                                                                                                            
             });
             if(frozen>0){
                 new FixedColumns( oTable, {
                     "iLeftColumns": frozen
                 } );}
-                                                                                                                                                                                                            
+                                                                                                                                                                                                                                    
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
+        }
+        function updateDatabase(){
+        userSettings=new Array();
+            $('show_hide_li li').each(function(index){
+                liName=this.id;
+                console.log(libName);
+//                if ($('#'+liName+' i').css('display') == "none") {
+//                    1;
+//                    userSettings[index]= {
+//            review_end_date: review_end_date,
+//            comments: comments,
+//            ftp_details: ftp_detail,
+//            media_list:media_list
+//        };
+//                }
+//                else{
+//                    0
+//                }
+            }); 
+            console.log(userSettings);
+            return;
+            $.ajax({
+                type: 'POST', 
+                url: site_url+'instantiations/update_user_settings',
+                data:$('#form_search').serialize(),
+                success: function (result)
+                { 
+                    $('#data_container').html(result); 
+                    if(typeof updateInstantiationsTable != 'undefined' && updateInstantiationsTable==1){
+                        updateDataTable();
+                    }
+                    $.unblockUI();
+                                                
+                }
+            });
         }
     </script>
 <?php } ?>

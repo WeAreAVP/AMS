@@ -131,7 +131,7 @@ if (!$isAjax)
 							{
 								$width = 'min-width:300px;';
 							} 
-							echo '<th id="' . $value['title'] . '"><span style="float:left;' . $width . '">' . str_replace("_", ' ', $value['title']) . '</span></th>';
+							echo '<th id="' . $value['title'] . '">' . str_replace("_", ' ', $value['title']) . '</th>';
 						}
 					}
 				}

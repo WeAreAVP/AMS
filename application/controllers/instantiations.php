@@ -145,10 +145,14 @@ class Instantiations extends MY_Controller
 
     public function update_user_settings()
     {
-        if(isAjax()){
-            $user_id=$this->user_id;
-            $settings=  $this->input->post('settings');
-            echo '<pre>';print_r($settings);exit;
+        if (isAjax())
+        {
+            $user_id = $this->user_id;
+            $settings = $this->input->post('settings');
+            $data = array('view_settings' => $settings, 'frozen_column' => $freeze_columns);
+            $this->user_settings->update_setting($user_id, 'instantiation', $data);
+            echo json_decode(array('success' => true));
+            exit;
         }
         show_404();
     }

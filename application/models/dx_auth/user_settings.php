@@ -34,9 +34,10 @@ class User_Settings extends CI_Model
 		return $this->db->delete($this->_table);
 	}
 	
-    function update_setting($user_id,$data)
+    function update_setting($user_id,$type,$data)
 	{
 		$this->db->where('user_id', $user_id);
+		$this->db->where('table_type', $type);
         $this->db->update($this->_table, $data);
     }
 }

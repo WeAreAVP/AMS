@@ -184,6 +184,7 @@ if (!$isAjax)
                 else{
                     $('#instantiation_table').dataTable().fnSetColumnVis(column,true);
                 }
+                updateDatabase();
             }
             else{
                 alert('Frozen Column will not take any affect');
@@ -211,7 +212,8 @@ if (!$isAjax)
         function freezeColumns(count){
             frozen=count;
             facet_search('0');
-                                                                                                                                                                    
+            updateDatabase();
+                                                                                                                                                                                
         }
         function updateDataTable(){
             oTable = $('#instantiation_table').dataTable({
@@ -228,7 +230,7 @@ if (!$isAjax)
                         reOrderDropDown(columnArray);
                     }
                 },
-                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                    
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
@@ -236,14 +238,14 @@ if (!$isAjax)
                 "sScrollY": 400,
                 "sScrollX": "100%",
                 "bScrollInfinite": true
-                                                                                                                                                            
-                                                                                                                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                    
             });
             if(frozen>0){
                 new FixedColumns( oTable, {
                     "iLeftColumns": frozen
                 } );}
-                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                            
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );
@@ -265,15 +267,15 @@ if (!$isAjax)
                     };
                 }
             }); 
-            
+                        
             $.ajax({
                 type: 'POST', 
                 url: site_url+'instantiations/update_user_settings',
-                data:{settings:userSettings},
+                data:{settings:userSettings,frozen_column:frozen},
                 success: function (result)
                 { 
-                   console.log(result);
-                                                            
+                           
+                                                                        
                 }
             });
         }

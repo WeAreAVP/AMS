@@ -224,7 +224,7 @@ if (!$isAjax)
                     { "bVisible": false, "aTargets": <?php echo json_encode($hidden_fields); ?> }
                 ],
                 "oColReorder": {
-                    "aiOrder": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+//                    "aiOrder": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                     "iFixedColumns": frozen,
                     "fnReorderCallback": function () {
                         columnArray= getColumnOrder();

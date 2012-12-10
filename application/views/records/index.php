@@ -138,7 +138,7 @@ if (!$isAjax)
 				echo '<tr><td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>';
 				foreach($this->column_order as $row)
 				{
-					$type = $row['title'];
+					echo $type = $row['title'];
 					if($type!='Description')
 					{
 						$val=trim(str_replace("(**)","N/A",$asset->$def_setting[$row['title']]));
@@ -164,6 +164,7 @@ if (!$isAjax)
 					echo '<td>' . $column . '</td>';
 				}
 				echo '</tr>';
+				exit();
 			}?>
 			</tbody>
     <?php }

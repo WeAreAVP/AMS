@@ -113,6 +113,7 @@
             "bSort": false,
             "sScrollY": 400,
             "sScrollX": "100%",
+            "sScrollXInner": "120%",
             "bScrollCollapse": true,
             "bScrollInfinite": true,
             "bDeferRender": true,

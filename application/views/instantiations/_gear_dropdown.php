@@ -117,7 +117,7 @@
 //            "bScrollCollapse": true,
 //            "bScrollInfinite": true,
             "bDeferRender": true,
-//            "bAutoWidth": false
+            "bAutoWidth": false
 
            
             

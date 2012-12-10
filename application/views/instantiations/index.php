@@ -37,10 +37,10 @@ if (!$isAjax)
                                     $width = 'min-width:70px;';
                                 } else if ($type == 'Asset_Title')
                                 {
-                                    $width = 'min-width:300px;';
+                                    $width = 'min-width:150px;';
                                 } else if ($type == 'Instantiation_ID_Source')
                                 {
-                                    $width = 'min-width:145px;';
+                                    $width = 'min-width:120px;';
                                 }
                                 echo '<th id="' . $value['title'] . '"><span style="float:left;' . $width . '">' . str_replace("_", ' ', $value['title']) . '</span></th>';
                             }
@@ -107,11 +107,10 @@ if (!$isAjax)
 									}
 									else if ($type == 'Asset_Title')
 									{
-										$width = 'min-width:300px;';
-									}
-									else if ($type == 'Instantiation_ID_Source')
+										$width = 'min-width:150px;';
+									} else if ($type == 'Instantiation_ID_Source')
 									{
-										$width = 'min-width:145px;';
+										$width = 'min-width:120px;';
 									}
                                     echo '<td><span style="float:left;' . $width . '">' . $column . '</span></td>';
                                 }

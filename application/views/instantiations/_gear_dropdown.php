@@ -112,10 +112,13 @@
             'bFilter': false,
             "bSort": false,
             "sScrollY": 400,
-            "sScrollX": "860px",
+//            "sScrollX": "860px",
             "bScrollInfinite": true,
             "bDeferRender": true,
-            "bScrollCollapse": true,
+//            "bScrollCollapse": true,
+            "sScrollX": "100%",
+            "sScrollXInner": "110%",
+            "bScrollCollapse": true
             
                                                                                                                                                                                     
                                                                                                                                                                                                                                                                                                 

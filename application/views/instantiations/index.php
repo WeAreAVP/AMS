@@ -80,9 +80,9 @@ if (!$isAjax)
                                     $width = 'min-width:300px;';
                                 } else if ($type == 'Instantiation_ID_Source')
                                 {
-                                    $width = 'min-width:130px;';
+                                    $width = 'min-width:145px;';
                                 }
-                                echo '<th id="' . $value['title'] . '"><span style="float:left;'.$width.'">' . str_replace("_", ' ', $value['title']) . '</span></th>';
+                                echo '<th id="' . $value['title'] . '"><span style="float:left;' . $width . '">' . str_replace("_", ' ', $value['title']) . '</span></th>';
                             }
                             ?>
                         </tr>
@@ -93,20 +93,53 @@ if (!$isAjax)
                         {
                             ?>
                             <tr>
-                                <td><?php echo ($value->status) ? $value->status : 'N/A'; ?></td>
-                                <td><?php echo $value->organization; ?></td>
-                                <td><a href="<?php echo site_url('instantiations/detail/' . $value->id); ?>"><?php echo $value->asset_title; ?></a></td>
-                                <td><?php echo $value->instantiation_identifier; ?></td>
-                                <td><?php echo $value->instantiation_source; ?></td>
-                                <td><?php echo $value->format_type; ?></td>
-                                <td><?php echo ($value->actual_duration) ? $value->actual_duration : 'N/A'; ?></td>
-                                <td><?php echo ($value->instantiation_date == 0) ? 'No Source Date' : date('Y-m-d', $value->instantiation_date); ?></td>
-                                <td><?php echo $value->date_type; ?></td>
-                                <td><?php echo ($value->file_size == 0) ? 'N/A' : $value->file_size; ?></td>
-                                <td><?php echo ($value->file_size_unit_of_measure) ? $value->file_size_unit_of_measure : 'N/A'; ?></td>
-                                <td><?php echo ($value->color) ? $value->color : 'N/A'; ?></td>
-                                <td><?php echo ($value->language) ? $value->language : 'N/A'; ?></td>
-
+                                <?php
+                                foreach ($this->column_order as $key => $row)
+                                {
+                                    $type = $row['title'];
+                                    if ($type == 'Nomination')
+                                    {
+                                        $column = ($value->status) ? $value->status : 'N/A';
+                                    } else if ($type == 'Organization')
+                                    {
+                                        $column = $value->organization;
+                                    } else if ($type == 'Asset_Title')
+                                    {
+                                        $column = '<a href="' . site_url('instantiations/detail/' . $value->id) . '">' . $value->asset_title . '</a>';
+                                    } else if ($type == 'Instantiation_ID')
+                                    {
+                                        $column = $value->instantiation_identifier;
+                                    } else if ($type == 'Instantiation_ID_Source')
+                                    {
+                                        $column = $value->instantiation_source;
+                                    } else if ($type == 'Format_Type')
+                                    {
+                                        $column = $value->format_type;
+                                    } else if ($type == 'Duration')
+                                    {
+                                        $column = ($value->actual_duration) ? $value->actual_duration : 'N/A';
+                                    } else if ($type == 'Date')
+                                    {
+                                        $column = ($value->instantiation_date == 0) ? 'No Source Date' : date('Y-m-d', $value->instantiation_date);
+                                    } else if ($type == 'Date_Type')
+                                    {
+                                        $column = $value->date_type;
+                                    } else if ($type == 'File_size')
+                                    {
+                                        $column = ($value->file_size == 0) ? 'N/A' : $value->file_size;
+                                    } else if ($type == 'Unit_of_measure')
+                                    {
+                                        $column = ($value->file_size_unit_of_measure) ? $value->file_size_unit_of_measure : 'N/A';
+                                    } else if ($type == 'Colors')
+                                    {
+                                        $column = ($value->color) ? $value->color : 'N/A';
+                                    } else if ($type == 'Language')
+                                    {
+                                        $column = ($value->language) ? $value->language : 'N/A';
+                                    }
+                                    echo '<td>' . $column . '</td>';
+                                }
+                                ?>
                             </tr>
                             <?php
                         }
@@ -180,7 +213,7 @@ if (!$isAjax)
         function freezeColumns(count){
             frozen=count;
             facet_search('0');
-                                    
+                                                                                                    
         }
         function updateDataTable(){
             oTable = $('#instantiation_table').dataTable({
@@ -197,7 +230,7 @@ if (!$isAjax)
                         reOrderDropDown(columnArray);
                     }
                 },
-                                                                                                                                        
+                                                                                                                                                                                                        
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
@@ -205,14 +238,14 @@ if (!$isAjax)
                 "sScrollY": 400,
                 "sScrollX": "100%",
                 "bScrollInfinite": true
-                            
-                                                                                                                                        
+                                                                                            
+                                                                                                                                                                                                        
             });
             if(frozen>0){
                 new FixedColumns( oTable, {
                     "iLeftColumns": frozen
                 } );}
-                                                                                                                
+                                                                                                                                                                                
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );

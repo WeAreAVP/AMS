@@ -66,7 +66,7 @@ class Instantiations extends MY_Controller
         $data['event_types'] = $this->instantiation->get_event_type();
         $data['event_outcome'] = $this->instantiation->get_event_outcome();
 
-        echo '<pre>';print_r($this->column_order);echo '</pre>';
+//        echo '<pre>';print_r($this->column_order);echo '</pre>';
         $is_hidden = array();
         foreach ($this->column_order as $key => $value)
         {
@@ -151,12 +151,12 @@ class Instantiations extends MY_Controller
             $settings = $this->input->post('settings');
             $freeze_columns = $this->input->post('frozen_column');
             
-            echo '<pre>';
-            print_r($this->column_order);
+           
+           $settings=json_encode($settings);
             print_r($settings);
             
-//            $data = array('view_settings' => json_encode($settings), 'frozen_column' => $freeze_columns);
-//            $this->user_settings->update_setting($user_id, 'instantiation', $data);
+            $data = array('view_settings' => $settings, 'frozen_column' => $freeze_columns);
+            $this->user_settings->update_setting($user_id, 'instantiation', $data);
             echo json_encode(array('success' => true));
             exit;
         }

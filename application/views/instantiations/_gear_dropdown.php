@@ -94,7 +94,7 @@
         oTable = $('#listing_table').dataTable({
             //                "sDom": 'RC<"clear">lfrtip',
             "sDom": 'RlfrtipS',
-            "aoColumnDefs": [
+         /*   "aoColumnDefs": [
                 { "bVisible": false, "aTargets": <?php echo json_encode($hidden_fields); ?> }
             ],
             "oColReorder": {
@@ -105,7 +105,7 @@
                     reOrderDropDown(columnArray);
                     updateDatabase();
                 }
-            },
+            },*/
                                                                                                                                                                                                                                                                                                 
             'bPaginate':false,
             'bInfo':false,

@@ -101,8 +101,8 @@ if (!$isAjax)
 		}?>
    </table>
   </div>
-   <div style="display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;" id="full_table_view" >
-   	<table id="listing_table" ><?php 
+   <div style="width: 865px;display:<?php if($current_tab=='full_table'){ echo 'block';}else{echo "none"; }?>;" id="full_table_view" >
+   	<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;"  ><?php 
 		if(isset($records) && ($total>0))
 		{
 			?>
@@ -131,7 +131,7 @@ if (!$isAjax)
 							{
 								$width = 'min-width:300px;';
 							} 
-							echo '<th id="' . $value['title'] . '">' . str_replace("_", ' ', $value['title']) . '</th>';
+							echo '<th id="' . $value['title'] . '"><span style="float:left;' . $width . '">' . str_replace("_", ' ', $value['title']) . '</span></th>';
 						}
 					}
 				}

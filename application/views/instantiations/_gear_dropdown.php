@@ -145,7 +145,7 @@
                     };
                 }
             }); 
-                console.log(userSettings);
+                
             $.ajax({
                 type: 'POST', 
                 url: site_url+'instantiations/update_user_settings',

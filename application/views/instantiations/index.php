@@ -211,7 +211,7 @@ if (!$isAjax)
         }
         function freezeColumns(count){
             frozen=count;
-            $('freeze_col_'+frozen).toggle(); 
+            $('#freeze_col_'+frozen).toggle(); 
             facet_search('0');
             updateDatabase();
                                                                                                                                                                                         
@@ -248,7 +248,7 @@ if (!$isAjax)
                     "iLeftColumns": frozen
                 } );
             }
-            $('freeze_col_'+frozen).show();                                                                                                                                                                                                                                           
+            $('#freeze_col_'+frozen).show();                                                                                                                                                                                                                                           
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );

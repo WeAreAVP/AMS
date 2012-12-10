@@ -117,7 +117,7 @@
             "bDeferRender": true,
 //            "bScrollCollapse": true,
             "sScrollX": "100%",
-            "sScrollXInner": 860,
+//            "sScrollXInner": "200%",
             "bScrollCollapse": true
             
                                                                                                                                                                                     

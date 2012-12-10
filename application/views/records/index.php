@@ -150,36 +150,39 @@ if (!$isAjax)
 				foreach($this->column_order as $row)
 				{
 					$type = $row['title'];
-					if($type=='flag')
+					if(isset($type) && !empty($type))
 					{
-						echo '<td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>';
-					}
-					else
-					{
-						if($type!='Description')
+						if($type=='flag')
 						{
-											
-							if(isset($asset->$def_setting[$row['title']]) && !empty($asset->$def_setting[$row['title']]))
-							{
-								$val=trim(str_replace("(**)","N/A",$asset->$def_setting[$row['title']]));
-								$column =$val;
-							}
-							else
-							{
-								$column ='N/A';
-							}
+							echo '<td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>';
 						}
 						else
 						{
-							$des=str_replace("(**)","N/A",$asset->$def_setting[$row['title']]);
-							if(isset($des) && !empty($des) && strlen($des)>160)
+							if($type!='Description')
 							{
-								$messages = str_split($des , 160);
-								$des=$messages[0].' ...';
+												
+								if(isset($asset->$def_setting[$row['title']]) && !empty($asset->$def_setting[$row['title']]))
+								{
+									$val=trim(str_replace("(**)","N/A",$asset->$def_setting[$row['title']]));
+									$column =$val;
+								}
+								else
+								{
+									$column ='N/A';
+								}
 							}
-							$column =$des;
+							else
+							{
+								$des=str_replace("(**)","N/A",$asset->$def_setting[$row['title']]);
+								if(isset($des) && !empty($des) && strlen($des)>160)
+								{
+									$messages = str_split($des , 160);
+									$des=$messages[0].' ...';
+								}
+								$column =$des;
+							}
+							echo '<td>' . $column . '</td>';
 						}
-						echo '<td>' . $column . '</td>';
 					}
 				}
 				echo '</tr>';

@@ -94,7 +94,7 @@
         oTable = $('#listing_table').dataTable({
             //                "sDom": 'RC<"clear">lfrtip',
             "sDom": 'RlfrtipS',
-         /*   "aoColumnDefs": [
+            "aoColumnDefs": [
                 { "bVisible": false, "aTargets": <?php echo json_encode($hidden_fields); ?> }
             ],
             "oColReorder": {
@@ -105,15 +105,19 @@
                     reOrderDropDown(columnArray);
                     updateDatabase();
                 }
-            },*/
+            },
                                                                                                                                                                                                                                                                                                 
             'bPaginate':false,
             'bInfo':false,
             'bFilter': false,
             "bSort": false,
-           "sScrollX": "100%",
-		"sScrollXInner": "110%",
-		"bScrollCollapse": true
+            "sScrollY": 400,
+            "sScrollX": "100%",
+//            "sScrollXInner": "120%",
+//            "bScrollCollapse": true,
+//            "bScrollInfinite": true,
+            "bDeferRender": true,
+            "bAutoWidth": false
 
            
             

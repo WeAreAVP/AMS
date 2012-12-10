@@ -22,6 +22,7 @@
         echo link_js('FixedHeader.js');
         echo link_js('ColReorder.js');
         echo link_js('ColVis.js');
+        echo link_js('dataTables.scroller.js');
 
 
         echo link_tag("css/tableSorter.css");
@@ -30,6 +31,7 @@
         echo link_tag("css/style.css");
         echo link_tag("css/ColReorder.css");
         echo link_tag("css/ColVis.css");
+        echo link_tag("css/dataTables.scroller.css");
 
         ?> 
         <script src="<?php echo base_url('tiny_mce/tiny_mce.js') ?>" type="text/javascript"></script>

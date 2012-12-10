@@ -228,6 +228,7 @@ if (!$isAjax)
                     "fnReorderCallback": function () {
                         columnArray= getColumnOrder();
                         reOrderDropDown(columnArray);
+                        updateDatabase();
                     }
                 },
                                                                                                                                                                                                                                                                                         

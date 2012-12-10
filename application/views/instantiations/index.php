@@ -256,13 +256,13 @@ if (!$isAjax)
                 columnAnchorID=this.id;
                 if ($('#'+columnAnchorID+' i').css('display') == "none") {
                     userSettings[index]= {
-                        title: $(this).text().replace(' ','_'),
+                        title: $(this).text().replace('/ /g','_'),
                         hidden: 1
                     };
                 }
                 else{
                     userSettings[index]= {
-                        title: $(this).text().replace(' ','_'),
+                        title: $(this).text().replace('/ /g','_'),
                         hidden: 0
                     };
                 }

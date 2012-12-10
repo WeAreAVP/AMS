@@ -116,7 +116,7 @@
             "bScrollInfinite": true,
             "bDeferRender": true,
             "bScrollCollapse": true,
-            "sScrollXInner": "150%",
+            
                                                                                                                                                                                     
                                                                                                                                                                                                                                                                                                 
         });

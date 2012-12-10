@@ -12,7 +12,7 @@ if (!$isAjax)
         if (count($records) > 0)
         {
             ?>
-            <div style="width: 860px;">
+            <div style="width: 860px;overflow: scroll;">
                 <div style="float: left;margin-top: 10px;">
                     <div class="btn-group">
                         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -250,7 +250,7 @@ if (!$isAjax)
         }
         function updateDatabase(){
         userSettings=new Array();
-            $('show_hide_li li a').each(function(index,id){
+            $('#show_hide_li a').each(function(index,id){
                console.log(index);
                console.log(id)
 //                if ($('#'+liName+' i').css('display') == "none") {

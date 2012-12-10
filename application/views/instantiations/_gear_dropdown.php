@@ -93,7 +93,7 @@
     function updateDataTable(){
         oTable = $('#listing_table').dataTable({
             //                "sDom": 'RC<"clear">lfrtip',
-            "sDom": 'Rlfrtip',
+            "sDom": 'RlfrtSip',
             "aoColumnDefs": [
                 { "bVisible": false, "aTargets": <?php echo json_encode($hidden_fields); ?> }
             ],

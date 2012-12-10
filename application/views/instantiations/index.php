@@ -40,11 +40,11 @@ if (!$isAjax)
                             </li>
                             <li class="dropdown"><a href="#"  style="white-space: normal;">Freeze Columns <i class="icon-play" style="float: right;"></i></a>
                                 <ul class="sub-menu dropdown-menu">
-                                    <li><a href="javascript://;" onclick="freezeColumns(0);">None</a></li>
-                                    <li><a href="javascript://;" onclick="freezeColumns(1);">Freeze 1 Column</a></li>
-                                    <li><a href="javascript://;" onclick="freezeColumns(2);">Freeze 2 Columns</a></li>
-                                    <li><a href="javascript://;" onclick="freezeColumns(3);">Freeze 3 Columns</a></li>
-                                    <li><a href="javascript://;" onclick="freezeColumns(4);">Freeze 4 Columns</a></li>
+                                    <li><a href="javascript://;" onclick="freezeColumns(0);"><i class="icon-ok"></i>None</a></li>
+                                    <li><a href="javascript://;" onclick="freezeColumns(1);"><i class="icon-ok"></i>Freeze 1 Column</a></li>
+                                    <li><a href="javascript://;" onclick="freezeColumns(2);"><i class="icon-ok"></i>Freeze 2 Columns</a></li>
+                                    <li><a href="javascript://;" onclick="freezeColumns(3);"><i class="icon-ok"></i>Freeze 3 Columns</a></li>
+                                    <li><a href="javascript://;" onclick="freezeColumns(4);"><i class="icon-ok"></i>Freeze 4 Columns</a></li>
 
 
 
@@ -65,8 +65,13 @@ if (!$isAjax)
                 <table class="table table-bordered" id="instantiation_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;">
                     <thead>
                         <tr>
-    <!--                        <th><span style="float:left;min-width: 80px;">Asset ID</span></th>-->
-                            <th id="Nomination"><span style="float:left;min-width: 100px;">Nomination </span></th>
+                            <?php
+                            foreach ($this->column_order as $key => $value)
+                            {
+                                echo '<th id="'.$value['title'].'">'.str_replace("_",' ',$value['title']).'</th>';
+                            }
+                            ?>
+<!--                            <th id="Nomination"><span style="float:left;min-width: 100px;">Nomination </span></th>
                             <th id="Organization"><span style="float:left;min-width: 100px;">Organization</span></th>
                             <th id="Asset_Title"><span style="float:left;min-width: 300px;">Asset Title</span></th>
                             <th id="Instantiation_ID"><span style="float:left;min-width: 100px;">Instantiation ID</span></th>
@@ -78,7 +83,7 @@ if (!$isAjax)
                             <th id="File_size"><span style="float:left;min-width: 90px;">File size</span></th>
                             <th id="Unit_of_measure"><span style="float:left;min-width: 100px;">Unit of measure</span></th>
                             <th id="Colors"><span style="float:left;min-width: 70px;">Colors</span></th>
-                            <th id="Language"><span style="float:left;min-width: 70px;">Language</span></th>
+                            <th id="Language"><span style="float:left;min-width: 70px;">Language</span></th>-->
                         </tr>
                     </thead>
                     <tbody>
@@ -113,7 +118,7 @@ if (!$isAjax)
 
             <div style="text-align: right;width: 860px;">
                 <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
-                <?php echo $this->ajax_pagination->create_links(); ?>
+            <?php echo $this->ajax_pagination->create_links(); ?>
             </div>
             <?php
         } else
@@ -174,7 +179,7 @@ if (!$isAjax)
         function freezeColumns(count){
             frozen=count;
             facet_search('0');
-                        
+                            
         }
         function updateDataTable(){
             oTable = $('#instantiation_table').dataTable({
@@ -191,7 +196,7 @@ if (!$isAjax)
                         reOrderDropDown(columnArray);
                     }
                 },
-                                                                                                                            
+                                                                                                                                
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
@@ -199,14 +204,14 @@ if (!$isAjax)
                 "sScrollY": 400,
                 "sScrollX": "100%",
                 "bScrollInfinite": true
-                
-                                                                                                                            
+                    
+                                                                                                                                
             });
             if(frozen>0){
                 new FixedColumns( oTable, {
                     "iLeftColumns": frozen
                 } );}
-                                                                                                    
+                                                                                                        
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );

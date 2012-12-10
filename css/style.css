@@ -43,7 +43,7 @@ html, body {
     color: #999;
     margin-left: 10px;
     margin-right: 10px;
-    cursor: pointer;
+    cursor: pointer; 
 }
 #search_bar{
     background-color: #f5f5f5;

@@ -46,7 +46,8 @@
     updateInstantiationsTable=1;
     oTable=null;
     $(function() {
-        updateDataTable();
+        setTimeout('updateDataTable();',10000);
+//        updateDataTable();
     });
     function showHideColumns(column){
         if(frozen<column+1){

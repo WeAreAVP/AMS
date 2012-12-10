@@ -214,7 +214,7 @@ if (!$isAjax)
             $('#freeze_col_'+frozen).toggle(); 
             facet_search('0');
             updateDatabase();
-                                                                                                                                                                                        
+                                                                                                                                                                                            
         }
         function updateDataTable(){
             oTable = $('#instantiation_table').dataTable({
@@ -224,7 +224,7 @@ if (!$isAjax)
                     { "bVisible": false, "aTargets": <?php echo json_encode($hidden_fields); ?> }
                 ],
                 "oColReorder": {
-//                    "aiOrder": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                    //                    "aiOrder": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                     "iFixedColumns": frozen,
                     "fnReorderCallback": function () {
                         columnArray= getColumnOrder();
@@ -232,7 +232,7 @@ if (!$isAjax)
                         updateDatabase();
                     }
                 },
-                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
@@ -240,8 +240,8 @@ if (!$isAjax)
                 "sScrollY": 400,
                 "sScrollX": "100%",
                 "bScrollInfinite": true
-                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                
             });
             if(frozen>0){
                 new FixedColumns( oTable, {
@@ -270,15 +270,15 @@ if (!$isAjax)
                     };
                 }
             }); 
-                                
+                                    
             $.ajax({
                 type: 'POST', 
                 url: site_url+'instantiations/update_user_settings',
-                data:{settings:userSettings,frozen_column:frozen},
+                data:{settings:userSettings,frozen_column:frozen,table_type:'instantiation'},
                 success: function (result)
                 { 
-                                   
-                                                                                
+                                       
+                                                                                    
                 }
             });
         }

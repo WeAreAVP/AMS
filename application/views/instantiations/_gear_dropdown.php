@@ -114,8 +114,8 @@
             "sScrollY": 400,
             "sScrollX": "100%",
 //            "sScrollXInner": "120%",
-            "bScrollCollapse": true,
-            "bScrollInfinite": true,
+//            "bScrollCollapse": true,
+//            "bScrollInfinite": true,
             "bDeferRender": true,
 //            "bAutoWidth": false
 

@@ -46,7 +46,7 @@ class MY_Controller extends CI_Controller
         {
             $this->_assing_user_info();
         }
-		if (is_route_method(array('records' => array('index'), 'instantiations' => array('index','update_user_settings'))))
+		if (is_route_method(array('records' => array('index'), 'instantiations' => array('index','update_user_settings')))) 
 		{
 			$this->_table_view_settings();
 		}

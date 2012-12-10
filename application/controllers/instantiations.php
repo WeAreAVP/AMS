@@ -66,7 +66,7 @@ class Instantiations extends MY_Controller
         $data['event_types'] = $this->instantiation->get_event_type();
         $data['event_outcome'] = $this->instantiation->get_event_outcome();
 
-//        echo '<pre>';print_r($this->column_order);exit;
+        echo '<pre>';print_r($this->column_order);echo '</pre>';
         $is_hidden = array();
         foreach ($this->column_order as $key => $value)
         {
@@ -146,7 +146,7 @@ class Instantiations extends MY_Controller
     public function update_user_settings()
     {
         if (isAjax())
-        {
+        { 
             $user_id = $this->user_id;
             $settings = $this->input->post('settings');
             $freeze_columns = $this->input->post('frozen_column');

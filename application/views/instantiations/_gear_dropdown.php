@@ -93,7 +93,7 @@
     function updateDataTable(){
         oTable = $('#listing_table').dataTable({
             //                "sDom": 'RC<"clear">lfrtip',
-            "sDom": 'RlfrtipS',
+            "sDom": 'Rlfrtip',
             "aoColumnDefs": [
                 { "bVisible": false, "aTargets": <?php echo json_encode($hidden_fields); ?> }
             ],
@@ -114,7 +114,9 @@
             "sScrollY": 400,
             "sScrollX": "860px",
             "bScrollInfinite": true,
-            "bDeferRender": true
+            "bDeferRender": true,
+            "bScrollCollapse": true,
+            "sScrollXInner": "150%",
                                                                                                                                                                                     
                                                                                                                                                                                                                                                                                                 
         });

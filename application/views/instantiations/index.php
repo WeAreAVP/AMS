@@ -168,7 +168,7 @@ if (!$isAjax)
     <script type="text/javascript">
         columnsOrder=new Array();
         orderString='';
-        frozen='<?php $this->frozen_column; ?>';
+        frozen='<?php echo $this->frozen_column; ?>';
         updateInstantiationsTable=1;
         oTable=null;
         $(function() {

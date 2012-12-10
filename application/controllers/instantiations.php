@@ -75,6 +75,7 @@ class Instantiations extends MY_Controller
         }
 
         $data['hidden_fields'] = $is_hidden;
+        
         $data['isAjax'] = FALSE;
         $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
@@ -146,15 +147,11 @@ class Instantiations extends MY_Controller
     public function update_user_settings()
     {
         if (isAjax())
-        { 
+        {
             $user_id = $this->user_id;
             $settings = $this->input->post('settings');
             $freeze_columns = $this->input->post('frozen_column');
-            
-           
-           $settings=json_encode($settings);
-            print_r($settings);
-            
+            $settings = json_encode($settings);
             $data = array('view_settings' => $settings, 'frozen_column' => $freeze_columns);
             $this->user_settings->update_setting($user_id, 'instantiation', $data);
             echo json_encode(array('success' => true));

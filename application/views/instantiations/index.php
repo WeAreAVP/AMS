@@ -211,14 +211,14 @@ if (!$isAjax)
         function freezeColumns(count){
             frozen=count;
             facet_search('0');
-                                                                                                                            
+                                                                                                                                
         }
         function updateDataTable(){
             oTable = $('#instantiation_table').dataTable({
                 //                "sDom": 'RC<"clear">lfrtip',
                 "sDom": 'Rlfrtip',
                 "aoColumnDefs": [
-                    { "bVisible": false, "aTargets": '<?php echo json_encode($hidden_fields); ?>' }
+                    { "bVisible": false, "aTargets": <?php echo json_encode($hidden_fields); ?> }
                 ],
                 "oColReorder": {
                     "aiOrder": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -228,7 +228,7 @@ if (!$isAjax)
                         reOrderDropDown(columnArray);
                     }
                 },
-                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                    
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
@@ -236,14 +236,14 @@ if (!$isAjax)
                 "sScrollY": 400,
                 "sScrollX": "100%",
                 "bScrollInfinite": true
-                                                                                                                    
-                                                                                                                                                                                                                                
+                                                                                                                        
+                                                                                                                                                                                                                                    
             });
             if(frozen>0){
                 new FixedColumns( oTable, {
                     "iLeftColumns": frozen
                 } );}
-                                                                                                                                                                                                        
+                                                                                                                                                                                                            
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );

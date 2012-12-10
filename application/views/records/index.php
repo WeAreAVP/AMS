@@ -105,7 +105,10 @@ if (!$isAjax)
    	<table class="tablesorter table-freeze-custom table-bordered freeze-my-column1" id="listing_table" style="margin-top:0px;margin-left: 1px; "  ><?php 
 		if(isset($records) && ($total>0))
 		{
-			if(!empty($this->column_order))
+			?>
+        <thead>
+            <tr >
+             <?php if(!empty($this->column_order))
 			{
 										
 				foreach ($this->column_order as $key => $value)
@@ -120,10 +123,8 @@ if (!$isAjax)
 					} 
 					echo '<th id="' . $value['title'] . '"><span style="float:left;' . $width . '">' . str_replace("_", ' ', $value['title']) . '</span></th>';
 				}
-			}?>
-        <thead>
-            <tr >
-             <?php echo $titles;?>
+			}
+			?>
            </tr>
            </thead>
             <tbody><?php 

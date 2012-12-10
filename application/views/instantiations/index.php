@@ -21,7 +21,7 @@ if (!$isAjax)
             </div>
             <div style="width: 865px;overflow: hidden;" id="instantiation-main">
 
-                <table class="table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;">
+                <table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;width: 860px;">
                     <thead>
                         <tr>
                             <?php

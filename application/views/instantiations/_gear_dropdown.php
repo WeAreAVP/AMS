@@ -111,7 +111,7 @@
                 'bInfo':false,
                 'bFilter': false,
                 "bSort": false,
-                "sScrollY": 400,
+                "sScrollY": "100%",
                 "sScrollX": "100%",
                 "bScrollInfinite": true,
                  "bDeferRender": true

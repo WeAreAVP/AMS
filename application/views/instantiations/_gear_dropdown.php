@@ -66,7 +66,7 @@
         }                                        
         function getColumnOrder(){
             $('table th').each(function(index){
-                if(index==0)
+                if(index==0 || orderString=='')
                     orderString=this.id;
                 else{
                     if(orderString.indexOf(this.id)<0){

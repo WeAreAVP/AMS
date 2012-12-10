@@ -990,5 +990,13 @@
         $('#thumbnails_li').removeClass("active");
         $('#'+id+'_view').show();
         $('#'+id+'_li').addClass("active");
+		if(id=='full_table')
+		{
+			$('#gear_box').show();
+		}
+		else
+		{
+			$('#gear_box').hide();
+		}
     }
 </script>

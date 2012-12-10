@@ -65,22 +65,16 @@ class Instantiations extends MY_Controller
         $data['file_size'] = $this->instantiation->get_file_size();
         $data['event_types'] = $this->instantiation->get_event_type();
         $data['event_outcome'] = $this->instantiation->get_event_outcome();
-
-//        echo '<pre>';print_r($this->column_order);echo '</pre>';
         $is_hidden = array();
+		$data['table_type']='instantiation';
         foreach ($this->column_order as $key => $value)
         {
             if ($value['hidden'] == 1)
                 $is_hidden[] = $key;
         }
-
         $data['hidden_fields'] = $is_hidden;
-        
         $data['isAjax'] = FALSE;
         $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-
-
-
         $records = $this->sphinx->instantiations_list($params, $offset);
         $data['total'] = $records['total_count'];
         $config['total_rows'] = $data['total'];
@@ -91,7 +85,8 @@ class Instantiations extends MY_Controller
         {
             $data['start'] = 1;
             $data['end'] = $data['count'];
-        } else
+        }
+		else
         {
             $data['start'] = $offset;
             $data['end'] = intval($offset) + intval($data['count']);

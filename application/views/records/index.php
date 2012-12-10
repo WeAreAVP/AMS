@@ -18,10 +18,12 @@ if (!$isAjax)
    <li id="full_table_li" <?php if($current_tab=='full_table'){?>class="active" <?php }?>><a href="javascript:;" onClick="change_view('full_table')">Full Table</a></li>
    <li id="thumbnails_li" <?php if($current_tab=='thumbnails'){?>class="active" <?php }?>><a href="javascript:;" >Thumbnails</a></li>
   </ul>
-
-  <div style="text-align: right;width: 860px;">
-  	<strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
-	<?php echo $this->ajax_pagination->create_links(); ?>
+ <div style="width: 860px;">
+	 <?php $this->load->view('instantiations/_gear_dropdown'); ?>
+      <div style="float: right;">
+        <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
+        <?php echo $this->ajax_pagination->create_links(); ?>
+      </div>
   </div>
    <div style="width:865px;overflow:hidden;display:<?php if($current_tab=='simple'){ echo 'block';}else{echo "none"; }?>;" id="simple_view">
    <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="assets_table" ><?php 
@@ -105,19 +107,19 @@ if (!$isAjax)
 		{
 			if(!empty($this->column_order))
 			{
-				$titles ='<th><span style="float:left;"><i class="icon-flag "></i></span></th>';
-				foreach($this->column_order as $row)
-				{
-					if($row['hidden']==0)
+										
+				foreach ($this->column_order as $key => $value)
+                {
+					$type = $value['title'];
+					if (in_array($type,array("AA_GUID","Local_ID","Titles_Type","Titles_Ref","Titles_Source","Description_Type","Subjects","Subjects_Ref","Subjects_Source","Genre","Genre_Source","Genre_Ref","Creator_Name","Creator_Affiliation","Creator_Source","Creator_Ref","Creator_Role","Creator_Role_Source","Contributor_Name","Contributor_Affiliation","Contributor_Source","Contributor_Ref","Contributor_Role","Contributor_Role_Source","Contributor_Role_Ref","Publisher_Name","Publisher_Affiliation","Publisher_Ref","Publisher_Role","Publisher_Role_Source","Publisher_Role_Source_Ref","Assets_Date","Date_Type","Coverage","Coverage_Type","Audience_Level","Audience_Level_Source","Audience_Level_Ref","Audience_Rating","Audience_Rating_Source","Audience_Rating_Ref","Annotation","Annotation_Type","Annotation_Ref","Rights","Rights_Link")))
 					{
-						$titles .=	'<th><span style="float:left;min-width: 100px;" >'.str_replace("_",' ',$row['title']).'</span></th>';
-					}
-					else
+						$width = 'min-width:100px;';
+					}else if ($type == 'Titles' || $type=='Description')
 					{
-						$titles .=	'<th style="display:none"><span style="float:left;min-width: 100px;" >'.str_replace("_",' ',$row['title']).'</span></th>';
-					}
+						$width = 'min-width:300px;';
+					} 
+					echo '<th id="' . $value['title'] . '"><span style="float:left;' . $width . '">' . str_replace("_", ' ', $value['title']) . '</span></th>';
 				}
-				
 			}?>
         <thead>
             <tr >
@@ -125,47 +127,42 @@ if (!$isAjax)
            </tr>
            </thead>
             <tbody><?php 
+			$def_setting=$this->config->item('assets_setting');
+			$def_setting=$def_setting['full'];
 			$body='';
 			foreach($records as $asset)
 			{ 
 				
-				$body .='<tr><td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>';
+				echo '<tr><td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>';
 				foreach($this->column_order as $row)
 				{
-					if($row['hidden']==0)
+					$type = $row['title'];
+					if($type!='Description')
 					{
-						if($row['field']!='description')
+						$val=trim(str_replace("(**)","N/A",$asset->$def_setting[$row['title']]));
+						if(isset($val) && !empty($val))
 						{
-								$val=trim(str_replace("(**)","N/A",$asset->$row['field']));
-								if(isset($val) && !empty($val))
-								{
-									$body .='<td>'.$val.'</td>';
-								}
-								else
-								{
-									$body .='<td>N/A</td>';
-								}
+							$column ='<td>'.$val.'</td>';
 						}
 						else
 						{
-							$des=str_replace("(**)","N/A",$asset->$row['field']);
-							
-							if(isset($des) && !empty($des) && strlen($asset->$row['field'])>160)
-							{
-								$messages = str_split($asset->$row['field'] , 160);
-								$des=$messages[0].' ...';
-							}
-							$body .='<td>'.$des.'</td>';
+							$column ='<td>N/A</td>';
 						}
 					}
 					else
 					{
-						$body .='<td style="display:none">'.str_replace("(**)","N/A",$asset->$row['field']).'</td>';
+						$des=str_replace("(**)","N/A",$asset->$def_setting[$row['title']]);
+						if(isset($des) && !empty($des) && strlen($des)>160)
+						{
+							$messages = str_split($des , 160);
+							$des=$messages[0].' ...';
+						}
+						$column ='<td>'.$des.'</td>';
 					}
+					echo '<td>' . $column . '</td>';
 				}
-				$body .='</tr>';
+				echo '</tr>';
 			}?>
-            <?php echo $body; ?>
 			</tbody>
     <?php }
 		else if($start>=1000)

@@ -73,7 +73,14 @@ class Records extends MY_Controller
         $data['file_size'] = $this->instantiation->get_file_size();
         $data['event_types'] = $this->instantiation->get_event_type();
         $data['event_outcome'] = $this->instantiation->get_event_outcome();
-
+		$is_hidden = array();
+		$data['table_type']='assets';
+        foreach ($this->column_order as $key => $value)
+        {
+            if ($value['hidden'] == 1)
+                $is_hidden[] = $key;
+        }
+        $data['hidden_fields'] = $is_hidden;
         $data['isAjax'] = FALSE;
         $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $param = array('index' => 'assets_list');

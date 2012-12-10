@@ -150,7 +150,7 @@ class Instantiations extends MY_Controller
             $user_id = $this->user_id;
             $settings = $this->input->post('settings');
             $freeze_columns = $this->input->post('frozen_column');
-            $data = array('view_settings' => $settings, 'frozen_column' => $freeze_columns);
+            $data = array('view_settings' => json_decode($settings), 'frozen_column' => $freeze_columns);
             $this->user_settings->update_setting($user_id, 'instantiation', $data);
             echo json_decode(array('success' => true));
             exit;

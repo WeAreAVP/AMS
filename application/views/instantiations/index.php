@@ -68,22 +68,23 @@ if (!$isAjax)
                             <?php
                             foreach ($this->column_order as $key => $value)
                             {
-                                echo '<th id="'.$value['title'].'">'.str_replace("_",' ',$value['title']).'</th>';
+                                $type = $value['title'];
+                                if ($type == 'Nomination' || $type == 'Organization' || $type == 'Instantiation_ID' || $type == 'Format_Type' || $type == 'Date' || $type == 'Date_Type' || $type == 'File_size' || $type == 'Unit_of_measure')
+                                {
+                                    $width = 'min-width:100px;';
+                                } else if ($type == 'Duration' || $type == 'Colors' || $type == 'Language')
+                                {
+                                    $width = 'min-width:70px;';
+                                } else if ($type == 'Asset_Title')
+                                {
+                                    $width = 'min-width:300px;';
+                                } else if ($type == 'Instantiation_ID_Source')
+                                {
+                                    $width = 'min-width:130px;';
+                                }
+                                echo '<th id="' . $value['title'] . '"><span style="float:left;'.$width.'">' . str_replace("_", ' ', $value['title']) . '</span></th>';
                             }
                             ?>
-<!--                            <th id="Nomination"><span style="float:left;min-width: 100px;">Nomination </span></th>
-                            <th id="Organization"><span style="float:left;min-width: 100px;">Organization</span></th>
-                            <th id="Asset_Title"><span style="float:left;min-width: 300px;">Asset Title</span></th>
-                            <th id="Instantiation_ID"><span style="float:left;min-width: 100px;">Instantiation ID</span></th>
-                            <th id="Instantiation_ID_Source"><span style="float:left;min-width: 130px;">Instantiation ID Source</span></th>
-                            <th id="Format_Type"><span style="float:left;min-width: 90px;">Format Type</span></th>
-                            <th id="Duration"><span style="float:left;min-width: 70px;">Duration</span></th>
-                            <th id="Date"><span style="float:left;min-width: 90px;">Date</span></th>
-                            <th id="Date_Type"><span style="float:left;min-width: 90px;">Date Type</span></th>
-                            <th id="File_size"><span style="float:left;min-width: 90px;">File size</span></th>
-                            <th id="Unit_of_measure"><span style="float:left;min-width: 100px;">Unit of measure</span></th>
-                            <th id="Colors"><span style="float:left;min-width: 70px;">Colors</span></th>
-                            <th id="Language"><span style="float:left;min-width: 70px;">Language</span></th>-->
                         </tr>
                     </thead>
                     <tbody>
@@ -118,7 +119,7 @@ if (!$isAjax)
 
             <div style="text-align: right;width: 860px;">
                 <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
-            <?php echo $this->ajax_pagination->create_links(); ?>
+                <?php echo $this->ajax_pagination->create_links(); ?>
             </div>
             <?php
         } else
@@ -179,7 +180,7 @@ if (!$isAjax)
         function freezeColumns(count){
             frozen=count;
             facet_search('0');
-                            
+                                    
         }
         function updateDataTable(){
             oTable = $('#instantiation_table').dataTable({
@@ -196,7 +197,7 @@ if (!$isAjax)
                         reOrderDropDown(columnArray);
                     }
                 },
-                                                                                                                                
+                                                                                                                                        
                 'bPaginate':false,
                 'bInfo':false,
                 'bFilter': false,
@@ -204,14 +205,14 @@ if (!$isAjax)
                 "sScrollY": 400,
                 "sScrollX": "100%",
                 "bScrollInfinite": true
-                    
-                                                                                                                                
+                            
+                                                                                                                                        
             });
             if(frozen>0){
                 new FixedColumns( oTable, {
                     "iLeftColumns": frozen
                 } );}
-                                                                                                        
+                                                                                                                
             $.extend( $.fn.dataTableExt.oStdClasses, {
                 "sWrapper": "dataTables_wrapper form-inline"
             } );

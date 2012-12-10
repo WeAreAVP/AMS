@@ -38,7 +38,9 @@
     </div>
 
 </div>
-
+<?php
+if (!$isAjax)
+{?>
 <script type="text/javascript">
     columnsOrder=new Array();
     orderString='';
@@ -164,3 +166,4 @@
         });
     }
 </script>
+<?php }?>

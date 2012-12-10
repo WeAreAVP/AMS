@@ -19,6 +19,7 @@ if (!$isAjax)
    <li id="thumbnails_li" <?php if($current_tab=='thumbnails'){?>class="active" <?php }?>><a href="javascript:;" >Thumbnails</a></li>
   </ul>
  <div style="width: 860px;">
+ 
 	 <?php $this->load->view('instantiations/_gear_dropdown'); ?>
       <div style="float: right;">
         <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>

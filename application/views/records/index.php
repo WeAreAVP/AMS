@@ -108,6 +108,7 @@ if (!$isAjax)
 			?>
         <thead>
             <tr >
+             <th><span style="float:left;" ><i class="icon-flag "></i></span></th>
              <?php if(!empty($this->column_order))
 			{
 										

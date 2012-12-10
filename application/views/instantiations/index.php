@@ -12,7 +12,7 @@ if (!$isAjax)
         if (count($records) > 0)
         {
             ?>
-            <div style="width: 860px;overflow: scroll;">
+            <div style="width: 860px;">
                 <div style="float: left;margin-top: 10px;">
                     <div class="btn-group">
                         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">

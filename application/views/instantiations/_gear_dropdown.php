@@ -113,7 +113,8 @@
                 "bSort": false,
                 "sScrollY": 400,
                 "sScrollX": "100%",
-                "bScrollInfinite": true
+                "bScrollInfinite": true,
+                 "bDeferRender": true
                                                                                                                                                                                     
                                                                                                                                                                                                                                                                                                 
             });

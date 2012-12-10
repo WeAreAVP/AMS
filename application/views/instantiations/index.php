@@ -250,9 +250,9 @@ if (!$isAjax)
         }
         function updateDatabase(){
         userSettings=new Array();
-            $('show_hide_li a').each(function(index){
-                liName=this.id;
-                console.log(libName);
+            $('show_hide_li li a').each(function(index,id){
+               console.log(index);
+               console.log(id)
 //                if ($('#'+liName+' i').css('display') == "none") {
 //                    1;
 //                    userSettings[index]= {

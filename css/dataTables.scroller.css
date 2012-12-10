@@ -5,7 +5,7 @@
 
 div.DTS tbody th,
 div.DTS tbody td {
-	white-space: nowrap;
+	white-space: normal;
 }
 
 div.DTS tbody tr.even {

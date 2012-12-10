@@ -12,7 +12,7 @@ if (!$isAjax)
         if (count($records) > 0)
         {
             ?>
-            <div style="width: 860px;">
+            <div style="width: 600px;">
                  <?php if(!$isAjax){$this->load->view('instantiations/_gear_dropdown');} ?>
                 <div style="float: right;">
                     <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
@@ -20,9 +20,9 @@ if (!$isAjax)
                 </div>
             </div>
             <br clear="all"/>
-            <div style="width: 865px;" id="instantiation-main">
+            <div style="width: 605px;" id="instantiation-main">
 
-                <table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;width: 860px;">
+                <table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;width: 600px;">
                     <thead>
                         <tr>
                             <?php

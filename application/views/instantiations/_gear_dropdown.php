@@ -88,11 +88,8 @@ if (!$isAjax)
     function freezeColumns(count){
         frozen=count;
         $('#freeze_col_'+frozen).toggle(); 
-//        facet_search('0');
- new FixedColumns( oTable, {
-                "iLeftColumns": frozen
-            } );
-//        updateDatabase();
+        facet_search('0');
+        updateDatabase();
                                                                                                                                                                                             
     }
     function updateDataTable(){

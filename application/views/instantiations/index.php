@@ -28,6 +28,9 @@ if (!$isAjax)
                             <?php
                             foreach ($this->column_order as $key => $value)
                             {
+                                $class='';
+                                if(!($this->frozen_column>=$key))
+                                    $class='drap-drop';
                                 $type = $value['title'];
                                 if ($type == 'Nomination' || $type == 'Organization' || $type == 'Instantiation_ID' || $type == 'Format_Type' || $type == 'Date' || $type == 'Date_Type' || $type == 'File_size' || $type == 'Unit_of_measure')
                                 {
@@ -42,7 +45,7 @@ if (!$isAjax)
                                 {
                                     $width = 'min-width:120px;';
                                 }
-                                echo '<th id="' . $value['title'] . '"><span style="float:left;' . $width . '">' . str_replace("_", ' ', $value['title']) . '</span></th>';
+                                echo '<th id="' . $value['title'] . '" class="'.$class.'"><span style="float:left;' . $width . '">' . str_replace("_", ' ', $value['title']) . '</span></th>';
                             }
                             ?>
                         </tr>

@@ -24,56 +24,66 @@ $no_box_shipped = array(
     'id' => 'no_box_shipped',
     'value' => set_value('no_box_shipped'),
 );
+$media_received_date = array(
+    'name' => 'media_received_date',
+    'id' => 'media_received_date',
+    'value' => set_value('media_received_date'),
+);
 
-$attributes = array('onsubmit' => 'return false;', 'id' => 'tracking_new_form','class'=>'form-custom');
+$attributes = array('onsubmit' => 'return false;', 'id' => 'tracking_new_form', 'class' => 'form-custom');
 ?>
 
 
-    <?php echo form_open_multipart($this->uri->uri_string(), $attributes); ?>
-    <table class="table no_border">
-        <tr>
-            <td class="tracking_label"><?php echo form_label('Ship Date:', $ship_date['id']); ?></td>
-            <td><?php echo form_input($ship_date); ?><span style="color: red;"><?php echo form_error($ship_date['name']); ?></span></td>
-        </tr>
+<?php echo form_open_multipart($this->uri->uri_string(), $attributes); ?>
+<table class="table no_border">
+    <tr>
+        <td class="tracking_label"><?php echo form_label('Ship Date:', $ship_date['id']); ?></td>
+        <td><?php echo form_input($ship_date); ?><span style="color: red;"><?php echo form_error($ship_date['name']); ?></span></td>
+    </tr>
 
 
-        <tr>
-            <td class="tracking_label"<?php echo form_label('Ship To:', $ship_to['id']); ?></td>
-            <td><?php echo form_input($ship_to); ?><span style="color: red;"><?php echo form_error($ship_to['name']); ?></span></td>
-        </tr>
+    <tr>
+        <td class="tracking_label"<?php echo form_label('Ship To:', $ship_to['id']); ?></td>
+        <td><?php echo form_input($ship_to); ?><span style="color: red;"><?php echo form_error($ship_to['name']); ?></span></td>
+    </tr>
 
 
 
-        <tr>
-            <td class="tracking_label"><?php echo form_label('Ship Via:', $ship_via['id']); ?></td>
-            <td><?php echo form_dropdown($ship_via['id'], $this->config->item('ship_types')); ?><span style="color: red;"><?php echo form_error($ship_via['name']); ?></span></td>
-        </tr>
+    <tr>
+        <td class="tracking_label"><?php echo form_label('Ship Via:', $ship_via['id']); ?></td>
+        <td><?php echo form_dropdown($ship_via['id'], $this->config->item('ship_types')); ?><span style="color: red;"><?php echo form_error($ship_via['name']); ?></span></td>
+    </tr>
 
-        <tr>
-            <td class="tracking_label"><?php echo form_label('Tracking #:', $tracking_no['id']); ?></td>
-            <td><?php echo form_input($tracking_no); ?><span style="color: red;"><?php echo form_error($tracking_no['name']); ?></span></td>
-        </tr>
-
-
-        <tr>
-            <td class="tracking_label"><?php echo form_label('# of Box Shipped :', $no_box_shipped['id']); ?></td>
-            <td><?php echo form_input($no_box_shipped); ?><span style="color: red;"><?php echo form_error($no_box_shipped['name']); ?></span></td>
-        </tr>
-        <tr>
-
-            <td colspan="2" style="text-align: right;">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>&nbsp;<?php echo form_submit('save', 'Save', 'class="btn btn-primary btn-custom" onclick="manageTracking(\'post\',\'add\',\''.$station_id.'\');" '); ?>
-
-            </td>
-        </tr>
+    <tr>
+        <td class="tracking_label"><?php echo form_label('Tracking #:', $tracking_no['id']); ?></td>
+        <td><?php echo form_input($tracking_no); ?><span style="color: red;"><?php echo form_error($tracking_no['name']); ?></span></td>
+    </tr>
 
 
-    </table>
+    <tr>
+        <td class="tracking_label"><?php echo form_label('# of Box Shipped :', $no_box_shipped['id']); ?></td>
+        <td><?php echo form_input($no_box_shipped); ?><span style="color: red;"><?php echo form_error($no_box_shipped['name']); ?></span></td>
+    </tr>
+    <tr>
+        <td class="tracking_label"><?php echo form_label('Media Received Date :', $media_received_date['id']); ?></td>
+        <td><?php echo form_input($media_received_date); ?><span style="color: red;"><?php echo form_error($media_received_date['name']); ?></span></td>
+    </tr>
+    <tr>
 
-    <?php echo form_close(); ?>
+        <td colspan="2" style="text-align: right;">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>&nbsp;<?php echo form_submit('save', 'Save', 'class="btn btn-primary btn-custom" onclick="manageTracking(\'post\',\'add\',\'' . $station_id . '\');" '); ?>
+
+        </td>
+    </tr>
+
+
+</table>
+
+<?php echo form_close(); ?>
 
 <script type="text/javascript">
     $(function() {
         $("#tracking_ship_date").datepicker({dateFormat: 'yy-mm-dd'});
+        $("#media_received_date").datepicker({dateFormat: 'yy-mm-dd'});
     });
 </script>

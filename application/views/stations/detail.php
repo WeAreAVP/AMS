@@ -5,6 +5,7 @@
             <li class="active"><?php echo $station_detail->station_name; ?></li>
         </ul> 
         <h2 class="my-navbar station-detail">Station Information</h2>
+        <br/>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -36,6 +37,7 @@
             </tbody> 
         </table>
         <h2 class="my-navbar station-detail">Station Contacts</h2>
+        <br/>
         <div class="row">
             <?php if (count($station_contacts) > 0) { ?>
 
@@ -62,6 +64,7 @@
             <?php } ?>
         </div>
         <h2 class="my-navbar station-detail">Tracking</h2>
+        <br/>
         <?php if (count($station_tracking) > 0) { ?>
             <table class="table table-bordered">
                 <thead>

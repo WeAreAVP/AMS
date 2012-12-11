@@ -24,6 +24,11 @@ $no_box_shipped = array(
     'id' => 'no_box_shipped',
     'value' => $tracking_info->no_box_shipped,
 );
+$media_received_date = array(
+    'name' => 'media_received_date',
+    'id' => 'media_received_date',
+    'value' => $tracking_info->media_received_date,
+);
 
 $attributes = array('onsubmit' => 'return false;', 'id' => 'tracking_edit_form', 'class' => 'form-custom');
 ?>
@@ -60,6 +65,10 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'tracking_edit_form',
         <td><?php echo form_input($no_box_shipped); ?><span style="color: red;"><?php echo form_error($no_box_shipped['name']); ?></span></td>
     </tr>
     <tr>
+        <td class="tracking_label"><?php echo form_label('Media Received Date :', $media_received_date['id']); ?></td>
+        <td><?php echo form_input($media_received_date); ?><span style="color: red;"><?php echo form_error($media_received_date['name']); ?></span></td>
+    </tr>
+    <tr>
 
         <td colspan="2" style="text-align: right;">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>&nbsp;<?php echo form_submit('save', 'Save', 'class="btn btn-primary btn-custom" onclick="manageTracking(\'post\',\'edit\',\'' . $tracking_info->id . '\');" '); ?>
@@ -75,6 +84,7 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'tracking_edit_form',
 <script type="text/javascript">
     $(function() {
         $("#tracking_ship_date").datepicker({dateFormat: 'yy-mm-dd'});
+        $("#media_received_date").datepicker({dateFormat: 'yy-mm-dd'});
         
     });
 </script>

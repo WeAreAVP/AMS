@@ -3,9 +3,9 @@
 /**
  * AMS Tracking Controller
  * 
+ * @category	Controllers
  * @package		AMS
  * @subpackage	Tracking Controller
- * @category	Controllers
  * @author		Nouman Tayyab <nouman@geekschicago.com>
  */
 class Tracking extends MY_Controller
@@ -33,25 +33,24 @@ class Tracking extends MY_Controller
     {
         $this->layout = 'default.php';
         $data['station_id'] = $this->uri->segment(3);
-        $val = $this->form_validation;
-
-        $val->set_rules('tracking_ship_date', 'Ship Date', 'trim|required|xss_clean');
-        $val->set_rules('ship_to', 'Password', 'trim|required|xss_clean');
-        $val->set_rules('ship_via', 'First Name', 'trim|required|xss_clean');
-        $val->set_rules('tracking_no', 'Last Name', 'trim|required|xss_clean');
-        $val->set_rules('no_box_shipped', 'Phone #', 'trim|required|is_natural|xss_clean');
-
+        $form_val = $this->form_validation;
+        $form_val->set_rules('tracking_ship_date', 'Ship Date', 'trim|required|xss_clean');
+        $form_val->set_rules('ship_to', 'Ship To', 'trim|required|xss_clean');
+        $form_val->set_rules('ship_via', 'Ship Via', 'trim|required|xss_clean');
+        $form_val->set_rules('tracking_no', 'Tracking #', 'trim|required|xss_clean');
+        $form_val->set_rules('no_box_shipped', '# of box shipped', 'trim|required|is_natural|xss_clean');
+        $form_val->set_rules('media_received_date', 'Media Received Date', 'trim|xss_clean');
         if ($this->input->post())
         {
-            if ($val->run())
+            if ($form_val->run())
             {
-
-                $record = array('ship_date' => date('Y-m-d', strtotime($val->set_value('tracking_ship_date'))),
-                    'ship_to' => $val->set_value('ship_to'),
-                    'ship_via' => $val->set_value('ship_via'),
-                    'tracking_no' => $val->set_value('tracking_no'),
-                    'no_box_shipped' => $val->set_value('no_box_shipped'),
+                $record = array('ship_date' => date('Y-m-d', strtotime($form_val->set_value('tracking_ship_date'))),
+                    'ship_to' => $form_val->set_value('ship_to'),
+                    'ship_via' => $form_val->set_value('ship_via'),
+                    'tracking_no' => $form_val->set_value('tracking_no'),
+                    'no_box_shipped' => $form_val->set_value('no_box_shipped'),
                     'station_id' => $data['station_id'],
+                    'media_received_date' => $form_val->set_value('media_received_date'),
                 );
 
                 $inserted_id = $this->tracking->insert_record($record);
@@ -61,7 +60,7 @@ class Tracking extends MY_Controller
                 exit;
             } else
             {
-                $errors = $val->error_string();
+                $errors = $form_val->error_string();
                 $data['errors'] = $errors;
             }
         }
@@ -78,26 +77,26 @@ class Tracking extends MY_Controller
     {
         $this->layout = 'default.php';
         $tracking_id = $this->uri->segment(3);
-        $val = $this->form_validation;
+        $form_val = $this->form_validation;
 
-        $val->set_rules('tracking_ship_date', 'Ship Date', 'trim|required|xss_clean');
-        $val->set_rules('ship_to', 'Password', 'trim|required|xss_clean');
-        $val->set_rules('ship_via', 'First Name', 'trim|required|xss_clean');
-        $val->set_rules('tracking_no', 'Last Name', 'trim|required|xss_clean');
-        $val->set_rules('no_box_shipped', 'Phone #', 'trim|required|is_natural|xss_clean');
+        $form_val->set_rules('tracking_ship_date', 'Ship Date', 'trim|required|xss_clean');
+        $form_val->set_rules('ship_to', 'Password', 'trim|required|xss_clean');
+        $form_val->set_rules('ship_via', 'First Name', 'trim|required|xss_clean');
+        $form_val->set_rules('tracking_no', 'Last Name', 'trim|required|xss_clean');
+        $form_val->set_rules('no_box_shipped', 'Phone #', 'trim|required|is_natural|xss_clean');
+        $form_val->set_rules('media_received_date', 'Media Received Date', 'trim|xss_clean');
 
         if ($this->input->post())
         {
-            if ($val->run())
+            if ($form_val->run())
             {
-
-                $record = array('ship_date' => date('Y-m-d', strtotime($val->set_value('tracking_ship_date'))),
-                    'ship_to' => $val->set_value('ship_to'),
-                    'ship_via' => $val->set_value('ship_via'),
-                    'tracking_no' => $val->set_value('tracking_no'),
-                    'no_box_shipped' => $val->set_value('no_box_shipped'),
+                $record = array('ship_date' => date('Y-m-d', strtotime($form_val->set_value('tracking_ship_date'))),
+                    'ship_to' => $form_val->set_value('ship_to'),
+                    'ship_via' => $form_val->set_value('ship_via'),
+                    'tracking_no' => $form_val->set_value('tracking_no'),
+                    'no_box_shipped' => $form_val->set_value('no_box_shipped'),
+                    'media_received_date' => $form_val->set_value('media_received_date'),
                 );
-
                 $this->tracking->update_record($tracking_id, $record);
                 $tracking_info = $this->tracking->get_by_id($tracking_id);
                 $this->shipment_tracking_email($tracking_info);
@@ -105,7 +104,7 @@ class Tracking extends MY_Controller
                 exit;
             } else
             {
-                $errors = $val->error_string();
+                $errors = $form_val->error_string();
                 $data['errors'] = $errors;
             }
         }
@@ -175,7 +174,7 @@ class Tracking extends MY_Controller
 
 }
 
-// END Tracking Controller
+// END Tracking
 
 /* End of file tracking.php */
 /* Location: ./application/controllers/tracking.php */

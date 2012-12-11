@@ -178,6 +178,9 @@ if (!$isAjax)
 	        "bDeferRender": true,
             "bAutoWidth": false
 		});
+		 $.extend( $.fn.dataTableExt.oStdClasses, {
+            "sWrapper": "dataTables_wrapper form-inline"
+        } );
 	}
 </script>
 <?php }?>

@@ -203,7 +203,7 @@ if (!$isAjax)
                                             $title = 'N/A';
                                         }
 										
-                                        $colum='<a href="'.site_url('records/details/' . $asset->id).'" >'. $title.'</a>';
+                                        $column='<a href="'.site_url('records/details/' . $asset->id).'" >'. $title.'</a>';
 										
 									
 									}

@@ -24,8 +24,7 @@
         echo link_js('ColVis.js');
         echo link_js('dataTables.scroller.js');
 		echo link_js('date.js');
-//		echo link_js('daterangepicker.js');
-		echo link_js('daterangepicker.jQuery.js');
+		echo link_js('daterangepicker.js');
 
 
         
@@ -36,9 +35,7 @@
         echo link_tag("css/ColReorder.css");
         echo link_tag("css/ColVis.css");
         echo link_tag("css/dataTables.scroller.css");
-//		echo link_tag("css/daterangepicker.css");
-		echo link_tag("css/ui.daterangepicker.css");
-		echo link_tag("css/jquery-ui-1.7.1.custom.css");
+		echo link_tag("css/daterangepicker.css");
 
         ?> 
         <script src="<?php echo base_url('tiny_mce/tiny_mce.js') ?>" type="text/javascript"></script>

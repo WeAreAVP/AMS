@@ -351,3 +351,6 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .drap-drop{
     cursor: pointer;
 }
+#assets_table_wrapper .dataTables_scrollHead{
+    height: 36px;
+}

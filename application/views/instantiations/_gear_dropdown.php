@@ -172,7 +172,7 @@ if (!$isAjax)
 			'bPaginate':false,
 			'bInfo':false,
 			'bFilter': false,
-			"bSort": false
+			"bSort": false,
 			"sScrollY": 400,
             "sScrollX": "100%",
 	        "bDeferRender": true,

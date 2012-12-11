@@ -168,7 +168,7 @@ if (!$isAjax)
 	function updateSimpleDataTable()
 	{
 		var sTable = $('#assets_table').dataTable({
-			"sDom": 'RlfrtipS',
+			"sDom": "frtiS",
 			'bPaginate':false,
 			'bInfo':false,
 			'bFilter': false,

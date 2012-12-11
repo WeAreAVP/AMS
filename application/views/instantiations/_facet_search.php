@@ -37,7 +37,7 @@
                 </div>
                 <?php
             }
-			else
+            else
             {
                 ?>
 
@@ -47,8 +47,8 @@
                 </div>
             <?php } ?>
             <div class="clearfix"></div>
-            
-            
+
+
             <!-- Organization Search Display Start  -->
             <?php
             if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
@@ -78,8 +78,8 @@
                     <input type="hidden" id="organization_main_search" name="organization_main_search"/>
                 </div>
             <?php } ?>
-            
-                    <!-- Organization Search Display End  -->
+
+            <!-- Organization Search Display End  -->
             <div class="clearfix"></div>
             <!-- Nomination Status Search Display Start  -->
             <?php
@@ -350,7 +350,7 @@
                 <input type="text" name="search" id="search" value=""/>
             </div>
         </div>
-        
+
         <div class="filter-fileds">
             <div class="btn-group" id="limit_field_dropdown" style="display:<?php echo $style; ?>">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -415,15 +415,11 @@
             <div><input type="reset" style="display:<?php echo $reset; ?>" id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
         </div>
         <div class="clearfix"></div>
-         <div id="date_range_main">
-               <div class="filter-fileds"><b>Date Range</b></div>
-                <div class="controls">
-                <div class="input-prepend">
-                    <span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="date_range" id="date_range" value="" style="width: 187px;"/>
-                </div>
-            </div>
-            </div>
-        
+        <div id="date_range" class="pull-right">
+            <i class="icon-calendar icon-large"></i>
+            <span><?php echo date("F j, Y", strtotime('-30 day')); ?> - <?php echo date("F j, Y"); ?></span> <b class="caret"></b>
+        </div>
+
         <!-- Organization  Start      -->
         <?php
         if (count($stations) > 0)
@@ -811,49 +807,49 @@
             </div>
         <?php } ?>
         <!-- Event Type End      -->
-        
+
     </form>
 </div>
 <script type="text/javascript">
- $(document).ready(function() {
-                  $('#date_range').daterangepicker(
-                     {
-                        ranges: {
-                           'Today': ['today', 'today'],
-                           'Yesterday': ['yesterday', 'yesterday'],
-                           'Last 7 Days': [Date.today().add({ days: -6 }), 'today'],
-                           'Last 30 Days': [Date.today().add({ days: -29 }), 'today'],
-                           'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
-                           'Last Month': [Date.today().moveToFirstDayOfMonth().add({ months: -1 }), Date.today().moveToFirstDayOfMonth().add({ days: -1 })]
-                        },
-                        opens: 'right',
-                        format: 'MM/dd/yyyy',
-                        separator: ' to ',
-                        startDate: Date.today().add({ days: -29 }),
-                        endDate: Date.today(),
-                        minDate: '01/01/2012',
-                        maxDate: '<?php echo date("mm/dd/YY");?>',
-                        locale: {
-                            applyLabel: 'Add',
-                            fromLabel: 'From',
-                            toLabel: 'To',
-                            customRangeLabel: 'Custom Range',
-                            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
-                            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                            firstDay: 1
-                        },
-                        showWeekNumbers: true,
-                        buttonClasses: ['btn-primary']
-                     }, 
-                     function(start, end) {
-                        $('#reportrange span').html(start.toString('MM/dd/yyyy') + ' - ' + end.toString('MM/dd/yyyy'));
-                     }
-                  );
+    $(document).ready(function() {
+        $('#date_range').daterangepicker(
+        {
+            ranges: {
+                'Today': ['today', 'today'],
+                'Yesterday': ['yesterday', 'yesterday'],
+                'Last 7 Days': [Date.today().add({ days: -6 }), 'today'],
+                'Last 30 Days': [Date.today().add({ days: -29 }), 'today'],
+                'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
+                'Last Month': [Date.today().moveToFirstDayOfMonth().add({ months: -1 }), Date.today().moveToFirstDayOfMonth().add({ days: -1 })]
+            },
+            opens: 'right',
+            format: 'MM/dd/yyyy',
+            separator: ' to ',
+            startDate: Date.today().add({ days: -29 }),
+            endDate: Date.today(),
+            minDate: '01/01/2012',
+            maxDate: '<?php echo date("mm/dd/YY"); ?>',
+            locale: {
+                applyLabel: 'Add Date',
+                fromLabel: 'From',
+                toLabel: 'To',
+                customRangeLabel: 'Custom Range',
+                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
+                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                firstDay: 1
+            },
+            showWeekNumbers: true,
+            buttonClasses: ['btn-primary']
+        }, 
+        function(start, end) {
+            $('#reportrange span').html(start.toString('MM/dd/yyyy') + ' - ' + end.toString('MM/dd/yyyy'));
+        }
+    );
 
-                  //Set the initial state of the picker label
-                  $('#reportrange span').html(Date.today().add({ days: -29 }).toString('MM/dd/yyyy') + ' - ' + Date.today().toString('MM/dd/yyyy'));
+        //Set the initial state of the picker label
+        $('#reportrange span').html(Date.today().add({ days: -29 }).toString('MM/dd/yyyy') + ' - ' + Date.today().toString('MM/dd/yyyy'));
 
-               });
+    });
     function add_token(name,type,isRemoved){
         if(type=='keyword_field_main'){
             
@@ -1022,7 +1018,7 @@
             { 
                 $('#data_container').html(result); 
                 
-                    updateDataTable();
+                updateDataTable();
                 
                 $.unblockUI();
                                 
@@ -1035,26 +1031,26 @@
         $.ajax({
             type: 'POST', 
             url: '<?php echo site_url('records/set_current_tab') ?>/'+id,
-			success: function (result)
+            success: function (result)
             { 
-            	window.location.reload();
-			}
+                window.location.reload();
+            }
         });
-       <?php /*?> $('#simple_view').hide();
-        $('#full_table_view').hide();
-        $('#thumbnails_view').hide();
-        $('#simple_li').removeClass("active");
-        $('#full_table_li').removeClass("active");
-        $('#thumbnails_li').removeClass("active");
-        $('#'+id+'_view').show();
-        $('#'+id+'_li').addClass("active");
-		if(id=='full_table')
-		{
-			$('#gear_box').show();
-		}
-		else
-		{
-			$('#gear_box').hide();
-		}<?php */?>
-    }
+<?php /* ?> $('#simple_view').hide();
+  $('#full_table_view').hide();
+  $('#thumbnails_view').hide();
+  $('#simple_li').removeClass("active");
+  $('#full_table_li').removeClass("active");
+  $('#thumbnails_li').removeClass("active");
+  $('#'+id+'_view').show();
+  $('#'+id+'_li').addClass("active");
+  if(id=='full_table')
+  {
+  $('#gear_box').show();
+  }
+  else
+  {
+  $('#gear_box').hide();
+  }<?php */ ?>
+            }
 </script>

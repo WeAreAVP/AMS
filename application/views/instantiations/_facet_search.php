@@ -415,9 +415,13 @@
             <div><input type="reset" style="display:<?php echo $reset; ?>" id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
         </div>
         <div class="clearfix"></div>
-        <div id="date_range" class="pull-right">
-            <i class="icon-calendar icon-large"></i>
-            <span><?php echo date("F j, Y", strtotime('-30 day')); ?> - <?php echo date("F j, Y"); ?></span> <b class="caret"></b>
+        <div id="date_range_main">
+            <div class="filter-fileds"><b>Date Range</b></div>
+            <div class="controls">
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="date_range" id="date_range" value="" style="width: 187px;"/>
+                </div>
+            </div>
         </div>
 
         <!-- Organization  Start      -->

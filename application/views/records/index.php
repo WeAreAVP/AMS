@@ -27,7 +27,7 @@ if (!$isAjax)
       </div>
   </div>
    <div style="width:865px;overflow:hidden;display:<?php if($current_tab=='simple'){ echo 'block';}else{echo "none"; }?>;" id="simple_view">
-   <table class="tablesorter table-freeze-custom table-bordered freeze-my-column" id="assets_table" ><?php 
+   <table class="table table-bordered" id="assets_table" ><?php 
 		if(isset($records) && ($total>0))
 		{?>
         <thead>

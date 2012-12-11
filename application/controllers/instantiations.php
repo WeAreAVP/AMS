@@ -52,6 +52,7 @@ class Instantiations extends MY_Controller
             $search['file_size'] = $this->input->post('file_size_main_search');
             $search['event_type'] = $this->input->post('event_type_main_search');
             $search['event_outcome'] = $this->input->post('event_outcome_main_search');
+			$search['date_range'] = $this->input->post('date_range');
             $this->set_facet_search($search);
             foreach ($search as $key => $value)
             {

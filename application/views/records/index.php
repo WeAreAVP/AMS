@@ -32,11 +32,11 @@ if (!$isAjax)
 		{?>
         <thead>
             <tr>
-	             <th><span style="float:left;" ><i class="icon-flag "></i></span></th>
-    	         <th><span style="float:left;min-width: 100px;" >AA GUID</span></th>
-        	     <th><span style="float:left;min-width: 100px;" >Local ID</span></th>
-            	<th ><span style="float:left;min-width: 175px;" >Titles</span></th>
-             	<th ><span style="float:left;min-width: 1750px;" >Description</span></th>
+	             <th style='width: 14px;'><span style="float:left;" ><i class="icon-flag "></i></span></th>
+    	         <th style='width: 150px;'><span style="float:left;min-width: 100px;" >AA GUID</span></th>
+        	     <th style='width: 110px;'><span style="float:left;min-width: 100px;" >Local ID</span></th>
+            	<th style='width: 185px;'><span style="float:left;min-width: 175px;" >Titles</span></th>
+             	<th style='width: 1750px;'><span style="float:left;min-width: 175px;" >Description</span></th>
             </tr>
             </thead>
             <tbody><?php 

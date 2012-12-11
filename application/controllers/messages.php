@@ -184,7 +184,7 @@ class Messages extends MY_Controller
             $station_details = $this->station_model->get_station_by_id($to);
             $subject = $template_data->subject;
 
-            if ($type == 1)
+            if ($template == 'Digitization_Start_Date')
             {
                 $extra['ship_date'] = $station_details->start_date;
             }

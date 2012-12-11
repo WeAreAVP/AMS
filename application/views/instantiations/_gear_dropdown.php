@@ -88,7 +88,7 @@ if (!$isAjax)
     function freezeColumns(count){
         frozen=count;
         $('#freeze_col_'+frozen).toggle(); 
-        facet_search('0');
+//        facet_search('0');
         updateDatabase();
                                                                                                                                                                                             
     }

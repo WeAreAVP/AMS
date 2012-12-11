@@ -36,7 +36,8 @@
                     <div class="clearfix"></div>
                 </div>
                 <?php
-            } else
+            }
+			else
             {
                 ?>
 
@@ -46,6 +47,16 @@
                 </div>
             <?php } ?>
             <div class="clearfix"></div>
+            
+             <div id="date_range_main">
+               <div class="filter-fileds"><b>Date Range</b></div>
+                <div class="controls">
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="date_range" id="date_range" value="" />
+                </div>
+            </div>
+            </div>
+        <div class="clearfix"></div>
             <!-- Organization Search Display Start  -->
             <?php
             if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
@@ -75,7 +86,8 @@
                     <input type="hidden" id="organization_main_search" name="organization_main_search"/>
                 </div>
             <?php } ?>
-            <!-- Organization Search Display End  -->
+            
+                    <!-- Organization Search Display End  -->
             <div class="clearfix"></div>
             <!-- Nomination Status Search Display Start  -->
             <?php
@@ -797,15 +809,12 @@
             </div>
         <?php } ?>
         <!-- Event Type End      -->
-        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-            	<i class="icon-calendar icon-large"></i>
-        	<span></span> <b class="caret" style="margin-top: 8px"></b>
-        </div>
+        
     </form>
 </div>
 <script type="text/javascript">
  $(document).ready(function() {
-                  $('#reportrange').daterangepicker(
+                  $('#date_range').daterangepicker(
                      {
                         ranges: {
                            'Today': ['today', 'today'],
@@ -835,12 +844,12 @@
                         buttonClasses: ['btn-danger']
                      }, 
                      function(start, end) {
-                        $('#reportrange span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
+                        $('#reportrange span').html(start.toString('MM/dd/yyyy') + ' - ' + end.toString('MM/dd/yyyy'));
                      }
                   );
 
                   //Set the initial state of the picker label
-                  $('#reportrange span').html(Date.today().add({ days: -29 }).toString('MMMM d, yyyy') + ' - ' + Date.today().toString('MMMM d, yyyy'));
+                  $('#reportrange span').html(Date.today().add({ days: -29 }).toString('MM/dd/yyyy') + ' - ' + Date.today().toString('MM/dd/yyyy'));
 
                });
     function add_token(name,type,isRemoved){

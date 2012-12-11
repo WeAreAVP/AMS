@@ -1022,9 +1022,11 @@
             success: function (result)
             { 
                 $('#data_container').html(result); 
-                
-                updateDataTable();
-                
+				<?php 
+				if(!isset($this->session->userdata['current_tab']) || $this->session->userdata['current_tab']=='full_table'){?>
+					updateDataTable();
+				<?php
+				}?>
                 $.unblockUI();
                                 
             }

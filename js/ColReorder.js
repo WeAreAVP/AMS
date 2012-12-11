@@ -725,6 +725,7 @@ ColReorder.prototype = {
 		var bSet = false;
 		for ( var i=1, iLen=this.s.aoTargets.length ; i<iLen ; i++ )
 		{
+            console.log(e.pageX);
 			if ( e.pageX < this.s.aoTargets[i-1].x + ((this.s.aoTargets[i].x-this.s.aoTargets[i-1].x)/2) )
 			{
 				this.dom.pointer.style.left = this.s.aoTargets[i-1].x +"px";
@@ -828,7 +829,7 @@ ColReorder.prototype = {
 		this.dom.drag.style.top = "0px";
 		this.dom.drag.style.left = "0px";
 		this.dom.drag.style.width = $('th:eq('+that.s.mouse.targetIndex+')', that.s.dt.nTHead).outerWidth()+"px";
-		console.log(this.dom.drag.style.width);
+		
 		
 		this.dom.pointer = document.createElement( 'div' );
 		this.dom.pointer.className = "DTCR_pointer";
@@ -843,6 +844,7 @@ ColReorder.prototype = {
 		{
 			this.dom.pointer.style.top = $('div.dataTables_scroll', this.s.dt.nTableWrapper).offset().top+"px";
 			this.dom.pointer.style.height = $('div.dataTables_scroll', this.s.dt.nTableWrapper).height()+"px";
+            
 		}
 	
 		document.body.appendChild( this.dom.pointer );

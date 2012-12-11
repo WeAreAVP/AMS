@@ -419,7 +419,7 @@
                <div class="filter-fileds"><b>Date Range</b></div>
                 <div class="controls">
                 <div class="input-prepend">
-                    <span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="date_range" id="date_range" value="" />
+                    <span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="date_range" id="date_range" value="" style="width: 187px;"/>
                 </div>
             </div>
             </div>

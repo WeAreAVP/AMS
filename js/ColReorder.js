@@ -728,21 +728,17 @@
                 var leftPos = $('.dataTables_scrollBody').scrollLeft();
                 if ( e.pageX < this.s.aoTargets[i-1].x + ((this.s.aoTargets[i].x-this.s.aoTargets[i-1].x)/2) )
                 {
+                    if($(".dataTables_scrollBody").width()<e.PageX){
+                        $(".dataTables_scrollBody").animate({
+                            scrollLeft: leftPos + 500
+                        });
+                    }
                     this.dom.pointer.style.left = this.s.aoTargets[i-1].x +"px";
                     this.s.mouse.toIndex = this.s.aoTargets[i-1].to;
                     bSet = true;
                     break;
                 }
-                else if(e.PageX>1000){
-                    $(".dataTables_scrollBody").animate({
-                            scrollLeft: leftPos + 500
-                            });
-                }
-                else if(e.PageX<1000){
-                    $(".dataTables_scrollBody").animate({
-                            scrollLeft: leftPos - 500
-                            });
-                }
+               
             }
 		
             /* The insert element wasn't positioned in the array (less than operator), so we put it at 

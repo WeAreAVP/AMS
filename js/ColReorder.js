@@ -725,7 +725,11 @@ ColReorder.prototype = {
 		var bSet = false;
 		for ( var i=1, iLen=this.s.aoTargets.length ; i<iLen ; i++ )
 		{
-            console.log(e.pageX);
+            var leftPos = $('.dataTables_scrollBody').scrollLeft();
+            if(e.pageX>1000){
+                $(".dataTables_scrollBody").animate({scrollLeft: leftPos + 200});
+            }
+             
 			if ( e.pageX < this.s.aoTargets[i-1].x + ((this.s.aoTargets[i].x-this.s.aoTargets[i-1].x)/2) )
 			{
 				this.dom.pointer.style.left = this.s.aoTargets[i-1].x +"px";

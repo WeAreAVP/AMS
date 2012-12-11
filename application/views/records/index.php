@@ -91,6 +91,7 @@ if (!$isAjax)
      			</tr><?php 
 			}?>
 			</tbody>
+            <script> setTimeout('updateSimpleDataTable();',1000);</script>
     <?php }
 		else if($start>=1000)
 		{?>

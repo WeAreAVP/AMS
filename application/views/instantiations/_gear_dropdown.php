@@ -165,5 +165,10 @@ if (!$isAjax)
             }
         });
     }
+	function updateSimpleDataTable()
+	{
+		var oTable = $('#assets_table').dataTable();
+    	new FixedHeader( oTable );
+    }
 </script>
 <?php }?>

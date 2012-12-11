@@ -4,17 +4,16 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 /**
- * Messages controller.
+ * Messages
  *
  * @package    AMS
- * @subpackage Messeges Alerts
+ * @subpackage Messeges
  * @author     Ali Raza, Nouman Tayyab
  */
 class Messages extends MY_Controller
 {
 
     /**
-     *
      * constructor. Load layout,Model,Library and helpers
      * 
      */
@@ -65,12 +64,10 @@ class Messages extends MY_Controller
         }
     }
 
-    /*
-     *
+    /**
      * List Sent Message 
      *  
      */
-
     public function sent()
     {
         if (in_array($this->role_id, array(1, 2, 5)))
@@ -147,64 +144,78 @@ class Messages extends MY_Controller
             $template = str_replace(" ", "_", $alerts_array[$type]);
             $template_data = $this->email_template->get_template_by_sys_id($template);
             $multiple_station = $this->input->post('to');
+            $extra = $this->input->post('extras');
             if (isset($template_data) && !empty($template_data))
             {
                 if (isset($multiple_station) && !empty($multiple_station))
                 {
-                    foreach ($multiple_station as $to)
-                    {
-
-                        $station_details = $this->station_model->get_station_by_id($to);
-                        $subject = $template_data->subject;
-                        $extra = $this->input->post('extras');
-                        if ($type == 1)
-                        {
-                            $extra['ship_date'] = $station_details->start_date;
-                        }
-                        foreach ($extra as $key => $value)
-                        {
-                            $replacebale[$key] = (isset($value) && !empty($value)) ? $value : '';
-                        }
-
-                        $replacebale['station_name'] = isset($station_details->station_name) ? $station_details->station_name : '';
-                        if ($this->config->item('demo') == true)
-                        {
-                            $to_email = $this->config->item('to_email');
-                            $from_email = $this->config->item('from_email');
-                            $replacebale['user_name'] = 'AMS';
-                        } else
-                        {
-                            $to_email = $station_details->contact_email;
-                            $from_email = $this->user_detail->email;
-                            $replacebale['user_name'] = $this->user_detail->first_name . ' ' . $this->user_detail->last_name;
-                        }
-                        $replacebale['inform_to'] = 'ssapienza@cpb.org';
-
-                        $email_queue_id = $this->emailtemplates->queue_email($template, $to_email, $replacebale);
-
-                        $data = array('sender_id' => $this->user_id, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => json_encode($extra), 'created_at' => date('Y-m-d h:m:i'));
-                        if (isset($email_queue_id) && $email_queue_id)
-                        {
-                            $data['email_queue_id'] = $email_queue_id;
-                        }
-                        $this->msgs->add_msg($data);
-                        $this->session->set_userdata('sent', 'Message Sent');
-                    }
-                    echo json_encode(array('success' => true));
+                    $this->compose_station_message($multiple_station, $template_data, $extra, $template, $type);
+                    echo json_encode(array('success' => TRUE));
                     exit;
                 } else
                 {
-                    echo json_encode(array('success' => false, "error_id" => 1));
+                    echo json_encode(array('success' => FALSE, "error_id" => 1));
                     exit;
                 }
             } else
             {
-                echo json_encode(array('success' => false, "error_id" => 2));
+                echo json_encode(array('success' => FALSE, "error_id" => 2));
                 exit;
             }
         } else
         {
             show_404();
+        }
+    }
+
+    /**
+     *
+     * @param array $multiple_station
+     * @param array $template_data
+     * @param array $extra
+     * @param string $template
+     * @param integer $type 
+     */
+    function compose_station_message($multiple_station, $template_data, $extra, $template, $type)
+    {
+        foreach ($multiple_station as $to)
+        {
+
+            $station_details = $this->station_model->get_station_by_id($to);
+            $subject = $template_data->subject;
+
+            if ($type == 1)
+            {
+                $extra['ship_date'] = $station_details->start_date;
+            }
+            foreach ($extra as $key => $value)
+            {
+                $replacebale[$key] = (isset($value) && !empty($value)) ? $value : '';
+            }
+
+            $replacebale['station_name'] = isset($station_details->station_name) ? $station_details->station_name : '';
+            if ($this->config->item('demo') == TRUE)
+            {
+                $to_email = $this->config->item('to_email');
+                $from_email = $this->config->item('from_email');
+                $replacebale['user_name'] = 'AMS';
+            } else
+            {
+                $to_email = $station_details->contact_email;
+                $from_email = $this->user_detail->email;
+                $replacebale['user_name'] = $this->user_detail->first_name . ' ' . $this->user_detail->last_name;
+            }
+            $replacebale['inform_to'] = 'ssapienza@cpb.org';
+
+            $email_queue_id = $this->emailtemplates->queue_email($template, $to_email, $replacebale);
+
+            $data = array('sender_id' => $this->user_id, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => json_encode($extra), 'created_at' => date('Y-m-d h:m:i'));
+            if (isset($email_queue_id) && $email_queue_id)
+            {
+                $data['email_queue_id'] = $email_queue_id;
+            }
+            $this->msgs->add_msg($data);
+            $this->session->set_userdata('sent', 'Message Sent');
         }
     }
 

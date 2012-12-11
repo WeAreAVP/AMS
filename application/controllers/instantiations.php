@@ -3,9 +3,11 @@
 /**
  * Instantiations Tracking Controller
  * 
- * @package		AMS
- * @subpackage	Tracking Controller
+
+
  * @category	Controllers
+ * @package		AMS
+ * @subpackage	Instantiations
  * @author		Nouman Tayyab <nouman@geekschicago.com>
  */
 class Instantiations extends MY_Controller
@@ -66,7 +68,7 @@ class Instantiations extends MY_Controller
         $data['event_types'] = $this->instantiation->get_event_type();
         $data['event_outcome'] = $this->instantiation->get_event_outcome();
         $is_hidden = array();
-		$data['table_type']='instantiation';
+        $data['table_type'] = 'instantiation';
         foreach ($this->column_order as $key => $value)
         {
             if ($value['hidden'] == 1)
@@ -85,8 +87,7 @@ class Instantiations extends MY_Controller
         {
             $data['start'] = 1;
             $data['end'] = $data['count'];
-        }
-		else
+        } else
         {
             $data['start'] = $offset;
             $data['end'] = intval($offset) + intval($data['count']);
@@ -138,25 +139,28 @@ class Instantiations extends MY_Controller
             show_404();
         }
     }
-	/*
-	Set last state of table view
-	*/
-	public function update_user_settings()
-	{
-		if (isAjax())
-		{
-			$user_id = $this->user_id;
-			$settings = $this->input->post('settings');
-			$freeze_columns = $this->input->post('frozen_column');
-			$table_type = $this->input->post('table_type');
-			$settings = json_encode($settings);
-			$data = array('view_settings' => $settings, 'frozen_column' => $freeze_columns);
-			$this->user_settings->update_setting($user_id, $table_type, $data);
-			echo json_encode(array('success' => true));
-			exit;
-		}
-		show_404();
-	}
+
+    /**
+     * Set last state of table view
+     *  
+     */
+    public function update_user_settings()
+    {
+        if (isAjax())
+        {
+            $user_id = $this->user_id;
+            $settings = $this->input->post('settings');
+            $freeze_columns = $this->input->post('frozen_column');
+            $table_type = $this->input->post('table_type');
+            $settings = json_encode($settings);
+            $data = array('view_settings' => $settings, 'frozen_column' => $freeze_columns);
+            $this->user_settings->update_setting($user_id, $table_type, $data);
+            echo json_encode(array('success' => true));
+            exit;
+        }
+        show_404();
+    }
+
 }
 
 // END Instantiations Controller

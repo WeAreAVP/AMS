@@ -48,15 +48,7 @@
             <?php } ?>
             <div class="clearfix"></div>
             
-             <div id="date_range_main">
-               <div class="filter-fileds"><b>Date Range</b></div>
-                <div class="controls">
-                <div class="input-prepend">
-                    <span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="date_range" id="date_range" value="" />
-                </div>
-            </div>
-            </div>
-        <div class="clearfix"></div>
+            
             <!-- Organization Search Display Start  -->
             <?php
             if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
@@ -358,6 +350,7 @@
                 <input type="text" name="search" id="search" value=""/>
             </div>
         </div>
+        
         <div class="filter-fileds">
             <div class="btn-group" id="limit_field_dropdown" style="display:<?php echo $style; ?>">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -421,7 +414,16 @@
             <div><input type="button"  style="display:<?php echo $style; ?>" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
             <div><input type="reset" style="display:<?php echo $reset; ?>" id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
         </div>
-
+        <div class="clearfix"></div>
+         <div id="date_range_main">
+               <div class="filter-fileds"><b>Date Range</b></div>
+                <div class="controls">
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="date_range" id="date_range" value="" />
+                </div>
+            </div>
+            </div>
+        
         <!-- Organization  Start      -->
         <?php
         if (count($stations) > 0)

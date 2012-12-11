@@ -846,13 +846,13 @@
             buttonClasses: ['btn-primary']
         }, 
         function(start, end) {
-            $('#reportrange span').html(start.toString('MM/dd/yyyy') + ' - ' + end.toString('MM/dd/yyyy'));
+            //$('#reportrange span').html(start.toString('MM/dd/yyyy') + ' - ' + end.toString('MM/dd/yyyy'));
 			facet_search('0');
         }
     );
 
         //Set the initial state of the picker label
-        $('#reportrange span').html(Date.today().add({ days: -29 }).toString('MM/dd/yyyy') + ' - ' + Date.today().toString('MM/dd/yyyy'));
+        //$('#reportrange span').html(Date.today().add({ days: -29 }).toString('MM/dd/yyyy') + ' - ' + Date.today().toString('MM/dd/yyyy'));
 
     });
     function add_token(name,type,isRemoved){

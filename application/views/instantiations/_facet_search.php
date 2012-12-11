@@ -419,7 +419,7 @@
             <div class="filter-fileds"><b>Date Range</b></div>
             <div class="controls">
                 <div class="input-prepend">
-                    <span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="date_range" id="date_range" value="" style="width: 187px;" onblur="facet_search('0');"/>
+                    <span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="date_range" id="date_range" value="" style="width: 187px;"/>
                 </div>
             </div>
         </div>
@@ -847,6 +847,7 @@
         }, 
         function(start, end) {
             $('#reportrange span').html(start.toString('MM/dd/yyyy') + ' - ' + end.toString('MM/dd/yyyy'));
+			facet_search('0');
         }
     );
 

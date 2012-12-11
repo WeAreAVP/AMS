@@ -173,7 +173,8 @@ if (!$isAjax)
                                 if ($type == 'flag')
                                 {
                                     echo '<td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>';
-                                } else
+                                }
+								else
                                 {
                                     if ($type != 'Description')
                                     {
@@ -193,14 +194,14 @@ if (!$isAjax)
 										if (isset($asset->$def_setting[$row['title']]) && !empty($asset->$def_setting[$row['title']]))
                                         {
                                             $val = trim(str_replace("(**)", "N/A", $asset->$def_setting[$row['title']]));
-                                            $title = $val;
+                                            $asset_title = $val;
                                         }
 										else
                                         {
-                                            $title = 'N/A';
+                                            $asset_title = 'N/A';
                                         }
 										
-                                        $column='<a href="'.site_url('records/details/' . $asset->id).'" >'. $title.'</a>';
+                                        $column ='<a href="'.site_url('records/details/' . $asset->id).'" >'.$asset_title.'</a>';
 										
 									
 									}

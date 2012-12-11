@@ -852,7 +852,7 @@
     );
 
         //Set the initial state of the picker label
-        //$('#reportrange span').html(Date.today().add({ days: -29 }).toString('MM/dd/yyyy') + ' - ' + Date.today().toString('MM/dd/yyyy'));
+        $('#reportrange span').html(Date.today().add({ days: -29 }).toString('MM/dd/yyyy') + ' - ' + Date.today().toString('MM/dd/yyyy'));
 
     });
     function add_token(name,type,isRemoved){

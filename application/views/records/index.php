@@ -15,12 +15,9 @@ if (!$isAjax)
 <?php } ?>
         <ul class="nav nav-tabs">
             <li ><a href="javascript:;" style="color:#000;cursor:default;">View type :</a></li>
-            <li id="simple_li" <?php if ($current_tab == 'simple')
-{ ?>class="active" <?php } ?>><a href="javascript:;" onClick="change_view('simple')">Simple Table</a></li>
-            <li id="full_table_li" <?php if ($current_tab == 'full_table')
-{ ?>class="active" <?php } ?>><a href="javascript:;" onClick="change_view('full_table')">Full Table</a></li>
-            <li id="thumbnails_li" <?php if ($current_tab == 'thumbnails')
-{ ?>class="active" <?php } ?>><a href="javascript:;" >Thumbnails</a></li>
+            <li id="simple_li" <?php if ($current_tab == 'simple'){ ?>class="active" <?php } ?>><a href="javascript:;" <?php if ($current_tab != 'simple'){ ?>onClick="change_view('simple')" <?php } ?> >Simple Table</a></li>
+            <li id="full_table_li" <?php if ($current_tab == 'full_table'){ ?>class="active" <?php } ?>><a href="javascript:;" <?php if ($current_tab != 'full_table'){ ?>onClick="change_view('full_table')" <?php } ?> >Full Table</a></li>
+            <li id="thumbnails_li" <?php if ($current_tab == 'thumbnails'){ ?>class="active" <?php } ?>><a href="javascript:;" >Thumbnails</a></li>
         </ul>
         <div style="width: 860px;">
         <?php if (isset($current_tab) && $current_tab == 'full_table'){$this->load->view('instantiations/_gear_dropdown'); }?>

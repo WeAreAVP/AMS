@@ -36,7 +36,7 @@ if (!$isAjax)
     	         <th style='width: 150px;'><span style="float:left;min-width: 100px;" >AA GUID</span></th>
         	     <th style='width: 110px;'><span style="float:left;min-width: 100px;" >Local ID</span></th>
             	<th style='width: 185px;'><span style="float:left;min-width: 175px;" >Titles</span></th>
-             	<th style='width: 1750px;'><span style="float:left;min-width: 175px;" >Description</span></th>
+             	<th style='width: 175px;'><span style="float:left;min-width: 175px;" >Description</span></th>
             </tr>
             </thead>
             <tbody><?php 

@@ -728,7 +728,9 @@
                 var leftPos = $('.dataTables_scrollBody').scrollLeft();
                 if ( e.pageX < this.s.aoTargets[i-1].x + ((this.s.aoTargets[i].x-this.s.aoTargets[i-1].x)/2) )
                 {
-                    if($(".dataTables_scrollBody").width()<e.PageX){
+                    console.log($(".dataTables_scrollBody").width());
+                    console.log(e.pageX);
+                    if($(".dataTables_scrollBody").width()<e.pageX){
                         $(".dataTables_scrollBody").animate({
                             scrollLeft: leftPos + 500
                         });

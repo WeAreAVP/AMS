@@ -415,14 +415,16 @@
             <div><input type="reset" style="display:<?php echo $reset; ?>" id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
         </div>
         <div class="clearfix"></div>
-        <div id="date_range_main">
-            <div class="filter-fileds"><b>Date Range</b></div>
-            <div class="controls">
-                <div class="input-prepend">
-                    <span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="date_range" id="date_range" value="" style="width: 187px;"/>
+        <fieldset>
+            <div class="control-group">
+                <label class="control-label" for="date_range">Date Range</label>
+                <div class="controls">
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="date_range" id="date_range" style="width: 187px;"/>
+                    </div>
                 </div>
             </div>
-        </div>
+        </fieldset>
 
         <!-- Organization  Start      -->
         <?php
@@ -1056,5 +1058,5 @@
   {
   $('#gear_box').hide();
   }<?php */ ?>
-            }
+      }
 </script>

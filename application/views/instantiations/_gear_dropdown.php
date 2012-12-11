@@ -165,22 +165,6 @@ if (!$isAjax)
             }
         });
     }
-	function updateSimpleDataTable()
-	{
-		var sTable = $('#assets_table').dataTable({
-			"sDom": "frtiS",
-			'bPaginate':false,
-			'bInfo':false,
-			'bFilter': false,
-			"bSort": false,
-			"sScrollY": 400,
-            "sScrollX": "100%",
-	        "bDeferRender": true,
-            "bAutoWidth": false
-		});
-		 $.extend( $.fn.dataTableExt.oStdClasses, {
-            "sWrapper": "dataTables_wrapper form-inline"
-        } );
-	}
+	
 </script>
 <?php }?>

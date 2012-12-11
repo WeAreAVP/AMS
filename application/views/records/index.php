@@ -23,20 +23,14 @@ if (!$isAjax)
 { ?>class="active" <?php } ?>><a href="javascript:;" >Thumbnails</a></li>
         </ul>
         <div style="width: 860px;">
-
-<?php $this->load->view('instantiations/_gear_dropdown'); ?>
+        <?php if (isset($current_tab) && $current_tab == 'full_table'){$this->load->view('instantiations/_gear_dropdown'); }?>
             <div style="float: right;">
                 <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong>
                 <?php echo $this->ajax_pagination->create_links(); ?>
             </div>
-        </div>
-        <div style="width:865px;overflow:hidden;display:<?php if ($current_tab == 'simple')
-                {
-                    echo 'block';
-                } else
-                {
-                    echo "none";
-                } ?>;" id="simple_view">
+        </div><?php 
+		if (!isset($current_tab) || $current_tab == 'simple'){?>
+        	<div style="width:865px;overflow:hidden;" id="simple_view">
             <table class="table table-bordered" id="assets_table" ><?php
                 if (isset($records) && ($total > 0))
                 {
@@ -106,7 +100,7 @@ if (!$isAjax)
                             </tr><?php }
             ?>
                     </tbody>
-                    <script> setTimeout(function (){updateSimpleDataTable();},1000);</script>
+                    <script> setTimeout(function (){updateSimpleDataTable();},500);</script>
                 <?php
                 }
                 else if ($start >= 1000)
@@ -119,15 +113,12 @@ if (!$isAjax)
                     No Assets Found<?php }
                 ?>
             </table>
-        </div>
-        <br clear="all"/>
-        <div style="width: 865px;overflow:hidden; display:<?php if ($current_tab == 'full_table')
-                        {
-                            echo 'block';
-                        } else
-                        {
-                            echo "none";
-                        } ?>;" id="full_table_view" >
+        </div><?php 
+		}
+		else if (isset($current_tab) && $current_tab == 'full_table')
+		{ ?>
+        	<br clear="all"/>
+        	<div style="width: 865px;overflow:hidden;" id="full_table_view" >
             <table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;"  ><?php
                         if (isset($records) && ($total > 0))
                         {
@@ -234,14 +225,9 @@ if (!$isAjax)
                     No Assets Found<?php }
 ?>
             </table>
-        </div>
-        <div style="overflow: auto;display:<?php if ($current_tab == 'thumbnails')
-{
-    echo 'block';
-} else
-{
-    echo "none";
-} ?>;" id="thumbnails_view">
+        </div><?php 
+		}else if( isset($current_tab) &&  $current_tab == 'thumbnails'){?>
+        	<div style="overflow: auto;" id="thumbnails_view">
             <div class="span3 title">
                 <div class="unflag"></div>
                 <img width="250px" src="http://placehold.it/140x140" alt="" />
@@ -274,6 +260,7 @@ if (!$isAjax)
                 <p>Title of the Asset</p>
             </div>
         </div>
+        <?php }?>
         <div style="text-align: right;width: 860px;"> <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong> <?php echo $this->ajax_pagination->create_links(); ?> </div>
 <?php
 if (!$isAjax)

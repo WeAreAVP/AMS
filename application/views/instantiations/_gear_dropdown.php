@@ -89,7 +89,10 @@ if (!$isAjax)
         frozen=count;
         $('#freeze_col_'+frozen).toggle(); 
 //        facet_search('0');
-        updateDatabase();
+ new FixedColumns( oTable, {
+                "iLeftColumns": frozen
+            } );
+//        updateDatabase();
                                                                                                                                                                                             
     }
     function updateDataTable(){

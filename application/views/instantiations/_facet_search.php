@@ -816,44 +816,8 @@
 </div>
 <script type="text/javascript">
  $(document).ready(function() {
-//                  $('#date_range').daterangepicker(
-//                     {
-//                        ranges: {
-//                           'Today': ['today', 'today'],
-//                           'Yesterday': ['yesterday', 'yesterday'],
-//                           'Last 7 Days': [Date.today().add({ days: -6 }), 'today'],
-//                           'Last 30 Days': [Date.today().add({ days: -29 }), 'today'],
-//                           'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
-//                           'Last Month': [Date.today().moveToFirstDayOfMonth().add({ months: -1 }), Date.today().moveToFirstDayOfMonth().add({ days: -1 })]
-//                        },
-//                        opens: 'left',
-//                        format: 'MM/dd/yyyy',
-//                        separator: ' to ',
-//                        startDate: Date.today().add({ days: -29 }),
-//                        endDate: Date.today(),
-//                        minDate: '01/01/2012',
-//                        maxDate: '<?php echo date("mm/dd/YY");?>',
-//                        locale: {
-//                            applyLabel: 'Submit',
-//                            fromLabel: 'From',
-//                            toLabel: 'To',
-//                            customRangeLabel: 'Custom Range',
-//                            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
-//                            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-//                            firstDay: 1
-//                        },
-//                        showWeekNumbers: true,
-//                        buttonClasses: ['btn-danger']
-//                     }, 
-//                     function(start, end) {
-//                        $('#reportrange span').html(start.toString('MM/dd/yyyy') + ' - ' + end.toString('MM/dd/yyyy'));
-//                     }
-//                  );
-//
-//                  //Set the initial state of the picker label
-//                  $('#reportrange span').html(Date.today().add({ days: -29 }).toString('MM/dd/yyyy') + ' - ' + Date.today().toString('MM/dd/yyyy'));
 
-				  $('#date_range').daterangepicker({arrows:true}); 
+				  $('#date_range').daterangepicker({arrows:false}); 
 			 
                });
     function add_token(name,type,isRemoved){

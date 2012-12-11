@@ -828,7 +828,7 @@ ColReorder.prototype = {
 		this.dom.drag.style.top = "0px";
 		this.dom.drag.style.left = "0px";
 		this.dom.drag.style.width = $('th:eq('+that.s.mouse.targetIndex+')', that.s.dt.nTHead).outerWidth()+"px";
-		
+		console.log(this.dom.drag.style.width);
 		
 		this.dom.pointer = document.createElement( 'div' );
 		this.dom.pointer.className = "DTCR_pointer";

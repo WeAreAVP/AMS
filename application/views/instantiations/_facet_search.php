@@ -834,7 +834,7 @@
                         minDate: '01/01/2012',
                         maxDate: '<?php echo date("mm/dd/YY");?>',
                         locale: {
-                            applyLabel: 'Submit',
+                            applyLabel: 'Add',
                             fromLabel: 'From',
                             toLabel: 'To',
                             customRangeLabel: 'Custom Range',
@@ -843,7 +843,7 @@
                             firstDay: 1
                         },
                         showWeekNumbers: true,
-                        buttonClasses: ['btn-danger']
+                        buttonClasses: ['btn-primary']
                      }, 
                      function(start, end) {
                         $('#reportrange span').html(start.toString('MM/dd/yyyy') + ' - ' + end.toString('MM/dd/yyyy'));

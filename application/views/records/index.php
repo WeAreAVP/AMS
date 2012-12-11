@@ -148,7 +148,7 @@ if (!$isAjax)
                                             if (in_array($type, array("AA_GUID", "Local_ID", "Titles_Type", "Titles_Ref", "Titles_Source", "Description_Type", "Subjects", "Subjects_Ref", "Subjects_Source", "Genre", "Genre_Source", "Genre_Ref", "Creator_Name", "Creator_Affiliation", "Creator_Source", "Creator_Ref", "Creator_Role", "Creator_Role_Source", "Contributor_Name", "Contributor_Affiliation", "Contributor_Source", "Contributor_Ref", "Contributor_Role", "Contributor_Role_Source", "Contributor_Role_Ref", "Publisher_Name", "Publisher_Affiliation", "Publisher_Ref", "Publisher_Role", "Publisher_Role_Source", "Publisher_Role_Source_Ref", "Assets_Date", "Date_Type", "Coverage", "Coverage_Type", "Audience_Level", "Audience_Level_Source", "Audience_Level_Ref", "Audience_Rating", "Audience_Rating_Source", "Audience_Rating_Ref", "Annotation", "Annotation_Type", "Annotation_Ref", "Rights", "Rights_Link")))
                                             {
                                                 $width = 'min-width:100px;';
-                                            } else if ($type == 'Asset_Title' || $type == 'Description')
+                                            } else if ($type == 'Titles' || $type == 'Description')
                                             {
                                                 $width = 'min-width:300px;';
                                             }
@@ -190,7 +190,7 @@ if (!$isAjax)
                                             $column = 'N/A';
                                         }
                                     }
-									else if ($type == 'Asset_Title')
+									else if ($type == 'Titles')
 									{
                                      	
 										if (isset($asset->$def_setting[$row['title']]) && !empty($asset->$def_setting[$row['title']]))
@@ -220,7 +220,7 @@ if (!$isAjax)
                                     if (in_array($type, array("AA_GUID", "Local_ID", "Titles_Type", "Titles_Ref", "Titles_Source", "Description_Type", "Subjects", "Subjects_Ref", "Subjects_Source", "Genre", "Genre_Source", "Genre_Ref", "Creator_Name", "Creator_Affiliation", "Creator_Source", "Creator_Ref", "Creator_Role", "Creator_Role_Source", "Contributor_Name", "Contributor_Affiliation", "Contributor_Source", "Contributor_Ref", "Contributor_Role", "Contributor_Role_Source", "Contributor_Role_Ref", "Publisher_Name", "Publisher_Affiliation", "Publisher_Ref", "Publisher_Role", "Publisher_Role_Source", "Publisher_Role_Source_Ref", "Assets_Date", "Date_Type", "Coverage", "Coverage_Type", "Audience_Level", "Audience_Level_Source", "Audience_Level_Ref", "Audience_Rating", "Audience_Rating_Source", "Audience_Rating_Ref", "Annotation", "Annotation_Type", "Annotation_Ref", "Rights", "Rights_Link")))
                                     {
                                         $width = 'min-width:100px;';
-                                    } else if ($type == 'Asset_Title' || $type == 'Description')
+                                    } else if ($type == 'Titles' || $type == 'Description')
                                     {
                                         $width = 'min-width:300px;';
                                     }

@@ -980,9 +980,13 @@
         $('#current_tab').val(id);
         $.ajax({
             type: 'POST', 
-            url: '<?php echo site_url('records/set_current_tab') ?>/'+id
+            url: '<?php echo site_url('records/set_current_tab') ?>/'+id,
+			success: function (result)
+            { 
+            	window.location.reload();
+			}
         });
-        $('#simple_view').hide();
+       <?php /*?> $('#simple_view').hide();
         $('#full_table_view').hide();
         $('#thumbnails_view').hide();
         $('#simple_li').removeClass("active");
@@ -997,6 +1001,6 @@
 		else
 		{
 			$('#gear_box').hide();
-		}
+		}<?php */?>
     }
 </script>

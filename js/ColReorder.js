@@ -725,25 +725,23 @@
             var bSet = false;
             for ( var i=1, iLen=this.s.aoTargets.length ; i<iLen ; i++ )
             {
-                console.log(i);
-             
+                var leftPos = $('.dataTables_scrollBody').scrollLeft();
                 if ( e.pageX < this.s.aoTargets[i-1].x + ((this.s.aoTargets[i].x-this.s.aoTargets[i-1].x)/2) )
                 {
-//                    var leftPos = $('.dataTables_scrollBody').scrollLeft();
-//                    if(e.pageX>1000){
-//                        $(".dataTables_scrollBody").animate({
-//                            scrollLeft: leftPos + 500
-//                            });
-//                    }
-//                    else{
-//                        $(".dataTables_scrollBody").animate({
-//                            scrollLeft: leftPos - 500
-//                            });
-//                    }
                     this.dom.pointer.style.left = this.s.aoTargets[i-1].x +"px";
                     this.s.mouse.toIndex = this.s.aoTargets[i-1].to;
                     bSet = true;
                     break;
+                }
+                else if(e.PageX>1000){
+                    $(".dataTables_scrollBody").animate({
+                            scrollLeft: leftPos + 500
+                            });
+                }
+                else if(e.PageX<1000){
+                    $(".dataTables_scrollBody").animate({
+                            scrollLeft: leftPos - 500
+                            });
                 }
             }
 		

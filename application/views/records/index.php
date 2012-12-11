@@ -176,19 +176,8 @@ if (!$isAjax)
                                 }
 								else
                                 {
-                                    if ($type != 'Description')
-                                    {
-
-                                        if (isset($asset->$def_setting[$row['title']]) && !empty($asset->$def_setting[$row['title']]))
-                                        {
-                                            $val = trim(str_replace("(**)", "N/A", $asset->$def_setting[$row['title']]));
-                                            $column = $val;
-                                        } else
-                                        {
-                                            $column = 'N/A';
-                                        }
-                                    }
-									else if ($type == 'Titles')
+									
+									if ($type == 'Titles')
 									{
                                      	
 										if (isset($asset->$def_setting[$row['title']]) && !empty($asset->$def_setting[$row['title']]))
@@ -205,6 +194,19 @@ if (!$isAjax)
 										
 									
 									}
+									else if ($type != 'Description')
+                                    {
+
+                                        if (isset($asset->$def_setting[$row['title']]) && !empty($asset->$def_setting[$row['title']]))
+                                        {
+                                            $val = trim(str_replace("(**)", "N/A", $asset->$def_setting[$row['title']]));
+                                            $column = $val;
+                                        } else
+                                        {
+                                            $column = 'N/A';
+                                        }
+                                    }
+									
 									else
                                     {
                                         $des = str_replace("(**)", "N/A", $asset->$def_setting[$row['title']]);

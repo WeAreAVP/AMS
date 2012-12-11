@@ -349,6 +349,6 @@ table.table thead .sorting_desc { background: url('/images/sort_desc.png') no-re
 table.table thead .sorting_asc_disabled { background: url('/images/sort_asc_disabled.png') no-repeat center right; }
 table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_disabled.png') no-repeat center right; }
 .drap-drop{
-    cursor: pointer;
+    cursor: move;
 }
 #simple_view .dataTables_scrollHead{ height:35px;}

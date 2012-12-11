@@ -174,9 +174,9 @@ if (!$isAjax)
 			'bFilter': false,
 			"bSort": false,
 			"sScrollY": 400,
-            "sScrollX": "100%",
-	        "bDeferRender": true,
-            "bAutoWidth": false
+             "bScrollCollapse": true,
+	        
+            
 		});
 		 $.extend( $.fn.dataTableExt.oStdClasses, {
             "sWrapper": "dataTables_wrapper form-inline"

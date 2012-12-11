@@ -35,8 +35,8 @@ if (!$isAjax)
 	             <th><span style="float:left;" ><i class="icon-flag "></i></span></th>
     	         <th><span style="float:left;min-width: 100px;" >AA GUID</span></th>
         	     <th><span style="float:left;min-width: 100px;" >Local ID</span></th>
-            	<th ><span style="float:left;min-width: 200px;" >Titles</span></th>
-             	<th ><span style="float:left;min-width: 200px;" >Description</span></th>
+            	<th ><span style="float:left;min-width: 175px;" >Titles</span></th>
+             	<th ><span style="float:left;min-width: 1750px;" >Description</span></th>
             </tr>
             </thead>
             <tbody><?php 

@@ -29,7 +29,7 @@ if (!$isAjax)
                             foreach ($this->column_order as $key => $value)
                             {
                                 $class='';
-                                if(!($this->frozen_column>=$key))
+                                if(!($this->frozen_column>$key))
                                     $class='drap-drop';
                                 $type = $value['title'];
                                 if ($type == 'Nomination' || $type == 'Organization' || $type == 'Instantiation_ID' || $type == 'Format_Type' || $type == 'Date' || $type == 'Date_Type' || $type == 'File_size' || $type == 'Unit_of_measure')

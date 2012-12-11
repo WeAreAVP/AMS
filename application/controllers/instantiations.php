@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Instantiations Tracking Controller
+ * Instantiations
  * 
 
 
@@ -9,6 +9,7 @@
  * @package		AMS
  * @subpackage	Instantiations
  * @author		Nouman Tayyab <nouman@geekschicago.com>
+ * @link        http://http://amsqa.avpreserve.com/
  */
 class Instantiations extends MY_Controller
 {
@@ -155,7 +156,7 @@ class Instantiations extends MY_Controller
             $settings = json_encode($settings);
             $data = array('view_settings' => $settings, 'frozen_column' => $freeze_columns);
             $this->user_settings->update_setting($user_id, $table_type, $data);
-            echo json_encode(array('success' => true));
+            echo json_encode(array('success' => TRUE));
             exit;
         }
         show_404();

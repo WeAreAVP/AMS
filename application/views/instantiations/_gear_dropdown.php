@@ -167,7 +167,13 @@ if (!$isAjax)
     }
 	function updateSimpleDataTable()
 	{
-		var oTable = $('#assets_table').dataTable();
+		var oTable = $('#assets_table').dataTable(
+			"sDom": 'lfrtip',
+			'bPaginate':false,
+			'bInfo':false,
+			'bFilter': false,
+			"bSort": false
+		);
     	new FixedHeader( oTable );
     }
 </script>

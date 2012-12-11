@@ -189,7 +189,23 @@ if (!$isAjax)
                                         {
                                             $column = 'N/A';
                                         }
-                                    } else
+                                    }
+									else if ($type == 'Titles')
+									{
+                                     if (isset($asset->$def_setting[$row['title']]) && !empty($asset->$def_setting[$row['title']]))
+                                        {
+                                            $val = trim(str_replace("(**)", "N/A", $asset->$def_setting[$row['title']]));
+                                            $title = $val;
+                                        } else
+                                        {
+                                            $title = 'N/A';
+                                        }
+										
+                                        $colum='<a href="'.site_url('records/details/' . $asset->id).'" >'. $title.'</a>';
+										
+									
+									}
+									else
                                     {
                                         $des = str_replace("(**)", "N/A", $asset->$def_setting[$row['title']]);
                                         if (isset($des) && !empty($des) && strlen($des) > 160)

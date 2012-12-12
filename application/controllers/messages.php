@@ -187,6 +187,14 @@ class Messages extends MY_Controller
             if ($template == 'Digitization_Start_Date')
             {
                 $extra['ship_date'] = $station_details->start_date;
+            } else if ($template == 'Materials_Received_Digitization_Vendor')
+            {
+                $extra['date_received'] = '';
+                $tracking_info = $this->tracking->get_last_tracking_info($to);
+                if (count($tracking_info) > 0)
+                {
+                    $extra['date_received'] = $tracking_info->media_received_date;
+                }
             }
             foreach ($extra as $key => $value)
             {

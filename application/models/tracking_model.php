@@ -7,13 +7,15 @@
  * @subpackage tracking_model
  * @author     Nouman Tayyab
  */
-class Tracking_Model extends CI_Model {
+class Tracking_Model extends CI_Model
+{
 
     /**
      * constructor. set table name amd prefix
      * 
      */
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
 
         $this->_prefix = '';
@@ -26,9 +28,10 @@ class Tracking_Model extends CI_Model {
      * 
      * @return array 
      */
-    function get_all($station_id) {
+    function get_all($station_id)
+    {
         $this->db->where('station_id', $station_id);
-        return $query = $this->db->get($this->_table)->result();
+        return $this->db->get($this->_table)->result();
     }
 
     /**
@@ -37,9 +40,10 @@ class Tracking_Model extends CI_Model {
      * @param array $data
      * @return boolean 
      */
-    function insert_record($data) {
+    function insert_record($data)
+    {
         $this->db->insert($this->_table, $data);
-        return $this->db->insert_id(); 
+        return $this->db->insert_id();
     }
 
     /**
@@ -49,7 +53,8 @@ class Tracking_Model extends CI_Model {
      * @param array $data
      * @return boolean 
      */
-    function update_record($tracking_id, $data) {
+    function update_record($tracking_id, $data)
+    {
         $this->db->where('id', $tracking_id);
         return $this->db->update($this->_table, $data);
     }
@@ -60,7 +65,8 @@ class Tracking_Model extends CI_Model {
      * @param integer $traking_id
      * @return array 
      */
-    function get_by_id($traking_id) {
+    function get_by_id($traking_id)
+    {
         $this->db->where('id', $traking_id);
         return $this->db->get($this->_table)->row();
     }
@@ -71,10 +77,24 @@ class Tracking_Model extends CI_Model {
      * @param integer $tracking_id
      * @return interger 
      */
-    function delete_record($tracking_id) {
+    function delete_record($tracking_id)
+    {
         $this->db->where('id', $tracking_id);
         $this->db->delete($this->_table);
         return $this->db->affected_rows() > 0;
+    }
+
+    /**
+     * Get the last inserted tracking info of specified station
+     * 
+     * @param integer $station_id
+     * @return Object 
+     */
+    function get_last_tracking_info($station_id)
+    {
+        $this->db->where('station_id', $station_id);
+        $this->db->order_by("id", "desc");
+        return $this->db->get($this->_table)->row();
     }
 
 }

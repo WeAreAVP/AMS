@@ -21,7 +21,7 @@ class Tracking extends MY_Controller
     {
         parent::__construct();
         $this->layout = 'main_layout.php';
-        $this->load->model('tracking_model', 'tracking');
+        
     }
 
     /**

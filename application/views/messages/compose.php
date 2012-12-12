@@ -26,7 +26,7 @@
             <div class="control-group">
                 <label class="control-label" for="receiver_id">To:</label>
                 <div class="controls">
-                    <select id="receiver_id" name="receiver_id" multiple="multiple">
+                    <select id="receiver_id" name="receiver_id" multiple="multiple" onchange="typeForm();">
                         <?php
                         foreach ($station_records as $value)
                         {

@@ -40,6 +40,7 @@ class MY_Controller extends CI_Controller
         $this->load->model('email_template_model', 'email_template');
         $this->load->model('report_model');
 		$this->load->model('dx_auth/user_settings', 'user_settings');
+        $this->load->model('tracking_model', 'tracking');
 		$this->frozen_column=0;
 		$this->column_order='';
         if (!isset($this->user_id))

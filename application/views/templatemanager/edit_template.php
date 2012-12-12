@@ -45,7 +45,7 @@ $replacebale = array(
 echo form_open_multipart(site_url('templatemanager/edit/'.$template_id), $form_attributes);
 ?>
 <?php 
-if($add_temp){?>
+if(isset($add_temp)){?>
        <div class="alert alert-success">Template Added Successfully</div>
     <?php } ?>
 <table class="table no_border">

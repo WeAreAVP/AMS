@@ -36,6 +36,7 @@ class Crons extends CI_Controller
 	function processemailqueues()
 	{
 		$email_queue = $this->email_template->get_all_pending_email();
+        
 		foreach ($email_queue as $queue)
 		{
 			$now_queue_body = $queue->email_body . '<img src="' . site_url('emailtracking/' . $queue->id . '.png') . '" height="1" width="1" />';
@@ -44,9 +45,7 @@ class Crons extends CI_Controller
 				$this->email_template->update_email_queue_by_id($queue->id, array("is_sent" => 2, "sent_at" => date('Y-m-d H:i:s')));
 				echo "Email Sent To " . $queue->email_to . " <br/>";
 			}
-            else{
-                echo 'No Email available in queue for processing';
-            }
+           
 		}
 	}
 	

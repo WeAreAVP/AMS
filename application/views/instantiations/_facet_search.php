@@ -26,7 +26,7 @@
                     $column_name = ': All';
 
                 $custom_search = explode('|||', $custom_search);
-                echo '<pre>';print_r($custom_search);exit;
+                echo '<pre>';print_r($custom_search);
                 foreach ($custom_search as $value)
                 {
                     if ($value != '')
@@ -35,6 +35,7 @@
                         break;
                     }
                 }
+                echo $custom_search;exit;
 //                $custom_search = $custom_search[count($custom_search) - 2];
 
                 $search_id = name_slug($custom_search);

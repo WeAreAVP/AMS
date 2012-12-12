@@ -44,6 +44,9 @@ class Crons extends CI_Controller
 				$this->email_template->update_email_queue_by_id($queue->id, array("is_sent" => 2, "sent_at" => date('Y-m-d H:i:s')));
 				echo "Email Sent To " . $queue->email_to . " <br/>";
 			}
+            else{
+                echo 'No Email available in queue for processing';
+            }
 		}
 	}
 	

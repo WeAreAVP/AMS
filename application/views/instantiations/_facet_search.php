@@ -1056,7 +1056,6 @@
             success: function (result)
             { 
                 $('#data_container').html(result); 
-
                         updateDataTable();
 
                 $.unblockUI();

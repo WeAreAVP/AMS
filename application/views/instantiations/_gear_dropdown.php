@@ -39,7 +39,7 @@
 
 </div>
 <?php
-//if (!$isAjax)
+if (!$isAjax && $total>0){?>
 {?>
 <script type="text/javascript">
     columnsOrder=new Array();
@@ -48,10 +48,7 @@
     updateInstantiationsTable=1;
     oTable=null;
     $(function() {
-		<?php 
-		if($total>0){?>
           updateDataTable();
-		  <?php }?>
     });
     function showHideColumns(column){
         if(frozen<column+1){

@@ -194,6 +194,10 @@ if (!$isAjax)
 										
 									
 									}
+									else if($type == 'Assets_Date')
+									{
+										 $column = ($asset->$def_setting[$row['title']] == 0) ? 'No Date' : date('Y-m-d', $asset->$def_setting[$row['title']]);
+									}
 									else if ($type != 'Description')
                                     {
 

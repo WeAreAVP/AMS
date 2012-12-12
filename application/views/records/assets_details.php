@@ -307,10 +307,10 @@
                             <?php foreach ($asset_dates as $asset_date)
                             { ?>
                             <div class="disabled-field">
-        <?php if (isset($asset_dates->asset_date) && !empty($asset_dates->asset_date))
+        <?php if (isset($asset_dates->dates) && !empty($asset_dates->dates))
         { ?>
                                     <strong>ASSET DATE:</strong><br/>
-                        <?php echo $asset_dates->asset_date; ?><br/>
+                        <?php echo $asset_dates->dates; ?><br/>
                                     <br/>
         <?php }
         if (isset($asset_dates->date_type) && !empty($asset_dates->date_type))

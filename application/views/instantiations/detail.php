@@ -171,7 +171,7 @@
             </div>
         <?php } ?>
         <?php
-        if ($instantiation_detail->instantiation_date || $instantiation_detail->date_type)
+        if ($instantiation_detail->dates || $instantiation_detail->date_type)
         {
             ?>
             <div class="span12 form-row">
@@ -182,11 +182,11 @@
                 <div id="search_bar" class="span10">
                     <div class="disabled-field">
                         <?php
-                        if ($instantiation_detail->instantiation_date)
+                        if ($instantiation_detail->dates)
                         {
                             ?>
                             <strong>Date:</strong><br/>
-                            <p><?php echo date('Y-m-d', $instantiation_detail->instantiation_date); ?></p>
+                            <p><?php echo date('Y-m-d', $instantiation_detail->dates); ?></p>
                             <br/>
                         <?php } ?>
                         <?php

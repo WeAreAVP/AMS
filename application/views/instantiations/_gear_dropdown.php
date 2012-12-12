@@ -40,7 +40,6 @@
 </div>
 <?php
 if (!$isAjax && $total>0){?>
-{?>
 <script type="text/javascript">
     columnsOrder=new Array();
     orderString='';

@@ -26,11 +26,17 @@
                     $column_name = ': All';
 
                 $custom_search = explode('|||', $custom_search);
-                echo '<pre>'; print_r($custom_search);
-                $custom_search = $custom_search[count($custom_search) - 2];
-                echo $custom_search.'<br/>';
+                foreach ($custom_search as $value)
+                {
+                    if ($value != '')
+                    {
+                        $custom_search = $value;
+                        break;
+                    }
+                }
+//                $custom_search = $custom_search[count($custom_search) - 2];
+
                 $search_id = name_slug($custom_search);
-                echo $custom_search;
                 ?>
                 <div id="keyword_field_main">
                     <div class="filter-fileds"><b id="keyword_field_name">Keyword<?php echo $column_name; ?></b></div>
@@ -39,8 +45,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <?php
-            }
-            else
+            } else
             {
                 ?>
 
@@ -436,15 +441,16 @@
                 <div class="btn-group" id="limit_field_dropdown">
                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                         <span id="date_field_text">Date Type</span>
-                        
+
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <?php
                         foreach ($date_types as $value)
-                        {?>
+                        {
+                            ?>
                             <li><a href="javascript://;" onclick="add_date_token('<?php echo $value->date_type; ?>');"><?php echo $value->date_type; ?></a></li>
-                       <?php }
+                        <?php }
                         ?>
                     </ul>
                 </div>
@@ -490,7 +496,7 @@
                     </ul>
                 </div>
             </div>
-        <?php } ?>
+<?php } ?>
         <!-- Organization  End      -->
         <!--  Nomination Status Start      -->
         <?php
@@ -532,9 +538,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!--  Nomination Status End      -->
         <!--  Media Type Start      -->
         <?php
@@ -575,9 +581,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!--  Media Type End      -->
         <!--  Physical Format Start      -->
         <?php
@@ -618,9 +624,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!-- Physical Format End      -->
         <!--  Digital Format Start      -->
         <?php
@@ -661,9 +667,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!-- Digital Format End      -->
         <!--  Generation Start      -->
         <?php
@@ -704,9 +710,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!-- Generation End      -->
         <!--  File Size Start      -->
         <?php
@@ -747,9 +753,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!-- File Size End      -->
         <!--  Event Type Start      -->
         <?php
@@ -790,9 +796,9 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!-- Event Type End      -->
         <!--  Event Type Start      -->
         <?php
@@ -833,20 +839,20 @@
                             ?>
                         </ul>
                     </div>
-                <?php } ?>
+            <?php } ?>
             </div>
-        <?php } ?>
+<?php } ?>
         <!-- Event Type End      -->
 
     </form>
 </div>
 <script type="text/javascript">
-	var is_destroy=false;
-	var columnsOrder=new Array();
+    var is_destroy=false;
+    var columnsOrder=new Array();
    	var orderString='';
    	var frozen='<?php echo $this->frozen_column; ?>';
-	var hiden_column=new Array();
-	var current_table_type='<?php echo $table_type ?>';
+    var hiden_column=new Array();
+    var current_table_type='<?php echo $table_type ?>';
     oTable=null;
     $(document).ready(function() {
         $('#date_range').daterangepicker(
@@ -1059,7 +1065,7 @@
             success: function (result)
             { 
                 $('#data_container').html(result); 
-                        updateDataTable();
+                updateDataTable();
 
                 $.unblockUI();
                                 

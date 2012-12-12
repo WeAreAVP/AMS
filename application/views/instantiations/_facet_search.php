@@ -29,14 +29,14 @@
                 $custom_value=null;
                 foreach ($custom_search as $value)
                 {
-                    if (!empty($value) && !is_null($value) && $value!='')
+                    if (!empty($value) && !is_null($value) && trim($value)!='')
                     {
                         echo $custom_value = $value;
                         
                     }
                 }
-                
-
+echo 'gadfdf';                
+echo $custom_value;
                 $search_id = name_slug($custom_value);
                 ?>
                 <div id="keyword_field_main">

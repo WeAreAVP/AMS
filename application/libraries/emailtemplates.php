@@ -27,6 +27,7 @@ class Emailtemplates
 	function queue_email($template_sys_id,$email_to,$replace_able='')
 	{
 		$email_template=$this->CI->email_templates->get_template_by_sys_id($template_sys_id);
+        echo '<pre>';print_r($email_template);exit;
 		if(isset($email_template) && !empty($email_template))
 		{
 			if(valid_email($email_to))

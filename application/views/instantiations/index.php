@@ -83,7 +83,7 @@ if (!$isAjax)
                                         $column = ($value->actual_duration) ? $value->actual_duration : 'N/A';
                                     } else if ($type == 'Date')
                                     {
-                                        $column = ($value->dates == 0) ? 'No Source Date' : date('Y-m-d', $value->dates);
+                                        $column = ($value->instantiation_date == 0) ? 'No Source Date' : date('Y-m-d', $value->instantiation_date);
                                     } else if ($type == 'Date_Type')
                                     {
                                         $column = $value->date_type;

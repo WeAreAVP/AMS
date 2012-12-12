@@ -31,7 +31,7 @@
                 {
                     if (!empty($value) && !is_null($value) && $value!='')
                     {
-                        $custom_value = $value;
+                        echo $custom_value = $value;
                         
                     }
                 }

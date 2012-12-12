@@ -816,6 +816,12 @@
 </div>
 <script type="text/javascript">
 	var is_destroy=false;
+	var columnsOrder=new Array();
+   	var orderString='';
+   	var frozen=0;
+	var hiden_column=new Array();
+	var current_table_type='<?php echo $table_type ?>';
+    oTable=null;
     $(document).ready(function() {
         $('#date_range').daterangepicker(
         {

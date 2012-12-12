@@ -230,6 +230,7 @@ function updateDataTable()
 				"sScrollY": 400,
 				"sScrollX": "100%",	
 				"bDeferRender": true,
+				"bDestroy": is_destroy,
 				"bAutoWidth": false
 			});
 		if(frozen>0)

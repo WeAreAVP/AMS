@@ -815,6 +815,7 @@
     </form>
 </div>
 <script type="text/javascript">
+	var is_destroy=false;
     $(document).ready(function() {
         $('#date_range').daterangepicker(
         {

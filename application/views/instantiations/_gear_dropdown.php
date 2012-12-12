@@ -47,10 +47,9 @@
 	var current_table_type='<?php echo $table_type ?>'
     updateInstantiationsTable=1;
     oTable=null;
-	var is_destroy=false;
 	<?php 
 	if($isAjax){?>
-	is_destroy=true;
+		is_destroy=true;
 	<?php }?>
 	<?php 
 if($total>0){?>

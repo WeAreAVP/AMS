@@ -231,6 +231,7 @@ function updateDataTable()
 				"sScrollX": "100%",	
 				"bDeferRender": true,
 				"bDestroy": is_destroy,
+				"bRetrieve": true,
 				"bAutoWidth": false
 			});
 		if(frozen>0)

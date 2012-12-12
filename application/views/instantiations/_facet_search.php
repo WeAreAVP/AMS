@@ -35,7 +35,7 @@
                         
                     }
                 }
-                $custom_search =$custom_value;
+                $custom_search =echo $custom_value;
 
                 $search_id = name_slug($custom_search);
                 ?>

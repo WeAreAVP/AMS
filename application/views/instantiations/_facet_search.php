@@ -26,6 +26,7 @@
                     $column_name = ': All';
 
                 $custom_search = explode('|||', $custom_search);
+                echo '<pre>';print_r($custom_search);exit;
                 foreach ($custom_search as $value)
                 {
                     if ($value != '')

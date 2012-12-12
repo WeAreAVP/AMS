@@ -39,7 +39,7 @@
 
 </div>
 <?php
-if (!$isAjax)
+//if (!$isAjax)
 {?>
 <script type="text/javascript">
     columnsOrder=new Array();

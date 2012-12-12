@@ -189,7 +189,7 @@ class Messages extends MY_Controller
                 $extra['ship_date'] = $station_details->start_date;
             } else if ($template == 'Materials_Received_Digitization_Vendor')
             {
-                $extra['date_received'] = '';
+                $extra['date_received'] = 'No Date';
                 $tracking_info = $this->tracking->get_last_tracking_info($to);
                 if (count($tracking_info) > 0)
                 {

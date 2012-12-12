@@ -48,7 +48,10 @@ if (!$isAjax)
     updateInstantiationsTable=1;
     oTable=null;
     $(function() {
+		<?php 
+		if($total>0){?>
           updateDataTable();
+		  <?php }?>
     });
     function showHideColumns(column){
         if(frozen<column+1){

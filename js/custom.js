@@ -158,3 +158,107 @@ function checkAll() {
 }
    
 
+function showHideColumns(column)
+{
+	if(frozen<column+1)
+	{
+		$('#listing_table').dataTable().fnSetColumnVis(column,true);
+		$('#'+column+'_column i').toggle();
+		if ($('#'+column+'_column i').css('display') == "none")
+		{
+			$('#listing_table').dataTable().fnSetColumnVis(column,false);
+		}
+		else
+		{
+			$('#listing_table').dataTable().fnSetColumnVis(column,true);
+		}
+		updateDatabase();
+	}
+	else
+	{
+		alert('Frozen Column will not take any affect');
+	}
+}                                        
+function getColumnOrder()
+{
+	$('table th').each(function(index)
+	{
+		if(index==0 || orderString=='')
+		{
+			orderString=this.id;
+		}
+		else
+		{
+			if(orderString.indexOf(this.id)<0)
+			{
+				orderString+=','+this.id;
+			}
+		}
+	}); 
+	return columnsOrder=orderString.split(',');
+} 
+function reOrderDropDown(columnArray)
+{
+	$('#show_hide_li').html('');
+	for(cnt in columnArray)
+	{
+		name=columnArray[cnt].split('_').join(' ');
+        $('#show_hide_li').append('<li><a href="javascript://;" onclick="showHideColumns('+cnt+');" id="'+cnt+'_column"><i class="icon-ok"></i>'+name+'</a></li>');
+	}
+}
+function freezeColumns(count)
+{
+	frozen=count;
+	$('#freeze_col_'+frozen).toggle(); 
+	facet_search('0');
+	updateDatabase();                                                                                                                                                                                        
+}
+function updateDataTable()
+{
+	if(typeof(document.getElementById('listing_table'))!='undefined')
+	{
+		oTable = 
+			$('#listing_table').dataTable(
+			{
+				"sDom": 'RlfrtipS',
+				"aoColumnDefs": [{ "bVisible": false, "aTargets": hiden_column }],
+				"oColReorder": {"iFixedColumns": frozen,"fnReorderCallback": function () {	columnArray= getColumnOrder();	reOrderDropDown(columnArray);	updateDatabase();}},																		  
+				'bPaginate':false,
+				'bInfo':false,
+				'bFilter': false,
+				"bSort": false,
+				"sScrollY": 400,
+				"sScrollX": "100%",	
+				"bDeferRender": true,
+				"bAutoWidth": false
+			});
+		if(frozen>0)
+		{
+			new FixedColumns( oTable, {"iLeftColumns": frozen } );
+		}
+		$('#freeze_col_'+frozen).show();                                                                                                                                                                                                                                           
+		$.extend( $.fn.dataTableExt.oStdClasses,{"sWrapper": "dataTables_wrapper form-inline"} );
+	}
+}
+function updateDatabase()
+{
+	userSettings=new Array();
+	$('#show_hide_li a').each(function(index,id)
+	{
+		columnAnchorID=this.id;
+		if ($('#'+columnAnchorID+' i').css('display') == "none")
+		{
+			userSettings[index]= {title: str_replace(' ','_',$(this).text()),hidden: 1};
+		}
+		else
+		{
+			userSettings[index]= {title:  str_replace(' ','_',$(this).text()),hidden: 0};
+		}
+	}); 
+	$.ajax({
+		type: 'POST', 
+		url: site_url+'instantiations/update_user_settings',
+		data:{settings:userSettings,frozen_column:frozen,table_type:current_table_type},
+		success: function (result){}
+	});
+}

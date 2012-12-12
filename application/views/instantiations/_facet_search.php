@@ -26,7 +26,9 @@
                     $column_name = ': All';
 
                 $custom_search = explode('|||', $custom_search);
+                echo $custom_search.'<br/>';
                 $custom_search = $custom_search[count($custom_search) - 2];
+                echo $custom_search.'<br/>';
                 $search_id = name_slug($custom_search);
                 echo $custom_search;
                 ?>

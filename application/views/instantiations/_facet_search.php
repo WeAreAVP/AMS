@@ -33,7 +33,7 @@
                 <div id="keyword_field_main">
                     <div class="filter-fileds"><b id="keyword_field_name">Keyword<?php echo $column_name; ?></b></div>
                     <div class="btn-img" id="<?php echo $search_id; ?>" ><span class="search_keys"><?php echo $custom_search; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($custom_search); ?>','<?php echo $search_id; ?>','keyword_field_main');"></i></div>
-                    <input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php $custom_search; ?>" />
+                    <input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php echo $custom_search; ?>" />
                     <div class="clearfix"></div>
                 </div>
                 <?php

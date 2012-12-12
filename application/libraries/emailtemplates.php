@@ -32,7 +32,7 @@ class Emailtemplates
 		{
 			if(valid_email($email_to))
 			{
-                echo '<pre>';echo $email_to;exit;
+                
 				$queue_data=array();
 				$queue_data['template_id']=$email_template->id;
 				$queue_data['email_from']=$email_template->email_from;
@@ -62,6 +62,7 @@ class Emailtemplates
 							else
 							{
 								log_message('error', 'Email template Replaceable '.$replaceable_key.' not found.' );
+                                echo 'here';exit;
 								return false;
 							}
 						}
@@ -69,13 +70,14 @@ class Emailtemplates
 				}
 				else
 				{
+                    echo 'herethere';exit;
 					log_message('error', 'Email template body not define.' );
 					return false;
 				}
 				$queue_data['email_body']=$email_body;
 				$queue_data['created_at']=date('Y-m-d H:i:s');
 				$queue_data['is_sent']=1;
-                
+               
 				$last_inserted_id=$this->CI->email_templates->add_email_queue($queue_data);
 				if($this->sent_now)
 				{
@@ -87,12 +89,10 @@ class Emailtemplates
 					send_email($queue_data['email_to'],$queue_data['email_from'],$queue_data['email_subject'],$queue_data['email_body'],$queue_data['email_reply_to']);
 					$this->CI->email_templates->update_email_queue_by_id($last_inserted_id,array("is_sent"=>2,"sent_at"=>date('Y-m-d H:i:s')));
 				}
-				echo $last_inserted_id;
-//				return $last_inserted_id;
+				
+				return $last_inserted_id;
 			}
-            else{
-                echo '<pre>fasdf ';echo $email_to;exit;
-            }
+            
 		}
 		else
 		{

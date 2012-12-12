@@ -38,15 +38,11 @@
     </div>
 
 </div>
-
 <script type="text/javascript">
 	var columnsOrder=new Array();
    	var orderString='';
    	var frozen='<?php echo $this->frozen_column; ?>';
 	var hiden_column=<?php echo json_encode($hidden_fields); ?>;
-	var current_table_type='<?php echo $table_type ?>'
-    updateInstantiationsTable=1;
-    oTable=null;
 	<?php 
 	if($isAjax){?>
 		is_destroy=true;

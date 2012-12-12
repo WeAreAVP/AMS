@@ -31,12 +31,11 @@
                 {
                     if (!empty($value) && !is_null($value) && $value!='')
                     {
-                        echo $abcd = $value;
+                        $custom_value = $value;
                         
                     }
                 }
-                echo $abcd;exit;
-//                $custom_search = $custom_search[count($custom_search) - 2];
+                $custom_search =$custom_value;
 
                 $search_id = name_slug($custom_search);
                 ?>

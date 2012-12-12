@@ -216,7 +216,7 @@ class Messages extends MY_Controller
             $replacebale['inform_to'] = 'ssapienza@cpb.org';
 
             $email_queue_id = $this->emailtemplates->queue_email($template, $to_email, $replacebale);
-            echo '<pre>';print_r($email_queue_id);exit;
+            
             $data = array('sender_id' => $this->user_id, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => json_encode($extra), 'created_at' => date('Y-m-d h:m:i'));
             if (isset($email_queue_id) && $email_queue_id)
             {

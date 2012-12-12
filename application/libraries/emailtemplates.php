@@ -62,6 +62,7 @@ class Emailtemplates
 							else
 							{
 								log_message('error', 'Email template Replaceable '.$replaceable_key.' not found.' );
+                                echo 'here';exit;
 								return false;
 							}
 						}
@@ -69,13 +70,14 @@ class Emailtemplates
 				}
 				else
 				{
+                    echo 'herethere';exit;
 					log_message('error', 'Email template body not define.' );
 					return false;
 				}
 				$queue_data['email_body']=$email_body;
 				$queue_data['created_at']=date('Y-m-d H:i:s');
 				$queue_data['is_sent']=1;
-                echo '<pre>';print_r($queue_data);exit;
+               
 				$last_inserted_id=$this->CI->email_templates->add_email_queue($queue_data);
 				if($this->sent_now)
 				{

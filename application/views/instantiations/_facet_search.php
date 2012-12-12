@@ -29,7 +29,7 @@
                 echo '<pre>';print_r($custom_search);
                 foreach ($custom_search as $value)
                 {
-                    if (empty($value))
+                    if (!empty($value))
                     {
                         $abcd = $value;
                         break;

@@ -18,7 +18,9 @@ if (!$isAjax)
             <li id="simple_li" <?php if ($current_tab == 'simple'){ ?>class="active" <?php } ?>><a href="javascript:;" <?php if ($current_tab != 'simple'){ ?>onClick="change_view('simple')" <?php } ?> >Simple Table</a></li>
             <li id="full_table_li" <?php if ($current_tab == 'full_table'){ ?>class="active" <?php } ?>><a href="javascript:;" <?php if ($current_tab != 'full_table'){ ?>onClick="change_view('full_table')" <?php } ?> >Full Table</a></li>
             <li id="thumbnails_li" <?php if ($current_tab == 'thumbnails'){ ?>class="active" <?php } ?>><a href="javascript:;" >Thumbnails</a></li>
-        </ul>
+        </ul><?php
+        if (isset($records) && ($total > 0))
+        {?>
         <div style="width: 860px;">
         <?php if (isset($current_tab) && $current_tab == 'full_table'){$this->load->view('instantiations/_gear_dropdown'); }?>
             <div style="float: right;">
@@ -28,10 +30,7 @@ if (!$isAjax)
         </div><?php 
 		if (!isset($current_tab) || $current_tab == 'simple'){?>
         	<div style="width:865px;overflow:hidden;" id="simple_view">
-            <table class="table table-bordered" id="assets_table" ><?php
-                if (isset($records) && ($total > 0))
-                {
-                    ?>
+            <table class="table table-bordered" id="assets_table" >
                     <thead>
                         <tr>
                             <th style='width: 14px;'><span style="float:left;" ><i class="icon-flag "></i></span></th>
@@ -98,28 +97,17 @@ if (!$isAjax)
             ?>
                     </tbody>
                     <script> setTimeout(function (){updateSimpleDataTable();},500);</script>
-                <?php
-                }
-                else if ($start >= 1000)
-                {
-                    ?>
-                    Please refine your search<?php
-                } else
-                {
-                    ?>
-                    No Assets Found<?php }
-                ?>
+               
             </table>
         </div><?php 
 		}
-		else if (isset($current_tab) && $current_tab == 'full_table')
-		{ ?>
+		
+		if (isset($current_tab) && $current_tab == 'full_table')
+		{
+			 ?>
         	<br clear="all"/>
         	<div style="width: 865px;overflow:hidden;" id="full_table_view" >
-            <table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;"  ><?php
-                        if (isset($records) && ($total > 0))
-                        {
-                    ?>
+            <table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;"  >
                     <thead>
                         <tr >
 
@@ -236,19 +224,11 @@ if (!$isAjax)
                     }
                     ?>
                     </tbody>
-<?php
-} else if ($start >= 1000)
-{
-    ?>
-                    Please refine your search<?php
-} else
-{
-    ?>
-                    No Assets Found<?php }
-?>
             </table>
         </div><?php 
-		}else if( isset($current_tab) &&  $current_tab == 'thumbnails'){?>
+		
+		}
+		if( isset($current_tab) &&  $current_tab == 'thumbnails'){?>
         	<div style="overflow: auto;" id="thumbnails_view">
             <div class="span3 title">
                 <div class="unflag"></div>
@@ -284,6 +264,17 @@ if (!$isAjax)
         </div>
         <?php }?>
         <div style="text-align: right;width: 860px;"> <strong><?php echo $start; ?> - <?php echo $end; ?></strong> of <strong style="margin-right: 10px;"><?php echo $total; ?></strong> <?php echo $this->ajax_pagination->create_links(); ?> </div>
+   <?php
+                }
+                else if ($start >= 1000)
+                {
+                    ?>
+                    <div  style="text-align: center;width: 860px;margin-top: 50px;font-size: 20px;">Please refine your search</div><?php
+                } else
+                {
+                    ?>
+                   <div  style="text-align: center;width: 860px;margin-top: 50px;font-size: 20px;"> No Assets Found</div><?php }
+                ?>
 <?php
 if (!$isAjax)
 {

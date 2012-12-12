@@ -213,7 +213,6 @@ function freezeColumns(count)
 function updateDataTable()
 {
     if($('#listing_table').length>0)
-    //    if(typeof($('#listing_table'))!=undefined)
     {
         oTable = 
         $('#listing_table').dataTable(

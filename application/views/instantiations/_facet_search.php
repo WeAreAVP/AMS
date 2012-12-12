@@ -32,7 +32,7 @@
                     if (!empty($value) && !is_null($value) && $value!='')
                     {
                         echo $abcd = $value;
-                        break;
+                        
                     }
                 }
                 echo $abcd;exit;

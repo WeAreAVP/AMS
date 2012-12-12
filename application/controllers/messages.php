@@ -189,7 +189,7 @@ class Messages extends MY_Controller
                 $extra['ship_date'] = $station_details->start_date;
             } else if ($template == 'Materials_Received_Digitization_Vendor')
             {
-                $extra['date_received'] = '';
+                $extra['date_received'] = 'No Date';
                 $tracking_info = $this->tracking->get_last_tracking_info($to);
                 if (count($tracking_info) > 0)
                 {
@@ -214,7 +214,6 @@ class Messages extends MY_Controller
                 $replacebale['user_name'] = $this->user_detail->first_name . ' ' . $this->user_detail->last_name;
             }
             $replacebale['inform_to'] = 'ssapienza@cpb.org';
-
             $email_queue_id = $this->emailtemplates->queue_email($template, $to_email, $replacebale);
             
             $data = array('sender_id' => $this->user_id, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => json_encode($extra), 'created_at' => date('Y-m-d h:m:i'));

@@ -62,15 +62,14 @@ class Emailtemplates
 							else
 							{
 								log_message('error', 'Email template Replaceable '.$replaceable_key.' not found.' );
-                                echo 'here';exit;
-								return false;
+                                return false;
 							}
 						}
 					}
 				}
 				else
 				{
-                    echo 'herethere';exit;
+                    
 					log_message('error', 'Email template body not define.' );
 					return false;
 				}

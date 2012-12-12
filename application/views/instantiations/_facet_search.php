@@ -29,9 +29,9 @@
                 echo '<pre>';print_r($custom_search);
                 foreach ($custom_search as $value)
                 {
-                    if (!empty($value))
+                    if (!empty($value) && !is_null($value) && $value!='')
                     {
-                        $abcd = $value;
+                        echo $abcd = $value;
                         break;
                     }
                 }

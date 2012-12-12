@@ -74,6 +74,7 @@ class Emailtemplates
 				$queue_data['email_body']=$email_body;
 				$queue_data['created_at']=date('Y-m-d H:i:s');
 				$queue_data['is_sent']=1;
+                echo '<pre>';print_r($queue_data);exit;
 				$last_inserted_id=$this->CI->email_templates->add_email_queue($queue_data);
 				if($this->sent_now)
 				{

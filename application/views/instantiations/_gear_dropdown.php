@@ -38,8 +38,7 @@
     </div>
 
 </div>
-<?php
-if (!$isAjax){?>
+
 <script type="text/javascript">
 	var columnsOrder=new Array();
    	var orderString='';
@@ -48,11 +47,11 @@ if (!$isAjax){?>
 	var current_table_type='<?php echo $table_type ?>'
     updateInstantiationsTable=1;
     oTable=null;
-    $(function()
+	<?php 
+if($total>0){?>
+$(function()
 	{
           updateDataTable();
     });
-    
-	
+    <?php }?>
 </script>
-<?php }?>

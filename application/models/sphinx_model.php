@@ -194,12 +194,30 @@ class Sphinx_Model extends CI_Model
             $custom_search = str_replace('|||', '"', trim($this->session->userdata['custom_search']));
             $where .=$custom_search;
         }
-		
-        if (isset($this->session->userdata['date_range']) && $this->session->userdata['date_range'] != '')
+		if (isset($this->session->userdata['date_range']) && $this->session->userdata['date_range'] != '')
         {
-			
-            $custom_search = str_replace('|||', '"', trim($this->session->userdata['custom_search']));
-            $where .=$custom_search;
+			$date_range=explode("to",$this->session->userdata['date_range']);
+			if(isset($date_range[0]) && trim($date_range[0])!='')
+			{
+				$start_date=strtotime(trim($date_range[0]));
+			}
+			if(isset($date_range[1]) && trim($date_range[1])!='')
+			{
+				$end_date=strtotime(trim($date_range[1]));
+			}
+			if ( $start_date != '' && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date )
+			{
+				$this->sphinxsearch->set_filter_range("dates",$start_date, $end_date);
+			}
+			else
+			{
+				$this->sphinxsearch->set_filter_range("dates",$start_date,999999999999);
+			}
+        }
+		if (isset($this->session->userdata['date_type']) && $this->session->userdata['date_type'] != '')
+        {
+            $date_type = str_replace('|||', '" | "', trim($this->session->userdata['date_type']));
+            $where .=" @date_type \"$date_type\"";
         }
 	
         return $where;

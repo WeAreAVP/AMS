@@ -19,9 +19,9 @@ class MY_Controller extends CI_Controller
     public $station_id;
     public $user_details;
     public $can_compose_alert;
-	public $views_settings;
-	public $frozen_column;
-	public $column_order;
+    public $views_settings;
+    public $frozen_column;
+    public $column_order;
 
     function __construct()
     {
@@ -39,83 +39,84 @@ class MY_Controller extends CI_Controller
         $this->load->model('dx_auth/roles', 'roles');
         $this->load->model('email_template_model', 'email_template');
         $this->load->model('report_model');
-		$this->load->model('dx_auth/user_settings', 'user_settings');
+        $this->load->model('dx_auth/user_settings', 'user_settings');
         $this->load->model('tracking_model', 'tracking');
-		$this->frozen_column=0;
-		$this->column_order='';
+        $this->frozen_column = 0;
+        $this->column_order = '';
         if (!isset($this->user_id))
         {
             $this->_assing_user_info();
         }
-		if (is_route_method(array('records' => array('index'), 'instantiations' => array('index','update_user_settings')))) 
-		{
-			$this->_table_view_settings();
-		}
+        if (is_route_method(array('records' => array('index'), 'instantiations' => array('index', 'update_user_settings'))))
+        {
+            $this->_table_view_settings();
+        }
     }
-	/*
-		*
-		* To Create Assets and instantiation list view
-		*
-    */
-	function _table_view_settings()
-	{
-		if (is_route_method(array('records' => array('index'))))
+
+    /*
+     *
+     * To Create Assets and instantiation list view
+     *
+     */
+
+    function _table_view_settings()
+    {
+        if (is_route_method(array('records' => array('index'))))
         {
-			$res=$this->user_settings->get_setting($this->user_id,'assets','full');
-			if($res)
-			{
-				$this->frozen_column=$res->frozen_column;
-				$this->column_order=json_decode($res->view_settings,true);
-			}
-			else
-			{
-				$assets_tables_data=array();
-				$assets_tables_data['user_id']=$this->user_id;
-				$assets_tables_data['table_type']='assets';
-				$assets_tables_data['table_subtype']='full';
-				$assets_tables_data['frozen_column']='0';
-				$table_order=$this->config->item('assets_setting');
-				$full_table_order=$table_order['full']; 
-				foreach($full_table_order as $key=>$value)
-				{
-					$views_settings[]=array("title"=>$key,"field"=>$value,"hidden"=>0);
-				}
-				$assets_tables_data['view_settings']=json_encode($views_settings);
-				$assets_tables_data['created_at']=date('Y-m-d H:i:s');
-				$this->user_settings->insert_settings($assets_tables_data);
-				$this->frozen_column=0;
-				$this->column_order=$views_settings;
-			}
-		}
-		if (is_route_method(array('instantiations' => array('index'))))
+            $res = $this->user_settings->get_setting($this->user_id, 'assets', 'full');
+            if ($res)
+            {
+                $this->frozen_column = $res->frozen_column;
+                $this->column_order = json_decode($res->view_settings, true);
+            } else
+            {
+                $assets_tables_data = array();
+                $assets_tables_data['user_id'] = $this->user_id;
+                $assets_tables_data['table_type'] = 'assets';
+                $assets_tables_data['table_subtype'] = 'full';
+                $assets_tables_data['frozen_column'] = '0';
+                $table_order = $this->config->item('assets_setting');
+                $full_table_order = $table_order['full'];
+                foreach ($full_table_order as $key => $value)
+                {
+                    $views_settings[] = array("title" => $key, "field" => $value, "hidden" => 0);
+                }
+                $assets_tables_data['view_settings'] = json_encode($views_settings);
+                $assets_tables_data['created_at'] = date('Y-m-d H:i:s');
+                $this->user_settings->insert_settings($assets_tables_data);
+                $this->frozen_column = 0;
+                $this->column_order = $views_settings;
+            }
+        }
+        if (is_route_method(array('instantiations' => array('index'))))
         {
-			$res=$this->user_settings->get_setting($this->user_id,'instantiation','full');
-			if($res)
-			{
-				$this->frozen_column=$res->frozen_column;
-				$this->column_order=json_decode($res->view_settings,true);
-			}
-			else
-			{
-				$assets_tables_data=array();
-				$assets_tables_data['user_id']=$this->user_id;
-				$assets_tables_data['table_type']='instantiation';
-				$assets_tables_data['table_subtype']='full';
-				$assets_tables_data['frozen_column']='0';
-				$table_order=$this->config->item('instantiation_setting');
-				$full_table_order=$table_order['full']; 
-				foreach($full_table_order as $key=>$value)
-				{
-					$views_settings[]=array("title"=>$key,"field"=>$value,"hidden"=>0);
-				}
-				$assets_tables_data['view_settings']=json_encode($views_settings);
-				$assets_tables_data['created_at']=date('Y-m-d H:i:s');
-				$this->user_settings->insert_settings($assets_tables_data);
-				$this->frozen_column=0;
-				$this->column_order=$views_settings;
-			}
-		}
-	}
+            $res = $this->user_settings->get_setting($this->user_id, 'instantiation', 'full');
+            if ($res)
+            {
+                $this->frozen_column = $res->frozen_column;
+                $this->column_order = json_decode($res->view_settings, true);
+            } else
+            {
+                $assets_tables_data = array();
+                $assets_tables_data['user_id'] = $this->user_id;
+                $assets_tables_data['table_type'] = 'instantiation';
+                $assets_tables_data['table_subtype'] = 'full';
+                $assets_tables_data['frozen_column'] = '0';
+                $table_order = $this->config->item('instantiation_setting');
+                $full_table_order = $table_order['full'];
+                foreach ($full_table_order as $key => $value)
+                {
+                    $views_settings[] = array("title" => $key, "field" => $value, "hidden" => 0);
+                }
+                $assets_tables_data['view_settings'] = json_encode($views_settings);
+                $assets_tables_data['created_at'] = date('Y-m-d H:i:s');
+                $this->user_settings->insert_settings($assets_tables_data);
+                $this->frozen_column = 0;
+                $this->column_order = $views_settings;
+            }
+        }
+    }
+
     /*
      * To Assign Current Login user info
      */
@@ -137,7 +138,7 @@ class MY_Controller extends CI_Controller
             $this->can_compose_alert = true;
         }
     }
-    
+
     function make_array()
     {
         return array('asset_title' => 'Title',
@@ -177,35 +178,40 @@ class MY_Controller extends CI_Controller
             'track_aspect_ratio' => 'Aspect Ratio',
         );
     }
-	/**
-	* Remove the session variables of facet search
-	*  
-	*/
-	function unset_facet_search()
-	{
-		$this->session->unset_userdata('custom_search');
-		$this->session->unset_userdata('organization');
-		$this->session->unset_userdata('nomination');
-		$this->session->unset_userdata('media_type');
-		$this->session->unset_userdata('physical_format');
-		$this->session->unset_userdata('digital_format');
-		$this->session->unset_userdata('generation');
-		$this->session->unset_userdata('file_size');
-		$this->session->unset_userdata('event_type');
-		$this->session->unset_userdata('event_outcome');
-	}
-	/**
-	* Set the session variables of facet search
-	* 
-	* @param array $search_values 
-	*/
-	function set_facet_search($search_values)
-	{
-		foreach ($search_values as $key => $value)
-		{
-			$this->session->set_userdata($key, $value);
-		}
-	}
+
+    /**
+     * Remove the session variables of facet search
+     *  
+     */
+    function unset_facet_search()
+    {
+        $this->session->unset_userdata('custom_search');
+        $this->session->unset_userdata('organization');
+        $this->session->unset_userdata('nomination');
+        $this->session->unset_userdata('media_type');
+        $this->session->unset_userdata('physical_format');
+        $this->session->unset_userdata('digital_format');
+        $this->session->unset_userdata('generation');
+        $this->session->unset_userdata('file_size');
+        $this->session->unset_userdata('event_type');
+        $this->session->unset_userdata('event_outcome');
+        $this->session->unset_userdata('date_range');
+        $this->session->unset_userdata('date_type');
+    }
+
+    /**
+     * Set the session variables of facet search
+     * 
+     * @param array $search_values 
+     */
+    function set_facet_search($search_values)
+    {
+        foreach ($search_values as $key => $value)
+        {
+            $this->session->set_userdata($key, $value);
+        }
+    }
+
 }
 
 ?>

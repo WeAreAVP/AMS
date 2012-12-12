@@ -22,7 +22,6 @@ class Stations extends MY_Controller
         parent::__construct();
         $this->layout = 'main_layout.php';
         $this->load->model('sphinx_model', 'sphinx');
-        
     }
 
     /**

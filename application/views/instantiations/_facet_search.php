@@ -1056,13 +1056,9 @@
             success: function (result)
             { 
                 $('#data_container').html(result); 
-<?php
-if (!isset($this->session->userdata['current_tab']) || $this->session->userdata['current_tab'] == 'full_table')
-{
-    ?>
+
                         updateDataTable();
-<?php }
-?>
+
                 $.unblockUI();
                                 
             }

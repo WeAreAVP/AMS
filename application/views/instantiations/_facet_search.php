@@ -415,15 +415,38 @@
             <div><input type="reset" style="display:<?php echo $reset; ?>" id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
         </div>
         <div class="clearfix"></div>
-        <div id="date_range_main">
-            <div class="filter-fileds"><b>Date Range</b></div>
+        <div id="date_range_filter">
+            <div class="filter-fileds"><b>Date</b></div>
             <div class="controls">
                 <div class="input-prepend">
-                    <span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="date_range" id="date_range" value="" style="width: 187px;"/>
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                    <input type="text" name="date_range" id="date_range" value="" style="width: 187px;"/>
                 </div>
             </div>
         </div>
-
+        <?php
+        if (count($date_types) > 0)
+        {
+            ?>
+            <div class="filter-fileds">
+                <input id="date_type" name="date_type" value="" type="hidden"/>
+                <div class="btn-group" id="limit_field_dropdown">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span id="date_field_text">Date Type</span>
+                        
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <?php
+                        foreach ($date_types as $value)
+                        {?>
+                            <li><a href="javascript://;" onclick="add_date_token('<?php echo $value->date_type; ?>');"><?php echo $value->date_type; ?></a></li>
+                       <?php }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        <?php } ?>
         <!-- Organization  Start      -->
         <?php
         if (count($stations) > 0)
@@ -847,7 +870,7 @@
         }, 
         function(start, end) {
             //$('#reportrange span').html(start.toString('MM/dd/yyyy') + ' - ' + end.toString('MM/dd/yyyy'));
-			facet_search('0');
+            facet_search('0');
         }
     );
 
@@ -950,6 +973,10 @@
         customColumnName=columnName;
         $('#limit_field_text').html(fieldName);
     }
+    function add_date_token(type){
+        $('#date_type').val(type);
+        $('#date_field_text').html(type);
+    }
     function make_slug_name(string){
         string = string.split('/').join('');
         string = string.split('??').join('');
@@ -1022,11 +1049,13 @@
             success: function (result)
             { 
                 $('#data_container').html(result); 
-				<?php 
-				if(!isset($this->session->userdata['current_tab']) || $this->session->userdata['current_tab']=='full_table'){?>
-					updateDataTable();
-				<?php
-				}?>
+<?php
+if (!isset($this->session->userdata['current_tab']) || $this->session->userdata['current_tab'] == 'full_table')
+{
+    ?>
+                        updateDataTable();
+<?php }
+?>
                 $.unblockUI();
                                 
             }
@@ -1044,21 +1073,21 @@
             }
         });
     }
-	function updateSimpleDataTable()
-	{
-		var sTable = $('#assets_table').dataTable({
-			"sDom": "frtiS",
-			'bPaginate':false,
-			'bInfo':false,
-			'bFilter': false,
-			"bSort": false,
-			"sScrollY": 400,
+    function updateSimpleDataTable()
+    {
+        var sTable = $('#assets_table').dataTable({
+            "sDom": "frtiS",
+            'bPaginate':false,
+            'bInfo':false,
+            'bFilter': false,
+            "bSort": false,
+            "sScrollY": 400,
             "sScrollX": "100%",
-	        "bDeferRender": true,
+            "bDeferRender": true,
             "bAutoWidth": false
-		});
-		 $.extend( $.fn.dataTableExt.oStdClasses, {
+        });
+        $.extend( $.fn.dataTableExt.oStdClasses, {
             "sWrapper": "dataTables_wrapper form-inline"
         } );
-	}
+    }
 </script>

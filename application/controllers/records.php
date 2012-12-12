@@ -75,6 +75,7 @@ class Records extends MY_Controller
         $data['file_size'] = $this->instantiation->get_file_size();
         $data['event_types'] = $this->instantiation->get_event_type();
         $data['event_outcome'] = $this->instantiation->get_event_outcome();
+        $data['date_types']=$this->instantiation->get_date_types();
 		$is_hidden = array();
 		$data['table_type']='assets';
         foreach ($this->column_order as $key => $value)

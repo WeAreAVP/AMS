@@ -49,6 +49,12 @@ class Instantiations_Model extends CI_Model
         return $this->db->get($this->table_instantiations)->row();
     }
 
+    function get_date_types()
+    {
+        $this->db->order_by("date_type");
+        return $this->db->get($this->table_date_types)->result();
+    }
+
     function list_all()
     {
         $this->db->select("$this->table_instantiations.*", FALSE);

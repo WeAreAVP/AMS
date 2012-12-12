@@ -39,9 +39,6 @@
 
 </div>
 <script type="text/javascript">
-	var columnsOrder=new Array();
-   	var orderString='';
-   	var frozen='<?php echo $this->frozen_column; ?>';
 	var hiden_column=<?php echo json_encode($hidden_fields); ?>;
 	<?php 
 	if($isAjax){?>

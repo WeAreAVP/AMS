@@ -215,7 +215,7 @@ function freezeColumns(count)
 }
 function updateDataTable()
 {
-	if(typeof(document.getElementById('listing_table'))!=undefined)
+	if(typeof(document.getElementById('listing_table'))!='undefined')
 	{
 		oTable = 
 			$('#listing_table').dataTable(

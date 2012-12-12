@@ -28,7 +28,7 @@
                 $custom_search = explode('|||', $custom_search);
                 $custom_search = $custom_search[count($custom_search) - 2];
                 $search_id = name_slug($custom_search);
-                echo $custom_search;exit;
+                echo $custom_search;
                 ?>
                 <div id="keyword_field_main">
                     <div class="filter-fileds"><b id="keyword_field_name">Keyword<?php echo $column_name; ?></b></div>

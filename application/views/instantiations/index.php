@@ -40,7 +40,7 @@ if (!$isAjax)
                                     $width = 'min-width:70px;';
                                 } else if ($type == 'Asset_Title')
                                 {
-                                    $width = 'min-width:150px;';
+                                    $width = 'min-width:200px;';
                                 } else if ($type == 'Instantiation_ID_Source')
                                 {
                                     $width = 'min-width:120px;';
@@ -110,7 +110,7 @@ if (!$isAjax)
 									}
 									else if ($type == 'Asset_Title')
 									{
-										$width = 'min-width:150px;';
+										$width = 'min-width:200px;';
 									} else if ($type == 'Instantiation_ID_Source')
 									{
 										$width = 'min-width:120px;';

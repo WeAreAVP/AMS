@@ -318,6 +318,6 @@ function updateDatabase()
             frozen_column:frozen,
             table_type:current_table_type
         },
-        success: function (result){facet_search('0');}
+        success: function (result){window.location.reload();}
     });
 }

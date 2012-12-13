@@ -242,8 +242,9 @@ function freezeColumns(count)
 {
     frozen=count;
     $('#freeze_col_'+frozen).toggle(); 
-    facet_search('0');
-    updateDatabase();                                                                                                                                                                                        
+	updateDatabase();
+    
+                                                                                                                                                                                           
 }
 function updateDataTable()
 {
@@ -317,6 +318,6 @@ function updateDatabase()
             frozen_column:frozen,
             table_type:current_table_type
         },
-        success: function (result){}
+        success: function (result){facet_search('0');}
     });
 }

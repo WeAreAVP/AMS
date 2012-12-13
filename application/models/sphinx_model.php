@@ -273,7 +273,7 @@ class Sphinx_Model extends CI_Model
         {
             $this->sphinxsearch->set_filter("assets_id", array($asset_id));
         }
-        $this->sphinxsearch->set_limits((int) 0, (int) 1, 1000 );
+        $this->sphinxsearch->set_limits((int) 0, (int) 100, 1000 );
 
         $res = $this->sphinxsearch->query('', 'asset_guid_identifier');
 		print_r($res);

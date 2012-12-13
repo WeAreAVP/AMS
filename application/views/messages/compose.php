@@ -17,14 +17,13 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3>Error</h3>
-
     </div>
     <div class="modal-body">
         One or more stations don't have their tracking information.
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true" data-dismiss="modal">Hide</button>
-        
+
     </div>
 </div>
 

@@ -275,7 +275,7 @@ class Sphinx_Model extends CI_Model
         }
         $this->sphinxsearch->set_limits((int) 0, (int) 1, 1000 );
 
-        $res = $this->sphinxsearch->query('', 'asset_guid_identifier_src');
+        $res = $this->sphinxsearch->query('', 'asset_guid_identifier');
 		print_r($res);
 		exit();
 		

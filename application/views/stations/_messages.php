@@ -43,8 +43,9 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="checkMediaDate();">Save</button>
         <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" data-dismiss="modal">Close</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="checkMediaDate();">Save</button>
+        
 
     </div>
 </div>

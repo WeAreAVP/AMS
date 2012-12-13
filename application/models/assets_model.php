@@ -288,7 +288,7 @@ class Assets_Model extends CI_Model
 								FROM (`$this->_assets_table`) 
                                 LEFT JOIN {$this->_table_asset_titles} ON `asset_titles`.`assets_id` = `$this->_assets_table`.`id` 
 								LEFT JOIN {$this->stations} ON {$this->stations}.id = {$this->_assets_table}.stations_id
-						AND assets.id='".$asset_id."'";
+						WHERE assets.id='".$asset_id."'";
 		$res=$this->db->query($sql);
         return $res->row();
 		

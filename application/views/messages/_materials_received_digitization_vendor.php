@@ -17,14 +17,16 @@
 
 <script type="text/javascript">
     $(function() {
-        console.log(to);
+        //        console.log(to);
         $.ajax({
             type: 'POST', 
             url: site_url+'tracking/get_tracking_info',
             data:{"stations":to},
-            dataType: 'html',
+            dataType: 'json',
             success: function (result) { 
-                console.log(result.empty_station);
+                if(result.empty_station.length>0){
+                    
+                }
                       
                    
             }

@@ -259,28 +259,7 @@ class Sphinx_Model extends CI_Model
 
         return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
     }
-	function get_guid_by_asset_id($asset_id)
-	{
-		
-        $total_record = 0;
-        $this->sphinxsearch->reset_filters();
-        $this->sphinxsearch->reset_group_by();
-        $mode = SPH_MATCH_EXTENDED;
-        $this->sphinxsearch->set_array_result(true);
-        $this->sphinxsearch->set_match_mode($mode);
-        $this->sphinxsearch->set_connect_timeout(120);
-		if ($asset_id)
-        {
-            $this->sphinxsearch->set_filter("assets_id", array($asset_id));
-        }
-        $this->sphinxsearch->set_limits((int) 0, (int) 100, 1000 );
 
-        $res = $this->sphinxsearch->query('', 'asset_guid_identifier');
-		print_r($res);
-		exit();
-		
-     
-	}
 }
 
 ?>

@@ -34,7 +34,8 @@
                     console.log( $('#tracking_id').val());
                     $('#compose_to_type').modal('toggle');
                     $('#edit_media_window').modal('toggle');
-                    $( "#media_date" ).datepicker();
+                    
+                    $("#media_date").datepicker({dateFormat: 'yy-mm-dd'});
                 }
                       
                    

@@ -32,6 +32,7 @@
         <h3>Add Media Received Date</h3>
     </div>
     <div class="modal-body">
+        <div id="station_name_list"></div>
         <div class="control-group">
             <label class="control-label" for="crawford_contact_details">Media Received Date:</label>
             <div class="controls">

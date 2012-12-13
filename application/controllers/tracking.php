@@ -176,30 +176,34 @@ class Tracking extends MY_Controller
         $stations = $this->input->post('stations');
         $stations_list = array();
         $stations_empty_list = array();
+        $station_name = array();
         foreach ($stations as $id)
         {
             $tracking_info = $this->tracking->get_last_tracking_info($id);
+            $station = $this->station_model->get_station_by_id($tracking_info->station_id);
             if (count($tracking_info) > 0)
             {
                 if (trim($tracking_info->media_received_date) == '')
                 {
                     $stations_list[] = $tracking_info->id;
+                    $station[] = $station->station_name;
                 }
             } else
             {
                 $stations_empty_list[] = $id;
+                $station[] = $station->station_name;
             }
         }
-        echo json_encode(array('empty_station' => $stations_empty_list, 'station_list' => $stations_list));
+        echo json_encode(array('empty_station' => $stations_empty_list, 'station_list' => $stations_list, 'station_names' => $station));
         exit;
     }
 
     public function update_tracking_info()
     {
         $tracking_id = $this->input->post('tracking_id');
-        $tracking_id=  explode(',', $tracking_id);
+        $tracking_id = explode(',', $tracking_id);
         $media_date = $this->input->post('date');
-        $media_date=date('Y-m-d',  strtotime($media_date));
+        $media_date = date('Y-m-d', strtotime($media_date));
         foreach ($tracking_id as $id)
         {
             $this->tracking->update_record($id, array('media_received_date' => $media_date));

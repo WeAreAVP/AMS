@@ -33,6 +33,7 @@
         <h3>Add Media Received Date</h3>
     </div>
     <div class="modal-body">
+        <div id="station_name_list"></div>
         <div class="control-group">
             <label class="control-label" for="crawford_contact_details">Media Received Date:</label>
             <div class="controls">
@@ -44,9 +45,9 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="checkMediaDate();">Save</button>
-        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" data-dismiss="modal">Close</button>
 
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" data-dismiss="modal">Close</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="checkMediaDate();">Save</button>
     </div>
 </div>
 <div class="modal hide" id="compose_to_type" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 700px;">

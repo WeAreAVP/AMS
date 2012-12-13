@@ -69,6 +69,9 @@
                 }
                 else if(result.station_list.length>0){
                     trackingID=implode(',',result.station_list);
+                    station_name_list=implode(', ',result.station_names);
+                    
+                    $('#station_name_list').html('Select Media Received Date for '+station_name_list);
                     $('#tracking_id').val(trackingID);
                     $('#compose_to_type').modal('toggle');
                     $('#edit_media_window').modal('toggle');

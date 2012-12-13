@@ -131,7 +131,10 @@ class Instantiations extends MY_Controller
                 $data['inst_id'] = $instantiation_id;
                 $data['instantiation_detail'] = $this->sphinx->instantiations_list(array('asset_id' => $detail->assets_id, 'search' => ''));
                 $data['instantiation_detail'] = $data['instantiation_detail']['records'][0];
+                echo $detail->assets_id;
+                echo '<pre>';
                 $data['asset_details'] = $this->assets_model->get_asset_by_asset_id($detail->assets_id);
+                print_r($data['asset_details']);exit;
                 $data['asset_instantiations'] = $this->sphinx->instantiations_list(array('asset_id' => $detail->assets_id, 'search' => ''));
                 $this->load->view('instantiations/detail', $data);
             } else

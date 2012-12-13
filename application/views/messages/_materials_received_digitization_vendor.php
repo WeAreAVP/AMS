@@ -25,7 +25,7 @@
             dataType: 'json',
             success: function (result) { 
                 if(result.empty_station.length>0){
-                    
+                    alert(1);
                 }
                       
                    

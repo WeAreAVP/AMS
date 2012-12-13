@@ -84,7 +84,7 @@
             $('#media_date_error').show();
             return false;
         }
-        $('#edit_media_window').modal("toggle");
+//        $('#edit_media_window').modal("toggle");
         $.ajax({
             type: 'POST', 
             url: site_url+'tracking/update_tracking_info',

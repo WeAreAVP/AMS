@@ -135,7 +135,7 @@ if (!$isAjax)
                                                 $width = 'min-width:100px;';
                                             } else if ($type == 'Titles' || $type == 'Description')
                                             {
-                                                $width = 'min-width:300px;';
+                                                $width = 'min-width:150px;';
                                             }
                                             echo '<th id="' . $value['title'] . '"  class="' . $class . '"><span style="float:left;' . $width . '">' . str_replace("_", ' ', $value['title']) . '</span></th>';
                                         }
@@ -214,7 +214,7 @@ if (!$isAjax)
                                         $width = 'min-width:100px;';
                                     } else if ($type == 'Titles' || $type == 'Description')
                                     {
-                                        $width = 'min-width:300px;';
+                                        $width = 'min-width:150px;';
                                     }
                                     echo '<td><span style="float:left;' . $width . '">' . $column . '</span></td>';
                                 }

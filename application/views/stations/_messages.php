@@ -178,23 +178,5 @@
             }
         });
     }
-    function checkMediaDate(){
-        if($('#media_date').val()==''){
-            $('#media_date_error').show();
-            return false;
-        }
-        $('#edit_media_window').modal("toggle");
-        $.ajax({
-            type: 'POST', 
-            url: site_url+'tracking/update_tracking_info',
-            data:{"tracking_id":$('#tracking_id').val(),date:$('#media_date').val()},
-            dataType: 'json',
-            success: function (result) { 
-                $('#edit_media_window').modal('toggle');
-                $('#compose_to_type').modal('toggle');
-                    
-                
-            }
-        });
-    }
+    
 </script>

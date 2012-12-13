@@ -243,7 +243,7 @@ function freezeColumns(count)
     frozen=count;
     $('#freeze_col_'+frozen).toggle(); 
 	updateDatabase();
-    facet_search('0');
+    setTimeout(function (){window.location.reload();},500);
                                                                                                                                                                                            
 }
 function updateDataTable()

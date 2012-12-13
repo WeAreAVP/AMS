@@ -36,7 +36,7 @@
             <label class="control-label" for="crawford_contact_details">Media Received Date:</label>
             <div class="controls">
                 <input type="text" name="media_date" id="media_date"/>
-                <input type="text" name="tracking_id" id="tracking_id"/>
+                <input type="hidden" name="tracking_id" id="tracking_id"/>
                 <span id="media_date_error" style="display: none;" class="message-type_error">Please Select Media Received Date.</span>
 
             </div>

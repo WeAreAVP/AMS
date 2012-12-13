@@ -197,6 +197,7 @@ class Tracking extends MY_Controller
     public function update_tracking_info()
     {
         $tracking_id = $this->input->post('tracking_id');
+        $tracking_id=  explode(',', $tracking_id);
         $media_date = $this->input->post('media_date');
         foreach ($tracking_id as $id)
         {

@@ -29,7 +29,7 @@
                     $('#error_window').modal('toggle');
                 }
                 else if(result.station_list.length>0){
-                    trackingID=implode(', ',result.station_list);
+                    trackingID=implode(',',result.station_list);
                     $('#tracking_id').val(trackingID);
                     console.log( $('#tracking_id').val());
                     $('#compose_to_type').modal('toggle');

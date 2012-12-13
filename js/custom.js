@@ -213,7 +213,7 @@ function showHideColumns(column)
 function getColumnOrder()
 {
 	var orderString = new Array;
-    $('table th').each(function(index)
+    $('#listing_table_wrapper table th').each(function(index)
     {
 		if(index==0)
         {
@@ -226,19 +226,8 @@ function getColumnOrder()
 				orderString[index]=this.id;
 			}
 		}
-       /* if(index==0 || orderString=='')
-        {
-            orderString=this.id;
-        }
-        else
-        {
-            if(orderString.indexOf(this.id)<0)
-            {
-                orderString+=','+this.id;
-            }
-        }*/
     }); 
-    return orderString;//columnsOrder=orderString.split(',');
+    return orderString;
 } 
 function reOrderDropDown(columnArray)
 {

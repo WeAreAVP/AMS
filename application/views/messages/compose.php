@@ -13,7 +13,19 @@
     </div>
 </div>
 
+<div class="modal hide" id="error_window" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Tracking Information</h3>
+    </div>
+    <div class="modal-body">
+        One or more stations don't have their tracking information and no media received date.
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" data-dismiss="modal">Close</button>
 
+    </div>
+</div>
 
 
 <div class="modal hide" id="compose_to_type" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 700px;">

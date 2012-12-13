@@ -274,19 +274,6 @@ class Assets_Model extends CI_Model
         return $result;
     }
 
-    function get_asset_for_instantiations($asset_id)
-    {
-
-        $this->db->select("$this->_assets_table.id AS asset_id", FALSE);
-        $this->db->select("$this->stations.station_name as organization", FALSE);
-
-        $this->db->select("GROUP_CONCAT($this->asset_titles.title SEPARATOR ' | ') as title", FALSE);
-        $this->db->join($this->stations, "$this->stations.id	 = $this->_assets_table.stations_id", 'left');
-        $this->db->join($this->_table_asset_titles, "$this->_table_asset_titles.assets_id	 = $this->_assets_table.id", 'left');
-        $this->db->where("$this->_assets_table.id", $asset_id);
-        return $this->db->get($this->_assets_table)->row();
-    }
-
     /**
      * Get asset by asset_id
      * 

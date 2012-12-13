@@ -26,10 +26,15 @@
             success: function (result) { 
                 if(result.empty_station.length>0){
                     $('#compose_to_type').modal('toggle');
-                    $('#error_window').modal('show');
+                    $('#error_window').modal('toggle');
                 }
                 else if(result.station_list.length>0){
-                    alert(1);
+                    trackingID=implode(', ',result.station_list);
+                    $('#tracking_id').val(trackingID);
+                    console.log( $('#tracking_id').val());
+                    $('#compose_to_type').modal('toggle');
+                    $('#edit_media_window').modal('toggle');
+                    $( "#media_date" ).datepicker();
                 }
                       
                    

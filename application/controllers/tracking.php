@@ -183,7 +183,8 @@ class Tracking extends MY_Controller
             {
                 if (trim($tracking_info->media_received_date) == '')
                 {
-                    $stations_list[] = $id;
+                    $stations_list[] = $tracking_info->id;
+                    
                 }
             } else
             {

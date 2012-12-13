@@ -186,15 +186,15 @@ class Tracking extends MY_Controller
                 if (trim($tracking_info->media_received_date) == '')
                 {
                     $stations_list[] = $tracking_info->id;
-                    $station[] = $station->station_name;
+                    $station_name[] = $station->station_name;
                 }
             } else
             {
                 $stations_empty_list[] = $id;
-                $station[] = $station->station_name;
+                $station_name[] = $station->station_name;
             }
         }
-        echo json_encode(array('empty_station' => $stations_empty_list, 'station_list' => $stations_list, 'station_names' => $station));
+        echo json_encode(array('empty_station' => $stations_empty_list, 'station_list' => $stations_list, 'station_names' => $station_name));
         exit;
     }
 

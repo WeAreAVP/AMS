@@ -290,11 +290,8 @@ class Assets_Model extends CI_Model
 								LEFT JOIN {$this->stations} ON {$this->stations}.id = {$this->_assets_table}.stations_id
 						AND assets.id='".$asset_id."'";
 		$res=$this->db->query($sql);
-        echo '<pre>';print_r($res);exit;
-		if(isset($res) && !empty($res))
-		{
-			return $res->row();
-		}return false;
+        return $res->row();
+		
     }
 	/**
 	* Get asset by asset_id

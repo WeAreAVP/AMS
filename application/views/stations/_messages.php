@@ -26,6 +26,28 @@
 
     </div>
 </div>
+<div class="modal hide" id="edit_media_window" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Add Media Received Date</h3>
+    </div>
+    <div class="modal-body">
+        <div class="control-group">
+            <label class="control-label" for="crawford_contact_details">Media Received Date:</label>
+            <div class="controls">
+                <input type="text" name="media_date" id="media_date"/>
+                <input type="text" name="tracking_id" id="tracking_id"/>
+                <span id="media_date_error" style="display: none;" class="message-type_error">Please Select Media Received Date.</span>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="checkMediaDate();">Save</button>
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" data-dismiss="modal">Close</button>
+
+    </div>
+</div>
 
 
 <div class="modal hide" id="compose_to_type" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 700px;">
@@ -155,5 +177,12 @@
                 }
             }
         });
+    }
+    function checkMediaDate(){
+        if($('#media_date').val()==''){
+            $('#media_date_error').show();
+            return false;
+        }
+        $('#edit_media_window').modal("toggle");
     }
 </script>

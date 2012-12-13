@@ -21,7 +21,6 @@ class Tracking extends MY_Controller
     {
         parent::__construct();
         $this->layout = 'main_layout.php';
-        
     }
 
     /**
@@ -170,6 +169,29 @@ class Tracking extends MY_Controller
         {
             return false;
         }
+    }
+
+    public function get_tracking_info()
+    {
+        $stations = $this->input->post('stations');
+        $stations_list = array();
+        $stations_empty_list = array();
+        foreach ($stations as $id)
+        {
+            $tracking_info = $this->tracking->get_last_tracking_info($id);
+            if (count($tracking_info) > 0)
+            {
+                if (trim($tracking_info->media_received_date) == '')
+                {
+                    $stations_list[] = $id;
+                }
+            } else
+            {
+                $stations_empty_list[] = $id;
+            }
+        }
+        echo json_encode(array('empty_station'=>$stations_empty_list,'station_list'=>$stations_list));
+        exit;
     }
 
 }

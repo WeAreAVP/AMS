@@ -16,6 +16,21 @@
 </div>
 
 <script type="text/javascript">
+    $(function() {
+        console.log(to);
+        $.ajax({
+            type: 'POST', 
+            url: site_url+'tracking/get_tracking_info',
+            data:{"stations":to},
+            dataType: 'html',
+            success: function (result) { 
+                console.log(result.empty_station);
+                      
+                   
+            }
+        });
+        
+    });
     function checkFields(){
         if($('#comments').val()==''){
             $('#comments_error').show();

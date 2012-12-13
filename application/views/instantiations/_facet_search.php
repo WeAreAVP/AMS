@@ -8,6 +8,7 @@
             <h4>Filter</h4>
         </b>
         <div id="tokens">
+            <!-- Custom  Search Display End  -->
             <?php
             if (isset($this->session->userdata['custom_search']) && $this->session->userdata['custom_search'] != '')
             {
@@ -26,13 +27,12 @@
                     $column_name = ': All';
 
                 $custom_search = explode('|||', $custom_search);
-                $custom_value=null;
+                $custom_value = null;
                 foreach ($custom_search as $value)
                 {
-                    if (!empty($value) && !is_null($value) && trim($value)!='')
+                    if (!empty($value) && !is_null($value) && trim($value) != '')
                     {
                         $custom_value = $value;
-                        
                     }
                 }
 
@@ -43,6 +43,7 @@
                     <div class="btn-img" id="<?php echo $search_id; ?>" ><span class="search_keys"><?php echo $custom_value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($custom_value); ?>','<?php echo $search_id; ?>','keyword_field_main');"></i></div>
                     <input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php echo $custom_value; ?>" />
                     <div class="clearfix"></div>
+
                 </div>
                 <?php
             } else
@@ -57,7 +58,49 @@
             <div class="clearfix"></div>
 
 
+            <!-- Custom  Search Display End  -->
+
+            <!-- Date Search Display Start  -->
+            <?php
+            if (isset($this->session->userdata['date_range']) && $this->session->userdata['date_range'] != '')
+            {
+                $date = $this->session->userdata['date_range'];
+                $search_id = name_slug($date);
+                if (isset($this->session->userdata['date_type']) && $this->session->userdata['date_type'] != '')
+                {
+                    $type = $this->session->userdata['date_type'];
+                } else
+                {
+                    $type = 'All';
+                }
+                ?>
+                <div id = "date_field_main">
+                    <input id="date_type" name="date_type" value="<?php echo $this->session->userdata['date_type']; ?>" type="hidden"/>
+                    <div class = "filter-fileds"><b id = "date_field_name">Keyword: <?php echo $type; ?></b></div>
+                    <div class="btn-img" id="<?php echo $search_id; ?>" ><span class="search_keys"><?php echo $date; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($date); ?>','<?php echo $search_id; ?>','date_field_main');"></i></div>
+                    <input type="hidden" id="date_field_main_search" name="date_field_main_search" value="<?php echo $date; ?>" />
+
+                    <div class="clearfix"></div>
+                </div>
+                <div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset" style="margin: 5px 0px;" class="btn" onclick="resetKeyword('date');"/></div>
+                <?php
+            } else
+            {
+                ?>
+                <div id="date_field_main" style="display: none;">
+                    <input id="date_type" name="date_type" value="" type="hidden"/>
+                    <div class="filter-fileds"><b id="date_field_name">Keyword</b></div>
+                    <input type="hidden" id="date_field_main_search" name="date_field_main_search" value="" />
+
+                </div>
+                <div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset"  style="margin: 5px 0px;display:none;" class="btn" onclick="resetKeyword('date');"/></div>
+            <?php }
+            ?>
+
+            <!-- Date Search Display End  -->
+            <div class="clearfix"></div>
             <!-- Organization Search Display Start  -->
+
             <?php
             if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
             {
@@ -423,39 +466,57 @@
             <div><input type="reset" style="display:<?php echo $reset; ?>" id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
         </div>
         <div class="clearfix"></div>
-        <div id="date_range_filter">
-            <div class="filter-fileds"><b>Date</b></div>
-            <div class="controls">
-                <div class="input-prepend">
-                    <span class="add-on"><i class="icon-calendar"></i></span>
-                    <input type="text" name="date_range" id="date_range" value="" style="width: 187px;"/>
-                </div>
-            </div>
-        </div>
         <?php
-        if (count($date_types) > 0)
+        if ((!isset($this->session->userdata['date_range']) || isset($this->session->userdata['date_range']) ) && empty($this->session->userdata['date_range']))
         {
-            ?>
-            <div class="filter-fileds">
-                <input id="date_type" name="date_type" value="" type="hidden"/>
-                <div class="btn-group" id="limit_field_dropdown">
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span id="date_field_text">Date Type</span>
+            $style = 'block;';
+        } else
+        {
+            $style = 'none;';
+        }
+        ?>
+        <div id="date_range_filter_div" style="display: <?php echo $style; ?>">
+            <div id="date_range_filter">
+                <div class="filter-fileds"><b>Date</b></div>
+                <div class="controls">
+                    <div class="input-append">
 
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <?php
-                        foreach ($date_types as $value)
-                        {
-                            ?>
-                            <li><a href="javascript://;" onclick="add_date_token('<?php echo $value->date_type; ?>');"><?php echo $value->date_type; ?></a></li>
-                        <?php }
-                        ?>
-                    </ul>
+                        <input type="text" name="date_range" id="date_range" value="" style="width: 180px;"/>
+                        <span class="add-on"><i class="icon-calendar"></i></span>
+                    </div>
                 </div>
             </div>
-        <?php } ?>
+
+
+            <?php
+            if (count($date_types) > 0)
+            {
+                ?>
+                <div class="filter-fileds">
+
+                    <div class="btn-group" id="limit_field_dropdown">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span id="date_field_text">Date Type</span>
+
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <?php
+                            foreach ($date_types as $value)
+                            {
+                                ?>
+                                <li><a href="javascript://;" onclick="add_date_token('<?php echo $value->date_type; ?>');"><?php echo $value->date_type; ?></a></li>
+                            <?php }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+                <div><input type="button" id="add_date_keyword" name="add_date_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token($('#date_range').val(),'date_field_main');"/></div>
+
+            </div>
+            <?php
+        }
+        ?>
         <!-- Organization  Start      -->
         <?php
         if (count($stations) > 0)
@@ -496,7 +557,7 @@
                     </ul>
                 </div>
             </div>
-<?php } ?>
+        <?php } ?>
         <!-- Organization  End      -->
         <!--  Nomination Status Start      -->
         <?php
@@ -538,9 +599,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!--  Nomination Status End      -->
         <!--  Media Type Start      -->
         <?php
@@ -581,9 +642,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!--  Media Type End      -->
         <!--  Physical Format Start      -->
         <?php
@@ -624,9 +685,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!-- Physical Format End      -->
         <!--  Digital Format Start      -->
         <?php
@@ -667,9 +728,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!-- Digital Format End      -->
         <!--  Generation Start      -->
         <?php
@@ -710,9 +771,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!-- Generation End      -->
         <!--  File Size Start      -->
         <?php
@@ -753,9 +814,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!-- File Size End      -->
         <!--  Event Type Start      -->
         <?php
@@ -796,9 +857,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!-- Event Type End      -->
         <!--  Event Type Start      -->
         <?php
@@ -839,9 +900,9 @@
                             ?>
                         </ul>
                     </div>
-            <?php } ?>
+                <?php } ?>
             </div>
-<?php } ?>
+        <?php } ?>
         <!-- Event Type End      -->
 
     </form>
@@ -849,8 +910,8 @@
 <script type="text/javascript">
     var is_destroy=false;
     var columnsOrder=new Array();
-   	var orderString='';
-   	var frozen='<?php echo $this->frozen_column; ?>';
+    var orderString='';
+    var frozen='<?php echo $this->frozen_column; ?>';
     var hiden_column=new Array();
     var current_table_type='<?php echo $table_type ?>';
     oTable=null;
@@ -886,7 +947,7 @@
         }, 
         function(start, end) {
             //$('#reportrange span').html(start.toString('MM/dd/yyyy') + ' - ' + end.toString('MM/dd/yyyy'));
-            facet_search('0');
+            //            facet_search('0');
         }
     );
 
@@ -896,13 +957,13 @@
     });
     function add_token(name,type,isRemoved){
         if(type=='keyword_field_main'){
-            
+                
             name=$('#search').val();  
             if(isRemoved==1){
-                $('#keyword_field_main .btn-img').each(function(){
+                $('#'+type+' .btn-img').each(function(){
                     $(this).remove();
                 });
-                $('#keyword_field_main_search').val('');
+                $('#'+type+'_search').val('');
                 $('#keyword_field_name').html();
                 $('#limit_btn').show(); 
                 $('#add_keyword').show(); 
@@ -913,7 +974,7 @@
                 $('#limit_field_div').show();
                 customColumnName='';
                 customFieldName='All';
-                    
+                        
             }
             else{
                 if($('#search').val()!=''){
@@ -940,18 +1001,43 @@
                         else{
                             searchString=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
                         }
-                        
+                            
                     }
                     else{
                         searchString+=' |||'+$('#search').val()+'||| ';
                     }
-                    
-                    $('#keyword_field_main_search').val(searchString);
                         
+                    $('#keyword_field_main_search').val(searchString);
+                            
                 }
                 else{
                     return false;
                 }
+            }
+        }
+        else if(type=='date_field_main'){
+        
+            
+            if(isRemoved==1){
+                $('#date_range').val('');
+                $('#'+type+'_search').val('');
+                $('#date_type').val('');
+                $('#date_range_filter_div').show();
+                $('#date_field_text').html('Date Type');
+                $('#reset_date_search').hide();
+            }
+            else{
+                $('#date_range_filter_div').hide();
+                var random_id=rand(0,1000365);
+                slugName=make_slug_name(name);
+                $('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
+                $('#'+type).show();
+                $('#reset_date_search').show();
+                if($('#date_type').val()=='')
+                    date_type_text='All';
+                else
+                    date_type_text=$('#date_type').val();
+                $('#date_field_name').html('Keyword: '+date_type_text);
             }
         }
         else{
@@ -971,7 +1057,7 @@
                     my_search_words=$(this).text();
                 else
                     my_search_words+='|||'+$(this).text();
-            
+                
             });
             if(my_search_words!='' && typeof(my_search_words)!=undefined)
             {
@@ -979,7 +1065,7 @@
             }
         }
         facet_search('0');
-        
+            
     }
     var customFieldName='All';
     var customColumnName='';
@@ -1010,9 +1096,9 @@
     }
     function remove_token(name,id,type)
     {
-        if(type=='keyword_field_main'){
+        if(type=='keyword_field_main' || type=='date_field_main'){
             $('#'+type).hide();
-            $('#keyword_field_main .btn-img').each(function(){
+            $('#'+type+' .btn-img').each(function(){
                 $(this).remove();
             });
         }
@@ -1022,22 +1108,35 @@
         }
         add_token(unescape(name),type,1);        
     }
-    function resetKeyword(){
-        
-        $('#keyword_field_main .btn-img').each(function(){
-            $(this).remove();
-        });
-        $('#keyword_field_main_search').val('');
-        $('#limit_btn').show(); 
-        $('#add_keyword').show(); 
-        $('#reset_search').hide();
-        $('#limit_field_text').html('Limit Search to Field');
-        $('#limit_field_dropdown').show();
-        $('#search').val('');
-        $('#keyword_field_main').hide();
-        $('#limit_field_div').show();
-        customColumnName='';
-        customFieldName='All';
+    function resetKeyword(type){
+        if(type=='date'){
+            $('#date_field_main .btn-img').each(function(){
+                $(this).remove();
+            });
+            $('#date_field_main').hide();
+            $('date_range').val('');
+            $('date_type').val('');
+            $('#date_range_filter_div').show();
+            $('#date_field_text').html('Date Type');
+            $('#date_field_main_search').val('');
+            $('#reset_date_search').hide();
+        }
+        else{
+            $('#keyword_field_main .btn-img').each(function(){
+                $(this).remove();
+            });
+            $('#keyword_field_main_search').val('');
+            $('#limit_btn').show(); 
+            $('#add_keyword').show(); 
+            $('#reset_search').hide();
+            $('#limit_field_text').html('Limit Search to Field');
+            $('#limit_field_dropdown').show();
+            $('#search').val('');
+            $('#keyword_field_main').hide();
+            $('#limit_field_div').show();
+            customColumnName='';
+            customFieldName='All';
+        }
         facet_search('0');
     }
     function facet_search(page)
@@ -1068,7 +1167,7 @@
                 updateDataTable();
 
                 $.unblockUI();
-                                
+                                    
             }
         });
     }

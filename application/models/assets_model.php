@@ -281,7 +281,7 @@ class Assets_Model extends CI_Model
         
         
 	}
-    function get_asset_for_instantiations($assets_id){
+    function get_asset_for_instantiations($asset_id){
         $sql="SELECT $this->_assets_table.id AS asset_id,
 								$this->stations.station_name as organization,
                                 $this->_table_asset_descriptions.description, $this->_table_asset_titles.title ,

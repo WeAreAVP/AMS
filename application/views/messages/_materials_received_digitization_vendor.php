@@ -17,30 +17,7 @@
 
 <script type="text/javascript">
     $(function() {
-        //        console.log(to);
-        $.ajax({
-            type: 'POST', 
-            url: site_url+'tracking/get_tracking_info',
-            data:{"stations":to},
-            dataType: 'json',
-            success: function (result) { 
-                if(result.empty_station.length>0){
-                    $('#compose_to_type').modal('toggle');
-                    $('#error_window').modal('toggle');
-                }
-                else if(result.station_list.length>0){
-                    trackingID=implode(',',result.station_list);
-                    $('#tracking_id').val(trackingID);
-                    console.log( $('#tracking_id').val());
-                    $('#compose_to_type').modal('toggle');
-                    $('#edit_media_window').modal('toggle');
-                    
-                    $("#media_date").datepicker({dateFormat: 'yy-mm-dd'});
-                }
-                      
-                   
-            }
-        });
+        checkTrackingDetails();
         
     });
     function checkFields(){
@@ -78,5 +55,28 @@
             '<div><strong>Subject: '+subject+'</strong></div><br/>'+
             '<div>Comments: '+comments+'</div>'+
             '<div>Crawford Contact Details: '+crawford_contact_details+'</div>');
+    }
+    function checkTrackingDetails(){
+        $.ajax({
+            type: 'POST', 
+            url: site_url+'tracking/get_tracking_info',
+            data:{"stations":to},
+            dataType: 'json',
+            success: function (result) { 
+                if(result.empty_station.length>0){
+                    $('#compose_to_type').modal('toggle');
+                    $('#error_window').modal('toggle');
+                }
+                else if(result.station_list.length>0){
+                    trackingID=implode(',',result.station_list);
+                    $('#tracking_id').val(trackingID);
+                    $('#compose_to_type').modal('toggle');
+                    $('#edit_media_window').modal('toggle');
+                    $("#media_date").datepicker({dateFormat: 'yy-mm-dd'});
+                }
+                      
+                   
+            }
+        });
     }
 </script>

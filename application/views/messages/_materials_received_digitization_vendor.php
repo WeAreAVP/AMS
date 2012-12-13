@@ -14,7 +14,20 @@
         </div>
     </div>
 </div>
+<div class="modal hide" id="error_window" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Error</h3>
 
+    </div>
+    <div class="modal-body">
+        One or more stations don't have their tracking information.
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true" data-dismiss="modal">Hide</button>
+        
+    </div>
+</div>
 <script type="text/javascript">
     $(function() {
         //        console.log(to);
@@ -25,7 +38,8 @@
             dataType: 'json',
             success: function (result) { 
                 if(result.empty_station.length>0){
-                    alert(1);
+                    $('#compose_to_type').modal('toggle');
+                    $('#error_window').modal('toggle');
                 }
                       
                    

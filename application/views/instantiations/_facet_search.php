@@ -931,7 +931,7 @@ $(document).ready(function() {
         separator: ' to ',
         startDate: Date.today().add({ days: -29 }),
         endDate: Date.today(),
-        minDate: '01/01/2012',
+        minDate: '01/01/1960',
         maxDate: '<?php echo date("mm/dd/YY"); ?>',
         locale: {
             applyLabel: 'Add Date',

@@ -34,7 +34,7 @@
     <div class="modal-body">
         <div id="station_name_list"></div>
         <div class="control-group">
-            <label class="control-label" for="crawford_contact_details">Media Received Date:</label>
+            <label class="control-label" for="media_date">Media Received Date:</label>
             <div class="controls">
                 <input type="text" name="media_date" id="media_date"/>
                 <input type="hidden" name="tracking_id" id="tracking_id"/>

@@ -71,7 +71,7 @@
                     trackingID=implode(',',result.station_list);
                     station_name_list=implode(', ',result.station_names);
                     
-                    $('#station_name_list').html('Select Media Received Date for '+station_name_list);
+                    $('#station_name_list').html('Select Media Received Date for <b>'+station_name_list+'</b>');
                     $('#tracking_id').val(trackingID);
                     $('#compose_to_type').modal('toggle');
                     $('#edit_media_window').modal('toggle');

@@ -135,7 +135,7 @@ if (!$isAjax)
                                                 $width = 'min-width:100px;';
                                             } else if ($type == 'Titles' || $type == 'Description' || $type =="AA_GUID")
                                             {
-                                                $width = 'min-width:150px;';
+                                                $width = 'min-width:175px;';
                                             }
                                             echo '<th id="' . $value['title'] . '"  class="' . $class . '"><span style="float:left;' . $width . '">' . str_replace("_", ' ', $value['title']) . '</span></th>';
                                         }
@@ -214,7 +214,7 @@ if (!$isAjax)
                                         $width = 'min-width:100px;';
                                     } else if ($type == 'Titles' || $type == 'Description' || $type =="AA_GUID")
                                     {
-                                        $width = 'min-width:150px;';
+                                        $width = 'min-width:175px;';
                                     }
                                     echo '<td><span style="float:left;' . $width . '">' . $column . '</span></td>';
                                 }

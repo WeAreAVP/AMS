@@ -28,6 +28,9 @@
                     $('#compose_to_type').modal('toggle');
                     $('#error_window').modal('show');
                 }
+                else if(result.station_list.length>0){
+                    alert(1);
+                }
                       
                    
             }

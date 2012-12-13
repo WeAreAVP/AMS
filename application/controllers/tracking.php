@@ -184,14 +184,25 @@ class Tracking extends MY_Controller
                 if (trim($tracking_info->media_received_date) == '')
                 {
                     $stations_list[] = $tracking_info->id;
-                    
                 }
             } else
             {
                 $stations_empty_list[] = $id;
             }
         }
-        echo json_encode(array('empty_station'=>$stations_empty_list,'station_list'=>$stations_list));
+        echo json_encode(array('empty_station' => $stations_empty_list, 'station_list' => $stations_list));
+        exit;
+    }
+
+    public function update_tracking_info()
+    {
+        $tracking_id = $this->input->post('tracking_id');
+        $media_date = $this->input->post('media_date');
+        foreach ($tracking_id as $id)
+        {
+            $this->tracking->update_record($id, array('media_received_date' => $media_date));
+        }
+        echo json_encode(array('success' => true));
         exit;
     }
 

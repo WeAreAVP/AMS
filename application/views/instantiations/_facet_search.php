@@ -933,29 +933,16 @@
             }
             
         });
-   
-        // bind a click handler to the date display field, which when clicked
-        // toggles the date picker calendar, flips the up/down indicator arrow,
-        // and keeps the borders looking pretty
         $('#date_range').bind('click', function(){
             $('#datepicker-calendar').toggle();
             return false;
         });
-   
-        // global click handler to hide the widget calendar when it's open, and
-        // some other part of the document is clicked.  Note that this works best
-        // defined out here rather than built in to the datepicker core because this
-        // particular example is actually an 'inline' datepicker which is displayed
-        // by an external event, unlike a non-inline datepicker which is automatically
-        // displayed/hidden by clicks within/without the datepicker element and datepicker respectively
         $('html').click(function() {
             if($('#datepicker-calendar').is(":visible")) {
                 $('#datepicker-calendar').hide();
             }
         });
    
-        // stop the click propagation when clicking on the calendar element
-        // so that we don't close it
         $('#datepicker-calendar').click(function(event){
             event.stopPropagation();
         });

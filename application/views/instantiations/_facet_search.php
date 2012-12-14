@@ -905,6 +905,7 @@
 
     </form>
 </div>
+<div id="datepicker-calendar" style="display: none;"></div>
 <script type="text/javascript">
     var is_destroy=false;
     var columnsOrder=new Array();
@@ -914,8 +915,24 @@
     var current_table_type='<?php echo $table_type ?>';
     oTable=null;
     $(document).ready(function() {
-        $('#date_range').DatePicker();
+        var to = new Date();
+        var from = new Date(to.getTime() - 1000 * 60 * 60 * 24 * 14);
 
+        $('#datepicker-calendar').DatePicker({
+            inline: true,
+            date: [from, to],
+            calendars: 3,
+            mode: 'range',
+            current: new Date(to.getFullYear(), to.getMonth() - 1, 1),
+            onChange: function(dates,el) {
+                // update the range display
+                $('#date_range').val(
+                dates[0].getDate()+' '+dates[0].getMonthName(true)+', '+
+                    dates[0].getFullYear()+' - '+
+                    dates[1].getDate()+' '+dates[1].getMonthName(true)+', '+
+                    dates[1].getFullYear());
+            }
+        });
     });
     function add_token(name,type,isRemoved){
         if(type=='keyword_field_main'){

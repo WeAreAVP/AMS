@@ -917,19 +917,7 @@
     var current_table_type='<?php echo $table_type ?>';
     oTable=null;
     $(document).ready(function() {
-        $('#date_range').DatePicker({
-            mode: 'single',
-            position: 'bottom',
-            onBeforeShow: function(el){
-                if($('#date_range').val())
-                    $('#date_range').DatePickerSetDate($('#date_range').val(), true);
-            },
-            onChange: function(date, el) {
-                $(el).val((date.getMonth()+1)+'/'+date.getDate()+'/'+date.getFullYear());
-                $(el).DatePickerHide();
-                
-            }
-        });
+        $('#date_range').DatePicker();
 
     });
     function add_token(name,type,isRemoved){

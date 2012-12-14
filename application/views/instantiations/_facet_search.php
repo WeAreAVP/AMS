@@ -482,6 +482,7 @@
                     <div class="input-append">
                         <input type="text" name="date_range" id="date_range" value="" style="width: 180px;"/>
                     </div>
+                    <div id="datepicker-calendar" style="display: none;"></div>
                 </div>
             </div>
 
@@ -905,7 +906,7 @@
 
     </form>
 </div>
-<div id="datepicker-calendar" style="display: none;"></div>
+
 <script type="text/javascript">
     var is_destroy=false;
     var columnsOrder=new Array();

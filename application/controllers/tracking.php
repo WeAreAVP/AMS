@@ -191,7 +191,7 @@ class Tracking extends MY_Controller
             } else
             {
                 $stations_empty_list[] = $id;
-                $station_name[] = $station->station_name;
+                $station_name[] = '<a href="'.  site_url().'stations/detail/'.$id.'" target="_blank">'.$station->station_name.'</a>';
             }
         }
         echo json_encode(array('empty_station' => $stations_empty_list, 'station_list' => $stations_list, 'station_names' => $station_name));

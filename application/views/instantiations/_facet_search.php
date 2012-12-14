@@ -482,6 +482,7 @@
                     <div class="input-append">
 
                         <input type="text" name="date_range" id="date_range" value="" style="width: 180px;"/>
+                        <div id="datepicker-calendar"></div>
                         <span class="add-on"><i class="icon-calendar"></i></span>
                     </div>
                 </div>
@@ -927,7 +928,7 @@
             current: new Date(to.getFullYear(), to.getMonth() - 1, 1),
             onChange: function(dates,el) {
                 // update the range display
-                $('#date_range').text(
+                $('#date_range').val(
                 dates[0].getDate()+' '+dates[0].getMonthName(true)+', '+
                     dates[0].getFullYear()+' - '+
                     dates[1].getDate()+' '+dates[1].getMonthName(true)+', '+

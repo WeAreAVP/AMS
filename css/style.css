@@ -366,3 +366,9 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     display:none;
     padding:10px 0 0 10px;
 }
+#datepicker-calendar div.datepicker {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }

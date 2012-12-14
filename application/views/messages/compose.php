@@ -101,7 +101,7 @@
     </div>
 
     <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true"> Cancel</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="resetMessagesForm();"> Cancel</button>
 
         <button class="btn btn-primary" onclick="validateFormType();">Next</button>
     </div>

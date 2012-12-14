@@ -919,7 +919,7 @@
         var to = new Date();
         var from = new Date(to.getTime() - 1000 * 60 * 60 * 24 * 14);
 
-        $('#date_range').DatePicker({
+        $('#datepicker-calendar').DatePicker({
             inline: true,
             date: [from, to],
             calendars: 3,

@@ -480,7 +480,7 @@
                 <div class="filter-fileds"><b>Date</b></div>
                 <div class="controls">
                     <div class="input-append">
-                        <input type="text" name="date_range" id="date_range" value="" style="width: 180px;"/>
+                        <input type="text" name="date_range" id="date_range" value="" style="width: 180px;cursor: default;background-color: white;" readonly="readonly"/>
                     </div>
                     <div id="datepicker-calendar" style="display: none;"></div>
                 </div>

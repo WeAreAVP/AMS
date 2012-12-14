@@ -18,7 +18,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3>Tracking Information</h3>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" id="error_station_window">
         One or more stations don't have their tracking information and no media received date.
     </div>
     <div class="modal-footer">

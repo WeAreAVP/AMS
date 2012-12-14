@@ -180,7 +180,7 @@ class Tracking extends MY_Controller
         foreach ($stations as $id)
         {
             $tracking_info = $this->tracking->get_last_tracking_info($id);
-            $station = $this->station_model->get_station_by_id($tracking_info->station_id);
+            $station = $this->station_model->get_station_by_id($id);
             if (count($tracking_info) > 0)
             {
                 if (trim($tracking_info->media_received_date) == '')

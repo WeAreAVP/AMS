@@ -931,6 +931,7 @@
                 $('#date_range').val(dates[0].getDate()+' '+dates[0].getMonthName()+', '+dates[0].getFullYear()+' to '+
                     dates[1].getDate()+' '+dates[1].getMonthName()+', '+dates[1].getFullYear());
             }
+            
         });
    
         // bind a click handler to the date display field, which when clicked

@@ -46,7 +46,7 @@
     <div class="modal-footer">
         <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="resetMessagesForm();" >Close</button>
         <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="checkMediaDate();">Save</button>
-        
+
 
     </div>
 </div>
@@ -180,7 +180,7 @@
             }
         });
     }
-     function resetMessagesForm(){
+    function resetMessagesForm(){
         $('#alert_type').html('');
         $('#msg_type').val('');
     }

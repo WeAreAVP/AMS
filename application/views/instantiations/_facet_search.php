@@ -480,10 +480,10 @@
                 <div class="filter-fileds"><b>Date</b></div>
                 <div class="controls">
                     <div class="input-append">
-
-                        <input type="text" name="date_range" id="date_range" value="" style="width: 180px;"/>
-                        <span class="add-on"><i class="icon-calendar"></i></span>
+                        <input type="text" name="date_range" id="date_range" value="" style="width: 180px;cursor: default;background-color: white;" readonly="readonly"/>
+                        <span class="add-on" onclick="$('#date_range').val('');$('#datepicker-calendar').DatePickerSetDate('');"><i class="icon-remove-circle"></i></span>
                     </div>
+                    <div id="datepicker-calendar" style="display: none;"></div>
                 </div>
             </div>
 
@@ -907,6 +907,7 @@
 
     </form>
 </div>
+
 <script type="text/javascript">
     var is_destroy=false;
     var columnsOrder=new Array();
@@ -916,25 +917,35 @@
     var current_table_type='<?php echo $table_type ?>';
     oTable=null;
     $(document).ready(function() {
-        var to = new Date();
-        var from = new Date(to.getTime() - 1000 * 60 * 60 * 24 * 14);
-
-        $('#date_range').DatePicker({
+        
+  
+        $('#datepicker-calendar').DatePicker({
             inline: true,
-            date: [from, to],
+            //            date: [from, to],
             calendars: 3,
             mode: 'range',
-            current: new Date(to.getFullYear(), to.getMonth() - 1, 1),
+            current: new Date('1970', '1', '1'),
             onChange: function(dates,el) {
+                console.log(dates);
                 // update the range display
-                $('#date_range').text(
-                dates[0].getDate()+' '+dates[0].getMonthName(true)+', '+
-                    dates[0].getFullYear()+' - '+
-                    dates[1].getDate()+' '+dates[1].getMonthName(true)+', '+
-                    dates[1].getFullYear());
+                $('#date_range').val(dates[0].getDate()+' '+dates[0].getMonthName()+', '+dates[0].getFullYear()+' to '+
+                    dates[1].getDate()+' '+dates[1].getMonthName()+', '+dates[1].getFullYear());
+            }
+            
+        });
+        $('#date_range').bind('click', function(){
+            $('#datepicker-calendar').toggle();
+            return false;
+        });
+        $('html').click(function() {
+            if($('#datepicker-calendar').is(":visible")) {
+                $('#datepicker-calendar').hide();
             }
         });
-
+   
+        $('#datepicker-calendar').click(function(event){
+            event.stopPropagation();
+        });
     });
     function add_token(name,type,isRemoved){
         if(type=='keyword_field_main'){

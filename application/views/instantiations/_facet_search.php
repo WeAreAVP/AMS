@@ -919,11 +919,12 @@
         var to = new Date();
         var from = new Date(to.getTime() - 1000 * 60 * 60 * 24 * 14);
 
-        $('#datepicker-calendar').DatePicker({
-            inline: true,
+        $('#date_range').DatePicker({
+            inline: false,
             date: [from, to],
             calendars: 3,
             mode: 'range',
+            showOn:'focus',
             current: new Date(to.getFullYear(), to.getMonth() - 1, 1),
             onChange: function(dates,el) {
                 // update the range display
@@ -932,9 +933,6 @@
                     dates[0].getFullYear()+' - '+
                     dates[1].getDate()+' '+dates[1].getMonthName(true)+', '+
                     dates[1].getFullYear());
-            },
-            onBeforeShow:function(){
-                $('#datepicker-calendar').show();   
             }
         });
     });

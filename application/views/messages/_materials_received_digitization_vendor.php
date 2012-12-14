@@ -67,7 +67,7 @@
                     station_name_list=result.station_names;
                     $('#error_station_window').html('<div>The following station don\'t have tracking info or media date.</div>');
                     for(cnt in station_name_list){
-                       $('#error_station_window').append('<div>'+station_name_list[cnt]+'</div>'); 
+                       $('#error_station_window').append('<div><b>'+station_name_list[cnt]+'</b></div>'); 
                     }
                     $('#compose_to_type').modal('toggle');
                     $('#error_window').modal('toggle');

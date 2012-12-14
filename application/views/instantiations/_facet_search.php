@@ -916,65 +916,65 @@
     var current_table_type='<?php echo $table_type ?>';
     oTable=null;
     $(document).ready(function() {
-         var to = new Date();
-  var from = new Date(to.getTime() - 1000 * 60 * 60 * 24 * 14);
+        var to = new Date();
+        var from = new Date(to.getTime() - 1000 * 60 * 60 * 24 * 14);
   
-  $('#datepicker-calendar').DatePicker({
-    inline: true,
-    date: [from, to],
-    calendars: 3,
-    mode: 'range',
-    current: new Date(to.getFullYear(), to.getMonth() - 1, 1),
-    onChange: function(dates,el) {
-      // update the range display
-      $('#date_range').text(dates[0].getDate()+' '+dates[0].getMonthName(true)+', '+dates[0].getFullYear()+' - '+
-                                        dates[1].getDate()+' '+dates[1].getMonthName(true)+', '+dates[1].getFullYear());
-     }
-   });
+        $('#datepicker-calendar').DatePicker({
+            inline: true,
+            date: [from, to],
+            calendars: 3,
+            mode: 'range',
+            current: new Date(to.getFullYear(), to.getMonth() - 1, 1),
+            onChange: function(dates,el) {
+                // update the range display
+                $('#date_range').val(dates[0].getDate()+' '+dates[0].getMonthName(true)+', '+dates[0].getFullYear()+' - '+
+                    dates[1].getDate()+' '+dates[1].getMonthName(true)+', '+dates[1].getFullYear());
+            }
+        });
    
-   // initialize the special date dropdown field
-   $('#date_range').text(from.getDate()+' '+from.getMonthName(true)+', '+from.getFullYear()+' - '+
-                                        to.getDate()+' '+to.getMonthName(true)+', '+to.getFullYear());
+        // initialize the special date dropdown field
+        $('#date_range').val(from.getDate()+' '+from.getMonthName(true)+', '+from.getFullYear()+' - '+
+            to.getDate()+' '+to.getMonthName(true)+', '+to.getFullYear());
    
-   // bind a click handler to the date display field, which when clicked
-   // toggles the date picker calendar, flips the up/down indicator arrow,
-   // and keeps the borders looking pretty
-   $('#date_range').bind('click', function(){
-     $('#datepicker-calendar').toggle();
-     if($('#date-range-field a').text().charCodeAt(0) == 9660) {
-       // switch to up-arrow
-       $('#date-range-field a').html('&#9650;');
-       $('#date-range-field').css({borderBottomLeftRadius:0, borderBottomRightRadius:0});
-       $('#date-range-field a').css({borderBottomRightRadius:0});
-     } else {
-       // switch to down-arrow
-       $('#date-range-field a').html('&#9660;');
-       $('#date-range-field').css({borderBottomLeftRadius:5, borderBottomRightRadius:5});
-       $('#date-range-field a').css({borderBottomRightRadius:5});
-     }
-     return false;
-   });
+        // bind a click handler to the date display field, which when clicked
+        // toggles the date picker calendar, flips the up/down indicator arrow,
+        // and keeps the borders looking pretty
+        $('#date_range').bind('click', function(){
+            $('#datepicker-calendar').toggle();
+            if($('#date-range-field a').text().charCodeAt(0) == 9660) {
+                // switch to up-arrow
+                $('#date-range-field a').html('&#9650;');
+                $('#date-range-field').css({borderBottomLeftRadius:0, borderBottomRightRadius:0});
+                $('#date-range-field a').css({borderBottomRightRadius:0});
+            } else {
+                // switch to down-arrow
+                $('#date-range-field a').html('&#9660;');
+                $('#date-range-field').css({borderBottomLeftRadius:5, borderBottomRightRadius:5});
+                $('#date-range-field a').css({borderBottomRightRadius:5});
+            }
+            return false;
+        });
    
-   // global click handler to hide the widget calendar when it's open, and
-   // some other part of the document is clicked.  Note that this works best
-   // defined out here rather than built in to the datepicker core because this
-   // particular example is actually an 'inline' datepicker which is displayed
-   // by an external event, unlike a non-inline datepicker which is automatically
-   // displayed/hidden by clicks within/without the datepicker element and datepicker respectively
-   $('html').click(function() {
-     if($('#datepicker-calendar').is(":visible")) {
-       $('#datepicker-calendar').hide();
-       $('#date-range-field a').html('&#9660;');
-       $('#date-range-field').css({borderBottomLeftRadius:5, borderBottomRightRadius:5});
-       $('#date-range-field a').css({borderBottomRightRadius:5});
-     }
-   });
+        // global click handler to hide the widget calendar when it's open, and
+        // some other part of the document is clicked.  Note that this works best
+        // defined out here rather than built in to the datepicker core because this
+        // particular example is actually an 'inline' datepicker which is displayed
+        // by an external event, unlike a non-inline datepicker which is automatically
+        // displayed/hidden by clicks within/without the datepicker element and datepicker respectively
+        $('html').click(function() {
+            if($('#datepicker-calendar').is(":visible")) {
+                $('#datepicker-calendar').hide();
+                $('#date-range-field a').html('&#9660;');
+                $('#date-range-field').css({borderBottomLeftRadius:5, borderBottomRightRadius:5});
+                $('#date-range-field a').css({borderBottomRightRadius:5});
+            }
+        });
    
-   // stop the click propagation when clicking on the calendar element
-   // so that we don't close it
-   $('#datepicker-calendar').click(function(event){
-     event.stopPropagation();
-   });
+        // stop the click propagation when clicking on the calendar element
+        // so that we don't close it
+        $('#datepicker-calendar').click(function(event){
+            event.stopPropagation();
+        });
     });
     function add_token(name,type,isRemoved){
         if(type=='keyword_field_main'){

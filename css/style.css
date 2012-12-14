@@ -352,3 +352,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     cursor: move;
 }
 #simple_view .dataTables_scrollHead{ height:35px;}
+.datepicker table{
+    z-index: 999999;
+position: absolute;
+}

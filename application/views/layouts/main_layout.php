@@ -23,12 +23,10 @@
         echo link_js('ColReorder.js');
         echo link_js('ColVis.js');
         echo link_js('dataTables.scroller.js');
-//		echo link_js('date.js');
-//		echo link_js('daterangepicker.js');
-		echo link_js('datepicker.js');
+        echo link_js('datepicker.js');
 
 
-        
+
         echo link_tag("css/tableSorter.css");
         echo link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
         echo link_tag("css/bootstrap/bootstrap.css");
@@ -36,11 +34,8 @@
         echo link_tag("css/ColReorder.css");
         echo link_tag("css/ColVis.css");
         echo link_tag("css/dataTables.scroller.css");
-//		echo link_tag("css/daterangepicker.css");
-		echo link_tag("css/base.css");
-		echo link_tag("css/clean.css");
-		
-
+        echo link_tag("css/base.css");
+        echo link_tag("css/clean.css");
         ?> 
         <script src="<?php echo base_url('tiny_mce/tiny_mce.js') ?>" type="text/javascript"></script>
         <?php echo link_js('custom.js'); ?>
@@ -94,16 +89,16 @@
 
     <body>
         <div class="navbar navbar-fixed-top">
-            <?php
-            if ($this->dx_auth->is_logged_in())
-            {
-                ?>
+<?php
+if ($this->dx_auth->is_logged_in())
+{
+    ?>
                 <div class="custom-nav">
                     <span id="msg_text_link">
-                        <?php
-                        if (isset($this->total_unread) && $this->total_unread > 0 && $this->is_station_user)
-                        {
-                            ?>
+    <?php
+    if (isset($this->total_unread) && $this->total_unread > 0 && $this->is_station_user)
+    {
+        ?>
                             <a class="btn large message" href="<?php echo site_url('messages/inbox') ?>">Messages<span class="badge label-important message-alert"><?php echo $this->total_unread ?></span></a>
                             <?php
                         } else
@@ -114,13 +109,13 @@
                     </span>
                     <a href="<?php echo site_url('auth/logout') ?>">Log Out</a> 
                 </div>
-            <?php } ?>
+<?php } ?>
             <div class="navbar-inner">
                 <a class="brand" href="<?php echo site_url() ?>">AMS</a>
-                <?php
-                if ($this->dx_auth->is_logged_in())
-                {
-                    ?>
+<?php
+if ($this->dx_auth->is_logged_in())
+{
+    ?>
                     <div class="nav-collapse">
                         <ul class="nav">
 
@@ -138,24 +133,24 @@
 
                         </ul>
                     </div><!--/.nav-collapse -->
-                <?php } ?>
+<?php } ?>
 
             </div>
         </div>
         <div class="container" style="width:1170px;margin:0 auto;margin-top: 70px;">
 
             <div class="content" >
-                <?php
-                if (is_route_method(array('settings' => array('index', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage'))
-                        )
-                )
-                {
-                    ?>
+<?php
+if (is_route_method(array('settings' => array('index', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage'))
+        )
+)
+{
+    ?>
                     <ul class="nav nav-tabs">
-                        <?php
-                        if ($this->can_compose_alert)
-                        {
-                            ?>
+                    <?php
+                    if ($this->can_compose_alert)
+                    {
+                        ?>
                             <li class="<?php echo active_anchor('templatemanager', array('add', 'lists', 'edit', 'details', 'readmessage')); ?>"><a href="<?php echo site_url('templatemanager/lists'); ?>" >Email Template</a></li>
                         <?php } ?>
                         <li class="<?php echo active_anchor('settings', 'index'); ?>"><a href="<?php echo site_url('settings/index'); ?>">Users</a></li>
@@ -163,7 +158,7 @@
 
                     </ul>
 
-                <?php } ?>
+<?php } ?>
                 <?php
                 if (is_route_method(array('records' => array('index', 'flagged'), 'instantiations' => array('index'))))
                 {
@@ -174,7 +169,7 @@
 
                     </ul>
 
-                <?php } ?>
+<?php } ?>
                 <?php
                 if ((active_anchor('messages', array('inbox', 'sent'))) && $this->can_compose_alert)
                 {

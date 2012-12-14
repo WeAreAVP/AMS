@@ -921,7 +921,7 @@
   
         $('#datepicker-calendar').DatePicker({
             inline: true,
-//            date: [from, to],
+            //            date: [from, to],
             calendars: 3,
             mode: 'range',
             

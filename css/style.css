@@ -355,7 +355,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 #datepicker-calendar{
     position: relative;
     z-index: 999999;
-    top: 27px;
+    top: -5px;
     left: 0;
     overflow: hidden;
     width: 497px;

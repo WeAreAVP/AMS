@@ -355,8 +355,14 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 #datepicker-calendar{
     position: relative;
     z-index: 999999;
-     width: 497px;
+    top: 27px;
+    left: 0;
+    overflow: hidden;
+    width: 497px;
     height:153px;
     background-color: #F7F7F7;
     border: 1px solid #CCCCCC;
+    border-radius: 0 5px 5px 5px;
+    display:none;
+    padding:10px 0 0 10px;
 }

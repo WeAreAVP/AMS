@@ -481,6 +481,7 @@
                 <div class="controls">
                     <div class="input-append">
                         <input type="text" name="date_range" id="date_range" value="" style="width: 180px;cursor: default;background-color: white;" readonly="readonly"/>
+                        <span class="add-on" onclick="$('#date_range').val('');"><i class="icon-remove-circle"></i></span>
                     </div>
                     <div id="datepicker-calendar" style="display: none;"></div>
                 </div>

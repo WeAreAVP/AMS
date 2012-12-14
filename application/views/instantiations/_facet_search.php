@@ -480,10 +480,7 @@
                 <div class="filter-fileds"><b>Date</b></div>
                 <div class="controls">
                     <div class="input-append">
-
                         <input type="text" name="date_range" id="date_range" value="" style="width: 180px;"/>
-
-                        <span class="add-on"><i class="icon-calendar"></i></span>
                     </div>
                 </div>
             </div>

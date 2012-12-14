@@ -482,7 +482,7 @@
                     <div class="input-append">
                         <input type="text" name="date_range" id="date_range" value="" style="width: 180px;"/>
                     </div>
-                    <div id="datepicker-calendar" style="display: none;"></div>
+                    <div id="datepicker-calendar"></div>
                 </div>
             </div>
 
@@ -924,7 +924,6 @@
             date: [from, to],
             calendars: 3,
             mode: 'range',
-            
             current: new Date(to.getFullYear(), to.getMonth() - 1, 1),
             onChange: function(dates,el) {
                 // update the range display

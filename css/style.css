@@ -6,14 +6,14 @@
         Purpose of the stylesheet follows.
 */
 html, body {
-/*     background-color: #eee !important;*/
-/*     min-width:1210px; */
+    /*     background-color: #eee !important;*/
+    /*     min-width:1210px; */
 }
 .navbar-inner{padding-left: 20px !important;padding-right: 20px !important;}
 .container {
     zoom : 1;
     margin-top: 70px;
-/*    min-width:1170px !important; */
+    /*    min-width:1170px !important; */
 }
 
 /* The white background content wrapper */
@@ -74,10 +74,10 @@ html, body {
     background-color: #FFFFFF !important;
     border: 1px solid #CCCCCC;
     padding:5px 7px 3px 10px;
-/*    border-radius:20px;*/
+    /*    border-radius:20px;*/
     margin-bottom:10px;
     float:left;
-/*    min-width:60px;*/
+    /*    min-width:60px;*/
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
     margin: 2px 5px;
@@ -286,13 +286,13 @@ html, body {
     color: red;
 }
 .players{
-	background:#D6D5D4;
-	width:900px;
-	height:300px;
-	text-align:center;
-	vertical-align:middle;
-	display:table-cell;
-	}
+    background:#D6D5D4;
+    width:900px;
+    height:300px;
+    text-align:center;
+    vertical-align:middle;
+    display:table-cell;
+}
 .my-navbar {margin-top:15px;}
 .button-after-player {margin:15px 0 0 !important;}
 .my-navbar {margin:15px 0 0 !important;}
@@ -302,7 +302,7 @@ html, body {
 .container-sidebar h4{color:#1797D2;font-size:16px;float:left;margin-top:15px;width:100%}
 .search_keys{
     padding-right: 10px;
-    
+
 }
 ul.dropdown-menu .sub-menu {
     left: 100%;
@@ -310,7 +310,7 @@ ul.dropdown-menu .sub-menu {
     top: 0 !important;
     visibility: hidden;
     margin-top: -1px;
-    
+
     z-index: 1001;
 }
 
@@ -320,8 +320,8 @@ ul.dropdown-menu li:hover .sub-menu {
 }
 
 ul.dropdown-menu .sub-menu-caret {
-	
-	font-size: 9px;
+
+    font-size: 9px;
 }
 .facet-search a{
     color: black;
@@ -341,11 +341,11 @@ table.table thead .sorting_desc_disabled {
     cursor: pointer;
     *cursor: hand;
 }
- 
+
 table.table thead .sorting { background: url('/images/sort_both.png') no-repeat center right; }
 table.table thead .sorting_asc { background: url('/images/sort_asc.png') no-repeat center right; }
 table.table thead .sorting_desc { background: url('/images/sort_desc.png') no-repeat center right; }
- 
+
 table.table thead .sorting_asc_disabled { background: url('/images/sort_asc_disabled.png') no-repeat center right; }
 table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_disabled.png') no-repeat center right; }
 .drap-drop{
@@ -354,5 +354,5 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 #simple_view .dataTables_scrollHead{ height:35px;}
 #datepicker-calendar{
     position: relative;
-z-index: 999999;
+    z-index: 999999;
 }

@@ -932,10 +932,6 @@
             }
         });
    
-        // initialize the special date dropdown field
-        $('#date_range').val(from.getDate()+' '+from.getMonthName(true)+', '+from.getFullYear()+' - '+
-            to.getDate()+' '+to.getMonthName(true)+', '+to.getFullYear());
-   
         // bind a click handler to the date display field, which when clicked
         // toggles the date picker calendar, flips the up/down indicator arrow,
         // and keeps the borders looking pretty

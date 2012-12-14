@@ -36,7 +36,7 @@
         echo link_tag("css/ColReorder.css");
         echo link_tag("css/ColVis.css");
         echo link_tag("css/dataTables.scroller.css");
-		echo link_tag("css/daterangepicker.css");
+//		echo link_tag("css/daterangepicker.css");
 		echo link_tag("css/base.css");
 		echo link_tag("css/clean.css");
 		

@@ -481,7 +481,7 @@
                 <div class="controls">
                     <div class="input-append">
                         <input type="text" name="date_range" id="date_range" value="" style="width: 180px;cursor: default;background-color: white;" readonly="readonly"/>
-                        <span class="add-on" onclick="$('#date_range').val('');"><i class="icon-remove-circle"></i></span>
+                        <span class="add-on" onclick="$('#date_range').val('');$('#datepicker-calendar').DatePickerSetDate('');"><i class="icon-remove-circle"></i></span>
                     </div>
                     <div id="datepicker-calendar" style="display: none;"></div>
                 </div>
@@ -924,7 +924,7 @@
             //            date: [from, to],
             calendars: 3,
             mode: 'range',
-            
+            current: new Date('1970', '1', '1'),
             onChange: function(dates,el) {
                 console.log(dates);
                 // update the range display

@@ -482,7 +482,7 @@
                     <div class="input-append">
 
                         <input type="text" name="date_range" id="date_range" value="" style="width: 180px;"/>
-                        <div id="datepicker-calendar" style="display: none;"></div>
+
                         <span class="add-on"><i class="icon-calendar"></i></span>
                     </div>
                 </div>
@@ -917,22 +917,17 @@
     var current_table_type='<?php echo $table_type ?>';
     oTable=null;
     $(document).ready(function() {
-        var to = new Date();
-        var from = new Date(to.getTime() - 1000 * 60 * 60 * 24 * 14);
-
-        $('#datepicker-calendar').DatePicker({
-            inline: true,
-            date: [from, to],
-            calendars: 3,
-            mode: 'range',
-            current: new Date(to.getFullYear(), to.getMonth() - 1, 1),
-            onChange: function(dates,el) {
-                // update the range display
-                $('#date_range').val(
-                dates[0].getDate()+' '+dates[0].getMonthName(true)+', '+
-                    dates[0].getFullYear()+' - '+
-                    dates[1].getDate()+' '+dates[1].getMonthName(true)+', '+
-                    dates[1].getFullYear());
+        $('#date_range').DatePicker({
+            mode: 'single',
+            position: 'bottom',
+            onBeforeShow: function(el){
+                if($('#date_range').val())
+                    $('#date_range').DatePickerSetDate($('#date_range').val(), true);
+            },
+            onChange: function(date, el) {
+                $(el).val((date.getMonth()+1)+'/'+date.getDate()+'/'+date.getFullYear());
+                $(el).DatePickerHide();
+                
             }
         });
 

@@ -939,7 +939,7 @@
    // bind a click handler to the date display field, which when clicked
    // toggles the date picker calendar, flips the up/down indicator arrow,
    // and keeps the borders looking pretty
-   $('#date-range-field').bind('click', function(){
+   $('#date_range').bind('click', function(){
      $('#datepicker-calendar').toggle();
      if($('#date-range-field a').text().charCodeAt(0) == 9660) {
        // switch to up-arrow

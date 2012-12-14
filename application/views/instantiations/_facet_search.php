@@ -927,8 +927,8 @@
             onChange: function(dates,el) {
                 console.log(dates);
                 // update the range display
-                $('#date_range').val(dates[0].getDate()+' '+dates[0].getMonthName(true)+', '+dates[0].getFullYear()+' to '+
-                    dates[1].getDate()+' '+dates[1].getMonthName(true)+', '+dates[1].getFullYear());
+                $('#date_range').val(dates[0].getDate()+' '+dates[0].getMonthName()+', '+dates[0].getFullYear()+' to '+
+                    dates[1].getDate()+' '+dates[1].getMonthName()+', '+dates[1].getFullYear());
             }
         });
    

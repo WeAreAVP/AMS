@@ -932,6 +932,9 @@
                     dates[0].getFullYear()+' - '+
                     dates[1].getDate()+' '+dates[1].getMonthName(true)+', '+
                     dates[1].getFullYear());
+            },
+            onBeforeShow:function(){
+                $('#datepicker-calendar').show();   
             }
         });
     });

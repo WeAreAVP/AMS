@@ -22,7 +22,7 @@
         One or more stations don't have their tracking information and no media received date.
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" onclick="resetMessagesForm();">Close</button>
 
     </div>
 </div>
@@ -213,5 +213,9 @@
                 }
             }
         });
+    }
+    function resetMessagesForm(){
+        $('#alert_type').html('');
+        $('#msg_type').val('');
     }
 </script>

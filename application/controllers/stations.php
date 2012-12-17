@@ -224,8 +224,8 @@ class Stations extends MY_Controller
                 $station_id = explode('_', $key);
                 $station_id = $station_id[count($station_id) - 1];
                 $dsd = date('Y-m-d', strtotime($value));
-                $this->station_model->update_record(update_station, array('start_date' => $dsd));
-                $this->sphinx->update_indexes('stations', array('start_date'), array($value => array((int) strtotime($start_date))));
+                $this->station_model->update_station($station_id, array('start_date' => $dsd));
+                $this->sphinx->update_indexes('stations', array('start_date'), array($station_id => array((int) strtotime($dsd))));
             }
             echo json_encode(array('success' => true));
             exit;

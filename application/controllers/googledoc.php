@@ -25,7 +25,7 @@ class Googledoc extends MY_Controller
 
 			
     }
-    function test()
+    function parse_american_archive()
     {
 		/* Load the Zend Gdata classes. */
 		

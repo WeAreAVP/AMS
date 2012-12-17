@@ -178,6 +178,7 @@ class Messages extends MY_Controller
      */
     function compose_station_message($multiple_station, $template_data, $extra, $template, $type)
     {
+        $material_received_date = 0;
         foreach ($multiple_station as $to)
         {
 
@@ -189,41 +190,51 @@ class Messages extends MY_Controller
                 $extra['ship_date'] = $station_details->start_date;
             } else if ($template == 'Materials_Received_Digitization_Vendor')
             {
-                $extra['date_received'] = 'No Date';
+
                 $tracking_info = $this->tracking->get_last_tracking_info($to);
                 if (count($tracking_info) > 0)
                 {
-                    $extra['date_received'] = $tracking_info->media_received_date;
+                    if (empty($tracking_info->media_received_date) || $tracking_info->media_received_date == null)
+                    {
+                        $material_received_date = 1;
+                    } else
+                    {
+                        $material_received_date = 0;
+                        $extra['date_received'] = $tracking_info->media_received_date;
+                    }
                 }
             }
-            foreach ($extra as $key => $value)
+            if ($material_received_date == 0)
             {
-                $replacebale[$key] = (isset($value) && !empty($value)) ? $value : '';
-            }
+                foreach ($extra as $key => $value)
+                {
+                    $replacebale[$key] = (isset($value) && !empty($value)) ? $value : '';
+                }
 
-            $replacebale['station_name'] = isset($station_details->station_name) ? $station_details->station_name : '';
-            if ($this->config->item('demo') == TRUE)
-            {
-                $to_email = $this->config->item('to_email');
-                $from_email = $this->config->item('from_email');
-                $replacebale['user_name'] = 'AMS';
-                $this->emailtemplates->sent_now = TRUE;
-            } else
-            {
-                $to_email = $station_details->contact_email;
-                $from_email = $this->user_detail->email;
-                $replacebale['user_name'] = $this->user_detail->first_name . ' ' . $this->user_detail->last_name;
-            }
-            $replacebale['inform_to'] = 'ssapienza@cpb.org';
-            $email_queue_id = $this->emailtemplates->queue_email($template, $to_email, $replacebale);
+                $replacebale['station_name'] = isset($station_details->station_name) ? $station_details->station_name : '';
+                if ($this->config->item('demo') == TRUE)
+                {
+                    $to_email = $this->config->item('to_email');
+                    $from_email = $this->config->item('from_email');
+                    $replacebale['user_name'] = 'AMS';
+                    $this->emailtemplates->sent_now = TRUE;
+                } else
+                {
+                    $to_email = $station_details->contact_email;
+                    $from_email = $this->user_detail->email;
+                    $replacebale['user_name'] = $this->user_detail->first_name . ' ' . $this->user_detail->last_name;
+                }
+                $replacebale['inform_to'] = 'ssapienza@cpb.org';
+                $email_queue_id = $this->emailtemplates->queue_email($template, $to_email, $replacebale);
 
-            $data = array('sender_id' => $this->user_id, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => json_encode($extra), 'created_at' => date('Y-m-d h:m:i'));
-            if (isset($email_queue_id) && $email_queue_id)
-            {
-                $data['email_queue_id'] = $email_queue_id;
+                $data = array('sender_id' => $this->user_id, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => json_encode($extra), 'created_at' => date('Y-m-d h:m:i'));
+                if (isset($email_queue_id) && $email_queue_id)
+                {
+                    $data['email_queue_id'] = $email_queue_id;
+                }
+                $this->msgs->add_msg($data);
+                $this->session->set_userdata('sent', 'Message Sent');
             }
-            $this->msgs->add_msg($data);
-            $this->session->set_userdata('sent', 'Message Sent');
         }
     }
 

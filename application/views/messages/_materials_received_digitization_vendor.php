@@ -64,7 +64,7 @@
             data:{"stations":to},
             dataType: 'json',
             success: function (result) {
-                $('#station_name_list').html('<div id="error_message" style="display:none;color:red;">Please Select Media Received Date(s).</div>');
+                $('#station_name_list').html('<div id="error_message" style="display:none;color:red;">Please manage media received date(s).</div>');
                 for(cnt in result){
                     record=result[cnt];
                     if(record.tracking_id==''){
@@ -85,6 +85,7 @@
                 if(manageView[0]==1 && manageView[1]==0 && manageView[2]==0){
                     $('#next_btn').hide();
                 }
+                $('#message_edit_title').html('Manage Media Received Date');
                 $('#compose_to_type').modal('toggle');
                 $('#edit_media_window').modal('toggle');
                 $("#station_name_list input").datepicker({dateFormat: 'yy-mm-dd'});

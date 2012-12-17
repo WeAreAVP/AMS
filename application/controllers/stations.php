@@ -183,84 +183,35 @@ class Stations extends MY_Controller
         redirect('stations/index', 'location');
     }
 
-    function test()
+    /**
+     * Get Staions info for sending messages
+     *  
+     */
+    public function get_stations_info()
     {
-
-        $this->load->library('zend');
-        $this->zend->load('Zend/Gdata/Spreadsheets');
-        $this->zend->load('Zend/Gdata/ClientLogin');
-        $this->zend->load('Zend/Gdata/Calendar');
-
-
-
-        $email = 'purelogicsy@gmail.com';
-        $passwd = 'purelogics123';
-        $service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
-        try
+        if (isAjax())
         {
-            $client = Zend_Gdata_ClientLogin::getHttpClient($email, $passwd, $service);
-            $oSpreadSheet = new Zend_Gdata_Spreadsheets($client);
-        } catch (Zend_Gdata_App_CaptchaRequiredException $cre)
-        {
-            echo 'URL of CAPTCHA image: ' . $cre->getCaptchaUrl() . "\n";
-            echo 'Token ID: ' . $cre->getCaptchaToken() . "\n";
-        } catch (Zend_Gdata_App_AuthException $ae)
-        {
-            echo 'Problem authenticating: ' . $ae->getMessage() . "\n";
+            $stations = $this->input->post('stations');
+            $list = array();
+            foreach ($stations as $key => $id)
+            {
+
+                $station_info = $this->station_model->get_station_by_id($id);
+                if (count($station_info) > 0)
+                {
+                    if (empty($station_info->start_date) || $station_info->start_date == null)
+                    {
+                        $list[] = array('station_id' => $id, 'dsd' => '', 'station_name' => $station_info->station_name);
+                    } else
+                    {
+                        $list[] = array('station_id' => $id, 'dsd' => $station->start_date, 'station_name' => $station_info->station_name);
+                    }
+                }
+            }
+            echo json_encode($list);
+            exit;
         }
-
-        $spreadsheetTitle = array();
-        $list = $oSpreadSheet->getSpreadsheetFeed();
-        foreach ($list->entries as $key => $entry)
-        {
-            $spreadsheetTitle[$key]['name'] = $entry->title->text;
-            $spreadsheetTitle[$key]['URL'] = $entry->link[1]->href;
-            $spreadsheetTitle[$key]['entityID'] = $entry->id;
-        }
-
-        $spreadsheetKey = basename($spreadsheetTitle[0]['entityID']);
-
-        $query = new Zend_Gdata_Spreadsheets_ListQuery();
-        $query->setSpreadsheetKey($spreadsheetKey);
-        $feed = $oSpreadSheet->getWorksheetFeed($query); // now that we have the desired spreadsheet, we need the worksheets
-        echo '<pre>';
-        print_r($feed);
-        exit;
-
-        /**
-         * Loop through all of our worksheets and echo
-         * its name as well as its id
-         */
-        echo("<table><tr><td><strong>Spreadsheet Name:</strong></td><td>" . $spreadsheetToFind . "</td></tr><tr><td><strong>Spreadsheet ID:</strong></td><td>" . $spreadsheetKey . "</td></tr>");
-
-        foreach ($feed->entries as $entry)
-        {
-            echo("<tr><td><strong>" . $entry->title->text . ": </strong></td><td>" . basename($entry->id) . "</td></tr>");
-        }
-
-        echo("</table>");
-        echo '<pre>';
-//    print_r($spreadsheetTitle);
-        echo(" </pre> ");
-        EXIT;
-        $entry = $oSpreadSheet->newCellEntry();
-
-        $cell = $oSpreadSheet->newCell();
-        $cell->setText('My cell value');
-        $cell->setRow('1');
-        $cell->setColumn('3');
-        $entry->cell = $cell;
-
-        echo(" <pre> ");
-        var_dump($entry);
-        echo(" </pre> ");
-        EXIT;
-
-        // newer versions of CodeIgniter have updated its loader API slightly,
-        // we can no longer pass parameters to our library constructors
-        // therefore, we should load the library like this:
-        // $this->load->library('zend');
-        // $this->zend->load('Zend/Service/Flickr');
+        show_404();
     }
 
 }

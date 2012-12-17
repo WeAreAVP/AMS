@@ -18,7 +18,7 @@
 <div class="modal hide" id="edit_media_window" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>Add Media Received Date</h3>
+        <h3 id="message_edit_title">Add Media Received Date</h3>
     </div>
     <div class="modal-body">
         <form id="tracking_info_form">

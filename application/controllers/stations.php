@@ -214,6 +214,25 @@ class Stations extends MY_Controller
         show_404();
     }
 
+    public function update_dsd_station()
+    {
+        if (isAjax())
+        {
+            $dates = $this->input->post();
+            foreach ($dates as $key => $value)
+            {
+                $station_id = explode('_', $key);
+                $station_id = $station_id[count($station_id) - 1];
+                $dsd = date('Y-m-d', strtotime($value));
+                $this->station_model->update_record(update_station, array('start_date' => $dsd));
+                $this->sphinx->update_indexes('stations', array('start_date'), array($value => array((int) strtotime($start_date))));
+            }
+            echo json_encode(array('success' => true));
+            exit;
+        }
+        show_404();
+    }
+
 }
 
 // END Stations Controller

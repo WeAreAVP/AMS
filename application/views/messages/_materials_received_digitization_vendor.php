@@ -95,7 +95,7 @@
             }
         });
     }
-    function checkMediaDate(){
+    function checkDates(){
         error=0;
         if(manageView[1]==1){
             $('#station_name_list input').each(function(index,object){
@@ -109,7 +109,7 @@
                 $.ajax({
                     type: 'POST', 
                     url: site_url+'tracking/update_tracking_info',
-                    data:$('#tracking_info_form').serialize(),
+                    data:$('#manage_dates_form').serialize(),
                     dataType: 'json',
                     success: function (result) { 
                         $('#compose_to_type').modal('toggle');

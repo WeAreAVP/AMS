@@ -21,14 +21,14 @@
         <h3 id="message_edit_title">Add Media Received Date</h3>
     </div>
     <div class="modal-body">
-        <form id="tracking_info_form">
+        <form id="manage_dates_form">
             <div id="station_name_list"></div>
         </form>
 
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="resetMessagesForm();">Close</button>
-        <button class="btn btn-primary" aria-hidden="true" onclick="checkMediaDate();" id="next_btn">Next</button>
+        <button class="btn btn-primary" aria-hidden="true" onclick="checkDates();" id="next_btn">Next</button>
     </div>
 </div>
 <script>

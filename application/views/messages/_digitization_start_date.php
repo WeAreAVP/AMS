@@ -87,7 +87,7 @@
             data:{"stations":to},
             dataType: 'json',
             success: function (result) {
-                $('#station_name_list').html('<div id="error_message" style="display:none;color:red;">Manage digitization start date(s).</div>');
+                $('#station_name_list').html('<div id="error_message" style="display:none;color:red;">Please select digitization start date(s).</div>');
                 for(cnt in result){
                     record=result[cnt];
                     if(record.dsd==''){
@@ -109,5 +109,37 @@
                    
             }
         });
+    }
+    function checkDates(){
+        error=0;
+        if($('#station_name_list input').length>0){
+            $('#station_name_list input').each(function(index,object){
+                if($('#'+object.id).val()==''){
+                    $('#error_message').show();
+                    error=1;
+                }
+            });
+            if(error==0){
+                $('#edit_media_window').modal("toggle");
+                $.ajax({
+                    type: 'POST', 
+                    url: site_url+'stations/update_dsd_station',
+                    data:$('#manage_dates_form').serialize(),
+                    dataType: 'json',
+                    success: function (result) { 
+                        $('#compose_to_type').modal('toggle');
+                    
+                
+                    }
+                });
+            }
+        }
+        else{
+            $('#edit_media_window').modal("toggle");
+            $('#compose_to_type').modal('toggle');
+        }
+        
+        
+        
     }
 </script>

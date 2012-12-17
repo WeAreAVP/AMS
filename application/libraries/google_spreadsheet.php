@@ -254,14 +254,26 @@ class Google_Spreadsheet
 
 		return $data;
 	}
-	function getAllSpreedSheetsDetails()
+	function getAllSpreedSheetsDetails($spreedSheet='')
 	{
 		$feed = $this->client->getSpreadsheetFeed();
 		foreach ($feed->entries as $key => $entry)
         {
-            $spreadSheets[$key]['name'] = $entry->title->text;
-            $spreadSheets[$key]['URL'] = $entry->link[1]->href;
-            $spreadSheets[$key]['spreedSheetId'] =  basename($entry->id);
+			if(!empty($spreedSheet))
+			{
+				if($spreedSheet==$entry->title->text)
+				{
+            		$spreadSheets[$key]['name'] = $entry->title->text;
+           	 		$spreadSheets[$key]['URL'] = $entry->link[1]->href;
+            		$spreadSheets[$key]['spreedSheetId'] =  basename($entry->id);
+				}
+			}
+			else
+			{
+				$spreadSheets[$key]['name'] = $entry->title->text;
+           	 	$spreadSheets[$key]['URL'] = $entry->link[1]->href;
+            	$spreadSheets[$key]['spreedSheetId'] =  basename($entry->id);
+			}
         }
 		return $spreadSheets;
 	}
@@ -283,6 +295,7 @@ class Google_Spreadsheet
     	$query = new Zend_Gdata_Spreadsheets_CellQuery();
 		$query->setSpreadsheetKey($spreedSheetId);
 		$query->setWorksheetId($worksheetId);
+		$query->setMinRow(4);
 		$cellFeed  = $this->client->getCellFeed($query);
 		$i=1;
 		$row_previous_value=0;

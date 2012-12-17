@@ -178,6 +178,53 @@ class Instantiations_Model extends CI_Model
         }
         return false;
     }
+	
+	 /**
+     * search instantiation event exists 
+     * 
+     * @param type array of different event fields
+	 * @param $instantiation_id
+     * @return bool
+     */
+    function is_event_exists($instantiation_id,$event_data)
+    {
+		$this->db->where('instantiations_id', $instantiation_id);
+		if(isset($event_data['event_types_id']) && !empty($event_data['event_types_id']))
+			$this->db->where('event_types_id',$event_data['event_types_id']);
+		if(isset($event_data['event_date']) && !empty($event_data['event_date']))
+			$this->db->where('event_date',$event_data['event_date']);
+		if(isset($event_data['event_outcome']) && !empty($event_data['event_outcome']))
+			$this->db->where('event_outcome',$event_data['event_outcome']);
+		if(isset($event_data['event_note']) && !empty($event_data['event_note']))
+			$this->db->where('event_note',$event_data['event_note']);
+		$res = $this->db->get($this->table_events);
+		if (isset($res) && !empty($res))
+			return $res->row();
+		return false;
+    }
+	
+	 /**
+     * search instantiation by @guid and $physical_format
+     * 
+     * @param type $guid
+	 * @param type $physical_format
+     * @return object 
+     */
+    function get_instantiation_by_guid_physical_format($guid,$physical_format)
+    {
+		$sql='SELECT ins.id,IFNULL(gen.generation,"")  FROM instantiations AS ins 
+				LEFT JOIN identifiers AS ide ON  ins.assets_id=ide.assets_id
+				LEFT JOIN instantiation_formats AS inf ON  ins.id=inf.instantiations_id
+				LEFT JOIN instantiation_generations AS ing ON  ins.id=ing.instantiations_id
+				LEFT JOIN generations AS gen ON ing.generations_id=gen.id
+				WHERE ide.identifier LIKE "'.$guid.'" AND inf.format_name LIKE "'.$physical_format.'" AND inf.format_type="physical"';
+		$res = $this->db->query($sql);
+		if (isset($res) && !empty($res))
+		{
+			return $res->row();
+		}
+		return false;
+    }
 	/**
      * search event_type id by @event_type
      * 
@@ -360,7 +407,19 @@ class Instantiations_Model extends CI_Model
         $this->db->insert($this->table_instantiations, $data);
         return $this->db->insert_id();
     }
-
+	/**
+	* update the instantiations record
+	* 
+	* @param type $instantiation_id
+	* @param array $data
+	* @return boolean 
+	*/
+	function update_instantiations($instantiation_id, $data)
+	{
+		$data['updated'] = date('Y-m-d H:i:s');
+		$this->db->where('id', $instantiation_id);
+		return $this->db->update($this->table_instantiations, $data);
+	}
     /*
      *
      *  Insert the record in instantiation_identifier table
@@ -428,6 +487,19 @@ class Instantiations_Model extends CI_Model
     function insert_instantiation_annotations($data)
     {
         $this->db->insert($this->table_instantiation_annotations, $data);
+        return $this->db->insert_id();
+    }
+	 /*
+     *
+     *  Insert the record in table_event_types table
+     *  @param array $data
+     *  @return integer last_inserted id
+     * 
+     */
+
+    function insert_event($data)
+    {
+        $this->db->insert($this->table_events, $data);
         return $this->db->insert_id();
     }
 	 /*

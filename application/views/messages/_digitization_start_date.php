@@ -90,7 +90,7 @@
                 $('#station_name_list').html('<div id="error_message" style="display:none;color:red;">Manage digitization start date(s).</div>');
                 for(cnt in result){
                     record=result[cnt];
-                    if(record.dsd=''){
+                    if(record.dsd==''){
                         name='dsd_'+record.station_id;
                         $('#station_name_list').append('<div><div><b>'+record.station_name+'</b></div><div><input type="text" name="'+name+'" id="'+name+'" /></div></div>');
                     }

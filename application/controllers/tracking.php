@@ -206,7 +206,7 @@ class Tracking extends MY_Controller
             foreach ($dates as $key => $value)
             {
                 $tracking_id = explode('_', $key);
-                $tracking_id = $tracking_id[count() - 1];
+                $tracking_id = $tracking_id[count($tracking_id) - 1];
                 $media_date = date('Y-m-d', strtotime($value));
                 $this->tracking->update_record($tracking_id, array('media_received_date' => $media_date));
             }

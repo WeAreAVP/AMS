@@ -97,13 +97,13 @@
                     else{
                         $('#station_name_list').append('<div><div><b>'+record.station_name+'</b></div><div>DSD: '+record.dsd+'</div></div>');
                     }
-                    $('#message_edit_title').html('Manage Digitization Start Date');
-                    $('#compose_to_type').modal('toggle');
-                    $('#edit_media_window').modal('toggle');
-                    $("#station_name_list input").datepicker({dateFormat: 'yy-mm-dd'});
+                    
                     
                 }
-                    
+                $('#message_edit_title').html('Manage Digitization Start Date');
+                $('#compose_to_type').modal('toggle');
+                $('#edit_media_window').modal('toggle');
+                $("#station_name_list input").datepicker({dateFormat: 'yy-mm-dd'});   
                 
                       
                    

@@ -1,55 +1,3 @@
-<div class="modal hide" id="compose_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>Send Message >> Confirm</h3>
-
-    </div>
-    <div class="modal-body" id="confirm_body">
-
-    </div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="$('#compose_anchor').trigger('click');">Back</button>
-        <button class="btn btn-primary"  data-dismiss="modal" onclick="sentEmail();">Send</button>
-    </div>
-</div>
-
-<div class="modal hide" id="error_window" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>Tracking Information</h3>
-    </div>
-    <div class="modal-body" id="error_station_window">
-        One or more stations don't have their tracking information and no media received date.
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" onclick="resetMessagesForm();">Close</button>
-
-    </div>
-</div>
-
-<div class="modal hide" id="edit_media_window" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>Add Media Received Date</h3>
-    </div>
-    <div class="modal-body">
-        <div id="station_name_list"></div>
-        <div class="control-group">
-            <label class="control-label" for="media_date">Media Received Date:</label>
-            <div class="controls">
-                <input type="text" name="media_date" id="media_date"/>
-                <input type="hidden" name="tracking_id" id="tracking_id"/>
-                <span id="media_date_error" style="display: none;" class="message-type_error">Please Select Media Received Date.</span>
-
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-
-        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="resetMessagesForm();">Close</button>
-        <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="checkMediaDate();">Save</button>
-    </div>
-</div>
 <div class="modal hide" id="compose_to_type" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 700px;">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -60,7 +8,7 @@
             <div class="control-group">
                 <label class="control-label" for="receiver_id">To:</label>
                 <div class="controls">
-                    <select id="receiver_id" name="receiver_id" multiple="multiple" onchange="typeForm();">
+                    <select id="receiver_id" name="receiver_id" multiple="multiple" >
                         <?php
                         foreach ($station_records as $value)
                         {
@@ -89,20 +37,12 @@
                     <span id="message_type_error">Please select message type</span>
                 </div>
             </div>
-            <?php /* ?><div class="control-group" id="subject_div" style="display: none;">
-              <label class="control-label" for="subject">Subject:</label>
-              <div class="controls">
-              <input id="subject" name="subject"/>
-
-              </div>
-              </div><?php */ ?>
             <div id="alert_type"></div>
         </form>
     </div>
 
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="resetMessagesForm();"> Cancel</button>
-
         <button class="btn btn-primary" onclick="validateFormType();">Next</button>
     </div>
 </div>
@@ -121,7 +61,6 @@
         $(".ui-multiselect-menu").width('400px');
     });
     function typeForm(){
-        // $('#subject_div').show();
         type=$('#msg_type').val();
         to=$('#receiver_id').val();
         if(to=='' || to==null )
@@ -189,33 +128,7 @@
         }
                                     
     }
-    function sentEmail(){
-        $.ajax({
-            type: 'POST', 
-            url: '<?php echo site_url('messages/compose') ?>',
-            data:{"extras":extras,to:to,subject:subject,type:type,html:msg_body},
-            dataType: 'json',
-            success: function (result) { 
-                if(result.success)
-                {
-                    window.location.reload();
-                }
-                else
-                {
-                    if(error_id==1)
-                    {
-                        $('#message_station_error').show();
-                    }
-                    else
-                    {
-                        $('#message_type_error').show();
-                    }
-                }
-            }
-        });
-    }
-    function resetMessagesForm(){
-        $('#alert_type').html('');
-        $('#msg_type').val('');
-    }
+    
 </script>
+
+<?php $this->load->view('partials/_message_popup'); ?>

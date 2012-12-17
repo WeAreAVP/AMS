@@ -29,6 +29,7 @@
 <script type="text/javascript">
     $(function() {
         $( "#estimated_complete_date" ).datepicker();
+        checkDSD();
         
     });
     function checkFields(){
@@ -78,5 +79,67 @@
             '<div>Shipping Instructions: '+shipping_instructions+'</div>'+
             '<div>Comments: '+comments+'</div>'+
             '<div>Estimated Complete Date: '+estimated_complete_date+'</div>');
+    }
+    function checkDSD(){
+        $.ajax({
+            type: 'POST', 
+            url: site_url+'stations/get_stations_info',
+            data:{"stations":to},
+            dataType: 'json',
+            success: function (result) {
+                $('#station_name_list').html('<div id="error_message" style="display:none;color:red;">Please select digitization start date(s).</div>');
+                for(cnt in result){
+                    record=result[cnt];
+                    if(record.dsd==''){
+                        name='dsd_'+record.station_id;
+                        $('#station_name_list').append('<div><div><b>'+record.station_name+'</b></div><div><input type="text" name="'+name+'" id="'+name+'" /></div></div>');
+                    }
+                    else{
+                        $('#station_name_list').append('<div><div><b>'+record.station_name+'</b></div><div>DSD: '+record.dsd+'</div></div>');
+                    }
+                    
+                    
+                }
+                $('#message_edit_title').html('Digitization Start Date(s)');
+                $('#compose_to_type').modal('toggle');
+                $('#edit_media_window').modal('toggle');
+                $("#station_name_list input").datepicker({dateFormat: 'yy-mm-dd'});   
+                
+                      
+                   
+            }
+        });
+    }
+    function checkDates(){
+        error=0;
+        if($('#station_name_list input').length>0){
+            $('#station_name_list input').each(function(index,object){
+                if($('#'+object.id).val()==''){
+                    $('#error_message').show();
+                    error=1;
+                }
+            });
+            if(error==0){
+                $('#edit_media_window').modal("toggle");
+                $.ajax({
+                    type: 'POST', 
+                    url: site_url+'stations/update_dsd_station',
+                    data:$('#manage_dates_form').serialize(),
+                    dataType: 'json',
+                    success: function (result) { 
+                        $('#compose_to_type').modal('toggle');
+                    
+                
+                    }
+                });
+            }
+        }
+        else{
+            $('#edit_media_window').modal("toggle");
+            $('#compose_to_type').modal('toggle');
+        }
+        
+        
+        
     }
 </script>

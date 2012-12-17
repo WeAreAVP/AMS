@@ -174,42 +174,46 @@ class Tracking extends MY_Controller
     public function get_tracking_info()
     {
         $stations = $this->input->post('stations');
-        $stations_list = array();
-        $stations_empty_list = array();
-        $station_name = array();
-        foreach ($stations as $id)
+        $list = array();
+        foreach ($stations as $key => $id)
         {
             $tracking_info = $this->tracking->get_last_tracking_info($id);
             $station = $this->station_model->get_station_by_id($id);
             if (count($tracking_info) > 0)
             {
-                if (trim($tracking_info->media_received_date) == '')
+
+                if (empty($tracking_info->media_received_date) || $tracking_info->media_received_date == null)
                 {
-                    $stations_list[] = $tracking_info->id;
-                    $station_name[] = $station->station_name;
+                    $list[] = array('tracking_id' => $tracking_info->id, 'station_id' => $id, 'media_received_date' => '', 'station_name' => $station->station_name);
+                } else
+                {
+                    $list[] = array('tracking_id' => $tracking_info->id, 'station_id' => $id, 'media_received_date' => $tracking_info->media_received_date, 'station_name' => $station->station_name);
                 }
             } else
             {
-                $stations_empty_list[] = $id;
-                $station_name[] = '<a href="' . site_url() . 'stations/detail/' . $id . '" target="_blank">' . $station->station_name . '</a>';
+                $list[] = array('tracking_id' => '', 'station_id' => $id, 'media_received_date' => '', 'station_name' => $station->station_name);
             }
         }
-        echo json_encode(array('empty_station' => $stations_empty_list, 'station_list' => $stations_list, 'station_names' => $station_name));
+        echo json_encode($list);
         exit;
     }
 
     public function update_tracking_info()
     {
-        $tracking_id = $this->input->post('tracking_id');
-        $tracking_id = explode(',', $tracking_id);
-        $media_date = $this->input->post('date');
-        $media_date = date('Y-m-d', strtotime($media_date));
-        foreach ($tracking_id as $id)
+        if (isAjax())
         {
-            $this->tracking->update_record($id, array('media_received_date' => $media_date));
+            $dates = $this->input->post();
+            foreach ($dates as $key => $value)
+            {
+                $tracking_id = explode('_', $key);
+                $tracking_id = $tracking_id[count($tracking_id) - 1];
+                $media_date = date('Y-m-d', strtotime($value));
+                $this->tracking->update_record($tracking_id, array('media_received_date' => $media_date));
+            }
+            echo json_encode(array('success' => true));
+            exit;
         }
-        echo json_encode(array('success' => true));
-        exit;
+        show_404();
     }
 
 }

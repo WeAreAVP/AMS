@@ -100,7 +100,7 @@
                     
                     
                 }
-                $('#message_edit_title').html('Manage Digitization Start Date');
+                $('#message_edit_title').html('Digitization Start Date(s)');
                 $('#compose_to_type').modal('toggle');
                 $('#edit_media_window').modal('toggle');
                 $("#station_name_list input").datepicker({dateFormat: 'yy-mm-dd'});   

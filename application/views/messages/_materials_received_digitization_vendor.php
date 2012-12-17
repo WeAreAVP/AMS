@@ -56,54 +56,71 @@
             '<div>Comments: '+comments+'</div>'+
             '<div>Crawford Contact Details: '+crawford_contact_details+'</div>');
     }
+    manageView=new Array(0,0,0);
     function checkTrackingDetails(){
         $.ajax({
             type: 'POST', 
             url: site_url+'tracking/get_tracking_info',
             data:{"stations":to},
             dataType: 'json',
-            success: function (result) { 
-                if(result.empty_station.length>0){
-                    station_name_list=result.station_names;
-                    $('#error_station_window').html('<div>The following station don\'t have tracking info or media date.</div>');
-                    for(cnt in station_name_list){
-                        $('#error_station_window').append('<div><b>'+station_name_list[cnt]+'</b></div>'); 
+            success: function (result) {
+                $('#station_name_list').html('<div id="error_message" style="display:none;color:red;">Please Select Media Received Date(s).</div>');
+                for(cnt in result){
+                    record=result[cnt];
+                    if(record.tracking_id==''){
+                        manageView[0]=1;
+                        $('#station_name_list').append('<div><div><b>'+record.station_name+'</b></div><div>No Tracking Information.</div></div>');
                     }
-                    $('#compose_to_type').modal('toggle');
-                    $('#error_window').modal('toggle');
+                    else if(record.tracking_id!='' && record.media_received_date==''){
+                        manageView[1]=1;
+                        name='media_received_date_'+record.tracking_id;
+                        $('#station_name_list').append('<div><div><b>'+record.station_name+'</b></div><div><input type="text" name="'+name+'" id="'+name+'" /></div></div>');
+                    }
+                    else{
+                        manageView[2]=1;
+                        console.log(record);
+                        $('#station_name_list').append('<div><div><b>'+record.station_name+'</b></div><div>Media Received Date: '+record.media_received_date+'</div></div>'); 
+                    }
                 }
-                else if(result.station_list.length>0){
-                    trackingID=implode(',',result.station_list);
-                    station_name_list=implode(', ',result.station_names);
-                    
-                    $('#station_name_list').html('Select Media Received Date for <b>'+station_name_list+'</b>');
-                    $('#tracking_id').val(trackingID);
-                    $('#compose_to_type').modal('toggle');
-                    $('#edit_media_window').modal('toggle');
-                    $("#media_date").datepicker({dateFormat: 'yy-mm-dd'});
+                if(manageView[0]==1 && manageView[1]==0 && manageView[2]==0){
+                    $('#next_btn').hide();
                 }
+                $('#compose_to_type').modal('toggle');
+                $('#edit_media_window').modal('toggle');
+                $("#station_name_list input").datepicker({dateFormat: 'yy-mm-dd'});
+                
                       
                    
             }
         });
     }
     function checkMediaDate(){
-        if($('#media_date').val()==''){
-            $('#media_date_error').show();
-            return false;
-        }
-        $('#edit_media_window').modal("toggle");
-        $.ajax({
-            type: 'POST', 
-            url: site_url+'tracking/update_tracking_info',
-            data:{"tracking_id":$('#tracking_id').val(),date:$('#media_date').val()},
-            dataType: 'json',
-            success: function (result) { 
-                
-                $('#compose_to_type').modal('toggle');
+        error=0;
+        if(manageView[1]==1){
+            $('#station_name_list input').each(function(index,object){
+                if($('#'+object.id).val()==''){
+                    $('#error_message').show();
+                    error=1;
+                }
+            });
+            if(error==0){
+                $('#edit_media_window').modal("toggle");
+                $.ajax({
+                    type: 'POST', 
+                    url: site_url+'tracking/update_tracking_info',
+                    data:$('#tracking_info_form').serialize(),
+                    dataType: 'json',
+                    success: function (result) { 
+                        $('#compose_to_type').modal('toggle');
                     
                 
+                    }
+                });
             }
-        });
+        }
+        else if(manageView[2]==1){
+            $('#edit_media_window').modal("toggle");
+            $('#compose_to_type').modal('toggle');
+        }
     }
 </script>

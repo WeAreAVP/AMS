@@ -83,7 +83,7 @@
     function checkDSD(){
         $.ajax({
             type: 'POST', 
-            url: site_url+'stations/get_tracking_info',
+            url: site_url+'stations/get_stations_info',
             data:{"stations":to},
             dataType: 'json',
             success: function (result) {

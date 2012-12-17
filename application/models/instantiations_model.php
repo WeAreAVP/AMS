@@ -178,6 +178,22 @@ class Instantiations_Model extends CI_Model
         }
         return false;
     }
+	/**
+     * search event_type id by @event_type
+     * 
+     * @param type $event_type
+     * @return object 
+     */
+    function get_id_by_event_type($event_type)
+    {
+        $this->db->where('event_type LIKE', $event_type);
+        $res = $this->db->get($this->table_event_types);
+        if (isset($res) && !empty($res))
+        {
+            return $res->row();
+        }
+        return false;
+    }
 
     /**
      * search instantiation_colors by @color
@@ -412,6 +428,19 @@ class Instantiations_Model extends CI_Model
     function insert_instantiation_annotations($data)
     {
         $this->db->insert($this->table_instantiation_annotations, $data);
+        return $this->db->insert_id();
+    }
+	 /*
+     *
+     *  Insert the record in table_event_types table
+     *  @param array $data
+     *  @return integer last_inserted id
+     * 
+     */
+
+    function insert_event_types($data)
+    {
+        $this->db->insert($this->table_event_types, $data);
         return $this->db->insert_id();
     }
 

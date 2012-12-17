@@ -193,8 +193,8 @@ class Stations extends MY_Controller
 
 
 
-        $email = 'purelogicsy@gmail.com';
-        $passwd = 'purelogics123';
+        $email = 'ali@geekschicago.com';
+        $passwd = 'purelogics12';
         $service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
         try
         {
@@ -218,13 +218,13 @@ class Stations extends MY_Controller
             $spreadsheetTitle[$key]['entityID'] = $entry->id;
         }
 
-        $spreadsheetKey = basename($spreadsheetTitle[0]['entityID']);
+       echo  $spreadsheetKey = basename($spreadsheetTitle[0]['entityID']);
 
         $query = new Zend_Gdata_Spreadsheets_ListQuery();
         $query->setSpreadsheetKey($spreadsheetKey);
         $feed = $oSpreadSheet->getWorksheetFeed($query); // now that we have the desired spreadsheet, we need the worksheets
         echo '<pre>';
-        print_r($feed);
+        print_r($spreadsheetTitle);
         exit;
 
         /**

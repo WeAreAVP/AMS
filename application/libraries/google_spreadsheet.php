@@ -54,7 +54,10 @@ class Google_Spreadsheet
  		$this->ci->zend->load('Zend/Gdata/AuthSub');
  		$this->ci->zend->load('Zend/Gdata/Spreadsheets');
   		$this->ci->zend->load('Zend/Gdata/ClientLogin');
-		$this->login($this->user,$this->pass);
+		if(!isset($this->client))
+		{
+			$this->login($this->user,$this->pass);
+		}
 		if ($this->ss) $this->useSpreadsheet($this->ss);
 		if ($this->ws) $this->useWorksheet($this->ws);
 	}
@@ -251,7 +254,58 @@ class Google_Spreadsheet
 
 		return $data;
 	}
-
+	function getAllSpreedSheetsDetails()
+	{
+		$feed = $this->client->getSpreadsheetFeed();
+		foreach ($feed->entries as $key => $entry)
+        {
+            $spreadSheets[$key]['name'] = $entry->title->text;
+            $spreadSheets[$key]['URL'] = $entry->link[1]->href;
+            $spreadSheets[$key]['spreedSheetId'] =  basename($entry->id);
+        }
+		return $spreadSheets;
+	}
+	function getAllWorksSheetsDetails($spreadSheetKey)
+	{
+		$query = new Zend_Gdata_Spreadsheets_DocumentQuery();
+	    $query->setSpreadsheetKey($spreadSheetKey);
+    	$feed = $this->client->getWorksheetFeed($query);
+		foreach($feed->entries as $key=>$entry)
+		{
+			$workSheet[$key]['spreedSheetId']=$spreadSheetKey;
+			$workSheet[$key]['name'] = $entry->title->text;
+			$workSheet[$key]['workSheetId'] = basename($entry->id);
+		}
+		return $workSheet;
+	}
+	function displayWorksheetData($spreedSheetId,$worksheetId)
+	{
+    	$query = new Zend_Gdata_Spreadsheets_CellQuery();
+		$query->setSpreadsheetKey($spreedSheetId);
+		$query->setWorksheetId($worksheetId);
+		$cellFeed  = $this->client->getCellFeed($query);
+		$i=1;
+		$row_previous_value=0;
+		foreach($cellFeed  as $cellEntry)
+		{
+			$column=intval($cellEntry->cell->getColumn());
+			$row=intval($cellEntry->cell->getRow());
+			if($row_previous_value!=$row)
+			{
+				$i=1;
+				$row_previous_value=$row;
+			}
+			while($column!=$i)
+			{
+				$data[$row][$i]='';	
+				$i++;
+			}
+			$data[$row][$column]=$cellEntry->cell->getText();		
+			$i++;
+			
+		}
+		return $data;
+	}
 	private function login($user,$pass)
 	{
 		// Zend Gdata package required

@@ -204,7 +204,7 @@ class Stations extends MY_Controller
                         $list[] = array('station_id' => $id, 'dsd' => '', 'station_name' => $station_info->station_name);
                     } else
                     {
-                        $list[] = array('station_id' => $id, 'dsd' => $station->start_date, 'station_name' => $station_info->station_name);
+                        $list[] = array('station_id' => $id, 'dsd' => $station_info->start_date, 'station_name' => $station_info->station_name);
                     }
                 }
             }

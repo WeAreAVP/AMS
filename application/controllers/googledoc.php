@@ -279,10 +279,10 @@ class	Googledoc	extends	MY_Controller
 								}
 								return	$event_types_id;
 				}
-
+// Location: ./controllers/googledoc.php
 }
 
 // END Google Doc Controller
 
 // End of file googledoc.php
-/* Location: ./application/controllers/googledoc.php */
+// Location: ./application/controllers/googledoc.php

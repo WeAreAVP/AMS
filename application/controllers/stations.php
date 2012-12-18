@@ -10,12 +10,17 @@
 	* @subpackage Controller
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
 	* @license    CPB http://nouman.com
+ * @version    GIT: <$Id>
 	* @link       http://amsqa.avpreserve.com
+ 
 	*/
 
 /**
 	* Stations Class
 	*
+	* @category   Class
+	* @package    CI
+	* @subpackage Controller
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
 	* @license    CPB http://nouman.com
 	* @link       http://amsqa.avpreserve.com/stations
@@ -200,7 +205,7 @@ class	Stations	extends	MY_Controller
 								{
 												$stations	=	$this->input->post	('stations');
 												$list	=	array	();
-												foreach	($stations	as	$index	=>	$station_id)
+												foreach	($stations	as		$station_id)
 												{
 
 																$station_info	=	$this->station_model->get_station_by_id	($station_id);

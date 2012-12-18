@@ -1,11 +1,28 @@
 <?php
 
 /**
-	* unit_testing controller.
+	* Unit_tesing Controller
+	* 
+	* PHP version 5
+	* 
+	* @category   AMS
+	* @package    CI
+	* @subpackage Controller
+	* @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @license    CPB http://nouman.com
+	* @version    GIT: <$Id>
+	* @link       http://amsqa.avpreserve.com
+	*/
+
+/**
+	* AMS Dashboard Class
 	*
-	* @package    AMS
-	* @subpackage unit_testing
-	* @author     Nouman Tayyab
+	* @category   Class
+	* @package    CI
+	* @subpackage Controller
+	* @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @license    CPB http://nouman.com
+	* @link       http://amsqa.avpreserve.com
 	*/
 class	Unit_Testing	extends	CI_Controller
 {
@@ -299,4 +316,7 @@ class	Unit_Testing	extends	CI_Controller
 
 }
 
-?>
+// END Unit_testin Controller
+
+// End of file unit_testing.php 
+/* Location: ./application/controllers/unit_testing.php */

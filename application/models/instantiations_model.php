@@ -186,17 +186,10 @@ class Instantiations_Model extends CI_Model
 	 * @param $instantiation_id
      * @return bool
      */
-    function is_event_exists($instantiation_id,$event_data)
+    function is_event_exists($instantiation_id,$event_types_id)
     {
 		$this->db->where('instantiations_id', $instantiation_id);
-		if(isset($event_data['event_types_id']) && !empty($event_data['event_types_id']))
-			$this->db->where('event_types_id',$event_data['event_types_id']);
-		if(isset($event_data['event_date']) && !empty($event_data['event_date']))
-			$this->db->where('event_date',$event_data['event_date']);
-		if(isset($event_data['event_outcome']) && !empty($event_data['event_outcome']))
-			$this->db->where('event_outcome',$event_data['event_outcome']);
-		if(isset($event_data['event_note']) && !empty($event_data['event_note']))
-			$this->db->where('event_note',$event_data['event_note']);
+		$this->db->where('event_types_id',$event_types_id);
 		$res = $this->db->get($this->table_events);
 		if (isset($res) && !empty($res))
 			return $res->row();
@@ -491,7 +484,7 @@ class Instantiations_Model extends CI_Model
     }
 	 /*
      *
-     *  Insert the record in table_event_types table
+     *  Insert the record in table_events table
      *  @param array $data
      *  @return integer last_inserted id
      * 
@@ -502,6 +495,18 @@ class Instantiations_Model extends CI_Model
         $this->db->insert($this->table_events, $data);
         return $this->db->insert_id();
     }
+	/**
+	* update the events record
+	* 
+	* @param type $id
+	* @param array $data
+	* @return boolean 
+	*/
+	function update_event($id, $data)
+	{
+		$this->db->where('id', $id);
+		return $this->db->update($this->table_events, $data);
+	}
 	 /*
      *
      *  Insert the record in table_event_types table

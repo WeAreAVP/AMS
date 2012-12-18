@@ -117,11 +117,12 @@ class Googledoc extends MY_Controller
 			{
 				$event_data['event_note']=$row[9];
 			}
-			$is_exists=$this->instantiation->is_event_exists($instantiation_id,$event_data);
+			$is_exists=$this->instantiation->is_event_exists($instantiation_id,$event_data['event_types_id']);
 			if($is_exists)
 			{
 				echo "<strong><br/>Event inspection already Exists against Instantiation Id: ".$instantiation_id."</strong><br/>";
-				print_r($is_exists);
+				print_r($event_data);
+				$this->instantiation->update_event($is_exists->id,$event_data);
 			}
 			else
 			{
@@ -154,11 +155,12 @@ class Googledoc extends MY_Controller
 			{
 				$event_data['event_note']=$row[13];
 			}
-			$is_exists=$this->instantiation->is_event_exists($instantiation_id,$event_data);
+			$is_exists=$this->instantiation->is_event_exists($instantiation_id,$event_data['event_types_id']);
 			if($is_exists)
 			{
 				echo "<strong><br/>Event baked already Exists against Instantiation Id: ".$instantiation_id."</strong><br/>";
-				print_r($is_exists);
+				print_r($event_data);
+				$this->instantiation->update_event($is_exists->id,$event_data);
 			}
 			else
 			{
@@ -191,11 +193,12 @@ class Googledoc extends MY_Controller
 			{
 				$event_data['event_note']=$row[16];
 			}
-			$is_exists=$this->instantiation->is_event_exists($instantiation_id,$event_data);
+			$is_exists=$this->instantiation->is_event_exists($instantiation_id,$event_data['event_types_id']);
 			if($is_exists)
 			{
 				echo "<strong><br/>Event cleaned already Exists against Instantiation Id: ".$instantiation_id."</strong><br/>";
-				print_r($is_exists);
+				print_r($event_data);
+				$this->instantiation->update_event($is_exists->id,$event_data);
 			}
 			else
 			{
@@ -232,11 +235,12 @@ class Googledoc extends MY_Controller
 			{
 				$event_data['event_note']=$row[35];
 			}
-			$is_exists=$this->instantiation->is_event_exists($instantiation_id,$event_data);
+			$is_exists=$this->instantiation->is_event_exists($instantiation_id,$event_data['event_types_id']);
 			if($is_exists)
 			{
 				echo "<strong><br/>Event migration already Exists against Instantiation Id: ".$instantiation_id."</strong><br/>";
-				print_r($is_exists);
+				print_r($event_data);
+				$this->instantiation->update_event($is_exists->id,$event_data);
 			}
 			else
 			{

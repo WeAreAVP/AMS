@@ -2,17 +2,23 @@
 
 /**
 	* Dashboard Controller
+ * @category   AMS
+	* @package    Controller
+	* @subpackage Dashboard
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @license    CPB http://nouman.com
+	* @link       http://amsqa.avpreserve.com
 	*/
 
 /**
 	* AMS Dashboard Class
 	*
 	* @category   Controller
-	* @package    AMS
+	* @package    Class
 	* @subpackage Dashboard
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
 	* @license    CPB http://nouman.com
-	* @link       http://amsqa.avpreserve.comÏ
+	* @link       http://amsqa.avpreserve.com
 	*/
 class	Dashboard	extends	MY_Controller
 {

@@ -1,17 +1,25 @@
 <?php
-/**
-* Google Doc Controller
-*/
 
 /**
-	* Googledoc   controller.
- * 
- * @category   Controllers
+	* Google Doc Controller
+	* 
+	* @category   Controllers
 	* @package    AMS
 	* @subpackage Google_Documents_Controller
 	* @author     Ali Raza <ali@geekschicago.com>
- * @license    ams http://ams.appreserve.com
- * @link       http://ams.appreserve.com
+	* @license    ams http://ams.appreserve.com
+	* @link       http://ams.appreserve.com
+	*/
+
+/**
+	* Googledoc   controller.
+	* 
+	* @category   Controllers
+	* @package    AMS
+	* @subpackage Google_Documents_Controller
+	* @author     Ali Raza <ali@geekschicago.com>
+	* @license    ams http://ams.appreserve.com
+	* @link       http://ams.appreserve.com
 	*/
 class	Googledoc	extends	MY_Controller
 {
@@ -20,7 +28,7 @@ class	Googledoc	extends	MY_Controller
 					* Constructor.
 					* 
 					* Load the Models,Library
-				 * 
+					* 
 					* @return 
 					*/
 				function	__construct	()
@@ -32,12 +40,12 @@ class	Googledoc	extends	MY_Controller
 
 				/**
 					* Mapping Google Spreed Sheet
-				 * 
-				 * @return view
+					* 
+					* @return view
 					*/
 				function	parse_american_archive	()
 				{
-								$this->load->library	('google_spreadsheet',	array	('user' =>	'ali@geekschicago.com',	'pass' =>	'purelogics12',	'ss' =>	'test_archive',	'ws' =>	'Template'));
+								$this->load->library	('google_spreadsheet',	array	('user'									=>	'ali@geekschicago.com',	'pass'									=>	'purelogics12',	'ss'											=>	'test_archive',	'ws'											=>	'Template'));
 								$spreed_sheets	=	$this->google_spreadsheet->getAllSpreedSheetsDetails	('american_archive spreadsheet template v1 - samples');
 								if	($spreed_sheets)
 								{
@@ -53,10 +61,14 @@ class	Googledoc	extends	MY_Controller
 												break;
 								}
 				}
-				/** 
-				 * @param type array $data
-				 * @return helper
-				 */
+
+				/**
+				 * Map Data of Work sheet in to database
+				 * 
+					* @param array $data contain event data of spreed sheet
+					* 
+					* @return helper
+					*/
 				private	function	_store_event_data	($data)
 				{
 								if	(isset	($data)	&&	! empty	($data))
@@ -104,9 +116,12 @@ class	Googledoc	extends	MY_Controller
 				}
 
 				/**
-					* @param type $event_row
-					* @param type $instantiation_id
-				 * @return helper
+				 * Store or Udpate inspection event type
+				 * 
+				 * @param Array   $event_row        row of spreed sheet
+					* @param Integer $instantiation_id use to match event instantiation id
+				 * 
+					*@return helper
 					*/
 				private	function	_store_event_type_inspection	($event_row,	$instantiation_id)
 				{
@@ -115,17 +130,7 @@ class	Googledoc	extends	MY_Controller
 												$event_data	=	array	();
 												$event_type	=	'inspection';
 												$event_data['instantiations_id']	=	$instantiation_id;
-												$event_type_data	=	$this->instantiation->get_id_by_event_type	($event_type);
-												if	($event_type_data)
-												{
-																$event_data['event_types_id']	=	$event_type_data->id;
-												}
-												else
-												{
-																$event_data['event_types_id']	=	$this->instantiation->insert_event_types	(array	(
-																				'event_type'	=>	$event_type
-																								));
-												}
+												$event_data['event_types_id']	=	$this->_get_event_type	($event_type);
 												if	(isset	($event_row[8])	&&	! empty	($event_row[8]))
 												{
 																$event_data['event_date']	=	date	('Y-m-d',	strtotime	(str_replace	("'",	'',	trim	($event_row[8]))));
@@ -134,15 +139,17 @@ class	Googledoc	extends	MY_Controller
 												{
 																$event_data['event_note']	=	$event_row[9];
 												}
-												$this->_insert_or_update($instantiation_id, $event_data['event_types_id'], $event_data);
+												$this->_insert_or_update	($instantiation_id,	$event_data['event_types_id'],	$event_data);
 								}
 				}
 
 				/**
-					* @param type $event_row
-					* @param type $instantiation_id
+				 * Store or Udpate baked event type
 				 * 
-				 * @return helper
+				 * @param Array   $event_row        row of spreed sheet
+					* @param Integer $instantiation_id use to match event instantiation id
+					* 
+					* @return helper
 					*/
 				private	function	_store_event_type_baked	($event_row,	$instantiation_id)
 				{
@@ -150,17 +157,7 @@ class	Googledoc	extends	MY_Controller
 								{
 												$event_type	=	'baked';
 												$event_data['instantiations_id']	=	$instantiation_id;
-												$event_type_data	=	$this->instantiation->get_id_by_event_type	($event_type);
-												if	($event_type_data)
-												{
-																$event_data['event_types_id']	=	$event_type_data->id;
-												}
-												else
-												{
-																$event_data['event_types_id']	=	$this->instantiation->insert_event_types	(array	(
-																				'event_type'	=>	$event_type
-																								));
-												}
+												$event_data['event_types_id']	=	$this->_get_event_type	($event_type);
 												if	(isset	($event_row[12])	&&	! empty	($event_row[12]))
 												{
 																$event_data['event_date']	=	date	('Y-m-d',	strtotime	(str_replace	("'",	'',	trim	($event_row[12]))));
@@ -169,15 +166,17 @@ class	Googledoc	extends	MY_Controller
 												{
 																$event_data['event_note']	=	$event_row[13];
 												}
-												$this->_insert_or_update($instantiation_id, $event_data['event_types_id'], $event_data);
+												$this->_insert_or_update	($instantiation_id,	$event_data['event_types_id'],	$event_data);
 								}
 				}
 
 				/**
-					* @param type $event_row
-					* @param type $instantiation_id
+				 * Store or Udpate cleaned event type
 				 * 
-				 * @return helper
+				 * @param Array   $event_row        row of spreed sheet
+					* @param Integer $instantiation_id use to match event instantiation id
+					* 
+					* @return helper
 					*/
 				private	function	_store_event_type_cleaned	($event_row,	$instantiation_id)
 				{
@@ -185,17 +184,7 @@ class	Googledoc	extends	MY_Controller
 								{
 												$event_type	=	'cleaned';
 												$event_data['instantiations_id']	=	$instantiation_id;
-												$event_type_data	=	$this->instantiation->get_id_by_event_type	($event_type);
-												if	($event_type_data)
-												{
-																$event_data['event_types_id']	=	$event_type_data->id;
-												}
-												else
-												{
-																$event_data['event_types_id']	=	$this->instantiation->insert_event_types	(array	(
-																				'event_type'	=>	$event_type
-																								));
-												}
+												$event_data['event_types_id']	=	$this->_get_event_type	($event_type);
 												if	(isset	($event_row[14])	&&	! empty	($event_row[14]))
 												{
 																$event_data['event_date']	=	date	('Y-m-d',	strtotime	(str_replace	("'",	'',	trim	($event_row[14]))));
@@ -204,33 +193,25 @@ class	Googledoc	extends	MY_Controller
 												{
 																$event_data['event_note']	=	$event_row[16];
 												}
-												$this->_insert_or_update($instantiation_id, $event_data['event_types_id'], $event_data);
+												$this->_insert_or_update	($instantiation_id,	$event_data['event_types_id'],	$event_data);
 								}
 				}
 
 				/**
-					* @param array   $event_row
-					* @param integer $instantiation_id
+				 * Store or Udpate migration event type
 				 * 
-				 * @return helper
+				 * @param Array   $event_row        row of spreed sheet
+					* @param Integer $instantiation_id use to match event instantiation id
+					* 
+					* @return helper
 					*/
-				private	function	_store_event_type_migration	($event_row ,	$instantiation_id)
+				private	function	_store_event_type_migration	($event_row,	$instantiation_id)
 				{
 								if	((isset	($event_row[17])	&&	! empty	($event_row[17]))	OR	(isset	($event_row[34])	&&	! empty	($event_row[34]))	OR	(isset	($event_row[35])	&&	! empty	($event_row[35])))
 								{
 												$event_type	=	'migration';
 												$event_data['instantiations_id']	=	$instantiation_id;
-												$event_type_data	=	$this->instantiation->get_id_by_event_type	($event_type);
-												if	($event_type_data)
-												{
-																$event_data['event_types_id']	=	$event_type_data->id;
-												}
-												else
-												{
-																$event_data['event_types_id']	=	$this->instantiation->insert_event_types	(array	(
-																				'event_type'	=>	$event_type
-																								));
-												}
+												$event_data['event_types_id']	=	$this->_get_event_type	($event_type);
 												if	(isset	($event_row[17])	&&	! empty	($event_row[17]))
 												{
 																$event_data['event_date']	=	date	('Y-m-d',	strtotime	(str_replace	("'",	'',	trim	($event_row[17]))));
@@ -243,17 +224,20 @@ class	Googledoc	extends	MY_Controller
 												{
 																$event_data['event_note']	=	$event_row[35];
 												}
-												$this->_insert_or_update($instantiation_id, $event_data['event_types_id'], $event_data);
+												$this->_insert_or_update	($instantiation_id,	$event_data['event_types_id'],	$event_data);
 								}
 				}
+
 				/**
-				 * @param type $instantiation_id
-				 * @param type $event_types_id
-				 * @param type $event_data
-				 * 
-				 * @return helper
-				 */
-				private function _insert_or_update($instantiation_id,	$event_types_id, $event_data)
+					* Insert or update event 
+					* 
+					* @param Integer $instantiation_id use to match instantiation
+					* @param Integer $event_types_id   use to event_types_id
+					* @param Array   $event_data       use to insert event type
+					* 
+					* @return helper
+					*/
+				private	function	_insert_or_update	($instantiation_id,	$event_types_id,	$event_data)
 				{
 								$is_exists	=	$this->instantiation->is_event_exists	($instantiation_id,	$event_types_id);
 								if	($is_exists)
@@ -267,10 +251,34 @@ class	Googledoc	extends	MY_Controller
 												echo	'<strong><br/>New migration event against Instantiation Id: '	.	$instantiation_id	.	'</strong><br/>';
 												print_r	($event_data);
 												$this->instantiation->insert_event	($event_data);
-								}	
+								}
+				}
+
+				/**
+					* Get event type Id on event_type base else store event  
+					* 
+					* @param string $event_type use to check/store event types
+					* 
+					* @return integer event_types_id
+					*/
+				private	function	_get_event_type	($event_type)
+				{
+								$event_type_data	=	$this->instantiation->get_id_by_event_type	($event_type);
+								if	($event_type_data)
+								{
+												$event_types_id	=	$event_type_data->id;
+								}
+								else
+								{
+												$event_types_id	=	$this->instantiation->insert_event_types	(array	(
+																'event_type'	=>	$event_type
+																				));
+								}
+								return	$event_types_id;
 				}
 
 }
+
 // END Google Doc Controller
 
 // End of file googledoc.php

@@ -520,7 +520,54 @@ class Instantiations_Model extends CI_Model
         $this->db->insert($this->table_event_types, $data);
         return $this->db->insert_id();
     }
+/**
+					* Insert or update event 
+					* 
+					* @param Integer $instantiation_id use to match instantiation
+					* @param Integer $event_types_id   use to event_types_id
+					* @param Array   $event_data       use to insert event type
+					* 
+					* @return helper
+					*/
+				function	_insert_or_update_event	($instantiation_id,	$event_types_id,	$event_data)
+				{
+								$is_exists	=	$this->is_event_exists	($instantiation_id,	$event_types_id);
+								if	($is_exists)
+								{
+												echo	'<strong><br/>Event migration already Exists against Instantiation Id: '	.	$instantiation_id	.	'</strong><br/>';
+												print_r	($event_data);
+												$this->update_event	($is_exists->id,	$event_data);
+								}
+								else
+								{
+												echo	'<strong><br/>New migration event against Instantiation Id: '	.	$instantiation_id	.	'</strong><br/>';
+												print_r	($event_data);
+												$this->insert_event	($event_data);
+								}
+				}
 
+				/**
+					* Get event type Id on event_type base else store event  
+					* 
+					* @param string $event_type use to check/store event types
+					* 
+					* @return integer event_types_id
+					*/
+				function	_get_event_type	($event_type)
+				{
+								$event_type_data	=	$this->get_id_by_event_type	($event_type);
+								if	($event_type_data)
+								{
+												$event_types_id	=	$event_type_data->id;
+								}
+								else
+								{
+												$event_types_id	=	$this->insert_event_types	(array	(
+																'event_type'	=>	$event_type
+																				));
+								}
+								return	$event_types_id;
+				}
 }
 
 ?>

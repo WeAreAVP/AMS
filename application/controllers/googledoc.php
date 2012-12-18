@@ -77,42 +77,49 @@ class	Googledoc	extends	MY_Controller
 								{
 												foreach	($data	as	$event_row)
 												{
-																if	(isset	($event_row[2])	&&	! empty	($event_row[2])	&&	isset	($event_row[5])	&&	! empty	($event_row[5]))
+																if(isset($event_row[33]) && ! empty($event_row[33]) && strtolower($event_row[33]) !== 'no')
 																{
-																				$instantiation	=	$this->instantiation->get_instantiation_by_guid_physical_format	($event_row[2],	$event_row[5]);
-																				if	($instantiation)
+																				if	(isset	($event_row[2])	&&	! empty	($event_row[2])	&&	isset	($event_row[5])	&&	! empty	($event_row[5]))
 																				{
-																								echo	'<pre>';
-																								$instantiation_data	=	array	();
-																								if	(isset	($event_row[32])	&&	! empty	($event_row[32]))
+																								$instantiation	=	$this->instantiation->get_instantiation_by_guid_physical_format	($event_row[2],	$event_row[5]);
+																								if	($instantiation)
 																								{
-																												$instantiation_data['channel_configuration']	=	$event_row[32];
-																								}
-																								if	(isset	($event_row[33])	&&	! empty	($event_row[33]))
-																								{
-																												$instantiation_data['alternative_modes']	=	$event_row[33];
-																								}
-																								if	(isset	($event_row[42])	&&	! empty	($event_row[42]))
-																								{
-																												if	(isset	($instantiation->generation)	&&	! empty	($instantiation->generation))
+																												echo	'<pre>';
+																												$instantiation_data	=	array	();
+																												if	(isset	($event_row[32])	&&	! empty	($event_row[32]))
 																												{
-																																if	($instantiation->generation	===	'Preservation Master'	OR	$instantiation->generation	===	'Mezzanine'	OR	$instantiation->generation	===	'Proxy')
+																																$instantiation_data['channel_configuration']	=	$event_row[32];
+																												}
+																												if	(isset	($event_row[33])	&&	! empty	($event_row[33]))
+																												{
+																																$instantiation_data['alternative_modes']	=	$event_row[33];
+																												}
+																												if	(isset	($event_row[42])	&&	! empty	($event_row[42]))
+																												{
+																																if	(isset	($instantiation->generation)	&&	! empty	($instantiation->generation))
 																																{
-																																				$instantiation_data['location']	=	$event_row[42];
+																																				if	($instantiation->generation	===	'Preservation Master'	OR	$instantiation->generation	===	'Mezzanine'	OR	$instantiation->generation	===	'Proxy')
+																																				{
+																																								$instantiation_data['location']	=	$event_row[42];
+																																				}
 																																}
 																												}
+																												echo	'<strong>Instantiation Table Changes According to american_archive spreadsheet template v1 Description <br/>Instantiation Id :'	.	$instantiation->id	.	'</strong><br>';
+																												print_r	($instantiation_data);
+																												$this->instantiation->update_instantiations	($instantiation->id,	$instantiation_data);
+																												echo	'<br> <strong>Events Table changes</strong> <br/>';
+																												$this->_store_event_type_inspection	($event_row,	$instantiation->id);
+																												$this->_store_event_type_baked	($event_row,	$instantiation->id);
+																												$this->_store_event_type_cleaned	($event_row,	$instantiation->id);
+																												$this->_store_event_type_migration	($event_row,	$instantiation->id);
+																												exit(0);
+
 																								}
-																								echo	'<strong>Instantiation Table Changes According to american_archive spreadsheet template v1 Description <br/>Instantiation Id :'	.	$instantiation->id	.	'</strong><br>';
-																								print_r	($instantiation_data);
-																								$this->instantiation->update_instantiations	($instantiation->id,	$instantiation_data);
-																								echo	'<br> <strong>Events Table changes</strong> <br/>';
-																								$this->_store_event_type_inspection	($event_row,	$instantiation->id);
-																								$this->_store_event_type_baked	($event_row,	$instantiation->id);
-																								$this->_store_event_type_cleaned	($event_row,	$instantiation->id);
-																								$this->_store_event_type_migration	($event_row,	$instantiation->id);
-																								exit(0);
-																						
 																				}
+																}
+																else
+																{
+																				echo "<br/>As Closed Caption is <strong>NO</strong><br/>";
 																}
 												}
 								}

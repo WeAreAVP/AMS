@@ -2,17 +2,17 @@
 
 /**
 	* AMS Stations Controller
- * 
- * PHP version 5
- * 
+	* 
+	* PHP version 5
+	* 
 	* @category   AMS
 	* @package    CI
 	* @subpackage Controller
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
 	* @license    CPB http://nouman.com
- * @version    GIT: <$Id>
+	* @version    GIT: <$Id>
 	* @link       http://amsqa.avpreserve.com
- 
+
 	*/
 
 /**
@@ -76,7 +76,7 @@ class	Stations	extends	MY_Controller
 								{
 												$data['is_ajax']	=	TRUE;
 												echo	$this->load->view	('stations/list',	$data,	TRUE);
-												return true;
+												return	TRUE;
 								}
 								else
 								{
@@ -130,7 +130,7 @@ class	Stations	extends	MY_Controller
 
 
 												echo	json_encode	(array	('success'	=>	TRUE,	'station'	=>	$station,	'total'			=>	count	($station_ids)));
-												return true;
+												return	TRUE;
 								}
 								show_404	();
 				}
@@ -153,7 +153,7 @@ class	Stations	extends	MY_Controller
 																$this->station_model->insert_station_backup	($backup_record);
 												}
 												echo	json_encode	(array	('success'	=>	TRUE,	'records'	=>	$records));
-												return true;
+												return	TRUE;
 								}
 								show_404	();
 				}
@@ -170,7 +170,7 @@ class	Stations	extends	MY_Controller
 												$stations_id	=	$this->input->post	('id');
 												$records	=	$this->station_model->get_stations_by_id	($stations_id);
 												echo	json_encode	(array	('success'	=>	TRUE,	'records'	=>	$records));
-												return true;
+												return	TRUE;
 								}
 								show_404	();
 				}
@@ -178,7 +178,7 @@ class	Stations	extends	MY_Controller
 				/**
 					* Undo the last edited stations
 					* 
-				 * @return redirect to index method
+					* @return redirect to index method
 					*/
 				public	function	undostations	()
 				{
@@ -197,7 +197,7 @@ class	Stations	extends	MY_Controller
 				/**
 					* Get Staions info for sending messages
 					* 
-				 * @return json
+					* @return json
 					*/
 				public	function	get_stations_info	()
 				{
@@ -205,7 +205,7 @@ class	Stations	extends	MY_Controller
 								{
 												$stations	=	$this->input->post	('stations');
 												$list	=	array	();
-												foreach	($stations	as		$station_id)
+												foreach	($stations	as	$station_id)
 												{
 
 																$station_info	=	$this->station_model->get_station_by_id	($station_id);
@@ -222,7 +222,7 @@ class	Stations	extends	MY_Controller
 																}
 												}
 												echo	json_encode	($list);
-												return true;
+												return	TRUE;
 								}
 								show_404	();
 				}
@@ -230,7 +230,7 @@ class	Stations	extends	MY_Controller
 				/**
 					* Update the satation start date
 					* 
-				 * @return json
+					* @return json
 					*/
 				public	function	update_dsd_station	()
 				{
@@ -246,7 +246,7 @@ class	Stations	extends	MY_Controller
 																$this->sphinx->update_indexes	('stations',	array	('start_date'),	array	($station_id	=>	array	((int)	strtotime	($start_date))));
 												}
 												echo	json_encode	(array	('success'	=>	TRUE));
-												return true;
+												return	TRUE;
 								}
 								show_404	();
 				}

@@ -123,6 +123,7 @@ class	Googledoc	extends	MY_Controller
 																}
 												}
 								}
+								exit(0);
 				}
 
 				/**

@@ -1,12 +1,28 @@
 <?php
 
 /**
-	* AMS Settings Controller
+	* Settings Controller
 	* 
-	* @package		AMS
-	* @subpackage	Settings Controller
-	* @category	Controllers
-	* @author		Nouman Tayyab <nouman@geekschicago.com>
+	* PHP version 5
+	* 
+	* @category   AMS
+	* @package    CI
+	* @subpackage Controller
+	* @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @license    CPB http://nouman.com
+	* @version    GIT: <$Id>
+	* @link       http://amsqa.avpreserve.com
+	*/
+
+/**
+	* Settings Class
+	*
+	* @category   Class
+	* @package    CI
+	* @subpackage Controller
+	* @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @license    CPB http://nouman.com
+	* @link       http://amsqa.avpreserve.com
 	*/
 class	Settings	extends	MY_Controller
 {
@@ -25,7 +41,8 @@ class	Settings	extends	MY_Controller
 
 				/**
 					* Redirect to users function
-					*  
+				 * 
+				 * @return redirect to index method 
 					*/
 				public	function	index	()
 				{
@@ -37,18 +54,17 @@ class	Settings	extends	MY_Controller
 					* 
 					* It receives 2 post parameters with ajax call for user filteration
 					* 
-					* @param integer $station_id
-					* @param integer $role_id 
+					* @return settings/user view
 					*/
 				public	function	users	()
 				{
 								$data['current_role']	=	$currentRoleID	=	$this->role_id;
-								$data['is_ajax']	=	false;
+								$data['is_ajax']	=	FALSE;
 								$roles	=	$this->roles->get_roles_list	($currentRoleID)->result	();
 								$params	=	null;
 								if	(isAjax	())
 								{
-												$data['is_ajax']	=	true;
+												$data['is_ajax']	=	TRUE;
 												$params	=	array	('station_id'	=>	$this->input->post	('station_id'),	'role_id'				=>	$this->input->post	('role_id'));
 								}
 
@@ -68,7 +84,7 @@ class	Settings	extends	MY_Controller
 								if	(isAjax	())
 								{
 												echo	$this->load->view	('settings/user',	$data,	TRUE);
-												exit;
+												return TRUE;
 								}
 								$this->load->view	('settings/user',	$data);
 				}
@@ -94,7 +110,8 @@ class	Settings	extends	MY_Controller
 
 				/**
 					* Create a new User
-					*  
+					*
+				 * @return settings/user view
 					*/
 				public	function	add_user	()
 				{

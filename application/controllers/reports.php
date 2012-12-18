@@ -1,15 +1,28 @@
 <?php
 
-if	(!defined	('BASEPATH'))
-				exit	('No direct script access allowed');
+/**
+	* Reports Controller
+	* 
+	* PHP version 5
+	* 
+	* @category   AMS
+	* @package    CI
+	* @subpackage Controller
+	* @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @license    CPB http://nouman.com
+	* @version    GIT: <$Id>
+	* @link       http://amsqa.avpreserve.com
+	*/
 
 /**
-	* AMS Reports Controller
-	* 
-	* @package		AMS
-	* @subpackage	Reports Controller
-	* @category	Controllers
-	* @author		Nouman Tayyab <nouman@geekschicago.com>
+	* Reports Class
+	*
+	* @category   Class
+	* @package    CI
+	* @subpackage Controller
+	* @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @license    CPB http://nouman.com
+	* @link       http://amsqa.avpreserve.com
 	*/
 class	Reports	extends	MY_Controller
 {
@@ -28,7 +41,8 @@ class	Reports	extends	MY_Controller
 
 				/**
 					* List All types of reports
-					*  
+					* 
+					* @return reports/index view 
 					*/
 				function	index	()
 				{
@@ -37,8 +51,9 @@ class	Reports	extends	MY_Controller
 				}
 
 				/**
-					*
 					* To List All Email Sent Through this System With Possible Filters
+					* 
+					* @return mixed
 					*
 					*/
 				function	emailalerts	()
@@ -50,5 +65,5 @@ class	Reports	extends	MY_Controller
 
 // END Reports Controller
 
-/* End of file reports.php */
+// End of file reports.php
 /* Location: ./application/controllers/reports.php */

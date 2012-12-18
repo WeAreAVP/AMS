@@ -37,7 +37,7 @@ class	Googledoc	extends	MY_Controller
 					*/
 				function	parse_american_archive	()
 				{
-								$this->load->library	('google_spreadsheet',	array	('user'									=>	'ali@geekschicago.com',	'pass'									=>	'purelogics12',	'ss'											=>	'test_archive',	'ws'											=>	'Template'));
+								$this->load->library	('google_spreadsheet',	array	('user' =>	'ali@geekschicago.com',	'pass' =>	'purelogics12',	'ss' =>	'test_archive',	'ws' =>	'Template'));
 								$spreed_sheets	=	$this->google_spreadsheet->getAllSpreedSheetsDetails	('american_archive spreadsheet template v1 - samples');
 								if	($spreed_sheets)
 								{

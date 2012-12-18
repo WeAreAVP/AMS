@@ -2,6 +2,8 @@
 
 /**
 	* Google Doc Controller
+	*  
+	* PHP version 5
 	* 
 	* @category   Controllers
 	* @package    AMS
@@ -108,7 +110,8 @@ class	Googledoc	extends	MY_Controller
 																								$this->_store_event_type_baked	($event_row,	$instantiation->id);
 																								$this->_store_event_type_cleaned	($event_row,	$instantiation->id);
 																								$this->_store_event_type_migration	($event_row,	$instantiation->id);
-																								exit	();
+																								exit(0);
+																						
 																				}
 																}
 												}

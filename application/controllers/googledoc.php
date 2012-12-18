@@ -53,8 +53,7 @@ class	Googledoc	extends	MY_Controller
 												break;
 								}
 				}
-				/**
-				 * 
+				/** 
 				 * @param type array $data
 				 * @return helper
 				 */
@@ -105,7 +104,6 @@ class	Googledoc	extends	MY_Controller
 				}
 
 				/**
-					* 
 					* @param type $event_row
 					* @param type $instantiation_id
 				 * @return helper
@@ -136,26 +134,14 @@ class	Googledoc	extends	MY_Controller
 												{
 																$event_data['event_note']	=	$event_row[9];
 												}
-												$is_exists	=	$this->instantiation->is_event_exists	($instantiation_id,	$event_data['event_types_id']);
-												if	($is_exists)
-												{
-																echo	'<strong><br/>Event inspection already Exists against Instantiation Id: '	.	$instantiation_id	.	'</strong><br/>';
-																print_r	($event_data);
-																$this->instantiation->update_event	($is_exists->id,	$event_data);
-												}
-												else
-												{
-																echo	'<strong><br/>New inspection event against Instantiation Id: '	.	$instantiation_id	.	'</strong><br/>';
-																print_r	($event_data);
-																$this->instantiation->insert_event	($event_data);
-												}
+												$this->_insert_or_update($instantiation_id, $event_data['event_types_id'], $event_data);
 								}
 				}
 
 				/**
-					* 
 					* @param type $event_row
 					* @param type $instantiation_id
+				 * 
 				 * @return helper
 					*/
 				private	function	_store_event_type_baked	($event_row,	$instantiation_id)
@@ -183,26 +169,14 @@ class	Googledoc	extends	MY_Controller
 												{
 																$event_data['event_note']	=	$event_row[13];
 												}
-												$is_exists	=	$this->instantiation->is_event_exists	($instantiation_id,	$event_data['event_types_id']);
-												if	($is_exists)
-												{
-																echo	'<strong><br/>Event baked already Exists against Instantiation Id: '	.	$instantiation_id	.	'</strong><br/>';
-																print_r	($event_data);
-																$this->instantiation->update_event	($is_exists->id,	$event_data);
-												}
-												else
-												{
-																echo	'<strong><br/>New baked event against Instantiation Id: '	.	$instantiation_id	.	'</strong><br/>';
-																print_r	($event_data);
-																$this->instantiation->insert_event	($event_data);
-												}
+												$this->_insert_or_update($instantiation_id, $event_data['event_types_id'], $event_data);
 								}
 				}
 
 				/**
-					* 
 					* @param type $event_row
 					* @param type $instantiation_id
+				 * 
 				 * @return helper
 					*/
 				private	function	_store_event_type_cleaned	($event_row,	$instantiation_id)
@@ -230,25 +204,13 @@ class	Googledoc	extends	MY_Controller
 												{
 																$event_data['event_note']	=	$event_row[16];
 												}
-												$is_exists	=	$this->instantiation->is_event_exists	($instantiation_id,	$event_data['event_types_id']);
-												if	($is_exists)
-												{
-																echo	'<strong><br/>Event cleaned already Exists against Instantiation Id: '	.	$instantiation_id	.	'</strong><br/>';
-																print_r	($event_data);
-																$this->instantiation->update_event	($is_exists->id,	$event_data);
-												}
-												else
-												{
-																echo	'<strong><br/>New cleaned event against Instantiation Id: '	.	$instantiation_id	.	'</strong><br/>';
-																print_r	($event_data);
-																$this->instantiation->insert_event	($event_data);
-												}
+												$this->_insert_or_update($instantiation_id, $event_data['event_types_id'], $event_data);
 								}
 				}
 
 				/**
-					* @param type array   $event_row
-					* @param type integer $instantiation_id
+					* @param array   $event_row
+					* @param integer $instantiation_id
 				 * 
 				 * @return helper
 					*/
@@ -281,20 +243,31 @@ class	Googledoc	extends	MY_Controller
 												{
 																$event_data['event_note']	=	$event_row[35];
 												}
-												$is_exists	=	$this->instantiation->is_event_exists	($instantiation_id,	$event_data['event_types_id']);
-												if	($is_exists)
-												{
-																echo	'<strong><br/>Event migration already Exists against Instantiation Id: '	.	$instantiation_id	.	'</strong><br/>';
-																print_r	($event_data);
-																$this->instantiation->update_event	($is_exists->id,	$event_data);
-												}
-												else
-												{
-																echo	'<strong><br/>New migration event against Instantiation Id: '	.	$instantiation_id	.	'</strong><br/>';
-																print_r	($event_data);
-																$this->instantiation->insert_event	($event_data);
-												}
+												$this->_insert_or_update($instantiation_id, $event_data['event_types_id'], $event_data);
 								}
+				}
+				/**
+				 * @param type $instantiation_id
+				 * @param type $event_types_id
+				 * @param type $event_data
+				 * 
+				 * @return helper
+				 */
+				private function _insert_or_update($instantiation_id,	$event_types_id, $event_data)
+				{
+								$is_exists	=	$this->instantiation->is_event_exists	($instantiation_id,	$event_data['event_types_id']);
+								if	($is_exists)
+								{
+												echo	'<strong><br/>Event migration already Exists against Instantiation Id: '	.	$instantiation_id	.	'</strong><br/>';
+												print_r	($event_data);
+												$this->instantiation->update_event	($is_exists->id,	$event_data);
+								}
+								else
+								{
+												echo	'<strong><br/>New migration event against Instantiation Id: '	.	$instantiation_id	.	'</strong><br/>';
+												print_r	($event_data);
+												$this->instantiation->insert_event	($event_data);
+								}	
 				}
 
 }

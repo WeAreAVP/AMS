@@ -90,7 +90,7 @@ class	Instantiations	extends	MY_Controller
 								$data['table_type']	=	'instantiation';
 								foreach	($this->column_order	as	$index	=>	$value)
 								{
-												if	($value['hidden']	==	1)
+												if	($value['hidden']	===	1)
 																$is_hidden[]	=	$index;
 								}
 								$data['hidden_fields']	=	$is_hidden;
@@ -102,7 +102,7 @@ class	Instantiations	extends	MY_Controller
 								$config['per_page']	=	100;
 								$data['records']	=	$records['records'];
 								$data['count']	=	count	($data['records']);
-								if	($data['count']	>	0	&&	$offset	==	0)
+								if	($data['count']	>	0	&&	$offset	===	0)
 								{
 												$data['start']	=	1;
 												$data['end']	=	$data['count'];

@@ -255,7 +255,7 @@ class	Googledoc	extends	MY_Controller
 				 */
 				private function _insert_or_update($instantiation_id,	$event_types_id, $event_data)
 				{
-								$is_exists	=	$this->instantiation->is_event_exists	($instantiation_id,	$event_data['event_types_id']);
+								$is_exists	=	$this->instantiation->is_event_exists	($instantiation_id,	$event_types_id);
 								if	($is_exists)
 								{
 												echo	'<strong><br/>Event migration already Exists against Instantiation Id: '	.	$instantiation_id	.	'</strong><br/>';

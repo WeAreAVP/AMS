@@ -130,7 +130,7 @@ class	Stations	extends	MY_Controller
 
 
 												echo	json_encode	(array	('success'	=>	TRUE,	'station'	=>	$station,	'total'			=>	count	($station_ids)));
-												return	TRUE;
+												exit;
 								}
 								show_404	();
 				}

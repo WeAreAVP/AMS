@@ -46,7 +46,11 @@ class	Dashboard	extends	MY_Controller
 								$data	=	NULL;
 								$this->load->view	('dashboard/index',	$data);
 				}
-				
+				/*
+				 * This is a "Block Comment."  The format is the same as
+     * Docblock Comments except there is only one asterisk at the
+     * top.  phpDocumentor doesn't parse these.
+     */
 }
 
 // END Dashboard Controller

@@ -126,7 +126,7 @@ class	Instantiations	extends	MY_Controller
 								{
 												$data['isAjax']	=	TRUE;
 												echo	$this->load->view	('instantiations/index',	$data,	TRUE);
-												return TRUE;
+												exit;
 								}
 								$this->load->view	('instantiations/index',	$data);
 				}
@@ -181,7 +181,7 @@ class	Instantiations	extends	MY_Controller
 												$data	=	array	('view_settings'	=>	$settings,	'frozen_column'	=>	$freeze_columns);
 												$this->user_settings->update_setting	($user_id,	$table_type,	$data);
 												echo	json_encode	(array	('success'	=>	TRUE));
-												return TRUE;
+												exit;
 								}
 								show_404	();
 				}

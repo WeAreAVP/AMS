@@ -1,7 +1,10 @@
 <?php
+/**
+* Google Doc Controller
+*/
 
 /**
-	* Google Doc controller.
+	* Googledoc   controller.
  * 
  * @category   Controllers
 	* @package    AMS

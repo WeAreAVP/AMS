@@ -3,20 +3,24 @@
 /**
 	* AMS Stations Controller
  * 
+ * PHP version 5
+ * 
 	* @category   AMS
-	* @package    Controller
-	* @subpackage Stations
+	* @package    CI
+	* @subpackage Controller
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
 	* @license    CPB http://nouman.com
+ * @version    GIT: <$Id>
 	* @link       http://amsqa.avpreserve.com
+ 
 	*/
 
 /**
 	* Stations Class
 	*
-	* @category   Controller
-	* @package    Class
-	* @subpackage Stations
+	* @category   Class
+	* @package    CI
+	* @subpackage Controller
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
 	* @license    CPB http://nouman.com
 	* @link       http://amsqa.avpreserve.com/stations
@@ -40,12 +44,7 @@ class	Stations	extends	MY_Controller
 				/**
 					* List all the stations and also filters stations
 					* 
-					* It receives 3 post parameters are received with ajax call
-					* 
-					* @param string  $search_keyword search keyword
-					* @param boolean $certified value of certified
-					* @param boolean $agreed value for agreed
-					*  
+					* @return stations/list view  
 					*/
 				public	function	index	()
 				{
@@ -90,7 +89,7 @@ class	Stations	extends	MY_Controller
 				/**
 					* Show Detail of specific station
 					* 
-					* @param $station_id as a uri segment
+					* @return stations/detail  
 					*/
 				public	function	detail	()
 				{
@@ -105,8 +104,6 @@ class	Stations	extends	MY_Controller
 				/**
 					* set or update the start time of station.
 					* 
-					* @param $id get id of a station
-					* @param $start_date get station start date
 					* @return json 
 					*/
 				public	function	update_stations	()
@@ -141,7 +138,6 @@ class	Stations	extends	MY_Controller
 				/**
 					*  Get List of stations by Id by Ajax Request.
 					*  
-					* @param $id as post parameter
 					* @return json
 					*/
 				public	function	get_stations	()
@@ -165,7 +161,6 @@ class	Stations	extends	MY_Controller
 				/**
 					* Get a list of stations for DSD
 					* 
-					* @param $id as post parameter
 					* @return json
 					*/
 				public	function	get_dsd_stations	()
@@ -182,7 +177,8 @@ class	Stations	extends	MY_Controller
 
 				/**
 					* Undo the last edited stations
-					*  
+					* 
+				 * @return redirect to index method
 					*/
 				public	function	undostations	()
 				{
@@ -200,7 +196,8 @@ class	Stations	extends	MY_Controller
 
 				/**
 					* Get Staions info for sending messages
-					*  
+					* 
+				 * @return json
 					*/
 				public	function	get_stations_info	()
 				{
@@ -208,7 +205,7 @@ class	Stations	extends	MY_Controller
 								{
 												$stations	=	$this->input->post	('stations');
 												$list	=	array	();
-												foreach	($stations	as	$index	=>	$station_id)
+												foreach	($stations	as		$station_id)
 												{
 
 																$station_info	=	$this->station_model->get_station_by_id	($station_id);
@@ -233,6 +230,7 @@ class	Stations	extends	MY_Controller
 				/**
 					* Update the satation start date
 					* 
+				 * @return json
 					*/
 				public	function	update_dsd_station	()
 				{

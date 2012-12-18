@@ -2,20 +2,24 @@
 
 /**
 	* Dashboard Controller
- * @category   AMS
-	* @package    Controller
-	* @subpackage Dashboard
- * @author     Nouman Tayyab <nouman@geekschicago.com>
+	* 
+	* PHP version 5
+	* 
+	* @category   AMS
+	* @package    CI
+	* @subpackage Controller
+	* @author     Nouman Tayyab <nouman@geekschicago.com>
 	* @license    CPB http://nouman.com
+	* @version    GIT: <$Id>
 	* @link       http://amsqa.avpreserve.com
 	*/
 
 /**
 	* AMS Dashboard Class
 	*
-	* @category   Controller
-	* @package    Class
-	* @subpackage Dashboard
+	* @category   Class
+	* @package    CI
+	* @subpackage Controller
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
 	* @license    CPB http://nouman.com
 	* @link       http://amsqa.avpreserve.com
@@ -46,7 +50,7 @@ class	Dashboard	extends	MY_Controller
 								$data	=	NULL;
 								$this->load->view	('dashboard/index',	$data);
 				}
-				
+
 }
 
 // END Dashboard Controller

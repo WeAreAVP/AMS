@@ -89,6 +89,7 @@
   <exec executable="phpcs" output="/dev/null">
    <arg line="--report=checkstyle
 			  --standard=CodeIgniter
+              --tab-width=4
               --report-file=${basedir}/build/logs/checkstyle.xml
               ${filesProcess.processed}" />
   </exec>

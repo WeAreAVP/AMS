@@ -43,16 +43,13 @@ class	Dashboard	extends	MY_Controller
 					* Dashboard Functionality
 					* 
 					* @return view dashboard/index
-					*  
 					*/
 				public	function	index	()
 				{
 								$data	=	NULL;
 								$this->load->view	('dashboard/index',	$data);
 				}
-
 }
-
 // END Dashboard Controller
 
 // End of file dashboard.php 

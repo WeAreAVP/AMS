@@ -76,7 +76,7 @@ class	Stations	extends	MY_Controller
 								{
 												$data['is_ajax']	=	TRUE;
 												echo	$this->load->view	('stations/list',	$data,	TRUE);
-												exit;
+												return true;
 								}
 								else
 								{
@@ -130,7 +130,7 @@ class	Stations	extends	MY_Controller
 
 
 												echo	json_encode	(array	('success'	=>	TRUE,	'station'	=>	$station,	'total'			=>	count	($station_ids)));
-												exit;
+												return true;
 								}
 								show_404	();
 				}
@@ -153,7 +153,7 @@ class	Stations	extends	MY_Controller
 																$this->station_model->insert_station_backup	($backup_record);
 												}
 												echo	json_encode	(array	('success'	=>	TRUE,	'records'	=>	$records));
-												exit;
+												return true;
 								}
 								show_404	();
 				}
@@ -170,7 +170,7 @@ class	Stations	extends	MY_Controller
 												$stations_id	=	$this->input->post	('id');
 												$records	=	$this->station_model->get_stations_by_id	($stations_id);
 												echo	json_encode	(array	('success'	=>	TRUE,	'records'	=>	$records));
-												exit;
+												return true;
 								}
 								show_404	();
 				}
@@ -222,7 +222,7 @@ class	Stations	extends	MY_Controller
 																}
 												}
 												echo	json_encode	($list);
-												exit;
+												return true;
 								}
 								show_404	();
 				}
@@ -246,7 +246,7 @@ class	Stations	extends	MY_Controller
 																$this->sphinx->update_indexes	('stations',	array	('start_date'),	array	($station_id	=>	array	((int)	strtotime	($start_date))));
 												}
 												echo	json_encode	(array	('success'	=>	TRUE));
-												exit;
+												return true;
 								}
 								show_404	();
 				}

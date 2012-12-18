@@ -1,12 +1,25 @@
 <?php
 
 /**
-	* Stations controller.
+	* AMS Stations Controller
+ * 
+	* @category   AMS
+	* @package    Controller
+	* @subpackage Stations
+	* @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @license    CPB http://nouman.com
+	* @link       http://amsqa.avpreserve.com
+	*/
+
+/**
+	* Stations Class
 	*
-	* @package    AMS
-	* @subpackage Stations Controller
-	* @category	Controllers
-	* @author		Nouman Tayyab <nouman@geekschicago.com>
+	* @category   Controller
+	* @package    Class
+	* @subpackage Stations
+	* @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @license    CPB http://nouman.com
+	* @link       http://amsqa.avpreserve.com/stations
 	*/
 class	Stations	extends	MY_Controller
 {
@@ -195,19 +208,19 @@ class	Stations	extends	MY_Controller
 								{
 												$stations	=	$this->input->post	('stations');
 												$list	=	array	();
-												foreach	($stations	as	$key	=>	$id)
+												foreach	($stations	as	$index	=>	$station_id)
 												{
 
-																$station_info	=	$this->station_model->get_station_by_id	($id);
+																$station_info	=	$this->station_model->get_station_by_id	($station_id);
 																if	(count	($station_info)	>	0)
 																{
-																				if	(empty	($station_info->start_date)	||	$station_info->start_date	==	null)
+																				if	(empty	($station_info->start_date)	OR	$station_info->start_date	===	NULL)
 																				{
-																								$list[]	=	array	('station_id'			=>	$id,	'dsd'										=>	'',	'station_name'	=>	$station_info->station_name);
+																								$list[]	=	array	('station_id'			=>	$station_id,	'dsd'										=>	'',	'station_name'	=>	$station_info->station_name);
 																				}
 																				else
 																				{
-																								$list[]	=	array	('station_id'			=>	$id,	'dsd'										=>	$station_info->start_date,	'station_name'	=>	$station_info->station_name);
+																								$list[]	=	array	('station_id'			=>	$station_id,	'dsd'										=>	$station_info->start_date,	'station_name'	=>	$station_info->station_name);
 																				}
 																}
 												}
@@ -216,21 +229,23 @@ class	Stations	extends	MY_Controller
 								}
 								show_404	();
 				}
+
 				/**
-				 * Update the satation start date
-				 */
+					* Update the satation start date
+					* 
+					*/
 				public	function	update_dsd_station	()
 				{
 								if	(isAjax	())
 								{
 												$dates	=	$this->input->post	();
-												foreach	($dates	as	$key	=>	$value)
+												foreach	($dates	as	$index	=>	$value)
 												{
-																$station_id	=	explode	('_',	$key);
+																$station_id	=	explode	('_',	$index);
 																$station_id	=	$station_id[count	($station_id)	-	1];
-																$dsd	=	date	('Y-m-d',	strtotime	($value));
-																$this->station_model->update_station	($station_id,	array	('start_date'	=>	$dsd));
-																$this->sphinx->update_indexes	('stations',	array	('start_date'),	array	($station_id	=>	array	((int)	strtotime	($dsd))));
+																$start_date	=	date	('Y-m-d',	strtotime	($value));
+																$this->station_model->update_station	($station_id,	array	('start_date'	=>	$start_date));
+																$this->sphinx->update_indexes	('stations',	array	('start_date'),	array	($station_id	=>	array	((int)	strtotime	($start_date))));
 												}
 												echo	json_encode	(array	('success'	=>	TRUE));
 												exit;

@@ -6,9 +6,9 @@ if (!defined('BASEPATH'))
 /**
  * AMS Dashboard Controller
  *
+ * @category	Controller
  * @package		AMS
  * @subpackage	Dashboard Controller
- * @category	Controllers
  * @author		Nouman Tayyab <nouman@geekschicago.com>
  */
 class Dashboard extends MY_Controller
@@ -40,5 +40,5 @@ class Dashboard extends MY_Controller
 
 // END Dashboard Controller
 
-/* End of file dashboard.php */
+// End of file dashboard.php 
 /* Location: ./application/controllers/dashboard.php */

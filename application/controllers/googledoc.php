@@ -36,7 +36,7 @@ class	Googledoc	extends	MY_Controller
 				function	__construct	()
 				{
 								parent::__construct	();
-								$this->layout	=	'';
+								$this->layout	=	'main_layout.php';
 								$this->load->model	('instantiations_model',	'instantiation');
 				}
 
@@ -110,7 +110,7 @@ class	Googledoc	extends	MY_Controller
 																								$this->_store_event_type_baked	($event_row,	$instantiation->id);
 																								$this->_store_event_type_cleaned	($event_row,	$instantiation->id);
 																								$this->_store_event_type_migration	($event_row,	$instantiation->id);
-																								return ;
+																								exit(0);
 																						
 																				}
 																}

@@ -2,6 +2,9 @@
 
 /**
 	* Dashboard Controller
+ * 
+ * PHP version 5
+ * 
  * @category   AMS
 	* @package    Controller
 	* @subpackage Dashboard
@@ -14,8 +17,8 @@
 	* AMS Dashboard Class
 	*
 	* @category   Controller
-	* @package    Class
-	* @subpackage Dashboard
+	* @package    CI
+	* @subpackage Controller
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
 	* @license    CPB http://nouman.com
 	* @link       http://amsqa.avpreserve.com
@@ -46,11 +49,13 @@ class	Dashboard	extends	MY_Controller
 								$data	=	NULL;
 								$this->load->view	('dashboard/index',	$data);
 				}
-				/*
-				 * This is a "Block Comment."  The format is the same as
-     * Docblock Comments except there is only one asterisk at the
-     * top.  phpDocumentor doesn't parse these.
-     */
+				
+				// END Dashboard Controller
+
+				// End of file dashboard.php 
+				/* 
+				 * Location: ./application/controllers/dashboard.php
+				 */
 }
 
 // END Dashboard Controller

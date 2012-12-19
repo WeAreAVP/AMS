@@ -5,12 +5,12 @@
 	* 
 	* PHP version 5
 	* 
-	* @category   AMS
-	* @package    CI
-	* @author     Nouman Tayyab <nouman@geekschicago.com>
-	* @license    CPB http://nouman.com
-	* @version    GIT: <$Id>
-	* @link       http://amsqa.avpreserve.com
+	* @category AMS
+	* @package  CI
+	* @author   Nouman Tayyab <nouman@geekschicago.com>
+	* @license  CPB http://nouman.com
+	* @version  GIT: <$Id>
+	* @link     http://amsqa.avpreserve.com
 
 	*/
 
@@ -22,7 +22,7 @@
 	* @subpackage Controller
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
 	* @license    CPB http://nouman.com
-	* @link       http://amsqa.avpreserve.com/stations
+	* @link       http://amsqa.avpreserve.com
 	*/
 class	Stations	extends	MY_Controller
 {
@@ -75,7 +75,7 @@ class	Stations	extends	MY_Controller
 								{
 												$data['is_ajax']	=	TRUE;
 												echo	$this->load->view	('stations/list',	$data,	TRUE);
-												exit(0);
+												exit_function();
 								}
 								else
 								{
@@ -129,7 +129,7 @@ class	Stations	extends	MY_Controller
 
 
 												echo	json_encode	(array	('success'	=>	TRUE,	'station'	=>	$station,	'total'			=>	count	($station_ids)));
-												exit(0);
+												exit_function();
 								}
 								show_404	();
 				}
@@ -152,7 +152,7 @@ class	Stations	extends	MY_Controller
 																$this->station_model->insert_station_backup	($backup_record);
 												}
 												echo	json_encode	(array	('success'	=>	TRUE,	'records'	=>	$records));
-												exit(0);
+												exit_function();
 								}
 								show_404	();
 				}
@@ -169,7 +169,7 @@ class	Stations	extends	MY_Controller
 												$stations_id	=	$this->input->post	('id');
 												$records	=	$this->station_model->get_stations_by_id	($stations_id);
 												echo	json_encode	(array	('success'	=>	TRUE,	'records'	=>	$records));
-												exit(0);
+												exit_function();
 								}
 								show_404	();
 				}
@@ -221,7 +221,7 @@ class	Stations	extends	MY_Controller
 																}
 												}
 												echo	json_encode	($list);
-												exit(0);
+												exit_function();
 								}
 								show_404	();
 				}
@@ -245,7 +245,7 @@ class	Stations	extends	MY_Controller
 																$this->sphinx->update_indexes	('stations',	array	('start_date'),	array	($station_id	=>	array	((int)	strtotime	($start_date))));
 												}
 												echo	json_encode	(array	('success'	=>	TRUE));
-												exit(0);
+												exit_function();
 								}
 								show_404	();
 				}

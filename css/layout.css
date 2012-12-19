@@ -47,9 +47,9 @@ input.inputDate {
 				position: relative;
 				/*	top: 58px;*/
 				left: 0;
-				height: 0px;
+				height: 161px;
 				overflow: hidden;
-				width: 578px;
+				width: 576px;
 				background: #B9B9B9;
 				z-index: 999;
 }

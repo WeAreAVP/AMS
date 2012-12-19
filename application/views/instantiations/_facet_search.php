@@ -55,7 +55,7 @@
 																				<div class="filter-fileds"><b id="keyword_field_name">Keyword</b></div>
 																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="" />
 																</div>
-<?php	}	?>
+												<?php	}	?>
             <div class="clearfix"></div>
 
 
@@ -97,8 +97,8 @@
 
 																</div>
 																<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset"  style="margin: 5px 0px;display:none;" class="btn" onclick="resetKeyword('date');"/></div>
-<?php	}
-?>
+												<?php	}
+												?>
 
             <!-- Date Search Display End  -->
             <div class="clearfix"></div>
@@ -120,7 +120,7 @@
 																								$search_id	=	name_slug	($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','organization_main')"></i></div>
-																<?php	}	?>
+																				<?php	}	?>
 																</div>
 																<?php
 												}
@@ -153,13 +153,13 @@
 																								$search_id	=	name_slug	($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','nomination_status_main')"></i></div>
-																<?php	}	?>
+																				<?php	}	?>
 																</div>
-				<?php
-}
-else
-{
-				?>
+																<?php
+												}
+												else
+												{
+																?>
 
 																<div id="nomination_status_main" style="display: none;">
 																				<div class="filter-fileds"><b>Nomination Status</b></div>
@@ -185,13 +185,13 @@ else
 																								$search_id	=	name_slug	($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','media_type_main')"></i></div>
-																<?php	}	?>
+																				<?php	}	?>
 																</div>
-				<?php
-}
-else
-{
-				?>
+																<?php
+												}
+												else
+												{
+																?>
 
 																<div id="media_type_main" style="display: none;">
 																				<div class="filter-fileds"><b>Media Type</b></div>
@@ -217,13 +217,13 @@ else
 																								$search_id	=	name_slug	($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','physical_format_main')"></i></div>
-				<?php	}	?>
+																				<?php	}	?>
 																</div>
-				<?php
-}
-else
-{
-				?>
+																<?php
+												}
+												else
+												{
+																?>
 
 																<div id="physical_format_main" style="display: none;">
 																				<div class="filter-fileds"><b>Physical Format</b></div>
@@ -233,29 +233,29 @@ else
             <!-- Physical Format Search Display End  -->
             <div class="clearfix"></div>
             <!-- Digital Format Search Display Start  -->
-<?php
-if	(isset	($this->session->userdata['digital_format'])	&&	$this->session->userdata['digital_format']	!=	'')
-{
+												<?php
+												if	(isset	($this->session->userdata['digital_format'])	&&	$this->session->userdata['digital_format']	!=	'')
+												{
 
-				$digital_format	=	$this->session->userdata['digital_format'];
-				$digital_format_array	=	explode	('|||',	$digital_format);
-				?>
+																$digital_format	=	$this->session->userdata['digital_format'];
+																$digital_format_array	=	explode	('|||',	$digital_format);
+																?>
 																<div id="digital_format_main">
 																				<div class="filter-fileds"><b>Digital Format</b></div>
 																				<input type="hidden" id="digital_format_main_search" name="digital_format_main_search" value="<?php	echo	$digital_format;	?>" />
-																<?php
-																foreach	($digital_format_array	as	$value)
-																{
-																				$search_id	=	name_slug	($value);
-																				?>
+																				<?php
+																				foreach	($digital_format_array	as	$value)
+																				{
+																								$search_id	=	name_slug	($value);
+																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','digital_format_main')"></i></div>
-				<?php	}	?>
+																				<?php	}	?>
 																</div>
-				<?php
-}
-else
-{
-				?>
+																<?php
+												}
+												else
+												{
+																?>
 
 																<div id="digital_format_main" style="display: none;">
 																				<div class="filter-fileds"><b>Digital Format</b></div>
@@ -265,23 +265,23 @@ else
             <!-- Digital Format Search Display End  -->
             <div class="clearfix"></div>
             <!-- Generation Search Display Start  -->
-<?php
-if	(isset	($this->session->userdata['generation'])	&&	$this->session->userdata['generation']	!=	'')
-{
+												<?php
+												if	(isset	($this->session->userdata['generation'])	&&	$this->session->userdata['generation']	!=	'')
+												{
 
-				$generation	=	$this->session->userdata['generation'];
-				$generation_array	=	explode	('|||',	$generation);
-				?>
+																$generation	=	$this->session->userdata['generation'];
+																$generation_array	=	explode	('|||',	$generation);
+																?>
 																<div id="generation_main">
 																				<div class="filter-fileds"><b>Generation</b></div>
 																				<input type="hidden" id="generation_main_search" name="generation_main_search" value="<?php	echo	$generation;	?>" />
-																<?php
-																foreach	($generation_array	as	$value)
-																{
-																				$search_id	=	name_slug	($value);
-																				?>
+																				<?php
+																				foreach	($generation_array	as	$value)
+																				{
+																								$search_id	=	name_slug	($value);
+																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','generation_main')"></i></div>
-				<?php	}	?>
+																				<?php	}	?>
 																</div>
 																<?php
 												}
@@ -297,23 +297,23 @@ if	(isset	($this->session->userdata['generation'])	&&	$this->session->userdata['
             <!-- Generation Search Display End  -->
             <div class="clearfix"></div>
             <!-- File Size Search Display Start  -->
-																<?php
-																if	(isset	($this->session->userdata['file_size'])	&&	$this->session->userdata['file_size']	!=	'')
-																{
+												<?php
+												if	(isset	($this->session->userdata['file_size'])	&&	$this->session->userdata['file_size']	!=	'')
+												{
 
-																				$file_size	=	$this->session->userdata['file_size'];
-																				$file_size_array	=	explode	('|||',	$file_size);
-																				?>
+																$file_size	=	$this->session->userdata['file_size'];
+																$file_size_array	=	explode	('|||',	$file_size);
+																?>
 																<div id="file_size_main">
 																				<div class="filter-fileds"><b>File Size</b></div>
 																				<input type="hidden" id="file_size_main_search" name="file_size_main_search" value="<?php	echo	$file_size;	?>" />
-																<?php
-																foreach	($file_size_array	as	$value)
-																{
-																				$search_id	=	name_slug	($value);
-																				?>
+																				<?php
+																				foreach	($file_size_array	as	$value)
+																				{
+																								$search_id	=	name_slug	($value);
+																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','file_size_main')"></i></div>
-				<?php	}	?>
+																				<?php	}	?>
 																</div>
 																<?php
 												}
@@ -329,85 +329,85 @@ if	(isset	($this->session->userdata['generation'])	&&	$this->session->userdata['
             <!-- File Size Search Display End  -->
             <div class="clearfix"></div>
             <!-- Event Type Search Display Start  -->
-																<?php
-																if	(isset	($this->session->userdata['event_type'])	&&	$this->session->userdata['event_type']	!=	'')
-																{
+												<?php
+												if	(isset	($this->session->userdata['event_type'])	&&	$this->session->userdata['event_type']	!=	'')
+												{
 
-																				$event_type	=	$this->session->userdata['event_type'];
-																				$event_type_array	=	explode	('|||',	$event_type);
-																				?>
+																$event_type	=	$this->session->userdata['event_type'];
+																$event_type_array	=	explode	('|||',	$event_type);
+																?>
 																<div id="event_type_main">
 																				<div class="filter-fileds"><b>Event Type</b></div>
 																				<input type="hidden" id="event_type_main_search" name="event_type_main_search" value="<?php	echo	$event_type;	?>" />
-																<?php
-																foreach	($event_type_array	as	$value)
-																{
-																				$search_id	=	name_slug	($value);
-																				?>
+																				<?php
+																				foreach	($event_type_array	as	$value)
+																				{
+																								$search_id	=	name_slug	($value);
+																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','event_type_main')"></i></div>
-																<?php	}	?>
+																				<?php	}	?>
 																</div>
-				<?php
-}
-else
-{
-				?>
+																<?php
+												}
+												else
+												{
+																?>
 
 																<div id="event_type_main" style="display: none;">
 																				<div class="filter-fileds"><b>Event Type</b></div>
 																				<input type="hidden" id="event_type_main_search" name="event_type_main_search"/>
 																</div>
-<?php	}	?>
+												<?php	}	?>
             <!-- Event Type Search Display End  -->
             <div class="clearfix"></div>
             <!-- Event Outcome Search Display Start  -->
-																<?php
-																if	(isset	($this->session->userdata['event_outcome'])	&&	$this->session->userdata['event_outcome']	!=	'')
-																{
+												<?php
+												if	(isset	($this->session->userdata['event_outcome'])	&&	$this->session->userdata['event_outcome']	!=	'')
+												{
 
-																				$event_outcome	=	$this->session->userdata['event_outcome'];
-																				$event_outcome_array	=	explode	('|||',	$fevent_outcome);
-																				?>
+																$event_outcome	=	$this->session->userdata['event_outcome'];
+																$event_outcome_array	=	explode	('|||',	$fevent_outcome);
+																?>
 																<div id="event_outcome_main">
 																				<div class="filter-fileds"><b>Event Outcome</b></div>
 																				<input type="hidden" id="event_outcome_main_search" name="event_outcome_main_search" value="<?php	echo	$event_outcome;	?>" />
-																<?php
-																foreach	($event_outcome_array	as	$value)
-																{
-																				$search_id	=	name_slug	($value);
-																				?>
+																				<?php
+																				foreach	($event_outcome_array	as	$value)
+																				{
+																								$search_id	=	name_slug	($value);
+																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','event_outcome_main')"></i></div>
-																<?php	}	?>
+																				<?php	}	?>
 																</div>
-				<?php
-}
-else
-{
-				?>
+																<?php
+												}
+												else
+												{
+																?>
 
 																<div id="event_outcome_main" style="display: none;">
 																				<div class="filter-fileds"><b>Event Outcome</b></div>
 																				<input type="hidden" id="event_outcome_main_search" name="event_outcome_main_search"/>
 																</div>
-								<?php	}	?>
+												<?php	}	?>
             <!-- Event Outcome Search Display End  -->
             <div class="clearfix"></div>
 
         </div>
         <div class="clearfix"></div>
-<?php
-if	(isset	($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
-{
+								<?php
+								if	(isset	($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
+								{
 
-				$style	=	"none;";
-				$reset	=	"block;";
-}
-else
-{
-				$style	=	"block;";
-				$reset	=	"none;";
-}
-?>
+												$style	=	"none;";
+												$reset	=	"block;";
+								}
+								else
+								{
+												$style	=	"block;";
+												$reset	=	"none;";
+								}
+								?>
         <div class="filter-fileds" id="limit_field_div" style="display:<?php	echo	$style;	?>">
             <div><b>Search</b></div>
             <div>
@@ -479,18 +479,18 @@ else
             <div><input type="reset" style="display:<?php	echo	$reset;	?>" id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
         </div>
         <div class="clearfix"></div>
-<?php
-if	((!isset	($this->session->userdata['date_range'])	||	isset	($this->session->userdata['date_range'])	)	&&	empty	($this->session->userdata['date_range']))
-{
-				$style	=	'block;';
-}
-else
-{
-				$style	=	'none;';
-}
-?>
+								<?php
+								if	((!isset	($this->session->userdata['date_range'])	||	isset	($this->session->userdata['date_range'])	)	&&	empty	($this->session->userdata['date_range']))
+								{
+												$style	=	'block;';
+								}
+								else
+								{
+												$style	=	'none;';
+								}
+								?>
         <div id="date_range_filter_div" style="display: <?php	echo	$style;	?>">
-            <div id="widget">
+												<div id="widget">
 																<div id="date_range_filter">
 																				<div class="filter-fileds"><b>Date</b></div>
 																				<div class="controls">
@@ -498,17 +498,18 @@ else
 																												<input type="text" name="date_range" id="date_range" value="" style="width: 180px;cursor: default;background-color: white;" readonly="readonly"/>
 																												<span class="add-on" onclick="$('#date_range').val('');$('#datepicker-calendar').DatePickerSetDate('');"><i class="icon-remove-circle"></i></span>
 																								</div>
-																								<div id="datepicker-calendar" style="display: none;"></div>
+
 																				</div>
 																				<div id="widgetCalendar">
 																				</div>
 																</div>
+
 												</div>
 
-																								<?php
-																								if	(count	($date_types)	>	0)
-																								{
-																												?>
+												<?php
+												if	(count	($date_types)	>	0)
+												{
+																?>
 																<div class="filter-fileds">
 
 																				<div class="btn-group" id="limit_field_dropdown">
@@ -518,217 +519,217 @@ else
 																												<span class="caret"></span>
 																								</a>
 																								<ul class="dropdown-menu">
-												<?php
-												foreach	($date_types	as	$value)
-												{
-																?>
+																												<?php
+																												foreach	($date_types	as	$value)
+																												{
+																																?>
 																																<li><a href="javascript://;" onclick="add_date_token('<?php	echo	$value->date_type;	?>');"><?php	echo	$value->date_type;	?></a></li>
-												<?php	}
-												?>
+																												<?php	}
+																												?>
 																								</ul>
 																				</div>
 																</div>
 																<div><input type="button" id="add_date_keyword" name="add_date_keyword" value="Add Date" class="btn btn-primary" onclick="add_token($('#date_range').val(),'date_field_main');"/></div>
 
 												</div>
-																<?php
-												}
-												?>
-        <!-- Organization  Start      -->
 												<?php
-												if	(count	($stations)	>	0)
-												{
-																?>
+								}
+								?>
+        <!-- Organization  Start      -->
+								<?php
+								if	(count	($stations)	>	0)
+								{
+												?>
 												<div class="filter-fileds">
 																<b>Organization</b>
 												</div>
 												<div class="filter-fileds">
-				<?php
-				foreach	($stations	as	$key	=>	$value)
-				{
-								?>
-																												<?php
-																												if	($key	<	4)
-																												{
-																																?>
+																<?php
+																foreach	($stations	as	$key	=>	$value)
+																{
+																				?>
+																				<?php
+																				if	($key	<	4)
+																				{
+																								?>
 																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name;	?></a></div>
-																																<?php
-																												}
-																												else	if	($key	==	4)
-																												{
-																																?>
+																								<?php
+																				}
+																				else	if	($key	==	4)
+																				{
+																								?>
 																								<div class="dropdown">
 																												<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
 																																More
 																																<b class="caret"></b>
 																												</a>
 																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																				<?php
-																}
-																else
-																{
-																				?>
+																																<?php
+																												}
+																												else
+																												{
+																																?>
 																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name;	?></a></li>
-												<?php
-								}
-				}
-				?>
+																																<?php
+																												}
+																								}
+																								?>
 																				</ul>
 																</div>
 												</div>
-												<?php	}	?>
+								<?php	}	?>
         <!-- Organization  End      -->
         <!--  Nomination Status Start      -->
-												<?php
-												if	(count	($nomination_status)	>	0)
-												{
-																?>
+								<?php
+								if	(count	($nomination_status)	>	0)
+								{
+												?>
 												<div class="filter-fileds">
 																<b>Nomination Status</b>
 												</div>
 												<div class="filter-fileds">
-																								<?php
-																								foreach	($nomination_status	as	$key	=>	$value)
-																								{
-																												if	($key	<	4)
-																												{
-																																?>
+																<?php
+																foreach	($nomination_status	as	$key	=>	$value)
+																{
+																				if	($key	<	4)
+																				{
+																								?>
 																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->status);	?>','nomination_status_main');"><?php	echo	$value->status;	?></a></div>
-																																<?php
-																												}
-																												else	if	($key	==	4)
-																												{
-																																?>
+																								<?php
+																				}
+																				else	if	($key	==	4)
+																				{
+																								?>
 																								<div class="dropdown">
 																												<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
 																																More
 																																<b class="caret"></b>
 																												</a>
 																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-												<?php
-								}
-								else
-								{
-												?>
+																																<?php
+																												}
+																												else
+																												{
+																																?>
 																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->status);	?>','nomination_status_main');"><?php	echo	$value->status;	?></a></li>  
-												<?php
-								}
-				}
-				if	(count	($nomination_status)	>	4)
-				{
-								echo	count	($nomination_status);
-								?>
+																																<?php
+																												}
+																								}
+																								if	(count	($nomination_status)	>	4)
+																								{
+																												echo	count	($nomination_status);
+																												?>
 																								</ul>
 																				</div>
 																<?php	}	?>
 												</div>
-												<?php	}	?>
+								<?php	}	?>
         <!--  Nomination Status End      -->
         <!--  Media Type Start      -->
-												<?php
-												if	(count	($media_types)	>	0)
-												{
-																?>
+								<?php
+								if	(count	($media_types)	>	0)
+								{
+												?>
 												<div class="filter-fileds">
 																<b>Media Type</b>
 												</div>
 												<div class="filter-fileds">
-																								<?php
-																								foreach	($media_types	as	$key	=>	$value)
-																								{
-																												if	($key	<	4)
-																												{
-																																?>
+																<?php
+																foreach	($media_types	as	$key	=>	$value)
+																{
+																				if	($key	<	4)
+																				{
+																								?>
 																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type;	?></a></div>
-																																<?php
-																												}
-																												else	if	($key	==	4)
-																												{
-																																?>
+																								<?php
+																				}
+																				else	if	($key	==	4)
+																				{
+																								?>
 																								<div class="dropdown">
 																												<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
 																																More
 																																<b class="caret"></b>
 																												</a>
 																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																				<?php
-																}
-																else
-																{
-																				?>
+																																<?php
+																												}
+																												else
+																												{
+																																?>
 																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type;	?></a></li>  
-																								<?php
-																				}
-																}
-																if	(count	($media_types)	>	4)
-																{
-																				?>
+																																<?php
+																												}
+																								}
+																								if	(count	($media_types)	>	4)
+																								{
+																												?>
 																								</ul>
 																				</div>
 																<?php	}	?>
 												</div>
-												<?php	}	?>
+								<?php	}	?>
         <!--  Media Type End      -->
         <!--  Physical Format Start      -->
-<?php
-if	(count	($physical_formats)	>	0)
-{
-				?>
+								<?php
+								if	(count	($physical_formats)	>	0)
+								{
+												?>
 												<div class="filter-fileds">
 																<b>Physical Format</b>
 												</div>
 												<div class="filter-fileds">
-																								<?php
-																								foreach	($physical_formats	as	$key	=>	$value)
-																								{
-																												if	($key	<	4)
-																												{
-																																?>
+																<?php
+																foreach	($physical_formats	as	$key	=>	$value)
+																{
+																				if	($key	<	4)
+																				{
+																								?>
 																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name;	?></a></div>
-																																<?php
-																												}
-																												else	if	($key	==	4)
-																												{
-																																?>
+																								<?php
+																				}
+																				else	if	($key	==	4)
+																				{
+																								?>
 																								<div class="dropdown">
 																												<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
 																																More
 																																<b class="caret"></b>
 																												</a>
 																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																				<?php
-																}
-																else
-																{
-																				?>
+																																<?php
+																												}
+																												else
+																												{
+																																?>
 																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name;	?></a></li>  
-																								<?php
-																				}
-																}
-																if	(count	($physical_formats)	>	4)
-																{
-																				?>
+																																<?php
+																												}
+																								}
+																								if	(count	($physical_formats)	>	4)
+																								{
+																												?>
 																								</ul>
 																				</div>
 																<?php	}	?>
 												</div>
-<?php	}	?>
+								<?php	}	?>
         <!-- Physical Format End      -->
         <!--  Digital Format Start      -->
-<?php
-if	(count	($digital_formats)	>	0)
-{
-				?>
+								<?php
+								if	(count	($digital_formats)	>	0)
+								{
+												?>
 												<div class="filter-fileds">
 																<b>Digital Format</b>
 												</div>
 												<div class="filter-fileds">
-																								<?php
-																								foreach	($digital_formats	as	$key	=>	$value)
-																								{
-																												if	($key	<	4)
-																												{
-																																?>
+																<?php
+																foreach	($digital_formats	as	$key	=>	$value)
+																{
+																				if	($key	<	4)
+																				{
+																								?>
 																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name;	?></a></div>
 																								<?php
 																				}
@@ -741,164 +742,164 @@ if	(count	($digital_formats)	>	0)
 																																<b class="caret"></b>
 																												</a>
 																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-												<?php
-								}
-								else
-								{
-												?>
+																																<?php
+																												}
+																												else
+																												{
+																																?>
 																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name;	?></a></li>  
-																								<?php
-																				}
-																}
-																if	(count	($digital_formats)	>	4)
-																{
-																				?>
+																																<?php
+																												}
+																								}
+																								if	(count	($digital_formats)	>	4)
+																								{
+																												?>
 																								</ul>
 																				</div>
-				<?php	}	?>
+																<?php	}	?>
 												</div>
-<?php	}	?>
+								<?php	}	?>
         <!-- Digital Format End      -->
         <!--  Generation Start      -->
-																				<?php
-																				if	(count	($generations)	>	0)
-																				{
-																								?>
+								<?php
+								if	(count	($generations)	>	0)
+								{
+												?>
 												<div class="filter-fileds">
 																<b>Generations</b>
 												</div>
 												<div class="filter-fileds">
-																								<?php
-																								foreach	($generations	as	$key	=>	$value)
-																								{
-																												if	($key	<	4)
-																												{
-																																?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->generation);	?>','generation_main');"><?php	echo	$value->generation;	?></a></div>
-																				<?php
-																}
-																else	if	($key	==	4)
+																<?php
+																foreach	($generations	as	$key	=>	$value)
 																{
-																				?>
+																				if	($key	<	4)
+																				{
+																								?>
+																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->generation);	?>','generation_main');"><?php	echo	$value->generation;	?></a></div>
+																								<?php
+																				}
+																				else	if	($key	==	4)
+																				{
+																								?>
 																								<div class="dropdown">
 																												<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
 																																More
 																																<b class="caret"></b>
 																												</a>
 																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																								<?php
-																				}
-																				else
-																				{
-																								?>
+																																<?php
+																												}
+																												else
+																												{
+																																?>
 																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->generation);	?>','generation_main');"><?php	echo	$value->generation;	?></a></li>  
-																								<?php
-																				}
-																}
-																if	(count	($generations)	>	4)
-																{
-																				?>
+																																<?php
+																												}
+																								}
+																								if	(count	($generations)	>	4)
+																								{
+																												?>
 																								</ul>
 																				</div>
-				<?php	}	?>
+																<?php	}	?>
 												</div>
-<?php	}	?>
+								<?php	}	?>
         <!-- Generation End      -->
         <!--  File Size Start      -->
-																				<?php
-																				if	(count	($file_size)	>	0)
-																				{
-																								?>
+								<?php
+								if	(count	($file_size)	>	0)
+								{
+												?>
 												<div class="filter-fileds">
 																<b>File Size</b>
 												</div>
 												<div class="filter-fileds">
-																								<?php
-																								foreach	($file_size	as	$key	=>	$value)
-																								{
-																												if	($key	<	4)
-																												{
-																																?>
+																<?php
+																foreach	($file_size	as	$key	=>	$value)
+																{
+																				if	($key	<	4)
+																				{
+																								?>
 																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->file_size);	?>','file_size_main');"><?php	echo	$value->file_size;	?></a></div>
-												<?php
-								}
-								else	if	($key	==	4)
-								{
-												?>
+																								<?php
+																				}
+																				else	if	($key	==	4)
+																				{
+																								?>
 																								<div class="dropdown">
 																												<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
 																																More
 																																<b class="caret"></b>
 																												</a>
 																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																								<?php
-																				}
-																				else
-																				{
-																								?>
+																																<?php
+																												}
+																												else
+																												{
+																																?>
 																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->file_size);	?>','file_size_main');"><?php	echo	$value->file_size;	?></a></li>  
-																								<?php
-																				}
-																}
-																if	(count	($file_size)	>	4)
-																{
-																				?>
+																																<?php
+																												}
+																								}
+																								if	(count	($file_size)	>	4)
+																								{
+																												?>
 																								</ul>
 																				</div>
-				<?php	}	?>
+																<?php	}	?>
 												</div>
-																				<?php	}	?>
+								<?php	}	?>
         <!-- File Size End      -->
         <!--  Event Type Start      -->
-																				<?php
-																				if	(count	($event_types)	>	0)
-																				{
-																								?>
+								<?php
+								if	(count	($event_types)	>	0)
+								{
+												?>
 												<div class="filter-fileds">
 																<b>Event Type</b>
 												</div>
 												<div class="filter-fileds">
-				<?php
-				foreach	($event_types	as	$key	=>	$value)
-				{
-								if	($key	<	4)
-								{
-												?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->event_type);	?>','event_type_main');"><?php	echo	$value->event_type;	?></a></div>
-																				<?php
-																}
-																else	if	($key	==	4)
+																<?php
+																foreach	($event_types	as	$key	=>	$value)
 																{
-																				?>
+																				if	($key	<	4)
+																				{
+																								?>
+																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->event_type);	?>','event_type_main');"><?php	echo	$value->event_type;	?></a></div>
+																								<?php
+																				}
+																				else	if	($key	==	4)
+																				{
+																								?>
 																								<div class="dropdown">
 																												<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
 																																More
 																																<b class="caret"></b>
 																												</a>
 																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																								<?php
-																				}
-																				else
-																				{
-																								?>
+																																<?php
+																												}
+																												else
+																												{
+																																?>
 																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->event_type);	?>','event_type_main');"><?php	echo	$value->event_type;	?></a></li>  
-																								<?php
-																				}
-																}
-																if	(count	($event_types)	>	4)
-																{
-																				?>
+																																<?php
+																												}
+																								}
+																								if	(count	($event_types)	>	4)
+																								{
+																												?>
 																								</ul>
 																				</div>
-																								<?php	}	?>
+																<?php	}	?>
 												</div>
-																				<?php	}	?>
+								<?php	}	?>
         <!-- Event Type End      -->
         <!--  Event Type Start      -->
-																				<?php
-																				if	(count	($event_outcome)	>	0)
-																				{
-																								?>
+								<?php
+								if	(count	($event_outcome)	>	0)
+								{
+												?>
 												<div class="filter-fileds">
 																<b>Event Type</b>
 												</div>
@@ -910,34 +911,34 @@ if	(count	($digital_formats)	>	0)
 																				{
 																								?>
 																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->event_outcome);	?>','event_outcome_main');"><?php	echo	$value->event_outcome;	?></a></div>
-												<?php
-								}
-								else	if	($key	==	4)
-								{
-												?>
+																								<?php
+																				}
+																				else	if	($key	==	4)
+																				{
+																								?>
 																								<div class="dropdown">
 																												<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
 																																More
 																																<b class="caret"></b>
 																												</a>
 																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-												<?php
-								}
-								else
-								{
-												?>
+																																<?php
+																												}
+																												else
+																												{
+																																?>
 																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->event_outcome);	?>','event_outcome_main');"><?php	echo	$value->event_outcome;	?></a></li>  
-												<?php
-								}
-				}
-				if	(count	($event_outcome)	>	4)
-				{
-								?>
+																																<?php
+																												}
+																								}
+																								if	(count	($event_outcome)	>	4)
+																								{
+																												?>
 																								</ul>
 																				</div>
-				<?php	}	?>
+																<?php	}	?>
 												</div>
-<?php	}	?>
+								<?php	}	?>
         <!-- Event Type End      -->
 
     </form>

@@ -983,7 +983,7 @@
 								};
 	
 								EYE.register(initLayout, 'init');
-								dateDisplay=<?php	echo	$dateStyleDisplay;	?>
+								dateDisplay=<?php	echo	$dateStyleDisplay;	?>;
 								if(dateDisplay==0){
 												$('#date_range_filter_div').hide();			
 								}

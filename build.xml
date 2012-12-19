@@ -67,7 +67,7 @@
    <arg line="${filesProcess.processed.comma}
               xml
               codesize,design,naming,unusedcode
-														--minimumpriority 300
+														--minimumpriority 400
               --reportfile ${basedir}/build/logs/pmd.xml" />
   </exec>
  </target>

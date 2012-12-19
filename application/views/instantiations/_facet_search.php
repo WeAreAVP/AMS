@@ -482,14 +482,14 @@
 								<?php
 								if	((!isset	($this->session->userdata['date_range'])	||	isset	($this->session->userdata['date_range'])	)	&&	empty	($this->session->userdata['date_range']))
 								{
-												$style	=	'block;';
+												$dateStyleDisplay	=	1;
 								}
 								else
 								{
-												$style	=	'none;';
+												$dateStyleDisplay	=	0;
 								}
 								?>
-        <div id="date_range_filter_div" style="display: <?php	echo	$style;	?>">
+        <div id="date_range_filter_div">
 												<div id="widget">
 																<div id="date_range_filter">
 																				<div class="filter-fileds"><b>Date</b></div>
@@ -975,7 +975,7 @@
 												});
 												
 												$('#date_range').bind('click', function(){
-																$('#widgetCalendar').stop().animate({height: state ? 0 : 161}, 500);
+																$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
 																state = !state;
 																return false;
 												});
@@ -983,6 +983,11 @@
 								};
 	
 								EYE.register(initLayout, 'init');
+								dateDisplay=<?php	echo	$dateStyleDisplay;	?>
+								if(dateDisplay==0){
+												$('#date_range_filter_div').hide();			
+								}
+								
 								$('html').click(function() {
 												if(state==true){
 																$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);

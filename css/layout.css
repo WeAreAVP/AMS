@@ -1,61 +1,62 @@
 
 #customWidget {
-	position: relative;
-	height: 36px;
+				position: relative;
+				height: 36px;
 }
 
 input.inputDate {
-	border: 1px solid #999;
-	padding: 4px;
-	border-bottom-color: #ddd;
-	border-right-color: #ddd;
-	width: 65px;
+				border: 1px solid #999;
+				padding: 4px;
+				border-bottom-color: #ddd;
+				border-right-color: #ddd;
+				width: 65px;
 }
 #widget {
-	position: relative;
+				position: relative;
 }
 #widgetField {
-	width: 290px;
-	height: 26px;
-	background: url(../images/field.png);
-	overflow: hidden;
-	position: relative;
+				width: 290px;
+				height: 26px;
+				background: url(../images/field.png);
+				overflow: hidden;
+				position: relative;
 }
 #widgetField a 	{
-	display: block;
-	position: absolute;
-	width: 26px;
-	height: 26px;
-	top: 0;
-	right: 0;
-	text-decoration: none;
-	text-indent: -3000px;
+				display: block;
+				position: absolute;
+				width: 26px;
+				height: 26px;
+				top: 0;
+				right: 0;
+				text-decoration: none;
+				text-indent: -3000px;
 }
 #widgetField span	{
-	font-size: 12px;
-	font-weight: bold;
-	color: #000;
-	position: absolute;
-	top: 0;
-	height: 26px;
-	line-height: 26px;
-	left: 5px;
-	width: 250px;
-	text-align: center;
+				font-size: 12px;
+				font-weight: bold;
+				color: #000;
+				position: absolute;
+				top: 0;
+				height: 26px;
+				line-height: 26px;
+				left: 5px;
+				width: 250px;
+				text-align: center;
 }
 #widgetCalendar {
-	position: absolute;
-	top: 58px;
-	left: 0;
-	height: 0px;
-	overflow: hidden;
-	width: 578px;
-	background: #B9B9B9;
+				position: relative;
+				/*	top: 58px;*/
+				left: 0;
+				height: 0px;
+				overflow: hidden;
+				width: 578px;
+				background: #B9B9B9;
+				z-index: 999;
 }
 #widgetCalendar .datepicker {
-	position: absolute;
-	bottom: 0;
-	top: auto;
+				position: absolute;
+				bottom: 0;
+				top: auto;
 }
 #widgetCalendar .datepickerContainer,
 #widgetCalendar .datepickerBorderT,
@@ -66,10 +67,10 @@ input.inputDate {
 #widgetCalendar .datepickerBorderTR,
 #widgetCalendar .datepickerBorderBL,
 #widgetCalendar .datepickerBorderBR {
-	background: transparent !important;
+				background: transparent !important;
 }
 #widgetCalendar .datepicker a:hover{
-	color: #008ED6;
+				color: #008ED6;
 }
 .datepickerViewYears ,  .datepickerViewMonths
 {

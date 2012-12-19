@@ -496,7 +496,7 @@
 																				<div class="controls">
 																								<div class="input-append">
 																												<input type="text" name="date_range" id="date_range" value="" style="width: 180px;cursor: default;background-color: white;" readonly="readonly"/>
-																												<span class="add-on" onclick="$('#date_range').val('');$('#datepicker-calendar').DatePickerSetDate('');"><i class="icon-remove-circle"></i></span>
+																												<span class="add-on" onclick="$('#date_range').val('');$('#widgetCalendar')..DatePickerClear();"><i class="icon-remove-circle"></i></span>
 																								</div>
 
 																				</div>
@@ -957,7 +957,7 @@
 												var hash = window.location.hash.replace('#', '');
 											
 												$('#clearSelection').bind('click', function(){
-																$('#date3').DatePickerClear();
+																$('#widgetCalendar')..DatePickerClear();
 																return false;
 												});
 										
@@ -1150,6 +1150,7 @@
             $('#date_field_text').html('Date Type');
             $('#date_field_main_search').val('');
             $('#reset_date_search').hide();
+												$('#widgetCalendar')..DatePickerClear();
         }
         else{
             $('#keyword_field_main .btn-img').each(function(){

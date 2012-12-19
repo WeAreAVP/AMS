@@ -975,7 +975,7 @@
 												});
 												
 												$('#date_range').bind('click', function(){
-																$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
+																$('#widgetCalendar').stop().animate({height: state ? 0 : 161}, 500);
 																state = !state;
 																return false;
 												});

@@ -952,10 +952,8 @@
     var hiden_column=new Array();
     var current_table_type='<?php	echo	$table_type	?>';
     oTable=null;
-    $(document).ready(function() {
-        
-  
-        var initLayout = function() {
+    (function($){
+								var initLayout = function() {
 												var hash = window.location.hash.replace('#', '');
 											
 												$('#clearSelection').bind('click', function(){
@@ -984,7 +982,7 @@
 								};
 	
 								EYE.register(initLayout, 'init');
-    });
+				})(jQuery)
     function add_token(name,type,isRemoved){
         if(type=='keyword_field_main'){
                 

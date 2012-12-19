@@ -996,7 +996,7 @@
 																$('#date_range_filter_div').hide();
 												}
 												
-								},1000);
+								},500);
 				})(jQuery)
 				function add_token(name,type,isRemoved){
 								if(type=='keyword_field_main'){

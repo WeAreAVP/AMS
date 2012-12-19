@@ -1,13 +1,12 @@
 <?php
 
 /**
-	* AMS Stations Controller
+	* AMS Archive Management System
 	* 
 	* PHP version 5
 	* 
 	* @category   AMS
 	* @package    CI
-	* @subpackage Controller
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
 	* @license    CPB http://nouman.com
 	* @version    GIT: <$Id>
@@ -18,7 +17,7 @@
 /**
 	* Stations Class
 	*
-	* @category   Class
+	* @category   AMS
 	* @package    CI
 	* @subpackage Controller
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
@@ -76,7 +75,7 @@ class	Stations	extends	MY_Controller
 								{
 												$data['is_ajax']	=	TRUE;
 												echo	$this->load->view	('stations/list',	$data,	TRUE);
-												exit;
+												exit(0);
 								}
 								else
 								{
@@ -130,7 +129,7 @@ class	Stations	extends	MY_Controller
 
 
 												echo	json_encode	(array	('success'	=>	TRUE,	'station'	=>	$station,	'total'			=>	count	($station_ids)));
-												exit;
+												exit(0);
 								}
 								show_404	();
 				}
@@ -153,7 +152,7 @@ class	Stations	extends	MY_Controller
 																$this->station_model->insert_station_backup	($backup_record);
 												}
 												echo	json_encode	(array	('success'	=>	TRUE,	'records'	=>	$records));
-												exit;
+												exit(0);
 								}
 								show_404	();
 				}
@@ -170,7 +169,7 @@ class	Stations	extends	MY_Controller
 												$stations_id	=	$this->input->post	('id');
 												$records	=	$this->station_model->get_stations_by_id	($stations_id);
 												echo	json_encode	(array	('success'	=>	TRUE,	'records'	=>	$records));
-												exit;
+												exit(0);
 								}
 								show_404	();
 				}
@@ -222,7 +221,7 @@ class	Stations	extends	MY_Controller
 																}
 												}
 												echo	json_encode	($list);
-												exit;
+												exit(0);
 								}
 								show_404	();
 				}
@@ -246,7 +245,7 @@ class	Stations	extends	MY_Controller
 																$this->sphinx->update_indexes	('stations',	array	('start_date'),	array	($station_id	=>	array	((int)	strtotime	($start_date))));
 												}
 												echo	json_encode	(array	('success'	=>	TRUE));
-												exit;
+												exit(0);
 								}
 								show_404	();
 				}

@@ -1,13 +1,14 @@
 <?php
 
 /**
-	* AMS Instantiations Controller
+	* AMS Archive Management System
+ * 
+ * To manage the instantiations
 	* 
 	* PHP version 5
 	* 
 	* @category   AMS
 	* @package    CI
-	* @subpackage Controller
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
 	* @license    CPB http://nouman.com
 	* @version    GIT: <$Id>
@@ -16,13 +17,13 @@
 	*/
 
 /**
-	* Stations Class
+	* Instantiations Class
 	*
-	* @category   Class
+	* @category   AMS
 	* @package    CI
 	* @subpackage Controller
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
-	* @license    CPB http://nouman.com
+	* @license    http://amsqa.avpreserve.com CPB
 	* @link       http://amsqa.avpreserve.com
 	*/
 class	Instantiations	extends	MY_Controller
@@ -126,7 +127,7 @@ class	Instantiations	extends	MY_Controller
 								{
 												$data['isAjax']	=	TRUE;
 												echo	$this->load->view	('instantiations/index',	$data,	TRUE);
-												exit;
+												exit(0);
 								}
 								$this->load->view	('instantiations/index',	$data);
 				}
@@ -146,7 +147,7 @@ class	Instantiations	extends	MY_Controller
 												{
 																$data['asset_id']	=	$detail->assets_id;
 																$data['inst_id']	=	$instantiation_id;
-																$data['instantiation_detail']	=	$this->sphinx->instantiations_list	(array	('asset_id'																				=>	$detail->assets_id,	'search'																						=>	''));
+																$data['instantiation_detail']	=	$this->sphinx->instantiations_list	(array	('asset_id'	=>	$detail->assets_id,	'search'	=>	''));
 																$data['instantiation_detail']	=	$data['instantiation_detail']['records'][0];
 																$data['asset_details']	=	$this->assets_model->get_asset_by_asset_id	($detail->assets_id);
 
@@ -181,7 +182,7 @@ class	Instantiations	extends	MY_Controller
 												$data	=	array	('view_settings'	=>	$settings,	'frozen_column'	=>	$freeze_columns);
 												$this->user_settings->update_setting	($user_id,	$table_type,	$data);
 												echo	json_encode	(array	('success'	=>	TRUE));
-												exit;
+												exit(0);
 								}
 								show_404	();
 				}

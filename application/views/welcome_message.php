@@ -3,7 +3,7 @@
  //echo link_tag("css/datepicker.css");
 	 echo link_tag("css/layout.css");
 echo	link_js	('eye.js');
-//echo	link_js	('utils.js');
+echo	link_js	('utils.js');
 ?>
 <script>
 				(function($){

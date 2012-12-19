@@ -1150,8 +1150,8 @@
                 $(this).remove();
             });
             $('#date_field_main').hide();
-            $('date_range').val('');
-            $('date_type').val('');
+            $('#date_range').val('');
+            $('#date_type').val('');
             $('#date_range_filter_div').show();
             $('#date_field_text').html('Date Type');
             $('#date_field_main_search').val('');

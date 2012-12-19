@@ -482,14 +482,14 @@
 								<?php
 								if	((!isset	($this->session->userdata['date_range'])	||	isset	($this->session->userdata['date_range'])	)	&&	empty	($this->session->userdata['date_range']))
 								{
-												$style	=	'block;';
+												$DateStyleDisplay	=	1;
 								}
 								else
 								{
-												$style	=	'none;';
+												$DateStyleDisplay	=	0;
 								}
 								?>
-        <div id="date_range_filter_div" style="display: <?php	echo	$style;	?>">
+        <div id="date_range_filter_div">
 												<div id="widget">
 																<div id="date_range_filter">
 																				<div class="filter-fileds"><b>Date</b></div>
@@ -946,301 +946,304 @@
 
 <script type="text/javascript">
     var is_destroy=false;
-var columnsOrder=new Array();
-var orderString='';
-var frozen='<?php	echo	$this->frozen_column;	?>';
-var hiden_column=new Array();
-var current_table_type='<?php	echo	$table_type	?>';
-oTable=null;
-var state = false;
-(function($){
-				var initLayout = function() {
-								var hash = window.location.hash.replace('#', '');
+				var columnsOrder=new Array();
+				var orderString='';
+				var frozen='<?php	echo	$this->frozen_column;	?>';
+				var hiden_column=new Array();
+				var current_table_type='<?php	echo	$table_type	?>';
+				oTable=null;
+				var state = false;
+				(function($){
+								var initLayout = function() {
+												var hash = window.location.hash.replace('#', '');
 											
-								$('#clearSelection').bind('click', function(){
-												$('#widgetCalendar').DatePickerClear();
-												return false;
-								});
+												$('#clearSelection').bind('click', function(){
+																$('#widgetCalendar').DatePickerClear();
+																return false;
+												});
 										
-								$('#widgetCalendar').DatePicker({
-												flat: true,
-												format: 'd B, Y',
-												date: [new Date('11-12-2012'), new Date('16-12-2012')],
-												calendars: 3,
-												mode: 'range',
-												starts: 1,
-												onChange: function(formated) {
-																$('#date_range').val( formated.join(' to '));
+												$('#widgetCalendar').DatePicker({
+																flat: true,
+																format: 'd B, Y',
+																date: [new Date('11-12-2012'), new Date('16-12-2012')],
+																calendars: 3,
+																mode: 'range',
+																starts: 1,
+																onChange: function(formated) {
+																				$('#date_range').val( formated.join(' to '));
+																}
+												});
+													
+												$('#date_range').bind('click', function(){
+																$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
+																state = !state;
+																return false;
+												});
+												$('#widgetCalendar div.datepicker').css('position', 'absolute');
+								};
+	
+								EYE.register(initLayout, 'init');
+								$('html').click(function() {
+												if(state==true){
+																$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
+																state = !state;
+																return false;
 												}
 								});
-									$('#widgetCalendar').hide();				
-				$('#date_range').bind('click', function(){
-								//																$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
-								if(state==true)
-												$('#widgetCalendar').hide();
-								else
-											$('#widgetCalendar').show();
-								state = !state;
-								return false;
-				});
-				$('#widgetCalendar div.datepicker').css('position', 'absolute');
-};
-	
-EYE.register(initLayout, 'init');
-$('html').click(function() {
-				if(state==true){
-								$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
-								state = !state;
-								return false;
-				}
-});
-})(jQuery)
-function add_token(name,type,isRemoved){
-if(type=='keyword_field_main'){
+								setTimeout(function(){
+												display=<?php	echo	$DateStyleDisplay;	?>;
+												if(display==0){
+																$('#date_range_filter_div').hide();
+												}
+												
+								},1000);
+				})(jQuery)
+				function add_token(name,type,isRemoved){
+								if(type=='keyword_field_main'){
                 
-				name=$('#search').val();  
-				if(isRemoved==1){
-								$('#'+type+' .btn-img').each(function(){
-												$(this).remove();
-								});
-								$('#'+type+'_search').val('');
-								$('#keyword_field_name').html();
-								$('#limit_btn').show(); 
-								$('#add_keyword').show(); 
-								$('#reset_search').hide();
-								$('#limit_field_text').html('Limit Search to Field');
-								$('#limit_field_dropdown').show();
-								$('#search').val('');
-								$('#limit_field_div').show();
-								customColumnName='';
-								customFieldName='All';
+												name=$('#search').val();  
+												if(isRemoved==1){
+																$('#'+type+' .btn-img').each(function(){
+																				$(this).remove();
+																});
+																$('#'+type+'_search').val('');
+																$('#keyword_field_name').html();
+																$('#limit_btn').show(); 
+																$('#add_keyword').show(); 
+																$('#reset_search').hide();
+																$('#limit_field_text').html('Limit Search to Field');
+																$('#limit_field_dropdown').show();
+																$('#search').val('');
+																$('#limit_field_div').show();
+																customColumnName='';
+																customFieldName='All';
                         
+												}
+												else{
+																if($('#search').val()!=''){
+																				$('#keyword_field_main .btn-img').each(function(){
+																								$(this).remove();
+																				});
+																				$('#add_keyword').hide(); 
+																				$('#reset_search').show();
+																				$('#limit_field_dropdown').hide();
+																				$('#limit_field_div').hide();
+																				var random_id=rand(0,1000365);
+																				slugName=make_slug_name(name);
+																				var search_id=slugName+random_id;
+																				$('#keyword_field_name').html('Keyword: '+customFieldName);
+																				$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
+																				$('#'+type).show();
+																				var searchString='';
+																				if(customColumnName!=''){
+																								customColumnName= customColumnName.split(' ');
+																								if(customColumnName.length>1){
+																												searchString=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
+																												searchString +=' @'+customColumnName[1]+' |||'+$('#search').val()+'||| ';
+																								}
+																								else{
+																												searchString=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
+																								}
+                            
+																				}
+																				else{
+																								searchString+=' |||'+$('#search').val()+'||| ';
+																				}
+                        
+																				$('#keyword_field_main_search').val(searchString);
+                            
+																}
+																else{
+																				return false;
+																}
+												}
+								}
+								else if(type=='date_field_main'){
+        
+            
+												if(isRemoved==1){
+																$('#date_range').val('');
+																$('#'+type+'_search').val('');
+																$('#date_type').val('');
+																$('#date_range_filter_div').show();
+																$('#date_field_text').html('Date Type');
+																$('#reset_date_search').hide();
+												}
+												else{
+																if($('#date_range').val()=='')
+																				return false;
+																$('#date_range_filter_div').hide();
+																var random_id=rand(0,1000365);
+																slugName=make_slug_name(name);
+																$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
+																$('#'+type).show();
+																$('#reset_date_search').show();
+																if($('#date_type').val()=='')
+																				date_type_text='All';
+																else
+																				date_type_text=$('#date_type').val();
+																$('#date_field_name').html('Keyword: '+date_type_text);
+												}
+								}
+								else{
+												if(isRemoved!=1){
+																if($('#'+type+'_search').val().indexOf(name) < 0){
+																				var random_id=rand(0,1000365);
+																				slugName=make_slug_name(name);
+																				var search_id=slugName+random_id;
+																				$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+name+'\',\''+search_id+'\',\''+type+'\')"></i></div>');
+																				$('#'+type).show();
+																}
+												}
+												var my_search_words='';
+												$('#'+type+'_search').val('');
+												$("#"+type+" .search_keys").each(function(index) {
+																if(index==0)
+																				my_search_words=$(this).text();
+																else
+																				my_search_words+='|||'+$(this).text();
+                
+												});
+												if(my_search_words!='' && typeof(my_search_words)!=undefined)
+												{
+																$('#'+type+'_search').val(my_search_words);
+												}
+								}
+								facet_search('0');
+            
 				}
-				else{
-								if($('#search').val()!=''){
+				var customFieldName='All';
+				var customColumnName='';
+				function add_custom_token(fieldName,columnName){
+								text=$('#search').val();
+								customFieldName=fieldName;
+								customColumnName=columnName;
+								$('#limit_field_text').html(fieldName);
+				}
+				function add_date_token(type){
+								$('#date_type').val(type);
+								$('#date_field_text').html(type);
+				}
+				function make_slug_name(string){
+								string = string.split('/').join('');
+								string = string.split('??').join('');
+								string = string.split(' ').join('');
+								string = string.split('(').join('');
+								string = string.split(')').join('');
+								string = string.split(',').join('');
+								string = string.split('.').join('');
+								string = string.split('"').join('');
+								string = string.split('\'').join('');
+								string = string.split(':').join('');
+								string = string.split(';').join('');
+								string = string.toLowerCase();
+								return string;
+				}
+				function remove_token(name,id,type)
+				{
+								if(type=='keyword_field_main' || type=='date_field_main'){
+												$('#'+type).hide();
+												$('#'+type+' .btn-img').each(function(){
+																$(this).remove();
+												});
+								}
+								$("#"+id).remove();
+								if($('#'+type+' div').length<=1){
+												$('#'+type).hide();
+								}
+								add_token(unescape(name),type,1);        
+				}
+				function resetKeyword(type){
+								if(type=='date'){
+												$('#date_field_main .btn-img').each(function(){
+																$(this).remove();
+												});
+												$('#date_field_main').hide();
+												$('#date_range').val('');
+												$('#date_type').val('');
+												$('#date_range_filter_div').show();
+												$('#date_field_text').html('Date Type');
+												$('#date_field_main_search').val('');
+												$('#reset_date_search').hide();
+												$('#widgetCalendar').DatePickerClear();
+								}
+								else{
 												$('#keyword_field_main .btn-img').each(function(){
 																$(this).remove();
 												});
-												$('#add_keyword').hide(); 
-												$('#reset_search').show();
-												$('#limit_field_dropdown').hide();
-												$('#limit_field_div').hide();
-												var random_id=rand(0,1000365);
-												slugName=make_slug_name(name);
-												var search_id=slugName+random_id;
-												$('#keyword_field_name').html('Keyword: '+customFieldName);
-												$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
-												$('#'+type).show();
-												var searchString='';
-												if(customColumnName!=''){
-																customColumnName= customColumnName.split(' ');
-																if(customColumnName.length>1){
-																				searchString=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
-																				searchString +=' @'+customColumnName[1]+' |||'+$('#search').val()+'||| ';
-																}
-																else{
-																				searchString=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
-																}
-                            
-												}
-												else{
-																searchString+=' |||'+$('#search').val()+'||| ';
-												}
-                        
-												$('#keyword_field_main_search').val(searchString);
-                            
+												$('#keyword_field_main_search').val('');
+												$('#limit_btn').show(); 
+												$('#add_keyword').show(); 
+												$('#reset_search').hide();
+												$('#limit_field_text').html('Limit Search to Field');
+												$('#limit_field_dropdown').show();
+												$('#search').val('');
+												$('#keyword_field_main').hide();
+												$('#limit_field_div').show();
+												customColumnName='';
+												customFieldName='All';
 								}
-								else{
-												return false;
-								}
+								facet_search('0');
 				}
-}
-else if(type=='date_field_main'){
-        
-            
-				if(isRemoved==1){
-								$('#date_range').val('');
-								$('#'+type+'_search').val('');
-								$('#date_type').val('');
-								$('#date_range_filter_div').show();
-								$('#date_field_text').html('Date Type');
-								$('#reset_date_search').hide();
-				}
-				else{
-								if($('#date_range').val()=='')
-												return false;
-								$('#date_range_filter_div').hide();
-								var random_id=rand(0,1000365);
-								slugName=make_slug_name(name);
-								$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
-								$('#'+type).show();
-								$('#reset_date_search').show();
-								if($('#date_type').val()=='')
-												date_type_text='All';
-								else
-												date_type_text=$('#date_type').val();
-								$('#date_field_name').html('Keyword: '+date_type_text);
-				}
-}
-else{
-				if(isRemoved!=1){
-								if($('#'+type+'_search').val().indexOf(name) < 0){
-												var random_id=rand(0,1000365);
-												slugName=make_slug_name(name);
-												var search_id=slugName+random_id;
-												$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+name+'\',\''+search_id+'\',\''+type+'\')"></i></div>');
-												$('#'+type).show();
-								}
-				}
-				var my_search_words='';
-				$('#'+type+'_search').val('');
-				$("#"+type+" .search_keys").each(function(index) {
-								if(index==0)
-												my_search_words=$(this).text();
-								else
-												my_search_words+='|||'+$(this).text();
-                
-				});
-				if(my_search_words!='' && typeof(my_search_words)!=undefined)
+				function facet_search(page)
 				{
-								$('#'+type+'_search').val(my_search_words);
-				}
-}
-facet_search('0');
-            
-}
-var customFieldName='All';
-var customColumnName='';
-function add_custom_token(fieldName,columnName){
-text=$('#search').val();
-customFieldName=fieldName;
-customColumnName=columnName;
-$('#limit_field_text').html(fieldName);
-}
-function add_date_token(type){
-$('#date_type').val(type);
-$('#date_field_text').html(type);
-}
-function make_slug_name(string){
-string = string.split('/').join('');
-string = string.split('??').join('');
-string = string.split(' ').join('');
-string = string.split('(').join('');
-string = string.split(')').join('');
-string = string.split(',').join('');
-string = string.split('.').join('');
-string = string.split('"').join('');
-string = string.split('\'').join('');
-string = string.split(':').join('');
-string = string.split(';').join('');
-string = string.toLowerCase();
-return string;
-}
-function remove_token(name,id,type)
-{
-if(type=='keyword_field_main' || type=='date_field_main'){
-				$('#'+type).hide();
-				$('#'+type+' .btn-img').each(function(){
-								$(this).remove();
-				});
-}
-$("#"+id).remove();
-if($('#'+type+' div').length<=1){
-				$('#'+type).hide();
-}
-add_token(unescape(name),type,1);        
-}
-function resetKeyword(type){
-if(type=='date'){
-				$('#date_field_main .btn-img').each(function(){
-								$(this).remove();
-				});
-				$('#date_field_main').hide();
-				$('#date_range').val('');
-				$('#date_type').val('');
-				$('#date_range_filter_div').show();
-				$('#date_field_text').html('Date Type');
-				$('#date_field_main_search').val('');
-				$('#reset_date_search').hide();
-				$('#widgetCalendar').DatePickerClear();
-}
-else{
-				$('#keyword_field_main .btn-img').each(function(){
-								$(this).remove();
-				});
-				$('#keyword_field_main_search').val('');
-				$('#limit_btn').show(); 
-				$('#add_keyword').show(); 
-				$('#reset_search').hide();
-				$('#limit_field_text').html('Limit Search to Field');
-				$('#limit_field_dropdown').show();
-				$('#search').val('');
-				$('#keyword_field_main').hide();
-				$('#limit_field_div').show();
-				customColumnName='';
-				customFieldName='All';
-}
-facet_search('0');
-}
-function facet_search(page)
-{
-if(typeof(page) == undefined)
-{
-				page=0;
-}
-$.blockUI({
-				css: { 
-								border: 'none', 
-								padding: '15px', 
-								backgroundColor: '#000', 
-								'-webkit-border-radius': '10px', 
-								'-moz-border-radius': '10px', 
-								opacity: .5, 
-								color: '#fff',
-								zIndex:999999
-				}
-});
-$.ajax({
-				type: 'POST', 
-				url: '<?php	echo	$facet_search_url	?>/'+page,
-				data:$('#form_search').serialize(),
-				success: function (result)
-				{ 
-								$('#data_container').html(result); 
-								updateDataTable();
+								if(typeof(page) == undefined)
+								{
+												page=0;
+								}
+								$.blockUI({
+												css: { 
+																border: 'none', 
+																padding: '15px', 
+																backgroundColor: '#000', 
+																'-webkit-border-radius': '10px', 
+																'-moz-border-radius': '10px', 
+																opacity: .5, 
+																color: '#fff',
+																zIndex:999999
+												}
+								});
+								$.ajax({
+												type: 'POST', 
+												url: '<?php	echo	$facet_search_url	?>/'+page,
+												data:$('#form_search').serialize(),
+												success: function (result)
+												{ 
+																$('#data_container').html(result); 
+																updateDataTable();
 
-								$.unblockUI();
+																$.unblockUI();
                                     
+												}
+								});
 				}
-});
-}
-function change_view(id)
-{
-$('#current_tab').val(id);
-$.ajax({
-				type: 'POST', 
-				url: '<?php	echo	site_url	('records/set_current_tab')	?>/'+id,
-				success: function (result)
-				{ 
-								window.location.reload();
+				function change_view(id)
+				{
+								$('#current_tab').val(id);
+								$.ajax({
+												type: 'POST', 
+												url: '<?php	echo	site_url	('records/set_current_tab')	?>/'+id,
+												success: function (result)
+												{ 
+																window.location.reload();
+												}
+								});
 				}
-});
-}
-function updateSimpleDataTable()
-{
-var sTable = $('#assets_table').dataTable({
-				"sDom": "frtiS",
-				'bPaginate':false,
-				'bInfo':false,
-				'bFilter': false,
-				"bSort": false,
-				"sScrollY": 400,
-				"sScrollX": "100%",
-				"bDeferRender": true,
-				"bAutoWidth": false
-});
-$.extend( $.fn.dataTableExt.oStdClasses, {
-				"sWrapper": "dataTables_wrapper form-inline"
-} );
-}
+				function updateSimpleDataTable()
+				{
+								var sTable = $('#assets_table').dataTable({
+												"sDom": "frtiS",
+												'bPaginate':false,
+												'bInfo':false,
+												'bFilter': false,
+												"bSort": false,
+												"sScrollY": 400,
+												"sScrollX": "100%",
+												"bDeferRender": true,
+												"bAutoWidth": false
+								});
+								$.extend( $.fn.dataTableExt.oStdClasses, {
+												"sWrapper": "dataTables_wrapper form-inline"
+								} );
+				}
 </script>

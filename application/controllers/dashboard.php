@@ -49,7 +49,9 @@ class	Dashboard	extends	MY_Controller
 								$data	=	NULL;
 								$this->load->view	('dashboard/index',	$data);
 				}
+
 }
+
 // END Dashboard Controller
 
 // End of file dashboard.php 

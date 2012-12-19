@@ -41,8 +41,8 @@ class	Settings	extends	MY_Controller
 
 				/**
 					* Redirect to users function
-				 * 
-				 * @return redirect to index method 
+					* 
+					* @return redirect to index method 
 					*/
 				public	function	index	()
 				{
@@ -84,7 +84,7 @@ class	Settings	extends	MY_Controller
 								if	(isAjax	())
 								{
 												echo	$this->load->view	('settings/user',	$data,	TRUE);
-												return TRUE;
+												return	TRUE;
 								}
 								$this->load->view	('settings/user',	$data);
 				}
@@ -111,7 +111,7 @@ class	Settings	extends	MY_Controller
 				/**
 					* Create a new User
 					*
-				 * @return settings/user view
+					* @return settings/user view
 					*/
 				public	function	add_user	()
 				{

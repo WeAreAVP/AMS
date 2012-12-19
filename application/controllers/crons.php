@@ -1066,9 +1066,11 @@ class	Crons	extends	CI_Controller
 								//pbcoreExtension End
 								// End By Ali Raza
 				}
-				function test_date_picker()
+
+				function	test_date_picker	()
 				{
-							$this->layout	=	'main_layout.php';
-								$this->load->view('welcome_message');						
+								$this->layout	=	'main_layout.php';
+								$this->load->view	('welcome_message');
 				}
+
 }

@@ -7,12 +7,12 @@
 	* 
 	* PHP version 5
 	* 
-	* @category   AMS
-	* @package    CI
-	* @author     Nouman Tayyab <nouman@geekschicago.com>
-	* @license    CPB http://nouman.com
-	* @version    GIT: <$Id>
-	* @link       http://amsqa.avpreserve.com
+	* @category AMS
+	* @package  CI
+	* @author   Nouman Tayyab <nouman@geekschicago.com>
+	* @license  CPB http://nouman.com
+	* @version  GIT: <$Id>
+	* @link     http://amsqa.avpreserve.com
 
 	*/
 

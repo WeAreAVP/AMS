@@ -952,6 +952,7 @@
     var hiden_column=new Array();
     var current_table_type='<?php	echo	$table_type	?>';
     oTable=null;
+				var state = false;
     (function($){
 								var initLayout = function() {
 												var hash = window.location.hash.replace('#', '');
@@ -972,7 +973,7 @@
 																				$('#date_range').val( formated.join(' to '));
 																}
 												});
-												var state = false;
+												
 												$('#date_range').bind('click', function(){
 																$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
 																state = !state;
@@ -983,9 +984,9 @@
 	
 								EYE.register(initLayout, 'init');
 								$('html').click(function() {
-            if($('#widgetCalendar').is(":visible")) {
-                $('#inputDate').DatePickerHide();
-            }
+            $('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
+													state = !state;
+																return false;
         });
 				})(jQuery)
     function add_token(name,type,isRemoved){

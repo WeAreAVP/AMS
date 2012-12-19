@@ -1,12 +1,28 @@
 <?php
 
 /**
-	* AMS Tracking Controller
+	* AMS Archive Management System
 	* 
-	* @category	Controllers
-	* @package		AMS
-	* @subpackage	Tracking Controller
-	* @author		Nouman Tayyab <nouman@geekschicago.com>
+	* PHP version 5
+	* 
+	* @category AMS
+	* @package  CI
+	* @author   Nouman Tayyab <nouman@geekschicago.com>
+	* @license  CPB http://nouman.com
+	* @version  GIT: <$Id>
+	* @link     http://amsqa.avpreserve.com
+
+	*/
+
+/**
+	* Tracking Class
+	*
+	* @category   AMS
+	* @package    CI
+	* @subpackage Controller
+	* @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @license    CPB http://nouman.com
+	* @link       http://amsqa.avpreserve.com
 	*/
 class	Tracking	extends	MY_Controller
 {
@@ -26,7 +42,8 @@ class	Tracking	extends	MY_Controller
 				/**
 					* Create a new Tracking Record
 					* Get station_id as uri segment 3
-					*  
+					* 
+					* @return tracking/add view
 					*/
 				public	function	add	()
 				{
@@ -56,7 +73,7 @@ class	Tracking	extends	MY_Controller
 																$tracking_info	=	$this->tracking->get_by_id	($inserted_id);
 																$this->shipment_tracking_email	($tracking_info);
 																echo	'done';
-																exit;
+																exit_function	();
 												}
 												else
 												{
@@ -65,13 +82,14 @@ class	Tracking	extends	MY_Controller
 												}
 								}
 								echo	$this->load->view	('tracking/add',	$data,	TRUE);
-								exit;
+								exit_function	();
 				}
 
 				/**
 					* Edit Tracking Information.
 					* Get tracking_id as uri segment 3
 					* 
+					* @return tracking/edit view
 					*/
 				public	function	edit	()
 				{
@@ -101,7 +119,7 @@ class	Tracking	extends	MY_Controller
 																$tracking_info	=	$this->tracking->get_by_id	($tracking_id);
 																$this->shipment_tracking_email	($tracking_info);
 																echo	'done';
-																exit;
+																exit_function	();
 												}
 												else
 												{
@@ -111,7 +129,7 @@ class	Tracking	extends	MY_Controller
 								}
 								$data['tracking_info']	=	$this->tracking->get_by_id	($tracking_id);
 								echo	$this->load->view	('tracking/edit',	$data,	TRUE);
-								exit;
+								exit_function	();
 				}
 
 				/**
@@ -119,6 +137,7 @@ class	Tracking	extends	MY_Controller
 					* Get station_id as uri segment 4
 					* Get tracking_id as uri segment 3
 					*  
+					* @return mixed
 					*/
 				public	function	delete	()
 				{
@@ -131,7 +150,8 @@ class	Tracking	extends	MY_Controller
 				/**
 					* Send Email on Add/Edit station tracking info
 					* 
-					* @param array $record
+					* @param array $record get record of a station
+					* 
 					* @return boolean 
 					*/
 				function	shipment_tracking_email	($record)
@@ -140,7 +160,7 @@ class	Tracking	extends	MY_Controller
 								$template	=	'_Tracking_Ship_Date';
 								$template_data	=	$this->email_template->get_template_by_sys_id	($template);
 
-								if	(isset	($template_data)	&&	!empty	($template_data))
+								if	(isset	($template_data)	&&	! empty	($template_data))
 								{
 												$station_details	=	$this->station_model->get_station_by_id	($record->station_id);
 												$subject	=	$template_data->subject;
@@ -152,7 +172,7 @@ class	Tracking	extends	MY_Controller
 												$replacebale['station_name']	=	isset	($station_details->station_name)	?	$station_details->station_name	:	'';
 
 
-												if	($this->config->item	('demo')	==	true)
+												if	($this->config->item	('demo')	===	TRUE)
 												{
 																$to_email	=	$this->config->item	('to_email');
 																$from_email	=	$this->config->item	('from_email');
@@ -165,59 +185,70 @@ class	Tracking	extends	MY_Controller
 																$replacebale['user_name']	=	$this->user_detail->first_name	.	' '	.	$this->user_detail->last_name;
 												}
 												$replacebale['inform_to']	=	'ssapienza@cpb.org';
-												$this->emailtemplates->sent_now	=	true;
+												$this->emailtemplates->sent_now	=	TRUE;
 												$email_queue_id	=	$this->emailtemplates->queue_email	($template,	$to_email,	$replacebale);
-												return	true;
+												return	TRUE;
 								}
 								else
 								{
-												return	false;
+												return	FALSE;
 								}
 				}
 
+				/**
+					* Get Tracking information
+					* 
+					* @return json
+					*  
+					*/
 				public	function	get_tracking_info	()
 				{
 								$stations	=	$this->input->post	('stations');
 								$list	=	array	();
-								foreach	($stations	as	$key	=>	$id)
+								foreach	($stations	as		$station_id)
 								{
-												$tracking_info	=	$this->tracking->get_last_tracking_info	($id);
-												$station	=	$this->station_model->get_station_by_id	($id);
+												$tracking_info	=	$this->tracking->get_last_tracking_info	($station_id);
+												$station	=	$this->station_model->get_station_by_id	($station_id);
 												if	(count	($tracking_info)	>	0)
 												{
 
-																if	(empty	($tracking_info->media_received_date)	||	$tracking_info->media_received_date	==	null)
+																if	(empty	($tracking_info->media_received_date)	OR	$tracking_info->media_received_date	===	NULL)
 																{
-																				$list[]	=	array	('tracking_id'									=>	$tracking_info->id,	'station_id'										=>	$id,	'media_received_date'	=>	'',	'station_name'								=>	$station->station_name);
+																				$list[]	=	array	('tracking_id'	=>	$tracking_info->id,	'station_id'	=>	$station_id,	'media_received_date'	=>	'',	'station_name'	=>	$station->station_name);
 																}
 																else
 																{
-																				$list[]	=	array	('tracking_id'									=>	$tracking_info->id,	'station_id'										=>	$id,	'media_received_date'	=>	$tracking_info->media_received_date,	'station_name'								=>	$station->station_name);
+																				$list[]	=	array	('tracking_id'	=>	$tracking_info->id,	'station_id'=>	$station_id,	'media_received_date'	=>	$tracking_info->media_received_date,	'station_name'	=>	$station->station_name);
 																}
 												}
 												else
 												{
-																$list[]	=	array	('tracking_id'									=>	'',	'station_id'										=>	$id,	'media_received_date'	=>	'',	'station_name'								=>	$station->station_name);
+																$list[]	=	array	('tracking_id'	=>	'',	'station_id'=>	$station_id,	'media_received_date'	=>	'',	'station_name'=>	$station->station_name);
 												}
 								}
 								echo	json_encode	($list);
-								exit;
+								exit_function	();
 				}
 
+				/**
+					* Update the tracking information
+				 * 
+				 * @return json
+					*/
 				public	function	update_tracking_info	()
 				{
 								if	(isAjax	())
 								{
 												$dates	=	$this->input->post	();
-												foreach	($dates	as	$key	=>	$value)
+												foreach	($dates	as	$index	=>	$value)
 												{
-																$tracking_id	=	explode	('_',	$key);
+																$tracking_id	=	explode	('_',	$index);
 																$tracking_id	=	$tracking_id[count	($tracking_id)	-	1];
 																$media_date	=	date	('Y-m-d',	strtotime	($value));
 																$this->tracking->update_record	($tracking_id,	array	('media_received_date'	=>	$media_date));
 												}
-												echo	json_encode	(array	('success'	=>	true));
-												exit;
+												echo	json_encode	(array	('success'	=>	TRUE));
+												exit_function	();
 								}
 								show_404	();
 				}
@@ -226,5 +257,5 @@ class	Tracking	extends	MY_Controller
 
 // END Tracking
 
-/* End of file tracking.php */
+// End of file tracking.php
 /* Location: ./application/controllers/tracking.php */

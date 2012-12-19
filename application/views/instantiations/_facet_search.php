@@ -982,6 +982,11 @@
 								};
 	
 								EYE.register(initLayout, 'init');
+								$('html').click(function() {
+            if($('#widgetCalendar').is(":visible")) {
+                $('#widgetCalendar').hide();
+            }
+        });
 				})(jQuery)
     function add_token(name,type,isRemoved){
         if(type=='keyword_field_main'){

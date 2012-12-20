@@ -187,46 +187,65 @@ if	(!$isAjax)
 
 																																				if	($type	==	'Titles')
 																																				{
+																																								$asset_title	=	'';
+																																								$asset_title_type	=	'';
+																																								$asset_title_source	=	'';
+																																								if	(isset	($asset->asset_title)	&&	!empty	($asset->asset_title ))
+																																								{
+																																												$val	=	trim	(str_replace	('(**)',	'',	$asset->asset_title));
+																																												$column	=	'<a href="'	.	site_url	('records/details/'	.	$asset->id)	.	'" >'	.	$val .	'</a><br/>';
+																																								}
+																																							
+																																								if	(isset	($asset->asset_title_type)	&&	!empty	($asset->asset_title_type ))
+																																								{
+																																												$val	=	trim	(str_replace	('(**)',	'',	$asset->asset_title_type));
+																																												$asset_title_type	=	$val;
+																																								}
+																																								if	(isset	($asset->asset_title_ref)	&&	!empty	($asset->asset_title_ref ) && ! empty($asset_title_type) )
+																																								{
+																																												$asset_title_type	=	'<a href="'	.$asset->asset_title_ref.	'" >'.$asset_title_type.'</a>';
+																																								}
+																																								if(!empty($asset_title_type))
+																																								{
+																																											$column	.=	$asset_title_type.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_title_source)	&&	!empty	($asset->asset_title_source ))
+																																								{
+																																												$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_title_source)).')';
+																																													$column	.= 	$val;
+																																								}
 
-																																								if	(isset	($asset->$def_setting[$row['title']])	&&	!empty	($asset->$def_setting[$row['title']]))
-																																								{
-																																												$val	=	trim	(str_replace	("(**)",	"N/A",	$asset->$def_setting[$row['title']]));
-																																												$asset_title	=	$val;
-																																								}
-																																								else
-																																								{
-																																												$asset_title	=	'N/A';
-																																								}
-
-																																								$column	=	'<a href="'	.	site_url	('records/details/'	.	$asset->id)	.	'" >'	.	$asset_title	.	'</a>';
+																																								
+																																								
+																																								
 																																				}
-																																				else	if	($type	==	'Assets_Date')
-																																				{
-																																								$column	=	($asset->$def_setting[$row['title']]	==	0)	?	'No Date'	:	date	('Y-m-d',	$asset->$def_setting[$row['title']]);
-																																				}
-																																				else	if	($type	!=	'Description')
-																																				{
-
-																																								if	(isset	($asset->$def_setting[$row['title']])	&&	!empty	($asset->$def_setting[$row['title']]))
-																																								{
-																																												$val	=	trim	(str_replace	("(**)",	"N/A",	$asset->$def_setting[$row['title']]));
-																																												$column	=	$val;
-																																								}
-																																								else
-																																								{
-																																												$column	=	'N/A';
-																																								}
-																																				}
-																																				else
-																																				{
-																																								$des	=	str_replace	("(**)",	"N/A",	$asset->$def_setting[$row['title']]);
-																																								if	(isset	($des)	&&	!empty	($des)	&&	strlen	($des)	>	160)
-																																								{
-																																												$messages	=	str_split	($des,	160);
-																																												$des	=	$messages[0]	.	' ...';
-																																								}
-																																								$column	=	$des;
-																																				}
+//																																				else	if	($type	==	'Assets_Date')
+//																																				{
+//																																								$column	=	($asset->$def_setting[$row['title']]	==	0)	?	'No Date'	:	date	('Y-m-d',	$asset->$def_setting[$row['title']]);
+//																																				}
+//																																				else	if	($type	!=	'Description')
+//																																				{
+//
+//																																								if	(isset	($asset->$def_setting[$row['title']])	&&	!empty	($asset->$def_setting[$row['title']]))
+//																																								{
+//																																												$val	=	trim	(str_replace	("(**)",	"N/A",	$asset->$def_setting[$row['title']]));
+//																																												$column	=	$val;
+//																																								}
+//																																								else
+//																																								{
+//																																												$column	=	'N/A';
+//																																								}
+//																																				}
+//																																				else
+//																																				{
+//																																								$des	=	str_replace	("(**)",	"N/A",	$asset->$def_setting[$row['title']]);
+//																																								if	(isset	($des)	&&	!empty	($des)	&&	strlen	($des)	>	160)
+//																																								{
+//																																												$messages	=	str_split	($des,	160);
+//																																												$des	=	$messages[0]	.	' ...';
+//																																								}
+//																																								$column	=	$des;
+//																																				}
 																																				if	(in_array	($type,	array	("Local_ID",	"Subjects",		"Genre",	"Creator",	"Contributor",	"Publisher",		"Assets_Date",		"Coverage",	"Audience",			"Annotation",		"Rights")))
 																																				{
 																																								$width	=	'min-width:100px;';

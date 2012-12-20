@@ -45,6 +45,8 @@
 																				<div class="clearfix"></div>
 
 																</div>
+																<div class="clearfix"></div>
+																<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
 																<?php
 												}
 												else
@@ -57,7 +59,7 @@
 																</div>
 												<?php	}	?>
             <div class="clearfix"></div>
-
+												<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();" style="display: none;"/></div>
 
             <!-- Custom  Search Display End  -->
 
@@ -78,12 +80,13 @@
 																?>
 																<div id = "date_field_main">
 																				<input id="date_type" name="date_type" value="<?php	echo	$this->session->userdata['date_type'];	?>" type="hidden"/>
-																				<div class = "filter-fileds"><b id = "date_field_name">Keyword: <?php	echo	$type;	?></b></div>
+																				<div class = "filter-fileds"><b id = "date_field_name">Date Keyword: <?php	echo	$type;	?></b></div>
 																				<div class="btn-img" id="<?php	echo	$search_id;	?>" ><span class="search_keys"><?php	echo	$date;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($date);	?>','<?php	echo	$search_id;	?>','date_field_main');"></i></div>
 																				<input type="hidden" id="date_field_main_search" name="date_field_main_search" value="<?php	echo	$date;	?>" />
 
 																				<div class="clearfix"></div>
 																</div>
+																<div class="clearfix"></div>
 																<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset" style="margin: 5px 0px;" class="btn" onclick="resetKeyword('date');"/></div>
 																<?php
 												}
@@ -96,6 +99,7 @@
 																				<input type="hidden" id="date_field_main_search" name="date_field_main_search" value="" />
 
 																</div>
+																<div class="clearfix"></div>
 																<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset"  style="margin: 5px 0px;display:none;" class="btn" onclick="resetKeyword('date');"/></div>
 												<?php	}
 												?>
@@ -476,7 +480,7 @@
         </div>
         <div class="filter-fileds" id="limit_btn">
             <div><input type="button"  style="display:<?php	echo	$style;	?>" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
-            <div><input type="reset" style="display:<?php	echo	$reset;	?>" id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
+
         </div>
         <div class="clearfix"></div>
 								<?php
@@ -1085,7 +1089,7 @@
 																				date_type_text='All';
 																else
 																				date_type_text=$('#date_type').val();
-																$('#date_field_name').html('Keyword: '+date_type_text);
+																$('#date_field_name').html('Date Keyword: '+date_type_text);
 												}
 								}
 								else{

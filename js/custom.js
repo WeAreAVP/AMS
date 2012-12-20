@@ -252,7 +252,7 @@ function updateDataTable()
     {
 								ySize=$('#total_record_count').html();
 								if(ySize<=9)
-												ySize=ySize*30;
+												ySize=ySize*50;
 								else
 												ySize=500;
         oTable = 

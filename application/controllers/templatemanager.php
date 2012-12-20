@@ -50,6 +50,7 @@ class	TemplateManager	extends	MY_Controller
 								$data['add_temp']	=	false;
 								if	($this->input->post	())
 								{
+
 												$val	=	$this->form_validation;
 												$val->set_rules	('system_id',	'System Id',	'trim|required|xss_clean|callback_system_id_check');
 												$val->set_rules	('subject',	'Subject',	'trim|required|xss_clean');
@@ -59,6 +60,8 @@ class	TemplateManager	extends	MY_Controller
 												$val->set_rules	('email_type',	'Email Type',	'trim|required|xss_clean');
 												$val->set_rules	('email_from',	'Email From',	'trim|required|xss_clean');
 												$val->set_rules	('reply_to',	'Reply To',	'trim|required|xss_clean');
+												$val->set_rules	('crawford_contact_detail',	'Crwaford Contact Detail',	'trim|xss_clean');
+												$val->set_rules	('is_crawford',	'Crwaford Contact Detail',	'trim|xss_clean');
 												if	(!(isset	($_POST['body_plain'])	&&	!isset	($_POST['body_html'])))
 												{
 																$this->form_validation->set_message	('body_plain',	'You must enter plain or html body');
@@ -69,6 +72,10 @@ class	TemplateManager	extends	MY_Controller
 																$email_template_data['system_id']	=	str_replace	(" ",	"_",	$val->set_value	('system_id'));
 																$email_template_data['subject']	=	$val->set_value	('subject');
 																$email_template_data['email_type']	=	$val->set_value	('email_type');
+																$email_template_data['crawford_contact_detail']	=	$val->set_value	('crawford_contact_detail');
+
+
+																$email_template_data['is_crawford']	=	($val->set_value	('is_crawford'))	?	$val->set_value	('is_crawford')	:	0;
 																if	($email_template_data['email_type']	!=	'plain')
 																{
 																				$email_template_data['body_html']	=	str_replace	(array	("\r",	"\n",	"\r\n"),	"<br>",	$val->set_value	('body_html'));
@@ -82,6 +89,7 @@ class	TemplateManager	extends	MY_Controller
 																$replaceable	=	explode	("\n",	$val->set_value	('replaceables'));
 																$email_template_data['replaceables']	=	isset	($replaceable)	?	json_encode	($replaceable)	:	'';
 																$email_template_data['created_date']	=	date	("Y-m-d H:i:s");
+																
 																$this->email_template->add_email_template	($email_template_data);
 																$data['add_temp']	=	true;
 																redirect	('templatemanager/lists/added');
@@ -158,6 +166,8 @@ class	TemplateManager	extends	MY_Controller
 																				$val->set_rules	('email_type',	'Email Type',	'trim|required|xss_clean');
 																				$val->set_rules	('email_from',	'Email From',	'trim|required|xss_clean');
 																				$val->set_rules	('reply_to',	'Reply To',	'trim|required|xss_clean');
+																					$val->set_rules	('crawford_contact_detail',	'Crwaford Contact Detail',	'trim|xss_clean');
+												$val->set_rules	('is_crawford',	'Crwaford Contact Detail',	'trim|xss_clean');
 																				if	(!(isset	($_POST['body_plain'])	&&	!isset	($_POST['body_html'])))
 																				{
 																								$this->form_validation->set_message	('body_plain',	'You must enter plain or html body');
@@ -178,6 +188,10 @@ class	TemplateManager	extends	MY_Controller
 																								$email_template_data['email_from']	=	$val->set_value	('email_from');
 																								$email_template_data['reply_to']	=	$val->set_value	('reply_to');
 																								$replaceable	=	explode	("\n",	$val->set_value	('replaceables'));
+																									$email_template_data['crawford_contact_detail']	=	$val->set_value	('crawford_contact_detail');
+
+
+																$email_template_data['is_crawford']	=	($val->set_value	('is_crawford'))	?	$val->set_value	('is_crawford')	:	0;
 																								$email_template_data['replaceables']	=	isset	($replaceable)	?	json_encode	($replaceable)	:	'';
 																								$this->email_template->update_email_template	($data['template_id'],	$email_template_data);
 																								$data['add_temp']	=	true;

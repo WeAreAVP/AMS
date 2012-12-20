@@ -620,13 +620,19 @@ class	Crons	extends	CI_Controller
 												foreach	($asset_children['pbcoreassettype']	as	$pbcoreassettype)
 												{
 																$asset_type_d	=	array	();
+																$asset_type_d['assets_id']	=	$asset_id;
 																if	(isset	($pbcoreassettype['text']))
 																{
 																				$asset_type_d['asset_type']	=	$pbcoreassettype['text'];
-																				if	(!$this->assets_model->get_assets_type_by_type	($pbcoreassettype['text']))
+																				if	( $asset_type = $this->assets_model->get_assets_type_by_type	($pbcoreassettype['text']))
 																				{
-																								$this->assets_model->insert_asset_types	($asset_type_d);
+																						$asset_type_d['assets_id']	= $asset_type->id;
 																				}
+																				else
+																				{
+																							$asset_type_d['assets_id']	=	$this->assets_model->insert_asset_types	(array("asset_type"=>$asset_type_d));			
+																				}
+																				$this->assets_model->insert_assets_asset_types($asset_type_d);
 																}
 												}
 								}
@@ -646,8 +652,9 @@ class	Crons	extends	CI_Controller
 																				if	(isset	($pbcoreidentifier['children']['identifiersource'][0]['text'])	&&	!empty	($pbcoreidentifier['children']['identifiersource'][0]['text']))
 																				{
 																								$identifier_d['identifier_source']	=	$pbcoreidentifier['children']['identifiersource'][0]['text'];
-																								$this->assets_model->insert_identifiers	($identifier_d);
+																								
 																				}
+																				$this->assets_model->insert_identifiers	($identifier_d);
 																				//print_r($identifier_d);	
 																}
 												}

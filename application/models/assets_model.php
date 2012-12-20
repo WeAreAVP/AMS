@@ -1135,6 +1135,17 @@ class	Assets_Model	extends	CI_Model
 								$this->db->insert	($this->_table_nomination_status,	$data);
 								return	$this->db->insert_id	();
 				}
+				/**
+					*  Insert the record in assets_asset_types  table
+					*  @param array $data
+					*  @return integer last_inserted id
+					* 
+					*/
+				function	insert_assets_asset_types	($data)
+				{
+								$this->db->insert	($this->_table_assets_asset_types,	$data);
+								return	$this->db->insert_id	();
+				}
 
 }
 

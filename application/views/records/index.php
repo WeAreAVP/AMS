@@ -217,7 +217,7 @@ if	(!$isAjax)
 																																								}
 																																								if	(isset	($asset->asset_title_source)	&&	!empty	($asset->asset_title_source))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_title_source))	.	')';
+																																												$val	=	trim	(str_replace	('(**)',	'',	$asset->asset_title_source))	;
 																																												$column	.=	$val;
 																																								}
 																																				}
@@ -263,7 +263,7 @@ if	(!$isAjax)
 																																								}
 																																								if	(isset	($asset->asset_subject_source)	&&	!empty	($asset->asset_subject_source))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_subject_source))	.	')';
+																																												$val	=	trim	(str_replace	('(**)',	'',	$asset->asset_subject_source));
 																																												$column	.=	$val;
 																																								}
 																																				}
@@ -284,7 +284,7 @@ if	(!$isAjax)
 																																								}
 																																								if	(isset	($asset->asset_genre_source)	&&	!empty	($asset->asset_genre_source))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_genre_source))	.	')';
+																																												$val	=	trim	(str_replace	('(**)',	'',	$asset->asset_genre_source));
 																																												$column	.=	$val;
 																																								}
 																																				}
@@ -293,7 +293,7 @@ if	(!$isAjax)
 																																								$column	=	($asset->dates	==	0)	?	'No Date'	:	date	('Y-m-d',	$asset->dates);
 																																								if	(isset	($asset->date_type)	&&	!empty	($asset->date_type))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->date_type))	.	')';
+																																												$val	=	trim	(str_replace	('(**)',	'',	$asset->date_type));
 																																												$column	.=	'<br/>'	.	$val;
 																																								}
 																																				}
@@ -315,12 +315,12 @@ if	(!$isAjax)
 																																								}
 																																								if	(isset	($asset->asset_creator_affiliation)	&&	!empty	($asset->asset_creator_affiliation))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_creator_affiliation))	.	')';
+																																												$val	=		trim	(str_replace	('(**)',	'',	$asset->asset_creator_affiliation));
 																																												$column	.=	$val	.	'<br/>';
 																																								}
 																																								if	(isset	($asset->asset_creator_source)	&&	!empty	($asset->asset_creator_source))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_creator_source))	.	')';
+																																												$val	=		trim	(str_replace	('(**)',	'',	$asset->asset_creator_source));
 																																												$column	.=	$val	.	'<br/>';
 																																								}
 																																								$asset_creator_role	=	'';
@@ -338,7 +338,7 @@ if	(!$isAjax)
 																																								}
 																																								if	(isset	($asset->asset_creator_role_source)	&&	!empty	($asset->asset_creator_role_source))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_creator_role_source))	.	')';
+																																												$val	= 	trim	(str_replace	('(**)',	'',	$asset->asset_creator_role_source));
 																																												$column	.=	$val	.	'<br/>';
 																																								}
 																																				}
@@ -360,12 +360,12 @@ if	(!$isAjax)
 																																								}
 																																								if	(isset	($asset->asset_contributor_affiliation)	&&	!empty	($asset->asset_contributor_affiliation))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_contributor_affiliation))	.	')';
+																																												$val	=	trim	(str_replace	('(**)',	'',	$asset->asset_contributor_affiliation));
 																																												$column	.=	$val	.	'<br/>';
 																																								}
 																																								if	(isset	($asset->asset_contributor_source)	&&	!empty	($asset->asset_contributor_source))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_contributor_source))	.	')';
+																																												$val	= trim	(str_replace	('(**)',	'',	$asset->asset_contributor_source));
 																																												$column	.=	$val	.	'<br/>';
 																																								}
 																																								$asset_contributor_role	=	'';
@@ -383,7 +383,7 @@ if	(!$isAjax)
 																																								}
 																																								if	(isset	($asset->asset_contributor_role_source)	&&	!empty	($asset->asset_contributor_role_source))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_contributor_role_source))	.	')';
+																																												$val	=	trim	(str_replace	('(**)',	'',	$asset->asset_contributor_role_source));
 																																												$column	.=	$val	.	'<br/>';
 																																								}
 																																				}
@@ -404,7 +404,7 @@ if	(!$isAjax)
 																																								}
 																																								if	(isset	($asset->asset_publisher_affiliation)	&&	!empty	($asset->asset_publisher_affiliation))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_publisher_affiliation))	.	')';
+																																												$val	=	trim	(str_replace	('(**)',	'',	$asset->asset_publisher_affiliation));
 																																												$column	.=	$val	.	'<br/>';
 																																								}
 																																								$asset_publisher_role	=	'';
@@ -422,7 +422,7 @@ if	(!$isAjax)
 																																								}
 																																								if	(isset	($asset->asset_publisher_role_source)	&&	!empty	($asset->asset_publisher_role_source))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_publisher_role_source))	.	')';
+																																												$val	=	trim	(str_replace	('(**)',	'',	$asset->asset_publisher_role_source));
 																																												$column	.=	$val	.	'<br/>';
 																																								}
 																																				}
@@ -435,7 +435,7 @@ if	(!$isAjax)
 																																								}
 																																								if	(isset	($asset->asset_coverage_type)	&&	!empty	($asset->asset_coverage_type))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_coverage_type))	.	')';
+																																												$val	=	trim	(str_replace	('(**)',	'',	$asset->asset_coverage_type))	;
 																																												$column	.=	$val;
 																																								}
 																																				}
@@ -456,7 +456,7 @@ if	(!$isAjax)
 																																								}
 																																								if	(isset	($asset->asset_audience_level_source)	&&	!empty	($asset->asset_audience_level_source))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_audience_level_source))	.	')';
+																																												$val	=	trim	(str_replace	('(**)',	'',	$asset->asset_audience_level_source));
 																																												$column	.=	$val;
 																																								}
 																																				}
@@ -477,7 +477,7 @@ if	(!$isAjax)
 																																								}
 																																								if	(isset	($asset->asset_audience_rating_source)	&&	!empty	($asset->asset_audience_rating_source))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_audience_rating_source))	.	')';
+																																												$val	=		trim	(str_replace	('(**)',	'',	$asset->asset_audience_rating_source));
 																																												$column	.=	$val;
 																																								}
 																																				}
@@ -498,7 +498,7 @@ if	(!$isAjax)
 																																								}
 																																								if	(isset	($asset->asset_annotation_type)	&&	!empty	($asset->asset_annotation_type))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_annotation_type))	.	')';
+																																												$val	=	trim	(str_replace	('(**)',	'',	$asset->asset_annotation_type));
 																																												$column	.=	$val;
 																																								}
 																																				}
@@ -507,11 +507,11 @@ if	(!$isAjax)
 																																								$asset_rights	=	'';
 																																								if	(isset	($asset->asset_rights)	&&	!empty	($asset->asset_rights))
 																																								{
-																																												$asset_rights	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_rights))	.	')';
+																																												$asset_rights	=	trim	(str_replace	('(**)',	'',	$asset->asset_rights))	;
 																																								}
 																																								if	(isset	($asset->asset_rights_link)	&&	!empty	($asset->asset_rights_link)	&&	!empty	($asset_rights))
 																																								{
-																																												$asset_rights	=	'<a href="'	.	$asset->asset_rights_link	.	'" >'	.	$asset_rights	.	'</a>';
+																																												$asset_rights	=	'<a href="'	.	trim	(str_replace	('(**)',	'',$asset->asset_rights_link))	.	'" >'	.	$asset_rights	.	'</a>';
 																																								}
 																																								if	(!empty	($asset_rights))
 																																								{

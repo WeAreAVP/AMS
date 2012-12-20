@@ -184,7 +184,7 @@ if	(!$isAjax)
 																																}
 																																else
 																																{
-
+																																				$column='';
 																																				if	($type	==	'Titles')
 																																				{
 																																								$asset_title	=	'';
@@ -219,10 +219,62 @@ if	(!$isAjax)
 																																								
 																																								
 																																				}
-//																																				else	if	($type	==	'Assets_Date')
-//																																				{
-//																																								$column	=	($asset->$def_setting[$row['title']]	==	0)	?	'No Date'	:	date	('Y-m-d',	$asset->$def_setting[$row['title']]);
-//																																				}
+																																				else if ($type == 'AA_GUID')
+																																				{
+																																								$column = ($value->guid_identifier) ? $value->guid_identifier : '';
+																																				}
+																																				else if ($type == 'Local_ID')
+																																				{
+																																								$column = $value->local_identifier;
+																																				}
+																																				else if ($type == 'Description')
+																																				{
+																																								if(isset($value->description) && ! empty($value->description) )
+																																								{
+																																												$des	=	str_replace	("(**)",	"",	$asset->description);
+																																												if	(isset	($des)	&&	!empty	($des)	&&	strlen	($des)	>	160)
+																																												{
+																																																$messages	=	str_split	($des,	160);
+																																																$des	=	$messages[0]	.	' ...';
+																																												}
+																																												$column	=	$des.'<br/>';
+																																								}
+																																								if(isset($value->description_type) && ! empty($value->description_type) )
+																																								{
+																																											$column	.= $value->description_type;	
+																																								}
+																																				}
+																																				else	if	($type	==	'Subjects')
+																																				{
+																																								$asset_subject	=	'';
+																																								$asset_subject_source	=	'';
+																																								if	(isset	($asset->asset_subject)	&&	!empty	($asset->asset_subject ))
+																																								{
+																																												$asset_subject	=	trim	(str_replace	('(**)',	'',	$asset->asset_subject));
+																																								}
+																																								if	(isset	($asset->asset_subject_ref)	&&	!empty	($asset->asset_subject_ref ) && ! empty($asset_subject) )
+																																								{
+																																												$asset_subject	=	'<a href="'	.$asset->asset_subject_ref.	'" >'.$asset_subject.'</a>';
+																																								}
+																																								if(!empty($asset_subject))
+																																								{
+																																											$column	.=	$asset_subject.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_subject_source)	&&	!empty	($asset->asset_subject_source ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_subject_source)).')';
+																																											$column	.= 	$val;
+																																								}
+																																				}
+																																				else	if	($type	==	'Assets_Date')
+																																				{
+																																								$column	=	($asset->dates	==	0)	?	'No Date'	:	date	('Y-m-d',	$asset->dates);
+																																								if	(isset	($asset->date_type)	&&	!empty	($asset->date_type ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->date_type)).')';
+																																											$column	.= 	'<br/>'.$val;
+																																								}
+																																				}
 //																																				else	if	($type	!=	'Description')
 //																																				{
 //

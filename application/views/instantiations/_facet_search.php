@@ -80,7 +80,7 @@
 																?>
 																<div id = "date_field_main">
 																				<input id="date_type" name="date_type" value="<?php	echo	$this->session->userdata['date_type'];	?>" type="hidden"/>
-																				<div class = "filter-fileds"><b id = "date_field_name">Keyword: <?php	echo	$type;	?></b></div>
+																				<div class = "filter-fileds"><b id = "date_field_name">Date Keyword: <?php	echo	$type;	?></b></div>
 																				<div class="btn-img" id="<?php	echo	$search_id;	?>" ><span class="search_keys"><?php	echo	$date;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($date);	?>','<?php	echo	$search_id;	?>','date_field_main');"></i></div>
 																				<input type="hidden" id="date_field_main_search" name="date_field_main_search" value="<?php	echo	$date;	?>" />
 

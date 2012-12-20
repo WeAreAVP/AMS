@@ -430,7 +430,7 @@ if	(!$isAjax)
 																																				{
 																																								if	(isset	($asset->asset_coverage)	&&	!empty	($asset->asset_coverage))
 																																								{
-																																												$val	=	'('	.	trim	(str_replace	('(**)',	'',	$asset->asset_coverage))	.	')';
+																																												$val	=	trim	(str_replace	('(**)',	'',	$asset->asset_coverage));
 																																												$column	.=	$val	.	'<br/>';
 																																								}
 																																								if	(isset	($asset->asset_coverage_type)	&&	!empty	($asset->asset_coverage_type))

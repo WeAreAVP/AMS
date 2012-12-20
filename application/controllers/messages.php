@@ -119,6 +119,8 @@ class	Messages	extends	MY_Controller
 												$type	=	$this->input->post	('type');
 												$messagesType	=	$this->config->item	('messages_type');
 												$messageType	=	'_'	.	str_replace	(' ',	'_',	strtolower	($messagesType[$type]));
+												$messageTypeFields	=	str_replace	(' ',	'_',		$messagesType[$type]);
+												$data['record']=$this->email_template->get_template_by_sys_id($messageTypeFields);
 												$data['is_ajax']	=	true;
 												echo	$this->load->view	('messages/'	.	$messageType,	$data,	TRUE);
 												exit;

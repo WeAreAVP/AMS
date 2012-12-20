@@ -108,11 +108,11 @@
 																								{
 																												?>
 																												<a href="<?php	echo	site_url	('messages/inbox')	?>">Messages</a>
-				<?php	}	?>
+																								<?php	}	?>
 																				</span>
 																				<a href="<?php	echo	site_url	('auth/logout')	?>">Log Out</a> 
 																</div>
-<?php	}	?>
+												<?php	}	?>
             <div class="navbar-inner">
                 <a class="brand" href="<?php	echo	site_url	()	?>">AMS</a>
 																<?php
@@ -136,7 +136,7 @@
 
 																								</ul>
 																				</div><!--/.nav-collapse -->
-<?php	}	?>
+																<?php	}	?>
 
             </div>
         </div>
@@ -144,7 +144,7 @@
 
             <div class="content" >
 																<?php
-																if	(is_route_method	(array	('settings'	=>	array	('index',	'edit_profile'),	'templatemanager'	=>	array	('add',	'lists',	'edit',	'details',	'readmessage'))
+																if	(is_route_method	(array	('settings'	=>	array	('index',	'edit_profile'),	'templatemanager'	=>	array	('add',	'lists',	'edit',	'details',	'readmessage','manage_crawford'))
 																								)
 																)
 																{
@@ -155,9 +155,10 @@
 																								{
 																												?>
 																												<li class="<?php	echo	active_anchor	('templatemanager',	array	('add',	'lists',	'edit',	'details',	'readmessage'));	?>"><a href="<?php	echo	site_url	('templatemanager/lists');	?>" >Email Template</a></li>
-				<?php	}	?>
+																								<?php	}	?>
 																								<li class="<?php	echo	active_anchor	('settings',	'index');	?>"><a href="<?php	echo	site_url	('settings/index');	?>">Users</a></li>
 																								<li class="<?php	echo	active_anchor	('settings',	'edit_profile');	?>"><a href="<?php	echo	site_url	('settings/edit_profile');	?>">Edit Profile</a></li> 
+<!--																								<li class="<?php	echo	active_anchor	('templatemanager',	'manage_crawford');	?>"><a href="<?php	echo	site_url	('templatemanager/manage_crawford');	?>">Crawford Contact Detail</a></li> -->
 
 																				</ul>
 

@@ -86,23 +86,23 @@ if	(!$isAjax)
 																																				}
 																																				else	if	($type	==	'Duration')
 																																				{
-																																								$column	=	($value->actual_duration)	?	$value->actual_duration	:	'N/A';
+																																								$column	=	($value->actual_duration)	?	$value->actual_duration	:	$value->projected_duration;
 																																				}
 																																				else	if	($type	==	'Date')
 																																				{
-																																								$column	=	($value->dates	==	0)	?	'No Source Date'	:	date	('Y-m-d',	$value->dates)	.	' '	.	$value->date_type;
+																																								$column	=	($value->dates	==	0)	?	''	:	date	('Y-m-d',	$value->dates)	.	' '	.	$value->date_type;
 																																				}
 																																				else	if	($type	==	'File_size')
 																																				{
-																																								$column	=	($value->file_size	==	0)	?	'N/A'	:	$value->file_size	.	' '	.	($value->file_size_unit_of_measure)	?	$value->file_size_unit_of_measure	:	'';
+																																								$column	=	($value->file_size	==	0)	?	''	:	$value->file_size	.	' '	.	($value->file_size_unit_of_measure)	?	$value->file_size_unit_of_measure	:	'';
 																																				}
 																																				else	if	($type	==	'Colors')
 																																				{
-																																								$column	=	($value->color)	?	$value->color	:	'N/A';
+																																								$column	=	($value->color)	?	$value->color	:	'';
 																																				}
 																																				else	if	($type	==	'Language')
 																																				{
-																																								$column	=	($value->language)	?	$value->language	:	'N/A';
+																																								$column	=	($value->language)	?	$value->language	:	'';
 																																				}
 																																				if	(in_array	($type,	array	('Organization',	'Instantiation_ID',	'Nomination',	'Media_Type',	'Generation',	'Format',	'Duration',	'Date',	'File_size',	'Colors',	'Language')))
 																																				{

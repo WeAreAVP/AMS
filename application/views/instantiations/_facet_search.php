@@ -1232,6 +1232,7 @@
 				function updateSimpleDataTable()
 				{
 								ySize=<?php echo $total; ?>;
+								console.log(ySize);
 								if(ySize<=9)
 												ySize=ySize*10;
 								else

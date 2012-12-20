@@ -86,7 +86,7 @@ if	(!$isAjax)
 																																				}
 																																				else	if	($type	==	'Duration')
 																																				{
-																																								$column	=	($value->actual_duration)	?	$value->actual_duration	:	$value->projected_duration;
+																																								$column	=	($value->actual_duration)	?	date	('H:i:s',	strtotime	($value->actual_duration))	:	date	('H:i:s',	strtotime	($value->projected_duration));
 																																				}
 																																				else	if	($type	==	'Date')
 																																				{
@@ -116,9 +116,9 @@ if	(!$isAjax)
 																																}
 																																?>
 																												</tr>
-																																<?php
-																												}
-																												?>
+																												<?php
+																								}
+																								?>
 																				</tbody>
 
 																</table>
@@ -127,13 +127,13 @@ if	(!$isAjax)
 
 												<div style="text-align: right;width: 860px;">
 																<strong><?php	echo	$start;	?> - <?php	echo	$end;	?></strong> of <strong style="margin-right: 10px;"><?php	echo	$total;	?></strong>
-				<?php	echo	$this->ajax_pagination->create_links	();	?>
+																<?php	echo	$this->ajax_pagination->create_links	();	?>
 												</div>
-																<?php
-												}
-												else
-												{
-																?>
+												<?php
+								}
+								else
+								{
+												?>
 												<div  style="text-align: center;width: 860px;margin-top: 50px;font-size: 20px;">No instantiation record found.</div>
 								<?php	}
 								?>

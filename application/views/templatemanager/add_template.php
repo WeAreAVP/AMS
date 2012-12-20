@@ -116,11 +116,11 @@ if	($add_temp)
     </tr>
 </table>
 <?php	echo	form_close	();	?>
-<script type="text/javascript"> 
-				function toggleCrawford(){
-								$('#crawford_contact_detail').toggle();
-								if(!$('#crawford_contact_detail').is(':visible')){
-												$('#crawford_contact_detail').val('');
+				<script type="text/javascript"> 
+								function toggleCrawford(){
+												$('#crawford_contact_detail').toggle();
+												if(!$('#crawford_contact_detail').is(':visible')){
+																$('#crawford_contact_detail').val('');
+												}
 								}
-				}
-</script>
+				</script>

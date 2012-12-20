@@ -1089,7 +1089,7 @@
 																				date_type_text='All';
 																else
 																				date_type_text=$('#date_type').val();
-																$('#date_field_name').html('Keyword: '+date_type_text);
+																$('#date_field_name').html('Date Keyword: '+date_type_text);
 												}
 								}
 								else{

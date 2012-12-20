@@ -250,6 +250,10 @@ function updateDataTable()
 {
     if($('#listing_table').length>0)
     {
+								if(ySize<=9)
+												ySize=ySize*10;
+								else
+												ySize=500;
         oTable = 
         $('#listing_table').dataTable(
         {
@@ -270,7 +274,7 @@ function updateDataTable()
             'bInfo':false,
             'bFilter': false,
             "bSort": false,
-            "sScrollY": 400,
+            "sScrollY": ySize,
             "sScrollX": "100%",	
             "bDeferRender": true,
             "bDestroy": is_destroy,

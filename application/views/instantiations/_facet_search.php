@@ -951,6 +951,9 @@
 				var frozen='<?php	echo	$this->frozen_column;	?>';
 				var hiden_column=new Array();
 				var current_table_type='<?php	echo	$table_type	?>';
+					var ySize=<?php echo $total; ?>;
+								
+								
 				oTable=null;
 				var state = false;
 				(function($){
@@ -1231,19 +1234,13 @@
 				}
 				function updateSimpleDataTable()
 				{
-								ySize=<?php echo $total; ?>;
-								console.log(ySize);
-								if(ySize<=9)
-												ySize=ySize*10;
-								else
-												ySize=500;
 								var sTable = $('#assets_table').dataTable({
 												"sDom": "frtiS",
 												'bPaginate':false,
 												'bInfo':false,
 												'bFilter': false,
 												"bSort": false,
-												"sScrollY": ySize,
+												"sScrollY": 400,
 												"sScrollX": "100%",
 												"bDeferRender": true,
 												"bAutoWidth": false

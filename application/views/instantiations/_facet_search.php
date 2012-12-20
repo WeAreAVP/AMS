@@ -951,7 +951,7 @@
 				var frozen='<?php	echo	$this->frozen_column;	?>';
 				var hiden_column=new Array();
 				var current_table_type='<?php	echo	$table_type	?>';
-					var ySize=<?php echo $total; ?>;
+					
 								
 								
 				oTable=null;

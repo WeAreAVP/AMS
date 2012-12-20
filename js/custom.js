@@ -250,6 +250,7 @@ function updateDataTable()
 {
     if($('#listing_table').length>0)
     {
+								ySize=$('#total_record_count').html();
 								if(ySize<=9)
 												ySize=ySize*10;
 								else

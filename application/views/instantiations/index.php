@@ -126,7 +126,7 @@ if	(!$isAjax)
 												</div>
 
 												<div style="text-align: right;width: 860px;">
-																<strong><?php	echo	$start;	?> - <?php	echo	$end;	?></strong> of <strong style="margin-right: 10px;"><?php	echo	$total;	?></strong>
+																<strong><?php	echo	$start;	?> - <?php	echo	$end;	?></strong> of <strong style="margin-right: 10px;" id="total_record_count"><?php	echo	$total;	?></strong>
 																<?php	echo	$this->ajax_pagination->create_links	();	?>
 												</div>
 												<?php

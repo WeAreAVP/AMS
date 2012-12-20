@@ -1231,13 +1231,18 @@
 				}
 				function updateSimpleDataTable()
 				{
+								ySize=<?php echo $total; ?>;
+								if(ySize<=9)
+												ySize=ySize*10;
+								else
+												ySize=500;
 								var sTable = $('#assets_table').dataTable({
 												"sDom": "frtiS",
 												'bPaginate':false,
 												'bInfo':false,
 												'bFilter': false,
 												"bSort": false,
-												"sScrollY": 400,
+												"sScrollY": ySize,
 												"sScrollX": "100%",
 												"bDeferRender": true,
 												"bAutoWidth": false

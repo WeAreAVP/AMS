@@ -182,6 +182,7 @@ if	(!$isAjax)
 																								foreach	($this->column_order	as	$row)
 																								{
 																												$type	=	$row['title'];
+																												var_dump($type);
 																												if	(isset	($type)	&&	!empty	($type))
 																												{
 																																if	($type	==	'flag')

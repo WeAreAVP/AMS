@@ -247,7 +247,6 @@ if	(!$isAjax)
 																																				else	if	($type	==	'Subjects')
 																																				{
 																																								$asset_subject	=	'';
-																																								$asset_subject_source	=	'';
 																																								if	(isset	($asset->asset_subject)	&&	!empty	($asset->asset_subject ))
 																																								{
 																																												$asset_subject	=	trim	(str_replace	('(**)',	'',	$asset->asset_subject));
@@ -266,6 +265,27 @@ if	(!$isAjax)
 																																											$column	.= 	$val;
 																																								}
 																																				}
+																																				else	if	($type	==	'Genre')
+																																				{
+																																								$asset_genre	=	'';
+																																								if	(isset	($asset->asset_genre)	&&	!empty	($asset->asset_genre ))
+																																								{
+																																												$asset_genre	=	trim	(str_replace	('(**)',	'',	$asset->asset_genre));
+																																								}
+																																								if	(isset	($asset->asset_genre_ref)	&&	!empty	($asset->asset_genre_ref ) && ! empty($asset_genre) )
+																																								{
+																																												$asset_genre	=	'<a href="'	.$asset->asset_subject_ref.	'" >'.$asset_genre.'</a>';
+																																								}
+																																								if(!empty($asset_genre))
+																																								{
+																																											$column	.=	$asset_genre.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_genre_source)	&&	!empty	($asset->asset_genre_source ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_genre_source)).')';
+																																											$column	.= 	$val;
+																																								}
+																																				}
 																																				else	if	($type	==	'Assets_Date')
 																																				{
 																																								$column	=	($asset->dates	==	0)	?	'No Date'	:	date	('Y-m-d',	$asset->dates);
@@ -275,29 +295,231 @@ if	(!$isAjax)
 																																											$column	.= 	'<br/>'.$val;
 																																								}
 																																				}
-//																																				else	if	($type	!=	'Description')
-//																																				{
-//
-//																																								if	(isset	($asset->$def_setting[$row['title']])	&&	!empty	($asset->$def_setting[$row['title']]))
-//																																								{
-//																																												$val	=	trim	(str_replace	("(**)",	"N/A",	$asset->$def_setting[$row['title']]));
-//																																												$column	=	$val;
-//																																								}
-//																																								else
-//																																								{
-//																																												$column	=	'N/A';
-//																																								}
-//																																				}
-//																																				else
-//																																				{
-//																																								$des	=	str_replace	("(**)",	"N/A",	$asset->$def_setting[$row['title']]);
-//																																								if	(isset	($des)	&&	!empty	($des)	&&	strlen	($des)	>	160)
-//																																								{
-//																																												$messages	=	str_split	($des,	160);
-//																																												$des	=	$messages[0]	.	' ...';
-//																																								}
-//																																								$column	=	$des;
-//																																				}
+																																				else	if	($type	==	'Creator')
+																																				{
+																																								
+																																								$asset_creator_name	=	'';
+																																								if	(isset	($asset->asset_creator_name)	&&	!empty	($asset->asset_creator_name ))
+																																								{
+																																												$asset_creator_name =	trim	(str_replace	('(**)',	'',	$asset->asset_creator_name));
+																																								}
+																																								if	(isset	($asset->asset_creator_ref)	&&	!empty	($asset->asset_creator_ref ) && ! empty($asset_creator_name) )
+																																								{
+																																												$asset_creator_name	=	'<a href="'	.$asset->asset_creator_ref.	'" >'.$asset_creator_name.'</a>';
+																																								}
+																																								if(!empty($asset_creator_name))
+																																								{
+																																											$column	.=	$asset_creator_name.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_creator_affiliation)	&&	!empty	($asset->asset_creator_affiliation ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_creator_affiliation)).')';
+																																											$column	.= 	$val.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_creator_source)	&&	!empty	($asset->asset_creator_source ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_creator_source)).')';
+																																											$column	.= 	$val.'<br/>';
+																																								}
+																																								$asset_creator_role	=	'';
+																																								if	(isset	($asset->asset_creator_role)	&&	!empty	($asset->asset_creator_role ))
+																																								{
+																																												$asset_creator_role =	trim	(str_replace	('(**)',	'',	$asset->asset_creator_role));
+																																								}
+																																								if	(isset	($asset->asset_creator_role_ref)	&&	!empty	($asset->asset_creator_role_ref ) && ! empty($asset_creator_role) )
+																																								{
+																																												$asset_creator_role	=	'<a href="'	.$asset->asset_creator_ref.	'" >'.$asset_creator_role.'</a>';
+																																								}
+																																								if(!empty($asset_creator_role))
+																																								{
+																																											$column	.=	$asset_creator_role.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_creator_role_source)	&&	!empty	($asset->asset_creator_role_source ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_creator_role_source)).')';
+																																											$column	.= 	$val.'<br/>';
+																																								}
+																																							
+																																				}
+																																				else	if	($type	==	'Contributor')
+																																				{
+																																								
+																																								$asset_contributor_name	=	'';
+																																								if	(isset	($asset->asset_contributor_name)	&&	!empty	($asset->asset_contributor_name ))
+																																								{
+																																												$asset_contributor_name =	trim	(str_replace	('(**)',	'',	$asset->asset_contributor_name));
+																																								}
+																																								if	(isset	($asset->asset_contributor_ref)	&&	!empty	($asset->asset_contributor_ref ) && ! empty($asset_creator_name) )
+																																								{
+																																												$asset_contributor_name	=	'<a href="'	.$asset->asset_contributor_ref.	'" >'.$asset_contributor_name.'</a>';
+																																								}
+																																								if(!empty($asset_creator))
+																																								{
+																																											$column	.=	$asset_contributor_name.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_contributor_affiliation)	&&	!empty	($asset->asset_contributor_affiliation ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_contributor_affiliation)).')';
+																																											$column	.= 	$val.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_contributor_source)	&&	!empty	($asset->asset_contributor_source ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_contributor_source)).')';
+																																											$column	.= 	$val.'<br/>';
+																																								}
+																																								$asset_contributor_role	=	'';
+																																								if	(isset	($asset->asset_contributor_role)	&&	!empty	($asset->asset_contributor_role ))
+																																								{
+																																												$asset_contributor_role =	trim	(str_replace	('(**)',	'',	$asset->asset_contributor_role));
+																																								}
+																																								if	(isset	($asset->asset_contributor_role_ref)	&&	!empty	($asset->asset_contributor_role_ref ) && ! empty($asset_contributor_role) )
+																																								{
+																																												$asset_contributor_role	=	'<a href="'	.$asset->asset_contributor_role_ref.	'" >'.$asset_contributor_role.'</a>';
+																																								}
+																																								if(!empty($asset_contributor_role))
+																																								{
+																																											$column	.=	$asset_contributor_role.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_contributor_role_source)	&&	!empty	($asset->asset_contributor_role_source ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_contributor_role_source)).')';
+																																											$column	.= 	$val.'<br/>';
+																																								}
+																																							
+																																				}
+																																				else	if	($type	==	'Publisher')
+																																				{					
+																																								$asset_publisher_name	=	'';
+																																								if	(isset	($asset->asset_publisher_name)	&&	!empty	($asset->asset_publisher_name ))
+																																								{
+																																												$asset_publisher_name =	trim	(str_replace	('(**)',	'',	$asset->asset_publisher_name));
+																																								}
+																																								if	(isset	($asset->asset_publisher_ref)	&&	!empty	($asset->asset_publisher_ref ) && ! empty($asset_publisher_name) )
+																																								{
+																																												$asset_publisher_name	=	'<a href="'	.$asset->asset_publisher_ref.	'" >'.$asset_publisher_name.'</a>';
+																																								}
+																																								if(!empty($asset_publisher_name))
+																																								{
+																																											$column	.=	$asset_publisher_name.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_publisher_affiliation)	&&	!empty	($asset->asset_publisher_affiliation ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_publisher_affiliation)).')';
+																																											$column	.= 	$val.'<br/>';
+																																								}
+																																								$asset_publisher_role	=	'';
+																																								if	(isset	($asset->asset_publisher_role)	&&	!empty	($asset->asset_publisher_role ))
+																																								{
+																																												$asset_publisher_role =	trim	(str_replace	('(**)',	'',	$asset->asset_publisher_role));
+																																								}
+																																								if	(isset	($asset->asset_publisher_role_ref)	&&	!empty	($asset->asset_publisher_role_ref ) && ! empty($asset_publisher_role) )
+																																								{
+																																												$asset_publisher_role	=	'<a href="'	.$asset->asset_publisher_role_ref.	'" >'.$asset_publisher_role.'</a>';
+																																								}
+																																								if(!empty($asset_publisher_role))
+																																								{
+																																											$column	.=	$asset_publisher_role.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_publisher_role_source)	&&	!empty	($asset->asset_publisher_role_source ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_publisher_role_source)).')';
+																																											$column	.= 	$val.'<br/>';
+																																								}
+																																							
+																																				}
+																																					else	if	($type	==	'Coverage')
+																																				{
+																																								if	(isset	($asset->asset_coverage)	&&	!empty	($asset->asset_coverage ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_coverage)).')';
+																																											$column	.= 	$val.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_coverage_type)	&&	!empty	($asset->asset_coverage_type ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_coverage_type)).')';
+																																											$column	.= 	$val;
+																																								}
+																																								
+																																				}
+																																				else	if	($type	==	'Audience_Level')
+																																				{
+																																								$asset_audience_level	=	'';
+																																								if	(isset	($asset->asset_audience_level)	&&	!empty	($asset->asset_audience_level ))
+																																								{
+																																												$asset_audience_level	=	trim	(str_replace	('(**)',	'',	$asset->asset_audience_level));
+																																								}
+																																								if	(isset	($asset->asset_audience_level_ref)	&&	!empty	($asset->asset_audience_level_ref ) && ! empty($asset_audience_level) )
+																																								{
+																																												$asset_audience_level	=	'<a href="'	.$asset->asset_audience_level_ref.	'" >'.$asset_audience_level.'</a>';
+																																								}
+																																								if(!empty($asset_audience_level))
+																																								{
+																																											$column	.=	$asset_audience_level.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_audience_level_source)	&&	!empty	($asset->asset_audience_level_source ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_audience_level_source)).')';
+																																											$column	.= 	$val;
+																																								}
+																																				}
+																																				else	if	($type	==	'Audience_Rating')
+																																				{
+																																								$asset_audience_rating	=	'';
+																																								if	(isset	($asset->asset_audience_rating)	&&	!empty	($asset->asset_audience_rating ))
+																																								{
+																																												$asset_audience_rating	=	trim	(str_replace	('(**)',	'',	$asset->asset_audience_rating));
+																																								}
+																																								if	(isset	($asset->asset_audience_rating_ref)	&&	!empty	($asset->asset_audience_rating_ref ) && ! empty($asset_audience_rating) )
+																																								{
+																																												$asset_audience_rating	=	'<a href="'	.$asset->asset_audience_rating_ref.	'" >'.$asset_audience_rating.'</a>';
+																																								}
+																																								if(!empty($asset_audience_rating))
+																																								{
+																																											$column	.=	$asset_audience_rating.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_audience_rating_source)	&&	!empty	($asset->asset_audience_rating_source ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_audience_rating_source)).')';
+																																											$column	.= 	$val;
+																																								}
+																																				}
+																																				else	if	($type	==	'Annotation')
+																																				{
+																																								$asset_annotation	=	'';
+																																								if	(isset	($asset->asset_annotation)	&&	!empty	($asset->asset_annotation ))
+																																								{
+																																												$asset_annotation	=	trim	(str_replace	('(**)',	'',	$asset->asset_annotation));
+																																								}
+																																								if	(isset	($asset->asset_annotation_ref)	&&	!empty	($asset->asset_annotation_ref ) && ! empty($asset_annotation) )
+																																								{
+																																												$asset_annotation	=	'<a href="'	.$asset->asset_annotation_ref.	'" >'.$asset_annotation.'</a>';
+																																								}
+																																								if(!empty($asset_annotation))
+																																								{
+																																											$column	.=	$asset_annotation.'<br/>';
+																																								}
+																																								if	(isset	($asset->asset_annotation_type)	&&	!empty	($asset->asset_annotation_type ))
+																																								{
+																																											$val	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_annotation_type)).')';
+																																											$column	.= 	$val;
+																																								}
+																																				}
+																																				else	if	($type	==	'Rights')
+																																				{
+																																								$asset_rights='';
+																																								if	(isset	($asset->asset_rights)	&&	!empty	($asset->asset_rights ))
+																																								{
+																																											$asset_rights	=	'('.trim	(str_replace	('(**)',	'',	$asset->asset_rights)).')';
+																																								}
+																																								if	(isset	($asset->asset_rights_link)	&&	!empty	($asset->asset_rights_link ) && ! empty($asset_rights) )
+																																								{
+																																												$asset_rights	=	'<a href="'	.$asset->asset_rights_link.	'" >'.$asset_rights.'</a>';
+																																								}
+																																								if(!empty($asset_rights))
+																																								{
+																																											$column	.=	$asset_rights.'<br/>';
+																																								}
+																																				}
 																																				if	(in_array	($type,	array	("Local_ID",	"Subjects",		"Genre",	"Creator",	"Contributor",	"Publisher",		"Assets_Date",		"Coverage",	"Audience",			"Annotation",		"Rights")))
 																																				{
 																																								$width	=	'min-width:100px;';

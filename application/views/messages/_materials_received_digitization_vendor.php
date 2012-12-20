@@ -3,21 +3,14 @@
     <div class="control-group">
         <label class="control-label" for="comments">Comments:</label>
         <div class="controls">
-												<?php
-												$crawford_detail	=	'';
-												if	($record->is_crawford	===	'1')
-												{
-																$crawford_detail	=	$record->crawford_contact_detail;
-												}
-												?>
-            <textarea  id="comments" name="comments" rows="4" cols="80"></textarea>
+												<textarea  id="comments" name="comments" rows="4" cols="80"></textarea>
             <span id="comments_error" style="display: none;" class="message-type_error">Please Enter Comments</span>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="crawford_contact_details">Crawford Contact Details:</label>
         <div class="controls">
-            <textarea  id="crawford_contact_details" name="crawford_contact_details" rows="4" cols="80"><?php echo $crawford_detail; ?></textarea>
+            <textarea  id="crawford_contact_details" name="crawford_contact_details" rows="4" cols="80"><?php echo $record->crawford_contact_detail; ?></textarea>
             <span id="crawford_contact_details_error" style="display: none;" class="message-type_error">Please Enter Crawford Contact Details</span>
         </div>
     </div>

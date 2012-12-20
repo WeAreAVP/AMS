@@ -182,7 +182,6 @@ if	(!$isAjax)
 																								foreach	($this->column_order	as	$row)
 																								{
 																												$type	=	$row['title'];
-																												var_dump($type);
 																												if	(isset	($type)	&&	!empty	($type))
 																												{
 																																if	($type	==	'flag')
@@ -224,15 +223,15 @@ if	(!$isAjax)
 																																				}
 																																				else	if	($type	==	'AA_GUID')
 																																				{
-																																								$column	=	($value->guid_identifier)	?	$value->guid_identifier	:	'';
+																																								$column	=	($asset->guid_identifier)	?	$asset->guid_identifier	:	'';
 																																				}
 																																				else	if	($type	==	'Local_ID')
 																																				{
-																																								$column	=	$value->local_identifier;
+																																								$column	=	$asset->local_identifier;
 																																				}
 																																				else	if	($type	==	'Description')
 																																				{
-																																								if	(isset	($value->description)	&&	!empty	($value->description))
+																																								if	(isset	($asset->description)	&&	!empty	($asset->description))
 																																								{
 																																												$des	=	str_replace	("(**)",	"",	$asset->description);
 																																												if	(isset	($des)	&&	!empty	($des)	&&	strlen	($des)	>	160)
@@ -242,9 +241,9 @@ if	(!$isAjax)
 																																												}
 																																												$column	=	$des	.	'<br/>';
 																																								}
-																																								if	(isset	($value->description_type)	&&	!empty	($value->description_type))
+																																								if	(isset	($asset->description_type)	&&	!empty	($asset->description_type))
 																																								{
-																																												$column	.=	$value->description_type;
+																																												$column	.=	$asset->description_type;
 																																								}
 																																				}
 																																				else	if	($type	==	'Subjects')

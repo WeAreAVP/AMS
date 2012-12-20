@@ -86,7 +86,7 @@ class	Templatemanager	extends	MY_Controller
 												$form_val->set_rules	('reply_to',	'Reply To',	'trim|required|xss_clean|valid_email');
 												$form_val->set_rules	('crawford_contact_detail',	'Crwaford Contact Detail',	'trim|xss_clean');
 												$form_val->set_rules	('is_crawford',	'Crwaford Contact Detail',	'trim|xss_clean');
-												if	( ! ( isset	($this->input->post	('body_plain'))	&&	! isset	($this->input->post	('body_html'))))
+												if	( ! ( isset	($_POST['body_plain'])	&&	! isset	($_POST['body_html'])))
 												{
 																$this->form_validation->set_message	('body_plain',	'You must enter plain or html body');
 												}
@@ -208,7 +208,7 @@ class	Templatemanager	extends	MY_Controller
 																				$form_val->set_rules	('reply_to',	'Reply To',	'trim|required|xss_clean');
 																				$form_val->set_rules	('crawford_contact_detail',	'Crwaford Contact Detail',	'trim|xss_clean');
 																				$form_val->set_rules	('is_crawford',	'Crwaford Contact Detail',	'trim|xss_clean');
-																				if	( ! ( isset	($this->input->post	('body_plain'))	&&	! isset	($this->input->post	('body_html'))))
+																				if	( ! ( isset	($_POST['body_plain'])	&&	! isset	($_POST['body_html'])))
 																				{
 																								$this->form_validation->set_message	('body_plain',	'You must enter plain or html body');
 																				}
@@ -246,7 +246,16 @@ class	Templatemanager	extends	MY_Controller
 												$this->load->view	('templatemanager/edit_template',	$data);
 								}
 				}
-
+				/**
+				 * Manage the crawford contact detail 
+				 * 
+				 * @return templatemanager/manage_crawfod
+				 */
+				public function manage_crawford()
+				{
+								$this->load->view	('templatemanager/manage_crawfod');
+				}
+				
 }
 
 // END Template Manager Controller

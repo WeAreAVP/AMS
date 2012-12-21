@@ -62,7 +62,7 @@ if	(!$isAjax)
 																																				}
 																																				else	if	($type	==	'Instantiation_ID')
 																																				{
-																																								$column	=	$value->instantiation_identifier;
+																																								$column	=	$value->instantiation_identifier.' ('.$value->instantiation_source.')';
 																																				}
 																																				else	if	($type	==	'Nomination')
 																																				{

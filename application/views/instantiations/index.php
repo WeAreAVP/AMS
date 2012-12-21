@@ -86,7 +86,7 @@ if	(!$isAjax)
 																																												{
 																																																$column.=	$asset_title_type[$index]	.	': ';
 																																												}
-																																												$column.=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$asset_title[$index]	.	'</a>';
+																																												$column.=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$value	.	'</a>';
 																																								}
 
 //																																								$column	=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$value->asset_title	.	'</a>';

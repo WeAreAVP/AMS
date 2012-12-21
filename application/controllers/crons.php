@@ -1,4 +1,5 @@
 <?php
+
 // @codingStandardsIgnoreFile
 /**
 	* Settings controller.
@@ -61,26 +62,10 @@ class	Crons	extends	CI_Controller
 				}
 
 				/**
+					* 
 					* Process all pending assets Data Files
 					*
 					 2:// now we get station_id and store in assets table and get asset_id
-
-
-
-					 xml procssing start from here
-					 3. not get asset_type in pbcore.xml ( So there will be no entry in assets_asset_types{look up} ,asset_dates,date_types {look up} )
-					 4. for American Archive GUID pbcoreidentifier (field identifier) and store in identifiers
-					 5 assets_titles store(title and asset_title_types_id from refrence table) asset_title_types(Store titletype from xml {look up}) titale_source and title_ref not available in 1.3
-					 6. subjects and assets_subjects (If available )
-					 7.asset_description, description_types {look up}
-					 8 genres (Store info from xml and its id and asset_id store in asset_genres)
-					 9 coverage and coverage type  not required fiedls
-					 10 audience_levels(Store info from xml and its id and asset_id store in assets_audience_levels)
-					 11  relation_types(Store info from xml and its id and asset_id store in assets_relations)
-					 12  creators and creator_role(store info from xml and) assets_creators_roles(save creator_id,creater_role_id and asset_id)
-					 13 contributors and contributor_roles(store info from xml and) assets_contributors_roles (save contributors_id,contributor_roles_id and asset_id)
-					 14 publishers and publishers_roles(store info from xml and) assets_publishers_role(save assets_id,publishers_id and asset_id)
-					 15  nomination_status {lookup} nominations(store data from xml)
 					*/
 				function	process_xml_file	()
 				{
@@ -95,71 +80,107 @@ class	Crons	extends	CI_Controller
 																$station_cpb_id	=	$data['children']['cpb-id'][0]['text'];
 																if	(isset	($station_cpb_id))
 																{
-																				$station_data	=	$this->station_model->get_station_by_cpb_id	($station_cpb_id);
-																				if	(isset	($station_data)	&&	!empty	($station_data)	&&	isset	($station_data->id))
+																				$count	=	$this->cron_model->get_pbcore_file_count_by_folder_id	($folder->id);
+																				if	(isset	($count)	&&	$count	>	0)
 																				{
-
-																								$data_files	=	$this->cron_model->get_pbcore_file_by_folder_id	($folder->id);
-																								if	(isset	($data_files))
+																								$maxProcess	=	100;
+																								$limit	=	500;
+																								$loop_end	=	ceil	($count	/	$limit);
+																								$this->myLog	("Run $loop_end times  $maxProcess at a time");
+																								for	($loop_counter	=	0;	$loop_end	>	$loop_counter;	$loop_counter++)
 																								{
-																												foreach	($data_files	as	$d_file)
+																												$offset	=	$loop_counter	*	$limit;
+																												$this->myLog	("Started $offset~$limit of $count");
+																												$cmd	=	escapeshellcmd	('/usr/bin/php '	.	$this->config->item	('path')	.	'index.php crons process_xml_file_child '	.	$folder->id	.	' '	.	$station_cpb_id	.	' '	.	$offset	.	' '	.	$limit);
+																												$pidFile	=	$this->config->item	('path')	.	"PIDs/processxmlfile/"	.	$loop_counter	.	".txt";
+																												$this->runProcess	($cmd,	$pidFile,	$this->config->item	('path')	.	"cronlog/processxmlfile.log");
+																												$file_text	=	file_get_contents	($pidFile);
+																												$this->arrPIDs[$file_text]	=	$loop_counter;
+																												$proc_cnt	=	$this->procCounter	();
+																												while	($proc_cnt	==	$maxProcess)
 																												{
-																																$this->db->where	('id',	$d_file->id);
-																																$this->db->update	('process_pbcore_data',	array	("processed_start_at"	=>	date	('Y-m-d H:i:s')));
-																																if	($d_file->is_processed	==	0)
-																																{
-																																				$file_path	=	'';
-																																				$file_path	=	trim	($folder->folder_path	.	$d_file->file_path);
-																																				if	(is_file	($file_path))
-																																				{
-																																								//$file_parts = pathinfo($file_path);
-																																								/* if (!isset($file_parts['extension']))
-																																									 {
-																																									 $server_root_path = trim(shell_exec('pwd'));
-																																									 $src = ($server_root_path . '/' . $file_path);
-																																									 $des = ($server_root_path . '/' . $file_path . '.xml');
-																																									 copy($src, $des);
-																																									 } */
-																																								echo	"Currently Parsing Files "	.	$file_path	.	"\n";
-																																								$asset_data	=	@file_get_contents	($file_path);
-																																								if	(isset	($asset_data)	&&	!empty	($asset_data))
-																																								{
-																																												$asset_xml_data	=	@simplexml_load_string	($asset_data);
-																																												$asset_d	=	xmlObjToArr	($asset_xml_data);
-																																												echo	"Current Version "	.	$asset_d['attributes']['version']	.	" \n ";
-																																												if	(!isset	($asset_d['attributes']['version'])	||	empty	($asset_d['attributes']['version'])	||	$asset_d['attributes']['version']	==	'1.3')
-																																												{
-																																																//$this->db->trans_start();
-																																																$asset_id	=	$this->assets_model->insert_assets	(array	("stations_id"			=>	$station_data->id,	"created"							=>	date	("Y-m-d H:i:s")));
-																																																echo	"\n in Process \n";
-																																																$asset_children	=	$asset_d['children'];
-																																																if	(isset	($asset_children))
-																																																{
-																																																				// Instantiation Start
-																																																				$this->process_assets	($asset_children,	$asset_id);
-																																																				// Instantiation End
-																																																				// Instantiation Start
-																																																				$this->process_instantiation	($asset_children,	$asset_id);
-																																																				// Instantiation End
-																																																}
-																																																$this->db->where	('id',	$d_file->id);
-																																																$this->db->update	('process_pbcore_data',	array	('is_processed'	=>	1,	"processed_at"	=>	date	('Y-m-d H:i:s')));
-																																																//$this->db->trans_complete();
-																																																unset	($asset_d);
-																																																unset	($asset_xml_data);
-																																																unset	($asset_data);
-																																												}
-																																								}
-																																				}
-																																}
+																																$this->myLog	("Sleeping ...");
+																																sleep	(30);
+																																$proc_cnt	=	$this->procCounter	();
 																												}
-																												unset	($data_files);
 																								}
-																								unset	($station_data);
+																								$this->myLog	("Waiting for all process to complete");
+																								$proc_cnt	=	$this->procCounter	();
+																								while	($proc_cnt	>	0)
+																								{
+																												echo	"Sleeping....\n";
+																												sleep	(10);
+																												echo	"\010\010\010\010\010\010\010\010\010\010\010\010";
+																												echo	"\n";
+																												$proc_cnt	=	$this->procCounter	();
+																												echo	"Number of Processes running : $proc_cnt/$maxProcess\n";
+																								}
 																				}
 																}
 																unset	($x);
 																unset	($data);
+												}
+								}
+				}
+
+				function	process_xml_file_child	($folder_id,	$station_cpb_id,	$offset	=	0,	$limit	=	100)
+				{
+								$station_data	=	$this->station_model->get_station_by_cpb_id	($station_cpb_id);
+								if	(isset	($station_data)	&&	!empty	($station_data)	&&	isset	($station_data->id))
+								{
+												$folder_data	=	$this->cron_model->get_data_folder_by_id	($folder_id);
+												if	($folder_data)
+												{
+																$data_files	=	$this->cron_model->get_pbcore_file_by_folder_id	($folder_data->id,	$offset,	$limit);
+																if	(isset	($data_files))
+																{
+																				foreach	($data_files	as	$d_file)
+																				{
+																								$this->db->where	('id',	$d_file->id);
+																								$this->db->update	('process_pbcore_data',	array	("processed_start_at"	=>	date	('Y-m-d H:i:s')));
+																								if	($d_file->is_processed	==	0)
+																								{
+																												$file_path	=	'';
+																												$file_path	=	trim	($folder_data->folder_path	.	$d_file->file_path);
+																												if	(is_file	($file_path))
+																												{
+																																echo	"Currently Parsing Files "	.	$file_path	.	"\n";
+																																$asset_data	=	@file_get_contents	($file_path);
+																																if	(isset	($asset_data)	&&	!empty	($asset_data))
+																																{
+																																				$asset_xml_data	=	@simplexml_load_string	($asset_data);
+																																				$asset_d	=	xmlObjToArr	($asset_xml_data);
+																																				echo	"Current Version "	.	$asset_d['attributes']['version']	.	" \n ";
+																																				if	(!isset	($asset_d['attributes']['version'])	||	empty	($asset_d['attributes']['version'])	||	$asset_d['attributes']['version']	==	'1.3')
+																																				{
+																																								$this->db->trans_start	();
+																																								$asset_id	=	$this->assets_model->insert_assets	(array	("stations_id"			=>	$station_data->id,	"created"							=>	date	("Y-m-d H:i:s")));
+																																								echo	"\n in Process \n";
+																																								$asset_children	=	$asset_d['children'];
+																																								if	(isset	($asset_children))
+																																								{
+																																												//echo "<pre>";
+																																												//print_r($asset_children);
+																																												// Instantiation Start
+																																												$this->process_assets	($asset_children,	$asset_id);
+																																												// Instantiation End
+																																												// Instantiation Start
+																																												$this->process_instantiation	($asset_children,	$asset_id);
+																																												// Instantiation End
+																																								}
+																																								$this->db->where	('id',	$d_file->id);
+																																								$this->db->update	('process_pbcore_data',	array	('is_processed'	=>	1,	"processed_at"	=>	date	('Y-m-d H:i:s')));
+																																								$this->db->trans_complete	();
+																																								unset	($asset_d);
+																																								unset	($asset_xml_data);
+																																								unset	($asset_data);
+																																				}
+																																}
+																												}
+																								}
+																				}
+																				unset	($data_files);
+																}
 												}
 								}
 				}
@@ -337,11 +358,11 @@ class	Crons	extends	CI_Controller
 																												$instantiation_identifier_d['instantiations_id']	=	$instantiations_id;
 																												if	(isset	($pbcoreformatid['children'])	&&	!empty	($pbcoreformatid['children']))
 																												{
-																																if	($pbcoreformatid['children']['formatidentifier'][0]['text'])
+																																if	(isset	($pbcoreformatid['children']['formatidentifier'][0]['text'])	&&	!empty	($pbcoreformatid['children']['formatidentifier'][0]['text']))
 																																{
 																																				$instantiation_identifier_d['instantiation_identifier']	=	$pbcoreformatid['children']['formatidentifier'][0]['text'];
 																																}
-																																if	($pbcoreformatid['children']['formatidentifiersource'][0]['text'])
+																																if	(isset	($pbcoreformatid['children']['formatidentifiersource'][0]['text'])	&&	!empty	($pbcoreformatid['children']['formatidentifiersource'][0]['text']))
 																																{
 																																				$instantiation_identifier_d['instantiation_source']	=	$pbcoreformatid['children']['formatidentifiersource'][0]['text'];
 																																}
@@ -378,7 +399,7 @@ class	Crons	extends	CI_Controller
 																								$instantiation_dates_d	=	array	();
 																								$instantiation_dates_d['instantiations_id']	=	$instantiations_id;
 
-																								if	(isset	($pbcoreinstantiation_child['dateissued'][0]['text']))
+																								if	(isset	($pbcoreinstantiation_child['dateissued'][0]['text'])	&&	!empty	($pbcoreinstantiation_child['dateissued'][0]['text']))
 																								{
 																												$instantiation_dates_d['instantiation_date']	=	$pbcoreinstantiation_child['dateissued'][0]['text'];
 																												$date_type	=	$this->instant->get_date_types_by_type	('issued');
@@ -395,7 +416,7 @@ class	Crons	extends	CI_Controller
 																				}
 																				//Instantiation Date Issued End
 																				//Instantiation formatPhysical  Start
-																				if	(isset	($pbcoreinstantiation_child['formatphysical'][0]['text']))
+																				if	(isset	($pbcoreinstantiation_child['formatphysical'][0]['text'])	&&	!empty	($pbcoreinstantiation_child['formatphysical'][0]['text']))
 																				{
 																								$instantiation_format_physical_d	=	array	();
 																								$instantiation_format_physical_d['instantiations_id']	=	$instantiations_id;
@@ -405,7 +426,7 @@ class	Crons	extends	CI_Controller
 																				}
 
 																				//Instantiation formatdigital  Start
-																				if	(isset	($pbcoreinstantiation_child['formatdigital'][0]['text']))
+																				if	(isset	($pbcoreinstantiation_child['formatdigital'][0]['text'])	&&	!empty	($pbcoreinstantiation_child['formatdigital'][0]['text']))
 																				{
 																								$instantiation_format_digital_d	=	array	();
 																								$instantiation_format_digital_d['instantiations_id']	=	$instantiations_id;
@@ -415,8 +436,7 @@ class	Crons	extends	CI_Controller
 																				}
 
 																				//Instantiation formatgenerations  Start
-																				if	(isset	($pbcoreinstantiation_child['formatgenerations']))
-																				{
+																				if	(isset	($pbcoreinstantiation_child['formatgenerations'])	&&	!empty	($pbcoreinstantiation_child['formatgenerations']))	{
 																								foreach	($pbcoreinstantiation_child['formatgenerations']	as	$format_generations)
 																								{
 																												if	(isset	($format_generations['text'])	&&	!empty	($format_generations['text']))
@@ -474,12 +494,12 @@ class	Crons	extends	CI_Controller
 																																								$essence_tracks_d['essence_track_types_id']	=	$this->essence->insert_essence_track_types	(array	('essence_track_type'	=>	$pbcore_essence_child['essencetracktype'][0]['text']));
 																																				}
 																																				//essenceTrackStandard Start
-																																				if	(isset	($pbcore_essence_child['essencetrackstandard'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackstandard'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackstandard'][0]['text']))
 																																				{
 																																								$essence_tracks_d['standard']	=	$pbcore_essence_child['essencetrackstandard'][0]['text'];
 																																				}
 																																				//essenceRrackDatarate Start
-																																				if	(isset	($pbcore_essence_child['essencetrackdatarate'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackdatarate'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackdatarate'][0]['text']))
 																																				{
 																																								$format_data_rate_perm	=	'';
 																																								$format_data_rate_perm	=	explode	(" ",	$pbcore_essence_child['essencetrackdatarate'][0]['text']);
@@ -502,26 +522,26 @@ class	Crons	extends	CI_Controller
 																																				}
 
 																																				//essencetrackframerate Start
-																																				if	(isset	($pbcore_essence_child['essencetrackframerate'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackframerate'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackframerate'][0]['text']))
 																																				{
 																																								$frame_rate	=	explode	(" ",	$pbcore_essence_child['essencetrackframerate'][0]['text']);
 																																								$essence_tracks_d['frame_rate']	=	trim	($frame_rate[0]);
 																																				}
 
 																																				//essencetrackframerate Start
-																																				if	(isset	($pbcore_essence_child['essencetracksamplingrate'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetracksamplingrate'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetracksamplingrate'][0]['text']))
 																																				{
 																																								$essence_tracks_d['sampling_rate']	=	$pbcore_essence_child['essencetracksamplingrate'][0]['text'];
 																																				}
 
 																																				//essenceTrackBitDepth Start
-																																				if	(isset	($pbcore_essence_child['essencetrackbitdepth'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackbitdepth'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackbitdepth'][0]['text']))
 																																				{
 																																								$essence_tracks_d['bit_depth']	=	$pbcore_essence_child['essencetrackbitdepth'][0]['text'];
 																																				}
 
 																																				//essenceTrackBitDepth Start
-																																				if	(isset	($pbcore_essence_child['essencetrackframesize'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackframesize'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackframesize'][0]['text']))
 																																				{
 																																								$frame_sizes	=	explode	("x",	strtolower	($pbcore_essence_child['essencetrackframesize'][0]['text']));
 																																								if	(isset	($frame_sizes[0])	&&	isset	($frame_sizes[1]))
@@ -539,25 +559,25 @@ class	Crons	extends	CI_Controller
 																																				}
 
 																																				//essencetrackaspectratio Start
-																																				if	(isset	($pbcore_essence_child['essencetrackaspectratio'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackaspectratio'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackaspectratio'][0]['text']))
 																																				{
 																																								$essence_tracks_d['aspect_ratio']	=	$pbcore_essence_child['essencetrackaspectratio'][0]['text'];
 																																				}
 
 																																				//essencetracktimestart Start
-																																				if	(isset	($pbcore_essence_child['essencetracktimestart'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetracktimestart'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetracktimestart'][0]['text']))
 																																				{
 																																								$essence_tracks_d['time_start']	=	$pbcore_essence_child['essencetracktimestart'][0]['text'];
 																																				}
 
 																																				//essencetrackduration Start
-																																				if	(isset	($pbcore_essence_child['essencetrackduration'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackduration'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackduration'][0]['text']))
 																																				{
 																																								$essence_tracks_d['duration']	=	$pbcore_essence_child['essencetrackduration'][0]['text'];
 																																				}
 
 																																				//essencetracklanguage Start
-																																				if	(isset	($pbcore_essence_child['essencetracklanguage'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetracklanguage'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetracklanguage'][0]['text']))
 																																				{
 																																								$essence_tracks_d['language']	=	$pbcore_essence_child['essencetracklanguage'][0]['text'];
 																																				}
@@ -576,7 +596,7 @@ class	Crons	extends	CI_Controller
 																																								$this->essence->insert_essence_track_identifiers	($essence_track_identifiers_d);
 																																				}
 																																				//essencetrackstandard Start 
-																																				if	(isset	($pbcore_essence_child['essencetrackstandard'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackstandard'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackstandard'][0]['text']))
 																																				{
 																																								$essence_track_standard_d	=	array	();
 																																								$essence_track_standard_d['essence_tracks_id']	=	$essence_tracks_id;
@@ -589,14 +609,17 @@ class	Crons	extends	CI_Controller
 																																				}
 
 																																				//essenceTrackAnnotation Start
-																																				if	(isset	($pbcore_essence_child['essencetrackannotation']))
+																																				if	(isset	($pbcore_essence_child['essencetrackannotation'])	&&	!empty	($pbcore_essence_child['essencetrackannotation']))
 																																				{
 																																								foreach	($pbcore_essence_child['essencetrackannotation']	as	$trackannotation)
 																																								{
-																																												$essencetrackannotation	=	array	();
-																																												$essencetrackannotation['essence_tracks_id']	=	$essence_tracks_id;
-																																												$essencetrackannotation['annotation']	=	$trackannotation['text'];
-																																												$this->essence->insert_essence_track_annotations	($essencetrackannotation);
+																																												if	(isset	($trackannotation['text'])	&&	!empty	($trackannotation['text']))
+																																												{
+																																																$essencetrackannotation	=	array	();
+																																																$essencetrackannotation['essence_tracks_id']	=	$essence_tracks_id;
+																																																$essencetrackannotation['annotation']	=	$trackannotation['text'];
+																																																$this->essence->insert_essence_track_annotations	($essencetrackannotation);
+																																												}
 																																								}
 																																				}
 																																}
@@ -619,23 +642,24 @@ class	Crons	extends	CI_Controller
 								{
 												foreach	($asset_children['pbcoreassettype']	as	$pbcoreassettype)
 												{
-																$asset_type_d	=	array	();
-																$asset_type_d['assets_id']	=	$asset_id;
-																if	(isset	($pbcoreassettype['text']))
+
+																if	(isset	($pbcoreassettype['text'])	&&	!empty	($pbcoreassettype['text']))
 																{
-																				$asset_type_d['asset_type']	=	$pbcoreassettype['text'];
-																				if	( $asset_type = $this->assets_model->get_assets_type_by_type	($pbcoreassettype['text']))
+																				$asset_type_d	=	array	();
+																				$asset_type_d['assets_id']	=	$asset_id;
+																				if	($asset_type	=	$this->assets_model->get_assets_type_by_type	($pbcoreassettype['text']))
 																				{
-																						$asset_type_d['assets_id']	= $asset_type->id;
+																								$asset_type_d['asset_types_id']	=	$asset_type->id;
 																				}
 																				else
 																				{
-																							$asset_type_d['assets_id']	=	$this->assets_model->insert_asset_types	(array("asset_type"=>$asset_type_d));			
+																								$asset_type_d['asset_types_id']	=	$this->assets_model->insert_asset_types	(array	("asset_type"	=>	$pbcoreassettype['text']));
 																				}
-																				$this->assets_model->insert_assets_asset_types($asset_type_d);
+																				$this->assets_model->insert_assets_asset_types	($asset_type_d);
 																}
 												}
 								}
+
 								// pbcoreAssetType End here
 								// pbcoreidentifier Start here
 								if	(isset	($asset_children['pbcoreidentifier']))
@@ -652,7 +676,6 @@ class	Crons	extends	CI_Controller
 																				if	(isset	($pbcoreidentifier['children']['identifiersource'][0]['text'])	&&	!empty	($pbcoreidentifier['children']['identifiersource'][0]['text']))
 																				{
 																								$identifier_d['identifier_source']	=	$pbcoreidentifier['children']['identifiersource'][0]['text'];
-																								
 																				}
 																				$this->assets_model->insert_identifiers	($identifier_d);
 																				//print_r($identifier_d);	
@@ -763,7 +786,7 @@ class	Crons	extends	CI_Controller
 								// pbcoreDescription End here
 								// Nouman Tayyab
 								// pbcoreGenre Start
-								if	(isset	($asset_children['pbcoregenre']))
+								if	(isset	($asset_children['pbcoregenre'])	&&	!empty	($asset_children['pbcoregenre']))
 								{
 												foreach	($asset_children['pbcoregenre']	as	$pbcore_genre)
 												{
@@ -781,7 +804,8 @@ class	Crons	extends	CI_Controller
 																				}
 																				else
 																				{
-																								if	(isset	($pbcore_genre['children']['genreauthorityused'][0]))
+																								$asset_genre_d['genre_source']	=	'';
+																								if	(isset	($pbcore_genre['children']['genreauthorityused'][0])	&&	!empty	($pbcore_genre['children']['genreauthorityused'][0]['text']))
 																								{
 																												$asset_genre_d['genre_source']	=	$pbcore_genre['children']['genreauthorityused'][0]['text'];
 																								}
@@ -794,7 +818,7 @@ class	Crons	extends	CI_Controller
 								}
 								// pbcoreGenre End
 								// pbcoreCoverage Start
-								if	(isset	($asset_children['pbcorecoverage']))
+								if	(isset	($asset_children['pbcorecoverage'])	&	!empty	($asset_children['pbcorecoverage']))
 								{
 												foreach	($asset_children['pbcorecoverage']	as	$pbcore_coverage)
 												{
@@ -803,7 +827,7 @@ class	Crons	extends	CI_Controller
 																if	(isset	($pbcore_coverage['children']['coverage'][0])	&&	!empty	($pbcore_coverage['children']['coverage'][0]['text']))
 																{
 																				$coverage['coverage']	=	$pbcore_coverage['children']['coverage'][0]['text'];
-																				if	(isset	($pbcore_coverage['children']['coveragetype'][0]))
+																				if	(isset	($pbcore_coverage['children']['coveragetype'][0])	&&	!empty	($pbcore_coverage['children']['coveragetype'][0]['text']))
 																				{
 																								$coverage['coverage_type']	=	$pbcore_coverage['children']['coveragetype'][0]['text'];
 																				}
@@ -1074,10 +1098,56 @@ class	Crons	extends	CI_Controller
 								// End By Ali Raza
 				}
 
-				function	test_date_picker	()
+				private	function	myLog	($s)
 				{
-								$this->layout	=	'main_layout.php';
-								$this->load->view	('welcome_message');
+								global	$argc;
+								if	($argc)
+												$s.="\n";
+								else
+												$s.="<br>\n";
+								echo	date	('Y-m-d H:i:s')	.	' >> '	.	$s;
+								flush	();
+				}
+
+				function	checkProcessStatus	($pid)
+				{
+								$proc_status	=	false;
+								try
+								{
+												$result	=	shell_exec	("/bin/ps $pid");
+												if	(count	(preg_split	("/\n/",	$result))	>	2)
+												{
+																$proc_status	=	TRUE;
+												}
+								}
+								catch	(Exception	$e)
+								{
+												
+								}
+								return	$proc_status;
+				}
+
+				function	procCounter	()
+				{
+								foreach	($this->arrPIDs	as	$pid	=>	$cityKey)
+								{
+												if	(!$this->checkProcessStatus	($pid))
+												{
+																$t_pid	=	str_replace	("\r",	"",	str_replace	("\n",	"",	trim	($pid)));
+																unset	($this->arrPIDs[$pid]);
+												}
+												else
+												{
+																
+												}
+								}
+								return	count	($this->arrPIDs);
+				}
+
+				function	runProcess	($cmd,	$pidFilePath,	$outputfile	=	"/dev/null")
+				{
+								$cmd	=	escapeshellcmd	($cmd);
+								@exec	(sprintf	("%s >> %s 2>&1 & echo $! > %s",	$cmd,	$outputfile,	$pidFilePath));
 				}
 
 }

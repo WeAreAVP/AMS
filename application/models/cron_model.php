@@ -45,17 +45,36 @@ class	Cron_Model	extends	CI_Model
 					 @return object
 					*/
 
-				function	get_pbcore_file_by_folder_id	($data_folder_id)
+				function	get_pbcore_file_by_folder_id	($data_folder_id,$offset=0, $limit=20)
 				{
 								$this->db->select	("*");
 								$this->db->from	($this->_table);
 								$this->db->where	("data_folder_id ",	$data_folder_id);
 								$this->db->where	("is_processed ",	0);
-
+								$this->db->limit($limit,$offset);
 								$res	=	$this->db->get	();
 								if	(isset	($res))
 								{
 												return	$res->result	();
+								}
+								return	false;
+				}
+				/*
+					 @Get process_pbcore_data un-processed files count through data_folder_id
+					 @return object
+					*/
+
+				function	get_pbcore_file_count_by_folder_id	($data_folder_id)
+				{
+								$this->db->select	("COUNT(id) AS total");
+								$this->db->from	($this->_table);
+								$this->db->where	("data_folder_id ",	$data_folder_id);
+								$this->db->where	("is_processed ",	0);
+								$res	=	$this->db->get	();
+								if	(isset	($res))
+								{
+												$row=$res->row();
+												return	$row->total;
 								}
 								return	false;
 				}
@@ -95,6 +114,27 @@ class	Cron_Model	extends	CI_Model
 								if	(isset	($res)	&&	!empty	($res))
 								{
 												$folders	=	$res->result	();
+												if	(isset	($folders)	&&	!empty	($folders))
+												{
+																return	$folders;
+												}
+								}
+								return	false;
+				}
+				/*
+					 @Get all data folder
+					 @return object
+					*/
+
+				function	get_data_folder_by_id	($id)
+				{
+								$this->db->select	('*');
+								$this->db->from	($this->_table_data_folders);
+								$this->db->where('id',$id);
+								$res	=	$this->db->get	();
+								if	(isset	($res)	&&	!empty	($res))
+								{
+												$folders	=	$res->row	();
 												if	(isset	($folders)	&&	!empty	($folders))
 												{
 																return	$folders;

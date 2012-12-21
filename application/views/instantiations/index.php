@@ -114,7 +114,10 @@ if(	!	$isAjax)
 																																				}
 																																				else	if($type	==	'Format')
 																																				{
-																																								$column	=	' '	.	$value->format_type	.	' '	.	$value->format_name;
+																																							
+																																												$column=$value->format_type	;
+																																													if($value->format_name	!=	'')
+																																																$column.=': '.$value->format_name;
 																																				}
 																																				else	if($type	==	'Duration')
 																																				{

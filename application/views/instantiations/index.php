@@ -76,7 +76,7 @@ if	(!$isAjax)
 																																								$asset_title	=	explode	('|',	$value->asset_title);
 																																								$asset_title_ref	=	explode	('|',	$value->asset_title_ref);
 																																								$column='';
-																																								foreach	($asset_title	as	$index	=>	$value)
+																																								foreach	($asset_title	as	$index	=>$title)
 																																								{
 																																												if	(isset	($asset_title_ref[$index])	&&	isset	($asset_title_type[$index]))
 																																												{
@@ -86,7 +86,7 @@ if	(!$isAjax)
 																																												{
 																																																$column.=	$asset_title_type[$index]	.	': ';
 																																												}
-																																												$column.=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$value	.	'</a>';
+																																												$column.=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$title	.	'</a>';
 																																								}
 
 //																																								$column	=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$value->asset_title	.	'</a>';

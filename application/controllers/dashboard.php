@@ -33,11 +33,14 @@ class	Dashboard	extends	MY_Controller
 					* Load the layout for the dashboard.
 					*  
 					*/
-				function	__construct	()
+				function	__construct()
 				{
-								parent::__construct	();
+								parent::__construct();
 								$this->layout	=	'main_layout.php';
-								
+								if($this->is_station_user)
+								{
+												redirect('records/index');
+								}
 				}
 
 				/**
@@ -45,10 +48,10 @@ class	Dashboard	extends	MY_Controller
 					* 
 					* @return view dashboard/index
 					*/
-				public	function	index	()
+				public	function	index()
 				{
 								$data	=	NULL;
-								$this->load->view	('dashboard/index',	$data);
+								$this->load->view('dashboard/index',	$data);
 				}
 
 }

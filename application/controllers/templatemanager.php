@@ -39,6 +39,10 @@ class	Templatemanager	extends	MY_Controller
 								parent::__construct();
 								$this->layout	=	'main_layout.php';
 								$this->load->model('sphinx_model',	'sphinx');
+								if($this->is_station_user)
+								{
+												redirect('records/index');
+								}
 								if(	!	$this->can_compose_alert)
 								{
 												redirect(site_url());

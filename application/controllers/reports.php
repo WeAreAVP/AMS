@@ -37,6 +37,10 @@ class	Reports	extends	MY_Controller
 				{
 								parent::__construct	();
 								$this->layout	=	'main_layout.php';
+								if($this->is_station_user)
+								{
+												redirect('records/index');
+								}
 				}
 
 				/**

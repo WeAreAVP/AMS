@@ -62,7 +62,7 @@ if(	!	$isAjax)
 																																				}
 																																				else	if($type	==	'Instantiation_ID')
 																																				{
-																																								$column=	'<a href="'	.	site_url('instantiations/detail/'	.	$value->id)	.	'">';
+																																								$column	=	'<a href="'	.	site_url('instantiations/detail/'	.	$value->id)	.	'">';
 																																								$column.=	$value->instantiation_identifier;
 																																								if($value->instantiation_source	!==	'')
 																																												$column.=' ('	.	$value->instantiation_source	.	')';
@@ -114,7 +114,7 @@ if(	!	$isAjax)
 																																				}
 																																				else	if($type	==	'Format')
 																																				{
-																																								$column	=	$value->format_name	.	' '	.	$value->format_type;
+																																								$column	=	' '	.	$value->format_type	.	' '	.	$value->format_name;
 																																				}
 																																				else	if($type	==	'Duration')
 																																				{

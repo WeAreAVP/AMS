@@ -77,12 +77,15 @@ if	(!$isAjax)
 																																								$asset_title	=	explode	('|',	$asset_title);
 																																								$asset_title_ref	=	trim	(str_replace	('(**)',	'',	$value->asset_title_ref));
 																																								$asset_title_ref	=	explode	('|',	$asset_title_ref);
-																																								$column='';
-																																								foreach	($asset_title	as	$index	=>$title)
+																																								$column	=	'';
+																																								foreach	($asset_title	as	$index	=>	$title)
 																																								{
 																																												if	(isset	($asset_title_ref[$index])	&&	isset	($asset_title_type[$index]))
 																																												{
-																																																$column.="<a href='$asset_title_ref[$index]'>$asset_title_type[$index]</a>: ";
+																																																if	($asset_title_ref[$index]	!=	'')
+																																																				$column.="<a href='$asset_title_ref[$index]'>$asset_title_type[$index]</a>: ";
+																																																else
+																																																				$column.=	$asset_title_type[$index]	.	': ';
 																																												}
 																																												else	if	(isset	($asset_title_type[$index]))
 																																												{
@@ -148,7 +151,7 @@ if	(!$isAjax)
 
 												<div style="text-align: right;width: 860px;">
 																<strong><?php	echo	$start;	?> - <?php	echo	$end;	?></strong> of <strong style="margin-right: 10px;" id="total_record_count"><?php	echo	$total;	?></strong>
-												<?php	echo	$this->ajax_pagination->create_links	();	?>
+																<?php	echo	$this->ajax_pagination->create_links	();	?>
 												</div>
 												<?php
 								}

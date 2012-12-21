@@ -62,9 +62,11 @@ if(	!	$isAjax)
 																																				}
 																																				else	if($type	==	'Instantiation_ID')
 																																				{
-																																								$column	=	$value->instantiation_identifier;
+																																								$column.=	'<a href="'	.	site_url('instantiations/detail/'	.	$value->id)	.	'">';
+																																								$column.=	$value->instantiation_identifier;
 																																								if($value->instantiation_source	!==	'')
 																																												$column.=' ('	.	$value->instantiation_source	.	')';
+																																								$column.=	'</a>';
 																																				}
 																																				else	if($type	==	'Nomination')
 																																				{

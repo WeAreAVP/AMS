@@ -72,11 +72,11 @@ if	(!$isAjax)
 																																				{
 
 																																								$asset_title_type	=	trim	(str_replace	('(**)',	'',	$value->asset_title_type));
-																																								$asset_title_type	=	explode	('|',	$asset_title_type);
+																																								$asset_title_type	=	explode	(' | ',	$asset_title_type);
 																																								$asset_title	=	trim	(str_replace	('(**)',	'',	$value->asset_title));
-																																								$asset_title	=	explode	('|',	$asset_title);
+																																								$asset_title	=	explode	(' | ',	$asset_title);
 																																								$asset_title_ref	=	trim	(str_replace	('(**)',	'',	$value->asset_title_ref));
-																																								$asset_title_ref	=	explode	('|',	$asset_title_ref);
+																																								$asset_title_ref	=	explode	(' | ',	$asset_title_ref);
 																																								$column	=	'';
 																																								foreach	($asset_title	as	$index	=>	$title)
 																																								{

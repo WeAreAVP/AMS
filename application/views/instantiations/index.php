@@ -92,7 +92,8 @@ if(	!	$isAjax)
 																																																else
 																																																				$column.=$title;
 																																												}
-
+																																												else
+																																																$column.=$title;
 //																																												$column.=	'<a href="'	.	site_url('instantiations/detail/'	.	$value->id)	.	'">'	.	$title	.	'</a>';
 
 

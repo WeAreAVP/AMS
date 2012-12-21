@@ -14,9 +14,9 @@ class	Email_Template_Model	extends	CI_Model
 					* constructor. set table name amd prefix
 					* 
 					*/
-				function	__construct	()
+				function	__construct()
 				{
-								parent::__construct	();
+								parent::__construct();
 								$this->_prefix	=	'';
 								$this->_table	=	'email_templates';
 								$this->_email_queue_table	=	'email_queue';
@@ -27,14 +27,14 @@ class	Email_Template_Model	extends	CI_Model
 					* 
 					* @return row object 
 					*/
-				function	get_template_by_sys_id	($system_id)
+				function	get_template_by_sys_id($system_id)
 				{
-								$this->db->select	("*");
-								$this->db->from	($this->_table);
-								$this->db->where	("system_id",	$system_id);
-								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
-												return	$res->row	();
+								$this->db->select("*");
+								$this->db->from($this->_table);
+								$this->db->where("system_id",	$system_id);
+								$res	=	$this->db->get();
+								if(isset($res)	&&	!	empty($res))
+												return	$res->row();
 								return	false;
 				}
 
@@ -43,10 +43,10 @@ class	Email_Template_Model	extends	CI_Model
 					* 
 					* @return insert id
 					*/
-				function	add_email_template	($data)
+				function	add_email_template($data)
 				{
-								$this->db->insert	($this->_table,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -54,11 +54,12 @@ class	Email_Template_Model	extends	CI_Model
 					* 
 					* @return bool
 					*/
-				function	update_email_template	($template_id,	$data)
+				function	update_email_template($template_id,	$data)
 				{
-								$this->db->where	("id",	$template_id);
-								$this->db->update	($this->_table,	$data);
-								return	$this->db->affected_rows	()	>	0;
+								if($template_id	!==	NULL)
+												$this->db->where("id",	$template_id);
+								$this->db->update($this->_table,	$data);
+								return	$this->db->affected_rows()	>	0;
 				}
 
 				/**
@@ -66,15 +67,15 @@ class	Email_Template_Model	extends	CI_Model
 					* 
 					* @return insert id
 					*/
-				function	get_template_by_id	($id)
+				function	get_template_by_id($id)
 				{
-								$this->db->select	("*");
-								$this->db->from	($this->_table);
-								$this->db->where	("id",	$id);
-								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->select("*");
+								$this->db->from($this->_table);
+								$this->db->where("id",	$id);
+								$res	=	$this->db->get();
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -84,12 +85,12 @@ class	Email_Template_Model	extends	CI_Model
 					* 
 					* @return object
 					*/
-				function	get_all	()
+				function	get_all()
 				{
-								$res	=	$this->db->query	("SELECT * FROM "	.	$this->_table);
-								if	($res)
+								$res	=	$this->db->query("SELECT * FROM "	.	$this->_table);
+								if($res)
 								{
-												return	$res->result	();
+												return	$res->result();
 								}
 								return	false;
 				}
@@ -99,11 +100,11 @@ class	Email_Template_Model	extends	CI_Model
 					* 
 					* @return object
 					*/
-				function	delete_template	($template_id)
+				function	delete_template($template_id)
 				{
-								$this->db->where	('id',	$template_id);
-								$this->db->delete	($this->_table);
-								return	$this->db->affected_rows	()	>	0;
+								$this->db->where('id',	$template_id);
+								$this->db->delete($this->_table);
+								return	$this->db->affected_rows()	>	0;
 				}
 
 				/**
@@ -111,10 +112,10 @@ class	Email_Template_Model	extends	CI_Model
 					* 
 					* @return insert id
 					*/
-				function	add_email_queue	($data)
+				function	add_email_queue($data)
 				{
-								$this->db->insert	($this->_email_queue_table,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_email_queue_table,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -122,11 +123,11 @@ class	Email_Template_Model	extends	CI_Model
 					* 
 					* @return bool
 					*/
-				function	update_email_queue_by_id	($id,	$data)
+				function	update_email_queue_by_id($id,	$data)
 				{
-								$this->db->where	("id",	$id);
-								$this->db->update	($this->_email_queue_table,	$data);
-								return	$this->db->affected_rows	()	>	0;
+								$this->db->where("id",	$id);
+								$this->db->update($this->_email_queue_table,	$data);
+								return	$this->db->affected_rows()	>	0;
 				}
 
 				/*
@@ -135,15 +136,15 @@ class	Email_Template_Model	extends	CI_Model
 					*
 					*/
 
-				function	get_email_queue_by_id	($id)
+				function	get_email_queue_by_id($id)
 				{
-								$this->db->select	("*");
-								$this->db->from	($this->_email_queue_table);
-								$this->db->where	("id",	$id);
-								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->select("*");
+								$this->db->from($this->_email_queue_table);
+								$this->db->where("id",	$id);
+								$res	=	$this->db->get();
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -153,14 +154,25 @@ class	Email_Template_Model	extends	CI_Model
 					* 
 					* @return object
 					*/
-				function	get_all_pending_email	()
+				function	get_all_pending_email()
 				{
-								$res	=	$this->db->query	("SELECT * FROM "	.	$this->_email_queue_table	.	" WHERE is_sent=1");
-								if	($res)
+								$res	=	$this->db->query("SELECT * FROM "	.	$this->_email_queue_table	.	" WHERE is_sent=1");
+								if($res)
 								{
-												return	$res->result	();
+												return	$res->result();
 								}
 								return	false;
+				}
+
+				/**
+					* Get the crawford contact detail
+					* 
+					* @return object 
+					*/
+				function	get_crawford_detail()
+				{
+								$this->db->select("crawford_contact_detail");
+								return	$this->db->get($this->_table)->row();
 				}
 
 }

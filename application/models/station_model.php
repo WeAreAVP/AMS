@@ -30,7 +30,7 @@ class	Station_Model	extends	CI_Model
 				function	get_all	()
 				{
 								$this->db->order_by	("station_name");
-								return	$query	=	$this->db->get	($this->_table)->result	();
+								return	$query	=	$this->db->get($this->_table)->result();
 				}
 
 				/**

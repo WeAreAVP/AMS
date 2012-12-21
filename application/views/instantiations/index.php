@@ -5,7 +5,7 @@ if	(!$isAjax)
 				<div class="row-fluid">
 								<div class="span3">
 												<?php	$this->load->view	('instantiations/_facet_search');	?>
-								</div>
+								</div></div>
 								<div  class="span9" id="data_container">
 								<?php	}	?>
 								<?php
@@ -37,7 +37,7 @@ if	(!$isAjax)
 																																{
 																																				$width	=	'min-width:100px;';
 																																}
-																																else	if	($type	==	'Asset_Title')
+																																else	if	($type	==	'Instantiation\'s_Asset_Title')
 																																{
 																																				$width	=	'min-width:200px;';
 																																}
@@ -62,15 +62,40 @@ if	(!$isAjax)
 																																				}
 																																				else	if	($type	==	'Instantiation_ID')
 																																				{
-																																								$column	=	$value->instantiation_identifier;
+																																								$column	=	$value->instantiation_identifier	.	' ('	.	$value->instantiation_source	.	')';
 																																				}
 																																				else	if	($type	==	'Nomination')
 																																				{
 																																								$column	=	($value->status)	?	$value->status	:	'';
 																																				}
-																																				else	if	($type	==	'Asset_Title')
+																																				else	if	($type	==	'Instantiation\'s_Asset_Title')
 																																				{
-																																								$column	=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$value->asset_title	.	'</a>';
+
+																																								$asset_title_type	=	trim	(str_replace	('(**)',	'',	$value->asset_title_type));
+																																								$asset_title_type	=	explode	(' | ',	$asset_title_type);
+																																								$asset_title	=	trim	(str_replace	('(**)',	'',	$value->asset_title));
+																																								$asset_title	=	explode	(' | ',	$asset_title);
+																																								$asset_title_ref	=	trim	(str_replace	('(**)',	'',	$value->asset_title_ref));
+																																								$asset_title_ref	=	explode	(' | ',	$asset_title_ref);
+																																								$column	=	'';
+																																								foreach	($asset_title	as	$index	=>	$title)
+																																								{
+																																												if	(isset	($asset_title_ref[$index])	&&	isset	($asset_title_type[$index]))
+																																												{
+																																																if	($asset_title_ref[$index]	!=	'')
+																																																				$column.="<a href='$asset_title_ref[$index]'>$asset_title_type[$index]</a>: ";
+																																																else
+																																																				$column.=	$asset_title_type[$index]	.	': ';
+																																												}
+																																												else	if	(isset	($asset_title_type[$index]))
+																																												{
+																																																$column.=	$asset_title_type[$index]	.	': ';
+																																												}
+																																												$column.=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$title	.	'</a>';
+																																												if	(isset	($asset_title_ref[$index])	&&	$asset_title_ref[$index]	!=	'')
+																																																$column.=' ('	.	$asset_title_ref[$index]	.	')';
+																																												$column.='<div class="clearfix"></div>';
+																																								}
 																																				}
 																																				else	if	($type	==	'Media_Type')
 																																				{

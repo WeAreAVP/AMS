@@ -28,7 +28,7 @@ $config['instantiation_setting']	=	array	('full'	=>	array	(
 								'Organization'					=>	'organization',
 								'Instantiation_ID'	=>	'instantiation_identifier',
 								'Nomination'							=>	'status',
-								'Asset_Title'						=>	'asset_title',
+								'Instantiation\'s_Asset_Title'						=>	'asset_title',
 								'Media_Type'							=>	'media_type',
 								'Generation'							=>	'generation',
 								'Format'											=>	'format_name',

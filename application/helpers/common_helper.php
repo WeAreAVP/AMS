@@ -168,3 +168,11 @@ function	exit_function	()
 				exit;
 }
 
+function	debug	($argument,	$exit	=	true)
+{
+				echo	'<pre>';
+				print_r	($argument);
+				echo	'</pre>';
+				if	($exit)
+								exit;
+}

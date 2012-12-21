@@ -40,14 +40,14 @@ $replacebale	=	array	(
 				'id'																					=>	'replaceables',
 				'value'																		=>	$rep_decode,
 );
-$crawford_contact_detail	=	array	(
-				'name'							=>	'crawford_contact_detail',
-				'id'									=>	'crawford_contact_detail',
-);
-$is_crawford	=	array	(
-				'name'	=>	'is_crawford',
-				'id'			=>	'is_crawford',
-);
+//$crawford_contact_detail	=	array	(
+//				'name'							=>	'crawford_contact_detail',
+//				'id'									=>	'crawford_contact_detail',
+//);
+//$is_crawford	=	array	(
+//				'name'	=>	'is_crawford',
+//				'id'			=>	'is_crawford',
+//);
 //$replacebale=array("{station name}","{first name}","{last name}","{start date}","{end date}");
 
 echo	form_open_multipart	(site_url	('templatemanager/edit/'	.	$template_id),	$form_attributes);
@@ -105,7 +105,7 @@ if	(isset	($add_temp))
 
 				</tr>
 
-				<tr>
+<!--				<tr>
 								<td><?php	echo	form_label	('Crawford Contact Detail',	$crawford_contact_detail['id']);	?></td>
 								<?php
 								if	($template_detail->is_crawford	===	'1')
@@ -122,7 +122,7 @@ if	(isset	($add_temp))
 								<td><?php	echo	form_checkbox	($is_crawford,	$template_detail->is_crawford,	$checked,	'onclick="toggleCrawford();"');	?>
 												<div><?php	echo	form_textarea	($crawford_contact_detail,	$template_detail->crawford_contact_detail,	$crawford_display);	?></div>
 								</td>
-				</tr>
+				</tr>-->
 
 
 				<tr>

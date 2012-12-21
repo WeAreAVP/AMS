@@ -93,6 +93,7 @@ class	Crons	extends	CI_Controller
 																												$this->myLog	("Started $offset~$limit of $count");
 																												$cmd	=	escapeshellcmd	('/usr/bin/php '	.	$this->config->item	('path')	.	'index.php crons process_xml_file_child '	.	$folder->id	.	' '	.	$station_cpb_id	.	' '	.	$offset	.	' '	.	$limit);
 																												$pidFile	=	$this->config->item	('path')	.	"PIDs/processxmlfile/"	.	$loop_counter	.	".txt";
+																												@exec	('touch '.	$pidFile);
 																												$this->runProcess	($cmd,	$pidFile,	$this->config->item	('path')	.	"cronlog/processxmlfile.log");
 																												$file_text	=	file_get_contents	($pidFile);
 																												$this->arrPIDs[$file_text]	=	$loop_counter;

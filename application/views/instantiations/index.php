@@ -94,7 +94,7 @@ if	(!$isAjax)
 																																												$column.=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$title	.	'</a>';
 																																												if	(isset	($asset_title_ref[$index])	&&	$asset_title_ref[$index]	!=	'')
 																																																$column.=' ('	.	$asset_title_ref[$index]	.	')';
-																																												$colum.='<div class="clearfix"></div>';
+																																												$column.='<div class="clearfix"></div>';
 																																								}
 																																				}
 																																				else	if	($type	==	'Media_Type')

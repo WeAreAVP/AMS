@@ -259,7 +259,7 @@ if(	!	$isAjax)
 																																																$asset_subject_source	=	trim(str_replace('(**)',	'',	$asset->asset_subject_source));
 																																																$asset_subject_source	=	explode(' | ',	$asset_subject_source);
 																																																$column	=	'';
-																																																if(count($asset_subject))
+																																																if(count($asset_subject)>0)
 																																																{
 																																																				foreach($asset_subject	as	$index	=>	$subject)
 																																																				{

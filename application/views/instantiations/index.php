@@ -62,7 +62,7 @@ if	(!$isAjax)
 																																				}
 																																				else	if	($type	==	'Instantiation_ID')
 																																				{
-																																								$column	=	$value->instantiation_identifier.' ('.$value->instantiation_source.')';
+																																								$column	=	$value->instantiation_identifier	.	' ('	.	$value->instantiation_source	.	')';
 																																				}
 																																				else	if	($type	==	'Nomination')
 																																				{
@@ -70,7 +70,26 @@ if	(!$isAjax)
 																																				}
 																																				else	if	($type	==	'Instantiation\'s_Asset_Title')
 																																				{
-																																								$column	=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$value->asset_title	.	'</a>';
+
+																																								//$asset_title_type	=	trim	(str_replace	('(**)',	'',	$value->asset_title_type));
+																																								$asset_title_type	=	explode	('|',	$value->asset_title_type);
+																																								$asset_title	=	explode	('|',	$value->asset_title);
+																																								$asset_title_ref	=	explode	('|',	$value->asset_title_ref);
+																																								$column='';
+																																								foreach	($asset_title	as	$index	=>	$value)
+																																								{
+																																												if	(isset	($asset_title_ref[$index])	&&	isset	($asset_title_type[$index]))
+																																												{
+																																																$column.="<a href='$asset_title_ref[$index]'>$asset_title_type[$index]</a>: ";
+																																												}
+																																												else	if	(isset	($asset_title_type[$index]))
+																																												{
+																																																$column.=	$asset_title_type[$index]	.	': ';
+																																												}
+																																												$column.=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$asset_title[$index]	.	'</a>';
+																																								}
+
+//																																								$column	=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$value->asset_title	.	'</a>';
 																																				}
 																																				else	if	($type	==	'Media_Type')
 																																				{
@@ -127,7 +146,7 @@ if	(!$isAjax)
 
 												<div style="text-align: right;width: 860px;">
 																<strong><?php	echo	$start;	?> - <?php	echo	$end;	?></strong> of <strong style="margin-right: 10px;" id="total_record_count"><?php	echo	$total;	?></strong>
-																<?php	echo	$this->ajax_pagination->create_links	();	?>
+												<?php	echo	$this->ajax_pagination->create_links	();	?>
 												</div>
 												<?php
 								}

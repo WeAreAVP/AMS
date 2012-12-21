@@ -259,8 +259,8 @@ if(	!	$isAjax)
 																																																$asset_subject_source	=	trim(str_replace('(**)',	'',	$asset->asset_subject_source));
 																																																$asset_subject_source	=	explode('|',	$asset_subject_source);
 																																																$column	=	'';
-																																																if(count($asset_subject)	>	0)
-																																																{
+//																																																if(count($asset_subject)	>	0)
+//																																																{
 																																																				foreach($asset_subject	as	$index	=>	$subject)
 																																																				{
 
@@ -279,7 +279,7 @@ if(	!	$isAjax)
 																																																												$column.=$asset_subject_source[$index];
 																																																								$column.='<div class="clearfix"></div>';
 																																																				}
-																																																}
+//																																																}
 																																												}
 																																												else	if($type	==	'Genre')
 																																												{

@@ -8,7 +8,7 @@ if(	!	$isAjax)
 												<h4 style="margin: 6px 14px;">Assets</h4>
 												</b>
 												<div style="padding: 8px;background: none repeat scroll 0% 0% rgb(0, 152, 214); " ><a style="color: white;" href="<?php	echo	site_url('records/index')	?>" >All Assets</a></div>
-												<div style="padding: 8px;" > <a href="<?php	echo	"javascript:;";	//echo site_url('records/flagged') 													?>" >Flagged</a></div>
+												<div style="padding: 8px;" > <a href="<?php	echo	"javascript:;";	//echo site_url('records/flagged') 									?>" >Flagged</a></div>
 												<?php	$this->load->view('instantiations/_facet_search');	?>
 								</div>
 								<div  class="span9" id="data_container">
@@ -248,37 +248,51 @@ if(	!	$isAjax)
 																																												}
 																																												else	if($type	==	'Subjects')
 																																												{
-
-
-
-
-																																																$asset_subject	=	trim(str_replace('(**)',	'',	$asset->asset_subject));
-																																																$asset_subject	=	explode('|',	$asset_subject);
-																																																$asset_subject_ref	=	trim(str_replace('(**)',	'',	$asset->asset_subject_ref));
-																																																$asset_subject_ref	=	explode('|',	$asset_subject_ref);
-																																																$asset_subject_source	=	trim(str_replace('(**)',	'',	$asset->asset_subject_source));
-																																																$asset_subject_source	=	explode('|',	$asset_subject_source);
-																																																$column	=	'';
+																																																$asset_subject	=	'';
+																																																if(isset($asset->asset_subject)	&&	!	empty($asset->asset_subject))
+																																																{
+																																																				$asset_subject	=	trim(str_replace('(**)',	'',	$asset->asset_subject));
+																																																}
+																																																if(isset($asset->asset_subject_ref)	&&	!	empty($asset->asset_subject_ref)	&&	!	empty($asset_subject))
+																																																{
+																																																				$asset_subject	=	'<a href="'	.	$asset->asset_subject_ref	.	'" >'	.	$asset_subject	.	'</a>';
+																																																}
+																																																if(	!	empty($asset_subject))
+																																																{
+																																																				$column	.=	$asset_subject	.	'<br/>';
+																																																}
+																																																if(isset($asset->asset_subject_source)	&&	!	empty($asset->asset_subject_source))
+																																																{
+																																																				$val	=	trim(str_replace('(**)',	'',	$asset->asset_subject_source));
+																																																				$column	.=	$val;
+																																																}
+//																																																	$asset_subject	=	trim(str_replace('(**)',	'',	$asset->asset_subject));
+//																																																$asset_subject	=	explode(' | ',	$asset_subject);
+//																																																$asset_subject_ref	=	trim(str_replace('(**)',	'',	$asset->asset_subject_ref));
+//																																																$asset_subject_ref	=	explode('| ',	$asset_subject_ref);
+//																																																$asset_subject_source	=	trim(str_replace('(**)',	'',	$asset->asset_subject_source));
+//																																																$asset_subject_source	=	explode('|',	$asset_subject_source);
+//																																																$column	=	'';
 //																																																if(count($asset_subject)	>	0)
 //																																																{
-																																																				foreach($asset_subject	as	$index	=>	$subject)
-																																																				{
-
-																																																								if(isset($asset_subject_ref[$index]))
-																																																								{
-																																																												if($asset_subject_ref[$index]	!=	'')
-																																																												{
-																																																																$column.="<a target='_blank' href='$asset_subject_ref[$index]'>$subject</a>: ";
-																																																												}
-																																																												else
-																																																																$column.=$subject;
-																																																								}
-																																																								else
-																																																												$column.=$subject;
-																																																								if(isset($asset_subject_source[$index])	&&	$asset_subject_source[$index]	!=	'')
-																																																												$column.=$asset_subject_source[$index];
-																																																								$column.='<div class="clearfix"></div>';
-																																																				}
+//																																																				foreach($asset_subject	as	$index	=>	$subject)
+//																																																				{
+//
+//																																																								if(isset($asset_subject_ref[$index]))
+//																																																								{
+//																																																												if($asset_subject_ref[$index]	!=	'')
+//																																																												{
+//																																																																$column.="<a target='_blank' href='$asset_subject_ref[$index]'>$subject</a>: ";
+//																																																												}
+//																																																												else
+//																																																																$column.=$subject;
+//																																																								}
+//																																																								else
+//																																																												$column.=$subject;
+//																																																								if(isset($asset_subject_source[$index])	&&	$asset_subject_source[$index]	!=	'')
+//																																																												$column.=$asset_subject_source[$index];
+//																																																								$column.='<div class="clearfix"></div>';
+//																																																				}
 //																																																}
 																																												}
 																																												else	if($type	==	'Genre')

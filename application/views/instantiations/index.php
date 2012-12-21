@@ -62,7 +62,7 @@ if(	!	$isAjax)
 																																				}
 																																				else	if($type	==	'Instantiation_ID')
 																																				{
-																																								$column.=	'<a href="'	.	site_url('instantiations/detail/'	.	$value->id)	.	'">';
+																																								$column=	'<a href="'	.	site_url('instantiations/detail/'	.	$value->id)	.	'">';
 																																								$column.=	$value->instantiation_identifier;
 																																								if($value->instantiation_source	!==	'')
 																																												$column.=' ('	.	$value->instantiation_source	.	')';

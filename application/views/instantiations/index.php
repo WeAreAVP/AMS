@@ -92,9 +92,9 @@ if	(!$isAjax)
 																																																$column.=	$asset_title_type[$index]	.	': ';
 																																												}
 																																												$column.=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$title	.	'</a>';
+																																												if	(isset	($asset_title_ref[$index])	&&	$asset_title_ref[$index]	!=	'')
+																																																$column.=' ('	.	$asset_title_ref[$index]	.	')';
 																																								}
-
-//																																								$column	=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$value->asset_title	.	'</a>';
 																																				}
 																																				else	if	($type	==	'Media_Type')
 																																				{

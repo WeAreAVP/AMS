@@ -37,7 +37,7 @@ if	(!$isAjax)
 																																{
 																																				$width	=	'min-width:100px;';
 																																}
-																																else	if	($type	==	'Asset_Title')
+																																else	if	($type	==	'Instantiation\'s_Asset_Title')
 																																{
 																																				$width	=	'min-width:200px;';
 																																}
@@ -68,7 +68,7 @@ if	(!$isAjax)
 																																				{
 																																								$column	=	($value->status)	?	$value->status	:	'';
 																																				}
-																																				else	if	($type	==	'Asset_Title')
+																																				else	if	($type	==	'Instantiation\'s_Asset_Title')
 																																				{
 																																								$column	=	'<a href="'	.	site_url	('instantiations/detail/'	.	$value->id)	.	'">'	.	$value->asset_title	.	'</a>';
 																																				}

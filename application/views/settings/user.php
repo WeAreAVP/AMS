@@ -3,9 +3,7 @@ if(	!	$is_ajax)
 {
 				?>
 				<div class="row-fluid">
-									<?php if($current_role	==	1	||	$current_role	==	2	||	$current_role	==	3)
-																								{
-																												?>
+									
 								<div class="span3">
 												<div id="search_bar">
 																<b><h4>Filter Users</h4></b>
@@ -13,15 +11,19 @@ if(	!	$is_ajax)
 																				<div>Role:</div>
 																				<div><?php	echo	form_dropdown('role_id',	$roles,	array(),	'id="role_id" onchange="filterUser();"');	?></div>
 																</div>
+																<?php if($current_role	==	1	||	$current_role	==	2	||	$current_role	==	3)
+																								{
+																												?>
 																<div class="filter-fileds">
 																				<div>Station:</div>
 																				<div><?php	echo	form_dropdown('station_id',	$stations,	array(),	'id="station_id" onchange="filterUser();"');	?></div>
 																</div>
+																	<?php	}	?>
 																<div class="filter-fileds"><a class="btn" onclick="resetFilter();">Reset</a></div>
 
 												</div>
 								</div>
-								<?php	}	?>
+							
 								<div id="users"  class="span9">
 
 												<?php

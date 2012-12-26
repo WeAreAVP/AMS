@@ -163,7 +163,13 @@
 																												?>
 																												<li class="<?php	echo	active_anchor('templatemanager',	array('add',	'lists',	'edit',	'details',	'readmessage'));	?>"><a href="<?php	echo	site_url('templatemanager/lists');	?>" >Email Template</a></li>
 																								<?php	}	?>
-																								<li class="<?php	echo	active_anchor('templatemanager',	'manage_crawford');	?>"><a href="<?php	echo	site_url('templatemanager/manage_crawford');	?>">Crawford Contact Detail</a></li> 
+																								<?php
+																								if(!$this->is_station_user)
+																								{
+																												?>
+																												<li class="<?php	echo	active_anchor('templatemanager',	'manage_crawford');	?>"><a href="<?php	echo	site_url('templatemanager/manage_crawford');	?>">Crawford Contact Detail</a></li> 
+																												<?php	}
+																								?>
 																								<li class="<?php	echo	active_anchor('settings',	'index');	?>"><a href="<?php	echo	site_url('settings/index');	?>">Users</a></li>
 																								<li class="<?php	echo	active_anchor('settings',	'edit_profile');	?>"><a href="<?php	echo	site_url('settings/edit_profile');	?>">Edit Profile</a></li> 
 

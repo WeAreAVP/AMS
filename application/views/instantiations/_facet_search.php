@@ -2,7 +2,7 @@
 <div id="search_bar" class="facet-search"> 
     <form name="form_search" id="form_search" method="post" onsubmit="return false;">
 
-        <input type="hidden" name="current_tab" id="current_tab" value="<?php	echo	isset	($this->session->userdata['current_tab'])	?	$this->session->userdata['current_tab']	:	''	?>"  />
+        <input type="hidden" name="current_tab" id="current_tab" value="<?php	echo	isset($this->session->userdata['current_tab'])	?	$this->session->userdata['current_tab']	:	''	?>"  />
 
         <b>
             <h4>Filter</h4>
@@ -10,37 +10,37 @@
         <div id="tokens">
             <!-- Custom  Search Display End  -->
 												<?php
-												if	(isset	($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
+												if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
 												{
 
 																$custom_search	=	$this->session->userdata['custom_search'];
 
-																$column_name	=	explode	('@',	$custom_search);
-																if	(count	($column_name)	>	1)
+																$column_name	=	explode('@',	$custom_search);
+																if(count($column_name)	>	1)
 																{
-																				$column_name	=	implode	('',	$column_name);
-																				$column_name	=	explode	('|||',	$column_name);
-																				$column_name	=	': '	.	$get_column_name[trim	($column_name[0])];
+																				$column_name	=	implode('',	$column_name);
+																				$column_name	=	explode('|||',	$column_name);
+																				$column_name	=	': '	.	$get_column_name[trim($column_name[0])];
 																}
 
 																else
 																				$column_name	=	': All';
 
-																$custom_search	=	explode	('|||',	$custom_search);
+																$custom_search	=	explode('|||',	$custom_search);
 																$custom_value	=	null;
-																foreach	($custom_search	as	$value)
+																foreach($custom_search	as	$value)
 																{
-																				if	(!empty	($value)	&&	!is_null	($value)	&&	trim	($value)	!=	'')
+																				if(	!	empty($value)	&&	!	is_null($value)	&&	trim($value)	!=	'')
 																				{
 																								$custom_value	=	$value;
 																				}
 																}
 
-																$search_id	=	name_slug	($custom_value);
+																$search_id	=	name_slug($custom_value);
 																?>
 																<div id="keyword_field_main">
 																				<div class="filter-fileds"><b id="keyword_field_name">Keyword<?php	echo	$column_name;	?></b></div>
-																				<div class="btn-img" id="<?php	echo	$search_id;	?>" ><span class="search_keys"><?php	echo	$custom_value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($custom_value);	?>','<?php	echo	$search_id;	?>','keyword_field_main');"></i></div>
+																				<div class="btn-img" id="<?php	echo	$search_id;	?>" ><span class="search_keys"><?php	echo	$custom_value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($custom_value);	?>','<?php	echo	$search_id;	?>','keyword_field_main');"></i></div>
 																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php	echo	$custom_value;	?>" />
 																				<div class="clearfix"></div>
 
@@ -65,11 +65,11 @@
 
             <!-- Date Search Display Start  -->
 												<?php
-												if	(isset	($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
+												if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
 												{
 																$date	=	$this->session->userdata['date_range'];
-																$search_id	=	name_slug	($date);
-																if	(isset	($this->session->userdata['date_type'])	&&	$this->session->userdata['date_type']	!=	'')
+																$search_id	=	name_slug($date);
+																if(isset($this->session->userdata['date_type'])	&&	$this->session->userdata['date_type']	!=	'')
 																{
 																				$type	=	$this->session->userdata['date_type'];
 																}
@@ -81,7 +81,7 @@
 																<div id = "date_field_main">
 																				<input id="date_type" name="date_type" value="<?php	echo	$this->session->userdata['date_type'];	?>" type="hidden"/>
 																				<div class = "filter-fileds"><b id = "date_field_name">Date Keyword: <?php	echo	$type;	?></b></div>
-																				<div class="btn-img" id="<?php	echo	$search_id;	?>" ><span class="search_keys"><?php	echo	$date;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($date);	?>','<?php	echo	$search_id;	?>','date_field_main');"></i></div>
+																				<div class="btn-img" id="<?php	echo	$search_id;	?>" ><span class="search_keys"><?php	echo	$date;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($date);	?>','<?php	echo	$search_id;	?>','date_field_main');"></i></div>
 																				<input type="hidden" id="date_field_main_search" name="date_field_main_search" value="<?php	echo	$date;	?>" />
 
 																				<div class="clearfix"></div>
@@ -109,21 +109,21 @@
             <!-- Organization Search Display Start  -->
 
 												<?php
-												if	(isset	($this->session->userdata['organization'])	&&	$this->session->userdata['organization']	!=	'')
+												if(isset($this->session->userdata['organization'])	&&	$this->session->userdata['organization']	!=	'')
 												{
 
 																$organization	=	$this->session->userdata['organization'];
-																$organization_array	=	explode	('|||',	$organization);
+																$organization_array	=	explode('|||',	$organization);
 																?>
 																<div id="organization_main">
 																				<div class="filter-fileds"><b>Organization</b></div>
 																				<input type="hidden" id="organization_main_search" name="organization_main_search" value="<?php	echo	$organization;	?>" />
 																				<?php
-																				foreach	($organization_array	as	$value)
+																				foreach($organization_array	as	$value)
 																				{
-																								$search_id	=	name_slug	($value);
+																								$search_id	=	name_slug($value);
 																								?>
-																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','organization_main')"></i></div>
+																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','organization_main')"></i></div>
 																				<?php	}	?>
 																</div>
 																<?php
@@ -142,21 +142,21 @@
             <div class="clearfix"></div>
             <!-- Nomination Status Search Display Start  -->
 												<?php
-												if	(isset	($this->session->userdata['nomination'])	&&	$this->session->userdata['nomination']	!=	'')
+												if(isset($this->session->userdata['nomination'])	&&	$this->session->userdata['nomination']	!=	'')
 												{
 
 																$nomination	=	$this->session->userdata['nomination'];
-																$nomination_array	=	explode	('|||',	$nomination);
+																$nomination_array	=	explode('|||',	$nomination);
 																?>
 																<div id="nomination_status_main">
 																				<div class="filter-fileds"><b>Nomination Status</b></div>
 																				<input type="hidden" id="nomination_status_main_search" name="nomination_status_main_search" value="<?php	echo	$nomination;	?>" />
 																				<?php
-																				foreach	($nomination_array	as	$value)
+																				foreach($nomination_array	as	$value)
 																				{
-																								$search_id	=	name_slug	($value);
+																								$search_id	=	name_slug($value);
 																								?>
-																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','nomination_status_main')"></i></div>
+																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','nomination_status_main')"></i></div>
 																				<?php	}	?>
 																</div>
 																<?php
@@ -174,21 +174,21 @@
             <div class="clearfix"></div>
             <!-- Media Type Search Display Start  -->
 												<?php
-												if	(isset	($this->session->userdata['media_type'])	&&	$this->session->userdata['media_type']	!=	'')
+												if(isset($this->session->userdata['media_type'])	&&	$this->session->userdata['media_type']	!=	'')
 												{
 
 																$media_type	=	$this->session->userdata['media_type'];
-																$media_type_array	=	explode	('|||',	$media_type);
+																$media_type_array	=	explode('|||',	$media_type);
 																?>
 																<div id="media_type_main">
 																				<div class="filter-fileds"><b>Media Type</b></div>
 																				<input type="hidden" id="media_type_main_search" name="media_type_main_search" value="<?php	echo	$media_type;	?>" />
 																				<?php
-																				foreach	($media_type_array	as	$value)
+																				foreach($media_type_array	as	$value)
 																				{
-																								$search_id	=	name_slug	($value);
+																								$search_id	=	name_slug($value);
 																								?>
-																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','media_type_main')"></i></div>
+																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','media_type_main')"></i></div>
 																				<?php	}	?>
 																</div>
 																<?php
@@ -206,21 +206,21 @@
             <div class="clearfix"></div>
             <!-- Physical Format Search Display Start  -->
 												<?php
-												if	(isset	($this->session->userdata['physical_format'])	&&	$this->session->userdata['physical_format']	!=	'')
+												if(isset($this->session->userdata['physical_format'])	&&	$this->session->userdata['physical_format']	!=	'')
 												{
 
 																$physical_format	=	$this->session->userdata['physical_format'];
-																$physical_format_array	=	explode	('|||',	$physical_format);
+																$physical_format_array	=	explode('|||',	$physical_format);
 																?>
 																<div id="physical_format_main">
 																				<div class="filter-fileds"><b>Physical Format</b></div>
 																				<input type="hidden" id="physical_format_main_search" name="physical_format_main_search" value="<?php	echo	$physical_format;	?>" />
 																				<?php
-																				foreach	($physical_format_array	as	$value)
+																				foreach($physical_format_array	as	$value)
 																				{
-																								$search_id	=	name_slug	($value);
+																								$search_id	=	name_slug($value);
 																								?>
-																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','physical_format_main')"></i></div>
+																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','physical_format_main')"></i></div>
 																				<?php	}	?>
 																</div>
 																<?php
@@ -238,21 +238,21 @@
             <div class="clearfix"></div>
             <!-- Digital Format Search Display Start  -->
 												<?php
-												if	(isset	($this->session->userdata['digital_format'])	&&	$this->session->userdata['digital_format']	!=	'')
+												if(isset($this->session->userdata['digital_format'])	&&	$this->session->userdata['digital_format']	!=	'')
 												{
 
 																$digital_format	=	$this->session->userdata['digital_format'];
-																$digital_format_array	=	explode	('|||',	$digital_format);
+																$digital_format_array	=	explode('|||',	$digital_format);
 																?>
 																<div id="digital_format_main">
 																				<div class="filter-fileds"><b>Digital Format</b></div>
 																				<input type="hidden" id="digital_format_main_search" name="digital_format_main_search" value="<?php	echo	$digital_format;	?>" />
 																				<?php
-																				foreach	($digital_format_array	as	$value)
+																				foreach($digital_format_array	as	$value)
 																				{
-																								$search_id	=	name_slug	($value);
+																								$search_id	=	name_slug($value);
 																								?>
-																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','digital_format_main')"></i></div>
+																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','digital_format_main')"></i></div>
 																				<?php	}	?>
 																</div>
 																<?php
@@ -270,21 +270,21 @@
             <div class="clearfix"></div>
             <!-- Generation Search Display Start  -->
 												<?php
-												if	(isset	($this->session->userdata['generation'])	&&	$this->session->userdata['generation']	!=	'')
+												if(isset($this->session->userdata['generation'])	&&	$this->session->userdata['generation']	!=	'')
 												{
 
 																$generation	=	$this->session->userdata['generation'];
-																$generation_array	=	explode	('|||',	$generation);
+																$generation_array	=	explode('|||',	$generation);
 																?>
 																<div id="generation_main">
 																				<div class="filter-fileds"><b>Generation</b></div>
 																				<input type="hidden" id="generation_main_search" name="generation_main_search" value="<?php	echo	$generation;	?>" />
 																				<?php
-																				foreach	($generation_array	as	$value)
+																				foreach($generation_array	as	$value)
 																				{
-																								$search_id	=	name_slug	($value);
+																								$search_id	=	name_slug($value);
 																								?>
-																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','generation_main')"></i></div>
+																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','generation_main')"></i></div>
 																				<?php	}	?>
 																</div>
 																<?php
@@ -302,21 +302,21 @@
             <div class="clearfix"></div>
             <!-- File Size Search Display Start  -->
 												<?php
-												if	(isset	($this->session->userdata['file_size'])	&&	$this->session->userdata['file_size']	!=	'')
+												if(isset($this->session->userdata['file_size'])	&&	$this->session->userdata['file_size']	!=	'')
 												{
 
 																$file_size	=	$this->session->userdata['file_size'];
-																$file_size_array	=	explode	('|||',	$file_size);
+																$file_size_array	=	explode('|||',	$file_size);
 																?>
 																<div id="file_size_main">
 																				<div class="filter-fileds"><b>File Size</b></div>
 																				<input type="hidden" id="file_size_main_search" name="file_size_main_search" value="<?php	echo	$file_size;	?>" />
 																				<?php
-																				foreach	($file_size_array	as	$value)
+																				foreach($file_size_array	as	$value)
 																				{
-																								$search_id	=	name_slug	($value);
+																								$search_id	=	name_slug($value);
 																								?>
-																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','file_size_main')"></i></div>
+																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','file_size_main')"></i></div>
 																				<?php	}	?>
 																</div>
 																<?php
@@ -334,21 +334,21 @@
             <div class="clearfix"></div>
             <!-- Event Type Search Display Start  -->
 												<?php
-												if	(isset	($this->session->userdata['event_type'])	&&	$this->session->userdata['event_type']	!=	'')
+												if(isset($this->session->userdata['event_type'])	&&	$this->session->userdata['event_type']	!=	'')
 												{
 
 																$event_type	=	$this->session->userdata['event_type'];
-																$event_type_array	=	explode	('|||',	$event_type);
+																$event_type_array	=	explode('|||',	$event_type);
 																?>
 																<div id="event_type_main">
 																				<div class="filter-fileds"><b>Event Type</b></div>
 																				<input type="hidden" id="event_type_main_search" name="event_type_main_search" value="<?php	echo	$event_type;	?>" />
 																				<?php
-																				foreach	($event_type_array	as	$value)
+																				foreach($event_type_array	as	$value)
 																				{
-																								$search_id	=	name_slug	($value);
+																								$search_id	=	name_slug($value);
 																								?>
-																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','event_type_main')"></i></div>
+																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','event_type_main')"></i></div>
 																				<?php	}	?>
 																</div>
 																<?php
@@ -366,21 +366,21 @@
             <div class="clearfix"></div>
             <!-- Event Outcome Search Display Start  -->
 												<?php
-												if	(isset	($this->session->userdata['event_outcome'])	&&	$this->session->userdata['event_outcome']	!=	'')
+												if(isset($this->session->userdata['event_outcome'])	&&	$this->session->userdata['event_outcome']	!=	'')
 												{
 
 																$event_outcome	=	$this->session->userdata['event_outcome'];
-																$event_outcome_array	=	explode	('|||',	$fevent_outcome);
+																$event_outcome_array	=	explode('|||',	$fevent_outcome);
 																?>
 																<div id="event_outcome_main">
 																				<div class="filter-fileds"><b>Event Outcome</b></div>
 																				<input type="hidden" id="event_outcome_main_search" name="event_outcome_main_search" value="<?php	echo	$event_outcome;	?>" />
 																				<?php
-																				foreach	($event_outcome_array	as	$value)
+																				foreach($event_outcome_array	as	$value)
 																				{
-																								$search_id	=	name_slug	($value);
+																								$search_id	=	name_slug($value);
 																								?>
-																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities	($value);	?>','<?php	echo	$search_id	?>','event_outcome_main')"></i></div>
+																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','event_outcome_main')"></i></div>
 																				<?php	}	?>
 																</div>
 																<?php
@@ -400,7 +400,7 @@
         </div>
         <div class="clearfix"></div>
 								<?php
-								if	(isset	($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
+								if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
 								{
 
 												$style	=	"none;";
@@ -484,7 +484,7 @@
         </div>
         <div class="clearfix"></div>
 								<?php
-								if	((!isset	($this->session->userdata['date_range'])	||	isset	($this->session->userdata['date_range'])	)	&&	empty	($this->session->userdata['date_range']))
+								if((	!	isset($this->session->userdata['date_range'])	||	isset($this->session->userdata['date_range'])	)	&&	empty($this->session->userdata['date_range']))
 								{
 												$DateStyleDisplay	=	1;
 								}
@@ -511,7 +511,7 @@
 												</div>
 
 												<?php
-												if	(count	($date_types)	>	0)
+												if(count($date_types)	>	0)
 												{
 																?>
 																<div class="filter-fileds">
@@ -524,7 +524,7 @@
 																								</a>
 																								<ul class="dropdown-menu">
 																												<?php
-																												foreach	($date_types	as	$value)
+																												foreach($date_types	as	$value)
 																												{
 																																?>
 																																<li><a href="javascript://;" onclick="add_date_token('<?php	echo	$value->date_type;	?>');"><?php	echo	$value->date_type;	?></a></li>
@@ -541,7 +541,7 @@
 								?>
         <!-- Organization  Start      -->
 								<?php
-								if	(count	($stations)	>	0)
+								if(count($stations)	>	0	&&	!	$this->is_station_user)
 								{
 												?>
 												<div class="filter-fileds">
@@ -549,17 +549,17 @@
 												</div>
 												<div class="filter-fileds">
 																<?php
-																foreach	($stations	as	$key	=>	$value)
+																foreach($stations	as	$key	=>	$value)
 																{
 																				?>
 																				<?php
-																				if	($key	<	4)
+																				if($key	<	4)
 																				{
 																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name;	?></a></div>
+																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name;	?></a></div>
 																								<?php
 																				}
-																				else	if	($key	==	4)
+																				else	if($key	==	4)
 																				{
 																								?>
 																								<div class="dropdown">
@@ -573,7 +573,7 @@
 																												else
 																												{
 																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name;	?></a></li>
+																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name;	?></a></li>
 																																<?php
 																												}
 																								}
@@ -585,7 +585,7 @@
         <!-- Organization  End      -->
         <!--  Nomination Status Start      -->
 								<?php
-								if	(count	($nomination_status)	>	0)
+								if(count($nomination_status)	>	0)
 								{
 												?>
 												<div class="filter-fileds">
@@ -593,15 +593,15 @@
 												</div>
 												<div class="filter-fileds">
 																<?php
-																foreach	($nomination_status	as	$key	=>	$value)
+																foreach($nomination_status	as	$key	=>	$value)
 																{
-																				if	($key	<	4)
+																				if($key	<	4)
 																				{
 																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->status);	?>','nomination_status_main');"><?php	echo	$value->status;	?></a></div>
+																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status;	?></a></div>
 																								<?php
 																				}
-																				else	if	($key	==	4)
+																				else	if($key	==	4)
 																				{
 																								?>
 																								<div class="dropdown">
@@ -615,13 +615,13 @@
 																												else
 																												{
 																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->status);	?>','nomination_status_main');"><?php	echo	$value->status;	?></a></li>  
+																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status;	?></a></li>  
 																																<?php
 																												}
 																								}
-																								if	(count	($nomination_status)	>	4)
+																								if(count($nomination_status)	>	4)
 																								{
-																												echo	count	($nomination_status);
+																												echo	count($nomination_status);
 																												?>
 																								</ul>
 																				</div>
@@ -631,7 +631,7 @@
         <!--  Nomination Status End      -->
         <!--  Media Type Start      -->
 								<?php
-								if	(count	($media_types)	>	0)
+								if(count($media_types)	>	0)
 								{
 												?>
 												<div class="filter-fileds">
@@ -639,15 +639,15 @@
 												</div>
 												<div class="filter-fileds">
 																<?php
-																foreach	($media_types	as	$key	=>	$value)
+																foreach($media_types	as	$key	=>	$value)
 																{
-																				if	($key	<	4)
+																				if($key	<	4)
 																				{
 																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type;	?></a></div>
+																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type;	?></a></div>
 																								<?php
 																				}
-																				else	if	($key	==	4)
+																				else	if($key	==	4)
 																				{
 																								?>
 																								<div class="dropdown">
@@ -661,11 +661,11 @@
 																												else
 																												{
 																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type;	?></a></li>  
+																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type;	?></a></li>  
 																																<?php
 																												}
 																								}
-																								if	(count	($media_types)	>	4)
+																								if(count($media_types)	>	4)
 																								{
 																												?>
 																								</ul>
@@ -676,7 +676,7 @@
         <!--  Media Type End      -->
         <!--  Physical Format Start      -->
 								<?php
-								if	(count	($physical_formats)	>	0)
+								if(count($physical_formats)	>	0)
 								{
 												?>
 												<div class="filter-fileds">
@@ -684,15 +684,15 @@
 												</div>
 												<div class="filter-fileds">
 																<?php
-																foreach	($physical_formats	as	$key	=>	$value)
+																foreach($physical_formats	as	$key	=>	$value)
 																{
-																				if	($key	<	4)
+																				if($key	<	4)
 																				{
 																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name;	?></a></div>
+																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name;	?></a></div>
 																								<?php
 																				}
-																				else	if	($key	==	4)
+																				else	if($key	==	4)
 																				{
 																								?>
 																								<div class="dropdown">
@@ -706,11 +706,11 @@
 																												else
 																												{
 																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name;	?></a></li>  
+																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name;	?></a></li>  
 																																<?php
 																												}
 																								}
-																								if	(count	($physical_formats)	>	4)
+																								if(count($physical_formats)	>	4)
 																								{
 																												?>
 																								</ul>
@@ -721,7 +721,7 @@
         <!-- Physical Format End      -->
         <!--  Digital Format Start      -->
 								<?php
-								if	(count	($digital_formats)	>	0)
+								if(count($digital_formats)	>	0)
 								{
 												?>
 												<div class="filter-fileds">
@@ -729,15 +729,15 @@
 												</div>
 												<div class="filter-fileds">
 																<?php
-																foreach	($digital_formats	as	$key	=>	$value)
+																foreach($digital_formats	as	$key	=>	$value)
 																{
-																				if	($key	<	4)
+																				if($key	<	4)
 																				{
 																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name;	?></a></div>
+																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name;	?></a></div>
 																								<?php
 																				}
-																				else	if	($key	==	4)
+																				else	if($key	==	4)
 																				{
 																								?>
 																								<div class="dropdown">
@@ -751,11 +751,11 @@
 																												else
 																												{
 																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name;	?></a></li>  
+																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name;	?></a></li>  
 																																<?php
 																												}
 																								}
-																								if	(count	($digital_formats)	>	4)
+																								if(count($digital_formats)	>	4)
 																								{
 																												?>
 																								</ul>
@@ -766,7 +766,7 @@
         <!-- Digital Format End      -->
         <!--  Generation Start      -->
 								<?php
-								if	(count	($generations)	>	0)
+								if(count($generations)	>	0)
 								{
 												?>
 												<div class="filter-fileds">
@@ -774,15 +774,15 @@
 												</div>
 												<div class="filter-fileds">
 																<?php
-																foreach	($generations	as	$key	=>	$value)
+																foreach($generations	as	$key	=>	$value)
 																{
-																				if	($key	<	4)
+																				if($key	<	4)
 																				{
 																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->generation);	?>','generation_main');"><?php	echo	$value->generation;	?></a></div>
+																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->generation);	?>','generation_main');"><?php	echo	$value->generation;	?></a></div>
 																								<?php
 																				}
-																				else	if	($key	==	4)
+																				else	if($key	==	4)
 																				{
 																								?>
 																								<div class="dropdown">
@@ -796,11 +796,11 @@
 																												else
 																												{
 																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->generation);	?>','generation_main');"><?php	echo	$value->generation;	?></a></li>  
+																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->generation);	?>','generation_main');"><?php	echo	$value->generation;	?></a></li>  
 																																<?php
 																												}
 																								}
-																								if	(count	($generations)	>	4)
+																								if(count($generations)	>	4)
 																								{
 																												?>
 																								</ul>
@@ -811,7 +811,7 @@
         <!-- Generation End      -->
         <!--  File Size Start      -->
 								<?php
-								if	(count	($file_size)	>	0)
+								if(count($file_size)	>	0)
 								{
 												?>
 												<div class="filter-fileds">
@@ -819,15 +819,15 @@
 												</div>
 												<div class="filter-fileds">
 																<?php
-																foreach	($file_size	as	$key	=>	$value)
+																foreach($file_size	as	$key	=>	$value)
 																{
-																				if	($key	<	4)
+																				if($key	<	4)
 																				{
 																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->file_size);	?>','file_size_main');"><?php	echo	$value->file_size;	?></a></div>
+																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->file_size);	?>','file_size_main');"><?php	echo	$value->file_size;	?></a></div>
 																								<?php
 																				}
-																				else	if	($key	==	4)
+																				else	if($key	==	4)
 																				{
 																								?>
 																								<div class="dropdown">
@@ -841,11 +841,11 @@
 																												else
 																												{
 																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->file_size);	?>','file_size_main');"><?php	echo	$value->file_size;	?></a></li>  
+																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->file_size);	?>','file_size_main');"><?php	echo	$value->file_size;	?></a></li>  
 																																<?php
 																												}
 																								}
-																								if	(count	($file_size)	>	4)
+																								if(count($file_size)	>	4)
 																								{
 																												?>
 																								</ul>
@@ -856,7 +856,7 @@
         <!-- File Size End      -->
         <!--  Event Type Start      -->
 								<?php
-								if	(count	($event_types)	>	0)
+								if(count($event_types)	>	0)
 								{
 												?>
 												<div class="filter-fileds">
@@ -864,15 +864,15 @@
 												</div>
 												<div class="filter-fileds">
 																<?php
-																foreach	($event_types	as	$key	=>	$value)
+																foreach($event_types	as	$key	=>	$value)
 																{
-																				if	($key	<	4)
+																				if($key	<	4)
 																				{
 																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->event_type);	?>','event_type_main');"><?php	echo	$value->event_type;	?></a></div>
+																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->event_type);	?>','event_type_main');"><?php	echo	$value->event_type;	?></a></div>
 																								<?php
 																				}
-																				else	if	($key	==	4)
+																				else	if($key	==	4)
 																				{
 																								?>
 																								<div class="dropdown">
@@ -886,11 +886,11 @@
 																												else
 																												{
 																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->event_type);	?>','event_type_main');"><?php	echo	$value->event_type;	?></a></li>  
+																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->event_type);	?>','event_type_main');"><?php	echo	$value->event_type;	?></a></li>  
 																																<?php
 																												}
 																								}
-																								if	(count	($event_types)	>	4)
+																								if(count($event_types)	>	4)
 																								{
 																												?>
 																								</ul>
@@ -901,7 +901,7 @@
         <!-- Event Type End      -->
         <!--  Event Type Start      -->
 								<?php
-								if	(count	($event_outcome)	>	0)
+								if(count($event_outcome)	>	0)
 								{
 												?>
 												<div class="filter-fileds">
@@ -909,15 +909,15 @@
 												</div>
 												<div class="filter-fileds">
 																<?php
-																foreach	($event_outcome	as	$key	=>	$value)
+																foreach($event_outcome	as	$key	=>	$value)
 																{
-																				if	($key	<	4)
+																				if($key	<	4)
 																				{
 																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->event_outcome);	?>','event_outcome_main');"><?php	echo	$value->event_outcome;	?></a></div>
+																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->event_outcome);	?>','event_outcome_main');"><?php	echo	$value->event_outcome;	?></a></div>
 																								<?php
 																				}
-																				else	if	($key	==	4)
+																				else	if($key	==	4)
 																				{
 																								?>
 																								<div class="dropdown">
@@ -931,11 +931,11 @@
 																												else
 																												{
 																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities	($value->event_outcome);	?>','event_outcome_main');"><?php	echo	$value->event_outcome;	?></a></li>  
+																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->event_outcome);	?>','event_outcome_main');"><?php	echo	$value->event_outcome;	?></a></li>  
 																																<?php
 																												}
 																								}
-																								if	(count	($event_outcome)	>	4)
+																								if(count($event_outcome)	>	4)
 																								{
 																												?>
 																								</ul>
@@ -1229,7 +1229,7 @@
 								$('#current_tab').val(id);
 								$.ajax({
 												type: 'POST', 
-												url: '<?php	echo	site_url	('records/set_current_tab')	?>/'+id,
+												url: '<?php	echo	site_url('records/set_current_tab')	?>/'+id,
 												success: function (result)
 												{ 
 																window.location.reload();

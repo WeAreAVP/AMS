@@ -45,7 +45,7 @@ class	Messages	extends	MY_Controller
 												{
 																$where['msg_type']	=	$_POST['message_type'];
 												}
-												if	($_POST['stations'])
+												if	(isset($_POST['stations']))
 												{
 																$where['receiver_id']	=	$_POST['stations'];
 												}

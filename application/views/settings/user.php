@@ -147,7 +147,8 @@ if(	!	$is_ajax)
 								setTimeout(function(){
 												$('.notification').hide();
 								},5000);
-								stationUser=<?php echo $this->is_station_user; ?>;
+								
+								
 								function manageUser(type,uType){
 												data=null;
 												method='GET';
@@ -206,9 +207,7 @@ if(	!	$is_ajax)
 								}
 								function checkRole(){
 												role=$('#role').val();
-												if(stationUser===1){
-																console.log('here');
-												}
+
 												if(role==3 || role==4){
 																$('#station_row').show();
 												}

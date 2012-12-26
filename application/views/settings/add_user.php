@@ -106,7 +106,7 @@ $attributes	=	array('onsubmit'	=>	'return false;',	'id'							=>	'new_user');
 												if($this->is_station_user)
 												{
 																?>
-												<td><?php	echo	form_hidden($station,	$this->station_id);	?></td>
+												<td><?php	echo	form_hidden($station['name'],	$this->station_id);	?></td>
 																<?php
 												}
 												else

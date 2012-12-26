@@ -206,7 +206,9 @@ if(	!	$is_ajax)
 								}
 								function checkRole(){
 												role=$('#role').val();
-												console.log(stationUser);
+												if(stationUser===1){
+																console.log('here');
+												}
 												if(role==3 || role==4){
 																$('#station_row').show();
 												}

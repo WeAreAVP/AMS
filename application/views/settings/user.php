@@ -4,10 +4,10 @@ if(	!	$is_ajax)
 				?>
 				<div class="row-fluid">
 								<?php
-									$class='';
+								$class	=	'';
 								if($current_role	==	1	||	$current_role	==	2	||	$current_role	==	3)
 								{
-												$class='span9';
+												$class	=	'span9';
 												?>
 												<div class="span3">
 																<div id="search_bar">
@@ -16,18 +16,21 @@ if(	!	$is_ajax)
 																								<div>Role:</div>
 																								<div><?php	echo	form_dropdown('role_id',	$roles,	array(),	'id="role_id" onchange="filterUser();"');	?></div>
 																				</div>
-
-																				<div class="filter-fileds">
-																								<div>Station:</div>
-																								<div><?php	echo	form_dropdown('station_id',	$stations,	array(),	'id="station_id" onchange="filterUser();"');	?></div>
-																				</div>
-
+																				<?php
+																				if(	!	$this->is_station_user)
+																				{
+																								?>
+																								<div class="filter-fileds">
+																												<div>Station:</div>
+																												<div><?php	echo	form_dropdown('station_id',	$stations,	array(),	'id="station_id" onchange="filterUser();"');	?></div>
+																								</div>
+																				<?php	}	?>
 																				<div class="filter-fileds"><a class="btn" onclick="resetFilter();">Reset</a></div>
 
 																</div>
 												</div>
 								<?php	}	?>
-								<div id="users"  class="<?php echo $class; ?>">
+								<div id="users"  class="<?php	echo	$class;	?>">
 
 												<?php
 												if(isset($this->session->userdata['saved']))
@@ -171,7 +174,7 @@ if(	!	$is_ajax)
 																								$('#manage_user').html(result); 
 																								checkRole();
 																				}
-																																                                        
+																																												                                        
 																}
 												});
 								}
@@ -180,7 +183,7 @@ if(	!	$is_ajax)
 												$('#delete_user_btn').attr('href',site_url+'/settings/delete_user/'+userID);
 								}
 								function filterUser(){
-																																                            
+																																												                            
 												role=$('#role_id').val();
 												station=$('#station_id').val();
 												$.ajax({
@@ -191,7 +194,7 @@ if(	!	$is_ajax)
 																success: function (result) { 
 																				$('#user_list').html(result);
 																				$("#user_table_list").trigger("update");  
-																																                                        
+																																												                                        
 																}
 												});
 								}

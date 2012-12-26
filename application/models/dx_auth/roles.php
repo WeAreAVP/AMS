@@ -24,7 +24,7 @@ class Roles extends CI_Model {
             } else if ($role == 2)
                 $this->db->where_not_in("id", array('1'));
             else if ($role == 3)
-                $this->db->where_not_in("id", array('1', '2'));
+                $this->db->where_not_in("id", array('1', '2','5'));
             else
                 $this->db->where_not_in("id", array('1', '2', '3'));
         }

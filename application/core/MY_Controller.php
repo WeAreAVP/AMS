@@ -22,6 +22,7 @@ class	MY_Controller	extends	CI_Controller
 				public	$views_settings;
 				public	$frozen_column;
 				public	$column_order;
+				public $station_name;
 
 				function	__construct()
 				{
@@ -46,7 +47,8 @@ class	MY_Controller	extends	CI_Controller
 								{
 												$this->is_station_user	=	TRUE;
 												$this->station_id	=	$this->dx_auth->get_station_id();
-												
+												$this->station_name=$this->station_model->get_station_by_id($this->station_id)->station_name;
+												echo $this->station_name;exit;
 								}
 								$this->frozen_column	=	0;
 								$this->column_order	=	'';

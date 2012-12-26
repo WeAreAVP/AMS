@@ -8,7 +8,7 @@ if(	!	$isAjax)
 												<h4 style="margin: 6px 14px;">Assets</h4>
 												</b>
 												<div style="padding: 8px;background: none repeat scroll 0% 0% rgb(0, 152, 214); " ><a style="color: white;" href="<?php	echo	site_url('records/index')	?>" >All Assets</a></div>
-												<div style="padding: 8px;" > <a href="<?php	echo	"javascript:;";	//echo site_url('records/flagged') 										?>" >Flagged</a></div>
+												<div style="padding: 8px;" > <a href="<?php	echo	"javascript:;";	//echo site_url('records/flagged') 														?>" >Flagged</a></div>
 												<?php	$this->load->view('instantiations/_facet_search');	?>
 								</div>
 								<div  class="span9" id="data_container">
@@ -280,23 +280,34 @@ if(	!	$isAjax)
 																																												}
 																																												else	if($type	==	'Genre')
 																																												{
-																																																$asset_genre	=	'';
-																																																if(isset($asset->asset_genre)	&&	!	empty($asset->asset_genre))
+
+																																																$asset_genre	=	trim(str_replace('(**)',	'',	$asset->asset_genre));
+																																																$asset_genre	=	explode(' | ',	$asset_genre);
+																																																$asset_genre_ref	=	trim(str_replace('(**)',	'',	$asset->asset_genre_ref));
+																																																$asset_genre_ref	=	explode('| ',	$asset_genre_ref);
+																																																$asset_genre_source	=	trim(str_replace('(**)',	'',	$asset->asset_genre_source));
+																																																$asset_genre_source	=	explode('|',	$asset_genre_source);
+																																																$column	=	'';
+																																																if(count($asset_genre)	>	0)
 																																																{
-																																																				$asset_genre	=	trim(str_replace('(**)',	'',	$asset->asset_genre));
-																																																}
-																																																if(isset($asset->asset_genre_ref)	&&	!	empty($asset->asset_genre_ref)	&&	!	empty($asset_genre))
-																																																{
-																																																				$asset_genre	=	'<a href="'	.	$asset->asset_subject_ref	.	'" >'	.	$asset_genre	.	'</a>';
-																																																}
-																																																if(	!	empty($asset_genre))
-																																																{
-																																																				$column	.=	$asset_genre	.	'<br/>';
-																																																}
-																																																if(isset($asset->asset_genre_source)	&&	!	empty($asset->asset_genre_source))
-																																																{
-																																																				$val	=	trim(str_replace('(**)',	'',	$asset->asset_genre_source));
-																																																				$column	.=	$val;
+																																																				foreach($asset_genre	as	$index	=>	$genre)
+																																																				{
+
+																																																								if(isset($asset_genre_ref[$index]))
+																																																								{
+																																																												if($asset_genre_ref[$index]	!=	'')
+																																																												{
+																																																																$column.="<a target='_blank' href='$asset_genre_ref[$index]'>$genre</a>: ";
+																																																												}
+																																																												else
+																																																																$column.=$genre;
+																																																								}
+																																																								else
+																																																												$column.=$genre;
+																																																								if(isset($asset_genre_source[$index])	&&	$asset_genre_source[$index]	!=	'')
+																																																												$column.=$asset_genre_source[$index];
+																																																								$column.='<div class="clearfix"></div>';
+																																																				}
 																																																}
 																																												}
 																																												else	if($type	==	'Assets_Date')

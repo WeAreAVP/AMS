@@ -3,6 +3,9 @@ if(	!	$is_ajax)
 {
 				?>
 				<div class="row-fluid">
+									<?php if($current_role	==	1	||	$current_role	==	2	||	$current_role	==	3)
+																								{
+																												?>
 								<div class="span3">
 												<div id="search_bar">
 																<b><h4>Filter Users</h4></b>
@@ -18,6 +21,7 @@ if(	!	$is_ajax)
 
 												</div>
 								</div>
+								<?php	}	?>
 								<div id="users"  class="span9">
 
 												<?php

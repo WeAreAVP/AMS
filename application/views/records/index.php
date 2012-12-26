@@ -234,7 +234,7 @@ if	(	!	$isAjax)
 																																																				$asset_description	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->description)));
 																																																				$description_type	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->description_type)));
 																																																				$column	=	'';
-																																																				if	(count	($asset_subject)	>	0)
+																																																				if	(count	($asset_description)	>	0)
 																																																				{
 																																																								foreach	($asset_description	as	$index	=>	$description)
 																																																								{

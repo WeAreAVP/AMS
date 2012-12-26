@@ -62,11 +62,17 @@ if(	!	$isAjax)
 																																				}
 																																				else	if($type	==	'Instantiation_ID')
 																																				{
-																																								$column	=	'<a href="'	.	site_url('instantiations/detail/'	.	$value->id)	.	'">';
-																																								$column.=	$value->instantiation_identifier;
-																																								if($value->instantiation_source	!==	'')
-																																												$column.=' ('	.	$value->instantiation_source	.	')';
-																																								$column.=	'</a>';
+																																								$ins_identifier	=	explode(' | ',	trim(str_replace('(**)',	'',	$value->instantiation_identifier)));
+																																								$ins_identifier_src	=	explode(' | ',	trim(str_replace('(**)',	'',	$value->instantiation_source)));
+																																								$column	=	'';
+																																								foreach($ins_identifier	as	$index	=>	$identifier)
+																																								{
+																																												$column.=	'<a href="'	.	site_url('instantiations/detail/'	.	$value->id)	.	'">';
+																																												$column.=	$identifier;
+																																												if(isset($ins_identifier_src[$index])	&&	!	empty($ins_identifier_src[$index]))
+																																																$column.=' ('	.	$ins_identifier_src[$index]	.	')';
+																																												$column.=	'</a>';
+																																								}
 																																				}
 																																				else	if($type	==	'Nomination')
 																																				{
@@ -114,10 +120,10 @@ if(	!	$isAjax)
 																																				}
 																																				else	if($type	==	'Format')
 																																				{
-																																							
-																																												$column=$value->format_type	;
-																																													if($value->format_name	!=	'')
-																																																$column.=': '.$value->format_name;
+
+																																								$column	=	$value->format_type;
+																																								if($value->format_name	!=	'')
+																																												$column.=': '	.	$value->format_name;
 																																				}
 																																				else	if($type	==	'Duration')
 																																				{

@@ -103,7 +103,7 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'new_user');
         </tr>
         <tr style="display: none;" id="station_row">
             <td class="_label"><?php echo form_label('Station:', $station['id']); ?></td>
-            <td><?php echo form_dropdown($station['id'], $stations_list); ?><span style="color: red;"><?php echo form_error($station['name']); ?></span></td>
+            <td><?php echo form_dropdown($station['id'], $stations_list,array(),'id="'.$station['id'].'"'); ?><span style="color: red;"><?php echo form_error($station['name']); ?></span></td>
         </tr>
 
 

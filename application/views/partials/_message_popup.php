@@ -27,8 +27,8 @@
 
     </div>
     <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="resetMessagesForm();">Close</button>
-        <button class="btn btn-primary" aria-hidden="true" onclick="checkDates();" id="next_btn">Next</button>
+        <button class="btn edit-btn" data-dismiss="modal" aria-hidden="true" onclick="resetMessagesForm();">Close</button>
+        <button class="btn btn-primary edit-btn" aria-hidden="true" onclick="checkDates();" id="next_btn">Next</button>
     </div>
 </div>
 <script>
@@ -60,5 +60,8 @@
     function resetMessagesForm(){
         $('#alert_type').html('');
         $('#msg_type').val('');
+								$('.edit-btn').each(function(){
+											$(this).show();	
+								});
     }
 </script>

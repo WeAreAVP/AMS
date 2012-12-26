@@ -209,7 +209,7 @@ if(	!	$is_ajax)
 												role=$('#role').val();
 												if(stationUser===1){
 //																$('#station_row').hide();
-																		$('').val(stationID);
+																		$('#station').val(stationID);
 												}
 												if(role==3 || role==4){
 																$('#station_row').show();

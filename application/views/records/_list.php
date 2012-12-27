@@ -7,10 +7,10 @@
 								if(	!	isset($inst_id)	&&	empty($inst_id))
 								{
 												$inst_id	=	FALSE;
-												$style	=	'';
+												$style	=	' active';
 								}
 								else
-												$style	=	' active';
+												$style	=	'';
 								?>
         <div class="my-navbar container-sidebar<?php	echo	$style;	?>">
 

@@ -1,3 +1,6 @@
+
+
+
 <div style="width: 270px;position: fixed;">
     <div class="sidebar">
 								<?php
@@ -7,9 +10,9 @@
 												$style	=	'';
 								}
 								else
-												$style	=	'active';
+												$style	=	' active';
 								?>
-        <div class="container-sidebar <?php	echo	$style;	?>">
+        <div class="my-navbar container-sidebar<?php	echo	$style;	?>">
 
             <div><a class="" href="javascript:void(0);">Instantiations</a></div>
         </div>
@@ -22,11 +25,11 @@
 												foreach($asset_instantiations['records']	as	$asset_instantiation)
 												{
 																if($asset_instantiation->id	==	$inst_id)
-																				$style	=	'active';
+																				$style	=	' active';
 																else
 																				$style	=	'';
 																?>
-																<div class="container-sidebar <?php	echo	$style;	?>" ><h4><a style="<?php	echo	$style;	?>" href="<?php	echo	site_url('instantiations/detail/'	.	$asset_instantiation->id)	?>"><?php	echo	$asset_details->guid_identifier	?></a></h4>
+																<div class="container-sidebar<?php	echo	$style;	?>" ><h4><a href="<?php	echo	site_url('instantiations/detail/'	.	$asset_instantiation->id)	?>"><?php	echo	$asset_details->guid_identifier	?></a></h4>
 																				<?php
 																				echo	(isset($asset_instantiation->organization)	&&	($asset_instantiation->organization	!=	NULL))	?	"Organization: "	.	$asset_instantiation->organization	.	'<br/>'	:	'';
 																				echo	(isset($asset_instantiation->asset_title)	&&	($asset_instantiation->asset_title	!=	NULL))	?	"Title: "	.	$asset_instantiation->asset_title	.	'<br/>'	:	'';

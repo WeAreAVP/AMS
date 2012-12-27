@@ -5,8 +5,7 @@
         <?php $this->load->view('records/_list'); ?>
     </div>
     <div class="span9"  style="margin-left: 285px;">
-								<div>My name is </div>
-        <div class="span12 button-after-player">
+								<div class="span12 button-after-player">
             <button class="btn btn-large"><span class="icon-pencil"></span>Edit Instantiation</button>
             <button class="btn btn-large"><span class="icon-download-alt"></span>Export Instantiation</button>
         </div>

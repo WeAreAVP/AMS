@@ -298,8 +298,7 @@ html, body {
 .my-navbar {margin:15px 0 0 !important;}
 .sidebar{background:#F8F9F9;}
 .sidebar .my-navbar{background:#1797D2;margin-top:0 !important}
-.container-sidebar{padding:0 10px;color:#919091;font-size:12px;padding-bottom:10px}
-.container-sidebar h4{color:#1797D2;font-size:16px;float:left;margin-top:15px;width:100%}
+
 .search_keys{
     padding-right: 10px;
 
@@ -371,4 +370,34 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     border: none;
     border-radius: 0;
     padding: 0;
+}
+.container-sidebar{padding:0 10px;color:#919091;font-size:12px;padding-bottom:10px}
+.container-sidebar h4{color:#1797D2;font-size:16px;float:left;margin-top:15px;width:100%}
+.container-sidebar{
+width:200px;
+min-height:144px; /*min height of DIV should be set to at least 2x the width of the arrow*/
+background: #ADD8E6;
+color:white;
+padding:5px;
+position:relative;
+word-wrap:break-word;
+-moz-border-radius:5px; /*add some nice CSS3 round corners*/
+-webkit-border-radius:5px;
+border-radius:0px;
+margin-bottom:2em;
+}
+
+
+
+.container-sidebar:after{ /*arrow added to rightarrowdiv DIV*/
+content:'';
+display:block;
+position:absolute;
+top:0px;
+left:100%; /*should be set to 100% */
+width:0;
+height:0;
+border-color: transparent transparent transparent #1797D2; /*border color should be same as div div background color*/
+border-style: solid; 
+border-width:  73px 0px 82px 12px;
 }

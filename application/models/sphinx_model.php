@@ -174,21 +174,15 @@ class	Sphinx_Model	extends	CI_Model
 												$generation	=	str_replace('|||',	'" | "',	trim($this->session->userdata['generation']));
 												$where	.=" @generation \"$generation\"";
 								}
-								if(isset($this->session->userdata['file_size'])	&&	$this->session->userdata['file_size']	!=	'')
+								if(isset($this->session->userdata['digitized'])	&&	$this->session->userdata['digitized']	===	'1')
 								{
-												$file_size	=	str_replace('|||',	'" | "',	trim($this->session->userdata['file_size']));
-												$where	.=" @file_size \"$file_size\"";
+												$where	.=' @digitized "1"';
 								}
-								if(isset($this->session->userdata['event_type'])	&&	$this->session->userdata['event_type']	!=	'')
+								if(isset($this->session->userdata['migration_failed'])	&&	$this->session->userdata['migration_failed']	===	'1')
 								{
-												$event_type	=	str_replace('|||',	'" | "',	trim($this->session->userdata['event_type']));
-												$where	.=" @event_type \"$event_type\"";
+												$where	.=' @event_type "migration" @event_outcome "PASS"';
 								}
-								if(isset($this->session->userdata['event_outcome'])	&&	$this->session->userdata['event_outcome']	!=	'')
-								{
-												$event_outcome	=	str_replace('|||',	'" | "',	trim($this->session->userdata['event_outcome']));
-												$where	.=" @event_outcome \"$event_outcome\"";
-								}
+								
 								if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
 								{
 												$custom_search	=	str_replace('|||',	'"',	trim($this->session->userdata['custom_search']));

@@ -4,14 +4,14 @@
 								if(	!	isset($inst_id)	&&	empty($inst_id))
 								{
 												$inst_id	=	FALSE;
-												$style	=	'color:white;';
+												$style	=	'';
 								}
 								else
-												$style	=	'background:#F8F9F9;color:#08C;';
+												$style	=	'active';
 								?>
-        <div class="my-navbar" style="<?php	echo	$style;	?>">
+        <div class="container-sidebar <?php	echo	$style;	?>">
 
-            <div><a style="<?php	echo	$style;	?>" href="javascript:void(0);">Instantiations</a></div>
+            <div><a class="" href="javascript:void(0);">Instantiations</a></div>
         </div>
 								<div class="clearfix"></div>
 								<?php
@@ -22,11 +22,11 @@
 												foreach($asset_instantiations['records']	as	$asset_instantiation)
 												{
 																if($asset_instantiation->id	==	$inst_id)
-																				$style	=	'background-color:#1797D2;color:white;';
+																				$style	=	'active';
 																else
 																				$style	=	'';
 																?>
-																<div class="container-sidebar" style="<?php	echo	$style;	?>"><h4><a style="<?php	echo	$style;	?>" href="<?php	echo	site_url('instantiations/detail/'	.	$asset_instantiation->id)	?>"><?php	echo	$asset_details->guid_identifier	?></a></h4>
+																<div class="container-sidebar <?php	echo	$style;	?>" ><h4><a style="<?php	echo	$style;	?>" href="<?php	echo	site_url('instantiations/detail/'	.	$asset_instantiation->id)	?>"><?php	echo	$asset_details->guid_identifier	?></a></h4>
 																				<?php
 																				echo	(isset($asset_instantiation->organization)	&&	($asset_instantiation->organization	!=	NULL))	?	"Organization: "	.	$asset_instantiation->organization	.	'<br/>'	:	'';
 																				echo	(isset($asset_instantiation->asset_title)	&&	($asset_instantiation->asset_title	!=	NULL))	?	"Title: "	.	$asset_instantiation->asset_title	.	'<br/>'	:	'';

@@ -376,7 +376,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .container-sidebar{
 				width:260px;
 				min-height:144px; /*min height of DIV should be set to at least 2x the width of the arrow*/
-				background: #ADD8E6;
+				background: #F8F9F9;
 				color:white;
 				padding:5px;
 				position:relative;
@@ -388,8 +388,10 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 
 
-
-.container-sidebar:after{ /*arrow added to rightarrowdiv DIV*/
+.container-sidebar:active{
+				background: #ADD8E6;
+}
+.container-sidebar:active:after{ /*arrow added to rightarrowdiv DIV*/
 				content:'';
 				display:block;
 				position:absolute;

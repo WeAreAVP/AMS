@@ -9,9 +9,9 @@
 								else
 												$style	=	'background:#F8F9F9;color:#08C;';
 								?>
-        <div class="my-navbar span3" style=";<?php	echo	$style;	?>">
+        <div class="my-navbar" style="<?php	echo	$style;	?>">
 
-            <div><a style=";<?php	echo	$style;	?>" href="javascript:void(0);">Instantiations</a></div>
+            <div><a style="<?php	echo	$style;	?>" href="javascript:void(0);">Instantiations</a></div>
         </div>
 								<div class="clearfix"></div>
 								<?php
@@ -35,11 +35,12 @@
 																				echo	(isset($asset_instantiation->generation)	&&	($asset_instantiation->generation	!=	NULL)	)	?	"Generation: "	.	$asset_instantiation->generation	.	'<br/>'	:	'';
 																				echo	($asset_instantiation->actual_duration	>	0)	?	"Actual Duration: "	.	duration($asset_instantiation->actual_duration)	.	'<br/>'	:	'';
 																				echo	($asset_instantiation->projected_duration	>	0)	?	"Projected Duration: "	.	duration($asset_instantiation->projected_duration)	.	'<br/>'	:	'';
-																				echo	'</div>'
-																				?><?php	}
-																?>
-												</div>
-												<?php	}	?>
+																				?>
+																</div>
+												<?php	}
+												?>
+
+								<?php	}	?>
 
     </div>
 </div>

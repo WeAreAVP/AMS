@@ -1,4 +1,4 @@
-<div class="span3" style="width: 270px;position: fixed;">
+<div style="width: 270px;position: fixed;">
     <div class="sidebar">
 								<?php
 								if(	!	isset($inst_id)	&&	empty($inst_id))

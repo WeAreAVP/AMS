@@ -65,9 +65,6 @@ class	Instantiations	extends	MY_Controller
 												$search['physical_format']	=	$this->input->post	('physical_format_main_search');
 												$search['digital_format']	=	$this->input->post	('digital_format_main_search');
 												$search['generation']	=	$this->input->post	('generation_main_search');
-												$search['file_size']	=	$this->input->post	('file_size_main_search');
-												$search['event_type']	=	$this->input->post	('event_type_main_search');
-												$search['event_outcome']	=	$this->input->post	('event_outcome_main_search');
 												$search['date_range']	=	$this->input->post	('date_range');
 												$search['date_type']	=	$this->input->post	('date_type');
 												$this->set_facet_search	($search);
@@ -83,9 +80,6 @@ class	Instantiations	extends	MY_Controller
 								$data['physical_formats']	=	$this->instantiation->get_physical_formats	();
 								$data['digital_formats']	=	$this->instantiation->get_digital_formats	();
 								$data['generations']	=	$this->instantiation->get_generations	();
-								$data['file_size']	=	$this->instantiation->get_file_size	();
-								$data['event_types']	=	$this->instantiation->get_event_type	();
-								$data['event_outcome']	=	$this->instantiation->get_event_outcome	();
 								$data['date_types']	=	$this->instantiation->get_date_types	();
 								$is_hidden	=	array	();
 								$data['table_type']	=	'instantiation';

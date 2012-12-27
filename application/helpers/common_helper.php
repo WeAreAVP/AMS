@@ -159,6 +159,7 @@ function	name_slug	($name)
 //    $name = str_replace("\"", "-", trim($name));
 				$name	=	str_replace	(";",	"",	trim	($name));
 				$name	=	str_replace	(":",	"",	trim	($name));
+				$name	=	str_replace	("&",	"",	trim	($name));
 				$name	=	strtolower	($name);
 				return	$name	.	$random;
 }

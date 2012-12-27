@@ -22,7 +22,7 @@ class	MY_Controller	extends	CI_Controller
 				public	$views_settings;
 				public	$frozen_column;
 				public	$column_order;
-				public $station_name;
+				public	$station_name;
 
 				function	__construct()
 				{
@@ -47,8 +47,7 @@ class	MY_Controller	extends	CI_Controller
 								{
 												$this->is_station_user	=	TRUE;
 												$this->station_id	=	$this->dx_auth->get_station_id();
-												$this->station_name=$this->station_model->get_station_by_id($this->station_id)->station_name;
-									
+												$this->station_name	=	$this->station_model->get_station_by_id($this->station_id)->station_name;
 								}
 								$this->frozen_column	=	0;
 								$this->column_order	=	'';
@@ -203,11 +202,10 @@ class	MY_Controller	extends	CI_Controller
 								$this->session->unset_userdata('physical_format');
 								$this->session->unset_userdata('digital_format');
 								$this->session->unset_userdata('generation');
-								$this->session->unset_userdata('file_size');
-								$this->session->unset_userdata('event_type');
-								$this->session->unset_userdata('event_outcome');
 								$this->session->unset_userdata('date_range');
 								$this->session->unset_userdata('date_type');
+								$this->session->unset_userdata('digitized');
+								$this->session->unset_userdata('migration_failed');
 				}
 
 				/**

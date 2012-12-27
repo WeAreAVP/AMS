@@ -439,10 +439,11 @@
 																</div>
 																<div><input type="button" id="add_date_keyword" name="add_date_keyword" value="Add Date" class="btn btn-primary" onclick="add_token($('#date_range').val(),'date_field_main');"/></div>
 
-												</div>
-												<?php
-								}
-								?>
+
+																<?php
+												}
+												?>
+								</div>
         <!-- Organization  Start      -->
 								<?php
 								if(count($stations)	>	0	&&	!	$this->is_station_user)

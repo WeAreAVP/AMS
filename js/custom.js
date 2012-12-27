@@ -243,10 +243,6 @@ function freezeColumns(count)
 				frozen=count;
 				$('#freeze_col_'+frozen).toggle(); 
 				updateDatabase();
-//				setTimeout(function (){
-//								window.location.reload();
-//				},500);
-                                                                                                                                                                                           
 }
 function updateDataTable()
 {
@@ -322,7 +318,7 @@ function updateDatabase()
 												table_type:current_table_type
 								},
 								success: function (result){
-												facet_search('0');
+													window.location.reload();
 								}
 				});
 }

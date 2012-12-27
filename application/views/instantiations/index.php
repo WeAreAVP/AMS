@@ -35,11 +35,11 @@ if(	!	$isAjax)
 
 																																if(in_array($type,	array('Organization',	'Instantiation_ID',	'Nomination',	'Media_Type',	'Generation',	'Format',	'Duration',	'Date',	'File_size',	'Colors',	'Language')))
 																																{
-																																				$width	=	'min-width:100px;width:100px;max-width:100px;';
+																																				$width	=	'min-width:100px;';
 																																}
 																																else	if($type	==	'Instantiation\'s_Asset_Title')
 																																{
-																																				$width	=	'min-width:200px;width:200px;max-width:200px;';
+																																				$width	=	'min-width:200px;';
 																																}
 																																echo	'<th id="'	.	$value['title']	.	'" class="'	.	$class	.	'"><span style="float:left;'	.	$width	.	'">'	.	str_replace("_",	' ',	$value['title'])	.	'</span></th>';
 																												}
@@ -147,11 +147,11 @@ if(	!	$isAjax)
 																																				}
 																																				if(in_array($type,	array('Organization',	'Instantiation_ID',	'Nomination',	'Media_Type',	'Generation',	'Format',	'Duration',	'Date',	'File_size',	'Colors',	'Language')))
 																																				{
-																																								$width	=	'min-width:100px;width:100px;max-width:100px;';
+																																								$width	=	'min-width:100px;';
 																																				}
 																																				else	if($type	==	'Asset_Title')
 																																				{
-																																								$width	=	'min-width:200px;width:200px;max-width:200px;';
+																																								$width	=	'min-width:200px;';
 																																				}
 																																				echo	'<td><span style="float:left;'	.	$width	.	'">'	.	$column	.	'</span></td>';
 																																}

@@ -182,7 +182,7 @@ class	Sphinx_Model	extends	CI_Model
 								{
 												$where	.=' @event_type "migration" @event_outcome "PASS"';
 								}
-								
+
 								if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
 								{
 												$custom_search	=	str_replace('|||',	'"',	trim($this->session->userdata['custom_search']));
@@ -215,7 +215,7 @@ class	Sphinx_Model	extends	CI_Model
 								}
 								if($this->is_station_user)
 								{
-												
+
 												$where	.=" @organization \"	$this->station_name\"";
 								}
 

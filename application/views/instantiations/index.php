@@ -153,6 +153,8 @@ if(	!	$isAjax)
 																																				{
 																																								$width	=	'min-width:200px;';
 																																				}
+																																				if($column==='')
+																																								$column='&nbsp;&nbsp;';
 																																				echo	'<td><span style="float:left;'	.	$width	.	'">'	.	$column	.	'</span></td>';
 																																}
 																																?>

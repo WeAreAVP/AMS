@@ -41,7 +41,7 @@ if(	!	$isAjax)
 																																{
 																																				$width	=	'min-width:200px;';
 																																}
-																																echo	'<th id="'	.	$value['title']	.	'" class="'	.	$class	.	'"><span style="float:left;'	.	$width	.	'">'	.	str_replace("_",	' ',	$value['title'])	.	'</span></th>';
+																																echo	'<th id="'	.	$value['title']	.	'" class="'	.	$class	.	'" style="'	.	$width	.	'">'	.	str_replace("_",	' ',	$value['title'])	.	'</th>';
 																												}
 																												?>
 																								</tr>
@@ -153,7 +153,7 @@ if(	!	$isAjax)
 																																				{
 																																								$width	=	'min-width:200px;';
 																																				}
-																																				echo	'<td><span style="float:left;'	.	$width	.	'">'	.	$column	.	'</span></td>';
+																																				echo	'<td style="'	.	$width	.	'">'	.	$column	.	'</td>';
 																																}
 																																?>
 																												</tr>

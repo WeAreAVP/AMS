@@ -322,7 +322,7 @@ function updateDatabase()
 												table_type:current_table_type
 								},
 								success: function (result){
-											updateDataTable();
+												facet_search('0');
 								}
 				});
 }

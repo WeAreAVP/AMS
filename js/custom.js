@@ -286,6 +286,9 @@ function updateDataTable()
 								$.extend( $.fn.dataTableExt.oStdClasses,{
 												"sWrapper": "dataTables_wrapper form-inline"
 								} );
+								$(window).bind('resize', function () {
+												oTable.fnAdjustColumnSizing();
+								} );
 				}
 }
 function updateDatabase()
@@ -318,7 +321,8 @@ function updateDatabase()
 												table_type:current_table_type
 								},
 								success: function (result){
-												window.location.reload();
+												facet_search('0');
+//												window.location.reload();
 								}
 				});
 }

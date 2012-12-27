@@ -12,7 +12,7 @@
 								else
 												$style	=	'';
 								?>
-        <div class="my-navbar container-sidebar<?php	echo	$style;	?>">
+        <div class="container-sidebar<?php	echo	$style;	?>">
 
             <div><a class="" href="javascript:void(0);">Instantiations</a></div>
         </div>

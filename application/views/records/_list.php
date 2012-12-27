@@ -9,7 +9,7 @@
 								else
 												$style	=	'background:#F8F9F9;color:#08C;';
 								?>
-        <div class="my-navbar span12" style=";<?php	echo	$style;	?>">
+        <div class="my-navbar span3" style=";<?php	echo	$style;	?>">
 
             <div><a style=";<?php	echo	$style;	?>" href="javascript:void(0);">Instantiations</a></div>
         </div>

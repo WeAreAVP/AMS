@@ -1,8 +1,5 @@
 
-<div style="margin-left: 10px;">
-				<h2>Instantiation Details: <?php	echo	$asset_details->title;	?></h2>
-</div>
-<div class="clearfix"></div>
+
 <div class="detail-menu">
 				<?php
 				$class	=	'';

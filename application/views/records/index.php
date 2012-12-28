@@ -4,7 +4,7 @@ if	(	!	$isAjax)
 				?>
 
 				<div class="row">
-								<?php	$this->load->view('partials/_list');	?>
+								<?php	$this->load->view('instantiations/_facet_search');	?>
 								<div  class="span9" id="data_container">
 								<?php	}	?>
 								<ul class="nav nav-tabs">

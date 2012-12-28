@@ -47,7 +47,7 @@
 																																				<?php
 																																				if(isset($asset_instantiation->instantiation_source)	&&	($asset_instantiation->instantiation_source	!=	NULL))
 																																				{
-																																								echo ' ('.$asset_instantiation->instantiation_source.')';
+																																								echo	' ('	.	$asset_instantiation->instantiation_source	.	')';
 																																				}
 																																				?>
 																																</div>
@@ -60,7 +60,7 @@
 																																{
 																																				if($asset_instantiation->format_type	===	'physical')
 																																								$format	=	'Physical Format: ';
-																																				if($asset_instantiation->format_type	===	'physical')
+																																				if($asset_instantiation->format_type	===	'digital')
 																																								$format	=	'Digital Format: ';
 																																}
 																																?>	
@@ -77,7 +77,7 @@
 																												{
 																																?>
 																																<div><b>Projected Duration: </b><?php	echo	duration($asset_instantiation->projected_duration);	?></div>
-								<?php	}	?>
+																												<?php	}	?>
 
 																								</div>
 																				</a>
@@ -85,7 +85,7 @@
 												<?php	}
 												?>
 
-<?php	}	?>
+								<?php	}	?>
 
 				</div>
 

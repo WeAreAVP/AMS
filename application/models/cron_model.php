@@ -111,6 +111,7 @@ class	Cron_Model	extends	CI_Model
 				{
 								$this->db->select	("*");
 								$this->db->from	($this->_table_data_folders);
+								$this->db->order_by('data_folder_id','ASC');
 								$res	=	$this->db->get	();
 								if	(isset	($res)	&&	!	empty	($res))
 								{

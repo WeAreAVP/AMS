@@ -433,7 +433,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				position:relative;
 				border-radius:0px;
 				width:210px;
-				height: 170px;
+				height: 150px;
 }
 .detail-sidebar-ins:hover:after{ 
 				content:'';

@@ -10,19 +10,19 @@
 								<table>
 												<tr>
 																<td>
-																				<label><i class="icon-question-sign"></i>* Instantiation ID:</label>
+																				<label><i class="icon-question-sign"></i><b>* Instantiation ID:</b></label>
 																</td>
 																<td>
 																				<?php
 																				if($instantiation_detail->instantiation_identifier)
 																				{
 																								?>
-																								<p><?php	echo	$instantiation_detail->instantiation_identifier;	?></p>
+																								<span><?php	echo	$instantiation_detail->instantiation_identifier;	?></span>
 																								<?php
 																								if($instantiation_detail->instantiation_source)
 																								{
 																												?>
-																												<p>	<?php	echo	' ('	.	$instantiation_detail->instantiation_source	.	')';	?></p>
+																												<span>	<?php	echo	' ('	.	$instantiation_detail->instantiation_source	.	')';	?></span>
 																												<?php
 																								}
 																				}

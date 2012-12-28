@@ -390,7 +390,12 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				float: left;
 				margin: 2px 5px 0px 0px;
 }
-
+.menu-img:hover{
+				background-image: url("/images/glyphicons-halflings-white.png");
+}
+.menu-img:active{
+				background-image: url("/images/glyphicons-halflings-white.png");
+}
 .container-sidebar{padding:0 10px;color:#919091;font-size:12px;padding-bottom:10px}
 .container-sidebar h4{color:#1797D2;font-size:16px;float:left;margin-top:15px;width:100%}
 /*.container-sidebar{

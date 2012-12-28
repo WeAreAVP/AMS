@@ -1,5 +1,5 @@
 <div class="row">
-				<div style="margin-left: 10px;">
+				<div style="margin: 2px 0px 10px 0px;">
 								<h2>Asset Details: <?php	echo	$asset_details->title;	?></h2>
 				</div>
 				<div class="clearfix"></div>

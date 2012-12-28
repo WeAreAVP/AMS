@@ -1,11 +1,11 @@
 <div class="row">
-				<div style="margin-left: 10px;">
+				<div style="margin: 2px 0px 10px 0px;">
 								<h2>Instantiation Details: <?php	echo	$asset_details->title;	?></h2>
 				</div>
 				<div class="clearfix"></div>
 				<?php	$this->load->view('partials/_list');	?>
 
-				<div class="span9">
+				<div class="span9" style="margin-left: 285px;">
 
 								<table>
 												<tr>
@@ -16,10 +16,14 @@
 																				<?php
 																				if($instantiation_detail->instantiation_identifier)
 																				{
-																								echo	$instantiation_detail->instantiation_identifier;
+																								?>
+																								<p><?php	echo	$instantiation_detail->instantiation_identifier;	?></p>
+																								<?php
 																								if($instantiation_detail->instantiation_source)
 																								{
-																												echo	' ('	.	$instantiation_detail->instantiation_source	.	')';
+																												?>
+																												<p>	<?php	echo	' ('	.	$instantiation_detail->instantiation_source	.	')';	?></p>
+																												<?php
 																								}
 																				}
 																				?>

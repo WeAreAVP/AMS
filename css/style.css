@@ -396,12 +396,15 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 .detail-sidebar:hover{
 				background: #1797D2;
-				color: white;
+				
 }
-
-.detail-sidebar i:hover{
+.detail-sidebar a:hover{
+				color: white;
+				.detail-sidebar i:hover{
 			background-image: url("/images/glyphicons-halflings-white.png");
 }
+}
+
 .menu-anchor{
 				color: black;
 }

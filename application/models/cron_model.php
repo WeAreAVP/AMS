@@ -194,7 +194,7 @@ class	Cron_Model	extends	CI_Model
 																{
 																				if	(is_dir	($dir	.	$file)	&&	strpos	($dir,	'data')===false)
 																				{
-																								$this->scan_directory	($dir	.	$file,	$my_data_array,$type);
+																								$this->scan_directory	($dir	.	$file,	$my_data_array);
 																				}
 																				else
 																				{

@@ -99,7 +99,6 @@
 																								$format	=	'Digital Format: ';
 																}
 																?>	
-																?>
 																<tr>
 																				<td>
 																								<label><i class="icon-question-sign"></i><b>  <?php	echo	$format;	?></b></label>

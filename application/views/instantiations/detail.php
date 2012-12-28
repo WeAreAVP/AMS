@@ -39,6 +39,20 @@
 																																<div><h4><?php	echo	$asset_instantiation->generation;	?></h4></div>
 																																<?php
 																												}
+																												if(isset($asset_instantiation->instantiation_identifier)	&&	($asset_instantiation->instantiation_identifier	!=	NULL))
+																												{
+																																?>
+																																<div>
+																																				<b>ID: </b><?php	echo	$asset_instantiation->instantiation_identifier;	?>
+																																				<?php
+																																				if(isset($asset_instantiation->instantiation_source)	&&	($asset_instantiation->instantiation_source	!=	NULL))
+																																				{
+																																								echo ' ('.$asset_instantiation->instantiation_source.')';
+																																				}
+																																				?>
+																																</div>
+																																<?php
+																												}
 																												if(isset($asset_instantiation->format_name)	&&	($asset_instantiation->format_name	!=	NULL))
 																												{
 																																$format	=	'Format: ';
@@ -63,7 +77,7 @@
 																												{
 																																?>
 																																<div><b>Projected Duration: </b><?php	echo	duration($asset_instantiation->projected_duration);	?></div>
-																												<?php	}	?>
+								<?php	}	?>
 
 																								</div>
 																				</a>
@@ -71,7 +85,7 @@
 												<?php	}
 												?>
 
-								<?php	}	?>
+<?php	}	?>
 
 				</div>
 

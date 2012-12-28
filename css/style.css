@@ -382,9 +382,9 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				border-radius:0px;
 				-moz-border-radius:5px; 
 				-webkit-border-radius:5px;
-				width:220px;
+				width:210px;
 }
-.detail-sidebar:after{ 
+.detail-sidebar:hover:after{ 
 				content:'';
 				display:block;
 				position:absolute;

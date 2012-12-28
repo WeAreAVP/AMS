@@ -404,6 +404,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .detail-sidebar:hover a{
 
 				color: white;
+				text-decoration: none;
 }
 .detail-sidebar:hover i{
 				background-image: url("/images/glyphicons-halflings-white.png");
@@ -427,6 +428,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .detail-sidebar.active a{
 
 				color: white;
+				text-decoration: none;
 }
 .detail-sidebar.active i{
 				background-image: url("/images/glyphicons-halflings-white.png");
@@ -458,6 +460,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .detail-sidebar-ins:hover a{
 
 				color: white;
+				text-decoration: none;
 }
 .detail-sidebar-ins:hover i{
 				background-image: url("/images/glyphicons-halflings-white.png");
@@ -481,6 +484,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 .detail-sidebar-ins.active a{
 				color: white;
+				text-decoration: none;
 }
 .detail-sidebar-ins.active i{
 				background-image: url("/images/glyphicons-halflings-white.png");

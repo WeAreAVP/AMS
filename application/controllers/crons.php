@@ -77,7 +77,7 @@ class	Crons	extends	CI_Controller
 																$loop_counter	++;
 																while	($proc_cnt	==	$maxProcess)
 																{
-																				$this->myLog	('Number of Processes running : '.$proc_cnt.'/.'.$maxProcess.' Sleeping ...');
+																				$this->myLog	('Number of Processes running : '.$loop_counter.'/.'.$count.' Sleeping ...');
 																				sleep	(30);
 																				$proc_cnt	=	$this->procCounter	();
 																}

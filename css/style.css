@@ -374,6 +374,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .detail-menu{
 				margin-left: 0px;
 				background-color: whiteSmoke;
+				padding: 15px;
 }
 .container-sidebar{padding:0 10px;color:#919091;font-size:12px;padding-bottom:10px}
 .container-sidebar h4{color:#1797D2;font-size:16px;float:left;margin-top:15px;width:100%}

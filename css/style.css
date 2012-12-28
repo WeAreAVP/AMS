@@ -375,12 +375,14 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .detail-menu{
 				margin-left: 0px;
 				background-color: whiteSmoke;
+				width: 245;
+				float:left;
 }
 .detail-sidebar{
 				padding: 5px;
 				position:relative;
 				border-radius:0px;
-				width:210px;
+				width:230px;
 }
 .detail-sidebar:hover:after{ 
 				content:'';
@@ -432,7 +434,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				padding: 5px;
 				position:relative;
 				border-radius:0px;
-				width:210px;
+				width:230px;
 				height: 150px;
 }
 .detail-sidebar-ins:hover:after{ 

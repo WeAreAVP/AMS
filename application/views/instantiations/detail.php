@@ -5,7 +5,7 @@
     <div class="clearfix"></div>
 				<div class="span3 detail-menu">
 								<div class="detail-sidebar">
-												<i class="icon-stop"></i>	<a href="<?php	echo	site_url('records/detail/'	.	$asset_details->id)	?>">Asset Information</a>
+												<i class="icon-stop"></i>	<a href="<?php	echo	site_url('records/detail/'	.	$asset_details->id);	?>" >Asset Information</a>
 								</div>
 
 

@@ -375,7 +375,9 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .detail-menu{
 				margin-left: 0px;
 				background-color: whiteSmoke;
-				padding: 15px;
+}
+.detail-sidebar{
+				padding: 5px;
 }
 .detail-sidebar:hover{
 				background: #1797D2;

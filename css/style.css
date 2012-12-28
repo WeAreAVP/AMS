@@ -421,13 +421,13 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				background: #1797D2;
 				
 }
-/*.detail-sidebar:active a{
+.detail-sidebar:active a{
 				
 				color: white;
 }
 .detail-sidebar:active i{
 			background-image: url("/images/glyphicons-halflings-white.png");
-}*/
+}
 .menu-anchor{
 				color: black;
 }

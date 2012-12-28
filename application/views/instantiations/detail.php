@@ -6,14 +6,14 @@
 				<?php	$this->load->view('partials/_list');	?>
 
 				<div class="span9" style="margin-left: 285px;">
-								<table cellSpacing="20" cellPadding="20">
+								<table  cellPadding="8">
 												<!--				Instantiation ID	Start		-->
 												<?php
 												if($instantiation_detail->instantiation_identifier	||	$instantiation_detail->instantiation_source)
 												{
 																?>
 																<tr>
-																				<td>
+																				<td class="record-detail-page">
 																								<label><i class="icon-question-sign"></i><b>* Instantiation ID:</b></label>
 																				</td>
 																				<td>
@@ -41,7 +41,7 @@
 												{
 																?>
 																<tr>
-																				<td>
+																				<td class="record-detail-page">
 																								<label><i class="icon-question-sign"></i><b>  Date:</b></label>
 																				</td>
 																				<td>
@@ -70,7 +70,7 @@
 																$media_type	=	explode(' | ',	$instantiation_detail->media_type);
 																?>
 																<tr>
-																				<td>
+																				<td class="record-detail-page">
 																								<label><i class="icon-question-sign"></i><b>* Media Type:</b></label>
 																				</td>
 																				<td>
@@ -100,7 +100,7 @@
 																}
 																?>	
 																<tr>
-																				<td>
+																				<td class="record-detail-page">
 																								<label><i class="icon-question-sign"></i><b>  <?php	echo	$format;	?></b></label>
 																				</td>
 																				<td>

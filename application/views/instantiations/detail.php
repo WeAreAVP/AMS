@@ -8,6 +8,7 @@
 				<div class="span9" style="margin-left: 285px;">
 
 								<table>
+												<!--				Instantiation ID	Start		-->
 												<tr>
 																<td>
 																				<label><i class="icon-question-sign"></i><b>* Instantiation ID:</b></label>
@@ -29,6 +30,30 @@
 																				?>
 																</td>
 												</tr>
+												<!--				Instantiation ID	End		-->
+												<!--				Date 	Start		-->
+												<tr>
+																<td>
+																				<label><i class="icon-question-sign"></i><b>Date:</b></label>
+																</td>
+																<td>
+																				<?php
+																				if($instantiation_detail->date_type)
+																				{
+																								?>
+																								<span><?php	echo	$instantiation_detail->date_type	.	':';	?></span>
+																								<?php
+																								if($instantiation_detail->dates)
+																								{
+																												?>
+																												<span><?php	echo	date('Y-m-d',	$instantiation_detail->dates);	?></span>
+
+																								<?php	}	?>
+
+																				<?php	}	?>
+																</td>
+												</tr>
+												<!--				Date 	End		-->
 								</table>
 				</div>
 

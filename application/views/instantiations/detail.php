@@ -5,7 +5,7 @@
 				<div class="clearfix"></div>
 				<?php	$this->load->view('partials/_list');	?>
 
-				<div class="span9" style="margin-left: 285px;">
+				<div class="span12" style="margin-left: 285px;">
 								<div style="float: left;">
 												<table  cellPadding="8">
 																<!--				Instantiation ID	Start		-->
@@ -112,8 +112,8 @@
 																<!--				Format	End		-->
 												</table>
 								</div>
-								<div style="float: right;">
-												fadfadfdafadffasdfdsf
+								<div class="nomination-container">
+												dfadfadf
 								</div>
 				</div>
 

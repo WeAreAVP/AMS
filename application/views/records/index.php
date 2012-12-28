@@ -3,8 +3,11 @@ if	(	!	$isAjax)
 {
 				?>
 
-				<div class="row">
-								<?php	$this->load->view('instantiations/_facet_search');	?>
+				<div class="row-fluid">
+								<div class="span3">
+												<?php	$this->load->view('instantiations/_facet_search');	?>
+								</div>
+				
 								<div  class="span9" id="data_container">
 								<?php	}	?>
 								<ul class="nav nav-tabs">

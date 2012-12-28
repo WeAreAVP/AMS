@@ -77,7 +77,7 @@ class	Crons	extends	CI_Controller
 																$loop_counter	++;
 																while	($proc_cnt	==	$maxProcess)
 																{
-																				$this->myLog	("Sleeping ...");
+																				$this->myLog	('Number of Processes running : '.$proc_cnt.'/.'.$maxProcess.' Sleeping ...');
 																				sleep	(30);
 																				$proc_cnt	=	$this->procCounter	();
 																}
@@ -151,7 +151,7 @@ class	Crons	extends	CI_Controller
 																				$count	=	$this->cron_model->get_pbcore_file_count_by_folder_id	($folder->id);
 																				if	(isset	($count)	&&	$count	>	0)
 																				{
-																								$maxProcess	=	100;
+																								$maxProcess	=	50;
 																								$limit	=	500;
 																								$loop_end	=	ceil	($count	/	$limit);
 																								$this->myLog	("Run $loop_end times  $maxProcess at a time");

@@ -1,9 +1,6 @@
-<div class="row-fluid">
+<div class="row">
     <h2>Asset Details: <?php echo $asset_details->title ?></h2>
-    <div class="span12 form-row">
-       
-        <?php $this->load->view('records/_list'); ?>
-    </div>
+    	<?php	$this->load->view('partials/_list');	?>
     <div class="span9" style="margin-left: 285px;"> 
             <?php /*?><div class="players">
                 AUDIO/VIDEO PLAYER

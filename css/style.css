@@ -473,6 +473,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 .detail-sidebar-ins.active{
 				background: #1797D2;
+				color: white;
 
 }
 .detail-sidebar-ins.active a{

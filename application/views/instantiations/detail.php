@@ -27,7 +27,11 @@
 																else
 																				$class	=	'';
 																?>
-																<div class="detail-sidebar-ins<?php	echo	$class;	?>" ><h4><a  href="<?php	echo	site_url('instantiations/detail/'	.	$asset_instantiation->id)	?> "><?php	echo	$asset_details->guid_identifier	?></a></h4>
+																
+
+																<div class="detail-sidebar-ins<?php	echo	$class;	?>" >
+																				<div><i class=" icon-th menu-img"></i>NSTANTIATION</div>
+																				<h4><a  href="<?php	echo	site_url('instantiations/detail/'	.	$asset_instantiation->id)	?> "><?php	echo	$asset_details->guid_identifier	?></a></h4>
 																				<?php
 																				echo	(isset($asset_instantiation->organization)	&&	($asset_instantiation->organization	!=	NULL))	?	"Organization: "	.	$asset_instantiation->organization	.	'<br/>'	:	'';
 																				echo	(isset($asset_instantiation->asset_title)	&&	($asset_instantiation->asset_title	!=	NULL))	?	"Title: "	.	$asset_instantiation->asset_title	.	'<br/>'	:	'';

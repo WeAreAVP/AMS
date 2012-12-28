@@ -119,7 +119,9 @@
 												<div class="nomination-container">
 
 																<b><?php	echo	$instantiation_detail->status;	?></b>
-
+																<p><?php echo $instantiation_detail->nomination_reason; ?></p>
+																<p><?php echo $instantiation_detail->nominated_by; ?></p>
+																<p><?php echo $instantiation_detail->nominated_at; ?></p>
 												</div>
 								<?php	}	?>
 				</div>

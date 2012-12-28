@@ -64,6 +64,28 @@
 																</tr>
 												<?php	}	?>
 												<!--				Date 	End		-->
+												<!--				Media Type 	Start		-->
+												<?php
+												if($instantiation_detail->media_type)
+												{
+																$media_type	=	explode(' | ',	$instantiation_detail->media_type);
+																?>
+																<tr>
+																				<td>
+																								<label><i class="icon-question-sign"></i><b>* Media Type:</b></label>
+																				</td>
+																				<td>
+																								<?php
+																								foreach($media_type	as	$value)
+																								{
+																												?>
+																												<p><?php	echo	$value;	?></p>
+																								<?php	}
+																								?>
+																				</td>
+																</tr>
+												<?php	}	?>
+												<!--				Media Type	End		-->
 								</table>
 				</div>
 

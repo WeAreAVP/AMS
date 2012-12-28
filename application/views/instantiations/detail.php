@@ -6,7 +6,7 @@
 				<?php	$this->load->view('partials/_list');	?>
 
 				<div class="span9" style="margin-left: 285px;">
-								<table cellSpacing="20">
+								<table cellSpacing="20" cellPadding="20">
 												<!--				Instantiation ID	Start		-->
 												<?php
 												if($instantiation_detail->instantiation_identifier	||	$instantiation_detail->instantiation_source)

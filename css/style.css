@@ -536,5 +536,8 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				text-align: right;
 }
 .nomination-container{
-				float: right;margin-right: 20px;
+				float: right;
+				margin-right: 20px;
+				width: 150px;
+				background-color: #D5D5D5;
 }

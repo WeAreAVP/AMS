@@ -3,7 +3,7 @@
 								<h2>Instantiation Details: <?php	echo	$asset_details->title;	?></h2>
 				</div>
     <div class="clearfix"></div>
-				<div class="span3 detail-menu">
+				<div class="span4 detail-menu">
 								<?php
 								$class	=	'';
 								if(	!	isset($inst_id)	&&	empty($inst_id))

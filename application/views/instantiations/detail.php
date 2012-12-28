@@ -1,9 +1,9 @@
-<div class="row-fluid" style="height: 600px;">
-				<div>
+<div class="row" style="height: 600px;">
+				<div style="margin-left: 10px;">
 								<h2>Instantiation Details: <?php	echo	$asset_details->title;	?></h2>
 				</div>
     <div class="clearfix"></div>
-				<div class="span3">
+				<div class="span3" style="margin-left: 0px;">
 								<div id="search_bar">
 												dfsadfdsafafasdfadsfdafad
 

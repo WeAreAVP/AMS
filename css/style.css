@@ -435,7 +435,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				position:relative;
 				border-radius:0px;
 				width:230px;
-				height: 150px;
+				height: 110px;
 }
 .detail-sidebar-ins:hover:after{ 
 				content:'';
@@ -447,7 +447,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				height:0;
 				border-color: transparent transparent transparent #1797D2;
 				border-style: solid; 
-				border-width:  14px 0px 14px 13px;
+				border-width:  60px 0px 60px 13px;
 }
 .detail-sidebar-ins:hover{
 				background: #1797D2;
@@ -471,7 +471,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				height:0;
 				border-color: transparent transparent transparent #1797D2;
 				border-style: solid; 
-				border-width:  81px 0px 81px 13px;
+				border-width:  60px 0px 60px 13px;
 }
 .detail-sidebar-ins.active{
 				background: #1797D2;

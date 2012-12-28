@@ -112,14 +112,16 @@
 																<!--				Format	End		-->
 												</table>
 								</div>
-								<div class="nomination-container">
-												<?php
-												if($instantiation_detail->status)
-												{
-																?>
+								<?php
+								if($instantiation_detail->status)
+								{
+												?>
+												<div class="nomination-container">
+
 																<b><?php	echo	$instantiation_detail->status;	?></b>
-												<?php	}	?>
-								</div>
+
+												</div>
+								<?php	}	?>
 				</div>
 
 </div>

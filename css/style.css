@@ -380,8 +380,6 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				padding: 5px;
 				position:relative;
 				border-radius:0px;
-				-moz-border-radius:5px; 
-				-webkit-border-radius:5px;
 				width:210px;
 }
 .detail-sidebar:hover:after{ 

@@ -6,7 +6,6 @@
 				<?php	$this->load->view('partials/_list');	?>
 
 				<div class="span9" style="margin-left: 285px;">
-
 								<table>
 												<!--				Instantiation ID	Start		-->
 												<?php

@@ -449,6 +449,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 .detail-sidebar-ins:hover{
 				background: #1797D2;
+				color: white;
 
 }
 .detail-sidebar-ins:hover a{
@@ -468,7 +469,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				height:0;
 				border-color: transparent transparent transparent #1797D2;
 				border-style: solid; 
-				border-width:  77px 0px 77px 9px;
+				border-width:  81px 0px 81px 9px;
 }
 .detail-sidebar-ins.active{
 				background: #1797D2;

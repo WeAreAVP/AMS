@@ -113,7 +113,12 @@
 												</table>
 								</div>
 								<div class="nomination-container">
-												dfadfadf
+												<?php
+												if($instantiation_detail->status)
+												{
+																?>
+																<b><?php	echo	$instantiation_detail->status;	?></b>
+												<?php	}	?>
 								</div>
 				</div>
 

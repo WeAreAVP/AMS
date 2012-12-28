@@ -33,7 +33,7 @@ class	Cron_Model	extends	CI_Model
 								$this->db->from	($this->_table);
 								$this->db->where	("file_path",	$file_path);
 								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
+								if	(isset	($res)	&&	!	empty	($res))
 								{
 												return	$res->row	();
 								}
@@ -45,13 +45,13 @@ class	Cron_Model	extends	CI_Model
 					 @return object
 					*/
 
-				function	get_pbcore_file_by_folder_id	($data_folder_id,$offset=0, $limit=20)
+				function	get_pbcore_file_by_folder_id	($data_folder_id,	$offset	=	0,	$limit	=	20)
 				{
 								$this->db->select	("*");
 								$this->db->from	($this->_table);
 								$this->db->where	("data_folder_id ",	$data_folder_id);
 								$this->db->where	("is_processed ",	0);
-								$this->db->limit($limit,$offset);
+								$this->db->limit	($limit,	$offset);
 								$res	=	$this->db->get	();
 								if	(isset	($res))
 								{
@@ -59,6 +59,7 @@ class	Cron_Model	extends	CI_Model
 								}
 								return	false;
 				}
+
 				/*
 					 @Get process_pbcore_data un-processed files count through data_folder_id
 					 @return object
@@ -73,7 +74,7 @@ class	Cron_Model	extends	CI_Model
 								$res	=	$this->db->get	();
 								if	(isset	($res))
 								{
-												$row=$res->row();
+												$row	=	$res->row	();
 												return	$row->total;
 								}
 								return	false;
@@ -90,10 +91,10 @@ class	Cron_Model	extends	CI_Model
 								$this->db->from	($this->_table_data_folders);
 								$this->db->where	("folder_path LIKE ",	$folder_path);
 								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
+								if	(isset	($res)	&&	!	empty	($res))
 								{
 												$folder	=	$res->row	();
-												if	(isset	($folder)	&&	!empty	($folder))
+												if	(isset	($folder)	&&	!	empty	($folder))
 												{
 																return	$folder->id;
 												}
@@ -111,16 +112,17 @@ class	Cron_Model	extends	CI_Model
 								$this->db->select	("*");
 								$this->db->from	($this->_table_data_folders);
 								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
+								if	(isset	($res)	&&	!	empty	($res))
 								{
 												$folders	=	$res->result	();
-												if	(isset	($folders)	&&	!empty	($folders))
+												if	(isset	($folders)	&&	!	empty	($folders))
 												{
 																return	$folders;
 												}
 								}
 								return	false;
 				}
+
 				/*
 					 @Get all data folder
 					 @return object
@@ -130,12 +132,12 @@ class	Cron_Model	extends	CI_Model
 				{
 								$this->db->select	('*');
 								$this->db->from	($this->_table_data_folders);
-								$this->db->where('id',$id);
+								$this->db->where	('id',	$id);
 								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
+								if	(isset	($res)	&&	!	empty	($res))
 								{
 												$folders	=	$res->row	();
-												if	(isset	($folders)	&&	!empty	($folders))
+												if	(isset	($folders)	&&	!	empty	($folders))
 												{
 																return	$folders;
 												}
@@ -166,19 +168,18 @@ class	Cron_Model	extends	CI_Model
 								$this->db->insert	($this->_table_data_folders,	$data);
 								return	$this->db->insert_id	();
 				}
-
 				/*
 					* Scan Directory and Store Path in process_pbcore_data
 					* @Perm Path of Directory
 					* @Perm type of data
 					*/
 
-				function	scan_directory	($dir,	$type	=	'assets')
+				function	scan_directory	($dir,	&$my_data_array)
 				{
 								$dir	=	rtrim	(trim	($dir,	'\\'),	'/')	.	'/';
 								$d	=	@opendir	($dir);
 
-								if	(!$d)
+								if	(	!	$d)
 												die	('The directory '	.	$dir	.	' does not exists or PHP have no access to it<br>');
 								while	(false	!==	($file	=	@readdir	($d)))
 								{
@@ -186,35 +187,13 @@ class	Cron_Model	extends	CI_Model
 												{
 																if	(is_file	($dir	.	$file)	&&	$file	===	'manifest-md5.txt')
 																{
-																				if	(!$data_folder_id	=	$this->get_data_folder_id_by_path	($dir))
-																				{
-																								$data_folder_id	=	$this->insert_data_folder	(array	("folder_path"	=>	$dir,	"created_at"		=>	date	('Y-m-d H:i:s'),	"data_type"			=>	$type));
-																				}
-																				if	(isset	($data_folder_id)	&&	$data_folder_id	>	0)
-																				{
-																								$data_result	=	file	($dir	.	$file);
-																								if	(isset	($data_result))
-																								{
-																												foreach	($data_result	as	$value)
-																												{
-																																$data_file	=	(explode	(" ",	$value));
-																																$data_file_path	=	$data_file[1];
-																																if	(strpos	($data_file_path,	'organization.xml')	===	false)
-																																{
-																																				if	(!$this->get_pbcore_file_by_path	($data_file_path))
-																																				{
-																																								$this->insert_prcoess_data	(array	('file_type'						=>	$type,	'file_path'						=>	trim	($data_file_path),	'is_processed'			=>	0,	'created_at'					=>	date	('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id));
-																																				}
-																																}
-																												}
-																								}
-																				}
+																				$my_data_array[]=$dir	;
 																}
 																else
 																{
-																				if	(is_dir	($dir	.	$file)	&&	$file	!==	'data')
+																				if	(is_dir	($dir	.	$file)	&&	strpos	($dir,	'data')===false)
 																				{
-																								$this->scan_directory	($dir	.	$file,	$type);
+																								$this->scan_directory	($dir	.	$file,	$my_data_array,$type);
 																				}
 																				else
 																				{

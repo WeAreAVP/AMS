@@ -56,21 +56,89 @@ class	Crons	extends	CI_Controller
 				function	process_dir	()
 				{
 								set_time_limit	(0);
-								$this->cron_model->scan_directory	($this->assets_path,	'assets');
+								$this->cron_model->scan_directory	($this->assets_path,	$dir_files);
+								$count	=	count($dir_files);
+
+								if	(isset	($count)	&&	$count	>	0)
+								{
+												$this->myLog	("Total Number of process ".$count);
+												$loop_counter	=	0;
+												$maxProcess	=	5;
+												foreach	($dir_files	as	$dir)
+												{
+																$cmd	=	escapeshellcmd	('/usr/bin/php '	.	$this->config->item	('path')	.	'index.php crons process_dir_child '	.	base64_encode	($dir));
+																$this->config->item	('path')	.	"cronlog/process_dir_child.log";
+																$pidFile	=	$this->config->item	('path')	.	"PIDs/process_dir_child/"	.	$loop_counter	.	".txt";
+																@exec	('touch '	.	$pidFile);
+																$this->runProcess	($cmd,	$pidFile,	$this->config->item	('path')	.	"cronlog/process_dir_child.log");
+																$file_text	=	file_get_contents	($pidFile);
+																$this->arrPIDs[$file_text]	=	$loop_counter;
+																$proc_cnt	=	$this->procCounter	();
+																$loop_counter	++;
+																while	($proc_cnt	==	$maxProcess)
+																{
+																				$this->myLog	("Sleeping ...");
+																				sleep	(30);
+																				$proc_cnt	=	$this->procCounter	();
+																}
+															
+												}
+												$this->myLog	("Waiting for all process to complete");
+												$proc_cnt	=	$this->procCounter	();
+												while	($proc_cnt	>	0)
+												{
+																echo	"Sleeping....\n";
+																sleep	(10);
+																echo	"\010\010\010\010\010\010\010\010\010\010\010\010";
+																echo	"\n";
+																$proc_cnt	=	$this->procCounter	();
+																echo	"Number of Processes running : $proc_cnt/$maxProcess\n";
+												}
+								}
 								echo	"All Data Path Under {$this->assets_path} Directory Stored ";
 								exit	(0);
+				}
+
+				/**
+					* Store All Assets Data Files Structure in database
+					*  
+					*/
+				function	process_dir_child	($path)
+				{
+								$type	=	'assets';
+								$file	=	'manifest-md5.txt';
+								$directory	=	base64_decode	($path);
+								if	(	!	$data_folder_id	=	$this->cron_model->get_data_folder_id_by_path	($directory))
+								{
+												$data_folder_id	=	$this->cron_model->insert_data_folder	(array	("folder_path"	=>	$directory,	"created_at"		=>	date	('Y-m-d H:i:s'),	"data_type"			=>	$type));
+								}
+								if	(isset	($data_folder_id)	&&	$data_folder_id	>	0)
+								{
+												$data_result	=	file	($directory	.	$file);
+												if	(isset	($data_result))
+												{
+																foreach	($data_result	as	$value)
+																{
+																				$data_file	=	(explode	(" ",	$value));
+																				$data_file_path	=	$data_file[1];
+																				if	(	!	$this->cron_model->get_pbcore_file_by_path	($data_file_path))
+																				{
+																								$this->cron_model->insert_prcoess_data	(array	('file_type'						=>	$type,	'file_path'						=>	trim	($data_file_path),	'is_processed'			=>	0,	'created_at'					=>	date	('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id));
+																				}
+																}
+												}
+								}
 				}
 
 				/**
 					* 
 					* Process all pending assets Data Files
 					*
-					 2:// now we get station_id and store in assets table and get asset_id
 					*/
 				function	process_xml_file	()
 				{
 								$folders	=	$this->cron_model->get_all_data_folder	();
-								if	(isset	($folders)	&&	!empty	($folders))
+								if	(isset	($folders)	&&	!	empty	($folders))
 								{
 												foreach	($folders	as	$folder)
 												{
@@ -87,13 +155,13 @@ class	Crons	extends	CI_Controller
 																								$limit	=	500;
 																								$loop_end	=	ceil	($count	/	$limit);
 																								$this->myLog	("Run $loop_end times  $maxProcess at a time");
-																								for	($loop_counter	=	0;	$loop_end	>	$loop_counter;	$loop_counter++)
+																								for	($loop_counter	=	0;	$loop_end	>	$loop_counter;	$loop_counter	++	)
 																								{
 																												$offset	=	$loop_counter	*	$limit;
 																												$this->myLog	("Started $offset~$limit of $count");
 																												$cmd	=	escapeshellcmd	('/usr/bin/php '	.	$this->config->item	('path')	.	'index.php crons process_xml_file_child '	.	$folder->id	.	' '	.	$station_cpb_id	.	' '	.	$offset	.	' '	.	$limit);
 																												$pidFile	=	$this->config->item	('path')	.	"PIDs/processxmlfile/"	.	$loop_counter	.	".txt";
-																												@exec	('touch '.	$pidFile);
+																												@exec	('touch '	.	$pidFile);
 																												$this->runProcess	($cmd,	$pidFile,	$this->config->item	('path')	.	"cronlog/processxmlfile.log");
 																												$file_text	=	file_get_contents	($pidFile);
 																												$this->arrPIDs[$file_text]	=	$loop_counter;
@@ -103,6 +171,7 @@ class	Crons	extends	CI_Controller
 																																$this->myLog	("Sleeping ...");
 																																sleep	(30);
 																																$proc_cnt	=	$this->procCounter	();
+																																echo	"Number of Processes running : $proc_cnt/$maxProcess\n";
 																												}
 																								}
 																								$this->myLog	("Waiting for all process to complete");
@@ -127,7 +196,7 @@ class	Crons	extends	CI_Controller
 				function	process_xml_file_child	($folder_id,	$station_cpb_id,	$offset	=	0,	$limit	=	100)
 				{
 								$station_data	=	$this->station_model->get_station_by_cpb_id	($station_cpb_id);
-								if	(isset	($station_data)	&&	!empty	($station_data)	&&	isset	($station_data->id))
+								if	(isset	($station_data)	&&	!	empty	($station_data)	&&	isset	($station_data->id))
 								{
 												$folder_data	=	$this->cron_model->get_data_folder_by_id	($folder_id);
 												if	($folder_data)
@@ -147,12 +216,12 @@ class	Crons	extends	CI_Controller
 																												{
 																																echo	"Currently Parsing Files "	.	$file_path	.	"\n";
 																																$asset_data	=	@file_get_contents	($file_path);
-																																if	(isset	($asset_data)	&&	!empty	($asset_data))
+																																if	(isset	($asset_data)	&&	!	empty	($asset_data))
 																																{
 																																				$asset_xml_data	=	@simplexml_load_string	($asset_data);
 																																				$asset_d	=	xmlObjToArr	($asset_xml_data);
 																																				echo	"Current Version "	.	$asset_d['attributes']['version']	.	" \n ";
-																																				if	(!isset	($asset_d['attributes']['version'])	||	empty	($asset_d['attributes']['version'])	||	$asset_d['attributes']['version']	==	'1.3')
+																																				if	(	!	isset	($asset_d['attributes']['version'])	||	empty	($asset_d['attributes']['version'])	||	$asset_d['attributes']['version']	==	'1.3')
 																																				{
 																																								//$this->db->trans_start	();
 																																								$asset_id	=	$this->assets_model->insert_assets	(array	("stations_id"			=>	$station_data->id,	"created"							=>	date	("Y-m-d H:i:s")));
@@ -197,7 +266,7 @@ class	Crons	extends	CI_Controller
 								{
 												foreach	($asset_children['pbcoreinstantiation']	as	$pbcoreinstantiation)
 												{
-																if	(isset	($pbcoreinstantiation['children'])	&&	!empty	($pbcoreinstantiation['children']))
+																if	(isset	($pbcoreinstantiation['children'])	&&	!	empty	($pbcoreinstantiation['children']))
 																{
 
 																				$pbcoreinstantiation_child	=	$pbcoreinstantiation['children'];
@@ -317,7 +386,7 @@ class	Crons	extends	CI_Controller
 
 																				//pbcoreInstantiation End
 																				//pbcoreExtension Start
-																				if	(isset	($asset_children['pbcoreextension'])	&&	!empty	($asset_children['pbcoreextension']))
+																				if	(isset	($asset_children['pbcoreextension'])	&&	!	empty	($asset_children['pbcoreextension']))
 																				{
 																								foreach	($asset_children['pbcoreextension']	as	$pbcore_extension)
 																								{
@@ -357,13 +426,13 @@ class	Crons	extends	CI_Controller
 																								{
 																												$instantiation_identifier_d	=	array	();
 																												$instantiation_identifier_d['instantiations_id']	=	$instantiations_id;
-																												if	(isset	($pbcoreformatid['children'])	&&	!empty	($pbcoreformatid['children']))
+																												if	(isset	($pbcoreformatid['children'])	&&	!	empty	($pbcoreformatid['children']))
 																												{
-																																if	(isset	($pbcoreformatid['children']['formatidentifier'][0]['text'])	&&	!empty	($pbcoreformatid['children']['formatidentifier'][0]['text']))
+																																if	(isset	($pbcoreformatid['children']['formatidentifier'][0]['text'])	&&	!	empty	($pbcoreformatid['children']['formatidentifier'][0]['text']))
 																																{
 																																				$instantiation_identifier_d['instantiation_identifier']	=	$pbcoreformatid['children']['formatidentifier'][0]['text'];
 																																}
-																																if	(isset	($pbcoreformatid['children']['formatidentifiersource'][0]['text'])	&&	!empty	($pbcoreformatid['children']['formatidentifiersource'][0]['text']))
+																																if	(isset	($pbcoreformatid['children']['formatidentifiersource'][0]['text'])	&&	!	empty	($pbcoreformatid['children']['formatidentifiersource'][0]['text']))
 																																{
 																																				$instantiation_identifier_d['instantiation_source']	=	$pbcoreformatid['children']['formatidentifiersource'][0]['text'];
 																																}
@@ -400,7 +469,7 @@ class	Crons	extends	CI_Controller
 																								$instantiation_dates_d	=	array	();
 																								$instantiation_dates_d['instantiations_id']	=	$instantiations_id;
 
-																								if	(isset	($pbcoreinstantiation_child['dateissued'][0]['text'])	&&	!empty	($pbcoreinstantiation_child['dateissued'][0]['text']))
+																								if	(isset	($pbcoreinstantiation_child['dateissued'][0]['text'])	&&	!	empty	($pbcoreinstantiation_child['dateissued'][0]['text']))
 																								{
 																												$instantiation_dates_d['instantiation_date']	=	$pbcoreinstantiation_child['dateissued'][0]['text'];
 																												$date_type	=	$this->instant->get_date_types_by_type	('issued');
@@ -417,7 +486,7 @@ class	Crons	extends	CI_Controller
 																				}
 																				//Instantiation Date Issued End
 																				//Instantiation formatPhysical  Start
-																				if	(isset	($pbcoreinstantiation_child['formatphysical'][0]['text'])	&&	!empty	($pbcoreinstantiation_child['formatphysical'][0]['text']))
+																				if	(isset	($pbcoreinstantiation_child['formatphysical'][0]['text'])	&&	!	empty	($pbcoreinstantiation_child['formatphysical'][0]['text']))
 																				{
 																								$instantiation_format_physical_d	=	array	();
 																								$instantiation_format_physical_d['instantiations_id']	=	$instantiations_id;
@@ -427,7 +496,7 @@ class	Crons	extends	CI_Controller
 																				}
 
 																				//Instantiation formatdigital  Start
-																				if	(isset	($pbcoreinstantiation_child['formatdigital'][0]['text'])	&&	!empty	($pbcoreinstantiation_child['formatdigital'][0]['text']))
+																				if	(isset	($pbcoreinstantiation_child['formatdigital'][0]['text'])	&&	!	empty	($pbcoreinstantiation_child['formatdigital'][0]['text']))
 																				{
 																								$instantiation_format_digital_d	=	array	();
 																								$instantiation_format_digital_d['instantiations_id']	=	$instantiations_id;
@@ -437,10 +506,11 @@ class	Crons	extends	CI_Controller
 																				}
 
 																				//Instantiation formatgenerations  Start
-																				if	(isset	($pbcoreinstantiation_child['formatgenerations'])	&&	!empty	($pbcoreinstantiation_child['formatgenerations']))	{
+																				if	(isset	($pbcoreinstantiation_child['formatgenerations'])	&&	!	empty	($pbcoreinstantiation_child['formatgenerations']))
+																				{
 																								foreach	($pbcoreinstantiation_child['formatgenerations']	as	$format_generations)
 																								{
-																												if	(isset	($format_generations['text'])	&&	!empty	($format_generations['text']))
+																												if	(isset	($format_generations['text'])	&&	!	empty	($format_generations['text']))
 																												{
 																																$instantiation_format_generations_d	=	array	();
 																																$instantiation_format_generations_d['instantiations_id']	=	$instantiations_id;
@@ -462,7 +532,7 @@ class	Crons	extends	CI_Controller
 																				{
 																								foreach	($pbcoreinstantiation_child['pbcoreannotation']	as	$pbcore_annotation)
 																								{
-																												if	(isset	($pbcore_annotation['children']['annotation'][0]['text'])	&&	!empty	($pbcore_annotation['children']['annotation'][0]['text']))
+																												if	(isset	($pbcore_annotation['children']['annotation'][0]['text'])	&&	!	empty	($pbcore_annotation['children']['annotation'][0]['text']))
 																												{
 																																$instantiation_annotation_d	=	array	();
 																																$instantiation_annotation_d['instantiations_id']	=	$instantiations_id;
@@ -476,14 +546,14 @@ class	Crons	extends	CI_Controller
 																				{
 																								foreach	($pbcoreinstantiation_child['pbcoreessencetrack']	as	$pbcore_essence_track)
 																								{
-																												if	(isset	($pbcore_essence_track['children'])	&&	!empty	($pbcore_essence_track['children']))
+																												if	(isset	($pbcore_essence_track['children'])	&&	!	empty	($pbcore_essence_track['children']))
 																												{
 																																$pbcore_essence_child	=	$pbcore_essence_track['children'];
 																																$essence_tracks_d	=	array	();
 																																$essence_tracks_d['instantiations_id']	=	$instantiations_id;
 																																//essenceTrackType start
 																																// Required Fields 1.essencetracktype If this not set then no record enter for essence_track
-																																if	(isset	($pbcore_essence_child['essencetracktype'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetracktype'][0]['text']))
+																																if	(isset	($pbcore_essence_child['essencetracktype'][0]['text'])	&&	!	empty	($pbcore_essence_child['essencetracktype'][0]['text']))
 																																{
 																																				$essence_track_type_d	=	$this->essence->get_essence_track_by_type	($pbcore_essence_child['essencetracktype'][0]['text']);
 																																				if	($essence_track_type_d)
@@ -495,12 +565,12 @@ class	Crons	extends	CI_Controller
 																																								$essence_tracks_d['essence_track_types_id']	=	$this->essence->insert_essence_track_types	(array	('essence_track_type'	=>	$pbcore_essence_child['essencetracktype'][0]['text']));
 																																				}
 																																				//essenceTrackStandard Start
-																																				if	(isset	($pbcore_essence_child['essencetrackstandard'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackstandard'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackstandard'][0]['text'])	&&	!	empty	($pbcore_essence_child['essencetrackstandard'][0]['text']))
 																																				{
 																																								$essence_tracks_d['standard']	=	$pbcore_essence_child['essencetrackstandard'][0]['text'];
 																																				}
 																																				//essenceRrackDatarate Start
-																																				if	(isset	($pbcore_essence_child['essencetrackdatarate'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackdatarate'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackdatarate'][0]['text'])	&&	!	empty	($pbcore_essence_child['essencetrackdatarate'][0]['text']))
 																																				{
 																																								$format_data_rate_perm	=	'';
 																																								$format_data_rate_perm	=	explode	(" ",	$pbcore_essence_child['essencetrackdatarate'][0]['text']);
@@ -523,26 +593,26 @@ class	Crons	extends	CI_Controller
 																																				}
 
 																																				//essencetrackframerate Start
-																																				if	(isset	($pbcore_essence_child['essencetrackframerate'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackframerate'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackframerate'][0]['text'])	&&	!	empty	($pbcore_essence_child['essencetrackframerate'][0]['text']))
 																																				{
 																																								$frame_rate	=	explode	(" ",	$pbcore_essence_child['essencetrackframerate'][0]['text']);
 																																								$essence_tracks_d['frame_rate']	=	trim	($frame_rate[0]);
 																																				}
 
 																																				//essencetrackframerate Start
-																																				if	(isset	($pbcore_essence_child['essencetracksamplingrate'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetracksamplingrate'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetracksamplingrate'][0]['text'])	&&	!	empty	($pbcore_essence_child['essencetracksamplingrate'][0]['text']))
 																																				{
 																																								$essence_tracks_d['sampling_rate']	=	$pbcore_essence_child['essencetracksamplingrate'][0]['text'];
 																																				}
 
 																																				//essenceTrackBitDepth Start
-																																				if	(isset	($pbcore_essence_child['essencetrackbitdepth'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackbitdepth'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackbitdepth'][0]['text'])	&&	!	empty	($pbcore_essence_child['essencetrackbitdepth'][0]['text']))
 																																				{
 																																								$essence_tracks_d['bit_depth']	=	$pbcore_essence_child['essencetrackbitdepth'][0]['text'];
 																																				}
 
 																																				//essenceTrackBitDepth Start
-																																				if	(isset	($pbcore_essence_child['essencetrackframesize'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackframesize'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackframesize'][0]['text'])	&&	!	empty	($pbcore_essence_child['essencetrackframesize'][0]['text']))
 																																				{
 																																								$frame_sizes	=	explode	("x",	strtolower	($pbcore_essence_child['essencetrackframesize'][0]['text']));
 																																								if	(isset	($frame_sizes[0])	&&	isset	($frame_sizes[1]))
@@ -560,25 +630,25 @@ class	Crons	extends	CI_Controller
 																																				}
 
 																																				//essencetrackaspectratio Start
-																																				if	(isset	($pbcore_essence_child['essencetrackaspectratio'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackaspectratio'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackaspectratio'][0]['text'])	&&	!	empty	($pbcore_essence_child['essencetrackaspectratio'][0]['text']))
 																																				{
 																																								$essence_tracks_d['aspect_ratio']	=	$pbcore_essence_child['essencetrackaspectratio'][0]['text'];
 																																				}
 
 																																				//essencetracktimestart Start
-																																				if	(isset	($pbcore_essence_child['essencetracktimestart'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetracktimestart'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetracktimestart'][0]['text'])	&&	!	empty	($pbcore_essence_child['essencetracktimestart'][0]['text']))
 																																				{
 																																								$essence_tracks_d['time_start']	=	$pbcore_essence_child['essencetracktimestart'][0]['text'];
 																																				}
 
 																																				//essencetrackduration Start
-																																				if	(isset	($pbcore_essence_child['essencetrackduration'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackduration'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackduration'][0]['text'])	&&	!	empty	($pbcore_essence_child['essencetrackduration'][0]['text']))
 																																				{
 																																								$essence_tracks_d['duration']	=	$pbcore_essence_child['essencetrackduration'][0]['text'];
 																																				}
 
 																																				//essencetracklanguage Start
-																																				if	(isset	($pbcore_essence_child['essencetracklanguage'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetracklanguage'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetracklanguage'][0]['text'])	&&	!	empty	($pbcore_essence_child['essencetracklanguage'][0]['text']))
 																																				{
 																																								$essence_tracks_d['language']	=	$pbcore_essence_child['essencetracklanguage'][0]['text'];
 																																				}
@@ -597,7 +667,7 @@ class	Crons	extends	CI_Controller
 																																								$this->essence->insert_essence_track_identifiers	($essence_track_identifiers_d);
 																																				}
 																																				//essencetrackstandard Start 
-																																				if	(isset	($pbcore_essence_child['essencetrackstandard'][0]['text'])	&&	!empty	($pbcore_essence_child['essencetrackstandard'][0]['text']))
+																																				if	(isset	($pbcore_essence_child['essencetrackstandard'][0]['text'])	&&	!	empty	($pbcore_essence_child['essencetrackstandard'][0]['text']))
 																																				{
 																																								$essence_track_standard_d	=	array	();
 																																								$essence_track_standard_d['essence_tracks_id']	=	$essence_tracks_id;
@@ -610,11 +680,11 @@ class	Crons	extends	CI_Controller
 																																				}
 
 																																				//essenceTrackAnnotation Start
-																																				if	(isset	($pbcore_essence_child['essencetrackannotation'])	&&	!empty	($pbcore_essence_child['essencetrackannotation']))
+																																				if	(isset	($pbcore_essence_child['essencetrackannotation'])	&&	!	empty	($pbcore_essence_child['essencetrackannotation']))
 																																				{
 																																								foreach	($pbcore_essence_child['essencetrackannotation']	as	$trackannotation)
 																																								{
-																																												if	(isset	($trackannotation['text'])	&&	!empty	($trackannotation['text']))
+																																												if	(isset	($trackannotation['text'])	&&	!	empty	($trackannotation['text']))
 																																												{
 																																																$essencetrackannotation	=	array	();
 																																																$essencetrackannotation['essence_tracks_id']	=	$essence_tracks_id;
@@ -644,7 +714,7 @@ class	Crons	extends	CI_Controller
 												foreach	($asset_children['pbcoreassettype']	as	$pbcoreassettype)
 												{
 
-																if	(isset	($pbcoreassettype['text'])	&&	!empty	($pbcoreassettype['text']))
+																if	(isset	($pbcoreassettype['text'])	&&	!	empty	($pbcoreassettype['text']))
 																{
 																				$asset_type_d	=	array	();
 																				$asset_type_d['assets_id']	=	$asset_id;
@@ -669,12 +739,12 @@ class	Crons	extends	CI_Controller
 												{
 																$identifier_d	=	array	();
 																//As Identfier is Required and based on identifiersource so apply following checks 
-																if	(isset	($pbcoreidentifier['children']['identifier'][0]['text'])	&&	!empty	($pbcoreidentifier['children']['identifier'][0]['text']))
+																if	(isset	($pbcoreidentifier['children']['identifier'][0]['text'])	&&	!	empty	($pbcoreidentifier['children']['identifier'][0]['text']))
 																{
 																				$identifier_d['assets_id']	=	$asset_id;
 																				$identifier_d['identifier']	=	$pbcoreidentifier['children']['identifier'][0]['text'];
 																				$identifier_d['identifier_source']	=	'';
-																				if	(isset	($pbcoreidentifier['children']['identifiersource'][0]['text'])	&&	!empty	($pbcoreidentifier['children']['identifiersource'][0]['text']))
+																				if	(isset	($pbcoreidentifier['children']['identifiersource'][0]['text'])	&&	!	empty	($pbcoreidentifier['children']['identifiersource'][0]['text']))
 																				{
 																								$identifier_d['identifier_source']	=	$pbcoreidentifier['children']['identifiersource'][0]['text'];
 																				}
@@ -690,12 +760,12 @@ class	Crons	extends	CI_Controller
 												foreach	($asset_children['pbcoretitle']	as	$pbcoretitle)
 												{
 																$pbcore_title_d	=	array	();
-																if	(isset	($pbcoretitle['children']['title'][0]['text'])	&&	!empty	($pbcoretitle['children']['title'][0]['text']))
+																if	(isset	($pbcoretitle['children']['title'][0]['text'])	&&	!	empty	($pbcoretitle['children']['title'][0]['text']))
 																{
 																				$pbcore_title_d['assets_id']	=	$asset_id;
 																				$pbcore_title_d['title']	=	$pbcoretitle['children']['title'][0]['text'];
 																				// As this Field is not required so this can be empty
-																				if	(isset	($pbcoretitle['children']['titletype'][0]['text'])	&&	!empty	($pbcoretitle['children']['titletype'][0]['text']))
+																				if	(isset	($pbcoretitle['children']['titletype'][0]['text'])	&&	!	empty	($pbcoretitle['children']['titletype'][0]['text']))
 																				{
 																								$asset_title_types	=	$this->assets_model->get_asset_title_types_by_title_type	($pbcoretitle['children']['titletype'][0]['text']);
 																								if	($asset_title_types)
@@ -727,7 +797,7 @@ class	Crons	extends	CI_Controller
 																if	(isset	($pbcore_subject['children']['subject'][0]))
 																{
 																				$pbcoreSubject_d['assets_id']	=	$asset_id;
-																				if	(isset	($pbcore_subject['children']['subject'][0]['text'])	&&	!empty	($pbcore_subject['children']['subject'][0]['text']))
+																				if	(isset	($pbcore_subject['children']['subject'][0]['text'])	&&	!	empty	($pbcore_subject['children']['subject'][0]['text']))
 																				{
 																								$subjects	=	$this->assets_model->get_subjects_id_by_subject	($pbcore_subject['children']['subject'][0]['text']);
 																								if	($subjects)
@@ -741,7 +811,7 @@ class	Crons	extends	CI_Controller
 																												$subject_d	=	array	();
 																												$subject_d['subject']	=	$pbcore_subject['children']['subject'][0]['text'];
 																												$subject_d['subject_source']	=	'';
-																												if	(isset	($pbcore_subject['children']['subjectauthorityused'][0]['text'])	&&	!empty	($pbcore_subject['children']['subjectauthorityused'][0]['text']))
+																												if	(isset	($pbcore_subject['children']['subjectauthorityused'][0]['text'])	&&	!	empty	($pbcore_subject['children']['subjectauthorityused'][0]['text']))
 																												{
 																																$subject_d['subject_source']	=	$pbcore_subject['children']['subjectauthorityused'][0]['text'];
 																												}
@@ -761,11 +831,11 @@ class	Crons	extends	CI_Controller
 												foreach	($asset_children['pbcoredescription']	as	$pbcore_description)
 												{
 																$asset_descriptions_d	=	array	();
-																if	(isset	($pbcore_description['children']['description'][0]['text'])	&&	!empty	($pbcore_description['children']['description'][0]['text']))
+																if	(isset	($pbcore_description['children']['description'][0]['text'])	&&	!	empty	($pbcore_description['children']['description'][0]['text']))
 																{
 																				$asset_descriptions_d['assets_id']	=	$asset_id;
 																				$asset_descriptions_d['description']	=	$pbcore_description['children']['description'][0]['text'];
-																				if	(isset	($pbcoretitle['children']['descriptiontype'][0]['text'])	&&	!empty	($pbcoretitle['children']['descriptiontype'][0]['text']))
+																				if	(isset	($pbcoretitle['children']['descriptiontype'][0]['text'])	&&	!	empty	($pbcoretitle['children']['descriptiontype'][0]['text']))
 																				{
 																								$asset_description_type	=	$this->assets_model->get_description_by_type	($pbcoretitle['children']['descriptiontype'][0]['text']);
 																								if	($asset_description_type)
@@ -787,14 +857,14 @@ class	Crons	extends	CI_Controller
 								// pbcoreDescription End here
 								// Nouman Tayyab
 								// pbcoreGenre Start
-								if	(isset	($asset_children['pbcoregenre'])	&&	!empty	($asset_children['pbcoregenre']))
+								if	(isset	($asset_children['pbcoregenre'])	&&	!	empty	($asset_children['pbcoregenre']))
 								{
 												foreach	($asset_children['pbcoregenre']	as	$pbcore_genre)
 												{
 																$asset_genre_d	=	array	();
 																$asset_genre	=	array	();
 																$asset_genre['assets_id']	=	$asset_id;
-																if	(isset	($pbcore_genre['children']['genre'][0])	&&	!empty	($pbcore_genre['children']['genre'][0]['text']))
+																if	(isset	($pbcore_genre['children']['genre'][0])	&&	!	empty	($pbcore_genre['children']['genre'][0]['text']))
 																{
 
 																				$asset_genre_d['genre']	=	$pbcore_genre['children']['genre'][0]['text'];
@@ -806,7 +876,7 @@ class	Crons	extends	CI_Controller
 																				else
 																				{
 																								$asset_genre_d['genre_source']	=	'';
-																								if	(isset	($pbcore_genre['children']['genreauthorityused'][0])	&&	!empty	($pbcore_genre['children']['genreauthorityused'][0]['text']))
+																								if	(isset	($pbcore_genre['children']['genreauthorityused'][0])	&&	!	empty	($pbcore_genre['children']['genreauthorityused'][0]['text']))
 																								{
 																												$asset_genre_d['genre_source']	=	$pbcore_genre['children']['genreauthorityused'][0]['text'];
 																								}
@@ -819,16 +889,16 @@ class	Crons	extends	CI_Controller
 								}
 								// pbcoreGenre End
 								// pbcoreCoverage Start
-								if	(isset	($asset_children['pbcorecoverage'])	&	!empty	($asset_children['pbcorecoverage']))
+								if	(isset	($asset_children['pbcorecoverage'])	&	!	empty	($asset_children['pbcorecoverage']))
 								{
 												foreach	($asset_children['pbcorecoverage']	as	$pbcore_coverage)
 												{
 																$coverage	=	array	();
 																$coverage['assets_id']	=	$asset_id;
-																if	(isset	($pbcore_coverage['children']['coverage'][0])	&&	!empty	($pbcore_coverage['children']['coverage'][0]['text']))
+																if	(isset	($pbcore_coverage['children']['coverage'][0])	&&	!	empty	($pbcore_coverage['children']['coverage'][0]['text']))
 																{
 																				$coverage['coverage']	=	$pbcore_coverage['children']['coverage'][0]['text'];
-																				if	(isset	($pbcore_coverage['children']['coveragetype'][0])	&&	!empty	($pbcore_coverage['children']['coveragetype'][0]['text']))
+																				if	(isset	($pbcore_coverage['children']['coveragetype'][0])	&&	!	empty	($pbcore_coverage['children']['coveragetype'][0]['text']))
 																				{
 																								$coverage['coverage_type']	=	$pbcore_coverage['children']['coveragetype'][0]['text'];
 																				}
@@ -845,7 +915,7 @@ class	Crons	extends	CI_Controller
 																$audience_level	=	array	();
 																$asset_audience_level	=	array	();
 																$asset_audience_level['assets_id']	=	$asset_id;
-																if	(isset	($pbcore_aud_level['children']['audiencelevel'][0])	&&	!empty	($pbcore_aud_level['children']['audiencelevel'][0]['text']))
+																if	(isset	($pbcore_aud_level['children']['audiencelevel'][0])	&&	!	empty	($pbcore_aud_level['children']['audiencelevel'][0]['text']))
 																{
 																				$audience_level['audience_level']	=	$pbcore_aud_level['children']['audiencelevel'][0]['text'];
 																				$db_audience_level	=	$this->assets_model->get_audience_level	($audience_level['audience_level']);
@@ -871,7 +941,7 @@ class	Crons	extends	CI_Controller
 																$audience_rating	=	array	();
 																$asset_audience_rating	=	array	();
 																$asset_audience_rating['assets_id']	=	$asset_id;
-																if	(isset	($pbcore_aud_rating['children']['audiencerating'][0])	&&	!empty	($pbcore_aud_rating['children']['audiencerating'][0]['text']))
+																if	(isset	($pbcore_aud_rating['children']['audiencerating'][0])	&&	!	empty	($pbcore_aud_rating['children']['audiencerating'][0]['text']))
 																{
 																				$audience_rating['audience_rating']	=	$pbcore_aud_rating['children']['audiencerating'][0]['text'];
 																				$db_audience_rating	=	$this->assets_model->get_audience_rating	($audience_rating['audience_rating']);
@@ -896,7 +966,7 @@ class	Crons	extends	CI_Controller
 												{
 																$annotation	=	array	();
 																$annotation['assets_id']	=	$asset_id;
-																if	(isset	($pbcore_annotation['children']['annotation'][0])	&&	!empty	($pbcore_annotation['children']['annotation'][0]['text']))
+																if	(isset	($pbcore_annotation['children']['annotation'][0])	&&	!	empty	($pbcore_annotation['children']['annotation'][0]['text']))
 																{
 																				$annotation['annotation']	=	$pbcore_annotation['children']['annotation'][0]['text'];
 																				$asset_annotation	=	$this->assets_model->insert_annotation	($annotation);
@@ -913,7 +983,7 @@ class	Crons	extends	CI_Controller
 																$assets_relation	=	array	();
 																$assets_relation['assets_id']	=	$asset_id;
 																$relation_types	=	array	();
-																if	(isset	($pbcore_relation['children']['relationtype'][0]['text'])	&&	!empty	($pbcore_relation['children']['relationtype'][0]['text']))
+																if	(isset	($pbcore_relation['children']['relationtype'][0]['text'])	&&	!	empty	($pbcore_relation['children']['relationtype'][0]['text']))
 																{
 																				$relation_types['relation_type']	=	$pbcore_relation['children']['relationtype'][0]['text'];
 																				$db_relations	=	$this->assets_model->get_relation_types	($relation_types['relation_type']);
@@ -945,7 +1015,7 @@ class	Crons	extends	CI_Controller
 																$assets_creators_roles_d['assets_id']	=	$asset_id;
 																$creator_d	=	array	();
 																$creator_role	=	array	();
-																if	(isset	($pbcore_creator['children']['creator'][0]['text'])	&&	!empty	($pbcore_creator['children']['creator'][0]['text']))
+																if	(isset	($pbcore_creator['children']['creator'][0]['text'])	&&	!	empty	($pbcore_creator['children']['creator'][0]['text']))
 																{
 																				$creator_d	=	$this->assets_model->get_creator_by_creator_name	($pbcore_creator['children']['creator'][0]['text']);
 																				if	($creator_d)
@@ -958,7 +1028,7 @@ class	Crons	extends	CI_Controller
 																								$assets_creators_roles_d['creators_id']	=	$this->assets_model->insert_creators	(array	('creator_name'	=>	$pbcore_creator['children']['creator'][0]['text']));
 																				}
 																}
-																if	(isset	($pbcore_creator['children']['creatorrole'][0])	&&	!empty	($pbcore_creator['children']['creatorrole'][0]['text']))
+																if	(isset	($pbcore_creator['children']['creatorrole'][0])	&&	!	empty	($pbcore_creator['children']['creatorrole'][0]['text']))
 																{
 																				$creator_role	=	$this->assets_model->get_creator_role_by_role	($pbcore_creator['children']['creatorrole'][0]['text']);
 																				if	($creator_role)
@@ -998,7 +1068,7 @@ class	Crons	extends	CI_Controller
 																								$assets_contributors_d['contributors_id']	=	$this->assets_model->insert_contributors	(array	('contributor_name'	=>	$pbcore_contributor['children']['contributor'][0]['text']));
 																				}
 																}
-																if	(isset	($pbcore_contributor['children']['contributorrole'][0])	&&	!empty	($pbcore_contributor['children']['contributorrole'][0]['text']))
+																if	(isset	($pbcore_contributor['children']['contributorrole'][0])	&&	!	empty	($pbcore_contributor['children']['contributorrole'][0]['text']))
 																{
 																				$contributor_role	=	$this->assets_model->get_contributor_role_by_role	($pbcore_contributor['children']['contributorrole'][0]['text']);
 																				if	($contributor_role)
@@ -1024,7 +1094,7 @@ class	Crons	extends	CI_Controller
 																$assets_publisher_d['assets_id']	=	$asset_id;
 																$publisher_d	=	array	();
 																$publisher_role	=	array	();
-																if	(isset	($pbcore_publisher['children']['publisher'][0])	&&	!empty	($pbcore_publisher['children']['publisher'][0]['text']))
+																if	(isset	($pbcore_publisher['children']['publisher'][0])	&&	!	empty	($pbcore_publisher['children']['publisher'][0]['text']))
 																{
 																				$publisher_d	=	$this->assets_model->get_publishers_by_publisher	($pbcore_publisher['children']['publisher'][0]['text']);
 																				if	($publisher_d)
@@ -1038,7 +1108,7 @@ class	Crons	extends	CI_Controller
 																				}
 																				//Insert Data into asset_description
 																}
-																if	(isset	($pbcore_publisher['children']['publisherrole'][0])	&&	!empty	($pbcore_publisher['children']['publisherrole'][0]['text']))
+																if	(isset	($pbcore_publisher['children']['publisherrole'][0])	&&	!	empty	($pbcore_publisher['children']['publisherrole'][0]['text']))
 																{
 																				$publisher_role	=	$this->assets_model->get_publisher_role_by_role	($pbcore_publisher['children']['publisherrole'][0]['text']);
 																				if	($publisher_role)
@@ -1057,13 +1127,13 @@ class	Crons	extends	CI_Controller
 								}
 								// pbcorePublisher End here
 								// pbcoreRightsSummary Start
-								if	(isset	($asset_children['pbcorerightssummary'])	&&	!empty	($asset_children['pbcorerightssummary']))
+								if	(isset	($asset_children['pbcorerightssummary'])	&&	!	empty	($asset_children['pbcorerightssummary']))
 								{
 												foreach	($asset_children['pbcorerightssummary']	as	$pbcore_rights_summary)
 												{
 																$rights_summary_d	=	array	();
 																$rights_summary_d['assets_id']	=	$asset_id;
-																if	(isset	($pbcore_rights_summary['children']['rightssummary'][0])	&&	!empty	($pbcore_rights_summary['children']['rightssummary'][0]['text']))
+																if	(isset	($pbcore_rights_summary['children']['rightssummary'][0])	&&	!	empty	($pbcore_rights_summary['children']['rightssummary'][0]['text']))
 																{
 																				$rights_summary_d['rights']	=	$pbcore_rights_summary['children']['rightssummary'][0]['text'];
 																				//print_r($rights_summary_d);
@@ -1073,7 +1143,7 @@ class	Crons	extends	CI_Controller
 								}
 								// pbcoreRightsSummary End
 								//pbcoreExtension Start
-								if	(isset	($asset_children['pbcoreextension'])	&&	!empty	($asset_children['pbcoreextension']))
+								if	(isset	($asset_children['pbcoreextension'])	&&	!	empty	($asset_children['pbcoreextension']))
 								{
 												foreach	($asset_children['pbcoreextension']	as	$pbcore_extension)
 												{
@@ -1132,7 +1202,7 @@ class	Crons	extends	CI_Controller
 				{
 								foreach	($this->arrPIDs	as	$pid	=>	$cityKey)
 								{
-												if	(!$this->checkProcessStatus	($pid))
+												if	(	!	$this->checkProcessStatus	($pid))
 												{
 																$t_pid	=	str_replace	("\r",	"",	str_replace	("\n",	"",	trim	($pid)));
 																unset	($this->arrPIDs[$pid]);

@@ -4,7 +4,7 @@
 				</div>
     <div class="clearfix"></div>
 				<div class="span3 detail-menu">
-								<div class="detail-sidebar">
+								<div class="detail-sidebar active">
 <!--												icon-white-->
 													<i class="icon-stop menu-img"></i><a class="menu-anchor" href="<?php	echo	site_url('records/details/'	.	$asset_id);	?>" ><h4>Asset Information</h4></a>
 								</div>

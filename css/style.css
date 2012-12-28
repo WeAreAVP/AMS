@@ -382,7 +382,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				border-radius:0px;
 				width:210px;
 }
-.detail-sidebar:hover:active:after{ 
+.detail-sidebar:hover:after{ 
 				content:'';
 				display:block;
 				position:absolute;
@@ -394,15 +394,38 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				border-style: solid; 
 				border-width:  14px 0px 14px 9px;
 }
-.detail-sidebar:hover:active{
+.detail-sidebar:hover{
 				background: #1797D2;
 				
 }
-.detail-sidebar:hover:active a{
+.detail-sidebar:hover a{
 				
 				color: white;
 }
-.detail-sidebar:hover:active i{
+.detail-sidebar:hover i{
+			background-image: url("/images/glyphicons-halflings-white.png");
+}
+.detail-sidebar:active:after{ 
+				content:'';
+				display:block;
+				position:absolute;
+				top:0px;
+				left:100%; 
+				width:0;
+				height:0;
+				border-color: transparent transparent transparent #1797D2;
+				border-style: solid; 
+				border-width:  14px 0px 14px 9px;
+}
+.detail-sidebar:active{
+				background: #1797D2;
+				
+}
+.detail-sidebar:active a{
+				
+				color: white;
+}
+.detail-sidebar:active i{
 			background-image: url("/images/glyphicons-halflings-white.png");
 }
 .menu-anchor{

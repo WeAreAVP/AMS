@@ -6,7 +6,6 @@
 				<?php	$this->load->view('partials/_list');	?>
 
 				<div class="span9" style="margin-left: 285px;">
-
 								<table>
 												<!--				Instantiation ID	Start		-->
 												<?php
@@ -43,7 +42,7 @@
 																?>
 																<tr>
 																				<td>
-																								<label><i class="icon-question-sign"></i><b>Date:</b></label>
+																								<label><i class="icon-question-sign"></i><b>  Date:</b></label>
 																				</td>
 																				<td>
 																								<?php
@@ -86,6 +85,30 @@
 																</tr>
 												<?php	}	?>
 												<!--				Media Type	End		-->
+												<!--				Format 	Start		-->
+												<?php
+												if($instantiation_detail->format_name)
+												{
+
+																$format	=	'Format: ';
+																if(isset($instantiation_detail->format_type)	&&	($instantiation_detail->format_type	!=	NULL))
+																{
+																				if($instantiation_detail->format_type	===	'physical')
+																								$format	=	'Physical Format: ';
+																				if($instantiation_detail->format_type	===	'digital')
+																								$format	=	'Digital Format: ';
+																}
+																?>	
+																<tr>
+																				<td>
+																								<label><i class="icon-question-sign"></i><b>  <?php	echo	$format;	?></b></label>
+																				</td>
+																				<td>
+																								<span>	<?php	echo	$instantiation_detail->format_name;	?></span>
+																				</td>
+																</tr>
+												<?php	}	?>
+												<!--				Format	End		-->
 								</table>
 				</div>
 

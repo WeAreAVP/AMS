@@ -399,12 +399,12 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				
 }
 .detail-sidebar a:hover{
+				detail-sidebar i:hover;
 				color: white;
-				.detail-sidebar i:hover{
+}
+.detail-sidebar i:hover{
 			background-image: url("/images/glyphicons-halflings-white.png");
 }
-}
-
 .menu-anchor{
 				color: black;
 }

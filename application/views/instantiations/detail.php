@@ -118,12 +118,23 @@
 												?>
 												<div class="nomination-container">
 
-																<b><?php	echo	$instantiation_detail->status;	?></b>
-																<p><?php echo 'fdafasdfdfas' ?></p>
-																<p><?php echo 'fdasfasdfd' ?></p>
-																<p><?php echo 'fasdfsadfdas'; ?></p>
-												</div>
-								<?php	}	?>
+																<p><b><?php	echo	$instantiation_detail->status;	?></b></p>
+																<p><?php	echo	$instantiation_detail->nomination_reason;	?></p>
+																<?php
+																if($instantiation_detail->nominated_by	&&	$instantiation_detail->nominated_by	!=	NULL)
+																{
+																				?>
+																				<p><?php	echo	'Nominated by '	.	$instantiation_detail->nominated_by;	?></p>
+																				<?php
+																}
+																if($instantiation_detail->nominated_at	&&	$instantiation_detail->nominated_at	!=	NULL)
+																{
+																				?>
+																				<p><?php	echo	' at '	.	$instantiation_detail->nominated_at;	?></p>
+																</div>
+												<?php	}
+								}
+								?>
 				</div>
 
 </div>

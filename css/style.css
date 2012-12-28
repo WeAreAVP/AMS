@@ -378,8 +378,13 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 .detail-sidebar{
 				padding: 5px;
+				position:relative;
+				border-radius:0px;
+				-moz-border-radius:5px; 
+				-webkit-border-radius:5px;
+				width:220px;
 }
-.detail-sidebar:hover:after{ 
+.detail-sidebar:after{ 
 				content:'';
 				display:block;
 				position:absolute;

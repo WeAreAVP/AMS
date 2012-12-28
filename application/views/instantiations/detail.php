@@ -6,7 +6,7 @@
 				<div class="span3 detail-menu">
 								<div class="detail-sidebar">
 <!--												icon-white-->
-													<a class="menu-anchor" href="<?php	echo	site_url('records/details/'	.	$asset_id);	?>" ><i class="icon-stop menu-img"></i><h4>Asset Information</h4></a>
+													<i class="icon-stop menu-img"><a class="menu-anchor" href="<?php	echo	site_url('records/details/'	.	$asset_id);	?>" ><h4>Asset Information</h4></a></i>
 								</div>
 
 

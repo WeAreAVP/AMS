@@ -63,7 +63,7 @@ class	Crons	extends	CI_Controller
 								{
 												$this->myLog	("Total Number of process ".$count);
 												$loop_counter	=	0;
-												$maxProcess	=	5;
+												$maxProcess	=	10;
 												foreach	($dir_files	as	$dir)
 												{
 																$cmd	=	escapeshellcmd	('/usr/bin/php '	.	$this->config->item	('path')	.	'index.php crons process_dir_child '	.	base64_encode	($dir));

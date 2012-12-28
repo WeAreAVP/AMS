@@ -37,17 +37,34 @@
 																												{
 																																?>
 																																<div><h4><?php	echo	$asset_instantiation->generation;	?></h4></div>
-																												<?php	}
-																												?>
+																																<?php
+																												}
+																												if(isset($asset_instantiation->format_name)	&&	($asset_instantiation->format_name	!=	NULL))
+																												{
+																																$format	=	'Format: ';
+																																if(isset($asset_instantiation->format_type)	&&	($asset_instantiation->format_type	!=	NULL))
+																																{
+																																				if($asset_instantiation->format_type	===	'physical')
+																																								$format	=	'Physical Format: ';
+																																				if($asset_instantiation->format_type	===	'physical')
+																																								$format	=	'Digital Format: ';
+																																}
+																																?>	
+																																<div><b><?php	echo	$format	?></b><?php	echo	$asset_instantiation->format_name;	?></div>
+																																<?php
+																												}
+																												if($asset_instantiation->actual_duration	>	0)
+																												{
+																																?>
+																																<div><b>Actual Duration: </b><?php	echo	duration($asset_instantiation->actual_duration);	?></div>
+																																<?php
+																												}
+																												if($asset_instantiation->projected_duration	>	0)
+																												{
+																																?>
+																																<div><b>Projected Duration: </b><?php	echo	duration($asset_instantiation->projected_duration);	?></div>
+																												<?php	}	?>
 
-
-																												<?php
-																												echo	(isset($asset_instantiation->instantiation_identifier)	&&	($asset_instantiation->instantiation_identifier	!=	NULL))	?	"Instantiation ID: "	.	$asset_instantiation->instantiation_identifier	.	'<br/>'	:	'';
-																												echo	(isset($asset_instantiation->format_name)	&&	($asset_instantiation->format_name	!=	NULL)	)	?	"Format: "	.	$asset_instantiation->format_name	.	'<br/>'	:	'';
-
-																												echo	($asset_instantiation->actual_duration	>	0)	?	"Actual Duration: "	.	duration($asset_instantiation->actual_duration)	.	'<br/>'	:	'';
-																												echo	($asset_instantiation->projected_duration	>	0)	?	"Projected Duration: "	.	duration($asset_instantiation->projected_duration)	.	'<br/>'	:	'';
-																												?>
 																								</div>
 																				</a>
 																</div>

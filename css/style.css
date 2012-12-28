@@ -377,6 +377,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				background-color: whiteSmoke;
 				width: 245;
 				float:left;
+				position: fixed;
 }
 .detail-sidebar{
 				padding: 5px;

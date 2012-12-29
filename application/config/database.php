@@ -77,7 +77,7 @@ else	if	(ENVIRONMENT	==	'qatesting')
 				$db['default']['dbdriver']	=	'mysql';
 				$db['default']['db_debug']	=	FALSE;
 }
-else
+else if	(ENVIRONMENT	==	'production')
 {
 				$db['default']['hostname']	=	'amsdb.cnltxk49gtb0.us-east-1.rds.amazonaws.com';
 				$db['default']['username']	=	'root';

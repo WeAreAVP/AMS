@@ -19,6 +19,7 @@
 								<?php
 								foreach($asset_instantiations['records']	as	$asset_instantiation)
 								{
+												echo $asset_instantiation->id.' '.$inst_id;
 												if($asset_instantiation->id	==	$inst_id)
 																$class	=	' active';
 												else

@@ -133,6 +133,57 @@
 
 																<?php	}	?>
 																<!--				Generation	End		-->
+																<!--				Generation 	Start		-->
+																<?php
+																if($instantiation_detail->location)
+																{
+																				?>	
+																				<tr>
+																								<td class="record-detail-page">
+																												<label><i class="icon-question-sign"></i><b>* Location</b></label>
+																								</td>
+																								<td>
+																												<p>	<?php	echo	$instantiation_detail->location;	?></p>
+
+																								</td>
+																				</tr>
+
+																<?php	}	?>
+																<!--				Generation	End		-->
+																<!--				Duration 	Start		-->
+																<?php
+																if($instantiation_detail->projected_duration	>	0)
+																{
+																				?>	
+																				<tr>
+																								<td class="record-detail-page">
+																												<label><i class="icon-question-sign"></i><b>* Duration</b></label>
+																								</td>
+																								<td>
+																												<p>	<?php	echo	date('H:i:s',	strtotime($instantiation_detail->projected_duration));	?></p>
+
+																								</td>
+																				</tr>
+
+																<?php	}	?>
+																<!--				Duration	End		-->
+																<!--				Start Time 	Start		-->
+																<?php
+																if($instantiation_detail->projected_duration	>	0)
+																{
+																				?>	
+																				<tr>
+																								<td class="record-detail-page">
+																												<label><i class="icon-question-sign"></i><b>* Duration</b></label>
+																								</td>
+																								<td>
+																												<p>	<?php	echo	date('H:i:s',	strtotime($instantiation_detail->projected_duration));	?></p>
+
+																								</td>
+																				</tr>
+
+																<?php	}	?>
+																<!--				Start Time	End		-->
 												</table>
 								</div>
 								<?php

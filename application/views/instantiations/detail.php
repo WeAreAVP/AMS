@@ -110,6 +110,29 @@
 																				</tr>
 																<?php	}	?>
 																<!--				Format	End		-->
+																<!--				Generation 	Start		-->
+																<?php
+																if($instantiation_detail->generation)
+																{
+
+																				$generations	=	explode(' | ',	$instantiation_detail->generation);
+																				?>	
+																				<tr>
+																								<td class="record-detail-page">
+																												<label><i class="icon-question-sign"></i><b> Generation</b></label>
+																								</td>
+																								<td>
+																												<?php
+																												foreach($generations	as	$generation)
+																												{
+																																?>
+																																<p>	<?php	echo	$generation;	?></p>
+																												<?php	}	?>
+																								</td>
+																				</tr>
+
+																<?php	}	?>
+																<!--				Generation	End		-->
 												</table>
 								</div>
 								<?php
@@ -132,7 +155,8 @@
 																				?>
 																				<p><?php	echo	' at '	.	$instantiation_detail->nominated_at;	?></p>
 																</div>
-												<?php	}
+																<?php
+												}
 								}
 								?>
 				</div>

@@ -14,7 +14,7 @@ $attributes	=	array(
 
 				<div class="control-group">
 								<div class="controls">
-												<input type="submit" class="btn btn-primary" value="Save"/>
+												<input type="submit" class="btn btn-success" value="Save"/>
 								</div>
 				</div>
 				<?php	echo	form_close();	?>

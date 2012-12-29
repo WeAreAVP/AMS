@@ -9,18 +9,18 @@
 								<?php	/* ?><div class="players">
 									 AUDIO/VIDEO PLAYER
 									 </div><?php */	?><!--end of players-->
-								<div class="span8 button-after-player">
+								<div class="span12 button-after-player">
 												<button class="btn btn-large"><span class="icon-pencil"></span>Edit Asset</button>
 												<button class="btn btn-large"><span class="icon-download-alt"></span>Export Asset</button>
 								</div>
 
 
 
-								<div class="my-navbar span8">
+								<div class="my-navbar span12">
 												<div> Intellectual Content </div>
 								</div>
 
-								<div class="span8 form-row">
+								<div class="span12 form-row">
 												<div class="span2 form-label">
 																<label><i class="icon-question-sign"></i>* Organization:</label>
 												</div>
@@ -35,7 +35,7 @@
 								<?php	if(isset($asset_details->asset_type)	&&	!	empty($asset_details->asset_type))
 								{
 												?>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i> Asset Type:</label>
 																</div>
@@ -60,7 +60,7 @@
 								)
 								{
 												?>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i>* Title:</label>
 																</div>
@@ -101,7 +101,7 @@
 <?php	if(isset($asset_details->description)	&&	!	empty($asset_details->description))
 {
 				?>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i> Description:</label>
 																</div>
@@ -116,7 +116,7 @@
 <?php	if(isset($asset_genres)	&&	!	empty($asset_genres))
 {
 				?>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i>* Asset Genres:</label>
 																</div>
@@ -155,7 +155,7 @@
 																				<?php	if(isset($asset_creators_roles)	&&	!	empty($asset_creators_roles))
 																				{
 																								?>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i> Creator:</label>
 																</div>
@@ -215,7 +215,7 @@
 																				<?php	if(isset($asset_contributor_roles)	&&	!	empty($asset_contributor_roles))
 																				{
 																								?>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i> Contributor:</label>
 																</div>
@@ -275,7 +275,7 @@
 																				<?php	if(isset($asset_publishers_roles)	&&	!	empty($asset_publishers_roles))
 																				{
 																								?>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i> Publisher:</label>
 																</div>
@@ -335,7 +335,7 @@
 																<?php	if(isset($asset_dates)	&&	!	empty($asset_dates))
 																{
 																				?>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i>* Asset Date:</label>
 																</div>
@@ -367,7 +367,7 @@
 <?php	if(isset($asset_subjects)	&&	!	empty($asset_subjects))
 {
 				?>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i>* Subjects:</label>
 																</div>
@@ -407,7 +407,7 @@
 																if(isset($asset_coverages)	&&	!	empty($asset_coverages))
 																{
 																				?>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i> Coveragee:</label>
 																</div>
@@ -439,7 +439,7 @@
 																if(isset($rights_summaries)	&&	!	empty($rights_summaries))
 																{
 																				?>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i> Rights Summaries:</label>
 																</div>
@@ -470,7 +470,7 @@
 												if((isset($asset_audience_level)	&&	!	empty($asset_audience_level))	||	(isset($asset_audience_rating)	&&	!	empty($asset_audience_rating)))
 												{
 																?>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i> Audience:</label>
 																</div>
@@ -540,7 +540,7 @@
 if(isset($annotations)	&&	!	empty($annotations))
 {
 																								?>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i> Annotation:</label>
 																</div>
@@ -587,7 +587,7 @@ if(
 )
 {
 				?>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i>* Local ID:</label>
 																</div>
@@ -625,7 +625,7 @@ if(
 												<div class="my-navbar">
 																<div>Organiztion</div>
 												</div>
-												<div class="span8 form-row">
+												<div class="span12 form-row">
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i>American Archive GUID:</label>
 																</div>

@@ -622,7 +622,7 @@ if(
 <?php	if(isset($asset_details->guid_identifier)	&&	!	empty($asset_details->guid_identifier))
 {
 				?>
-												<div class="my-navbar">
+												<div class="my-navbar span12">
 																<div>Organiztion</div>
 												</div>
 												<div class="span12 form-row">

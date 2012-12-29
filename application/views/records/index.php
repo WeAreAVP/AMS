@@ -5,6 +5,11 @@ if	(	!	$isAjax)
 
 				<div class="row-fluid">
 								<div class="span3">
+												<div class="asset-menu">
+																<div style="padding:10px;"><h4>Assets</h4></div>
+																<div class="asset-submenu active"><a href="<?php echo site_url('records')?>">All Assets</a></div>
+																<div class="asset-submenu"><a href="javascript://">Flagged</a></div>
+												</div>
 												<?php	$this->load->view('instantiations/_facet_search');	?>
 								</div>
 				

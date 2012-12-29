@@ -25,7 +25,7 @@
 																<label><i class="icon-question-sign"></i>* Organization:</label>
 												</div>
 												<!--end of span3-->
-												<div id="search_bar" class="span10">
+												<div id="search_bar" class="span8">
 																<div class="disabled-field"> <?php	echo	$asset_details->organization;	?><!--end of btn_group--> 
 																</div>
 																<!--end of disabled-field--> 
@@ -40,7 +40,7 @@
 																				<label><i class="icon-question-sign"></i> Asset Type:</label>
 																</div>
 																<!--end of span3-->
-																<div id="search_bar" class="span10">
+																<div id="search_bar" class="span8">
 																				<?php
 																				$asset_types	=	explode(" | ",	$asset_details->asset_type);
 																				foreach($asset_types	as	$asset_type)
@@ -65,7 +65,7 @@
 																				<label><i class="icon-question-sign"></i>* Title:</label>
 																</div>
 																<!--end of span3-->
-																<div id="search_bar" class="span10">
+																<div id="search_bar" class="span8">
 																				<div class="disabled-field">
 																								<?php	if($asset_details->title)
 																								{
@@ -106,7 +106,7 @@
 																				<label><i class="icon-question-sign"></i> Description:</label>
 																</div>
 																<!--end of span3-->
-																<div id="search_bar" class="span10">
+																<div id="search_bar" class="span8">
 																				<div class="disabled-field">
 																								<p><?php	echo	$asset_details->description;	?></p>
 																				</div>
@@ -121,7 +121,7 @@
 																				<label><i class="icon-question-sign"></i>* Asset Genres:</label>
 																</div>
 																<!--end of span3-->
-																<div id="search_bar" class="span10">
+																<div id="search_bar" class="span8">
 																								<?php	foreach($asset_genres	as	$asset_genre)
 																								{
 																												?>
@@ -160,7 +160,7 @@
 																				<label><i class="icon-question-sign"></i> Creator:</label>
 																</div>
 																<!--end of span3-->
-																<div id="search_bar" class="span10">
+																<div id="search_bar" class="span8">
 																								<?php	foreach($asset_creators_roles	as	$asset_creators_role)
 																								{
 																												?>
@@ -220,7 +220,7 @@
 																				<label><i class="icon-question-sign"></i> Contributor:</label>
 																</div>
 																<!--end of span3-->
-																<div id="search_bar" class="span10">
+																<div id="search_bar" class="span8">
 																								<?php	foreach($asset_contributor_roles	as	$asset_contributor_role)
 																								{
 																												?>
@@ -280,7 +280,7 @@
 																				<label><i class="icon-question-sign"></i> Publisher:</label>
 																</div>
 																<!--end of span3-->
-																<div id="search_bar" class="span10">
+																<div id="search_bar" class="span8">
 																								<?php	foreach($asset_publishers_roles	as	$asset_publishers_role)
 																								{
 																												?>
@@ -340,7 +340,7 @@
 																				<label><i class="icon-question-sign"></i>* Asset Date:</label>
 																</div>
 																<!--end of span3-->
-																<div id="search_bar" class="span10">
+																<div id="search_bar" class="span8">
 																								<?php	foreach($asset_dates	as	$asset_date)
 																								{
 																												?>
@@ -372,7 +372,7 @@
 																				<label><i class="icon-question-sign"></i>* Subjects:</label>
 																</div>
 																<!--end of span3-->
-																<div id="search_bar" class="span10">
+																<div id="search_bar" class="span8">
 																								<?php	foreach($asset_subjects	as	$asset_subject)
 																								{
 																												?>
@@ -412,7 +412,7 @@
 																				<label><i class="icon-question-sign"></i> Coveragee:</label>
 																</div>
 																<!--end of span3-->
-																<div id="search_bar" class="span10"><?php
+																<div id="search_bar" class="span8"><?php
 																				foreach($asset_coverages	as	$asset_coverage)
 																				{
 																								?>
@@ -444,7 +444,7 @@
 																				<label><i class="icon-question-sign"></i> Rights Summaries:</label>
 																</div>
 																<!--end of span3-->
-																<div id="search_bar" class="span10"><?php
+																<div id="search_bar" class="span8"><?php
 																				foreach($rights_summaries	as	$rights_summarie)
 																				{
 																								?>
@@ -474,7 +474,7 @@
 																<div class="span2 form-label">
 																				<label><i class="icon-question-sign"></i> Audience:</label>
 																</div>
-																<div id="search_bar" class="span10"><?php
+																<div id="search_bar" class="span8"><?php
 																if(isset($asset_audience_level)	&&	!	empty($asset_audience_level))
 																{
 																				foreach($asset_audience_levels	as	$asset_audience_level)
@@ -545,7 +545,7 @@ if(isset($annotations)	&&	!	empty($annotations))
 																				<label><i class="icon-question-sign"></i> Annotation:</label>
 																</div>
 																<!--end of span3-->
-																<div id="search_bar" class="span10"><?php
+																<div id="search_bar" class="span8"><?php
 								foreach($annotations	as	$annotation)
 								{
 												?>
@@ -592,7 +592,7 @@ if(
 																				<label><i class="icon-question-sign"></i>* Local ID:</label>
 																</div>
 																<!--end of span3-->
-																<div id="search_bar" class="span10">
+																<div id="search_bar" class="span8">
 																				<div class="disabled-field">
 				<?php	if(isset($asset_details->local_identifier)	&&	!	empty($asset_details->local_identifier))
 				{
@@ -630,7 +630,7 @@ if(
 																				<label><i class="icon-question-sign"></i>American Archive GUID:</label>
 																</div>
 																<!--end of span3-->
-																<div id="search_bar" class="span10">
+																<div id="search_bar" class="span8">
 																				<div class="disabled-field"> <?php	echo	$asset_details->guid_identifier	?><!--end of btn_group--> 
 																				</div>
 																				<!--end of disabled-field--> 

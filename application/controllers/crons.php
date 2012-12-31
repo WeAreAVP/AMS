@@ -1178,12 +1178,14 @@ class	Crons	extends	CI_Controller
 								if(isset($tracks_data)	&&	count($tracks_data)	>	0)
 								{
 												$instantiation	=	array();
+												$essence_track	=	array();
+												$essence_track_count	=	0;
 												foreach($tracks_data	as	$index	=>	$track)
 												{
 																if(isset($track['attributes']['type'])	&&	$track['attributes']['type']	===	'General')
 																{
 																				$general_track	=	$track['children'];
-//																				debug($general_track);
+
 																				if(isset($general_track['filename'])	&&	isset($general_track['filename'][0]))
 																				{
 
@@ -1310,62 +1312,204 @@ class	Crons	extends	CI_Controller
 																												$instantiation['tracks'].=$add_comma	.	$general_track['textcount'][0]['text']	.	' text';
 																								}
 																				}
-																}
-																if(isset($track['children']['format_profile'])	&&	isset($track['children']['format_profile'][0]))
-																{
+																				if(isset($general_track['videocount'])	&&	isset($general_track['videocount'][0]))
+																				{
 
-																				if(	!	empty($track['children']['format_profile'][0]['text'])	||	$track['children']['format_profile'][0]['text']	!=	NULL)
-																				{
-																								$instantiation['standard'][$index]	=	$track['children']['format_profile'][0]['text'];
-																				}
-																				else	if(isset($track['children']['format'])	&&	isset($track['children']['format'][0]))
-																				{
-																								if(	!	empty($track['children']['format'][0]['text'])	||	$track['children']['format'][0]['text']	!=	NULL)
+																								if(	!	empty($general_track['videocount'][0]['text'])	||	$general_track['videocount'][0]['text']	!=	NULL	||	$general_track['videocount'][0]['text']	>	0)
 																								{
-																												$instantiation['standard'][$index]	=	$track['children']['format'][0]['text'];
+																												$instantiation['media_type']	=	'Moving Image';
 																								}
-																				}
-																}
-																else	if(isset($track['children']['format'])	&&	isset($track['children']['format'][0]))
-																{
-																				if(	!	empty($track['children']['format'][0]['text'])	||	$track['children']['format'][0]['text']	!=	NULL)
-																				{
-																								$instantiation['standard'][$index]	=	$track['children']['format'][0]['text'];
-																				}
-																}
-																if(isset($track['children']['videocount'])	&&	isset($track['children']['videocount'][0]))
-																{
-
-																				if(	!	empty($track['children']['videocount'][0]['text'])	||	$track['children']['videocount'][0]['text']	!=	NULL	||	$track['children']['videocount'][0]['text']	>	0)
-																				{
-																								$instantiation['media_type']	=	'Moving Image';
-																				}
-																				else	if($track['children']['videocount'][0]['text']	==	0)
-																				{
-																								if(isset($track['children']['audiocount'])	&&	isset($track['children']['audiocount'][0]))
+																								else	if($general_track['videocount'][0]['text']	==	0)
 																								{
-																												if(	!	empty($track['children']['audiocount'][0]['text'])	||	$track['children']['audiocount'][0]['text']	!=	NULL)
+																												if(isset($general_track['audiocount'])	&&	isset($general_track['audiocount'][0]))
 																												{
-																																$instantiation['media_type']	=	'Sound';
+																																if(	!	empty($general_track['audiocount'][0]['text'])	||	$general_track['audiocount'][0]['text']	!=	NULL)
+																																{
+																																				$instantiation['media_type']	=	'Sound';
+																																}
 																												}
 																								}
 																				}
-																}
-																if(isset($track['attributes']['type'])	&&	$track['attributes']['type']	===	'Audio')
-																{
-																				$audio_track	=	$track['children'];
-																				if(isset($audio_track['channel_s_'])	&&	isset($audio_track['channel_s_'][0]))
+																				if(isset($general_track['format_profile'])	&&	isset($general_track['format_profile'][0]))
 																				{
-																								if(isset($audio_track['channel_s_'][0]['text']))
+
+																								if(	!	empty($general_track['format_profile'][0]['text'])	||	$general_track['format_profile'][0]['text']	!=	NULL)
 																								{
-																												$instantiation['channel_configuration'][]	=	$audio_track['channel_s_'][0]['text'];
+																												$instantiation['standard'][$index]	=	$general_track['format_profile'][0]['text'];
+																								}
+																								else	if(isset($general_track['format'])	&&	isset($general_track['format'][0]))
+																								{
+																												if(	!	empty($general_track['format'][0]['text'])	||	$general_track['format'][0]['text']	!=	NULL)
+																												{
+																																$instantiation['standard'][$index]	=	$general_track['format'][0]['text'];
+																												}
 																								}
 																				}
-//																				debug($audio_track);
+																				else	if(isset($general_track['format'])	&&	isset($general_track['format'][0]))
+																				{
+																								if(	!	empty($general_track['format'][0]['text'])	||	$general_track['format'][0]['text']	!=	NULL)
+																								{
+																												$instantiation['standard'][$index]	=	$general_track['format'][0]['text'];
+																								}
+																				}
+																				if(isset($general_track['encoded_library_string'])	&&	isset($general_track['encoded_library_string'][0]))
+																				{
+																								if(	!	empty($general_track['encoded_library_string'][0]['text']))
+																								{
+																												$instantiation['annotation']	=	$general_track['encoded_library_string'][0]['text'];
+																												$instantiation['annotation_type']	=	'encoded by';
+																								}
+																				}
+																				else	if(isset($general_track['encodedby'])	&&	isset($general_track['encodedby'][0]))
+																				{
+																								if(	!	empty($general_track['encodedby'][0]['text']))
+																								{
+																												$instantiation['annotation']	=	$general_track['encodedby'][0]['text'];
+																												$instantiation['annotation_type']	=	'encoded by';
+																								}
+																				}
+																}
+																else
+																{
+//																				debug($track);
+																				if(isset($track['attributes']['type'])	&&	$track['attributes']['type']	===	'Audio')
+																				{
+
+																								$audio_track	=	$track['children'];
+																								if(isset($audio_track['channel_s_'])	&&	isset($audio_track['channel_s_'][0]))
+																								{
+																												if(isset($audio_track['channel_s_'][0]['text']))
+																												{
+																																$instantiation['channel_configuration']	=	$audio_track['channel_s_'][0]['text'];
+																												}
+																								}
+																								if(isset($audio_track['samplingrate_string'])	&&	isset($audio_track['samplingrate_string'][0]))
+																								{
+																												if(isset($audio_track['samplingrate_string'][0]['text']))
+																												{
+																																$essence_track[$essence_track_count]['samplingrate_string']	=	$audio_track['samplingrate_string'][0]['text'];
+																												}
+																								}
+																				}
+																				if(isset($track['children']['format'])	&&	isset($track['children']['format'][0]))
+																				{
+																								if(	!	empty($track['children']['format'][0]['text']))
+																								{
+																												if((isset($track['attributes']['type'])	&&	$track['attributes']['type']	===	'Audio')	||	(isset($track['attributes']['type'])	&&	$track['attributes']['type']	===	'Video'))
+																												{
+																																if($track['children']['format'][0]['text']	==	'EIA-608'	||	$track['children']['format'][0]['text']	==	'EIA-708')
+																																{
+																																				$essence_track[$essence_track_count]['essence_track_type']	=	'Caption';
+																																}
+																																else
+																																if($track['children']['format'][0]['text']	==	'TimeCode')
+																																{
+																																				$essence_track[$essence_track_count]['essence_track_type']	=	'Timecode';
+																																}
+																												}
+																												else
+																												{
+																																$essence_track[$essence_track_count]['essence_track_type']	=	$track['children']['format'][0]['text'];
+																												}
+																								}
+																				}
+																				if(isset($track['children']['id'])	&&	isset($track['children']['id'][0])	&&	isset($track['children']['id'][0]['text'])	&&	!	empty($track['children']['id'][0]['text']))
+																				{
+																								$essence_track[$essence_track_count]['encoding']	=	$track['children']['id'][0]['text'];
+																								$essence_track[$essence_track_count]['encoding_source']	=	'mediainfo';
+																				}
+																				else	if(isset($track['children']['streamkindid'])	&&	isset($track['children']['streamkindid'][0])	&&	isset($track['children']['streamkindid'][0]['text'])	&&	!	empty($track['children']['streamkindid'][0]['text']))
+																				{
+																								$essence_track[$essence_track_count]['encoding']	=	$track['children']['streamkindid'][0]['text'];
+																								$essence_track[$essence_track_count]['encoding_source']	=	'mediainfo';
+																				}
+																				if(isset($track['children']['codec_url'])	&&	isset($track['children']['codec_url'][0])	&&	isset($track['children']['codec_url'][0]['text'])	&&	!	empty($track['children']['codec_url'][0]['text']))
+																				{
+																								$essence_track[$essence_track_count]['encoding_ref']	=	$track['children']['codec_url'][0]['text'];
+																				}
+																				else	if(isset($track['children']['format_url'])	&&	isset($track['children']['format_url'][0])	&&	isset($track['children']['format_url'][0]['text'])	&&	!	empty($track['children']['format_url'][0]['text']))
+																				{
+																								$essence_track[$essence_track_count]['encoding_ref']	=	$track['children']['format_url'][0]['text'];
+																				}
+																				if(isset($track['children']['format_profile'])	&&	isset($track['children']['format_profile'][0])	&&	isset($track['children']['format_profile'][0]['text'])	&&	!	empty($track['children']['format_profile'][0]['text']))
+																				{
+
+																								$essence_track[$essence_track_count]['standard']	=	$track['children']['format_profile'][0]['text'];
+																				}
+
+																				if(isset($track['children']['bitrate_string'])	&&	isset($track['children']['bitrate_string'][0])	&&	isset($track['children']['bitrate_string'][0]['text'])	&&	!	empty($track['children']['bitrate_string'][0]['text']))
+																				{
+																								$bitrate	=	explode(' ',	$track['children']['bitrate_string'][0]['text']);
+																								$essence_track[$essence_track_count]['data_rate']	=	(isset($bitrate[0]))	?	$bitrate[0]	:	'';
+																								$essence_track[$essence_track_count]['data_rate_unit']	=	(isset($bitrate[1]))	?	$bitrate[1]	:	'';
+																				}
+																				if(isset($track['attributes']['type'])	&&	$track['attributes']['type']	===	'Video')
+																				{
+																								$video_track	=	$track['children'];
+																								if(isset($video_track['framerate'])	&&	isset($video_track['framerate'][0]))
+																								{
+																												if(isset($video_track['framerate'][0]['text']))
+																												{
+																																$essence_track[$essence_track_count]['framerate']	=	$video_track['framerate'][0]['text'];
+																												}
+																								}
+																								if(isset($video_track['width'])	&&	isset($video_track['width'][0]))
+																								{
+																												if(isset($video_track['width'][0]['text']))
+																												{
+																																$essence_track[$essence_track_count]['width']	=	$video_track['width'][0]['text'];
+																												}
+																								}
+																								if(isset($video_track['height'])	&&	isset($video_track['height'][0]))
+																								{
+																												if(isset($video_track['height'][0]['text']))
+																												{
+																																$essence_track[$essence_track_count]['height']	=	$video_track['height'][0]['text'];
+																												}
+																								}
+																								if(isset($video_track['displayaspectratio_string'])	&&	isset($video_track['displayaspectratio_string'][0]))
+																								{
+																												if(isset($video_track['displayaspectratio_string'][0]['text']))
+																												{
+																																$essence_track[$essence_track_count]['aspect_ratio']	=	$video_track['displayaspectratio_string'][0]['text'];
+																												}
+																								}
+																								if(isset($video_track['colorspace'])	&&	isset($video_track['colorspace'][0]))
+																								{
+																												if(isset($video_track['colorspace'][0]['text']))
+																												{
+																																$essence_track[$essence_track_count][]	=	array('annotation'						=>	$video_track['colorspace'][0]['text'],	'annotation_type'	=>	'colorspace');
+																												}
+																								}
+																								if(isset($video_track['chromasubsampling'])	&&	isset($video_track['chromasubsampling'][0]))
+																								{
+																												if(isset($video_track['chromasubsampling'][0]['text']))
+																												{
+																																$essence_track[$essence_track_count][]	=	array('annotation'						=>	$video_track['chromasubsampling'][0]['text'],	'annotation_type'	=>	'subsampling');
+																												}
+																								}
+																				}
+																				if(isset($track['children']['bitdepth'])	&&	isset($track['children']['bitdepth'][0])	&&	isset($track['children']['bitdepth'][0]['text'])	&&	!	empty($track['children']['bitdepth'][0]['text']))
+																				{
+
+																								$essence_track[$essence_track_count]['bit_depth']	=	$track['children']['bitdepth'][0]['text']	.	' bits';
+																				}
+																				if(isset($track['children']['duration_string3'])	&&	isset($track['children']['duration_string3'][0])	&&	isset($track['children']['duration_string3'][0]['text'])	&&	!	empty($track['children']['duration_string3'][0]['text']))
+																				{
+
+																								$essence_track[$essence_track_count]['duration']	=	date('H:i:s',	strtotime($general_track['duration_string3'][0]['text']));
+																				}
+																				if(isset($track['children']['language_string3'])	&&	isset($track['children']['language_string3'][0])	&&	isset($track['children']['language_string3'][0]['text'])	&&	!	empty($track['children']['language_string3'][0]['text']))
+																				{
+
+																								$essence_track[$essence_track_count]['language']	=	$track['children']['language_string3'][0]['text'];
+																				}
+																				$essence_track_count	++;
 																}
 												}
 								}
-								debug($instantiation);
+								debug($instantiation,	FALSE);
+								debug($essence_track);
 				}
 
 				private	function	myLog($s)

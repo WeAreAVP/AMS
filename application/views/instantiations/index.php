@@ -149,7 +149,7 @@ if(	!	$isAjax)
 																																				{
 																																								$width	=	'min-width:100px;';
 																																				}
-																																				else	if($type	==	'Asset_Title')
+																																				else	if($type	==	'Instantiation\'s_Asset_Title')
 																																				{
 																																								$width	=	'min-width:200px;';
 																																				}

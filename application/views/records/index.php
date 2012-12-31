@@ -1,5 +1,5 @@
 <?php
-if	(	!	$isAjax)
+if(	!	$isAjax)
 {
 				?>
 
@@ -7,51 +7,51 @@ if	(	!	$isAjax)
 								<div class="span3">
 												<div class="asset-menu">
 																<div style="padding:10px;"><h4>Assets</h4></div>
-																<div class="asset-submenu active"><a href="<?php echo site_url('records')?>">All Assets</a></div>
+																<div class="asset-submenu active"><a href="<?php	echo	site_url('records')	?>">All Assets</a></div>
 																<div class="asset-submenu"><a href="javascript://">Flagged</a></div>
 												</div>
 												<?php	$this->load->view('instantiations/_facet_search');	?>
 								</div>
-				
+
 								<div  class="span9" id="data_container">
 								<?php	}	?>
 								<ul class="nav nav-tabs">
 												<li ><a href="javascript:;" style="color:#000;cursor:default;">View type :</a></li>
 												<li id="simple_li" <?php
-								if	($current_tab	==	'simple')
+								if($current_tab	==	'simple')
 								{
 												?>class="active" <?php	}	?>><a href="javascript:;" <?php
-																if	($current_tab	!=	'simple')
+																if($current_tab	!=	'simple')
 																{
 												?>onClick="change_view('simple')" <?php	}	?> >Simple Table</a></li>
 												<li id="full_table_li" <?php
-																																									if	($current_tab	==	'full_table')
+																																									if($current_tab	==	'full_table')
 																																									{
 												?>class="active" <?php	}	?>><a href="javascript:;" <?php
-																if	($current_tab	!=	'full_table')
+																if($current_tab	!=	'full_table')
 																{
 												?>onClick="change_view('full_table')" <?php	}	?> >Full Table</a></li>
 												<li id="thumbnails_li" <?php
-																																									if	($current_tab	==	'thumbnails')
+																																									if($current_tab	==	'thumbnails')
 																																									{
 												?>class="active" <?php	}	?>><a href="javascript:;" >Thumbnail</a></li>
 								</ul><?php
-																if	(isset	($records)	&&	($total	>	0))
+																if(isset($records)	&&	($total	>	0))
 																{
 												?>
 												<div style="width: 860px;">
 																<?php
-																if	(isset	($current_tab)	&&	$current_tab	==	'full_table')
+																if(isset($current_tab)	&&	$current_tab	==	'full_table')
 																{
-																				$this->load->view	('instantiations/_gear_dropdown');
+																				$this->load->view('instantiations/_gear_dropdown');
 																}
 																?>
 																<div style="float: right;">
 																				<strong><?php	echo	$start;	?> - <?php	echo	$end;	?></strong> of <strong style="margin-right: 10px;"><?php	echo	$total;	?></strong>
-																				<?php	echo	$this->ajax_pagination->create_links	();	?>
+																				<?php	echo	$this->ajax_pagination->create_links();	?>
 																</div>
 												</div><?php
-																if	(	!	isset	($current_tab)	||	$current_tab	==	'simple')
+																if(	!	isset($current_tab)	||	$current_tab	==	'simple')
 																{
 																								?>
 																<div style="width:865px;overflow:hidden;" id="simple_view">
@@ -66,61 +66,80 @@ if	(	!	$isAjax)
 																												</tr>
 																								</thead>
 																								<tbody><?php
-								foreach	($records	as	$asset)
+								foreach($records	as	$asset)
 								{
 
-												$guid_identifier	=	str_replace	("(**)",	"N/A",	$asset->guid_identifier);
-												$local_identifier	=	str_replace	("(**)",	"N/A",	$asset->local_identifier);
-												$asset_description	=	str_replace	("(**)",	"N/A",	$asset->description);
-												$asset_title	=	str_replace	("(**)",	"N/A",	$asset->asset_title);
+												$guid_identifier	=	str_replace("(**)",	"N/A",	$asset->guid_identifier);
+												$local_identifier	=	str_replace("(**)",	"N/A",	$asset->local_identifier);
+												$asset_description	=	str_replace("(**)",	"N/A",	$asset->description);
+												$asset_title	=	str_replace("(**)",	"N/A",	$asset->asset_title);
 																												?>
 																																<tr style="cursor: pointer;">
 																																				<td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>
-																																				<td><?php
-																				if	($guid_identifier)
-																								echo	$guid_identifier;
-																				else
-																								echo	'N/A';
-																												?>
-																																				</td>
-																																				<td><?php
-																												if	($local_identifier)
-																																echo	$local_identifier;
-																												else
-																																echo	'N/A';
-																												?>
+																																				<td>
+																																								<?php
+																																								if($guid_identifier)
+																																								{
+																																												?>
+																																												<a href="<?php	echo	site_url('records/details/'	.	$asset->id)	?>" ><?php	echo	$guid_identifier;	?></a>
+																																								<?php	}
+																																								?>
 																																				</td>
 																																				<td>
+																																								<?php
+																																								if($local_identifier)
+																																												echo	$local_identifier;
+																																								?>
+																																				</td>
+																																				<td>
+																																								<?php
+																																								$asset_title_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title_type)));
+																																								$asset_title	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title)));
+																																								$asset_title_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title_ref)));
+																																								$column	=	'';
+																																								foreach($asset_title	as	$index	=>	$title)
+																																								{
+																																												if(isset($asset_title_type[$index])	&&	$asset_title_type[$index]	!=	'')
+																																																$column.=	$asset_title_type[$index]	.	': ';
+																																												if(isset($asset_title_ref[$index]))
+																																												{
+																																																if($asset_title_ref[$index]	!=	'')
+																																																{
+																																																				$column.="<a target='_blank' href='$asset_title_ref[$index]'>$title</a>: ";
+																																																				$column.=' ('	.	$asset_title_ref[$index]	.	')';
+																																																}
+																																																else
+																																																				$column.=$title;
+																																												}
+																																												else
+																																																$column.=$title;
+																																												$column.='<div class="clearfix"></div>';
+																																								}
+																																								echo	$column;
+																																								?>
 
-																																								<a href="<?php	echo	site_url	('records/details/'	.	$asset->id)	?>" ><?php
-																												if	($asset_title)
-																																echo	$asset_title;
-																												else
-																																echo	'N/A';
-																												?>
-																																								</a>
 
 																																				</td>
-																																				<td><?php
-																																if	($asset_description)
-																																{
+																																				<td>
+																																								<?php
+																																								if($asset_description)
+																																								{
 
-																																				if	(strlen	($asset_description)	>	160)
-																																				{
-																																								$messages	=	str_split	($asset_description,	160);
-																																								echo	$messages[0]	.	' ...';
-																																				}
-																																				else
-																																				{
-																																								echo	$asset_description;
-																																				}
-																																}
-																																else
-																																				echo	'N/A';
-																												?>
+																																												if(strlen($asset_description)	>	160)
+																																												{
+																																																$messages	=	str_split($asset_description,	160);
+																																																echo	$messages[0]	.	' ...';
+																																												}
+																																												else
+																																												{
+																																																echo	$asset_description;
+																																												}
+																																								}
+																																								?>
 																																				</td>
-																																</tr><?php	}
-																								?>
+																																</tr>
+																												<?php	}
+																												?>
 																								</tbody>
 																								<script> setTimeout(function (){updateSimpleDataTable();},500);</script>
 
@@ -128,9 +147,9 @@ if	(	!	$isAjax)
 																</div><?php
 																}
 
-																if	(isset	($current_tab)	&&	$current_tab	==	'full_table')
+																if(isset($current_tab)	&&	$current_tab	==	'full_table')
 																{
-																								?>
+																												?>
 																<br clear="all"/>
 																<div style="width: 865px;overflow:hidden;" id="full_table_view" >
 																				<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;"  >
@@ -138,16 +157,16 @@ if	(	!	$isAjax)
 																												<tr >
 
 																																<?php
-																																if	(	!	empty	($this->column_order))
+																																if(	!	empty($this->column_order))
 																																{
 
-																																				foreach	($this->column_order	as	$key	=>	$value)
+																																				foreach($this->column_order	as	$key	=>	$value)
 																																				{
 																																								$class	=	'';
 																																								$type	=	$value['title'];
-																																								if	(isset	($type)	&&	!	empty	($type))
+																																								if(isset($type)	&&	!	empty($type))
 																																								{
-																																												if	($type	==	'flag')
+																																												if($type	==	'flag')
 																																												{
 																																																?>
 																																																<th id="flag"><span style="float:left;" ><i class="icon-flag "></i></span></th>
@@ -156,17 +175,17 @@ if	(	!	$isAjax)
 																																												else
 																																												{
 
-																																																if	(	!	($this->frozen_column	>	$key))
+																																																if(	!	($this->frozen_column	>	$key))
 																																																				$class	=	'drap-drop';
-																																																if	(in_array	($type,	array	("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience",	"Annotation",	"Rights")))
+																																																if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience",	"Annotation",	"Rights")))
 																																																{
 																																																				$width	=	'min-width:100px;';
 																																																}
-																																																else	if	($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID")
+																																																else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID")
 																																																{
 																																																				$width	=	'min-width:175px;';
 																																																}
-																																																echo	'<th id="'	.	$value['title']	.	'"  class="'	.	$class	.	'"><span style="float:left;'	.	$width	.	'">'	.	str_replace	("_",	' ',	$value['title'])	.	'</span></th>';
+																																																echo	'<th id="'	.	$value['title']	.	'"  class="'	.	$class	.	'"><span style="float:left;'	.	$width	.	'">'	.	str_replace("_",	' ',	$value['title'])	.	'</span></th>';
 																																												}
 																																								}
 																																				}
@@ -176,39 +195,39 @@ if	(	!	$isAjax)
 																								</thead>
 																								<tbody>
 																												<?php
-																												$def_setting	=	$this->config->item	('assets_setting');
+																												$def_setting	=	$this->config->item('assets_setting');
 																												$def_setting	=	$def_setting['full'];
 																												$body	=	'';
-																												foreach	($records	as	$asset)
+																												foreach($records	as	$asset)
 																												{
 
 																																echo	'<tr>';
-																																foreach	($this->column_order	as	$row)
+																																foreach($this->column_order	as	$row)
 																																{
 																																				$type	=	$row['title'];
 																																				$column	=	'';
-																																				if	(isset	($type)	&&	!	empty	($type))
+																																				if(isset($type)	&&	!	empty($type))
 																																				{
-																																								if	($type	==	'flag')
+																																								if($type	==	'flag')
 																																								{
 																																												echo	'<td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>';
 																																								}
 																																								else
 																																								{
 																																												$column	=	'';
-																																												if	($type	==	'Titles')
+																																												if($type	==	'Titles')
 																																												{
-																																																$asset_title_type	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_title_type)));
-																																																$asset_title	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_title)));
-																																																$asset_title_ref	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_title_ref)));
+																																																$asset_title_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title_type)));
+																																																$asset_title	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title)));
+																																																$asset_title_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title_ref)));
 																																																$column	=	'';
-																																																foreach	($asset_title	as	$index	=>	$title)
+																																																foreach($asset_title	as	$index	=>	$title)
 																																																{
-																																																				if	(isset	($asset_title_type[$index])	&&	$asset_title_type[$index]	!=	'')
+																																																				if(isset($asset_title_type[$index])	&&	$asset_title_type[$index]	!=	'')
 																																																								$column.=	$asset_title_type[$index]	.	': ';
-																																																				if	(isset	($asset_title_ref[$index]))
+																																																				if(isset($asset_title_ref[$index]))
 																																																				{
-																																																								if	($asset_title_ref[$index]	!=	'')
+																																																								if($asset_title_ref[$index]	!=	'')
 																																																								{
 																																																												$column.="<a target='_blank' href='$asset_title_ref[$index]'>$title</a>: ";
 																																																												$column.=' ('	.	$asset_title_ref[$index]	.	')';
@@ -221,32 +240,32 @@ if	(	!	$isAjax)
 																																																				$column.='<div class="clearfix"></div>';
 																																																}
 																																												}
-																																												else	if	($type	==	'AA_GUID')
+																																												else	if($type	==	'AA_GUID')
 																																												{
-																																																$column	=	($asset->guid_identifier)	?	$asset->guid_identifier	:	'';
+																																																$column	=	($asset->guid_identifier)	?	'<a href="'	.	site_url('records/details/'	.	$asset->id)	.	'" >'	.	$asset->guid_identifier	:	'';
 																																												}
-																																												else	if	($type	==	'Local_ID')
+																																												else	if($type	==	'Local_ID')
 																																												{
 																																																$column	=	$asset->local_identifier;
 																																												}
-																																												else	if	($type	==	'Description')
+																																												else	if($type	==	'Description')
 																																												{
-																																																if	(isset	($asset->description)	&&	!	empty	($asset->description))
+																																																if(isset($asset->description)	&&	!	empty($asset->description))
 																																																{
-																																																				$asset_description	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->description)));
-																																																				$description_type	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->description_type)));
+																																																				$asset_description	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->description)));
+																																																				$description_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->description_type)));
 																																																				$column	=	'';
-																																																				if	(count	($asset_description)	>	0)
+																																																				if(count($asset_description)	>	0)
 																																																				{
-																																																								foreach	($asset_description	as	$index	=>	$description)
+																																																								foreach($asset_description	as	$index	=>	$description)
 																																																								{
-																																																												if	(isset	($description)	&&	!	empty	($description))
+																																																												if(isset($description)	&&	!	empty($description))
 																																																												{
-																																																																if	(isset	($description_type[$index])	&&	$description_type[$index]	!=	'')
+																																																																if(isset($description_type[$index])	&&	$description_type[$index]	!=	'')
 																																																																				$column.='Type:'	.	$description_type[$index]	.	'<br/>';
-																																																																if	(strlen	($description)	>	160)
+																																																																if(strlen($description)	>	160)
 																																																																{
-																																																																				$messages	=	str_split	($description,	160);
+																																																																				$messages	=	str_split($description,	160);
 																																																																				$column.=	$messages[0]	.	' ...';
 																																																																}
 																																																																else
@@ -257,21 +276,21 @@ if	(	!	$isAjax)
 																																																				}
 																																																}
 																																												}
-																																												else	if	($type	==	'Subjects')
+																																												else	if($type	==	'Subjects')
 																																												{
 
-																																																$asset_subject	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_subject)));
-																																																$asset_subject_ref	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_subject_ref)));
-																																																$asset_subject_source	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_subject_source)));
+																																																$asset_subject	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_subject)));
+																																																$asset_subject_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_subject_ref)));
+																																																$asset_subject_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_subject_source)));
 																																																$column	=	'';
-																																																if	(count	($asset_subject)	>	0)
+																																																if(count($asset_subject)	>	0)
 																																																{
-																																																				foreach	($asset_subject	as	$index	=>	$subject)
+																																																				foreach($asset_subject	as	$index	=>	$subject)
 																																																				{
 
-																																																								if	(isset	($asset_subject_ref[$index]))
+																																																								if(isset($asset_subject_ref[$index]))
 																																																								{
-																																																												if	($asset_subject_ref[$index]	!=	'')
+																																																												if($asset_subject_ref[$index]	!=	'')
 																																																												{
 																																																																$column.="<a target='_blank' href='$asset_subject_ref[$index]'>$subject</a>";
 																																																												}
@@ -280,27 +299,27 @@ if	(	!	$isAjax)
 																																																								}
 																																																								else
 																																																												$column.=$subject;
-																																																								if	(isset	($asset_subject_source[$index])	&&	$asset_subject_source[$index]	!=	'')
+																																																								if(isset($asset_subject_source[$index])	&&	$asset_subject_source[$index]	!=	'')
 																																																												$column.=' ('	.	$asset_subject_source[$index]	.	')';
 																																																								$column.='<div class="clearfix"></div>';
 																																																				}
 																																																}
 																																												}
-																																												else	if	($type	==	'Genre')
+																																												else	if($type	==	'Genre')
 																																												{
 
-																																																$asset_genre	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_genre)));
-																																																$asset_genre_ref	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_genre_ref)));
-																																																$asset_genre_source	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_genre_source)));
+																																																$asset_genre	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_genre)));
+																																																$asset_genre_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_genre_ref)));
+																																																$asset_genre_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_genre_source)));
 																																																$column	=	'';
-																																																if	(count	($asset_genre)	>	0)
+																																																if(count($asset_genre)	>	0)
 																																																{
-																																																				foreach	($asset_genre	as	$index	=>	$genre)
+																																																				foreach($asset_genre	as	$index	=>	$genre)
 																																																				{
 
-																																																								if	(isset	($asset_genre_ref[$index]))
+																																																								if(isset($asset_genre_ref[$index]))
 																																																								{
-																																																												if	($asset_genre_ref[$index]	!=	'')
+																																																												if($asset_genre_ref[$index]	!=	'')
 																																																												{
 																																																																$column.="<a target='_blank' href='$asset_genre_ref[$index]'>$genre</a>";
 																																																												}
@@ -309,162 +328,162 @@ if	(	!	$isAjax)
 																																																								}
 																																																								else
 																																																												$column.=$genre;
-																																																								if	(isset	($asset_genre_source[$index])	&&	$asset_genre_source[$index]	!=	'')
+																																																								if(isset($asset_genre_source[$index])	&&	$asset_genre_source[$index]	!=	'')
 																																																												$column.=' ('	.	$asset_genre_source[$index]	.	')';
 																																																								$column.='<div class="clearfix"></div>';
 																																																				}
 																																																}
 																																												}
-																																												else	if	($type	==	'Assets_Date')
+																																												else	if($type	==	'Assets_Date')
 																																												{
 
-																																																$asset_dates	=	explode	(' | ',	$asset->dates);
-																																																$asset_dates_types	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->date_type)));
-																																																if	(count	($asset_dates)	>	0)
+																																																$asset_dates	=	explode(' | ',	$asset->dates);
+																																																$asset_dates_types	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->date_type)));
+																																																if(count($asset_dates)	>	0)
 																																																{
-																																																				foreach	($asset_dates	as	$index	=>	$dates)
+																																																				foreach($asset_dates	as	$index	=>	$dates)
 																																																				{
 
-																																																								if	(isset	($asset_dates_types[$index])	&&	$dates	>	0)
+																																																								if(isset($asset_dates_types[$index])	&&	$dates	>	0)
 																																																								{
-																																																												$column	.=	$asset_dates_types[$index]	.	': '	.	date	('Y-m-d',	$dates);
+																																																												$column	.=	$asset_dates_types[$index]	.	': '	.	date('Y-m-d',	$dates);
 																																																								}
-																																																								else	if	($dates	>	0)
+																																																								else	if($dates	>	0)
 																																																								{
-																																																												$column.=date	('Y-m-d',	$dates);
+																																																												$column.=date('Y-m-d',	$dates);
 																																																								}
 																																																								$column.='<div class="clearfix"></div>';
 																																																				}
 																																																}
 																																												}
-																																												else	if	($type	==	'Creator')
+																																												else	if($type	==	'Creator')
 																																												{
-																																																$asset_creator_name	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_creator_name)));
-																																																$asset_creator_ref	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_creator_ref)));
-																																																$asset_creator_affiliation	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_creator_affiliation)));
-																																																$asset_creator_role	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_creator_role)));
-																																																$asset_creator_role_ref	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_creator_role_ref)));
-																																																$asset_creator_role_source	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_creator_role_source)));
+																																																$asset_creator_name	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_creator_name)));
+																																																$asset_creator_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_creator_ref)));
+																																																$asset_creator_affiliation	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_creator_affiliation)));
+																																																$asset_creator_role	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_creator_role)));
+																																																$asset_creator_role_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_creator_role_ref)));
+																																																$asset_creator_role_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_creator_role_source)));
 																																																$column	=	'';
-																																																if	(count	($asset_creator_name)	>	0)
+																																																if(count($asset_creator_name)	>	0)
 																																																{
-																																																				foreach	($asset_creator_name	as	$index	=>	$creator_name)
+																																																				foreach($asset_creator_name	as	$index	=>	$creator_name)
 																																																				{
 
-																																																								if	(isset	($asset_creator_ref[$index])	&&	!	empty	($asset_creator_ref[$index]))
+																																																								if(isset($asset_creator_ref[$index])	&&	!	empty($asset_creator_ref[$index]))
 																																																								{
 																																																												$column.="<a target='_blank' href='$asset_creator_ref[$index]'>$creator_name</a>";
 																																																								}
 																																																								else
 																																																												$column.=$creator_name;
-																																																								if	(isset	($asset_creator_affiliation[$index])	&&	$asset_creator_affiliation[$index]	!=	'')
+																																																								if(isset($asset_creator_affiliation[$index])	&&	$asset_creator_affiliation[$index]	!=	'')
 																																																												$column.=','	.	$asset_creator_affiliation[$index];
 
-																																																								if	(isset	($asset_creator_role[$index])	&&	!	empty	($asset_creator_role[$index]))
+																																																								if(isset($asset_creator_role[$index])	&&	!	empty($asset_creator_role[$index]))
 																																																								{
-																																																												if	(isset	($asset_creator_role_ref[$index])	&&	!	empty	($asset_creator_role_ref[$index]))
+																																																												if(isset($asset_creator_role_ref[$index])	&&	!	empty($asset_creator_role_ref[$index]))
 																																																												{
 																																																																$column.=",<a target='_blank' href='$asset_contributor_role_ref[$index]'>$asset_creator_role[$index]</a>";
 																																																												}
 																																																												else
 																																																																$column.=','	.	$asset_creator_role[$index];
 																																																								}
-																																																								if	(isset	($asset_creator_role_source[$index])	&&	$asset_creator_role_source[$index]	!=	'')
+																																																								if(isset($asset_creator_role_source[$index])	&&	$asset_creator_role_source[$index]	!=	'')
 																																																												$column.=' ('	.	$asset_creator_role_source[$index]	.	')';
 																																																								$column.='<div class="clearfix"></div>';
 																																																				}
 																																																}
 																																												}
-																																												else	if	($type	==	'Contributor')
+																																												else	if($type	==	'Contributor')
 																																												{
-																																																$asset_contributor_name	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_contributor_name)));
-																																																$asset_contributor_ref	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_contributor_ref)));
-																																																$asset_contributor_affiliation	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_contributor_affiliation)));
-																																																$asset_contributor_role	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_contributor_role)));
-																																																$asset_contributor_role_ref	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_contributor_role_ref)));
-																																																$asset_contributor_role_source	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_contributor_role_source)));
+																																																$asset_contributor_name	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_contributor_name)));
+																																																$asset_contributor_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_contributor_ref)));
+																																																$asset_contributor_affiliation	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_contributor_affiliation)));
+																																																$asset_contributor_role	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_contributor_role)));
+																																																$asset_contributor_role_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_contributor_role_ref)));
+																																																$asset_contributor_role_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_contributor_role_source)));
 																																																$column	=	'';
-																																																if	(count	($asset_contributor_name)	>	0)
+																																																if(count($asset_contributor_name)	>	0)
 																																																{
-																																																				foreach	($asset_contributor_name	as	$index	=>	$contributor_name)
+																																																				foreach($asset_contributor_name	as	$index	=>	$contributor_name)
 																																																				{
 
-																																																								if	(isset	($asset_contributor_ref[$index])	&&	!	empty	($asset_contributor_ref[$index]))
+																																																								if(isset($asset_contributor_ref[$index])	&&	!	empty($asset_contributor_ref[$index]))
 																																																								{
 																																																												$column.="<a target='_blank' href='$asset_contributor_ref[$index]'>$contributor_name</a>";
 																																																								}
 																																																								else
 																																																												$column.=$contributor_name;
-																																																								if	(isset	($asset_contributor_affiliation[$index])	&&	$asset_contributor_affiliation[$index]	!=	'')
+																																																								if(isset($asset_contributor_affiliation[$index])	&&	$asset_contributor_affiliation[$index]	!=	'')
 																																																												$column.=','	.	$asset_contributor_affiliation[$index];
 
-																																																								if	(isset	($asset_contributor_role[$index])	&&	!	empty	($asset_contributor_role[$index]))
+																																																								if(isset($asset_contributor_role[$index])	&&	!	empty($asset_contributor_role[$index]))
 																																																								{
-																																																												if	(isset	($asset_contributor_role_ref[$index])	&&	!	empty	($asset_contributor_role_ref[$index]))
+																																																												if(isset($asset_contributor_role_ref[$index])	&&	!	empty($asset_contributor_role_ref[$index]))
 																																																												{
 																																																																$column.=",<a target='_blank' href='$asset_contributor_role_ref[$index]'>$asset_contributor_role[$index]</a>";
 																																																												}
 																																																												else
 																																																																$column.=','	.	$asset_contributor_role[$index];
 																																																								}
-																																																								if	(isset	($asset_contributor_role_source[$index])	&&	$asset_contributor_role_source[$index]	!=	'')
+																																																								if(isset($asset_contributor_role_source[$index])	&&	$asset_contributor_role_source[$index]	!=	'')
 																																																												$column.=' ('	.	$asset_contributor_role_source[$index]	.	')';
 																																																								$column.='<div class="clearfix"></div>';
 																																																				}
 																																																}
 																																												}
-																																												else	if	($type	==	'Publisher')
+																																												else	if($type	==	'Publisher')
 																																												{
-																																																$asset_publisher_name	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_publisher_name)));
-																																																$asset_publisher_ref	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_publisher_ref)));
-																																																$asset_publisher_affiliation	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_publisher_affiliation)));
-																																																$asset_publisher_role	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_publisher_role)));
-																																																$asset_publisher_role_ref	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_publisher_role_ref)));
-																																																$asset_publisher_role_source	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_publisher_role_source)));
+																																																$asset_publisher_name	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_publisher_name)));
+																																																$asset_publisher_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_publisher_ref)));
+																																																$asset_publisher_affiliation	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_publisher_affiliation)));
+																																																$asset_publisher_role	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_publisher_role)));
+																																																$asset_publisher_role_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_publisher_role_ref)));
+																																																$asset_publisher_role_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_publisher_role_source)));
 																																																$column	=	'';
-																																																if	(count	($asset_publisher_name)	>	0)
+																																																if(count($asset_publisher_name)	>	0)
 																																																{
-																																																				foreach	($asset_publisher_name	as	$index	=>	$publisher_name)
+																																																				foreach($asset_publisher_name	as	$index	=>	$publisher_name)
 																																																				{
 
-																																																								if	(isset	($asset_publisher_ref[$index])	&&	!	empty	($asset_publisher_ref[$index]))
+																																																								if(isset($asset_publisher_ref[$index])	&&	!	empty($asset_publisher_ref[$index]))
 																																																								{
 																																																												$column.="<a target='_blank' href='$asset_publisher_ref[$index]'>$publisher_name</a>";
 																																																								}
 																																																								else
 																																																												$column.=$publisher_name;
-																																																								if	(isset	($asset_publisher_affiliation[$index])	&&	$asset_publisher_affiliation[$index]	!=	'')
+																																																								if(isset($asset_publisher_affiliation[$index])	&&	$asset_publisher_affiliation[$index]	!=	'')
 																																																												$column.=','	.	$asset_publisher_affiliation[$index];
 
-																																																								if	(isset	($asset_publisher_role[$index])	&&	!	empty	($asset_publisher_role[$index]))
+																																																								if(isset($asset_publisher_role[$index])	&&	!	empty($asset_publisher_role[$index]))
 																																																								{
-																																																												if	(isset	($asset_publisher_role_ref[$index])	&&	!	empty	($asset_publisher_role_ref[$index]))
+																																																												if(isset($asset_publisher_role_ref[$index])	&&	!	empty($asset_publisher_role_ref[$index]))
 																																																												{
 																																																																$column.=",<a target='_blank' href='$asset_publisher_role_ref[$index]'>$asset_publisher_role[$index]</a>";
 																																																												}
 																																																												else
 																																																																$column.=','	.	$asset_publisher_role[$index];
 																																																								}
-																																																								if	(isset	($asset_publisher_role_source[$index])	&&	$asset_publisher_role_source[$index]	!=	'')
+																																																								if(isset($asset_publisher_role_source[$index])	&&	$asset_publisher_role_source[$index]	!=	'')
 																																																												$column.=' ('	.	$asset_publisher_affiliation[$index]	.	')';
 																																																								$column.='<div class="clearfix"></div>';
 																																																				}
 																																																}
 																																												}
-																																												else	if	($type	==	'Coverage')
+																																												else	if($type	==	'Coverage')
 																																												{
-																																																$asset_coverage	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_coverage)));
-																																																$asset_coverage_type	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_coverage_type)));
+																																																$asset_coverage	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_coverage)));
+																																																$asset_coverage_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_coverage_type)));
 																																																$column	=	'';
-																																																if	(count	($asset_coverage)	>	0)
+																																																if(count($asset_coverage)	>	0)
 																																																{
-																																																				foreach	($asset_coverage	as	$index	=>	$coverage)
+																																																				foreach($asset_coverage	as	$index	=>	$coverage)
 																																																				{
-																																																								if	(isset	($asset_coverage_type[$index])	&&	!	empty	($asset_coverage_type[$index]))
+																																																								if(isset($asset_coverage_type[$index])	&&	!	empty($asset_coverage_type[$index]))
 																																																								{
 																																																												$column.=	$asset_coverage_type[$index]	.	':';
 																																																								}
-																																																								if	(isset	($coverage)	&&	!	empty	($coverage))
+																																																								if(isset($coverage)	&&	!	empty($coverage))
 																																																								{
 																																																												$column.=	$coverage;
 																																																								}
@@ -472,65 +491,65 @@ if	(	!	$isAjax)
 																																																				}
 																																																}
 																																												}
-																																												else	if	($type	==	'Audience_Level')
+																																												else	if($type	==	'Audience_Level')
 																																												{
-																																																$asset_audience_level	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_audience_level)));
-																																																$asset_audience_level_ref	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_audience_level_ref)));
-																																																$asset_audience_level_source	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_audience_level_source)));
+																																																$asset_audience_level	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_audience_level)));
+																																																$asset_audience_level_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_audience_level_ref)));
+																																																$asset_audience_level_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_audience_level_source)));
 																																																$column	=	'';
-																																																if	(count	($asset_audience_level)	>	0)
+																																																if(count($asset_audience_level)	>	0)
 																																																{
-																																																				foreach	($asset_audience_level	as	$index	=>	$audience_level)
+																																																				foreach($asset_audience_level	as	$index	=>	$audience_level)
 																																																				{
 
-																																																								if	(isset	($asset_audience_level_ref[$index])	&&	!	empty	($asset_audience_level_ref[$index]))
+																																																								if(isset($asset_audience_level_ref[$index])	&&	!	empty($asset_audience_level_ref[$index]))
 																																																								{
 																																																												$column.="<a target='_blank' href='$asset_audience_level_ref[$index]'>$audience_level</a>";
 																																																								}
 																																																								else
 																																																												$column.=$audience_level;
-																																																								if	(isset	($asset_audience_level_source[$index])	&&	$asset_audience_level_source[$index]	!=	'')
+																																																								if(isset($asset_audience_level_source[$index])	&&	$asset_audience_level_source[$index]	!=	'')
 																																																												$column.=' ('	.	$asset_audience_level_source[$index]	.	')';
 																																																								$column.='<div class="clearfix"></div>';
 																																																				}
 																																																}
 																																												}
-																																												else	if	($type	==	'Audience_Rating')
+																																												else	if($type	==	'Audience_Rating')
 																																												{
-																																																$asset_audience_rating	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_audience_rating)));
-																																																$asset_audience_rating_ref	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_audience_rating_ref)));
-																																																$asset_audience_rating_source	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_audience_rating_source)));
+																																																$asset_audience_rating	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_audience_rating)));
+																																																$asset_audience_rating_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_audience_rating_ref)));
+																																																$asset_audience_rating_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_audience_rating_source)));
 																																																$column	=	'';
-																																																if	(count	($asset_audience_rating)	>	0)
+																																																if(count($asset_audience_rating)	>	0)
 																																																{
-																																																				foreach	($asset_audience_rating	as	$index	=>	$audience_rating)
+																																																				foreach($asset_audience_rating	as	$index	=>	$audience_rating)
 																																																				{
 
-																																																								if	(isset	($asset_audience_rating_ref[$index])	&&	!	empty	($asset_audience_rating_ref[$index]))
+																																																								if(isset($asset_audience_rating_ref[$index])	&&	!	empty($asset_audience_rating_ref[$index]))
 																																																								{
 																																																												$column.="<a target='_blank' href='$asset_audience_level_ref[$index]'>$audience_rating</a>";
 																																																								}
 																																																								else
 																																																												$column.=$audience_rating;
-																																																								if	(isset	($asset_audience_rating_source[$index])	&&	$asset_audience_rating_source[$index]	!=	'')
+																																																								if(isset($asset_audience_rating_source[$index])	&&	$asset_audience_rating_source[$index]	!=	'')
 																																																												$column.=' ('	.	$asset_audience_rating_source[$index]	.	')';
 																																																								$column.='<div class="clearfix"></div>';
 																																																				}
 																																																}
 																																												}
-																																												else	if	($type	==	'Annotation')
+																																												else	if($type	==	'Annotation')
 																																												{
-																																																$asset_annotation	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_annotation)));
-																																																$asset_annotation_ref	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_annotation_ref)));
-																																																$asset_annotation_type	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_annotation_type)));
+																																																$asset_annotation	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_annotation)));
+																																																$asset_annotation_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_annotation_ref)));
+																																																$asset_annotation_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_annotation_type)));
 																																																$column	=	'';
-																																																if	(count	($asset_annotation)	>	0)
+																																																if(count($asset_annotation)	>	0)
 																																																{
-																																																				foreach	($asset_annotation	as	$index	=>	$annotation)
+																																																				foreach($asset_annotation	as	$index	=>	$annotation)
 																																																				{
-																																																								if	(isset	($asset_annotation_type[$index])	&&	$asset_annotation_type[$index]	!=	'')
+																																																								if(isset($asset_annotation_type[$index])	&&	$asset_annotation_type[$index]	!=	'')
 																																																												$column.=$asset_annotation_type[$index]	.	': ';
-																																																								if	(isset	($asset_annotation_ref[$index])	&&	!	empty	($asset_annotation_ref[$index]))
+																																																								if(isset($asset_annotation_ref[$index])	&&	!	empty($asset_annotation_ref[$index]))
 																																																								{
 																																																												$column.="<a target='_blank' href='$asset_annotation_ref[$index]'>$annotation</a>: ";
 																																																								}
@@ -541,17 +560,17 @@ if	(	!	$isAjax)
 																																																				}
 																																																}
 																																												}
-																																												else	if	($type	==	'Rights')
+																																												else	if($type	==	'Rights')
 																																												{
-																																																$asset_rights	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_rights)));
-																																																$asset_rights_link	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$asset->asset_rights_link)));
+																																																$asset_rights	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_rights)));
+																																																$asset_rights_link	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_rights_link)));
 																																																$column	=	'';
-																																																if	(count	($asset_rights)	>	0)
+																																																if(count($asset_rights)	>	0)
 																																																{
-																																																				foreach	($asset_rights	as	$index	=>	$rights)
+																																																				foreach($asset_rights	as	$index	=>	$rights)
 																																																				{
 
-																																																								if	(isset	($asset_rights_link[$index])	&&	!	empty	($asset_rights_link[$index]))
+																																																								if(isset($asset_rights_link[$index])	&&	!	empty($asset_rights_link[$index]))
 																																																								{
 																																																												$column.="<a target='_blank' href='"	.	$asset_rights_link[$index]	.	"'>"	.	$rights	.	"</a>: ";
 																																																								}
@@ -561,11 +580,11 @@ if	(	!	$isAjax)
 																																																				}
 																																																}
 																																												}
-																																												if	(in_array	($type,	array	("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience",	"Annotation",	"Rights")))
+																																												if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience",	"Annotation",	"Rights")))
 																																												{
 																																																$width	=	'min-width:100px;';
 																																												}
-																																												else	if	($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID")
+																																												else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID")
 																																												{
 																																																$width	=	'min-width:175px;';
 																																												}
@@ -580,15 +599,15 @@ if	(	!	$isAjax)
 																				</table>
 																</div><?php
 																}
-																if	(isset	($current_tab)	&&	$current_tab	==	'thumbnails')
+																if(isset($current_tab)	&&	$current_tab	==	'thumbnails')
 																{
 																												?>
 
 												<?php	}	?>
-												<div style="text-align: right;width: 860px;"> <strong><?php	echo	$start;	?> - <?php	echo	$end;	?></strong> of <strong style="margin-right: 10px;"><?php	echo	$total;	?></strong> <?php	echo	$this->ajax_pagination->create_links	();	?> </div>
+												<div style="text-align: right;width: 860px;"> <strong><?php	echo	$start;	?> - <?php	echo	$end;	?></strong> of <strong style="margin-right: 10px;"><?php	echo	$total;	?></strong> <?php	echo	$this->ajax_pagination->create_links();	?> </div>
 												<?php
 								}
-								else	if	($start	>=	1000)
+								else	if($start	>=	1000)
 								{
 												?>
 												<div  style="text-align: center;width: 860px;margin-top: 50px;font-size: 20px;">Please refine your search</div><?php
@@ -599,7 +618,7 @@ if	(	!	$isAjax)
 												<div  style="text-align: center;width: 860px;margin-top: 50px;font-size: 20px;"> No Assets Found</div><?php	}
 								?>
 								<?php
-								if	(	!	$isAjax)
+								if(	!	$isAjax)
 								{
 												?>
 								</div>

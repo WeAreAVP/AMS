@@ -60,9 +60,9 @@
 																												<label><i class="icon-question-sign"></i><b>* Instantiation ID:</b></label>
 																								</td>
 																								<td>
-																												
-																												<p><?php echo $combine_identifier; ?></p>
-																												
+
+																												<p><?php	echo	$combine_identifier;	?></p>
+
 																								</td>
 																				</tr>
 																<?php	}	?>
@@ -197,11 +197,9 @@
 																								</td>
 																				</tr>
 
-																<?php	}	?>
-																<!--				Duration	End		-->
-																<!--				Start Time 	Start		-->
-																<?php
-																if($instantiation_detail->actual_duration	>	0)
+																				<?php
+																}
+																else	if($instantiation_detail->actual_duration	>	0)
 																{
 																				?>	
 																				<tr>
@@ -215,7 +213,24 @@
 																				</tr>
 
 																<?php	}	?>
-																<!--				Start Time	End		-->
+																<!--				Duration	End		-->
+																<!--				Time Start 	Start		-->
+																<?php
+																if($instantiation_detail->location)
+																{
+																				?>	
+																				<tr>
+																								<td class="record-detail-page">
+																												<label><i class="icon-question-sign"></i><b>* Location</b></label>
+																								</td>
+																								<td>
+																												<p>	<?php	echo	$instantiation_detail->location;	?></p>
+
+																								</td>
+																				</tr>
+
+																<?php	}	?>
+																<!--				Generation	End		-->
 												</table>
 								</div>
 								<?php

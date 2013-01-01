@@ -203,7 +203,7 @@ function showHideColumns(column)
 								{
 												$('#listing_table').dataTable().fnSetColumnVis(column,true);
 								}
-								updateDatabase();
+//								updateDatabase();
 				}
 				else
 				{

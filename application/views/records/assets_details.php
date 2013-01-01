@@ -152,9 +152,69 @@
 																												<?php
 																								}
 																								?>
-																				<?php	}
-																}	?>
+																								<?php
+																				}
+																}
+																?>
 																<!--				Asset Genre End		-->
+																<!--				Asset Creator Start		-->
+																<?php
+																if(isset($asset_creators_roles)	&&	!	empty($asset_creators_roles))
+																{
+																				foreach($asset_creators_roles	as	$creator)
+																				{
+																								$asset_creator_name	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_name)));
+																								$asset_creator_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_ref)));
+																								$asset_creator_affiliation	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_affiliation)));
+																								$asset_creator_role	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_role)));
+																								$asset_creator_role_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_role_ref)));
+																								$asset_creator_role_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_role_source)));
+																								$combine_creator	=	'';
+																								if(count($asset_creator_name)	>	0)
+																								{
+																												?>
+																												<tr>
+																																<td class="record-detail-page">
+																																				<label><i class="icon-question-sign"></i>* Creator:</label>
+																																</td>
+																																<td>
+																																				<?php
+																																				foreach($asset_creator_name	as	$index	=>	$creator_name)
+																																				{
+
+																																								if(isset($asset_creator_ref[$index])	&&	!	empty($asset_creator_ref[$index]))
+																																								{
+																																												$combine_creator.="<a target='_blank' href='$asset_creator_ref[$index]'>$creator_name</a>";
+																																								}
+																																								else
+																																												$column.=$creator_name;
+																																								if(isset($asset_creator_affiliation[$index])	&&	$asset_creator_affiliation[$index]	!=	'')
+																																												$combine_creator.=','	.	$asset_creator_affiliation[$index];
+
+																																								if(isset($asset_creator_role[$index])	&&	!	empty($asset_creator_role[$index]))
+																																								{
+																																												if(isset($asset_creator_role_ref[$index])	&&	!	empty($asset_creator_role_ref[$index]))
+																																												{
+																																																$combine_creator.=",<a target='_blank' href='$asset_contributor_role_ref[$index]'>$asset_creator_role[$index]</a>";
+																																												}
+																																												else
+																																																$combine_creator.=','	.	$asset_creator_role[$index];
+																																								}
+																																								if(isset($asset_creator_role_source[$index])	&&	$asset_creator_role_source[$index]	!=	'')
+																																												$combine_creator.=' ('	.	$asset_creator_role_source[$index]	.	')';
+																																								$combine_creator.='<div class="clearfix"></div>';
+																																				}
+																																}
+																																?>
+																																<p><?php	echo	$combine_creator;	?></p>
+																												</td>
+																								</tr>
+
+																								<?php
+																				}
+																}
+																?>
+																<!--				Asset Creator End		-->
 												</table>
 
 								</div>

@@ -341,11 +341,11 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_assets_genres_by_assets_id($assets_id)
 				{
-								
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genre,'(**)')) SEPARATOR ' | ') AS genre",FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genre_source,'(**)')) SEPARATOR ' | ') AS genre_source",FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genre_ref,'(**)')) SEPARATOR ' | ') AS genre_ref",FALSE);
-								
+
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genre,'(**)')) SEPARATOR ' | ') AS genre",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genre_source,'(**)')) SEPARATOR ' | ') AS genre_source",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genre_ref,'(**)')) SEPARATOR ' | ') AS genre_ref",	FALSE);
+
 								$this->db->from($this->_table_assets_genres);
 								$this->db->join($this->_table_genres,	"$this->_table_assets_genres.genres_id=$this->_table_genres.id",	"left");
 								$this->db->where("$this->_table_assets_genres.assets_id",	$assets_id);
@@ -366,11 +366,18 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_assets_creators_roles_by_assets_id($assets_id)
 				{
-								$this->db->select("creator_name,creator_affiliation,creator_ref,creator_role ,creator_role_source,creator_role_ref,creators_id");
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_name,'(**)')) SEPARATOR ' | ') AS asset_creator_name",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_ref,'(**)')) SEPARATOR ' | ') AS asset_creator_ref",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_affiliation,'(**)')) SEPARATOR ' | ') AS asset_creator_affiliation",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_role,'(**)')) SEPARATOR ' | ') AS asset_creator_role",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_role_source,'(**)')) SEPARATOR ' | ') AS asset_creator_role_ref",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_role_ref,'(**)')) SEPARATOR ' | ') AS asset_creator_role_source",	FALSE);
+
 								$this->db->from($this->_table_assets_creators_roles);
 								$this->db->join($this->_table_creator_roles,	"$this->_table_assets_creators_roles.creator_roles_id=$this->_table_creator_roles.id",	"left");
 								$this->db->join($this->_table_creators,	"$this->_table_assets_creators_roles.creators_id=$this->_table_creators.id",	"left");
 								$this->db->where("$this->_table_assets_creators_roles.assets_id",	$assets_id);
+								$this->db->group_by("$this->_table_assets_genres.assets_id");
 								$res	=	$this->db->get();
 								if(isset($res)	&&	!	empty($res))
 								{

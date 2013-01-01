@@ -319,9 +319,7 @@ function updateDatabase(refresh)
 												table_type:current_table_type
 								},
 								success: function (result){
-												if(refresh==1){
-																window.location.reload();
-												}
+											$('#listing_table').css('width','100%');
 								}
 				});
 }

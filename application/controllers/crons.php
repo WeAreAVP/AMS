@@ -124,8 +124,6 @@ class	Crons	extends	CI_Controller
 																				if(	!	$this->cron_model->is_pbcore_file_by_path($data_file_path))
 																				{
 																								$this->cron_model->insert_prcoess_data(array('file_type'						=>	$type,	'file_path'						=>	($data_file_path),	'is_processed'			=>	0,	'created_at'					=>	date('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id));
-																								echo $this->db->last_query();
-																								exit();
 																				}
 																}
 												}

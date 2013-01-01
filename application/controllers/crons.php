@@ -312,13 +312,13 @@ class	Crons	extends	CI_Controller
 																				//Instantiation formatTimeStart Start
 																				if(isset($pbcoreinstantiation_child['formattimestart'][0]['text']))
 																				{
-																								$instantiations_d['time_start']	=	$pbcoreinstantiation_child['formattimestart'][0]['text'];
+																								$instantiations_d['time_start']	=	trim($pbcoreinstantiation_child['formattimestart'][0]['text']);
 																				}
 
 																				//Instantiation formatDuration Start
 																				if(isset($pbcoreinstantiation_child['formatduration'][0]['text']))
 																				{
-																								$instantiations_d['projected_duration']	=	$pbcoreinstantiation_child['formatduration'][0]['text'];
+																								$instantiations_d['projected_duration']	=	trim($pbcoreinstantiation_child['formatduration'][0]['text']);
 																				}
 
 																				//Instantiation formatDataRate Start
@@ -398,18 +398,20 @@ class	Crons	extends	CI_Controller
 																																				$nomination_d['instantiations_id']	=	$instantiations_id;
 																																				if(isset($pbcore_extension['children']['extension'][0]['text']))
 																																				{
-
-																																								$nomunation_status	=	$this->assets_model->get_nomination_status_by_status($pbcore_extension['children']['extension'][0]['text']);
-																																								if($nomunation_status)
+																																								if(in_array(trim($pbcore_extension['children']['extension'][0]['text']),	array('Nominated/1st Priority',	'Nominated/2nd Priority',	'Waiting List')))
 																																								{
-																																												$nomination_d['nomination_status_id']	=	$nomunation_status->id;
+																																												$nomunation_status	=	$this->assets_model->get_nomination_status_by_status($pbcore_extension['children']['extension'][0]['text']);
+																																												if($nomunation_status)
+																																												{
+																																																$nomination_d['nomination_status_id']	=	$nomunation_status->id;
+																																												}
+																																												else
+																																												{
+																																																$nomination_d['nomination_status_id']	=	$this->assets_model->insert_nomination_status(array("status"																	=>	$pbcore_extension['children']['extension'][0]['text']));
+																																												}
+																																												$nomination_d['created']	=	date("Y-m-d H:i:s");
+																																												$this->assets_model->insert_nominations($nomination_d);
 																																								}
-																																								else
-																																								{
-																																												$nomination_d['nomination_status_id']	=	$this->assets_model->insert_nomination_status(array("status"																	=>	$pbcore_extension['children']['extension'][0]['text']));
-																																								}
-																																								$nomination_d['created']	=	date("Y-m-d H:i:s");
-																																								$this->assets_model->insert_nominations($nomination_d);
 																																				}
 																																}
 																												}

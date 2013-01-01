@@ -72,6 +72,7 @@ if(	!	$isAjax)
 																																												if(isset($ins_identifier_src[$index])	&&	!	empty($ins_identifier_src[$index]))
 																																																$column.=' ('	.	$ins_identifier_src[$index]	.	')';
 																																												$column.=	'</a>';
+																																												$column.='<div class="clearfix"></div>';
 																																								}
 																																				}
 																																				else	if($type	==	'Nomination')

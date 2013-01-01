@@ -109,7 +109,7 @@
 																<?php
 																if(isset($asset_genres)	&&	!	empty($asset_genres))
 																{
-																				debug($asset_genres);
+																				
 																				?>
 
 																				<?php
@@ -144,6 +144,7 @@
 																																								$combine_genre.=' ('	.	$asset_genre_source[$index]	.	')';
 																																				$combine_genre.='<div class="clearfix"></div>';
 																																}
+																																echo $combine_genre;exit;
 																																?>
 																																<p><?php	echo	$combine_genre;	?></p>
 																												</td>

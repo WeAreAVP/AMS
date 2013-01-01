@@ -14,9 +14,9 @@ class	Assets_Model	extends	CI_Model
 					* constructor. set table name amd prefix
 					* 
 					*/
-				function	__construct	()
+				function	__construct()
 				{
-								parent::__construct	();
+								parent::__construct();
 
 								$this->_prefix	=	'';
 								$this->stations	=	'stations';
@@ -65,14 +65,14 @@ class	Assets_Model	extends	CI_Model
 					* @param type $assets_id
 					* @return array 
 					*/
-				function	get_annotations_by_asset_id	($asset_id)
+				function	get_annotations_by_asset_id($asset_id)
 				{
-								$this->db->where	('assets_id',	$asset_id);
-								$query	=	$this->db->get	($this->_table_annotations);
-								if	(isset	($query)	&&	!empty	($query))
+								$this->db->where('assets_id',	$asset_id);
+								$query	=	$this->db->get($this->_table_annotations);
+								if(isset($query)	&&	!	empty($query))
 								{
-												$res	=	$query->result	();
-												if	(isset	($res)	&&	!empty	($res))
+												$res	=	$query->result();
+												if(isset($res)	&&	!	empty($res))
 																return	$res;
 								}
 								return	false;
@@ -84,16 +84,16 @@ class	Assets_Model	extends	CI_Model
 					* @param type $title_type
 					* @return object 
 					*/
-				function	get_audience_rating_by_asset_id	($assets_id)
+				function	get_audience_rating_by_asset_id($assets_id)
 				{
-								$this->db->select	("audience_rating ,audience_rating_source ,	audience_rating_ref ");
-								$this->db->from	($this->_table_assets_audience_ratings);
-								$this->db->join	($this->_table_audience_ratings,	"$this->_table_assets_audience_ratings.audience_ratings_id=$this->_table_audience_ratings.id",	"left");
-								$this->db->where	($this->_table_assets_audience_ratings	.	".assets_id",	$assets_id);
-								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->select("audience_rating ,audience_rating_source ,	audience_rating_ref ");
+								$this->db->from($this->_table_assets_audience_ratings);
+								$this->db->join($this->_table_audience_ratings,	"$this->_table_assets_audience_ratings.audience_ratings_id=$this->_table_audience_ratings.id",	"left");
+								$this->db->where($this->_table_assets_audience_ratings	.	".assets_id",	$assets_id);
+								$res	=	$this->db->get();
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->result	();
+												return	$res->result();
 								}
 								return	false;
 				}
@@ -104,16 +104,16 @@ class	Assets_Model	extends	CI_Model
 					* @param type $title_type
 					* @return object 
 					*/
-				function	get_audience_level_by_asset_id	($assets_id)
+				function	get_audience_level_by_asset_id($assets_id)
 				{
-								$this->db->select	("audience_level ,audience_level_source ,audience_level_ref ");
-								$this->db->from	($this->_table_assets_audience_levels);
-								$this->db->join	($this->_table_audience_levels,	"$this->_table_assets_audience_levels.audience_levels_id=$this->_table_audience_levels.id",	"left");
-								$this->db->where	($this->_table_assets_audience_levels	.	".assets_id",	$assets_id);
-								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->select("audience_level ,audience_level_source ,audience_level_ref ");
+								$this->db->from($this->_table_assets_audience_levels);
+								$this->db->join($this->_table_audience_levels,	"$this->_table_assets_audience_levels.audience_levels_id=$this->_table_audience_levels.id",	"left");
+								$this->db->where($this->_table_assets_audience_levels	.	".assets_id",	$assets_id);
+								$res	=	$this->db->get();
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->result	();
+												return	$res->result();
 								}
 								return	false;
 				}
@@ -123,14 +123,14 @@ class	Assets_Model	extends	CI_Model
 					* @param type $assets_id
 					* @return array 
 					*/
-				function	get_rights_summaries_by_asset_id	($asset_id)
+				function	get_rights_summaries_by_asset_id($asset_id)
 				{
-								$this->db->where	('assets_id',	$asset_id);
-								$query	=	$this->db->get	($this->_table_rights_summaries);
-								if	(isset	($query)	&&	!empty	($query))
+								$this->db->where('assets_id',	$asset_id);
+								$query	=	$this->db->get($this->_table_rights_summaries);
+								if(isset($query)	&&	!	empty($query))
 								{
-												$res	=	$query->result	();
-												if	(isset	($res)	&&	!empty	($res))
+												$res	=	$query->result();
+												if(isset($res)	&&	!	empty($res))
 																return	$res;
 								}
 								return	false;
@@ -141,14 +141,14 @@ class	Assets_Model	extends	CI_Model
 					* @param type $assets_id
 					* @return array 
 					*/
-				function	get_title_by_asset_id	($asset_id)
+				function	get_title_by_asset_id($asset_id)
 				{
-								$this->db->where	('assets_id',	$asset_id);
-								$query	=	$this->db->get	($this->_table_asset_titles);
-								if	(isset	($query)	&&	!empty	($query))
+								$this->db->where('assets_id',	$asset_id);
+								$query	=	$this->db->get($this->_table_asset_titles);
+								if(isset($query)	&&	!	empty($query))
 								{
-												$res	=	$query->row	();
-												if	(isset	($res)	&&	!empty	($res))
+												$res	=	$query->row();
+												if(isset($res)	&&	!	empty($res))
 												{
 																return	$res->title;
 												}
@@ -161,14 +161,14 @@ class	Assets_Model	extends	CI_Model
 					* @param type $assets_id
 					* @return array 
 					*/
-				function	get_coverages_by_asset_id	($asset_id)
+				function	get_coverages_by_asset_id($asset_id)
 				{
-								$this->db->where	('assets_id',	$asset_id);
-								$query	=	$this->db->get	($this->_table_coverages);
-								if	(isset	($query)	&&	!empty	($query))
+								$this->db->where('assets_id',	$asset_id);
+								$query	=	$this->db->get($this->_table_coverages);
+								if(isset($query)	&&	!	empty($query))
 								{
-												$res	=	$query->result	();
-												if	(isset	($res)	&&	!empty	($res))
+												$res	=	$query->result();
+												if(isset($res)	&&	!	empty($res))
 																return	$res;
 								}
 								return	false;
@@ -179,14 +179,14 @@ class	Assets_Model	extends	CI_Model
 					* @param type $assets_id
 					* @return array 
 					*/
-				function	get_descriptions_by_asset_id	($asset_id)
+				function	get_descriptions_by_asset_id($asset_id)
 				{
-								$this->db->where	('assets_id',	$asset_id);
-								$query	=	$this->db->get	($this->_table_asset_descriptions);
-								if	(isset	($query)	&&	!empty	($query))
+								$this->db->where('assets_id',	$asset_id);
+								$query	=	$this->db->get($this->_table_asset_descriptions);
+								if(isset($query)	&&	!	empty($query))
 								{
-												$res	=	$query->row	();
-												if	(isset	($res)	&&	!empty	($res))
+												$res	=	$query->row();
+												if(isset($res)	&&	!	empty($res))
 												{
 																return	$res->description;
 												}
@@ -199,15 +199,15 @@ class	Assets_Model	extends	CI_Model
 					* @param type $assets_id
 					* @return array 
 					*/
-				function	get_aa_guid_by_asset_id	($asset_id)
+				function	get_aa_guid_by_asset_id($asset_id)
 				{
-								$this->db->where	('assets_id',	$asset_id);
-								$this->db->where	('identifier_source',	"http://americanarchiveinventory.org");
-								$query	=	$this->db->get	($this->_table_identifiers);
-								if	(isset	($query)	&&	!empty	($query))
+								$this->db->where('assets_id',	$asset_id);
+								$this->db->where('identifier_source',	"http://americanarchiveinventory.org");
+								$query	=	$this->db->get($this->_table_identifiers);
+								if(isset($query)	&&	!	empty($query))
 								{
-												$res	=	$query->row	();
-												if	(isset	($res)	&&	!empty	($res))
+												$res	=	$query->row();
+												if(isset($res)	&&	!	empty($res))
 												{
 																return	$res->identifier;
 												}
@@ -220,15 +220,15 @@ class	Assets_Model	extends	CI_Model
 					* @param type $assets_id
 					* @return array 
 					*/
-				function	get_local_id_by_asset_id	($asset_id)
+				function	get_local_id_by_asset_id($asset_id)
 				{
-								$this->db->where	('assets_id',	$asset_id);
-								$this->db->where	('identifier_source !=',	"http://americanarchiveinventory.org");
-								$query	=	$this->db->get	($this->_table_identifiers);
-								if	(isset	($query)	&&	!empty	($query))
+								$this->db->where('assets_id',	$asset_id);
+								$this->db->where('identifier_source !=',	"http://americanarchiveinventory.org");
+								$query	=	$this->db->get($this->_table_identifiers);
+								if(isset($query)	&&	!	empty($query))
 								{
-												$res	=	$query->result	();
-												if	(isset	($res)	&&	!empty	($res))
+												$res	=	$query->result();
+												if(isset($res)	&&	!	empty($res))
 												{
 																return	$res;
 												}
@@ -241,35 +241,35 @@ class	Assets_Model	extends	CI_Model
 					* 
 					* @return array 
 					*/
-				function	get_all	()
+				function	get_all()
 				{
 								$sql	=	"SELECT DISTINCT ast.id AS ast_id, ast . * FROM {$this->_assets_table} ast INNER JOIN {$this->_table_identifiers} idt ON ast.id=idt.assets_id LIMIT 100 ";
-								$res	=	$this->db->query	($sql);
-								if	(isset	($res)	&&	!empty	($res))
+								$res	=	$this->db->query($sql);
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->result	();
+												return	$res->result();
 								}return	false;
 
-								$this->db->select	("$this->_assets_table.id as asset_id",	FALSE);
-								$this->db->select	("$this->_table_identifiers.identifier as guid_identifier",	FALSE);
-								$this->db->select	("GROUP_CONCAT(local.identifier SEPARATOR ' | ') as local_identifier",	FALSE);
-								$this->db->select	("$this->_table_asset_descriptions.description",	FALSE);
-								$this->db->select	("$this->_table_asset_titles.title",	FALSE);
+								$this->db->select("$this->_assets_table.id as asset_id",	FALSE);
+								$this->db->select("$this->_table_identifiers.identifier as guid_identifier",	FALSE);
+								$this->db->select("GROUP_CONCAT(local.identifier SEPARATOR ' | ') as local_identifier",	FALSE);
+								$this->db->select("$this->_table_asset_descriptions.description",	FALSE);
+								$this->db->select("$this->_table_asset_titles.title",	FALSE);
 
 
-								$this->db->join	($this->_table_identifiers	.	' as local',	"local.assets_id = $this->_assets_table.id",	'left');
-								$this->db->join	($this->_table_identifiers,	"$this->_table_identifiers.assets_id = $this->_assets_table.id",	'left');
-								$this->db->join	($this->_table_asset_descriptions,	"$this->_table_asset_descriptions.assets_id = $this->_assets_table.id",	'left');
-								$this->db->join	($this->_table_asset_titles,	"$this->_table_asset_titles.assets_id = $this->_assets_table.id",	'left');
+								$this->db->join($this->_table_identifiers	.	' as local',	"local.assets_id = $this->_assets_table.id",	'left');
+								$this->db->join($this->_table_identifiers,	"$this->_table_identifiers.assets_id = $this->_assets_table.id",	'left');
+								$this->db->join($this->_table_asset_descriptions,	"$this->_table_asset_descriptions.assets_id = $this->_assets_table.id",	'left');
+								$this->db->join($this->_table_asset_titles,	"$this->_table_asset_titles.assets_id = $this->_assets_table.id",	'left');
 
-								$this->db->where	("$this->_table_identifiers.identifier_source",	"http://americanarchiveinventory.org");
-								$this->db->where	("local.identifier_source !=",	"http://americanarchiveinventory.org");
+								$this->db->where("$this->_table_identifiers.identifier_source",	"http://americanarchiveinventory.org");
+								$this->db->where("local.identifier_source !=",	"http://americanarchiveinventory.org");
 
-								$this->db->limit	(100);
+								$this->db->limit(100);
 
-								$this->db->group_by	("$this->_assets_table.id");
+								$this->db->group_by("$this->_assets_table.id");
 
-								$result	=	$this->db->get	($this->_assets_table)->result	();
+								$result	=	$this->db->get($this->_assets_table)->result();
 
 								return	$result;
 				}
@@ -279,16 +279,17 @@ class	Assets_Model	extends	CI_Model
 					* 
 					* @return array 
 					*/
-				function	get_asset_by_asset_id	($asset_id)
+				function	get_asset_by_asset_id($asset_id)
 				{
 								$sql	=	"SELECT $this->_assets_table.id AS asset_id, $this->_table_identifiers.identifier AS guid_identifier, 
 								$this->stations.station_name as organization,
-                                GROUP_CONCAT(local.identifier SEPARATOR ' | ') AS local_identifier, 
+								GROUP_CONCAT(local.identifier SEPARATOR ' | ') AS local_identifier, 
 								GROUP_CONCAT(local.identifier_source SEPARATOR ' | ') AS local_identifier_source, 
 								GROUP_CONCAT(local.identifier_ref SEPARATOR ' | ') AS local_identifier_ref, 
-                                $this->_table_asset_descriptions.description,
-																GROUP_CONCAT($this->_table_asset_titles.title SEPARATOR ' | ') AS title,
-								$this->_table_asset_titles.title_source ,$this->_table_asset_titles.title_ref ,$this->_table_asset_title_types.title_type,
+								$this->_table_asset_descriptions.description,
+								GROUP_CONCAT($this->_table_asset_titles.title SEPARATOR ' | ') AS title,
+								$this->_table_asset_titles.title_source ,$this->_table_asset_titles.title_ref ,
+								$this->_table_asset_title_types.title_type,
 								GROUP_CONCAT($this->_table_asset_types.asset_type SEPARATOR ' | ') AS asset_type
 								FROM (`$this->_assets_table`) 
                                 LEFT JOIN {$this->_table_identifiers} AS `local` ON `local`.`assets_id` = `$this->_assets_table`.`id` 
@@ -303,10 +304,10 @@ class	Assets_Model	extends	CI_Model
                         AND `local`.`identifier_source` != 'http://americanarchiveinventory.org' 
 						AND assets.id='"	.	$asset_id	.	"'
                         GROUP BY `assets`.`id` ";
-								$res	=	$this->db->query	($sql);
-								if	(isset	($res)	&&	!empty	($res))
+								$res	=	$this->db->query($sql);
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}return	false;
 				}
 
@@ -316,16 +317,16 @@ class	Assets_Model	extends	CI_Model
 					* @param type $assets_id
 					* @return object 
 					*/
-				function	get_assets_dates_by_assets_id	($assets_id)
+				function	get_assets_dates_by_assets_id($assets_id)
 				{
-								$this->db->select	("$this->_table_asset_dates.asset_date,$this->_table_date_types.date_type");
-								$this->db->from	($this->_table_asset_dates);
-								$this->db->join	($this->_table_date_types,	"$this->_table_asset_dates.date_types_id=$this->_table_date_types.id",	"left");
-								$this->db->where	("$this->_table_asset_dates.assets_id",	$assets_id);
-								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->select("$this->_table_asset_dates.asset_date,$this->_table_date_types.date_type");
+								$this->db->from($this->_table_asset_dates);
+								$this->db->join($this->_table_date_types,	"$this->_table_asset_dates.date_types_id=$this->_table_date_types.id",	"left");
+								$this->db->where("$this->_table_asset_dates.assets_id",	$assets_id);
+								$res	=	$this->db->get();
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->result	();
+												return	$res->result();
 								}
 								return	false;
 				}
@@ -336,16 +337,16 @@ class	Assets_Model	extends	CI_Model
 					* @param type $assets_id
 					* @return object 
 					*/
-				function	get_assets_genres_by_assets_id	($assets_id)
+				function	get_assets_genres_by_assets_id($assets_id)
 				{
-								$this->db->select	("genre,genre_source,genre_ref");
-								$this->db->from	($this->_table_assets_genres);
-								$this->db->join	($this->_table_genres,	"$this->_table_assets_genres.genres_id=$this->_table_genres.id",	"left");
-								$this->db->where	("$this->_table_assets_genres.assets_id",	$assets_id);
-								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->select("genre,genre_source,genre_ref");
+								$this->db->from($this->_table_assets_genres);
+								$this->db->join($this->_table_genres,	"$this->_table_assets_genres.genres_id=$this->_table_genres.id",	"left");
+								$this->db->where("$this->_table_assets_genres.assets_id",	$assets_id);
+								$res	=	$this->db->get();
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->result	();
+												return	$res->result();
 								}
 								return	false;
 				}
@@ -356,17 +357,17 @@ class	Assets_Model	extends	CI_Model
 					* @param type $assets_id
 					* @return object 
 					*/
-				function	get_assets_creators_roles_by_assets_id	($assets_id)
+				function	get_assets_creators_roles_by_assets_id($assets_id)
 				{
-								$this->db->select	("creator_name,creator_affiliation,creator_ref,creator_role ,creator_role_source,creator_role_ref,creators_id");
-								$this->db->from	($this->_table_assets_creators_roles);
-								$this->db->join	($this->_table_creator_roles,	"$this->_table_assets_creators_roles.creator_roles_id=$this->_table_creator_roles.id",	"left");
-								$this->db->join	($this->_table_creators,	"$this->_table_assets_creators_roles.creators_id=$this->_table_creators.id",	"left");
-								$this->db->where	("$this->_table_assets_creators_roles.assets_id",	$assets_id);
-								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->select("creator_name,creator_affiliation,creator_ref,creator_role ,creator_role_source,creator_role_ref,creators_id");
+								$this->db->from($this->_table_assets_creators_roles);
+								$this->db->join($this->_table_creator_roles,	"$this->_table_assets_creators_roles.creator_roles_id=$this->_table_creator_roles.id",	"left");
+								$this->db->join($this->_table_creators,	"$this->_table_assets_creators_roles.creators_id=$this->_table_creators.id",	"left");
+								$this->db->where("$this->_table_assets_creators_roles.assets_id",	$assets_id);
+								$res	=	$this->db->get();
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->result	();
+												return	$res->result();
 								}
 								return	false;
 				}
@@ -377,17 +378,17 @@ class	Assets_Model	extends	CI_Model
 					* @param type $assets_id
 					* @return object 
 					*/
-				function	get_assets_contributor_roles_by_assets_id	($assets_id)
+				function	get_assets_contributor_roles_by_assets_id($assets_id)
 				{
-								$this->db->select	("contributor_role,contributor_role_source,contributor_role_ref ,contributor_name,contributor_affiliation,contributor_source,contributor_ref");
-								$this->db->from	($this->_table_assets_contributors_roles);
-								$this->db->join	($this->_table_contributor_roles,	"$this->_table_assets_contributors_roles.contributor_roles_id=$this->_table_contributor_roles.id",	"left");
-								$this->db->join	($this->_table_contributors,	"$this->_table_assets_contributors_roles.contributors_id=$this->_table_contributors.id",	"left");
-								$this->db->where	("$this->_table_assets_contributors_roles.assets_id",	$assets_id);
-								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->select("contributor_role,contributor_role_source,contributor_role_ref ,contributor_name,contributor_affiliation,contributor_source,contributor_ref");
+								$this->db->from($this->_table_assets_contributors_roles);
+								$this->db->join($this->_table_contributor_roles,	"$this->_table_assets_contributors_roles.contributor_roles_id=$this->_table_contributor_roles.id",	"left");
+								$this->db->join($this->_table_contributors,	"$this->_table_assets_contributors_roles.contributors_id=$this->_table_contributors.id",	"left");
+								$this->db->where("$this->_table_assets_contributors_roles.assets_id",	$assets_id);
+								$res	=	$this->db->get();
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->result	();
+												return	$res->result();
 								}
 								return	false;
 				}
@@ -398,17 +399,17 @@ class	Assets_Model	extends	CI_Model
 					* @param type $assets_id
 					* @return object 
 					*/
-				function	get_assets_publishers_role_by_assets_id	($assets_id)
+				function	get_assets_publishers_role_by_assets_id($assets_id)
 				{
-								$this->db->select	("publisher_role,publisher_role_source,publisher_role_ref ,publisher,publisher_affiliation,publisher_ref");
-								$this->db->from	($this->_table_assets_publishers_role);
-								$this->db->join	($this->_table_publisher_roles,	"$this->_table_assets_publishers_role.publisher_roles_id=$this->_table_publisher_roles.id",	"left");
-								$this->db->join	($this->_table_publishers,	"$this->_table_assets_publishers_role.publishers_id=$this->_table_publishers.id",	"left");
-								$this->db->where	("$this->_table_assets_publishers_role.assets_id",	$assets_id);
-								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->select("publisher_role,publisher_role_source,publisher_role_ref ,publisher,publisher_affiliation,publisher_ref");
+								$this->db->from($this->_table_assets_publishers_role);
+								$this->db->join($this->_table_publisher_roles,	"$this->_table_assets_publishers_role.publisher_roles_id=$this->_table_publisher_roles.id",	"left");
+								$this->db->join($this->_table_publishers,	"$this->_table_assets_publishers_role.publishers_id=$this->_table_publishers.id",	"left");
+								$this->db->where("$this->_table_assets_publishers_role.assets_id",	$assets_id);
+								$res	=	$this->db->get();
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->result	();
+												return	$res->result();
 								}
 								return	false;
 				}
@@ -419,13 +420,13 @@ class	Assets_Model	extends	CI_Model
 					* @param type $status
 					* @return object 
 					*/
-				function	get_nomination_status_by_status	($status)
+				function	get_nomination_status_by_status($status)
 				{
-								$this->db->where	("status LIKE",	$status);
-								$res	=	$this->db->get	($this->_table_nomination_status);
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->where("status LIKE",	$status);
+								$res	=	$this->db->get($this->_table_nomination_status);
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -436,13 +437,13 @@ class	Assets_Model	extends	CI_Model
 					* @param type $publisher
 					* @return object 
 					*/
-				function	get_publishers_by_publisher	($publisher)
+				function	get_publishers_by_publisher($publisher)
 				{
-								$this->db->where	("publisher LIKE",	$publisher);
-								$res	=	$this->db->get	($this->_table_publishers);
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->where("publisher LIKE",	$publisher);
+								$res	=	$this->db->get($this->_table_publishers);
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -453,13 +454,13 @@ class	Assets_Model	extends	CI_Model
 					* @param $publisher_role
 					* @return object 
 					*/
-				function	get_publisher_role_by_role	($publisher_role)
+				function	get_publisher_role_by_role($publisher_role)
 				{
-								$this->db->where	("publisher_role",	$publisher_role);
-								$res	=	$this->db->get	($this->_table_publisher_roles);
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->where("publisher_role",	$publisher_role);
+								$res	=	$this->db->get($this->_table_publisher_roles);
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -470,13 +471,13 @@ class	Assets_Model	extends	CI_Model
 					* @param type $contributor_name
 					* @return object 
 					*/
-				function	get_contributor_by_contributor_name	($contributor_name)
+				function	get_contributor_by_contributor_name($contributor_name)
 				{
-								$this->db->where	("contributor_name",	$contributor_name);
-								$res	=	$this->db->get	($this->_table_contributors);
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->where("contributor_name",	$contributor_name);
+								$res	=	$this->db->get($this->_table_contributors);
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -487,13 +488,13 @@ class	Assets_Model	extends	CI_Model
 					* @param $contributor_role
 					* @return object 
 					*/
-				function	get_contributor_role_by_role	($contributor_role)
+				function	get_contributor_role_by_role($contributor_role)
 				{
-								$this->db->where	("contributor_role",	$contributor_role);
-								$res	=	$this->db->get	($this->_table_contributor_roles);
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->where("contributor_role",	$contributor_role);
+								$res	=	$this->db->get($this->_table_contributor_roles);
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -504,13 +505,13 @@ class	Assets_Model	extends	CI_Model
 					* @param type $creator_name
 					* @return object 
 					*/
-				function	get_creator_by_creator_name	($creator_name)
+				function	get_creator_by_creator_name($creator_name)
 				{
-								$this->db->where	("creator_name",	$creator_name);
-								$res	=	$this->db->get	($this->_table_creators);
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->where("creator_name",	$creator_name);
+								$res	=	$this->db->get($this->_table_creators);
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -521,13 +522,13 @@ class	Assets_Model	extends	CI_Model
 					* @param type $creator_role
 					* @return object 
 					*/
-				function	get_creator_role_by_role	($creator_role)
+				function	get_creator_role_by_role($creator_role)
 				{
-								$this->db->where	("creator_role",	$creator_role);
-								$res	=	$this->db->get	($this->_table_creator_roles);
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->where("creator_role",	$creator_role);
+								$res	=	$this->db->get($this->_table_creator_roles);
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -538,13 +539,13 @@ class	Assets_Model	extends	CI_Model
 					* @param type $description_type
 					* @return object 
 					*/
-				function	get_description_id_by_type	($description_type)
+				function	get_description_id_by_type($description_type)
 				{
-								$this->db->where	("description_type",	$description_type);
-								$res	=	$this->db->get	($this->_table_description_types);
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->where("description_type",	$description_type);
+								$res	=	$this->db->get($this->_table_description_types);
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -555,13 +556,13 @@ class	Assets_Model	extends	CI_Model
 					* @param type $asset_type
 					* @return object 
 					*/
-				function	get_assets_type_by_type	($asset_type)
+				function	get_assets_type_by_type($asset_type)
 				{
-								$this->db->where	("asset_type",	$asset_type);
-								$res	=	$this->db->get	($this->_table_asset_types);
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->where("asset_type",	$asset_type);
+								$res	=	$this->db->get($this->_table_asset_types);
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -572,13 +573,13 @@ class	Assets_Model	extends	CI_Model
 					* @param type $subject
 					* @return object 
 					*/
-				function	get_subjects_id_by_subject	($subject)
+				function	get_subjects_id_by_subject($subject)
 				{
-								$this->db->where	("subject",	$subject);
-								$res	=	$this->db->get	($this->_table_subjects);
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->where("subject",	$subject);
+								$res	=	$this->db->get($this->_table_subjects);
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -589,16 +590,16 @@ class	Assets_Model	extends	CI_Model
 					* @param type $title_type
 					* @return object 
 					*/
-				function	get_subjects_by_assets_id	($assets_id)
+				function	get_subjects_by_assets_id($assets_id)
 				{
-								$this->db->select	("subject,subject_source,subject_ref");
-								$this->db->from	($this->_table_assets_subjects);
-								$this->db->join	($this->_table_subjects,	"$this->_table_assets_subjects.subjects_id=$this->_table_subjects.id",	"left");
-								$this->db->where	($this->_table_assets_subjects	.	".assets_id",	$assets_id);
-								$res	=	$this->db->get	();
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->select("subject,subject_source,subject_ref");
+								$this->db->from($this->_table_assets_subjects);
+								$this->db->join($this->_table_subjects,	"$this->_table_assets_subjects.subjects_id=$this->_table_subjects.id",	"left");
+								$this->db->where($this->_table_assets_subjects	.	".assets_id",	$assets_id);
+								$res	=	$this->db->get();
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->result	();
+												return	$res->result();
 								}
 								return	false;
 				}
@@ -609,13 +610,13 @@ class	Assets_Model	extends	CI_Model
 					* @param type $title_type
 					* @return object 
 					*/
-				function	get_asset_title_types_by_title_type	($title_type)
+				function	get_asset_title_types_by_title_type($title_type)
 				{
-								$this->db->where	("title_type",	$title_type);
-								$res	=	$this->db->get	($this->_table_asset_title_types);
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->where("title_type",	$title_type);
+								$res	=	$this->db->get($this->_table_asset_title_types);
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -626,13 +627,13 @@ class	Assets_Model	extends	CI_Model
 					* @param type $id
 					* @return object 
 					*/
-				function	get_asset_by_id	($assets_id)
+				function	get_asset_by_id($assets_id)
 				{
-								$this->db->where	("id",	$station_id);
-								$res	=	$this->db->get	($this->_assets_table);
-								if	(isset	($res)	&&	!empty	($res))
+								$this->db->where("id",	$station_id);
+								$res	=	$this->db->get($this->_assets_table);
+								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->row	();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -643,11 +644,11 @@ class	Assets_Model	extends	CI_Model
 					* @param type $station_id
 					* @return array 
 					*/
-				function	get_assets_by_station_id	($station_id)
+				function	get_assets_by_station_id($station_id)
 				{
-								$this->db->select	("*");
-								$this->db->where	("stations_id",	$station_id);
-								return	$this->db->get	($this->_assets_table)->result	();
+								$this->db->select("*");
+								$this->db->where("stations_id",	$station_id);
+								return	$this->db->get($this->_assets_table)->result();
 				}
 
 				/**
@@ -657,11 +658,11 @@ class	Assets_Model	extends	CI_Model
 					* @param array $data
 					* @return boolean 
 					*/
-				function	update_assets	($id,	$data)
+				function	update_assets($id,	$data)
 				{
-								$data["updated"]	=	date	("Y-m-d H:i:s");
-								$this->db->where	("id",	$id);
-								return	$this->db->update	($this->_assets_table,	$data);
+								$data["updated"]	=	date("Y-m-d H:i:s");
+								$this->db->where("id",	$id);
+								return	$this->db->update($this->_assets_table,	$data);
 				}
 
 				/*
@@ -672,10 +673,10 @@ class	Assets_Model	extends	CI_Model
 					* @return last inserted id 
 					*/
 
-				function	insert_assets	($data)
+				function	insert_assets($data)
 				{
-								$this->db->insert	($this->_assets_table,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_assets_table,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/*
@@ -686,10 +687,10 @@ class	Assets_Model	extends	CI_Model
 					* @return last inserted id 
 					*/
 
-				function	insert_asset_title_types	($data)
+				function	insert_asset_title_types($data)
 				{
-								$this->db->insert	($this->_table_asset_title_types,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_asset_title_types,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/*
@@ -700,10 +701,10 @@ class	Assets_Model	extends	CI_Model
 					* @return last inserted id 
 					*/
 
-				function	insert_subjects	($data)
+				function	insert_subjects($data)
 				{
-								$this->db->insert	($this->_table_subjects,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_subjects,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/*
@@ -714,10 +715,10 @@ class	Assets_Model	extends	CI_Model
 					* @return last inserted id 
 					*/
 
-				function	insert_assets_subjects	($data)
+				function	insert_assets_subjects($data)
 				{
-								$this->db->insert	($this->_table_assets_subjects,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_assets_subjects,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/*
@@ -728,10 +729,10 @@ class	Assets_Model	extends	CI_Model
 					* @return last inserted id 
 					*/
 
-				function	insert_asset_descriptions	($data)
+				function	insert_asset_descriptions($data)
 				{
-								$this->db->insert	($this->_table_asset_descriptions,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_asset_descriptions,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/*
@@ -742,10 +743,10 @@ class	Assets_Model	extends	CI_Model
 					* @return last inserted id 
 					*/
 
-				function	insert_description_types	($data)
+				function	insert_description_types($data)
 				{
-								$this->db->insert	($this->_table_description_types,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_description_types,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/*
@@ -756,10 +757,10 @@ class	Assets_Model	extends	CI_Model
 					* @return last inserted id 
 					*/
 
-				function	insert_identifiers	($data)
+				function	insert_identifiers($data)
 				{
-								$this->db->insert	($this->_table_identifiers,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_identifiers,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/*
@@ -770,10 +771,10 @@ class	Assets_Model	extends	CI_Model
 					* @return last inserted id 
 					*/
 
-				function	insert_asset_titles	($data)
+				function	insert_asset_titles($data)
 				{
-								$this->db->insert	($this->_table_asset_titles,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_asset_titles,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/*
@@ -784,10 +785,10 @@ class	Assets_Model	extends	CI_Model
 					* @return last inserted id 
 					*/
 
-				function	insert_asset_types	($data)
+				function	insert_asset_types($data)
 				{
-								$this->db->insert	($this->_table_asset_types,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_asset_types,	$data);
+								return	$this->db->insert_id();
 				}
 
 				//By Nouman Tayyab
@@ -797,13 +798,13 @@ class	Assets_Model	extends	CI_Model
 					*  @param object 
 					* 
 					*/
-				function	get_genre_type	($genre)
+				function	get_genre_type($genre)
 				{
-								$this->db->where	("genre",	$genre);
-								$result	=	$this->db->get	($this->_table_genres);
-								if	(isset	($result)	&&	!empty	($result))
+								$this->db->where("genre",	$genre);
+								$result	=	$this->db->get($this->_table_genres);
+								if(isset($result)	&&	!	empty($result))
 								{
-												return	$result->row	();
+												return	$result->row();
 								}
 								return	false;
 				}
@@ -814,10 +815,10 @@ class	Assets_Model	extends	CI_Model
 					*  @param integer last_inserted id
 					* 
 					*/
-				function	insert_genre	($data)
+				function	insert_genre($data)
 				{
-								$this->db->insert	($this->_table_genres,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_genres,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -826,10 +827,10 @@ class	Assets_Model	extends	CI_Model
 					*  @param integer last_inserted id
 					* 
 					*/
-				function	insert_asset_genre	($data)
+				function	insert_asset_genre($data)
 				{
-								$this->db->insert	($this->_table_assets_genres,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_assets_genres,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -838,10 +839,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_coverage	($data)
+				function	insert_coverage($data)
 				{
-								$this->db->insert	($this->_table_coverages,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_coverages,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -850,13 +851,13 @@ class	Assets_Model	extends	CI_Model
 					*  @return object 
 					* 
 					*/
-				function	get_audience_level	($audience_level)
+				function	get_audience_level($audience_level)
 				{
-								$this->db->where	('audience_level',	$audience_level);
-								$result	=	$this->db->get	($this->_table_audience_levels);
-								if	(isset	($result)	&&	!empty	($result))
+								$this->db->where('audience_level',	$audience_level);
+								$result	=	$this->db->get($this->_table_audience_levels);
+								if(isset($result)	&&	!	empty($result))
 								{
-												return	$result->row	();
+												return	$result->row();
 								}
 								return	false;
 				}
@@ -867,10 +868,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_audience_level	($data)
+				function	insert_audience_level($data)
 				{
-								$this->db->insert	($this->_table_audience_levels,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_audience_levels,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -879,10 +880,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_asset_audience	($data)
+				function	insert_asset_audience($data)
 				{
-								$this->db->insert	($this->_table_assets_audience_levels,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_assets_audience_levels,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -891,13 +892,13 @@ class	Assets_Model	extends	CI_Model
 					*  @return object 
 					* 
 					*/
-				function	get_audience_rating	($audience_rating)
+				function	get_audience_rating($audience_rating)
 				{
-								$this->db->where	('audience_rating',	$audience_rating);
-								$result	=	$this->db->get	($this->_table_audience_ratings);
-								if	(isset	($result)	&&	!empty	($result))
+								$this->db->where('audience_rating',	$audience_rating);
+								$result	=	$this->db->get($this->_table_audience_ratings);
+								if(isset($result)	&&	!	empty($result))
 								{
-												return	$result->row	();
+												return	$result->row();
 								}
 								return	false;
 				}
@@ -908,10 +909,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_audience_rating	($data)
+				function	insert_audience_rating($data)
 				{
-								$this->db->insert	($this->_table_audience_ratings,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_audience_ratings,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -920,10 +921,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_asset_audience_rating	($data)
+				function	insert_asset_audience_rating($data)
 				{
-								$this->db->insert	($this->_table_assets_audience_ratings,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_assets_audience_ratings,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -932,10 +933,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_annotation	($data)
+				function	insert_annotation($data)
 				{
-								$this->db->insert	($this->_table_annotations,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_annotations,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -944,13 +945,13 @@ class	Assets_Model	extends	CI_Model
 					*  @return object 
 					* 
 					*/
-				function	get_relation_types	($relation_type)
+				function	get_relation_types($relation_type)
 				{
-								$this->db->where	('relation_type',	$relation_type);
-								$result	=	$this->db->get	($this->_table_relation_types);
-								if	(isset	($result)	&&	!empty	($result))
+								$this->db->where('relation_type',	$relation_type);
+								$result	=	$this->db->get($this->_table_relation_types);
+								if(isset($result)	&&	!	empty($result))
 								{
-												return	$result->row	();
+												return	$result->row();
 								}
 								return	false;
 				}
@@ -961,10 +962,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_relation_types	($data)
+				function	insert_relation_types($data)
 				{
-								$this->db->insert	($this->_table_relation_types,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_relation_types,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -973,10 +974,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_asset_relation	($data)
+				function	insert_asset_relation($data)
 				{
-								$this->db->insert	($this->_table_assets_relations,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_assets_relations,	$data);
+								return	$this->db->insert_id();
 				}
 
 				// End Nouman Tayyab
@@ -987,10 +988,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_creators	($data)
+				function	insert_creators($data)
 				{
-								$this->db->insert	($this->_table_creators,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_creators,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -999,10 +1000,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_assets_creators_roles	($data)
+				function	insert_assets_creators_roles($data)
 				{
-								$this->db->insert	($this->_table_assets_creators_roles,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_assets_creators_roles,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -1011,10 +1012,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_creator_roles	($data)
+				function	insert_creator_roles($data)
 				{
-								$this->db->insert	($this->_table_creator_roles,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_creator_roles,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -1023,10 +1024,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_contributors	($data)
+				function	insert_contributors($data)
 				{
-								$this->db->insert	($this->_table_contributors,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_contributors,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -1035,10 +1036,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_assets_contributors_roles	($data)
+				function	insert_assets_contributors_roles($data)
 				{
-								$this->db->insert	($this->_table_assets_contributors_roles,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_assets_contributors_roles,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -1047,10 +1048,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_contributor_roles	($data)
+				function	insert_contributor_roles($data)
 				{
-								$this->db->insert	($this->_table_contributor_roles,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_contributor_roles,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -1059,10 +1060,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_publishers	($data)
+				function	insert_publishers($data)
 				{
-								$this->db->insert	($this->_table_publishers,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_publishers,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -1071,10 +1072,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_assets_publishers_role	($data)
+				function	insert_assets_publishers_role($data)
 				{
-								$this->db->insert	($this->_table_assets_publishers_role,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_assets_publishers_role,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -1083,10 +1084,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_publisher_roles	($data)
+				function	insert_publisher_roles($data)
 				{
-								$this->db->insert	($this->_table_publisher_roles,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_publisher_roles,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -1095,10 +1096,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_rights_summaries	($data)
+				function	insert_rights_summaries($data)
 				{
-								$this->db->insert	($this->_table_rights_summaries,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_rights_summaries,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -1107,10 +1108,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_extensions	($data)
+				function	insert_extensions($data)
 				{
-								$this->db->insert	($this->_table_extensions,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_extensions,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -1119,10 +1120,10 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_nominations	($data)
+				function	insert_nominations($data)
 				{
-								$this->db->insert	($this->_table_nominations,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_nominations,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -1131,21 +1132,22 @@ class	Assets_Model	extends	CI_Model
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_nomination_status	($data)
+				function	insert_nomination_status($data)
 				{
-								$this->db->insert	($this->_table_nomination_status,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_nomination_status,	$data);
+								return	$this->db->insert_id();
 				}
+
 				/**
 					*  Insert the record in assets_asset_types  table
 					*  @param array $data
 					*  @return integer last_inserted id
 					* 
 					*/
-				function	insert_assets_asset_types	($data)
+				function	insert_assets_asset_types($data)
 				{
-								$this->db->insert	($this->_table_assets_asset_types,	$data);
-								return	$this->db->insert_id	();
+								$this->db->insert($this->_table_assets_asset_types,	$data);
+								return	$this->db->insert_id();
 				}
 
 }

@@ -98,7 +98,6 @@ class	Instantiations	extends	MY_Controller
 																$is_hidden[]	=	$index;
 								}
 								$data['hidden_fields']	=	$is_hidden;
-								debug($data['hidden_fields']);
 								$data['isAjax']	=	FALSE;
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
 								$records	=	$this->sphinx->instantiations_list($params,	$offset);

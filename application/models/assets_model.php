@@ -341,10 +341,15 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_assets_genres_by_assets_id($assets_id)
 				{
-								$this->db->select("genre,genre_source,genre_ref");
+								
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genre,'(**)')) SEPARATOR ' | ') AS genre",FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genre_source,'(**)')) SEPARATOR ' | ') AS genre_source",FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genre_ref,'(**)')) SEPARATOR ' | ') AS genre_ref",FALSE);
+								
 								$this->db->from($this->_table_assets_genres);
 								$this->db->join($this->_table_genres,	"$this->_table_assets_genres.genres_id=$this->_table_genres.id",	"left");
 								$this->db->where("$this->_table_assets_genres.assets_id",	$assets_id);
+								$this->db->group_by("$this->_table_assets_genres.assets_id");
 								$res	=	$this->db->get();
 								if(isset($res)	&&	!	empty($res))
 								{

@@ -169,7 +169,7 @@
 																<!--				Duration	End		-->
 																<!--				Start Time 	Start		-->
 																<?php
-																if($instantiation_detail->projected_duration	>	0)
+																if($instantiation_detail->actual_duration	>	0)
 																{
 																				?>	
 																				<tr>
@@ -177,7 +177,7 @@
 																												<label><i class="icon-question-sign"></i><b>* Duration</b></label>
 																								</td>
 																								<td>
-																												<p>	<?php	echo	date('H:i:s',	strtotime($instantiation_detail->projected_duration));	?></p>
+																												<p>	<?php	echo	date('H:i:s',	strtotime($instantiation_detail->actual_duration));	?></p>
 
 																								</td>
 																				</tr>

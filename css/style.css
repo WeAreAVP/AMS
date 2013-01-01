@@ -566,3 +566,6 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				border-style: solid; 
 				border-width:  14px 0px 14px 9px;
 }
+.record-detail-table p{
+				margin: 0 0 3px;
+}

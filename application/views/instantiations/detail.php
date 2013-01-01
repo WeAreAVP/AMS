@@ -7,7 +7,7 @@
 
 				<div class="span12" style="margin-left: 285px;">
 								<div style="float: left;">
-												<table  cellPadding="8">
+												<table  cellPadding="8" class="record-detail-table">
 																<!--				Instantiation ID	Start		-->
 																<?php
 																if($instantiation_detail->instantiation_identifier	||	$instantiation_detail->instantiation_source)

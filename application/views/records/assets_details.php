@@ -44,7 +44,7 @@
 																<!--				Organization Start		-->
 																<tr>
 																				<td class="record-detail-page">
-																								<label><i class="icon-question-sign"></i><b>* Organization:</b></label>
+																								<label><i class="icon-question-sign"></i>* Organization:</label>
 																				</td>
 																				<td>
 

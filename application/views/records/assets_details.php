@@ -81,7 +81,7 @@
 																{
 																				?>
 																				<tr>
-																								<td>
+																								<td class="record-detail-page">
 																												<label><i class="icon-question-sign"></i>* Title:</label>
 																								</td>
 																								<td>
@@ -96,7 +96,7 @@
 																{
 																				?>
 																				<tr>
-																								<td>
+																								<td class="record-detail-page">
 																												<label><i class="icon-question-sign"></i> Description:</label>
 																								</td>
 																								<td>
@@ -110,18 +110,21 @@
 																if(isset($asset_genres)	&&	!	empty($asset_genres))
 																{
 																				?>
-																				<tr>
-																								<td>
-																												<label><i class="icon-question-sign"></i>* Genres:</label>
-																								</td>
-																								<td>
-																												<?php
-																												$asset_genre	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->asset_genre)));
-																												$asset_genre_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->asset_genre_ref)));
-																												$asset_genre_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->asset_genre_source)));
-																												$combine_genre	=	'';
-																												if(count($asset_genre)	>	0)
-																												{
+
+																				<?php
+																				$asset_genre	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->asset_genre)));
+																				$asset_genre_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->asset_genre_ref)));
+																				$asset_genre_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->asset_genre_source)));
+																				$combine_genre	=	'';
+																				if(count($asset_genre)	>	0)
+																				{
+																								?>
+																								<tr>
+																												<td class="record-detail-page">
+																																<label><i class="icon-question-sign"></i>* Genres:</label>
+																												</td>
+																												<td>
+																																<?php
 																																foreach($asset_genre	as	$index	=>	$genre)
 																																{
 
@@ -140,11 +143,13 @@
 																																								$combine_genre.=' ('	.	$asset_genre_source[$index]	.	')';
 																																				$combine_genre.='<div class="clearfix"></div>';
 																																}
-																												}
-																												?>
-																												<p><?php	echo	$combine_genre;	?></p>
-																								</td>
-																				</tr>
+																																?>
+																																<p><?php	echo	$combine_genre;	?></p>
+																												</td>
+																								</tr>
+																								<?php
+																				}
+																				?>
 																<?php	}	?>
 																<!--				Asset Genre End		-->
 												</table>

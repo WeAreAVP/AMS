@@ -172,7 +172,7 @@
 																								$asset_creator_role_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_role_source)));
 																								$combine_creator	=	'';
 																								debug($asset_creator_name);
-																								if(count($asset_creator_name)	>	0)
+																								if(count($asset_creator_name)	>	0 && $asset_creator_name[0]!='')
 																								{
 																												?>
 																												<tr>
@@ -234,7 +234,7 @@
 																								$asset_contributor_role_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_role_ref)));
 																								$asset_contributor_role_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_role_source)));
 																								$combine_contributor	=	'';
-																								if(count($asset_contributor_name)	>	0)
+																								if(count($asset_contributor_name)	>	0 && $asset_contributor_name[0]!='')
 																								{
 																												?>
 																												<tr>

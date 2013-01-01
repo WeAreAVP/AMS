@@ -119,7 +119,7 @@
 																				$combine_genre	=	'';
 																				if(count($asset_genre)	>	0)
 																				{
-																								debug($asset_genre);
+																								
 																								?>
 																								<tr>
 																												<td class="record-detail-page">

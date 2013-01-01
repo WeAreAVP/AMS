@@ -163,7 +163,7 @@
 																{
 																				foreach($asset_creators_roles	as	$creator)
 																				{
-																								debug($creator);
+																								
 																								$asset_creator_name	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_name)));
 																								$asset_creator_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_ref)));
 																								$asset_creator_affiliation	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_affiliation)));
@@ -188,7 +188,7 @@
 																																												$combine_creator.="<a target='_blank' href='$asset_creator_ref[$index]'>$creator_name</a>";
 																																								}
 																																								else
-																																												$column.=$creator_name;
+																																												$combine_creator.=$creator_name;
 																																								if(isset($asset_creator_affiliation[$index])	&&	$asset_creator_affiliation[$index]	!=	'')
 																																												$combine_creator.=','	.	$asset_creator_affiliation[$index];
 

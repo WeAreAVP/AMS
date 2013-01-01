@@ -322,7 +322,7 @@ function updateDatabase(refresh)
 												table_type:current_table_type
 								},
 								success: function (result){
-												$('#listing_table').css('width','100%');
+//												$('#listing_table').css('width','100%');
 												if(refresh==1)
 																window.location.reload();
 											

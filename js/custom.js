@@ -248,7 +248,7 @@ function updateDataTable()
 {
 				if($('#listing_table').length>0)
 				{
-
+								console.log(hiden_column);
 								oTable = 
 								$('#listing_table').dataTable(
 								{

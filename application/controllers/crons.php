@@ -119,10 +119,11 @@ class	Crons	extends	CI_Controller
 																foreach($data_result	as	$value)
 																{
 																				$data_file	=	(explode(" ",	$value));
-																				$data_file_path	=	str_replace(array('\r\n','\n','<br>'),'',$data_file[1]);
+																				$data_file_path	=	str_replace(array('\r\n','\n','<br>'),'',trim($data_file[1]));
+																				$this->myLog('Checking File '.$data_file_path);
 																				if(	!	$this->cron_model->is_pbcore_file_by_path($data_file_path))
 																				{
-																								$this->cron_model->insert_prcoess_data(array('file_type'						=>	$type,	'file_path'						=>	trim($data_file_path),	'is_processed'			=>	0,	'created_at'					=>	date('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id));
+																								$this->cron_model->insert_prcoess_data(array('file_type'						=>	$type,	'file_path'						=>	($data_file_path),	'is_processed'			=>	0,	'created_at'					=>	date('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id));
 																				}
 																}
 												}

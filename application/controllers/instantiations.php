@@ -94,7 +94,7 @@ class	Instantiations	extends	MY_Controller
 								$data['table_type']	=	'instantiation';
 								foreach($this->column_order	as	$index	=>	$value)
 								{
-												if($value['hidden']	===	1)
+												if($value['hidden']	===	'1')
 																$is_hidden[]	=	$index;
 								}
 								$data['hidden_fields']	=	$is_hidden;

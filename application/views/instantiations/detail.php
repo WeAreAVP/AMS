@@ -1,8 +1,8 @@
 <div class="row">
 				<div style="margin: 2px 0px 10px 0px;">
-								
+
 								<?php
-								$asset_title_type	=	trim(str_replace('(**)',	'',		$asset_details->title_type));
+								$asset_title_type	=	trim(str_replace('(**)',	'',	$asset_details->title_type));
 								$asset_title_type	=	explode(' | ',	$asset_title_type);
 								$asset_title	=	trim(str_replace('(**)',	'',	$asset_details->title));
 								$asset_title	=	explode(' | ',	$asset_title);
@@ -34,7 +34,7 @@
 								<h2>Instantiation Details: <?php	echo	$combine_title;	?></h2>
 				</div>
 				<div class="clearfix"></div>
-<?php	$this->load->view('partials/_list');	?>
+				<?php	$this->load->view('partials/_list');	?>
 
 				<div class="span12" style="margin-left: 285px;">
 								<div style="float: left;">
@@ -43,26 +43,25 @@
 																<?php
 																if($instantiation_detail->instantiation_identifier	||	$instantiation_detail->instantiation_source)
 																{
+																				$ins_identifier	=	explode(' | ',	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_identifier)));
+																				$ins_identifier_src	=	explode(' | ',	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_source)));
+																				$combine_identifier	=	'';
+																				foreach($ins_identifier	as	$index	=>	$identifier)
+																				{
+																								$combine_identifier.=	$identifier;
+																								if(isset($ins_identifier_src[$index])	&&	!	empty($ins_identifier_src[$index]))
+																												$combine_identifier.=' ('	.	$ins_identifier_src[$index]	.	')';
+																								$combine_identifier.='<div class="clearfix"></div>';
+																				}
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
 																												<label><i class="icon-question-sign"></i><b>* Instantiation ID:</b></label>
 																								</td>
 																								<td>
-																												<?php
-																												if($instantiation_detail->instantiation_identifier)
-																												{
-																																?>
-																																<span><?php	echo	$instantiation_detail->instantiation_identifier;	?></span>
-																																<?php
-																																if($instantiation_detail->instantiation_source)
-																																{
-																																				?>
-																																				<span>	<?php	echo	' ('	.	$instantiation_detail->instantiation_source	.	')';	?></span>
-																																				<?php
-																																}
-																												}
-																												?>
+																												
+																												<p><?php echo $combine_identifier; ?></p>
+																												
 																								</td>
 																				</tr>
 																<?php	}	?>
@@ -90,7 +89,7 @@
 
 																																<?php	}	?>
 
-																				<?php	}	?>
+																												<?php	}	?>
 																								</td>
 																				</tr>
 																<?php	}	?>
@@ -111,8 +110,8 @@
 																												{
 																																?>
 																																<p><?php	echo	$value;	?></p>
-				<?php	}
-				?>
+																												<?php	}
+																												?>
 																								</td>
 																				</tr>
 																<?php	}	?>
@@ -158,7 +157,7 @@
 																												{
 																																?>
 																																<p>	<?php	echo	$generation;	?></p>
-				<?php	}	?>
+																												<?php	}	?>
 																								</td>
 																				</tr>
 
@@ -214,7 +213,7 @@
 																								</td>
 																				</tr>
 
-<?php	}	?>
+																<?php	}	?>
 																<!--				Start Time	End		-->
 												</table>
 								</div>

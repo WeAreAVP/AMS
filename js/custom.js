@@ -281,8 +281,7 @@ function updateDataTable()
 								{
 												new FixedColumns( oTable, {
 																"iLeftColumns": frozen,
-																"sLeftWidth": "relative",
-																"iLeftWidth": 10 // percentage
+																"iLeftWidth": frozen*100 // pixels
 												} );
 								}
 								$('#freeze_col_'+frozen).show();                                                                                                                                                                                                                                           

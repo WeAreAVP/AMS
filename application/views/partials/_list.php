@@ -36,17 +36,22 @@
 																												<div><h4><?php	echo	$asset_instantiation->generation;	?></h4></div>
 																												<?php
 																								}
-																								if(isset($asset_instantiation->instantiation_identifier)	&&	($asset_instantiation->instantiation_identifier	!=	NULL))
+																								if($asset_instantiation->instantiation_identifier	||	$asset_instantiation->instantiation_source)
 																								{
+																												$ins_identifier	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_instantiation->instantiation_identifier)));
+																												$ins_identifier_src	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_instantiation->instantiation_source)));
+																												$combine_identifier	=	'';
+																												foreach($ins_identifier	as	$index	=>	$identifier)
+																												{
+																																$combine_identifier.=	'<p>';
+																																$combine_identifier.=	$identifier;
+																																if(isset($ins_identifier_src[$index])	&&	!	empty($ins_identifier_src[$index]))
+																																				$combine_identifier.=' ('	.	$ins_identifier_src[$index]	.	')';
+																																$combine_identifier.=	'</p>';
+																												}
 																												?>
 																												<div>
-																																<b>ID: </b><?php	echo	$asset_instantiation->instantiation_identifier;	?>
-																																<?php
-																																if(isset($asset_instantiation->instantiation_source)	&&	($asset_instantiation->instantiation_source	!=	NULL))
-																																{
-																																				echo	' ('	.	$asset_instantiation->instantiation_source	.	')';
-																																}
-																																?>
+																																<?php	echo	$combine_identifier;	?>
 																												</div>
 																												<?php
 																								}

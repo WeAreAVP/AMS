@@ -342,6 +342,24 @@
 																}
 																?>
 																<!--				Asset Publisher End		-->
+																<!--				Asset Date Start		-->
+																<?php
+																if(isset($asset_dates)	&&	!	empty($asset_dates))
+																{
+																				foreach($asset_dates	as	$date)
+																				{
+																								$date_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$date->asset_date)));
+																								$asset_date	=	explode(' | ',	trim(str_replace('(**)',	'',	$date->date_type)));
+																								if((isset($asset_date)	&&	$asset_date[0]	!=	'')	||	(isset($date_type)	&&	$date_type[0]	!=	''))
+																								{
+																												// Need to be done 
+																								}
+																								?>
+																								<?php
+																				}
+																}
+																?>
+																<!--				Asset Date End		-->
 												</table>
 
 								</div>

@@ -321,7 +321,9 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_assets_dates_by_assets_id($assets_id)
 				{
-								$this->db->select("$this->_table_asset_dates.asset_date,$this->_table_date_types.date_type");
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_dates.asset_date,'(**)')) SEPARATOR ' | ') AS asset_date",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_dates.date_type,'(**)')) SEPARATOR ' | ') AS date_type",	FALSE);
+
 								$this->db->from($this->_table_asset_dates);
 								$this->db->join($this->_table_date_types,	"$this->_table_asset_dates.date_types_id=$this->_table_date_types.id",	"left");
 								$this->db->where("$this->_table_asset_dates.assets_id",	$assets_id);
@@ -427,7 +429,7 @@ class	Assets_Model	extends	CI_Model
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher_role,'(**)')) SEPARATOR ' | ') AS asset_publisher_role",	FALSE);
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher_role_source,'(**)')) SEPARATOR ' | ') AS asset_publisher_role_ref",	FALSE);
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher_role_ref,'(**)')) SEPARATOR ' | ') AS asset_publisher_role_source",	FALSE);
-								
+
 								$this->db->from($this->_table_assets_publishers_role);
 								$this->db->join($this->_table_publisher_roles,	"$this->_table_assets_publishers_role.publisher_roles_id=$this->_table_publisher_roles.id",	"left");
 								$this->db->join($this->_table_publishers,	"$this->_table_assets_publishers_role.publishers_id=$this->_table_publishers.id",	"left");

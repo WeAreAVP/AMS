@@ -48,10 +48,11 @@
 																				$combine_identifier	=	'';
 																				foreach($ins_identifier	as	$index	=>	$identifier)
 																				{
+																								$combine_identifier.=	'<p>';
 																								$combine_identifier.=	$identifier;
 																								if(isset($ins_identifier_src[$index])	&&	!	empty($ins_identifier_src[$index]))
 																												$combine_identifier.=' ('	.	$ins_identifier_src[$index]	.	')';
-																								$combine_identifier.='<div class="clearfix"></div>';
+																								$combine_identifier.=	'</p>';
 																				}
 																				?>
 																				<tr>

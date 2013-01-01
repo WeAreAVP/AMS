@@ -381,6 +381,7 @@ class	Assets_Model	extends	CI_Model
 								$res	=	$this->db->get();
 								if(isset($res)	&&	!	empty($res))
 								{
+												debug($res->result());
 												return	$res->result();
 								}
 								return	false;

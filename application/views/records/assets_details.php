@@ -109,6 +109,7 @@
 																<?php
 																if(isset($asset_genres)	&&	!	empty($asset_genres))
 																{
+																				debug($asset_genres);
 																				?>
 
 																				<?php

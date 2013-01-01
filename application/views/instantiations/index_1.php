@@ -239,4 +239,4 @@
 																<!--end of span9--> 
 												</div>
 								<?php	}	?>
-				</div>
+				

@@ -386,10 +386,10 @@
 																																								{
 																																												if($asset_subject_ref[$index]	!=	'')
 																																												{
-																																																$combine_subject.="<a target='_blank' href='$asset_subject_ref[$index]'>$subject</a>";
+																																																$combine_subject.="<a target='_blank' href='$asset_subject_ref[$index]'><b>$subject</b></a>";
 																																												}
 																																												else
-																																																$combine_subject.=$subject;
+																																																$combine_subject.='<b>'.$subject.'</b>';
 																																								}
 																																								else
 																																												$combine_subject.=$subject;

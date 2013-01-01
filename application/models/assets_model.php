@@ -377,7 +377,7 @@ class	Assets_Model	extends	CI_Model
 								$this->db->join($this->_table_creator_roles,	"$this->_table_assets_creators_roles.creator_roles_id=$this->_table_creator_roles.id",	"left");
 								$this->db->join($this->_table_creators,	"$this->_table_assets_creators_roles.creators_id=$this->_table_creators.id",	"left");
 								$this->db->where("$this->_table_assets_creators_roles.assets_id",	$assets_id);
-								$this->db->group_by("$this->_table_assets_genres.assets_id");
+//								$this->db->group_by("$this->_table_assets_genres.assets_id");
 								$res	=	$this->db->get();
 								echo $assets_id;
 								debug($res);

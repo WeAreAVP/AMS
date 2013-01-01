@@ -161,7 +161,7 @@
 																								</td>
 																								<td>
 																												<?php echo $instantiation_detail->projected_duration;?>
-																												<p>	<?php	echo	date('H:i:s',	strtotime($instantiation_detail->projected_duration));	?></p>
+																												<p>	<?php	echo	date('H:i:s',	$instantiation_detail->projected_duration);	?></p>
 
 																								</td>
 																				</tr>

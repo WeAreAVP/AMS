@@ -128,7 +128,7 @@
 																																<?php
 																																foreach($asset_genre	as	$index	=>	$genre)
 																																{
-
+																																				echo $genre;exit;
 																																				if(isset($asset_genre_ref[$index]))
 																																				{
 																																								if($asset_genre_ref[$index]	!=	'')

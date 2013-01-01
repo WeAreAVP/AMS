@@ -1,6 +1,36 @@
 <div class="row">
 				<div style="margin: 2px 0px 10px 0px;">
-								<h2>Asset Details: <?php	echo	$asset_details->title;	?></h2>
+								<?php
+								$asset_title_type	=	trim(str_replace('(**)',	'',		$asset_details->title_type));
+								$asset_title_type	=	explode(' | ',	$asset_title_type);
+								$asset_title	=	trim(str_replace('(**)',	'',	$asset_details->title));
+								$asset_title	=	explode(' | ',	$asset_title);
+								$asset_title_ref	=	trim(str_replace('(**)',	'',	$asset_details->title_ref));
+								$asset_title_ref	=	explode(' | ',	$asset_title_ref);
+								$combine_title	=	'';
+								foreach($asset_title	as	$index	=>	$title)
+								{
+												if(isset($asset_title_type[$index])	&&	$asset_title_type[$index]	!=	'')
+																$combine_title.=	$asset_title_type[$index]	.	': ';
+												if(isset($asset_title_ref[$index]))
+												{
+																if($asset_title_ref[$index]	!=	'')
+																{
+																				$combine_title.="<a target='_blank' href='$asset_title_ref[$index]'>$title</a>: ";
+																				$combine_title.=' ('	.	$asset_title_ref[$index]	.	')';
+																}
+																else
+																				$combine_title.=$title;
+												}
+												else
+																$combine_title.=$title;
+
+
+
+												$combine_title.='<div class="clearfix"></div>';
+								}
+								?>
+								<h2>Instantiation Details: <?php	echo	$combine_title;	?></h2>
 				</div>
 				<div class="clearfix"></div>
 

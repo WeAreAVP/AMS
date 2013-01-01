@@ -25,7 +25,7 @@
 												}
 												else
 																$combine_title.=$title;
-//																																												$column.=	'<a href="'	.	site_url('instantiations/detail/'	.	$value->id)	.	'">'	.	$title	.	'</a>';
+
 
 
 												$combine_title.='<div class="clearfix"></div>';

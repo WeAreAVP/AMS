@@ -287,10 +287,10 @@ class	Assets_Model	extends	CI_Model
 								GROUP_CONCAT(local.identifier_source SEPARATOR ' | ') AS local_identifier_source, 
 								GROUP_CONCAT(local.identifier_ref SEPARATOR ' | ') AS local_identifier_ref, 
 								$this->_table_asset_descriptions.description,
-								GROUP_CONCAT($this->_table_asset_titles.title SEPARATOR ' | ') AS title,
+
+								GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title,'(**)')) SEPARATOR ' | ') AS title, 
 								GROUP_CONCAT($this->_table_asset_titles.title_source SEPARATOR ' | ') AS title_source,
 								GROUP_CONCAT($this->_table_asset_titles.title_ref SEPARATOR ' | ') AS title_ref,
-								
 								$this->_table_asset_title_types.title_type,
 								GROUP_CONCAT($this->_table_asset_types.asset_type SEPARATOR ' | ') AS asset_type
 								FROM (`$this->_assets_table`) 

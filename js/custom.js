@@ -242,7 +242,7 @@ function freezeColumns(count)
 {
 				frozen=count;
 				$('#freeze_col_'+frozen).toggle(); 
-				updateDatabase();
+				updateDatabase(1);
 }
 function updateDataTable()
 {
@@ -262,7 +262,7 @@ function updateDataTable()
 																"fnReorderCallback": function () {
 																				columnArray= getColumnOrder();
 																				reOrderDropDown(columnArray);
-																				updateDatabase();
+																				updateDatabase(0);
 																}
 												},																		  
 												'bPaginate':false,
@@ -319,6 +319,7 @@ function updateDatabase(refresh)
 												table_type:current_table_type
 								},
 								success: function (result){
+												if(refresh==0)
 												window.location.reload();
 								}
 				});

@@ -73,7 +73,7 @@
 																								if($asset_instantiation->projected_duration	>	0)
 																								{
 																												?>
-																												<div><b>Projected Duration: </b><?php	echo	date('H:i:s',	strtotime($value->projected_duration));	?></div>
+																												<div><b>Projected Duration: </b><?php	echo	$value->projected_duration;	?></div>
 																								<?php	}	?>
 
 																				</div>

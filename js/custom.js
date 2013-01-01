@@ -319,8 +319,9 @@ function updateDatabase(refresh)
 												table_type:current_table_type
 								},
 								success: function (result){
-												if(refresh==0)
-												window.location.reload();
+												if(refresh==1){
+																window.location.reload();
+												}
 								}
 				});
 }

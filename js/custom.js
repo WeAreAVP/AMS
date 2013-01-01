@@ -275,18 +275,16 @@ function updateDataTable()
 												"bDestroy": is_destroy,
 												"bRetrieve": true,
 												"bAutoWidth": false,
-												"fnInitComplete": function () {
-																if(frozen>0)
-																{
-																				new FixedColumns( oTable, {
-																								"iLeftColumns": frozen,
-																								"sLeftWidth": "relative",
-																								"iLeftWidth": 10 // percentage
-																				} );
-																}
-												}
+												
 								});
-								
+								if(frozen>0)
+								{
+												new FixedColumns( oTable, {
+																"iLeftColumns": frozen,
+																"sLeftWidth": "relative",
+																"iLeftWidth": 10 // percentage
+												} );
+								}
 								$('#freeze_col_'+frozen).show();                                                                                                                                                                                                                                           
 								$.extend( $.fn.dataTableExt.oStdClasses,{
 												"sWrapper": "dataTables_wrapper form-inline"

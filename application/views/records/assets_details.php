@@ -205,11 +205,15 @@
 																																												$combine_creator.=' ('	.	$asset_creator_role_source[$index]	.	')';
 																																								$combine_creator.='<div class="clearfix"></div>';
 																																				}
-																																}
-																																?>
-																																<p><?php	echo	$combine_creator;	?></p>
-																												</td>
-																								</tr>
+																																				?>
+																																				<p><?php	echo	$combine_contributor;	?></p>
+																																</td>
+																												</tr>
+																												<?php
+																								}
+																								?>
+
+
 
 																								<?php
 																				}
@@ -228,7 +232,7 @@
 																								$asset_contributor_role	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_role)));
 																								$asset_contributor_role_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_role_ref)));
 																								$asset_contributor_role_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_role_source)));
-																								$column	=	'';
+																								$combine_contributor	=	'';
 																								if(count($asset_contributor_name)	>	0)
 																								{
 																												?>
@@ -243,31 +247,36 @@
 
 																																								if(isset($asset_contributor_ref[$index])	&&	!	empty($asset_contributor_ref[$index]))
 																																								{
-																																												$column.="<a target='_blank' href='$asset_contributor_ref[$index]'>$contributor_name</a>";
+																																												$combine_contributor.="<a target='_blank' href='$asset_contributor_ref[$index]'>$contributor_name</a>";
 																																								}
 																																								else
-																																												$column.=$contributor_name;
+																																												$combine_contributor.=$contributor_name;
 																																								if(isset($asset_contributor_affiliation[$index])	&&	$asset_contributor_affiliation[$index]	!=	'')
-																																												$column.=','	.	$asset_contributor_affiliation[$index];
+																																												$combine_contributor.=','	.	$asset_contributor_affiliation[$index];
 
 																																								if(isset($asset_contributor_role[$index])	&&	!	empty($asset_contributor_role[$index]))
 																																								{
 																																												if(isset($asset_contributor_role_ref[$index])	&&	!	empty($asset_contributor_role_ref[$index]))
 																																												{
-																																																$column.=",<a target='_blank' href='$asset_contributor_role_ref[$index]'>$asset_contributor_role[$index]</a>";
+																																																$combine_contributor.=",<a target='_blank' href='$asset_contributor_role_ref[$index]'>$asset_contributor_role[$index]</a>";
 																																												}
 																																												else
-																																																$column.=','	.	$asset_contributor_role[$index];
+																																																$combine_contributor.=','	.	$asset_contributor_role[$index];
 																																								}
 																																								if(isset($asset_contributor_role_source[$index])	&&	$asset_contributor_role_source[$index]	!=	'')
-																																												$column.=' ('	.	$asset_contributor_role_source[$index]	.	')';
-																																								$column.='<div class="clearfix"></div>';
+																																												$combine_contributor.=' ('	.	$asset_contributor_role_source[$index]	.	')';
+																																								$combine_contributor.='<div class="clearfix"></div>';
 																																				}
-																																}
-																																?>
-																																<p><?php	echo	$combine_creator;	?></p>
-																												</td>
-																								</tr>
+																																				?>
+																																				<p><?php	echo	$combine_contributor;	?></p>
+																																</td>
+																												</tr>
+																												<?php
+																								}
+																								?>
+
+
+
 																								<?php
 																				}
 																}

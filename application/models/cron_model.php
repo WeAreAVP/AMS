@@ -39,6 +39,24 @@ class	Cron_Model	extends	CI_Model
 								}
 								return	false;
 				}
+				/*
+					 @Get process_pbcore_data through file_path
+					 @return object
+					*/
+
+				function	is_pbcore_file_by_path	($file_path)
+				{
+								$this->db->select	("id");
+								$this->db->from	($this->_table);
+								$this->db->where	("file_path",	$file_path);
+								$this->db->limit(1);
+								$res	=	$this->db->get	();
+								if	(isset	($res)	&&	!	empty	($res))
+								{
+												return	true;
+								}
+								return	false;
+				}
 
 				/*
 					 @Get process_pbcore_data through data_folder_id
@@ -87,9 +105,10 @@ class	Cron_Model	extends	CI_Model
 
 				function	get_data_folder_id_by_path	($folder_path)
 				{
-								$this->db->select	("*");
+								$this->db->select	("id");
 								$this->db->from	($this->_table_data_folders);
 								$this->db->where	("folder_path LIKE ",	$folder_path);
+								$this->db->limit(1);
 								$res	=	$this->db->get	();
 								if	(isset	($res)	&&	!	empty	($res))
 								{

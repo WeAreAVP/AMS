@@ -242,7 +242,8 @@ function freezeColumns(count)
 {
 				frozen=count;
 				$('#freeze_col_'+frozen).toggle(); 
-				facet_search('0');
+				updateDatabase(1);
+				
 }
 function updateDataTable()
 {
@@ -281,7 +282,7 @@ function updateDataTable()
 								{
 												new FixedColumns( oTable, {
 																"iLeftColumns": frozen,
-																"iLeftWidth": frozen*100 // pixels
+												//																"iLeftWidth": frozen*100 // pixels
 												} );
 								}
 								$('#freeze_col_'+frozen).show();                                                                                                                                                                                                                                           
@@ -322,6 +323,9 @@ function updateDatabase(refresh)
 								},
 								success: function (result){
 												$('#listing_table').css('width','100%');
+												if(refresh==1)
+																facet_search('0');
+											
 								}
 				});
 }

@@ -1,45 +1,4 @@
 
-								<?php
-								if(isset($asset_subjects)	&&	!	empty($asset_subjects))
-								{
-												?>
-												<div class="span12 form-row">
-																<div class="span2 form-label">
-																				<label><i class="icon-question-sign"></i>* Subjects:</label>
-																</div>
-																<!--end of span3-->
-																<div id="search_bar" class="span8">
-																				<?php
-																				foreach($asset_subjects	as	$asset_subject)
-																				{
-																								?>
-																								<div class="disabled-field">
-																												<?php
-																												if(isset($asset_subject->subject)	&&	!	empty($asset_subject->subject))
-																												{
-																																?>
-																																<strong>Subject:</strong><br/>
-																																<?php	echo	$asset_subject->subject;	?><br/>
-																																<br/>
-																																<?php
-																												}
-																												if(isset($asset_subject->subject_source)	&&	!	empty($asset_subject->subject_source))
-																												{
-																																?>
-																																<strong>Subject Source:</strong><br/>
-																																<?php	echo	$asset_subject->subject_source;	?>
-																																<?php
-																												}
-																												if(isset($asset_subject->subject_ref)	&&	!	empty($asset_subject->subject_ref))
-																												{
-																																?>
-																																<strong>Subject Ref:</strong><br/>
-																																<?php	echo	$asset_subject->subject_ref;	?>
-																												<?php	}	?>
-																								</div>
-																				<?php	}	?>
-																</div>
-												</div>
 												<?php
 								}
 								if(isset($asset_coverages)	&&	!	empty($asset_coverages))

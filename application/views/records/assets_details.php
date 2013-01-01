@@ -360,6 +360,55 @@
 																}
 																?>
 																<!--				Asset Date End		-->
+																<!--				Asset Subject Start		-->
+																<?php
+																if(isset($asset_subjects)	&&	!	empty($asset_subjects))
+																{
+																				foreach($asset_subjects	as	$main_subject)
+																				{
+																								$asset_subject	=	explode(' | ',	trim(str_replace('(**)',	'',	$main_subject->asset_subject)));
+																								$asset_subject_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$main_subject->asset_subject_ref)));
+																								$asset_subject_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$main_subject->asset_subject_source)));
+																								$combine_subject	=	'';
+																								if(count($asset_subject)	>	0	&&	$asset_subject[0]	!=	'')
+																								{
+																												?>
+																												<tr>
+																																<td class="record-detail-page">
+																																				<label><i class="icon-question-sign"></i>* Subject:</label>
+																																</td>
+																																<td>
+																																				<?php
+																																				foreach($asset_subject	as	$index	=>	$subject)
+																																				{
+
+																																								if(isset($asset_subject_ref[$index]))
+																																								{
+																																												if($asset_subject_ref[$index]	!=	'')
+																																												{
+																																																$combine_subject.="<a target='_blank' href='$asset_subject_ref[$index]'>$subject</a>";
+																																												}
+																																												else
+																																																$combine_subject.=$subject;
+																																								}
+																																								else
+																																												$combine_subject.=$subject;
+																																								if(isset($asset_subject_source[$index])	&&	$asset_subject_source[$index]	!=	'')
+																																												$combine_subject.=' ('	.	$asset_subject_source[$index]	.	')';
+																																								$combine_subject.='<div class="clearfix"></div>';
+																																				}
+																																				?>
+																																				<p><?php	echo	$combine_subject;	?></p>
+																																</td>
+																												</tr>
+																												<?php
+																								}
+																								?>
+																								<?php
+																				}
+																}
+																?>
+																<!--				Asset Subject End		-->
 												</table>
 
 								</div>

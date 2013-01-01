@@ -620,7 +620,10 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_subjects_by_assets_id($assets_id)
 				{
-								$this->db->select("subject,subject_source,subject_ref");
+								
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subject,'(**)')) SEPARATOR ' | ') AS asset_subject",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subject_source,'(**)')) SEPARATOR ' | ') AS asset_subject_source",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subject_ref,'(**)')) SEPARATOR ' | ') AS asset_subject_ref",	FALSE);
 								$this->db->from($this->_table_assets_subjects);
 								$this->db->join($this->_table_subjects,	"$this->_table_assets_subjects.subjects_id=$this->_table_subjects.id",	"left");
 								$this->db->where($this->_table_assets_subjects	.	".assets_id",	$assets_id);

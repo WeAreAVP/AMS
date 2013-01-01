@@ -163,6 +163,7 @@
 																{
 																				foreach($asset_creators_roles	as	$creator)
 																				{
+																								debug($creator);
 																								$asset_creator_name	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_name)));
 																								$asset_creator_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_ref)));
 																								$asset_creator_affiliation	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_affiliation)));

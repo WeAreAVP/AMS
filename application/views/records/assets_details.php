@@ -112,9 +112,9 @@
 																				?>
 
 																				<?php
-																				$asset_genre	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->genre)));
-																				$asset_genre_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->genre_ref)));
-																				$asset_genre_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->genre_source)));
+																				$asset_genre	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_genres->genre)));
+																				$asset_genre_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_genres->genre_ref)));
+																				$asset_genre_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_genres->genre_source)));
 																				$combine_genre	=	'';
 																				if(count($asset_genre)	>	0)
 																				{

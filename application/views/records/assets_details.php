@@ -207,7 +207,7 @@
 																																								$combine_creator.='<div class="clearfix"></div>';
 																																				}
 																																				?>
-																																				<p><?php	echo	$combine_contributor;	?></p>
+																																				<p><?php	echo	$combine_creator;	?></p>
 																																</td>
 																												</tr>
 																												<?php

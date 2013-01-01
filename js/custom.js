@@ -274,14 +274,17 @@ function updateDataTable()
 												"bDeferRender": true,
 												"bDestroy": is_destroy,
 												"bRetrieve": true,
-												"bAutoWidth": false
+												"bAutoWidth": false,
+												"fnInitComplete": function () {
+																if(frozen>0)
+																{
+																				new FixedColumns( oTable, {
+																								"iLeftColumns": frozen
+																				} );
+																}
+												}
 								});
-								if(frozen>0)
-								{
-												new FixedColumns( oTable, {
-																"iLeftColumns": frozen
-												} );
-								}
+								
 								$('#freeze_col_'+frozen).show();                                                                                                                                                                                                                                           
 								$.extend( $.fn.dataTableExt.oStdClasses,{
 												"sWrapper": "dataTables_wrapper form-inline"

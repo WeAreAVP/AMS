@@ -12,48 +12,7 @@
 							
 							
 								
-								<?php
-								if(isset($asset_genres)	&&	!	empty($asset_genres))
-								{
-												?>
-												<div class="span12 form-row">
-																<div class="span2 form-label">
-																				<label><i class="icon-question-sign"></i>* Asset Genres:</label>
-																</div>
-																<!--end of span3-->
-																<div id="search_bar" class="span8">
-																				<?php
-																				foreach($asset_genres	as	$asset_genre)
-																				{
-																								?>
-																								<div class="disabled-field">
-																												<?php
-																												if(isset($asset_genre->genre)	&&	!	empty($asset_genre->genre))
-																												{
-																																?>
-																																<strong>Genre:</strong><br/>
-																																<?php	echo	$asset_genre->genre;	?><br/>
-																																<br/>
-																																<?php
-																												}
-																												if(isset($asset_genre->genre_source)	&&	!	empty($asset_genre->genre_source))
-																												{
-																																?>
-																																<strong>Genre Source:</strong><br/>
-																																<?php	echo	$asset_genre->genre_source;	?>
-																																<?php
-																												}
-																												if(isset($asset_genre->genre_ref)	&&	!	empty($asset_genre->genre_ref))
-																												{
-																																?>
-																																<strong>Genre Ref:</strong><br/>
-																																<?php	echo	$asset_genre->genre_ref;	?>
-																												<?php	}	?>
-																								</div>
-																				<?php	}	?>
-																</div>
-												</div>
-								<?php	}	?>
+							
 								<?php
 								if(isset($asset_creators_roles)	&&	!	empty($asset_creators_roles))
 								{

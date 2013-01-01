@@ -109,51 +109,51 @@
 																<?php
 																if(isset($asset_genres)	&&	!	empty($asset_genres))
 																{
-																				
-																				?>
-
-																				<?php
-																				$asset_genre	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_genres->genre)));
-																				$asset_genre_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_genres->genre_ref)));
-																				$asset_genre_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_genres->genre_source)));
-																				$combine_genre	=	'';
-																				if(count($asset_genre)	>	0)
+																				foreach($asset_genres	as	$main_genre)
 																				{
-																								
 																								?>
-																								<tr>
-																												<td class="record-detail-page">
-																																<label><i class="icon-question-sign"></i>* Genres:</label>
-																												</td>
-																												<td>
-																																<?php
-																																foreach($asset_genre	as	$index	=>	$genre)
-																																{
-																																				
-																																				if(isset($asset_genre_ref[$index]))
+
+																								<?php
+																								$asset_genre	=	explode(' | ',	trim(str_replace('(**)',	'',	$main_genre->genre)));
+																								$asset_genre_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$main_genre->genre_ref)));
+																								$asset_genre_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$main_genre->genre_source)));
+																								$combine_genre	=	'';
+																								if(count($asset_genre)	>	0)
+																								{
+																												?>
+																												<tr>
+																																<td class="record-detail-page">
+																																				<label><i class="icon-question-sign"></i>* Genres:</label>
+																																</td>
+																																<td>
+																																				<?php
+																																				foreach($asset_genre	as	$index	=>	$genre)
 																																				{
-																																								if($asset_genre_ref[$index]	!=	'')
+
+																																								if(isset($asset_genre_ref[$index]))
 																																								{
-																																												$combine_genre.="<a target='_blank' href='$asset_genre_ref[$index]'>$genre</a>";
+																																												if($asset_genre_ref[$index]	!=	'')
+																																												{
+																																																$combine_genre.="<a target='_blank' href='$asset_genre_ref[$index]'>$genre</a>";
+																																												}
+																																												else
+																																																$combine_genre.=$genre;
 																																								}
 																																								else
 																																												$combine_genre.=$genre;
+																																								if(isset($asset_genre_source[$index])	&&	$asset_genre_source[$index]	!=	'')
+																																												$combine_genre.=' ('	.	$asset_genre_source[$index]	.	')';
+																																								$combine_genre.='<div class="clearfix"></div>';
 																																				}
-																																				else
-																																								$combine_genre.=$genre;
-																																				if(isset($asset_genre_source[$index])	&&	$asset_genre_source[$index]	!=	'')
-																																								$combine_genre.=' ('	.	$asset_genre_source[$index]	.	')';
-																																				$combine_genre.='<div class="clearfix"></div>';
-																																}
-																																
-																																?>
-																																<p><?php	echo	$combine_genre;	?></p>
-																												</td>
-																								</tr>
-																								<?php
-																				}
-																				?>
-																<?php	}	?>
+																																				?>
+																																				<p><?php	echo	$combine_genre;	?></p>
+																																</td>
+																												</tr>
+																												<?php
+																								}
+																								?>
+																				<?php	}
+																}	?>
 																<!--				Asset Genre End		-->
 												</table>
 

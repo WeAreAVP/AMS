@@ -34,7 +34,7 @@
 								<h2>Instantiation Details: <?php	echo	$combine_title;	?></h2>
 				</div>
 					<div style="float: right;">
-								<button class="btn btn-large"><span class="icon-download-alt"></span>Export Asset</button>
+								<button class="btn btn-large"><span class="icon-download-alt"></span>Export Instantiation</button>
 				</div>
 				<div class="clearfix"></div>
 				<?php	$this->load->view('partials/_list');	?>

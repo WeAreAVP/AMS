@@ -104,21 +104,21 @@
 																												<p><?php	echo	$asset_details->title	?></p>
 																												<br/>
 																								<?php	}	?>
-																								<?php	if(isset($asset_details->title_type)	&&	!	empty($asset_details->title_type))
+																								<?php	if(isset($asset_details->title_type)	&&	$asset_details->title_type!='(**)')
 																								{
 																												?>
 																												<strong>TITLE TYPE:</strong><br/>
 																												<?php	echo	$asset_details->title_type;	?><br/>
 																												<br/>
 																								<?php	}	?>
-																								<?php	if(isset($asset_details->title_ref)	&&	!	empty($asset_details->title_ref))
+																								<?php	if(isset($asset_details->title_ref)	&&		$asset_details->title_ref!='(**)')
 																								{
 																												?>
 																												<strong>TITLE REF:</strong><br/>
 																												<?php	echo	$asset_details->title_ref;	?><br/>
 																												<br/>
 																								<?php	}	?>
-																								<?php	if(isset($asset_details->title_source)	&&	!	empty($asset_details->title_source))
+																								<?php	if(isset($asset_details->title_source)	&&	$asset_details->title_source!='(**)')
 																								{
 																												?>
 																												<strong>TITLE SOURCE:</strong><br/>

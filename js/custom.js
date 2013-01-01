@@ -203,7 +203,7 @@ function showHideColumns(column)
 								{
 												$('#listing_table').dataTable().fnSetColumnVis(column,true);
 								}
-//								updateDatabase();
+								updateDatabase(0);
 				}
 				else
 				{
@@ -289,7 +289,7 @@ function updateDataTable()
 								
 				}
 }
-function updateDatabase()
+function updateDatabase(refresh)
 {
 				userSettings=new Array();
 				$('#show_hide_li a').each(function(index,id)

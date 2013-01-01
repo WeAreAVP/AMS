@@ -160,6 +160,7 @@
 																												<label><i class="icon-question-sign"></i><b>* Duration</b></label>
 																								</td>
 																								<td>
+																												<?php echo $instantiation_detail->projected_duration;?>
 																												<p>	<?php	echo	date('H:i:s',	strtotime($instantiation_detail->projected_duration));	?></p>
 
 																								</td>

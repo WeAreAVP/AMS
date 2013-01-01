@@ -394,7 +394,13 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_assets_contributor_roles_by_assets_id($assets_id)
 				{
-								$this->db->select("contributor_role,contributor_role_source,contributor_role_ref ,contributor_name,contributor_affiliation,contributor_source,contributor_ref");
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributor_name,'(**)')) SEPARATOR ' | ') AS asset_contributor_name",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributor_ref,'(**)')) SEPARATOR ' | ') AS asset_contributor_ref",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributor_affiliation,'(**)')) SEPARATOR ' | ') AS asset_contributor_affiliation",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributor_role,'(**)')) SEPARATOR ' | ') AS asset_contributor_role",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributor_role_source,'(**)')) SEPARATOR ' | ') AS asset_contributor_role_ref",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributor_role_ref,'(**)')) SEPARATOR ' | ') AS asset_contributor_role_source",	FALSE);
+
 								$this->db->from($this->_table_assets_contributors_roles);
 								$this->db->join($this->_table_contributor_roles,	"$this->_table_assets_contributors_roles.contributor_roles_id=$this->_table_contributor_roles.id",	"left");
 								$this->db->join($this->_table_contributors,	"$this->_table_assets_contributors_roles.contributors_id=$this->_table_contributors.id",	"left");

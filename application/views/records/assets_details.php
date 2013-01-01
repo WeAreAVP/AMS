@@ -163,7 +163,7 @@
 																{
 																				foreach($asset_creators_roles	as	$creator)
 																				{
-																								
+
 																								$asset_creator_name	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_name)));
 																								$asset_creator_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_ref)));
 																								$asset_creator_affiliation	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_affiliation)));
@@ -216,6 +216,63 @@
 																}
 																?>
 																<!--				Asset Creator End		-->
+																<!--				Asset Contributor Start		-->
+																<?php
+																if(isset($asset_contributor_roles)	&&	!	empty($asset_contributor_roles))
+																{
+																				foreach($asset_contributor_roles	as	$contributor)
+																				{
+																								$asset_contributor_name	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_name)));
+																								$asset_contributor_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_ref)));
+																								$asset_contributor_affiliation	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_affiliation)));
+																								$asset_contributor_role	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_role)));
+																								$asset_contributor_role_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_role_ref)));
+																								$asset_contributor_role_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_role_source)));
+																								$column	=	'';
+																								if(count($asset_contributor_name)	>	0)
+																								{
+																												?>
+																												<tr>
+																																<td class="record-detail-page">
+																																				<label><i class="icon-question-sign"></i>* Contributor:</label>
+																																</td>
+																																<td>
+																																				<?php
+																																				foreach($asset_contributor_name	as	$index	=>	$contributor_name)
+																																				{
+
+																																								if(isset($asset_contributor_ref[$index])	&&	!	empty($asset_contributor_ref[$index]))
+																																								{
+																																												$column.="<a target='_blank' href='$asset_contributor_ref[$index]'>$contributor_name</a>";
+																																								}
+																																								else
+																																												$column.=$contributor_name;
+																																								if(isset($asset_contributor_affiliation[$index])	&&	$asset_contributor_affiliation[$index]	!=	'')
+																																												$column.=','	.	$asset_contributor_affiliation[$index];
+
+																																								if(isset($asset_contributor_role[$index])	&&	!	empty($asset_contributor_role[$index]))
+																																								{
+																																												if(isset($asset_contributor_role_ref[$index])	&&	!	empty($asset_contributor_role_ref[$index]))
+																																												{
+																																																$column.=",<a target='_blank' href='$asset_contributor_role_ref[$index]'>$asset_contributor_role[$index]</a>";
+																																												}
+																																												else
+																																																$column.=','	.	$asset_contributor_role[$index];
+																																								}
+																																								if(isset($asset_contributor_role_source[$index])	&&	$asset_contributor_role_source[$index]	!=	'')
+																																												$column.=' ('	.	$asset_contributor_role_source[$index]	.	')';
+																																								$column.='<div class="clearfix"></div>';
+																																				}
+																																}
+																																?>
+																																<p><?php	echo	$combine_creator;	?></p>
+																												</td>
+																								</tr>
+																								<?php
+																				}
+																}
+																?>
+																<!--				Asset Contributor End		-->
 												</table>
 
 								</div>

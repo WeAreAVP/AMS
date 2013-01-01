@@ -51,6 +51,8 @@ class	Cron_Model	extends	CI_Model
 								$this->db->where	("file_path",	$file_path);
 								$this->db->limit(1);
 								$res	=	$this->db->get	();
+								echo $this->db->last_query();
+								exit();
 								if	(isset	($res)	&&	!	empty	($res))
 								{
 												return	true;

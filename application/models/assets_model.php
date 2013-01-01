@@ -283,16 +283,16 @@ class	Assets_Model	extends	CI_Model
 				{
 								$sql	=	"SELECT $this->_assets_table.id AS asset_id, $this->_table_identifiers.identifier AS guid_identifier, 
 								$this->stations.station_name as organization,
-								GROUP_CONCAT(local.identifier SEPARATOR ' | ') AS local_identifier, 
-								GROUP_CONCAT(local.identifier_source SEPARATOR ' | ') AS local_identifier_source, 
-								GROUP_CONCAT(local.identifier_ref SEPARATOR ' | ') AS local_identifier_ref, 
+								GROUP_CONCAT(DISTINCT local.identifier SEPARATOR ' | ') AS local_identifier, 
+								GROUP_CONCAT(DISTINCT local.identifier_source SEPARATOR ' | ') AS local_identifier_source, 
+								GROUP_CONCAT(DISTINCT local.identifier_ref SEPARATOR ' | ') AS local_identifier_ref, 
 								$this->_table_asset_descriptions.description,
 
 								GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title,'(**)')) SEPARATOR ' | ') AS title, 
 								GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title_source,'(**)')) SEPARATOR ' | ') AS title_source, 
 								GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title_ref,'(**)')) SEPARATOR ' | ') AS title_ref, 
 								GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_title_types.title_type,'(**)')) SEPARATOR ' | ') AS title_type, 
-								GROUP_CONCAT($this->_table_asset_types.asset_type SEPARATOR ' | ') AS asset_type
+								GROUP_CONCAT(DISTINCT $this->_table_asset_types.asset_type SEPARATOR ' | ') AS asset_type
 								FROM (`$this->_assets_table`) 
                                 LEFT JOIN {$this->_table_identifiers} AS `local` ON `local`.`assets_id` = `$this->_assets_table`.`id` 
                                 LEFT JOIN {$this->_table_identifiers} ON `identifiers`.`assets_id` = `$this->_assets_table`.`id` 

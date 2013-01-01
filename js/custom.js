@@ -324,7 +324,7 @@ function updateDatabase(refresh)
 								success: function (result){
 												$('#listing_table').css('width','100%');
 												if(refresh==1)
-																facet_search('0');
+																window.location.reload();
 											
 								}
 				});

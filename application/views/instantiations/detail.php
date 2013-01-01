@@ -31,7 +31,7 @@
 												$combine_title.='<div class="clearfix"></div>';
 								}
 								?>
-								<h2>Instantiation Details: <?php	echo	$combine_title;exit;	?></h2>
+								<h2>Instantiation Details: <?php	echo	$combine_title;	?></h2>
 				</div>
 				<div class="clearfix"></div>
 <?php	$this->load->view('partials/_list');	?>

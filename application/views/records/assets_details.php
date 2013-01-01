@@ -171,8 +171,8 @@
 																								$asset_creator_role_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_role_ref)));
 																								$asset_creator_role_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_role_source)));
 																								$combine_creator	=	'';
-																								
-																								if(count($asset_creator_name)	>	0 && $asset_creator_name[0]!='')
+
+																								if(count($asset_creator_name)	>	0	&&	$asset_creator_name[0]	!=	'')
 																								{
 																												?>
 																												<tr>
@@ -234,7 +234,7 @@
 																								$asset_contributor_role_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_role_ref)));
 																								$asset_contributor_role_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_role_source)));
 																								$combine_contributor	=	'';
-																								if(count($asset_contributor_name)	>	0 && $asset_contributor_name[0]!='')
+																								if(count($asset_contributor_name)	>	0	&&	$asset_contributor_name[0]	!=	'')
 																								{
 																												?>
 																												<tr>
@@ -283,6 +283,65 @@
 																}
 																?>
 																<!--				Asset Contributor End		-->
+																<!--				Asset Publisher Start		-->
+																<?php
+																if(isset($asset_publishers_roles)	&&	!	empty($asset_publishers_roles))
+																{
+																				foreach($asset_publishers_roles	as	$publisher)
+																				{
+																								$asset_publisher_name	=	explode(' | ',	trim(str_replace('(**)',	'',	$publisher->asset_publisher_name)));
+																								$asset_publisher_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$publisher->asset_publisher_ref)));
+																								$asset_publisher_affiliation	=	explode(' | ',	trim(str_replace('(**)',	'',	$publisher->asset_publisher_affiliation)));
+																								$asset_publisher_role	=	explode(' | ',	trim(str_replace('(**)',	'',	$publisher->asset_publisher_role)));
+																								$asset_publisher_role_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$publisher->asset_publisher_role_ref)));
+																								$asset_publisher_role_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$publisher->asset_publisher_role_source)));
+																								$combine_publisher	=	'';
+																								if(count($asset_publisher_name)	>	0	&&	$asset_publisher_name[0]	!=	'')
+																								{
+																												?>
+																												<tr>
+																																<td class="record-detail-page">
+																																				<label><i class="icon-question-sign"></i>* Publisher:</label>
+																																</td>
+																																<td>
+																																				<?php
+																																				foreach($asset_publisher_name	as	$index	=>	$publisher_name)
+																																				{
+
+																																								if(isset($asset_publisher_ref[$index])	&&	!	empty($asset_publisher_ref[$index]))
+																																								{
+																																												$combine_publisher.="<a target='_blank' href='$asset_publisher_ref[$index]'>$publisher_name</a>";
+																																								}
+																																								else
+																																												$combine_publisher.=$publisher_name;
+																																								if(isset($asset_publisher_affiliation[$index])	&&	$asset_publisher_affiliation[$index]	!=	'')
+																																												$combine_publisher.=','	.	$asset_publisher_affiliation[$index];
+
+																																								if(isset($asset_publisher_role[$index])	&&	!	empty($asset_publisher_role[$index]))
+																																								{
+																																												if(isset($asset_publisher_role_ref[$index])	&&	!	empty($asset_publisher_role_ref[$index]))
+																																												{
+																																																$combine_publisher.=",<a target='_blank' href='$asset_publisher_role_ref[$index]'>$asset_publisher_role[$index]</a>";
+																																												}
+																																												else
+																																																$combine_publisher.=','	.	$asset_publisher_role[$index];
+																																								}
+																																								if(isset($asset_publisher_role_source[$index])	&&	$asset_publisher_role_source[$index]	!=	'')
+																																												$combine_publisher.=' ('	.	$asset_publisher_affiliation[$index]	.	')';
+																																								$combine_publisher.='<div class="clearfix"></div>';
+																																				}
+																																				?>
+																																				<p><?php	echo	$combine_publisher;	?></p>
+																																</td>
+																												</tr>
+																												<?php
+																								}
+																								?>
+																								<?php
+																				}
+																}
+																?>
+																<!--				Asset Publisher End		-->
 												</table>
 
 								</div>

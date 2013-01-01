@@ -421,7 +421,13 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_assets_publishers_role_by_assets_id($assets_id)
 				{
-								$this->db->select("publisher_role,publisher_role_source,publisher_role_ref ,publisher,publisher_affiliation,publisher_ref");
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher,'(**)')) SEPARATOR ' | ') AS asset_publisher_name",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher_ref,'(**)')) SEPARATOR ' | ') AS asset_publisher_ref",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher_affiliation,'(**)')) SEPARATOR ' | ') AS asset_publisher_affiliation",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher_role,'(**)')) SEPARATOR ' | ') AS asset_publisher_role",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher_role_source,'(**)')) SEPARATOR ' | ') AS asset_publisher_role_ref",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher_role_ref,'(**)')) SEPARATOR ' | ') AS asset_publisher_role_source",	FALSE);
+								
 								$this->db->from($this->_table_assets_publishers_role);
 								$this->db->join($this->_table_publisher_roles,	"$this->_table_assets_publishers_role.publisher_roles_id=$this->_table_publisher_roles.id",	"left");
 								$this->db->join($this->_table_publishers,	"$this->_table_assets_publishers_role.publishers_id=$this->_table_publishers.id",	"left");

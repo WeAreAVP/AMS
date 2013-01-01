@@ -119,6 +119,7 @@
 																				$combine_genre	=	'';
 																				if(count($asset_genre)	>	0)
 																				{
+																								debug($asset_genre);
 																								?>
 																								<tr>
 																												<td class="record-detail-page">
@@ -128,7 +129,7 @@
 																																<?php
 																																foreach($asset_genre	as	$index	=>	$genre)
 																																{
-																																				echo $genre;exit;
+																																				
 																																				if(isset($asset_genre_ref[$index]))
 																																				{
 																																								if($asset_genre_ref[$index]	!=	'')
@@ -144,7 +145,7 @@
 																																								$combine_genre.=' ('	.	$asset_genre_source[$index]	.	')';
 																																				$combine_genre.='<div class="clearfix"></div>';
 																																}
-																																echo $combine_genre;exit;
+																																
 																																?>
 																																<p><?php	echo	$combine_genre;	?></p>
 																												</td>

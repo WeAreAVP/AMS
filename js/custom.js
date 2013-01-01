@@ -242,7 +242,7 @@ function freezeColumns(count)
 {
 				frozen=count;
 				$('#freeze_col_'+frozen).toggle(); 
-				updateDatabase(1);
+				facet_search('0');
 }
 function updateDataTable()
 {
@@ -319,7 +319,7 @@ function updateDatabase(refresh)
 												table_type:current_table_type
 								},
 								success: function (result){
-											$('#listing_table').css('width','100%');
+												$('#listing_table').css('width','100%');
 								}
 				});
 }

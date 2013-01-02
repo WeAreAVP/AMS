@@ -44,7 +44,7 @@
 																<!--				Organization Start		-->
 																<tr>
 																				<td class="record-detail-page">
-																								<label><i class="icon-question-sign"></i>* Organization:</label>
+																								<label><i class="icon-question-sign"></i><span class="label_star">*</span> <b>Organization:</b></label>
 																				</td>
 																				<td>
 
@@ -60,7 +60,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i> Asset Type:</label>
+																												<label><i class="icon-question-sign"></i> <b>Asset Type:</b></label>
 																								</td>
 																								<td>
 																												<?php
@@ -82,7 +82,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i>* Title:</label>
+																												<label><i class="icon-question-sign"></i><span class="label_star">*</span> Title(s):</label>
 																								</td>
 																								<td>
 																												<?php	echo	$combine_title;	?>
@@ -97,7 +97,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i> Description:</label>
+																												<label><i class="icon-question-sign"></i><span class="label_star">*</span><b> Description:</b></label>
 																								</td>
 																								<td>
 																												<p><?php	echo	$asset_details->description;	?></p>
@@ -124,7 +124,7 @@
 																												?>
 																												<tr>
 																																<td class="record-detail-page">
-																																				<label><i class="icon-question-sign"></i>* Genres:</label>
+																																				<label><i class="icon-question-sign"></i> <b>Genres:</b></label>
 																																</td>
 																																<td>
 																																				<?php
@@ -179,7 +179,7 @@
 																												?>
 																												<tr>
 																																<td class="record-detail-page">
-																																				<label><i class="icon-question-sign"></i>* Creator:</label>
+																																				<label><i class="icon-question-sign"></i><b>Creator:</b></label>
 																																</td>
 																																<td>
 																																				<?php
@@ -242,7 +242,7 @@
 																												?>
 																												<tr>
 																																<td class="record-detail-page">
-																																				<label><i class="icon-question-sign"></i>* Contributor:</label>
+																																				<label><i class="icon-question-sign"></i><b>Contributor:</b></label>
 																																</td>
 																																<td>
 																																				<?php
@@ -305,7 +305,7 @@
 																												?>
 																												<tr>
 																																<td class="record-detail-page">
-																																				<label><i class="icon-question-sign"></i>* Publisher:</label>
+																																				<label><i class="icon-question-sign"></i><b>Publisher:</b></label>
 																																</td>
 																																<td>
 																																				<?php
@@ -380,7 +380,7 @@
 																												?>
 																												<tr>
 																																<td class="record-detail-page">
-																																				<label><i class="icon-question-sign"></i>* Subject:</label>
+																																				<label><i class="icon-question-sign"></i><b>Subject:</b></label>
 																																</td>
 																																<td>
 																																				<?php
@@ -438,7 +438,7 @@
 																												?>
 																												<tr>
 																																<td class="record-detail-page">
-																																				<label><i class="icon-question-sign"></i>* Coverage:</label>
+																																				<label><i class="icon-question-sign"></i><b>Coverage:</b></label>
 																																</td>
 																																<td>
 																																				<?php	echo	$combine_coverage;	?>
@@ -479,7 +479,7 @@
 																												?>
 																												<tr>
 																																<td class="record-detail-page">
-																																				<label><i class="icon-question-sign"></i> Rights:</label>
+																																				<label><i class="icon-question-sign"></i> <b>Rights:</b></label>
 																																</td>
 																																<td>
 																																				<?php	echo	$combine_right;	?>
@@ -522,7 +522,7 @@
 																												?>
 																												<tr>
 																																<td class="record-detail-page">
-																																				<label><i class="icon-question-sign"></i> Audience Level:</label>
+																																				<label><i class="icon-question-sign"></i> <b>Audience Level:</b></label>
 																																</td>
 																																<td>
 																																				<?php	echo	$combine_audience;	?>
@@ -564,7 +564,7 @@
 																												?>
 																												<tr>
 																																<td class="record-detail-page">
-																																				<label><i class="icon-question-sign"></i> Audience Rating:</label>
+																																				<label><i class="icon-question-sign"></i> <b>Audience Rating:</b></label>
 																																</td>
 																																<td>
 																																				<?php	echo	$combine_audience_rating;	?>
@@ -607,7 +607,7 @@
 																												?>
 																												<tr>
 																																<td class="record-detail-page">
-																																				<label><i class="icon-question-sign"></i> Annotation:</label>
+																																				<label><i class="icon-question-sign"></i> <b>Annotation:</b></label>
 																																</td>
 																																<td>
 																																				<?php	echo	$combine_annotations;	?>
@@ -647,7 +647,7 @@
 																								?>
 																								<tr>
 																												<td class="record-detail-page">
-																																<label><i class="icon-question-sign"></i>* Local ID:</label>
+																																<label><i class="icon-question-sign"></i><span class="label_star">*</span> <b>Local ID:</b></label>
 																												</td>
 																												<td>
 																																<?php	echo	$combine_local_identifier;	?>
@@ -673,7 +673,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i>* American Archive GUID:</label>
+																												<label><i class="icon-question-sign"></i><span class="label_star">*</span> <b>American Archive GUID:</b></label>
 																								</td>
 																								<td>
 																												<?php	echo	$combine_guid;	?>

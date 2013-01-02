@@ -569,3 +569,6 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .record-detail-table p{
 				margin: 0 0 3px;
 }
+.label_star{
+				color:red;
+}

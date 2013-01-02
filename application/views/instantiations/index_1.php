@@ -1,38 +1,6 @@
 
 												<?php
 								}
-								if(isset($asset_coverages)	&&	!	empty($asset_coverages))
-								{
-												?>
-												<div class="span12 form-row">
-																<div class="span2 form-label">
-																				<label><i class="icon-question-sign"></i> Coveragee:</label>
-																</div>
-																<!--end of span3-->
-																<div id="search_bar" class="span8"><?php
-								foreach($asset_coverages	as	$asset_coverage)
-								{
-																?>
-																								<div class="disabled-field"><?php
-																if(isset($asset_coverage->coverage))
-																{
-																				?>
-																																<strong>Coverage:</strong><br/><?php	echo	$asset_coverage->coverage;	?><br/><br/>
-																																<?php
-																												}
-																												if(isset($asset_coverage->coverage_type))
-																												{
-																																?>
-
-																																<strong>Coverage Type:</strong><br/>
-																																<?php	echo	$asset_coverage->coverage_type;	?><br/><br/><?php	}
-																												?>   
-																								</div><?php	}
-																								?>
-																</div>
-												</div>
-												<?php
-								}
 								if(isset($rights_summaries)	&&	!	empty($rights_summaries))
 								{
 												?>

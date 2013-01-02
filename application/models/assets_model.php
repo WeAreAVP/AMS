@@ -145,8 +145,11 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_rights_summaries_by_asset_id($asset_id)
 				{
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_rights_summaries.	rights_link,'(**)')) SEPARATOR ' | ') AS 	rights_link",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_rights_summaries.	rights,'(**)')) SEPARATOR ' | ') AS 	rights",	FALSE);
 								$this->db->where('assets_id',	$asset_id);
-								$query	=	$this->db->get($this->_table_rights_summaries);
+								$this->db->from($this->_table_rights_summaries);
+								$query	=	$this->db->get();
 								if(isset($query)	&&	!	empty($query))
 								{
 												$res	=	$query->result();

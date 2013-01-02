@@ -420,15 +420,15 @@
 																								$combine_coverage	=	'';
 																								if(count($asset_coverage)	&&	$asset_coverage[0]	!=	'')
 																								{
-																												foreach($asset_coverage as $index=>$row){
-																																if(isset($asset_coverage_type[$index]))
+																												foreach($asset_coverage	as	$index	=>	$row)
 																												{
-																																$combine_coverage.=$asset_coverage_type[$index]	.	': ';
+																																if(isset($asset_coverage_type[$index]))
+																																{
+																																				$combine_coverage.=$asset_coverage_type[$index]	.	': ';
+																																}
+																																$combine_coverage.=$row;
+																																$combine_coverage.='<div class="clearfix"></div>';
 																												}
-																												$combine_coverage.=$row;
-																												$combine_coverage.='<div class="clearfix"></div>';
-																												}
-																												
 																												?>
 																												<tr>
 																																<td class="record-detail-page">
@@ -446,6 +446,46 @@
 																}
 																?>
 																<!--				Coverage End		-->
+																<!--				Rights Start		-->
+																<?php
+																if(isset($rights_summaries)	&&	!	empty($rights_summaries))
+																{
+																				foreach($rights_summaries	as	$right_summary)
+																				{
+																								$rights	=	explode(' | ',	trim(str_replace('(**)',	'',	$right_summary->rights)));
+																								$right_link	=	explode(' | ',	trim(str_replace('(**)',	'',	$right_summary->rights_link)));
+																								$combine_right	=	'';
+																								if(count($rights)	>	0	&&	$rights[0]	!=	'')
+																								{
+																												foreach($rights	as	$index	=>	$right)
+																												{
+																																if(isset($right_link[$index]))
+																																{
+																																				$combine_right.="<a href='$right_link[$index]'>$right</a>";
+																																}
+																																else
+																																{
+																																				$combine_right.=$right;
+																																}
+																																$combine_right.='<div class="clearfix"></div>';
+																												}
+																												?>
+																												<tr>
+																																<td class="record-detail-page">
+																																				<label><i class="icon-question-sign"></i> Rights:</label>
+																																</td>
+																																<td>
+																																				<?php	echo	$combine_right;	?>
+																																</td>
+																												</tr>
+																												<?php
+																								}
+																								?>
+																								<?php
+																				}
+																}
+																?>
+																<!--				Rights End		-->
 												</table>
 
 								</div>

@@ -587,7 +587,7 @@
 																								$a_anno	=	explode(' | ',	trim(str_replace('(**)',	'',	$a_annotations->annotation)));
 																								$a_anno_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$a_annotations->annotation_type)));
 																								$a_anno_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$a_annotations->annotation_ref)));
-																								if(count($a_anno)	>	0 && $a_anno[0]!='')
+																								if(count($a_anno)	>	0	&&	$a_anno[0]	!=	'')
 																								{
 																												foreach($a_anno	as	$index	=>	$row)
 																												{
@@ -620,6 +620,45 @@
 																?>
 
 																<!--			Annotation End		-->
+																<!--			Local ID Start		-->
+																<?php
+																if(isset($asset_details->local_identifier)	&&	$asset_details->local_identifier	!=	'(**)')
+																{
+																				$combine_local_identifier	=	'';
+																				$a_local	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->local_identifier)));
+																				$a_local_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->identifier_source)));
+																				$a_local_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->identifier_ref)));
+																				if(count($a_local)	>	0)
+																				{
+																								foreach($a_local	as	$index	=>	$row)
+																								{
+																												if(isset($a_local_ref[$index])	&&	$a_local_ref[$index]	!=	'')
+																												{
+																																$combine_local_identifier.="<a href='$a_local_ref[$index]'>$row</a>";
+																												}
+																												else
+																																$combine_local_identifier.=$row;
+																												if(isset($a_local_source[$index])	&&	$a_local_source[$index]	!=	'')
+																												{
+																																$combine_local_identifier.=" ($a_local_source[$index])";
+																												}
+																												$combine_local_identifier.='<div class="clearfix"></div>';
+																								}
+																								?>
+																								<tr>
+																												<td class="record-detail-page">
+																																<label><i class="icon-question-sign"></i>* Local ID:</label>
+																												</td>
+																												<td>
+																																<?php	echo	$combine_local_identifier;	?>
+																												</td>
+																								</tr>
+																								<?php
+																				}
+																}
+																?>
+
+																<!--			Local ID End		-->
 												</table>
 
 								</div>

@@ -320,9 +320,9 @@ class	Assets_Model	extends	CI_Model
 				{
 								$sql	=	"SELECT $this->_assets_table.id AS asset_id, $this->_table_identifiers.identifier AS guid_identifier, 
 								$this->stations.station_name as organization,
-								GROUP_CONCAT(DISTINCT local.identifier SEPARATOR ' | ') AS local_identifier, 
-								GROUP_CONCAT(DISTINCT local.identifier_source SEPARATOR ' | ') AS local_identifier_source, 
-								GROUP_CONCAT(DISTINCT local.identifier_ref SEPARATOR ' | ') AS local_identifier_ref, 
+								GROUP_CONCAT(DISTINCT(IFNULL(local.identifier,'(**)')) SEPARATOR ' | ') AS local_identifier, 
+								GROUP_CONCAT(DISTINCT(IFNULL(local.identifier_source,'(**)')) SEPARATOR ' | ') AS identifier_source, 
+								GROUP_CONCAT(DISTINCT(IFNULL(local.identifier_ref,'(**)')) SEPARATOR ' | ') AS identifier_ref, 
 								$this->_table_asset_descriptions.description,
 
 								GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title,'(**)')) SEPARATOR ' | ') AS title, 

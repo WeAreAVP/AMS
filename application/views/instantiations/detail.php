@@ -57,7 +57,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Instantiation ID:</b></label>
+																												<label><i class="icon-question-sign"></i><b><span class="label_star">*</span> Instantiation ID:</b></label>
 																								</td>
 																								<td>
 
@@ -103,7 +103,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Media Type:</b></label>
+																												<label><i class="icon-question-sign"></i><b><span class="label_star">*</span> Media Type:</b></label>
 																								</td>
 																								<td>
 																												<?php
@@ -150,7 +150,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b> Generation</b></label>
+																												<label><i class="icon-question-sign"></i><b> Generation:</b></label>
 																								</td>
 																								<td>
 																												<?php
@@ -171,7 +171,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Location</b></label>
+																												<label><i class="icon-question-sign"></i><span class="label_star">*</span><b> Location:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->location;	?></p>
@@ -188,7 +188,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Duration</b></label>
+																												<label><i class="icon-question-sign"></i><span class="label_star">*</span><b>Duration:</b></label>
 																								</td>
 																								<td>
 
@@ -204,7 +204,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Duration</b></label>
+																												<label><i class="icon-question-sign"></i><span class="label_star">*</span><b> Duration:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	date('H:i:s',	strtotime($instantiation_detail->actual_duration));	?></p>
@@ -221,7 +221,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Time Start</b></label>
+																												<label><i class="icon-question-sign"></i><b> Time Start:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->time_start;	?></p>
@@ -238,7 +238,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* File Size</b></label>
+																												<label><i class="icon-question-sign"></i><b>File Size:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->file_size	.	' '	.	$instantiation_detail->file_size_unit_of_measure;	?></p>
@@ -255,7 +255,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Standard:</b></label>
+																												<label><i class="icon-question-sign"></i><b>Standard:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->standard;	?></p>
@@ -272,7 +272,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Dimensions:</b></label>
+																												<label><i class="icon-question-sign"></i><b>Dimensions:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->instantiation_dimension	.	' '	.	$instantiation_detail->unit_of_measure;	?></p>
@@ -289,7 +289,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Data Rate:</b></label>
+																												<label><i class="icon-question-sign"></i><b>Data Rate:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->data_rate	.	' '	.	$instantiation_detail->data_rate_unit_of_measure;	?></p>
@@ -306,7 +306,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Color:</b></label>
+																												<label><i class="icon-question-sign"></i><b>Color:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->color;	?></p>
@@ -323,7 +323,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Tracks:</b></label>
+																												<label><i class="icon-question-sign"></i><b>Tracks:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->tracks;	?></p>
@@ -340,7 +340,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Channel Configuration:</b></label>
+																												<label><i class="icon-question-sign"></i><b>Channel Configuration:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->channel_configuration;	?></p>
@@ -357,7 +357,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Language:</b></label>
+																												<label><i class="icon-question-sign"></i><b>Language:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->language;	?></p>
@@ -407,7 +407,7 @@
 																												?>
 																												<tr>
 																																<td class="record-detail-page">
-																																				<label><i class="icon-question-sign"></i><b>* Annotation:</b></label>
+																																				<label><i class="icon-question-sign"></i><b>Annotation:</b></label>
 																																</td>
 																																<td>
 																																				<p>	<?php	echo	$combine_annotation;	?></p>

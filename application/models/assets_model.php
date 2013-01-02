@@ -318,31 +318,33 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_asset_by_asset_id($asset_id)
 				{
-								$sql	=	"SELECT $this->_assets_table.id AS asset_id, $this->_table_identifiers.identifier AS guid_identifier, 
-								$this->stations.station_name as organization,
-								GROUP_CONCAT(DISTINCT(IFNULL(local.identifier,'(**)')) SEPARATOR ' | ') AS local_identifier, 
-								GROUP_CONCAT(DISTINCT(IFNULL(local.identifier_source,'(**)')) SEPARATOR ' | ') AS identifier_source, 
-								GROUP_CONCAT(DISTINCT(IFNULL(local.identifier_ref,'(**)')) SEPARATOR ' | ') AS identifier_ref, 
-								$this->_table_asset_descriptions.description,
+								$sql	=	"SELECT $this->_assets_table.id AS asset_id, 
+																$this->_table_identifiers.identifier AS guid_identifier, 
+																$this->_table_identifiers.identifier_ref AS guid_identifier_ref, 
+																$this->stations.station_name as organization,
+																GROUP_CONCAT(DISTINCT(IFNULL(local.identifier,'(**)')) SEPARATOR ' | ') AS local_identifier, 
+																GROUP_CONCAT(DISTINCT(IFNULL(local.identifier_source,'(**)')) SEPARATOR ' | ') AS identifier_source, 
+																GROUP_CONCAT(DISTINCT(IFNULL(local.identifier_ref,'(**)')) SEPARATOR ' | ') AS identifier_ref, 
+																$this->_table_asset_descriptions.description,
 
-								GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title,'(**)')) SEPARATOR ' | ') AS title, 
-								GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title_source,'(**)')) SEPARATOR ' | ') AS title_source, 
-								GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title_ref,'(**)')) SEPARATOR ' | ') AS title_ref, 
-								GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_title_types.title_type,'(**)')) SEPARATOR ' | ') AS title_type, 
-								GROUP_CONCAT(DISTINCT $this->_table_asset_types.asset_type SEPARATOR ' | ') AS asset_type
-								FROM (`$this->_assets_table`) 
-                                LEFT JOIN {$this->_table_identifiers} AS `local` ON `local`.`assets_id` = `$this->_assets_table`.`id` 
-                                LEFT JOIN {$this->_table_identifiers} ON `identifiers`.`assets_id` = `$this->_assets_table`.`id` 
-                                LEFT JOIN {$this->_table_asset_descriptions} ON `asset_descriptions`.`assets_id` = `$this->_assets_table`.`id` 
-                                LEFT JOIN {$this->_table_asset_titles} ON `asset_titles`.`assets_id` = `$this->_assets_table`.`id` 
-								LEFT JOIN {$this->_table_asset_title_types} ON `$this->_table_asset_title_types`.`id` = `$this->_table_asset_titles`.`asset_title_types_id` 
-								LEFT JOIN {$this->stations} ON {$this->stations}.id = {$this->_assets_table}.stations_id
-								LEFT JOIN {$this->_table_assets_asset_types} ON $this->_table_assets_asset_types.assets_id = `$this->_assets_table`.`id`
-								LEFT JOIN {$this->_table_asset_types} ON $this->_table_assets_asset_types.asset_types_id = $this->_table_asset_types.`id`
-                        WHERE `identifiers`.`identifier_source` = 'http://americanarchiveinventory.org' 
-                        AND `local`.`identifier_source` != 'http://americanarchiveinventory.org' 
-						AND assets.id='"	.	$asset_id	.	"'
-                        GROUP BY `assets`.`id` ";
+																GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title,'(**)')) SEPARATOR ' | ') AS title, 
+																GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title_source,'(**)')) SEPARATOR ' | ') AS title_source, 
+																GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title_ref,'(**)')) SEPARATOR ' | ') AS title_ref, 
+																GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_title_types.title_type,'(**)')) SEPARATOR ' | ') AS title_type, 
+																GROUP_CONCAT(DISTINCT $this->_table_asset_types.asset_type SEPARATOR ' | ') AS asset_type
+												FROM (`$this->_assets_table`) 
+																LEFT JOIN {$this->_table_identifiers} AS `local` ON `local`.`assets_id` = `$this->_assets_table`.`id` 
+																LEFT JOIN {$this->_table_identifiers} ON `identifiers`.`assets_id` = `$this->_assets_table`.`id` 
+																LEFT JOIN {$this->_table_asset_descriptions} ON `asset_descriptions`.`assets_id` = `$this->_assets_table`.`id` 
+																LEFT JOIN {$this->_table_asset_titles} ON `asset_titles`.`assets_id` = `$this->_assets_table`.`id` 
+																LEFT JOIN {$this->_table_asset_title_types} ON `$this->_table_asset_title_types`.`id` = `$this->_table_asset_titles`.`asset_title_types_id` 
+																LEFT JOIN {$this->stations} ON {$this->stations}.id = {$this->_assets_table}.stations_id
+																LEFT JOIN {$this->_table_assets_asset_types} ON $this->_table_assets_asset_types.assets_id = `$this->_assets_table`.`id`
+																LEFT JOIN {$this->_table_asset_types} ON $this->_table_assets_asset_types.asset_types_id = $this->_table_asset_types.`id`
+												WHERE `identifiers`.`identifier_source` = 'http://americanarchiveinventory.org' 
+																AND `local`.`identifier_source` != 'http://americanarchiveinventory.org' 
+																AND assets.id='"	.	$asset_id	.	"'
+												GROUP BY `assets`.`id` ";
 								$res	=	$this->db->query($sql);
 								if(isset($res)	&&	!	empty($res))
 								{

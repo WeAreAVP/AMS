@@ -659,6 +659,28 @@
 																?>
 
 																<!--			Local ID End		-->
+																<!--		American Archive GUID Start		-->
+																<?php
+																if(isset($asset_details->guid_identifier)	&&	!	empty($asset_details->guid_identifier))
+																{
+																				$combine_guid	=	'';
+																				if(isset($asset_details->guid_identifier_ref)	&&	!	empty($asset_details->guid_identifier_ref))
+																				{
+																								$combine_guid.="<a href='$asset_details->guid_identifier_ref'>$asset_details->guid_identifier</a>";
+																				}
+																				else
+																								$combine_guid.=$asset_details->guid_identifier;
+																				?>
+																				<tr>
+																								<td class="record-detail-page">
+																												<label><i class="icon-question-sign"></i>* American Archive GUID:</label>
+																								</td>
+																								<td>
+																												<?php	echo	$combine_guid;	?>
+																								</td>
+																				</tr>
+																<?php	}	?>
+																<!--			American Archive GUID End		-->
 												</table>
 
 								</div>

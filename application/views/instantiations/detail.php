@@ -25,15 +25,12 @@
 												}
 												else
 																$combine_title.=$title;
-
-
-
 												$combine_title.='<div class="clearfix"></div>';
 								}
 								?>
-								<h2>Instantiation Details: <?php	echo	$combine_title;	?></h2>
+								<h2><?php	echo	$combine_title;	?></h2>
 				</div>
-					<div style="float: right;">
+				<div style="float: right;">
 								<button class="btn btn-large"><span class="icon-download-alt"></span>Export Instantiation</button>
 				</div>
 				<div class="clearfix"></div>
@@ -60,7 +57,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Instantiation ID:</b></label>
+																												<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Instantiation ID:</b></label>
 																								</td>
 																								<td>
 
@@ -77,7 +74,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>  Date:</b></label>
+																												<label><i class="icon-question-sign"></i><b> Date:</b></label>
 																								</td>
 																								<td>
 																												<?php
@@ -106,7 +103,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Media Type:</b></label>
+																												<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Media Type:</b></label>
 																								</td>
 																								<td>
 																												<?php
@@ -153,7 +150,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b> Generation</b></label>
+																												<label><i class="icon-question-sign"></i><b> Generation:</b></label>
 																								</td>
 																								<td>
 																												<?php
@@ -167,14 +164,14 @@
 
 																<?php	}	?>
 																<!--				Generation	End		-->
-																<!--				Generation 	Start		-->
+																<!--				Location 	Start		-->
 																<?php
 																if($instantiation_detail->location)
 																{
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Location</b></label>
+																												<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Location:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->location;	?></p>
@@ -183,7 +180,7 @@
 																				</tr>
 
 																<?php	}	?>
-																<!--				Generation	End		-->
+																<!--				Location	End		-->
 																<!--				Duration 	Start		-->
 																<?php
 																if($instantiation_detail->projected_duration	>	0)
@@ -191,7 +188,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Duration</b></label>
+																												<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Duration:</b></label>
 																								</td>
 																								<td>
 
@@ -207,7 +204,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Duration</b></label>
+																												<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Duration:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	date('H:i:s',	strtotime($instantiation_detail->actual_duration));	?></p>
@@ -219,21 +216,212 @@
 																<!--				Duration	End		-->
 																<!--				Time Start 	Start		-->
 																<?php
-																if($instantiation_detail->location)
+																if($instantiation_detail->time_start)
 																{
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>* Location</b></label>
+																												<label><i class="icon-question-sign"></i><b> Time Start:</b></label>
 																								</td>
 																								<td>
-																												<p>	<?php	echo	$instantiation_detail->location;	?></p>
+																												<p>	<?php	echo	$instantiation_detail->time_start;	?></p>
 
 																								</td>
 																				</tr>
 
 																<?php	}	?>
-																<!--				Generation	End		-->
+																<!--				Time Start	End		-->
+																<!--				File Size 	Start		-->
+																<?php
+																if($instantiation_detail->file_size)
+																{
+																				?>	
+																				<tr>
+																								<td class="record-detail-page">
+																												<label><i class="icon-question-sign"></i><b> File Size:</b></label>
+																								</td>
+																								<td>
+																												<p>	<?php	echo	$instantiation_detail->file_size	.	' '	.	$instantiation_detail->file_size_unit_of_measure;	?></p>
+
+																								</td>
+																				</tr>
+
+																<?php	}	?>
+																<!--				File Size	End		-->
+																<!--				Standard 	Start		-->
+																<?php
+																if($instantiation_detail->standard)
+																{
+																				?>	
+																				<tr>
+																								<td class="record-detail-page">
+																												<label><i class="icon-question-sign"></i><b> Standard:</b></label>
+																								</td>
+																								<td>
+																												<p>	<?php	echo	$instantiation_detail->standard;	?></p>
+
+																								</td>
+																				</tr>
+
+																<?php	}	?>
+																<!--				Standard	End		-->
+																<!--				Dimensions: 	Start		-->
+																<?php
+																if($instantiation_detail->instantiation_dimension)
+																{
+																				?>	
+																				<tr>
+																								<td class="record-detail-page">
+																												<label><i class="icon-question-sign"></i><b> Dimensions:</b></label>
+																								</td>
+																								<td>
+																												<p>	<?php	echo	$instantiation_detail->instantiation_dimension	.	' '	.	$instantiation_detail->unit_of_measure;	?></p>
+
+																								</td>
+																				</tr>
+
+																<?php	}	?>
+																<!--				Dimensions	End		-->
+																<!--				Data Rate 	Start		-->
+																<?php
+																if($instantiation_detail->data_rate)
+																{
+																				?>	
+																				<tr>
+																								<td class="record-detail-page">
+																												<label><i class="icon-question-sign"></i><b> Data Rate:</b></label>
+																								</td>
+																								<td>
+																												<p>	<?php	echo	$instantiation_detail->data_rate	.	' '	.	$instantiation_detail->data_rate_unit_of_measure;	?></p>
+
+																								</td>
+																				</tr>
+
+																<?php	}	?>
+																<!--				Data Rate	End		-->
+																<!--			 Color 	Start		-->
+																<?php
+																if($instantiation_detail->color)
+																{
+																				?>	
+																				<tr>
+																								<td class="record-detail-page">
+																												<label><i class="icon-question-sign"></i><b> Color:</b></label>
+																								</td>
+																								<td>
+																												<p>	<?php	echo	$instantiation_detail->color;	?></p>
+
+																								</td>
+																				</tr>
+
+																<?php	}	?>
+																<!--				Color	End		-->
+																<!--			 Tracks 	Start		-->
+																<?php
+																if($instantiation_detail->tracks)
+																{
+																				?>	
+																				<tr>
+																								<td class="record-detail-page">
+																												<label><i class="icon-question-sign"></i><b> Tracks:</b></label>
+																								</td>
+																								<td>
+																												<p>	<?php	echo	$instantiation_detail->tracks;	?></p>
+
+																								</td>
+																				</tr>
+
+																<?php	}	?>
+																<!--				Tracks	End		-->
+																<!--			 Channel Configuration 	Start		-->
+																<?php
+																if($instantiation_detail->channel_configuration)
+																{
+																				?>	
+																				<tr>
+																								<td class="record-detail-page">
+																												<label><i class="icon-question-sign"></i><b> Channel Configuration:</b></label>
+																								</td>
+																								<td>
+																												<p>	<?php	echo	$instantiation_detail->channel_configuration;	?></p>
+
+																								</td>
+																				</tr>
+
+																<?php	}	?>
+																<!--				Channel Configuration	End		-->
+																<!--			 Language 	Start		-->
+																<?php
+																if($instantiation_detail->language)
+																{
+																				?>	
+																				<tr>
+																								<td class="record-detail-page">
+																												<label><i class="icon-question-sign"></i><b> Language:</b></label>
+																								</td>
+																								<td>
+																												<p>	<?php	echo	$instantiation_detail->language;	?></p>
+
+																								</td>
+																				</tr>
+
+																<?php	}	?>
+																<!--				Language	End		-->
+																<!--			 Annotation 	Start		-->
+																<?php
+																if($instantiation_detail->ins_annotation	||	$instantiation_detail->ins_annotation_type)
+																{
+																				$ins_annotation	=	explode(' | ',	trim(str_replace('(**)',	'',	$instantiation_detail->ins_annotation)));
+																				$ins_annotation_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$instantiation_detail->ins_annotation_type)));
+																				$combine_annotation	=	'';
+																				if((count($ins_annotation)	>	0 && $ins_annotation[0]!='')	||	(count($ins_annotation_type)	>	0 &&  $ins_annotation_type[0]!='') )
+																				{
+																								if(count($ins_annotation)	>	count($ins_annotation_type))
+																								{
+																												foreach($ins_annotation	as	$index	=>	$row)
+																												{
+																																if(isset($ins_annotation_type[$index])	&&	$ins_annotation_type[$index]	!=	'')
+																																{
+																																				$combine_annotation.=$ins_annotation_type[$index]	.	': ';
+																																}
+																																$combine_annotation.=$row;
+																																$combine_annotation.='<div class="clearfix"></div>';
+																												}
+																								}
+																								else
+																								{
+																												foreach($ins_annotation_type	as	$index	=>	$row)
+																												{
+																																$combine_annotation.=$row	.	': ';
+																																if(isset($ins_annotation[$index])	&&	$ins_annotation[$index]	!=	'')
+																																{
+																																				$combine_annotation.=$ins_annotation[$index];
+																																}
+
+																																$combine_annotation.='<div class="clearfix"></div>';
+																												}
+																								}
+																								
+																								if(	!	empty($combine_annotation)	&&	trim($combine_annotation)	!=	':')
+																								{
+																												?>
+																												<tr>
+																																<td class="record-detail-page">
+																																				<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
+																																</td>
+																																<td>
+																																				<p>	<?php	echo	$combine_annotation;	?></p>
+
+																																</td>
+																												</tr>
+																												<?php
+																								}
+																				}
+																				?>	
+
+
+																<?php	}	?>
+																<!--				Annotation	End		-->
 												</table>
 								</div>
 								<?php

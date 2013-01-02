@@ -1,11 +1,30 @@
 <?php
 
 /**
-	* Assets Model.
+	* Asset_model Model
+	* 
+	* PHP version 5
+	* 
+	* @category   AMS
+	* @package    CI
+	* @subpackage Model
+	* @author     Ali Raza <ali.com>
+	* @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @license    AVPS http://ams.avpreserve.com
+	* @version    GIT: <$Id>
+	* @link       http://ams.avpreserve.com
+	*/
+
+/**
+	* AMS Asset_model Class
 	*
-	* @package    AMS
-	* @subpackage assets_model
-	* @author     ALi RAza
+	* @category   Class
+	* @package    CI
+	* @subpackage Model
+	* @author     Ali Raza <ali.com>
+	* @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @version    GIT: <$Id>
+	* @link       http://ams.avpreserve.com
 	*/
 class	Assets_Model	extends	CI_Model
 {
@@ -61,14 +80,19 @@ class	Assets_Model	extends	CI_Model
 				}
 
 				/**
-					* Get annotations by assets_id
-					* @param type $assets_id
+					* Get Annotations by Asset ID
+					* 
+					* @param integer $assets_id
 					* @return array 
 					*/
 				function	get_annotations_by_asset_id($asset_id)
 				{
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_annotations.	annotation,'(**)')) SEPARATOR ' | ') AS 	annotation",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_annotations.	annotation_type,'(**)')) SEPARATOR ' | ') AS 	annotation_type",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_annotations.	annotation_ref,'(**)')) SEPARATOR ' | ') AS 	annotation_ref",	FALSE);
 								$this->db->where('assets_id',	$asset_id);
-								$query	=	$this->db->get($this->_table_annotations);
+								$this->db->from($this->_table_annotations);
+								$query	=	$this->db->get();
 								if(isset($query)	&&	!	empty($query))
 								{
 												$res	=	$query->result();
@@ -79,14 +103,18 @@ class	Assets_Model	extends	CI_Model
 				}
 
 				/**
-					* search audience rating by assets_id
+					* search audience Rating by Asset ID
 					* 
-					* @param type $title_type
+					* @param integer $assets_id
 					* @return object 
 					*/
 				function	get_audience_rating_by_asset_id($assets_id)
 				{
-								$this->db->select("audience_rating ,audience_rating_source ,	audience_rating_ref ");
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_ratings.	audience_rating,'(**)')) SEPARATOR ' | ') AS 	audience_rating",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_ratings.	audience_rating_source,'(**)')) SEPARATOR ' | ') AS 	audience_rating_source",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_ratings.	audience_rating_ref,'(**)')) SEPARATOR ' | ') AS 	audience_rating_ref",	FALSE);
+
+
 								$this->db->from($this->_table_assets_audience_ratings);
 								$this->db->join($this->_table_audience_ratings,	"$this->_table_assets_audience_ratings.audience_ratings_id=$this->_table_audience_ratings.id",	"left");
 								$this->db->where($this->_table_assets_audience_ratings	.	".assets_id",	$assets_id);
@@ -99,14 +127,17 @@ class	Assets_Model	extends	CI_Model
 				}
 
 				/**
-					* search audience level by assets_id
+					* search Audience Level by Asset ID
 					* 
-					* @param type $title_type
+					* @param integer $assets_id
 					* @return object 
 					*/
 				function	get_audience_level_by_asset_id($assets_id)
 				{
-								$this->db->select("audience_level ,audience_level_source ,audience_level_ref ");
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_levels.	audience_level,'(**)')) SEPARATOR ' | ') AS 	audience_level",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_levels.	audience_level_source,'(**)')) SEPARATOR ' | ') AS 	audience_level_source",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_levels.	audience_level_ref,'(**)')) SEPARATOR ' | ') AS 	audience_level_ref",	FALSE);
+
 								$this->db->from($this->_table_assets_audience_levels);
 								$this->db->join($this->_table_audience_levels,	"$this->_table_assets_audience_levels.audience_levels_id=$this->_table_audience_levels.id",	"left");
 								$this->db->where($this->_table_assets_audience_levels	.	".assets_id",	$assets_id);
@@ -125,8 +156,11 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_rights_summaries_by_asset_id($asset_id)
 				{
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_rights_summaries.	rights_link,'(**)')) SEPARATOR ' | ') AS 	rights_link",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_rights_summaries.	rights,'(**)')) SEPARATOR ' | ') AS 	rights",	FALSE);
 								$this->db->where('assets_id',	$asset_id);
-								$query	=	$this->db->get($this->_table_rights_summaries);
+								$this->db->from($this->_table_rights_summaries);
+								$query	=	$this->db->get();
 								if(isset($query)	&&	!	empty($query))
 								{
 												$res	=	$query->result();
@@ -163,8 +197,11 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_coverages_by_asset_id($asset_id)
 				{
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_coverages.	coverage,'(**)')) SEPARATOR ' | ') AS 	coverage",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_coverages.coverage_type,'(**)')) SEPARATOR ' | ') AS coverage_type",	FALSE);
 								$this->db->where('assets_id',	$asset_id);
-								$query	=	$this->db->get($this->_table_coverages);
+								$this->db->from($this->_table_coverages);
+								$query	=	$this->db->get();
 								if(isset($query)	&&	!	empty($query))
 								{
 												$res	=	$query->result();
@@ -281,31 +318,33 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_asset_by_asset_id($asset_id)
 				{
-								$sql	=	"SELECT $this->_assets_table.id AS asset_id, $this->_table_identifiers.identifier AS guid_identifier, 
-								$this->stations.station_name as organization,
-								GROUP_CONCAT(DISTINCT local.identifier SEPARATOR ' | ') AS local_identifier, 
-								GROUP_CONCAT(DISTINCT local.identifier_source SEPARATOR ' | ') AS local_identifier_source, 
-								GROUP_CONCAT(DISTINCT local.identifier_ref SEPARATOR ' | ') AS local_identifier_ref, 
-								$this->_table_asset_descriptions.description,
+								$sql	=	"SELECT $this->_assets_table.id AS asset_id, 
+																$this->_table_identifiers.identifier AS guid_identifier, 
+																$this->_table_identifiers.identifier_ref AS guid_identifier_ref, 
+																$this->stations.station_name as organization,
+																GROUP_CONCAT(DISTINCT(IFNULL(local.identifier,'(**)')) SEPARATOR ' | ') AS local_identifier, 
+																GROUP_CONCAT(DISTINCT(IFNULL(local.identifier_source,'(**)')) SEPARATOR ' | ') AS identifier_source, 
+																GROUP_CONCAT(DISTINCT(IFNULL(local.identifier_ref,'(**)')) SEPARATOR ' | ') AS identifier_ref, 
+																$this->_table_asset_descriptions.description,
 
-								GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title,'(**)')) SEPARATOR ' | ') AS title, 
-								GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title_source,'(**)')) SEPARATOR ' | ') AS title_source, 
-								GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title_ref,'(**)')) SEPARATOR ' | ') AS title_ref, 
-								GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_title_types.title_type,'(**)')) SEPARATOR ' | ') AS title_type, 
-								GROUP_CONCAT(DISTINCT $this->_table_asset_types.asset_type SEPARATOR ' | ') AS asset_type
-								FROM (`$this->_assets_table`) 
-                                LEFT JOIN {$this->_table_identifiers} AS `local` ON `local`.`assets_id` = `$this->_assets_table`.`id` 
-                                LEFT JOIN {$this->_table_identifiers} ON `identifiers`.`assets_id` = `$this->_assets_table`.`id` 
-                                LEFT JOIN {$this->_table_asset_descriptions} ON `asset_descriptions`.`assets_id` = `$this->_assets_table`.`id` 
-                                LEFT JOIN {$this->_table_asset_titles} ON `asset_titles`.`assets_id` = `$this->_assets_table`.`id` 
-								LEFT JOIN {$this->_table_asset_title_types} ON `$this->_table_asset_title_types`.`id` = `$this->_table_asset_titles`.`asset_title_types_id` 
-								LEFT JOIN {$this->stations} ON {$this->stations}.id = {$this->_assets_table}.stations_id
-								LEFT JOIN {$this->_table_assets_asset_types} ON $this->_table_assets_asset_types.assets_id = `$this->_assets_table`.`id`
-								LEFT JOIN {$this->_table_asset_types} ON $this->_table_assets_asset_types.asset_types_id = $this->_table_asset_types.`id`
-                        WHERE `identifiers`.`identifier_source` = 'http://americanarchiveinventory.org' 
-                        AND `local`.`identifier_source` != 'http://americanarchiveinventory.org' 
-						AND assets.id='"	.	$asset_id	.	"'
-                        GROUP BY `assets`.`id` ";
+																GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title,'(**)')) SEPARATOR ' | ') AS title, 
+																GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title_source,'(**)')) SEPARATOR ' | ') AS title_source, 
+																GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title_ref,'(**)')) SEPARATOR ' | ') AS title_ref, 
+																GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_title_types.title_type,'(**)')) SEPARATOR ' | ') AS title_type, 
+																GROUP_CONCAT(DISTINCT $this->_table_asset_types.asset_type SEPARATOR ' | ') AS asset_type
+												FROM (`$this->_assets_table`) 
+																LEFT JOIN {$this->_table_identifiers} AS `local` ON `local`.`assets_id` = `$this->_assets_table`.`id` 
+																LEFT JOIN {$this->_table_identifiers} ON `identifiers`.`assets_id` = `$this->_assets_table`.`id` 
+																LEFT JOIN {$this->_table_asset_descriptions} ON `asset_descriptions`.`assets_id` = `$this->_assets_table`.`id` 
+																LEFT JOIN {$this->_table_asset_titles} ON `asset_titles`.`assets_id` = `$this->_assets_table`.`id` 
+																LEFT JOIN {$this->_table_asset_title_types} ON `$this->_table_asset_title_types`.`id` = `$this->_table_asset_titles`.`asset_title_types_id` 
+																LEFT JOIN {$this->stations} ON {$this->stations}.id = {$this->_assets_table}.stations_id
+																LEFT JOIN {$this->_table_assets_asset_types} ON $this->_table_assets_asset_types.assets_id = `$this->_assets_table`.`id`
+																LEFT JOIN {$this->_table_asset_types} ON $this->_table_assets_asset_types.asset_types_id = $this->_table_asset_types.`id`
+												WHERE `identifiers`.`identifier_source` = 'http://americanarchiveinventory.org' 
+																AND `local`.`identifier_source` != 'http://americanarchiveinventory.org' 
+																AND assets.id='"	.	$asset_id	.	"'
+												GROUP BY `assets`.`id` ";
 								$res	=	$this->db->query($sql);
 								if(isset($res)	&&	!	empty($res))
 								{
@@ -620,7 +659,7 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_subjects_by_assets_id($assets_id)
 				{
-								
+
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subject,'(**)')) SEPARATOR ' | ') AS asset_subject",	FALSE);
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subject_source,'(**)')) SEPARATOR ' | ') AS asset_subject_source",	FALSE);
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subject_ref,'(**)')) SEPARATOR ' | ') AS asset_subject_ref",	FALSE);
@@ -1027,7 +1066,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in assets_creators_roles table
+					* 
 					*  @param array $data
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1039,7 +1080,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in creator_roles  table
+					* 
 					*  @param array $data
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1051,7 +1094,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in creators table
+					* 
 					*  @param array $data
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1063,7 +1108,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in assets_contributors_roles table
+					* 
 					*  @param array $data
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1075,7 +1122,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in contributor_roles  table
+					* 
 					*  @param array $data
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1087,7 +1136,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in publisherss table
+					* 
 					*  @param array $data
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1099,7 +1150,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in assets_publishers_role table
+					* 
 					*  @param array $data
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1111,7 +1164,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in publisher_roles  table
+					* 
 					*  @param array $data
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1123,7 +1178,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in rights_summaries  table
+					* 
 					*  @param array $data
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1135,7 +1192,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the records in extensions  table
+					* 
 					*  @param array $data
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1147,7 +1206,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the records in nominations  table
+					* 
 					*  @param array $data
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1159,7 +1220,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in nomination_status  table
+					* 
 					*  @param array $data
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1171,7 +1234,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in assets_asset_types  table
+					* 
 					*  @param array $data
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/

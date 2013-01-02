@@ -459,7 +459,7 @@
 																								{
 																												foreach($rights	as	$index	=>	$right)
 																												{
-																																if(isset($right_link[$index]))
+																																if(isset($right_link[$index])	&&	$right_link[$index]	!=	'')
 																																{
 																																				$combine_right.="<a href='$right_link[$index]'>$right</a>";
 																																}

@@ -74,7 +74,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>  Date:</b></label>
+																												<label><i class="icon-question-sign"></i><b> Date:</b></label>
 																								</td>
 																								<td>
 																												<?php
@@ -188,7 +188,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><span class="label_star">*</span><b>Duration:</b></label>
+																												<label><i class="icon-question-sign"></i><span class="label_star">*</span><b> Duration:</b></label>
 																								</td>
 																								<td>
 
@@ -238,7 +238,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>File Size:</b></label>
+																												<label><i class="icon-question-sign"></i><b> File Size:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->file_size	.	' '	.	$instantiation_detail->file_size_unit_of_measure;	?></p>
@@ -255,7 +255,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>Standard:</b></label>
+																												<label><i class="icon-question-sign"></i><b> Standard:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->standard;	?></p>
@@ -272,7 +272,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>Dimensions:</b></label>
+																												<label><i class="icon-question-sign"></i><b> Dimensions:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->instantiation_dimension	.	' '	.	$instantiation_detail->unit_of_measure;	?></p>
@@ -289,7 +289,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>Data Rate:</b></label>
+																												<label><i class="icon-question-sign"></i><b> Data Rate:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->data_rate	.	' '	.	$instantiation_detail->data_rate_unit_of_measure;	?></p>
@@ -306,7 +306,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>Color:</b></label>
+																												<label><i class="icon-question-sign"></i><b> Color:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->color;	?></p>
@@ -323,7 +323,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>Tracks:</b></label>
+																												<label><i class="icon-question-sign"></i><b> Tracks:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->tracks;	?></p>
@@ -340,7 +340,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>Channel Configuration:</b></label>
+																												<label><i class="icon-question-sign"></i><b> Channel Configuration:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->channel_configuration;	?></p>
@@ -357,7 +357,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b>Language:</b></label>
+																												<label><i class="icon-question-sign"></i><b> Language:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->language;	?></p>
@@ -407,7 +407,7 @@
 																												?>
 																												<tr>
 																																<td class="record-detail-page">
-																																				<label><i class="icon-question-sign"></i><b>Annotation:</b></label>
+																																				<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
 																																</td>
 																																<td>
 																																				<p>	<?php	echo	$combine_annotation;	?></p>

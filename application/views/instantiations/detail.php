@@ -374,6 +374,8 @@
 																				$ins_annotation	=	explode(' | ',	trim(str_replace('(**)',	'',	$instantiation_detail->ins_annotation)));
 																				$ins_annotation_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$instantiation_detail->ins_annotation_type)));
 																				$combine_annotation	=	'';
+																				echo count($ins_annotation);
+																				echo count($ins_annotation_type);
 																				if(count($ins_annotation)	>	0	||	count($ins_annotation_type)	>	0)
 																				{
 																								if(count($ins_annotation)	>	count($ins_annotation_type))
@@ -401,7 +403,7 @@
 																																$combine_annotation.='<div class="clearfix"></div>';
 																												}
 																								}
-																								debug($combine_annotation);
+																								
 																								if(	!	empty($combine_annotation)	&&	trim($combine_annotation)	!=	':')
 																								{
 																												?>

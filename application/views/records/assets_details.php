@@ -420,19 +420,22 @@
 																								$combine_coverage	=	'';
 																								if(count($asset_coverage)	&&	$asset_coverage[0]	!=	'')
 																								{
-																												if(isset($asset_coverage_type[$index]))
+																												foreach($asset_coverage as $index=>$row){
+																																if(isset($asset_coverage_type[$index]))
 																												{
-																																$combine_coverage.=$asset_coverage_type	.	': ';
+																																$combine_coverage.=$asset_coverage_type[$index]	.	': ';
 																												}
-																												$combine_coverage.=$asset_coverage;
+																												$combine_coverage.=$row;
 																												$combine_coverage.='<div class="clearfix"></div>';
+																												}
+																												
 																												?>
 																												<tr>
 																																<td class="record-detail-page">
-																																				<label><i class="icon-question-sign"></i>* Subject:</label>
+																																				<label><i class="icon-question-sign"></i>* Coverage:</label>
 																																</td>
 																																<td>
-																																				<?php echo $combine_coverage; ?>
+																																				<?php	echo	$combine_coverage;	?>
 																																</td>
 																												</tr>
 

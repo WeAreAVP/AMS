@@ -215,7 +215,7 @@ class	Crons	extends	CI_Controller
 																												if(is_file($file_path))
 																												{
 																																echo	"Currently Parsing Files "	.	$file_path	.	"\n";
-																																$asset_data	=	@file_get_contents($file_path);
+																																$asset_data	=	file_get_contents($file_path);
 																																if(isset($asset_data)	&&	!	empty($asset_data))
 																																{
 																																				$asset_xml_data	=	@simplexml_load_string($asset_data);

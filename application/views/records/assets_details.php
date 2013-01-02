@@ -109,6 +109,7 @@
 																<?php
 																if(isset($asset_genres)	&&	!	empty($asset_genres))
 																{
+																				$combine_genre	=	'';
 																				foreach($asset_genres	as	$main_genre)
 																				{
 																								?>
@@ -117,7 +118,7 @@
 																								$asset_genre	=	explode(' | ',	trim(str_replace('(**)',	'',	$main_genre->genre)));
 																								$asset_genre_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$main_genre->genre_ref)));
 																								$asset_genre_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$main_genre->genre_source)));
-																								$combine_genre	=	'';
+
 																								if(count($asset_genre)	>	0)
 																								{
 																												?>
@@ -161,6 +162,7 @@
 																<?php
 																if(isset($asset_creators_roles)	&&	!	empty($asset_creators_roles))
 																{
+																				$combine_creator	=	'';
 																				foreach($asset_creators_roles	as	$creator)
 																				{
 
@@ -170,7 +172,7 @@
 																								$asset_creator_role	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_role)));
 																								$asset_creator_role_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_role_ref)));
 																								$asset_creator_role_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$creator->asset_creator_role_source)));
-																								$combine_creator	=	'';
+
 
 																								if(count($asset_creator_name)	>	0	&&	$asset_creator_name[0]	!=	'')
 																								{
@@ -225,6 +227,7 @@
 																<?php
 																if(isset($asset_contributor_roles)	&&	!	empty($asset_contributor_roles))
 																{
+																				$combine_contributor	=	'';
 																				foreach($asset_contributor_roles	as	$contributor)
 																				{
 																								$asset_contributor_name	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_name)));
@@ -233,7 +236,7 @@
 																								$asset_contributor_role	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_role)));
 																								$asset_contributor_role_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_role_ref)));
 																								$asset_contributor_role_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$contributor->asset_contributor_role_source)));
-																								$combine_contributor	=	'';
+
 																								if(count($asset_contributor_name)	>	0	&&	$asset_contributor_name[0]	!=	'')
 																								{
 																												?>
@@ -287,6 +290,7 @@
 																<?php
 																if(isset($asset_publishers_roles)	&&	!	empty($asset_publishers_roles))
 																{
+																				$combine_publisher	=	'';
 																				foreach($asset_publishers_roles	as	$publisher)
 																				{
 																								$asset_publisher_name	=	explode(' | ',	trim(str_replace('(**)',	'',	$publisher->asset_publisher_name)));
@@ -295,7 +299,7 @@
 																								$asset_publisher_role	=	explode(' | ',	trim(str_replace('(**)',	'',	$publisher->asset_publisher_role)));
 																								$asset_publisher_role_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$publisher->asset_publisher_role_ref)));
 																								$asset_publisher_role_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$publisher->asset_publisher_role_source)));
-																								$combine_publisher	=	'';
+
 																								if(count($asset_publisher_name)	>	0	&&	$asset_publisher_name[0]	!=	'')
 																								{
 																												?>
@@ -364,12 +368,13 @@
 																<?php
 																if(isset($asset_subjects)	&&	!	empty($asset_subjects))
 																{
+																				$combine_subject	=	'';
 																				foreach($asset_subjects	as	$main_subject)
 																				{
 																								$asset_subject	=	explode(' | ',	trim(str_replace('(**)',	'',	$main_subject->asset_subject)));
 																								$asset_subject_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$main_subject->asset_subject_ref)));
 																								$asset_subject_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$main_subject->asset_subject_source)));
-																								$combine_subject	=	'';
+
 																								if(count($asset_subject)	>	0	&&	$asset_subject[0]	!=	'')
 																								{
 																												?>
@@ -413,11 +418,12 @@
 																<?php
 																if(isset($asset_coverages)	&&	!	empty($asset_coverages))
 																{
+																				$combine_coverage	=	'';
 																				foreach($asset_coverages	as	$coverage)
 																				{
 																								$asset_coverage	=	explode(' | ',	trim(str_replace('(**)',	'',	$coverage->coverage)));
 																								$asset_coverage_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$coverage->coverage_type)));
-																								$combine_coverage	=	'';
+
 																								if(count($asset_coverage)	&&	$asset_coverage[0]	!=	'')
 																								{
 																												foreach($asset_coverage	as	$index	=>	$row)
@@ -571,6 +577,49 @@
 																?>
 
 																<!--				Audience Rating End		-->
+																<!--				Annotation Start		-->
+																<?php
+																if(isset($annotations)	&&	!	empty($annotations))
+																{
+																				$combine_annotations	=	'';
+																				foreach($annotations	as	$a_annotations)
+																				{
+																								$a_anno	=	explode(' | ',	trim(str_replace('(**)',	'',	$a_annotations->annotation)));
+																								$a_anno_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$a_annotations->annotation_type)));
+																								$a_anno_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$a_annotations->annotation_ref)));
+																								if(count($a_anno)	>	0)
+																								{
+																												foreach($a_anno	as	$index	=>	$row)
+																												{
+																																if(isset($a_anno_type[$index])	&&	$a_anno_type[$index]	!=	'')
+																																{
+																																				$combine_annotations.="$a_anno_type[$index]: ";
+																																}
+																																if(isset($a_anno_ref[$index])	&&	$a_anno_ref[$index]	!=	'')
+																																{
+																																				$combine_annotations.="<a href='$a_anno_ref[$index]'>$row</a>";
+																																}
+																																else
+																																				$combine_annotations.=$row;
+
+																																$combine_annotations.='<div class="clearfix"></div>';
+																												}
+																												?>
+																												<tr>
+																																<td class="record-detail-page">
+																																				<label><i class="icon-question-sign"></i> Annotation:</label>
+																																</td>
+																																<td>
+																																				<?php	echo	$combine_annotations;	?>
+																																</td>
+																												</tr>
+																												<?php
+																								}
+																				}
+																}
+																?>
+
+																<!--			Annotation End		-->
 												</table>
 
 								</div>

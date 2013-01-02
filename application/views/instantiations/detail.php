@@ -401,6 +401,7 @@
 																																$combine_annotation.='<div class="clearfix"></div>';
 																												}
 																								}
+																								debug($combine_annotation);
 																								if(	!	empty($combine_annotation)	&&	trim($combine_annotation)	!=	':')
 																								{
 																												?>

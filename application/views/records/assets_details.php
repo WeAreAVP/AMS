@@ -44,7 +44,7 @@
 																<!--				Organization Start		-->
 																<tr>
 																				<td class="record-detail-page">
-																								<label><i class="icon-question-sign"></i><span class="label_star">*</span> <b>Organization:</b></label>
+																								<label><i class="icon-question-sign"></i><span class="label_star"> *</span> <b>Organization:</b></label>
 																				</td>
 																				<td>
 
@@ -82,7 +82,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><span class="label_star">*</span> <b>Title(s):</b></label>
+																												<label><i class="icon-question-sign"></i><span class="label_star"> *</span> <b>Title(s):</b></label>
 																								</td>
 																								<td>
 																												<?php	echo	$combine_title;	?>
@@ -97,7 +97,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><span class="label_star">*</span><b> Description:</b></label>
+																												<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Description:</b></label>
 																								</td>
 																								<td>
 																												<p><?php	echo	$asset_details->description;	?></p>
@@ -647,7 +647,7 @@
 																								?>
 																								<tr>
 																												<td class="record-detail-page">
-																																<label><i class="icon-question-sign"></i><span class="label_star">*</span> <b>Local ID:</b></label>
+																																<label><i class="icon-question-sign"></i><span class="label_star"> *</span> <b>Local ID:</b></label>
 																												</td>
 																												<td>
 																																<?php	echo	$combine_local_identifier;	?>
@@ -673,7 +673,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><span class="label_star">*</span> <b>American Archive GUID:</b></label>
+																												<label><i class="icon-question-sign"></i><span class="label_star"> *</span> <b>American Archive GUID:</b></label>
 																								</td>
 																								<td>
 																												<?php	echo	$combine_guid;	?>

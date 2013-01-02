@@ -57,7 +57,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b><span class="label_star">*</span> Instantiation ID:</b></label>
+																												<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Instantiation ID:</b></label>
 																								</td>
 																								<td>
 
@@ -103,7 +103,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><b><span class="label_star">*</span> Media Type:</b></label>
+																												<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Media Type:</b></label>
 																								</td>
 																								<td>
 																												<?php
@@ -171,7 +171,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><span class="label_star">*</span><b> Location:</b></label>
+																												<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Location:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	$instantiation_detail->location;	?></p>
@@ -188,7 +188,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><span class="label_star">*</span><b> Duration:</b></label>
+																												<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Duration:</b></label>
 																								</td>
 																								<td>
 
@@ -204,7 +204,7 @@
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><span class="label_star">*</span><b> Duration:</b></label>
+																												<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Duration:</b></label>
 																								</td>
 																								<td>
 																												<p>	<?php	echo	date('H:i:s',	strtotime($instantiation_detail->actual_duration));	?></p>

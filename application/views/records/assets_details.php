@@ -389,7 +389,7 @@
 																																																$combine_subject.="<a target='_blank' href='$asset_subject_ref[$index]'><b>$subject</b></a>";
 																																												}
 																																												else
-																																																$combine_subject.='<b>'.$subject.'</b>';
+																																																$combine_subject.='<b>'	.	$subject	.	'</b>';
 																																								}
 																																								else
 																																												$combine_subject.=$subject;
@@ -409,6 +409,40 @@
 																}
 																?>
 																<!--				Asset Subject End		-->
+																<!--				Coverage Start		-->
+																<?php
+																if(isset($asset_coverages)	&&	!	empty($asset_coverages))
+																{
+																				foreach($asset_coverages	as	$coverage)
+																				{
+																								$asset_coverage	=	explode(' | ',	trim(str_replace('(**)',	'',	$coverage->coverage)));
+																								$asset_coverage_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$coverage->coverage_type)));
+																								$combine_coverage	=	'';
+																								if(count($asset_coverage)	&&	$asset_coverage[0]	!=	'')
+																								{
+																												if(isset($asset_coverage_type[$index]))
+																												{
+																																$combine_coverage.=$asset_coverage_type	.	': ';
+																												}
+																												$combine_coverage.=$asset_coverage;
+																												$combine_coverage.='<div class="clearfix"></div>';
+																												?>
+																												<tr>
+																																<td class="record-detail-page">
+																																				<label><i class="icon-question-sign"></i>* Subject:</label>
+																																</td>
+																																<td>
+																																				<?php echo $combine_coverage; ?>
+																																</td>
+																												</tr>
+
+																								<?php	}
+																								?>
+																								<?php
+																				}
+																}
+																?>
+																<!--				Coverage End		-->
 												</table>
 
 								</div>

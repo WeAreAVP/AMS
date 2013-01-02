@@ -1,4 +1,5 @@
 <?php
+
 /**
 	* Asset_model Model
 	* 
@@ -80,7 +81,7 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					* Get Annotations by Asset ID
-				 * 
+					* 
 					* @param integer $assets_id
 					* @return array 
 					*/
@@ -182,8 +183,11 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_coverages_by_asset_id($asset_id)
 				{
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_coverages.	coverage,'(**)')) SEPARATOR ' | ') AS 	coverage",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_coverages.coverage_type,'(**)')) SEPARATOR ' | ') AS coverage_type",	FALSE);
 								$this->db->where('assets_id',	$asset_id);
-								$query	=	$this->db->get($this->_table_coverages);
+								$this->db->from($this->_table_coverages);
+								$query	=	$this->db->get();
 								if(isset($query)	&&	!	empty($query))
 								{
 												$res	=	$query->result();
@@ -639,7 +643,7 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_subjects_by_assets_id($assets_id)
 				{
-								
+
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subject,'(**)')) SEPARATOR ' | ') AS asset_subject",	FALSE);
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subject_source,'(**)')) SEPARATOR ' | ') AS asset_subject_source",	FALSE);
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subject_ref,'(**)')) SEPARATOR ' | ') AS asset_subject_ref",	FALSE);
@@ -1046,9 +1050,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in assets_creators_roles table
-				 * 
+					* 
 					*  @param array $data
-				 * 
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1060,9 +1064,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in creator_roles  table
-				 * 
+					* 
 					*  @param array $data
-				 * 
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1074,9 +1078,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in creators table
-				 * 
+					* 
 					*  @param array $data
-				 * 
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1088,9 +1092,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in assets_contributors_roles table
-				 * 
+					* 
 					*  @param array $data
-				 * 
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1102,9 +1106,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in contributor_roles  table
-				 * 
+					* 
 					*  @param array $data
-				 * 
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1116,9 +1120,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in publisherss table
-				 * 
+					* 
 					*  @param array $data
-				 * 
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1130,9 +1134,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in assets_publishers_role table
-				 * 
+					* 
 					*  @param array $data
-				 * 
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1144,9 +1148,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in publisher_roles  table
-				 * 
+					* 
 					*  @param array $data
-				 * 
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1158,9 +1162,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in rights_summaries  table
-				 * 
+					* 
 					*  @param array $data
-				 * 
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1172,9 +1176,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the records in extensions  table
-				 * 
+					* 
 					*  @param array $data
-				 * 
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1186,9 +1190,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the records in nominations  table
-				 * 
+					* 
 					*  @param array $data
-				 * 
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1200,9 +1204,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in nomination_status  table
-				 * 
+					* 
 					*  @param array $data
-				 * 
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/
@@ -1214,9 +1218,9 @@ class	Assets_Model	extends	CI_Model
 
 				/**
 					*  Insert the record in assets_asset_types  table
-				 * 
+					* 
 					*  @param array $data
-				 * 
+					* 
 					*  @return integer last_inserted id
 					* 
 					*/

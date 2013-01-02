@@ -587,7 +587,7 @@
 																								$a_anno	=	explode(' | ',	trim(str_replace('(**)',	'',	$a_annotations->annotation)));
 																								$a_anno_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$a_annotations->annotation_type)));
 																								$a_anno_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$a_annotations->annotation_ref)));
-																								if(count($a_anno)	>	0)
+																								if(count($a_anno)	>	0 && $a_anno[0]!='')
 																								{
 																												foreach($a_anno	as	$index	=>	$row)
 																												{

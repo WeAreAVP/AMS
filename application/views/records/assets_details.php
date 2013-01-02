@@ -82,7 +82,7 @@
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
-																												<label><i class="icon-question-sign"></i><span class="label_star">*</span> Title(s):</label>
+																												<label><i class="icon-question-sign"></i><span class="label_star">*</span> <b>Title(s):</b></label>
 																								</td>
 																								<td>
 																												<?php	echo	$combine_title;	?>

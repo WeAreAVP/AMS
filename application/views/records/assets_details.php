@@ -450,11 +450,12 @@
 																<?php
 																if(isset($rights_summaries)	&&	!	empty($rights_summaries))
 																{
+																				$combine_right	=	'';
 																				foreach($rights_summaries	as	$right_summary)
 																				{
 																								$rights	=	explode(' | ',	trim(str_replace('(**)',	'',	$right_summary->rights)));
 																								$right_link	=	explode(' | ',	trim(str_replace('(**)',	'',	$right_summary->rights_link)));
-																								$combine_right	=	'';
+
 																								if(count($rights)	>	0	&&	$rights[0]	!=	'')
 																								{
 																												foreach($rights	as	$index	=>	$right)
@@ -486,6 +487,90 @@
 																}
 																?>
 																<!--				Rights End		-->
+																<!--				Audience Level Start		-->
+																<?php
+																if((isset($asset_audience_level)	&&	!	empty($asset_audience_level)))
+																{
+																				$combine_audience	=	'';
+																				foreach($asset_audience_level	as	$aa_level)
+																				{
+																								$a_level	=	explode(' | ',	trim(str_replace('(**)',	'',	$right_summary->audience_level)));
+																								$a_level_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$right_summary->audience_level_source)));
+																								$a_level_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$right_summary->audience_level_ref)));
+																								if(count($a_level)	>	0)
+																								{
+																												foreach($a_level	as	$index	=>	$row)
+																												{
+																																if(isset($a_level_ref[$index])	&&	$a_level_ref[$index]	!=	'')
+																																{
+																																				$combine_audience.="<a href='$a_level_ref[$index]'>$row</a>";
+																																}
+																																else
+																																				$combine_audience.=$row;
+																																if(isset($a_level_source[$index])	&&	$a_level_source[$index]	!=	'')
+																																{
+																																				$combine_audience.=" ($a_level_source[$index])";
+																																}
+																																$combine_audience.='<div class="clearfix"></div>';
+																												}
+																												?>
+																												<tr>
+																																<td class="record-detail-page">
+																																				<label><i class="icon-question-sign"></i> Audience Level:</label>
+																																</td>
+																																<td>
+																																				<?php	echo	$combine_audience;	?>
+																																</td>
+																												</tr>
+																												<?php
+																								}
+																				}
+																}
+																?>
+
+																<!--				Audience Level End		-->
+																<!--				Audience Rating Start		-->
+																<?php
+																if(isset($asset_audience_rating)	&&	!	empty($asset_audience_rating))
+																{
+																				$combine_audience_rating	=	'';
+																				foreach($asset_audience_rating	as	$aa_rating)
+																				{
+																								$a_rating	=	explode(' | ',	trim(str_replace('(**)',	'',	$aa_rating->audience_rating)));
+																								$a_rating_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$aa_rating->audience_rating_source)));
+																								$a_rating_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$aa_rating->audience_rating_ref)));
+																								if(count($a_rating)	>	0)
+																								{
+																												foreach($a_rating	as	$index	=>	$row)
+																												{
+																																if(isset($a_rating_ref[$index])	&&	$a_rating_ref[$index]	!=	'')
+																																{
+																																				$combine_audience_rating.="<a href='$a_rating_ref[$index]'>$row</a>";
+																																}
+																																else
+																																				$combine_audience_rating.=$row;
+																																if(isset($a_rating_source[$index])	&&	$a_rating_source[$index]	!=	'')
+																																{
+																																				$combine_audience_rating.=" ($a_rating_source[$index])";
+																																}
+																																$combine_audience_rating.='<div class="clearfix"></div>';
+																												}
+																												?>
+																												<tr>
+																																<td class="record-detail-page">
+																																				<label><i class="icon-question-sign"></i> Audience Rating:</label>
+																																</td>
+																																<td>
+																																				<?php	echo	$combine_audience_rating;	?>
+																																</td>
+																												</tr>
+																												<?php
+																								}
+																				}
+																}
+																?>
+
+																<!--				Audience Rating End		-->
 												</table>
 
 								</div>

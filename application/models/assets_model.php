@@ -106,7 +106,11 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_audience_rating_by_asset_id($assets_id)
 				{
-								$this->db->select("audience_rating ,audience_rating_source ,	audience_rating_ref ");
+									$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_ratings.	audience_rating,'(**)')) SEPARATOR ' | ') AS 	audience_rating",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_ratings.	audience_rating_source,'(**)')) SEPARATOR ' | ') AS 	audience_rating_source",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_ratings.	audience_rating_ref,'(**)')) SEPARATOR ' | ') AS 	audience_rating_ref",	FALSE);
+							
+								
 								$this->db->from($this->_table_assets_audience_ratings);
 								$this->db->join($this->_table_audience_ratings,	"$this->_table_assets_audience_ratings.audience_ratings_id=$this->_table_audience_ratings.id",	"left");
 								$this->db->where($this->_table_assets_audience_ratings	.	".assets_id",	$assets_id);
@@ -126,7 +130,10 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_audience_level_by_asset_id($assets_id)
 				{
-								$this->db->select("audience_level ,audience_level_source ,audience_level_ref ");
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_levels.	audience_level,'(**)')) SEPARATOR ' | ') AS 	audience_level",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_levels.	audience_level_source,'(**)')) SEPARATOR ' | ') AS 	audience_level_source",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_levels.	audience_level_ref,'(**)')) SEPARATOR ' | ') AS 	audience_level_ref",	FALSE);
+								
 								$this->db->from($this->_table_assets_audience_levels);
 								$this->db->join($this->_table_audience_levels,	"$this->_table_assets_audience_levels.audience_levels_id=$this->_table_audience_levels.id",	"left");
 								$this->db->where($this->_table_assets_audience_levels	.	".assets_id",	$assets_id);

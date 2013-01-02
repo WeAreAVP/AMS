@@ -741,7 +741,7 @@ class	Crons	extends	CI_Controller
 												{
 																$identifier_d	=	array	();
 																//As Identfier is Required and based on identifiersource so apply following checks 
-																if	(isset	($pbcoreidentifier['children']['identifier'][0]['text'])	&&	!	$this->is_empty	($pbcoreidentifier['children']['identifier'][0]['text'])	)
+																if	(isset	($pbcoreidentifier['children']['identifier'][0]['text'])	&&	!	$this->is_empty	($pbcoreidentifier['children']['identifier'][0]['text']))
 																{
 																				$identifier_d['assets_id']	=	$asset_id;
 																				$identifier_d['identifier']	=	$pbcoreidentifier['children']['identifier'][0]['text'];

@@ -202,7 +202,7 @@ class	Crons	extends	CI_Controller
 												if	($folder_data)
 												{
 																$data_files	=	$this->cron_model->get_pbcore_file_by_folder_id	($folder_data->id,	$offset,	$limit);
-																if	(	!	is_empty	($data_files))
+																if	(isset	($data_files)	&&	!	is_empty	($data_files))
 																{
 																				foreach	($data_files	as	$d_file)
 																				{
@@ -240,12 +240,12 @@ class	Crons	extends	CI_Controller
 																																												$this->process_instantiation	($asset_children,	$asset_id);
 																																												// Instantiation End
 																																												$this->myLog	(" Instantiation End ");
-																																												$this->assets_model->update_prcoess_data	(array	('is_processed'	=>	1,	"processed_at"	=>	date	('Y-m-d H:i:s'),'status_reason'	=>	'Complete'),	$d_file->id);
+																																												$this->assets_model->update_prcoess_data	(array	('is_processed'		=>	1,	"processed_at"		=>	date	('Y-m-d H:i:s'),	'status_reason'	=>	'Complete'),	$d_file->id);
 																																								}
 																																								else
 																																								{
 																																												$this->myLog	(" Attribut children not found "	.	$file_path);
-																																												$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Attribut children not found'),	$d_file->id); 
+																																												$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Attribut children not found'),	$d_file->id);
 																																								}
 
 																																								//$this->db->trans_complete	();
@@ -256,25 +256,44 @@ class	Crons	extends	CI_Controller
 																																				else
 																																				{
 																																								$this->myLog	(" Attribut version Issues "	.	$file_path);
-																																								$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Attribut version Issues'),	$d_file->id); 
+																																								$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Attribut version Issues'),	$d_file->id);
 																																				}
 																																}
 																																else
 																																{
 																																				$this->myLog	(" Data is empty in file "	.	$file_path);
-																																				$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Data is empty in file'),	$d_file->id); 
+																																				$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Data is empty in file'),	$d_file->id);
 																																}
 																												}
 																												else
 																												{
 																																$this->myLog	(" Is File Check Issues "	.	$file_path);
-																																$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Is File Check Issues'),	$d_file->id); 
+																																$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Is File Check Issues'),	$d_file->id);
 																												}
+																								}
+																								else
+																								{
+																												$this->myLog	(" Already Processed "	.	$file_path);
+																												$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Already Processed'),	$d_file->id);
 																								}
 																				}
 																				unset	($data_files);
 																}
+																else
+																{
+																				$this->myLog	(" Data files not found "	.	$file_path);
+																			
+																}
 												}
+												else
+												{
+																$this->myLog	(" folders Data not found "	.	$file_path);
+												}
+								}
+								else
+								{
+												$this->myLog	(" Station data not Found against "	. $station_cpb_id);
+											
 								}
 				}
 

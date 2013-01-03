@@ -363,7 +363,7 @@ class	Assets_Model	extends	CI_Model
 				{
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifier,'(**)')) SEPARATOR ' | ') AS local_identifier, ",	FALSE);
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifier_source,'(**)')) SEPARATOR ' | ') AS local_identifier_source, ",	FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifier,'(**)')) SEPARATOR ' | ') AS local_identifier_ref, ",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifier_ref,'(**)')) SEPARATOR ' | ') AS local_identifier_ref, ",	FALSE);
 
 
 								$this->db->from($this->_table_identifiers);

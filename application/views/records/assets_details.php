@@ -626,8 +626,8 @@
 																{
 																				$combine_local_identifier	=	'';
 																				$a_local	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->local_identifier)));
-																				$a_local_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->identifier_source)));
-																				$a_local_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->identifier_ref)));
+																				$a_local_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->local_identifier_source)));
+																				$a_local_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->local_identifier_ref)));
 																				if(count($a_local)	>	0)
 																				{
 																								foreach($a_local	as	$index	=>	$row)

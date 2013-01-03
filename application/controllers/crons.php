@@ -195,6 +195,8 @@ class	Crons	extends	CI_Controller
 
 				function	process_xml_file_child	($folder_id,	$station_cpb_id,	$offset	=	0,	$limit	=	100)
 				{
+								error_reporting	(E_ALL);
+								ini_set	('display_errors',	1);
 								$station_data	=	$this->station_model->get_station_by_cpb_id	($station_cpb_id);
 								if	(isset	($station_data)	&&	!	empty	($station_data)	&&	isset	($station_data->id))
 								{
@@ -282,7 +284,6 @@ class	Crons	extends	CI_Controller
 																else
 																{
 																				$this->myLog	(" Data files not found "	.	$file_path);
-																			
 																}
 												}
 												else
@@ -292,8 +293,7 @@ class	Crons	extends	CI_Controller
 								}
 								else
 								{
-												$this->myLog	(" Station data not Found against "	. $station_cpb_id);
-											
+												$this->myLog	(" Station data not Found against "	.	$station_cpb_id);
 								}
 				}
 

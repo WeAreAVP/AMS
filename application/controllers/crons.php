@@ -202,7 +202,7 @@ class	Crons	extends	CI_Controller
 												if	($folder_data)
 												{
 																$data_files	=	$this->cron_model->get_pbcore_file_by_folder_id	($folder_data->id,	$offset,	$limit);
-																if	(isset	($data_files))
+																if	(!is_empty	($data_files))
 																{
 																				foreach	($data_files	as	$d_file)
 																				{
@@ -274,19 +274,19 @@ class	Crons	extends	CI_Controller
 																				$instantiations_d	=	array	();
 																				$instantiations_d['assets_id']	=	$asset_id;
 																				//Instantiation formatLocation
-																				if	(isset	($pbcoreinstantiation_child['formatlocation']))
+																				if	(!is_empty	($pbcoreinstantiation_child['formatlocation']))
 																				{
-																								if	(isset	($pbcoreinstantiation_child['formatlocation'][0]['text']))
+																								if	(!is_empty	($pbcoreinstantiation_child['formatlocation'][0]['text']))
 																								{
 																												$instantiations_d['location']	=	$pbcoreinstantiation_child['formatlocation'][0]['text'];
 																								}
 																				}
 
 																				//Instantiation formatMediaType
-																				if	(isset	($pbcoreinstantiation_child['formatmediatype'][0]['text']))
+																				if	(!is_empty	($pbcoreinstantiation_child['formatmediatype'][0]['text']))
 																				{
 																								$inst_media_type	=	$this->instant->get_instantiation_media_types_by_media_type	($pbcoreinstantiation_child['formatmediatype'][0]['text']);
-																								if	($inst_media_type)
+																								if	(!is_empty($inst_media_type))
 																								{
 																												$instantiations_d['instantiation_media_type_id']	=	$inst_media_type->id;
 																								}
@@ -297,33 +297,33 @@ class	Crons	extends	CI_Controller
 																				}
 
 																				//Instantiation formatFileSize Start
-																				if	(isset	($pbcoreinstantiation_child['formatfilesize'][0]['text']))
+																				if	(!is_empty	($pbcoreinstantiation_child['formatfilesize'][0]['text']))
 																				{
 																								$files_size_perm	=	explode	(" ",	$pbcoreinstantiation_child['formatfilesize'][0]['text']);
-																								if	(isset	($files_size_perm[0]))
+																								if	(!is_empty	($files_size_perm[0]))
 																								{
 																												$instantiations_d['file_size']	=	$files_size_perm[0];
 																								}
-																								if	(isset	($files_size_perm[1]))
+																								if	(!is_empty	($files_size_perm[1]))
 																								{
 																												$instantiations_d['file_size_unit_of_measure']	=	$files_size_perm[1];
 																								}
 																				}
 
 																				//Instantiation formatTimeStart Start
-																				if	(isset	($pbcoreinstantiation_child['formattimestart'][0]['text']))
+																				if	(!is_empty	($pbcoreinstantiation_child['formattimestart'][0]['text']))
 																				{
 																								$instantiations_d['time_start']	=	trim	($pbcoreinstantiation_child['formattimestart'][0]['text']);
 																				}
 
 																				//Instantiation formatDuration Start
-																				if	(isset	($pbcoreinstantiation_child['formatduration'][0]['text']))
+																				if	(!is_empty	($pbcoreinstantiation_child['formatduration'][0]['text']))
 																				{
 																								$instantiations_d['projected_duration']	=	trim	($pbcoreinstantiation_child['formatduration'][0]['text']);
 																				}
 
 																				//Instantiation formatDataRate Start
-																				if	(isset	($pbcoreinstantiation_child['formatdatarate'][0]['text']))
+																				if	(!is_empty	($pbcoreinstantiation_child['formatdatarate'][0]['text']))
 																				{
 																								$format_data_rate_perm	=	explode	(" ",	$pbcoreinstantiation_child['formatdatarate'][0]['text']);
 																								if	(isset	($format_data_rate_perm[0]))
@@ -345,7 +345,7 @@ class	Crons	extends	CI_Controller
 																				}
 
 																				//Instantiation formatcolors Start
-																				if	(isset	($pbcoreinstantiation_child['formatcolors'][0]['text']))
+																				if	(!is_empty	($pbcoreinstantiation_child['formatcolors'][0]['text']))
 																				{
 																								$inst_color_d	=	$this->instant->get_instantiation_colors_by_color	($pbcoreinstantiation_child['formatcolors'][0]['text']);
 																								if	($inst_color_d)
@@ -359,25 +359,25 @@ class	Crons	extends	CI_Controller
 																				}
 
 																				//Instantiation formattracks Start
-																				if	(isset	($pbcoreinstantiation_child['formattracks'][0]['text']))
+																				if	(!is_empty	($pbcoreinstantiation_child['formattracks'][0]['text']))
 																				{
 																								$instantiations_d['tracks']	=	$pbcoreinstantiation_child['formattracks'][0]['text'];
 																				}
 
 																				//Instantiation formatchannelconfiguration Start
-																				if	(isset	($pbcoreinstantiation_child['formatchannelconfiguration'][0]['text']))
+																				if	(!is_empty	($pbcoreinstantiation_child['formatchannelconfiguration'][0]['text']))
 																				{
 																								$instantiations_d['channel_configuration']	=	$pbcoreinstantiation_child['formatchannelconfiguration'][0]['text'];
 																				}
 
 																				//Instantiation language Start
-																				if	(isset	($pbcoreinstantiation_child['language'][0]['text']))
+																				if	(!is_empty	($pbcoreinstantiation_child['language'][0]['text']))
 																				{
 																								$instantiations_d['language']	=	$pbcoreinstantiation_child['language'][0]['text'];
 																				}
 
 																				//Instantiation alternativemodes Start
-																				if	(isset	($pbcoreinstantiation_child['alternativemodes'][0]['text']))
+																				if	(!is_empty	($pbcoreinstantiation_child['alternativemodes'][0]['text']))
 																				{
 																								$instantiations_d['alternative_modes']	=	$pbcoreinstantiation_child['alternativemodes'][0]['text'];
 																				}
@@ -390,7 +390,7 @@ class	Crons	extends	CI_Controller
 																				{
 																								foreach	($asset_children['pbcoreextension']	as	$pbcore_extension)
 																								{
-																												if	(isset	($pbcore_extension['children']['extensionauthorityused'][0]))
+																												if	(isset	($pbcore_extension['children']['extensionauthorityused'][0]) && !is_empty($pbcore_extension['children']['extensionauthorityused'][0]['text']))
 																												{
 
 																																if	(strtolower	($pbcore_extension['children']['extensionauthorityused'][0]['text'])	==	strtolower	('AACIP Record Nomination Status'))
@@ -660,7 +660,7 @@ class	Crons	extends	CI_Controller
 
 
 																																				//essenceTrackIdentifier Start 
-																																				if	(isset	($pbcore_essence_child['essencetrackidentifier'][0]['text'])	&&	isset	($pbcore_essence_child['essencetrackidentifiersource'][0]['text']))
+																																				if	(!	is_empty	($pbcore_essence_child['essencetrackidentifier'][0]['text'])	&&	!	is_empty	($pbcore_essence_child['essencetrackidentifiersource'][0]['text']))
 																																				{
 																																								$essence_track_identifiers_d	=	array	();
 																																								$essence_track_identifiers_d['essence_tracks_id']	=	$essence_tracks_id;

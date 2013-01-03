@@ -451,7 +451,7 @@ class	Crons	extends	CI_Controller
 
 																								if	(isset	($pbcoreinstantiation_child['datecreated'][0]['text'])	&&	!	is_empty	($pbcoreinstantiation_child['datecreated'][0]['text']))
 																								{
-																												$instantiation_dates_d['instantiation_date']	=	$pbcoreinstantiation_child['datecreated'][0]['text'];
+																												$instantiation_dates_d['instantiation_date']	=	str_replace(array('?','Unknown','unknown','`','['.']','N/A','N/A?','Jim Cooper','various','.00','.0','John Kelling','Roll in','interview'),'',trim($pbcoreinstantiation_child['datecreated'][0]['text']));
 																												$date_type	=	$this->instant->get_date_types_by_type	('created');
 																												if	(isset	($date_type)	&&	isset	($date_type->id))
 																												{
@@ -473,7 +473,7 @@ class	Crons	extends	CI_Controller
 
 																								if	(isset	($pbcoreinstantiation_child['dateissued'][0]['text'])	&&	!	is_empty	($pbcoreinstantiation_child['dateissued'][0]['text']))
 																								{
-																												$instantiation_dates_d['instantiation_date']	=	$pbcoreinstantiation_child['dateissued'][0]['text'];
+																												$instantiation_dates_d['instantiation_date']	=	str_replace(array('?','Unknown','unknown','`','['.']','N/A','N/A?','Jim Cooper','various','.00','.0','John Kelling','Roll in','interview'),'',$pbcoreinstantiation_child['dateissued'][0]['text']);
 																												$date_type	=	$this->instant->get_date_types_by_type	('issued');
 																												if	(isset	($date_type)	&&	isset	($date_type->id))
 																												{

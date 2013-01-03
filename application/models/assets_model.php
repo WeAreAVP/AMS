@@ -343,7 +343,8 @@ class	Assets_Model	extends	CI_Model
 																LEFT JOIN {$this->_table_asset_types} ON $this->_table_assets_asset_types.asset_types_id = $this->_table_asset_types.`id`
 												WHERE `identifiers`.`identifier_source` = 'http://americanarchiveinventory.org' 
 																AND `local`.`identifier_source` != 'http://americanarchiveinventory.org' 
-																AND assets.id='"	.	$asset_id	.	"'";
+																AND assets.id='"	.	$asset_id	.	"'
+												GROUP BY `assets`.`id` ";
 								$res	=	$this->db->query($sql);
 								if(isset($res)	&&	!	empty($res))
 								{

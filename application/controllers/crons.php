@@ -240,7 +240,7 @@ class	Crons	extends	CI_Controller
 																																												$this->process_instantiation	($asset_children,	$asset_id);
 																																												// Instantiation End
 																																												$this->myLog	(" Instantiation End ");
-																																												$this->assets_model->update_prcoess_data	(array	('is_processed'	=>	1,	"processed_at"	=>	date	('Y-m-d H:i:s')),	$d_file->id);
+																																												$this->assets_model->update_prcoess_data	(array	('is_processed'	=>	1,	"processed_at"	=>	date	('Y-m-d H:i:s'),'status_reason'	=>	'Complete'),	$d_file->id);
 																																								}
 																																								else
 																																								{

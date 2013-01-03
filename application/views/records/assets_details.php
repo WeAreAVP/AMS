@@ -622,12 +622,12 @@
 																<!--			Annotation End		-->
 																<!--			Local ID Start		-->
 																<?php
-																if(isset($asset_details->local_identifier)	&&	$asset_details->local_identifier	!=	'(**)')
+																if(isset($asset_localid)	&&	$asset_localid	!=	'(**)')
 																{
 																				$combine_local_identifier	=	'';
-																				$a_local	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->local_identifier)));
-																				$a_local_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->local_identifier_source)));
-																				$a_local_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_details->local_identifier_ref)));
+																				$a_local	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_localid->local_identifier)));
+																				$a_local_source	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_localid->local_identifier_source)));
+																				$a_local_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset_localid->local_identifier_ref)));
 																				if(count($a_local)	>	0)
 																				{
 																								foreach($a_local	as	$index	=>	$row)
@@ -661,15 +661,15 @@
 																<!--			Local ID End		-->
 																<!--		American Archive GUID Start		-->
 																<?php
-																if(isset($asset_details->guid_identifier)	&&	!	empty($asset_details->guid_identifier))
+																if(isset($asset_guid)	&&	!	empty($asset_guid))
 																{
 																				$combine_guid	=	'';
-																				if(isset($asset_details->guid_identifier_ref)	&&	!	empty($asset_details->guid_identifier_ref))
+																				if(isset($asset_guid->guid_identifier_ref)	&&	!	empty($asset_guid->guid_identifier_ref))
 																				{
-																								$combine_guid.="<a href='$asset_details->guid_identifier_ref'>$asset_details->guid_identifier</a>";
+																								$combine_guid.="<a href='$asset_guid->guid_identifier_ref'>$asset_guid->guid_identifier</a>";
 																				}
 																				else
-																								$combine_guid.=$asset_details->guid_identifier;
+																								$combine_guid.=$asset_guid->guid_identifier;
 																				?>
 																				<tr>
 																								<td class="record-detail-page">

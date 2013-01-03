@@ -2,12 +2,14 @@
 				<div style="margin: 2px 0px 10px 0px;float:left;">
 
 								<?php
+								
 								$asset_title_type	=	trim(str_replace('(**)',	'',	$asset_details->title_type));
-								$asset_title_type	=	explode(' | ',	$asset_title_type);
+								$asset_title_type	=	explode('|',	$asset_title_type);
+								
 								$asset_title	=	trim(str_replace('(**)',	'',	$asset_details->title));
-								$asset_title	=	explode(' | ',	$asset_title);
+								$asset_title	=	explode('|',	$asset_title);
 								$asset_title_ref	=	trim(str_replace('(**)',	'',	$asset_details->title_ref));
-								$asset_title_ref	=	explode(' | ',	$asset_title_ref);
+								$asset_title_ref	=	explode('|',	$asset_title_ref);
 								$combine_title	=	'';
 								foreach($asset_title	as	$index	=>	$title)
 								{
@@ -86,7 +88,7 @@
 																																if($instantiation_detail->dates)
 																																{
 																																				?>
-																																				<span><?php	echo	date('Y-m-d',	$instantiation_detail->dates);	?></span>
+																																				<span><?php	echo	$instantiation_detail->dates;	?></span>
 
 																																<?php	}	?>
 
@@ -183,7 +185,7 @@
 																<!--				Location	End		-->
 																<!--				Duration 	Start		-->
 																<?php
-																if($instantiation_detail->projected_duration	>	0)
+																if($instantiation_detail->projected_duration	!=='0')
 																{
 																				?>	
 																				<tr>
@@ -199,7 +201,7 @@
 
 																				<?php
 																}
-																else	if($instantiation_detail->actual_duration	>	0)
+																else	if($instantiation_detail->actual_duration	!==	'0')
 																{
 																				?>	
 																				<tr>

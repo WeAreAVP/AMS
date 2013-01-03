@@ -319,12 +319,7 @@ class	Assets_Model	extends	CI_Model
 				function	get_asset_by_asset_id($asset_id)
 				{
 								$sql	=	"SELECT $this->_assets_table.id AS asset_id, 
-																$this->_table_identifiers.identifier AS guid_identifier, 
-																$this->_table_identifiers.identifier_ref AS guid_identifier_ref, 
 																$this->stations.station_name as organization,
-																GROUP_CONCAT(DISTINCT(IFNULL(local.identifier,'(**)')) SEPARATOR ' | ') AS local_identifier, 
-																GROUP_CONCAT(DISTINCT(IFNULL(local.identifier_source,'(**)')) SEPARATOR ' | ') AS identifier_source, 
-																GROUP_CONCAT(DISTINCT(IFNULL(local.identifier_ref,'(**)')) SEPARATOR ' | ') AS identifier_ref, 
 																$this->_table_asset_descriptions.description,
 
 																GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title,'(**)')) SEPARATOR ' | ') AS title, 
@@ -333,23 +328,54 @@ class	Assets_Model	extends	CI_Model
 																GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_title_types.title_type,'(**)')) SEPARATOR ' | ') AS title_type, 
 																GROUP_CONCAT(DISTINCT $this->_table_asset_types.asset_type SEPARATOR ' | ') AS asset_type
 												FROM (`$this->_assets_table`) 
-																LEFT JOIN {$this->_table_identifiers} AS `local` ON `local`.`assets_id` = `$this->_assets_table`.`id` 
-																LEFT JOIN {$this->_table_identifiers} ON `identifiers`.`assets_id` = `$this->_assets_table`.`id` 
 																LEFT JOIN {$this->_table_asset_descriptions} ON `asset_descriptions`.`assets_id` = `$this->_assets_table`.`id` 
 																LEFT JOIN {$this->_table_asset_titles} ON `asset_titles`.`assets_id` = `$this->_assets_table`.`id` 
 																LEFT JOIN {$this->_table_asset_title_types} ON `$this->_table_asset_title_types`.`id` = `$this->_table_asset_titles`.`asset_title_types_id` 
 																LEFT JOIN {$this->stations} ON {$this->stations}.id = {$this->_assets_table}.stations_id
 																LEFT JOIN {$this->_table_assets_asset_types} ON $this->_table_assets_asset_types.assets_id = `$this->_assets_table`.`id`
 																LEFT JOIN {$this->_table_asset_types} ON $this->_table_assets_asset_types.asset_types_id = $this->_table_asset_types.`id`
-												WHERE `identifiers`.`identifier_source` = 'http://americanarchiveinventory.org' 
-																AND `local`.`identifier_source` != 'http://americanarchiveinventory.org' 
-																AND assets.id='"	.	$asset_id	.	"'
-												GROUP BY `assets`.`id` ";
+												WHERE assets.id='"	.	$asset_id	.	"'";
+																
 								$res	=	$this->db->query($sql);
 								if(isset($res)	&&	!	empty($res))
 								{
 												return	$res->row();
 								}return	false;
+				}
+
+				function	get_guid_by_asset_id($asset_id)
+				{
+								$this->db->select("identifier AS guid_identifier,identifier_ref AS guid_identifier_ref",	FALSE);
+
+
+								$this->db->from($this->_table_identifiers);
+								$this->db->where("assets_id",	$asset_id);
+								$this->db->where("identifier_source",	'http://americanarchiveinventory.org');
+								$res	=	$this->db->get();
+								if(isset($res)	&&	!	empty($res))
+								{
+												return	$res->row();
+								}
+								return	false;
+				}
+
+				function	get_localid_by_asset_id($asset_id)
+				{
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifier,'(**)')) SEPARATOR ' | ') AS local_identifier, ",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifier_source,'(**)')) SEPARATOR ' | ') AS local_identifier_source, ",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifier_ref,'(**)')) SEPARATOR ' | ') AS local_identifier_ref, ",	FALSE);
+
+
+								$this->db->from($this->_table_identifiers);
+
+								$this->db->where("assets_id",	$asset_id);
+								$this->db->where("identifier_source !=",	'http://americanarchiveinventory.org');
+								$res	=	$this->db->get();
+								if(isset($res)	&&	!	empty($res))
+								{
+												return	$res->row();
+								}
+								return	false;
 				}
 
 				/**

@@ -75,7 +75,7 @@
 																												<div><b>Actual Duration: </b><?php	echo	date('H:i:s',	strtotime($asset_instantiation->actual_duration));	?></div>
 																												<?php
 																								}
-																								if($asset_instantiation->projected_duration	>	0)
+																								if($asset_instantiation->projected_duration	!=='0')
 																								{
 																												?>
 																												<div><b>Projected Duration: </b><?php	echo	$asset_instantiation->projected_duration;	?></div>

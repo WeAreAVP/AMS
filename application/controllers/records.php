@@ -157,6 +157,8 @@ class	Records	extends	MY_Controller
 								{
 												$data['asset_id']	=	$asset_id;
 												$data['asset_details']	=	$this->assets_model->get_asset_by_asset_id($asset_id);
+												$data['asset_guid']	=	$this->assets_model->get_guid_by_asset_id($asset_id);
+												$data['asset_localid']	=	$this->assets_model->get_localid_by_asset_id($asset_id);
 												$data['asset_subjects']	=	$this->assets_model->get_subjects_by_assets_id($asset_id);
 												$data['asset_dates']	=	$this->assets_model->get_assets_dates_by_assets_id($asset_id);
 												$data['asset_genres']	=	$this->assets_model->get_assets_genres_by_assets_id($asset_id);
@@ -169,6 +171,7 @@ class	Records	extends	MY_Controller
 												$data['asset_audience_ratings']	=	$this->assets_model->get_audience_rating_by_asset_id($asset_id);
 												$data['annotations']	=	$this->assets_model->get_annotations_by_asset_id($asset_id);
 												$data['asset_instantiations']	=	$this->sphinx->instantiations_list(array('asset_id'	=>	$asset_id,	'search'			=>	''));
+//												debug($data['asset_instantiations'],FALSE);
 												$this->load->view('records/assets_details',	$data);
 								}
 								else

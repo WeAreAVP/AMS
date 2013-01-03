@@ -2,7 +2,7 @@
 				<div style="margin: 2px 0px 10px 0px;float:left;">
 
 								<?php
-								debug($instantiation_detail);
+								debug($instantiation_detail,FALSE);
 								$asset_title_type	=	trim(str_replace('(**)',	'',	$asset_details->title_type));
 								$asset_title_type	=	explode('|',	$asset_title_type);
 								
@@ -185,7 +185,7 @@
 																<!--				Location	End		-->
 																<!--				Duration 	Start		-->
 																<?php
-																if($instantiation_detail->projected_duration	>	0)
+																if($instantiation_detail->projected_duration	!=='0')
 																{
 																				?>	
 																				<tr>
@@ -201,7 +201,7 @@
 
 																				<?php
 																}
-																else	if($instantiation_detail->actual_duration	>	0)
+																else	if($instantiation_detail->actual_duration	!==	'0')
 																{
 																				?>	
 																				<tr>

@@ -210,7 +210,7 @@ class	Crons	extends	CI_Controller
 																				{
 																								if	($d_file->is_processed	==	0)
 																								{
-																												$this->assets_model->update_prcoess_data	(array	("processed_start_at"	=>	date	('Y-m-d H:i:s')),	$d_file->id);
+																												$this->cron_model->update_prcoess_data	(array	("processed_start_at"	=>	date	('Y-m-d H:i:s')),	$d_file->id);
 																												$file_path	=	'';
 																												$file_path	=	trim	($folder_data->folder_path	.	$d_file->file_path);
 																												if	(is_file	($file_path))
@@ -242,12 +242,12 @@ class	Crons	extends	CI_Controller
 																																												$this->process_instantiation	($asset_children,	$asset_id);
 																																												// Instantiation End
 																																												$this->myLog	(" Instantiation End ");
-																																												$this->assets_model->update_prcoess_data	(array	('is_processed'		=>	1,	"processed_at"		=>	date	('Y-m-d H:i:s'),	'status_reason'	=>	'Complete'),	$d_file->id);
+																																												$this->cron_model->update_prcoess_data	(array	('is_processed'		=>	1,	"processed_at"		=>	date	('Y-m-d H:i:s'),	'status_reason'	=>	'Complete'),	$d_file->id);
 																																								}
 																																								else
 																																								{
 																																												$this->myLog	(" Attribut children not found "	.	$file_path);
-																																												$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Attribut children not found'),	$d_file->id);
+																																												$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Attribut children not found'),	$d_file->id);
 																																								}
 
 																																								//$this->db->trans_complete	();
@@ -258,25 +258,25 @@ class	Crons	extends	CI_Controller
 																																				else
 																																				{
 																																								$this->myLog	(" Attribut version Issues "	.	$file_path);
-																																								$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Attribut version Issues'),	$d_file->id);
+																																								$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Attribut version Issues'),	$d_file->id);
 																																				}
 																																}
 																																else
 																																{
 																																				$this->myLog	(" Data is empty in file "	.	$file_path);
-																																				$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Data is empty in file'),	$d_file->id);
+																																				$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Data is empty in file'),	$d_file->id);
 																																}
 																												}
 																												else
 																												{
 																																$this->myLog	(" Is File Check Issues "	.	$file_path);
-																																$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Is File Check Issues'),	$d_file->id);
+																																$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Is File Check Issues'),	$d_file->id);
 																												}
 																								}
 																								else
 																								{
 																												$this->myLog	(" Already Processed "	.	$file_path);
-																												$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Already Processed'),	$d_file->id);
+																												$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Already Processed'),	$d_file->id);
 																								}
 																				}
 																				unset	($data_files);

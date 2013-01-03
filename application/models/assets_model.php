@@ -319,7 +319,9 @@ class	Assets_Model	extends	CI_Model
 				function	get_asset_by_asset_id($asset_id)
 				{
 								$sql	=	"SELECT $this->_assets_table.id AS asset_id, 
-															
+																
+																$this->stations.station_name as organization,
+																
 																$this->_table_asset_descriptions.description,
 
 																GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_titles.title,'(**)')) SEPARATOR ' | ') AS title, 
@@ -328,14 +330,14 @@ class	Assets_Model	extends	CI_Model
 																GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_title_types.title_type,'(**)')) SEPARATOR ' | ') AS title_type, 
 																GROUP_CONCAT(DISTINCT $this->_table_asset_types.asset_type SEPARATOR ' | ') AS asset_type
 												FROM (`$this->_assets_table`) 
-															
+																
 																LEFT JOIN {$this->_table_asset_descriptions} ON `asset_descriptions`.`assets_id` = `$this->_assets_table`.`id` 
 																LEFT JOIN {$this->_table_asset_titles} ON `asset_titles`.`assets_id` = `$this->_assets_table`.`id` 
 																LEFT JOIN {$this->_table_asset_title_types} ON `$this->_table_asset_title_types`.`id` = `$this->_table_asset_titles`.`asset_title_types_id` 
 																LEFT JOIN {$this->stations} ON {$this->stations}.id = {$this->_assets_table}.stations_id
 																LEFT JOIN {$this->_table_assets_asset_types} ON $this->_table_assets_asset_types.assets_id = `$this->_assets_table`.`id`
 																LEFT JOIN {$this->_table_asset_types} ON $this->_table_assets_asset_types.asset_types_id = $this->_table_asset_types.`id`
-												WHERE  assets.id='"	.	$asset_id	.	"'";
+												WHERE assets.id='"	.	$asset_id	.	"'";
 								$res	=	$this->db->query($sql);
 								if(isset($res)	&&	!	empty($res))
 								{

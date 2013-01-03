@@ -348,7 +348,7 @@ class	Assets_Model	extends	CI_Model
 
 
 								$this->db->from($this->_table_identifiers);
-								$this->db->where("assets_id",	$assets_id);
+								$this->db->where("assets_id",	$asset_id);
 								$this->db->where("identifier_source",	'http://americanarchiveinventory.org');
 								$res	=	$this->db->get();
 								echo $this->db->last_query();
@@ -359,7 +359,7 @@ class	Assets_Model	extends	CI_Model
 								return	false;
 				}
 
-				function	get_localid_by_asset_id()
+				function	get_localid_by_asset_id($asset_id)
 				{
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifier,'(**)')) SEPARATOR ' | ') AS local_identifier, ",	FALSE);
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifier_source,'(**)')) SEPARATOR ' | ') AS local_identifier_source, ",	FALSE);
@@ -368,7 +368,7 @@ class	Assets_Model	extends	CI_Model
 
 								$this->db->from($this->_table_identifiers);
 
-								$this->db->where("assets_id",	$assets_id);
+								$this->db->where("assets_id",	$asset_id);
 								$this->db->where("identifier_source !=",	'http://americanarchiveinventory.org');
 								$res	=	$this->db->get();
 								if(isset($res)	&&	!	empty($res))

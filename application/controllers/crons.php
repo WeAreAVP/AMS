@@ -303,6 +303,8 @@ class	Crons	extends	CI_Controller
 
 				function	process_instantiation	($asset_children,	$asset_id)
 				{
+								error_reporting	(E_ALL);
+								ini_set	('display_errors',	1);
 								// pbcoreAssetType Start here
 								if	(isset	($asset_children['pbcoreinstantiation']))
 								{

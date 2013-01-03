@@ -156,7 +156,9 @@ class	Records	extends	MY_Controller
 								if($asset_id)
 								{
 												$data['asset_id']	=	$asset_id;
+												echo $data['asset_id'];
 												$data['asset_details']	=	$this->assets_model->get_asset_by_asset_id($asset_id);
+												debug($data['asset_details']);
 												$data['asset_subjects']	=	$this->assets_model->get_subjects_by_assets_id($asset_id);
 												$data['asset_dates']	=	$this->assets_model->get_assets_dates_by_assets_id($asset_id);
 												$data['asset_genres']	=	$this->assets_model->get_assets_genres_by_assets_id($asset_id);

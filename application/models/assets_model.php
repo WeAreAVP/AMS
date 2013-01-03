@@ -334,7 +334,9 @@ class	Assets_Model	extends	CI_Model
 																LEFT JOIN {$this->stations} ON {$this->stations}.id = {$this->_assets_table}.stations_id
 																LEFT JOIN {$this->_table_assets_asset_types} ON $this->_table_assets_asset_types.assets_id = `$this->_assets_table`.`id`
 																LEFT JOIN {$this->_table_asset_types} ON $this->_table_assets_asset_types.asset_types_id = $this->_table_asset_types.`id`
-												WHERE assets.id='"	.	$asset_id	.	"'";
+												WHERE assets.id='"	.	$asset_id	.	"'
+												GROUP BY assets.id";
+																
 								$res	=	$this->db->query($sql);
 								if(isset($res)	&&	!	empty($res))
 								{

@@ -344,7 +344,7 @@ class	Assets_Model	extends	CI_Model
 												WHERE `identifiers`.`identifier_source` = 'http://americanarchiveinventory.org' 
 																AND `local`.`identifier_source` != 'http://americanarchiveinventory.org' 
 																AND assets.id='"	.	$asset_id	.	"'
-												GROUP BY `assets`.`id` ";
+												GROUP BY `$this->_assets_table`.`id` ";
 								$res	=	$this->db->query($sql);
 								if(isset($res)	&&	!	empty($res))
 								{

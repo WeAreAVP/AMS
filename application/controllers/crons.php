@@ -206,15 +206,14 @@ class	Crons	extends	CI_Controller
 																{
 																				foreach	($data_files	as	$d_file)
 																				{
-																								$this->db->where	('id',	$d_file->id);
-																								$this->db->update	('process_pbcore_data',	array	("processed_start_at"	=>	date	('Y-m-d H:i:s')));
 																								if	($d_file->is_processed	==	0)
 																								{
+																												$this->assets_model->update_prcoess_data	(array	("processed_start_at"	=>	date	('Y-m-d H:i:s')),	$d_file->id);
 																												$file_path	=	'';
 																												$file_path	=	trim	($folder_data->folder_path	.	$d_file->file_path);
 																												if	(is_file	($file_path))
 																												{
-																																echo	"Currently Parsing Files "	.	$file_path	.	"\n";
+																																$this->myLog	("Currently Parsing Files "	.	$file_path);
 																																$asset_data	=	file_get_contents	($file_path);
 																																if	(isset	($asset_data)	&&	!	empty	($asset_data))
 																																{
@@ -231,21 +230,45 @@ class	Crons	extends	CI_Controller
 																																								{
 																																												//echo "<pre>";
 																																												//print_r($asset_children);
-																																												// Instantiation Start
+																																												// Assets Start
+																																												$this->myLog	(" Assets Start ");
 																																												$this->process_assets	($asset_children,	$asset_id);
-																																												// Instantiation End
+																																												$this->myLog	(" Assets Ends ");
+																																												// Assets End
 																																												// Instantiation Start
+																																												$this->myLog	(" Instantiation Start ");
 																																												$this->process_instantiation	($asset_children,	$asset_id);
 																																												// Instantiation End
+																																												$this->myLog	(" Instantiation End ");
+																																												$this->assets_model->update_prcoess_data	(array	('is_processed'	=>	1,	"processed_at"	=>	date	('Y-m-d H:i:s')),	$d_file->id);
 																																								}
-																																								$this->db->where	('id',	$d_file->id);
-																																								$this->db->update	('process_pbcore_data',	array	('is_processed'	=>	1,	"processed_at"	=>	date	('Y-m-d H:i:s')));
+																																								else
+																																								{
+																																												$this->myLog	(" Attribut children not found "	.	$file_path);
+																																												$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Attribut children not found'),	$d_file->id); 
+																																								}
+
 																																								//$this->db->trans_complete	();
 																																								unset	($asset_d);
 																																								unset	($asset_xml_data);
 																																								unset	($asset_data);
 																																				}
+																																				else
+																																				{
+																																								$this->myLog	(" Attribut version Issues "	.	$file_path);
+																																								$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Attribut version Issues'),	$d_file->id); 
+																																				}
 																																}
+																																else
+																																{
+																																				$this->myLog	(" Data is empty in file "	.	$file_path);
+																																				$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Data is empty in file'),	$d_file->id); 
+																																}
+																												}
+																												else
+																												{
+																																$this->myLog	(" Is File Check Issues "	.	$file_path);
+																																$this->assets_model->update_prcoess_data	(array	('status_reason'	=>	'Is File Check Issues'),	$d_file->id); 
 																												}
 																								}
 																				}
@@ -451,17 +474,20 @@ class	Crons	extends	CI_Controller
 
 																								if	(isset	($pbcoreinstantiation_child['datecreated'][0]['text'])	&&	!	is_empty	($pbcoreinstantiation_child['datecreated'][0]['text']))
 																								{
-																												$instantiation_dates_d['instantiation_date']	=	str_replace(array('?','Unknown','unknown','`','['.']','N/A','N/A?','Jim Cooper','various','.00','.0','John Kelling','Roll in','interview'),'',trim($pbcoreinstantiation_child['datecreated'][0]['text']));
-																												$date_type	=	$this->instant->get_date_types_by_type	('created');
-																												if	(isset	($date_type)	&&	isset	($date_type->id))
+																												$instantiation_dates_d['instantiation_date']	=	str_replace	(array	('?',	'Unknown',	'unknown',	'`',	'['	.	']',	'N/A',	'N/A?',	'Jim Cooper',	'various',	'.00',	'.0',	'John Kelling',	'Roll in',	'interview'),	'',	trim	($pbcoreinstantiation_child['datecreated'][0]['text']));
+																												if	(isset	($instantiation_dates_d['instantiation_date'])	&&	!	is_empty	($instantiation_dates_d['instantiation_date']))
 																												{
-																																$instantiation_dates_d['date_types_id']	=	$date_type->id;
+																																$date_type	=	$this->instant->get_date_types_by_type	('created');
+																																if	(isset	($date_type)	&&	isset	($date_type->id))
+																																{
+																																				$instantiation_dates_d['date_types_id']	=	$date_type->id;
+																																}
+																																else
+																																{
+																																				$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types	(array	('date_type'																				=>	'created'));
+																																}
+																																$instantiation_date_created_id	=	$this->instant->insert_instantiation_dates	($instantiation_dates_d);
 																												}
-																												else
-																												{
-																																$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types	(array	('date_type'																				=>	'created'));
-																												}
-																												$instantiation_date_created_id	=	$this->instant->insert_instantiation_dates	($instantiation_dates_d);
 																								}
 																				}
 																				//Instantiation Date Created End
@@ -473,17 +499,21 @@ class	Crons	extends	CI_Controller
 
 																								if	(isset	($pbcoreinstantiation_child['dateissued'][0]['text'])	&&	!	is_empty	($pbcoreinstantiation_child['dateissued'][0]['text']))
 																								{
-																												$instantiation_dates_d['instantiation_date']	=	str_replace(array('?','Unknown','unknown','`','['.']','N/A','N/A?','Jim Cooper','various','.00','.0','John Kelling','Roll in','interview'),'',$pbcoreinstantiation_child['dateissued'][0]['text']);
-																												$date_type	=	$this->instant->get_date_types_by_type	('issued');
-																												if	(isset	($date_type)	&&	isset	($date_type->id))
+																												$instantiation_dates_d['instantiation_date']	=	str_replace	(array	('?',	'Unknown',	'unknown',	'`',	'['	.	']',	'N/A',	'N/A?',	'Jim Cooper',	'various',	'.00',	'.0',	'John Kelling',	'Roll in',	'interview'),	'',	$pbcoreinstantiation_child['dateissued'][0]['text']);
+																												if	(isset	($instantiation_dates_d['instantiation_date'])	&&	!	is_empty	($instantiation_dates_d['instantiation_date']))
 																												{
-																																$instantiation_dates_d['date_types_id']	=	$date_type->id;
+
+																																$date_type	=	$this->instant->get_date_types_by_type	('issued');
+																																if	(isset	($date_type)	&&	isset	($date_type->id))
+																																{
+																																				$instantiation_dates_d['date_types_id']	=	$date_type->id;
+																																}
+																																else
+																																{
+																																				$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types	(array	('date_type'																			=>	'issued'));
+																																}
+																																$instantiation_date_issued_id	=	$this->instant->insert_instantiation_dates	($instantiation_dates_d);
 																												}
-																												else
-																												{
-																																$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types	(array	('date_type'																			=>	'issued'));
-																												}
-																												$instantiation_date_issued_id	=	$this->instant->insert_instantiation_dates	($instantiation_dates_d);
 																								}
 																				}
 																				//Instantiation Date Issued End

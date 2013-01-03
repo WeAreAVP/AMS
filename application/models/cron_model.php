@@ -176,6 +176,19 @@ class	Cron_Model	extends	CI_Model
 								$this->db->insert	($this->_table,	$data);
 								return	$this->db->insert_id	();
 				}
+				/*
+					 @Update data into process_pbcore_data
+					 @Perm Array of table data
+				  @Perm Integer of id
+					 @return bool
+				*/
+
+				function	update_prcoess_data	($data,$file_id)
+				{
+						$this->db->where	('id',	$file_id);
+						$this->db->update	($this->_table,$data);
+						
+				}
 
 				/*
 					 @Insert data folder

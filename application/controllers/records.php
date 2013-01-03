@@ -171,7 +171,7 @@ class	Records	extends	MY_Controller
 												$data['asset_audience_ratings']	=	$this->assets_model->get_audience_rating_by_asset_id($asset_id);
 												$data['annotations']	=	$this->assets_model->get_annotations_by_asset_id($asset_id);
 												$data['asset_instantiations']	=	$this->sphinx->instantiations_list(array('asset_id'	=>	$asset_id,	'search'			=>	''));
-												debug($data['asset_instantiations']);
+												debug($data['asset_instantiations'],FALSE);
 												$this->load->view('records/assets_details',	$data);
 								}
 								else

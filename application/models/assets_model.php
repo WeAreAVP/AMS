@@ -351,6 +351,7 @@ class	Assets_Model	extends	CI_Model
 								$this->db->where("assets_id",	$assets_id);
 								$this->db->where("identifier_source",	'http://americanarchiveinventory.org');
 								$res	=	$this->db->get();
+								echo $this->db->last_query();
 								if(isset($res)	&&	!	empty($res))
 								{
 												return	$res->result();

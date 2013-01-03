@@ -4,6 +4,7 @@
 								<?php
 								$asset_title_type	=	trim(str_replace('(**)',	'',	$asset_details->title_type));
 								$asset_title_type	=	explode('|',	$asset_title_type);
+								debug($asset_title_type);
 								$asset_title	=	trim(str_replace('(**)',	'',	$asset_details->title));
 								$asset_title	=	explode('|',	$asset_title);
 								$asset_title_ref	=	trim(str_replace('(**)',	'',	$asset_details->title_ref));

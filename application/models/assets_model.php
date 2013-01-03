@@ -354,7 +354,7 @@ class	Assets_Model	extends	CI_Model
 								echo $this->db->last_query();
 								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->result();
+												return	$res->row();
 								}
 								return	false;
 				}
@@ -373,7 +373,7 @@ class	Assets_Model	extends	CI_Model
 								$res	=	$this->db->get();
 								if(isset($res)	&&	!	empty($res))
 								{
-												return	$res->result();
+												return	$res->row();
 								}
 								return	false;
 				}

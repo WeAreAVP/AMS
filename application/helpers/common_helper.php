@@ -177,3 +177,11 @@ function	debug	($argument,	$exit	=	true)
 				if	($exit)
 								exit;
 }
+function	is_empty	($str)
+				{
+								if	(isset	($str)	&&	!	empty	($str)	&&	$str	!==	NULL)
+								{
+												return	false;
+								}
+								return	true;
+				}

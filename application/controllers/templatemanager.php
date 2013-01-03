@@ -253,8 +253,10 @@ class	Templatemanager	extends	MY_Controller
 					*/
 				public	function	manage_crawford()
 				{
+								$data['is_updated']=FALSE;
 								if($this->input->post())
 								{
+												$data['is_updated']=TRUE;
 												$crawford_detail	=	$this->input->post('crawford_contact_details');
 												$this->email_template->update_email_template(NULL,	array('crawford_contact_detail'	=>	$crawford_detail));
 								}

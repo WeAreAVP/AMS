@@ -1,10 +1,15 @@
 <?php
 $attributes	=	array(
-				'id'				=>	'edit_from',
-				'class'	=>	'form-horizontal');
+'id'				=>	'edit_from',
+	'class'	=>	'form-horizontal');
 ?>
 <div class="row-fluid">
-				<?php	echo	form_open_multipart($this->uri->uri_string(),	$attributes);	?>
+				<?php
+				if($is_updated)
+				{
+								?>
+								<div class="alert alert-success notification" style="margin: 20px;">Crawford Contact Detail Updated Successfully.</div>
+				<?php	}	echo	form_open_multipart($this->uri->uri_string(),	$attributes);	?>
 				<div class="control-group">
 								<label class="control-label" for="inputEmail">Crawford Contact Details:</label>
 								<div class="controls">
@@ -19,3 +24,8 @@ $attributes	=	array(
 				</div>
 				<?php	echo	form_close();	?>
 </div>
+<script type="text/javascript">
+				setTimeout(function(){
+								$('.alert').slideUp();
+				},3000);
+</script>

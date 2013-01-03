@@ -892,7 +892,7 @@ class	Crons	extends	CI_Controller
 								}
 								// pbcoreGenre End
 								// pbcoreCoverage Start
-								if	(isset	($asset_children['pbcorecoverage'])	&	!	is_empty	($asset_children['pbcorecoverage']))
+								if	(isset	($asset_children['pbcorecoverage'])	&&	!	is_empty	($asset_children['pbcorecoverage']))
 								{
 												foreach	($asset_children['pbcorecoverage']	as	$pbcore_coverage)
 												{

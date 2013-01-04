@@ -620,28 +620,17 @@ class	Crons	extends	CI_Controller
 																												$instantiation_dates_d['instantiation_date']	=	str_replace	(array	('?',	'Unknown',	'unknown',	'`',	'['	.	']',	'N/A',	'N/A?',	'Jim Cooper',	'various',	'.00',	'.0',	'John Kelling',	'Roll in',	'interview'),	'',	$pbcoreinstantiation_child['dateissued'][0]['text']);
 																												if	(isset	($instantiation_dates_d['instantiation_date'])	&&	!	is_empty	($instantiation_dates_d['instantiation_date']))
 																												{
-																																$date_check	=	strtotime	($instantiation_dates_d['instantiation_date']);
-																																if	($date_check	===	FALSE)
+
+																																$date_type	=	$this->instant->get_date_types_by_type	('issued');
+																																if	(isset	($date_type)	&&	isset	($date_type->id))
 																																{
-																																				$instantiation_annotation_d	=	array	();
-																																				$instantiation_annotation_d['instantiations_id']	=	$instantiations_id;
-																																				$instantiation_annotation_d['annotation']	=	$instantiation_dates_d['instantiation_date'];
-																																				$instantiation_annotation_d['annotation_type']	=	'date';
-																																				$instantiation_annotation_ids[]	=	$this->instant->insert_instantiation_annotations	($instantiation_annotation_d);
+																																				$instantiation_dates_d['date_types_id']	=	$date_type->id;
 																																}
 																																else
 																																{
-																																				$date_type	=	$this->instant->get_date_types_by_type	('issued');
-																																				if	(isset	($date_type)	&&	isset	($date_type->id))
-																																				{
-																																								$instantiation_dates_d['date_types_id']	=	$date_type->id;
-																																				}
-																																				else
-																																				{
-																																								$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types	(array	('date_type'	=>	'issued'));
-																																				}
-																																				$instantiation_date_issued_id	=	$this->instant->insert_instantiation_dates	($instantiation_dates_d);
+																																				$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types	(array	('date_type'	=>	'issued'));
 																																}
+																																$instantiation_date_issued_id	=	$this->instant->insert_instantiation_dates	($instantiation_dates_d);
 																												}
 																								}
 																				}

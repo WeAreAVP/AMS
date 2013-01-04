@@ -69,6 +69,7 @@ class	Cron_Model	extends	CI_Model
 								$this->db->from	($this->_table);
 								$this->db->where	("data_folder_id ",	$data_folder_id);
 								$this->db->where	("is_processed ",	0);
+									$this->db->like("status_reason",	'Not processed');
 								$this->db->limit	($limit,	$offset);
 								$res	=	$this->db->get	();
 								if	(isset	($res))
@@ -89,6 +90,8 @@ class	Cron_Model	extends	CI_Model
 								$this->db->from	($this->_table);
 								$this->db->where	("data_folder_id ",	$data_folder_id);
 								$this->db->where	("is_processed ",	0);
+								$this->db->like("status_reason",	'Not processed');
+								
 								$res	=	$this->db->get	();
 								if	(isset	($res))
 								{

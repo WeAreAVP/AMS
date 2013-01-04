@@ -134,9 +134,9 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_audience_level_by_asset_id($assets_id)
 				{
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_levels.	audience_level,'(**)')) SEPARATOR ' | ') AS 	audience_level",	FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_levels.	audience_level_source,'(**)')) SEPARATOR ' | ') AS 	audience_level_source",	FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_levels.	audience_level_ref,'(**)')) SEPARATOR ' | ') AS 	audience_level_ref",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_audience_levels.	audience_level,'(**)')) SEPARATOR ' | ') AS 	audience_level",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_audience_levels.	audience_level_source,'(**)')) SEPARATOR ' | ') AS 	audience_level_source",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_audience_levels.	audience_level_ref,'(**)')) SEPARATOR ' | ') AS 	audience_level_ref",	FALSE);
 
 								$this->db->from($this->_table_assets_audience_levels);
 								$this->db->join($this->_table_audience_levels,	"$this->_table_assets_audience_levels.audience_levels_id=$this->_table_audience_levels.id",	"left");

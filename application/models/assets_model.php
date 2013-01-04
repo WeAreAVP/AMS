@@ -387,7 +387,7 @@ class	Assets_Model	extends	CI_Model
 				function	get_assets_dates_by_assets_id($assets_id)
 				{
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_dates.asset_date,'(**)')) SEPARATOR ' | ') AS asset_date",	FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_dates.date_type,'(**)')) SEPARATOR ' | ') AS date_type",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_date_types.date_type,'(**)')) SEPARATOR ' | ') AS date_type",	FALSE);
 
 								$this->db->from($this->_table_asset_dates);
 								$this->db->join($this->_table_date_types,	"$this->_table_asset_dates.date_types_id=$this->_table_date_types.id",	"left");

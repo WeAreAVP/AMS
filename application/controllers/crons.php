@@ -1068,17 +1068,20 @@ class	Crons	extends	CI_Controller
 																$asset_audience_level['assets_id']	=	$asset_id;
 																if	(isset	($pbcore_aud_level['children']['audiencelevel'][0]['text'])	&&	!	is_empty	($pbcore_aud_level['children']['audiencelevel'][0]['text']))
 																{
-																				$audience_level['audience_level']	=	$pbcore_aud_level['children']['audiencelevel'][0]['text'];
-																				$db_audience_level	=	$this->assets_model->get_audience_level	($audience_level['audience_level']);
-																				if	(isset	($db_audience_level)	&&	isset	($db_audience_level->id))
+																				$audience_level['audience_level']	=	trim	($pbcore_aud_level['children']['audiencelevel'][0]['text']);
+																				if	(isset	($audience_level['audience_level'])	&&	!	is_empty	($audience_level['audience_level']))
 																				{
-																								$asset_audience_level['audience_levels_id']	=	$db_audience_level->id;
+																								$db_audience_level	=	$this->assets_model->get_audience_level	($audience_level['audience_level']);
+																								if	(isset	($db_audience_level)	&&	isset	($db_audience_level->id))
+																								{
+																												$asset_audience_level['audience_levels_id']	=	$db_audience_level->id;
+																								}
+																								else
+																								{
+																												$asset_audience_level['audience_levels_id']	=	$this->assets_model->insert_audience_level	($audience_level);
+																								}
+																								$asset_audience	=	$this->assets_model->insert_asset_audience	($asset_audience_level);
 																				}
-																				else
-																				{
-																								$asset_audience_level['audience_levels_id']	=	$this->assets_model->insert_audience_level	($audience_level);
-																				}
-																				$asset_audience	=	$this->assets_model->insert_asset_audience	($asset_audience_level);
 																}
 												}
 								}
@@ -1094,17 +1097,20 @@ class	Crons	extends	CI_Controller
 																$asset_audience_rating['assets_id']	=	$asset_id;
 																if	(isset	($pbcore_aud_rating['children']['audiencerating'][0]['text'])	&&	!	is_empty	($pbcore_aud_rating['children']['audiencerating'][0]['text']))
 																{
-																				$audience_rating['audience_rating']	=	$pbcore_aud_rating['children']['audiencerating'][0]['text'];
-																				$db_audience_rating	=	$this->assets_model->get_audience_rating	($audience_rating['audience_rating']);
-																				if	(isset	($db_audience_rating)	&&	isset	($db_audience_rating->id))
+																				$audience_rating['audience_rating']	=	trim	($pbcore_aud_rating['children']['audiencerating'][0]['text']);
+																				if	(isset	($audience_rating['audience_rating'])	&&	!	is_empty	($audience_rating['audience_rating']))
 																				{
-																								$asset_audience_rating['audience_ratings_id']	=	$db_audience_rating->id;
+																								$db_audience_rating	=	$this->assets_model->get_audience_rating	($audience_rating['audience_rating']);
+																								if	(isset	($db_audience_rating)	&&	isset	($db_audience_rating->id))
+																								{
+																												$asset_audience_rating['audience_ratings_id']	=	$db_audience_rating->id;
+																								}
+																								else
+																								{
+																												$asset_audience_rating['audience_ratings_id']	=	$this->assets_model->insert_audience_rating	($audience_rating);
+																								}
+																								$asset_audience_rate	=	$this->assets_model->insert_asset_audience_rating	($asset_audience_rating);
 																				}
-																				else
-																				{
-																								$asset_audience_rating['audience_ratings_id']	=	$this->assets_model->insert_audience_rating	($audience_rating);
-																				}
-																				$asset_audience_rate	=	$this->assets_model->insert_asset_audience_rating	($asset_audience_rating);
 																}
 												}
 								}
@@ -1193,7 +1199,10 @@ class	Crons	extends	CI_Controller
 																				}
 																}
 																//print_r($assets_creators_roles_d);
-																$assets_creators_roles_id	=	$this->assets_model->insert_assets_creators_roles	($assets_creators_roles_d);
+																if	((isset	($assets_creators_roles_d['creators_id'])	&&	!	is_empty	($assets_creators_roles_d['creators_id']))	||	(isset	($assets_creators_roles_d['creator_roles_id'])	&&	!	is_empty	($assets_creators_roles_d['creator_roles_id'])))
+																{
+																				$assets_creators_roles_id	=	$this->assets_model->insert_assets_creators_roles	($assets_creators_roles_d);
+																}
 												}
 								}
 								// pbcoreCreator End here
@@ -1208,31 +1217,51 @@ class	Crons	extends	CI_Controller
 																$contributor_role	=	array	();
 																if	(isset	($pbcore_contributor['children']['contributor'][0]['text'])	&&	!	is_empty	($pbcore_contributor['children']['contributor'][0]['text']))
 																{
-																				$contributor_d	=	$this->assets_model->get_contributor_by_contributor_name	($pbcore_contributor['children']['contributor'][0]['text']);
-																				if	(isset	($contributor_d)	&&	isset	($contributor_d->id))
+																				$contributor_text	=	trim	($pbcore_contributor['children']['contributor'][0]['text']);
+																				if	(isset	($contributor_text)	&&	!	is_empty	($contributor_text))
 																				{
-																								$assets_contributors_d['contributors_id']	=	$contributor_d->id;
-																				}
-																				else
-																				{
-																								// contributor_affiliation ,	contributor_source, 	contributor_ref 
-																								$assets_contributors_d['contributors_id']	=	$this->assets_model->insert_contributors	(array	('contributor_name'	=>	$pbcore_contributor['children']['contributor'][0]['text']));
+																								$contributor_d	=	$this->assets_model->get_contributor_by_contributor_name	($contributor_text);
+																								if	(isset	($contributor_d)	&&	isset	($contributor_d->id))
+																								{
+																												$assets_contributors_d['contributors_id']	=	$contributor_d->id;
+																								}
+																								else
+																								{
+																												// contributor_affiliation ,	contributor_source, 	contributor_ref 
+																												$last_insert_id	=	$this->assets_model->insert_contributors	(array	('contributor_name'	=>	$contributor_text));
+																												if	(isset	($last_insert_id)	&&	$last_insert_id	>	0)
+																												{
+																																$assets_contributors_d['contributors_id']	=	$last_insert_id;
+																												}
+																								}
 																				}
 																}
 																if	(isset	($pbcore_contributor['children']['contributorrole'][0]['text'])	&&	!	is_empty	($pbcore_contributor['children']['contributorrole'][0]['text']))
 																{
-																				$contributor_role	=	$this->assets_model->get_contributor_role_by_role	($pbcore_contributor['children']['contributorrole'][0]['text']);
-																				if	(isset	($contributor_role)	&&	isset	($contributor_role->id))
+																				$contributorrole	=	trim	($pbcore_contributor['children']['contributorrole'][0]['text']);
+																				if	(isset	($contributorrole)	&&	!	is_empty	($contributorrole))
 																				{
-																								$assets_contributors_d['contributor_roles_id']	=	$contributor_role->id;
-																				}
-																				else
-																				{
-																								// contributor_role_source ,	contributor_role_ref 
-																								$assets_contributors_d['contributor_roles_id']	=	$this->assets_model->insert_contributor_roles	(array	('contributor_role'	=>	$pbcore_contributor['children']['contributorrole'][0]['text']));
+																								$contributor_role	=	$this->assets_model->get_contributor_role_by_role	($contributorrole);
+																								if	(isset	($contributor_role)	&&	isset	($contributor_role->id))
+																								{
+																												$assets_contributors_d['contributor_roles_id']	=	$contributor_role->id;
+																								}
+																								else
+																								{
+																												// contributor_role_source ,	contributor_role_ref 
+																												$last_insert_id	=	$this->assets_model->insert_contributor_roles	(array	('contributor_role'	=>	$contributorrole));
+																												if	(isset	($last_insert_id)	&&	$last_insert_id	>	0)
+																												{
+																																$assets_contributors_d['contributor_roles_id']	=	$last_insert_id;
+																												}
+																								}
 																				}
 																}
-																$assets_contributors_roles_id	=	$this->assets_model->insert_assets_contributors_roles	($assets_contributors_d);
+																if	((isset	($assets_contributors_d['contributors_id'])	&&	!	is_empty	($assets_contributors_d['contributors_id']))	||
+																								(isset	($assets_contributors_d['contributor_roles_id'])	&&	!	is_empty	($assets_contributors_d['contributor_roles_id'])))
+																{
+																				$assets_contributors_roles_id	=	$this->assets_model->insert_assets_contributors_roles	($assets_contributors_d);
+																}
 												}
 								}
 								// pbcorecontributor End here
@@ -1273,7 +1302,10 @@ class	Crons	extends	CI_Controller
 																				}
 																}
 																//print_r($assets_publisher_d);
-																$assets_publishers_roles_id	=	$this->assets_model->insert_assets_publishers_role	($assets_publisher_d);
+																if	((isset	($assets_publisher_d['publishers_id'])	&&	!	is_empty	($assets_publisher_d['publishers_id']))	||	(isset	($assets_publisher_d['publisher_roles_id'])	&&	!	is_empty	($assets_publisher_d['publisher_roles_id'])))
+																{
+																				$assets_publishers_roles_id	=	$this->assets_model->insert_assets_publishers_role	($assets_publisher_d);
+																}
 												}
 								}
 								// pbcorePublisher End here
@@ -1319,8 +1351,6 @@ class	Crons	extends	CI_Controller
 								//pbcoreExtension End
 								// End By Ali Raza
 				}
-
-				public
 
 				function	import_media_files	()
 				{

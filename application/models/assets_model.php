@@ -110,9 +110,9 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_audience_rating_by_asset_id($assets_id)
 				{
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_ratings.	audience_rating,'(**)')) SEPARATOR ' | ') AS 	audience_rating",	FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_ratings.	audience_rating_source,'(**)')) SEPARATOR ' | ') AS 	audience_rating_source",	FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_ratings.	audience_rating_ref,'(**)')) SEPARATOR ' | ') AS 	audience_rating_ref",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_audience_ratings.	audience_rating,'(**)')) SEPARATOR ' | ') AS 	audience_rating",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_audience_ratings.	audience_rating_source,'(**)')) SEPARATOR ' | ') AS 	audience_rating_source",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_audience_ratings.	audience_rating_ref,'(**)')) SEPARATOR ' | ') AS 	audience_rating_ref",	FALSE);
 
 
 								$this->db->from($this->_table_assets_audience_ratings);

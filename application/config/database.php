@@ -75,7 +75,7 @@ else	if	(ENVIRONMENT	==	'qatesting')
 				$db['default']['password']	=	'AMSQL098';
 				$db['default']['database']	=	'ams_qa';
 				$db['default']['dbdriver']	=	'mysql';
-				$db['default']['db_debug']	=	FALSE;
+				$db['default']['db_debug']	=	TRUE;
 }
 else if	(ENVIRONMENT	==	'production')
 {

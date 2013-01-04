@@ -109,7 +109,7 @@ class	Crons	extends	CI_Controller
 								$directory	=	base64_decode	($path);
 								if	(	!	$data_folder_id	=	$this->cron_model->get_data_folder_id_by_path	($directory))
 								{
-												$data_folder_id	=	$this->cron_model->insert_data_folder	(array	("folder_path"	=>	$directory,	"created_at"		=>	date	('Y-m-d H:i:s'),	"data_type"			=>	$type));
+												$data_folder_id	=	$this->cron_model->insert_data_folder	(array	("folder_path"	=>	$directory,	"created_at"	=>	date	('Y-m-d H:i:s'),	"data_type"	=>	$type));
 								}
 								if	(isset	($data_folder_id)	&&	$data_folder_id	>	0)
 								{
@@ -123,7 +123,7 @@ class	Crons	extends	CI_Controller
 																				$this->myLog	('Checking File '	.	$data_file_path);
 																				if	(	!	$this->cron_model->is_pbcore_file_by_path	($data_file_path))
 																				{
-																								$this->cron_model->insert_prcoess_data	(array	('file_type'						=>	$type,	'file_path'						=>	($data_file_path),	'is_processed'			=>	0,	'created_at'					=>	date	('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id));
+																								$this->cron_model->insert_prcoess_data	(array	('file_type'	=>	$type,	'file_path'	=>	($data_file_path),	'is_processed'	=>	0,	'created_at'	=>	date	('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id));
 																				}
 																}
 												}
@@ -195,6 +195,8 @@ class	Crons	extends	CI_Controller
 
 				function	process_xml_file_child	($folder_id,	$station_cpb_id,	$offset	=	0,	$limit	=	100)
 				{
+								error_reporting	(E_ALL);
+								ini_set	('display_errors',	1);
 								$station_data	=	$this->station_model->get_station_by_cpb_id	($station_cpb_id);
 								if	(isset	($station_data)	&&	!	empty	($station_data)	&&	isset	($station_data->id))
 								{
@@ -202,19 +204,18 @@ class	Crons	extends	CI_Controller
 												if	($folder_data)
 												{
 																$data_files	=	$this->cron_model->get_pbcore_file_by_folder_id	($folder_data->id,	$offset,	$limit);
-																if	(	!	is_empty	($data_files))
+																if	(isset	($data_files)	&&	!	is_empty	($data_files))
 																{
 																				foreach	($data_files	as	$d_file)
 																				{
-																								$this->db->where	('id',	$d_file->id);
-																								$this->db->update	('process_pbcore_data',	array	("processed_start_at"	=>	date	('Y-m-d H:i:s')));
 																								if	($d_file->is_processed	==	0)
 																								{
+																												$this->cron_model->update_prcoess_data	(array	("processed_start_at"	=>	date	('Y-m-d H:i:s')),	$d_file->id);
 																												$file_path	=	'';
 																												$file_path	=	trim	($folder_data->folder_path	.	$d_file->file_path);
 																												if	(is_file	($file_path))
 																												{
-																																echo	"Currently Parsing Files "	.	$file_path	.	"\n";
+																																$this->myLog	("Currently Parsing Files "	.	$file_path);
 																																$asset_data	=	file_get_contents	($file_path);
 																																if	(isset	($asset_data)	&&	!	empty	($asset_data))
 																																{
@@ -224,34 +225,75 @@ class	Crons	extends	CI_Controller
 																																				if	(	!	isset	($asset_d['attributes']['version'])	||	empty	($asset_d['attributes']['version'])	||	$asset_d['attributes']['version']	==	'1.3')
 																																				{
 																																								//$this->db->trans_start	();
-																																								$asset_id	=	$this->assets_model->insert_assets	(array	("stations_id"			=>	$station_data->id,	"created"							=>	date	("Y-m-d H:i:s")));
+																																								$asset_id	=	$this->assets_model->insert_assets	(array	("stations_id"	=>	$station_data->id,	"created"	=>	date	("Y-m-d H:i:s")));
 																																								echo	"\n in Process \n";
 																																								$asset_children	=	$asset_d['children'];
 																																								if	(isset	($asset_children))
 																																								{
 																																												//echo "<pre>";
 																																												//print_r($asset_children);
-																																												// Instantiation Start
+																																												// Assets Start
+																																												$this->myLog	(" Assets Start ");
 																																												$this->process_assets	($asset_children,	$asset_id);
-																																												// Instantiation End
+																																												$this->myLog	(" Assets Ends ");
+																																												// Assets End
 																																												// Instantiation Start
+																																												$this->myLog	(" Instantiation Start ");
 																																												$this->process_instantiation	($asset_children,	$asset_id);
 																																												// Instantiation End
+																																												$this->myLog	(" Instantiation End ");
+																																												$this->cron_model->update_prcoess_data	(array	('is_processed'	=>	1,	"processed_at"	=>	date	('Y-m-d H:i:s'),	'status_reason'	=>	'Complete'),	$d_file->id);
 																																								}
-																																								$this->db->where	('id',	$d_file->id);
-																																								$this->db->update	('process_pbcore_data',	array	('is_processed'	=>	1,	"processed_at"	=>	date	('Y-m-d H:i:s')));
+																																								else
+																																								{
+																																												$this->myLog	(" Attribut children not found "	.	$file_path);
+																																												$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Attribut children not found'),	$d_file->id);
+																																								}
+
 																																								//$this->db->trans_complete	();
 																																								unset	($asset_d);
 																																								unset	($asset_xml_data);
 																																								unset	($asset_data);
 																																				}
+																																				else
+																																				{
+																																								$this->myLog	(" Attribut version Issues "	.	$file_path);
+																																								$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Attribut version Issues'),	$d_file->id);
+																																				}
+																																}
+																																else
+																																{
+																																				$this->myLog	(" Data is empty in file "	.	$file_path);
+																																				$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Data is empty in file'),	$d_file->id);
 																																}
 																												}
+																												else
+																												{
+																																$this->myLog	(" Is File Check Issues "	.	$file_path);
+																																$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Is File Check Issues'),	$d_file->id);
+																												}
+																								}
+																								else
+																								{
+																												$this->myLog	(" Already Processed "	.	$file_path);
+																												$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Already Processed'),	$d_file->id);
 																								}
 																				}
 																				unset	($data_files);
 																}
+																else
+																{
+																				$this->myLog	(" Data files not found "	.	$file_path);
+																}
 												}
+												else
+												{
+																$this->myLog	(" folders Data not found "	.	$file_path);
+												}
+								}
+								else
+								{
+												$this->myLog	(" Station data not Found against "	.	$station_cpb_id);
 								}
 				}
 
@@ -261,6 +303,8 @@ class	Crons	extends	CI_Controller
 
 				function	process_instantiation	($asset_children,	$asset_id)
 				{
+								error_reporting	(E_ALL);
+								ini_set	('display_errors',	1);
 								// pbcoreAssetType Start here
 								if	(isset	($asset_children['pbcoreinstantiation']))
 								{
@@ -386,14 +430,15 @@ class	Crons	extends	CI_Controller
 
 																				//pbcoreInstantiation End
 																				//pbcoreExtension Start
+																				$data_created_check	=	true;
 																				if	(isset	($asset_children['pbcoreextension'])	&&	!	is_empty	($asset_children['pbcoreextension']))
 																				{
 																								foreach	($asset_children['pbcoreextension']	as	$pbcore_extension)
 																								{
 																												if	(isset	($pbcore_extension['children']['extensionauthorityused'][0])	&&	!	is_empty	($pbcore_extension['children']['extensionauthorityused'][0]['text']))
 																												{
-
-																																if	(strtolower	($pbcore_extension['children']['extensionauthorityused'][0]['text'])	==	strtolower	('AACIP Record Nomination Status'))
+																																$extension_authority_used	=	strtolower	($pbcore_extension['children']['extensionauthorityused'][0]['text']);
+																																if	($extension_authority_used	===	strtolower	('AACIP Record Nomination Status'))
 																																{
 																																				$nomination_d	=	array	();
 																																				$nomination_d['instantiations_id']	=	$instantiations_id;
@@ -408,10 +453,78 @@ class	Crons	extends	CI_Controller
 																																												}
 																																												else
 																																												{
-																																																$nomination_d['nomination_status_id']	=	$this->assets_model->insert_nomination_status	(array	("status"																	=>	$pbcore_extension['children']['extension'][0]['text']));
+																																																$nomination_d['nomination_status_id']	=	$this->assets_model->insert_nomination_status	(array	("status"	=>	$pbcore_extension['children']['extension'][0]['text']));
 																																												}
 																																												$nomination_d['created']	=	date	("Y-m-d H:i:s");
 																																												$this->assets_model->insert_nominations	($nomination_d);
+																																								}
+																																				}
+																																}
+																																else	if	($extension_authority_used	===	'unknown'	||	$extension_authority_used	===	strtolower	('Date type: Unknown'))
+																																{
+																																				if	(isset	($pbcore_extension['children']['extension'][0]['text'])	&&	!	is_empty	($pbcore_extension['children']['extension'][0]['text']))
+																																				{
+																																								$instantiation_dates_d	=	array	();
+																																								$instantiation_dates_d['instantiations_id']	=	$instantiations_id;
+																																								$instantiation_dates_d['instantiation_date']	=	str_replace	(array	('?',	'Unknown',	'unknown',	'`',	'['	.	']',	'N/A',	'N/A?',	'Jim Cooper',	'various',	'.00',	'.0',	'John Kelling',	'Roll in',	'interview'),	'',	trim	($pbcore_extension['children']['extension'][0]['text']));
+																																								if	(isset	($instantiation_dates_d['instantiation_date'])	&&	!	is_empty	($instantiation_dates_d['instantiation_date']))
+																																								{
+																																												$date_type	=	$this->instant->get_date_types_by_type	('unidentified');
+																																												if	(isset	($date_type)	&&	isset	($date_type->id))
+																																												{
+																																																$instantiation_dates_d['date_types_id']	=	$date_type->id;
+																																												}
+																																												else
+																																												{
+																																																$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types	(array	('date_type'	=>	'unidentified'));
+																																												}
+																																												$instantiation_date_created_id	=	$this->instant->insert_instantiation_dates	($instantiation_dates_d);
+																																								}
+																																				}
+																																}
+																																else	if	($extension_authority_used	===	'content')
+																																{
+																																				if	(isset	($pbcore_extension['children']['extension'][0]['text'])	&&	!	is_empty	($pbcore_extension['children']['extension'][0]['text']))
+																																				{
+																																								$instantiation_dates_d	=	array	();
+																																								$instantiation_dates_d['instantiations_id']	=	$instantiations_id;
+																																								$instantiation_dates_d['instantiation_date']	=	str_replace	(array	('?',	'Unknown',	'unknown',	'`',	'['	.	']',	'N/A',	'N/A?',	'Jim Cooper',	'various',	'.00',	'.0',	'John Kelling',	'Roll in',	'interview'),	'',	trim	($pbcore_extension['children']['extension'][0]['text']));
+																																								if	(isset	($instantiation_dates_d['instantiation_date'])	&&	!	is_empty	($instantiation_dates_d['instantiation_date']))
+																																								{
+																																												$date_type	=	$this->instant->get_date_types_by_type	('created');
+																																												if	(isset	($date_type)	&&	isset	($date_type->id))
+																																												{
+																																																$instantiation_dates_d['date_types_id']	=	$date_type->id;
+																																												}
+																																												else
+																																												{
+																																																$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types	(array	('date_type'	=>	'created'));
+																																												}
+																																												$data_created_check	=	false;
+																																												$instantiation_date_created_id	=	$this->instant->insert_instantiation_dates	($instantiation_dates_d);
+																																								}
+																																				}
+																																}
+																																else	if	($extension_authority_used	===	'created')
+																																{
+																																				if	(isset	($pbcore_extension['children']['extension'][0]['text'])	&&	!	is_empty	($pbcore_extension['children']['extension'][0]['text']))
+																																				{
+																																								$instantiation_dates_d	=	array	();
+																																								$instantiation_dates_d['instantiations_id']	=	$instantiations_id;
+																																								$instantiation_dates_d['instantiation_date']	=	str_replace	(array	('?',	'Unknown',	'unknown',	'`',	'['	.	']',	'N/A',	'N/A?',	'Jim Cooper',	'various',	'.00',	'.0',	'John Kelling',	'Roll in',	'interview'),	'',	trim	($pbcore_extension['children']['extension'][0]['text']));
+																																								if	(isset	($instantiation_dates_d['instantiation_date'])	&&	!	is_empty	($instantiation_dates_d['instantiation_date']))
+																																								{
+																																												$date_type	=	$this->instant->get_date_types_by_type	('recorded');
+																																												if	(isset	($date_type)	&&	isset	($date_type->id))
+																																												{
+																																																$instantiation_dates_d['date_types_id']	=	$date_type->id;
+																																												}
+																																												else
+																																												{
+																																																$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types	(array	('date_type'	=>	'recorded'));
+																																												}
+																																												$data_created_check	=	false;
+																																												$instantiation_date_created_id	=	$this->instant->insert_instantiation_dates	($instantiation_dates_d);
 																																								}
 																																				}
 																																}
@@ -444,24 +557,55 @@ class	Crons	extends	CI_Controller
 																								}
 																				}
 																				//Instantiation Date Created Start
-																				if	(isset	($pbcoreinstantiation_child['datecreated']))
+																				if	(isset	($pbcoreinstantiation_child['datecreated'])	&&	!	is_empty	($pbcoreinstantiation_child['datecreated'])	&&	$data_created_check)
 																				{
 																								$instantiation_dates_d	=	array	();
 																								$instantiation_dates_d['instantiations_id']	=	$instantiations_id;
 
 																								if	(isset	($pbcoreinstantiation_child['datecreated'][0]['text'])	&&	!	is_empty	($pbcoreinstantiation_child['datecreated'][0]['text']))
 																								{
-																												$instantiation_dates_d['instantiation_date']	=	$pbcoreinstantiation_child['datecreated'][0]['text'];
-																												$date_type	=	$this->instant->get_date_types_by_type	('created');
-																												if	(isset	($date_type)	&&	isset	($date_type->id))
+																												$instantiation_dates_d['instantiation_date']	=	str_replace	(array	('?',	'Unknown',	'unknown',	'`',	'['	.	']',	'N/A',	'N/A?',	'Jim Cooper',	'various',	'.00',	'.0',	'John Kelling',	'Roll in',	'interview'),	'',	trim	($pbcoreinstantiation_child['datecreated'][0]['text']));
+																												if	(isset	($instantiation_dates_d['instantiation_date'])	&&	!	is_empty	($instantiation_dates_d['instantiation_date']))
 																												{
-																																$instantiation_dates_d['date_types_id']	=	$date_type->id;
+
+																																$date_check	=	strtotime	($instantiation_dates_d['instantiation_date']);
+																																if	($date_check	===	FALSE)
+																																{
+																																				$instantiation_annotation_d	=	array	();
+																																				$instantiation_annotation_d['instantiations_id']	=	$instantiations_id;
+																																				$instantiation_annotation_d['annotation']	=	$instantiation_dates_d['instantiation_date'];
+																																				$instantiation_annotation_d['annotation_type']	=	'date';
+																																				$instantiation_annotation_ids[]	=	$this->instant->insert_instantiation_annotations	($instantiation_annotation_d);
+																																}
+																																else
+																																{
+																																				if	(strpos	($pbcoreinstantiation_child['datecreated'][0]['text'],	'?'))
+																																				{
+																																								$date_type	=	$this->instant->get_date_types_by_type	('approximate');
+																																								if	(isset	($date_type)	&&	isset	($date_type->id))
+																																								{
+																																												$instantiation_dates_d['date_types_id']	=	$date_type->id;
+																																								}
+																																								else
+																																								{
+																																												$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types	(array	('date_type'	=>	'approximate'));
+																																								}
+																																				}
+																																				else
+																																				{
+																																								$date_type	=	$this->instant->get_date_types_by_type	('created');
+																																								if	(isset	($date_type)	&&	isset	($date_type->id))
+																																								{
+																																												$instantiation_dates_d['date_types_id']	=	$date_type->id;
+																																								}
+																																								else
+																																								{
+																																												$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types	(array	('date_type'	=>	'created'));
+																																								}
+																																				}
+																																				$instantiation_date_created_id	=	$this->instant->insert_instantiation_dates	($instantiation_dates_d);
+																																}
 																												}
-																												else
-																												{
-																																$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types	(array	('date_type'																				=>	'created'));
-																												}
-																												$instantiation_date_created_id	=	$this->instant->insert_instantiation_dates	($instantiation_dates_d);
 																								}
 																				}
 																				//Instantiation Date Created End
@@ -473,17 +617,21 @@ class	Crons	extends	CI_Controller
 
 																								if	(isset	($pbcoreinstantiation_child['dateissued'][0]['text'])	&&	!	is_empty	($pbcoreinstantiation_child['dateissued'][0]['text']))
 																								{
-																												$instantiation_dates_d['instantiation_date']	=	$pbcoreinstantiation_child['dateissued'][0]['text'];
-																												$date_type	=	$this->instant->get_date_types_by_type	('issued');
-																												if	(isset	($date_type)	&&	isset	($date_type->id))
+																												$instantiation_dates_d['instantiation_date']	=	str_replace	(array	('?',	'Unknown',	'unknown',	'`',	'['	.	']',	'N/A',	'N/A?',	'Jim Cooper',	'various',	'.00',	'.0',	'John Kelling',	'Roll in',	'interview'),	'',	$pbcoreinstantiation_child['dateissued'][0]['text']);
+																												if	(isset	($instantiation_dates_d['instantiation_date'])	&&	!	is_empty	($instantiation_dates_d['instantiation_date']))
 																												{
-																																$instantiation_dates_d['date_types_id']	=	$date_type->id;
+
+																																$date_type	=	$this->instant->get_date_types_by_type	('issued');
+																																if	(isset	($date_type)	&&	isset	($date_type->id))
+																																{
+																																				$instantiation_dates_d['date_types_id']	=	$date_type->id;
+																																}
+																																else
+																																{
+																																				$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types	(array	('date_type'	=>	'issued'));
+																																}
+																																$instantiation_date_issued_id	=	$this->instant->insert_instantiation_dates	($instantiation_dates_d);
 																												}
-																												else
-																												{
-																																$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types	(array	('date_type'																			=>	'issued'));
-																												}
-																												$instantiation_date_issued_id	=	$this->instant->insert_instantiation_dates	($instantiation_dates_d);
 																								}
 																				}
 																				//Instantiation Date Issued End
@@ -523,7 +671,7 @@ class	Crons	extends	CI_Controller
 																																}
 																																else
 																																{
-																																				$instantiation_format_generations_d['generations_id']	=	$this->instant->insert_generations	(array	("generation"																												=>	$format_generations['text']));
+																																				$instantiation_format_generations_d['generations_id']	=	$this->instant->insert_generations	(array	("generation"	=>	$format_generations['text']));
 																																}
 																																$instantiation_format_generations_ids[]	=	$this->instant->insert_instantiation_generations	($instantiation_format_generations_d);
 																												}
@@ -626,7 +774,7 @@ class	Crons	extends	CI_Controller
 																																												}
 																																												else
 																																												{
-																																																$essence_tracks_d['essence_track_frame_sizes_id']	=	$this->essence->insert_essence_track_frame_sizes	(array	("width"		=>	$frame_sizes[0],	"height"	=>	$frame_sizes[1]));
+																																																$essence_tracks_d['essence_track_frame_sizes_id']	=	$this->essence->insert_essence_track_frame_sizes	(array	("width"	=>	$frame_sizes[0],	"height"	=>	$frame_sizes[1]));
 																																												}
 																																								}
 																																				}
@@ -777,7 +925,7 @@ class	Crons	extends	CI_Controller
 																								}
 																								else
 																								{
-																												$asset_title_types_id	=	$this->assets_model->insert_asset_title_types	(array	("title_type"																												=>	$pbcoretitle['children']['titletype'][0]['text']));
+																												$asset_title_types_id	=	$this->assets_model->insert_asset_title_types	(array	("title_type"	=>	$pbcoretitle['children']['titletype'][0]['text']));
 																								}
 																								$pbcore_title_d['asset_title_types_id']	=	$asset_title_types_id;
 																				}
@@ -847,7 +995,7 @@ class	Crons	extends	CI_Controller
 																								}
 																								else
 																								{
-																												$asset_description_types_id	=	$this->assets_model->insert_asset_title_types	(array	("description_type"																												=>	$pbcoretitle['children']['descriptiontype'][0]['text']));
+																												$asset_description_types_id	=	$this->assets_model->insert_asset_title_types	(array	("description_type"	=>	$pbcoretitle['children']['descriptiontype'][0]['text']));
 																								}
 																								$asset_descriptions_d['description_types_id']	=	$asset_title_types_id;
 																				}
@@ -920,17 +1068,20 @@ class	Crons	extends	CI_Controller
 																$asset_audience_level['assets_id']	=	$asset_id;
 																if	(isset	($pbcore_aud_level['children']['audiencelevel'][0]['text'])	&&	!	is_empty	($pbcore_aud_level['children']['audiencelevel'][0]['text']))
 																{
-																				$audience_level['audience_level']	=	$pbcore_aud_level['children']['audiencelevel'][0]['text'];
-																				$db_audience_level	=	$this->assets_model->get_audience_level	($audience_level['audience_level']);
-																				if	(isset	($db_audience_level)	&&	isset	($db_audience_level->id))
+																				$audience_level['audience_level']	=	trim	($pbcore_aud_level['children']['audiencelevel'][0]['text']);
+																				if	(isset	($audience_level['audience_level'])	&&	!	is_empty	($audience_level['audience_level']))
 																				{
-																								$asset_audience_level['audience_levels_id']	=	$db_audience_level->id;
+																								$db_audience_level	=	$this->assets_model->get_audience_level	($audience_level['audience_level']);
+																								if	(isset	($db_audience_level)	&&	isset	($db_audience_level->id))
+																								{
+																												$asset_audience_level['audience_levels_id']	=	$db_audience_level->id;
+																								}
+																								else
+																								{
+																												$asset_audience_level['audience_levels_id']	=	$this->assets_model->insert_audience_level	($audience_level);
+																								}
+																								$asset_audience	=	$this->assets_model->insert_asset_audience	($asset_audience_level);
 																				}
-																				else
-																				{
-																								$asset_audience_level['audience_levels_id']	=	$this->assets_model->insert_audience_level	($audience_level);
-																				}
-																				$asset_audience	=	$this->assets_model->insert_asset_audience	($asset_audience_level);
 																}
 												}
 								}
@@ -946,17 +1097,20 @@ class	Crons	extends	CI_Controller
 																$asset_audience_rating['assets_id']	=	$asset_id;
 																if	(isset	($pbcore_aud_rating['children']['audiencerating'][0]['text'])	&&	!	is_empty	($pbcore_aud_rating['children']['audiencerating'][0]['text']))
 																{
-																				$audience_rating['audience_rating']	=	$pbcore_aud_rating['children']['audiencerating'][0]['text'];
-																				$db_audience_rating	=	$this->assets_model->get_audience_rating	($audience_rating['audience_rating']);
-																				if	(isset	($db_audience_rating)	&&	isset	($db_audience_rating->id))
+																				$audience_rating['audience_rating']	=	trim	($pbcore_aud_rating['children']['audiencerating'][0]['text']);
+																				if	(isset	($audience_rating['audience_rating'])	&&	!	is_empty	($audience_rating['audience_rating']))
 																				{
-																								$asset_audience_rating['audience_ratings_id']	=	$db_audience_rating->id;
+																								$db_audience_rating	=	$this->assets_model->get_audience_rating	($audience_rating['audience_rating']);
+																								if	(isset	($db_audience_rating)	&&	isset	($db_audience_rating->id))
+																								{
+																												$asset_audience_rating['audience_ratings_id']	=	$db_audience_rating->id;
+																								}
+																								else
+																								{
+																												$asset_audience_rating['audience_ratings_id']	=	$this->assets_model->insert_audience_rating	($audience_rating);
+																								}
+																								$asset_audience_rate	=	$this->assets_model->insert_asset_audience_rating	($asset_audience_rating);
 																				}
-																				else
-																				{
-																								$asset_audience_rating['audience_ratings_id']	=	$this->assets_model->insert_audience_rating	($audience_rating);
-																				}
-																				$asset_audience_rate	=	$this->assets_model->insert_asset_audience_rating	($asset_audience_rating);
 																}
 												}
 								}
@@ -1041,11 +1195,14 @@ class	Crons	extends	CI_Controller
 																				else
 																				{
 																								// creator_role_ref , creator_role_source
-																								$assets_creators_roles_d['creator_roles_id']	=	$this->assets_model->insert_creator_roles	(array	('creator_role'												=>	$pbcore_creator['children']['creatorrole'][0]['text']));
+																								$assets_creators_roles_d['creator_roles_id']	=	$this->assets_model->insert_creator_roles	(array	('creator_role'	=>	$pbcore_creator['children']['creatorrole'][0]['text']));
 																				}
 																}
 																//print_r($assets_creators_roles_d);
-																$assets_creators_roles_id	=	$this->assets_model->insert_assets_creators_roles	($assets_creators_roles_d);
+																if	((isset	($assets_creators_roles_d['creators_id'])	&&	!	is_empty	($assets_creators_roles_d['creators_id']))	||	(isset	($assets_creators_roles_d['creator_roles_id'])	&&	!	is_empty	($assets_creators_roles_d['creator_roles_id'])))
+																{
+																				$assets_creators_roles_id	=	$this->assets_model->insert_assets_creators_roles	($assets_creators_roles_d);
+																}
 												}
 								}
 								// pbcoreCreator End here
@@ -1060,31 +1217,51 @@ class	Crons	extends	CI_Controller
 																$contributor_role	=	array	();
 																if	(isset	($pbcore_contributor['children']['contributor'][0]['text'])	&&	!	is_empty	($pbcore_contributor['children']['contributor'][0]['text']))
 																{
-																				$contributor_d	=	$this->assets_model->get_contributor_by_contributor_name	($pbcore_contributor['children']['contributor'][0]['text']);
-																				if	(isset	($contributor_d)	&&	isset	($contributor_d->id))
+																				$contributor_text	=	trim	($pbcore_contributor['children']['contributor'][0]['text']);
+																				if	(isset	($contributor_text)	&&	!	is_empty	($contributor_text))
 																				{
-																								$assets_contributors_d['contributors_id']	=	$contributor_d->id;
-																				}
-																				else
-																				{
-																								// contributor_affiliation ,	contributor_source, 	contributor_ref 
-																								$assets_contributors_d['contributors_id']	=	$this->assets_model->insert_contributors	(array	('contributor_name'	=>	$pbcore_contributor['children']['contributor'][0]['text']));
+																								$contributor_d	=	$this->assets_model->get_contributor_by_contributor_name	($contributor_text);
+																								if	(isset	($contributor_d)	&&	isset	($contributor_d->id))
+																								{
+																												$assets_contributors_d['contributors_id']	=	$contributor_d->id;
+																								}
+																								else
+																								{
+																												// contributor_affiliation ,	contributor_source, 	contributor_ref 
+																												$last_insert_id	=	$this->assets_model->insert_contributors	(array	('contributor_name'	=>	$contributor_text));
+																												if	(isset	($last_insert_id)	&&	$last_insert_id	>	0)
+																												{
+																																$assets_contributors_d['contributors_id']	=	$last_insert_id;
+																												}
+																								}
 																				}
 																}
 																if	(isset	($pbcore_contributor['children']['contributorrole'][0]['text'])	&&	!	is_empty	($pbcore_contributor['children']['contributorrole'][0]['text']))
 																{
-																				$contributor_role	=	$this->assets_model->get_contributor_role_by_role	($pbcore_contributor['children']['contributorrole'][0]['text']);
-																				if	(isset	($contributor_role)	&&	isset	($contributor_role->id))
+																				$contributorrole	=	trim	($pbcore_contributor['children']['contributorrole'][0]['text']);
+																				if	(isset	($contributorrole)	&&	!	is_empty	($contributorrole))
 																				{
-																								$assets_contributors_d['contributor_roles_id']	=	$contributor_role->id;
-																				}
-																				else
-																				{
-																								// contributor_role_source ,	contributor_role_ref 
-																								$assets_contributors_d['contributor_roles_id']	=	$this->assets_model->insert_contributor_roles	(array	('contributor_role'												=>	$pbcore_contributor['children']['contributorrole'][0]['text']));
+																								$contributor_role	=	$this->assets_model->get_contributor_role_by_role	($contributorrole);
+																								if	(isset	($contributor_role)	&&	isset	($contributor_role->id))
+																								{
+																												$assets_contributors_d['contributor_roles_id']	=	$contributor_role->id;
+																								}
+																								else
+																								{
+																												// contributor_role_source ,	contributor_role_ref 
+																												$last_insert_id	=	$this->assets_model->insert_contributor_roles	(array	('contributor_role'	=>	$contributorrole));
+																												if	(isset	($last_insert_id)	&&	$last_insert_id	>	0)
+																												{
+																																$assets_contributors_d['contributor_roles_id']	=	$last_insert_id;
+																												}
+																								}
 																				}
 																}
-																$assets_contributors_roles_id	=	$this->assets_model->insert_assets_contributors_roles	($assets_contributors_d);
+																if	((isset	($assets_contributors_d['contributors_id'])	&&	!	is_empty	($assets_contributors_d['contributors_id']))	||
+																								(isset	($assets_contributors_d['contributor_roles_id'])	&&	!	is_empty	($assets_contributors_d['contributor_roles_id'])))
+																{
+																				$assets_contributors_roles_id	=	$this->assets_model->insert_assets_contributors_roles	($assets_contributors_d);
+																}
 												}
 								}
 								// pbcorecontributor End here
@@ -1121,11 +1298,14 @@ class	Crons	extends	CI_Controller
 																				else
 																				{
 																								// publisher_role_ref ,	publisher_role_source 
-																								$assets_publisher_d['publisher_roles_id']	=	$this->assets_model->insert_publisher_roles	(array	('publisher_role'												=>	$pbcore_publisher['children']['publisherrole'][0]['text']));
+																								$assets_publisher_d['publisher_roles_id']	=	$this->assets_model->insert_publisher_roles	(array	('publisher_role'	=>	$pbcore_publisher['children']['publisherrole'][0]['text']));
 																				}
 																}
 																//print_r($assets_publisher_d);
-																$assets_publishers_roles_id	=	$this->assets_model->insert_assets_publishers_role	($assets_publisher_d);
+																if	((isset	($assets_publisher_d['publishers_id'])	&&	!	is_empty	($assets_publisher_d['publishers_id']))	||	(isset	($assets_publisher_d['publisher_roles_id'])	&&	!	is_empty	($assets_publisher_d['publisher_roles_id'])))
+																{
+																				$assets_publishers_roles_id	=	$this->assets_model->insert_assets_publishers_role	($assets_publisher_d);
+																}
 												}
 								}
 								// pbcorePublisher End here
@@ -1172,7 +1352,7 @@ class	Crons	extends	CI_Controller
 								// End By Ali Raza
 				}
 
-				public	function	import_media_files	()
+				function	import_media_files	()
 				{
 
 								$data	=	file_get_contents	($this->assets_path	.	'120398ASni-123.h264.mov.mediainfo_kvm_comments.xml');
@@ -1482,14 +1662,14 @@ class	Crons	extends	CI_Controller
 																								{
 																												if	(isset	($video_track['colorspace'][0]['text']))
 																												{
-																																$essence_track[$essence_track_count][]	=	array	('annotation'						=>	$video_track['colorspace'][0]['text'],	'annotation_type'	=>	'colorspace');
+																																$essence_track[$essence_track_count][]	=	array	('annotation'	=>	$video_track['colorspace'][0]['text'],	'annotation_type'	=>	'colorspace');
 																												}
 																								}
 																								if	(isset	($video_track['chromasubsampling'])	&&	isset	($video_track['chromasubsampling'][0]))
 																								{
 																												if	(isset	($video_track['chromasubsampling'][0]['text']))
 																												{
-																																$essence_track[$essence_track_count][]	=	array	('annotation'						=>	$video_track['chromasubsampling'][0]['text'],	'annotation_type'	=>	'subsampling');
+																																$essence_track[$essence_track_count][]	=	array	('annotation'	=>	$video_track['chromasubsampling'][0]['text'],	'annotation_type'	=>	'subsampling');
 																												}
 																								}
 																				}
@@ -1516,7 +1696,9 @@ class	Crons	extends	CI_Controller
 								debug	($essence_track);
 				}
 
-				private	function	myLog	($s)
+				private
+
+				function	myLog	($s)
 				{
 								global	$argc;
 								if	($argc)

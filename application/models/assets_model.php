@@ -110,9 +110,9 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_audience_rating_by_asset_id($assets_id)
 				{
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_ratings.	audience_rating,'(**)')) SEPARATOR ' | ') AS 	audience_rating",	FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_ratings.	audience_rating_source,'(**)')) SEPARATOR ' | ') AS 	audience_rating_source",	FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_ratings.	audience_rating_ref,'(**)')) SEPARATOR ' | ') AS 	audience_rating_ref",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_audience_ratings.	audience_rating,'(**)')) SEPARATOR ' | ') AS 	audience_rating",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_audience_ratings.	audience_rating_source,'(**)')) SEPARATOR ' | ') AS 	audience_rating_source",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_audience_ratings.	audience_rating_ref,'(**)')) SEPARATOR ' | ') AS 	audience_rating_ref",	FALSE);
 
 
 								$this->db->from($this->_table_assets_audience_ratings);
@@ -134,9 +134,9 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_audience_level_by_asset_id($assets_id)
 				{
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_levels.	audience_level,'(**)')) SEPARATOR ' | ') AS 	audience_level",	FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_levels.	audience_level_source,'(**)')) SEPARATOR ' | ') AS 	audience_level_source",	FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_assets_audience_levels.	audience_level_ref,'(**)')) SEPARATOR ' | ') AS 	audience_level_ref",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_audience_levels.	audience_level,'(**)')) SEPARATOR ' | ') AS 	audience_level",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_audience_levels.	audience_level_source,'(**)')) SEPARATOR ' | ') AS 	audience_level_source",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_audience_levels.	audience_level_ref,'(**)')) SEPARATOR ' | ') AS 	audience_level_ref",	FALSE);
 
 								$this->db->from($this->_table_assets_audience_levels);
 								$this->db->join($this->_table_audience_levels,	"$this->_table_assets_audience_levels.audience_levels_id=$this->_table_audience_levels.id",	"left");
@@ -387,7 +387,7 @@ class	Assets_Model	extends	CI_Model
 				function	get_assets_dates_by_assets_id($assets_id)
 				{
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_dates.asset_date,'(**)')) SEPARATOR ' | ') AS asset_date",	FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_asset_dates.date_type,'(**)')) SEPARATOR ' | ') AS date_type",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->_table_date_types.date_type,'(**)')) SEPARATOR ' | ') AS date_type",	FALSE);
 
 								$this->db->from($this->_table_asset_dates);
 								$this->db->join($this->_table_date_types,	"$this->_table_asset_dates.date_types_id=$this->_table_date_types.id",	"left");

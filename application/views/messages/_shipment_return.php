@@ -1,16 +1,10 @@
 <div id="type_3">
+    
     <div class="control-group">
-        <label class="control-label" for="est_ship_date">Est. Ship Date:</label>
+        <label class="control-label" for="ship_date">Ship Date:</label>
         <div class="controls">
-            <input id="est_ship_date" name="est_ship_date"/>
-            <span id="est_ship_date_error" style="display: none;" class="message-type_error">Please Select Est. Ship Date</span>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="actual_ship_date">Actual Ship Date:</label>
-        <div class="controls">
-            <input id="actual_ship_date" name="actual_ship_date"/>
-            <span id="actual_ship_date_error" style="display: none;" class="message-type_error">Please Select Actual Ship Date</span>
+            <input id="ship_date" name="ship_date"/>
+            <span id="ship_date_error" style="display: none;" class="message-type_error">Please Select Ship Date</span>
         </div>
     </div>
 
@@ -29,20 +23,8 @@
             <span id="crawford_contact_details_error" style="display: none;" class="message-type_error">Please Enter Crawford Contact Details</span>
         </div>
     </div>
-    <div class="control-group">
-        <label class="control-label" for="day_digitization_review">30 day Digitization review:</label>
-        <div class="controls">
-            <input id="day_digitization_review" name="day_digitization_review"/>
-            <span id="day_digitization_review_error" style="display: none;" class="message-type_error">Please Select 30 day Digitization review</span>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="day_material_review">30 day Material Review:</label>
-        <div class="controls">
-            <input id="day_material_review" name="day_material_review"/>
-            <span id="day_material_review_error" style="display: none;" class="message-type_error">Please Select 30 day Material Review</span>
-        </div>
-    </div>
+   
+    
     <div class="control-group">
         <label class="control-label" for="material_return_date">Material Return Date:</label>
         <div class="controls">

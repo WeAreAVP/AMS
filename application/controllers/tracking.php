@@ -208,6 +208,7 @@ class	Tracking	extends	MY_Controller
 				public	function	get_tracking_info	()
 				{
 								$stations	=	$this->input->post	('stations');
+								$type	=	$this->input->post	('type');
 								$list	=	array	();
 								foreach	($stations	as		$station_id)
 								{
@@ -216,18 +217,18 @@ class	Tracking	extends	MY_Controller
 												if	(count	($tracking_info)	>	0)
 												{
 
-																if	(empty	($tracking_info->media_received_date)	OR	$tracking_info->media_received_date	===	NULL)
+																if	(empty	($tracking_info->$type)	OR	$tracking_info->$type	===	NULL)
 																{
-																				$list[]	=	array	('tracking_id'	=>	$tracking_info->id,	'station_id'	=>	$station_id,	'media_received_date'	=>	'',	'station_name'	=>	$station->station_name);
+																				$list[]	=	array	('tracking_id'	=>	$tracking_info->id,	'station_id'	=>	$station_id,	$type	=>	'',	'station_name'	=>	$station->station_name);
 																}
 																else
 																{
-																				$list[]	=	array	('tracking_id'	=>	$tracking_info->id,	'station_id'=>	$station_id,	'media_received_date'	=>	$tracking_info->media_received_date,	'station_name'	=>	$station->station_name);
+																				$list[]	=	array	('tracking_id'	=>	$tracking_info->id,	'station_id'=>	$station_id,	$type	=>	$tracking_info->$type,	'station_name'	=>	$station->station_name);
 																}
 												}
 												else
 												{
-																$list[]	=	array	('tracking_id'	=>	'',	'station_id'=>	$station_id,	'media_received_date'	=>	'',	'station_name'=>	$station->station_name);
+																$list[]	=	array	('tracking_id'	=>	'',	'station_id'=>	$station_id,	$type	=>	'',	'station_name'=>	$station->station_name);
 												}
 								}
 								echo	json_encode	($list);

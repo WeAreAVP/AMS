@@ -398,6 +398,7 @@ class	Instantiations_Model	extends	CI_Model
 
 				function	insert_instantiations	($data)
 				{
+								$data['created']=date('Y-m-d H:i:s');
 								$this->db->insert	($this->table_instantiations,	$data);
 								return	$this->db->insert_id	();
 				}
@@ -411,7 +412,7 @@ class	Instantiations_Model	extends	CI_Model
 					*/
 				function	update_instantiations	($instantiation_id,	$data)
 				{
-								$data['updated']	=	date	('Y-m-d H:i:s');
+								$data['updated']=date('Y-m-d H:i:s');
 								$this->db->where	('id',	$instantiation_id);
 								return	$this->db->update	($this->table_instantiations,	$data);
 				}

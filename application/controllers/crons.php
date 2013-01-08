@@ -107,6 +107,7 @@ class	Crons	extends	CI_Controller
 								$type	=	'assets';
 								$file	=	'manifest-md5.txt';
 								$directory	=	base64_decode	($path);
+								$folder_status	=	'complete';
 								if	(	!	$data_folder_id	=	$this->cron_model->get_data_folder_id_by_path	($directory))
 								{
 												$data_folder_id	=	$this->cron_model->insert_data_folder	(array	("folder_path"	=>	$directory,	"created_at"	=>	date	('Y-m-d H:i:s'),	"data_type"	=>	$type));
@@ -121,12 +122,25 @@ class	Crons	extends	CI_Controller
 																				$data_file	=	(explode	(" ",	$value));
 																				$data_file_path	=	str_replace	(array	('\r\n',	'\n',	'<br>'),	'',	trim	($data_file[1]));
 																				$this->myLog	('Checking File '	.	$data_file_path);
-																				if	(	!	$this->cron_model->is_pbcore_file_by_path	($data_file_path))
+																				$file_path	=	trim	($directory	.	$data_file_path);
+																				if	(is_file	($file_path))
 																				{
-																								$this->cron_model->insert_prcoess_data	(array	('file_type'	=>	$type,	'file_path'	=>	($data_file_path),	'is_processed'	=>	0,	'created_at'	=>	date	('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id));
+																								if	(	!	$this->cron_model->is_pbcore_file_by_path	($data_file_path))
+																								{
+																												$this->cron_model->insert_prcoess_data	(array	('file_type'	=>	$type,	'file_path'	=>	($data_file_path),	'is_processed'	=>	0,	'created_at'	=>	date	('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id));
+																								}
+																				}
+																				else
+																				{
+																								if	(	!	$this->cron_model->is_pbcore_file_by_path	($data_file_path))
+																								{
+																												$this->cron_model->insert_prcoess_data	(array	('file_type'	=>	$type,	'file_path'	=>	($data_file_path),	'is_processed'	=>	0,	'created_at'	=>	date	('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id,	'status_reason'	=>	'file_not_found'));
+																								}
+																								$folder_status	=	'incomplete';
 																				}
 																}
 												}
+												$this->cron_model->update_data_folder	(array	('updated_at'	=>	date	('Y-m-d H:i:s'),	'folder_status'	=>	$folder_status),$data_folder_id);
 								}
 				}
 
@@ -247,7 +261,7 @@ class	Crons	extends	CI_Controller
 																																								else
 																																								{
 																																												$this->myLog	(" Attribut children not found "	.	$file_path);
-																																												$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Attribut children not found'),	$d_file->id);
+																																												$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'attribut_children_not_found'),	$d_file->id);
 																																								}
 
 																																								//$this->db->trans_complete	();
@@ -258,25 +272,25 @@ class	Crons	extends	CI_Controller
 																																				else
 																																				{
 																																								$this->myLog	(" Attribut version Issues "	.	$file_path);
-																																								$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Attribut version Issues'),	$d_file->id);
+																																								$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'version_issues'),	$d_file->id);
 																																				}
 																																}
 																																else
 																																{
 																																				$this->myLog	(" Data is empty in file "	.	$file_path);
-																																				$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Data is empty in file'),	$d_file->id);
+																																				$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'data_empty'),	$d_file->id);
 																																}
 																												}
 																												else
 																												{
 																																$this->myLog	(" Is File Check Issues "	.	$file_path);
-																																$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Is File Check Issues'),	$d_file->id);
+																																$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'file_not_found'),	$d_file->id);
 																												}
 																								}
 																								else
 																								{
 																												$this->myLog	(" Already Processed "	.	$file_path);
-																												$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'Already Processed'),	$d_file->id);
+																												$this->cron_model->update_prcoess_data	(array	('status_reason'	=>	'already_processed'),	$d_file->id);
 																								}
 																				}
 																				unset	($data_files);

@@ -205,6 +205,17 @@ class	Cron_Model	extends	CI_Model
 								return	$this->db->insert_id	();
 				}
 				/*
+					 @Update data folder
+					 @Perm Array of table data
+					 @Perm Integer Folder id
+					*/
+
+				function	update_data_folder	($data,$id)
+				{
+								$this->db->where	('id',	$id);
+								$this->db->update	($this->_table_data_folders,	$data);
+				}
+				/*
 					* Scan Directory and Store Path in process_pbcore_data
 					* @Perm Path of Directory
 					* @Perm type of data

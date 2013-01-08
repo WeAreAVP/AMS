@@ -115,7 +115,7 @@ class	Crons	extends	CI_Controller
 								if	(isset	($data_folder_id)	&&	$data_folder_id	>	0)
 								{
 												$data_result	=	file	($directory	.	$file);
-												if	(isset	($data_result))
+												if	(isset	($data_result)	&&	!	is_empty	($data_result))
 												{
 																foreach	($data_result	as	$value)
 																{
@@ -123,7 +123,7 @@ class	Crons	extends	CI_Controller
 																				$data_file_path	=	str_replace	(array	('\r\n',	'\n',	'<br>'),	'',	trim	($data_file[1]));
 																				$this->myLog	('Checking File '	.	$data_file_path);
 																				$file_path	=	trim	($directory	.	$data_file_path);
-																				if	(strpos($data_file_path	,'organization.xml')===false)
+																				if	(strpos	($data_file_path,	'organization.xml')	===	false)
 																				{
 																								if	(is_file	($file_path))
 																								{

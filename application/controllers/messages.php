@@ -39,15 +39,15 @@ class	Messages	extends	MY_Controller
 				public	function	inbox()
 				{
 								$where	=	'';
-								if($_POST)
+								if($this->input->post())
 								{
-												if(isset($_POST['message_type']))
+												if($this->input->post('message_type')	!=	'')
 												{
-																$where['msg_type']	=	$_POST['message_type'];
+																$where['msg_type']	=	$this->input->post('message_type');
 												}
-												if(isset($_POST['stations']))
+												if($this->input->post('stations')	!=	'')
 												{
-																$where['receiver_id']	=	$_POST['stations'];
+																$where['receiver_id']	=	$this->input->post('stations');
 												}
 								}
 								$data['results']	=	$this->msgs->get_inbox_msgs($this->station_id,	$where);
@@ -214,7 +214,7 @@ class	Messages	extends	MY_Controller
 																				}
 																}
 												}
-												else if($template	==	'Shipment_Return')
+												else	if($template	==	'Shipment_Return')
 												{
 
 																$tracking_info	=	$this->tracking->get_last_tracking_info($to);

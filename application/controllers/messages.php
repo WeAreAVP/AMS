@@ -349,14 +349,17 @@ class	Messages	extends	MY_Controller
 								if($record_type	===	'1')
 								{
 												$this->session->set_userdata('digitized',	'1');
+												redirect('records/index');
 								}
 								else	if($record_type	===	'2')
 								{
 												$this->session->set_userdata('migration_failed',	'1');
+												redirect('records/index');
 								}
 								else	if($record_type	===	'3')
 								{
 												$this->session->set_userdata('nomination',	'Nominated/2nd Priority');
+												redirect('records/index');
 								}
 								else
 								{

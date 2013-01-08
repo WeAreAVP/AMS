@@ -1,15 +1,11 @@
 <div class="row">
 				<div style="margin: 2px 0px 10px 0px;float:left;">
 								<?php
-								echo $next_result_id;
-								echo "<br/>";
-								echo $prev_result_id;
-								$asset_title_type	=	trim(str_replace('(**)',	'',	$asset_details->title_type));
-								$asset_title_type	=	explode('|',	$asset_title_type);
-								$asset_title	=	trim(str_replace('(**)',	'',	$asset_details->title));
-								$asset_title	=	explode('|',	$asset_title);
-								$asset_title_ref	=	trim(str_replace('(**)',	'',	$asset_details->title_ref));
-								$asset_title_ref	=	explode('|',	$asset_title_ref);
+								$next_result_id;
+								$prev_result_id;
+								$asset_title_type	=	explode('|',trim(str_replace('(**)',	'',	$asset_details->title_type)));
+								$asset_title	=	explode('|',trim(str_replace('(**)',	'',	$asset_details->title)));
+								$asset_title_ref	=	explode('|',trim(str_replace('(**)',	'',	$asset_details->title_ref)));
 								$combine_title	=	'';
 								foreach($asset_title	as	$index	=>	$title)
 								{

@@ -178,7 +178,8 @@ class	Records	extends	MY_Controller
 																				{
 																								$search_results_array[]['id']	=	$search_result->id;
 																				}
-																				$num_search_results	=	count	($search_results);
+																			$num_search_results	=	count	($search_results);
+																			print_r(	$search_results_array);
 																}
 																# Get result number of current asset
 																$search_result_pointer	=	0;

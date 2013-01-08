@@ -167,6 +167,8 @@ class	Records	extends	MY_Controller
 												$data['annotations']	=	$this->assets_model->get_annotations_by_asset_id	($asset_id);
 												$data['asset_instantiations']	=	$this->sphinx->instantiations_list	(array	('asset_id'	=>	$asset_id,	'search'	=>	''));
 												$search_results_data	=	$this->sphinx->assets_listing	(array	('index'	=>	'assets_list'),	0,	1000);
+												$data['next_result_id']	=	FALSE;
+												$data['prev_result_id']	=	FALSE;
 												if	(isset	($search_results_data['records'])	&&	!	is_empty	($search_results_data['records']))
 												{
 																$search_results	=	$search_results_data['records'];
@@ -186,7 +188,7 @@ class	Records	extends	MY_Controller
 																{
 																				if	($search_res['id']	===	$asset_id)
 																								break;
-																				$search_result_pointer	++;
+																			echo	$search_result_pointer	++;
 																}
 																$data['cur_result']	=	$search_result_pointer	+	1;
 

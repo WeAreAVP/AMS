@@ -104,7 +104,7 @@ class	Messages_Model	extends	CI_Model
 								}
 								$this->db->order_by	('created_at',	'DESC');
 								$res	=	$this->db->get	();
-								echo $this->db->last_query();exit;
+								echo $this->db->last_query();
 								if	(isset	($res)	&&	!empty	($res))
 												return	$res->result	();
 								return	false;

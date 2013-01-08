@@ -1,9 +1,9 @@
 <?php
-$select['']	=	'Select';
+$select[]	=	'Select';
 foreach($this->config->item('messages_type')	as	$msg_type)
 {
 				$index=		str_replace(' ',	'_',	$msg_type);
-				$select[$index]	=	$msg_type;
+				$select[]	=	$msg_type;
 }
 if(	!	$is_ajax)
 {

@@ -348,15 +348,15 @@ class	Messages	extends	MY_Controller
 								$record_type	=	$this->uri->segment(3);
 								if($record_type	===	'1')
 								{
-												
+												$this->session->set_userdata('digitized',	'1');
 								}
 								else	if($record_type	===	'2')
 								{
-												
+												$this->session->set_userdata('migration_failed',	'1');
 								}
 								else	if($record_type	===	'3')
 								{
-												
+												$this->session->set_userdata('nomination',	'Nominated/2nd Priority');
 								}
 								else
 								{

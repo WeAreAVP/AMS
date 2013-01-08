@@ -39,15 +39,15 @@ class	Messages	extends	MY_Controller
 				public	function	inbox()
 				{
 								$where	=	'';
-								if($_POST)
+								if($this->input->post())
 								{
-												if(isset($_POST['message_type']))
+												if($this->input->post('message_type')	!=	'0')
 												{
-																$where['msg_type']	=	$_POST['message_type'];
+																$where['msg_type']	=	$this->input->post('message_type');
 												}
-												if(isset($_POST['stations']))
+												if($this->input->post('stations')	!=	'')
 												{
-																$where['receiver_id']	=	$_POST['stations'];
+																$where['receiver_id']	=	$this->input->post('stations');
 												}
 								}
 								$data['results']	=	$this->msgs->get_inbox_msgs($this->station_id,	$where);
@@ -74,15 +74,15 @@ class	Messages	extends	MY_Controller
 								if(in_array($this->role_id,	array(1,	2,	5)))
 								{
 												$where	=	'';
-												if($_POST)
+												if($this->input->post())
 												{
-																if($_POST['message_type'])
+																if($this->input->post('message_type')	!=	'0')
 																{
-																				$where['msg_type']	=	$_POST['message_type'];
+																				$where['msg_type']	=	$this->input->post('message_type');
 																}
-																if($_POST['stations'])
+																if($this->input->post('stations')	!=	'')
 																{
-																				$where['receiver_id']	=	$_POST['stations'];
+																				$where['receiver_id']	=	$this->input->post('stations');
 																}
 												}
 												$data['station_records']	=	$this->station_model->get_all();
@@ -186,7 +186,7 @@ class	Messages	extends	MY_Controller
 					*/
 				function	compose_station_message($multiple_station,	$template_data,	$extra,	$template,	$type)
 				{
-								$material_received_date	=	0;
+								$message_type_check	=	0;
 								foreach($multiple_station	as	$to)
 								{
 
@@ -205,16 +205,33 @@ class	Messages	extends	MY_Controller
 																{
 																				if(empty($tracking_info->media_received_date)	||	$tracking_info->media_received_date	==	null)
 																				{
-																								$material_received_date	=	1;
+																								$message_type_check	=	1;
 																				}
 																				else
 																				{
-																								$material_received_date	=	0;
+																								$message_type_check	=	0;
 																								$extra['date_received']	=	$tracking_info->media_received_date;
 																				}
 																}
 												}
-												if($material_received_date	==	0)
+												else	if($template	==	'Shipment_Return')
+												{
+
+																$tracking_info	=	$this->tracking->get_last_tracking_info($to);
+																if(count($tracking_info)	>	0)
+																{
+																				if(empty($tracking_info->ship_date)	||	$tracking_info->ship_date	==	NULL)
+																				{
+																								$message_type_check	=	1;
+																				}
+																				else
+																				{
+																								$message_type_check	=	0;
+																								$extra['ship_date']	=	$tracking_info->ship_date;
+																				}
+																}
+												}
+												if($message_type_check	==	0)
 												{
 																foreach($extra	as	$key	=>	$value)
 																{

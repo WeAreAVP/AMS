@@ -335,7 +335,7 @@ class	Assets_Model	extends	CI_Model
 																LEFT JOIN {$this->_table_assets_asset_types} ON $this->_table_assets_asset_types.assets_id = `$this->_assets_table`.`id`
 																LEFT JOIN {$this->_table_asset_types} ON $this->_table_assets_asset_types.asset_types_id = $this->_table_asset_types.`id`
 												WHERE assets.id='"	.	$asset_id	.	"'";
-																
+
 								$res	=	$this->db->query($sql);
 								if(isset($res)	&&	!	empty($res))
 								{
@@ -1270,6 +1270,20 @@ class	Assets_Model	extends	CI_Model
 				{
 								$this->db->insert($this->_table_assets_asset_types,	$data);
 								return	$this->db->insert_id();
+				}
+
+				function	get_asset_id_by_guid($guid)
+				{
+								$this->db->select("assets_id",	FALSE);
+								$this->db->from($this->_table_identifiers);
+								$this->db->like("identifier",	$guid);
+								$this->db->where("identifier_source",	'http://americanarchiveinventory.org');
+								$result	=	$this->db->get();
+								if(isset($result)	&&	!	empty($result))
+								{
+												return	$result->row();
+								}
+								return	FALSE;
 				}
 
 }

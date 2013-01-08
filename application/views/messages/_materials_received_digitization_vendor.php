@@ -62,7 +62,7 @@
         $.ajax({
             type: 'POST', 
             url: site_url+'tracking/get_tracking_info',
-            data:{"stations":to},
+            data:{'stations':to,'type':'media_received_date'},
             dataType: 'json',
             success: function (result) {
                 $('#station_name_list').html('<div id="error_message" style="display:none;color:red;">Please manage media received date(s).</div>');

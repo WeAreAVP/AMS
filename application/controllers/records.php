@@ -180,15 +180,15 @@ class	Records	extends	MY_Controller
 																				{
 																								$search_results_array[]['id']	=	$search_result->id;
 																				}
-																			$num_search_results	=	count	($search_results);
+																				$num_search_results	=	count	($search_results);
 																}
 																# Get result number of current asset
 																$search_result_pointer	=	0;
 																foreach	($search_results_array	as	$search_res)
 																{
-																			if	($search_res['id']	==	$asset_id)
+																				if	($search_res['id']	==	$asset_id)
 																								break;
-																			$search_result_pointer	++;
+																				$search_result_pointer	++;
 																}
 																$data['cur_result']	=	$search_result_pointer	+	1;
 

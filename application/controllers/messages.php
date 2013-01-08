@@ -74,15 +74,15 @@ class	Messages	extends	MY_Controller
 								if(in_array($this->role_id,	array(1,	2,	5)))
 								{
 												$where	=	'';
-												if($_POST)
+												if($this->input->post())
 												{
-																if($_POST['message_type'])
+																if($this->input->post('message_type')	!=	'0')
 																{
-																				$where['msg_type']	=	$_POST['message_type'];
+																				$where['msg_type']	=	$this->input->post('message_type');
 																}
-																if($_POST['stations'])
+																if($this->input->post('stations')	!=	'')
 																{
-																				$where['receiver_id']	=	$_POST['stations'];
+																				$where['receiver_id']	=	$this->input->post('stations');
 																}
 												}
 												$data['station_records']	=	$this->station_model->get_all();

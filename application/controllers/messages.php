@@ -342,6 +342,28 @@ class	Messages	extends	MY_Controller
 								}
 				}
 
+				public	function	assets_list()
+				{
+								$this->unset_facet_search();
+								$record_type	=	$this->uri->segment(3);
+								if($record_type	===	'1')
+								{
+												
+								}
+								else	if($record_type	===	'2')
+								{
+												
+								}
+								else	if($record_type	===	'3')
+								{
+												
+								}
+								else
+								{
+												show_404();
+								}
+				}
+
 }
 
 ?>

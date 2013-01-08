@@ -18,12 +18,12 @@
 
     <div class="control-group">
         <label class="control-label" for="assets_list">Asset List:</label>
-        <div class="controls">
-            <a href="#">Query1</a>
-            <a href="#">Query2</a>
-            <a href="#">Query3</a>
-        </div>
-    </div>
+        <div class="controls" style="margin-left: 180px;">
+            <div><a href="<?php echo site_url('messages/assets_list/1'); ?>" target="_blank">Assets Digitized</a></div>
+												<div><a href="<?php echo site_url('messages/assets_list/2'); ?>" target="_blank">Assets Failed Digitization</a></div>
+												<div><a href="<?php echo site_url('messages/assets_list/3'); ?>" target="_blank">Assets Waiting Digitization</a></div>
+								</div>
+				</div>
 </div>
 <script type="text/javascript">
     $(function() {
@@ -45,7 +45,7 @@
         else {
             $('#crawford_contact_details_error').hide();
         }
-       return true;
+								return true;
             
     }
     function confirmBody(){

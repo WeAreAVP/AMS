@@ -176,11 +176,11 @@ class	Sphinx_Model	extends	CI_Model
 								}
 								if(isset($this->session->userdata['digitized'])	&&	$this->session->userdata['digitized']	===	'1')
 								{
-												$where	.=' @digitized "1"';
+												$where	.=' @digitized "1" @!actual_duration "0"';
 								}
 								if(isset($this->session->userdata['migration_failed'])	&&	$this->session->userdata['migration_failed']	===	'1')
 								{
-												$where	.=' @event_type "migration" @event_outcome "PASS"';
+												$where	.=' @event_type "migration" @event_outcome "FAIL"';
 								}
 
 								if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')

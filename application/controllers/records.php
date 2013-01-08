@@ -189,7 +189,7 @@ class	Records	extends	MY_Controller
 																				echo "<br/>";
 																				echo $search_res['id'];
 																				echo "<br/>";
-																				if	($search_res['id']	===	$asset_id)
+																				if	($search_res['id']	==	$asset_id)
 																								break;
 																				echo "<br/>";
 																			echo	$search_result_pointer	++;

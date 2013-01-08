@@ -31,6 +31,13 @@
 								?>
 								<h2><?php	echo	$combine_title;	?></h2>
 				</div>
+				<?php
+				if($next_result_id){?>
+				<div style="float: right;margin-left:5px"><a href="<?php echo site_url('records/details/'.$next_result_id); ?>" class="btn btn-large">Next >></a></div>
+				<?php }
+				if($prev_result_id){?>
+				<div style="float: right;margin-left:5px"><a href="<?php echo site_url('records/details/'.$prev_result_id); ?>" class="btn btn-large"><< Previous</a></div>
+				<?php }?>
 				<div style="float: right;">
 								<button class="btn btn-large"><span class="icon-download-alt"></span>Export Asset</button>
 				</div>

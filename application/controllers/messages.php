@@ -41,7 +41,7 @@ class	Messages	extends	MY_Controller
 								$where	=	'';
 								if($this->input->post())
 								{
-												if($this->input->post('message_type')	!=	'')
+												if($this->input->post('message_type')	!=	'0')
 												{
 																$where['msg_type']	=	$this->input->post('message_type');
 												}

@@ -121,7 +121,7 @@ class	Crons	extends	CI_Controller
 																{
 																				$data_file	=	(explode	(" ",	$value));
 																				$data_file_path	=	str_replace	(array	('\r\n',	'\n',	'<br>'),	'',	trim	($data_file[1]));
-																				$this->myLog	('Checking File '	.	$data_file_path);
+																			//	$this->myLog	('Checking File '	.	$data_file_path);
 																				$file_path	=	trim	($directory	.	$data_file_path);
 																				if	(strpos	($data_file_path,	'organization.xml')	===	false)
 																				{
@@ -143,6 +143,7 @@ class	Crons	extends	CI_Controller
 																				}
 																}
 												}
+												$this->myLog	('folder Id '	.	$data_folder_id.' => folder_status'.$folder_status);
 												$this->cron_model->update_data_folder	(array	('updated_at'	=>	date	('Y-m-d H:i:s'),	'folder_status'	=>	$folder_status),	$data_folder_id);
 								}
 				}

@@ -156,8 +156,9 @@ class	Crons	extends	CI_Controller
 								{
 												foreach	($folders	as	$folder)
 												{
-																$data	=	file_get_contents	($folder->folder_path	.	'data/organization.xml');
-																$x	=	@simplexml_load_string	($data);
+																$data1	=	file_get_contents	($folder->folder_path	.	'data/organization.xml');
+																$x	=	@simplexml_load_string	($data1);
+																unset	($data1);
 																$data	=	xmlObjToArr	($x);
 																$station_cpb_id	=	$data['children']['cpb-id'][0]['text'];
 																if	(isset	($station_cpb_id))

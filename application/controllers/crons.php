@@ -143,7 +143,7 @@ class	Crons	extends	CI_Controller
 																				}
 																}
 												}
-												$this->myLog	('folder Id '	.	$data_folder_id.' => folder_status'.$folder_status);
+												$this->myLog	('folder Id '	.	$data_folder_id.' => folder_status '.$folder_status);
 												$this->cron_model->update_data_folder	(array	('updated_at'	=>	date	('Y-m-d H:i:s'),	'folder_status'	=>	$folder_status),	$data_folder_id);
 								}
 				}

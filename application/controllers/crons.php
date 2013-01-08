@@ -120,30 +120,33 @@ class	Crons	extends	CI_Controller
 																foreach	($data_result	as	$value)
 																{
 																				$data_file	=	(explode	(" ",	$value));
-																				$data_file_path	=	str_replace	(array	('\r\n',	'\n',	'<br>'),	'',	trim	($data_file[1]));
-																			//	$this->myLog	('Checking File '	.	$data_file_path);
-																				$file_path	=	trim	($directory	.	$data_file_path);
-																				if	(strpos	($data_file_path,	'organization.xml')	===	false)
+																				$data_file_path	=	trim	(str_replace	(array	('\r\n',	'\n',	'<br>'),	'',	trim	($data_file[1])));
+																				//	$this->myLog	('Checking File '	.	$data_file_path);
+																				if	(isset	($data_file_path)	&&	!	is_empty	($data_file_path))
 																				{
-																								if	(is_file	($file_path))
+																								$file_path	=	trim	($directory	.	$data_file_path);
+																								if	(strpos	($data_file_path,	'organization.xml')	===	false)
 																								{
-																												if	(	!	$this->cron_model->is_pbcore_file_by_path	($data_file_path))
+																												if	(file_exists	($file_path))
 																												{
-																																$this->cron_model->insert_prcoess_data	(array	('file_type'	=>	$type,	'file_path'	=>	($data_file_path),	'is_processed'	=>	0,	'created_at'	=>	date	('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id));
+																																if	(	!	$this->cron_model->is_pbcore_file_by_path	($data_file_path))
+																																{
+																																				$this->cron_model->insert_prcoess_data	(array	('file_type'	=>	$type,	'file_path'	=>	($data_file_path),	'is_processed'	=>	0,	'created_at'	=>	date	('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id));
+																																}
 																												}
-																								}
-																								else
-																								{
-																												if	(	!	$this->cron_model->is_pbcore_file_by_path	($data_file_path))
+																												else
 																												{
-																																$this->cron_model->insert_prcoess_data	(array	('file_type'	=>	$type,	'file_path'	=>	($data_file_path),	'is_processed'	=>	0,	'created_at'	=>	date	('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id,	'status_reason'	=>	'file_not_found'));
+																																if	(	!	$this->cron_model->is_pbcore_file_by_path	($data_file_path))
+																																{
+																																				$this->cron_model->insert_prcoess_data	(array	('file_type'	=>	$type,	'file_path'	=>	($data_file_path),	'is_processed'	=>	0,	'created_at'	=>	date	('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id,	'status_reason'	=>	'file_not_found'));
+																																}
+																																$folder_status	=	'incomplete';
 																												}
-																												$folder_status	=	'incomplete';
 																								}
 																				}
 																}
 												}
-												$this->myLog	('folder Id '	.	$data_folder_id.' => folder_status '.$folder_status);
+												$this->myLog	('folder Id '	.	$data_folder_id	.	' => folder_status '	.	$folder_status);
 												$this->cron_model->update_data_folder	(array	('updated_at'	=>	date	('Y-m-d H:i:s'),	'folder_status'	=>	$folder_status),	$data_folder_id);
 								}
 				}
@@ -232,7 +235,7 @@ class	Crons	extends	CI_Controller
 																												$this->cron_model->update_prcoess_data	(array	("processed_start_at"	=>	date	('Y-m-d H:i:s')),	$d_file->id);
 																												$file_path	=	'';
 																												$file_path	=	trim	($folder_data->folder_path	.	$d_file->file_path);
-																												if	(is_file	($file_path))
+																												if	(file_exists	($file_path))
 																												{
 																																$this->myLog	("Currently Parsing Files "	.	$file_path);
 																																$asset_data	=	file_get_contents	($file_path);

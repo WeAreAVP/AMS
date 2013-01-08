@@ -77,10 +77,6 @@ class	Instantiations	extends	MY_Controller
 												}
 
 												$this->set_facet_search($search);
-												foreach($search	as	$index	=>	$value)
-												{
-																$params[$index]	=	str_replace('|||',	' | ',	trim($value));
-												}
 								}
 								$data['get_column_name']	=	$this->make_array();
 								$data['stations']	=	$this->station_model->get_all();

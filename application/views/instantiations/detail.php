@@ -30,12 +30,12 @@
 				</div>
 					<?php	if	($next_result_id)
 				{	?>
-								<div style="float: right;margin-left:5px"><a href="<?php	echo	site_url	('Instantiations/details/'	.	$next_result_id);	?>" class="btn">Next >></a></div>
+								<div style="float: right;margin-left:5px"><a href="<?php	echo	site_url	('instantiations/detail/'	.	$next_result_id);	?>" class="btn">Next >></a></div>
 				<?php	}
 				if	($prev_result_id)
 				{
 								?>
-								<div style="float: right;margin-left:5px"><a href="<?php	echo	site_url	('Instantiations/details/'	.	$prev_result_id);	?>" class="btn"><< Previous</a></div>
+								<div style="float: right;margin-left:5px"><a href="<?php	echo	site_url	('instantiations/detail/'	.	$prev_result_id);	?>" class="btn"><< Previous</a></div>
 <?php	}	?>
 				<div style="float: right;">
 								<button class="btn "><span class="icon-download-alt"></span>Export Instantiation</button>

@@ -1455,9 +1455,10 @@ class	Crons	extends	CI_Controller
 																{
 																				$general_track	=	$track['children'];
 																				/* Media Type Start */
+																				$media_type	=	'';
 																				if(isset($general_track['videocount'])	&&	isset($general_track['videocount'][0]))
 																				{
-																								$media_type	=	'';
+
 																								if(	!	empty($general_track['videocount'][0]['text'])	||	$general_track['videocount'][0]['text']	!=	NULL	||	$general_track['videocount'][0]['text']	>	0)
 																								{
 																												$media_type	=	'Moving Image';
@@ -1474,6 +1475,19 @@ class	Crons	extends	CI_Controller
 																								}
 																								if($media_type	!=	'')
 																								{
+																												echo	'<br/>Media Type = '	.	$media_type;
+																												$inst_media_type	=	$this->instant->get_instantiation_media_types_by_media_type($media_type);
+																												if(	!	is_empty($inst_media_type))
+																																$instantiation['instantiation_media_type_id']	=	$inst_media_type->id;
+																												else
+																																$instantiation['instantiation_media_type_id']	=	$this->instant->insert_instantiation_media_types(array('media_type'	=>	$media_type));
+																								}
+																				}
+																				else	if(isset($general_track['audiocount'])	&&	isset($general_track['audiocount'][0]))
+																				{
+																								if(	!	empty($general_track['audiocount'][0]['text'])	||	$general_track['audiocount'][0]['text']	!=	NULL)
+																								{
+																												$media_type	=	'Sound';
 																												echo	'<br/>Media Type = '	.	$media_type;
 																												$inst_media_type	=	$this->instant->get_instantiation_media_types_by_media_type($media_type);
 																												if(	!	is_empty($inst_media_type))
@@ -1606,10 +1620,10 @@ class	Crons	extends	CI_Controller
 																								if(isset($general_track['fileextension'])	&&	isset($general_track['fileextension'][0]))
 																								{
 																												$identifier['instantiation_identifier']	=	$general_track['filename'][0]['text'];
-																											
+
 																												$db_asset_id	=	$this->get_asset_id_for_media_import($identifier['instantiation_identifier']);
-																												
-																												$identifier['instantiation_identifier']	=	$general_track['filename'][0]['text'].	'.'	.	$general_track['fileextension'][0]['text'];
+
+																												$identifier['instantiation_identifier']	=	$general_track['filename'][0]['text']	.	'.'	.	$general_track['fileextension'][0]['text'];
 																												echo	'<br/>Instantitation Identifier = '	.	$identifier['instantiation_identifier'];
 																												if($db_asset_id)
 																												{
@@ -1757,7 +1771,7 @@ class	Crons	extends	CI_Controller
 																else
 																{
 																				unset($essence_track);
-																				
+
 																				if(isset($track['attributes']['type'])	&&	$track['attributes']['type']	===	'Audio')
 																				{
 
@@ -1767,7 +1781,7 @@ class	Crons	extends	CI_Controller
 																								{
 																												if(isset($audio_track['channel_s__string'][0]['text']))
 																												{
-																																$channel	=	substr_replace($audio_track['channel_s__string'][0]['text'] ,"",-1);
+																																$channel	=	substr_replace($audio_track['channel_s__string'][0]['text'],	"",	-1);
 																																echo	'<br/>Channel Configuration = '	.	$channel;
 
 																																$this->instant->update_instantiations($db_instantiation_id,	array('channel_configuration'	=>	$channel));

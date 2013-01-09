@@ -256,6 +256,7 @@ class	Stations	extends	MY_Controller
 
 				public	function	import_station_contacts()
 				{
+								header("Content-type: text/html; charset=iso-8859-1");
 								$name	=	'Nouman tayyab Bokhari';
 								debug(explode(' ',	$name,	2),	FALSE);
 								$file	=	file_get_contents("assets/station_contacts.csv");
@@ -269,6 +270,10 @@ class	Stations	extends	MY_Controller
 																{
 																				
 																}
+												}
+												if($index	===	5)
+												{
+//																echo htmlspecialchars_decode($row[2]);exit;
 												}
 								}
 								debug($records);

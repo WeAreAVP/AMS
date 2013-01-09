@@ -47,7 +47,8 @@
 
                     <div class="span3">
                         <h4><?php echo $value->first_name . ' ' . $value->last_name; ?></h4>
-                        <h4><?php echo ($value->role_id == 3) ? 'Station Admin' : 'Station User'; ?></h4>
+<!--                        <h4><?php echo ($value->role_id == 3) ? 'Station Admin' : 'Station User'; ?></h4>-->
+                        <h4><?php echo $value->title; ?></h4>
                         <h4><?php if ($station_detail->type == 0) echo 'Radio'; else if ($station_detail->type == 1) echo 'TV'; else echo 'Joint'; ?></h4>
                         <p>
                             <?php echo $value->address; ?>

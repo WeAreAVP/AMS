@@ -14,9 +14,9 @@ class	Station_Model	extends	CI_Model
 					* constructor. set table name amd prefix
 					* 
 					*/
-				function	__construct	()
+				function	__construct()
 				{
-								parent::__construct	();
+								parent::__construct();
 								$this->_prefix	=	'';
 								$this->_table	=	'stations';
 								$this->_table_backup	=	'stations_backup';
@@ -27,9 +27,9 @@ class	Station_Model	extends	CI_Model
 					* 
 					* @return array 
 					*/
-				function	get_all	()
+				function	get_all()
 				{
-								$this->db->order_by	("station_name");
+								$this->db->order_by("station_name");
 								return	$query	=	$this->db->get($this->_table)->result();
 				}
 
@@ -39,10 +39,10 @@ class	Station_Model	extends	CI_Model
 					* @param type $station_id
 					* @return array 
 					*/
-				function	get_station_by_id	($station_id)
+				function	get_station_by_id($station_id)
 				{
-								$this->db->where	('id',	$station_id);
-								return	$this->db->get	($this->_table)->row	();
+								$this->db->where('id',	$station_id);
+								return	$this->db->get($this->_table)->row();
 				}
 
 				/**
@@ -51,10 +51,16 @@ class	Station_Model	extends	CI_Model
 					* @param type $station_id
 					* @return array 
 					*/
-				function	get_station_by_cpb_id	($cpb_id)
+				function	get_station_by_cpb_id($cpb_id)
 				{
-								$this->db->where	('cpb_id',	$cpb_id);
-								return	$this->db->get	($this->_table)->row	();
+								$this->db->where('cpb_id',	$cpb_id);
+								$result=$this->db->get($this->_table);
+								if	(isset	($result)	&&	!empty	($result))
+								{
+												return	$result->row	();
+								}
+								return	false;
+								
 				}
 
 				/**
@@ -63,11 +69,23 @@ class	Station_Model	extends	CI_Model
 					* @param type $stations
 					* @return array 
 					*/
-				function	get_stations_by_id	($stations)
+				function	get_stations_by_id($stations)
 				{
-								$this->db->select	('id,station_name,start_date,end_date,is_certified,is_agreed');
-								$this->db->where_in	('id',	$stations);
-								return	$this->db->get	($this->_table)->result	();
+								$this->db->select('id,station_name,start_date,end_date,is_certified,is_agreed');
+								$this->db->where_in('id',	$stations);
+								return	$this->db->get($this->_table)->result();
+				}
+
+				/**
+					* Insert Station Records
+					* 
+					* @param array $data
+					* @return type 
+					*/
+				function	insert_station($data)
+				{
+								$this->db->insert($this->_table,	$data);
+								return	$this->db->insert_id();
 				}
 
 				/**
@@ -77,11 +95,11 @@ class	Station_Model	extends	CI_Model
 					* @param array $data
 					* @return boolean 
 					*/
-				function	update_station	($station_ids,	$data)
+				function	update_station($station_ids,	$data)
 				{
-								$data['updated_at']	=	date	('Y-m-d H:i:s');
-								$this->db->where	('id',	$station_ids);
-								return	$this->db->update	($this->_table,	$data);
+								$data['updated_at']	=	date('Y-m-d H:i:s');
+								$this->db->where('id',	$station_ids);
+								return	$this->db->update($this->_table,	$data);
 				}
 
 				/**
@@ -89,9 +107,9 @@ class	Station_Model	extends	CI_Model
 					* 
 					* @return integer 
 					*/
-				function	get_station_count	()
+				function	get_station_count()
 				{
-								$query	=	$this->db->get	($this->_table);
+								$query	=	$this->db->get($this->_table);
 								return	$query->num_rows;
 				}
 
@@ -104,14 +122,14 @@ class	Station_Model	extends	CI_Model
 					* @return type 
 					*/
 
-				function	apply_filter	($certified,	$agreed)
+				function	apply_filter($certified,	$agreed)
 				{
-								if	(trim	($certified)	!=	'')
-												$this->db->where	('is_certified',	$certified);
-								if	(trim	($certified)	!=	'')
-												$this->db->where	('is_agreed',	$agreed);
+								if(trim($certified)	!=	'')
+												$this->db->where('is_certified',	$certified);
+								if(trim($certified)	!=	'')
+												$this->db->where('is_agreed',	$agreed);
 
-								return	$query	=	$this->db->get	($this->_table)->result	();
+								return	$query	=	$this->db->get($this->_table)->result();
 				}
 
 				/*
@@ -121,10 +139,10 @@ class	Station_Model	extends	CI_Model
 					* @return integer 
 					*/
 
-				function	delete_stations_backup	()
+				function	delete_stations_backup()
 				{
-								$this->db->empty_table	($this->_table_backup);
-								return	$this->db->affected_rows	()	>	0;
+								$this->db->empty_table($this->_table_backup);
+								return	$this->db->affected_rows()	>	0;
 				}
 
 				/*
@@ -135,9 +153,9 @@ class	Station_Model	extends	CI_Model
 					* @return boolean 
 					*/
 
-				function	insert_station_backup	($data)
+				function	insert_station_backup($data)
 				{
-								return	$this->db->insert	($this->_table_backup,	$data);
+								return	$this->db->insert($this->_table_backup,	$data);
 				}
 
 				/*
@@ -147,9 +165,9 @@ class	Station_Model	extends	CI_Model
 					* @return array 
 					*/
 
-				function	get_all_backup_stations	()
+				function	get_all_backup_stations()
 				{
-								return	$query	=	$this->db->get	($this->_table_backup)->result	();
+								return	$query	=	$this->db->get($this->_table_backup)->result();
 				}
 
 }

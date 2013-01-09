@@ -38,6 +38,8 @@
 								?>
 								<div style="float: right;margin-left:5px"><a href="<?php	echo	site_url	('records/details/'	.	$prev_result_id);	?>" class="btn"><< Previous</a></div>
 <?php	}	?>
+								<div style="float: right;"><a href="<?php	echo	site_url	('records/index/'	.	(isset($this->session->userdata['offset'])	&&	!is_empty($this->session->userdata['offset']))?0:$this->session->userdata['offset']);	?>" class="btn">Return</a>
+				</div>
 				<div style="float: right;">
 								<button class="btn"><span class="icon-download-alt"></span>Export Asset</button>
 				</div>

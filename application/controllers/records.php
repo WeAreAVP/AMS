@@ -36,6 +36,7 @@ class	Records	extends	MY_Controller
 
 				function	index	()
 				{
+								$offset	=	($this->uri->segment	(3))	?	$this->uri->segment	(3)	:	0;
 								if	(isAjax	())
 								{
 												$this->unset_facet_search	();
@@ -58,6 +59,7 @@ class	Records	extends	MY_Controller
 												}
 												$this->set_facet_search	($search);
 								}
+								$this->session->set_userdata('offset',	$offset);
 								$data['facet_search_url']	=	site_url	('records/index');
 								$data['current_tab']	=	'simple';
 								if	(isset	($this->session->userdata['current_tab'])	&&	!	empty	($this->session->userdata['current_tab']))
@@ -82,7 +84,6 @@ class	Records	extends	MY_Controller
 								}
 								$data['hidden_fields']	=	$is_hidden;
 								$data['isAjax']	=	FALSE;
-								$offset	=	($this->uri->segment	(3))	?	$this->uri->segment	(3)	:	0;
 								$param	=	array	('index'	=>	'assets_list');
 								$records	=	$this->sphinx->assets_listing	($param,	$offset);
 								$data['total']	=	$records['total_count'];

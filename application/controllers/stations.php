@@ -269,7 +269,7 @@ class	Stations	extends	MY_Controller
 
 												if($index	!==	0	&&	$index	!=	$count	-	1)
 												{
-																debug($row);
+//																debug($row);
 																$station_detail	=	array(
 																'cpb_id'																	=>	$row[0],
 																'station_name'											=>	$row[1],
@@ -292,13 +292,13 @@ class	Stations	extends	MY_Controller
 																{
 																				$station_id	=	$station->id;
 																				$this->station_model->update_station($station_id,	$station_detail);
-																				echo	'<br/>Station Updated ID='	.	$station->id;
+//																				echo	'<br/>Station Updated ID='	.	$station->id;
 																}
 																else
 																{
 																				$station_id	=	$this->station_model->insert_station($station_detail);
 
-																				echo	'<br/>Station Inserted ID='	.	$station_id;
+//																				echo	'<br/>Station Inserted ID='	.	$station_id;
 																}
 																unset($station_detail);
 																$station_user	=	array(
@@ -323,15 +323,17 @@ class	Stations	extends	MY_Controller
 																				$user_id	=	$user_info->id;
 																				$this->users->set_user($user_id,	$station_user);
 																				$station_user_detail['user_id']	=	$user_id;
-																				$this->user_profile->set_profile($user_id,	$set_profile);
+																				$this->user_profile->set_profile($user_id,	$station_user_detail);
 																}
 																else
 																{
 																				$user_id	=	$this->users->create_user($station_user);
 																				$station_user_detail['user_id']	=	$user_id;
 																				$this->user_profile->insert_profile($station_user_detail);
-																				$this->user_profile->set_profile($station_user_detail);
+																				
 																}
+																unset($station_user);
+																unset($station_user_detail);
 												}
 								}
 								exit;

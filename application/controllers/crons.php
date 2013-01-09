@@ -1813,11 +1813,11 @@ class	Crons	extends	CI_Controller
 																																				$track_type	=	'Timecode';
 																																}
 																												}
-																												else
-																												{
-																																$track_type	=	$track['children']['format'][0]['text'];
-																												}
-																												if($track	!=	'')
+//																												else
+//																												{
+//																																$track_type	=	$track['children']['format'][0]['text'];
+//																												}
+																												if($track_type	!=	'')
 																												{
 																																$dessence_track[$dessence_track_counter]['track_type']	=	$track_type;
 																																$essence_track_type	=	$this->essence->get_essence_track_by_type($track_type);

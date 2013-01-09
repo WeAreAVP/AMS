@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Mediainfo version="0.7.60">
+    <File>
+        <track type="General">
+            <Count>279</Count>
+            <StreamCount>1</StreamCount>
+            <StreamKind>General</StreamKind>
+            <StreamKind_String>General</StreamKind_String>
+            <StreamKindID>0</StreamKindID>
+            <VideoCount>1</VideoCount>
+            <AudioCount>1</AudioCount>
+            <MenuCount>1</MenuCount>
+            <Video_Format_List>AVC</Video_Format_List>
+            <Video_Format_WithHint_List>AVC</Video_Format_WithHint_List>
+            <Video_Codec_List>AVC</Video_Codec_List>
+            <Video_Language_List>en</Video_Language_List>
+            <Audio_Format_List>AAC</Audio_Format_List>
+            <Audio_Format_WithHint_List>AAC</Audio_Format_WithHint_List>
+            <Audio_Codec_List>AAC LC</Audio_Codec_List>
+            <Audio_Language_List>en</Audio_Language_List>
+            <Menu_Format_List>TimeCode</Menu_Format_List>
+            <Menu_Format_WithHint_List>TimeCode</Menu_Format_WithHint_List>
+            <Menu_Language_List>en</Menu_Language_List>
+            <CompleteName>cpb-aacip-37-62f7m7dx.h264.mov</CompleteName>
+            <FileName>cpb-aacip-37-62f7m7dx.h264</FileName>
+            <FileExtension>mov</FileExtension>
+            <Format>MPEG-4</Format>
+            <Format_String>MPEG-4</Format_String>
+            <Format_Extensions>mp4 m4v m4a m4b m4p 3gpp 3gp 3gpp2 3g2 k3g jpm jpx mqv ismv isma
+                f4v</Format_Extensions>
+            <Format_Commercial>MPEG-4</Format_Commercial>
+            <Format_Profile>QuickTime</Format_Profile>
+            <InternetMediaType>video/mp4</InternetMediaType>
+            <CodecID>qt </CodecID>
+            <CodecID_Url>http://www.apple.com/quicktime/download/standalone.html</CodecID_Url>
+            <Codec>MPEG-4</Codec>
+            <Codec_String>MPEG-4</Codec_String>
+            <Codec_Extensions>mp4 m4v m4a m4b m4p 3gpp 3gp 3gpp2 3g2 k3g jpm jpx mqv ismv isma
+                f4v</Codec_Extensions>
+            <FileSize>64167386</FileSize>
+            <FileSize_String>61.2 MiB</FileSize_String>
+            <FileSize_String1>61 MiB</FileSize_String1>
+            <FileSize_String2>61 MiB</FileSize_String2>
+            <FileSize_String3>61.2 MiB</FileSize_String3>
+            <FileSize_String4>61.19 MiB</FileSize_String4>
+            <Duration>599978</Duration>
+            <Duration_String>9mn 59s</Duration_String>
+            <Duration_String1>9mn 59s 978ms</Duration_String1>
+            <Duration_String2>9mn 59s</Duration_String2>
+            <Duration_String3>00:09:59.978</Duration_String3>
+            <OverallBitRate>855597</OverallBitRate>
+            <OverallBitRate_String>856 Kbps</OverallBitRate_String>
+            <StreamSize>518093</StreamSize>
+            <StreamSize_String>506 KiB (1%)</StreamSize_String>
+            <StreamSize_String1>506 KiB</StreamSize_String1>
+            <StreamSize_String2>506 KiB</StreamSize_String2>
+            <StreamSize_String3>506 KiB</StreamSize_String3>
+            <StreamSize_String4>506.0 KiB</StreamSize_String4>
+            <StreamSize_String5>506 KiB (1%)</StreamSize_String5>
+            <StreamSize_Proportion>0.00807</StreamSize_Proportion>
+            <HeaderSize>40</HeaderSize>
+            <DataSize>63722147</DataSize>
+            <FooterSize>445199</FooterSize>
+            <IsStreamable>No</IsStreamable>
+            <Encoded_Date>UTC 2012-11-27 19:07:28</Encoded_Date>
+            <Tagged_Date>UTC 2012-11-27 19:17:43</Tagged_Date>
+            <File_Modified_Date>UTC 2012-12-04 01:44:03</File_Modified_Date>
+            <File_Modified_Date_Local>2012-12-03 20:44:03</File_Modified_Date_Local>
+            <Encoded_Library>Apple QuickTime</Encoded_Library>
+            <Encoded_Library_String>Apple QuickTime</Encoded_Library_String>
+            <Encoded_Library_Name>Apple QuickTime</Encoded_Library_Name>
+        </track>
+
+        <track type="Video">
+            <Count>251</Count>
+            <StreamCount>1</StreamCount>
+            <StreamKind>Video</StreamKind>
+            <StreamKind_String>Video</StreamKind_String>
+            <StreamKindID>0</StreamKindID>
+            <StreamOrder>0</StreamOrder>
+            <ID>1</ID>
+            <ID_String>1</ID_String>
+            <Format>AVC</Format>
+            <Format_Info>Advanced Video Codec</Format_Info>
+            <Format_Url>http://developers.videolan.org/x264.html</Format_Url>
+            <Format_Commercial>AVC</Format_Commercial>
+            <Format_Profile>Main@L3.0</Format_Profile>
+            <Format_Settings>2 Ref Frames</Format_Settings>
+            <Format_Settings_CABAC>No</Format_Settings_CABAC>
+            <Format_Settings_CABAC_String>No</Format_Settings_CABAC_String>
+            <Format_Settings_RefFrames>2</Format_Settings_RefFrames>
+            <Format_Settings_RefFrames_String>2 frame2</Format_Settings_RefFrames_String>
+            <Format_Settings_GOP>M=1, N=30</Format_Settings_GOP>
+            <InternetMediaType>video/H264</InternetMediaType>
+            <CodecID>avc1</CodecID>
+            <CodecID_Info>Advanced Video Coding</CodecID_Info>
+            <CodecID_Url>http://www.apple.com/quicktime/download/standalone.html</CodecID_Url>
+            <Codec>AVC</Codec>
+            <Codec_String>AVC</Codec_String>
+            <Codec_Family>AVC</Codec_Family>
+            <Codec_Info>Advanced Video Codec</Codec_Info>
+            <Codec_Url>http://developers.videolan.org/x264.html</Codec_Url>
+            <Codec_CC>avc1</Codec_CC>
+            <Codec_Profile>Main@L3.0</Codec_Profile>
+            <Codec_Settings>2 Ref Frames</Codec_Settings>
+            <Codec_Settings_CABAC>No</Codec_Settings_CABAC>
+            <Codec_Settings_RefFrames>2</Codec_Settings_RefFrames>
+            <Duration>599978</Duration>
+            <Duration_String>9mn 59s</Duration_String>
+            <Duration_String1>9mn 59s 978ms</Duration_String1>
+            <Duration_String2>9mn 59s</Duration_String2>
+            <Duration_String3>00:09:59.978</Duration_String3>
+            <BitRate>718966</BitRate>
+            <BitRate_String>719 Kbps</BitRate_String>
+            <Width>480</Width>
+            <Width_String>480 pixel3</Width_String>
+            <Height>360</Height>
+            <Height_String>360 pixel3</Height_String>
+            <PixelAspectRatio>1.000</PixelAspectRatio>
+            <DisplayAspectRatio>1.333</DisplayAspectRatio>
+            <DisplayAspectRatio_String>4:3</DisplayAspectRatio_String>
+            <Rotation>0.000</Rotation>
+            <FrameRate_Mode>CFR</FrameRate_Mode>
+            <FrameRate_Mode_String>CFR</FrameRate_Mode_String>
+            <FrameRate>29.970</FrameRate>
+            <FrameRate_String>29.970 fps3</FrameRate_String>
+            <FrameCount>17982</FrameCount>
+            <Resolution>8</Resolution>
+            <Resolution_String>8 bit3</Resolution_String>
+            <Colorimetry>4:2:0</Colorimetry>
+            <ColorSpace>YUV</ColorSpace>
+            <ChromaSubsampling>4:2:0</ChromaSubsampling>
+            <BitDepth>8</BitDepth>
+            <BitDepth_String>8 bit3</BitDepth_String>
+            <ScanType>Progressive</ScanType>
+            <ScanType_String>Progressive</ScanType_String>
+            <Interlacement>PPF</Interlacement>
+            <Interlacement_String>Interlaced_PPF</Interlacement_String>
+            <Bits_Pixel_Frame_>0.139</Bits_Pixel_Frame_>
+            <Delay>175800</Delay>
+            <Delay_String>2mn 55s</Delay_String>
+            <Delay_String1>2mn 55s 800ms</Delay_String1>
+            <Delay_String2>2mn 55s</Delay_String2>
+            <Delay_String3>00:02:55.800</Delay_String3>
+            <Delay_Settings>DropFrame=No / 24HourMax=No / IsVisual=No</Delay_Settings>
+            <Delay_Source>Container</Delay_Source>
+            <Delay_Source_String>Container</Delay_Source_String>
+            <StreamSize>53922457</StreamSize>
+            <StreamSize_String>51.4 MiB (84%)</StreamSize_String>
+            <StreamSize_String1>51 MiB</StreamSize_String1>
+            <StreamSize_String2>51 MiB</StreamSize_String2>
+            <StreamSize_String3>51.4 MiB</StreamSize_String3>
+            <StreamSize_String4>51.42 MiB</StreamSize_String4>
+            <StreamSize_String5>51.4 MiB (84%)</StreamSize_String5>
+            <StreamSize_Proportion>0.84034</StreamSize_Proportion>
+            <Language>en</Language>
+            <Language_String>en</Language_String>
+            <Language_String1>en</Language_String1>
+            <Language_String2>en</Language_String2>
+            <Language_String3>eng</Language_String3>
+            <Language_String4>en</Language_String4>
+            <Encoded_Date>UTC 2012-11-27 19:07:28</Encoded_Date>
+            <Tagged_Date>UTC 2012-11-27 19:17:43</Tagged_Date>
+            <colour_primaries>BT.601 NTSC</colour_primaries>
+            <transfer_characteristics>BT.709</transfer_characteristics>
+            <matrix_coefficients>BT.601</matrix_coefficients>
+        </track>
+
+        <track type="Audio">
+            <Count>217</Count>
+            <StreamCount>1</StreamCount>
+            <StreamKind>Audio</StreamKind>
+            <StreamKind_String>Audio</StreamKind_String>
+            <StreamKindID>0</StreamKindID>
+            <StreamOrder>1</StreamOrder>
+            <ID>2</ID>
+            <ID_String>2</ID_String>
+            <Format>AAC</Format>
+            <Format_Info>Advanced Audio Codec</Format_Info>
+            <Format_Commercial>AAC</Format_Commercial>
+            <Format_Profile>LC</Format_Profile>
+            <CodecID>40</CodecID>
+            <Codec>AAC LC</Codec>
+            <Codec_String>AAC LC</Codec_String>
+            <Codec_Family>AAC</Codec_Family>
+            <Codec_CC>40</Codec_CC>
+            <Duration>599978</Duration>
+            <Duration_String>9mn 59s</Duration_String>
+            <Duration_String1>9mn 59s 978ms</Duration_String1>
+            <Duration_String2>9mn 59s</Duration_String2>
+            <Duration_String3>00:09:59.978</Duration_String3>
+            <Source_Duration>600064</Source_Duration>
+            <Source_Duration_String>10mn 0s</Source_Duration_String>
+            <Source_Duration_String1>10mn 0s 64ms</Source_Duration_String1>
+            <Source_Duration_String2>10mn 0s</Source_Duration_String2>
+            <Source_Duration_String3>00:10:00.064</Source_Duration_String3>
+            <BitRate_Mode>CBR</BitRate_Mode>
+            <BitRate_Mode_String>CBR</BitRate_Mode_String>
+            <BitRate>128000</BitRate>
+            <BitRate_String>128 Kbps</BitRate_String>
+            <Channel_s_>2</Channel_s_>
+            <Channel_s__String>2 channel2</Channel_s__String>
+            <ChannelPositions>Front: L R</ChannelPositions>
+            <ChannelPositions_String2>2/0/0</ChannelPositions_String2>
+            <ChannelLayout>L R</ChannelLayout>
+            <SamplingRate>48000</SamplingRate>
+            <SamplingRate_String>48.0 KHz</SamplingRate_String>
+            <SamplingCount>28798944</SamplingCount>
+            <FrameCount>28124</FrameCount>
+            <Source_FrameCount>28128</Source_FrameCount>
+            <Compression_Mode>Lossy</Compression_Mode>
+            <Compression_Mode_String>Lossy</Compression_Mode_String>
+            <Delay>175800</Delay>
+            <Delay_String>2mn 55s</Delay_String>
+            <Delay_String1>2mn 55s 800ms</Delay_String1>
+            <Delay_String2>2mn 55s</Delay_String2>
+            <Delay_String3>00:02:55.800</Delay_String3>
+            <Delay_Source>Container</Delay_Source>
+            <Delay_Source_String>Container</Delay_Source_String>
+            <Video_Delay>0</Video_Delay>
+            <Video0_Delay>0</Video0_Delay>
+            <StreamSize>9726836</StreamSize>
+            <StreamSize_String>9.28 MiB (15%)</StreamSize_String>
+            <StreamSize_String1>9 MiB</StreamSize_String1>
+            <StreamSize_String2>9.3 MiB</StreamSize_String2>
+            <StreamSize_String3>9.28 MiB</StreamSize_String3>
+            <StreamSize_String4>9.276 MiB</StreamSize_String4>
+            <StreamSize_String5>9.28 MiB (15%)</StreamSize_String5>
+            <StreamSize_Proportion>0.15159</StreamSize_Proportion>
+            <Source_StreamSize>9727754</Source_StreamSize>
+            <Source_StreamSize_String>9.28 MiB (15%)</Source_StreamSize_String>
+            <Source_StreamSize_String1>9 MiB</Source_StreamSize_String1>
+            <Source_StreamSize_String2>9.3 MiB</Source_StreamSize_String2>
+            <Source_StreamSize_String3>9.28 MiB</Source_StreamSize_String3>
+            <Source_StreamSize_String4>9.277 MiB</Source_StreamSize_String4>
+            <Source_StreamSize_String5>9.28 MiB (15%)</Source_StreamSize_String5>
+            <Source_StreamSize_Proportion>0.15160</Source_StreamSize_Proportion>
+            <Language>en</Language>
+            <Language_String>en</Language_String>
+            <Language_String1>en</Language_String1>
+            <Language_String2>en</Language_String2>
+            <Language_String3>eng</Language_String3>
+            <Language_String4>en</Language_String4>
+            <Encoded_Date>UTC 2012-11-27 19:07:28</Encoded_Date>
+            <Tagged_Date>UTC 2012-11-27 19:17:43</Tagged_Date>
+        </track>
+
+        <track type="Menu">
+            <Count>76</Count>
+            <StreamCount>1</StreamCount>
+            <StreamKind>Menu</StreamKind>
+            <StreamKind_String>Menu</StreamKind_String>
+            <StreamKindID>0</StreamKindID>
+            <StreamOrder>2</StreamOrder>
+            <ID>3</ID>
+            <ID_String>3</ID_String>
+            <Format>TimeCode</Format>
+            <Format_Commercial>TimeCode</Format_Commercial>
+            <Duration>599978</Duration>
+            <Duration_String>9mn 59s</Duration_String>
+            <Duration_String1>9mn 59s 978ms</Duration_String1>
+            <Duration_String2>9mn 59s</Duration_String2>
+            <Duration_String3>00:09:59.978</Duration_String3>
+            <Delay>175800</Delay>
+            <Delay_String>2mn 55s</Delay_String>
+            <Delay_String1>2mn 55s 800ms</Delay_String1>
+            <Delay_String2>2mn 55s</Delay_String2>
+            <Delay_String3>00:02:55.800</Delay_String3>
+            <Delay_Source>Container</Delay_Source>
+            <Language>en</Language>
+            <Language_String>en</Language_String>
+            <Language_String1>en</Language_String1>
+            <Language_String2>en</Language_String2>
+            <Language_String3>eng</Language_String3>
+            <Language_String4>en</Language_String4>
+            <Encoded_Date>UTC 2012-11-27 19:07:28</Encoded_Date>
+            <Tagged_Date>UTC 2012-11-27 19:17:43</Tagged_Date>
+            <BitRate_Mode>CBR</BitRate_Mode>
+        </track>
+
+    </File>
+</Mediainfo>

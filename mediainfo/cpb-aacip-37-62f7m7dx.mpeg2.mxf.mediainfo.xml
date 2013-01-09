@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Mediainfo version="0.7.60">
+    <File>
+        <track type="General">
+            <Count>279</Count>
+            <StreamCount>1</StreamCount>
+            <StreamKind>General</StreamKind>
+            <StreamKind_String>General</StreamKind_String>
+            <StreamKindID>0</StreamKindID>
+            <VideoCount>1</VideoCount>
+            <AudioCount>1</AudioCount>
+            <Video_Format_List>MPEG Video</Video_Format_List>
+            <Video_Format_WithHint_List>MPEG Video</Video_Format_WithHint_List>
+            <Video_Codec_List>MPEG-2 Video</Video_Codec_List>
+            <Audio_Format_List>PCM</Audio_Format_List>
+            <Audio_Format_WithHint_List>PCM</Audio_Format_WithHint_List>
+            <CompleteName>cpb-aacip-37-62f7m7dx.mpeg2.mxf</CompleteName>
+            <FileName>cpb-aacip-37-62f7m7dx.mpeg2</FileName>
+            <FileExtension>mxf</FileExtension>
+            <Format>MXF</Format>
+            <Format_String>MXF</Format_String>
+            <Format_Extensions>mxf</Format_Extensions>
+            <Format_Commercial>IMX 50</Format_Commercial>
+            <Format_Commercial_IfAny>IMX 50</Format_Commercial_IfAny>
+            <Format_Profile>OP-1a</Format_Profile>
+            <Format_Settings>Closed / Complete</Format_Settings>
+            <InternetMediaType>application/mxf</InternetMediaType>
+            <Codec>MXF</Codec>
+            <Codec_String>MXF</Codec_String>
+            <Codec_Extensions>mxf</Codec_Extensions>
+            <Codec_Settings>Closed / Complete</Codec_Settings>
+            <FileSize>4695472640</FileSize>
+            <FileSize_String>4.37 GiB</FileSize_String>
+            <FileSize_String1>4 GiB</FileSize_String1>
+            <FileSize_String2>4.4 GiB</FileSize_String2>
+            <FileSize_String3>4.37 GiB</FileSize_String3>
+            <FileSize_String4>4.373 GiB</FileSize_String4>
+            <Duration>599999</Duration>
+            <Duration_String>9mn 59s</Duration_String>
+            <Duration_String1>9mn 59s 999ms</Duration_String1>
+            <Duration_String2>9mn 59s</Duration_String2>
+            <Duration_String3>00:09:59.999</Duration_String3>
+            <OverallBitRate>62606406</OverallBitRate>
+            <OverallBitRate_String>62.6 Mbps</OverallBitRate_String>
+            <StreamSize>186599252</StreamSize>
+            <StreamSize_String>178 MiB (4%)</StreamSize_String>
+            <StreamSize_String1>178 MiB</StreamSize_String1>
+            <StreamSize_String2>178 MiB</StreamSize_String2>
+            <StreamSize_String3>178 MiB</StreamSize_String3>
+            <StreamSize_String4>178.0 MiB</StreamSize_String4>
+            <StreamSize_String5>178 MiB (4%)</StreamSize_String5>
+            <StreamSize_Proportion>0.03974</StreamSize_Proportion>
+            <Encoded_Date>2012-11-27 14:07:30.812</Encoded_Date>
+            <File_Modified_Date>UTC 2012-12-04 02:07:03</File_Modified_Date>
+            <File_Modified_Date_Local>2012-12-03 21:07:03</File_Modified_Date_Local>
+            <Encoded_Application>OC OCTk 2.3 </Encoded_Application>
+            <Encoded_Library_String>OC OCTk 2.3 </Encoded_Library_String>
+            <Encoded_Library_Name>OC OCTk</Encoded_Library_Name>
+            <Encoded_Library_Version>2.3 </Encoded_Library_Version>
+        </track>
+
+        <track type="Video">
+            <Count>253</Count>
+            <StreamCount>1</StreamCount>
+            <StreamKind>Video</StreamKind>
+            <StreamKind_String>Video</StreamKind_String>
+            <StreamKindID>0</StreamKindID>
+            <ID>2</ID>
+            <ID_String>2</ID_String>
+            <Format>MPEG Video</Format>
+            <Format_Commercial>IMX 50</Format_Commercial>
+            <Format_Commercial_IfAny>IMX 50</Format_Commercial_IfAny>
+            <Format_Version>Version 2</Format_Version>
+            <Format_Profile>4:2:2@Main</Format_Profile>
+            <Format_Settings_BVOP>No</Format_Settings_BVOP>
+            <Format_Settings_BVOP_String>No</Format_Settings_BVOP_String>
+            <Format_Settings_Matrix>Default</Format_Settings_Matrix>
+            <Format_Settings_Matrix_String>Default</Format_Settings_Matrix_String>
+            <Format_Settings_GOP>N=1</Format_Settings_GOP>
+            <Format_Settings_Wrapping>Frame (D-10)</Format_Settings_Wrapping>
+            <InternetMediaType>video/MPV</InternetMediaType>
+            <Codec>MPEG-2V</Codec>
+            <Codec_String>MPEG-2 Video</Codec_String>
+            <Codec_Family>MPEG-V</Codec_Family>
+            <Codec_Profile>4:2:2@Main</Codec_Profile>
+            <Codec_Settings_Matrix>Default</Codec_Settings_Matrix>
+            <Duration>599999</Duration>
+            <Duration_String>9mn 59s</Duration_String>
+            <Duration_String1>9mn 59s 999ms</Duration_String1>
+            <Duration_String2>9mn 59s</Duration_String2>
+            <Duration_String3>00:09:59.999</Duration_String3>
+            <BitRate>47830332</BitRate>
+            <BitRate_String>47.8 Mbps</BitRate_String>
+            <BitRate_Maximum>50000000</BitRate_Maximum>
+            <BitRate_Maximum_String>50.0 Mbps</BitRate_Maximum_String>
+            <Width>720</Width>
+            <Width_String>720 pixel3</Width_String>
+            <Height>486</Height>
+            <Height_String>486 pixel3</Height_String>
+            <Height_Offset>26</Height_Offset>
+            <Height_Offset_String>26 pixel3</Height_Offset_String>
+            <Height_Original>512</Height_Original>
+            <Height_Original_String>512 pixel3</Height_Original_String>
+            <PixelAspectRatio>1.000</PixelAspectRatio>
+            <PixelAspectRatio_Original>0.948</PixelAspectRatio_Original>
+            <DisplayAspectRatio>1.333</DisplayAspectRatio>
+            <DisplayAspectRatio_String>4:3</DisplayAspectRatio_String>
+            <FrameRate>29.970</FrameRate>
+            <FrameRate_String>29.970 fps3</FrameRate_String>
+            <FrameCount>17982</FrameCount>
+            <Standard>NTSC</Standard>
+            <Resolution>8</Resolution>
+            <Resolution_String>8 bit3</Resolution_String>
+            <Colorimetry>4:2:2</Colorimetry>
+            <ColorSpace>YUV</ColorSpace>
+            <ChromaSubsampling>4:2:2</ChromaSubsampling>
+            <BitDepth>8</BitDepth>
+            <BitDepth_String>8 bit3</BitDepth_String>
+            <ScanType>Interlaced</ScanType>
+            <ScanType_String>Interlaced</ScanType_String>
+            <ScanOrder>TFF</ScanOrder>
+            <ScanOrder_String>TFF</ScanOrder_String>
+            <Interlacement>TFF</Interlacement>
+            <Interlacement_String>Interlaced_TFF</Interlacement_String>
+            <Compression_Mode>Lossy</Compression_Mode>
+            <Compression_Mode_String>Lossy</Compression_Mode_String>
+            <Bits_Pixel_Frame_>4.561</Bits_Pixel_Frame_>
+            <Delay>175800</Delay>
+            <Delay_String>2mn 55s</Delay_String>
+            <Delay_String1>2mn 55s 800ms</Delay_String1>
+            <Delay_String2>2mn 55s</Delay_String2>
+            <Delay_String3>00:02:55.800</Delay_String3>
+            <Delay_Source>Container</Delay_Source>
+            <Delay_Source_String>Container</Delay_Source_String>
+            <Delay_Original>0</Delay_Original>
+            <Delay_Original_String3>00:00:00.000</Delay_Original_String3>
+            <Delay_Original_Settings>drop_frame_flag=0 / closed_gop=1 /
+                broken_link=0</Delay_Original_Settings>
+            <Delay_Original_Source>Stream</Delay_Original_Source>
+            <StreamSize>3587274924</StreamSize>
+            <StreamSize_String>3.34 GiB (76%)</StreamSize_String>
+            <StreamSize_String1>3 GiB</StreamSize_String1>
+            <StreamSize_String2>3.3 GiB</StreamSize_String2>
+            <StreamSize_String3>3.34 GiB</StreamSize_String3>
+            <StreamSize_String4>3.341 GiB</StreamSize_String4>
+            <StreamSize_String5>3.34 GiB (76%)</StreamSize_String5>
+            <StreamSize_Proportion>0.76399</StreamSize_Proportion>
+            <BufferSize>1179648</BufferSize>
+            <Delay_SDTI>175801</Delay_SDTI>
+            <colour_primaries>BT.601 NTSC</colour_primaries>
+            <transfer_characteristics>BT.601</transfer_characteristics>
+            <matrix_coefficients>BT.601</matrix_coefficients>
+            <intra_dc_precision>10</intra_dc_precision>
+        </track>
+
+        <track type="Audio">
+            <Count>218</Count>
+            <StreamCount>1</StreamCount>
+            <StreamKind>Audio</StreamKind>
+            <StreamKind_String>Audio</StreamKind_String>
+            <StreamKindID>0</StreamKindID>
+            <ID>3</ID>
+            <ID_String>3</ID_String>
+            <Format>PCM</Format>
+            <Format_Commercial>PCM</Format_Commercial>
+            <Format_Settings_Endianness>Little</Format_Settings_Endianness>
+            <Format_Settings_Wrapping>Frame (D-10)</Format_Settings_Wrapping>
+            <Duration>599999</Duration>
+            <Duration_String>9mn 59s</Duration_String>
+            <Duration_String1>9mn 59s 999ms</Duration_String1>
+            <Duration_String2>9mn 59s</Duration_String2>
+            <Duration_String3>00:09:59.999</Duration_String3>
+            <BitRate_Mode>CBR</BitRate_Mode>
+            <BitRate_Mode_String>CBR</BitRate_Mode_String>
+            <BitRate>12288000</BitRate>
+            <BitRate_String>12.3 Mbps</BitRate_String>
+            <Channel_s_>4</Channel_s_>
+            <Channel_s__String>4 channel2</Channel_s__String>
+            <SamplingRate>48000</SamplingRate>
+            <SamplingRate_String>48.0 KHz</SamplingRate_String>
+            <SamplingCount>28799952</SamplingCount>
+            <Resolution>16</Resolution>
+            <Resolution_String>16 bit3</Resolution_String>
+            <BitDepth>16</BitDepth>
+            <BitDepth_String>16 bit3</BitDepth_String>
+            <Delay>175800</Delay>
+            <Delay_String>2mn 55s</Delay_String>
+            <Delay_String1>2mn 55s 800ms</Delay_String1>
+            <Delay_String2>2mn 55s</Delay_String2>
+            <Delay_String3>00:02:55.800</Delay_String3>
+            <Delay_Source>Container</Delay_Source>
+            <Delay_Source_String>Container</Delay_Source_String>
+            <Video_Delay>0</Video_Delay>
+            <Video0_Delay>0</Video0_Delay>
+            <StreamSize>921598464</StreamSize>
+            <StreamSize_String>879 MiB (20%)</StreamSize_String>
+            <StreamSize_String1>879 MiB</StreamSize_String1>
+            <StreamSize_String2>879 MiB</StreamSize_String2>
+            <StreamSize_String3>879 MiB</StreamSize_String3>
+            <StreamSize_String4>878.9 MiB</StreamSize_String4>
+            <StreamSize_String5>879 MiB (20%)</StreamSize_String5>
+            <StreamSize_Proportion>0.19627</StreamSize_Proportion>
+            <Delay_SDTI>175801</Delay_SDTI>
+        </track>
+
+    </File>
+</Mediainfo>

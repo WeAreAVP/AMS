@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Mediainfo version="0.7.60">
+    <File>
+        <track type="General">
+            <Count>280</Count>
+            <StreamCount>1</StreamCount>
+            <StreamKind>General</StreamKind>
+            <StreamKind_String>General</StreamKind_String>
+            <StreamKindID>0</StreamKindID>
+            <AudioCount>1</AudioCount>
+            <Audio_Format_List>PCM</Audio_Format_List>
+            <Audio_Format_WithHint_List>PCM</Audio_Format_WithHint_List>
+            <Audio_Codec_List>PCM</Audio_Codec_List>
+            <CompleteName>cpb-aacip-169-1937q01m.wav</CompleteName>
+            <FileName>cpb-aacip-169-1937q01m</FileName>
+            <FileExtension>wav</FileExtension>
+            <Format>Wave</Format>
+            <Format_String>Wave</Format_String>
+            <Format_Extensions>wav</Format_Extensions>
+            <Format_Commercial>Wave</Format_Commercial>
+            <InternetMediaType>audio/vnd.wave</InternetMediaType>
+            <Codec>Wave</Codec>
+            <Codec_String>Wave</Codec_String>
+            <Codec_Extensions>wav</Codec_Extensions>
+            <FileSize>95561096</FileSize>
+            <FileSize_String>91.1 MiB</FileSize_String>
+            <FileSize_String1>91 MiB</FileSize_String1>
+            <FileSize_String2>91 MiB</FileSize_String2>
+            <FileSize_String3>91.1 MiB</FileSize_String3>
+            <FileSize_String4>91.13 MiB</FileSize_String4>
+            <Duration>497707</Duration>
+            <Duration_String>8mn 17s</Duration_String>
+            <Duration_String1>8mn 17s 707ms</Duration_String1>
+            <Duration_String2>8mn 17s</Duration_String2>
+            <Duration_String3>00:08:17.707</Duration_String3>
+            <OverallBitRate_Mode>CBR</OverallBitRate_Mode>
+            <OverallBitRate_Mode_String>CBR</OverallBitRate_Mode_String>
+            <OverallBitRate>1536022</OverallBitRate>
+            <OverallBitRate_String>1536 Kbps</OverallBitRate_String>
+            <StreamSize>1168</StreamSize>
+            <StreamSize_String>1.14 KiB (0%)</StreamSize_String>
+            <StreamSize_String1>1 KiB</StreamSize_String1>
+            <StreamSize_String2>1.1 KiB</StreamSize_String2>
+            <StreamSize_String3>1.14 KiB</StreamSize_String3>
+            <StreamSize_String4>1.141 KiB</StreamSize_String4>
+            <StreamSize_String5>1.14 KiB (0%)</StreamSize_String5>
+            <StreamSize_Proportion>0.00001</StreamSize_Proportion>
+            <Producer>Pro Tools</Producer>
+            <Encoded_Date>2012-08-30 16:24:32</Encoded_Date>
+            <File_Modified_Date>UTC 2012-12-11 00:12:35</File_Modified_Date>
+            <File_Modified_Date_Local>2012-12-10 19:12:35</File_Modified_Date_Local>
+            <Producer_Reference>A7T9VdadLXmaaaGk</Producer_Reference>
+        </track>
+
+        <track type="Audio">
+            <Count>217</Count>
+            <StreamCount>1</StreamCount>
+            <StreamKind>Audio</StreamKind>
+            <StreamKind_String>Audio</StreamKind_String>
+            <StreamKindID>0</StreamKindID>
+            <ID>0</ID>
+            <ID_String>0</ID_String>
+            <Format>PCM</Format>
+            <Format_Commercial>PCM</Format_Commercial>
+            <Format_Settings_Endianness>Little</Format_Settings_Endianness>
+            <CodecID>1</CodecID>
+            <CodecID_Url>http://www.microsoft.com/windows/</CodecID_Url>
+            <Codec>PCM</Codec>
+            <Codec_String>PCM</Codec_String>
+            <Codec_Family>PCM</Codec_Family>
+            <Codec_Info>Microsoft PCM</Codec_Info>
+            <Codec_Url>http://www.microsoft.com/windows/</Codec_Url>
+            <Codec_CC>1</Codec_CC>
+            <Duration>497707</Duration>
+            <Duration_String>8mn 17s</Duration_String>
+            <Duration_String1>8mn 17s 707ms</Duration_String1>
+            <Duration_String2>8mn 17s</Duration_String2>
+            <Duration_String3>00:08:17.707</Duration_String3>
+            <BitRate_Mode>CBR</BitRate_Mode>
+            <BitRate_Mode_String>CBR</BitRate_Mode_String>
+            <BitRate>1536000</BitRate>
+            <BitRate_String>1536 Kbps</BitRate_String>
+            <Channel_s_>2</Channel_s_>
+            <Channel_s__String>2 channel2</Channel_s__String>
+            <SamplingRate>48000</SamplingRate>
+            <SamplingRate_String>48.0 KHz</SamplingRate_String>
+            <SamplingCount>23889936</SamplingCount>
+            <FrameCount>9</FrameCount>
+            <Resolution>16</Resolution>
+            <Resolution_String>16 bit3</Resolution_String>
+            <BitDepth>16</BitDepth>
+            <BitDepth_String>16 bit3</BitDepth_String>
+            <Delay>0</Delay>
+            <Delay_String3>00:00:00.000</Delay_String3>
+            <Delay_Source>Container (bext)</Delay_Source>
+            <Delay_Source_String>Container (bext)</Delay_Source_String>
+            <StreamSize>95559928</StreamSize>
+            <StreamSize_String>91.1 MiB (100%)</StreamSize_String>
+            <StreamSize_String1>91 MiB</StreamSize_String1>
+            <StreamSize_String2>91 MiB</StreamSize_String2>
+            <StreamSize_String3>91.1 MiB</StreamSize_String3>
+            <StreamSize_String4>91.13 MiB</StreamSize_String4>
+            <StreamSize_String5>91.1 MiB (100%)</StreamSize_String5>
+            <StreamSize_Proportion>0.99999</StreamSize_Proportion>
+        </track>
+
+    </File>
+</Mediainfo>

@@ -201,7 +201,7 @@ if(	!	$isAjax)
 																												foreach($records	as	$asset)
 																												{
 
-																																echo	'<tr>';
+																																echo	'<tr id="tr_'.$asset->id.'">';
 																																foreach($this->column_order	as	$row)
 																																{
 																																				$type	=	$row['title'];
@@ -624,4 +624,3 @@ if(	!	$isAjax)
 								</div>
 				</div>
 <?php	}	?>
-

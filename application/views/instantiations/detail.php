@@ -3,13 +3,9 @@
 
 								<?php
 								
-								$asset_title_type	=	trim(str_replace('(**)',	'',	$asset_details->title_type));
-								$asset_title_type	=	explode('|',	$asset_title_type);
-								
-								$asset_title	=	trim(str_replace('(**)',	'',	$asset_details->title));
-								$asset_title	=	explode('|',	$asset_title);
-								$asset_title_ref	=	trim(str_replace('(**)',	'',	$asset_details->title_ref));
-								$asset_title_ref	=	explode('|',	$asset_title_ref);
+								$asset_title_type	=		explode('|',	trim(str_replace('(**)',	'',	$asset_details->title_type)));
+								$asset_title	=		explode('|',	trim(str_replace('(**)',	'',	$asset_details->title)));
+								$asset_title_ref	=		explode('|',	trim(str_replace('(**)',	'',	$asset_details->title_ref)));
 								$combine_title	=	'';
 								foreach($asset_title	as	$index	=>	$title)
 								{
@@ -32,8 +28,17 @@
 								?>
 								<h2><?php	echo	$combine_title;	?></h2>
 				</div>
+					<?php	if	($next_result_id)
+				{	?>
+								<div style="float: right;margin-left:5px"><a href="<?php	echo	site_url	('instantiations/detail/'	.	$next_result_id);	?>" class="btn">Next >></a></div>
+				<?php	}
+				if	($prev_result_id)
+				{
+								?>
+								<div style="float: right;margin-left:5px"><a href="<?php	echo	site_url	('instantiations/detail/'	.	$prev_result_id);	?>" class="btn"><< Previous</a></div>
+<?php	}	?>
 				<div style="float: right;">
-								<button class="btn btn-large"><span class="icon-download-alt"></span>Export Instantiation</button>
+								<button class="btn "><span class="icon-download-alt"></span>Export Instantiation</button>
 				</div>
 				<div class="clearfix"></div>
 				<?php	$this->load->view('partials/_list');	?>
@@ -453,6 +458,5 @@
 				</div>
 
 </div>
-
 
 

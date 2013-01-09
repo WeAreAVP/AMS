@@ -1,8 +1,6 @@
 <div class="row">
 				<div style="margin: 2px 0px 10px 0px;float:left;">
 								<?php
-								$next_result_id;
-								$prev_result_id;
 								$asset_title_type	=	explode	('|',	trim	(str_replace	('(**)',	'',	$asset_details->title_type)));
 								$asset_title	=	explode	('|',	trim	(str_replace	('(**)',	'',	$asset_details->title)));
 								$asset_title_ref	=	explode	('|',	trim	(str_replace	('(**)',	'',	$asset_details->title_ref)));

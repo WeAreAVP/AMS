@@ -49,7 +49,7 @@ class	Users	extends	CI_Model
 								$this->db->select("$users_table.*",	FALSE);
 								$this->db->select("$roles_table.name AS role_name",	FALSE);
 								$this->db->select("$station_table.station_name AS st_name",	FALSE);
-								$this->db->select("$profile_table.id as profile_id,first_name,last_name,phone_no",	FALSE);
+								$this->db->select("$profile_table.id as profile_id,first_name,last_name,phone_no,title",	FALSE);
 								$this->db->join($roles_table,	"$roles_table.id = $users_table.role_id");
 								$this->db->join($profile_table,	"$profile_table.user_id = $users_table.id");
 								$this->db->join($station_table,	"$station_table.id = $users_table.station_id",	'left');

@@ -491,7 +491,7 @@ class	Crons	extends	CI_Controller
 																																								$instantiation_dates_d['instantiation_date']	=	str_replace	(array	('?',	'Unknown',	'unknown',	'`',	'['	.	']',	'N/A',	'N/A?',	'Jim Cooper',	'various',	'.00',	'.0',	'John Kelling',	'Roll in',	'interview'),	'',	trim	($pbcore_extension['children']['extension'][0]['text']));
 																																								if	(isset	($instantiation_dates_d['instantiation_date'])	&&	!	is_empty	($instantiation_dates_d['instantiation_date']))
 																																								{
-																																												$date_check	=	is_valid_date	($instantiation_dates_d['instantiation_date']);
+																																												$date_check	=	$this->is_valid_date	($instantiation_dates_d['instantiation_date']);
 																																												if	($date_check	===	FALSE)
 																																												{
 																																																$instantiation_annotation_d	=	array	();

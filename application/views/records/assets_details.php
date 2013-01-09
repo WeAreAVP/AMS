@@ -30,15 +30,18 @@
 								<h2><?php	echo	$combine_title;	?></h2>
 				</div>
 				<?php	if	($next_result_id)
-				{	?>
+				{
+								?>
 								<div style="float: right;margin-left:5px"><a href="<?php	echo	site_url	('records/details/'	.	$next_result_id);	?>" class="btn">Next >></a></div>
-				<?php	}
+				<?php
+				}
 				if	($prev_result_id)
 				{
 								?>
 								<div style="float: right;margin-left:5px"><a href="<?php	echo	site_url	('records/details/'	.	$prev_result_id);	?>" class="btn"><< Previous</a></div>
-<?php	}	?>
-								<div style="float: right;"><a href="<?php	echo	site_url	('records/index/'	.	(isset($this->session->userdata['offset'])	&&	!is_empty($this->session->userdata['offset']))?0:$this->session->userdata['offset']);	?>" class="btn">Return</a>
+				<?php	}
+				?>
+				<div style="float: right;margin-left:5px;"><a href="<?php	echo	site_url	('records/index/'.$last_page);	?>" class="btn">Return</a>
 				</div>
 				<div style="float: right;">
 								<button class="btn"><span class="icon-download-alt"></span>Export Asset</button>
@@ -81,7 +84,7 @@
 																								</td>					
 																				</tr>	
 
-																<?php	}	?>
+<?php	}	?>
 																<!--				Asset Type End		-->
 																<!--				Asset Title Start		-->
 																<?php
@@ -93,10 +96,10 @@
 																												<label><i class="icon-question-sign"></i><span class="label_star"> *</span> <b>Title(s):</b></label>
 																								</td>
 																								<td>
-																				<?php	echo	$combine_title;	?>
+				<?php	echo	$combine_title;	?>
 																								</td>
 																				</tr>
-																<?php	}	?>
+<?php	}	?>
 																<!--				Asset Title End		-->
 																<!--				Asset Description Start		-->
 																<?php
@@ -111,7 +114,7 @@
 																												<p><?php	echo	$asset_details->description;	?></p>
 																								</td>
 																				</tr>
-																<?php	}	?>
+<?php	}	?>
 																<!--				Asset Description Start		-->
 																<!--				Asset Genre Start		-->
 																<?php
@@ -490,7 +493,7 @@
 																																				<label><i class="icon-question-sign"></i> <b>Rights:</b></label>
 																																</td>
 																																<td>
-																												<?php	echo	$combine_right;	?>
+												<?php	echo	$combine_right;	?>
 																																</td>
 																												</tr>
 																												<?php
@@ -533,7 +536,7 @@
 																																				<label><i class="icon-question-sign"></i> <b>Audience Level:</b></label>
 																																</td>
 																																<td>
-																												<?php	echo	$combine_audience;	?>
+												<?php	echo	$combine_audience;	?>
 																																</td>
 																												</tr>
 																												<?php
@@ -575,7 +578,7 @@
 																																				<label><i class="icon-question-sign"></i> <b>Audience Rating:</b></label>
 																																</td>
 																																<td>
-																												<?php	echo	$combine_audience_rating;	?>
+												<?php	echo	$combine_audience_rating;	?>
 																																</td>
 																												</tr>
 																												<?php
@@ -618,7 +621,7 @@
 																																				<label><i class="icon-question-sign"></i> <b>Annotation:</b></label>
 																																</td>
 																																<td>
-																												<?php	echo	$combine_annotations;	?>
+												<?php	echo	$combine_annotations;	?>
 																																</td>
 																												</tr>
 																												<?php
@@ -658,7 +661,7 @@
 																																<label><i class="icon-question-sign"></i><span class="label_star"> *</span> <b>Local ID:</b></label>
 																												</td>
 																												<td>
-																								<?php	echo	$combine_local_identifier;	?>
+								<?php	echo	$combine_local_identifier;	?>
 																												</td>
 																								</tr>
 																								<?php
@@ -684,7 +687,7 @@
 																												<label><i class="icon-question-sign"></i><span class="label_star"> *</span> <b>American Archive GUID:</b></label>
 																								</td>
 																								<td>
-																				<?php	echo	$combine_guid;	?>
+				<?php	echo	$combine_guid;	?>
 																								</td>
 																				</tr>
 <?php	}	?>

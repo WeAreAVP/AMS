@@ -201,7 +201,7 @@ if(	!	$isAjax)
 																												foreach($records	as	$asset)
 																												{
 
-																																echo	'<tr>';
+																																echo	'<tr id="tr_{$asset->id}">';
 																																foreach($this->column_order	as	$row)
 																																{
 																																				$type	=	$row['title'];
@@ -625,3 +625,13 @@ if(	!	$isAjax)
 				</div>
 <?php	}	?>
 
+<script>
+				$.fn.scrollView = function () {
+    return this.each(function () {
+        $('html, body').animate({
+            scrollTop: $(this).offset().top
+        }, 1000);
+    });
+}
+				$('#tr_123').scrollView();
+</script>

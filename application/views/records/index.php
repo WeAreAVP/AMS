@@ -624,14 +624,3 @@ if(	!	$isAjax)
 								</div>
 				</div>
 <?php	}	?>
-
-<script>
-				$.fn.scrollView = function () {
-    return this.each(function () {
-        $('html, body').animate({
-            scrollTop: $(this).offset().top
-        }, 1000);
-    });
-}
-				$('#tr_123').scrollView();
-</script>

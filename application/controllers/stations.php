@@ -303,6 +303,16 @@ class	Stations	extends	MY_Controller
 																								$this->session->set_userdata('upload_csv_error',	'csv is not in a right format.');
 																								redirect('stations/index');
 																				}
+																				else
+																				{
+																								$valid	=	$records[0];
+
+																								if($valid[0]	!=	'CPB ID'	||	$valid[1]	!=	'Station (Brand) Name'	||	$valid[2]	!=	'Contact Name')
+																								{
+																												$this->session->set_userdata('upload_csv_error',	'csv is not in a right format.');
+																												redirect('stations/index');
+																								}
+																				}
 																				$station_detail	=	array(
 																				'cpb_id'																	=>	$row[0],
 																				'station_name'											=>	$row[1],
@@ -337,15 +347,15 @@ class	Stations	extends	MY_Controller
 																				}
 																				unset($station_detail);
 																				$station_user	=	array(
-																				'role_id'												=>	4,
-																				'station_id'									=>	$station_id,
-																				'password'											=>	crypt($this->dx_auth->_encode($row[21])),
-																				'email'														=>	$row[12],
-																				'is_secondary'							=>	(strtolower($row[20])	==	'yes')	?	0	:	1
+																				'role_id'						=>	4,
+																				'station_id'			=>	$station_id,
+																				'password'					=>	crypt($this->dx_auth->_encode($row[21])),
+																				'email'								=>	$row[12],
+																				'is_secondary'	=>	(strtolower($row[20])	==	'yes')	?	0	:	1
 																				);
 																				$name	=	explode(' ',	$row[2],	2);
-																				
-																				
+
+
 																				$station_user_detail	=	array(
 																				'first_name'	=>	(isset($name[0]))	?	$name[0]	:	'',
 																				'last_name'		=>	(isset($name[1]))	?	utf8_encode($name[1])	:	'',

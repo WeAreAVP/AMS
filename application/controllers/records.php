@@ -59,7 +59,7 @@ class	Records	extends	MY_Controller
 												}
 												$this->set_facet_search	($search);
 								}
-								$this->session->set_userdata	('offset',	$offset);
+								$this->session->set_userdata	('page_link',	'records/index');
 								$data['facet_search_url']	=	site_url	('records/index');
 								$data['current_tab']	=	'simple';
 								if	(isset	($this->session->userdata['current_tab'])	&&	!	empty	($this->session->userdata['current_tab']))
@@ -208,10 +208,10 @@ class	Records	extends	MY_Controller
 																else
 																				$data['prev_result_id']	=	$search_results_array[$search_result_pointer	-	1]['id'];
 												}
-												$data['last_page']	=	0;
-												if	(isset	($this->session->userdata['offset'])	&&	!	is_empty	($this->session->userdata['offset']))
+												$data['last_page']	=	'';
+												if	(isset	($this->session->userdata['page_link'])	&&	!	is_empty	($this->session->userdata['page_link']))
 												{
-																$data['last_page']	=	$this->session->userdata['offset'];
+																$data['last_page']	=	$this->session->userdata['page_link'];
 												}
 
 												$this->load->view	('records/assets_details',	$data);

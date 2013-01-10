@@ -78,6 +78,7 @@ class	Instantiations	extends	MY_Controller
 
 												$this->set_facet_search	($search);
 								}
+								$this->session->set_userdata	('page_link',	'instantiations/index/'	.	$offset);
 								$data['get_column_name']	=	$this->make_array	();
 								$data['stations']	=	$this->station_model->get_all	();
 								$data['nomination_status']	=	$this->instantiation->get_nomination_status	();
@@ -191,6 +192,12 @@ class	Instantiations	extends	MY_Controller
 																				else
 																								$data['prev_result_id']	=	$search_results_array[$search_result_pointer	-	1]['id'];
 																}
+																$data['last_page']	=	'';
+																if	(isset	($this->session->userdata['page_link'])	&&	!	is_empty	($this->session->userdata['page_link']))
+																{
+																				$data['last_page']	=	$this->session->userdata['page_link'];
+																}
+
 																$this->load->view	('instantiations/detail',	$data);
 												}
 												else

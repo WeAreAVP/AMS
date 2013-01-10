@@ -40,9 +40,10 @@
 								?>
 								<div style="float: right;margin-left:5px"><a href="<?php	echo	site_url	('records/details/'	.	$prev_result_id);	?>" class="btn"><< Previous</a></div>
 				<?php	}
+					if	(!is_empty($last_page)){
 				?>
-				<div style="float: right;margin-left:5px;"><a href="<?php	echo	site_url	('records/index/'.$last_page);	?>" class="btn">Return</a>
-				</div>
+				<div style="float: right;margin-left:5px;"><a href="<?php	echo	site_url	($last_page);	?>" class="btn">Return</a></div>
+				<?php } ?>
 				<div style="float: right;">
 								<button class="btn"><span class="icon-download-alt"></span>Export Asset</button>
 				</div>

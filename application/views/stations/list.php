@@ -91,6 +91,7 @@ if (!$is_ajax)
             { ?><div class="alert" style="margin-bottom: 0px; margin-top: 0px;"><?php echo $this->session->userdata['sent']; ?></div><br/><?php } $this->session->unset_userdata('sent'); ?>
             <div class="row" style="margin:5px 0px;">
                 <a href="javascript://" class="btn btn-large" onclick="editStations();">Batch Edit</a>
+                <a href="#updateStations" role="button" class="btn btn-large" data-toggle="modal">Update Station Records</a>
                 <a href="javascript://" class="btn btn-large" onclick="checkStations();">Send Message</a>
             </div>
 
@@ -146,6 +147,7 @@ if (!$is_ajax)
     </div>
     <?php $this->load->view('stations/_edit_station'); ?>
     <?php $this->load->view('stations/_messages'); ?>
+    <?php $this->load->view('stations/_update_stations'); ?>
 
 
     <script type="text/javascript">

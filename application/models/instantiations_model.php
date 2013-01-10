@@ -170,7 +170,7 @@ class	Instantiations_Model	extends	CI_Model
 					*/
 				function	get_generations_by_generation	($generation)
 				{
-								$this->db->where	('generation LIKE',	$generation);
+								$this->db->where	('generation LIKE',	$generation,false);
 								$res	=	$this->db->get	($this->table_generations);
 								if	(isset	($res)	&&	!empty	($res))
 								{

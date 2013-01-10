@@ -53,7 +53,7 @@ class	Instantiations	extends	MY_Controller
 					*/
 				public	function	index	()
 				{
-
+								$offset	=	($this->uri->segment	(3))	?	$this->uri->segment	(3)	:	0;
 								$params	=	array	('search'	=>	'');
 								if	(isAjax	())
 								{
@@ -96,7 +96,7 @@ class	Instantiations	extends	MY_Controller
 								}
 								$data['hidden_fields']	=	$is_hidden;
 								$data['isAjax']	=	FALSE;
-								$offset	=	($this->uri->segment	(3))	?	$this->uri->segment	(3)	:	0;
+
 								$records	=	$this->sphinx->instantiations_list	($params,	$offset);
 								$data['total']	=	$records['total_count'];
 								$config['total_rows']	=	$data['total'];

@@ -256,88 +256,173 @@ class	Stations	extends	MY_Controller
 
 				public	function	import_station_contacts()
 				{
-//								header("Content-type: text/html; charset=iso-8859-1");
-								$name	=	'Nouman tayyab Bokhari';
-//								debug(explode(' ',	$name,	2),	FALSE);
-								$file	=	file_get_contents("assets/station_contacts.csv");
-								$records	=	array_map("str_getcsv",	preg_split('/\r*\n+|\r+/',	$file));
-								$count	=	count($records);
-								$type	=	array('Radio'					=>	0,	'TV'								=>	1,	'Joint'					=>	2);
-								$station_id	=	NULL;
-								foreach($records	as	$index	=>	$row)
+								$config['upload_path']	=	"./uploads/";
+								$config['allowed_types']	=	'csv';
+								$this->load->library('upload',	$config);
+
+								$upload	=	NULL;
+								if(	!	$this->upload->do_upload('csv_file'))
 								{
-
-												if($index	!==	0	&&	$index	!=	$count	-	1)
+												$this->session->set_userdata('upload_csv_error',	$this->upload->display_errors());
+												redirect('stations/index');
+								}
+								else
+								{
+												$upload	=	$this->upload->data();
+												if(	!	isset($upload['file_name'])	||	!	$upload['file_name'])
 												{
-//																debug($row);
-																$station_detail	=	array(
-																'cpb_id'																	=>	$row[0],
-																'station_name'											=>	$row[1],
-																'type'																			=>	$type[$row[4]],
-																'address_primary'								=>	$row[5],
-																'address_secondary'						=>	$row[6],
-																'city'																			=>	$row[7],
-																'state'																		=>	$row[8],
-																'zip'																				=>	$row[9],
-																'allocated_hours'								=>	$row[13],
-																'allocated_buffer'							=>	$row[4],
-																'total_allocated'								=>	$row[15],
-																'nominated_hours_final'		=>	$row[18],
-																'nominated_buffer_final'	=>	$row[19],
-																'is_certified'											=>	($row[16]	==	'TRUE')	?	1	:	0,
-																'is_agreed'														=>	($row[17]	==	'TRUE')	?	1	:	0
-																);
-																$station	=	$this->station_model->get_station_by_cpb_id("$row[0]");
-																if($station)
-																{
-																				$station_id	=	$station->id;
-																				$this->station_model->update_station($station_id,	$station_detail);
-//																				echo	'<br/>Station Updated ID='	.	$station->id;
-																}
-																else
-																{
-																				$station_id	=	$this->station_model->insert_station($station_detail);
+																$this->session->set_userdata('upload_csv_error',	'Not a valid file name.');
+																redirect('stations/index');
+												}
 
-//																				echo	'<br/>Station Inserted ID='	.	$station_id;
-																}
-																unset($station_detail);
-																$station_user	=	array(
-																'role_id'												=>	4,
-																'station_id'									=>	$station_id,
-																'password'											=>	crypt($this->dx_auth->_encode($row[21])),
-																'email'														=>	$row[12],
-																'is_secondary'							=>	(strtolower($row[20])	==	'yes')	?	0	:	1
-																);
-																$name	=	explode(' ',	$row[2],	2);
-																$station_user_detail	=	array(
-																'first_name'	=>	(isset($name[0]))	?	$name[0]	:	'',
-																'last_name'		=>	(isset($name[1]))	?	$name[1]	:	'',
-																'phone_no'			=>	$row[10],
-																'fax'								=>	$row[11],
-																'title'						=>	$row[3],
-																);
-																$db_usser	=	$this->users->get_user_by_email($row[12]);
-																if($db_usser->num_rows()	==	1)
-																{
-																				$user_info	=	$db_usser->row();
-																				$user_id	=	$user_info->id;
-																				$this->users->set_user($user_id,	$station_user);
-																				$station_user_detail['user_id']	=	$user_id;
-																				$this->user_profile->set_profile($user_id,	$station_user_detail);
-																}
-																else
-																{
-																				$user_id	=	$this->users->create_user($station_user);
-																				$station_user_detail['user_id']	=	$user_id;
-																				$this->user_profile->insert_profile($station_user_detail);
-																				
-																}
-																unset($station_user);
-																unset($station_user_detail);
+												if($upload['file_ext']	!==	'.csv')
+												{
+																$this->session->set_userdata('upload_csv_error',	'Not a valid csv format.');
+																redirect('stations/index');
 												}
 								}
-								exit;
-//								debug($records);
+								$file_name	=	$upload['file_name'];
+
+								$file	=	file_get_contents("uploads/$file_name");
+								$records	=	array_map("str_getcsv",	preg_split('/\r*\n+|\r+/',	$file));
+								$count	=	count($records);
+								$type	=	array('Radio'															=>	0,	'TV'																		=>	1,	'Joint'															=>	2);
+								$station_id	=	NULL;
+								$station_update_count	=	array('station'	=>	'',	'user'				=>	'');
+								if($count	>	0)
+								{
+												foreach($records	as	$index	=>	$row)
+												{
+
+
+
+																if($index	!==	0	&&	$index	!=	$count	-	1)
+																{
+																				if(count($row)	!==	22)
+																				{
+																								$this->session->set_userdata('upload_csv_error',	'csv is not in a right format.');
+																								redirect('stations/index');
+																				}
+																				$station_detail	=	array(
+																				'cpb_id'																	=>	$row[0],
+																				'station_name'											=>	$row[1],
+																				'type'																			=>	$type[$row[4]],
+																				'address_primary'								=>	$row[5],
+																				'address_secondary'						=>	$row[6],
+																				'city'																			=>	$row[7],
+																				'state'																		=>	$row[8],
+																				'zip'																				=>	$row[9],
+																				'allocated_hours'								=>	$row[13],
+																				'allocated_buffer'							=>	$row[4],
+																				'total_allocated'								=>	$row[15],
+																				'nominated_hours_final'		=>	$row[18],
+																				'nominated_buffer_final'	=>	$row[19],
+																				'is_certified'											=>	($row[16]	==	'TRUE')	?	1	:	0,
+																				'is_agreed'														=>	($row[17]	==	'TRUE')	?	1	:	0
+																				);
+																				$station	=	$this->station_model->get_station_by_cpb_id("$row[0]");
+
+																				if($station)
+																				{
+																								$station_id	=	$station->id;
+																								$this->station_model->update_station($station_id,	$station_detail);
+																								if(	!	isset($station_update_count['station'][$row[0]]))
+																												$station_update_count['station'][$row[0]]	=	'updated';
+																				}
+																				else
+																				{
+																								$station_id	=	$this->station_model->insert_station($station_detail);
+																								if(	!	isset($station_update_count['station'][$row[0]]))
+																												$station_update_count['station'][$row[0]]	=	'inserted';
+																				}
+																				unset($station_detail);
+																				$station_user	=	array(
+																				'role_id'												=>	4,
+																				'station_id'									=>	$station_id,
+																				'password'											=>	crypt($this->dx_auth->_encode($row[21])),
+																				'email'														=>	$row[12],
+																				'is_secondary'							=>	(strtolower($row[20])	==	'yes')	?	0	:	1
+																				);
+																				$name	=	explode(' ',	$row[2],	2);
+																				
+																				
+																				$station_user_detail	=	array(
+																				'first_name'	=>	(isset($name[0]))	?	$name[0]	:	'',
+																				'last_name'		=>	(isset($name[1]))	?	utf8_encode($name[1])	:	'',
+																				'phone_no'			=>	$row[10],
+																				'fax'								=>	$row[11],
+																				'title'						=>	$row[3],
+																				);
+//																				debug($station_user_detail,	FALSE);
+																				$db_usser	=	$this->users->get_user_by_email($row[12]);
+																				if($db_usser->num_rows()	==	1)
+																				{
+																								$user_info	=	$db_usser->row();
+																								$user_id	=	$user_info->id;
+																								$this->users->set_user($user_id,	$station_user);
+																								$station_user_detail['user_id']	=	$user_id;
+																								$this->user_profile->set_profile($user_id,	$station_user_detail);
+																								if(	!	isset($station_update_count['user'][$user_id]))
+																												$station_update_count['user'][$user_id]	=	'updated';
+																				}
+																				else
+																				{
+																								$user_id	=	$this->users->create_user($station_user);
+																								$station_user_detail['user_id']	=	$user_id;
+																								$this->user_profile->insert_profile($station_user_detail);
+																								if(	!	isset($station_update_count['user'][$user_id]))
+																												$station_update_count['user'][$user_id]	=	'inserted';
+																				}
+																				unset($station_user);
+																				unset($station_user_detail);
+																}
+												}
+								}
+
+								$inserted_user	=	0;
+								$updated_user	=	0;
+								$inserted_station	=	0;
+								$updated_station	=	0;
+								foreach($station_update_count['user']	as	$user)
+								{
+												if($user	===	'inserted')
+												{
+																$inserted_user	++;
+												}
+												else
+												{
+																$updated_user	++;
+												}
+								}
+								$total_user	=	$total_station	=	'';
+								if($inserted_user	!==	0)
+												$total_user.=	' '	.	$inserted_user	.	' user(s) inserted.';
+								if($updated_user	!==	0)
+								{
+												$total_user.=($total_user	!=	'')	?	' and '	:	'';
+												$total_user.=	' '	.	$updated_user	.	' user(s) updated.';
+								}
+								foreach($station_update_count['station']	as	$station)
+								{
+												if($station	===	'inserted')
+												{
+																$inserted_station	++;
+												}
+												else
+												{
+																$updated_station	++;
+												}
+								}
+								if($inserted_station	!==	0)
+												$total_station.=	' '	.	$inserted_station	.	' station(s) inserted.';
+								if($updated_station	!==	0)
+								{
+												$total_station.=($total_station	!=	'')	?	' and '	:	'';
+												$total_station.=	' '	.	$updated_station	.	' station(s) updated.';
+								}
+
+								$this->session->set_userdata('upload_success_msg',	$total_station	.	$total_user);
+								redirect('stations/index');
 				}
 
 }

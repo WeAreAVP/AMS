@@ -95,7 +95,7 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->limit	(5);
 								$this->db->group_by	("$this->_assets_table.id");
 								$result	=	$this->db->get	($this->table_instantiations);
-								if	(isset	($result)	&&	!empty	($result))
+								if	(isset	($result)	&&	!	empty	($result))
 								{
 												return	$result->result	();
 								}
@@ -170,9 +170,10 @@ class	Instantiations_Model	extends	CI_Model
 					*/
 				function	get_generations_by_generation	($generation)
 				{
-								$this->db->where	(' generation LIKE ',	"'".$generation."'",false);
-								$res	=	$this->db->get	($this->table_generations);
-								if	(isset	($res)	&&	!empty	($res))
+								$sql	=	'SELECT * FROM `'.$this->table_generations.'` WHERE `generation` LIKE CONVERT( _utf8 "'	.	$generation	.	'" USING latin1 )
+																COLLATE latin1_swedish_ci';
+								$res	=	$this->db->query($sql);
+								if	(isset	($res)	&&	!	empty	($res))
 								{
 												return	$res->row	();
 								}
@@ -191,7 +192,7 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->where	('instantiations_id',	$instantiation_id);
 								$this->db->where	('event_types_id',	$event_types_id);
 								$res	=	$this->db->get	($this->table_events);
-								if	(isset	($res)	&&	!empty	($res))
+								if	(isset	($res)	&&	!	empty	($res))
 												return	$res->row	();
 								return	false;
 				}
@@ -212,7 +213,7 @@ class	Instantiations_Model	extends	CI_Model
 				LEFT JOIN generations AS gen ON ing.generations_id=gen.id
 				WHERE ide.identifier LIKE "'	.	$guid	.	'" AND inf.format_name LIKE "'	.	$physical_format	.	'" AND inf.format_type="physical"';
 								$res	=	$this->db->query	($sql);
-								if	(isset	($res)	&&	!empty	($res))
+								if	(isset	($res)	&&	!	empty	($res))
 								{
 												return	$res->row	();
 								}
@@ -229,7 +230,7 @@ class	Instantiations_Model	extends	CI_Model
 				{
 								$this->db->where	('event_type LIKE',	$event_type);
 								$res	=	$this->db->get	($this->table_event_types);
-								if	(isset	($res)	&&	!empty	($res))
+								if	(isset	($res)	&&	!	empty	($res))
 								{
 												return	$res->row	();
 								}
@@ -246,7 +247,7 @@ class	Instantiations_Model	extends	CI_Model
 				{
 								$this->db->where	('color LIKE',	$color);
 								$res	=	$this->db->get	($this->table_instantiation_colors);
-								if	(isset	($res)	&&	!empty	($res))
+								if	(isset	($res)	&&	!	empty	($res))
 								{
 												return	$res->row	();
 								}
@@ -263,7 +264,7 @@ class	Instantiations_Model	extends	CI_Model
 				{
 								$this->db->where	('unit_of_measure LIKE',	$unit_of_measure);
 								$res	=	$this->db->get	($this->table_data_rate_units);
-								if	(isset	($res)	&&	!empty	($res))
+								if	(isset	($res)	&&	!	empty	($res))
 								{
 												return	$res->row	();
 								}
@@ -280,7 +281,7 @@ class	Instantiations_Model	extends	CI_Model
 				{
 								$this->db->where	('media_type LIKE',	$media_type);
 								$res	=	$this->db->get	($this->table_instantiation_media_types);
-								if	(isset	($res)	&&	!empty	($res))
+								if	(isset	($res)	&&	!	empty	($res))
 								{
 												return	$res->row	();
 								}
@@ -297,7 +298,7 @@ class	Instantiations_Model	extends	CI_Model
 				{
 								$this->db->where	('date_type LIKE',	$date_type);
 								$res	=	$this->db->get	($this->table_date_types);
-								if	(isset	($res)	&&	!empty	($res))
+								if	(isset	($res)	&&	!	empty	($res))
 								{
 												return	$res->row	();
 								}
@@ -398,7 +399,7 @@ class	Instantiations_Model	extends	CI_Model
 
 				function	insert_instantiations	($data)
 				{
-								$data['created']=date('Y-m-d H:i:s');
+								$data['created']	=	date	('Y-m-d H:i:s');
 								$this->db->insert	($this->table_instantiations,	$data);
 								return	$this->db->insert_id	();
 				}
@@ -412,7 +413,7 @@ class	Instantiations_Model	extends	CI_Model
 					*/
 				function	update_instantiations	($instantiation_id,	$data)
 				{
-								$data['updated']=date('Y-m-d H:i:s');
+								$data['updated']	=	date	('Y-m-d H:i:s');
 								$this->db->where	('id',	$instantiation_id);
 								return	$this->db->update	($this->table_instantiations,	$data);
 				}

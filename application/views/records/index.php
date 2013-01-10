@@ -69,10 +69,10 @@ if(	!	$isAjax)
 								foreach($records	as	$asset)
 								{
 
-												$guid_identifier	=	str_replace("(**)",	"N/A",	$asset->guid_identifier);
-												$local_identifier	=	str_replace("(**)",	"N/A",	$asset->local_identifier);
-												$asset_description	=	str_replace("(**)",	"N/A",	$asset->description);
-												$asset_title	=	str_replace("(**)",	"N/A",	$asset->asset_title);
+												$guid_identifier	=	str_replace("(**)",	"",	$asset->guid_identifier);
+												$local_identifier	=	str_replace("(**)",	"",	$asset->local_identifier);
+												$asset_description	=	str_replace("(**)",	"",	$asset->description);
+												$asset_title	=	str_replace("(**)",	"",	$asset->asset_title);
 																												?>
 																																<tr style="cursor: pointer;">
 																																				<td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>

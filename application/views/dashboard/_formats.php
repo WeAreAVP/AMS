@@ -85,7 +85,7 @@
       };
       var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 						console.log(digitized_format_name);
-						if(digitized_format_name==''){
+						if(digitized_format_name!=null){
       chart2 = new Highcharts.Chart({
         chart: {
           renderTo: 'digitized',

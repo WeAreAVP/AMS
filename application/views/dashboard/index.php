@@ -18,8 +18,9 @@
   </div>
   <div style="clear: both;"></div>
   <?php $this->load->view('dashboard/_region'); ?>
-		<div class="clearfix"></div>
+	
   <?php // $this->load->view('dashboard/_tv_radio'); ?>
+			<div class="clearfix"></div>
   <?php $this->load->view('dashboard/_formats'); ?>
 </div>
 

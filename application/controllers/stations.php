@@ -298,7 +298,7 @@ class	Stations	extends	MY_Controller
 
 																if($index	!==	0	&&	$index	!=	$count	-	1)
 																{
-																				if(count($row)	!==	22)
+																				if(count($row)	!==	22 || count($row)	!==	21)
 																				{
 																								$this->session->set_userdata('upload_csv_error',	'csv is not in a right format.');
 																								redirect('stations/index');
@@ -346,13 +346,16 @@ class	Stations	extends	MY_Controller
 																												$station_update_count['station'][$row[0]]	=	'inserted';
 																				}
 																				unset($station_detail);
+																				
 																				$station_user	=	array(
 																				'role_id'						=>	4,
 																				'station_id'			=>	$station_id,
-																				'password'					=>	crypt($this->dx_auth->_encode($row[21])),
 																				'email'								=>	$row[12],
 																				'is_secondary'	=>	(strtolower($row[20])	==	'yes')	?	0	:	1
 																				);
+																				if(isset($row[21])){
+																								$station_user['password']=crypt($this->dx_auth->_encode($row[21]));
+																				}
 																				$name	=	explode(' ',	$row[2],	2);
 
 

@@ -84,7 +84,8 @@
         }
       };
       var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
-						if(digitized_format_name.length>0){
+						console.log(digitized_format_name);
+						if(digitized_format_name==''){
       chart2 = new Highcharts.Chart({
         chart: {
           renderTo: 'digitized',

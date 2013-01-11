@@ -164,7 +164,7 @@
     
     }
 				else{
-				$('#digitized').html('<center>No Digitized Format available</center>')
+				$('#digitized').html('<center>No digitized format available</center>');
 				}
       chart3 = new Highcharts.Chart({
         chart: {

@@ -169,7 +169,7 @@ class	Instantiations_Model	extends	CI_Model
 					*/
 				function	get_events_by_instantiation_id	($instantiation_id)
 				{
-								$this->db->select	("$this->table_event_types.event_type,$this->table_events.id,$this->table_events.instantiations_id,$this->table_events.event_types_id,$this->table_events.event_date,CASE WHEN e.event_outcome=0 THEN 'FAIL' WHEN e.event_outcome=1 THEN 'PASS' END AS event_outcome,e.event_note",	FALSE);
+								$this->db->select	("$this->table_event_types.event_type,$this->table_events.id,$this->table_events.instantiations_id,$this->table_events.event_types_id,$this->table_events.event_date,CASE WHEN $this->table_events.event_outcome=0 THEN 'FAIL' WHEN $this->table_events.event_outcome=1 THEN 'PASS' END AS event_outcome,$this->table_events.event_note",	FALSE);
 								$this->db->join	($this->table_event_types,	"$this->table_event_types.id	 = $this->table_events.event_types_id",	'left');
 								$this->db->where	('instantiations_id',	$instantiation_id);
 								$query	=	$this->db->get	($this->table_events);

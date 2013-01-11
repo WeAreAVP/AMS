@@ -22,6 +22,11 @@
     var chart2;
     var chart3;
     $(document).ready(function() {
+								digitized_format_name=<?php echo json_encode($digitized_format_name); ?>;
+								digitized_total=<?php echo json_encode($digitized_total); ?>;
+								scheduled_format_name=<?php echo json_encode($scheduled_format_name); ?>;
+								scheduled_total=<?php echo json_encode($scheduled_total); ?>;
+								
       Highcharts.theme = {
         colors: '#000000',
         chart: {
@@ -102,52 +107,7 @@
           }
         },
         xAxis: {
-          categories: [
-            '1/4 inch audio tape',
-            '3/4 inch videotape',
-            '3/4 inch videotape: U-matic',
-            '3/4 inch videotape: U-matic SP',
-            '8 mm video',
-            '8 mm Hi8 Video',
-            'Video8',
-            'Betacam',
-            'Beta',
-            'Betacam SP',
-            'Betacam SX',
-            'Betamax',
-            'Betamax: HB',
-            'Betamax: Super',
-            '1/8 inch audio cassette',
-            'Audio cassette',
-            'CD',
-            'CD-R',
-            'CD-ROM',
-            'CD-RW',
-            'DAT',
-            'Betacam Digital (Digi Beta)',
-            'DVCAM',
-            'DVCAM: Sony',
-            'DVCPRO',
-            'DVD data disc',
-            'DVD-R',
-            'DVD+R',
-            'DVD',
-            'Hi8',
-            'Microcassette',
-            'Mini-cassette',
-            'Minidisc',
-            'MiniDV',
-            'DVC',
-            'S-VHS',
-            'Sony IMX tape',
-            'MPEG IMX',
-            'VHS',
-            'LP Record',
-            'EP Record',
-            'LP Record (45)',
-            'Others'
-          
-          ],
+          categories: digitized_format_name,
           gridLineWidth: 0,
           labels: {
             rotation: -90,
@@ -161,10 +121,10 @@
           tickWidth:0
         },
         yAxis: {
-          tickInterval:100,
+//          tickInterval:100,
           gridLineWidth: 0,
           min: 0,
-          max:1000,
+//          max:1000,
           title: {
             text: ''
           }
@@ -185,14 +145,10 @@
             pointWidth: 10,
             borderWidth: 0,
           
-            data: [341, 211, 210, 201, 191, 119, 192, 218, 128,127,
-              126, 315, 414, 514, 613, 712, 812, 511,101, 109,
-              165,342,262,192,442,143,235,347,312,610,
-              712,514,212,192,456,567,765,432,345,123,
-              123,456,789],
+            data: digitized_total,
             dataLabels: {
               enabled: true,
-              rotation: 0,
+														rotation: 0,
               color: '#000000',
               align: 'center',
               x: 0,
@@ -229,52 +185,7 @@
           }
         },
         xAxis: {
-          categories: [
-            '1/4 inch audio tape',
-            '3/4 inch videotape',
-            '3/4 inch videotape: U-matic',
-            '3/4 inch videotape: U-matic SP',
-            '8 mm video',
-            '8 mm Hi8 Video',
-            'Video8',
-            'Betacam',
-            'Beta',
-            'Betacam SP',
-            'Betacam SX',
-            'Betamax',
-            'Betamax: HB',
-            'Betamax: Super',
-            '1/8 inch audio cassette',
-            'Audio cassette',
-            'CD',
-            'CD-R',
-            'CD-ROM',
-            'CD-RW',
-            'DAT',
-            'Betacam Digital (Digi Beta)',
-            'DVCAM',
-            'DVCAM: Sony',
-            'DVCPRO',
-            'DVD data disc',
-            'DVD-R',
-            'DVD+R',
-            'DVD',
-            'Hi8',
-            'Microcassette',
-            'Mini-cassette',
-            'Minidisc',
-            'MiniDV',
-            'DVC',
-            'S-VHS',
-            'Sony IMX tape',
-            'MPEG IMX',
-            'VHS',
-            'LP Record',
-            'EP Record',
-            'LP Record (45)',
-            'Others'
-          
-          ],
+          categories: scheduled_format_name,
           gridLineWidth: 0,
           labels: {
             rotation: -90,
@@ -311,11 +222,7 @@
             pointWidth: 10,
             borderWidth: 0,
           
-            data: [41, 21, 20, 20, 91, 19, 12, 28, 12,27,
-              16, 35, 44, 54, 63, 72, 82, 51,11, 19,
-              15,32,22,12,42,13,25,37,32,60,
-              72,54,22,12,46,57,75,42,35,13,
-              13,46,79],
+            data: scheduled_total,
             dataLabels: {
               enabled: true,
               rotation: 0,
@@ -333,4 +240,21 @@
     });
     
   });
+		
+		function abbreviateNumber(value) {
+    var newValue = value;
+    if (value >= 1000) {
+        var suffixes = ["", "k", "m", "b","t"];
+        var suffixNum = Math.floor( (""+value).length/3 );
+        var shortValue = '';
+        for (var precision = 2; precision >= 1; precision--) {
+            shortValue = parseFloat( (suffixNum != 0 ? (value / Math.pow(1000,suffixNum) ) : value).toPrecision(precision));
+            var dotLessShortValue = (shortValue + '').replace(/[^a-zA-Z 0-9]+/g,'');
+            if (dotLessShortValue.length <= 2) { break; }
+        }
+        if (shortValue % 1 != 0)  shortNum = shortValue.toFixed(1);
+        newValue = shortValue+suffixes[suffixNum];
+    }
+    return newValue;
+}
 </script>

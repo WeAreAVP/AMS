@@ -84,6 +84,7 @@
         }
       };
       var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
+						if(digitized_format_name.length>0){
       chart2 = new Highcharts.Chart({
         chart: {
           renderTo: 'digitized',
@@ -161,7 +162,10 @@
           }]
       });
     
-    
+    }
+				else{
+				$('#digitized').html('<center>No Digitized Format available</center>')
+				}
       chart3 = new Highcharts.Chart({
         chart: {
           renderTo: 'scheduled',

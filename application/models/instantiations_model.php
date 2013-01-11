@@ -147,6 +147,10 @@ class	Instantiations_Model	extends	CI_Model
 								return	$result;
 				}
 
+				/**
+					* 
+					* @return Object
+					*/
 				function	get_event_type	()
 				{
 								$this->db->order_by	("event_type");
@@ -154,12 +158,34 @@ class	Instantiations_Model	extends	CI_Model
 								return	$query	=	$this->db->get	($this->table_event_types)->result	();
 				}
 
+				/**
+					* 
+					* @return object 
+					*/
 				function	get_event_outcome	()
 				{
 								$this->db->select	("CASE WHEN event_outcome=0 THEN 'FAIL' WHEN event_outcome=1 THEN 'PASS' END AS event_outcome",	FALSE);
 								$this->db->order_by	("event_outcome");
 								$query	=	$this->db->get	($this->table_events)->result	();
 								return	$query;
+				}
+
+				/**
+					* 
+					* @return object 
+					*/
+				function	get_events_by_instantiation_id	($instantiation_id)
+				{
+								$this->db->select	("$this->table_event_types.event_type,$this->table_events.id,$this->table_events.instantiations_id,$this->table_events.event_types_id,$this->table_events.event_date,CASE WHEN e.event_outcome=0 THEN 'FAIL' WHEN e.event_outcome=1 THEN 'PASS' END AS event_outcome,e.event_note",	FALSE);
+								$this->db->join	($this->table_event_types,	"$this->table_event_types.id	 = $this->table_events.event_types_id",	'left');
+								$this->db->where	('instantiations_id',	$instantiation_id);
+								$query	=	$this->db->get	($this->table_events);
+								echo $this->db->last_query();
+								if	(isset	($query)	&&	!	is_empty	($query))
+								{
+												return	$query->result	();
+								}
+								return	false;
 				}
 
 				/**
@@ -170,9 +196,9 @@ class	Instantiations_Model	extends	CI_Model
 					*/
 				function	get_generations_by_generation	($generation)
 				{
-								$sql	=	'SELECT * FROM `'.$this->table_generations.'` WHERE `generation` LIKE CONVERT( _utf8 "'	.	$generation	.	'" USING latin1 )
+								$sql	=	'SELECT * FROM `'	.	$this->table_generations	.	'` WHERE `generation` LIKE CONVERT( _utf8 "'	.	$generation	.	'" USING latin1 )
 																COLLATE latin1_swedish_ci';
-								$res	=	$this->db->query($sql);
+								$res	=	$this->db->query	($sql);
 								if	(isset	($res)	&&	!	empty	($res))
 								{
 												return	$res->row	();

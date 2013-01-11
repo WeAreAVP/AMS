@@ -307,7 +307,7 @@ class	Stations	extends	MY_Controller
 																				{
 																								$valid	=	$records[0];
 
-																								if($valid[0]	!=	'CPB ID'	||	$valid[1]	!=	'Station (Brand) Name'	||	$valid[2]	!=	'Contact Name')
+																								if(strtolower($valid[0])	!=	'cpb id'	||	strtolower($valid[1])	!=	'station (brand) name'	||	strtolower($valid[2])	!=	'contact name')
 																								{
 																												$this->session->set_userdata('upload_csv_error',	'csv is not in a right format.');
 																												redirect('stations/index');

@@ -25,11 +25,11 @@ $phone_no	=	array(
 				'value'	=>	$user_info->phone_no,
 );
 
-//$title = array(
-//    'name' => 'title',
-//    'id' => 'title',
-//    'value' => $user_info->title,
-//);
+$title = array(
+    'name' => 'title',
+    'id' => 'title',
+    'value' => $user_info->title,
+);
 $fax	=	array(
 				'name'			=>	'fax',
 				'id'					=>	'fax',
@@ -92,10 +92,10 @@ if(	!	isset($profile_edit))
             <td class="_label"><?php	echo	form_label('Phone #:',	$phone_no['id']);	?></td>
             <td><?php	echo	form_input($phone_no);	?><span style="color: red;"><?php	echo	form_error($phone_no['name']);	?></span></td>
         </tr>
-<!--        <tr>
+        <tr>
             <td class="_label"><?php	echo	form_label('Title:',	$title['id']);	?></td>
             <td><?php	echo	form_input($title);	?><span style="color: red;"><?php	echo	form_error($title['name']);	?></span></td>
-        </tr>-->
+        </tr>
         <tr>
             <td class="_label"><?php	echo	form_label('Fax :',	$fax['id']);	?></td>
             <td><?php	echo	form_input($fax);	?><span style="color: red;"><?php	echo	form_error($fax['name']);	?></span></td>

@@ -53,16 +53,17 @@ if(	!	$is_ajax)
 												<table class="tablesorter table table-bordered" id="user_table_list">
 																<thead>
 																				<tr>
-																								<th>Email</th>
-																								<th>Name</th>
-																								<th>Phone #</th>
-																								<th>Station</th>
-																								<th>Role</th>
+																								<th style="width:150px;">Email</th>
+																								<th style="width:100px">Name</th>
+																								<th style="width: 110px;">Title</th>
+																								<th style="width: 140px;">Phone #</th>
+																								<th style="width: 200px;">Station</th>
+																								<th style="width:80px;">Role</th>
 																								<?php
 																								if($current_role	==	1	||	$current_role	==	2	||	$current_role	==	3)
 																								{
 																												?>
-																												<th></th>
+																								<th style="width: 33px;"></th>
 																								<?php	}	?>
 																				</tr>
 																</thead>
@@ -78,6 +79,7 @@ if(	!	$is_ajax)
 																								<tr>
 																												<td><?php	echo	$row->email;	?></td>
 																												<td><?php	echo	$row->first_name	.	' '	.	$row->last_name;	?></td>
+																												<td><?php	echo	$row->title;	?></td>
 																												<td><?php	echo	$row->phone_no;	?></td>
 																												<td><?php	echo	$row->st_name;	?></td>
 																												<td><?php	echo	$row->role_name;	?></td>

@@ -44,7 +44,7 @@ if(isset($this->session->userdata['upload_success_msg']))
 								<h3 id="myErrorModalLabel">Uh Oh.</h3>
 				</div>
 				<div class="modal-body">
-								<p><?php	echo	$upload_error;	?></p>
+								<div style="color: #b94a48;font-weight: bold"><?php	echo	$upload_error;	?></div>
 				</div>
 				<div class="modal-footer">
 								<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
@@ -85,16 +85,16 @@ if(isset($this->session->userdata['upload_success_msg']))
 												size = file.size;
 												type = file.type;
 												console.log(type);
-												if(type=='text/csv' || type=='application/vnd.ms-excel' || type=='text/x-comma-separated-values' || type=='application/x-csv' || type=='text/x-csv' || type=='text/x-csv'){
+//												if(type=='text/csv' || type=='application/vnd.ms-excel' || type=='text/x-comma-separated-values' || type=='application/x-csv' || type=='text/x-csv' || type=='text/x-csv'){
 																$('#csv_file_container').hide();
 																$('#btn_cancel').hide();
 																$('#file_upload_confirm').show();
 																$('#btn_back').show();
 																$('#btn_update_record').show();
-												}
-												else{
-																$('#error_file').html('Please select a vaild csv file.');
-												}
+//												}
+//												else{
+//																$('#error_file').html('Please select a vaild csv file.');
+//												}
 												
 												
 								});

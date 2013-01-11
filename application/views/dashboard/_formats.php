@@ -84,6 +84,8 @@
         }
       };
       var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
+						console.log(digitized_format_name);
+						if(digitized_format_name!=null){
       chart2 = new Highcharts.Chart({
         chart: {
           renderTo: 'digitized',
@@ -161,7 +163,10 @@
           }]
       });
     
-    
+    }
+				else{
+				$('#digitized').html('<center>No digitized format available</center>');
+				}
       chart3 = new Highcharts.Chart({
         chart: {
           renderTo: 'scheduled',
@@ -199,10 +204,10 @@
           tickWidth:0
         },
         yAxis: {
-          tickInterval:100,
+//          tickInterval:100,
           gridLineWidth: 0,
           min: 0,
-          max:1000,
+//          max:1000,
           title: {
             text: ''
           }

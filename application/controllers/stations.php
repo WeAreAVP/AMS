@@ -298,7 +298,7 @@ class	Stations	extends	MY_Controller
 
 																if($index	!==	0	&&	$index	!=	$count	-	1)
 																{
-																				if(count($row)	!==	22 || count($row)	!==	21)
+																				if(count($row)	!==	22 && count($row)	!==	21)
 																				{
 																								$this->session->set_userdata('upload_csv_error',	'csv is not in a right format.');
 																								redirect('stations/index');

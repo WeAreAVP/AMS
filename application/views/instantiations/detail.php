@@ -437,7 +437,9 @@
 																<?php	}	?>
 																<!--				Annotation	End		-->
 												</table>
-												<?php
+											
+								</div>
+									<?php
 												if	(isset	($instantiation_events)	&&	!	is_empty	($instantiation_events))
 												{
 																?>
@@ -463,7 +465,6 @@
 																				</tbody></table>
 												<?php	}
 												?>
-								</div>
 								<?php
 								if	($instantiation_detail->status)
 								{

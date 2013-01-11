@@ -204,10 +204,10 @@
           tickWidth:0
         },
         yAxis: {
-          tickInterval:100,
+//          tickInterval:100,
           gridLineWidth: 0,
           min: 0,
-          max:1000,
+//          max:1000,
           title: {
             text: ''
           }

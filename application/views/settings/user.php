@@ -53,7 +53,7 @@ if(	!	$is_ajax)
 												<table class="tablesorter table table-bordered" id="user_table_list">
 																<thead>
 																				<tr>
-																								<th style="width:150px;">Email</th>
+																								<th style="width:160px;">Email</th>
 																								<th style="width:100px">Name</th>
 																								<th style="width: 110px;">Title</th>
 																								<th style="width: 140px;">Phone #</th>

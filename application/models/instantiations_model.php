@@ -173,7 +173,6 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->join	($this->table_event_types,	"$this->table_event_types.id	 = $this->table_events.event_types_id",	'left');
 								$this->db->where	('instantiations_id',	$instantiation_id);
 								$query	=	$this->db->get	($this->table_events);
-								echo	$this->db->last_query	();
 								if	(isset	($query)	&&	!	is_empty	($query))
 								{
 												return	$query->result	();

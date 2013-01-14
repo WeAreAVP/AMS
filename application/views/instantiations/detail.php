@@ -100,7 +100,7 @@
 																																if	($instantiation_detail->dates)
 																																{
 																																				?>
-																																				<span><?php	echo	$instantiation_detail->dates;	?></span>
+																																				<span><?php	echo	date("Y-m-d",$instantiation_detail->dates);	?></span>
 
 																																<?php	}	?>
 

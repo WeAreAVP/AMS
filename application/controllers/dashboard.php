@@ -53,8 +53,8 @@ class	Dashboard	extends	MY_Controller
 				{
 								/* Start Graph Get Digitized Formats  */
 								$total_digitized	=	$this->instantiation->get_digitized_formats();
-									$data['digitized_format_name']=NULL;
-									$data['digitized_total']=NULL;
+								$data['digitized_format_name']	=	NULL;
+								$data['digitized_total']	=	NULL;
 								foreach($total_digitized	as	$digitized)
 								{
 												$data['digitized_format_name'][]	=	$digitized->format_name;
@@ -63,8 +63,8 @@ class	Dashboard	extends	MY_Controller
 								/* End Graph Get Digitized Formats  */
 								/* Start Graph Get Scheduled Formats  */
 								$total_scheduled	=	$this->instantiation->get_scheduled_formats();
-								$data['scheduled_format_name']=NULL;
-									$data['scheduled_total']=NULL;
+								$data['scheduled_format_name']	=	NULL;
+								$data['scheduled_total']	=	NULL;
 								foreach($total_scheduled	as	$scheduled)
 								{
 												$data['scheduled_format_name'][]	=	$scheduled->format_name;
@@ -72,7 +72,7 @@ class	Dashboard	extends	MY_Controller
 								}
 								/* End Graph Get Scheduled Formats  */
 								/* Start Meterial Goal  */
-								$data['material_goal']	=	$this->instantiation->get_material_goal();
+								$data['material_goal']	=	$this->instantiation->get_digitized_hours();
 								/* End Meterial Goal  */
 								/* Start Hours at crawford  */
 								foreach($this->config->item('messages_type')	as	$index	=>	$msg_type)
@@ -92,10 +92,11 @@ class	Dashboard	extends	MY_Controller
 								}
 								/* End Hours at crawford  */
 								/* Start goal hours  */
+								$data['total_goal']	=	$this->instantiation->get_material_goal();
 								$digitized_hours	=	$this->instantiation->get_digitized_hours();
-								$data['total_hours']=$this->abbr_number($data['material_goal']->total);
-								$data['percentage_hours']=		round(($digitized_hours->total*100)/$data['material_goal']->total);
-								
+								$data['total_hours']	=	$this->abbr_number($data['total_goal']->total);
+								$data['percentage_hours']	=	round(($digitized_hours->total	*	100)	/	$data['total_goal']->total);
+
 								/* End goal hours  */
 
 

@@ -53,6 +53,8 @@ class	Dashboard	extends	MY_Controller
 				{
 								/* Start Graph Get Digitized Formats  */
 								$total_digitized	=	$this->instantiation->get_digitized_formats();
+									$data['digitized_format_name']=NULL;
+									$data['digitized_total']=NULL;
 								foreach($total_digitized	as	$digitized)
 								{
 												$data['digitized_format_name'][]	=	$digitized->format_name;
@@ -61,6 +63,8 @@ class	Dashboard	extends	MY_Controller
 								/* End Graph Get Digitized Formats  */
 								/* Start Graph Get Scheduled Formats  */
 								$total_scheduled	=	$this->instantiation->get_scheduled_formats();
+								$data['scheduled_format_name']=NULL;
+									$data['scheduled_total']=NULL;
 								foreach($total_scheduled	as	$scheduled)
 								{
 												$data['scheduled_format_name'][]	=	$scheduled->format_name;

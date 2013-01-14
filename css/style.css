@@ -234,7 +234,7 @@ html, body {
 
 }
 .assets-sum{
-    font-size: 40px;padding-top: 16px;font-weight: bold;float: left;
+    font-size: 40px;padding-top: 16px;font-weight: bold;float: left;padding-right: 5px;
 }
 .assets-subdetail{
     font-size: 20px;

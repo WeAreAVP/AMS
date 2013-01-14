@@ -20,6 +20,7 @@ class	Station_Model	extends	CI_Model
 								$this->_prefix	=	'';
 								$this->_table	=	'stations';
 								$this->_table_backup	=	'stations_backup';
+								$this->_table_messages	=	'messages';
 				}
 
 				/**
@@ -54,13 +55,12 @@ class	Station_Model	extends	CI_Model
 				function	get_station_by_cpb_id($cpb_id)
 				{
 								$this->db->where('cpb_id',	$cpb_id);
-								$result=$this->db->get($this->_table);
-								if	(isset	($result)	&&	!empty	($result))
+								$result	=	$this->db->get($this->_table);
+								if(isset($result)	&&	!	empty($result))
 								{
-												return	$result->row	();
+												return	$result->row();
 								}
 								return	false;
-								
 				}
 
 				/**
@@ -168,6 +168,16 @@ class	Station_Model	extends	CI_Model
 				function	get_all_backup_stations()
 				{
 								return	$query	=	$this->db->get($this->_table_backup)->result();
+				}
+
+				function	get_hours_at_crawford($msg_type)
+				{
+								$this->db->select("($this->_table.nominated_hours_final+$this->_table.nominated_buffer_final) AS total",	FALSE);
+								$this->db->join($this->_table_messages,	"$this->_table_messages.receiver_id = $this->_table.id");
+								$this->db->where("$this->_table_messages.msg_type",	$msg_type);
+								$result	=	$this->db->get($this->_table);
+
+								return	$result->result();
 				}
 
 }

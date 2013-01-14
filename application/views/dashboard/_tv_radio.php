@@ -156,8 +156,8 @@
 																								type: 'pie',
 																								name: 'All Formats',
 																								data: [
-																												['Digitized',   75.0],
-																												['Scheduled',       25.0]
+																												['Digitized',   50.0],
+																												['Scheduled',       50.0]
 
 																								]
 																				}]

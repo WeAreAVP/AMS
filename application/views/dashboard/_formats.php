@@ -22,56 +22,7 @@
 								scheduled_format_name=<?php	echo	json_encode($scheduled_format_name);	?>;
 								scheduled_total=<?php	echo	json_encode($scheduled_total);	?>;
 								
-								Highcharts.theme = {
-												colors: [
-																'#000000', 
-																'#7D7D7D', 
-												],
-												chart: {
-																plotBackgroundColor: 'whiteSmoke',
-																plotShadow:false,
-																shadow:false,
-																pointBorderWidth:0
-												},
-												xAxis: {
-																gridLineWidth: 0,
-																labels: {
-																				style: {
-																								color: '#060b10',
-																								fontSize: '15px'
-																				}
-																}
-												},
-												yAxis: {
-																lineWidth: 0,
-																tickWidth: 0,
-																labels: {
-																				style: {
-																								color: '#000000'
-																				}
-																}
-												},
-												legend: {
-																itemStyle: {
-																				font: 'Verdana, sans-serif',
-																				color: '#000000'
-																},
-																itemHoverStyle: {
-																				color: '#000000'
-																},
-																itemHiddenStyle: {
-																				color: '#000000'
-																}
-												},
-												labels: {
-																style: {
-																				color: '#000000'
-																}
-												}
-								};
-
-								// Apply the theme
-								var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
+							
 						
 								if(digitized_format_name!=null){
 												new Highcharts.Chart({

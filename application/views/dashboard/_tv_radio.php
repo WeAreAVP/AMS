@@ -74,6 +74,7 @@
 																								]
 																				}]
 												});
+												
 												chart = new Highcharts.Chart({
 																chart: {
 																				renderTo: 'radio_graph',
@@ -110,6 +111,50 @@
 																series: [{
 																								type: 'pie',
 																								name: 'TV',
+																								data: [
+																												['Digitized',   75.0],
+																												['Scheduled',       25.0]
+
+																								]
+																				}]
+												});
+												
+												chart = new Highcharts.Chart({
+																chart: {
+																				renderTo: 'all_formats',
+																				plotBackgroundColor: 'whiteSmoke',
+																				plotBorderWidth: null,
+																				plotShadow: false
+																},
+																title: {
+																				text: ''
+																},
+																tooltip: {
+																				pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+																				percentageDecimals: 1
+																},
+																credits: {
+																				enabled: false,
+																				href: "",
+																				text: "AMS"
+																},
+																plotOptions: {
+																				pie: {
+																								allowPointSelect: true,
+																								cursor: 'pointer',
+																								dataLabels: {
+																												enabled: false,
+																												color: '#000000',
+																												connectorColor: '#000000',
+																												formatter: function() {
+																																return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+																												}
+																								}
+																				}
+																},
+																series: [{
+																								type: 'pie',
+																								name: 'All Formats',
 																								data: [
 																												['Digitized',   75.0],
 																												['Scheduled',       25.0]

@@ -48,11 +48,10 @@ class	Sphinx_Model	extends	CI_Model
 												$this->sphinxsearch->set_filter_range("start_date",	strtotime($params['start_date']),	strtotime($params['end_date']));
 								
 								if($this->is_station_user)
-												$this->sphinxsearch->set_filter("id",	array($this->station_id));
+												$this->sphinxsearch->set_filter("station_name",	array($this->station_name));
 								$res	=	$this->sphinxsearch->query($params['search_kewords'],	'stations');
-								echo '<pre>';
-								var_dump($res);
-								exit;
+							
+							
 								$execution_time	=	$res['time'];
 								if($res)
 								{

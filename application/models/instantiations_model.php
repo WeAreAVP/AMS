@@ -617,13 +617,13 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->select("count(DISTINCT $this->table_instantiation_formats.instantiations_id) AS total",	FALSE);
 								$this->db->select("$this->table_instantiation_formats.format_name",	FALSE);
 
-								$this->db->join($this->table_instantiations,	"$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id");
+								$this->db->join($this->table_instantiations,	"$this->table_instantiations.id = $this->table_instantiation_formats.instantiations_id");
 								$this->db->join($this->table_nominations,	"$this->table_nominations.instantiations_id = $this->table_instantiation_formats.instantiations_id");
 								$this->db->where("$this->table_instantiations.digitized",	'0');
 								$this->db->or_where("$this->table_instantiations.digitized IS NULL");
 								$this->db->group_by("$this->table_instantiation_formats.format_name");
 								$result	=	$this->db->get($this->table_instantiation_formats);
-								echo 'Nouman';
+								
 								return	$result->result();
 				}
 

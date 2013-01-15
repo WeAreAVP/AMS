@@ -50,7 +50,7 @@ class	Sphinx_Model	extends	CI_Model
 								if($this->is_station_user)
 												$params['search_keywords'].="@station_name '$this->station_name)'";
 //												$this->sphinxsearch->set_filter("station_name",	array($this->station_name));
-								$res	=	$this->sphinxsearch->query($params['search_kewords'],	'stations');
+								$res	=	$this->sphinxsearch->query($params['search_keywords'],	'stations');
 							
 							
 								$execution_time	=	$res['time'];

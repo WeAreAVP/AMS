@@ -56,12 +56,12 @@ class	Dashboard	extends	MY_Controller
 								$data['digitized_format_name']	=	NULL;
 								$data['digitized_total']	=	NULL;
 								$dformat_array	=	array();
-								foreach($total_scheduled	as	$total_digitized)
+								foreach($total_digitized	as	$digitized)
 								{
-												if(	!	isset($dformat_array[$total_digitized->format_name]))
-																$dformat_array[$total_digitized->format_name]	=	1;
+												if(	!	isset($dformat_array[$digitized->format_name]))
+																$dformat_array[$digitized->format_name]	=	1;
 												else
-																$dformat_array[$total_digitized->format_name]	=	$dformat_array[$total_digitized->format_name]	+	1;
+																$dformat_array[$digitized->format_name]	=	$dformat_array[$digitized->format_name]	+	1;
 								}
 								foreach($dformat_array	as	$index	=>	$format)
 								{

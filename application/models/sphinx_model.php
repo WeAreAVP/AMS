@@ -63,7 +63,8 @@ class	Sphinx_Model	extends	CI_Model
 																				{
 																								if($this->is_station_user)
 																								{
-																												echo $record['id'];
+																												if($this->station_id	==	$record['id'])
+																																$stations_list[]	=	(object)	array_merge(array('id'	=>	$record['id']),	$record['attrs']);
 																								}
 																								else
 																								{

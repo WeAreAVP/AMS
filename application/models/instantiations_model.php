@@ -621,7 +621,7 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->join($this->table_nominations,	"$this->table_nominations.instantiations_id = $this->table_instantiation_formats.instantiations_id");
 								$this->db->where("$this->table_instantiations.digitized",	'0');
 								$this->db->or_where("$this->table_instantiations.digitized IS NULL");
-//								$this->db->group_by("$this->table_instantiation_formats.format_name");
+								$this->db->group_by("$this->table_instantiation_formats.format_name");
 								$result	=	$this->db->get($this->table_instantiation_formats);
 //								echo $this->db->last_query();exit;
 								return	$result->result();

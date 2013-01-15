@@ -532,8 +532,9 @@ class	Assets_Model	extends	CI_Model
 					*/
 				function	get_publishers_by_publisher($publisher)
 				{
-								$this->db->where("publisher LIKE",	$publisher);
-								$res	=	$this->db->get($this->_table_publishers);
+								$sql	=	'SELECT * FROM `'	.	$this->_table_publishers	.	'` WHERE `publisher` LIKE CONVERT( _utf8 "'	.	$publisher	.	'" USING latin1 )
+																COLLATE latin1_swedish_ci';
+								$res	=	$this->db->query	($sql);
 								if(isset($res)	&&	!	empty($res))
 								{
 												return	$res->row();

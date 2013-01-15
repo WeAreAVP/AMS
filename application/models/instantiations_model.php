@@ -599,7 +599,7 @@ class	Instantiations_Model	extends	CI_Model
 				function	get_digitized_formats()
 				{
 
-								$this->db->select("count($this->table_instantiations.digitized) AS total",	FALSE);
+								$this->db->select("count(DISTINCT $this->table_instantiations.digitized) AS total",	FALSE);
 								$this->db->select("$this->table_instantiation_formats.format_name",	FALSE);
 
 								$this->db->join($this->table_instantiation_formats,	"$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id");
@@ -613,7 +613,7 @@ class	Instantiations_Model	extends	CI_Model
 				function	get_scheduled_formats()
 				{
 
-								$this->db->select("count($this->table_instantiations.id) AS total",	FALSE);
+								$this->db->select("count(DISTINCT $this->table_instantiations.id) AS total",	FALSE);
 								$this->db->select("$this->table_instantiation_formats.format_name",	FALSE);
 
 								$this->db->join($this->table_instantiation_formats,	"$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id");
@@ -622,13 +622,13 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->or_where("$this->table_instantiations.digitized IS NULL");
 								$this->db->group_by("$this->table_instantiation_formats.format_name");
 								$result	=	$this->db->get($this->table_instantiations);
-
+								
 								return	$result->result();
 				}
 
 				function	get_material_goal()
 				{
-								$this->db->select("count($this->table_instantiations.id) AS total",	FALSE);
+								$this->db->select("count(DISTINCT $this->table_instantiations.id) AS total",	FALSE);
 								$this->db->join($this->table_nominations,	"$this->table_nominations.instantiations_id = $this->table_instantiations.id");
 								$this->db->join($this->table_nomination_status,	"$this->table_nomination_status.id = $this->table_nominations.nomination_status_id");
 								$this->db->where("$this->table_nomination_status.status",	'Nominated/1st Priority');
@@ -638,7 +638,7 @@ class	Instantiations_Model	extends	CI_Model
 				}
 				function	get_digitized_hours()
 				{
-								$this->db->select("count($this->table_instantiations.id) AS total",	FALSE);
+								$this->db->select("count(DISTINCT $this->table_instantiations.id) AS total",	FALSE);
 								$this->db->where("$this->table_instantiations.digitized",	'1');
 								$result	=	$this->db->get($this->table_instantiations);
 

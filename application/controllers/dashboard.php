@@ -65,11 +65,23 @@ class	Dashboard	extends	MY_Controller
 								$total_scheduled	=	$this->instantiation->get_scheduled_formats();
 								$data['scheduled_format_name']	=	NULL;
 								$data['scheduled_total']	=	NULL;
+								
+//								foreach($total_scheduled	as	$scheduled)
+//								{
+//												$data['scheduled_format_name'][]	=	$scheduled->format_name;
+//												$data['scheduled_total'][]	=	(int)	$scheduled->total;
+								$format_array=array();
 								foreach($total_scheduled	as	$scheduled)
 								{
-												$data['scheduled_format_name'][]	=	$scheduled->format_name;
-												$data['scheduled_total'][]	=	(int)	$scheduled->total;
+											
+												if(!isset($format_array[$scheduled->format_name]))
+																$format_array[$scheduled->format_name]=1;
+												else
+																$format_array[$scheduled->format_name]=$format_array[$scheduled->format_name]+1;
+
+
 								}
+								debug($format_array);
 								/* End Graph Get Scheduled Formats  */
 								/* Start Meterial Goal  */
 								$data['material_goal']	=	$this->instantiation->get_digitized_hours();

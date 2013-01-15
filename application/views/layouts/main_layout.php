@@ -122,20 +122,22 @@
 																				<div class="nav-collapse">
 																								<ul class="nav">
 																												<?php
+																												$station_tab_name	=	'Station';
 																												if(	!	$this->is_station_user)
 																												{
+																																$station_tab_name	=	'Stations';
 																																?>
 																																<li class="<?php	echo	active_anchor('dashboard',	'index');	?>"><a href="<?php	echo	site_url('dashboard/index')	?>">Dashboard</a></li>
 																												<?php	}
 																												?>
 
 																												<li class="<?php	echo	(is_route_method(array('records'	=>	array('index',	'flagged',	'details'),	'instantiations'	=>	array('index',	'detail'))))	?	'active'	:	'';	?>"><a href="<?php	echo	site_url('records/index')	?>">Records</a></li>
-																												<li class="<?php	echo	active_anchor('stations',	array('index',	'detail'));	?>"><a href="<?php	echo	site_url('stations/index')	?>">Stations</a></li>
+																												<li class="<?php	echo	active_anchor('stations',	array('index',	'detail'));	?>"><a href="<?php	echo	site_url('stations/index')	?>"><?php	echo	$station_tab_name;	?></a></li>
 																												<?php
 																												if(	!	$this->is_station_user)
 																												{
 																																?>
-																																
+
 																																<li class="<?php	echo	active_anchor('reports',	'index');	?>"><a href="<?php	echo	site_url('reports/index')	?>">Reports</a></li>
 																												<?php	}
 																												?>
@@ -143,7 +145,7 @@
 
 																								</ul>
 																				</div><!--/.nav-collapse -->
-																<?php	}	?>
+<?php	}	?>
 
             </div>
         </div>
@@ -164,11 +166,11 @@
 																												<li class="<?php	echo	active_anchor('templatemanager',	array('add',	'lists',	'edit',	'details',	'readmessage'));	?>"><a href="<?php	echo	site_url('templatemanager/lists');	?>" >Email Template</a></li>
 																								<?php	}	?>
 																								<?php
-																								if(!$this->is_station_user)
+																								if(	!	$this->is_station_user)
 																								{
 																												?>
 																												<li class="<?php	echo	active_anchor('templatemanager',	'manage_crawford');	?>"><a href="<?php	echo	site_url('templatemanager/manage_crawford');	?>">Crawford Contact Details</a></li> 
-																												<?php	}
+																								<?php	}
 																								?>
 																								<li class="<?php	echo	active_anchor('settings',	'index');	?>"><a href="<?php	echo	site_url('settings/index');	?>">Users</a></li>
 																								<li class="<?php	echo	active_anchor('settings',	'edit_profile');	?>"><a href="<?php	echo	site_url('settings/edit_profile');	?>">Edit Profile</a></li> 

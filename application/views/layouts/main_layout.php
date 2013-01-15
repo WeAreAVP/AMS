@@ -130,12 +130,12 @@
 																												?>
 
 																												<li class="<?php	echo	(is_route_method(array('records'	=>	array('index',	'flagged',	'details'),	'instantiations'	=>	array('index',	'detail'))))	?	'active'	:	'';	?>"><a href="<?php	echo	site_url('records/index')	?>">Records</a></li>
-
+																												<li class="<?php	echo	active_anchor('stations',	array('index',	'detail'));	?>"><a href="<?php	echo	site_url('stations/index')	?>">Stations</a></li>
 																												<?php
 																												if(	!	$this->is_station_user)
 																												{
 																																?>
-																																<li class="<?php	echo	active_anchor('stations',	array('index',	'detail'));	?>"><a href="<?php	echo	site_url('stations/index')	?>">Stations</a></li>
+																																
 																																<li class="<?php	echo	active_anchor('reports',	'index');	?>"><a href="<?php	echo	site_url('reports/index')	?>">Reports</a></li>
 																												<?php	}
 																												?>

@@ -55,34 +55,38 @@ class	Dashboard	extends	MY_Controller
 								$total_digitized	=	$this->instantiation->get_digitized_formats();
 								$data['digitized_format_name']	=	NULL;
 								$data['digitized_total']	=	NULL;
-								foreach($total_digitized	as	$digitized)
+								$dformat_array	=	array();
+								foreach($total_scheduled	as	$total_digitized)
 								{
-												$data['digitized_format_name'][]	=	$digitized->format_name;
-												$data['digitized_total'][]	=	(int)	$digitized->total;
+												if(	!	isset($dformat_array[$total_digitized->format_name]))
+																$dformat_array[$total_digitized->format_name]	=	1;
+												else
+																$dformat_array[$total_digitized->format_name]	=	$dformat_array[$total_digitized->format_name]	+	1;
 								}
+								foreach($dformat_array	as	$index	=>	$format)
+								{
+												$data['digitized_format_name'][]	=	$index;
+												$data['digitized_total'][]	=	(int)	$format;
+								}
+
 								/* End Graph Get Digitized Formats  */
 								/* Start Graph Get Scheduled Formats  */
 								$total_scheduled	=	$this->instantiation->get_scheduled_formats();
 								$data['scheduled_format_name']	=	NULL;
 								$data['scheduled_total']	=	NULL;
-								
-//								foreach($total_scheduled	as	$scheduled)
-//								{
-//												$data['scheduled_format_name'][]	=	$scheduled->format_name;
-//												$data['scheduled_total'][]	=	(int)	$scheduled->total;
-								$format_array=array();
+
+								$format_array	=	array();
 								foreach($total_scheduled	as	$scheduled)
 								{
-											
-												if(!isset($format_array[$scheduled->format_name]))
-																$format_array[$scheduled->format_name]=1;
+
+												if(	!	isset($format_array[$scheduled->format_name]))
+																$format_array[$scheduled->format_name]	=	1;
 												else
-																$format_array[$scheduled->format_name]=$format_array[$scheduled->format_name]+1;
-
-
+																$format_array[$scheduled->format_name]	=	$format_array[$scheduled->format_name]	+	1;
 								}
-								foreach($format_array as $index=>$format){
-												$data['scheduled_format_name'][]=$index;
+								foreach($format_array	as	$index	=>	$format)
+								{
+												$data['scheduled_format_name'][]	=	$index;
 												$data['scheduled_total'][]	=	(int)	$format;
 								}
 								/* End Graph Get Scheduled Formats  */

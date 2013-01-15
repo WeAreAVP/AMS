@@ -598,13 +598,11 @@ class	Instantiations_Model	extends	CI_Model
 
 				function	get_digitized_formats()
 				{
-
-								$this->db->select("count(DISTINCT $this->table_instantiations.digitized) AS total",	FALSE);
 								$this->db->select("$this->table_instantiation_formats.format_name",	FALSE);
 
 								$this->db->join($this->table_instantiation_formats,	"$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id");
 								$this->db->where("$this->table_instantiations.digitized",	'1');
-								$this->db->group_by("$this->table_instantiation_formats.format_name");
+								$this->db->group_by("$this->table_instantiation_formats.instantiations_id");
 								$result	=	$this->db->get($this->table_instantiations);
 
 								return	$result->result();
@@ -612,9 +610,6 @@ class	Instantiations_Model	extends	CI_Model
 
 				function	get_scheduled_formats()
 				{
-
-								
-//								$this->db->select("count(DISTINCT $this->table_instantiation_formats.instantiations_id) AS total",	FALSE);
 								$this->db->select("$this->table_instantiation_formats.format_name",	FALSE);
 
 								$this->db->join($this->table_instantiations,	"$this->table_instantiations.id = $this->table_instantiation_formats.instantiations_id");
@@ -623,7 +618,7 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->or_where("$this->table_instantiations.digitized IS NULL");
 								$this->db->group_by("$this->table_instantiation_formats.instantiations_id");
 								$result	=	$this->db->get($this->table_instantiation_formats);
-//								echo $this->db->last_query();exit;
+
 								return	$result->result();
 				}
 

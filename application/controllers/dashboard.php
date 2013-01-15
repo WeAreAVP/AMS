@@ -81,7 +81,10 @@ class	Dashboard	extends	MY_Controller
 
 
 								}
-								debug($format_array);
+								foreach($format_array as $index=>$format){
+												$data['scheduled_format_name'][]=$index;
+												$data['scheduled_total'][]	=	(int)	$format;
+								}
 								/* End Graph Get Scheduled Formats  */
 								/* Start Meterial Goal  */
 								$data['material_goal']	=	$this->instantiation->get_digitized_hours();

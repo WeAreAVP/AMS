@@ -623,7 +623,7 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->or_where("$this->table_instantiations.digitized IS NULL");
 								$this->db->group_by("$this->table_instantiation_formats.format_name");
 								$result	=	$this->db->get($this->table_instantiation_formats);
-								
+								echo $this->db->last_query();
 								return	$result->result();
 				}
 

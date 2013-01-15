@@ -46,11 +46,11 @@ class	Sphinx_Model	extends	CI_Model
 												$this->sphinxsearch->set_filter("is_agreed",	array($params['agreed']));
 								if(isset($params['start_date'])	&&	$params['start_date']	!=	''	&&	isset($params['end_date'])	&&	$params['end_date']	!=	'')
 												$this->sphinxsearch->set_filter_range("start_date",	strtotime($params['start_date']),	strtotime($params['end_date']));
-								
-							
+
+
 								$res	=	$this->sphinxsearch->query($params['search_keywords'],	'stations');
-							
-							
+
+
 								$execution_time	=	$res['time'];
 								if($res)
 								{
@@ -61,12 +61,19 @@ class	Sphinx_Model	extends	CI_Model
 																{
 																				foreach($res['matches']	as	$record)
 																				{
-																								$stations_list[]	=	(object)	array_merge(array('id'	=>	$record['id']),	$record['attrs']);
+																								if($this->is_station_user)
+																								{
+																												echo $record['id'];
+																								}
+																								else
+																								{
+																												$stations_list[]	=	(object)	array_merge(array('id'	=>	$record['id']),	$record['attrs']);
+																								}
 																				}
 																}
 												}
 								}
-								debug($stations_list);
+
 								return	array("total_count"	=>	$total_record,	"records"					=>	$stations_list,	"query_time"		=>	$execution_time);
 				}
 

@@ -51,7 +51,7 @@ class	Sphinx_Model	extends	CI_Model
 												$this->sphinxsearch->set_filter("id",	array($this->station_id));
 								$res	=	$this->sphinxsearch->query($params['search_kewords'],	'stations');
 
-								debug($res);
+								var_dump($res);
 								$execution_time	=	$res['time'];
 								if($res)
 								{

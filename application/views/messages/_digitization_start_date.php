@@ -33,27 +33,27 @@
         
     });
     function checkFields(){
-        if($('#shipping_instructions').val()==''){
-            $('#shipping_instructions_error').show();
-            return false;
-        }
-        else {
-            $('#shipping_instructions_error').hide();
-        }
-            
-        if($('#comments').val()==''){
-            $('#comments_error').show();
-            return false;
-        } else {
-            $('#comments_error').hide();
-        }
-            
-        if($('#estimated_complete_date').val()==''){
-            $('#estimated_complete_date_error').show();
-            return false;
-        } else {
-            $('#estimated_complete_date_error').hide();
-        }
+//        if($('#shipping_instructions').val()==''){
+//            $('#shipping_instructions_error').show();
+//            return false;
+//        }
+//        else {
+//            $('#shipping_instructions_error').hide();
+//        }
+//            
+//        if($('#comments').val()==''){
+//            $('#comments_error').show();
+//            return false;
+//        } else {
+//            $('#comments_error').hide();
+//        }
+//            
+//        if($('#estimated_complete_date').val()==''){
+//            $('#estimated_complete_date_error').show();
+//            return false;
+//        } else {
+//            $('#estimated_complete_date_error').hide();
+//        }
         return true;
             
     }

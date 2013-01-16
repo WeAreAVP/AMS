@@ -14,7 +14,7 @@
             <span id="comments_error" style="display: none;" class="message-type_error">Please Enter Comments</span>
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group" style="display: none;">
         <label class="control-label" for="crawford_contact_details">Crawford Contact Details:</label>
         <div class="controls">
 												
@@ -36,33 +36,33 @@
         $( "#return_date" ).datepicker();
     });
     function checkFields(){
-        if($('#return_date').val()==''){
-            $('#return_date_error').show();
-            return false;
-        }
-        else {
-            $('#return_date_error').hide();
-        }
-            
-        if($('#comments').val()==''){
-            $('#comments_error').show();
-            return false;
-        } else {
-            $('#comments_error').hide();
-        }
-            
-        if($('#crawford_contact_details').val()==''){
-            $('#crawford_contact_details_error').show();
-            return false;
-        } else {
-            $('#crawford_contact_details_error').hide();
-        }
-        if($('#hd_list').val()==''){
-            $('#hd_list_error').show();
-            return false;
-        } else {
-            $('#hd_list_error').hide();
-        }
+//        if($('#return_date').val()==''){
+//            $('#return_date_error').show();
+//            return false;
+//        }
+//        else {
+//            $('#return_date_error').hide();
+//        }
+//            
+//        if($('#comments').val()==''){
+//            $('#comments_error').show();
+//            return false;
+//        } else {
+//            $('#comments_error').hide();
+//        }
+//            
+//        if($('#crawford_contact_details').val()==''){
+//            $('#crawford_contact_details_error').show();
+//            return false;
+//        } else {
+//            $('#crawford_contact_details_error').hide();
+//        }
+//        if($('#hd_list').val()==''){
+//            $('#hd_list_error').show();
+//            return false;
+//        } else {
+//            $('#hd_list_error').hide();
+//        }
         return true;
             
     }

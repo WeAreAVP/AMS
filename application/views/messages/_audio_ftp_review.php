@@ -39,33 +39,33 @@
         $( "#review_end_date" ).datepicker();
     });
     function checkFields(){
-        if($('#review_end_date').val()==''){
-            $('#review_end_date_error').show();
-            return false;
-        }
-        else {
-            $('#review_end_date_error').hide();
-        }
-            
-        if($('#comments').val()==''){
-            $('#comments_error').show();
-            return false;
-        } else {
-            $('#comments_error').hide();
-        }
-            
-        if($('#ftp_detail').val()==''){
-            $('#ftp_detail_error').show();
-            return false;
-        } else {
-            $('#ftp_detail_error').hide();
-        }
-        if($('#media_list').val()==''){
-            $('#media_list_error').show();
-            return false;
-        } else {
-            $('#media_list_error').hide();
-        }
+//        if($('#review_end_date').val()==''){
+//            $('#review_end_date_error').show();
+//            return false;
+//        }
+//        else {
+//            $('#review_end_date_error').hide();
+//        }
+//            
+//        if($('#comments').val()==''){
+//            $('#comments_error').show();
+//            return false;
+//        } else {
+//            $('#comments_error').hide();
+//        }
+//            
+//        if($('#ftp_detail').val()==''){
+//            $('#ftp_detail_error').show();
+//            return false;
+//        } else {
+//            $('#ftp_detail_error').hide();
+//        }
+//        if($('#media_list').val()==''){
+//            $('#media_list_error').show();
+//            return false;
+//        } else {
+//            $('#media_list_error').hide();
+//        }
         return true;
             
     }

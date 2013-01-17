@@ -51,7 +51,7 @@
 								var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 				});
 </script>
-<div style="margin: 0px -20px;">
+<div>
 				<div class="asset-stats">
 								<div class="span5">
 												<div class="assets-sum"><?php	echo	number_format($material_goal->total);	?></div>

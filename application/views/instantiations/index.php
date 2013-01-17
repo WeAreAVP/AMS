@@ -7,6 +7,7 @@ if(	!	$isAjax)
 												<?php	$this->load->view('instantiations/_facet_search');	?>
 								</div>
 								<div  class="span9" id="data_container">
+												<?php	$this->load->view('layouts/_records_nav');	?>
 								<?php	}	?>
 								<?php
 								if(count($records)	>	0)

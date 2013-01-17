@@ -9,24 +9,37 @@ html, body {
     /*     background-color: #eee !important;*/
     /*     min-width:1210px; */
 }
-.navbar-inner{padding-left: 20px !important;padding-right: 20px !important;}
+
 .container {
     zoom : 1;
     margin-top: 70px;
     /*    min-width:1170px !important; */
 }
+.custom-nav-inner{
+				background:url(/images/nav-back.png) transparent repeat-x;
+				border: none;
+				border-radius: 0;
+}
+.custom-nav-ul{
+				float: right !important;
+				margin: 0 !important;
+}
+.custom-nav-ul li a{
+				padding: 7px 10px 6px !important;
+				margin-top: 10px !important;
+				font-weight: bold;
+				border-radius: 2px 2px 0px 0px;
 
+}
+.custom-nav-ul li a:hover{
+				color:red;
+}
 /* The white background content wrapper */
 .container > .content {
-    background-color: #fff;
-    padding: 20px;
-    margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-    -webkit-border-radius: 0 0 6px 6px;
-    -moz-border-radius: 0 0 6px 6px;
-    border-radius: 0 0 6px 6px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-    box-shadow: 0 1px 2px rgba(0,0,0,.15);
+				background-color: #fff;
+				padding: 20px 0px;
+				margin: 0 -20px;
+
 }
 .check-all{
     margin-top: 30px !important;
@@ -34,15 +47,12 @@ html, body {
 }
 .custom-nav{
     text-align: right;
-    /*    padding-right: 240px;*/
-    background-color: #ffffff;
-    height: 25px;
-    padding-top: 15px;
+    padding:2px 250px;
+				background-color: #000000;
+
 }
 .custom-nav a{
     color: #999;
-    margin-left: 10px;
-    margin-right: 10px;
     cursor: pointer; 
 }
 #search_bar{
@@ -116,8 +126,7 @@ html, body {
 }
 .message-alert{
     background:#DD2226;
-    float:right;
-    margin:-14px -23px 0 0;
+				margin: 0px 3px;
 }
 .table-freeze-custom {
 
@@ -571,4 +580,26 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 .label_star{
 				color:red;
+}
+.records-nav{
+				list-style: none;
+				background:url(/images/sub-nav-bg.png) transparent repeat-x;
+				margin-left: 0;
+				margin-bottom: 18px;
+				height: 28px;
+}
+.records-nav li{
+				float: left;
+
+}
+.records-nav li a{
+				padding: 6px 11px;
+				line-height: 28px;
+				color: white;
+				font-weight: bold;
+				text-decoration: none;
+				background: url(/images/nav-back.png) transparent repeat-x;
+}
+.records-nav li.active a{
+				background: url(/images/1234.png) transparent repeat-x;
 }

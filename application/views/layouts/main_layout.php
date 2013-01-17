@@ -101,26 +101,26 @@
 																								if(isset($this->total_unread)	&&	$this->total_unread	>	0	&&	$this->is_station_user)
 																								{
 																												?>
-																												<a class="btn large message" href="<?php	echo	site_url('messages/inbox')	?>">Messages<span class="badge label-important message-alert"><?php	echo	$this->total_unread	?></span></a>
+																												<a class="btn large message" href="<?php	echo	site_url('messages/inbox')	?>"><i class="icon-envelope icon-white"></i><span class="badge label-important message-alert"><?php	echo	$this->total_unread	?></span></a>
 																												<?php
 																								}
 																								else
 																								{
 																												?>
-																												<a href="<?php	echo	site_url('messages/inbox')	?>">Messages</a>
+																												<a href="<?php	echo	site_url('messages/inbox')	?>"><i class="icon-envelope icon-white"></i></a>
 																								<?php	}	?>
 																				</span>
-																				<a href="<?php	echo	site_url('auth/logout')	?>">Log Out</a> 
+																				<a href="<?php	echo	site_url('auth/logout')	?>"><i class="icon-cog icon-white"></i></a> 
 																</div>
 												<?php	}	?>
-            <div class="navbar-inner">
-                <a class="brand" href="<?php	echo	site_url()	?>">AMS</a>
+            <div class="navbar-inner custom-nav-inner">
+                <a class="brand" href="<?php	echo	site_url()	?>"><img src="/images/brand.png"/></a>
 																<?php
 																if($this->dx_auth->is_logged_in())
 																{
 																				?>
 																				<div class="nav-collapse">
-																								<ul class="nav">
+																								<ul class="nav custom-nav-ul">
 																												<?php
 																												$station_tab_name	=	'Station';
 																												if(	!	$this->is_station_user)
@@ -145,11 +145,11 @@
 
 																								</ul>
 																				</div><!--/.nav-collapse -->
-<?php	}	?>
+																<?php	}	?>
 
             </div>
         </div>
-        <div class="container" style="width:1170px;margin:0 auto;margin-top: 70px;">
+        <div class="container" style="width:1170px;margin:0 auto;margin-top: 55px;">
 
             <div class="content" >
 																<?php
@@ -179,17 +179,7 @@
 																				</ul>
 
 																<?php	}	?>
-																<?php
-																if(is_route_method(array('records'	=>	array('index',	'flagged'),	'instantiations'	=>	array('index'))))
-																{
-																				?>
-																				<ul class="nav nav-tabs">
-																								<li class="<?php	echo	active_anchor('records',	array('index',	'flagged'));	?>"><a href="<?php	echo	site_url('records/index');	?>">Assets</a></li>
-																								<li class="<?php	echo	active_anchor('instantiations',	array('index',	'detail'));	?>"><a href="<?php	echo	site_url('instantiations/index');	?>">Instantiations</a></li>
-
-																				</ul>
-
-																<?php	}	?>
+															
 																<?php
 																if((active_anchor('messages',	array('inbox',	'sent')))	&&	$this->can_compose_alert)
 																{

@@ -14,6 +14,7 @@ if(	!	$isAjax)
 								</div>
 
 								<div  class="span9" id="data_container">
+													<?php	$this->load->view('layouts/_records_nav');	?>
 								<?php	}	?>
 								<ul class="nav nav-tabs">
 												<li ><a href="javascript:;" style="color:#000;cursor:default;">View type :</a></li>

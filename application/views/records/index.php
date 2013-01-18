@@ -586,13 +586,13 @@ if(	!	$isAjax)
 																																																}
 																																												}
 																																												if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience",	"Annotation",	"Rights")))
-																																												{
-																																																$width	=	'min-width:100px;';
-																																												}
-																																												else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID")
-																																												{
-																																																$width	=	'min-width:175px;';
-																																												}
+																																																{
+																																																				$width	=	'min-width:100px;';
+																																																}
+																																																else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID")
+																																																{
+																																																				$width	=	'min-width:175px;';
+																																																}
 																																												echo	'<td><span style="float:left;'	.	$width	.	'">'	.	$column	.	'</span></td>';
 																																								}
 																																				}

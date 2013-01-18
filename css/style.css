@@ -47,7 +47,7 @@ html, body {
 }
 .custom-nav{
     text-align: right;
-    padding:2px 250px;
+    padding:2px 0px;
 				background-color: #000000;
 
 }
@@ -585,7 +585,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				list-style: none;
 				background:url(/images/sub-nav-bg.png) transparent repeat-x;
 				margin-left: 0;
-				margin-bottom: 18px;
+				margin-bottom: 10px;
 				height: 28px;
 }
 .records-nav li{
@@ -602,4 +602,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 .records-nav li.active a{
 				background: url(/images/1234.png) transparent repeat-x;
+}
+.records-nav-sub a{
+				color:black;
 }

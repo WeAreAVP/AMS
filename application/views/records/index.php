@@ -5,19 +5,19 @@ if(	!	$isAjax)
 
 				<div class="row-fluid">
 								<div class="span3">
-												<div class="asset-menu">
+<!--												<div class="asset-menu">
 																<div style="padding:10px;"><h4>Assets</h4></div>
 																<div class="asset-submenu active"><a href="<?php	echo	site_url('records')	?>">All Assets</a></div>
 																<div class="asset-submenu"><a href="javascript://">Flagged</a></div>
-												</div>
+												</div>-->
 												<?php	$this->load->view('instantiations/_facet_search');	?>
 								</div>
 
 								<div  class="span9" id="data_container">
 													<?php	$this->load->view('layouts/_records_nav');	?>
 								<?php	}	?>
-								<ul class="nav nav-tabs">
-												<li ><a href="javascript:;" style="color:#000;cursor:default;">View type :</a></li>
+								<ul class="nav nav-tabs records-nav-sub">
+												
 												<li id="simple_li" <?php
 								if($current_tab	==	'simple')
 								{
@@ -35,7 +35,11 @@ if(	!	$isAjax)
 												<li id="thumbnails_li" <?php
 																																									if($current_tab	==	'thumbnails')
 																																									{
-												?>class="active" <?php	}	?>><a href="javascript:;" >Thumbnail</a></li>
+												?>class="active" <?php	}	?>><a href="javascript:;" >Thumbnails</a></li>
+												<li id="flagged_li" <?php
+																																									if($current_tab	==	'flagged')
+																																									{
+												?>class="active" <?php	}	?>><a href="javascript:;" >Flagged</a></li>
 								</ul><?php
 																if(isset($records)	&&	($total	>	0))
 																{

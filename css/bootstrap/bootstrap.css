@@ -3756,7 +3756,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar-fixed-top .navbar-inner,
 .navbar-fixed-bottom .navbar-inner {
-    padding: 0px 240px;
+/*    padding: 0px 240px;*/
 /*    -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;*/

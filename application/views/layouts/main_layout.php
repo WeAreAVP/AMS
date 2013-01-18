@@ -96,6 +96,7 @@
 												{
 																?>
 																<div class="custom-nav">
+																				<div style="margin: 0 auto;width: 1210px;background: none;border: none;">
 																				<span id="msg_text_link">
 																								<?php
 																								if(isset($this->total_unread)	&&	$this->total_unread	>	0	&&	$this->is_station_user)
@@ -111,9 +112,10 @@
 																								<?php	}	?>
 																				</span>
 																				<a href="<?php	echo	site_url('auth/logout')	?>"><i class="icon-cog icon-white"></i></a> 
-																</div>
+																</div></div>
 												<?php	}	?>
-            <div class="navbar-inner custom-nav-inner">
+												<div class="custom-nav-inner">
+            <div class="navbar-inner" style="margin: 0 auto;width: 1210px;background: none;border: none;">
                 <a class="brand" href="<?php	echo	site_url()	?>"><img src="/images/brand.png"/></a>
 																<?php
 																if($this->dx_auth->is_logged_in())
@@ -149,6 +151,7 @@
 
             </div>
         </div>
+								</div>
         <div class="container" style="width:1170px;margin:0 auto;margin-top: 55px;">
 
             <div class="content" >

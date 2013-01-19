@@ -1,12 +1,11 @@
 
-<div id="search_bar" class="facet-search"> 
-    <form name="form_search" id="form_search" method="post" onsubmit="return false;">
 
-        <input type="hidden" name="current_tab" id="current_tab" value="<?php	echo	isset($this->session->userdata['current_tab'])	?	$this->session->userdata['current_tab']	:	''	?>"  />
+<form name="form_search" id="form_search" method="post" onsubmit="return false;">
 
-        <b>
-            <h4>Filter</h4>
-        </b>
+
+
+				<div id="search_bar_val" class="facet-search"> 
+								<h5 class="filter_title" id="filter_criteria">FILTER CRITERIA</h5>
         <div id="tokens">
             <!-- Custom  Search Display End  -->
 												<?php
@@ -302,7 +301,15 @@
             <div class="clearfix"></div>
 
         </div>
-        <div class="clearfix"></div>
+				</div>
+				<div class="clearfix"></div>
+				<div id="search_bar" class="facet-search"> 
+								<input type="hidden" name="current_tab" id="current_tab" value="<?php	echo	isset($this->session->userdata['current_tab'])	?	$this->session->userdata['current_tab']	:	''	?>"  />
+								<b>
+            <h5 class="filter_title">FILTER</h5>
+        </b>
+
+
 								<?php
 								if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
 								{
@@ -316,76 +323,78 @@
 												$reset	=	"none;";
 								}
 								?>
-        <div class="filter-fileds" id="limit_field_div" style="display:<?php	echo	$style;	?>">
-            <div><b>Search</b></div>
-            <div>
-                <input type="text" name="search" id="search" value=""/>
-            </div>
-        </div>
+								<div class="field-filters">
+												<div class="filter-fileds" id="limit_field_div" style="display:<?php	echo	$style;	?>">
+																<div><b>Keyword Search</b></div>
+																<div>
+																				<input type="text" name="search" id="search" value=""/>
+																</div>
+												</div>
 
-        <div class="filter-fileds">
-            <div class="btn-group" id="limit_field_dropdown" style="display:<?php	echo	$style;	?>">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                    <span id="limit_field_text">Limit Search to Field</span>
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="dropdown"><a href="#" style="white-space: normal;">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
-                        <ul class="sub-menu dropdown-menu">
-                            <li href="javascript://;" onclick="add_custom_token('Title','asset_title');"><a>Title</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Subject','asset_subject');">Subject</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Coverage','asset_coverage');">Coverage</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Genre','asset_genre');">Genre</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Publisher','asset_publisher_name');">Publisher</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Description','asset_description');">Description</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Creator Name','asset_creator_name');">Creator Name</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Creator Affiliation','asset_creator_affiliation');">Creator Affiliation</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Contributor Name','asset_contributor_name');">Contributor Name</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Contributor Affiliation','asset_contributor_affiliation');">Contributor Affiliation</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Rights Summaries','asset_rights');">Rights Summaries</a></li>
+												<div class="filter-fileds">
+																<div class="btn-group" id="limit_field_dropdown" style="display:<?php	echo	$style;	?>">
+																				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+																								<span id="limit_field_text">Limit Search to Field</span>
+																								<span class="caret"></span>
+																				</a>
+																				<ul class="dropdown-menu">
+																								<li class="dropdown"><a href="#" style="white-space: normal;">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+																												<ul class="sub-menu dropdown-menu">
+																																<li href="javascript://;" onclick="add_custom_token('Title','asset_title');"><a>Title</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Subject','asset_subject');">Subject</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Coverage','asset_coverage');">Coverage</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Genre','asset_genre');">Genre</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Publisher','asset_publisher_name');">Publisher</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Description','asset_description');">Description</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Creator Name','asset_creator_name');">Creator Name</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Creator Affiliation','asset_creator_affiliation');">Creator Affiliation</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Contributor Name','asset_contributor_name');">Contributor Name</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Contributor Affiliation','asset_contributor_affiliation');">Contributor Affiliation</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Rights Summaries','asset_rights');">Rights Summaries</a></li>
 
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#"  style="white-space: normal;">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
-                        <ul class="sub-menu dropdown-menu">
-                            <li><a href="javascript://;" onclick="add_custom_token('ID','instantiation_identifier');">ID</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_source');">Identifier Source</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Dimensions','instantiation_dimension');">Dimensions</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Unit of Measure','unit_of_measure');">Unit of Measure</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Standard','standard');">Standard</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Location','location');">Location</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('File Size','file_size');">File Size</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Duration','actual_duration track_duration');">Duration</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Data Rate','track_data_rate data_rate');">Data Rate</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Tracks','tracks');">Tracks</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Channel Configuration','channel_configuration');">Channel Configuration</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Language','language track_language');">Language</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Alternative Modes','alternative_modes');">Alternative Modes</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Annotation','ins_annotation track_annotation');">Annotation</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Annotation Type','ins_annotation_type');">Annotation Type</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Track Type','track_essence_track_type');">Track Type</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Encoding','track_encoding');">Encoding</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Track Standard','track_standard');">Track Standard</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Frame Rate','track_frame_rate');">Frame Rate</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Playback Speed','track_playback_speed');">Playback Speed</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Sampling Rate','track_sampling_rate');">Sampling Rate</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Bit Depth','track_bit_depth');">Bit Depth</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Frame Size','track_width track_height');">Frame Size</a></li>
-                            <li><a href="javascript://;" onclick="add_custom_token('Aspect Ratio','track_aspect_ratio');">Aspect Ratio</a></li>
-
-
-
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+																												</ul>
+																								</li>
+																								<li class="dropdown"><a href="#"  style="white-space: normal;">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+																												<ul class="sub-menu dropdown-menu">
+																																<li><a href="javascript://;" onclick="add_custom_token('ID','instantiation_identifier');">ID</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_source');">Identifier Source</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Dimensions','instantiation_dimension');">Dimensions</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Unit of Measure','unit_of_measure');">Unit of Measure</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Standard','standard');">Standard</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Location','location');">Location</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('File Size','file_size');">File Size</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Duration','actual_duration track_duration');">Duration</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Data Rate','track_data_rate data_rate');">Data Rate</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Tracks','tracks');">Tracks</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Channel Configuration','channel_configuration');">Channel Configuration</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Language','language track_language');">Language</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Alternative Modes','alternative_modes');">Alternative Modes</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Annotation','ins_annotation track_annotation');">Annotation</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Annotation Type','ins_annotation_type');">Annotation Type</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Track Type','track_essence_track_type');">Track Type</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Encoding','track_encoding');">Encoding</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Track Standard','track_standard');">Track Standard</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Frame Rate','track_frame_rate');">Frame Rate</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Playback Speed','track_playback_speed');">Playback Speed</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Sampling Rate','track_sampling_rate');">Sampling Rate</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Bit Depth','track_bit_depth');">Bit Depth</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Frame Size','track_width track_height');">Frame Size</a></li>
+																																<li><a href="javascript://;" onclick="add_custom_token('Aspect Ratio','track_aspect_ratio');">Aspect Ratio</a></li>
 
 
-        </div>
-        <div class="filter-fileds" id="limit_btn">
-            <div><input type="button"  style="display:<?php	echo	$style;	?>" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
 
-        </div>
+																												</ul>
+																								</li>
+																				</ul>
+																</div>
+
+
+												</div>
+												<div class="filter-fileds" id="limit_btn">
+																<div><input type="button"  style="display:<?php	echo	$style;	?>" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
+
+												</div>
+								</div>
         <div class="clearfix"></div>
 								<?php
 								if((	!	isset($this->session->userdata['date_range'])	||	isset($this->session->userdata['date_range'])	)	&&	empty($this->session->userdata['date_range']))
@@ -397,93 +406,97 @@
 												$DateStyleDisplay	=	0;
 								}
 								?>
-        <div id="date_range_filter_div">
-												<div id="widget">
-																<div id="date_range_filter">
-																				<div class="filter-fileds"><b>Date</b></div>
-																				<div class="controls">
-																								<div class="input-append">
-																												<input type="text" name="date_range" id="date_range" value="" style="width: 180px;cursor: default;background-color: white;" readonly="readonly"/>
-																												<span class="add-on" onclick="$('#date_range').val('');$('#widgetCalendar').DatePickerClear();"><i class="icon-remove-circle"></i></span>
+								<div class="field-filters">
+												<div id="date_range_filter_div">
+																<div id="widget">
+																				<div id="date_range_filter">
+																								<div class="filter-fileds"><b>Date</b></div>
+																								<div class="controls filter-fileds">
+																												<div class="input-append">
+																																<input type="text" name="date_range" id="date_range" value="" style="width: 180px;cursor: default;background-color: white;" readonly="readonly"/>
+																																<span class="add-on" onclick="$('#date_range').val('');$('#widgetCalendar').DatePickerClear();"><i class="icon-remove-circle"></i></span>
+																												</div>
+
 																								</div>
+																								<div id="widgetCalendar">
+																								</div>
+																				</div>
 
-																				</div>
-																				<div id="widgetCalendar">
-																				</div>
 																</div>
-
-												</div>
-
-												<?php
-												if(count($date_types)	>	0)
-												{
-																?>
-																<div class="filter-fileds">
-
-																				<div class="btn-group" id="limit_field_dropdown">
-																								<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-																												<span id="date_field_text">Date Type</span>
-
-																												<span class="caret"></span>
-																								</a>
-																								<ul class="dropdown-menu">
-																												<?php
-																												foreach($date_types	as	$value)
-																												{
-																																?>
-																																<li><a href="javascript://;" onclick="add_date_token('<?php	echo	$value->date_type;	?>');"><?php	echo	$value->date_type;	?></a></li>
-																												<?php	}
-																												?>
-																								</ul>
-																				</div>
-																</div>
-																<div><input type="button" id="add_date_keyword" name="add_date_keyword" value="Add Date" class="btn btn-primary" onclick="add_token($('#date_range').val(),'date_field_main');"/></div>
-
 
 																<?php
-												}
-												?>
+																if(count($date_types)	>	0)
+																{
+																				?>
+																				<div class="filter-fileds">
+
+																								<div class="btn-group" id="limit_field_dropdown">
+																												<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+																																<span id="date_field_text">Date Type</span>
+
+																																<span class="caret"></span>
+																												</a>
+																												<ul class="dropdown-menu">
+																																<?php
+																																foreach($date_types	as	$value)
+																																{
+																																				?>
+																																				<li><a href="javascript://;" onclick="add_date_token('<?php	echo	$value->date_type;	?>');"><?php	echo	$value->date_type;	?></a></li>
+																																<?php	}
+																																?>
+																												</ul>
+																								</div>
+																				</div>
+																				<div class="filter-fileds"><input type="button" id="add_date_keyword" name="add_date_keyword" value="Add Date" class="btn btn-primary" onclick="add_token($('#date_range').val(),'date_field_main');"/></div>
+
+
+																				<?php
+																}
+																?>
+												</div>
 								</div>
         <!-- Organization  Start      -->
 								<?php
 								if(count($stations)	>	0	&&	!	$this->is_station_user)
 								{
 												?>
-												<div class="filter-fileds">
-																<b>Organization</b>
-												</div>
-												<div class="filter-fileds">
-																<?php
-																foreach($stations	as	$key	=>	$value)
-																{
-																				?>
+												<div class="field-filters">
+																<div class="filter-fileds">
+																				<b>Organization</b>
+																</div>
+																<div class="filter-fileds">
 																				<?php
-																				if($key	<	4)
+																				foreach($stations	as	$key	=>	$value)
 																				{
 																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name;	?></a></div>
 																								<?php
-																				}
-																				else	if($key	==	4)
-																				{
-																								?>
-																								<div class="dropdown">
-																												<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
-																																More
-																																<b class="caret"></b>
-																												</a>
-																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																																<?php
-																												}
-																												else
-																												{
-																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name;	?></a></li>
-																																<?php
-																												}
+																								if($key	<	4)
+																								{
+																												?>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name;	?></a></div>
+																												<?php
 																								}
-																								?>
-																				</ul>
+																								else	if($key	==	4)
+																								{
+																												?>
+																												<div class="dropdown">
+																																<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
+																																				More
+																																				<b class="caret"></b>
+																																</a>
+																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																				<?php
+																																}
+																																else
+																																{
+																																				?>
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name;	?></a></li>
+																																				<?php
+																																}
+																												}
+																												?>
+																								</ul>
+																				</div>
 																</div>
 												</div>
 								<?php	}	?>
@@ -493,44 +506,46 @@
 								if(count($nomination_status)	>	0)
 								{
 												?>
-												<div class="filter-fileds">
-																<b>Nomination Status</b>
-												</div>
-												<div class="filter-fileds">
-																<?php
-																foreach($nomination_status	as	$key	=>	$value)
-																{
-																				if($key	<	4)
+												<div class="field-filters">
+																<div class="filter-fileds">
+																				<b>Nomination Status</b>
+																</div>
+																<div class="filter-fileds">
+																				<?php
+																				foreach($nomination_status	as	$key	=>	$value)
 																				{
-																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status;	?></a></div>
-																								<?php
-																				}
-																				else	if($key	==	4)
-																				{
-																								?>
-																								<div class="dropdown">
-																												<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
-																																More
-																																<b class="caret"></b>
-																												</a>
-																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																																<?php
-																												}
-																												else
-																												{
-																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status;	?></a></li>  
-																																<?php
-																												}
-																								}
-																								if(count($nomination_status)	>	4)
+																								if($key	<	4)
 																								{
-																												echo	count($nomination_status);
 																												?>
-																								</ul>
-																				</div>
-																<?php	}	?>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status;	?></a></div>
+																												<?php
+																								}
+																								else	if($key	==	4)
+																								{
+																												?>
+																												<div class="dropdown">
+																																<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
+																																				More
+																																				<b class="caret"></b>
+																																</a>
+																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																				<?php
+																																}
+																																else
+																																{
+																																				?>
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status;	?></a></li>  
+																																				<?php
+																																}
+																												}
+																												if(count($nomination_status)	>	4)
+																												{
+																																echo	count($nomination_status);
+																																?>
+																												</ul>
+																								</div>
+																				<?php	}	?>
+																</div>
 												</div>
 								<?php	}	?>
         <!--  Nomination Status End      -->
@@ -539,43 +554,45 @@
 								if(count($media_types)	>	0)
 								{
 												?>
-												<div class="filter-fileds">
-																<b>Media Type</b>
-												</div>
-												<div class="filter-fileds">
-																<?php
-																foreach($media_types	as	$key	=>	$value)
-																{
-																				if($key	<	4)
+												<div class="field-filters">
+																<div class="filter-fileds">
+																				<b>Media Type</b>
+																</div>
+																<div class="filter-fileds">
+																				<?php
+																				foreach($media_types	as	$key	=>	$value)
 																				{
-																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type;	?></a></div>
-																								<?php
-																				}
-																				else	if($key	==	4)
-																				{
-																								?>
-																								<div class="dropdown">
-																												<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
-																																More
-																																<b class="caret"></b>
-																												</a>
-																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																																<?php
-																												}
-																												else
-																												{
-																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type;	?></a></li>  
-																																<?php
-																												}
-																								}
-																								if(count($media_types)	>	4)
+																								if($key	<	4)
 																								{
 																												?>
-																								</ul>
-																				</div>
-																<?php	}	?>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type;	?></a></div>
+																												<?php
+																								}
+																								else	if($key	==	4)
+																								{
+																												?>
+																												<div class="dropdown">
+																																<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
+																																				More
+																																				<b class="caret"></b>
+																																</a>
+																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																				<?php
+																																}
+																																else
+																																{
+																																				?>
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type;	?></a></li>  
+																																				<?php
+																																}
+																												}
+																												if(count($media_types)	>	4)
+																												{
+																																?>
+																												</ul>
+																								</div>
+																				<?php	}	?>
+																</div>
 												</div>
 								<?php	}	?>
         <!--  Media Type End      -->
@@ -584,43 +601,45 @@
 								if(count($physical_formats)	>	0)
 								{
 												?>
-												<div class="filter-fileds">
-																<b>Physical Format</b>
-												</div>
-												<div class="filter-fileds">
-																<?php
-																foreach($physical_formats	as	$key	=>	$value)
-																{
-																				if($key	<	4)
+												<div class="field-filters">
+																<div class="filter-fileds">
+																				<b>Physical Format</b>
+																</div>
+																<div class="filter-fileds">
+																				<?php
+																				foreach($physical_formats	as	$key	=>	$value)
 																				{
-																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name;	?></a></div>
-																								<?php
-																				}
-																				else	if($key	==	4)
-																				{
-																								?>
-																								<div class="dropdown">
-																												<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
-																																More
-																																<b class="caret"></b>
-																												</a>
-																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																																<?php
-																												}
-																												else
-																												{
-																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name;	?></a></li>  
-																																<?php
-																												}
-																								}
-																								if(count($physical_formats)	>	4)
+																								if($key	<	4)
 																								{
 																												?>
-																								</ul>
-																				</div>
-																<?php	}	?>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name;	?></a></div>
+																												<?php
+																								}
+																								else	if($key	==	4)
+																								{
+																												?>
+																												<div class="dropdown">
+																																<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
+																																				More
+																																				<b class="caret"></b>
+																																</a>
+																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																				<?php
+																																}
+																																else
+																																{
+																																				?>
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name;	?></a></li>  
+																																				<?php
+																																}
+																												}
+																												if(count($physical_formats)	>	4)
+																												{
+																																?>
+																												</ul>
+																								</div>
+																				<?php	}	?>
+																</div>
 												</div>
 								<?php	}	?>
         <!-- Physical Format End      -->
@@ -629,43 +648,45 @@
 								if(count($digital_formats)	>	0)
 								{
 												?>
-												<div class="filter-fileds">
-																<b>Digital Format</b>
-												</div>
-												<div class="filter-fileds">
-																<?php
-																foreach($digital_formats	as	$key	=>	$value)
-																{
-																				if($key	<	4)
+												<div class="field-filters">
+																<div class="filter-fileds">
+																				<b>Digital Format</b>
+																</div>
+																<div class="filter-fileds">
+																				<?php
+																				foreach($digital_formats	as	$key	=>	$value)
 																				{
-																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name;	?></a></div>
-																								<?php
-																				}
-																				else	if($key	==	4)
-																				{
-																								?>
-																								<div class="dropdown">
-																												<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
-																																More
-																																<b class="caret"></b>
-																												</a>
-																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																																<?php
-																												}
-																												else
-																												{
-																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name;	?></a></li>  
-																																<?php
-																												}
-																								}
-																								if(count($digital_formats)	>	4)
+																								if($key	<	4)
 																								{
 																												?>
-																								</ul>
-																				</div>
-																<?php	}	?>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name;	?></a></div>
+																												<?php
+																								}
+																								else	if($key	==	4)
+																								{
+																												?>
+																												<div class="dropdown">
+																																<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
+																																				More
+																																				<b class="caret"></b>
+																																</a>
+																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																				<?php
+																																}
+																																else
+																																{
+																																				?>
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name;	?></a></li>  
+																																				<?php
+																																}
+																												}
+																												if(count($digital_formats)	>	4)
+																												{
+																																?>
+																												</ul>
+																								</div>
+																				<?php	}	?>
+																</div>
 												</div>
 								<?php	}	?>
         <!-- Digital Format End      -->
@@ -674,75 +695,81 @@
 								if(count($generations)	>	0)
 								{
 												?>
-												<div class="filter-fileds">
-																<b>Generations</b>
-												</div>
-												<div class="filter-fileds">
-																<?php
-																foreach($generations	as	$key	=>	$value)
-																{
-																				if($key	<	4)
+												<div class="field-filters">
+																<div class="filter-fileds">
+																				<b>Generations</b>
+																</div>
+																<div class="filter-fileds">
+																				<?php
+																				foreach($generations	as	$key	=>	$value)
 																				{
-																								?>
-																								<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->generation);	?>','generation_main');"><?php	echo	$value->generation;	?></a></div>
-																								<?php
-																				}
-																				else	if($key	==	4)
-																				{
-																								?>
-																								<div class="dropdown">
-																												<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
-																																More
-																																<b class="caret"></b>
-																												</a>
-																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																																<?php
-																												}
-																												else
-																												{
-																																?>
-																																<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->generation);	?>','generation_main');"><?php	echo	$value->generation;	?></a></li>  
-																																<?php
-																												}
-																								}
-																								if(count($generations)	>	4)
+																								if($key	<	4)
 																								{
 																												?>
-																								</ul>
-																				</div>
-																<?php	}	?>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->generation);	?>','generation_main');"><?php	echo	$value->generation;	?></a></div>
+																												<?php
+																								}
+																								else	if($key	==	4)
+																								{
+																												?>
+																												<div class="dropdown">
+																																<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
+																																				More
+																																				<b class="caret"></b>
+																																</a>
+																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																				<?php
+																																}
+																																else
+																																{
+																																				?>
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->generation);	?>','generation_main');"><?php	echo	$value->generation;	?></a></li>  
+																																				<?php
+																																}
+																												}
+																												if(count($generations)	>	4)
+																												{
+																																?>
+																												</ul>
+																								</div>
+																				<?php	}	?>
+																</div>
 												</div>
 								<?php	}	?>
         <!-- Generation End      -->
         <!--				Digitized Start				-->
-								<div class="filter-fileds">
-												<?php
-												$checked	=	'';
-												if(isset($this->session->userdata['digitized'])	&&	$this->session->userdata['digitized']	===	'1')
-												{
-																$checked	=	'checked="checked"';
-												}
-												?>
-												<b>Digitized</b><span style="margin: 0px 10px;"><input type="checkbox" name="digitized" id="digitized" value="1" <?php	echo	$checked;	?> onchange="facet_search('0');" /></span>
+								<div class="field-filters">
+												<div class="filter-fileds">
+																<?php
+																$checked	=	'';
+																if(isset($this->session->userdata['digitized'])	&&	$this->session->userdata['digitized']	===	'1')
+																{
+																				$checked	=	'checked="checked"';
+																}
+																?>
+																<b>Digitized</b><span style="margin: 0px 10px;"><input type="checkbox" name="digitized" id="digitized" value="1" <?php	echo	$checked;	?> onchange="facet_search('0');" /></span>
+												</div>
 								</div>
 								<!--				Digitized End      -->
         <!--				Migration Start				-->
-								<div class="filter-fileds">
-												<?php
-												$checked	=	'';
-												if(isset($this->session->userdata['migration_failed'])	&&	$this->session->userdata['migration_failed']	===	'1')
-												{
-																$checked	=	'checked="checked"';
-												}
-												?>
-												<b>Migration Failed?</b><span style="margin: 0px 10px;"><input type="checkbox" name="migration_failed" id="migration_failed" value="1"  <?php	echo	$checked;	?> onchange="facet_search('0');" /></span>
+								<div class="field-filters">
+												<div class="filter-fileds">
+																<?php
+																$checked	=	'';
+																if(isset($this->session->userdata['migration_failed'])	&&	$this->session->userdata['migration_failed']	===	'1')
+																{
+																				$checked	=	'checked="checked"';
+																}
+																?>
+																<b>Migration Failed?</b><span style="margin: 0px 10px;"><input type="checkbox" name="migration_failed" id="migration_failed" value="1"  <?php	echo	$checked;	?> onchange="facet_search('0');" /></span>
+												</div>
 								</div>
 								<!--				Migration End      -->
 
 
 
 
-    </form>
+</form>
 </div>
 
 <script type="text/javascript">
@@ -758,6 +785,12 @@
 				oTable=null;
 				var state = false;
 				(function($){
+								if($('.search_keys').length>0){
+												$('#filter_criteria').show();
+								}
+								else{
+												$('#filter_criteria').hide();
+								}
 								var initLayout = function() {
 												var hash = window.location.hash.replace('#', '');
 											
@@ -912,6 +945,12 @@
 												{
 																$('#'+type+'_search').val(my_search_words);
 												}
+								}
+								if($('.search_keys').length>0){
+												$('#filter_criteria').show();
+								}
+								else{
+												$('#filter_criteria').hide();
 								}
 								facet_search('0');
             

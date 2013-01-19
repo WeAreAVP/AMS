@@ -288,7 +288,8 @@ function updateDataTable()
 								$('#freeze_col_'+frozen).show();                                                                                                                                                                                                                                           
 								$.extend( $.fn.dataTableExt.oStdClasses,{
 												"sWrapper": "dataTables_wrapper form-inline"
-								} );
+								});
+								$('.dataTable th').css('background','#EBEBEB');
 								
 				}
 }

@@ -7,10 +7,15 @@
         <script type="text/javascript">
             var site_url='<?php	echo	site_url()	?>';
         </script>
+								<script src="<?php	echo	base_url('tiny_mce/tiny_mce.js')	?>" type="text/javascript"></script>
 								<?php
 								echo	link_js('jquery-1.8.2.js');
 								echo	link_js('jquery-ui-1.9.0.custom.js');
 								echo	link_js('bootstrap/bootstrap.js');
+								echo	link_js('datepicker.js');
+								echo	link_js('eye.js');
+								echo	link_js('utils.js');
+
 
 								echo	link_tag("css/bootstrap/bootstrap.css");
 								echo	link_tag("css/style.css");
@@ -148,10 +153,7 @@
 								echo	link_js('ColReorder.js');
 								echo	link_js('ColVis.js');
 								echo	link_js('dataTables.scroller.js');
-								echo	link_js('datepicker.js');
-								echo	link_js('eye.js');
-								echo	link_js('utils.js');
-
+								
 								echo	link_tag("css/tableSorter.css");
 								echo	link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
 
@@ -162,7 +164,7 @@
 								echo	link_tag("css/clean.css");
 								echo	link_tag("css/layout.css");
 								?>
-								<script src="<?php	echo	base_url('tiny_mce/tiny_mce.js')	?>" type="text/javascript"></script>
+								
 								<script type="text/javascript"> 
 												$(document).ready(function() {
 																$('#myGeneral').on('hidden', function () {

@@ -24,7 +24,14 @@
 																?>
 																<div class="custom-nav">
 																				<div style="margin: 0 auto;width: 1210px;background: none;border: none;">
-																								<span id="msg_text_link">
+																									<div class="dropdown pull-right" style="margin-left:5px;margin-right:17px;">
+																												<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog icon-white"></i></a>
+																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="right:-15px;top:18px;min-width: auto;">
+																																<li><a href="<?php	echo	site_url('settings/index')	?>">Settings</a> </li>
+																																<li><a href="<?php	echo	site_url('auth/logout')	?>">Logout</a> </li>
+																												</ul>
+																								</div>
+																								<div  class="pull-right" id="msg_text_link">
 																												<?php
 																												if(isset($this->total_unread)	&&	$this->total_unread	>	0	&&	$this->is_station_user)
 																												{
@@ -37,14 +44,8 @@
 																																?>
 																																<a href="<?php	echo	site_url('messages/inbox')	?>"><i class="icon-envelope icon-white"></i></a>
 																												<?php	}	?>
-																								</span>
-																								<div class="dropdown pull-right" style="margin-left:5px;margin-right:17px;">
-																												<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog icon-white"></i></a>
-																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="right:-15px;top:18px;min-width: auto;">
-																																<li><a href="<?php	echo	site_url('settings/index')	?>">Settings</a> </li>
-																																<li><a href="<?php	echo	site_url('auth/logout')	?>">Logout</a> </li>
-																												</ul>
 																								</div>
+																							
 
 																				</div>
 																</div>

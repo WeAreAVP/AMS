@@ -249,7 +249,7 @@ function updateDataTable()
 {
 				if($('#listing_table').length>0)
 				{
-								console.log(hiden_column);
+								
 								oTable = 
 								$('#listing_table').dataTable(
 								{
@@ -270,7 +270,7 @@ function updateDataTable()
 												'bInfo':false,
 												'bFilter': false,
 												"bSort": false,
-												"sScrollY": 500,
+												"sScrollY": $(window).height(),
 												"sScrollX": "100%",	
 												"bDeferRender": true,
 												"bDestroy": is_destroy,

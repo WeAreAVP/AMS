@@ -604,6 +604,9 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .records-nav li.active a{
 				background: url(/images/1234.png) transparent repeat-x;
 }
+.records-nav-sub{
+				margin-bottom: 0px;
+}
 .records-nav-sub a{
 				color:black;
 }

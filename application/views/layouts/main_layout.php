@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="author" content="Ali Raza & Nouman Tayyab"/>
+        <meta name="author" content="Nouman Tayyab"/>
         <title>AMS</title>
         <script type="text/javascript">
             var site_url='<?php	echo	site_url()	?>';
@@ -10,86 +10,13 @@
 								<?php
 								echo	link_js('jquery-1.8.2.js');
 								echo	link_js('jquery-ui-1.9.0.custom.js');
-								echo	link_js('jquery.tablesorter.js');
 								echo	link_js('bootstrap/bootstrap.js');
-								echo	link_js('highcharts.js');
-								echo	link_js('modules/exporting.js');
-								echo	link_js('jquery.blockUI.js');
-								echo	link_js('jquery.blockUI.js');
-								echo	link_js('jquery.multiselect.min.js');
-								echo	link_js('jquery.dataTables.js');
-								echo	link_js('FixedColumns.js');
-								echo	link_js('FixedHeader.js');
-								echo	link_js('ColReorder.js');
-								echo	link_js('ColVis.js');
-								echo	link_js('dataTables.scroller.js');
-								echo	link_js('datepicker.js');
-								echo	link_js('eye.js');
-								echo	link_js('utils.js');
 
-
-								echo	link_tag("css/tableSorter.css");
-								echo	link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
 								echo	link_tag("css/bootstrap/bootstrap.css");
 								echo	link_tag("css/style.css");
-								echo	link_tag("css/ColReorder.css");
-								echo	link_tag("css/ColVis.css");
-								echo	link_tag("css/dataTables.scroller.css");
-								echo	link_tag("css/base.css");
-								echo	link_tag("css/clean.css");
-								echo	link_tag("css/layout.css");
 								?> 
-        <script src="<?php	echo	base_url('tiny_mce/tiny_mce.js')	?>" type="text/javascript"></script>
-								<?php	echo	link_js('custom.js');	?>
-
-
-
-        <script type="text/javascript"> 
-            $(document).ready(function() {
-                $('#myGeneral').on('hidden', function () {
-                    $('#myGeneral_body').html(''); 
-                })
-                
-                var dates = $( "#start_date, #end_date" ).datepicker({
-                    defaultDate: "+1w",
-                    changeMonth: true,
-                    numberOfMonths: 1,
-                    dateFormat: 'yy-mm-dd',
-                    onSelect: function( selectedDate ) {
-                        var option = this.id == "start_date" ? "minDate" : "maxDate",
-                        instance = $( this ).data( "datepicker" ),
-                        date = $.datepicker.parseDate(
-                        instance.settings.dateFormat ||
-                            $.datepicker._defaults.dateFormat,
-                        selectedDate, instance.settings );
-                        dates.not( this ).datepicker( "option", option, date );
-                    }
-                });
-                //                var dates = $( "#start_date_range, #end_date_range" ).datepicker({
-                //                    defaultDate: "+1w",
-                //                    changeMonth: true,
-                //                    numberOfMonths: 1,
-                //                    dateFormat: 'yy-mm-dd',
-                //                    onSelect: function( selectedDate ) {
-                //                        $('#end_date_range').val(selectedDate);
-                //                        var option = this.id == "start_date_range" ? "minDate" : "maxDate",
-                //                        instance = $( this ).data( "datepicker" ),
-                //                        date = $.datepicker.parseDate(
-                //                        instance.settings.dateFormat ||
-                //                            $.datepicker._defaults.dateFormat,
-                //                        selectedDate, instance.settings );
-                //                        dates.not( this ).datepicker( "option", option, date );
-                //                    }
-                //                });
-                $("[rel=tooltip]").tooltip();
-                $("#station_table").tablesorter();
-                $("#user_table_list").tablesorter();
-                
-            });
-        </script>
     </head>
-
-    <body>
+				<body>
         <div class="navbar navbar-fixed-top">
 												<?php
 												if($this->dx_auth->is_logged_in())
@@ -97,60 +24,68 @@
 																?>
 																<div class="custom-nav">
 																				<div style="margin: 0 auto;width: 1210px;background: none;border: none;">
-																				<span id="msg_text_link">
-																								<?php
-																								if(isset($this->total_unread)	&&	$this->total_unread	>	0	&&	$this->is_station_user)
-																								{
-																												?>
-																												<a class="btn large message" href="<?php	echo	site_url('messages/inbox')	?>"><i class="icon-envelope icon-white"></i><span class="badge label-important message-alert"><?php	echo	$this->total_unread	?></span></a>
+																								<span id="msg_text_link">
 																												<?php
-																								}
-																								else
-																								{
-																												?>
-																												<a href="<?php	echo	site_url('messages/inbox')	?>"><i class="icon-envelope icon-white"></i></a>
-																								<?php	}	?>
-																				</span>
-																				<a href="<?php	echo	site_url('auth/logout')	?>"><i class="icon-cog icon-white"></i></a> 
-																</div></div>
+																												if(isset($this->total_unread)	&&	$this->total_unread	>	0	&&	$this->is_station_user)
+																												{
+																																?>
+																																<a class="btn large message" href="<?php	echo	site_url('messages/inbox')	?>"><i class="icon-envelope icon-white"></i><span class="badge label-important message-alert"><?php	echo	$this->total_unread	?></span></a>
+																																<?php
+																												}
+																												else
+																												{
+																																?>
+																																<a href="<?php	echo	site_url('messages/inbox')	?>"><i class="icon-envelope icon-white"></i></a>
+																												<?php	}	?>
+																								</span>
+																								<div class="dropdown pull-right" style="margin-left:5px;margin-right:17px;">
+																												<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog icon-white"></i></a>
+																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="right:-15px;top:18px;min-width: auto;">
+																																<li><a href="<?php	echo	site_url('settings/index')	?>">Settings</a> </li>
+																																<li><a href="<?php	echo	site_url('auth/logout')	?>">Logout</a> </li>
+																												</ul>
+																								</div>
+
+																				</div>
+																</div>
 												<?php	}	?>
 												<div class="custom-nav-inner">
-            <div class="navbar-inner" style="margin: 0 auto;width: 1210px;background: none;border: none;">
-                <a class="brand" href="<?php	echo	site_url()	?>"><img src="/images/brand.png"/></a>
-																<?php
-																if($this->dx_auth->is_logged_in())
-																{
-																				?>
-																				<div class="nav-collapse">
-																								<ul class="nav custom-nav-ul">
-																												<?php
-																												$station_tab_name	=	'Station';
-																												if(	!	$this->is_station_user)
-																												{
-																																$station_tab_name	=	'Stations';
-																																?>
-																																<li class="<?php	echo	active_anchor('dashboard',	'index');	?>"><a href="<?php	echo	site_url('dashboard/index')	?>">Dashboard</a></li>
-																												<?php	}
-																												?>
-
-																												<li class="<?php	echo	(is_route_method(array('records'	=>	array('index',	'flagged',	'details'),	'instantiations'	=>	array('index',	'detail'))))	?	'active'	:	'';	?>"><a href="<?php	echo	site_url('records/index')	?>">Records</a></li>
-																												<li class="<?php	echo	active_anchor('stations',	array('index',	'detail'));	?>"><a href="<?php	echo	site_url('stations/index')	?>"><?php	echo	$station_tab_name;	?></a></li>
-																												<?php
-																												if(	!	$this->is_station_user)
-																												{
+																<div class="navbar-inner" style="margin: 0 auto;width: 1210px;background: none;border: none;">
+																				<a class="brand" href="<?php	echo	site_url()	?>"><img src="/images/ams_brand.png"/></a>
+																				<?php
+																				if($this->dx_auth->is_logged_in())
+																				{
+																								?>
+																								<div class="nav-collapse">
+																												<ul class="nav custom-nav-ul">
+																																<?php
+																																$station_tab_name	=	'Station';
+																																if(	!	$this->is_station_user)
+																																{
+																																				$station_tab_name	=	'Stations';
+																																				?>
+																																				<li class="<?php	echo	active_anchor('dashboard',	'index');	?>"><a href="<?php	echo	site_url('dashboard/index')	?>">Dashboard</a></li>
+																																<?php	}
 																																?>
 
-																																<li class="<?php	echo	active_anchor('reports',	'index');	?>"><a href="<?php	echo	site_url('reports/index')	?>">Reports</a></li>
-																												<?php	}
-																												?>
-																												<li class="<?php	echo	(is_route_method(array('settings'	=>	array('index',	'users',	'edit_profile'),	'templatemanager'	=>	array('add',	'lists',	'edit',	'details',	'readmessage',	'manage_crawford'))))	?	'active'	:	'';	?>"><a href="<?php	echo	site_url('settings/index')	?>">Settings</a></li> 
+																																<li class="<?php	echo	(is_route_method(array('records'	=>	array('index',	'flagged',	'details'),	'instantiations'	=>	array('index',	'detail'))))	?	'active'	:	'';	?>"><a href="<?php	echo	site_url('records/index')	?>">Records</a></li>
+																																<li class="<?php	echo	active_anchor('stations',	array('index',	'detail'));	?>"><a href="<?php	echo	site_url('stations/index')	?>"><?php	echo	$station_tab_name;	?></a></li>
+																																<?php
+																																if(	!	$this->is_station_user)
+																																{
+																																				?>
 
-																								</ul>
-																				</div><!--/.nav-collapse -->
-																<?php	}	?>
+																																				<li class="<?php	echo	active_anchor('reports',	'index');	?>"><a href="<?php	echo	site_url('reports/index')	?>">Reports</a></li>
+																																<?php	}
+																																?>
+				<!--																												<li class="<?php	echo	(is_route_method(array('settings'	=>	array('index',	'users',	'edit_profile'),	'templatemanager'	=>	array('add',	'lists',	'edit',	'details',	'readmessage',	'manage_crawford'))))	?	'active'	:	'';	?>"><a href="<?php	echo	site_url('settings/index')	?>">Settings</a></li> -->
 
-            </div>
-        </div>
+																												</ul>
+																								</div><!--/.nav-collapse -->
+																				<?php	}	?>
+
+																</div>
+												</div>
 								</div>
         <div class="container" style="width:1170px;margin:0 auto;margin-top: 55px;">
 
@@ -182,7 +117,7 @@
 																				</ul>
 
 																<?php	}	?>
-															
+
 																<?php
 																if((active_anchor('messages',	array('inbox',	'sent')))	&&	$this->can_compose_alert)
 																{
@@ -198,5 +133,62 @@
         <div class="modal hide" id="myGeneral" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div id="myGeneral_body" > </div>
         </div>
+								<?php
+								echo	link_js('jquery.tablesorter.js');
+								echo	link_js('highcharts.js');
+								echo	link_js('custom.js');
+								echo	link_js('modules/exporting.js');
+								echo	link_js('jquery.blockUI.js');
+
+								echo	link_js('jquery.multiselect.min.js');
+								echo	link_js('jquery.dataTables.js');
+								echo	link_js('FixedColumns.js');
+								echo	link_js('FixedHeader.js');
+								echo	link_js('ColReorder.js');
+								echo	link_js('ColVis.js');
+								echo	link_js('dataTables.scroller.js');
+								echo	link_js('datepicker.js');
+								echo	link_js('eye.js');
+								echo	link_js('utils.js');
+
+								echo	link_tag("css/tableSorter.css");
+								echo	link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
+
+								echo	link_tag("css/ColReorder.css");
+								echo	link_tag("css/ColVis.css");
+								echo	link_tag("css/dataTables.scroller.css");
+								echo	link_tag("css/base.css");
+								echo	link_tag("css/clean.css");
+								echo	link_tag("css/layout.css");
+								?>
+								<script src="<?php	echo	base_url('tiny_mce/tiny_mce.js')	?>" type="text/javascript"></script>
+								<script type="text/javascript"> 
+												$(document).ready(function() {
+																$('#myGeneral').on('hidden', function () {
+																				$('#myGeneral_body').html(''); 
+																})
+                
+																var dates = $( "#start_date, #end_date" ).datepicker({
+																				defaultDate: "+1w",
+																				changeMonth: true,
+																				numberOfMonths: 1,
+																				dateFormat: 'yy-mm-dd',
+																				onSelect: function( selectedDate ) {
+																								var option = this.id == "start_date" ? "minDate" : "maxDate",
+																								instance = $( this ).data( "datepicker" ),
+																								date = $.datepicker.parseDate(
+																								instance.settings.dateFormat ||
+																												$.datepicker._defaults.dateFormat,
+																								selectedDate, instance.settings );
+																								dates.not( this ).datepicker( "option", option, date );
+																				}
+																});
+																$("[rel=tooltip]").tooltip();
+																$("#station_table").tablesorter();
+																$("#user_table_list").tablesorter();
+                
+												});
+								</script>
     </body>
+
 </html>

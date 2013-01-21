@@ -185,7 +185,7 @@ if(	!	$isAjax)
 																																																{
 																																																				$width	=	'width:175px;';
 																																																}
-																																																echo	'<th id="'	.	$value['title']	.	'"  class="'	.	$class	.	'" style="'	.	$width	.	'" >'	.	str_replace("_",	' ',	$value['title'])	.	'</th>';
+																																																echo	'<th id="'	.	$value['title']	.	'"  class="'	.	$class	.	'"><span style="float:left;'	.	$width	.	'">'	.	str_replace("_",	' ',	$value['title'])	.	'</span></th>';
 																																												}
 																																								}
 																																				}
@@ -588,7 +588,7 @@ if(	!	$isAjax)
 																																												{
 																																																$width	=	'width:175px;';
 																																												}
-																																												echo	'<td style="'	.	$width	.	'">'	.	$column	.	'</td>';
+																																												echo	'<td><span style="float:left;'	.	$width	.	'">'	.	$column	.	'</span></td>';
 																																								}
 																																				}
 																																}

@@ -2,23 +2,17 @@
 if(	!	$isAjax)
 {
 				?>
-
 				<div class="row-fluid">
 								<div class="span3">
-<!--												<div class="asset-menu">
-																<div style="padding:10px;"><h4>Assets</h4></div>
-																<div class="asset-submenu active"><a href="<?php	echo	site_url('records')	?>">All Assets</a></div>
-																<div class="asset-submenu"><a href="javascript://">Flagged</a></div>
-												</div>-->
 												<?php	$this->load->view('instantiations/_facet_search');	?>
 								</div>
 
 								<div  class="span9" id="data_container">
-												
+
 								<?php	}	?>
-													<?php	$this->load->view('layouts/_records_nav');	?>
+								<?php	$this->load->view('layouts/_records_nav');	?>
 								<ul class="nav nav-tabs records-nav-sub">
-												
+
 												<li id="simple_li" <?php
 								if($current_tab	==	'simple')
 								{
@@ -38,8 +32,8 @@ if(	!	$isAjax)
 																																									{
 												?>class="active" <?php	}	?>><a href="javascript:;" >Thumbnails</a></li>
 												<li id="flagged_li" <?php
-																																									if($current_tab	==	'flagged')
-																																									{
+																if($current_tab	==	'flagged')
+																{
 												?>class="active" <?php	}	?>><a href="javascript:;" >Flagged</a></li>
 								</ul><?php
 																if(isset($records)	&&	($total	>	0))
@@ -183,7 +177,7 @@ if(	!	$isAjax)
 
 																																																if(	!	($this->frozen_column	>	$key))
 																																																				$class	=	'drap-drop';
-																																																if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience",	"Annotation",	"Rights")))
+																																																if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Audience_Rating",	"Annotation",	"Rights")))
 																																																{
 																																																				$width	=	'min-width:100px;';
 																																																}
@@ -207,7 +201,7 @@ if(	!	$isAjax)
 																												foreach($records	as	$asset)
 																												{
 
-																																echo	'<tr id="tr_'.$asset->id.'">';
+																																echo	'<tr id="tr_'	.	$asset->id	.	'">';
 																																foreach($this->column_order	as	$row)
 																																{
 																																				$type	=	$row['title'];
@@ -586,14 +580,14 @@ if(	!	$isAjax)
 																																																				}
 																																																}
 																																												}
-																																												if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience",	"Annotation",	"Rights")))
-																																																{
-																																																				$width	=	'min-width:100px;';
-																																																}
-																																																else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID")
-																																																{
-																																																				$width	=	'min-width:175px;';
-																																																}
+																																												if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Audience_Rating",	"Annotation",	"Rights")))
+																																												{
+																																																$width	=	'min-width:100px;';
+																																												}
+																																												else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID")
+																																												{
+																																																$width	=	'min-width:175px;';
+																																												}
 																																												echo	'<td><span style="float:left;'	.	$width	.	'">'	.	$column	.	'</span></td>';
 																																								}
 																																				}

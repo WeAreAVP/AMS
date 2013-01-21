@@ -22,7 +22,7 @@ div.DTS div.DTS_Loading {
 	margin-left: -100px;
 	z-index: 1;
 
-	border: 1px solid #999;
+/*	border: 1px solid #999;*/
 	padding: 20px 0;
 	text-align: center;
 	background-color: white;

@@ -325,13 +325,14 @@
 								?>
 								<div class="field-filters">
 												<div class="filter-fileds" id="limit_field_div" style="display:<?php	echo	$style;	?>">
-																<div><b>Keyword Search</b>	<span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch();"></span></div>
-																<div>
+																<div><b>Keyword Search</b>	<span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('sk_div',this);"></span></div>
+															
+												</div>
+												<div id="sk_div">
+												<div class="filter-fileds">
+																	<div>
 																				<input type="text" name="search" id="search" value=""/>
 																</div>
-												</div>
-
-												<div class="filter-fileds">
 																<div class="btn-group" id="limit_field_dropdown" style="display:<?php	echo	$style;	?>">
 																				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 																								<span id="limit_field_text">Limit Search to Field</span>
@@ -393,7 +394,7 @@
 												<div class="filter-fileds" id="limit_btn">
 																<div><input type="button"  style="display:<?php	echo	$style;	?>" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
 
-												</div>
+												</div></div>
 								</div>
         <div class="clearfix"></div>
 								<?php
@@ -407,7 +408,7 @@
 								}
 								?>
 								<div class="field-filters">
-												<div class="filter-fileds"><b>Date</b><span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('date_range_filter_div');"></span></div>
+												<div class="filter-fileds"><b>Date</b><span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('date_range_filter_div',this);"></span></div>
 												<div id="date_range_filter_div">
 																<div id="widget">
 																				<div id="date_range_filter">
@@ -463,7 +464,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Organization</b><span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('org_div');"></span>
+																				<b>Organization</b><span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('org_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="org_div">
 																				<?php
@@ -509,7 +510,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Nomination Status</b><span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('n_div');"></span>
+																				<b>Nomination Status</b><span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('n_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="n_div">
 																				<?php
@@ -557,7 +558,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Media Type</b><span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('md_div');"></span>
+																				<b>Media Type</b><span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('md_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="md_div">
 																				<?php
@@ -604,7 +605,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Physical Format</b><span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('pf_div');"></span>
+																				<b>Physical Format</b><span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('pf_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="pf_div">
 																				<?php
@@ -651,7 +652,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Digital Format</b><span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('df_div');"></span>
+																				<b>Digital Format</b><span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('df_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="df_div">
 																				<?php
@@ -698,7 +699,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Generations</b><span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('generation_search_div');"></span>
+																				<b>Generations</b><span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('generation_search_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="generation_search_div">
 																				<?php
@@ -1096,9 +1097,9 @@
 												"sWrapper": "dataTables_wrapper form-inline"
 								} );
 				}
-				function showHideSearch(divID){
+				function showHideSearch(divID,obj){
+								console.log(obj);
 								
-								console.log(this);
 								$('#'+divID).toggle()
 				}
 </script>

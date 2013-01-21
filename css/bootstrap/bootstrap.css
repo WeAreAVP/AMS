@@ -2380,6 +2380,13 @@ table .span24 {
     opacity: 0.3;
     filter: alpha(opacity=30);
 }
+.custom-caret{
+				transform: rotate(275deg);
+				-ms-transform: rotate(275deg);
+				-moz-transform: rotate(275deg);
+				-webkit-transform: rotate(275deg);
+				-o-transform: rotate(275deg);
+}
 
 .dropdown .caret {
     margin-top: 8px;

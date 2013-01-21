@@ -787,9 +787,11 @@
 				(function($){
 								if($('.search_keys').length>0){
 												$('#filter_criteria').show();
+												$('##search_bar_val').css('margin-bottom','10px');
 								}
 								else{
 												$('#filter_criteria').hide();
+												$('##search_bar_val').css('margin-bottom','0px');
 								}
 								var initLayout = function() {
 												var hash = window.location.hash.replace('#', '');
@@ -948,9 +950,12 @@
 								}
 								if($('.search_keys').length>0){
 												$('#filter_criteria').show();
+												$('##search_bar_val').css('margin-bottom','10px');
+												
 								}
 								else{
 												$('#filter_criteria').hide();
+												$('##search_bar_val').css('margin-bottom','0px');
 								}
 								facet_search('0');
             

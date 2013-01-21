@@ -325,7 +325,7 @@
 								?>
 								<div class="field-filters">
 												<div class="filter-fileds" id="limit_field_div" style="display:<?php	echo	$style;	?>">
-																<div><b>Keyword Search</b></div>
+																<div><b>Keyword Search</b>	<span class="caret"></span></div>
 																<div>
 																				<input type="text" name="search" id="search" value=""/>
 																</div>

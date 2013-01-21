@@ -326,75 +326,75 @@
 								<div class="field-filters">
 												<div class="filter-fileds" id="limit_field_div" style="display:<?php	echo	$style;	?>">
 																<div><b>Keyword Search</b>	<span class="caret" style="margin-top: 8px;margin-left: 3px;" onclick="showHideSearch('sk_div',this);"></span></div>
-															
+
 												</div>
 												<div id="sk_div">
-												<div class="filter-fileds">
-																	<div>
-																				<input type="text" name="search" id="search" value=""/>
+																<div class="filter-fileds">
+																				<div>
+																								<input type="text" name="search" id="search" value=""/>
+																				</div>
+																				<div class="btn-group" id="limit_field_dropdown" style="display:<?php	echo	$style;	?>">
+																								<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+																												<span id="limit_field_text">Limit Search to Field</span>
+																												<span class="caret"></span>
+																								</a>
+																								<ul class="dropdown-menu">
+																												<li class="dropdown"><a href="#" style="white-space: normal;">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+																																<ul class="sub-menu dropdown-menu">
+																																				<li href="javascript://;" onclick="add_custom_token('Title','asset_title');"><a>Title</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Subject','asset_subject');">Subject</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Coverage','asset_coverage');">Coverage</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Genre','asset_genre');">Genre</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Publisher','asset_publisher_name');">Publisher</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Description','asset_description');">Description</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Creator Name','asset_creator_name');">Creator Name</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Creator Affiliation','asset_creator_affiliation');">Creator Affiliation</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Contributor Name','asset_contributor_name');">Contributor Name</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Contributor Affiliation','asset_contributor_affiliation');">Contributor Affiliation</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Rights Summaries','asset_rights');">Rights Summaries</a></li>
+
+																																</ul>
+																												</li>
+																												<li class="dropdown"><a href="#"  style="white-space: normal;">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+																																<ul class="sub-menu dropdown-menu">
+																																				<li><a href="javascript://;" onclick="add_custom_token('ID','instantiation_identifier');">ID</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_source');">Identifier Source</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Dimensions','instantiation_dimension');">Dimensions</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Unit of Measure','unit_of_measure');">Unit of Measure</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Standard','standard');">Standard</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Location','location');">Location</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('File Size','file_size');">File Size</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Duration','actual_duration track_duration');">Duration</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Data Rate','track_data_rate data_rate');">Data Rate</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Tracks','tracks');">Tracks</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Channel Configuration','channel_configuration');">Channel Configuration</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Language','language track_language');">Language</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Alternative Modes','alternative_modes');">Alternative Modes</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Annotation','ins_annotation track_annotation');">Annotation</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Annotation Type','ins_annotation_type');">Annotation Type</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Track Type','track_essence_track_type');">Track Type</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Encoding','track_encoding');">Encoding</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Track Standard','track_standard');">Track Standard</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Frame Rate','track_frame_rate');">Frame Rate</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Playback Speed','track_playback_speed');">Playback Speed</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Sampling Rate','track_sampling_rate');">Sampling Rate</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Bit Depth','track_bit_depth');">Bit Depth</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Frame Size','track_width track_height');">Frame Size</a></li>
+																																				<li><a href="javascript://;" onclick="add_custom_token('Aspect Ratio','track_aspect_ratio');">Aspect Ratio</a></li>
+
+
+
+																																</ul>
+																												</li>
+																								</ul>
+																				</div>
+
+
 																</div>
-																<div class="btn-group" id="limit_field_dropdown" style="display:<?php	echo	$style;	?>">
-																				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-																								<span id="limit_field_text">Limit Search to Field</span>
-																								<span class="caret"></span>
-																				</a>
-																				<ul class="dropdown-menu">
-																								<li class="dropdown"><a href="#" style="white-space: normal;">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
-																												<ul class="sub-menu dropdown-menu">
-																																<li href="javascript://;" onclick="add_custom_token('Title','asset_title');"><a>Title</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Subject','asset_subject');">Subject</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Coverage','asset_coverage');">Coverage</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Genre','asset_genre');">Genre</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Publisher','asset_publisher_name');">Publisher</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Description','asset_description');">Description</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Creator Name','asset_creator_name');">Creator Name</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Creator Affiliation','asset_creator_affiliation');">Creator Affiliation</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Contributor Name','asset_contributor_name');">Contributor Name</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Contributor Affiliation','asset_contributor_affiliation');">Contributor Affiliation</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Rights Summaries','asset_rights');">Rights Summaries</a></li>
+																<div class="filter-fileds" id="limit_btn">
+																				<div><input type="button"  style="display:<?php	echo	$style;	?>" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
 
-																												</ul>
-																								</li>
-																								<li class="dropdown"><a href="#"  style="white-space: normal;">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
-																												<ul class="sub-menu dropdown-menu">
-																																<li><a href="javascript://;" onclick="add_custom_token('ID','instantiation_identifier');">ID</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_source');">Identifier Source</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Dimensions','instantiation_dimension');">Dimensions</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Unit of Measure','unit_of_measure');">Unit of Measure</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Standard','standard');">Standard</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Location','location');">Location</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('File Size','file_size');">File Size</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Duration','actual_duration track_duration');">Duration</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Data Rate','track_data_rate data_rate');">Data Rate</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Tracks','tracks');">Tracks</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Channel Configuration','channel_configuration');">Channel Configuration</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Language','language track_language');">Language</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Alternative Modes','alternative_modes');">Alternative Modes</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Annotation','ins_annotation track_annotation');">Annotation</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Annotation Type','ins_annotation_type');">Annotation Type</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Track Type','track_essence_track_type');">Track Type</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Encoding','track_encoding');">Encoding</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Track Standard','track_standard');">Track Standard</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Frame Rate','track_frame_rate');">Frame Rate</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Playback Speed','track_playback_speed');">Playback Speed</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Sampling Rate','track_sampling_rate');">Sampling Rate</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Bit Depth','track_bit_depth');">Bit Depth</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Frame Size','track_width track_height');">Frame Size</a></li>
-																																<li><a href="javascript://;" onclick="add_custom_token('Aspect Ratio','track_aspect_ratio');">Aspect Ratio</a></li>
-
-
-
-																												</ul>
-																								</li>
-																				</ul>
-																</div>
-
-
-												</div>
-												<div class="filter-fileds" id="limit_btn">
-																<div><input type="button"  style="display:<?php	echo	$style;	?>" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
-
-												</div></div>
+																</div></div>
 								</div>
         <div class="clearfix"></div>
 								<?php
@@ -1098,8 +1098,11 @@
 								} );
 				}
 				function showHideSearch(divID,obj){
-								console.log($(obj).hasClass('caret'));
 								
-								$('#'+divID).toggle()
+												$(obj).toggleClass('custom-caret');
+								
+								
+								
+								$('#'+divID).toggle();
 				}
 </script>

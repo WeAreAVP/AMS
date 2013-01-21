@@ -275,7 +275,7 @@ function updateDataTable()
 												"bDeferRender": true,
 												"bDestroy": is_destroy,
 												"bRetrieve": true,
-												"bAutoWidth": false,
+												"bAutoWidth": true,
 												
 								});
 								if(frozen>0)

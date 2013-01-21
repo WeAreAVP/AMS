@@ -179,13 +179,13 @@ if(	!	$isAjax)
 																																																				$class	=	'drap-drop';
 																																																if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Audience_Rating",	"Annotation",	"Rights")))
 																																																{
-																																																				$width	=	'min-width:100px;';
+																																																				$width	=	'width:100px;';
 																																																}
 																																																else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID")
 																																																{
-																																																				$width	=	'min-width:175px;';
+																																																				$width	=	'width:175px;';
 																																																}
-																																																echo	'<th id="'	.	$value['title']	.	'"  class="'	.	$class	.	'"><span style="float:left;'	.	$width	.	'">'	.	str_replace("_",	' ',	$value['title'])	.	'</span></th>';
+																																																echo	'<th id="'	.	$value['title']	.	'"  class="'	.	$class	.	'" style="'	.	$width	.	'" >'	.	str_replace("_",	' ',	$value['title'])	.	'</th>';
 																																												}
 																																								}
 																																				}
@@ -582,13 +582,13 @@ if(	!	$isAjax)
 																																												}
 																																												if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Audience_Rating",	"Annotation",	"Rights")))
 																																												{
-																																																$width	=	'min-width:100px;';
+																																																$width	=	'width:100px;';
 																																												}
 																																												else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID")
 																																												{
-																																																$width	=	'min-width:175px;';
+																																																$width	=	'width:175px;';
 																																												}
-																																												echo	'<td><span style="float:left;'	.	$width	.	'">'	.	$column	.	'</span></td>';
+																																												echo	'<td style="'	.	$width	.	'">'	.	$column	.	'</td>';
 																																								}
 																																				}
 																																}

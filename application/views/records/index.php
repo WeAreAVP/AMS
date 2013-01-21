@@ -152,7 +152,7 @@ if(	!	$isAjax)
 																												?>
 																<br clear="all"/>
 																<div style="width: 865px;overflow:hidden;" id="full_table_view" >
-																				<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;"  >
+																				<table class="table" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;"  >
 																								<thead>
 																												<tr >
 

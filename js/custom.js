@@ -290,6 +290,7 @@ function updateDataTable()
 												"sWrapper": "dataTables_wrapper form-inline"
 								});
 												$('.dataTable th').css('background','#EBEBEB');
+												$('.dataTable').addClass('table-bordered');
 								
 				}
 }

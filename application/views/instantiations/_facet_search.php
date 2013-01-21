@@ -1096,4 +1096,7 @@
 												"sWrapper": "dataTables_wrapper form-inline"
 								} );
 				}
+				function showHideSearch(divID){
+								console.log(divID);
+				}
 </script>

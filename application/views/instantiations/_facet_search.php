@@ -1097,6 +1097,8 @@
 								} );
 				}
 				function showHideSearch(divID){
-								console.log(divID);
+								
+								console.log(this);
+								$('#'+divID).toggle()
 				}
 </script>

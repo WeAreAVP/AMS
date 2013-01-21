@@ -4,7 +4,7 @@
         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
             <span><i class="icon-cog"></i></span>
         </a>
-        <a class="btn" href="#">
+        <a class="btn" href="#" style="margin-left: 10px;height: 14px;">
             EXPORT LIMITED CSV
         </a>
         <ul class="dropdown-menu">

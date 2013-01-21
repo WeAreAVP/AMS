@@ -325,7 +325,7 @@
 								?>
 								<div class="field-filters">
 												<div class="filter-fileds" id="limit_field_div" style="display:<?php	echo	$style;	?>">
-																<div><b>Keyword Search</b>	<span class="caret"></span></div>
+																<div><b>Keyword Search</b>	<span class="caret" style="margin-top: 8px;"></span></div>
 																<div>
 																				<input type="text" name="search" id="search" value=""/>
 																</div>
@@ -410,7 +410,7 @@
 												<div id="date_range_filter_div">
 																<div id="widget">
 																				<div id="date_range_filter">
-																								<div class="filter-fileds"><b>Date</b></div>
+																								<div class="filter-fileds"><b>Date</b><span class="caret" style="margin-top: 8px;"></span></div>
 																								<div class="controls filter-fileds">
 																												<div class="input-append">
 																																<input type="text" name="date_range" id="date_range" value="" style="width: 180px;cursor: default;background-color: white;" readonly="readonly"/>
@@ -462,7 +462,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Organization</b>
+																				<b>Organization</b><span class="caret" style="margin-top: 8px;"></span>
 																</div>
 																<div class="filter-fileds">
 																				<?php
@@ -508,7 +508,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Nomination Status</b>
+																				<b>Nomination Status</b><span class="caret" style="margin-top: 8px;"></span>
 																</div>
 																<div class="filter-fileds">
 																				<?php
@@ -556,7 +556,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Media Type</b>
+																				<b>Media Type</b><span class="caret" style="margin-top: 8px;"></span>
 																</div>
 																<div class="filter-fileds">
 																				<?php
@@ -603,7 +603,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Physical Format</b>
+																				<b>Physical Format</b><span class="caret" style="margin-top: 8px;"></span>
 																</div>
 																<div class="filter-fileds">
 																				<?php
@@ -650,7 +650,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Digital Format</b>
+																				<b>Digital Format</b><span class="caret" style="margin-top: 8px;"></span>
 																</div>
 																<div class="filter-fileds">
 																				<?php
@@ -697,7 +697,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Generations</b>
+																				<b>Generations</b><span class="caret" style="margin-top: 8px;"></span>
 																</div>
 																<div class="filter-fileds">
 																				<?php

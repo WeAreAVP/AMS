@@ -1098,7 +1098,7 @@
 								} );
 				}
 				function showHideSearch(divID,obj){
-								console.log(obj);
+								console.log($(obj).hasClass('caret'));
 								
 								$('#'+divID).toggle()
 				}

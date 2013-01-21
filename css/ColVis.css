@@ -14,7 +14,7 @@
 	padding: 3px 5px;
 	height: 30px;
 	background-color: #fff;
-	border: 1px solid #d0d0d0;
+/*	border: 1px solid #d0d0d0;*/
 	cursor: pointer;
 	*cursor: hand;
 }
@@ -25,7 +25,7 @@ button.ColVis_Button::-moz-focus-inner {
 }
 
 .ColVis_text_hover {
-	border: 1px solid #999;
+/*	border: 1px solid #999;*/
 	background-color: #f0f0f0;
 }
 
@@ -39,7 +39,7 @@ div.ColVis_collection {
 	width: 150px;
 	background-color: #f3f3f3;
 	padding: 3px;
-	border: 1px solid #ccc;
+/*	border: 1px solid #ccc;*/
 	z-index: 1102;
 }
 
@@ -66,7 +66,7 @@ button.ColVis_Button {
 }
 
 div.ColVis_collection button.ColVis_Button:hover {
-	border: 1px solid #999;
+/*	border: 1px solid #999;*/
 	background-color: #f0f0f0;
 }
 

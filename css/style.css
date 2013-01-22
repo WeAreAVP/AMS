@@ -623,3 +623,6 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 #listing_table th{
 				background: #EBEBEB;
 }
+.message_box{
+				background: url("/images/Mailing.png");width: 25px;height: 17px;margin-top: -5px;float: right;
+}

@@ -32,6 +32,14 @@
 
         </div>
     </div>
+				 <div class="control-group" style="display: none;">
+        <label class="control-label" for="crawford_contact_details">Crawford Contact Details:</label>
+        <div class="controls">
+												
+            <textarea id="crawford_contact_details" name="crawford_contact_details" rows="4" cols="80"><?php	echo	$record->crawford_contact_detail;	?></textarea>
+            <span id="crawford_contact_details_error" style="display: none;" class="message-type_error">Please Enter Crawford Contact Details</span>
+        </div>
+    </div>
 
 </div>
 <script type="text/javascript">

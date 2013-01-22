@@ -844,7 +844,7 @@
 								},500);
 								
 									if('<?php echo $current_tab; ?>'=='simple'){
-													setTimeout('updateSimpleDataTable();',500);
+													setTimeout('updateSimpleDataTable();',1500);
 									}
 				})(jQuery)
 				function add_token(name,type,isRemoved){

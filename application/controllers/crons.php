@@ -168,6 +168,7 @@ class	Crons	extends	CI_Controller
 																unset	($data1);
 																$data	=	xmlObjToArr	($x);
 																$station_cpb_id	=	$data['children']['cpb-id'][0]['text'];
+																echo $station_cpb_id;exit;
 																if	(isset	($station_cpb_id))
 																{
 																				$count	=	$this->cron_model->get_pbcore_file_count_by_folder_id	($folder->id);

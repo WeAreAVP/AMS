@@ -1098,7 +1098,7 @@
 												'bInfo':false,
 												'bFilter': false,
 												"bSort": false,
-												"sScrollY": $(window).height()-160,
+												"sScrollY": $(window).height()-150,
 												"sScrollX": "100%",
 												"bDeferRender": true,
 												"bAutoWidth": false

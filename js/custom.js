@@ -271,7 +271,7 @@ function updateDataTable()
 												'bInfo':false,
 												'bFilter': false,
 												"bSort": false,
-												"sScrollY": $(window).height()-200,
+												"sScrollY": $(window).height()-180,
 												"sScrollX": "100%",	
 												"bDeferRender": true,
 												"bDestroy": is_destroy,

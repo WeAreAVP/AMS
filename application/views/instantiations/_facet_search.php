@@ -6,7 +6,7 @@
 
 				<div id="search_bar_val" class="facet-search"> 
 								<h5 class="filter_title" id="filter_criteria" style="display: none;">FILTER CRITERIA</h5>
-        <div id="tokens" style="padding-bottom: 10px;">
+        <div id="tokens">
             <!-- Custom  Search Display End  -->
 												<?php
 												if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
@@ -791,10 +791,12 @@
 								if($('.search_keys').length>0){
 												$('#filter_criteria').show();
 												$('#search_bar_val').css('margin-bottom','10px');
+												$('#search_bar_val').css('padding-bottom','10px');
 								}
 								else{
 												$('#filter_criteria').hide();
 												$('#search_bar_val').css('margin-bottom','0px');
+												$('#search_bar_val').css('padding-bottom','0px');
 								}
 								var initLayout = function() {
 												var hash = window.location.hash.replace('#', '');

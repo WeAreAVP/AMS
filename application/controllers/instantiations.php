@@ -87,6 +87,7 @@ class	Instantiations	extends	MY_Controller
 								$data['digital_formats']	=	$this->instantiation->get_digital_formats	();
 								$data['generations']	=	$this->instantiation->get_generations	();
 								$data['date_types']	=	$this->instantiation->get_date_types	();
+								$data['current_tab']	=	'';
 								$is_hidden	=	array	();
 								$data['table_type']	=	'instantiation';
 								foreach	($this->column_order	as	$index	=>	$value)

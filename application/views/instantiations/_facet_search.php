@@ -6,7 +6,7 @@
 
 				<div id="search_bar_val" class="facet-search"> 
 								<h5 class="filter_title" id="filter_criteria" style="display: none;">FILTER CRITERIA</h5>
-        <div id="tokens">
+        <div id="tokens" style="padding-bottom: 10px;">
             <!-- Custom  Search Display End  -->
 												<?php
 												if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')

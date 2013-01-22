@@ -41,13 +41,13 @@
 																												if(isset($this->total_unread)	&&	$this->total_unread	>	0	&&	$this->is_station_user)
 																												{
 																																?>
-																												<a class="message_box" href="<?php	echo	site_url('messages/inbox')	?>"><span class="badge label-important message-alert"><?php	echo	$this->total_unread	?></span></a>
+																												<a class="message_box" href="<?php	echo	site_url('messages/inbox')	?>"><i class="icon-envelope icon-white"></i><span class="badge label-important message-alert"><?php	echo	$this->total_unread	?></span></a>
 																																<?php
 																												}
 																												else
 																												{
 																																?>
-																												<a class="message_box" href="<?php	echo	site_url('messages/inbox')	?>"><span class="badge label-important message-alert">43</span></a>
+																												<a class="message_box" href="<?php	echo	site_url('messages/inbox')	?>"><i class="icon-envelope icon-white"></i></a>
 																												<?php	}	?>
 																								</div>
 																							

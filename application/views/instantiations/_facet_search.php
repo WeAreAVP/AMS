@@ -956,11 +956,13 @@
 								if($('.search_keys').length>0){
 												$('#filter_criteria').show();
 												$('#search_bar_val').css('margin-bottom','10px');
+												$('#search_bar_val').css('padding-bottom','10px');
 												
 								}
 								else{
 												$('#filter_criteria').hide();
 												$('#search_bar_val').css('margin-bottom','0px');
+												$('#search_bar_val').css('padding-bottom','0px');
 								}
 								facet_search('0');
             

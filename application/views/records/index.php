@@ -155,7 +155,7 @@ if(	!	$isAjax)
 																<div style="width: 865px;overflow:hidden;" id="full_table_view" >
 																				<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;border-collapse:collapse;"  >
 																								<thead>
-																												<tr >
+																												<tr style="height: 35px;">
 
 																																<?php
 																																if(	!	empty($this->column_order))

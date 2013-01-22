@@ -790,7 +790,7 @@
 				(function($){
 									
 									if('<?php echo $current_tab; ?>'=='simple'){
-													updateSimpleDataTable();
+													setTimeout('updateSimpleDataTable();',500);
 									}
 								if($('.search_keys').length>0){
 												$('#filter_criteria').show();
@@ -1098,7 +1098,7 @@
 												'bInfo':false,
 												'bFilter': false,
 												"bSort": false,
-												"sScrollY": $(window).height()-150,
+												"sScrollY": $(window).height()-160,
 												"sScrollX": "100%",
 												"bDeferRender": true,
 												"bAutoWidth": false
@@ -1110,9 +1110,6 @@
 				function showHideSearch(divID,obj){
 								
 								$(obj).toggleClass('custom-caret');
-								
-								
-								
 								$('#'+divID).toggle();
 				}
 </script>

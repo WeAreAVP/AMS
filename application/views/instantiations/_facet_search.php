@@ -789,9 +789,6 @@
 				var state = false;
 				(function($){
 									
-									if('<?php echo $current_tab; ?>'=='simple'){
-													setTimeout('updateSimpleDataTable();',500);
-									}
 								if($('.search_keys').length>0){
 												$('#filter_criteria').show();
 												$('#search_bar_val').css('margin-bottom','10px');
@@ -845,6 +842,10 @@
 												}
 												
 								},500);
+								
+									if('<?php echo $current_tab; ?>'=='simple'){
+													setTimeout('updateSimpleDataTable();',500);
+									}
 				})(jQuery)
 				function add_token(name,type,isRemoved){
 								if(type=='keyword_field_main'){

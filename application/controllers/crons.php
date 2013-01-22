@@ -114,7 +114,7 @@ class	Crons	extends	CI_Controller
 								}
 								if	(isset	($data_folder_id)	&&	$data_folder_id	>	0)
 								{
-												$data_result	=	file	($directory	.	$file);
+												$data_result	=	file_exists	($directory	.	$file);
 												if	(isset	($data_result)	&&	!	is_empty	($data_result))
 												{
 																foreach	($data_result	as	$value)

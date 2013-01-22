@@ -5,7 +5,7 @@
 
 
 				<div id="search_bar_val" class="facet-search"> 
-								<h5 class="filter_title" id="filter_criteria">FILTER CRITERIA</h5>
+								<h5 class="filter_title" id="filter_criteria" style="display: none;">FILTER CRITERIA</h5>
         <div id="tokens">
             <!-- Custom  Search Display End  -->
 												<?php

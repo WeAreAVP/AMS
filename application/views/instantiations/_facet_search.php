@@ -788,7 +788,7 @@
 				oTable=null;
 				var state = false;
 				(function($){
-									
+									console.log(current_table_type);
 									if(current_table_type=='simple'){
 													updateSimpleDataTable();
 									}

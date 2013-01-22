@@ -82,12 +82,14 @@
         comments=$('#comments').val();
         ftp_detail=$('#ftp_detail').val();
         media_list=$('#media_list').val();
+								 crawford_contact_details=$('#crawford_contact_details').val();
                                 
         extras= {
             review_end_date: review_end_date,
             comments: comments,
             ftp_details: ftp_detail,
-            media_list:media_list
+            media_list:media_list,
+												crawford_contact_details: crawford_contact_details,
         };
         
                                 
@@ -95,6 +97,7 @@
             '<div><strong>Subject: '+subject+'</strong></div><br/>'+
             '<div>Review End Date: '+review_end_date+'</div>'+
             '<div>Comments: '+comments+'</div>'+
+												'<div>Crawford Contact Details: '+crawford_contact_details+'</div>'+ 
             '<div>FTP Details: '+ftp_detail+'</div>'+ 
             '<div>Media List: '+media_list+'</div>' );
        

@@ -69,11 +69,13 @@
         shipping_instructions=$('#shipping_instructions').val();
         comments=$('#comments').val();
         estimated_complete_date=$('#estimated_complete_date').val();
+								 crawford_contact_details=$('#crawford_contact_details').val();
         
         extras= {
             shipping_instructions: shipping_instructions,
             comments: comments,
-            estimated_complete_date: estimated_complete_date
+            estimated_complete_date: estimated_complete_date,
+												crawford_contact_details: crawford_contact_details,
         };
                 
         msg_body='Shipping Instructions: '+shipping_instructions+'\n'+
@@ -86,6 +88,7 @@
            
             '<div>Shipping Instructions: '+shipping_instructions+'</div>'+
             '<div>Comments: '+comments+'</div>'+
+												'<div>Crawford Contact Details: '+crawford_contact_details+'</div>'+ 
             '<div>Estimated Complete Date: '+estimated_complete_date+'</div>');
     }
     function checkDSD(){

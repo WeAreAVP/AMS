@@ -168,6 +168,7 @@ class	Crons	extends	CI_Controller
 																unset	($data1);
 																$data	=	xmlObjToArr	($x);
 																$station_cpb_id	=	$data['children']['cpb-id'][0]['text'];
+																echo 'Nouman';
 																echo $station_cpb_id;exit;
 																if	(isset	($station_cpb_id))
 																{

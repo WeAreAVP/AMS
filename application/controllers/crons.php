@@ -104,6 +104,7 @@ class	Crons	extends	CI_Controller
 					*/
 				function	process_dir_child	($path)
 				{
+								echo 'hello';
 								$type	=	'assets';
 								$file	=	'manifest-md5.txt';
 								$directory	=	base64_decode	($path);

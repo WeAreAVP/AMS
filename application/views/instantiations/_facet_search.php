@@ -789,7 +789,9 @@
 				var state = false;
 				(function($){
 									
-									
+									if(current_table_type=='simple'){
+													updateSimpleDataTable();
+									}
 								if($('.search_keys').length>0){
 												$('#filter_criteria').show();
 												$('#search_bar_val').css('margin-bottom','10px');

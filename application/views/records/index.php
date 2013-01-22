@@ -142,7 +142,7 @@ if(	!	$isAjax)
 																												<?php	}
 																												?>
 																								</tbody>
-																								<script type="text/javascript"> setTimeout(function (){updateSimpleDataTable();},500);</script>
+																								
 
 																				</table>
 																</div><?php

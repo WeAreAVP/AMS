@@ -789,7 +789,7 @@
 				var state = false;
 				(function($){
 									
-									if(<?php echo $current_tab; ?>=='simple'){
+									if('<?php echo $current_tab; ?>'=='simple'){
 													updateSimpleDataTable();
 									}
 								if($('.search_keys').length>0){

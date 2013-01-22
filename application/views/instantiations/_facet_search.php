@@ -1,4 +1,4 @@
-<div id="facet_overflow">
+<div id="facet_overflow" style="overflow-y: scroll;">
 
 <form name="form_search" id="form_search" method="post" onsubmit="return false;">
 

@@ -788,8 +788,8 @@
 				oTable=null;
 				var state = false;
 				(function($){
-									console.log(current_table_type);
-									if(current_table_type=='simple'){
+									
+									if(<?php echo $current_tab; ?>=='simple'){
 													updateSimpleDataTable();
 									}
 								if($('.search_keys').length>0){

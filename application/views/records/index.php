@@ -155,7 +155,7 @@ if(	!	$isAjax)
 																<div style="width: 865px;overflow:hidden;" id="full_table_view" >
 																				<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;border-collapse:collapse;"  >
 																								<thead>
-																												<tr style="height: 35px;">
+																												<tr>
 
 																																<?php
 																																if(	!	empty($this->column_order))
@@ -178,11 +178,11 @@ if(	!	$isAjax)
 
 																																																if(	!	($this->frozen_column	>	$key))
 																																																				$class	=	'drap-drop';
-																																																if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Audience_Rating",	"Annotation",	"Rights")))
+																																																if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Annotation",	"Rights")))
 																																																{
 																																																				$width	=	'width:100px;';
 																																																}
-																																																else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID")
+																																																else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID" || $type=='Audience_Rating')
 																																																{
 																																																				$width	=	'width:175px;';
 																																																}
@@ -581,14 +581,14 @@ if(	!	$isAjax)
 																																																				}
 																																																}
 																																												}
-																																												if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Audience_Rating",	"Annotation",	"Rights")))
-																																												{
-																																																$width	=	'width:100px;';
-																																												}
-																																												else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID")
-																																												{
-																																																$width	=	'width:175px;';
-																																												}
+																																													if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Annotation",	"Rights")))
+																																																{
+																																																				$width	=	'width:100px;';
+																																																}
+																																																else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID" || $type=='Audience_Rating')
+																																																{
+																																																				$width	=	'width:175px;';
+																																																}
 																																												echo	'<td><span style="float:left;'	.	$width	.	'">'	.	$column	.	'</span></td>';
 																																								}
 																																				}

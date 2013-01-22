@@ -121,7 +121,7 @@ class	Crons	extends	CI_Controller
 																{
 																				$data_file	=	(explode	(" ",	$value));
 																				$data_file_path	=	trim	(str_replace	(array	('\r\n',	'\n',	'<br>'),	'',	trim	($data_file[1])));
-																				//	$this->myLog	('Checking File '	.	$data_file_path);
+																				$this->myLog	('Checking File '	.	$data_file_path);
 																				if	(isset	($data_file_path)	&&	!	is_empty	($data_file_path))
 																				{
 																								$file_path	=	trim	($directory	.	$data_file_path);
@@ -167,9 +167,7 @@ class	Crons	extends	CI_Controller
 																$x	=	@simplexml_load_string	($data1);
 																unset	($data1);
 																$data	=	xmlObjToArr	($x);
-																debug($data);
 																$station_cpb_id	=	$data['children']['cpb-id'][0]['text'];
-																
 																if	(isset	($station_cpb_id))
 																{
 																				$count	=	$this->cron_model->get_pbcore_file_count_by_folder_id	($folder->id);

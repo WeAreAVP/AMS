@@ -167,9 +167,9 @@ class	Crons	extends	CI_Controller
 																$x	=	@simplexml_load_string	($data1);
 																unset	($data1);
 																$data	=	xmlObjToArr	($x);
+																debug($data);
 																$station_cpb_id	=	$data['children']['cpb-id'][0]['text'];
-																echo 'Nouman';
-																echo $station_cpb_id;exit;
+																
 																if	(isset	($station_cpb_id))
 																{
 																				$count	=	$this->cron_model->get_pbcore_file_count_by_folder_id	($folder->id);

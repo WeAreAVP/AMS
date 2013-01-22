@@ -4,7 +4,7 @@ if(	!	$isAjax)
 				?>
 				<div class="row-fluid">
 								<div class="span3">
-												
+
 												<?php	$this->load->view('instantiations/_facet_search');	?>
 								</div>
 
@@ -58,7 +58,7 @@ if(	!	$isAjax)
 																<div style="width:865px;overflow:hidden;" id="simple_view">
 																				<table class="table table-bordered" id="assets_table" >
 																								<thead>
-																												<tr>
+																												<tr style="background: rgb(235, 235, 235);">
 																																<th style='width: 14px;'><span style="float:left;" ><i class="icon-flag "></i></span></th>
 																																<th style='width: 150px;'><span style="float:left;min-width: 100px;" >AA GUID</span></th>
 																																<th style='width: 110px;'><span style="float:left;min-width: 100px;" >Local ID</span></th>
@@ -152,7 +152,7 @@ if(	!	$isAjax)
 																{
 																												?>
 																<br clear="all"/>
-																<div style="width: 865px;overflow:hidden;" id="full_table_view" >
+																<div style="width: 865px;overflow:hidden;" id="full_table_view">
 																				<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;border-collapse:collapse;"  >
 																								<thead>
 																												<tr>
@@ -182,7 +182,7 @@ if(	!	$isAjax)
 																																																{
 																																																				$width	=	'width:100px;';
 																																																}
-																																																else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID" || $type=='Audience_Rating')
+																																																else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID"	||	$type	==	'Audience_Rating')
 																																																{
 																																																				$width	=	'width:175px;';
 																																																}
@@ -581,14 +581,14 @@ if(	!	$isAjax)
 																																																				}
 																																																}
 																																												}
-																																													if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Annotation",	"Rights")))
-																																																{
-																																																				$width	=	'width:100px;';
-																																																}
-																																																else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID" || $type=='Audience_Rating')
-																																																{
-																																																				$width	=	'width:175px;';
-																																																}
+																																												if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Annotation",	"Rights")))
+																																												{
+																																																$width	=	'width:100px;';
+																																												}
+																																												else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID"	||	$type	==	'Audience_Rating')
+																																												{
+																																																$width	=	'width:175px;';
+																																												}
 																																												echo	'<td><span style="float:left;'	.	$width	.	'">'	.	$column	.	'</span></td>';
 																																								}
 																																				}

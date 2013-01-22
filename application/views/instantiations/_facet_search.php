@@ -788,6 +788,10 @@
 				oTable=null;
 				var state = false;
 				(function($){
+									$('#facet_overflow').height($(window).height());
+									if(current_table_type=='simple'){
+													$('#assets_table').height($(window).height()-180);
+									}
 								if($('.search_keys').length>0){
 												$('#filter_criteria').show();
 												$('#search_bar_val').css('margin-bottom','10px');

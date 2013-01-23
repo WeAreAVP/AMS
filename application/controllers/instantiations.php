@@ -237,10 +237,12 @@ class	Instantiations	extends	MY_Controller
 
 				public	function	export_csv()
 				{
+
 								$array	=	array();
-								$array[0]	=	array('0'							=>	'Show ID',	'1'							=>	'Show Start Date',	'2'							=>	'Show End Date',	'3'							=>	'Manager Name',	'4'							=>	'City',	'5'							=>	'State');
-								$array[1]	=	array('0'							=>	strval("0001532"),	'1'							=>	'nouman',	'2'							=>	'Fahad',	'3'							=>	'Saad',	'4'							=>	'Byw',	'5'							=>	'Stup');
-								$array[2]	=	array('0'		=>	'0012',	'1'		=>	'nouman',	'2'		=>	'Fahad',	'3'		=>	'Saad',	'4'		=>	'Byw',	'5'		=>	'Stup');
+								$array[0]	=	array('0'							=>	'GUID',	'1'							=>	'Unique ID',	'2'							=>	'Title',	'3'							=>	'Physical Format',	'4'							=>	'Duration',	'5'							=>	'Priority');
+								$array[1]	=	array('0'							=>	'cpb-aacip/56-56zw3z2t',	'1'							=>	'Test',	'2'							=>	'Test Title',	'3'							=>	'format',	'4'							=>	'10',	'5'							=>	'low');
+								$array[1]	=	array('0'	=>	'000125',	'1'	=>	'Test 1',	'2'	=>	'Test Title 2',	'3'	=>	'digital',	'4'	=>	'90',	'5'	=>	'high');
+
 								$this->load->library('excel');
 								$this->excel->getActiveSheetIndex();
 								$this->excel->getActiveSheet()->setTitle('test worksheet');
@@ -250,9 +252,9 @@ class	Instantiations	extends	MY_Controller
 												$col	=	0;
 												foreach($value	as	$key	=>	$test)
 												{
-																
+
 																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$test);
-																
+
 																$col	++;
 												}
 												$row	++;
@@ -268,29 +270,7 @@ class	Instantiations	extends	MY_Controller
 								$objWriter->save('php://output');
 								exit;
 
-								$file	=	'/var/www/html/assets/testFile.csv';
-								$ourFileName	=	"testFile.csv";
-								$ourFileHandle	=	fopen($file,	'w')	or	die("can't open file");
-								fclose($ourFileHandle);
-
-
-								$fp	=	fopen($file,	'w');
-
-								foreach($array	as	$fields)
-								{
-												fputcsv($fp,	''	.	$fields	.	'');
-								}
-
-								fclose($fp);
-
-								$name	=	time()	.	"_showReport";
-								$csv	=	file_get_contents($file);
-								header("Content-type: application/csv");
-								header("Content-Disposition: attachment; filename=$name.csv");
-								header("Pragma: no-cache");
-								header("Expires: 0");
-								echo	$csv;
-								exit;
+								
 				}
 
 }

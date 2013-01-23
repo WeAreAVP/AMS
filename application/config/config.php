@@ -37,7 +37,7 @@ if(ENVIRONMENT	==	'testing')
 else	if(ENVIRONMENT	==	'development')
 {
 				$config['base_url']	=	HTTP_PREFIX_STR	.	"amsdev.avpreserve.com/";
-				$config['to_email']	=	'nouman.tayyab@purelogics.net';
+				$config['to_email']	=	'noumantayyab@gmail.com';
 				$config['from_email']	=	'nouman@geekschicago.com';
 				$config['path']	=	'/var/www/html/';
 				$config['cookie_domain']	=	".amsdev.avpreserve.com";

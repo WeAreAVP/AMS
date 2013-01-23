@@ -226,6 +226,7 @@ class	Templatemanager	extends	MY_Controller
 																								{
 																												$email_template_data['body_plain']	=	str_replace(array('\r',	'\n',	'\r\n'),	'<br>',	$form_val->set_value('body_plain'));
 																								}
+																								echo $form_val->set_value('body_plain')	;
 																								echo $email_template_data['body_plain']	;exit;
 																								$email_template_data['email_from']	=	$form_val->set_value('email_from');
 																								$email_template_data['reply_to']	=	$form_val->set_value('reply_to');

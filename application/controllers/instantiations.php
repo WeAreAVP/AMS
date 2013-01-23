@@ -239,8 +239,8 @@ class	Instantiations	extends	MY_Controller
 				{
 								$array=array();
 								$array[0]	=	array('0'							=>	'Show ID',	'1'							=>	'Show Start Date',	'2'							=>	'Show End Date',	'3'							=>	'Manager Name',	'4'							=>	'City',	'5'							=>	'State');
-								$array[1]	=	array('0'							=>	'12',	'1'							=>	'nouman',	'2'							=>	'Fahad',	'3'							=>	'Saad',	'4'							=>	'Byw',	'5'							=>	'Stup');
-								$array[2]	=	array('0'												=>	'12',	'1'												=>	'nouman',	'2'												=>	'Fahad',	'3'												=>	'Saad',	'4'												=>	'Byw',	'5'												=>	'Stup');
+								$array[1]	=	array('0'							=>	'00132',	'1'							=>	'nouman',	'2'							=>	'Fahad',	'3'							=>	'Saad',	'4'							=>	'Byw',	'5'							=>	'Stup');
+								$array[2]	=	array('0'												=>	'0012',	'1'												=>	'nouman',	'2'												=>	'Fahad',	'3'												=>	'Saad',	'4'												=>	'Byw',	'5'												=>	'Stup');
 								$file	=		'/var/www/html/assets/testFile.csv';
 								$ourFileName	=	"testFile.csv";
 								$ourFileHandle	=	fopen($file,	'w')	or	die("can't open file");
@@ -263,6 +263,7 @@ class	Instantiations	extends	MY_Controller
 												header("Pragma: no-cache");
 												header("Expires: 0");
 												echo	$csv;
+												exit;
 								
 				}
 

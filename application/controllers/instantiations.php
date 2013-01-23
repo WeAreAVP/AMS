@@ -240,8 +240,8 @@ class	Instantiations	extends	MY_Controller
 
 								$array	=	array();
 								$array[0]	=	array('0'							=>	'GUID',	'1'							=>	'Unique ID',	'2'							=>	'Title',	'3'							=>	'Physical Format',	'4'							=>	'Duration',	'5'							=>	'Priority');
-								$array[1]	=	array('0'							=>	'fgfdgs',	'1'							=>	'Test',	'2'							=>	'Test Title',	'3'							=>	'format',	'4'							=>	'10',	'5'							=>	'low');
-								$array[1]	=	array('0'	=>	'000125',	'1'	=>	'Test 1',	'2'	=>	'Test Title 2',	'3'	=>	'digital',	'4'	=>	'90',	'5'	=>	'high');
+								$array[1]	=	array('0'							=>	'cpb-aacip/56-56zw3z2t',	'1'							=>	'Test',	'2'							=>	'Test Title',	'3'							=>	'format',	'4'							=>	'10',	'5'							=>	'low');
+								$array[2]	=	array('0'	=>	'000125',	'1'	=>	'Test 1',	'2'	=>	'Test Title 2',	'3'	=>	'digital',	'4'	=>	'90',	'5'	=>	'high');
 
 								$this->load->library('excel');
 								$this->excel->getActiveSheetIndex();
@@ -259,7 +259,7 @@ class	Instantiations	extends	MY_Controller
 												}
 												$row	++;
 								}
-								$filename	=	'just_some_random_name.csv';	//save our workbook as this file name
+								$filename	=	'csv_export.csv';	//save our workbook as this file name
 								header('Content-Type: application/csv');	//mime type
 								header('Content-Disposition: attachment;filename="'	.	$filename	.	'"');	//tell browser what's the file name
 								header('Cache-Control: max-age=0');	//no cache

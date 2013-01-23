@@ -237,48 +237,58 @@ class	Instantiations	extends	MY_Controller
 
 				public	function	export_csv()
 				{
+								$array	=	array();
+								$array[0]	=	array('0'							=>	'Show ID',	'1'							=>	'Show Start Date',	'2'							=>	'Show End Date',	'3'							=>	'Manager Name',	'4'							=>	'City',	'5'							=>	'State');
+								$array[1]	=	array('0'							=>	strval("0001532"),	'1'							=>	'nouman',	'2'							=>	'Fahad',	'3'							=>	'Saad',	'4'							=>	'Byw',	'5'							=>	'Stup');
+								$array[2]	=	array('0'		=>	'0012',	'1'		=>	'nouman',	'2'		=>	'Fahad',	'3'		=>	'Saad',	'4'		=>	'Byw',	'5'		=>	'Stup');
 								$this->load->library('excel');
 								$this->excel->getActiveSheetIndex();
 								$this->excel->getActiveSheet()->setTitle('test worksheet');
-								
-								$filename='just_some_random_name.xls'; //save our workbook as this file name
-header('Content-Type: application/vnd.ms-excel'); //mime type
-header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
-header('Cache-Control: max-age=0'); //no cache
-             
+								$row	=	1;
+								for($i	=	0;	$i	<	3;	$i	++	)
+								{
+												foreach($array	as	$key	=>	$value)
+												{
+																$col	=	0;
+																$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col,	$row,	$value);
+																$col	++;
+												}
+												$row	++;
+								}
+								$filename	=	'just_some_random_name.xls';	//save our workbook as this file name
+								header('Content-Type: application/vnd.ms-excel');	//mime type
+								header('Content-Disposition: attachment;filename="'	.	$filename	.	'"');	//tell browser what's the file name
+								header('Cache-Control: max-age=0');	//no cache
 //save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)
 //if you want to save it as .XLSX Excel 2007 format
-$objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');  
+								$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel5');
 //force user to download the Excel file without writing it to server's HD
-$objWriter->save('php://output');exit;
-								$array=array();
-								$array[0]	=	array('0'							=>	'Show ID',	'1'							=>	'Show Start Date',	'2'							=>	'Show End Date',	'3'							=>	'Manager Name',	'4'							=>	'City',	'5'							=>	'State');
-								$array[1]	=	array('0'							=>	strval("0001532"),	'1'							=>	'nouman',	'2'							=>	'Fahad',	'3'							=>	'Saad',	'4'							=>	'Byw',	'5'							=>	'Stup');
-								$array[2]	=	array('0'												=>	'0012',	'1'												=>	'nouman',	'2'												=>	'Fahad',	'3'												=>	'Saad',	'4'												=>	'Byw',	'5'												=>	'Stup');
-								$file	=		'/var/www/html/assets/testFile.csv';
+								$objWriter->save('php://output');
+								exit;
+
+								$file	=	'/var/www/html/assets/testFile.csv';
 								$ourFileName	=	"testFile.csv";
 								$ourFileHandle	=	fopen($file,	'w')	or	die("can't open file");
 								fclose($ourFileHandle);
 
-								
-												$fp	=	fopen($file,	'w');
 
-												foreach($array	as	$fields)
-												{
-																fputcsv($fp,	''.$fields.'');
-												}
+								$fp	=	fopen($file,	'w');
 
-												fclose($fp);
-												
-												$name	=	time()	.	"_showReport";
-												$csv	=	file_get_contents($file);
-												header("Content-type: application/csv");
-												header("Content-Disposition: attachment; filename=$name.csv");
-												header("Pragma: no-cache");
-												header("Expires: 0");
-												echo	$csv;
-												exit;
-								
+								foreach($array	as	$fields)
+								{
+												fputcsv($fp,	''	.	$fields	.	'');
+								}
+
+								fclose($fp);
+
+								$name	=	time()	.	"_showReport";
+								$csv	=	file_get_contents($file);
+								header("Content-type: application/csv");
+								header("Content-Disposition: attachment; filename=$name.csv");
+								header("Pragma: no-cache");
+								header("Expires: 0");
+								echo	$csv;
+								exit;
 				}
 
 }

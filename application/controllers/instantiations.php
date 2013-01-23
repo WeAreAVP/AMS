@@ -245,12 +245,12 @@ class	Instantiations	extends	MY_Controller
 								$this->excel->getActiveSheetIndex();
 								$this->excel->getActiveSheet()->setTitle('test worksheet');
 								$row	=	1;
-								for($i	=	0;	$i	<	3;	$i	++	)
+								foreach($array	as	$key	=>	$value)
 								{
-												foreach($array	as	$key	=>	$value)
+												foreach($value	as	$key	=>	$test)
 												{
 																$col	=	0;
-																$this->excel->getActiveSheet()->setCellValueByColumnAndRow($col,	$row,	$value);
+																$this->excel->getActiveSheet()->setCellValueByColumnAndRow($col,	$row,	$test);
 																$col	++;
 												}
 												$row	++;

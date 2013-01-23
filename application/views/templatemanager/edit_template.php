@@ -12,7 +12,7 @@ $subject	=	array	(
 $body_plain	=	array	(
 				'name'					=>	'body_plain',
 				'id'							=>	'body_plain',
-				'value'				=>	str_replace	("<br /> <br />",	"\n",	$template_detail->body_plain),
+				'value'				=>	str_replace	("<br />\n<br />",	"\n",	$template_detail->body_plain),
 );
 $body_html	=	array	(
 				'name'											=>	'body_html',

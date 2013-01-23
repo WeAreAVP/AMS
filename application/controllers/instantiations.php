@@ -251,7 +251,7 @@ class	Instantiations	extends	MY_Controller
 
 												foreach($array	as	$fields)
 												{
-																fputcsv($fp,	$fields);
+																fputcsv($fp,	"$fields");
 												}
 
 												fclose($fp);

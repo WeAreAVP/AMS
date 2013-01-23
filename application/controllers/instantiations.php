@@ -250,7 +250,7 @@ class	Instantiations	extends	MY_Controller
 												foreach($array	as	$key	=>	$value)
 												{
 																$col	=	0;
-																$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col,	$row,	$value);
+																$this->excel->getActiveSheet()->setCellValueByColumnAndRow($col,	$row,	$value);
 																$col	++;
 												}
 												$row	++;

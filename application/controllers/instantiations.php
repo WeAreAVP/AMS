@@ -255,8 +255,8 @@ class	Instantiations	extends	MY_Controller
 												}
 												$row	++;
 								}
-								$filename	=	'just_some_random_name.xls';	//save our workbook as this file name
-								header('Content-Type: application/vnd.ms-excel');	//mime type
+								$filename	=	'just_some_random_name.csv';	//save our workbook as this file name
+								header('Content-Type: application/csv');	//mime type
 								header('Content-Disposition: attachment;filename="'	.	$filename	.	'"');	//tell browser what's the file name
 								header('Cache-Control: max-age=0');	//no cache
 //save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)

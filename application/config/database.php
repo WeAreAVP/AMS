@@ -63,7 +63,7 @@ else	if	(ENVIRONMENT	==	'development')
 {
 				$db['default']['hostname']	=	'amsdb.cnltxk49gtb0.us-east-1.rds.amazonaws.com';
 				$db['default']['username']	=	'root';
-				$db['default']['password']	=	'AMSQL098';
+				$db['default']['password']	=	'AVPSQL098';
 				$db['default']['database']	=	'ams_dev';
 				$db['default']['dbdriver']	=	'mysql';
 				$db['default']['db_debug']	=	TRUE;
@@ -72,7 +72,7 @@ else	if	(ENVIRONMENT	==	'qatesting')
 {
 				$db['default']['hostname']	=	'amsdb.cnltxk49gtb0.us-east-1.rds.amazonaws.com';
 				$db['default']['username']	=	'root';
-				$db['default']['password']	=	'AMSQL098';
+				$db['default']['password']	=	'AVPSQL098';
 				$db['default']['database']	=	'ams_qa';
 				$db['default']['dbdriver']	=	'mysql';
 				$db['default']['db_debug']	=	FALSE;
@@ -81,7 +81,7 @@ else if	(ENVIRONMENT	==	'production')
 {
 				$db['default']['hostname']	=	'amsdb.cnltxk49gtb0.us-east-1.rds.amazonaws.com';
 				$db['default']['username']	=	'root';
-				$db['default']['password']	=	'AMSQL098';
+				$db['default']['password']	=	'AVPSQL098';
 				$db['default']['database']	=	'ams_live';
 				$db['default']['dbdriver']	=	'mysql';
 				$db['default']['db_debug']	=	FALSE;

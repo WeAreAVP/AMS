@@ -673,8 +673,8 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->join($this->table_generations,	"$this->table_generations.id = $this->table_instantiation_generations.generations_id",	'left');
 //								$this->db->join($this->table_nominations,	"$this->table_nominations.instantiations_id = $this->table_instantiations.id",	'left');
 //								$this->db->join($this->table_nomination_status,	"$this->table_nomination_status.id = $this->table_nominations.nomination_status_id",	'left');
-//								$this->db->join($this->table_events,	"$this->table_events.instantiations_id	 = $this->table_instantiations.id",	'left');
-//								$this->db->join($this->table_event_types,	"$this->table_event_types.id	 = $this->table_events.event_types_id",	'left');
+								$this->db->join($this->table_events,	"$this->table_events.instantiations_id	 = $this->table_instantiations.id",	'left');
+								$this->db->join($this->table_event_types,	"$this->table_event_types.id	 = $this->table_events.event_types_id",	'left');
 //								$this->db->limit(5);
 
 
@@ -712,11 +712,14 @@ class	Instantiations_Model	extends	CI_Model
 								}
 								if(isset($session['digitized'])	&&	$session['digitized']	===	'1')
 								{
-												$where	.=' @digitized "1" @!actual_duration "0"';
+												$this->db->where("$this->table_instantiations.digitized",	'1');
+												$this->db->where("$this->table_instantiations.actual_duration IS NULL");
 								}
 								if(isset($session['migration_failed'])	&&	$session['migration_failed']	===	'1')
 								{
-												$where	.=' @event_type "migration" @event_outcome "FAIL"';
+
+												$this->db->where("$this->table_event_types.event_type",	'migration');
+												$this->db->where("$this->table_events.event_outcome",	'0');
 								}
 
 								if(isset($session['custom_search'])	&&	$session['custom_search']	!=	'')
@@ -738,6 +741,8 @@ class	Instantiations_Model	extends	CI_Model
 												if($start_date	!=	''	&&	isset($end_date)	&&	is_numeric($end_date)	&&	$end_date	>=	$start_date)
 												{
 																$this->sphinxsearch->set_filter_range("dates",	$start_date,	$end_date);
+																
+																
 												}
 												else
 												{
@@ -755,12 +760,12 @@ class	Instantiations_Model	extends	CI_Model
 								}
 
 								$this->db->group_by("$this->table_instantiations.id");
-								
+
 								$result	=	$this->db->get($this->table_instantiations);
-								
+
 								if(isset($result)	&&	!	empty($result))
 								{
-								
+
 												return	$result->result();
 								}
 								return	false;

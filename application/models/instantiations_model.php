@@ -650,8 +650,8 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->select("identifiers.identifier as GUID",	FALSE);
 
 								$this->db->join($this->_assets_table,	"$this->_assets_table.id = $this->table_instantiations.assets_id",	'left');
-								$this->db->join("identifiers AS `local",	"$this->_assets_table.id = local.identifier_source AND local.identifier_source!='http://americanarchiveinventory.org'",	'left');
-								$this->db->join("identifiers",	"$this->_assets_table.id = identifiers.identifier_source AND identifiers.identifier_source='http://americanarchiveinventory.org'",	'left');
+								$this->db->join("identifiers AS local",	"$this->_assets_table.id = local.assets_id AND local.identifier_source!='http://americanarchiveinventory.org'",	'left');
+								$this->db->join("identifiers",	"$this->_assets_table.id = identifiers.assets_id AND identifiers.identifier_source='http://americanarchiveinventory.org'",	'left');
 								
 								
 				

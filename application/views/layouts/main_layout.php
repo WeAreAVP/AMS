@@ -7,7 +7,7 @@
         <script type="text/javascript">
             var site_url='<?php	echo	site_url()	?>';
         </script>
-								<script src="tiny_mce/tiny_mce.js" type="text/javascript"></script>
+								<script src="/tiny_mce/tiny_mce.js" type="text/javascript"></script>
 								<?php
 								echo	link_js('jquery-1.8.2.js');
 								echo	link_js('jquery-ui-1.9.0.custom.js');

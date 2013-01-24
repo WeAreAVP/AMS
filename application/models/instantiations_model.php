@@ -645,7 +645,7 @@ class	Instantiations_Model	extends	CI_Model
 				function	export_limited_csv()
 				{
 								$this->db->select("identifiers.identifier as GUID",	FALSE);
-								$this->db->select("local.identifier AS unique_id",	FALSE);
+								$this->db->select("GROUP_CONCAT(local.identifier SEPARATOR ' | ') AS unique_id",	FALSE);
 								$this->db->select("GROUP_CONCAT($this->asset_titles.title SEPARATOR ' | ') as titles",	FALSE);
 								$this->db->select("$this->table_instantiation_formats.format_type",	FALSE);
 								$this->db->select("$this->table_instantiations.projected_duration",	FALSE);

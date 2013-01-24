@@ -9,10 +9,12 @@ $subject	=	array	(
 				'id'								=>	'subject',
 				'value'					=>	$template_detail->subject,
 );
+$plain=str_replace	('<br />\n<br />',	"\n",	$template_detail->body_plain);
+$plain=str_replace	('<br />',	"\n",	$template_detail->body_plain);
 $body_plain	=	array	(
 				'name'					=>	'body_plain',
 				'id'							=>	'body_plain',
-				'value'				=>	str_replace	(array('<br />\n<br />','<br />'),	"\n",	$template_detail->body_plain),
+				'value'				=>	$plain,
 );
 $body_html	=	array	(
 				'name'											=>	'body_html',

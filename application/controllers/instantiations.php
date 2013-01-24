@@ -238,7 +238,7 @@ class	Instantiations	extends	MY_Controller
 				public	function	export_csv()
 				{
 								$params	=	array('search'	=>	'');
-								$records	=	$this->sphinx->instantiations_list($params,0,286805);
+								$records	=	$this->sphinx->instantiations_list($params,0,1000);
 								$this->load->library('excel');
 								$this->excel->getActiveSheetIndex();
 								$this->excel->getActiveSheet()->setTitle('Limited CSV');

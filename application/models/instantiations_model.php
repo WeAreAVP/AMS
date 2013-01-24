@@ -762,7 +762,7 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->group_by("$this->table_instantiations.id");
 
 								$result	=	$this->db->get($this->table_instantiations);
-								echo $this->db->last_query();
+								
 								if(isset($result)	&&	!	empty($result))
 								{
 

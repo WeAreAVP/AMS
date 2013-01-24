@@ -644,18 +644,23 @@ class	Instantiations_Model	extends	CI_Model
 
 				function	export_limited_csv()
 				{
-								$this->db->select("$this->table_instantiations.id",	FALSE);
-								$this->db->select("GROUP_CONCAT($this->asset_titles.title SEPARATOR ' | ') as multi_assets",	FALSE);
-								$this->db->select("local.identifier AS unique_id",	FALSE);
 								$this->db->select("identifiers.identifier as GUID",	FALSE);
+								$this->db->select("local.identifier AS unique_id",	FALSE);
+								$this->db->select("GROUP_CONCAT($this->asset_titles.title SEPARATOR ' | ') as titles",	FALSE);
+								$this->db->select("$this->table_instantiation_formats.format_type",	FALSE);
+								$this->db->select("$this->table_instantiations.projected_duration",	FALSE);
+								$this->db->select("$this->table_nomination_status.status",	FALSE);
 
 								$this->db->join($this->_assets_table,	"$this->_assets_table.id = $this->table_instantiations.assets_id",	'left');
 								$this->db->join("identifiers AS local",	"$this->_assets_table.id = local.assets_id AND local.identifier_source!='http://americanarchiveinventory.org'",	'left');
 								$this->db->join("identifiers",	"$this->_assets_table.id = identifiers.assets_id AND identifiers.identifier_source='http://americanarchiveinventory.org'",	'left');
-								
-								
-				
-				
+
+								$this->db->join($this->table_instantiation_formats,	"$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id");
+								$this->db->join($this->table_nominations,	"$this->table_nominations.instantiations_id = $this->table_instantiations.id");
+								$this->db->join($this->table_nomination_status,	"$this->table_nomination_status.id = $this->table_nominations.nomination_status_id");
+
+
+
 //								$this->db->join($this->_table_asset_descriptions,	"$this->_table_asset_descriptions.assets_id = $this->_assets_table.id",	'left');
 
 								$this->db->join($this->asset_titles,	"$this->asset_titles.assets_id	 = $this->table_instantiations.assets_id",	'left');
@@ -753,8 +758,13 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->group_by("$this->table_instantiations.id");
 								$this->db->limit(5);
 								$result	=	$this->db->get($this->table_instantiations);
-								echo $this->db->last_query();
-								return	$result->result();
+								echo	$this->db->last_query();
+								if(isset($result)	&&	!	empty($result))
+								{
+												debug($result->result());
+												return	$result->result();
+								}
+								return	false;
 				}
 
 }

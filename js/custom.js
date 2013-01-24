@@ -247,7 +247,7 @@ function freezeColumns(count)
 }
 function updateDataTable()
 {
-				$('#facet_overflow').height($(window).height());
+				
 				if($('#listing_table').length>0)
 				{
 								

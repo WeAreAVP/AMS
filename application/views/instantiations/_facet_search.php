@@ -1,4 +1,4 @@
-<div id="facet_overflow" style="overflow-y: scroll;">
+
 
 				<form name="form_search" id="form_search" method="post" onsubmit="return false;">
 
@@ -774,7 +774,7 @@
 
 								</div>
 				</form>
-</div>
+
 <script type="text/javascript">
     var is_destroy=false;
 				var columnsOrder=new Array();
@@ -1092,7 +1092,7 @@
 				}
 				function updateSimpleDataTable()
 				{
-								$('#facet_overflow').height($(window).height());
+								
 								var sTable = $('#assets_table').dataTable({
 												"sDom": "frtiS",
 												'bPaginate':false,

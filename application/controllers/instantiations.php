@@ -237,7 +237,11 @@ class	Instantiations	extends	MY_Controller
 
 				public	function	export_csv()
 				{
-								$records	=	$this->sphinx->instantiations_list('');
+								$params	=	array('search'	=>	'');
+								$records	=	$this->sphinx->instantiations_list($params);
+								$this->load->library('excel');
+								$this->excel->getActiveSheetIndex();
+								$this->excel->getActiveSheet()->setTitle('Limited CSV');
 								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(0,	1,	'GUID');
 								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(1,	1,	'Unique ID');
 								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(2,	1,	'Title');
@@ -245,9 +249,7 @@ class	Instantiations	extends	MY_Controller
 								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(4,	1,	'Duration');
 								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(5,	1,	'Priority');
 
-								$this->load->library('excel');
-								$this->excel->getActiveSheetIndex();
-								$this->excel->getActiveSheet()->setTitle('Limited CSV');
+
 								$row	=	2;
 								foreach($records['records']	as	$value)
 								{

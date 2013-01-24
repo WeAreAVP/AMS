@@ -654,7 +654,6 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->join($this->_assets_table,	"$this->_assets_table.id = $this->table_instantiations.assets_id",	'left');
 								$this->db->join("identifiers AS local",	"$this->_assets_table.id = local.assets_id AND local.identifier_source!='http://americanarchiveinventory.org'",	'left');
 								$this->db->join("identifiers",	"$this->_assets_table.id = identifiers.assets_id AND identifiers.identifier_source='http://americanarchiveinventory.org'",	'left');
-
 								$this->db->join($this->table_instantiation_formats,	"$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id");
 								$this->db->join($this->table_nominations,	"$this->table_nominations.instantiations_id = $this->table_instantiations.id");
 								$this->db->join($this->table_nomination_status,	"$this->table_nomination_status.id = $this->table_nominations.nomination_status_id");
@@ -667,11 +666,11 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->join($this->stations,	"$this->stations.id = $this->_assets_table.stations_id",	'left');
 //								$this->db->join($this->table_instantiation_dates,	"$this->table_instantiation_dates.instantiations_id = $this->table_instantiations.id",	'left');
 //								$this->db->join($this->table_date_types,	"$this->table_date_types.id = $this->table_instantiation_dates.date_types_id",	'left');
-//								$this->db->join($this->table_instantiation_media_types,	"$this->table_instantiation_media_types.id = $this->table_instantiations.instantiation_media_type_id",	'left');
+								$this->db->join($this->table_instantiation_media_types,	"$this->table_instantiation_media_types.id = $this->table_instantiations.instantiation_media_type_id",	'left');
 //								$this->db->join($this->table_instantiation_formats,	"$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id",	'left');
 //								$this->db->join($this->table_instantiation_colors,	"$this->table_instantiation_colors.id = $this->table_instantiations.instantiation_colors_id",	'left');
-//								$this->db->join($this->table_instantiation_generations,	"$this->table_instantiation_generations.instantiations_id = $this->table_instantiations.id",	'left');
-//								$this->db->join($this->table_generations,	"$this->table_generations.id = $this->table_instantiation_generations.generations_id",	'left');
+								$this->db->join($this->table_instantiation_generations,	"$this->table_instantiation_generations.instantiations_id = $this->table_instantiations.id",	'left');
+								$this->db->join($this->table_generations,	"$this->table_generations.id = $this->table_instantiation_generations.generations_id",	'left');
 //								$this->db->join($this->table_nominations,	"$this->table_nominations.instantiations_id = $this->table_instantiations.id",	'left');
 //								$this->db->join($this->table_nomination_status,	"$this->table_nomination_status.id = $this->table_nominations.nomination_status_id",	'left');
 //								$this->db->join($this->table_events,	"$this->table_events.instantiations_id	 = $this->table_instantiations.id",	'left');
@@ -684,32 +683,32 @@ class	Instantiations_Model	extends	CI_Model
 								if(isset($session['organization'])	&&	$session['organization']	!=	'')
 								{
 												$station_name	=	explode('|||',	trim($session['organization']));
-												$this->db->where_in('organization',	$station_name);
+												$this->db->where_in("$this->stations.station_name",	$station_name);
 								}
 								if(isset($session['nomination'])	&&	$session['nomination']	!=	'')
 								{
 												$nomination	=	explode('|||',	trim($session['nomination']));
-												$this->db->where_in('status',	$nomination);
+												$this->db->where_in("$this->table_nomination_status.status",	$nomination);
 								}
 								if(isset($session['media_type'])	&&	$session['media_type']	!=	'')
 								{
 												$media_type	=	explode('|||',	trim($session['media_type']));
-												$this->db->where_in('media_type',	$media_type);
+												$this->db->where_in("$this->table_instantiation_media_types.media_type",	$media_type);
 								}
 								if(isset($session['physical_format'])	&&	$session['physical_format']	!=	'')
 								{
-												$physical_format	=	str_replace('|||',	'" | "',	trim($session['physical_format']));
-												$where	.=" @format_name \"$physical_format\"";
+												$physical_format	=	explode('|||',	trim($session['physical_format']));
+												$this->db->where_in("$this->table_instantiation_formats.format_name",	$physical_format);
 								}
 								if(isset($session['digital_format'])	&&	$session['digital_format']	!=	'')
 								{
-												$digital_format	=	str_replace('|||',	'" | "',	trim($session['digital_format']));
-												$where	.=" @format_name \"$digital_format\"";
+												$digital_format	=	explode('|||',	trim($session['digital_format']));
+												$this->db->where_in("$this->table_instantiation_formats.format_name",	$digital_format);
 								}
 								if(isset($session['generation'])	&&	$session['generation']	!=	'')
 								{
-												$generation	=	str_replace('|||',	'" | "',	trim($session['generation']));
-												$where	.=" @generation \"$generation\"";
+												$generation	=	explode('|||',	trim($session['generation']));
+												$this->db->where_in("$this->table_generations.generation",	$generation);
 								}
 								if(isset($session['digitized'])	&&	$session['digitized']	===	'1')
 								{
@@ -752,16 +751,16 @@ class	Instantiations_Model	extends	CI_Model
 								}
 								if($this->is_station_user)
 								{
-												$this->db->where_in('organization',	$this->station_name);
+												$this->db->where_in("$this->stations.station_name",	$this->station_name);
 								}
 
 								$this->db->group_by("$this->table_instantiations.id");
-								$this->db->limit(5);
+								
 								$result	=	$this->db->get($this->table_instantiations);
-								echo	$this->db->last_query();
+								
 								if(isset($result)	&&	!	empty($result))
 								{
-												debug($result->result());
+								
 												return	$result->result();
 								}
 								return	false;

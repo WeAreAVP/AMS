@@ -239,7 +239,7 @@ class	Instantiations	extends	MY_Controller
 				{
 								@ini_set( "memory_limit" , "3000M" ); # 1GB
 								$records	=		$this->instantiation->export_limited_csv();
-								echo count($records);exit;
+								
 								$this->load->library('excel');
 								$this->excel->getActiveSheetIndex();
 								$this->excel->getActiveSheet()->setTitle('Limited CSV');

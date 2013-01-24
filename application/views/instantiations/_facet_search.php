@@ -58,7 +58,7 @@
 																				</div>
 																<?php	}	?>
 																<div class="clearfix"></div>
-																<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" class="btn" style="margin-left:10px;" onclick="resetKeyword();" style="display: none;"/></div>
+																<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();" style="display: none;margin-left:10px;"/></div>
 
 																<!-- Custom  Search Display End  -->
 

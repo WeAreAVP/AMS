@@ -646,13 +646,13 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 
 ::-webkit-scrollbar-thumb:vertical {
 				height: 50px;
-				background-color: #DDD;
+				background-color: #c5c5c5;
 				
 				-webkit-border-radius: 0px;
 }
 ::-webkit-scrollbar-thumb:horizontal {
 				height: 50px;
-				background-color: #DDD;
+				background-color: #c5c5c5;
 				
 				-webkit-border-radius: 0px;
 }

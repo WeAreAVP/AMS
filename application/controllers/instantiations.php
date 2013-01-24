@@ -252,7 +252,7 @@ class	Instantiations	extends	MY_Controller
 
 
 								$row	=	2;
-								foreach($records['records']	as	$value)
+								foreach($records	as	$value)
 								{
 												$col	=	0;
 												foreach($value	as	$field)

@@ -29,6 +29,7 @@
 								echo	link_js('ColVis.js');
 								echo	link_js('dataTables.scroller.js');
 								echo	link_js('jquery.jscrollpane.min.js');
+								echo	link_js('jquery.mousewheel.js');
 								
 								echo	link_tag("css/tableSorter.css");
 								echo	link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");

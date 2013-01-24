@@ -237,8 +237,9 @@ class	Instantiations	extends	MY_Controller
 
 				public	function	export_csv()
 				{
-								$params	=	array('search'	=>	'');
-								$records	=	$this->sphinx->instantiations_list($params,0,1000);
+								
+								$records	=		$this->instantiation->export_limited_csv();
+								echo count($records);exit;
 								$this->load->library('excel');
 								$this->excel->getActiveSheetIndex();
 								$this->excel->getActiveSheet()->setTitle('Limited CSV');
@@ -269,7 +270,7 @@ class	Instantiations	extends	MY_Controller
 								header('Cache-Control: max-age=0');	//no cache
 //save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)
 //if you want to save it as .XLSX Excel 2007 format
-								$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel5');
+								$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
 //force user to download the Excel file without writing it to server's HD
 								$objWriter->save('php://output');
 								exit;

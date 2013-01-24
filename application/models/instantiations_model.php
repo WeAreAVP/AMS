@@ -632,6 +632,7 @@ class	Instantiations_Model	extends	CI_Model
 
 								return	$result->row();
 				}
+
 				function	get_digitized_hours()
 				{
 								$this->db->select("count(DISTINCT $this->table_instantiations.id) AS total",	FALSE);
@@ -640,7 +641,111 @@ class	Instantiations_Model	extends	CI_Model
 
 								return	$result->row();
 				}
-			
+
+				function	export_limited_csv()
+				{
+								$this->db->select("$this->table_instantiations.id",	FALSE);
+//								$this->db->select("GROUP_CONCAT($this->asset_titles.title SEPARATOR ' | ') as multi_assets",	FALSE);
+
+								$this->db->join($this->_assets_table,	"$this->_assets_table.id = $this->table_instantiations.assets_id",	'left');
+//								$this->db->join($this->_table_asset_descriptions,	"$this->_table_asset_descriptions.assets_id = $this->_assets_table.id",	'left');
+
+								$this->db->join($this->asset_titles,	"$this->asset_titles.assets_id	 = $this->table_instantiations.assets_id",	'left');
+								$this->db->join($this->stations,	"$this->stations.id = $this->_assets_table.stations_id",	'left');
+//								$this->db->join($this->table_instantiation_dates,	"$this->table_instantiation_dates.instantiations_id = $this->table_instantiations.id",	'left');
+//								$this->db->join($this->table_date_types,	"$this->table_date_types.id = $this->table_instantiation_dates.date_types_id",	'left');
+//								$this->db->join($this->table_instantiation_media_types,	"$this->table_instantiation_media_types.id = $this->table_instantiations.instantiation_media_type_id",	'left');
+//								$this->db->join($this->table_instantiation_formats,	"$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id",	'left');
+//								$this->db->join($this->table_instantiation_colors,	"$this->table_instantiation_colors.id = $this->table_instantiations.instantiation_colors_id",	'left');
+//								$this->db->join($this->table_instantiation_generations,	"$this->table_instantiation_generations.instantiations_id = $this->table_instantiations.id",	'left');
+//								$this->db->join($this->table_generations,	"$this->table_generations.id = $this->table_instantiation_generations.generations_id",	'left');
+//								$this->db->join($this->table_nominations,	"$this->table_nominations.instantiations_id = $this->table_instantiations.id",	'left');
+//								$this->db->join($this->table_nomination_status,	"$this->table_nomination_status.id = $this->table_nominations.nomination_status_id",	'left');
+//								$this->db->join($this->table_events,	"$this->table_events.instantiations_id	 = $this->table_instantiations.id",	'left');
+//								$this->db->join($this->table_event_types,	"$this->table_event_types.id	 = $this->table_events.event_types_id",	'left');
+//								$this->db->limit(5);
+
+
+
+								$session	=	$this->session->userdata;
+								if(isset($session['organization'])	&&	$session['organization']	!=	'')
+								{
+												$station_name	=	explode('|||',	trim($session['organization']));
+												$this->db->where_in('organization',	$station_name);
+								}
+								if(isset($session['nomination'])	&&	$session['nomination']	!=	'')
+								{
+												$nomination	=	explode('|||',	trim($session['nomination']));
+												$this->db->where_in('status',	$nomination);
+								}
+								if(isset($session['media_type'])	&&	$session['media_type']	!=	'')
+								{
+												$media_type	=	explode('|||',	trim($session['media_type']));
+												$this->db->where_in('media_type',	$media_type);
+								}
+								if(isset($session['physical_format'])	&&	$session['physical_format']	!=	'')
+								{
+												$physical_format	=	str_replace('|||',	'" | "',	trim($session['physical_format']));
+												$where	.=" @format_name \"$physical_format\"";
+								}
+								if(isset($session['digital_format'])	&&	$session['digital_format']	!=	'')
+								{
+												$digital_format	=	str_replace('|||',	'" | "',	trim($session['digital_format']));
+												$where	.=" @format_name \"$digital_format\"";
+								}
+								if(isset($session['generation'])	&&	$session['generation']	!=	'')
+								{
+												$generation	=	str_replace('|||',	'" | "',	trim($session['generation']));
+												$where	.=" @generation \"$generation\"";
+								}
+								if(isset($session['digitized'])	&&	$session['digitized']	===	'1')
+								{
+												$where	.=' @digitized "1" @!actual_duration "0"';
+								}
+								if(isset($session['migration_failed'])	&&	$session['migration_failed']	===	'1')
+								{
+												$where	.=' @event_type "migration" @event_outcome "FAIL"';
+								}
+
+								if(isset($session['custom_search'])	&&	$session['custom_search']	!=	'')
+								{
+												$custom_search	=	str_replace('|||',	'"',	trim($session['custom_search']));
+												$where	.=$custom_search;
+								}
+								if(isset($session['date_range'])	&&	$session['date_range']	!=	'')
+								{
+												$date_range	=	explode("to",	$session['date_range']);
+												if(isset($date_range[0])	&&	trim($date_range[0])	!=	'')
+												{
+																$start_date	=	strtotime(trim($date_range[0]));
+												}
+												if(isset($date_range[1])	&&	trim($date_range[1])	!=	'')
+												{
+																$end_date	=	strtotime(trim($date_range[1]));
+												}
+												if($start_date	!=	''	&&	isset($end_date)	&&	is_numeric($end_date)	&&	$end_date	>=	$start_date)
+												{
+																$this->sphinxsearch->set_filter_range("dates",	$start_date,	$end_date);
+												}
+												else
+												{
+																$this->sphinxsearch->set_filter_range("dates",	$start_date,	999999999999);
+												}
+								}
+								if(isset($session['date_type'])	&&	$session['date_type']	!=	'')
+								{
+												$date_type	=	str_replace('|||',	'" | "',	trim($session['date_type']));
+												$where	.=" @date_type \"$date_type\"";
+								}
+								if($this->is_station_user)
+								{
+												$this->db->where_in('organization',	$this->station_name);
+								}
+
+								$this->db->group_by("$this->table_instantiations.id");
+								$result	=	$this->db->get($this->table_instantiations);
+								return	$result;
+				}
 
 }
 

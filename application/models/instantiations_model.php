@@ -646,8 +646,16 @@ class	Instantiations_Model	extends	CI_Model
 				{
 								$this->db->select("$this->table_instantiations.id",	FALSE);
 								$this->db->select("GROUP_CONCAT($this->asset_titles.title SEPARATOR ' | ') as multi_assets",	FALSE);
+								$this->db->select("local.identifier AS unique_id",	FALSE);
+								$this->db->select("identifiers.identifier as GUID",	FALSE);
 
 								$this->db->join($this->_assets_table,	"$this->_assets_table.id = $this->table_instantiations.assets_id",	'left');
+								$this->db->join("identifiers AS `local",	"$this->_assets_table.id = local.identifier_source AND local.identifier_source!='http://americanarchiveinventory.org'",	'left');
+								$this->db->join("identifiers",	"$this->_assets_table.id = identifiers.identifier_source AND identifiers.identifier_source='http://americanarchiveinventory.org'",	'left');
+								
+								
+				
+				
 //								$this->db->join($this->_table_asset_descriptions,	"$this->_table_asset_descriptions.assets_id = $this->_assets_table.id",	'left');
 
 								$this->db->join($this->asset_titles,	"$this->asset_titles.assets_id	 = $this->table_instantiations.assets_id",	'left');
@@ -743,6 +751,7 @@ class	Instantiations_Model	extends	CI_Model
 								}
 
 								$this->db->group_by("$this->table_instantiations.id");
+								$this->limit(5);
 								$result	=	$this->db->get($this->table_instantiations);
 								return	$result->result();
 				}

@@ -751,7 +751,7 @@ class	Instantiations_Model	extends	CI_Model
 								}
 
 								$this->db->group_by("$this->table_instantiations.id");
-								$this->limit(5);
+								$this->db->limit(5);
 								$result	=	$this->db->get($this->table_instantiations);
 								return	$result->result();
 				}

@@ -645,7 +645,7 @@ class	Instantiations_Model	extends	CI_Model
 				function	export_limited_csv()
 				{
 								$this->db->select("$this->table_instantiations.id",	FALSE);
-//								$this->db->select("GROUP_CONCAT($this->asset_titles.title SEPARATOR ' | ') as multi_assets",	FALSE);
+								$this->db->select("GROUP_CONCAT($this->asset_titles.title SEPARATOR ' | ') as multi_assets",	FALSE);
 
 								$this->db->join($this->_assets_table,	"$this->_assets_table.id = $this->table_instantiations.assets_id",	'left');
 //								$this->db->join($this->_table_asset_descriptions,	"$this->_table_asset_descriptions.assets_id = $this->_assets_table.id",	'left');
@@ -744,7 +744,7 @@ class	Instantiations_Model	extends	CI_Model
 
 								$this->db->group_by("$this->table_instantiations.id");
 								$result	=	$this->db->get($this->table_instantiations);
-								return	$result;
+								return	$result->result();
 				}
 
 }

@@ -60,19 +60,22 @@ margin-bottom: 5px;
 
 .jspTrack
 {
-	background: transparent;
+	background: #f2f2f2;
 	position: relative;
 }
 
 .jspDrag
 {
-	background: transparent;
+	background: #ccc;
 	position: relative;
 	top: 0;
 	left: 0;
 	cursor: pointer;
 }
-
+.jspDrag:hover
+{
+	background: #999;
+}
 .jspHorizontalBar .jspTrack,
 .jspHorizontalBar .jspDrag
 {

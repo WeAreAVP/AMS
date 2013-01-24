@@ -634,7 +634,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 
 ::-webkit-scrollbar-button:start:decrement,
 ::-webkit-scrollbar-button:end:increment  {
-				height: 30px;
+				height: 0px;
 				display: block;
 				background-color: #f2f2f2;
 }

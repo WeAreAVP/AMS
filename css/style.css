@@ -59,7 +59,7 @@ html, body {
 #search_bar, #search_bar_val{
     background-color: #f5f5f5;
 				color: #999;
-				
+
 }
 .input-img{
     background-color: #FFFFFF !important;
@@ -624,5 +624,29 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				background: #EBEBEB;
 }
 .message_box{
-/*				background: url("/images/Mailing.png");width: 25px;height: 17px;margin-top: -5px;float: right;*/
+				/*				background: url("/images/Mailing.png");width: 25px;height: 17px;margin-top: -5px;float: right;*/
+}
+
+::-webkit-scrollbar {
+				width: 10px;
+				height: 10px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment  {
+				height: 30px;
+				display: block;
+				background-color: #f2f2f2;
+}
+
+::-webkit-scrollbar-track-piece  {
+				background-color: #ccc;
+				-webkit-border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+				height: 50px;
+				background-color: #999;
+				
+				-webkit-border-radius: 0px;
 }

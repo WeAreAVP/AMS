@@ -628,25 +628,23 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 
 
-/* Let's get this party started */
 ::-webkit-scrollbar {
-    width: 10px;
+width: 10px;
+height: 10px;
 }
- 
-/* Track */
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: none !important;
-    -webkit-border-radius: 0 !important;
-    border-radius: 0 !important;
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment  {
+height: 30px;
+display: block;
+background-color: #f2f2f2;
 }
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 0 !important;
-    border-radius: 0 !important;
-    background: #ccc; 
-    -webkit-box-shadow: 0 !important;
+::-webkit-scrollbar-track-piece  {
+background-color: #3b3b3b;
+-webkit-border-radius: 0px;
 }
-::-webkit-scrollbar-thumb:window-inactive {
-	background: #ccc;
+::-webkit-scrollbar-thumb:vertical {
+height: 50px;
+background-color: #ccc;
+
+-webkit-border-radius: 0px;
 }

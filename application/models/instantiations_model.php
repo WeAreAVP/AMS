@@ -654,9 +654,9 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->join($this->_assets_table,	"$this->_assets_table.id = $this->table_instantiations.assets_id",	'left');
 								$this->db->join("identifiers AS local",	"$this->_assets_table.id = local.assets_id AND local.identifier_source!='http://americanarchiveinventory.org'",	'left');
 								$this->db->join("identifiers",	"$this->_assets_table.id = identifiers.assets_id AND identifiers.identifier_source='http://americanarchiveinventory.org'",	'left');
-								$this->db->join($this->table_instantiation_formats,	"$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id");
-								$this->db->join($this->table_nominations,	"$this->table_nominations.instantiations_id = $this->table_instantiations.id");
-								$this->db->join($this->table_nomination_status,	"$this->table_nomination_status.id = $this->table_nominations.nomination_status_id");
+								$this->db->join($this->table_instantiation_formats,	"$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id",	'left');
+								$this->db->join($this->table_nominations,	"$this->table_nominations.instantiations_id = $this->table_instantiations.id",	'left');
+								$this->db->join($this->table_nomination_status,	"$this->table_nomination_status.id = $this->table_nominations.nomination_status_id",	'left');
 
 
 

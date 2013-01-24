@@ -656,3 +656,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				
 				-webkit-border-radius: 0px;
 }
+::-webkit-scrollbar-corner{
+				width: 0px;
+				height: 0px;
+}

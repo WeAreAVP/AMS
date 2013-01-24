@@ -45,7 +45,7 @@
 
 																				</div>
 																				<div class="clearfix"></div>
-																				<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();"/></div>
+																				<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" style="margin-left:10px;" class="btn" onclick="resetKeyword();"/></div>
 																				<?php
 																}
 																else
@@ -58,7 +58,7 @@
 																				</div>
 																<?php	}	?>
 																<div class="clearfix"></div>
-																<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();" style="display: none;"/></div>
+																<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" class="btn" style="margin-left:10px;" onclick="resetKeyword();" style="display: none;"/></div>
 
 																<!-- Custom  Search Display End  -->
 
@@ -86,7 +86,7 @@
 																								<div class="clearfix"></div>
 																				</div>
 																				<div class="clearfix"></div>
-																				<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset" style="margin: 5px 0px;" class="btn" onclick="resetKeyword('date');"/></div>
+																				<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset" style="margin: 5px 10px;" class="btn" onclick="resetKeyword('date');"/></div>
 																				<?php
 																}
 																else
@@ -99,7 +99,7 @@
 
 																				</div>
 																				<div class="clearfix"></div>
-																				<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset"  style="margin: 5px 0px;display:none;" class="btn" onclick="resetKeyword('date');"/></div>
+																				<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset"  style="margin: 5px 10px;display:none;" class="btn" onclick="resetKeyword('date');"/></div>
 																<?php	}
 																?>
 

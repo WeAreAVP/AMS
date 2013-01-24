@@ -237,23 +237,25 @@ class	Instantiations	extends	MY_Controller
 
 				public	function	export_csv()
 				{
-
-								$array	=	array();
-								$array[0]	=	array('0'							=>	'GUID',	'1'							=>	'Unique ID',	'2'							=>	'Title',	'3'							=>	'Physical Format',	'4'							=>	'Duration',	'5'							=>	'Priority');
-								$array[1]	=	array('0'							=>	'cpb-aacip/56-56zw3z2t',	'1'							=>	'Test',	'2'							=>	'Test Title',	'3'							=>	'format',	'4'							=>	'10',	'5'							=>	'low');
-								$array[2]	=	array('0'	=>	'000125',	'1'	=>	'Test 1',	'2'	=>	'Test Title 2',	'3'	=>	'digital',	'4'	=>	'90',	'5'	=>	'high');
+								$records	=	$this->sphinx->instantiations_list($params,	$offset);
+								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(0,	1,	'GUID');
+								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(1,	1,	'Unique ID');
+								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(2,	1,	'Title');
+								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(3,	1,	'Format');
+								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(4,	1,	'Duration');
+								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(5,	1,	'Priority');
 
 								$this->load->library('excel');
 								$this->excel->getActiveSheetIndex();
-								$this->excel->getActiveSheet()->setTitle('test worksheet');
-								$row	=	1;
-								foreach($array	as	$key	=>	$value)
+								$this->excel->getActiveSheet()->setTitle('Limited CSV');
+								$row	=	2;
+								foreach($records['records']	as	$value)
 								{
 												$col	=	0;
-												foreach($value	as	$key	=>	$test)
+												foreach($value	as	$field)
 												{
 
-																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$test);
+																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$field);
 
 																$col	++;
 												}

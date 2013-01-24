@@ -279,13 +279,13 @@ function updateDataTable()
 												"bAutoWidth": true,
 												"fnInitComplete": function() {
 												
-																var table_header,
-																_this = this;
-																table_header = $('.dataTables_scrollHeadInner').css('position', 'relative');
-																$('body').find('.dataTables_scrollBody').bind('jsp-scroll-x', function(event, scrollPositionX, isAtLeft, isAtRight) {
-																				table_header.css('right', scrollPositionX);
-																}).jScrollPane();
-												}
+    var table_header,
+      _this = this;
+    table_header = $('.dataTables_scrollHeadInner').css('position', 'relative');
+    $('body.admin.selections_index').find('.dataTables_scrollBody').bind('jsp-scroll-x', function(event, scrollPositionX, isAtLeft, isAtRight) {
+     table_header.css('right', scrollPositionX);
+    }).jScrollPane();
+  }
 												
 								});
 								if(frozen>0)
@@ -299,7 +299,7 @@ function updateDataTable()
 								$.extend( $.fn.dataTableExt.oStdClasses,{
 												"sWrapper": "dataTables_wrapper form-inline"
 								});
-								$('.dataTable th').css('background','#EBEBEB');
+												$('.dataTable th').css('background','#EBEBEB');
 												
 								
 				}
@@ -334,7 +334,7 @@ function updateDatabase(refresh)
 												table_type:current_table_type
 								},
 								success: function (result){
-												//												$('#listing_table').css('width','100%');
+//												$('#listing_table').css('width','100%');
 												if(refresh==1)
 																window.location.reload();
 											

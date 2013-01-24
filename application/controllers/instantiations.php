@@ -237,7 +237,7 @@ class	Instantiations	extends	MY_Controller
 
 				public	function	export_csv()
 				{
-								$records	=	$this->sphinx->instantiations_list($params,	$offset);
+								$records	=	$this->sphinx->instantiations_list('');
 								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(0,	1,	'GUID');
 								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(1,	1,	'Unique ID');
 								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(2,	1,	'Title');

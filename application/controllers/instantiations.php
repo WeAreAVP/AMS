@@ -240,7 +240,7 @@ class	Instantiations	extends	MY_Controller
 								@ini_set( "memory_limit" , "3000M" ); # 1GB
 								@ini_set( "max_execution_time" , 999999999999 ); # 1GB
 								$records	=		$this->instantiation->export_limited_csv();
-//								debug($records);
+
 								
 								$this->load->library('excel');
 								$this->excel->getActiveSheetIndex();

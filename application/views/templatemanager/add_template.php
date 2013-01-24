@@ -96,7 +96,7 @@ if	($add_temp)
 								<td><?php	echo	form_textarea	($body_plain);	?></td>
 
 				</tr>
-				<tr id="html_body_msg" style="display:none">
+				<tr id="html_body_msg">
 								<td><?php	echo	form_label	('Html Body',	$body_html['id']);	?></td>
 								<td><?php	echo	form_textarea	($body_html);	?></td>
 

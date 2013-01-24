@@ -636,11 +636,11 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 ::-webkit-scrollbar-button:end:increment  {
 				height: 0px;
 				display: block;
-				background-color: white;
+				background-color: #f8f8f8;
 }
 
 ::-webkit-scrollbar-track-piece  {
-				background-color: white;
+				background-color: #f8f8f8;
 				-webkit-border-radius: 0px;
 }
 
@@ -656,13 +656,25 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				
 				-webkit-border-radius: 0px;
 }
+::-webkit-scrollbar-thumb:vertical:hover {
+				height: 50px;
+				background-color: #999;
+				
+				-webkit-border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:horizontal:hover {
+				height: 50px;
+				background-color: #999;
+				
+				-webkit-border-radius: 0px;
+}
 ::-webkit-scrollbar-corner:vertical{
 				width: 0px;
 				height: 0px;
-				background-color: white;
+				background-color: #f8f8f8;
 }
 ::-webkit-scrollbar-corner:horizontal{
 				width: 0px;
 				height: 0px;
-				background-color: white;
+				background-color: #f8f8f8;
 }

@@ -762,7 +762,7 @@ class	Instantiations_Model	extends	CI_Model
 								$query=$this->db->group_by("$this->table_instantiations.id");
 								$this->db->from($this->table_instantiations);
 								if($real_time){
-												return $this->db->get_compile_select();
+												return $this->db->return_query();
 								}
 								$result	=	$this->db->get();
 								

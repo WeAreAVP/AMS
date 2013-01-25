@@ -63,7 +63,10 @@ class CI_DB_active_record extends CI_DB_driver {
 	var $ar_cache_no_escape     = array();
 
 	// --------------------------------------------------------------------
-
+	public function return_query()
+{
+    return $this->_compile_select();
+}
 	/**
 	 * Select
 	 *

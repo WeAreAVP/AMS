@@ -274,7 +274,7 @@ class	Instantiations	extends	MY_Controller
 //if you want to save it as .XLSX Excel 2007 format
 								$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
 //force user to download the Excel file without writing it to server's HD
-								$objWriter->save('php://output',"assets/$filename");
+								$objWriter->save("assets/$filename");
 								exit;
 				}
 

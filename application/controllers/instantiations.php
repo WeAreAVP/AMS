@@ -247,12 +247,12 @@ class	Instantiations	extends	MY_Controller
 												$this->load->library('excel');
 												$this->excel->getActiveSheetIndex();
 												$this->excel->getActiveSheet()->setTitle('Limited CSV');
-												$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
-												$this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(5);
-												$this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
-												$this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(2);
-												$this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(5);
-												$this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(4);
+												$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
+												$this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(25);
+												$this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(45);
+												$this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
+												$this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+												$this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(35);
 												$this->excel->getActiveSheet()->getStyle("A1:F1")->getFont()->setBold(true);
 												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(0,	1,	'GUID');
 												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(1,	1,	'Unique ID');

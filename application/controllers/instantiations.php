@@ -240,7 +240,7 @@ class	Instantiations	extends	MY_Controller
 								@ini_set("memory_limit",	"3000M");	# 1GB
 								@ini_set("max_execution_time",	999999999999);	# 1GB
 								$params	=	array('search'	=>	'');
-								$records	=	$this->sphinx->instantiations_list($params,	$offset);
+								$records	=	$this->sphinx->instantiations_list($params);
 								if($records['total_count']	<=	10000)
 								{
 												$records	=	$this->instantiation->export_limited_csv();
@@ -282,7 +282,7 @@ class	Instantiations	extends	MY_Controller
 								else
 								{
 												$query	=	$this->instantiation->export_limited_csv(TRUE);
-												echo $query;
+												 debug($query);
 												exit_function();
 								}
 				}

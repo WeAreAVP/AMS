@@ -195,7 +195,7 @@ if(	!	$isAjax)
     <h3 id="myModalLabel">Limited CSV Export</h3>
   </div>
   <div class="modal-body">
-    <p id="export_csv_msg"><img src="ajax-loader.gif" />Please wait...</p>
+    <p id="export_csv_msg"><img src="/images/ajax-loader.gif" />Please wait...</p>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -208,7 +208,7 @@ if(	!	$isAjax)
 																url: site_url+'instantiations/export_csv',
 															 dataType: 'json',
 																success: function (result) { 
-																				('#export_csv_msg').html(result.msg);
+																				$('#export_csv_msg').html(result.msg);
 																																												                                        
 																}
 												});

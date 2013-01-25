@@ -642,7 +642,7 @@ class	Instantiations_Model	extends	CI_Model
 								return	$result->row();
 				}
 
-				function	export_limited_csv()
+				function	export_limited_csv($real_time=FALSE)
 				{
 								$this->db->select("identifiers.identifier as GUID",	FALSE);
 								$this->db->select("GROUP_CONCAT(DISTINCT local.identifier SEPARATOR ' | ') AS unique_id",	FALSE);
@@ -759,8 +759,11 @@ class	Instantiations_Model	extends	CI_Model
 												$this->db->where_in("$this->stations.station_name",	$this->station_name);
 								}
 
-								$this->db->group_by("$this->table_instantiations.id");
+								$query=$this->db->group_by("$this->table_instantiations.id");
 
+								if($real_time){
+												return $query;
+								}
 								$result	=	$this->db->get($this->table_instantiations);
 								
 								if(isset($result)	&&	!	empty($result))

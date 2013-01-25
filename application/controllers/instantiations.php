@@ -281,7 +281,9 @@ class	Instantiations	extends	MY_Controller
 								}
 								else
 								{
-												
+												$query	=	$this->instantiation->export_limited_csv(TRUE);
+												echo $query;
+												exit_function();
 								}
 				}
 

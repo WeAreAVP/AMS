@@ -287,9 +287,9 @@ class	Instantiations	extends	MY_Controller
 												exit_function();
 								}
 				}
-				
-				}
 				show_404();
+				}
+				
 				
 
 }

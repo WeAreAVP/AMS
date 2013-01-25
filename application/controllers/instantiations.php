@@ -40,6 +40,7 @@ class	Instantiations	extends	MY_Controller
 								parent::__construct();
 								$this->layout	=	'main_layout.php';
 								$this->load->model('instantiations_model',	'instantiation');
+								$this->load->model('export_csv_job_model',	'csv_job');
 								$this->load->model('assets_model');
 								$this->load->model('sphinx_model',	'sphinx');
 								$this->load->library('pagination');
@@ -237,60 +238,61 @@ class	Instantiations	extends	MY_Controller
 
 				public	function	export_csv()
 				{
-								if(isAjax()){
-								@ini_set("memory_limit",	"3000M");	# 1GB
-								@ini_set("max_execution_time",	999999999999);	# 1GB
-								$params	=	array('search'	=>	'');
-								$records	=	$this->sphinx->instantiations_list($params);
-								if($records['total_count']	<=	10000)
+								if(isAjax())
 								{
-												$records	=	$this->instantiation->export_limited_csv();
-												$this->load->library('excel');
-												$this->excel->getActiveSheetIndex();
-												$this->excel->getActiveSheet()->setTitle('Limited CSV');
-												$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
-												$this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(25);
-												$this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(45);
-												$this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(10);
-												$this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
-												$this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(25);
-												$this->excel->getActiveSheet()->getStyle("A1:F1")->getFont()->setBold(true);
-												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(0,	1,	'GUID');
-												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(1,	1,	'Unique ID');
-												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(2,	1,	'Title');
-												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(3,	1,	'Format');
-												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(4,	1,	'Duration');
-												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(5,	1,	'Priority');
-												$row	=	2;
-												foreach($records	as	$value)
+												@ini_set("memory_limit",	"3000M");	# 1GB
+												@ini_set("max_execution_time",	999999999999);	# 1GB
+												$params	=	array('search'	=>	'');
+												$records	=	$this->sphinx->instantiations_list($params);
+												if($records['total_count']	<=	10000)
 												{
-																$col	=	0;
-																foreach($value	as	$field)
+																$records	=	$this->instantiation->export_limited_csv();
+																$this->load->library('excel');
+																$this->excel->getActiveSheetIndex();
+																$this->excel->getActiveSheet()->setTitle('Limited CSV');
+																$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
+																$this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(25);
+																$this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(45);
+																$this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(10);
+																$this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+																$this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(25);
+																$this->excel->getActiveSheet()->getStyle("A1:F1")->getFont()->setBold(true);
+																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(0,	1,	'GUID');
+																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(1,	1,	'Unique ID');
+																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(2,	1,	'Title');
+																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(3,	1,	'Format');
+																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(4,	1,	'Duration');
+																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(5,	1,	'Priority');
+																$row	=	2;
+																foreach($records	as	$value)
 																{
+																				$col	=	0;
+																				foreach($value	as	$field)
+																				{
 
-																				$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$field);
+																								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$field);
 
-																				$col	++;
+																								$col	++;
+																				}
+																				$row	++;
 																}
-																$row	++;
+																$filename	=	'csv_export_'	.	time()	.	'.csv';
+																$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
+																$objWriter->save("uploads/$filename");
+																echo	json_encode(array('link'	=>	'true',	'msg'		=>	site_url()	.	"uploads/$filename"));
+																exit_function();
 												}
-												$filename	=	'csv_export_'	.	time()	.	'.csv';
-												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
-												$objWriter->save("uploads/$filename");
-												echo	json_encode(array('link'	=>	'true',	'msg'					=>	site_url()	.	"uploads/$filename"));
-												exit_function();
+												else
+												{
+																$query	=	$this->instantiation->export_limited_csv(TRUE);
+																$record=array('user_id'=>$this->user_id,'status'=>0,'export_query'=>$query);
+																$this->csv_job->insert_job();
+																echo	json_encode(array('link'	=>	'false',	'msg'		=>	'Email will be sent to you with the link of limited csv export.'));
+																exit_function();
+												}
 								}
-								else
-								{
-												$query	=	$this->instantiation->export_limited_csv(TRUE);
-												 echo	json_encode(array('link'	=>	'false',	'msg'					=>	'Email will be sent to you with the link of limited csv export.'));
-												exit_function();
-								}
+								show_404();
 				}
-				show_404();
-				}
-				
-				
 
 }
 

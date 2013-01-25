@@ -237,45 +237,52 @@ class	Instantiations	extends	MY_Controller
 
 				public	function	export_csv()
 				{
-								@ini_set( "memory_limit" , "3000M" ); # 1GB
-								@ini_set( "max_execution_time" , 999999999999 ); # 1GB
-								$records	=		$this->instantiation->export_limited_csv();
-
-								
-								$this->load->library('excel');
-								$this->excel->getActiveSheetIndex();
-								$this->excel->getActiveSheet()->setTitle('Limited CSV');
-								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(0,	1,	'GUID');
-								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(1,	1,	'Unique ID');
-								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(2,	1,	'Title');
-								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(3,	1,	'Format');
-								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(4,	1,	'Duration');
-								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(5,	1,	'Priority');
-
-
-								$row	=	2;
-								foreach($records	as	$value)
+								@ini_set("memory_limit",	"3000M");	# 1GB
+								@ini_set("max_execution_time",	999999999999);	# 1GB
+								$params	=	array('search'	=>	'');
+								$records	=	$this->sphinx->instantiations_list($params,	$offset);
+								if($records['total_count']	<=	10000)
 								{
-												$col	=	0;
-												foreach($value	as	$field)
+												$records	=	$this->instantiation->export_limited_csv();
+												$this->load->library('excel');
+												$this->excel->getActiveSheetIndex();
+												$this->excel->getActiveSheet()->setTitle('Limited CSV');
+												$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
+												$this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(5);
+												$this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
+												$this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(2);
+												$this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(5);
+												$this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(4);
+												$this->excel->getActiveSheet()->getStyle("A1:F1")->getFont()->setBold(true);
+												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(0,	1,	'GUID');
+												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(1,	1,	'Unique ID');
+												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(2,	1,	'Title');
+												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(3,	1,	'Format');
+												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(4,	1,	'Duration');
+												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(5,	1,	'Priority');
+												$row	=	2;
+												foreach($records	as	$value)
 												{
+																$col	=	0;
+																foreach($value	as	$field)
+																{
 
-																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$field);
+																				$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$field);
 
-																$col	++;
+																				$col	++;
+																}
+																$row	++;
 												}
-												$row	++;
+												$filename	=	'csv_export_'	.	time()	.	'.csv';
+												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
+												$objWriter->save("uploads/$filename");
+												echo	json_encode(array('success'	=>	true,	'url'					=>	site_url()	.	"uploads/$filename"));
+												exit_function();
 								}
-								$filename	=	'csv_export.csv';	//save our workbook as this file name
-//								header('Content-Type: application/csv');	//mime type
-//								header('Content-Disposition: attachment;filename="'	.	$filename	.	'"');	//tell browser what's the file name
-//								header('Cache-Control: max-age=0');	//no cache
-//save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)
-//if you want to save it as .XLSX Excel 2007 format
-								$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
-//force user to download the Excel file without writing it to server's HD
-								$objWriter->save("assets/$filename");
-								exit;
+								else
+								{
+												
+								}
 				}
 
 }

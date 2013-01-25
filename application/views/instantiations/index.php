@@ -7,9 +7,9 @@ if(	!	$isAjax)
 												<?php	$this->load->view('instantiations/_facet_search');	?>
 								</div>
 								<div  class="span9" id="data_container">
-												
+
 								<?php	}	?>
-												<?php	$this->load->view('layouts/_records_nav');	?>
+								<?php	$this->load->view('layouts/_records_nav');	?>
 								<?php
 								if(count($records)	>	0)
 								{
@@ -189,36 +189,36 @@ if(	!	$isAjax)
 				</div>
 
 
-<div id="export_csv_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Limited CSV Export</h3>
-  </div>
-  <div class="modal-body">
-    <p id="export_csv_msg"><img src="/images/ajax-loader.gif" />Please wait...</p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-  </div>
-</div>
-<script type="text/javascript">
-				$('#export_csv_modal').on('hidden', function () {
-  $('#export_csv_msg').html('<img src="/images/ajax-loader.gif" />Please wait...');
-})
+				<div id="export_csv_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+												<h3 id="myModalLabel">Limited CSV Export</h3>
+								</div>
+								<div class="modal-body">
+												<p id="export_csv_msg"><img src="/images/ajax-loader.gif" />Please wait...</p>
+								</div>
+								<div class="modal-footer">
+												<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+								</div>
+				</div>
+				<script type="text/javascript">
+								$('#export_csv_modal').on('hidden', function () {
+												$('#export_csv_msg').html('<img src="/images/ajax-loader.gif" />Please wait...');
+								})
 				function export_csv_limited(){
-								$.ajax({
-																type: 'POST', 
-																url: site_url+'instantiations/export_csv',
-															 dataType: 'json',
-																success: function (result) { 
-																				if(result.link=='true')
-																				$('#export_csv_msg').html('<a href="'+result.msg+'">Download</a>');
-																else
-																				$('#export_csv_msg').html(result.msg);
-																																												                                        
-																}
-												});
+				$.ajax({
+								type: 'POST', 
+								url: site_url+'instantiations/export_csv',
+								dataType: 'json',
+								success: function (result) { 
+												if(result.link=='true')
+																$('#export_csv_msg').html('<a href="'+result.msg+'">Download</a>');
+												else
+																$('#export_csv_msg').html(result.msg);
+																																																                                        
+								}
+				});
 				}
-</script>
+				</script>
 
 <?php	}	?>

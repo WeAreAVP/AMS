@@ -1,5 +1,6 @@
 <div style="float: left;margin-top: 10px;<?php	if($table_type	==	'assets'	&&	$current_tab	==	'simple')
-{	?> display:none;<?php	}	?>" id="gear_box">
+{
+			?> display:none;<?php	}	?>" id="gear_box">
     <div class="btn-group">
         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
             <span><i class="icon-cog"></i></span>
@@ -46,15 +47,17 @@
 <script type="text/javascript">
 				var hiden_column=<?php	echo	json_encode($hidden_fields);	?>;
 <?php	if($isAjax)
-{	?>
-									is_destroy=true;
+{
+				?>
+								is_destroy=true;
 <?php	}	?>
 <?php	if($total	>	0)
-{	?>
+{
+				?>
 								$(function()
 								{
 												updateDataTable();
-				    });
+								});
 <?php	}	?>
 </script>
 

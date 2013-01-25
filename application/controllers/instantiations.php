@@ -237,6 +237,7 @@ class	Instantiations	extends	MY_Controller
 
 				public	function	export_csv()
 				{
+								if(isAjax()){
 								@ini_set("memory_limit",	"3000M");	# 1GB
 								@ini_set("max_execution_time",	999999999999);	# 1GB
 								$params	=	array('search'	=>	'');
@@ -276,16 +277,20 @@ class	Instantiations	extends	MY_Controller
 												$filename	=	'csv_export_'	.	time()	.	'.csv';
 												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
 												$objWriter->save("uploads/$filename");
-												echo	json_encode(array('success'	=>	true,	'url'					=>	site_url()	.	"uploads/$filename"));
+												echo	json_encode(array('success'	=>	true,	'msg'					=>	site_url()	.	"uploads/$filename"));
 												exit_function();
 								}
 								else
 								{
 												$query	=	$this->instantiation->export_limited_csv(TRUE);
-												 debug($query);
+												 echo	json_encode(array('success'	=>	true,	'msg'					=>	'Email will be sent to you with the link of limited csv export.'));
 												exit_function();
 								}
 				}
+				
+				}
+				show_404();
+				
 
 }
 

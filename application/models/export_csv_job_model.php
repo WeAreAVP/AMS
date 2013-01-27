@@ -21,6 +21,11 @@ class	Export_csv_job_model	extends	CI_Model
 								$this->_table	=	'export_csv_job';
 				}
 
+				function	get_all()
+				{
+								
+								return	$this->db->get($this->_table)->result();
+				}
 				function	get_job_by_id($job_id)
 				{
 								$this->db->where('id',	$job_id);

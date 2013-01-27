@@ -1,15 +1,19 @@
-<div style="float: left;margin-top: 10px;<?php	if($table_type	==	'assets'	&&	$current_tab	==	'simple')
+<div style="float: left;margin-top: 10px;<?php
+if($table_type	==	'assets'	&&	$current_tab	==	'simple')
 {
 			?> display:none;<?php	}	?>" id="gear_box">
     <div class="btn-group">
         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
             <span><i class="icon-cog"></i></span>
         </a>
-								<?php if($current_tab==''){ ?>
-        <a class="btn" onclick="export_csv_limited();" href="#export_csv_modal" role="button" class="btn" data-toggle="modal" style="margin-left: 10px;height: 14px;">
-            EXPORT LIMITED CSV
-        </a>
-								<?php } ?>
+								<?php
+								if($current_tab	==	'')
+								{
+												?>
+												<a class="btn" onclick="export_csv_limited();" href="#export_csv_modal" role="button" class="btn" data-toggle="modal" style="margin-left: 10px;height: 14px;">
+																EXPORT LIMITED CSV
+												</a>
+								<?php	}	?>
         <ul class="dropdown-menu">
             <li class="dropdown"><a href="#" style="white-space: normal;">Show/Hide Fields <i class="icon-play" style="float: right;"></i></a>
                 <ul class="sub-menu dropdown-menu" id="show_hide_li">
@@ -48,18 +52,20 @@
 </div>
 <script type="text/javascript">
 				var hiden_column=<?php	echo	json_encode($hidden_fields);	?>;
-<?php	if($isAjax)
+<?php
+if($isAjax)
 {
 				?>
-								is_destroy=true;
+												is_destroy=true;
 <?php	}	?>
-<?php	if($total	>	0)
+<?php
+if($total	>	0)
 {
 				?>
-								$(function()
-								{
-												updateDataTable();
-								});
+												$(function()
+												{
+																updateDataTable();
+												});
 <?php	}	?>
 </script>
 

@@ -48,6 +48,15 @@ class	Crons	extends	CI_Controller
 												}
 								}
 				}
+				function csv_export_job(){
+								$this->load->model('export_csv_job_model',	'csv_job');
+								$jobs=$this->csv_job->get_all();
+								if(count($jobs)>0){
+												foreach($jobs as $value){
+																
+												}
+								}
+				}
 
 				/**
 					* Store All Assets Data Files Structure in database
@@ -104,7 +113,7 @@ class	Crons	extends	CI_Controller
 					*/
 				function	process_dir_child	($path)
 				{
-								echo 'hello';
+								
 								$type	=	'assets';
 								$file	=	'manifest-md5.txt';
 								$directory	=	base64_decode	($path);

@@ -243,16 +243,16 @@ class	Messages	extends	MY_Controller
 																{
 																				$to_email	=	$this->config->item('to_email');
 																				$from_email	=	$this->config->item('from_email');
-																				$replacebale['user_name']	=	'AMS';
+																				$replacebale['user_name']	=	'The American Archive';
 																				$this->emailtemplates->sent_now	=	TRUE;
 																}
 																else
 																{
 																				$to_email	=	$station_details->contact_email;
 																				$from_email	=	$this->user_detail->email;
-																				$replacebale['user_name']	=	$this->user_detail->first_name	.	' '	.	$this->user_detail->last_name;
+																				$replacebale['user_name']	=	'The American Archive';
 																}
-																$replacebale['inform_to']	=	'ssapienza@cpb.org';
+																$replacebale['inform_to']	=	'cstephenson@mail.crawford.com';
 																$email_queue_id	=	$this->emailtemplates->queue_email($template,	$to_email,	$replacebale);
 
 																$data	=	array('sender_id'			=>	$this->user_id,	'receiver_id'	=>	$to,	'msg_type'				=>	$type,	'subject'					=>	$subject,	'msg_extras'		=>	json_encode($extra),	'created_at'		=>	date('Y-m-d h:m:i'));

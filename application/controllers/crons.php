@@ -55,9 +55,9 @@ class	Crons	extends	CI_Controller
 								$jobs	=	$this->csv_job->get_incomplete_jobs();
 								if(count($jobs)	>	0)
 								{
-												foreach($jobs	as	$value)
+												foreach($jobs	as	$job)
 												{
-																$records	=	$this->csv_job->get_csv_records($value->export_query);
+																$records	=	$this->csv_job->get_csv_records($job->export_query);
 																@ini_set("memory_limit",	"3000M");	# 1GB
 																@ini_set("max_execution_time",	999999999999);	# 1GB
 																$this->load->library('excel');
@@ -93,6 +93,7 @@ class	Crons	extends	CI_Controller
 																$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
 																$objWriter->save("uploads/$filename");
 																$url=	site_url()	.	"uploads/$filename";
+																$this->csv_job->update_job($job->id,array('status','1'));
 																send_email('nouman@geekschicago.com','ssapienza@cpb.org','Limited CSV Export',$url);
 																exit;
 																

@@ -141,6 +141,9 @@ class	MY_Controller	extends	CI_Controller
 												$this->station_id	=	$this->dx_auth->get_station_id();
 												$this->total_unread	=	$this->msgs->get_unread_msgs_count($this->station_id);
 								}
+								else{
+												debug($this->session['userdata']);
+								}
 								$this->user_detail	=	$this->users->get_user_detail($this->user_id)->row();
 								$this->can_compose_alert	=	false;
 								if(in_array($this->role_id,	array(1,	2,	5)))

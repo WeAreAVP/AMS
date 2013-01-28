@@ -813,7 +813,7 @@ class	Instantiations_Model	extends	CI_Model
 																unset($custom_search[0]);	// remove item at index 0
 																$custom_search	=	array_values($custom_search);
 																foreach($custom_search as $keyword){
-																				$word_column=explode(' ',$keyword,1);
+																				$word_column=explode(' ',$keyword,2);
 																				debug ($word_column);
 																}
 																debug($custom_search);

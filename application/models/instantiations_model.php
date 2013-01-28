@@ -810,6 +810,8 @@ class	Instantiations_Model	extends	CI_Model
 												}
 												else
 												{
+																unset($custom_search[0]);	// remove item at index 0
+																$custom_search	=	array_values($custom_search);
 																debug($custom_search);
 //																if($first_where	==	TRUE)
 //																{

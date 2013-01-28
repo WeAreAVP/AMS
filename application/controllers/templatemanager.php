@@ -207,14 +207,14 @@ class	Templatemanager	extends	MY_Controller
 																				$form_val->set_rules('email_from',	'Email From',	'trim|required|xss_clean');
 																				$form_val->set_rules('reply_to',	'Reply To',	'trim|required|xss_clean');
 
-																				debug($this->input->post());
+//																				debug($this->input->post());
 																	
 																				if($form_val->run())
 																				{
 																								$email_template_data	=	array();
 																								$email_template_data['subject']	=	$form_val->set_value('subject');
 																								$email_template_data['email_type']	=	'html';
-																								$email_template_data['body_html']	=	$form_val->set_value('body_html');
+																								$email_template_data['body_html']	=	$this->input->post('body_html');
 																								$email_template_data['email_from']	=	$form_val->set_value('email_from');
 																								$email_template_data['reply_to']	=	$form_val->set_value('reply_to');
 																								$replaceable	=	explode("\n",	$form_val->set_value('replaceables'));

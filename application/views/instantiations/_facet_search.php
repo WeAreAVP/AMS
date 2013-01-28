@@ -392,7 +392,7 @@
 
 																				</div>
 																				<div id="limit_btn">
-																								<div><input type="button"  style="display:<?php	echo	$style;	?>" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
+																								<div><input type="button"  style="margin-top: 10px;display:<?php	echo	$style;	?>" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
 </div>
 																				</div></div>
 												</div>

@@ -851,7 +851,7 @@ class	Instantiations_Model	extends	CI_Model
 												return	$this->db->return_query();
 								}
 								$result	=	$this->db->get();
-
+								debug($this->db->last_query());
 								if(isset($result)	&&	!	empty($result))
 								{
 

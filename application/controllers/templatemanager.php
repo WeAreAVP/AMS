@@ -81,34 +81,25 @@ class	Templatemanager	extends	MY_Controller
 												$form_val	=	$this->form_validation;
 												$form_val->set_rules('system_id',	'System Id',	'trim|required|xss_clean|callback_system_id_check');
 												$form_val->set_rules('subject',	'Subject',	'trim|required|xss_clean');
-												$form_val->set_rules('body_plain',	'Plain Body',	'trim');
+
 												$form_val->set_rules('body_html',	'HTML Body',	'trim');
 												$form_val->set_rules('replaceables',	'Replaceables',	'trim|xss_clean');
-												$form_val->set_rules('email_type',	'Email Type',	'trim|required|xss_clean');
 												$form_val->set_rules('email_from',	'Email From',	'trim|required|xss_clean|valid_email');
 												$form_val->set_rules('reply_to',	'Reply To',	'trim|required|xss_clean|valid_email');
-//												$form_val->set_rules	('crawford_contact_detail',	'Crwaford Contact Detail',	'trim|xss_clean');
-//												$form_val->set_rules	('is_crawford',	'Crwaford Contact Detail',	'trim|xss_clean');
-												if(	!	(	isset($_POST['body_plain'])	&&	!	isset($_POST['body_html'])))
+												if($this->input->post('body_html')	==	'')
 												{
-																$this->form_validation->set_message('body_plain',	'You must enter plain or html body');
+																$this->form_validation->set_message('body_html',	'You must enter html body');
 												}
 												if($form_val->run())
 												{
 																$email_template_data	=	array();
 																$email_template_data['system_id']	=	str_replace(' ',	'_',	$form_val->set_value('system_id'));
 																$email_template_data['subject']	=	$form_val->set_value('subject');
-																$email_template_data['email_type']	=	$form_val->set_value('email_type');
-//																$email_template_data['crawford_contact_detail']	=	$form_val->set_value	('crawford_contact_detail');
-//																$email_template_data['is_crawford']	=	($form_val->set_value	('is_crawford'))	?	$form_val->set_value	('is_crawford')	:	0;
-																if($email_template_data['email_type']	!==	'plain')
-																{
-																				$email_template_data['body_html']	=	str_replace(array('\r',	'\n',	'\r\n'),	'<br>',	$form_val->set_value('body_html'));
-																}
-																else
-																{
-																				$email_template_data['body_plain']	=	nl2br($form_val->set_value('body_plain'));
-																}
+																$email_template_data['email_type']	=	'html';
+
+
+																$email_template_data['body_html']	=	$this->input->post('body_html');
+
 																$email_template_data['email_from']	=	$form_val->set_value('email_from');
 																$email_template_data['reply_to']	=	$form_val->set_value('reply_to');
 																$replaceable	=	explode("\n",	$form_val->set_value('replaceables'));
@@ -199,19 +190,17 @@ class	Templatemanager	extends	MY_Controller
 																if($this->input->post())
 																{
 																				$form_val	=	$this->form_validation;
-																			
+
 																				$form_val->set_rules('subject',	'Subject',	'trim|required|xss_clean');
 																				$form_val->set_rules('body_html',	'HTML Body',	'trim');
 																				$form_val->set_rules('replaceables',	'Replaceables',	'trim|xss_clean');
-//																				$form_val->set_rules('email_type',	'Email Type',	'trim|required|xss_clean');
+
 																				$form_val->set_rules('email_from',	'Email From',	'trim|required|xss_clean');
 																				$form_val->set_rules('reply_to',	'Reply To',	'trim|required|xss_clean');
-if($this->input->post('body_html')=='')
-												{
-																$this->form_validation->set_message('body_html',	'You must enter html body');
-												}
-//																				debug($this->input->post());
-																	
+																				if($this->input->post('body_html')	==	'')
+																				{
+																								$this->form_validation->set_message('body_html',	'You must enter html body');
+																				}
 																				if($form_val->run())
 																				{
 																								$email_template_data	=	array();
@@ -243,10 +232,10 @@ if($this->input->post('body_html')=='')
 					*/
 				public	function	manage_crawford()
 				{
-								$data['is_updated']=FALSE;
+								$data['is_updated']	=	FALSE;
 								if($this->input->post())
 								{
-												$data['is_updated']=TRUE;
+												$data['is_updated']	=	TRUE;
 												$crawford_detail	=	$this->input->post('crawford_contact_details');
 												$this->email_template->update_email_template(NULL,	array('crawford_contact_detail'	=>	$crawford_detail));
 								}

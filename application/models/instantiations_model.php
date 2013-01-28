@@ -664,8 +664,8 @@ class	Instantiations_Model	extends	CI_Model
 
 								$this->db->join($this->asset_titles,	"$this->asset_titles.assets_id	 = $this->table_instantiations.assets_id",	'left');
 								$this->db->join($this->stations,	"$this->stations.id = $this->_assets_table.stations_id",	'left');
-//								$this->db->join($this->table_instantiation_dates,	"$this->table_instantiation_dates.instantiations_id = $this->table_instantiations.id",	'left');
-//								$this->db->join($this->table_date_types,	"$this->table_date_types.id = $this->table_instantiation_dates.date_types_id",	'left');
+								$this->db->join($this->table_instantiation_dates,	"$this->table_instantiation_dates.instantiations_id = $this->table_instantiations.id",	'left');
+								$this->db->join($this->table_date_types,	"$this->table_date_types.id = $this->table_instantiation_dates.date_types_id",	'left');
 								$this->db->join($this->table_instantiation_media_types,	"$this->table_instantiation_media_types.id = $this->table_instantiations.instantiation_media_type_id",	'left');
 //								$this->db->join($this->table_instantiation_formats,	"$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id",	'left');
 //								$this->db->join($this->table_instantiation_colors,	"$this->table_instantiation_colors.id = $this->table_instantiations.instantiation_colors_id",	'left');
@@ -725,7 +725,8 @@ class	Instantiations_Model	extends	CI_Model
 								if(isset($session['custom_search'])	&&	$session['custom_search']	!=	'')
 								{
 												$custom_search	=	str_replace('|||',	'"',	trim($session['custom_search']));
-												$where	.=$custom_search;
+												$custom_search	=	explode('@',	$custom_search);
+												debug($custom_search);
 								}
 								if(isset($session['date_range'])	&&	$session['date_range']	!=	'')
 								{
@@ -740,17 +741,18 @@ class	Instantiations_Model	extends	CI_Model
 												}
 												if($start_date	!=	''	&&	isset($end_date)	&&	is_numeric($end_date)	&&	$end_date	>=	$start_date)
 												{
-																$this->sphinxsearch->set_filter_range("dates",	$start_date,	$end_date);
+																$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates >=",	$start_date);
+																$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates <=",	$end_date);
 												}
 												else
 												{
-																$this->sphinxsearch->set_filter_range("dates",	$start_date,	999999999999);
+																$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates >=",	$start_date);
 												}
 								}
 								if(isset($session['date_type'])	&&	$session['date_type']	!=	'')
 								{
-												$date_type	=	str_replace('|||',	'" | "',	trim($session['date_type']));
-												$where	.=" @date_type \"$date_type\"";
+												$date_type	=	explode('|||',	trim($session['date_type']));
+												$this->db->where_in("$this->table_date_types.date_type",	$date_type);
 								}
 								if($this->is_station_user)
 								{

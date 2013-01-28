@@ -391,6 +391,7 @@ class DX_Auth {
         $user = array(
             'DX_user_id' => $data->id,
             'DX_username' => $data->username,
+            'DX_email' => $data->email,
             'DX_role_id' => $data->role_id,
             'DX_role_name' => $role_data['role_name'],
             'DX_parent_roles_id' => $role_data['parent_roles_id'], // Array of parent role_id

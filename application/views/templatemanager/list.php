@@ -31,7 +31,7 @@
 																								<td><?php	echo	$data->email_type;	?></td>
 																								<td>                   
 																												<a href="<?php	echo	site_url	('templatemanager/edit/'	.	$data->id)	?>" ><i class="icon-cog" style="margin-right: 5px; margin-top: 2px;" ></i></a>
-																												<a href="<?php	echo	site_url	('templatemanager/delete/'	.	$data->id)	?>" ><i class="icon-remove-sign" style="margin-right: 5px; margin-top: 2px;"></i></a>
+<!--																												<a href="<?php	echo	site_url	('templatemanager/delete/'	.	$data->id)	?>" ><i class="icon-remove-sign" style="margin-right: 5px; margin-top: 2px;"></i></a>-->
 																								</td>
 																				</tr>
 																				<?php

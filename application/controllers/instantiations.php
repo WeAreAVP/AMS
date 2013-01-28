@@ -238,8 +238,8 @@ class	Instantiations	extends	MY_Controller
 
 				public	function	export_csv()
 				{
-								if(isAjax())
-								{
+//								if(isAjax())
+//								{
 												@ini_set("memory_limit",	"3000M");	# 1GB
 												@ini_set("max_execution_time",	999999999999);	# 1GB
 												$params	=	array('search'	=>	'');
@@ -290,8 +290,8 @@ class	Instantiations	extends	MY_Controller
 																echo	json_encode(array('link'	=>	'false',	'msg'		=>	'Email will be sent to you with the link of limited csv export.'));
 																exit_function();
 												}
-								}
-								show_404();
+//								}
+//								show_404();
 				}
 
 }

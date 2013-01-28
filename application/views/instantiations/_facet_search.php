@@ -449,12 +449,13 @@
 																																</ul>
 																												</div>
 																								</div>
-																								<div class="filter-fileds"><input type="button" id="add_date_keyword" name="add_date_keyword" value="Add Date" class="btn btn-primary" onclick="add_token($('#date_range').val(),'date_field_main');"/></div>
+																								
 
 
 																								<?php
 																				}
 																				?>
+																				<div class="filter-fileds"><input type="button" id="add_date_keyword" name="add_date_keyword" value="Add Date" class="btn btn-primary" onclick="add_token($('#date_range').val(),'date_field_main');"/></div>
 																</div>
 												</div>
 												<!-- Organization  Start      -->

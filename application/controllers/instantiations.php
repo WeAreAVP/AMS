@@ -277,7 +277,7 @@ class	Instantiations	extends	MY_Controller
 
 																								$col	++;
 																				}
-																				echo ($row-1).' inserted\n\r';
+																				
 																				$row	++;
 																}
 																$filename	=	'csv_export_'	.	time()	.	'.csv';

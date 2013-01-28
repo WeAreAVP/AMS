@@ -786,11 +786,11 @@ class	Instantiations_Model	extends	CI_Model
 																				if($first_where	==	TRUE)
 																				{
 																								$first_where	=	FALSE;
-																								$this->db->where($column,	$custom_search[0]);
+																								$this->db->like($column,	$custom_search[0]);
 																				}
 																				else
 																				{
-																								$this->db->or_where($column,	$custom_search[0]);
+																								$this->db->or_like($column,	$custom_search[0]);
 																				}
 																}
 												}
@@ -804,11 +804,11 @@ class	Instantiations_Model	extends	CI_Model
 																				if($first_where	==	TRUE)
 																				{
 																								$first_where	=	FALSE;
-																								$this->db->where($facet_columns[$word_column[0]],	$word_column[1]);
+																								$this->db->like($facet_columns[$word_column[0]],	$word_column[1]);
 																				}
 																				else
 																				{
-																								$this->db->or_where($facet_columns[$word_column[0]],	$word_column[1]);
+																								$this->db->or_like($facet_columns[$word_column[0]],	$word_column[1]);
 																				}
 																}
 												}

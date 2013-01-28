@@ -82,31 +82,27 @@ if	($add_temp)
 								<td><?php	echo	form_textarea	($replacebale);	?></td>
 
 				</tr>
-				<tr>
+				<tr style="display:none">
        	<td><?php	echo	form_label	('Email Type',	'email_type');	?></td>
         <td>
 												<select name="email_type" id="email_type" class="span2" onchange="toggal_message_body();">
+																	<option value="html" <?php	echo	set_select	('email_type',	'html');	?>>Html</option>
 																<option value="plain" <?php	echo	set_select	('email_type',	'plain',	TRUE);	?>>Plain</option>
-																<option value="html" <?php	echo	set_select	('email_type',	'html');	?>>Html</option>
+															
 												</select>
 								</td>
 				</tr>
-				<tr>
+				<tr style="display:none">
 								<td><?php	echo	form_label	('Plain Body',	$body_plain['id']);	?></td>
 								<td><?php	echo	form_textarea	($body_plain);	?></td>
 
 				</tr>
-				<tr id="html_body_msg" style="display:none">
+				<tr id="html_body_msg" >
 								<td><?php	echo	form_label	('Html Body',	$body_html['id']);	?></td>
 								<td><?php	echo	form_textarea	($body_html);	?></td>
 
 				</tr>
-<!--				<tr>
-								<td><?php	echo	form_label	('Crawford Contact Detail',	$crawford_contact_detail['id']);	?></td>
-								<td><?php	echo	form_checkbox	($is_crawford,	1,	TRUE,	'onclick="toggleCrawford();"');	?>
-												<div><?php	echo	form_textarea	($crawford_contact_detail);	?></div>
-								</td>
-				</tr>-->
+
 
 
 
@@ -116,11 +112,4 @@ if	($add_temp)
     </tr>
 </table>
 <?php	echo	form_close	();	?>
-				<script type="text/javascript"> 
-								function toggleCrawford(){
-												$('#crawford_contact_detail').toggle();
-												if(!$('#crawford_contact_detail').is(':visible')){
-																$('#crawford_contact_detail').val('');
-												}
-								}
-				</script>
+				

@@ -27,8 +27,9 @@
 </div>
 <script type="text/javascript">
     $(function() {
-								if('<?php echo $this->session->userdata['DX_email']; ?>'!='cstephenson@mail.crawford.com')
-								checkTrackingDetails();
+								if($('#receiver_id').val()!='157')
+												checkTrackingDetails();
+								
 				});
     
     function checkFields(){

@@ -9,7 +9,7 @@
                 <label class="control-label" for="receiver_id">To:</label>
                 <div class="controls">
                     <select id="receiver_id" name="receiver_id" multiple="multiple" >
-																								<option value="<?php echo $this->session->userdata['DX_user_id']; ?>">Crawford Project Manager</option>
+																								<option value="157">Crawford Project Manager</option>
                         <?php
 																								
                         foreach ($station_records as $value)

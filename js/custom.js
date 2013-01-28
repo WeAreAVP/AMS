@@ -16,8 +16,7 @@ tinyMCE.init({
         theme_advanced_statusbar_location : "bottom",
         theme_advanced_resizing : true,
 
-        // Example content CSS (should be your site CSS)
-        content_css : "/css/content.css",
+
 
         // Style formats
         style_formats : [

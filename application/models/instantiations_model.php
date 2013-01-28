@@ -660,7 +660,6 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->join('assets_subjects',	"assets_subjects.assets_id = assets.id",	'left');
 								$this->db->join('subjects',	"subjects.id = assets_subjects.subjects_id",	'left');
 								$this->db->join('coverages',	"coverages.assets_id = assets.id",	'left');
-
 								$this->db->join('assets_genres',	"assets_genres.assets_id = assets.id",	'left');
 								$this->db->join('genres',	"genres.id = assets_genres.genres_id",	'left');
 								$this->db->join('assets_publishers_role',	"assets_publishers_role.assets_id = assets.id",	'left');
@@ -681,39 +680,15 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->join('essence_track_frame_sizes',	"essence_track_frame_sizes.id = essence_tracks.essence_track_frame_sizes_id",	'left');
 								$this->db->join('essence_track_annotations',	"essence_track_annotations.essence_tracks_id = essence_tracks.id",	'left');
 								$this->db->join('instantiation_annotations',	"instantiation_annotations.instantiations_id = instantiations.id",	'left');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 								$this->db->join($this->asset_titles,	"$this->asset_titles.assets_id	 = $this->table_instantiations.assets_id",	'left');
 								$this->db->join($this->stations,	"$this->stations.id = $this->_assets_table.stations_id",	'left');
 								$this->db->join($this->table_instantiation_dates,	"$this->table_instantiation_dates.instantiations_id = $this->table_instantiations.id",	'left');
 								$this->db->join($this->table_date_types,	"$this->table_date_types.id = $this->table_instantiation_dates.date_types_id",	'left');
 								$this->db->join($this->table_instantiation_media_types,	"$this->table_instantiation_media_types.id = $this->table_instantiations.instantiation_media_type_id",	'left');
-//								$this->db->join($this->table_instantiation_formats,	"$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id",	'left');
-//								$this->db->join($this->table_instantiation_colors,	"$this->table_instantiation_colors.id = $this->table_instantiations.instantiation_colors_id",	'left');
 								$this->db->join($this->table_instantiation_generations,	"$this->table_instantiation_generations.instantiations_id = $this->table_instantiations.id",	'left');
 								$this->db->join($this->table_generations,	"$this->table_generations.id = $this->table_instantiation_generations.generations_id",	'left');
-//								$this->db->join($this->table_nominations,	"$this->table_nominations.instantiations_id = $this->table_instantiations.id",	'left');
-//								$this->db->join($this->table_nomination_status,	"$this->table_nomination_status.id = $this->table_nominations.nomination_status_id",	'left');
 								$this->db->join($this->table_events,	"$this->table_events.instantiations_id	 = $this->table_instantiations.id",	'left');
 								$this->db->join($this->table_event_types,	"$this->table_event_types.id	 = $this->table_events.event_types_id",	'left');
-//								$this->db->limit(5);
-
-
 
 								$session	=	$this->session->userdata;
 								if(isset($session['organization'])	&&	$session['organization']	!=	'')
@@ -806,25 +781,36 @@ class	Instantiations_Model	extends	CI_Model
 												$first_where	=	TRUE;
 												if(count($custom_search)	==	1)
 												{
-																debug($custom_search);
+																foreach($facet_columns	as	$column)
+																{
+																				if($first_where	==	TRUE)
+																				{
+																								$first_where	=	FALSE;
+																								$this->db->where($column,	$custom_search[0]);
+																				}
+																				else
+																				{
+																								$this->db->or_where($column,	$custom_search[0]);
+																				}
+																}
 												}
 												else
 												{
 																unset($custom_search[0]);	// remove item at index 0
 																$custom_search	=	array_values($custom_search);
-																foreach($custom_search as $keyword){
-																				$word_column=explode(' ',$keyword,2);
-																				debug ($word_column);
+																foreach($custom_search	as	$keyword)
+																{
+																				$word_column	=	explode(' ',	$keyword,	2);
+																				if($first_where	==	TRUE)
+																				{
+																								$first_where	=	FALSE;
+																								$this->db->where($facet_columns[$word_column[0]],	$word_column[1]);
+																				}
+																				else
+																				{
+																								$this->db->or_where($facet_columns[$word_column[0]],	$word_column[1]);
+																				}
 																}
-																debug($custom_search);
-//																if($first_where	==	TRUE)
-//																{
-//																				$first_where	=	FALSE;
-//																}
-//																else
-//																{
-//																				
-//																}
 												}
 								}
 								if(isset($session['date_range'])	&&	$session['date_range']	!=	'')

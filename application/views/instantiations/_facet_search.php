@@ -327,7 +327,7 @@
 																<div class="filter-fileds" id="limit_field_div" style="display:<?php	echo	$style;	?>">
 																				<div><b>Keyword Search</b>	<span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('sk_div',this);"></span></div>
 
-																</div>
+<!--																</div>-->
 																<div id="sk_div">
 																				<div class="filter-fileds">
 																								<div>
@@ -393,7 +393,7 @@
 																				</div>
 																				<div class="filter-fileds" id="limit_btn">
 																								<div><input type="button"  style="display:<?php	echo	$style;	?>" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
-
+</div>
 																				</div></div>
 												</div>
 												<div class="clearfix"></div>

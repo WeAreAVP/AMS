@@ -50,7 +50,7 @@ class	Crons	extends	CI_Controller
 				}
 				function csv_export_job(){
 								$this->load->model('export_csv_job_model',	'csv_job');
-								$jobs=$this->csv_job->get_all();
+								$jobs=$this->csv_job->get_incomplete_jobs();
 								if(count($jobs)>0){
 												foreach($jobs as $value){
 																
@@ -350,7 +350,7 @@ class	Crons	extends	CI_Controller
 																				$instantiations_d	=	array	();
 																				$instantiations_d['assets_id']	=	$asset_id;
 																				//Instantiation formatLocation
-																				if	(	!	is_empty	($pbcoreinstantiation_child['formatlocation']))
+																				if	(	isset($pbcoreinstantiation_child['formatlocation']) && !	is_empty	($pbcoreinstantiation_child['formatlocation']))
 																				{
 																								if	(	!	is_empty	($pbcoreinstantiation_child['formatlocation'][0]['text']))
 																								{

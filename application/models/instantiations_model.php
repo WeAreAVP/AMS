@@ -801,7 +801,7 @@ class	Instantiations_Model	extends	CI_Model
 												'track_height'																		=>	'essence_track_frame_sizes.height',
 												'track_aspect_ratio'												=>	'essence_tracks.aspect_ratio',
 												);
-												$custom_search	=	str_replace('|||',	'"',	trim($session['custom_search']));
+												$custom_search	=	str_replace('|||',	'',	trim($session['custom_search']));
 												$custom_search	=	explode('@',	$custom_search);
 												$first_where	=	TRUE;
 												if(count($custom_search)	==	1)
@@ -812,6 +812,10 @@ class	Instantiations_Model	extends	CI_Model
 												{
 																unset($custom_search[0]);	// remove item at index 0
 																$custom_search	=	array_values($custom_search);
+																foreach($custom_search as $keyword){
+																				$word_column=explode(' ',$keyword,1);
+																				debug ($word_column);
+																}
 																debug($custom_search);
 //																if($first_where	==	TRUE)
 //																{

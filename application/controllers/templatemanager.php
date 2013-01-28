@@ -203,7 +203,7 @@ class	Templatemanager	extends	MY_Controller
 																				$form_val->set_rules('subject',	'Subject',	'trim|required|xss_clean');
 																				$form_val->set_rules('body_html',	'HTML Body',	'trim');
 																				$form_val->set_rules('replaceables',	'Replaceables',	'trim|xss_clean');
-																				$form_val->set_rules('email_type',	'Email Type',	'trim|required|xss_clean');
+//																				$form_val->set_rules('email_type',	'Email Type',	'trim|required|xss_clean');
 																				$form_val->set_rules('email_from',	'Email From',	'trim|required|xss_clean');
 																				$form_val->set_rules('reply_to',	'Reply To',	'trim|required|xss_clean');
 if($this->input->post('body_html')=='')

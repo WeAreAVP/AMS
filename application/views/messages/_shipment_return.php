@@ -27,6 +27,7 @@
 </div>
 <script type="text/javascript">
     $(function() {
+								if('<?php echo $this->session->userdata['DX_email']; ?>'!='cstephenson@mail.crawford.com')
 								checkTrackingDetails();
 				});
     

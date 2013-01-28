@@ -10,7 +10,7 @@
 																<th>Reply To</th>
 																<th>From</th>
 																<th>Template Type</th>
-																<th style="width: 50px;">Action</th>
+																<th style="width: 40px;"></th>
 												</tr>
 								</thead>
 								<tbody>

@@ -247,7 +247,7 @@ class	Instantiations	extends	MY_Controller
 								if($records['total_count']	<=	10000)
 								{
 												$records	=	$this->instantiation->export_limited_csv();
-												debug($records);
+												
 												if(count($records)	>	0)
 												{
 																$this->load->library('excel');
@@ -277,6 +277,7 @@ class	Instantiations	extends	MY_Controller
 
 																								$col	++;
 																				}
+																				echo ($row-1).' inserted\n\r';
 																				$row	++;
 																}
 																$filename	=	'csv_export_'	.	time()	.	'.csv';

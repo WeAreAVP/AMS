@@ -240,13 +240,15 @@ class	Instantiations	extends	MY_Controller
 				{
 //								if(isAjax())
 //								{
-												@ini_set("memory_limit",	"3000M");	# 1GB
-												@ini_set("max_execution_time",	999999999999);	# 1GB
-												$params	=	array('search'	=>	'');
-												$records	=	$this->sphinx->instantiations_list($params);
-												if($records['total_count']	<=	10000)
+								@ini_set("memory_limit",	"3000M");	# 1GB
+								@ini_set("max_execution_time",	999999999999);	# 1GB
+								$params	=	array('search'	=>	'');
+								$records	=	$this->sphinx->instantiations_list($params);
+								if($records['total_count']	<=	10000)
+								{
+												$records	=	$this->instantiation->export_limited_csv();
+												if(count($records)	>	0)
 												{
-																$records	=	$this->instantiation->export_limited_csv();
 																$this->load->library('excel');
 																$this->excel->getActiveSheetIndex();
 																$this->excel->getActiveSheet()->setTitle('Limited CSV');
@@ -284,12 +286,18 @@ class	Instantiations	extends	MY_Controller
 												}
 												else
 												{
-																$query	=	$this->instantiation->export_limited_csv(TRUE);
-																$record=array('user_id'=>$this->user_id,'status'=>0,'export_query'=>$query);
-																$this->csv_job->insert_job($record);
-																echo	json_encode(array('link'	=>	'false',	'msg'		=>	'Email will be sent to you with the link of limited csv export.'));
+																echo	json_encode(array('link'	=>	'false',	'msg'		=>	'No Record available for limited csv export'));
 																exit_function();
 												}
+								}
+								else
+								{
+												$query	=	$this->instantiation->export_limited_csv(TRUE);
+												$record	=	array('user_id'						=>	$this->user_id,	'status'							=>	0,	'export_query'	=>	$query);
+												$this->csv_job->insert_job($record);
+												echo	json_encode(array('link'	=>	'false',	'msg'		=>	'Email will be sent to you with the link of limited csv export.'));
+												exit_function();
+								}
 //								}
 //								show_404();
 				}

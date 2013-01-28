@@ -329,7 +329,7 @@
 
 <!--																</div>-->
 																<div id="sk_div">
-																				<div class="filter-fileds">
+																				<div>
 																								<div>
 																												<input type="text" name="search" id="search" value=""/>
 																								</div>
@@ -391,7 +391,7 @@
 
 
 																				</div>
-																				<div class="filter-fileds" id="limit_btn">
+																				<div id="limit_btn">
 																								<div><input type="button"  style="display:<?php	echo	$style;	?>" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
 </div>
 																				</div></div>

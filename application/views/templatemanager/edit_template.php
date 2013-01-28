@@ -9,11 +9,7 @@ $subject	=	array	(
 				'id'								=>	'subject',
 				'value'					=>	$template_detail->subject,
 );
-$body_plain	=	array	(
-				'name'					=>	'body_plain',
-				'id'							=>	'body_plain',
-				'value'				=>	str_replace	("<br />",	"\n",	$template_detail->body_plain),
-);
+
 $body_html	=	array	(
 				'name'											=>	'body_html',
 				'id'													=>	'body_html',
@@ -77,20 +73,7 @@ if	(isset	($add_temp))
 								<td><?php	echo	form_textarea	($replacebale);	?></td>
 
 				</tr>
-				<tr style="display:none;">
-       	<td><?php	echo	form_label	('Email Type',	'email_type');	?></td>
-        <td>
-												<select name="email_type" id="email_type" class="span2" onchange="toggal_message_body();">
-																<option value="html" <?php	echo	set_select	('email_type',	'html');	?>>Html</option>
-																<option value="plain" <?php	echo	set_select	('email_type',	'plain',	TRUE);	?>>Plain</option>
-												</select>
-								</td>
-				</tr>
-				<tr style="display:none;">
-								<td><?php	echo	form_label	('Plain Body',	$body_plain['id']);	?></td>
-								<td><?php	echo	form_textarea	($body_plain);	?></td>
-
-				</tr>
+				
 				<tr id="html_body_msg">
 								<td><?php	echo	form_label	('Html Body',	$body_html['id']);	?></td>
 								<td><?php	echo	form_textarea	($body_html);	?></td>

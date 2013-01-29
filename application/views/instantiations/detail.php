@@ -551,7 +551,7 @@
 																												$media_type	=	explode(' | ',	$instantiation_detail->media_type);
 																												$static_types	=	array('Animation',	'Artifact',	'Collection',	'Dataset',	'Event',	'Interactive',	'Moving Image',	'Object',	'Presentation',	'Service',	'Software',	'Sound',	'Static Image',	'Text');
 																												?>
-																												<select multiple="multiple" id="media_type" name="media_type[]" style="width: 300px;">
+																												<select multiple="multiple" id="media_type" name="media_type" style="width: 300px;">
 																																<?php
 																																foreach($static_types	as	$row)
 																																{
@@ -624,17 +624,17 @@
 </div>
 <script type="text/javascript">
 				$(function(){
-        $("#nomination").multiselect({
-												noneSelectedText: 'Select Nomination',
-												selectedList: 1,
-												multiple:false,
-												height:'auto'
-								}); 
-        $("#media_type").multiselect({
-												noneSelectedText: 'Select Media Type',
-												selectedList: 3,
-												height:'auto'
-								}); 
+//        $("#nomination").multiselect({
+//												noneSelectedText: 'Select Nomination',
+//												selectedList: 1,
+//												multiple:false,
+//												height:'auto'
+//								}); 
+//        $("#media_type").multiselect({
+//												noneSelectedText: 'Select Media Type',
+//												selectedList: 3,
+//												height:'auto'
+//								}); 
         $("#generation").multiselect({
 												noneSelectedText: 'Select Generation',
 												selectedList: 3,

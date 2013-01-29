@@ -736,6 +736,7 @@ class	Instantiations_Model	extends	CI_Model
 								if(isset($session['custom_search'])	&&	$session['custom_search']	!=	'')
 								{
 												$facet_columns	=	array(
+												'guid_identifier'																			=>	'identifiers.identifier',
 												'asset_title'																			=>	'asset_titles.title',
 												'asset_subject'																	=>	'subjects.subject',
 												'asset_coverage'																=>	'coverages.coverage',

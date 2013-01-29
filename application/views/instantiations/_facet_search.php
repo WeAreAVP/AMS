@@ -341,7 +341,7 @@
 																												<ul class="dropdown-menu">
 																																<li class="dropdown"><a href="#" style="white-space: normal;">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
 																																				<ul class="sub-menu dropdown-menu">
-																																								<li href="javascript://;" onclick="add_custom_token('AA GUID','asset_title');"><a>AA GUID</a></li>
+																																								<li href="javascript://;" onclick="add_custom_token('AA GUID','guid_identifier');"><a>AA GUID</a></li>
 																																								<li href="javascript://;" onclick="add_custom_token('Title','asset_title');"><a>Title</a></li>
 																																								<li><a href="javascript://;" onclick="add_custom_token('Subject','asset_subject');">Subject</a></li>
 																																								<li><a href="javascript://;" onclick="add_custom_token('Coverage','asset_coverage');">Coverage</a></li>

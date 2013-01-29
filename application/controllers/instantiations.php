@@ -238,7 +238,7 @@ class	Instantiations	extends	MY_Controller
 								show_404();
 				}
 				public function get_ins_source(){
-								$source=$this->instantiation->get_unique_ins_source();
+								$source=$this->instantiation->get_unique_ins_source($this->input->get('term'));
 								$autoSource = array();
             
             foreach ($source as $key => $value) {

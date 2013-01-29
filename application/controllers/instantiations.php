@@ -275,7 +275,7 @@ class	Instantiations	extends	MY_Controller
 								$language	=	$this->input->post('language');
 								$nomination_id	=	$this->assets_model->get_nomination_status_by_status($nomination)->id;
 								$nomination_exist	=	$this->assets_model->get_nominations($ins_id);
-								$gen_array='';
+								$gen_array	=	'';
 								$nomination_record	=	array('nomination_status_id'	=>	$nomination_id,	'nomination_reason'				=>	$reason,	'nominated_by'									=>	$this->user_id,	'nominated_at'									=>	date('Y-m-d H:i:s'));
 								if($nomination_exist)
 								{
@@ -314,12 +314,12 @@ class	Instantiations	extends	MY_Controller
 																}
 																$this->instantiation->insert_instantiation_generations(array('instantiations_id'	=>	$ins_id,	'generations_id'				=>	$db_gen_id));
 												}
-												$gen_array=implode('|',$generation);
+												$gen_array	=	implode('|',	$generation);
 								}
 								$this->instantiation->update_instantiations($ins_id,	array('instantiation_media_type_id'	=>	$media_type_id,	'language'																				=>	$language));
 
-								$this->sphinx->update_indexes('instantiations_list',	array('status',	'nomination_reason',	'nominated_by',	'nominated_at',	'language',	'media_type','generation'),	array((int)$ins_id	=>	array((int)$nomination,	(int)$reason,	(int)$this->user_id,	(int)date('Y-m-d H:i:s'),(int)	$language,	(int)$media_type,(int)$gen_array)));
-								
+								$this->sphinx->update_indexes('instantiations_list',	array('status',	'nomination_reason',	'nominated_by',	'nominated_at',	'language',	'media_type',	'generation'),	array($ins_id	=>	array($nomination,	$reason,	$this->user_id,	date('Y-m-d H:i:s'),	$language,	$media_type,	$gen_array)));
+
 								redirect('instantiations/detail/'	.	$ins_id);
 				}
 

@@ -624,12 +624,12 @@
 												noneSelectedText: 'Select Media Type',
 												selectedList: 3,
 												height:'auto'
-								}); 
+								}).multiselectfilter(); 
         $("#generation").multiselect({
 												noneSelectedText: 'Select Generation',
 												selectedList: 3,
 												height:'auto'				
-								}); 
+								}).multiselectfilter();
 								$("#ins_id_source").autocomplete({
             source:site_url+"instantiations/get_ins_source",
             minLength:1,

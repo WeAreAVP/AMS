@@ -533,7 +533,7 @@
 																<td>
 																				<p>
 																								<?php	$ins_identifier_src	=	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_source));	?>
-																								<input value="<?php	echo	$ins_identifier_src;	?>" style="width: 755px;"/>
+																								<input value="<?php	echo	$ins_identifier_src;	?>" style="width: 755px;" id="ins_id_source" name="ins_id_source"/>
 																				</p>
 
 																</td>
@@ -577,23 +577,21 @@
 																								$static_gen	=	array('A&B rolls',	'Accounting statements',	'Air print',	'Air track',	'Answer print',	'Autochrome',	'Award',
 																								'Backup',	'Budget',	'Caption file',	'Caricature',	'Clip reel',	'Color reversal intermediate (CRI)',	'Composite answer print',
 																								'Composite duplicate negative',	'Composite masterpositive',	'Composite negative',	'Composite original negative',	'Composite original positive',	'Composite positive');
-																								foreach($generations	as	$type)
-																								{
-																												?>
-																												<select>
-																																<?php
-																																foreach($static_gen	as	$row)
-																																{
-																																				$selected	=	'';
-																																				if($row	==	$type)
-																																								$selected	=	'selected="selected"';
-																																				?>
-																																				<option value="<?php	echo	$row;	?>" <?php	echo	$selected;	?>><?php	echo	$row;	?></option>
-																																<?php	}
+																								?>
+																								<select multiple="multiple" id="generation" name="generation" style="width: 300px;">
+																												<?php
+																												foreach($static_gen	as	$row)
+																												{
+																																$selected	=	'';
+																																if(in_array($row,	$static_gen))
+																																				$selected	=	'selected="selected"';
 																																?>
+																																<option value="<?php	echo	$row;	?>" <?php	echo	$selected;	?>><?php	echo	$row;	?></option>
+																												<?php	}
+																												?>
 
-																												</select>
-																								<?php	}	?>
+																								</select>
+
 																				</p>
 
 																</td>
@@ -618,6 +616,18 @@
         $("#media_type").multiselect({
 												noneSelectedText: 'Select Media Type',
 												selectedList: 3}); 
+        $("#generation").multiselect({
+												noneSelectedText: 'Select Generation',
+												selectedList: 3}); 
+								$("#ins_id_source").autocomplete({
+            source:site_url+"instantiations/get_ins_source",
+            minLength:2,
+            delay:300,
+            enable:true,
+            cacheLength:1,
+            
+            
+        });
         
     });
 </script>

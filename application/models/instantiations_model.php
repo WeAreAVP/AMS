@@ -736,7 +736,7 @@ class	Instantiations_Model	extends	CI_Model
 								if(isset($session['custom_search'])	&&	$session['custom_search']	!=	'')
 								{
 												$facet_columns	=	array(
-												'guid_identifier'																			=>	'identifiers.identifier',
+												'guid_identifier'															=>	'identifiers.identifier',
 												'asset_title'																			=>	'asset_titles.title',
 												'asset_subject'																	=>	'subjects.subject',
 												'asset_coverage'																=>	'coverages.coverage',
@@ -852,13 +852,20 @@ class	Instantiations_Model	extends	CI_Model
 												return	$this->db->return_query();
 								}
 								$result	=	$this->db->get();
-								
+
 								if(isset($result)	&&	!	empty($result))
 								{
 
 												return	$result->result();
 								}
 								return	false;
+				}
+
+				function	get_unique_ins_source()
+				{
+								$this->db->select("DISTINCT instantiation_source",	FALSE);
+								$result	=	$this->db->get('instantiation_identifier')->result();
+								return	$result;
 				}
 
 }

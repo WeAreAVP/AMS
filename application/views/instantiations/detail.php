@@ -492,138 +492,144 @@
 				</div>
 				<div class="clearfix"></div>
 				<div>
-								<form method="POST" action="<?php echo site_url('instantiations/edit'); ?>">
-								<table cellPadding="8" class="record-detail-table">
-												<tr>
-																<td class="record-detail-page">
-																				<label><i class="icon-question-sign"></i><b> Nomination Status:</b></label>
-																</td>
-																<td>
-																				<p>
-																								<select id="nomination" name="nomination">
+								<form method="POST" action="<?php	echo	site_url('instantiations/edit');	?>">
+												<table cellPadding="8" class="record-detail-table">
+																<tr>
+																				<td class="record-detail-page">
+																								<label><i class="icon-question-sign"></i><b> Nomination Status:</b></label>
+																				</td>
+																				<td>
+																								<p>
+																												<select id="nomination" name="nomination">
+																																<?php
+																																foreach($nominations	as	$row)
+																																{
+																																				$selected	=	'';
+																																				if($instantiation_detail->status	==	$row->status)
+																																								$selected	=	'selected="selected"'
+																																								?>
+																																				<option id="<?php	echo	$row->status;	?>" <?php	echo	$selected;	?>><?php	echo	$row->status;	?></option>
+																																<?php	}
+																																?>
+																												</select>
+																								</p>
+
+																				</td>
+																</tr>
+																<tr>
+																				<td class="record-detail-page">
+																								<label><i class="icon-question-sign"></i><b> Nomination Reason:</b></label>
+																				</td>
+																				<td>
+																								<p>
+																												<textarea style="width: 750px;height: 90px;" id="nomination_reason" name="nomination_reason"><?php	echo	$instantiation_detail->nomination_reason;	?></textarea>
+																								</p>
+
+																				</td>
+																</tr>
+																<tr>
+																				<td class="record-detail-page">
+																								<label><i class="icon-question-sign"></i><b> Instantiation ID Source:</b></label>
+																				</td>
+																				<td>
+																								<p>
+																												<?php	$ins_identifier_src	=	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_source));	?>
+																												<input value="<?php	echo	$ins_identifier_src;	?>" style="width: 755px;" id="ins_id_source" name="ins_id_source"/>
+																								</p>
+
+																				</td>
+																</tr>
+																<tr>
+																				<td class="record-detail-page">
+																								<label><i class="icon-question-sign"></i><b> Media Type:</b></label>
+																				</td>
+																				<td>
+																								<p>
 																												<?php
-																												foreach($nominations	as	$row)
-																												{
-																																$selected	=	'';
-																																if($instantiation_detail->status	==	$row->status)
-																																				$selected	=	'selected="selected"'
+																												$media_type	=	explode(' | ',	$instantiation_detail->media_type);
+																												$static_types	=	array('Animation',	'Artifact',	'Collection',	'Dataset',	'Event',	'Interactive',	'Moving Image',	'Object',	'Presentation',	'Service',	'Software',	'Sound',	'Static Image',	'Text');
+																												?>
+																												<select multiple="multiple" id="media_type" name="media_type" style="width: 300px;">
+																																<?php
+																																foreach($static_types	as	$row)
+																																{
+																																				$selected	=	'';
+																																				if(in_array($row,	$media_type))
+																																								$selected	=	'selected="selected"';
 																																				?>
-																																<option id="<?php	echo	$row->status;	?>" <?php	echo	$selected;	?>><?php	echo	$row->status;	?></option>
-																												<?php	}
-																												?>
-																								</select>
-																				</p>
-
-																</td>
-												</tr>
-												<tr>
-																<td class="record-detail-page">
-																				<label><i class="icon-question-sign"></i><b> Nomination Reason:</b></label>
-																</td>
-																<td>
-																				<p>
-																								<textarea style="width: 750px;height: 90px;" id="nomination_reason" name="nomination_reason"><?php	echo	$instantiation_detail->nomination_reason;	?></textarea>
-																				</p>
-
-																</td>
-												</tr>
-												<tr>
-																<td class="record-detail-page">
-																				<label><i class="icon-question-sign"></i><b> Instantiation ID Source:</b></label>
-																</td>
-																<td>
-																				<p>
-																								<?php	$ins_identifier_src	=	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_source));	?>
-																								<input value="<?php	echo	$ins_identifier_src;	?>" style="width: 755px;" id="ins_id_source" name="ins_id_source"/>
-																				</p>
-
-																</td>
-												</tr>
-												<tr>
-																<td class="record-detail-page">
-																				<label><i class="icon-question-sign"></i><b> Media Type:</b></label>
-																</td>
-																<td>
-																				<p>
-																								<?php
-																								$media_type	=	explode(' | ',	$instantiation_detail->media_type);
-																								$static_types	=	array('Animation',	'Artifact',	'Collection',	'Dataset',	'Event',	'Interactive',	'Moving Image',	'Object',	'Presentation',	'Service',	'Software',	'Sound',	'Static Image',	'Text');
-																								?>
-																								<select multiple="multiple" id="media_type" name="media_type" style="width: 300px;">
-																												<?php
-																												foreach($static_types	as	$row)
-																												{
-																																$selected	=	'';
-																																if(in_array($row,	$media_type))
-																																				$selected	=	'selected="selected"';
+																																				<option value="<?php	echo	$row;	?>" <?php	echo	$selected;	?>><?php	echo	$row;	?></option>
+																																<?php	}
 																																?>
-																																<option value="<?php	echo	$row;	?>" <?php	echo	$selected;	?>><?php	echo	$row;	?></option>
-																												<?php	}
-																												?>
 
-																								</select>
+																												</select>
 
-																				</p>
+																								</p>
 
-																</td>
-												</tr>
-												<tr>
-																<td class="record-detail-page">
-																				<label><i class="icon-question-sign"></i><b> Generation:</b></label>
-																</td>
-																<td>
-																				<p>
-																								<?php
-																								$generations	=	explode(' | ',	$instantiation_detail->generation);
-																								$static_gen	=	array('A&B rolls',	'Accounting statements',	'Air print',	'Air track',	'Answer print',	'Autochrome',	'Award',
-																								'Backup',	'Budget',	'Caption file',	'Caricature',	'Clip reel',	'Color reversal intermediate (CRI)',	'Composite answer print',
-																								'Composite duplicate negative',	'Composite masterpositive',	'Composite negative',	'Composite original negative',	'Composite original positive',	'Composite positive');
-																								?>
-																								<select multiple="multiple" id="generation" name="generation" style="width: 300px;">
+																				</td>
+																</tr>
+																<tr>
+																				<td class="record-detail-page">
+																								<label><i class="icon-question-sign"></i><b> Generation:</b></label>
+																				</td>
+																				<td>
+																								<p>
 																												<?php
-																												foreach($static_gen	as	$row)
-																												{
-																																$selected	=	'';
-																																if(in_array($row,	$static_gen))
-																																				$selected	=	'selected="selected"';
-																																?>
-																																<option value="<?php	echo	$row;	?>" <?php	echo	$selected;	?>><?php	echo	$row;	?></option>
-																												<?php	}
+																												$generations	=	explode(' | ',	$instantiation_detail->generation);
+																												$static_gen	=	array('A&B rolls',	'Accounting statements',	'Air print',	'Air track',	'Answer print',	'Autochrome',	'Award',
+																												'Backup',	'Budget',	'Caption file',	'Caricature',	'Clip reel',	'Color reversal intermediate (CRI)',	'Composite answer print',
+																												'Composite duplicate negative',	'Composite masterpositive',	'Composite negative',	'Composite original negative',	'Composite original positive',	'Composite positive');
 																												?>
+																												<select multiple="multiple" id="generation" name="generation" style="width: 300px;">
+																																<?php
+																																foreach($static_gen	as	$row)
+																																{
+																																				$selected	=	'';
+																																				if(in_array($row,	$static_gen))
+																																								$selected	=	'selected="selected"';
+																																				?>
+																																				<option value="<?php	echo	$row;	?>" <?php	echo	$selected;	?>><?php	echo	$row;	?></option>
+																																<?php	}
+																																?>
 
-																								</select>
+																												</select>
 
-																				</p>
+																								</p>
 
-																</td>
-												</tr>
-												<tr>
-																<td class="record-detail-page">
-																				<label><i class="icon-question-sign"></i><b> Language:</b></label>
-																</td>
-																<td>
-																				<p>
-																								<?php	$ins_identifier_src	=	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_source));	?>
-																								<input value="<?php	echo	$instantiation_detail->language;	?>" style="width: 755px;" id="language" name="language"/>
-																				</p>
+																				</td>
+																</tr>
+																<tr>
+																				<td class="record-detail-page">
+																								<label><i class="icon-question-sign"></i><b> Language:</b></label>
+																				</td>
+																				<td>
+																								<p>
+																												<?php	$ins_identifier_src	=	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_source));	?>
+																												<input value="<?php	echo	$instantiation_detail->language;	?>" style="width: 755px;" id="language" name="language"/>
+																								</p>
 
-																</td>
-												</tr>
-								</table>
-												</form>
+																				</td>
+																</tr>
+												</table>
+								</form>
 				</div>
 </div>
 <script type="text/javascript">
 				$(function(){
         $("#nomination").multiselect({
 												noneSelectedText: 'Select Nomination',
-												multiple:false}); 
+												multiple:false,
+												height:'auto'
+								}); 
         $("#nomination").multiselect({
 												noneSelectedText: 'Select Media Type',
-												selectedList: 3}); 
+												selectedList: 3,
+												height:'auto'
+								}); 
         $("#generation").multiselect({
 												noneSelectedText: 'Select Generation',
-												selectedList: 3}); 
+												selectedList: 3,
+												height:'auto'				
+								}); 
 								$("#ins_id_source").autocomplete({
             source:site_url+"instantiations/get_ins_source",
             minLength:1,

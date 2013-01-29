@@ -260,15 +260,19 @@ class	Instantiations	extends	MY_Controller
 								$media_type	=	$this->input->post('media_type');
 								$generation	=	$this->input->post('generation');
 								$language	=	$this->input->post('language');
-								$nomination_id=$this->assets_model->get_nomination_status_by_status($nomination)->id;
-								$nomination_exist=$this->assets_model->get_nominations($ins_id);
-								$nomination_record=array('nomination_status_id'=>$nomination_id,'nomination_reason'=>$reason,'nominated_by'=>'Nouman Tayyab','nominated_at'=>date('Y-m-d H:i:s'));
+								$nomination_id	=	$this->assets_model->get_nomination_status_by_status($nomination)->id;
+								$nomination_exist	=	$this->assets_model->get_nominations($ins_id);
+								$nomination_record	=	array('nomination_status_id'	=>	$nomination_id,	'nomination_reason'				=>	$reason,	'nominated_by'									=>	$this->user_id,	'nominated_at'									=>	date('Y-m-d H:i:s'));
 								if($nomination_exist)
-												$this->assets_model->update_nominations($ins_id,$nomination_record);
+												$this->assets_model->update_nominations($ins_id,	$nomination_record);
 								else
-											$this->assets_model->insert_nominations($nomination_record);	
-								echo 'done';exit;
-								
+								{
+												$nomination_record['instantiations_id']	=	$ins_id;
+												$this->assets_model->insert_nominations($nomination_record);
+								}
+
+								echo	'done';
+								exit;
 				}
 
 				public	function	export_csv()

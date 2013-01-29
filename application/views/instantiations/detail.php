@@ -50,8 +50,9 @@
 				<div class="clearfix"></div>
 				<?php	$this->load->view('partials/_list');	?>
 
-				<div class="span12" style="margin-left: 285px;">
+				<div class="span12" style="margin-left: 285px;" id="ins_view_detail">
 								<div style="float: left;">
+												<div><input type="button" class="btn" value="Edit Instantiation" onclick="toggleViews();"/></div>
 												<table  cellPadding="8" class="record-detail-table">
 																<!--				Instantiation ID	Start		-->
 																<?php
@@ -491,7 +492,7 @@
 								?>
 				</div>
 				<div class="clearfix"></div>
-				<div>
+				<div class="span12" style="margin-left: 285px;display: none;" id="ins_edit_view">
 								<form method="POST" action="<?php	echo	site_url('instantiations/edit');	?>">
 												<table cellPadding="8" class="record-detail-table">
 																<tr>
@@ -650,4 +651,8 @@
         });
         
     });
+				function toggleViews(){
+								$('#ins_view_detail').toggle();
+								$('#ins_edit_view').toggle();
+				}
 </script>

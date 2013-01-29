@@ -386,7 +386,7 @@ class DX_Auth {
     function _set_session($data) {
         // Get role data
         $role_data = $this->_get_role_data($data->role_id);
-								debug($data);
+								
         // Set session data array
         $user = array(
             'DX_user_id' => $data->id,

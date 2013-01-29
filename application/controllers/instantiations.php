@@ -250,6 +250,7 @@ class	Instantiations	extends	MY_Controller
 								echo	json_encode($autoSource);
 								exit;
 				}
+
 				public	function	get_ins_languages()
 				{
 								$source	=	$this->instantiation->get_all_languages($this->input->get('term'));
@@ -297,9 +298,25 @@ class	Instantiations	extends	MY_Controller
 								{
 												$media_type_id	=	$this->instantiation->insert_instantiation_media_types(array('media_type'	=>	$media_type));
 								}
+								if($generation)
+								{
+												foreach($generation	as	$row)
+												{
+																$db_generation	=	$this->instantiation->get_generations_by_generation($row);
+																if($db_generation)
+																{
+																				$db_gen_id	=	$db_generation->id;
+																}
+																else
+																{
+																				$db_gen_id	=	$this->instantiation->insert_generations(array('generation'	=>	$row));
+																}
+																$this->instantiation->insert_instantiation_generations(array('instantiations_id'	=>	$ins_id,	'generations_id'				=>	$db_gen_id));
+												}
+								}
 								$this->instantiation->update_instantiations($ins_id,	array('instantiation_media_type_id'	=>	$media_type_id,	'language'																				=>	$language));
 
-								$this->sphinx->update_indexes('instantiations_list',	array('status',	'nomination_reason',	'nominated_by',	'nominated_at',	'language',	'media_type'),	array($ins_id	=>	array($nomination,	$reason,	$this->user_id,	date('Y-m-d H:i:s'),	$language,	$media_type)));
+								$this->sphinx->update_indexes('instantiations_list',	array('status',	'nomination_reason',	'nominated_by',	'nominated_at',	'language',	'media_type','generation'),	array($ins_id	=>	array($nomination,	$reason,	$this->user_id,	date('Y-m-d H:i:s'),	$language,	$media_type,implode(' | ',$generation))));
 								redirect('instantiations/detail/'	.	$ins_id);
 				}
 

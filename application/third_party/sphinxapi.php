@@ -1546,7 +1546,7 @@ class SphinxClient
 					foreach ( $v as $vv )
 						assert ( is_int($vv) );
 				} else
-					assert ( is_int($v) );
+//					assert ( is_int($v) );
 			}
 		}
 

@@ -649,6 +649,15 @@
             
             
         });
+								$("#language").autocomplete({
+            source:site_url+"instantiations/get_ins_languages",
+            minLength:0,
+            delay:300,
+            enable:true,
+            cacheLength:1
+            
+            
+        });
         
     });
 				function toggleViews(){

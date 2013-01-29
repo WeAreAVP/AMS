@@ -250,6 +250,18 @@ class	Instantiations	extends	MY_Controller
 								echo	json_encode($autoSource);
 								exit;
 				}
+				public	function	get_ins_languages()
+				{
+								$source	=	$this->instantiation->get_all_languages($this->input->get('term'));
+								$autoLanguage	=	array();
+
+								foreach($source	as	$key	=>	$value)
+								{
+												$autoLanguage[$key]	=	$value->name;
+								}
+								echo	json_encode($autoLanguage);
+								exit;
+				}
 
 				public	function	edit()
 				{

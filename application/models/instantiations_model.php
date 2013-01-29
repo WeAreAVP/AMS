@@ -868,6 +868,13 @@ class	Instantiations_Model	extends	CI_Model
 								$result	=	$this->db->get('instantiation_identifier')->result();
 								return	$result;
 				}
+				function	get_all_languages($term)
+				{
+								$this->db->select("DISTINCT Print_Name as name",	FALSE);
+								$this->db->like("Print_Name",	$term);
+								$result	=	$this->db->get('language_lookup')->result();
+								return	$result;
+				}
 
 }
 

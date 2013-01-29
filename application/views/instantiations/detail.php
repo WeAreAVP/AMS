@@ -548,7 +548,7 @@
 																								$media_type	=	explode(' | ',	$instantiation_detail->media_type);
 																								$static_types	=	array('Animation',	'Artifact',	'Collection',	'Dataset',	'Event',	'Interactive',	'Moving Image',	'Object',	'Presentation',	'Service',	'Software',	'Sound',	'Static Image',	'Text');
 																								?>
-																								<select multiple="multiple" id="media_type" name="media_type">
+																								<select multiple="multiple" id="media_type" name="media_type" style="width: 300px;">
 																												<?php
 																												foreach($static_types	as	$row)
 																												{

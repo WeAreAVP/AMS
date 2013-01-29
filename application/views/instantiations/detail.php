@@ -625,6 +625,7 @@
 				$(function(){
         $("#nomination").multiselect({
 												noneSelectedText: 'Select Nomination',
+												selectedList: 1,
 												multiple:false,
 												height:'auto'
 								}); 

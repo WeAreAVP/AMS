@@ -521,7 +521,7 @@
 																</td>
 																<td>
 																				<p>
-																								<textarea style="width: 830px;height: 90px;"><?php	echo	$instantiation_detail->nomination_reason;	?></textarea>
+																								<textarea style="width: 750px;height: 90px;"><?php	echo	$instantiation_detail->nomination_reason;	?></textarea>
 																				</p>
 
 																</td>
@@ -533,7 +533,37 @@
 																<td>
 																				<p>
 																								<?php	$ins_identifier_src	=	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_source));	?>
-																								<input value="<?php	echo	$ins_identifier_src;	?>" style="width: 830px;"/>
+																								<input value="<?php	echo	$ins_identifier_src;	?>" style="width: 755px;"/>
+																				</p>
+
+																</td>
+												</tr>
+												<tr>
+																<td class="record-detail-page">
+																				<label><i class="icon-question-sign"></i><b> Media Type:</b></label>
+																</td>
+																<td>
+																				<p>
+																								<?php
+																								$media_type	=	explode(' | ',	$instantiation_detail->media_type);
+																								$static_types	=	array('Animation',	'Artifact',	'Collection',	'Dataset',	'Event',	'Interactive',	'Moving Image',	'Object',	'Presentation',	'Service',	'Software',	'Sound',	'Static Image',	'Text');
+																								foreach($media_type	as	$type)
+																								{
+																												?>
+																												<select>
+																																<?php
+																																foreach($static_types	as	$row)
+																																{
+																																				$selected	=	'';
+																																				if($row	==	$type)
+																																								$selected	=	'selected="selected"';
+																																				?>
+																																				<option value="<?php	echo	$row;	?>" <?php	echo	$selected;	?>><?php	echo	$row;	?></option>
+																																<?php	}
+																																?>
+
+																												</select>
+																								<?php	}	?>
 																				</p>
 
 																</td>

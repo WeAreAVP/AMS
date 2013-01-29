@@ -499,7 +499,16 @@
 																<td>
 																				<p>
 																								<select>
-
+																												<?php
+																												foreach($nominations	as	$row)
+																												{
+																																$selected	=	'';
+																																if($instantiation_detail->status	==	$row->status)
+																																				$selected	=	'selected="selected"'
+																																				?>
+																																<option id="<?php	echo	$row->status;	?>" <?php	echo	$selected;	?>><?php	echo	$row->status;	?></option>
+																												<?php	}
+																												?>
 																								</select>
 																				</p>
 

@@ -156,7 +156,7 @@ class	Instantiations	extends	MY_Controller
 																$data['asset_details']	=	$this->assets_model->get_asset_by_asset_id($detail->assets_id);
 																$search_results_data	=	$this->sphinx->instantiations_list(array('index'																	=>	'assets_list'),	0,	1000);
 																$data['nominations']=$this->instantiation->get_nomination_status();
-																debug($data['nominations']);
+																
 																$data['next_result_id']	=	FALSE;
 																$data['prev_result_id']	=	FALSE;
 																if(isset($search_results_data['records'])	&&	!	is_empty($search_results_data['records']))

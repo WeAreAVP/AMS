@@ -548,7 +548,7 @@
 																								$media_type	=	explode(' | ',	$instantiation_detail->media_type);
 																								$static_types	=	array('Animation',	'Artifact',	'Collection',	'Dataset',	'Event',	'Interactive',	'Moving Image',	'Object',	'Presentation',	'Service',	'Software',	'Sound',	'Static Image',	'Text');
 																								?>
-																								<select multiple="multiple">
+																								<select multiple="multiple" id="media_type" name="media_type">
 																												<?php
 																												foreach($static_types	as	$row)
 																												{
@@ -613,3 +613,9 @@
 								</table>
 				</div>
 </div>
+<script type="text/javascript">
+$(function(){
+        $("#media_type").multiselect(); 
+        $(".ui-multiselect-menu").width('400px');
+    });
+</script>

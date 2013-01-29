@@ -584,7 +584,7 @@
 																																foreach($static_gen	as	$row)
 																																{
 																																				$selected	=	'';
-																																				if(in_array($row,	$static_gen))
+																																				if(in_array($row,	$generations))
 																																								$selected	=	'selected="selected"';
 																																				?>
 																																				<option value="<?php	echo	$row;	?>" <?php	echo	$selected;	?>><?php	echo	$row;	?></option>

@@ -485,9 +485,11 @@
 																{
 																				?>
 																				<p><?php	echo	' at '	.	$instantiation_detail->nominated_at;	?></p>
-																</div>
+															
 																<?php
-												}
+												}?>
+																					</div>
+												<?php
 								}
 								?>
 				</div>

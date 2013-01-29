@@ -2,17 +2,17 @@
 				<div style="margin: 2px 0px 10px 0px;float:left;">
 
 								<?php
-								$asset_title_type	=	explode	('|',	trim	(str_replace	('(**)',	'',	$asset_details->title_type)));
-								$asset_title	=	explode	('|',	trim	(str_replace	('(**)',	'',	$asset_details->title)));
-								$asset_title_ref	=	explode	('|',	trim	(str_replace	('(**)',	'',	$asset_details->title_ref)));
+								$asset_title_type	=	explode('|',	trim(str_replace('(**)',	'',	$asset_details->title_type)));
+								$asset_title	=	explode('|',	trim(str_replace('(**)',	'',	$asset_details->title)));
+								$asset_title_ref	=	explode('|',	trim(str_replace('(**)',	'',	$asset_details->title_ref)));
 								$combine_title	=	'';
-								foreach	($asset_title	as	$index	=>	$title)
+								foreach($asset_title	as	$index	=>	$title)
 								{
-												if	(isset	($asset_title_type[$index])	&&	$asset_title_type[$index]	!=	'')
+												if(isset($asset_title_type[$index])	&&	$asset_title_type[$index]	!=	'')
 																$combine_title.=	$asset_title_type[$index]	.	': ';
-												if	(isset	($asset_title_ref[$index]))
+												if(isset($asset_title_ref[$index]))
 												{
-																if	($asset_title_ref[$index]	!=	'')
+																if($asset_title_ref[$index]	!=	'')
 																{
 																				$combine_title.="<a target='_blank' href='$asset_title_ref[$index]'>$title</a>: ";
 																				$combine_title.=' ('	.	$asset_title_ref[$index]	.	')';
@@ -28,43 +28,43 @@
 								<h2><?php	echo	$combine_title;	?></h2>
 				</div>
 				<?php
-				if	($next_result_id)
+				if($next_result_id)
 				{
 								?>
-								<div style="float: right;margin-left:5px"><a href="<?php	echo	site_url	('instantiations/detail/'	.	$next_result_id);	?>" class="btn">Next >></a></div>
+								<div style="float: right;margin-left:5px"><a href="<?php	echo	site_url('instantiations/detail/'	.	$next_result_id);	?>" class="btn">Next >></a></div>
 								<?php
 				}
-				if	($prev_result_id)
+				if($prev_result_id)
 				{
 								?>
-								<div style="float: right;margin-left:5px"><a href="<?php	echo	site_url	('instantiations/detail/'	.	$prev_result_id);	?>" class="btn"><< Previous</a></div>
+								<div style="float: right;margin-left:5px"><a href="<?php	echo	site_url('instantiations/detail/'	.	$prev_result_id);	?>" class="btn"><< Previous</a></div>
 								<?php
-				}	if	(	!	is_empty	($last_page))
+				}	if(	!	is_empty($last_page))
 				{
 								?>
-								<div style="float: right;margin-left:5px;"><a href="<?php	echo	site_url	($last_page);	?>" class="btn">Return</a></div>
+								<div style="float: right;margin-left:5px;"><a href="<?php	echo	site_url($last_page);	?>" class="btn">Return</a></div>
 				<?php	}	?>
 				<div style="float: right;">
 								<button class="btn "><span class="icon-download-alt"></span>Export Instantiation</button>
 				</div>
 				<div class="clearfix"></div>
-				<?php	$this->load->view	('partials/_list');	?>
+				<?php	$this->load->view('partials/_list');	?>
 
 				<div class="span12" style="margin-left: 285px;">
 								<div style="float: left;">
 												<table  cellPadding="8" class="record-detail-table">
 																<!--				Instantiation ID	Start		-->
 																<?php
-																if	($instantiation_detail->instantiation_identifier	||	$instantiation_detail->instantiation_source)
+																if($instantiation_detail->instantiation_identifier	||	$instantiation_detail->instantiation_source)
 																{
-																				$ins_identifier	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$instantiation_detail->instantiation_identifier)));
-																				$ins_identifier_src	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$instantiation_detail->instantiation_source)));
+																				$ins_identifier	=	explode(' | ',	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_identifier)));
+																				$ins_identifier_src	=	explode(' | ',	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_source)));
 																				$combine_identifier	=	'';
-																				foreach	($ins_identifier	as	$index	=>	$identifier)
+																				foreach($ins_identifier	as	$index	=>	$identifier)
 																				{
 																								$combine_identifier.=	'<p>';
 																								$combine_identifier.=	$identifier;
-																								if	(isset	($ins_identifier_src[$index])	&&	!	empty	($ins_identifier_src[$index]))
+																								if(isset($ins_identifier_src[$index])	&&	!	empty($ins_identifier_src[$index]))
 																												$combine_identifier.=' ('	.	$ins_identifier_src[$index]	.	')';
 																								$combine_identifier.=	'</p>';
 																				}
@@ -83,7 +83,7 @@
 																<!--				Instantiation ID	End		-->
 																<!--				Date 	Start		-->
 																<?php
-																if	($instantiation_detail->dates	||	$instantiation_detail->date_type)
+																if($instantiation_detail->dates	||	$instantiation_detail->date_type)
 																{
 																				?>
 																				<tr>
@@ -92,15 +92,15 @@
 																								</td>
 																								<td>
 																												<?php
-																												if	($instantiation_detail->date_type)
+																												if($instantiation_detail->date_type)
 																												{
 																																?>
 																																<span><?php	echo	$instantiation_detail->date_type	.	':';	?></span>
 																																<?php
-																																if	($instantiation_detail->dates)
+																																if($instantiation_detail->dates)
 																																{
 																																				?>
-																																				<span><?php	echo	date("Y-m-d",$instantiation_detail->dates);	?></span>
+																																				<span><?php	echo	date("Y-m-d",	$instantiation_detail->dates);	?></span>
 
 																																<?php	}	?>
 
@@ -111,9 +111,9 @@
 																<!--				Date 	End		-->
 																<!--				Media Type 	Start		-->
 																<?php
-																if	($instantiation_detail->media_type)
+																if($instantiation_detail->media_type)
 																{
-																				$media_type	=	explode	(' | ',	$instantiation_detail->media_type);
+																				$media_type	=	explode(' | ',	$instantiation_detail->media_type);
 																				?>
 																				<tr>
 																								<td class="record-detail-page">
@@ -121,7 +121,7 @@
 																								</td>
 																								<td>
 																												<?php
-																												foreach	($media_type	as	$value)
+																												foreach($media_type	as	$value)
 																												{
 																																?>
 																																<p><?php	echo	$value;	?></p>
@@ -133,15 +133,15 @@
 																<!--				Media Type	End		-->
 																<!--				Format 	Start		-->
 																<?php
-																if	($instantiation_detail->format_name)
+																if($instantiation_detail->format_name)
 																{
 
 																				$format	=	'Format: ';
-																				if	(isset	($instantiation_detail->format_type)	&&	($instantiation_detail->format_type	!=	NULL))
+																				if(isset($instantiation_detail->format_type)	&&	($instantiation_detail->format_type	!=	NULL))
 																				{
-																								if	($instantiation_detail->format_type	===	'physical')
+																								if($instantiation_detail->format_type	===	'physical')
 																												$format	=	'Physical Format: ';
-																								if	($instantiation_detail->format_type	===	'digital')
+																								if($instantiation_detail->format_type	===	'digital')
 																												$format	=	'Digital Format: ';
 																				}
 																				?>	
@@ -157,10 +157,10 @@
 																<!--				Format	End		-->
 																<!--				Generation 	Start		-->
 																<?php
-																if	($instantiation_detail->generation)
+																if($instantiation_detail->generation)
 																{
 
-																				$generations	=	explode	(' | ',	$instantiation_detail->generation);
+																				$generations	=	explode(' | ',	$instantiation_detail->generation);
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">
@@ -168,7 +168,7 @@
 																								</td>
 																								<td>
 																												<?php
-																												foreach	($generations	as	$generation)
+																												foreach($generations	as	$generation)
 																												{
 																																?>
 																																<p>	<?php	echo	$generation;	?></p>
@@ -180,7 +180,7 @@
 																<!--				Generation	End		-->
 																<!--				Location 	Start		-->
 																<?php
-																if	($instantiation_detail->location)
+																if($instantiation_detail->location)
 																{
 																				?>	
 																				<tr>
@@ -197,7 +197,7 @@
 																<!--				Location	End		-->
 																<!--				Duration 	Start		-->
 																<?php
-																if	($instantiation_detail->projected_duration	!==	'0')
+																if($instantiation_detail->projected_duration	!==	'0')
 																{
 																				?>	
 																				<tr>
@@ -213,7 +213,7 @@
 
 																				<?php
 																}
-																else	if	($instantiation_detail->actual_duration	!==	'0')
+																else	if($instantiation_detail->actual_duration	!==	'0')
 																{
 																				?>	
 																				<tr>
@@ -221,7 +221,7 @@
 																												<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Duration:</b></label>
 																								</td>
 																								<td>
-																												<p>	<?php	echo	date	('H:i:s',	strtotime	($instantiation_detail->actual_duration));	?></p>
+																												<p>	<?php	echo	date('H:i:s',	strtotime($instantiation_detail->actual_duration));	?></p>
 
 																								</td>
 																				</tr>
@@ -230,7 +230,7 @@
 																<!--				Duration	End		-->
 																<!--				Time Start 	Start		-->
 																<?php
-																if	($instantiation_detail->time_start)
+																if($instantiation_detail->time_start)
 																{
 																				?>	
 																				<tr>
@@ -247,7 +247,7 @@
 																<!--				Time Start	End		-->
 																<!--				File Size 	Start		-->
 																<?php
-																if	($instantiation_detail->file_size)
+																if($instantiation_detail->file_size)
 																{
 																				?>	
 																				<tr>
@@ -264,7 +264,7 @@
 																<!--				File Size	End		-->
 																<!--				Standard 	Start		-->
 																<?php
-																if	($instantiation_detail->standard)
+																if($instantiation_detail->standard)
 																{
 																				?>	
 																				<tr>
@@ -281,7 +281,7 @@
 																<!--				Standard	End		-->
 																<!--				Dimensions: 	Start		-->
 																<?php
-																if	($instantiation_detail->instantiation_dimension)
+																if($instantiation_detail->instantiation_dimension)
 																{
 																				?>	
 																				<tr>
@@ -298,7 +298,7 @@
 																<!--				Dimensions	End		-->
 																<!--				Data Rate 	Start		-->
 																<?php
-																if	($instantiation_detail->data_rate)
+																if($instantiation_detail->data_rate)
 																{
 																				?>	
 																				<tr>
@@ -315,7 +315,7 @@
 																<!--				Data Rate	End		-->
 																<!--			 Color 	Start		-->
 																<?php
-																if	($instantiation_detail->color)
+																if($instantiation_detail->color)
 																{
 																				?>	
 																				<tr>
@@ -332,7 +332,7 @@
 																<!--				Color	End		-->
 																<!--			 Tracks 	Start		-->
 																<?php
-																if	($instantiation_detail->tracks)
+																if($instantiation_detail->tracks)
 																{
 																				?>	
 																				<tr>
@@ -349,7 +349,7 @@
 																<!--				Tracks	End		-->
 																<!--			 Channel Configuration 	Start		-->
 																<?php
-																if	($instantiation_detail->channel_configuration)
+																if($instantiation_detail->channel_configuration)
 																{
 																				?>	
 																				<tr>
@@ -366,7 +366,7 @@
 																<!--				Channel Configuration	End		-->
 																<!--			 Language 	Start		-->
 																<?php
-																if	($instantiation_detail->language)
+																if($instantiation_detail->language)
 																{
 																				?>	
 																				<tr>
@@ -383,18 +383,18 @@
 																<!--				Language	End		-->
 																<!--			 Annotation 	Start		-->
 																<?php
-																if	($instantiation_detail->ins_annotation	||	$instantiation_detail->ins_annotation_type)
+																if($instantiation_detail->ins_annotation	||	$instantiation_detail->ins_annotation_type)
 																{
-																				$ins_annotation	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$instantiation_detail->ins_annotation)));
-																				$ins_annotation_type	=	explode	(' | ',	trim	(str_replace	('(**)',	'',	$instantiation_detail->ins_annotation_type)));
+																				$ins_annotation	=	explode(' | ',	trim(str_replace('(**)',	'',	$instantiation_detail->ins_annotation)));
+																				$ins_annotation_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$instantiation_detail->ins_annotation_type)));
 																				$combine_annotation	=	'';
-																				if	((count	($ins_annotation)	>	0	&&	$ins_annotation[0]	!=	'')	||	(count	($ins_annotation_type)	>	0	&&	$ins_annotation_type[0]	!=	''))
+																				if((count($ins_annotation)	>	0	&&	$ins_annotation[0]	!=	'')	||	(count($ins_annotation_type)	>	0	&&	$ins_annotation_type[0]	!=	''))
 																				{
-																								if	(count	($ins_annotation)	>	count	($ins_annotation_type))
+																								if(count($ins_annotation)	>	count($ins_annotation_type))
 																								{
-																												foreach	($ins_annotation	as	$index	=>	$row)
+																												foreach($ins_annotation	as	$index	=>	$row)
 																												{
-																																if	(isset	($ins_annotation_type[$index])	&&	$ins_annotation_type[$index]	!=	'')
+																																if(isset($ins_annotation_type[$index])	&&	$ins_annotation_type[$index]	!=	'')
 																																{
 																																				$combine_annotation.=$ins_annotation_type[$index]	.	': ';
 																																}
@@ -404,10 +404,10 @@
 																								}
 																								else
 																								{
-																												foreach	($ins_annotation_type	as	$index	=>	$row)
+																												foreach($ins_annotation_type	as	$index	=>	$row)
 																												{
 																																$combine_annotation.=$row	.	': ';
-																																if	(isset	($ins_annotation[$index])	&&	$ins_annotation[$index]	!=	'')
+																																if(isset($ins_annotation[$index])	&&	$ins_annotation[$index]	!=	'')
 																																{
 																																				$combine_annotation.=$ins_annotation[$index];
 																																}
@@ -416,7 +416,7 @@
 																												}
 																								}
 
-																								if	(	!	empty	($combine_annotation)	&&	trim	($combine_annotation)	!=	':')
+																								if(	!	empty($combine_annotation)	&&	trim($combine_annotation)	!=	':')
 																								{
 																												?>
 																												<tr>
@@ -437,36 +437,36 @@
 																<?php	}	?>
 																<!--				Annotation	End		-->
 												</table>
-											
+
 								</div>
-									<?php
-												if	(isset	($instantiation_events)	&&	!	is_empty	($instantiation_events))
-												{
-																?>
-												<table cellpadding="4" class="table table-bordered" >
-																				<thead>
-																				<th>Event Type</th>
-																				<th>Event Date</th>
-																				<th>Event Note</th>
-																				<th>Event Outcome</th>
-																				</thead>
-																				<tbody>
-																								<?php
-																								foreach	($instantiation_events	as	$events)
-																								{
-																												?>
-																												<tr>
-																																<td><?php	echo	(isset	($events->event_type)	&&	!	is_empty	($events->event_type))	?	$events->event_type	:	'';	?></td>
-																																<td><?php	echo	(isset	($events->event_date)	&&	!	is_empty	($events->event_date))	?	$events->event_date	:	'';	?></td>
-																																<td><?php	echo	(isset	($events->event_note)	&&	!	is_empty	($events->event_note))	?	$events->event_note	:	'';	?></td>
-																																<td><?php	echo	(isset	($events->event_outcome)	&&	!	is_empty	($events->event_outcome))	?	$events->event_outcome	:	'';	?></td>
-																												</tr>
-																								<?php	}	?>
-																				</tbody></table>
-												<?php	}
-												?>
 								<?php
-								if	($instantiation_detail->status)
+								if(isset($instantiation_events)	&&	!	is_empty($instantiation_events))
+								{
+												?>
+												<table cellpadding="4" class="table table-bordered" >
+																<thead>
+																<th>Event Type</th>
+																<th>Event Date</th>
+																<th>Event Note</th>
+																<th>Event Outcome</th>
+																</thead>
+																<tbody>
+																				<?php
+																				foreach($instantiation_events	as	$events)
+																				{
+																								?>
+																								<tr>
+																												<td><?php	echo	(isset($events->event_type)	&&	!	is_empty($events->event_type))	?	$events->event_type	:	'';	?></td>
+																												<td><?php	echo	(isset($events->event_date)	&&	!	is_empty($events->event_date))	?	$events->event_date	:	'';	?></td>
+																												<td><?php	echo	(isset($events->event_note)	&&	!	is_empty($events->event_note))	?	$events->event_note	:	'';	?></td>
+																												<td><?php	echo	(isset($events->event_outcome)	&&	!	is_empty($events->event_outcome))	?	$events->event_outcome	:	'';	?></td>
+																								</tr>
+																				<?php	}	?>
+																</tbody></table>
+								<?php	}
+								?>
+								<?php
+								if($instantiation_detail->status)
 								{
 												?>
 												<div class="nomination-container">
@@ -474,13 +474,13 @@
 																<p><b><?php	echo	$instantiation_detail->status;	?></b></p>
 																<p><?php	echo	$instantiation_detail->nomination_reason;	?></p>
 																<?php
-																if	($instantiation_detail->nominated_by	&&	$instantiation_detail->nominated_by	!=	NULL)
+																if($instantiation_detail->nominated_by	&&	$instantiation_detail->nominated_by	!=	NULL)
 																{
 																				?>
 																				<p><?php	echo	'Nominated by '	.	$instantiation_detail->nominated_by;	?></p>
 																				<?php
 																}
-																if	($instantiation_detail->nominated_at	&&	$instantiation_detail->nominated_at	!=	NULL)
+																if($instantiation_detail->nominated_at	&&	$instantiation_detail->nominated_at	!=	NULL)
 																{
 																				?>
 																				<p><?php	echo	' at '	.	$instantiation_detail->nominated_at;	?></p>
@@ -489,5 +489,22 @@
 												}
 								}
 								?>
+				</div>
+				<div style="margin-left: 285px;">
+								<table cellPadding="8" class="record-detail-table">
+												<tr>
+																<td class="record-detail-page">
+																				<label><i class="icon-question-sign"></i><b> Nomination Status:</b></label>
+																</td>
+																<td>
+																				<p>
+																								<select>
+
+																								</select>
+																				</p>
+
+																</td>
+												</tr>
+								</table>
 				</div>
 </div>

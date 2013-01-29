@@ -318,7 +318,7 @@ class	Instantiations	extends	MY_Controller
 								}
 								$this->instantiation->update_instantiations($ins_id,	array('instantiation_media_type_id'	=>	$media_type_id,	'language'																				=>	$language));
 
-								$this->sphinx->update_indexes('instantiations_list',	array('status',	'nomination_reason',	'nominated_by',	'nominated_at',	'language',	'media_type','generation'),	array((int)$ins_id	=>	array($nomination,	$reason,	$this->user_id,	date('Y-m-d H:i:s'),	$language,	$media_type,$gen_array)));
+								$this->sphinx->update_indexes('instantiations_list',	array('status',	'nomination_reason',	'nominated_by',	'nominated_at',	'language',	'media_type','generation'),	array((int)$ins_id	=>	array((int)$nomination,	(int)$reason,	(int)$this->user_id,	(int)date('Y-m-d H:i:s'),(int)	$language,	(int)$media_type,(int)$gen_array)));
 								
 								redirect('instantiations/detail/'	.	$ins_id);
 				}

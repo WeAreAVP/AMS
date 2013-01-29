@@ -318,9 +318,9 @@ class	Instantiations	extends	MY_Controller
 								}
 								$this->instantiation->update_instantiations($ins_id,	array('instantiation_media_type_id'	=>	$media_type_id,	'language'																				=>	$language));
 
-								$this->sphinx->update_indexes('instantiations_list',	array('status',	'nomination_reason',	'nominated_by',	'nominated_at',	'language',	'media_type',	'generation'),	array($ins_id	=>	array($nomination,	$reason,	$this->user_id,	date('Y-m-d H:i:s'),	$language,	$media_type,	$gen_array)));
+//								$this->sphinx->update_indexes('instantiations_list',	array('status',	'nomination_reason',	'nominated_by',	'nominated_at',	'language',	'media_type',	'generation'),	array($ins_id	=>	array($nomination,	$reason,	$this->user_id,	date('Y-m-d H:i:s'),	$language,	$media_type,	$gen_array)));
 
-//								redirect('instantiations/detail/'	.	$ins_id);
+								redirect('instantiations/detail/'	.	$ins_id);
 				}
 
 				public	function	export_csv()

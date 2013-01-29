@@ -490,6 +490,7 @@
 								}
 								?>
 				</div>
+				<div class="clearfix"></div>
 				<div style="margin-left: 285px;">
 								<table cellPadding="8" class="record-detail-table">
 												<tr>
@@ -510,6 +511,17 @@
 																												<?php	}
 																												?>
 																								</select>
+																				</p>
+
+																</td>
+												</tr>
+												<tr>
+																<td class="record-detail-page">
+																				<label><i class="icon-question-sign"></i><b> Nomination Reason:</b></label>
+																</td>
+																<td>
+																				<p>
+																								<textarea><?php	echo	$instantiation_detail->nomination_reason;	?></textarea>
 																				</p>
 
 																</td>

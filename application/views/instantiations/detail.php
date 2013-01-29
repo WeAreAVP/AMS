@@ -491,7 +491,7 @@
 								?>
 				</div>
 				<div class="clearfix"></div>
-				<div style="margin-left: 285px;">
+				<div>
 								<table cellPadding="8" class="record-detail-table">
 												<tr>
 																<td class="record-detail-page">
@@ -521,7 +521,19 @@
 																</td>
 																<td>
 																				<p>
-																								<textarea><?php	echo	$instantiation_detail->nomination_reason;	?></textarea>
+																								<textarea style="width: 830px;height: 90px;"><?php	echo	$instantiation_detail->nomination_reason;	?></textarea>
+																				</p>
+
+																</td>
+												</tr>
+												<tr>
+																<td class="record-detail-page">
+																				<label><i class="icon-question-sign"></i><b> Instantiation ID Source:</b></label>
+																</td>
+																<td>
+																				<p>
+																								<?php	$ins_identifier_src	=	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_source));	?>
+																								<input value="<?php	echo	$ins_identifier_src;	?>" style="width: 830px;"/>
 																				</p>
 
 																</td>

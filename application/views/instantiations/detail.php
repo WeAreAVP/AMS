@@ -549,7 +549,7 @@
 																												$media_type	=	explode(' | ',	$instantiation_detail->media_type);
 																												$static_types	=	array('Animation',	'Artifact',	'Collection',	'Dataset',	'Event',	'Interactive',	'Moving Image',	'Object',	'Presentation',	'Service',	'Software',	'Sound',	'Static Image',	'Text');
 																												?>
-																												<select multiple="multiple" id="media_type" name="media_type" style="width: 300px;">
+																												<select multiple="multiple" id="media_type" name="media_type[]" style="width: 300px;">
 																																<?php
 																																foreach($static_types	as	$row)
 																																{
@@ -579,7 +579,7 @@
 																												'Backup',	'Budget',	'Caption file',	'Caricature',	'Clip reel',	'Color reversal intermediate (CRI)',	'Composite answer print',
 																												'Composite duplicate negative',	'Composite masterpositive',	'Composite negative',	'Composite original negative',	'Composite original positive',	'Composite positive');
 																												?>
-																												<select multiple="multiple" id="generation" name="generation" style="width: 300px;">
+																												<select multiple="multiple" id="generation" name="generation[]" style="width: 300px;">
 																																<?php
 																																foreach($static_gen	as	$row)
 																																{

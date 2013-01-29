@@ -249,6 +249,12 @@ class	Instantiations	extends	MY_Controller
 				}
 				public function edit(){
 								debug($this->input->post());
+								$this->input->post('nomination');
+								$this->input->post('nomination_reason');
+								$this->input->post('ins_id_source');
+								$this->input->post('media_type');
+								$this->input->post('generation');
+								$this->input->post('language');
 				}
 				public	function	export_csv()
 				{

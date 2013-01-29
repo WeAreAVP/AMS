@@ -620,7 +620,7 @@
 												multiple:false,
 												height:'auto'
 								}); 
-        $("#nomination").multiselect({
+        $("#media_type").multiselect({
 												noneSelectedText: 'Select Media Type',
 												selectedList: 3,
 												height:'auto'

@@ -568,6 +568,38 @@
 
 																</td>
 												</tr>
+												<tr>
+																<td class="record-detail-page">
+																				<label><i class="icon-question-sign"></i><b> Generation:</b></label>
+																</td>
+																<td>
+																				<p>
+																								<?php
+																								$generations	=	explode(' | ',	$instantiation_detail->generation);
+																								$static_gen	=	array('A&B rolls',	'Accounting statements',	'Air print',	'Air track',	'Answer print',	'Autochrome',	'Award',
+																								'Backup',	'Budget',	'Caption file',	'Caricature',	'Clip reel',	'Color reversal intermediate (CRI)',	'Composite answer print',
+																								'Composite duplicate negative',	'Composite masterpositive',	'Composite negative',	'Composite original negative',	'Composite original positive',	'Composite positive');
+																								foreach($generations	as	$type)
+																								{
+																												?>
+																												<select>
+																																<?php
+																																foreach($static_gen	as	$row)
+																																{
+																																				$selected	=	'';
+																																				if($row	==	$type)
+																																								$selected	=	'selected="selected"';
+																																				?>
+																																				<option value="<?php	echo	$row;	?>" <?php	echo	$selected;	?>><?php	echo	$row;	?></option>
+																																<?php	}
+																																?>
+
+																												</select>
+																								<?php	}	?>
+																				</p>
+
+																</td>
+												</tr>
 								</table>
 				</div>
 </div>

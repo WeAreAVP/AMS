@@ -264,10 +264,14 @@ class	Instantiations	extends	MY_Controller
 								$nomination_exist	=	$this->assets_model->get_nominations($ins_id);
 								$nomination_record	=	array('nomination_status_id'	=>	$nomination_id,	'nomination_reason'				=>	$reason,	'nominated_by'									=>	$this->user_id,	'nominated_at'									=>	date('Y-m-d H:i:s'));
 								if($nomination_exist)
+								{
 												$this->assets_model->update_nominations($ins_id,	$nomination_record);
+												$nomination_record['updated']	=	date('Y-m-d H:i:s');
+								}
 								else
 								{
 												$nomination_record['instantiations_id']	=	$ins_id;
+												$nomination_record['created']	=	date('Y-m-d H:i:s');
 												$this->assets_model->insert_nominations($nomination_record);
 								}
 

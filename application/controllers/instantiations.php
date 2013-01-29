@@ -267,7 +267,6 @@ class	Instantiations	extends	MY_Controller
 								{
 												$nomination_record['updated']	=	date('Y-m-d H:i:s');
 												$this->assets_model->update_nominations($ins_id,	$nomination_record);
-												
 								}
 								else
 								{
@@ -275,7 +274,7 @@ class	Instantiations	extends	MY_Controller
 												$nomination_record['created']	=	date('Y-m-d H:i:s');
 												$this->assets_model->insert_nominations($nomination_record);
 								}
-
+								$this->sphinx->update_indexes('instantiations_list',	array('status',	'nomination_reason',	'nominated_by',	'nominated_at'),	array($ins_id	=>	array($nomination,	$reason,	$this->user_id,	date('Y-m-d H:i:s'))));
 								echo	'done';
 								exit;
 				}

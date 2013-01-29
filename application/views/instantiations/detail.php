@@ -534,7 +534,8 @@
 																				<td>
 																								<p>
 																												<?php	$ins_identifier_src	=	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_source));	?>
-																												<input value="<?php	echo	$ins_identifier_src;	?>" style="width: 755px;" id="ins_id_source" name="ins_id_source"/>
+																												<input type="text" value="<?php	echo	$ins_identifier_src;	?>" style="width: 755px;" id="ins_id_source" name="ins_id_source"/>
+																												<input type="hidden"  value="<?php	echo	$instantiation_detail->id;	?>" id="ins_id" name="ins_id"/>
 																								</p>
 
 																				</td>
@@ -604,7 +605,7 @@
 																				<td>
 																								<p>
 																												<?php	$ins_identifier_src	=	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_source));	?>
-																												<input value="<?php	echo	$instantiation_detail->language;	?>" style="width: 755px;" id="language" name="language"/>
+																												<input type="text" value="<?php	echo	$instantiation_detail->language;	?>" style="width: 755px;" id="language" name="language"/>
 																								</p>
 
 																				</td>

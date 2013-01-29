@@ -249,6 +249,7 @@ class	Instantiations	extends	MY_Controller
 				}
 				public function edit(){
 								debug($this->input->post());
+								$this->input->post('ins_id');
 								$this->input->post('nomination');
 								$this->input->post('nomination_reason');
 								$this->input->post('ins_id_source');

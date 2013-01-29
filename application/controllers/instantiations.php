@@ -247,6 +247,9 @@ class	Instantiations	extends	MY_Controller
             echo json_encode($autoSource);
             exit;
 				}
+				public function edit(){
+								debug($this->input->post());
+				}
 				public	function	export_csv()
 				{
 //								if(isAjax())

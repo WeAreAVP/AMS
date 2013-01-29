@@ -154,9 +154,9 @@ class	Instantiations	extends	MY_Controller
 																$data['instantiation_events']	=	$this->instantiation->get_events_by_instantiation_id($instantiation_id);
 																$data['instantiation_detail']	=	$data['instantiation_detail']['records'][0];
 																$data['asset_details']	=	$this->assets_model->get_asset_by_asset_id($detail->assets_id);
-																$search_results_data	=	$this->sphinx->instantiations_list(array('index'																	=>	'assets_list'),	0,	1000);
-																$data['nominations']=$this->instantiation->get_nomination_status();
-																
+																$search_results_data	=	$this->sphinx->instantiations_list(array('index'														=>	'assets_list'),	0,	1000);
+																$data['nominations']	=	$this->instantiation->get_nomination_status();
+
 																$data['next_result_id']	=	FALSE;
 																$data['prev_result_id']	=	FALSE;
 																if(isset($search_results_data['records'])	&&	!	is_empty($search_results_data['records']))
@@ -237,26 +237,33 @@ class	Instantiations	extends	MY_Controller
 								}
 								show_404();
 				}
-				public function get_ins_source(){
-								$source=$this->instantiation->get_unique_ins_source($this->input->get('term'));
-								$autoSource = array();
-            
-            foreach ($source as $key => $value) {
-                $autoSource[$key] = $value->instantiation_source;
-            }
-            echo json_encode($autoSource);
-            exit;
+
+				public	function	get_ins_source()
+				{
+								$source	=	$this->instantiation->get_unique_ins_source($this->input->get('term'));
+								$autoSource	=	array();
+
+								foreach($source	as	$key	=>	$value)
+								{
+												$autoSource[$key]	=	$value->instantiation_source;
+								}
+								echo	json_encode($autoSource);
+								exit;
 				}
-				public function edit(){
-								debug($this->input->post());
-								$this->input->post('ins_id');
-								$this->input->post('nomination');
-								$this->input->post('nomination_reason');
-								$this->input->post('ins_id_source');
-								$this->input->post('media_type');
-								$this->input->post('generation');
-								$this->input->post('language');
+
+				public	function	edit()
+				{
+								$ins_id	=	$this->input->post('ins_id');
+								$nomination	=	$this->input->post('nomination');
+								$reason	=	$this->input->post('nomination_reason');
+								$source	=	$this->input->post('ins_id_source');
+								$media_type	=	$this->input->post('media_type');
+								$generation	=	$this->input->post('generation');
+								$language	=	$this->input->post('language');
+								$nomination_id=$this->assets_model->get_nomination_status_by_status($nomination)->id;
+								echo $nomination_id;
 				}
+
 				public	function	export_csv()
 				{
 //								if(isAjax())
@@ -268,7 +275,7 @@ class	Instantiations	extends	MY_Controller
 								if($records['total_count']	<=	10000)
 								{
 												$records	=	$this->instantiation->export_limited_csv();
-												
+
 												if(count($records)	>	0)
 												{
 																$this->load->library('excel');
@@ -298,7 +305,7 @@ class	Instantiations	extends	MY_Controller
 
 																								$col	++;
 																				}
-																				
+
 																				$row	++;
 																}
 																$filename	=	'csv_export_'	.	time()	.	'.csv';

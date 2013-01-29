@@ -609,6 +609,13 @@
 
 																				</td>
 																</tr>
+																<tr>
+																				<td>&nbsp;</td>
+																				<td>
+																								<input type="submit" value="Save" class="btn btn-primary">
+																								<input type="button" value="Cancel" class="btn">
+																				</td>
+																</tr>
 												</table>
 								</form>
 				</div>

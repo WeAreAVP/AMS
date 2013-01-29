@@ -261,7 +261,9 @@ class	Instantiations	extends	MY_Controller
 								$generation	=	$this->input->post('generation');
 								$language	=	$this->input->post('language');
 								$nomination_id=$this->assets_model->get_nomination_status_by_status($nomination)->id;
-								echo $nomination_id;
+								$nomination_record=array('nomination_status_id'=>$nomination_id,'nomination_reason'=>$reason,'nominated_by'=>'','nominated_at'=>date('Y-m-d H:i:s'));
+								$this->assets_model->update_nominations($ins_id,$nomination_record);
+								
 				}
 
 				public	function	export_csv()

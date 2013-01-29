@@ -1244,6 +1244,12 @@ class	Assets_Model	extends	CI_Model
 								$this->db->insert($this->_table_nominations,	$data);
 								return	$this->db->insert_id();
 				}
+				function	update_nominations($ins_id,$data)
+				{
+								$this->db->where('instantiations_id',$ins_id);
+								$this->db->update($this->_table_nominations,	$data);
+								return	TRUE;
+				}
 
 				/**
 					*  Insert the record in nomination_status  table

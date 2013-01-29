@@ -320,7 +320,7 @@ class	Instantiations	extends	MY_Controller
 
 								$this->sphinx->update_indexes('instantiations_list',	array('status',	'nomination_reason',	'nominated_by',	'nominated_at',	'language',	'media_type',	'generation'),	array($ins_id	=>	array($nomination,	$reason,	$this->user_id,	date('Y-m-d H:i:s'),	$language,	$media_type,	$gen_array)));
 
-								redirect('instantiations/detail/'	.	$ins_id);
+//								redirect('instantiations/detail/'	.	$ins_id);
 				}
 
 				public	function	export_csv()

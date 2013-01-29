@@ -274,8 +274,21 @@ class	Instantiations	extends	MY_Controller
 												$nomination_record['created']	=	date('Y-m-d H:i:s');
 												$this->assets_model->insert_nominations($nomination_record);
 								}
+
+
+								$db_media_type	=	$this->instantiation->get_instantiation_media_types_by_media_type($media_type);
+								if($db_media_type)
+								{
+												$media_type_id	=	$db_media_type->id;
+								}
+								else
+								{
+												$media_type_id	=	$this->instantiation->insert_instantiation_media_types(array('media_type'	=>	$media_type));
+								}
+								echo $media_type_id;exit;
+
 								$this->sphinx->update_indexes('instantiations_list',	array('status',	'nomination_reason',	'nominated_by',	'nominated_at'),	array($ins_id	=>	array($nomination,	$reason,	$this->user_id,	date('Y-m-d H:i:s'))));
-								redirect('instantiations/detail/'.$ins_id);
+								redirect('instantiations/detail/'	.	$ins_id);
 				}
 
 				public	function	export_csv()

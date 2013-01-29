@@ -614,8 +614,10 @@
 				</div>
 </div>
 <script type="text/javascript">
-$(function(){
-        $("#media_type").multiselect(); 
-        $(".ui-multiselect-menu").width('400px');
+				$(function(){
+        $("#media_type").multiselect({
+												noneSelectedText: 'Select Media Type',
+												selectedList: 3}); 
+        
     });
 </script>

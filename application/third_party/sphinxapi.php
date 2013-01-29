@@ -1548,7 +1548,7 @@ class SphinxClient
 				} 
 //				else
 ////					assert ( is_int($v) );
-//			}
+			}
 		}
 
 		// build request

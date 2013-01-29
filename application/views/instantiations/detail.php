@@ -621,10 +621,10 @@
 												selectedList: 3}); 
 								$("#ins_id_source").autocomplete({
             source:site_url+"instantiations/get_ins_source",
-            minLength:2,
+            minLength:1,
             delay:300,
             enable:true,
-            cacheLength:1,
+            cacheLength:1
             
             
         });

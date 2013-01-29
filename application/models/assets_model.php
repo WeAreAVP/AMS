@@ -534,7 +534,7 @@ class	Assets_Model	extends	CI_Model
 				{
 								$sql	=	'SELECT * FROM `'	.	$this->_table_publishers	.	'` WHERE `publisher` LIKE CONVERT( _utf8 "'	.	$publisher	.	'" USING latin1 )
 																COLLATE latin1_swedish_ci';
-								$res	=	$this->db->query	($sql);
+								$res	=	$this->db->query($sql);
 								if(isset($res)	&&	!	empty($res))
 								{
 												return	$res->row();
@@ -1244,9 +1244,22 @@ class	Assets_Model	extends	CI_Model
 								$this->db->insert($this->_table_nominations,	$data);
 								return	$this->db->insert_id();
 				}
-				function	update_nominations($ins_id,$data)
+
+				function	get_nominations($ins_id)
 				{
-								$this->db->where('instantiations_id',$ins_id);
+
+								$this->db->where('instantiations_id',	$ins_id);
+								$result	=	$this->db->get($this->_table_nominations);
+								if(isset($result)	&&	!	empty($result))
+								{
+												return	$result->row();
+								}
+								return	FALSE;
+				}
+
+				function	update_nominations($ins_id,	$data)
+				{
+								$this->db->where('instantiations_id',	$ins_id);
 								$this->db->update($this->_table_nominations,	$data);
 								return	TRUE;
 				}

@@ -261,8 +261,12 @@ class	Instantiations	extends	MY_Controller
 								$generation	=	$this->input->post('generation');
 								$language	=	$this->input->post('language');
 								$nomination_id=$this->assets_model->get_nomination_status_by_status($nomination)->id;
+								$nomination_exist=$this->assets_model->get_nominations($ins_id);
 								$nomination_record=array('nomination_status_id'=>$nomination_id,'nomination_reason'=>$reason,'nominated_by'=>'Nouman Tayyab','nominated_at'=>date('Y-m-d H:i:s'));
-								$this->assets_model->update_nominations($ins_id,$nomination_record);
+								if($nomination_exist)
+												$this->assets_model->update_nominations($ins_id,$nomination_record);
+								else
+											$this->assets_model->insert_nominations($nomination_record);	
 								echo 'done';exit;
 								
 				}

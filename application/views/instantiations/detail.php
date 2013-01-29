@@ -492,6 +492,7 @@
 				</div>
 				<div class="clearfix"></div>
 				<div>
+								<form method="POST" action="<?php echo site_url('instantiations/edit'); ?>">
 								<table cellPadding="8" class="record-detail-table">
 												<tr>
 																<td class="record-detail-page">
@@ -499,7 +500,7 @@
 																</td>
 																<td>
 																				<p>
-																								<select>
+																								<select id="nomination" name="nomination">
 																												<?php
 																												foreach($nominations	as	$row)
 																												{
@@ -521,7 +522,7 @@
 																</td>
 																<td>
 																				<p>
-																								<textarea style="width: 750px;height: 90px;"><?php	echo	$instantiation_detail->nomination_reason;	?></textarea>
+																								<textarea style="width: 750px;height: 90px;" id="nomination_reason" name="nomination_reason"><?php	echo	$instantiation_detail->nomination_reason;	?></textarea>
 																				</p>
 
 																</td>
@@ -603,17 +604,21 @@
 																<td>
 																				<p>
 																								<?php	$ins_identifier_src	=	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_source));	?>
-																								<input value="<?php	echo	$instantiation_detail->language;	?>" style="width: 755px;"/>
+																								<input value="<?php	echo	$instantiation_detail->language;	?>" style="width: 755px;" id="language" name="language"/>
 																				</p>
 
 																</td>
 												</tr>
 								</table>
+												</form>
 				</div>
 </div>
 <script type="text/javascript">
 				$(function(){
-        $("#media_type").multiselect({
+        $("#nomination").multiselect({
+												noneSelectedText: 'Select Nomination',
+												multiple:false}); 
+        $("#nomination").multiselect({
 												noneSelectedText: 'Select Media Type',
 												selectedList: 3}); 
         $("#generation").multiselect({

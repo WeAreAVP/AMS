@@ -84,7 +84,7 @@
 																<!--				Instantiation ID	End		-->
 																<!--				Date 	Start		-->
 																<?php
-																if($instantiation_detail->dates	||	$instantiation_detail->date_type)
+																if($instantiation_detail->dates	!=	''	||	$instantiation_detail->date_type	!=	'')
 																{
 																				?>
 																				<tr>
@@ -93,19 +93,20 @@
 																								</td>
 																								<td>
 																												<?php
-																												if($instantiation_detail->date_type)
+																												if($instantiation_detail->date_type !='')
 																												{
 																																?>
 																																<span><?php	echo	$instantiation_detail->date_type	.	':';	?></span>
 																																<?php
-																																if($instantiation_detail->dates)
-																																{
-																																				?>
-																																				<span><?php	echo	date("Y-m-d",	$instantiation_detail->dates);	?></span>
-
-																																<?php	}	?>
+																												}
+																												if($instantiation_detail->dates !='')
+																												{
+																																?>
+																																<span><?php	echo	date("Y-m-d",	$instantiation_detail->dates);	?></span>
 
 																												<?php	}	?>
+
+
 																								</td>
 																				</tr>
 																<?php	}	?>
@@ -181,7 +182,7 @@
 																<!--				Generation	End		-->
 																<!--				Location 	Start		-->
 																<?php
-																if($detail_instantiation->location && $detail_instantiation->location!='')
+																if($detail_instantiation->location	&&	$detail_instantiation->location	!=	'')
 																{
 																				?>	
 																				<tr>
@@ -198,7 +199,7 @@
 																<!--				Location	End		-->
 																<!--				Duration 	Start		-->
 																<?php
-																if($detail_instantiation->projected_duration	!==	NULL && $detail_instantiation->projected_duration!=='')
+																if($detail_instantiation->projected_duration	!==	NULL	&&	$detail_instantiation->projected_duration	!==	'')
 																{
 																				?>	
 																				<tr>
@@ -214,7 +215,7 @@
 
 																				<?php
 																}
-																else	if($detail_instantiation->actual_duration	!==	'' && $detail_instantiation->actual_duration	!==	NULL)
+																else	if($detail_instantiation->actual_duration	!==	''	&&	$detail_instantiation->actual_duration	!==	NULL)
 																{
 																				?>	
 																				<tr>
@@ -231,7 +232,7 @@
 																<!--				Duration	End		-->
 																<!--				Time Start 	Start		-->
 																<?php
-																if($detail_instantiation->time_start && $detail_instantiation->time_start!='')
+																if($detail_instantiation->time_start	&&	$detail_instantiation->time_start	!=	'')
 																{
 																				?>	
 																				<tr>
@@ -248,7 +249,7 @@
 																<!--				Time Start	End		-->
 																<!--				File Size 	Start		-->
 																<?php
-																if($detail_instantiation->file_size && $detail_instantiation->file_size!='')
+																if($detail_instantiation->file_size	&&	$detail_instantiation->file_size	!=	'')
 																{
 																				?>	
 																				<tr>
@@ -265,7 +266,7 @@
 																<!--				File Size	End		-->
 																<!--				Standard 	Start		-->
 																<?php
-																if($detail_instantiation->standard && $detail_instantiation->standard!='')
+																if($detail_instantiation->standard	&&	$detail_instantiation->standard	!=	'')
 																{
 																				?>	
 																				<tr>
@@ -333,7 +334,7 @@
 																<!--				Color	End		-->
 																<!--			 Tracks 	Start		-->
 																<?php
-																if($detail_instantiation->tracks && $detail_instantiation->tracks!='')
+																if($detail_instantiation->tracks	&&	$detail_instantiation->tracks	!=	'')
 																{
 																				?>	
 																				<tr>
@@ -350,7 +351,7 @@
 																<!--				Tracks	End		-->
 																<!--			 Channel Configuration 	Start		-->
 																<?php
-																if($detail_instantiation->channel_configuration && $detail_instantiation->channel_configuration)
+																if($detail_instantiation->channel_configuration	&&	$detail_instantiation->channel_configuration)
 																{
 																				?>	
 																				<tr>
@@ -367,7 +368,7 @@
 																<!--				Channel Configuration	End		-->
 																<!--			 Language 	Start		-->
 																<?php
-																if($detail_instantiation->language && $detail_instantiation->language)
+																if($detail_instantiation->language	&&	$detail_instantiation->language)
 																{
 																				?>	
 																				<tr>
@@ -467,7 +468,7 @@
 								<?php	}
 								?>
 								<?php
-								if(isset($ins_nomination) && !empty($ins_nomination))
+								if(isset($ins_nomination)	&&	!	empty($ins_nomination))
 								{
 												?>
 												<div class="nomination-container">
@@ -475,20 +476,20 @@
 																<p><b><?php	echo	$ins_nomination->status;	?></b></p>
 																<p><?php	echo	$ins_nomination->nomination_reason;	?></p>
 																<?php
-																if($ins_nomination->nominated_by	!='')
+																if($ins_nomination->nominated_by	!=	'')
 																{
 																				?>
-																				<p><?php	echo	'Nominated by '	.	$ins_nomination->first_name.' '.$ins_nomination->last_name;	?></p>
+																				<p><?php	echo	'Nominated by '	.	$ins_nomination->first_name	.	' '	.	$ins_nomination->last_name;	?></p>
 																				<?php
 																}
-																if($ins_nomination->nominated_at	!='')
+																if($ins_nomination->nominated_at	!=	'')
 																{
 																				?>
 																				<p><?php	echo	' at '	.	$ins_nomination->nominated_at;	?></p>
-															
-																<?php
-												}?>
-																					</div>
+
+																<?php	}
+																?>
+												</div>
 												<?php
 								}
 								?>
@@ -508,7 +509,7 @@
 																																foreach($nominations	as	$row)
 																																{
 																																				$selected	=	'';
-																																				if(isset($ins_nomination->status) && $ins_nomination->status	==	$row->status)
+																																				if(isset($ins_nomination->status)	&&	$ins_nomination->status	==	$row->status)
 																																								$selected	=	'selected="selected"'
 																																								?>
 																																				<option id="<?php	echo	$row->status;	?>" <?php	echo	$selected;	?>><?php	echo	$row->status;	?></option>
@@ -525,7 +526,7 @@
 																				</td>
 																				<td>
 																								<p>
-																												<textarea style="width: 700px;height: 90px;" id="nomination_reason" name="nomination_reason"><?php	echo	(isset($ins_nomination->nomination_reason)) ?$ins_nomination->nomination_reason : '';	?></textarea>
+																												<textarea style="width: 700px;height: 90px;" id="nomination_reason" name="nomination_reason"><?php	echo	(isset($ins_nomination->nomination_reason))	?	$ins_nomination->nomination_reason	:	'';	?></textarea>
 																								</p>
 
 																				</td>
@@ -607,7 +608,7 @@
 																				</td>
 																				<td>
 																								<p>
-																												
+
 																												<input type="text" value="<?php	echo	$detail_instantiation->language;	?>" style="width: 700px;" id="language" name="language"/>
 																								</p>
 
@@ -626,17 +627,17 @@
 </div>
 <script type="text/javascript">
 				$(function(){
-//        $("#nomination").multiselect({
-//												noneSelectedText: 'Select Nomination',
-//												selectedList: 1,
-//												multiple:false,
-//												height:'auto'
-//								}); 
-//        $("#media_type").multiselect({
-//												noneSelectedText: 'Select Media Type',
-//												selectedList: 3,
-//												height:'auto'
-//								}); 
+								//        $("#nomination").multiselect({
+								//												noneSelectedText: 'Select Nomination',
+								//												selectedList: 1,
+								//												multiple:false,
+								//												height:'auto'
+								//								}); 
+								//        $("#media_type").multiselect({
+								//												noneSelectedText: 'Select Media Type',
+								//												selectedList: 3,
+								//												height:'auto'
+								//								}); 
         $("#generation").multiselect({
 												noneSelectedText: 'Select Generation',
 												selectedList: 3,

@@ -152,6 +152,7 @@ class	Records	extends	MY_Controller
 								if	($asset_id)
 								{
 												$data['asset_id']	=	$asset_id;
+												$data['list_assets']	=	$this->instantiation->get_instantiations_by_asset_id($detail->assets_id);
 												$data['asset_details']	=	$this->assets_model->get_asset_by_asset_id	($asset_id);
 												$data['asset_guid']	=	$this->assets_model->get_guid_by_asset_id	($asset_id);
 												$data['asset_localid']	=	$this->assets_model->get_localid_by_asset_id	($asset_id);
@@ -166,7 +167,7 @@ class	Records	extends	MY_Controller
 												$data['asset_audience_levels']	=	$this->assets_model->get_audience_level_by_asset_id	($asset_id);
 												$data['asset_audience_ratings']	=	$this->assets_model->get_audience_rating_by_asset_id	($asset_id);
 												$data['annotations']	=	$this->assets_model->get_annotations_by_asset_id	($asset_id);
-												$data['asset_instantiations']	=	$this->sphinx->instantiations_list	(array	('asset_id'	=>	$asset_id,	'search'	=>	''));
+//												$data['asset_instantiations']	=	$this->sphinx->instantiations_list	(array	('asset_id'	=>	$asset_id,	'search'	=>	''));
 												$search_results_data	=	$this->sphinx->assets_listing	(array	('index'	=>	'assets_list'),	0,	1000);
 												$data['next_result_id']	=	FALSE;
 												$data['prev_result_id']	=	FALSE;

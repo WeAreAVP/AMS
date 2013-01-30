@@ -13,11 +13,11 @@
 								<a class="menu-anchor" href="<?php	echo	site_url('records/details/'	.	$asset_id);	?>" >	<i class="icon-stop menu-img"></i><h4>Asset Information</h4></a>
 				</div>
 				<?php
-				if(isset($asset_instantiations['records'])	&&	!	empty($asset_instantiations['records']))
+				if(isset($list_assets)	&&	count($list_assets)>0)
 				{
 								?>
 								<?php
-								foreach($asset_instantiations['records']	as	$asset_instantiation)
+								foreach($list_assets	as	$asset_instantiation)
 								{
 												if($asset_instantiation->id	==	$inst_id)
 																$class	=	' active';
@@ -69,13 +69,13 @@
 																												<div><b><?php	echo	$format	?></b><?php	echo	$asset_instantiation->format_name;	?></div>
 																												<?php
 																								}
-																								if($asset_instantiation->actual_duration	>	0)
+																								if($asset_instantiation->actual_duration	!='')
 																								{
 																												?>
 																												<div><b>Actual Duration: </b><?php	echo	date('H:i:s',	strtotime($asset_instantiation->actual_duration));	?></div>
 																												<?php
 																								}
-																								if($asset_instantiation->projected_duration	!=='0')
+																								if($asset_instantiation->projected_duration	!=='')
 																								{
 																												?>
 																												<div><b>Projected Duration: </b><?php	echo	$asset_instantiation->projected_duration;	?></div>

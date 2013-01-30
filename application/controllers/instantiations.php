@@ -151,6 +151,7 @@ class	Instantiations	extends	MY_Controller
 												{
 																$data['asset_id']	=	$detail->assets_id;
 																$data['inst_id']	=	$instantiation_id;
+																$data['list_assets']	=	$this->instantiation->get_instantiations_by_asset_id($detail->assets_id);
 																$data['ins_nomination']	=	$this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
 																$data['inst_identifier']	=	$this->instantiation->get_identifier_by_instantiation_id($instantiation_id);
 																$data['inst_dates']	=	$this->instantiation->get_dates_by_instantiation_id($instantiation_id);
@@ -162,9 +163,9 @@ class	Instantiations	extends	MY_Controller
 																$data['inst_color']	=	$this->instantiation->get_color_by_instantiation_colors_id($detail->instantiation_colors_id);
 																$data['inst_annotation']	=	$this->instantiation->get_annotation_by_instantiation_id($instantiation_id);
 
-																$data['asset_instantiations']	=	$this->sphinx->instantiations_list(array('asset_id'																				=>	$detail->assets_id,	'search'																						=>	''));
+
 																$data['instantiation_events']	=	$this->instantiation->get_events_by_instantiation_id($instantiation_id);
-//																$data['instantiation_detail']	=	$data['instantiation_detail']['records'][0];
+
 																$data['asset_details']	=	$this->assets_model->get_asset_by_asset_id($detail->assets_id);
 																$search_results_data	=	$this->sphinx->instantiations_list(array('index'														=>	'assets_list'),	0,	1000);
 																$data['nominations']	=	$this->instantiation->get_nomination_status();

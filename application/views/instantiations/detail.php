@@ -467,24 +467,24 @@
 								<?php	}
 								?>
 								<?php
-								if($instantiation_detail->status)
+								if(isset($ins_nomination) && !empty($ins_nomination))
 								{
 												?>
 												<div class="nomination-container">
 
-																<p><b><?php	echo	$instantiation_detail->status;	?></b></p>
-																<p><?php	echo	$instantiation_detail->nomination_reason;	?></p>
+																<p><b><?php	echo	$ins_nomination->status;	?></b></p>
+																<p><?php	echo	$ins_nomination->nomination_reason;	?></p>
 																<?php
-																if($instantiation_detail->nominated_by	&&	$instantiation_detail->nominated_by	!=	NULL)
+																if($ins_nomination->nominated_by	!='')
 																{
 																				?>
-																				<p><?php	echo	'Nominated by '	.	$instantiation_detail->nominated_by;	?></p>
+																				<p><?php	echo	'Nominated by '	.	$ins_nomination->first_name.' '.$ins_nomination->last_name;	?></p>
 																				<?php
 																}
-																if($instantiation_detail->nominated_at	&&	$instantiation_detail->nominated_at	!=	NULL)
+																if($ins_nomination->nominated_at	!='')
 																{
 																				?>
-																				<p><?php	echo	' at '	.	$instantiation_detail->nominated_at;	?></p>
+																				<p><?php	echo	' at '	.	$ins_nomination->nominated_at;	?></p>
 															
 																<?php
 												}?>

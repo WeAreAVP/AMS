@@ -906,6 +906,11 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->where("$this->table_instantiation_media_types.id",	$media_id);
 								return	$result	=	$this->db->get($this->table_instantiation_media_types)->row();
 				}
+				function get_format_by_instantiation_id($ins_id){
+								$this->db->select("$this->table_instantiation_formats.format_name,$this->table_instantiation_formats.format_type",	FALSE);
+								$this->db->where("$this->table_instantiation_formats.instantiations_id",	$ins_id);
+								return	$result	=	$this->db->get($this->table_instantiation_formats)->row();
+				}
 
 }
 

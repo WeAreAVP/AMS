@@ -113,7 +113,7 @@
 																<!--				Date 	End		-->
 																<!--				Media Type 	Start		-->
 																<?php
-																if($inst_media_type->media_type)
+																if($inst_media_type->media_type!='')
 																{
 																				$media_type	=	explode(' | ',	$inst_media_type->media_type);
 																				?>
@@ -135,15 +135,15 @@
 																<!--				Media Type	End		-->
 																<!--				Format 	Start		-->
 																<?php
-																if($instantiation_detail->format_name)
+																if($inst_format->format_name !='')
 																{
 
 																				$format	=	'Format: ';
-																				if(isset($instantiation_detail->format_type)	&&	($instantiation_detail->format_type	!=	NULL))
+																				if(isset($inst_format->format_type)	&&	($inst_format->format_type	!=	NULL))
 																				{
-																								if($instantiation_detail->format_type	===	'physical')
+																								if($inst_format->format_type	===	'physical')
 																												$format	=	'Physical Format: ';
-																								if($instantiation_detail->format_type	===	'digital')
+																								if($inst_format->format_type	===	'digital')
 																												$format	=	'Digital Format: ';
 																				}
 																				?>	
@@ -152,7 +152,7 @@
 																												<label><i class="icon-question-sign"></i><b>  <?php	echo	$format;	?></b></label>
 																								</td>
 																								<td>
-																												<span>	<?php	echo	$instantiation_detail->format_name;	?></span>
+																												<span>	<?php	echo	$inst_format->format_name;	?></span>
 																								</td>
 																				</tr>
 																<?php	}	?>

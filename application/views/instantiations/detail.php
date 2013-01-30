@@ -317,7 +317,7 @@
 																<!--				Data Rate	End		-->
 																<!--			 Color 	Start		-->
 																<?php
-																if(isset($inst_color->color) && $inst_color->color!='')
+																if(isset($inst_color->color)	&&	$inst_color->color	!=	'')
 																{
 																				?>	
 																				<tr>
@@ -385,7 +385,7 @@
 																<!--				Language	End		-->
 																<!--			 Annotation 	Start		-->
 																<?php
-																if($inst_annotation->ins_annotation!=''	||	$inst_annotation->ins_annotation_type!='')
+																if($inst_annotation->ins_annotation	!=	''	||	$inst_annotation->ins_annotation_type	!=	'')
 																{
 																				$ins_annotation	=	explode(' | ',	trim(str_replace('(**)',	'',	$inst_annotation->ins_annotation)));
 																				$ins_annotation_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$inst_annotation->ins_annotation_type)));
@@ -584,6 +584,11 @@
 																												$static_gen	=	array('A&B rolls',	'Accounting statements',	'Air print',	'Air track',	'Answer print',	'Autochrome',	'Award',
 																												'Backup',	'Budget',	'Caption file',	'Caricature',	'Clip reel',	'Color reversal intermediate (CRI)',	'Composite answer print',
 																												'Composite duplicate negative',	'Composite masterpositive',	'Composite negative',	'Composite original negative',	'Composite original positive',	'Composite positive');
+																												foreach($generations	as	$gen)
+																												{
+																																if(	!	in_array($gen,	$static_gen))
+																																				$static_gen[]	=	$gen;
+																												}
 																												?>
 																												<select multiple="multiple" id="generation" name="generation[]" style="width: 300px;">
 																																<?php

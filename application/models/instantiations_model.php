@@ -879,7 +879,7 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->select("$this->table_nominations.*",	FALSE);
 								$this->db->where("$this->table_nominations.instantiations_id",	$ins_id);
 								$this->db->join($this->table_nomination_status,	"$this->table_nomination_status.id = $this->table_nominations.nomination_status_id",	'left');
-								$result	=	$this->db->get($this->table_nominations)->row();
+								return $result	=	$this->db->get($this->table_nominations)->row();
 				}
 
 }

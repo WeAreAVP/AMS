@@ -314,7 +314,7 @@ class	Instantiations	extends	MY_Controller
 												if($nomination_exist)
 												{
 																
-																$this->assets_model->delete_nominations_by_instantiation_id($ins_id);
+																$this->instantiation->delete_nominations_by_instantiation_id($ins_id);
 												}
 								}
 								$db_media_type	=	$this->instantiation->get_instantiation_media_types_by_media_type($media_type);

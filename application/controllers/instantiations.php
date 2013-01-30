@@ -153,7 +153,8 @@ class	Instantiations	extends	MY_Controller
 																$data['ins_nomination']=$this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
 																$data['inst_identifier']=$this->instantiation->get_identifier_by_instantiation_id($instantiation_id);
 																$data['inst_dates']=$this->instantiation->get_dates_by_instantiation_id($instantiation_id);
-//																debug($data['inst_dates']);
+																$data['inst_media_type']=$this->instantiation->get_media_type_by_instantiation_media_id($detail->instantiation_media_type_id);
+																debug($data['inst_media_type']);
 																$data['instantiation_detail']	=	$data['asset_instantiations']	=	$this->sphinx->instantiations_list(array('asset_id'																				=>	$detail->assets_id,	'search'																						=>	''));
 																$data['instantiation_events']	=	$this->instantiation->get_events_by_instantiation_id($instantiation_id);
 																$data['instantiation_detail']	=	$data['instantiation_detail']['records'][0];

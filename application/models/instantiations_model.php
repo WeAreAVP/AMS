@@ -901,6 +901,11 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->join($this->table_date_types,	"$this->table_date_types.id = $this->table_instantiation_dates.date_types_id",	'left');
 								return	$result	=	$this->db->get($this->table_instantiation_dates)->row();
 				}
+				function get_media_type_by_instantiation_media_id($media_id){
+								$this->db->select("$this->table_instantiation_media_types.media_type",	FALSE);
+								$this->db->where("$this->table_instantiation_media_types.id",	$media_id);
+								return	$result	=	$this->db->get($this->table_instantiation_media_types)->row();
+				}
 
 }
 

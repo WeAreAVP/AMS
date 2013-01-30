@@ -923,8 +923,15 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->select("GROUP_CONCAT(DISTINCT $this->table_generations.generation SEPARATOR ' | ') AS generation",	FALSE);
 								$this->db->where("$this->table_instantiation_generations.instantiations_id",	$ins_id);
 								$this->db->join($this->table_generations,	"$this->table_generations.id = $this->table_instantiation_generations.generations_id",	'left');
-								
+
 								return	$result	=	$this->db->get($this->table_instantiation_generations)->row();
+				}
+
+				function	get_demension_by_instantiation_id($ins_id)
+				{
+								$this->db->select("$this->table_instantiation_dimensions.instantiation_dimension,$this->table_instantiation_dimensions.unit_of_measure",	FALSE);
+								$this->db->where("$this->table_instantiation_dimensions.instantiations_id",	$ins_id);
+								return	$result	=	$this->db->get($this->table_instantiation_dimensions)->row();
 				}
 
 }

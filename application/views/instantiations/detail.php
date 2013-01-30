@@ -283,7 +283,7 @@
 																<!--				Standard	End		-->
 																<!--				Dimensions: 	Start		-->
 																<?php
-																if($instantiation_detail->instantiation_dimension)
+																if(isset($inst_demension->instantiation_dimension) && $inst_demension->instantiation_dimension!='')
 																{
 																				?>	
 																				<tr>
@@ -291,7 +291,7 @@
 																												<label><i class="icon-question-sign"></i><b> Dimensions:</b></label>
 																								</td>
 																								<td>
-																												<p>	<?php	echo	$instantiation_detail->instantiation_dimension	.	' '	.	$instantiation_detail->unit_of_measure;	?></p>
+																												<p>	<?php	echo	$inst_demension->instantiation_dimension	.	' '	.	$inst_demension->unit_of_measure;	?></p>
 
 																								</td>
 																				</tr>

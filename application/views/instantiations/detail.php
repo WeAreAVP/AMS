@@ -646,7 +646,7 @@
 								//								}); 
         $("#generation").multiselect({
 												noneSelectedText: 'Select Generation',
-												selectedList: 3,
+												selectedList: 3
 //												height:'auto'				
 								}); 
 								$("#ins_id_source").autocomplete({

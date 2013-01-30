@@ -894,6 +894,13 @@ class	Instantiations_Model	extends	CI_Model
 
 								return	$result	=	$this->db->get($this->table_instantiation_identifier)->row();
 				}
+				function get_dates_by_instantiation_id($ins_id){
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->table_instantiation_dates.instantiation_date,'(**)')) SEPARATOR ' | ') AS dates",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->table_date_types.date_type,'(**)')) SEPARATOR ' | ') AS date_type",	FALSE);
+								$this->db->where("$this->table_instantiation_dates.instantiations_id",	$ins_id);
+								$this->db->join($this->table_date_types,	"$this->table_date_types.id = $this->table_instantiation_dates.date_types_id",	'left');
+								return	$result	=	$this->db->get($this->table_instantiation_dates)->row();
+				}
 
 }
 

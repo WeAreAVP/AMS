@@ -920,9 +920,10 @@ class	Instantiations_Model	extends	CI_Model
 
 				function	get_generation_by_instantiation_id($ins_id)
 				{
-								$this->db->select("GROUP_CONCAT(DISTINCT $this->table_generations.format_name SEPARATOR ' | ') AS generation",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT $this->table_generations.generation SEPARATOR ' | ') AS generation",	FALSE);
 								$this->db->where("$this->table_instantiation_generations.instantiations_id",	$ins_id);
 								$this->db->join($this->table_generations,	"$this->table_generations.id = $this->table_instantiation_generations.generations_id",	'left');
+								
 								return	$result	=	$this->db->get($this->table_instantiation_generations)->row();
 				}
 

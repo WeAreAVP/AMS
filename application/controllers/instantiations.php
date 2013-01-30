@@ -291,10 +291,11 @@ class	Instantiations	extends	MY_Controller
 								{
 												$this->instantiation->update_instantiation_identifier($ins_id,	array('instantiation_source'	=>	$source));
 								}
+								$nomination_exist	=	$this->assets_model->get_nominations($ins_id);
 								if($nomination	!=	'')
 								{
 												$nomination_id	=	$this->assets_model->get_nomination_status_by_status($nomination)->id;
-												$nomination_exist	=	$this->assets_model->get_nominations($ins_id);
+
 												$nomination_record	=	array('nomination_status_id'	=>	$nomination_id,	'nomination_reason'				=>	$reason,	'nominated_by'									=>	$this->user_id,	'nominated_at'									=>	date('Y-m-d H:i:s'));
 												if($nomination_exist)
 												{
@@ -306,6 +307,14 @@ class	Instantiations	extends	MY_Controller
 																$nomination_record['instantiations_id']	=	$ins_id;
 																$nomination_record['created']	=	date('Y-m-d H:i:s');
 																$this->assets_model->insert_nominations($nomination_record);
+												}
+								}
+								else
+								{
+												if($nomination_exist)
+												{
+																
+																$this->assets_model->delete_nominations_by_instantiation_id($ins_id);
 												}
 								}
 								$db_media_type	=	$this->instantiation->get_instantiation_media_types_by_media_type($media_type);

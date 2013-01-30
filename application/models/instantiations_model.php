@@ -450,13 +450,11 @@ class	Instantiations_Model	extends	CI_Model
 								return	$this->db->insert_id();
 				}
 
-				function	update_instantiation_identifier($instantiation_id,$data)
+				function	update_instantiation_identifier($instantiation_id,	$data)
 				{
 								$this->db->where('instantiations_id',	$instantiation_id);
 								return	$this->db->update($this->table_instantiation_identifier,	$data);
 				}
-
-				
 
 				/*
 					*
@@ -655,7 +653,7 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->select("identifiers.identifier as GUID",	FALSE);
 								$this->db->select("GROUP_CONCAT(DISTINCT local.identifier SEPARATOR ' | ') AS unique_id",	FALSE);
 								$this->db->select("GROUP_CONCAT(DISTINCT $this->asset_titles.title SEPARATOR ' | ') as titles",	FALSE);
-								$this->db->select("$this->table_instantiation_formats.format_type",	FALSE);
+								$this->db->select("$this->table_instantiation_formats.format_name",	FALSE);
 								$this->db->select("$this->table_instantiations.projected_duration",	FALSE);
 								$this->db->select("$this->table_nomination_status.status",	FALSE);
 
@@ -963,7 +961,9 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->where("$this->table_instantiation_annotations.instantiations_id",	$ins_id);
 								return	$result	=	$this->db->get($this->table_instantiation_annotations)->row();
 				}
-				function get_instantiations_by_asset_id($asset_id){
+
+				function	get_instantiations_by_asset_id($asset_id)
+				{
 								$this->db->select("$this->table_instantiations.id,$this->table_instantiations.actual_duration,$this->table_instantiations.projected_duration",	FALSE);
 								$this->db->select("$this->table_instantiation_formats.format_name,$this->table_instantiation_formats.format_type",	FALSE);
 								$this->db->select("GROUP_CONCAT(DISTINCT $this->table_generations.generation SEPARATOR ' | ') AS generation",	FALSE);
@@ -976,10 +976,19 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->join($this->table_instantiation_identifier,	"$this->table_instantiation_identifier.instantiations_id = $this->table_instantiations.id",	'left');
 								return	$result	=	$this->db->get($this->table_instantiations)->result();
 				}
-				function delete_generation_by_instantiation_id($ins_id){
-								$this->db->where	('instantiations_id',	$ins_id);
-								$this->db->delete	($this->table_instantiation_generations);
-								return	$this->db->affected_rows	()	>	0;
+
+				function	delete_generation_by_instantiation_id($ins_id)
+				{
+								$this->db->where('instantiations_id',	$ins_id);
+								$this->db->delete($this->table_instantiation_generations);
+								return	$this->db->affected_rows()	>	0;
+				}
+
+				function	delete_nominations_by_instantiation_id($ins_id)
+				{
+								$this->db->where('instantiations_id',	$ins_id);
+								$this->db->delete($this->table_nominations);
+								return	$this->db->affected_rows()	>	0;
 				}
 
 }

@@ -113,9 +113,9 @@
 																<!--				Date 	End		-->
 																<!--				Media Type 	Start		-->
 																<?php
-																if($instantiation_detail->media_type)
+																if($inst_media_type->media_type)
 																{
-																				$media_type	=	explode(' | ',	$instantiation_detail->media_type);
+																				$media_type	=	explode(' | ',	$inst_media_type->media_type);
 																				?>
 																				<tr>
 																								<td class="record-detail-page">

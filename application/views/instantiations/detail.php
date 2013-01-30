@@ -551,7 +551,7 @@
 																				<td>
 																								<p>
 																												<?php
-																												$media_type	=	explode(' | ',	$instantiation_detail->media_type);
+																												$media_type	=	explode(' | ',	$inst_media_type->media_type);
 																												$static_types	=	array('Animation',	'Artifact',	'Collection',	'Dataset',	'Event',	'Interactive',	'Moving Image',	'Object',	'Presentation',	'Service',	'Software',	'Sound',	'Static Image',	'Text');
 																												?>
 																												<select  id="media_type" name="media_type" style="width: 300px;">
@@ -579,7 +579,7 @@
 																				<td>
 																								<p>
 																												<?php
-																												$generations	=	explode(' | ',	$instantiation_detail->generation);
+																												$generations	=	explode(' | ',	$inst_generation->generation);
 																												$static_gen	=	array('A&B rolls',	'Accounting statements',	'Air print',	'Air track',	'Answer print',	'Autochrome',	'Award',
 																												'Backup',	'Budget',	'Caption file',	'Caricature',	'Clip reel',	'Color reversal intermediate (CRI)',	'Composite answer print',
 																												'Composite duplicate negative',	'Composite masterpositive',	'Composite negative',	'Composite original negative',	'Composite original positive',	'Composite positive');

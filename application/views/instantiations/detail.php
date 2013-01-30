@@ -539,7 +539,7 @@
 																								<p>
 																												<?php	$ins_identifier_src	=	trim(str_replace('(**)',	'',	$inst_identifier->instantiation_source));	?>
 																												<input type="text" value="<?php	echo	$ins_identifier_src;	?>" style="width: 700px;" id="ins_id_source" name="ins_id_source"/>
-																												<input type="hidden"  value="<?php	echo	$instantiation_detail->id;	?>" id="ins_id" name="ins_id"/>
+																												<input type="hidden"  value="<?php	echo	$inst_id;	?>" id="ins_id" name="ins_id"/>
 																								</p>
 
 																				</td>

@@ -56,10 +56,10 @@
 												<table  cellPadding="8" class="record-detail-table">
 																<!--				Instantiation ID	Start		-->
 																<?php
-																if($ins_identifier->instantiation_identifier	||	$ins_identifier->instantiation_source)
+																if($inst_identifier->instantiation_identifier	||	$inst_identifier->instantiation_source)
 																{
-																				$ins_identifier	=	explode(' | ',	trim(str_replace('(**)',	'',	$ins_identifier->instantiation_identifier)));
-																				$ins_identifier_src	=	explode(' | ',	trim(str_replace('(**)',	'',	$ins_identifier->instantiation_source)));
+																				$ins_identifier	=	explode(' | ',	trim(str_replace('(**)',	'',	$inst_identifier->instantiation_identifier)));
+																				$ins_identifier_src	=	explode(' | ',	trim(str_replace('(**)',	'',	$inst_identifier->instantiation_source)));
 																				$combine_identifier	=	'';
 																				foreach($ins_identifier	as	$index	=>	$identifier)
 																				{

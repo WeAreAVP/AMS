@@ -102,7 +102,7 @@
 																												if($inst_dates->dates !='')
 																												{
 																																?>
-																																<span><?php	echo	date("Y-m-d",	$inst_dates->dates);	?></span>
+																																<span><?php	echo	date("Y-m-d",	strtotime($inst_dates->dates));	?></span>
 
 																												<?php	}	?>
 

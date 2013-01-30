@@ -319,6 +319,7 @@ class	Instantiations	extends	MY_Controller
 								}
 								if($generation)
 								{
+												$this->instantiation->delete_generation_by_instantiation_id($ins_id);
 												foreach($generation	as	$row)
 												{
 																$db_generation	=	$this->instantiation->get_generations_by_generation($row);
@@ -330,7 +331,6 @@ class	Instantiations	extends	MY_Controller
 																{
 																				$db_gen_id	=	$this->instantiation->insert_generations(array('generation'	=>	$row));
 																}
-																
 																$this->instantiation->insert_instantiation_generations(array('instantiations_id'	=>	$ins_id,	'generations_id'				=>	$db_gen_id));
 												}
 												$gen_array	=	implode('|',	$generation);

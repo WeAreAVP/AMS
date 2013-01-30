@@ -976,6 +976,11 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->join($this->table_instantiation_identifier,	"$this->table_instantiation_identifier.instantiations_id = $this->table_instantiations.id",	'left');
 								return	$result	=	$this->db->get($this->table_instantiations)->result();
 				}
+				function delete_generation_by_instantiation_id($ins_id){
+								$this->db->where	('instantiations_id',	$ins_id);
+								$this->db->delete	($this->table_instantiation_generations);
+								return	$this->db->affected_rows	()	>	0;
+				}
 
 }
 

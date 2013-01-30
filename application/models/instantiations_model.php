@@ -894,22 +894,36 @@ class	Instantiations_Model	extends	CI_Model
 
 								return	$result	=	$this->db->get($this->table_instantiation_identifier)->row();
 				}
-				function get_dates_by_instantiation_id($ins_id){
+
+				function	get_dates_by_instantiation_id($ins_id)
+				{
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->table_instantiation_dates.instantiation_date,'(**)')) SEPARATOR ' | ') AS dates",	FALSE);
 								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->table_date_types.date_type,'(**)')) SEPARATOR ' | ') AS date_type",	FALSE);
 								$this->db->where("$this->table_instantiation_dates.instantiations_id",	$ins_id);
 								$this->db->join($this->table_date_types,	"$this->table_date_types.id = $this->table_instantiation_dates.date_types_id",	'left');
 								return	$result	=	$this->db->get($this->table_instantiation_dates)->row();
 				}
-				function get_media_type_by_instantiation_media_id($media_id){
+
+				function	get_media_type_by_instantiation_media_id($media_id)
+				{
 								$this->db->select("$this->table_instantiation_media_types.media_type",	FALSE);
 								$this->db->where("$this->table_instantiation_media_types.id",	$media_id);
 								return	$result	=	$this->db->get($this->table_instantiation_media_types)->row();
 				}
-				function get_format_by_instantiation_id($ins_id){
+
+				function	get_format_by_instantiation_id($ins_id)
+				{
 								$this->db->select("$this->table_instantiation_formats.format_name,$this->table_instantiation_formats.format_type",	FALSE);
 								$this->db->where("$this->table_instantiation_formats.instantiations_id",	$ins_id);
 								return	$result	=	$this->db->get($this->table_instantiation_formats)->row();
+				}
+
+				function	get_generation_by_instantiation_id($ins_id)
+				{
+								$this->db->select("GROUP_CONCAT(DISTINCT $this->table_generations.format_name SEPARATOR ' | ') AS generation",	FALSE);
+								$this->db->where("$this->table_instantiation_generations.instantiations_id",	$ins_id);
+								$this->db->join($this->table_generations,	"$this->table_generations.id = $this->table_instantiation_generations.generations_id",	'left');
+								return	$result	=	$this->db->get($this->table_instantiation_generations)->row();
 				}
 
 }

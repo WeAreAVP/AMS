@@ -159,10 +159,10 @@
 																<!--				Format	End		-->
 																<!--				Generation 	Start		-->
 																<?php
-																if($instantiation_detail->generation)
+																if(isset($inst_generation) && $inst_generation->generation !='')
 																{
 
-																				$generations	=	explode(' | ',	$instantiation_detail->generation);
+																				$generations	=	explode(' | ',	$inst_generation->generation);
 																				?>	
 																				<tr>
 																								<td class="record-detail-page">

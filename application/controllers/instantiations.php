@@ -145,24 +145,24 @@ class	Instantiations	extends	MY_Controller
 								$instantiation_id	=	(is_numeric($this->uri->segment(3)))	?	$this->uri->segment(3)	:	FALSE;
 								if($instantiation_id)
 								{
-												$detail=$data['detail_instantiation']	=	$this->instantiation->get_by_id($instantiation_id);
-												
+												$detail	=	$data['detail_instantiation']	=	$this->instantiation->get_by_id($instantiation_id);
+
 												if(count($detail)	>	0)
 												{
 																$data['asset_id']	=	$detail->assets_id;
 																$data['inst_id']	=	$instantiation_id;
-																$data['ins_nomination']=$this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
-																$data['inst_identifier']=$this->instantiation->get_identifier_by_instantiation_id($instantiation_id);
-																$data['inst_dates']=$this->instantiation->get_dates_by_instantiation_id($instantiation_id);
-																$data['inst_media_type']=$this->instantiation->get_media_type_by_instantiation_media_id($detail->instantiation_media_type_id);
-																$data['inst_format']=$this->instantiation->get_format_by_instantiation_id($instantiation_id);
-																$data['inst_generation']=$this->instantiation->get_generation_by_instantiation_id($instantiation_id);
-																$data['inst_demension']=$this->instantiation->get_demension_by_instantiation_id($instantiation_id);
-																$data['inst_data_rate_unit']=$this->instantiation->get_data_rate_unit_by_data_id($detail->data_rate_units_id);
-																$data['inst_color']=$this->instantiation->get_color_by_instantiation_colors_id($detail->instantiation_colors_id);
-																$data['inst_annotation']=$this->instantiation->get_annotation_by_instantiation_id($instantiation_id);
-																
-																	$data['asset_instantiations']	=	$this->sphinx->instantiations_list(array('asset_id'																				=>	$detail->assets_id,	'search'																						=>	''));
+																$data['ins_nomination']	=	$this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
+																$data['inst_identifier']	=	$this->instantiation->get_identifier_by_instantiation_id($instantiation_id);
+																$data['inst_dates']	=	$this->instantiation->get_dates_by_instantiation_id($instantiation_id);
+																$data['inst_media_type']	=	$this->instantiation->get_media_type_by_instantiation_media_id($detail->instantiation_media_type_id);
+																$data['inst_format']	=	$this->instantiation->get_format_by_instantiation_id($instantiation_id);
+																$data['inst_generation']	=	$this->instantiation->get_generation_by_instantiation_id($instantiation_id);
+																$data['inst_demension']	=	$this->instantiation->get_demension_by_instantiation_id($instantiation_id);
+																$data['inst_data_rate_unit']	=	$this->instantiation->get_data_rate_unit_by_data_id($detail->data_rate_units_id);
+																$data['inst_color']	=	$this->instantiation->get_color_by_instantiation_colors_id($detail->instantiation_colors_id);
+																$data['inst_annotation']	=	$this->instantiation->get_annotation_by_instantiation_id($instantiation_id);
+
+																$data['asset_instantiations']	=	$this->sphinx->instantiations_list(array('asset_id'																				=>	$detail->assets_id,	'search'																						=>	''));
 																$data['instantiation_events']	=	$this->instantiation->get_events_by_instantiation_id($instantiation_id);
 //																$data['instantiation_detail']	=	$data['instantiation_detail']['records'][0];
 																$data['asset_details']	=	$this->assets_model->get_asset_by_asset_id($detail->assets_id);
@@ -285,23 +285,28 @@ class	Instantiations	extends	MY_Controller
 								$media_type	=	$this->input->post('media_type');
 								$generation	=	$this->input->post('generation');
 								$language	=	$this->input->post('language');
-								$nomination_id	=	$this->assets_model->get_nomination_status_by_status($nomination)->id;
-								$nomination_exist	=	$this->assets_model->get_nominations($ins_id);
 								$gen_array	=	'';
-								$nomination_record	=	array('nomination_status_id'	=>	$nomination_id,	'nomination_reason'				=>	$reason,	'nominated_by'									=>	$this->user_id,	'nominated_at'									=>	date('Y-m-d H:i:s'));
-								if($nomination_exist)
+								if($source	!=	'')
 								{
-												$nomination_record['updated']	=	date('Y-m-d H:i:s');
-												$this->assets_model->update_nominations($ins_id,	$nomination_record);
+												$this->instantiation->update_instantiation_identifier($ins_id,	array('instantiation_source'	=>	$source));
 								}
-								else
+								if($nomination	!=	'')
 								{
-												$nomination_record['instantiations_id']	=	$ins_id;
-												$nomination_record['created']	=	date('Y-m-d H:i:s');
-												$this->assets_model->insert_nominations($nomination_record);
+												$nomination_id	=	$this->assets_model->get_nomination_status_by_status($nomination)->id;
+												$nomination_exist	=	$this->assets_model->get_nominations($ins_id);
+												$nomination_record	=	array('nomination_status_id'	=>	$nomination_id,	'nomination_reason'				=>	$reason,	'nominated_by'									=>	$this->user_id,	'nominated_at'									=>	date('Y-m-d H:i:s'));
+												if($nomination_exist)
+												{
+																$nomination_record['updated']	=	date('Y-m-d H:i:s');
+																$this->assets_model->update_nominations($ins_id,	$nomination_record);
+												}
+												else
+												{
+																$nomination_record['instantiations_id']	=	$ins_id;
+																$nomination_record['created']	=	date('Y-m-d H:i:s');
+																$this->assets_model->insert_nominations($nomination_record);
+												}
 								}
-
-
 								$db_media_type	=	$this->instantiation->get_instantiation_media_types_by_media_type($media_type);
 								if($db_media_type)
 								{
@@ -329,9 +334,6 @@ class	Instantiations	extends	MY_Controller
 												$gen_array	=	implode('|',	$generation);
 								}
 								$this->instantiation->update_instantiations($ins_id,	array('instantiation_media_type_id'	=>	$media_type_id,	'language'																				=>	$language));
-
-//								$this->sphinx->update_indexes('instantiations_list',	array('status',	'nomination_reason',	'nominated_by',	'nominated_at',	'language',	'media_type',	'generation'),	array($ins_id	=>	array($nomination,	$reason,	$this->user_id,	date('Y-m-d H:i:s'),	$language,	$media_type,	$gen_array)));
-
 								redirect('instantiations/detail/'	.	$ins_id);
 				}
 

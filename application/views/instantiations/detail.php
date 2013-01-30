@@ -505,6 +505,7 @@
 																				<td>
 																								<p>
 																												<select id="nomination" name="nomination">
+																																<option value="">Select</option>
 																																<?php
 																																foreach($nominations	as	$row)
 																																{
@@ -512,7 +513,7 @@
 																																				if(isset($ins_nomination->status)	&&	$ins_nomination->status	==	$row->status)
 																																								$selected	=	'selected="selected"'
 																																								?>
-																																				<option id="<?php	echo	$row->status;	?>" <?php	echo	$selected;	?>><?php	echo	$row->status;	?></option>
+																																				<option value="<?php	echo	$row->status;	?>" <?php	echo	$selected;	?>><?php	echo	$row->status;	?></option>
 																																<?php	}
 																																?>
 																												</select>

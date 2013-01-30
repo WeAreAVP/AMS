@@ -84,7 +84,7 @@
 																<!--				Instantiation ID	End		-->
 																<!--				Date 	Start		-->
 																<?php
-																if($instantiation_detail->dates	!=	''	||	$instantiation_detail->date_type	!=	'')
+																if($inst_dates->dates	!=	''	||	$inst_dates->date_type	!=	'')
 																{
 																				?>
 																				<tr>
@@ -93,16 +93,16 @@
 																								</td>
 																								<td>
 																												<?php
-																												if($instantiation_detail->date_type !='')
+																												if($inst_dates->date_type !='')
 																												{
 																																?>
-																																<span><?php	echo	$instantiation_detail->date_type	.	':';	?></span>
+																																<span><?php	echo	$inst_dates->date_type	.	':';	?></span>
 																																<?php
 																												}
-																												if($instantiation_detail->dates !='')
+																												if($inst_dates->dates !='')
 																												{
 																																?>
-																																<span><?php	echo	date("Y-m-d",	$instantiation_detail->dates);	?></span>
+																																<span><?php	echo	date("Y-m-d",	$inst_dates->dates);	?></span>
 
 																												<?php	}	?>
 

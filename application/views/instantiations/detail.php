@@ -317,7 +317,7 @@
 																<!--				Data Rate	End		-->
 																<!--			 Color 	Start		-->
 																<?php
-																if($instantiation_detail->color)
+																if(isset($inst_color->color) && $inst_color->color!='')
 																{
 																				?>	
 																				<tr>
@@ -325,7 +325,7 @@
 																												<label><i class="icon-question-sign"></i><b> Color:</b></label>
 																								</td>
 																								<td>
-																												<p>	<?php	echo	$instantiation_detail->color;	?></p>
+																												<p>	<?php	echo	$inst_color->color;	?></p>
 
 																								</td>
 																				</tr>
@@ -385,10 +385,10 @@
 																<!--				Language	End		-->
 																<!--			 Annotation 	Start		-->
 																<?php
-																if($instantiation_detail->ins_annotation	||	$instantiation_detail->ins_annotation_type)
+																if($inst_annotation->ins_annotation!=''	||	$inst_annotation->ins_annotation_type!='')
 																{
-																				$ins_annotation	=	explode(' | ',	trim(str_replace('(**)',	'',	$instantiation_detail->ins_annotation)));
-																				$ins_annotation_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$instantiation_detail->ins_annotation_type)));
+																				$ins_annotation	=	explode(' | ',	trim(str_replace('(**)',	'',	$inst_annotation->ins_annotation)));
+																				$ins_annotation_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$inst_annotation->ins_annotation_type)));
 																				$combine_annotation	=	'';
 																				if((count($ins_annotation)	>	0	&&	$ins_annotation[0]	!=	'')	||	(count($ins_annotation_type)	>	0	&&	$ins_annotation_type[0]	!=	''))
 																				{

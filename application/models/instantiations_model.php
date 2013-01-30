@@ -938,6 +938,17 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->where("$this->table_data_rate_units.id",	$data_rate_id);
 								return	$result	=	$this->db->get($this->table_data_rate_units)->row();
 				}
+				function get_color_by_instantiation_colors_id($color_id){
+								$this->db->select("$this->table_instantiation_colors.color",	FALSE);
+								$this->db->where("$this->table_instantiation_colors.id",	$color_id);
+								return	$result	=	$this->db->get($this->table_instantiation_colors)->row();
+				}
+				function get_annotation_by_instantiation_id($ins_id){
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->table_instantiation_annotations.annotation,'(**)')) SEPARATOR ' | ') AS ins_annotation",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->table_instantiation_annotations.annotation_type,'(**)')) SEPARATOR ' | ') AS ins_annotation_type",	FALSE);
+								$this->db->where("$this->table_instantiation_annotations.instantiations_id",	$ins_id);
+								return	$result	=	$this->db->get($this->table_instantiation_annotations)->row();
+				}
 
 }
 

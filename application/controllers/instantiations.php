@@ -157,6 +157,7 @@ class	Instantiations	extends	MY_Controller
 																$data['inst_format']=$this->instantiation->get_format_by_instantiation_id($instantiation_id);
 																$data['inst_generation']=$this->instantiation->get_generation_by_instantiation_id($instantiation_id);
 																$data['inst_demension']=$this->instantiation->get_demension_by_instantiation_id($instantiation_id);
+																$data['inst_data_rate_unit']=$this->instantiation->get_data_rate_unit_by_data_id($detail->data_rate_units_id);
 																
 																$data['instantiation_detail']	=	$data['asset_instantiations']	=	$this->sphinx->instantiations_list(array('asset_id'																				=>	$detail->assets_id,	'search'																						=>	''));
 																$data['instantiation_events']	=	$this->instantiation->get_events_by_instantiation_id($instantiation_id);

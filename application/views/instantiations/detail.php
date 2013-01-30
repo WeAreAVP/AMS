@@ -93,13 +93,13 @@
 																								</td>
 																								<td>
 																												<?php
-																												if($inst_dates->date_type !='')
+																												if($inst_dates->date_type	!=	'')
 																												{
 																																?>
 																																<span><?php	echo	$inst_dates->date_type	.	':';	?></span>
 																																<?php
 																												}
-																												if($inst_dates->dates !='')
+																												if($inst_dates->dates	!=	'')
 																												{
 																																?>
 																																<span><?php	echo	date("Y-m-d",	strtotime($inst_dates->dates));	?></span>
@@ -113,7 +113,7 @@
 																<!--				Date 	End		-->
 																<!--				Media Type 	Start		-->
 																<?php
-																if($inst_media_type->media_type!='')
+																if($inst_media_type->media_type	!=	'')
 																{
 																				$media_type	=	explode(' | ',	$inst_media_type->media_type);
 																				?>
@@ -135,7 +135,7 @@
 																<!--				Media Type	End		-->
 																<!--				Format 	Start		-->
 																<?php
-																if($inst_format->format_name !='')
+																if($inst_format->format_name	!=	'')
 																{
 
 																				$format	=	'Format: ';
@@ -159,7 +159,7 @@
 																<!--				Format	End		-->
 																<!--				Generation 	Start		-->
 																<?php
-																if(isset($inst_generation) && $inst_generation->generation !='')
+																if(isset($inst_generation)	&&	$inst_generation->generation	!=	'')
 																{
 
 																				$generations	=	explode(' | ',	$inst_generation->generation);
@@ -283,7 +283,7 @@
 																<!--				Standard	End		-->
 																<!--				Dimensions: 	Start		-->
 																<?php
-																if(isset($inst_demension->instantiation_dimension) && $inst_demension->instantiation_dimension!='')
+																if(isset($inst_demension->instantiation_dimension)	&&	$inst_demension->instantiation_dimension	!=	'')
 																{
 																				?>	
 																				<tr>
@@ -300,7 +300,7 @@
 																<!--				Dimensions	End		-->
 																<!--				Data Rate 	Start		-->
 																<?php
-																if($instantiation_detail->data_rate)
+																if($detail_instantiation->data_rate	!=	'')
 																{
 																				?>	
 																				<tr>
@@ -308,7 +308,7 @@
 																												<label><i class="icon-question-sign"></i><b> Data Rate:</b></label>
 																								</td>
 																								<td>
-																												<p>	<?php	echo	$instantiation_detail->data_rate	.	' '	.	$instantiation_detail->data_rate_unit_of_measure;	?></p>
+																												<p>	<?php	echo	$detail_instantiation->data_rate	.	' '	.	(isset($inst_data_rate_unit->unit_of_measure))	?	$inst_data_rate_unit->unit_of_measure	:	'';	?></p>
 
 																								</td>
 																				</tr>

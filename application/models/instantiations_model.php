@@ -933,6 +933,11 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->where("$this->table_instantiation_dimensions.instantiations_id",	$ins_id);
 								return	$result	=	$this->db->get($this->table_instantiation_dimensions)->row();
 				}
+				function get_data_rate_unit_by_data_id($data_rate_id){
+								$this->db->select("$this->table_data_rate_units.unit_of_measure",	FALSE);
+								$this->db->where("$this->table_data_rate_units.id",	$data_rate_id);
+								return	$result	=	$this->db->get($this->table_data_rate_units)->row();
+				}
 
 }
 

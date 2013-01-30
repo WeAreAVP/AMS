@@ -330,6 +330,7 @@ class	Instantiations	extends	MY_Controller
 																{
 																				$db_gen_id	=	$this->instantiation->insert_generations(array('generation'	=>	$row));
 																}
+																
 																$this->instantiation->insert_instantiation_generations(array('instantiations_id'	=>	$ins_id,	'generations_id'				=>	$db_gen_id));
 												}
 												$gen_array	=	implode('|',	$generation);

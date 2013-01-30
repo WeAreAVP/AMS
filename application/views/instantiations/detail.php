@@ -56,10 +56,10 @@
 												<table  cellPadding="8" class="record-detail-table">
 																<!--				Instantiation ID	Start		-->
 																<?php
-																if($instantiation_detail->instantiation_identifier	||	$instantiation_detail->instantiation_source)
+																if($ins_identifier->instantiation_identifier	||	$ins_identifier->instantiation_source)
 																{
-																				$ins_identifier	=	explode(' | ',	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_identifier)));
-																				$ins_identifier_src	=	explode(' | ',	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_source)));
+																				$ins_identifier	=	explode(' | ',	trim(str_replace('(**)',	'',	$ins_identifier->instantiation_identifier)));
+																				$ins_identifier_src	=	explode(' | ',	trim(str_replace('(**)',	'',	$ins_identifier->instantiation_source)));
 																				$combine_identifier	=	'';
 																				foreach($ins_identifier	as	$index	=>	$identifier)
 																				{
@@ -508,7 +508,7 @@
 																																foreach($nominations	as	$row)
 																																{
 																																				$selected	=	'';
-																																				if($instantiation_detail->status	==	$row->status)
+																																				if(isset($ins_nomination->status) && $ins_nomination->status	==	$row->status)
 																																								$selected	=	'selected="selected"'
 																																								?>
 																																				<option id="<?php	echo	$row->status;	?>" <?php	echo	$selected;	?>><?php	echo	$row->status;	?></option>
@@ -525,7 +525,7 @@
 																				</td>
 																				<td>
 																								<p>
-																												<textarea style="width: 700px;height: 90px;" id="nomination_reason" name="nomination_reason"><?php	echo	$instantiation_detail->nomination_reason;	?></textarea>
+																												<textarea style="width: 700px;height: 90px;" id="nomination_reason" name="nomination_reason"><?php	echo	(isset($ins_nomination->nomination_reason)) ?$ins_nomination->nomination_reason : '';	?></textarea>
 																								</p>
 
 																				</td>
@@ -607,8 +607,8 @@
 																				</td>
 																				<td>
 																								<p>
-																												<?php	$ins_identifier_src	=	trim(str_replace('(**)',	'',	$instantiation_detail->instantiation_source));	?>
-																												<input type="text" value="<?php	echo	$instantiation_detail->language;	?>" style="width: 700px;" id="language" name="language"/>
+																												
+																												<input type="text" value="<?php	echo	$detail_instantiation->language;	?>" style="width: 700px;" id="language" name="language"/>
 																								</p>
 
 																				</td>

@@ -868,6 +868,7 @@ class	Instantiations_Model	extends	CI_Model
 								$result	=	$this->db->get('instantiation_identifier')->result();
 								return	$result;
 				}
+
 				function	get_all_languages($term)
 				{
 								$this->db->select("DISTINCT Print_Name as name",	FALSE);
@@ -875,12 +876,23 @@ class	Instantiations_Model	extends	CI_Model
 								$result	=	$this->db->get('language_lookup')->result();
 								return	$result;
 				}
-				function get_nomination_by_instantiation_id($ins_id){
+
+				function	get_nomination_by_instantiation_id($ins_id)
+				{
 								$this->db->select("$this->table_nominations.*,$this->table_nomination_status.status,user_profile.first_name,user_profile.last_name",	FALSE);
 								$this->db->where("$this->table_nominations.instantiations_id",	$ins_id);
 								$this->db->join($this->table_nomination_status,	"$this->table_nomination_status.id = $this->table_nominations.nomination_status_id",	'left');
 								$this->db->join('user_profile',	"user_profile.user_id = $this->table_nominations.nominated_by",	'left');
-								return $result	=	$this->db->get($this->table_nominations)->row();
+								return	$result	=	$this->db->get($this->table_nominations)->row();
+				}
+
+				function	get_identifier_by_instantiation_id($ins_id)
+				{
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->table_instantiation_identifier.instantiation_identifier,'(**)')) SEPARATOR ' | ') AS instantiation_identifier",	FALSE);
+								$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->table_instantiation_identifier.instantiation_source,'(**)')) SEPARATOR ' | ') AS instantiation_source",	FALSE);
+								$this->db->where("$this->table_instantiation_identifier.instantiations_id",	$ins_id);
+
+								return	$result	=	$this->db->get($this->table_instantiation_identifier)->row();
 				}
 
 }

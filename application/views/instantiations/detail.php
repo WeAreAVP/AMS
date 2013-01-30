@@ -647,7 +647,7 @@
         $("#generation").multiselect({
 												noneSelectedText: 'Select Generation',
 												selectedList: 3,
-												height:'auto'				
+//												height:'auto'				
 								}); 
 								$("#ins_id_source").autocomplete({
             source:site_url+"instantiations/get_ins_source",

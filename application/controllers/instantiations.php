@@ -145,11 +145,12 @@ class	Instantiations	extends	MY_Controller
 								$instantiation_id	=	(is_numeric($this->uri->segment(3)))	?	$this->uri->segment(3)	:	FALSE;
 								if($instantiation_id)
 								{
-												$detail	=	$this->instantiation->get_by_id($instantiation_id);
+												$detail=$data['detail_instantiation']	=	$this->instantiation->get_by_id($instantiation_id);
 												if(count($detail)	>	0)
 												{
 																$data['asset_id']	=	$detail->assets_id;
 																$data['inst_id']	=	$instantiation_id;
+//																$data['ins_nomination']=$this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
 																$data['instantiation_detail']	=	$data['asset_instantiations']	=	$this->sphinx->instantiations_list(array('asset_id'																				=>	$detail->assets_id,	'search'																						=>	''));
 																$data['instantiation_events']	=	$this->instantiation->get_events_by_instantiation_id($instantiation_id);
 																$data['instantiation_detail']	=	$data['instantiation_detail']['records'][0];

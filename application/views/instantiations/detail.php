@@ -181,7 +181,7 @@
 																<!--				Generation	End		-->
 																<!--				Location 	Start		-->
 																<?php
-																if($instantiation_detail->location)
+																if($detail_instantiation->location && $detail_instantiation->location!='')
 																{
 																				?>	
 																				<tr>
@@ -189,7 +189,7 @@
 																												<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Location:</b></label>
 																								</td>
 																								<td>
-																												<p>	<?php	echo	$instantiation_detail->location;	?></p>
+																												<p>	<?php	echo	$detail_instantiation->location;	?></p>
 
 																								</td>
 																				</tr>
@@ -198,7 +198,7 @@
 																<!--				Location	End		-->
 																<!--				Duration 	Start		-->
 																<?php
-																if($instantiation_detail->projected_duration	!==	'0')
+																if($detail_instantiation->projected_duration	!==	NULL && $detail_instantiation->projected_duration!=='')
 																{
 																				?>	
 																				<tr>
@@ -207,14 +207,14 @@
 																								</td>
 																								<td>
 
-																												<p><?php	echo	$instantiation_detail->projected_duration;	?></p>
+																												<p><?php	echo	$detail_instantiation->projected_duration;	?></p>
 
 																								</td>
 																				</tr>
 
 																				<?php
 																}
-																else	if($instantiation_detail->actual_duration	!==	'0')
+																else	if($detail_instantiation->actual_duration	!==	'' && $detail_instantiation->actual_duration	!==	NULL)
 																{
 																				?>	
 																				<tr>
@@ -222,7 +222,7 @@
 																												<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Duration:</b></label>
 																								</td>
 																								<td>
-																												<p>	<?php	echo	date('H:i:s',	strtotime($instantiation_detail->actual_duration));	?></p>
+																												<p>	<?php	echo	date('H:i:s',	strtotime($detail_instantiation->actual_duration));	?></p>
 
 																								</td>
 																				</tr>
@@ -231,7 +231,7 @@
 																<!--				Duration	End		-->
 																<!--				Time Start 	Start		-->
 																<?php
-																if($instantiation_detail->time_start)
+																if($detail_instantiation->time_start && $detail_instantiation->time_start!='')
 																{
 																				?>	
 																				<tr>
@@ -239,7 +239,7 @@
 																												<label><i class="icon-question-sign"></i><b> Time Start:</b></label>
 																								</td>
 																								<td>
-																												<p>	<?php	echo	$instantiation_detail->time_start;	?></p>
+																												<p>	<?php	echo	$detail_instantiation->time_start;	?></p>
 
 																								</td>
 																				</tr>
@@ -248,7 +248,7 @@
 																<!--				Time Start	End		-->
 																<!--				File Size 	Start		-->
 																<?php
-																if($instantiation_detail->file_size)
+																if($detail_instantiation->file_size && $detail_instantiation->file_size!='')
 																{
 																				?>	
 																				<tr>
@@ -256,7 +256,7 @@
 																												<label><i class="icon-question-sign"></i><b> File Size:</b></label>
 																								</td>
 																								<td>
-																												<p>	<?php	echo	$instantiation_detail->file_size	.	' '	.	$instantiation_detail->file_size_unit_of_measure;	?></p>
+																												<p>	<?php	echo	$detail_instantiation->file_size	.	' '	.	$detail_instantiation->file_size_unit_of_measure;	?></p>
 
 																								</td>
 																				</tr>
@@ -265,7 +265,7 @@
 																<!--				File Size	End		-->
 																<!--				Standard 	Start		-->
 																<?php
-																if($instantiation_detail->standard)
+																if($detail_instantiation->standard && $detail_instantiation->standard!='')
 																{
 																				?>	
 																				<tr>
@@ -273,7 +273,7 @@
 																												<label><i class="icon-question-sign"></i><b> Standard:</b></label>
 																								</td>
 																								<td>
-																												<p>	<?php	echo	$instantiation_detail->standard;	?></p>
+																												<p>	<?php	echo	$detail_instantiation->standard;	?></p>
 
 																								</td>
 																				</tr>
@@ -333,7 +333,7 @@
 																<!--				Color	End		-->
 																<!--			 Tracks 	Start		-->
 																<?php
-																if($instantiation_detail->tracks)
+																if($detail_instantiation->tracks && $detail_instantiation->tracks!='')
 																{
 																				?>	
 																				<tr>
@@ -341,7 +341,7 @@
 																												<label><i class="icon-question-sign"></i><b> Tracks:</b></label>
 																								</td>
 																								<td>
-																												<p>	<?php	echo	$instantiation_detail->tracks;	?></p>
+																												<p>	<?php	echo	$detail_instantiation->tracks;	?></p>
 
 																								</td>
 																				</tr>
@@ -350,7 +350,7 @@
 																<!--				Tracks	End		-->
 																<!--			 Channel Configuration 	Start		-->
 																<?php
-																if($instantiation_detail->channel_configuration)
+																if($detail_instantiation->channel_configuration && $detail_instantiation->channel_configuration)
 																{
 																				?>	
 																				<tr>
@@ -358,7 +358,7 @@
 																												<label><i class="icon-question-sign"></i><b> Channel Configuration:</b></label>
 																								</td>
 																								<td>
-																												<p>	<?php	echo	$instantiation_detail->channel_configuration;	?></p>
+																												<p>	<?php	echo	$detail_instantiation->channel_configuration;	?></p>
 
 																								</td>
 																				</tr>
@@ -367,7 +367,7 @@
 																<!--				Channel Configuration	End		-->
 																<!--			 Language 	Start		-->
 																<?php
-																if($instantiation_detail->language)
+																if($detail_instantiation->language && $detail_instantiation->language)
 																{
 																				?>	
 																				<tr>
@@ -375,7 +375,7 @@
 																												<label><i class="icon-question-sign"></i><b> Language:</b></label>
 																								</td>
 																								<td>
-																												<p>	<?php	echo	$instantiation_detail->language;	?></p>
+																												<p>	<?php	echo	$detail_instantiation->language;	?></p>
 
 																								</td>
 																				</tr>

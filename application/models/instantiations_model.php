@@ -875,6 +875,9 @@ class	Instantiations_Model	extends	CI_Model
 								$result	=	$this->db->get('language_lookup')->result();
 								return	$result;
 				}
+				function get_nomination_by_instantiation_id($ins_id){
+								
+				}
 
 }
 

@@ -249,16 +249,8 @@ function updateDataTable()
 												"bDeferRender": true,
 												"bDestroy": is_destroy,
 												"bRetrieve": true,
-												"bAutoWidth": true,
-												"fnInitComplete": function() {
+												"bAutoWidth": true
 												
-    var table_header,
-      _this = this;
-    table_header = $('.dataTables_scrollHeadInner').css('position', 'relative');
-    $('body.admin.selections_index').find('.dataTables_scrollBody').bind('jsp-scroll-x', function(event, scrollPositionX, isAtLeft, isAtRight) {
-     table_header.css('right', scrollPositionX);
-    }).jScrollPane();
-  }
 												
 								});
 								if(frozen>0)

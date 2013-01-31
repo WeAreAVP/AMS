@@ -21,6 +21,7 @@ $tracking_no = array(
 );
 
 //$no_tracks=		str_replace(array('<br /><br />','<br />'),	'\n',	$tracking_info->tracking_no);
+$no_tracks=		$tracking_info->tracking_no;
 $no_box_shipped = array(
     'name' => 'no_box_shipped',
     'id' => 'no_box_shipped',

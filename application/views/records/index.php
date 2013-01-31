@@ -57,7 +57,7 @@ if(	!	$isAjax)
 												if(	!	isset($current_tab)	||	$current_tab	==	'simple')
 												{
 																?>
-																<div style="width:865px;overflow:hidden;" id="simple_view">
+																<div style="width:900px;overflow:hidden;" id="simple_view">
 																				<table class="table table-bordered" id="assets_table" >
 																								<thead>
 																												<tr style="background: rgb(235, 235, 235);">
@@ -159,7 +159,7 @@ if(	!	$isAjax)
 																{
 																												?>
 																<br clear="all"/>
-																<div style="width: 865px;overflow:hidden;" id="full_table_view">
+																<div style="width: 900px;overflow:hidden;" id="full_table_view">
 																				<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;border-collapse:collapse;"  >
 																								<thead>
 																												<tr>

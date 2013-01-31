@@ -600,7 +600,7 @@ if(	!	$isAjax)
 																																												{
 																																																$width	=	'width:175px;';
 																																												}
-																																												echo	'<td>'	.	$column	.	'</td>';
+																																												echo	'<td><span style="float:left;'	.	$width	.	'">'	.	$column	.	'</span></td>';
 																																								}
 																																				}
 																																}

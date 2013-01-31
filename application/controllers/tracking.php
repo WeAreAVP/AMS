@@ -62,6 +62,7 @@ class	Tracking	extends	MY_Controller
 
 
 																$tracking_no	=	nl2br($this->input->post('tracking_no'));
+																$tracking_no=		str_replace('<br />',	',',	$tracking_no);
 																echo	$tracking_no;
 																exit;
 																$record	=	array('ship_date'											=>	date('Y-m-d',	strtotime($form_val->set_value('tracking_ship_date'))),

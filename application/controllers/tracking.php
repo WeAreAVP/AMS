@@ -62,7 +62,7 @@ class	Tracking	extends	MY_Controller
 
 
 																$tracking_no	=	nl2br($this->input->post('tracking_no'));
-																$tracking_no=		str_replace('<br />',	',',	$tracking_no);
+//																$tracking_no=		str_replace('<br />',	',',	$tracking_no);
 																$record	=	array('ship_date'											=>	date('Y-m-d',	strtotime($form_val->set_value('tracking_ship_date'))),
 																'ship_to'													=>	$form_val->set_value('ship_to'),
 																'ship_via'												=>	$form_val->set_value('ship_via'),
@@ -112,7 +112,7 @@ class	Tracking	extends	MY_Controller
 												if($form_val->run())
 												{
 																	$tracking_no	=	nl2br($this->input->post('tracking_no'));
-																$tracking_no=		str_replace('<br />',	',',	$tracking_no);
+//																$tracking_no=		str_replace('<br />',	',',	$tracking_no);
 																$record	=	array('ship_date'											=>	date('Y-m-d',	strtotime($form_val->set_value('tracking_ship_date'))),
 																'ship_to'													=>	$form_val->set_value('ship_to'),
 																'ship_via'												=>	$form_val->set_value('ship_via'),

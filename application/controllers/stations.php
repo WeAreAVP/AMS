@@ -36,12 +36,7 @@ class	Stations	extends	MY_Controller
 				function	__construct()
 				{
 								parent::__construct();
-								$this->layout	=	'main_layout.php';
 								$this->load->model('sphinx_model',	'sphinx');
-//								if($this->is_station_user)
-//								{
-//												redirect('records/index');
-//								}
 				}
 
 				/**
@@ -52,7 +47,7 @@ class	Stations	extends	MY_Controller
 				public	function	index()
 				{
 
-								$param	=	array('search_keywords'	=>	'',	'certified'						=>	'',	'agreed'									=>	'');
+								$param	=	array('search_keywords'	=>	'',	'certified'							=>	'',	'agreed'										=>	'');
 								$value	=	$this->form_validation;
 								$value->set_rules('search_keyword',	'Search Keyword',	'trim|xss_clean');
 								$value->set_rules('certified',	'Certified',	'trim|xss_clean');
@@ -298,7 +293,7 @@ class	Stations	extends	MY_Controller
 
 																if($index	!==	0	&&	$index	!=	$count	-	1)
 																{
-																				if(count($row)	!==	22 && count($row)	!==	21)
+																				if(count($row)	!==	22	&&	count($row)	!==	21)
 																				{
 																								$this->session->set_userdata('upload_csv_error',	'csv is not in a right format.');
 																								redirect('stations/index');
@@ -346,15 +341,16 @@ class	Stations	extends	MY_Controller
 																												$station_update_count['station'][$row[0]]	=	'inserted';
 																				}
 																				unset($station_detail);
-																				
+
 																				$station_user	=	array(
 																				'role_id'						=>	4,
 																				'station_id'			=>	$station_id,
 																				'email'								=>	$row[12],
 																				'is_secondary'	=>	(strtolower($row[20])	==	'yes')	?	0	:	1
 																				);
-																				if(isset($row[21])){
-																								$station_user['password']=crypt($this->dx_auth->_encode($row[21]));
+																				if(isset($row[21]))
+																				{
+																								$station_user['password']	=	crypt($this->dx_auth->_encode($row[21]));
 																				}
 																				$name	=	explode(' ',	$row[2],	2);
 

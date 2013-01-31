@@ -37,7 +37,6 @@ class	Templatemanager	extends	MY_Controller
 				function	__construct()
 				{
 								parent::__construct();
-								$this->layout	=	'main_layout.php';
 								$this->load->model('sphinx_model',	'sphinx');
 								if($this->is_station_user)
 								{

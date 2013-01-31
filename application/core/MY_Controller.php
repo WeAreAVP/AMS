@@ -27,6 +27,7 @@ class	MY_Controller	extends	CI_Controller
 				function	__construct()
 				{
 								parent::__construct();
+								$this->layout	=	'main_layout.php';
 								if(	!	$this->dx_auth->is_logged_in())
 								{
 												redirect('auth/login');

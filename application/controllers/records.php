@@ -25,7 +25,7 @@ class	Records	extends	MY_Controller
 								$this->load->model	('instantiations_model',	'instantiation');
 								$this->load->library	('pagination');
 								$this->load->library	('Ajax_pagination');
-								$this->layout	=	'main_layout.php';
+								
 				}
 
 				/*

@@ -36,9 +36,10 @@ if(	!	$isAjax)
 																if($current_tab	==	'flagged')
 																{
 												?>class="active" <?php	}	?>><a href="javascript:;" >Flagged</a></li>
-								</ul><?php
-																if(isset($records)	&&	($total	>	0))
-																{
+								</ul>
+								<?php
+								if(isset($records)	&&	($total	>	0))
+								{
 												?>
 												<div style="width: 860px;">
 																<?php
@@ -51,32 +52,38 @@ if(	!	$isAjax)
 																				<strong><?php	echo	$start;	?> - <?php	echo	$end;	?></strong> of <strong style="margin-right: 10px;"><?php	echo	$total;	?></strong>
 																				<?php	echo	$this->ajax_pagination->create_links();	?>
 																</div>
-												</div><?php
-																if(	!	isset($current_tab)	||	$current_tab	==	'simple')
-																{
-																								?>
+												</div>
+												<?php
+												if(	!	isset($current_tab)	||	$current_tab	==	'simple')
+												{
+																?>
 																<div style="width:865px;overflow:hidden;" id="simple_view">
 																				<table class="table table-bordered" id="assets_table" >
 																								<thead>
 																												<tr style="background: rgb(235, 235, 235);">
 																																<th style='width: 14px;'><span style="float:left;" ><i class="icon-flag "></i></span></th>
+																																<th style='width: 150px;'><span style="float:left;min-width: 100px;" >Organization</span></th>
 																																<th style='width: 150px;'><span style="float:left;min-width: 100px;" >AA GUID</span></th>
 																																<th style='width: 110px;'><span style="float:left;min-width: 100px;" >Local ID</span></th>
 																																<th style='width: 185px;'><span style="float:left;min-width: 175px;" >Titles</span></th>
 																																<th style='width: 175px;'><span style="float:left;min-width: 175px;" >Description</span></th>
 																												</tr>
 																								</thead>
-																								<tbody><?php
-								foreach($records	as	$asset)
-								{
+																								<tbody>
+																												<?php
+																												foreach($records	as	$asset)
+																												{
 
-												$guid_identifier	=	str_replace("(**)",	"",	$asset->guid_identifier);
-												$local_identifier	=	str_replace("(**)",	"",	$asset->local_identifier);
-												$asset_description	=	str_replace("(**)",	"",	$asset->description);
-												$asset_title	=	str_replace("(**)",	"",	$asset->asset_title);
-																												?>
+																																$guid_identifier	=	str_replace("(**)",	"",	$asset->guid_identifier);
+																																$local_identifier	=	str_replace("(**)",	"",	$asset->local_identifier);
+																																$asset_description	=	str_replace("(**)",	"",	$asset->description);
+																																$asset_title	=	str_replace("(**)",	"",	$asset->asset_title);
+																																?>
 																																<tr style="cursor: pointer;">
 																																				<td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>
+																																				<td>
+																																								<?php	echo	$asset->organization	?>
+																																				</td>
 																																				<td>
 																																								<?php
 																																								if($guid_identifier)
@@ -178,7 +185,7 @@ if(	!	$isAjax)
 
 																																																if(	!	($this->frozen_column	>	$key))
 																																																				$class	=	'drap-drop';
-																																																if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Annotation",	"Rights")))
+																																																if(in_array($type,	array("Organization",	"Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Annotation",	"Rights")))
 																																																{
 																																																				$width	=	'width:100px;';
 																																																}
@@ -216,6 +223,10 @@ if(	!	$isAjax)
 																																								else
 																																								{
 																																												$column	=	'';
+																																												if($type	==	'Organization')
+																																												{
+																																																$column	=	$asset->organization;
+																																												}
 																																												if($type	==	'Titles')
 																																												{
 																																																$asset_title_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title_type)));
@@ -581,7 +592,7 @@ if(	!	$isAjax)
 																																																				}
 																																																}
 																																												}
-																																												if(in_array($type,	array("Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Annotation",	"Rights")))
+																																												if(in_array($type,	array("Organization","Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Annotation",	"Rights")))
 																																												{
 																																																$width	=	'width:100px;';
 																																												}
@@ -625,5 +636,5 @@ if(	!	$isAjax)
 								</div>
 				</div>
 
-				
+
 <?php	}	?>

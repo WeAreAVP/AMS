@@ -1,6 +1,7 @@
 <?php
 
 $config['assets_setting']	=	array	('full'	=>	array	(
+								'Organization'																			=>	array('organization'),
 								'AA_GUID'																			=>	array('guid_identifier'),
 								'Local_ID'																		=>	array('local_identifier'),
 								'Titles'																				=>	array('asset_title','asset_title_type','asset_title_ref','asset_title_source'),
@@ -19,6 +20,7 @@ $config['assets_setting']	=	array	('full'	=>	array	(
 			
 				),
 							'simple'																				=>	array	(
+								'Organization'																								=>	'organization',
 								'AA_GUID'																								=>	'guid_identifier',
 								'Local_ID'																							=>	'local_identifier',
 								'Titles'																									=>	'asset_title',

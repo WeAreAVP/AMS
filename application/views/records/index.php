@@ -41,7 +41,7 @@ if(	!	$isAjax)
 								if(isset($records)	&&	($total	>	0))
 								{
 												?>
-												<div style="width: 860px;">
+												<div style="width: 900px;">
 																<?php
 																if(isset($current_tab)	&&	$current_tab	==	'full_table')
 																{
@@ -616,7 +616,7 @@ if(	!	$isAjax)
 																												?>
 
 												<?php	}	?>
-												<div style="text-align: right;width: 860px;"> <strong><?php	echo	$start;	?> - <?php	echo	$end;	?></strong> of <strong style="margin-right: 10px;"><?php	echo	$total;	?></strong> <?php	echo	$this->ajax_pagination->create_links();	?> </div>
+												<div style="text-align: right;width: 900px;"> <strong><?php	echo	$start;	?> - <?php	echo	$end;	?></strong> of <strong style="margin-right: 10px;"><?php	echo	$total;	?></strong> <?php	echo	$this->ajax_pagination->create_links();	?> </div>
 												<?php
 								}
 								else	if($start	>=	1000)

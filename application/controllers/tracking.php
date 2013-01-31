@@ -63,12 +63,10 @@ class	Tracking	extends	MY_Controller
 
 																$tracking_no	=	nl2br($this->input->post('tracking_no'));
 																$tracking_no=		str_replace('<br />',	',',	$tracking_no);
-																echo	$tracking_no;
-																exit;
 																$record	=	array('ship_date'											=>	date('Y-m-d',	strtotime($form_val->set_value('tracking_ship_date'))),
 																'ship_to'													=>	$form_val->set_value('ship_to'),
 																'ship_via'												=>	$form_val->set_value('ship_via'),
-																'tracking_no'									=>	$form_val->set_value('tracking_no'),
+																'tracking_no'									=>	$tracking_no,
 																'no_box_shipped'						=>	$form_val->set_value('no_box_shipped'),
 																'station_id'										=>	$data['station_id'],
 																'media_received_date'	=>	$form_val->set_value('media_received_date'),
@@ -76,7 +74,7 @@ class	Tracking	extends	MY_Controller
 
 																$inserted_id	=	$this->tracking->insert_record($record);
 																$tracking_info	=	$this->tracking->get_by_id($inserted_id);
-																$this->shipment_tracking_email($tracking_info);
+//																$this->shipment_tracking_email($tracking_info);
 																echo	'done';
 																exit_function();
 												}
@@ -113,16 +111,18 @@ class	Tracking	extends	MY_Controller
 								{
 												if($form_val->run())
 												{
+																	$tracking_no	=	nl2br($this->input->post('tracking_no'));
+																$tracking_no=		str_replace('<br />',	',',	$tracking_no);
 																$record	=	array('ship_date'											=>	date('Y-m-d',	strtotime($form_val->set_value('tracking_ship_date'))),
 																'ship_to'													=>	$form_val->set_value('ship_to'),
 																'ship_via'												=>	$form_val->set_value('ship_via'),
-																'tracking_no'									=>	$form_val->set_value('tracking_no'),
+																'tracking_no'									=>	$tracking_no,
 																'no_box_shipped'						=>	$form_val->set_value('no_box_shipped'),
 																'media_received_date'	=>	$form_val->set_value('media_received_date'),
 																);
 																$this->tracking->update_record($tracking_id,	$record);
 																$tracking_info	=	$this->tracking->get_by_id($tracking_id);
-																$this->shipment_tracking_email($tracking_info);
+//																$this->shipment_tracking_email($tracking_info);
 																echo	'done';
 																exit_function();
 												}

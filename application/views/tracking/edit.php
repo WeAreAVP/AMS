@@ -19,6 +19,7 @@ $tracking_no = array(
     'id' => 'tracking_no',
     'value' => $tracking_info->tracking_no,
 );
+$no_tracks=		str_replace(',',	'\n',	$tracking_info->tracking_no);
 $no_box_shipped = array(
     'name' => 'no_box_shipped',
     'id' => 'no_box_shipped',
@@ -56,7 +57,7 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'tracking_edit_form',
 
     <tr>
         <td class="tracking_label"><?php echo form_label('Tracking #:', $tracking_no['id']); ?></td>
-        <td><?php echo form_input($tracking_no); ?><span style="color: red;"><?php echo form_error($tracking_no['name']); ?></span></td>
+        <td><?php echo form_textarea($tracking_no,$no_tracks); ?><span style="color: red;"><?php echo form_error($tracking_no['name']); ?></span></td>
     </tr>
 
 

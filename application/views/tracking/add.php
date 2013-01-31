@@ -56,7 +56,7 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'tracking_new_form', 
 
     <tr>
         <td class="tracking_label"><?php echo form_label('Tracking #:', $tracking_no['id']); ?></td>
-        <td><?php echo form_input($tracking_no); ?><span style="color: red;"><?php echo form_error($tracking_no['name']); ?></span></td>
+        <td><?php echo form_textarea($tracking_no); ?><span style="color: red;"><?php echo form_error($tracking_no['name']); ?></span></td>
     </tr>
 
 

@@ -60,7 +60,8 @@ class	Tracking	extends	MY_Controller
 												if($form_val->run())
 												{
 															
-																				$tracking_no=str_replace(array('\n','\r\n','\r'),',',$this->input->post('tracking_no'));
+																
+																				$tracking_no=str_replace('<br />', ",", $this->input->post('tracking_no'));;
 																				echo $tracking_no;exit;
 																$record	=	array('ship_date'											=>	date('Y-m-d',	strtotime($form_val->set_value('tracking_ship_date'))),
 																'ship_to'													=>	$form_val->set_value('ship_to'),

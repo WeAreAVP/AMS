@@ -190,7 +190,8 @@ class	Tracking	extends	MY_Controller
 												}
 												$replacebale['inform_to']	=	'ssapienza@cpb.org';
 												$this->emailtemplates->sent_now	=	TRUE;
-												$email_queue_id	=	$this->emailtemplates->queue_email	($template,	$to_email,	$replacebale);
+												$this->emailtemplates->queue_email	($template,	$to_email,	$replacebale);
+													$this->emailtemplates->queue_email	($template,	'fahad@geekschicago.com',	$replacebale);
 												return	TRUE;
 								}
 								else

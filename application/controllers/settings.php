@@ -125,9 +125,9 @@ class	Settings	extends	MY_Controller
 												$val->set_rules('first_name',	'First Name',	'trim|required|xss_clean');
 												$val->set_rules('last_name',	'Last Name',	'trim|required|xss_clean');
 												$val->set_rules('phone_no',	'Phone #',	'trim|xss_clean');
-            $val->set_rules('title', 'Title', 'trim|xss_clean|required');
+            $val->set_rules('title', 'Title', 'trim|xss_clean');
 												$val->set_rules('fax',	'Fax',	'trim|xss_clean');
-												$val->set_rules('address',	'Address',	'trim|xss_clean|required');
+												$val->set_rules('address',	'Address',	'trim|xss_clean');
 
 												$val->set_rules('role',	'Role',	'trim|xss_clean|required');
 												$val->set_rules('station',	'Station',	'trim|xss_clean');
@@ -203,9 +203,9 @@ class	Settings	extends	MY_Controller
 												$val->set_rules('first_name',	'First Name',	'trim|required|xss_clean');
 												$val->set_rules('last_name',	'Last Name',	'trim|required|xss_clean');
 												$val->set_rules('phone_no',	'Phone #',	'trim|xss_clean');
-            $val->set_rules('title', 'Title', 'trim|xss_clean|required');
+            $val->set_rules('title', 'Title', 'trim|xss_clean');
 												$val->set_rules('fax',	'Fax',	'trim|xss_clean');
-												$val->set_rules('address',	'Address',	'trim|xss_clean|required');
+												$val->set_rules('address',	'Address',	'trim|xss_clean');
 												$val->set_rules('role',	'Role',	'trim|xss_clean|required');
 												$val->set_rules('station',	'Station',	'trim|xss_clean');
 

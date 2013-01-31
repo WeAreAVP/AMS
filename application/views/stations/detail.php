@@ -111,7 +111,7 @@ if(count($station_detail)	>	0)
 																												<td><?php	echo	$value->ship_date;	?></td>
 																												<td><?php	echo	$value->ship_to;	?></td>
 																												<td><?php	echo	$value->ship_via;	?></td>
-																												<td><?php	echo	str_replace('\n',	'<br />',	$value->tracking_no);	?></td>
+																												<td><?php	echo	str_replace(' ',	'<br />',	$value->tracking_no);	?></td>
 																												<td><?php	echo	$value->no_box_shipped;	?></td>
 																												<td><a href="#trackingModel" data-toggle="modal" onclick="manageTracking('get','edit','<?php	echo	$value->id;	?>');"><i class="icon-cog"></i></a>
 																																<a  href="#deleteTracingModel" data-toggle="modal" onclick="deleteTracking('<?php	echo	$value->id;	?>','<?php	echo	$station_detail->id;	?>');"><i class="icon-remove-sign"></i></a>

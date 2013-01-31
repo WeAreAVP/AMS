@@ -185,9 +185,13 @@ if(	!	$isAjax)
 
 																																																if(	!	($this->frozen_column	>	$key))
 																																																				$class	=	'drap-drop';
-																																																if(in_array($type,	array("Organization",	"Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Annotation",	"Rights")))
+																																																if(in_array($type,	array("Organization",	"Local_ID",	"Subjects",	"Genre",	"Creator",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Annotation",	"Rights")))
 																																																{
 																																																				$width	=	'width:100px;';
+																																																}
+																																																else	if($type	==	"Contributor")
+																																																{
+																																																				$width	=	'width:125px;';
 																																																}
 																																																else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID"	||	$type	==	'Audience_Rating')
 																																																{
@@ -592,9 +596,13 @@ if(	!	$isAjax)
 																																																				}
 																																																}
 																																												}
-																																												if(in_array($type,	array("Organization","Local_ID",	"Subjects",	"Genre",	"Creator",	"Contributor",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Annotation",	"Rights")))
+																																												if(in_array($type,	array("Organization",	"Local_ID",	"Subjects",	"Genre",	"Creator",	"Publisher",	"Assets_Date",	"Coverage",	"Audience_Level",	"Annotation",	"Rights")))
 																																												{
 																																																$width	=	'width:100px;';
+																																												}
+																																												else	if($type	==	"Contributor")
+																																												{
+																																																$width	=	'width:125px;';
 																																												}
 																																												else	if($type	==	'Titles'	||	$type	==	'Description'	||	$type	==	"AA_GUID"	||	$type	==	'Audience_Rating')
 																																												{

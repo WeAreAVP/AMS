@@ -59,11 +59,7 @@ class	Tracking	extends	MY_Controller
 								{
 												if($form_val->run())
 												{
-
-
-//																$tracking_no	=	nl2br($this->input->post('tracking_no'));
 																$tracking_no	=	$this->input->post('tracking_no');
-//																$tracking_no=		str_replace('<br />',	',',	$tracking_no);
 																$record	=	array('ship_date'											=>	date('Y-m-d',	strtotime($form_val->set_value('tracking_ship_date'))),
 																'ship_to'													=>	$form_val->set_value('ship_to'),
 																'ship_via'												=>	$form_val->set_value('ship_via'),
@@ -75,7 +71,7 @@ class	Tracking	extends	MY_Controller
 
 																$inserted_id	=	$this->tracking->insert_record($record);
 																$tracking_info	=	$this->tracking->get_by_id($inserted_id);
-//																$this->shipment_tracking_email($tracking_info);
+																$this->shipment_tracking_email($tracking_info);
 																echo	'done';
 																exit_function();
 												}
@@ -112,9 +108,7 @@ class	Tracking	extends	MY_Controller
 								{
 												if($form_val->run())
 												{
-//																	$tracking_no	=	nl2br($this->input->post('tracking_no'));
-																	$tracking_no	=	$this->input->post('tracking_no');
-//																$tracking_no=		str_replace('<br />',	',',	$tracking_no);
+																$tracking_no	=	$this->input->post('tracking_no');
 																$record	=	array('ship_date'											=>	date('Y-m-d',	strtotime($form_val->set_value('tracking_ship_date'))),
 																'ship_to'													=>	$form_val->set_value('ship_to'),
 																'ship_via'												=>	$form_val->set_value('ship_via'),
@@ -124,7 +118,7 @@ class	Tracking	extends	MY_Controller
 																);
 																$this->tracking->update_record($tracking_id,	$record);
 																$tracking_info	=	$this->tracking->get_by_id($tracking_id);
-//																$this->shipment_tracking_email($tracking_info);
+																$this->shipment_tracking_email($tracking_info);
 																echo	'done';
 																exit_function();
 												}
@@ -174,7 +168,7 @@ class	Tracking	extends	MY_Controller
 
 												$replacebale['ship_date']	=	$record->ship_date;
 												$replacebale['ship_via']	=	$record->ship_via;
-												$replacebale['tracking_no']	=	$record->tracking_no;
+												$replacebale['tracking_no']	=	nl2br($record->tracking_no);
 												$replacebale['no_box_shipped']	=	$record->no_box_shipped;
 												$replacebale['station_name']	=	isset($station_details->station_name)	?	$station_details->station_name	:	'';
 

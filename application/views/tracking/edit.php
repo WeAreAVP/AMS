@@ -58,7 +58,7 @@ $attributes = array('onsubmit' => 'return false;', 'id' => 'tracking_edit_form',
 
     <tr>
         <td class="tracking_label"><?php echo form_label('Tracking #:', $tracking_no['id']); ?></td>
-        <td><?php echo form_textarea($tracking_no,$no_tracks,'style="height:60px;"'); ?><span style="color: red;"><?php echo form_error($tracking_no['name']); ?></span></td>
+        <td><?php echo form_textarea($tracking_no,$no_tracks,	'style="height:60px;"'); ?><span style="color: red;"><?php echo form_error($tracking_no['name']); ?></span></td>
     </tr>
 
 

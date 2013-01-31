@@ -1097,15 +1097,15 @@
 				{
 								
 								var sTable = $('#assets_table').dataTable({
-												"sDom": "RlfrtipS",
+												"sDom": "frtiS",
 												'bPaginate':false,
 												'bInfo':false,
 												'bFilter': false,
 												"bSort": false,
 												"sScrollY": $(window).height()-160,
-												"sScrollX": "100%",
+												"sScrollX": "99%",
 												"bDeferRender": true,
-												"bAutoWidth": true
+												"bAutoWidth": false
 								});
 								$.extend( $.fn.dataTableExt.oStdClasses, {
 												"sWrapper": "dataTables_wrapper form-inline"

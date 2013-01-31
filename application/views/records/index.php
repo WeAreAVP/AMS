@@ -600,7 +600,7 @@ if(	!	$isAjax)
 																																												{
 																																																$width	=	'width:175px;';
 																																												}
-																																												echo	'<td><span style="'	.	$width	.	'">'	.	$column	.	'</span></td>';
+																																												echo	'<td>'	.	$column	.	'</td>';
 																																								}
 																																				}
 																																}

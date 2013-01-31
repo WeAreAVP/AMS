@@ -1110,6 +1110,7 @@
 								$.extend( $.fn.dataTableExt.oStdClasses, {
 												"sWrapper": "dataTables_wrapper form-inline"
 								} );
+								$('.dataTables_scrollBody').css('width','97.8%');
 				}
 				function showHideSearch(divID,obj){
 								

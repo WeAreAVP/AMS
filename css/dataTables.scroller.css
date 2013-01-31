@@ -36,7 +36,7 @@ div.DTS div.dataTables_scrollHead {
 
 div.DTS div.dataTables_scrollBody {
 	z-index: 2;
-	width:100%;
+	width:100% !important;
 }
 
 div.DTS div.dataTables_scroll {

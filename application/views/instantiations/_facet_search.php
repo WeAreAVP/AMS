@@ -1103,14 +1103,14 @@
 												'bFilter': false,
 												"bSort": false,
 												"sScrollY": $(window).height()-160,
-												"sScrollX": "99%",
+												"sScrollX": "100%",
 												"bDeferRender": true,
 												"bAutoWidth": false
 								});
 								$.extend( $.fn.dataTableExt.oStdClasses, {
 												"sWrapper": "dataTables_wrapper form-inline"
 								} );
-								$('.dataTables_scrollBody').css('width','97.8%');
+//								$('.dataTables_scrollBody').css('width','97.8%');
 				}
 				function showHideSearch(divID,obj){
 								

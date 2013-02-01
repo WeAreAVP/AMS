@@ -175,7 +175,7 @@ class	Tracking	extends	MY_Controller
 
 												$replacebale['inform_to']	=	'ssapienza@cpb.org';
 												$this->emailtemplates->sent_now	=	TRUE;
-												if($this->config->item('crawford_email')	!==	'cstephenson@mail.crawford.com')
+												if($this->session->userdata['DX_email']	!==	$this->config->item('crawford_email'))
 												{
 																$user	=	$this->users->get_user_by_email($this->config->item('crawford_email'));
 																$data	=	array('sender_id'					=>	$this->user_id,	'receiver_id'			=>	$user->id,	'msg_type'						=>	$template,	'subject'							=>	$subject,	'msg_extras'				=>	json_encode($extra),	'created_at'				=>	date('Y-m-d h:m:i'));

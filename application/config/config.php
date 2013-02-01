@@ -48,7 +48,7 @@ else	if(ENVIRONMENT	==	'qatesting')
 				$config['base_url']	=	HTTP_PREFIX_STR	.	"amsqa.avpreserve.com/";
 				$config['to_email']	=	'ssapienza@cpb.org';
 				$config['from_email']	=	'noreply@amsqa.avpreserve.com';
-				$config['crawford_email']	=	'nouman@geekschicago.com';
+				$config['crawford_email']	=	'cstephenson@mail.crawford.com';
 				$config['path']	=	'/var/www/html/';
 				$config['cookie_domain']	=	".amsqa.avpreserve.com";
 }	if(ENVIRONMENT	==	'production')

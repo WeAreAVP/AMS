@@ -94,6 +94,7 @@ class	Crons	extends	CI_Controller
 																$objWriter->save("uploads/$filename");
 																$url=	site_url()	.	"uploads/$filename"; 
 																$this->csv_job->update_job($job->id,array('status'=>'1')); 
+//																$this->users->get_user_by_id($job>user_id);
 																send_email('nouman@geekschicago.com','ssapienza@cpb.org','Limited CSV Export',$url);
 																exit;
 																

@@ -20,7 +20,6 @@ class	Messages	extends	MY_Controller
 				function	__construct()
 				{
 								parent::__construct();
-							
 				}
 
 				/**
@@ -50,9 +49,10 @@ class	Messages	extends	MY_Controller
 																$where['receiver_id']	=	$this->input->post('stations');
 												}
 								}
-								$receiver_id=$this->station_id;
-								if($this->session->userdata['DX_email']	===	$this->config->item('crawford_email')){
-												$receiver_id='157';
+								$receiver_id	=	$this->station_id;
+								if($this->session->userdata['DX_email']	===	$this->config->item('crawford_email'))
+								{
+												$receiver_id	=	'157';
 								}
 								$data['results']	=	$this->msgs->get_inbox_msgs($receiver_id,	$where);
 								$data['station_records']	=	$this->station_model->get_all();
@@ -285,7 +285,12 @@ class	Messages	extends	MY_Controller
 												$rslt["reset_row"]	=	false;
 												if($message_id	!=	'')
 												{
-																$data['result']	=	$this->msgs->get_inbox_msgs($this->station_id,	array("id"	=>	$message_id));
+																$receiver_id	=	$this->station_id;
+																if($this->session->userdata['DX_email']	===	$this->config->item('crawford_email'))
+																{
+																				$receiver_id	=	'157';
+																}
+																$data['result']	=	$this->msgs->get_inbox_msgs($receiver_id,	array("id"	=>	$message_id));
 																if(isset($data['result'])	&&	!	empty($data['result'])	&&	$data['result'][0]->msg_status	==	'unread'	&&	!	$this->can_compose_alert)
 																{
 																				$this->msgs->update_msg_by_id($message_id,	array("msg_status"	=>	'read',	"read_at"				=>	date('Y-m-d H:i:s')));

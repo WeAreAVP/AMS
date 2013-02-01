@@ -7,6 +7,26 @@
 				<div id="search_bar_val" class="facet-search"> 
 								<h5 class="filter_title" id="filter_criteria" style="display: none;">FILTER CRITERIA</h5>
 								<div id="tokens">
+
+												<!-- Checked Token Start  -->
+												<div id="checked_token">
+																<?php
+																if(isset($this->session->userdata['digitized'])	&&	$this->session->userdata['digitized']	===	'1')
+																{
+																				?>
+																				<div class="btn-img" id="digitized" ><span class="search_keys">Digitized</span><i class="icon-remove-sign" style="float: right;" onclick="remove_checked_token('digitized')"></i></div>
+																				<?php
+																}
+																if(isset($this->session->userdata['migration_failed'])	&&	$this->session->userdata['migration_failed']	===	'1')
+																{
+																				?>
+																				<div class="btn-img" id="failed" ><span class="search_keys">Migration Failed</span><i class="icon-remove-sign" style="float: right;" onclick="remove_checked_token('failed')"></i></div>
+																<?php	}
+																?>
+												</div>
+
+												<!-- Checked Token End  -->
+
 												<!-- Custom  Search Display End  -->
 												<?php
 												if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
@@ -56,7 +76,7 @@
 																				<div class="filter-fileds"><b id="keyword_field_name">Keyword</b></div>
 																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="" />
 																</div>
-												<?php	}	?>
+<?php	}	?>
 												<div class="clearfix"></div>
 												<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();" style="display: none;margin-left:10px;"/></div>
 
@@ -123,7 +143,7 @@
 																								$search_id	=	name_slug($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','organization_main')"></i></div>
-																				<?php	}	?>
+																<?php	}	?>
 																</div>
 																<?php
 												}
@@ -135,7 +155,7 @@
 																				<div class="filter-fileds"><b>Organization</b></div>
 																				<input type="hidden" id="organization_main_search" name="organization_main_search"/>
 																</div>
-												<?php	}	?>
+<?php	}	?>
 
 												<!-- Organization Search Display End  -->
 												<div class="clearfix"></div>
@@ -156,7 +176,7 @@
 																								$search_id	=	name_slug($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','nomination_status_main')"></i></div>
-																				<?php	}	?>
+																<?php	}	?>
 																</div>
 																<?php
 												}
@@ -168,7 +188,7 @@
 																				<div class="filter-fileds"><b>Nomination Status</b></div>
 																				<input type="hidden" id="nomination_status_main_search" name="nomination_status_main_search"/>
 																</div>
-												<?php	}	?>
+<?php	}	?>
 												<!-- Nomination Status Search Display End  -->
 												<div class="clearfix"></div>
 												<!-- Media Type Search Display Start  -->
@@ -188,7 +208,7 @@
 																								$search_id	=	name_slug($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','media_type_main')"></i></div>
-																				<?php	}	?>
+																<?php	}	?>
 																</div>
 																<?php
 												}
@@ -200,7 +220,7 @@
 																				<div class="filter-fileds"><b>Media Type</b></div>
 																				<input type="hidden" id="media_type_main_search" name="media_type_main_search"/>
 																</div>
-												<?php	}	?>
+<?php	}	?>
 												<!-- Media Type Search Display End  -->
 												<div class="clearfix"></div>
 												<!-- Physical Format Search Display Start  -->
@@ -220,7 +240,7 @@
 																								$search_id	=	name_slug($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','physical_format_main')"></i></div>
-																				<?php	}	?>
+																<?php	}	?>
 																</div>
 																<?php
 												}
@@ -232,7 +252,7 @@
 																				<div class="filter-fileds"><b>Physical Format</b></div>
 																				<input type="hidden" id="physical_format_main_search" name="physical_format_main_search"/>
 																</div>
-												<?php	}	?>
+<?php	}	?>
 												<!-- Physical Format Search Display End  -->
 												<div class="clearfix"></div>
 												<!-- Digital Format Search Display Start  -->
@@ -252,7 +272,7 @@
 																								$search_id	=	name_slug($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','digital_format_main')"></i></div>
-																				<?php	}	?>
+																<?php	}	?>
 																</div>
 																<?php
 												}
@@ -264,7 +284,7 @@
 																				<div class="filter-fileds"><b>Digital Format</b></div>
 																				<input type="hidden" id="digital_format_main_search" name="digital_format_main_search"/>
 																</div>
-												<?php	}	?>
+<?php	}	?>
 												<!-- Digital Format Search Display End  -->
 												<div class="clearfix"></div>
 												<!-- Generation Search Display Start  -->
@@ -284,7 +304,7 @@
 																								$search_id	=	name_slug($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','generation_main')"></i></div>
-																				<?php	}	?>
+																<?php	}	?>
 																</div>
 																<?php
 												}
@@ -296,7 +316,7 @@
 																				<div class="filter-fileds"><b>Generation</b></div>
 																				<input type="hidden" id="generation_main_search" name="generation_main_search"/>
 																</div>
-												<?php	}	?>
+<?php	}	?>
 												<!-- Generation Search Display End  -->
 												<div class="clearfix"></div>
 
@@ -504,7 +524,7 @@
 																				</div>
 																</div>
 												</div>
-								<?php	}	?>
+<?php	}	?>
 								<!-- Organization  End      -->
 								<!--  Nomination Status Start      -->
 								<?php
@@ -549,10 +569,10 @@
 																																?>
 																												</ul>
 																								</div>
-																				<?php	}	?>
+				<?php	}	?>
 																</div>
 												</div>
-								<?php	}	?>
+<?php	}	?>
 								<!--  Nomination Status End      -->
 								<!--  Media Type Start      -->
 								<?php
@@ -596,10 +616,10 @@
 																																?>
 																												</ul>
 																								</div>
-																				<?php	}	?>
+				<?php	}	?>
 																</div>
 												</div>
-								<?php	}	?>
+<?php	}	?>
 								<!--  Media Type End      -->
 								<!--  Physical Format Start      -->
 								<?php
@@ -643,10 +663,10 @@
 																																?>
 																												</ul>
 																								</div>
-																				<?php	}	?>
+				<?php	}	?>
 																</div>
 												</div>
-								<?php	}	?>
+<?php	}	?>
 								<!-- Physical Format End      -->
 								<!--  Digital Format Start      -->
 								<?php
@@ -690,10 +710,10 @@
 																																?>
 																												</ul>
 																								</div>
-																				<?php	}	?>
+				<?php	}	?>
 																</div>
 												</div>
-								<?php	}	?>
+<?php	}	?>
 								<!-- Digital Format End      -->
 								<!--  Generation Start      -->
 								<?php
@@ -737,10 +757,10 @@
 																																?>
 																												</ul>
 																								</div>
-																				<?php	}	?>
+				<?php	}	?>
 																</div>
 												</div>
-								<?php	}	?>
+<?php	}	?>
 								<!-- Generation End      -->
 								<!--				Digitized Start				-->
 								<div class="field-filters">
@@ -752,7 +772,7 @@
 																				$checked	=	'checked="checked"';
 																}
 																?>
-																<b>Digitized</b><span style="margin: 0px 10px;"><input type="checkbox" name="digitized" id="digitized" value="1" <?php	echo	$checked;	?> onchange="facet_search('0');" /></span>
+																<b>Digitized</b><span style="margin: 0px 10px;"><input type="checkbox" name="digitized" id="digitized" value="1" <?php	echo	$checked;	?> onchange="add_checked_token('digitized','Digitized');" /></span>
 												</div>
 								</div>
 								<!--				Digitized End      -->
@@ -766,7 +786,7 @@
 																				$checked	=	'checked="checked"';
 																}
 																?>
-																<b>Migration Failed?</b><span style="margin: 0px 10px;"><input type="checkbox" name="migration_failed" id="migration_failed" value="1"  <?php	echo	$checked;	?> onchange="facet_search('0');" /></span>
+																<b>Migration Failed?</b><span style="margin: 0px 10px;"><input type="checkbox" name="migration_failed" id="migration_failed" value="1"  <?php	echo	$checked;	?> onchange="add_checked_token('failed','Migration Failed');" /></span>
 												</div>
 								</div>
 								<!--				Migration End      -->
@@ -1110,11 +1130,20 @@
 								$.extend( $.fn.dataTableExt.oStdClasses, {
 												"sWrapper": "dataTables_wrapper form-inline"
 								} );
-//								$('.dataTables_scrollBody').css('width','97.8%');
+
 				}
 				function showHideSearch(divID,obj){
 								
 								$(obj).toggleClass('custom-caret');
 								$('#'+divID).toggle();
 				}
+				function add_checked_token(id,name){
+								$('#checked_token').append('<div class="btn-img" id="'+id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_checked_token(\''+id+'\')"></i></div>');			
+								facet_search('0');
+				}
+				function remove_checked_token(id){
+								$('#'+id).remove();
+								facet_search('0');
+				}
+				
 </script>

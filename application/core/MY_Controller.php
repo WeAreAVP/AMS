@@ -145,7 +145,6 @@ class	MY_Controller	extends	CI_Controller
 								else	if($this->session->userdata['DX_email']	===	$this->config->item('crawford_email'))
 								{
 												$this->total_unread	=	$this->msgs->get_unread_msgs_count($this->session->userdata['DX_user_id']);
-												
 								}
 								$this->user_detail	=	$this->users->get_user_detail($this->user_id)->row();
 								$this->can_compose_alert	=	false;

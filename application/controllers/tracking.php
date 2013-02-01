@@ -160,41 +160,34 @@ class	Tracking	extends	MY_Controller
 
 								$template	=	'_Tracking_Ship_Date';
 								$template_data	=	$this->email_template->get_template_by_sys_id($template);
-
+								$extra	=	array();
 								if(isset($template_data)	&&	!	empty($template_data))
 								{
 												$station_details	=	$this->station_model->get_station_by_id($record->station_id);
 												$subject	=	$template_data->subject;
 
-												$replacebale['ship_date']	=	$record->ship_date;
-												$replacebale['ship_via']	=	$record->ship_via;
-												$replacebale['tracking_no']	=	nl2br($record->tracking_no);
-												$replacebale['no_box_shipped']	=	$record->no_box_shipped;
-												$replacebale['station_name']	=	isset($station_details->station_name)	?	$station_details->station_name	:	'';
+												$extra['ship_date']	=	$replacebale['ship_date']	=	$record->ship_date;
+												$extra['ship_via']	=	$replacebale['ship_via']	=	$record->ship_via;
+												$extra['tracking_no']	=	$replacebale['tracking_no']	=	nl2br($record->tracking_no);
+												$extra['no_box_shipped']	=	$replacebale['no_box_shipped']	=	$record->no_box_shipped;
+												$extra['station_name']	=	$replacebale['station_name']	=	isset($station_details->station_name)	?	$station_details->station_name	:	'';
 
 
-												if($this->config->item('demo')	===	TRUE)
-												{
-																$to_email	=	$this->config->item('to_email');
-																$from_email	=	$this->config->item('from_email');
-																$replacebale['user_name']	=	'AMS';
-												}
-												else
-												{
-																$to_email	=	$station_details->contact_email;
-																$from_email	=	$this->user_detail->email;
-																$replacebale['user_name']	=	$this->user_detail->first_name	.	' '	.	$this->user_detail->last_name;
-												}
 												$replacebale['inform_to']	=	'ssapienza@cpb.org';
 												$this->emailtemplates->sent_now	=	TRUE;
-												$this->emailtemplates->queue_email($template,	$to_email,	$replacebale);
-												$data	=	array('sender_id'					=>	$this->user_id,	'receiver_id'			=>	'157',	'msg_type'						=>	$template,	'subject'							=>	$subject,	'msg_extras'				=>	json_encode($replacebale),	'created_at'				=>	date('Y-m-d h:m:i'));
-												$email_queue_id	=	$this->emailtemplates->queue_email($template,	$this->config->item('crawford_email'),	$replacebale);
-												if(isset($email_queue_id)	&&	$email_queue_id)
+												if($this->config->item('crawford_email')	!==	'cstephenson@mail.crawford.com')
 												{
-																$data['email_queue_id']	=	$email_queue_id;
+																$user	=	$this->users->get_user_by_email($this->config->item('crawford_email'));
+																$data	=	array('sender_id'					=>	$this->user_id,	'receiver_id'			=>	$user->id,	'msg_type'						=>	$template,	'subject'							=>	$subject,	'msg_extras'				=>	json_encode($extra),	'created_at'				=>	date('Y-m-d h:m:i'));
+																$email_queue_id	=	$this->emailtemplates->queue_email($template,	$this->config->item('crawford_email'),	$replacebale);
+																if(isset($email_queue_id)	&&	$email_queue_id)
+																{
+																				$data['email_queue_id']	=	$email_queue_id;
+																}
+																$this->msgs->add_msg($data);
 												}
-												$this->msgs->add_msg($data);
+
+
 												return	TRUE;
 								}
 								else

@@ -90,9 +90,9 @@ class	Messages_Model	extends	CI_Model
 								{
 												$this->db->where	("receiver_id",	$receiver_id);
 								}
-								else
+								else if($this->session->userdata['DX_email']	===	$this->config->item('crawford_email'))
 								{
-												
+												$this->db->where	("receiver_id",	$receiver_id);
 								}
 								$this->db->where	("receiver_folder",	"inbox");
 								if	(!empty	($where))

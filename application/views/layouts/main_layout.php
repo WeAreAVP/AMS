@@ -64,7 +64,7 @@
 																								</div>
 																								<div  class="pull-right" id="msg_text_link">
 																												<?php
-																												if(isset($this->total_unread)	&&	$this->total_unread	>	0	&&	$this->is_station_user)
+																												if(isset($this->total_unread)	&&	$this->total_unread	>	0	&&	($this->is_station_user || $this->session->userdata['DX_email']	===	$this->config->item('crawford_email')))
 																												{
 																																?>
 																												<a class="message_box" href="<?php	echo	site_url('messages/inbox')	?>"><i class="icon-envelope icon-white"></i><span class="badge label-important message-alert"><?php	echo	$this->total_unread	?></span></a>

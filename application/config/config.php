@@ -39,7 +39,7 @@ else	if(ENVIRONMENT	==	'development')
 				$config['base_url']	=	HTTP_PREFIX_STR	.	"amsdev.avpreserve.com/";
 				$config['to_email']	=	'noumantayyab@gmail.com';
 				$config['from_email']	=	'noreply@amsdev.avpreserve.com';
-				$config['crawford_email']	=	'nouman@geekschicago.com';
+				$config['crawford_email']	=	'cstephenson@mail.crawford.com';
 				$config['path']	=	'/var/www/html/';
 				$config['cookie_domain']	=	".amsdev.avpreserve.com";
 }

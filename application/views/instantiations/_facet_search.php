@@ -1138,9 +1138,14 @@
 								$('#'+divID).toggle();
 				}
 				function add_checked_token(id,name){
-								$('#checked_token').append('<div class="btn-img" id="'+id+'_token" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_checked_token(\''+id+'\')"></i></div>');			
-								isAnySearch();
-								facet_search('0');
+								if($('#'+id).is(':checked')){
+												$('#checked_token').append('<div class="btn-img" id="'+id+'_token" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_checked_token(\''+id+'\')"></i></div>');			
+												isAnySearch();
+												facet_search('0');
+								}
+								else{
+												remove_checked_token(id);
+								}
 				}
 				function remove_checked_token(id){
 								$('#'+id).attr('checked',false);

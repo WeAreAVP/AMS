@@ -14,13 +14,13 @@
 																if(isset($this->session->userdata['digitized'])	&&	$this->session->userdata['digitized']	===	'1')
 																{
 																				?>
-																				<div class="btn-img" id="digitized" ><span class="search_keys">Digitized</span><i class="icon-remove-sign" style="float: right;" onclick="remove_checked_token('digitized')"></i></div>
+																				<div class="btn-img" id="digitized_token" ><span class="search_keys">Digitized</span><i class="icon-remove-sign" style="float: right;" onclick="remove_checked_token('digitized')"></i></div>
 																				<?php
 																}
 																if(isset($this->session->userdata['migration_failed'])	&&	$this->session->userdata['migration_failed']	===	'1')
 																{
 																				?>
-																				<div class="btn-img" id="failed" ><span class="search_keys">Migration Failed</span><i class="icon-remove-sign" style="float: right;" onclick="remove_checked_token('failed')"></i></div>
+																				<div class="btn-img" id="migration_failed_token" ><span class="search_keys">Migration Failed</span><i class="icon-remove-sign" style="float: right;" onclick="remove_checked_token('migration_failed')"></i></div>
 																<?php	}
 																?>
 												</div>
@@ -786,7 +786,7 @@
 																				$checked	=	'checked="checked"';
 																}
 																?>
-																<b>Migration Failed?</b><span style="margin: 0px 10px;"><input type="checkbox" name="migration_failed" id="migration_failed" value="1"  <?php	echo	$checked;	?> onchange="add_checked_token('failed','Migration Failed');" /></span>
+																<b>Migration Failed?</b><span style="margin: 0px 10px;"><input type="checkbox" name="migration_failed" id="migration_failed" value="1"  <?php	echo	$checked;	?> onchange="add_checked_token('migration_failed','Migration Failed');" /></span>
 												</div>
 								</div>
 								<!--				Migration End      -->
@@ -1138,11 +1138,12 @@
 								$('#'+divID).toggle();
 				}
 				function add_checked_token(id,name){
-								$('#checked_token').append('<div class="btn-img" id="'+id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_checked_token(\''+id+'\')"></i></div>');			
+								$('#checked_token').append('<div class="btn-img" id="'+id+'_token" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_checked_token(\''+id+'\')"></i></div>');			
 								facet_search('0');
 				}
 				function remove_checked_token(id){
-								$('#'+id).remove();
+								$('#'+id).attr('checked',false);
+								$('#'+id+'_token').remove();
 								facet_search('0');
 				}
 				

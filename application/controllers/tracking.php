@@ -188,7 +188,13 @@ class	Tracking	extends	MY_Controller
 												$replacebale['inform_to']	=	'ssapienza@cpb.org';
 												$this->emailtemplates->sent_now	=	TRUE;
 												$this->emailtemplates->queue_email($template,	$to_email,	$replacebale);
-												$this->emailtemplates->queue_email($template,	$this->config->item('crawford_email'),	$replacebale);
+												$data	=	array('sender_id'					=>	$this->user_id,	'receiver_id'			=>	'157',	'msg_type'						=>	$template,	'subject'							=>	$subject,	'msg_extras'				=>	json_encode($replacebale),	'created_at'				=>	date('Y-m-d h:m:i'));
+												$email_queue_id	=	$this->emailtemplates->queue_email($template,	$this->config->item('crawford_email'),	$replacebale);
+												if(isset($email_queue_id)	&&	$email_queue_id)
+												{
+																$data['email_queue_id']	=	$email_queue_id;
+												}
+												$this->msgs->add_msg($data);
 												return	TRUE;
 								}
 								else

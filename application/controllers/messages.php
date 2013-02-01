@@ -280,7 +280,7 @@ class	Messages	extends	MY_Controller
 				{
 								if(isAjax())
 								{
-												$rslt["total_unread_text"]	=	'<a href="'	.	site_url('messages/inbox')	.	'">Messages</a>';
+												$rslt["total_unread_text"]	=	'<a class="message_box" href="'	.	site_url('messages/inbox')	.	'"><i class="icon-envelope icon-white"></i></a>';
 												$rslt["error"]	=	true;
 												$rslt["reset_row"]	=	false;
 												if($message_id	!=	'')
@@ -297,7 +297,7 @@ class	Messages	extends	MY_Controller
 																				$this->total_unread	=	$this->msgs->get_unread_msgs_count($this->user_id);
 																				if(isset($this->total_unread)	&&	$this->total_unread	>	0	&&	$this->is_station_user)
 																				{
-																								$rslt["total_unread_text"]	=	'<a class="btn large message" href="'	.	site_url('messages/inbox')	.	'">Messages<span class="badge label-important message-alert">'	.	$this->total_unread	.	'</span></a>';
+																								$rslt["total_unread_text"]	=	'<a class="message_box" href="'	.	site_url('messages/inbox')	.	'"><i class="icon-envelope icon-white"></i><span class="badge label-important message-alert">'	.	$this->total_unread	.	'</span></a>';
 																								$rslt["reset_row"]	=	true;
 																				}
 																}

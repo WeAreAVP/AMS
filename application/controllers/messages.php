@@ -50,6 +50,10 @@ class	Messages	extends	MY_Controller
 																$where['receiver_id']	=	$this->input->post('stations');
 												}
 								}
+								$receiver_id=$this->station_id;
+								if($this->session->userdata['DX_email']	===	$this->config->item('crawford_email')){
+												$receiver_id='157';
+								}
 								$data['results']	=	$this->msgs->get_inbox_msgs($this->station_id,	$where);
 								$data['station_records']	=	$this->station_model->get_all();
 								if(isAjax())

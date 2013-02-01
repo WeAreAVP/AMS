@@ -52,7 +52,7 @@ class	Messages	extends	MY_Controller
 								$receiver_id	=	$this->station_id;
 								if($this->session->userdata['DX_email']	===	$this->config->item('crawford_email'))
 								{
-												$receiver_id	=	'157';
+												$receiver_id	=	$this->session->userdata['DX_user_id'];
 								}
 								$data['results']	=	$this->msgs->get_inbox_msgs($receiver_id,	$where);
 								$data['station_records']	=	$this->station_model->get_all();
@@ -288,7 +288,7 @@ class	Messages	extends	MY_Controller
 																$receiver_id	=	$this->station_id;
 																if($this->session->userdata['DX_email']	===	$this->config->item('crawford_email'))
 																{
-																				$receiver_id	=	'157';
+																				$receiver_id	=	$this->session->userdata['DX_user_id'];
 																}
 																$data['result']	=	$this->msgs->get_inbox_msgs($receiver_id,	array("id"	=>	$message_id));
 																if(isset($data['result'])	&&	!	empty($data['result'])	&&	$data['result'][0]->msg_status	==	'unread'	&&	(!	$this->can_compose_alert || $this->session->userdata['DX_email']	===	$this->config->item('crawford_email')))

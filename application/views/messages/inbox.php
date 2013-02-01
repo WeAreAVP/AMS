@@ -2,7 +2,7 @@
 $select[]	=	'Select';
 foreach($this->config->item('messages_type')	as	$msg_type)
 {
-				$index=		str_replace(' ',	'_',	$msg_type);
+				$index	=	str_replace(' ',	'_',	$msg_type);
 				$select[]	=	$msg_type;
 }
 if(	!	$is_ajax)
@@ -20,10 +20,12 @@ if(	!	$is_ajax)
 				?>
 				<br/>
 				<div class="row-fluid">
-								<?php	if($this->can_compose_alert)
+								<?php
+								if($this->can_compose_alert)
 								{
 												?>
-												<?php	if(isset($this->session->userdata['sent']))
+												<?php
+												if(isset($this->session->userdata['sent']))
 												{
 																?><div class="alert" style="margin-bottom: 0px; margin-top: 0px;"><strong><?php	echo	$this->session->userdata['sent'];	?></strong></div><br/><?php	}	$this->session->unset_userdata('sent');	?>
 												<div class="span3" style="margin-bottom: 15px;">
@@ -38,9 +40,10 @@ if(	!	$is_ajax)
 																<b><h4>Folders</h4></b>
 																<div style="padding: 8px;background: none repeat scroll 0% 0% rgb(0, 152, 214);" >
 																				<a  style="color: white;" href="<?php	echo	site_url('messages/inbox')	?>" >Inbox</a></div>
-				<?php	if($this->can_compose_alert)
-				{
-								?>
+																<?php
+																if($this->can_compose_alert)
+																{
+																				?>
 																				<div style="padding: 8px;" >	<a href="<?php	echo	site_url('messages/sent')	?>" >Sent</a></div>
 
 																				<br/>
@@ -50,7 +53,8 @@ if(	!	$is_ajax)
 																				<div>
 																								<select name="<?php	echo	$stations['id']	?>" id="<?php	echo	$stations['id']	?>" <?php	echo	$stations['function']	?>>
 																												<option value="">Select</option>
-																												<?php	foreach($station_records	as	$value)
+																												<?php
+																												foreach($station_records	as	$value)
 																												{
 																																?>
 																																<option value="<?php	echo	$value->id;	?>"><?php	echo	$value->station_name;	?></option>
@@ -73,7 +77,8 @@ if(	!	$is_ajax)
 												<div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
 												<div style="overflow: auto;height: 600px;" >
 																<table class="tablesorter table table-bordered" id="station_table">
-				<?php	if(count($results)	>	0)
+				<?php
+				if(count($results)	>	0)
 				{
 								?>
 																								<thead>
@@ -91,7 +96,8 @@ if(	!	$is_ajax)
 																				foreach($results	as	$row)
 																				{
 																								?>
-																												<tr id="row_<?php	echo	$row->id	?>" style="cursor: pointer;<?php	if($row->msg_status	==	'unread')
+																												<tr id="row_<?php	echo	$row->id	?>" style="cursor: pointer;<?php
+																								if($row->msg_status	==	'unread')
 																								{
 																																?> font-weight:bold;<?php	}	?>" onclick="read_inbox_msg('<?php	echo	$row->id	?>')">
 																																<td><?php	echo	$row->full_name;	?></td>
@@ -106,7 +112,8 @@ if(	!	$is_ajax)
 																								?>
 																								<tr><td colspan="11" style="text-align: center;"><b>No Message Found.</b></td></tr>
 <?php	}	?>
-<?php	if(	!	$is_ajax)
+<?php
+if(	!	$is_ajax)
 {
 				?>
 																				</tbody>
@@ -127,12 +134,13 @@ if(	!	$is_ajax)
 																				$('#append_record').html(result);
 																				$("#station_table").trigger("update");
 																				$("[rel=tooltip]").tooltip();
-																		
+																						
 																}
 												});
 								}
 								function read_inbox_msg(id)
 								{
+												$('#row_'+id).css('font-weight','normal');
 												$.ajax({
 																type: 'POST', 
 																url: site_url+'messages/readmessage/'+id,
@@ -140,6 +148,7 @@ if(	!	$is_ajax)
 																datatype:'json',
 																success: function (r)
 																{
+																				$('#row_'+id).css('font-weight','normal');
 																				result=eval('(' +r+ ')');
 																				if(result.error==false)
 																				{
@@ -154,7 +163,7 @@ if(	!	$is_ajax)
 																}
 												});
 								}
-								   
+												   
 				</script>
 
 				<?php

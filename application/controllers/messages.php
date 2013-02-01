@@ -291,7 +291,7 @@ class	Messages	extends	MY_Controller
 																				$receiver_id	=	'157';
 																}
 																$data['result']	=	$this->msgs->get_inbox_msgs($receiver_id,	array("id"	=>	$message_id));
-																if(isset($data['result'])	&&	!	empty($data['result'])	&&	$data['result'][0]->msg_status	==	'unread'	&&	!	$this->can_compose_alert)
+																if(isset($data['result'])	&&	!	empty($data['result'])	&&	$data['result'][0]->msg_status	==	'unread'	&&	(!	$this->can_compose_alert || $this->session->userdata['DX_email']	===	$this->config->item('crawford_email')))
 																{
 																				$this->msgs->update_msg_by_id($message_id,	array("msg_status"	=>	'read',	"read_at"				=>	date('Y-m-d H:i:s')));
 																				$this->total_unread	=	$this->msgs->get_unread_msgs_count($this->user_id);

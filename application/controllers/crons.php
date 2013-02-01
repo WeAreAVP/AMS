@@ -27,7 +27,7 @@ class	Crons	extends	CI_Controller
 								$this->load->model('instantiations_model',	'instant');
 								$this->load->model('essence_track_model',	'essence');
 								$this->load->model('station_model');
-								$this->assets_path	=	'assets/';
+								$this->assets_path	=	'assets/export_pbcore/';
 				}
 
 				/**

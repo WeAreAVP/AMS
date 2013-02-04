@@ -599,7 +599,6 @@
 																												}
 																												if(count($org_states)	>	4)
 																												{
-																																
 																																?>
 																												</ul>
 																								</div>
@@ -647,31 +646,30 @@
 																												}
 																												if(count($nomination_status)	>	4)
 																												{
-																																
 																																?>
 																												</ul>
 																								</div>
-																				<?php	}	?>
+				<?php	}	?>
 																</div>
 												</div>
-								<?php	}	?>
+<?php	}	?>
 								<!--  Nomination Status End      -->
 								<!--  Media Type Start      -->
-								<?php
-								if(count($media_types)	>	0)
-								{
-												?>
+<?php
+if(count($media_types)	>	0)
+{
+				?>
 												<div class="field-filters">
 																<div class="filter-fileds">
 																				<b>Media Type</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('md_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="md_div">
-																				<?php
-																				foreach($media_types	as	$key	=>	$value)
-																				{
-																								if($key	<	4)
-																								{
-																												?>
+				<?php
+				foreach($media_types	as	$key	=>	$value)
+				{
+								if($key	<	4)
+								{
+												?>
 																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
 																												<?php
 																								}
@@ -684,11 +682,11 @@
 																																				<b class="caret"></b>
 																																</a>
 																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																																				<?php
-																																}
-																																else
-																																{
-																																				?>
+												<?php
+								}
+								else
+								{
+												?>
 																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
 																																				<?php
 																																}
@@ -698,27 +696,27 @@
 																																?>
 																												</ul>
 																								</div>
-																				<?php	}	?>
+				<?php	}	?>
 																</div>
 												</div>
-								<?php	}	?>
+<?php	}	?>
 								<!--  Media Type End      -->
 								<!--  Physical Format Start      -->
-								<?php
-								if(count($physical_formats)	>	0)
-								{
-												?>
+<?php
+if(count($physical_formats)	>	0)
+{
+				?>
 												<div class="field-filters">
 																<div class="filter-fileds">
 																				<b>Physical Format</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('pf_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="pf_div">
-																				<?php
-																				foreach($physical_formats	as	$key	=>	$value)
-																				{
-																								if($key	<	4)
-																								{
-																												?>
+				<?php
+				foreach($physical_formats	as	$key	=>	$value)
+				{
+								if($key	<	4)
+								{
+												?>
 																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
 																												<?php
 																								}
@@ -731,11 +729,11 @@
 																																				<b class="caret"></b>
 																																</a>
 																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																																				<?php
-																																}
-																																else
-																																{
-																																				?>
+												<?php
+								}
+								else
+								{
+												?>
 																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
 																																				<?php
 																																}
@@ -745,27 +743,27 @@
 																																?>
 																												</ul>
 																								</div>
-																				<?php	}	?>
+				<?php	}	?>
 																</div>
 												</div>
-								<?php	}	?>
+<?php	}	?>
 								<!-- Physical Format End      -->
 								<!--  Digital Format Start      -->
-								<?php
-								if(count($digital_formats)	>	0)
-								{
-												?>
+<?php
+if(count($digital_formats)	>	0)
+{
+				?>
 												<div class="field-filters">
 																<div class="filter-fileds">
 																				<b>Digital Format</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('df_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="df_div">
-																				<?php
-																				foreach($digital_formats	as	$key	=>	$value)
-																				{
-																								if($key	<	4)
-																								{
-																												?>
+				<?php
+				foreach($digital_formats	as	$key	=>	$value)
+				{
+								if($key	<	4)
+								{
+												?>
 																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
 																												<?php
 																								}
@@ -778,11 +776,11 @@
 																																				<b class="caret"></b>
 																																</a>
 																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																																				<?php
-																																}
-																																else
-																																{
-																																				?>
+												<?php
+								}
+								else
+								{
+												?>
 																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
 																																				<?php
 																																}
@@ -792,27 +790,27 @@
 																																?>
 																												</ul>
 																								</div>
-																				<?php	}	?>
+				<?php	}	?>
 																</div>
 												</div>
-								<?php	}	?>
+<?php	}	?>
 								<!-- Digital Format End      -->
 								<!--  Generation Start      -->
-								<?php
-								if(count($generations)	>	0)
-								{
-												?>
+<?php
+if(count($generations)	>	0)
+{
+				?>
 												<div class="field-filters">
 																<div class="filter-fileds">
 																				<b>Generations</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('generation_search_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="generation_search_div">
-																				<?php
-																				foreach($generations	as	$key	=>	$value)
-																				{
-																								if($key	<	4)
-																								{
-																												?>
+				<?php
+				foreach($generations	as	$key	=>	$value)
+				{
+								if($key	<	4)
+								{
+												?>
 																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->generation);	?>','generation_main');"><?php	echo	$value->generation	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
 																												<?php
 																								}
@@ -825,11 +823,11 @@
 																																				<b class="caret"></b>
 																																</a>
 																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																																				<?php
-																																}
-																																else
-																																{
-																																				?>
+												<?php
+								}
+								else
+								{
+												?>
 																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->generation);	?>','generation_main');"><?php	echo	$value->generation	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
 																																				<?php
 																																}
@@ -839,21 +837,21 @@
 																																?>
 																												</ul>
 																								</div>
-																				<?php	}	?>
+				<?php	}	?>
 																</div>
 												</div>
-								<?php	}	?>
+<?php	}	?>
 								<!-- Generation End      -->
 								<!--				Digitized Start				-->
 								<div class="field-filters">
 												<div class="filter-fileds">
-																<?php
-																$checked	=	'';
-																if(isset($this->session->userdata['digitized'])	&&	$this->session->userdata['digitized']	===	'1')
-																{
-																				$checked	=	'checked="checked"';
-																}
-																?>
+<?php
+$checked	=	'';
+if(isset($this->session->userdata['digitized'])	&&	$this->session->userdata['digitized']	===	'1')
+{
+				$checked	=	'checked="checked"';
+}
+?>
 																<b>Digitized</b><span style="margin: 0px 10px;"><input type="checkbox" name="digitized" id="digitized" value="1" <?php	echo	$checked;	?> onchange="add_checked_token('digitized','Digitized');" /></span>
 												</div>
 								</div>
@@ -861,13 +859,13 @@
 								<!--				Migration Start				-->
 								<div class="field-filters">
 												<div class="filter-fileds">
-																<?php
-																$checked	=	'';
-																if(isset($this->session->userdata['migration_failed'])	&&	$this->session->userdata['migration_failed']	===	'1')
-																{
-																				$checked	=	'checked="checked"';
-																}
-																?>
+<?php
+$checked	=	'';
+if(isset($this->session->userdata['migration_failed'])	&&	$this->session->userdata['migration_failed']	===	'1')
+{
+				$checked	=	'checked="checked"';
+}
+?>
 																<b>Migration Failed?</b><span style="margin: 0px 10px;"><input type="checkbox" name="migration_failed" id="migration_failed" value="1"  <?php	echo	$checked;	?> onchange="add_checked_token('migration_failed','Migration Failed');" /></span>
 												</div>
 								</div>

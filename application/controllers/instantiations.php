@@ -80,7 +80,7 @@ class	Instantiations	extends	MY_Controller
 								}
 								$this->session->set_userdata('page_link',	'instantiations/index/'	.	$offset);
 								$data['get_column_name']	=	$this->make_array();
-								$data['stations']	=	$this->station_model->get_facet_stations();
+								$data['stations']	=	$this->station_model->get_inst_facet_stations();
 								$data['nomination_status']	=	$this->instantiation->get_nomination_status();
 								$data['media_types']	=	$this->instantiation->get_media_types();
 								$data['physical_formats']	=	$this->instantiation->get_physical_formats();

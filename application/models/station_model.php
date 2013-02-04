@@ -22,6 +22,7 @@ class	Station_Model	extends	CI_Model
 								$this->_table_backup	=	'stations_backup';
 								$this->_table_messages	=	'messages';
 								$this->_assets_table	=	'assets';
+								$this->_instantiations_table	=	'instantiations';
 				}
 
 				/**
@@ -35,12 +36,20 @@ class	Station_Model	extends	CI_Model
 								return	$query	=	$this->db->get($this->_table)->result();
 				}
 
-				function	get_facet_stations()
+				function	get_asset_facet_stations()
 				{
 								$this->db->select("COUNT($this->_assets_table.id) as total,$this->_table.station_name",	FALSE);
 								$this->db->join($this->_table,	"$this->_table.id = $this->_assets_table.stations_id");
 								$this->db->group_by("$this->_assets_table.stations_id");
 								return	$query	=	$this->db->get($this->_assets_table)->result();
+				}
+				function	get_inst_facet_stations()
+				{
+								$this->db->select("COUNT($this->_instantiations_table.id) as total,$this->_table.station_name",	FALSE);
+								$this->db->join($this->_assets_table,	"$this->_assets_table.id = $this->_instantiations_table.assets_id");
+								$this->db->join($this->_table,	"$this->_table.id = $this->_assets_table.stations_id");
+								$this->db->group_by("$this->_assets_table.stations_id");
+								return	$query	=	$this->db->get($this->_instantiations_table)->result();
 				}
 
 				/**

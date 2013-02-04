@@ -36,6 +36,11 @@ class	Station_Model	extends	CI_Model
 								return	$query	=	$this->db->get($this->_table)->result();
 				}
 
+				/**
+					* Get Assets count and name of stations that have records
+					* 
+					* @return type 
+					*/
 				function	get_asset_facet_stations()
 				{
 								$this->db->select("COUNT($this->_assets_table.id) as total,$this->_table.station_name",	FALSE);
@@ -43,6 +48,12 @@ class	Station_Model	extends	CI_Model
 								$this->db->group_by("$this->_assets_table.stations_id");
 								return	$query	=	$this->db->get($this->_assets_table)->result();
 				}
+
+				/**
+					* Get Instantitations count and name of stations that have records
+					* 
+					* @return type 
+					*/
 				function	get_inst_facet_stations()
 				{
 								$this->db->select("COUNT($this->_instantiations_table.id) as total,$this->_table.station_name",	FALSE);
@@ -131,7 +142,7 @@ class	Station_Model	extends	CI_Model
 								return	$query->num_rows;
 				}
 
-				/*
+				/**
 					*
 					* Filter stations
 					* 
@@ -139,7 +150,6 @@ class	Station_Model	extends	CI_Model
 					* @param type $agreed
 					* @return type 
 					*/
-
 				function	apply_filter($certified,	$agreed)
 				{
 								if(trim($certified)	!=	'')
@@ -150,44 +160,47 @@ class	Station_Model	extends	CI_Model
 								return	$query	=	$this->db->get($this->_table)->result();
 				}
 
-				/*
+				/**
 					*
 					* Truncate the stations bachup table
 					* 
 					* @return integer 
 					*/
-
 				function	delete_stations_backup()
 				{
 								$this->db->empty_table($this->_table_backup);
 								return	$this->db->affected_rows()	>	0;
 				}
 
-				/*
+				/**
 					*
 					* insert the records in stations backup table 
 					* 
 					* @param array $data
 					* @return boolean 
 					*/
-
 				function	insert_station_backup($data)
 				{
 								return	$this->db->insert($this->_table_backup,	$data);
 				}
 
-				/*
+				/**
 					*
 					* Get list of all backup stations
 					* 
 					* @return array 
 					*/
-
 				function	get_all_backup_stations()
 				{
 								return	$query	=	$this->db->get($this->_table_backup)->result();
 				}
 
+				/**
+					* Get the hours of Crawford
+				 * 
+					* @param string $msg_type
+					* @return type 
+					*/
 				function	get_hours_at_crawford($msg_type)
 				{
 								$this->db->select("($this->_table.nominated_hours_final+$this->_table.nominated_buffer_final) AS total",	FALSE);

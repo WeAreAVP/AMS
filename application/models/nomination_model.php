@@ -7,7 +7,7 @@
 	* @subpackage Nomination
 	* @author     Nouman Tayyab
 	*/
-class	Report_Model	extends	CI_Model
+class	Nomination_Model	extends	CI_Model
 {
 
 				/**

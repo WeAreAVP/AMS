@@ -27,11 +27,13 @@ class	Nomination_Model	extends	CI_Model
 
 				function	get_assets_nomination_count()
 				{
-								$this->db->select("COUNT($this->_table.id) as total",	FALSE);
-								$this->db->join($this->_instantiations_table,	"$this->_instantiations_table.id = $this->_nomination_table.instantiations_id");
-								$this->db->join($this->_table,	"$this->_table.id = $this->_assets_table.stations_id");
+								$this->db->select("COUNT($this->_table.id) as total,$this->_nomination_table.status",	FALSE);
+								$this->db->join($this->_table,	"$this->_table.nomination_status_id = $this->_nomination_table.id");
+								$this->db->join($this->_instantiations_table,	"$this->_instantiations_table.id = $this->_table.instantiations_id");
+								$this->db->join($this->_assets_table,	"$this->_assets_table.id = $this->_instantiations_table.assets_id");
 								$this->db->group_by("$this->_nomination_table.id");
-								return	$query	=	$this->db->get($this->_nomination_table)->result();
+								$query	=	$this->db->get($this->_nomination_table);
+								return	$query->result();
 				}
 
 				function	get_instantiation_nomination_count()
@@ -40,9 +42,8 @@ class	Nomination_Model	extends	CI_Model
 								$this->db->join($this->_table,	"$this->_table.nomination_status_id = $this->_nomination_table.id");
 								$this->db->join($this->_instantiations_table,	"$this->_instantiations_table.id = $this->_table.instantiations_id");
 								$this->db->group_by("$this->_nomination_table.id");
-								$query=$this->db->get($this->_nomination_table);
-								return $query->result();
-																
+								$query	=	$this->db->get($this->_nomination_table);
+								return	$query->result();
 				}
 
 }

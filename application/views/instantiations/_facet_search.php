@@ -515,7 +515,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name;	?></a></li>
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->station_name);	?>','organization_main');"><?php	echo	"$value->station_name ($value->total)";	?></a></li>
 																																				<?php
 																																}
 																												}

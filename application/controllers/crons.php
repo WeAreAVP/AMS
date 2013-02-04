@@ -56,11 +56,7 @@ class	Crons	extends	CI_Controller
 
 								if(count($job)	>	0)
 								{
-												for($i=0;$i<$job->query_loop;$i++){
-																$query=$job->export_query;
-																$query.='LIMIT '.($i*15000).', 15000';
-												}
-												$records	=	$this->csv_job->get_csv_records($job->export_query);
+												$row	=	2;
 												@ini_set("memory_limit",	"3000M");	# 1GB
 												@ini_set("max_execution_time",	999999999999);	# 1GB
 												$this->load->library('excel');
@@ -79,18 +75,23 @@ class	Crons	extends	CI_Controller
 												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(3,	1,	'Format');
 												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(4,	1,	'Duration');
 												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(5,	1,	'Priority');
-												$row	=	2;
-												foreach($records	as	$value)
+												for($i	=	0;	$i	<	$job->query_loop;	$i	++	)
 												{
-																$col	=	0;
-																foreach($value	as	$field)
+																$query	=	$job->export_query;
+																$query.='LIMIT '	.	($i	*	15000)	.	', 15000';
+																$records	=	$this->csv_job->get_csv_records($query);
+																foreach($records	as	$value)
 																{
+																				$col	=	0;
+																				foreach($value	as	$field)
+																				{
 
-																				$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$field);
+																								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$field);
 
-																				$col	++;
+																								$col	++;
+																				}
+																				$row	++;
 																}
-																$row	++;
 												}
 												$filename	=	'csv_export_'	.	time()	.	'.csv';
 												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');

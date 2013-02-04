@@ -53,10 +53,12 @@ class	Crons	extends	CI_Controller
 				{
 								$this->load->model('export_csv_job_model',	'csv_job');
 								$jobs	=	$this->csv_job->get_incomplete_jobs();
+								echo count($jobs);
+								debug($jobs);
 								if(count($jobs)	>	0)
 								{
-												foreach($jobs	as	$job)
-												{
+//												foreach($jobs	as	$job)
+//												{
 																$records	=	$this->csv_job->get_csv_records($job->export_query);
 																@ini_set("memory_limit",	"3000M");	# 1GB
 																@ini_set("max_execution_time",	999999999999);	# 1GB
@@ -98,7 +100,7 @@ class	Crons	extends	CI_Controller
 																send_email('nouman@geekschicago.com','ssapienza@cpb.org','Limited CSV Export',$url);
 																exit;
 																
-												}
+//												}
 								}
 				}
 

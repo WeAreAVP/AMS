@@ -28,7 +28,8 @@ class	Export_csv_job_model	extends	CI_Model
 				function	get_incomplete_jobs()
 				{
 								$this->db->where('status',	'0');
-								return	$this->db->get($this->_table)->result();
+								$this->db->limit(1);
+								return	$this->db->get($this->_table)->row();
 				}
 				
 				function	get_csv_records($query)

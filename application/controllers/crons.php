@@ -52,55 +52,54 @@ class	Crons	extends	CI_Controller
 				function	csv_export_job()
 				{
 								$this->load->model('export_csv_job_model',	'csv_job');
-								$jobs	=	$this->csv_job->get_incomplete_jobs();
-								echo count($jobs);
-								debug($jobs);
-								if(count($jobs)	>	0)
+								$job	=	$this->csv_job->get_incomplete_jobs();
+
+								if(count($job)	>	0)
 								{
-//												foreach($jobs	as	$job)
-//												{
-																$records	=	$this->csv_job->get_csv_records($job->export_query);
-																@ini_set("memory_limit",	"3000M");	# 1GB
-																@ini_set("max_execution_time",	999999999999);	# 1GB
-																$this->load->library('excel');
-																$this->excel->getActiveSheetIndex();
-																$this->excel->getActiveSheet()->setTitle('Limited CSV');
-																$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
-																$this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(25);
-																$this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(45);
-																$this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(10);
-																$this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
-																$this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(25);
-																$this->excel->getActiveSheet()->getStyle("A1:F1")->getFont()->setBold(true);
-																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(0,	1,	'GUID');
-																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(1,	1,	'Unique ID');
-																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(2,	1,	'Title');
-																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(3,	1,	'Format');
-																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(4,	1,	'Duration');
-																$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(5,	1,	'Priority');
-																$row	=	2;
-																foreach($records	as	$value)
+												for($i=0;$i<$job->query_loop;$i++){
+																$query=$job->export_query;
+																$query.='LIMIT '.($i*15000).', 15000';
+												}
+												$records	=	$this->csv_job->get_csv_records($job->export_query);
+												@ini_set("memory_limit",	"3000M");	# 1GB
+												@ini_set("max_execution_time",	999999999999);	# 1GB
+												$this->load->library('excel');
+												$this->excel->getActiveSheetIndex();
+												$this->excel->getActiveSheet()->setTitle('Limited CSV');
+												$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
+												$this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(25);
+												$this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(45);
+												$this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(10);
+												$this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+												$this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(25);
+												$this->excel->getActiveSheet()->getStyle("A1:F1")->getFont()->setBold(true);
+												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(0,	1,	'GUID');
+												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(1,	1,	'Unique ID');
+												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(2,	1,	'Title');
+												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(3,	1,	'Format');
+												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(4,	1,	'Duration');
+												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(5,	1,	'Priority');
+												$row	=	2;
+												foreach($records	as	$value)
+												{
+																$col	=	0;
+																foreach($value	as	$field)
 																{
-																				$col	=	0;
-																				foreach($value	as	$field)
-																				{
 
-																								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$field);
+																				$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$field);
 
-																								$col	++;
-																				}
-																				$row	++;
+																				$col	++;
 																}
-																$filename	=	'csv_export_'	.	time()	.	'.csv';
-																$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
-																$objWriter->save("uploads/$filename");
-																$url=	site_url()	.	"uploads/$filename"; 
-																$this->csv_job->update_job($job->id,array('status'=>'1')); 
+																$row	++;
+												}
+												$filename	=	'csv_export_'	.	time()	.	'.csv';
+												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
+												$objWriter->save("uploads/$filename");
+												$url	=	site_url()	.	"uploads/$filename";
+												$this->csv_job->update_job($job->id,	array('status'	=>	'1'));
 //																$this->users->get_user_by_id($job>user_id);
-																send_email('nouman@geekschicago.com','ssapienza@cpb.org','Limited CSV Export',$url);
-																exit;
-																
-//												}
+												send_email('nouman@geekschicago.com',	'ssapienza@cpb.org',	'Limited CSV Export',	$url);
+												exit;
 								}
 				}
 

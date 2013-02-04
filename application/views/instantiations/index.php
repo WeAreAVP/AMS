@@ -17,7 +17,7 @@ if(	!	$isAjax)
 												<div style="width: 900px;">
 																<?php	$this->load->view('instantiations/_gear_dropdown');	?>
 																<div style="float: right;">
-																				<strong><?php	echo	$start;	?> - <?php	echo	$end;	?></strong> of <strong style="margin-right: 10px;"><?php	echo	$total;	?></strong>
+																				<strong><?php	echo	number_format($start);	?> - <?php	echo	number_format($end);	?></strong> of <strong style="margin-right: 10px;" id="total_list_count"><?php	echo	number_format($total);	?></strong>
 																				<?php	echo	$this->ajax_pagination->create_links();	?>
 																</div>
 												</div>
@@ -170,7 +170,7 @@ if(	!	$isAjax)
 												</div>
 
 												<div style="text-align: right;width: 900px;">
-																<strong><?php	echo	$start;	?> - <?php	echo	$end;	?></strong> of <strong style="margin-right: 10px;" id="total_record_count"><?php	echo	$total;	?></strong>
+																<strong><?php	echo	number_format($start);	?> - <?php	echo	number_format($end);	?></strong> of <strong style="margin-right: 10px;" id="total_record_count"><?php	echo	number_format($total);	?></strong>
 																<?php	echo	$this->ajax_pagination->create_links();	?>
 												</div>
 												<?php

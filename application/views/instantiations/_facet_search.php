@@ -5,7 +5,7 @@
 
 
 				<div id="search_bar_val" class="facet-search"> 
-								<h5 class="filter_title" id="filter_criteria" style="display: none;">FILTER CRITERIA</h5>
+								<h5 class="filter_title" id="filter_criteria" style="display: none;">FILTER CRITERIA</h5><span id="filter_record_count"></span>
 								<div id="tokens">
 
 												<!-- Checked Token Start  -->
@@ -892,16 +892,7 @@ if(isset($this->session->userdata['migration_failed'])	&&	$this->session->userda
 				var state = false;
 				(function($){
 									
-								if($('.search_keys').length>0){
-												$('#filter_criteria').show();
-												$('#search_bar_val').css('margin-bottom','10px');
-												$('#search_bar_val').css('padding-bottom','10px');
-								}
-								else{
-												$('#filter_criteria').hide();
-												$('#search_bar_val').css('margin-bottom','0px');
-												$('#search_bar_val').css('padding-bottom','0px');
-								}
+								isAnySearch();
 								var initLayout = function() {
 												var hash = window.location.hash.replace('#', '');
 											
@@ -1061,17 +1052,7 @@ if(isset($this->session->userdata['migration_failed'])	&&	$this->session->userda
 																$('#'+type+'_search').val(my_search_words);
 												}
 								}
-								if($('.search_keys').length>0){
-												$('#filter_criteria').show();
-												$('#search_bar_val').css('margin-bottom','10px');
-												$('#search_bar_val').css('padding-bottom','10px');
-												
-								}
-								else{
-												$('#filter_criteria').hide();
-												$('#search_bar_val').css('margin-bottom','0px');
-												$('#search_bar_val').css('padding-bottom','0px');
-								}
+								isAnySearch();
 								facet_search('0');
             
 				}
@@ -1236,6 +1217,7 @@ if(isset($this->session->userdata['migration_failed'])	&&	$this->session->userda
 				function isAnySearch(){
 								if($('.search_keys').length>0){
 												$('#filter_criteria').show();
+												$('#filter_record_count').html($('#total_list_count').html());
 												$('#search_bar_val').css('margin-bottom','10px');
 												$('#search_bar_val').css('padding-bottom','10px');
 												

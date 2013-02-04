@@ -928,21 +928,19 @@
 																return false;
 												}
 								});
-								setTimeout(function(){
-												display=<?php	echo	$DateStyleDisplay;	?>;
-												if(display==0){
-																$('#date_range_filter_div').hide();
-												}
-												
-								},500);
 								
-								if('<?php	echo	$current_tab;	?>'=='simple'){
-												setTimeout('updateSimpleDataTable();',1500);
-								}
+							
 								
 				})(jQuery)
 				
 				$(window).load(function(){
+								display=<?php	echo	$DateStyleDisplay;	?>;
+								if(display==0){
+												$('#date_range_filter_div').hide();
+								}
+								if('<?php	echo	$current_tab;	?>'=='simple'){
+												updateSimpleDataTable();
+								}
 								isAnySearch();
 				});
 				function add_token(name,type,isRemoved){

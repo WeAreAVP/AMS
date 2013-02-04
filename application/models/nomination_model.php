@@ -37,11 +37,11 @@ class	Nomination_Model	extends	CI_Model
 				function	get_instantiation_nomination_count()
 				{
 								$this->db->select("COUNT($this->_table.id) as total,$this->_nomination_table.status",	FALSE);
-								$this->db->join($this->_table,	"$this->_table.id = $this->_nomination_table.nomination_status_id");
+								$this->db->join($this->_table,	"$this->_table.nomination_status_id = $this->_nomination_table.id");
 								$this->db->join($this->_instantiations_table,	"$this->_instantiations_table.id = $this->_table.instantiations_id");
 								$this->db->group_by("$this->_nomination_table.id");
-								$this->db->get($this->_nomination_table);
-								echo $this->db->last_query();exit;
+								$query=$this->db->get($this->_nomination_table);
+								return $query->result();
 																
 				}
 

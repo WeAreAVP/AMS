@@ -24,6 +24,7 @@ class	Nomination_Model	extends	CI_Model
 								$this->_assets_table	=	'assets';
 								$this->_stations_table	=	'stations';
 								$this->_media_type_table	=	'instantiation_media_types';
+								$this->formats_table	=	'instantiation_formats';
 				}
 
 				function	get_assets_nomination()
@@ -61,6 +62,44 @@ class	Nomination_Model	extends	CI_Model
 								$this->db->select("COUNT(DISTINCT $this->_instantiations_table.id) as total,$this->_media_type_table.media_type",	FALSE);
 								$this->db->join($this->_media_type_table,	"$this->_media_type_table.id = $this->_instantiations_table.instantiation_media_type_id");
 								$this->db->group_by("$this->_media_type_table.id");
+								return	$query	=	$this->db->get($this->_instantiations_table)->result();
+				}
+
+				function	get_asset_physical_formats()
+				{
+								$this->db->select("COUNT(DISTINCT $this->_assets_table.id) as total,$this->formats_table.format_name",	FALSE);
+								$this->db->join($this->_instantiations_table,	"$this->_instantiations_table.assets_id = $this->_assets_table.id");
+								$this->db->join($this->formats_table,	"$this->formats_table.instantiations_id = $this->_instantiations_table.id");
+								$this->db->where("$this->formats_table.format_type",	'physical');
+								$this->db->group_by("$this->formats_table.format_name");
+								return	$query	=	$this->db->get($this->_assets_table)->result();
+				}
+
+				function	get_instantiation_physical_formats()
+				{
+								$this->db->select("COUNT(DISTINCT $this->_instantiations_table.id) as total,$this->formats_table.format_name",	FALSE);
+								$this->db->join($this->formats_table,	"$this->formats_table.instantiations_id = $this->_instantiations_table.id");
+								$this->db->where("$this->formats_table.format_type",	'physical');
+								$this->db->group_by("$this->formats_table.format_name");
+								return	$query	=	$this->db->get($this->_instantiations_table)->result();
+				}
+
+				function	get_asset_digital_formats()
+				{
+								$this->db->select("COUNT(DISTINCT $this->_assets_table.id) as total,$this->formats_table.format_name",	FALSE);
+								$this->db->join($this->_instantiations_table,	"$this->_instantiations_table.assets_id = $this->_assets_table.id");
+								$this->db->join($this->formats_table,	"$this->formats_table.instantiations_id = $this->_instantiations_table.id");
+								$this->db->where("$this->formats_table.format_type",	'digital');
+								$this->db->group_by("$this->formats_table.format_name");
+								return	$query	=	$this->db->get($this->_assets_table)->result();
+				}
+
+				function	get_instantiation_digital_formats()
+				{
+								$this->db->select("COUNT(DISTINCT $this->_instantiations_table.id) as total,$this->formats_table.format_name",	FALSE);
+								$this->db->join($this->formats_table,	"$this->formats_table.instantiations_id = $this->_instantiations_table.id");
+								$this->db->where("$this->formats_table.format_type",	'digital');
+								$this->db->group_by("$this->formats_table.format_name");
 								return	$query	=	$this->db->get($this->_instantiations_table)->result();
 				}
 

@@ -84,8 +84,8 @@ class	Instantiations	extends	MY_Controller
 								$data['stations']	=	$this->station_model->get_inst_facet_stations();
 								$data['nomination_status']	=	$this->mix->get_instantiation_nomination();
 								$data['media_types']	=	$this->mix->get_instantiation_media_types();
-								$data['physical_formats']	=	$this->instantiation->get_physical_formats();
-								$data['digital_formats']	=	$this->instantiation->get_digital_formats();
+								$data['physical_formats']	=	$this->mix->get_instantiation_physical_formats();
+								$data['digital_formats']	=	$this->mix->get_instantiation_digital_formats();
 								$data['generations']	=	$this->instantiation->get_generations();
 								$data['date_types']	=	$this->instantiation->get_date_types();
 								$data['current_tab']	=	'';

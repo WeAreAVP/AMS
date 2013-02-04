@@ -637,7 +637,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name;	?></a></div>
+																				<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name.' ('.		number_format($value->total).')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -654,7 +654,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name;	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name.' ('.		number_format($value->total).')';	?></a></li>  
 																																				<?php
 																																}
 																												}
@@ -684,7 +684,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name;	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name.' ('.		number_format($value->total).')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -701,7 +701,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name;	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name.' ('.		number_format($value->total).')';	?></a></li>  
 																																				<?php
 																																}
 																												}

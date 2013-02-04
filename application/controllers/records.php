@@ -72,8 +72,8 @@ class	Records	extends	MY_Controller
 								$data['stations']	=	$this->station_model->get_asset_facet_stations();
 								$data['nomination_status']	=	$this->mix->get_assets_nomination	();
 								$data['media_types']	=	$this->mix->get_asset_media_types();
-								$data['physical_formats']	=	$this->instantiation->get_physical_formats	();
-								$data['digital_formats']	=	$this->instantiation->get_digital_formats	();
+								$data['physical_formats']	=	$this->mix->get_asset_physical_formats	();
+								$data['digital_formats']	=	$this->mix->get_asset_digital_formats	();
 								$data['generations']	=	$this->instantiation->get_generations	();
 								$data['date_types']	=	$this->instantiation->get_date_types	();
 								$is_hidden	=	array	();

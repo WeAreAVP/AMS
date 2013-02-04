@@ -21,6 +21,7 @@ class	Station_Model	extends	CI_Model
 								$this->_table	=	'stations';
 								$this->_table_backup	=	'stations_backup';
 								$this->_table_messages	=	'messages';
+								$this->_assets_table	=	'assets';
 				}
 
 				/**
@@ -32,6 +33,14 @@ class	Station_Model	extends	CI_Model
 				{
 								$this->db->order_by("station_name");
 								return	$query	=	$this->db->get($this->_table)->result();
+				}
+
+				function	get_facet_stations()
+				{
+								$this->db->select("COUNT($this->_assets_table.id) as total,$this->_table.station_name",	FALSE);
+								$this->db->join($this->_table,	"$this->_table.id = $this->_assets_table.stations_id");
+								$this->db->group_by("$this->_assets_table.stations_id");
+								return	$query	=	$this->db->get($this->_assets_table)->result();
 				}
 
 				/**

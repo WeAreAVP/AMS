@@ -33,6 +33,7 @@ class	Nomination_Model	extends	CI_Model
 								$this->db->join($this->_assets_table,	"$this->_assets_table.id = $this->_instantiations_table.assets_id");
 								$this->db->group_by("$this->_nomination_table.id");
 								$query	=	$this->db->get($this->_nomination_table);
+								echo $this->db->db_last_query();exit;
 								return	$query->result();
 				}
 

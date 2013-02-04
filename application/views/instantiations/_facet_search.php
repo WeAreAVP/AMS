@@ -1219,7 +1219,7 @@
 				function isAnySearch(){
 								if($('.search_keys').length>0){
 												$('#filter_criteria').show();
-												$('#filter_record_count').html($('#total_list_count').html());
+												$('#filter_record_count').html('('+$('#total_list_count').html()+' RECORD(S))');
 												$('#search_bar_val').css('margin-bottom','10px');
 												$('#search_bar_val').css('padding-bottom','10px');
 												

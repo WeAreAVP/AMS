@@ -542,7 +542,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status;	?></a></div>
+																				<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status.' ('.		number_format($value->total).')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -559,7 +559,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status;	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status.' ('.		number_format($value->total).')';	?></a></li>  
 																																				<?php
 																																}
 																												}

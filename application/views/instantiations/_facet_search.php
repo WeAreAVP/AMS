@@ -1156,8 +1156,12 @@
 												data:$('#form_search').serialize(),
 												success: function (result)
 												{ 
-																$('#data_container').html(result); 
-																updateDataTable();
+																$('#data_container').html(result);
+																if('<?php	echo	$current_tab;	?>'=='simple'){
+																				updateSimpleDataTable();
+																}
+																else
+																				updateDataTable();
 																isAnySearch();
 																$.unblockUI();
                                     

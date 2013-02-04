@@ -30,7 +30,7 @@ class	Nomination_Model	extends	CI_Model
 								$this->db->select("COUNT($this->_assets_table.id) as total,$this->_nomination_table.status",	FALSE);
 								$this->db->join($this->_instantiations_table,	"$this->_instantiations_table.assets_id = $this->_assets_table.id");
 								$this->db->join($this->_table,	"$this->_table.instantiations_id = $this->_instantiations_table.id");
-								$this->db->join($this->_nomination_table,	"$this->_nomination_table.nomination_status_id = $this->_table.assets_id");
+								$this->db->join($this->_nomination_table,	"$this->_nomination_table.id = $this->_table.nomination_status_id");
 								$this->db->group_by("$this->_nomination_table.id");
 								$query	=	$this->db->get($this->_assets_table);
 								return	$query->result();

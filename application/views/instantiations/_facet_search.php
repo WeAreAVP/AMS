@@ -892,7 +892,6 @@
 				var state = false;
 				(function($){
 									
-								isAnySearch();
 								var initLayout = function() {
 												var hash = window.location.hash.replace('#', '');
 											
@@ -940,7 +939,12 @@
 								if('<?php	echo	$current_tab;	?>'=='simple'){
 												setTimeout('updateSimpleDataTable();',1500);
 								}
+								
 				})(jQuery)
+				
+				$(window).load(function(){
+								isAnySearch();
+				});
 				function add_token(name,type,isRemoved){
 								if(type=='keyword_field_main'){
                 

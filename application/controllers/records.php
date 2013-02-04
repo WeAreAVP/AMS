@@ -23,6 +23,7 @@ class	Records	extends	MY_Controller
 								$this->load->model	('assets_model');
 								$this->load->model	('sphinx_model',	'sphinx');
 								$this->load->model	('instantiations_model',	'instantiation');
+								$this->load->model('nomination_model',	'nomination');
 								$this->load->library	('pagination');
 								$this->load->library	('Ajax_pagination');
 								
@@ -69,7 +70,7 @@ class	Records	extends	MY_Controller
 								$this->session->set_userdata	('current_tab',	$data['current_tab']);
 								$data['get_column_name']	=	$this->make_array	();
 								$data['stations']	=	$this->station_model->get_asset_facet_stations();
-								$data['nomination_status']	=	$this->instantiation->get_nomination_status	();
+								$data['nomination_status']	=	$this->nomination->get_assets_nomination_count	();
 								$data['media_types']	=	$this->instantiation->get_media_types	();
 								$data['physical_formats']	=	$this->instantiation->get_physical_formats	();
 								$data['digital_formats']	=	$this->instantiation->get_digital_formats	();

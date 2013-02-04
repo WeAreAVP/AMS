@@ -498,7 +498,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->station_name);	?>','organization_main');"><?php	echo	"$value->station_name ($value->total)";	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -515,7 +515,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->station_name);	?>','organization_main');"><?php	echo	"$value->station_name ($value->total)";	?></a></li>
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name	.	' ('	.	number_format($value->total)	.	')';	?></a></li>
 																																				<?php
 																																}
 																												}

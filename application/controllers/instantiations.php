@@ -39,7 +39,7 @@ class	Instantiations	extends	MY_Controller
 				{
 								parent::__construct();
 								$this->load->model('instantiations_model',	'instantiation');
-								$this->load->model('nomination_model',	'nomination');
+								$this->load->model('nomination_model',	'mix');
 								$this->load->model('export_csv_job_model',	'csv_job');
 								$this->load->model('assets_model');
 								$this->load->model('sphinx_model',	'sphinx');
@@ -82,8 +82,8 @@ class	Instantiations	extends	MY_Controller
 								$this->session->set_userdata('page_link',	'instantiations/index/'	.	$offset);
 								$data['get_column_name']	=	$this->make_array();
 								$data['stations']	=	$this->station_model->get_inst_facet_stations();
-								$data['nomination_status']	=	$this->nomination->get_instantiation_nomination_count();
-								$data['media_types']	=	$this->instantiation->get_media_types();
+								$data['nomination_status']	=	$this->mix->get_instantiation_nomination();
+								$data['media_types']	=	$this->mix->get_instantiation_media_types();
 								$data['physical_formats']	=	$this->instantiation->get_physical_formats();
 								$data['digital_formats']	=	$this->instantiation->get_digital_formats();
 								$data['generations']	=	$this->instantiation->get_generations();

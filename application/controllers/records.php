@@ -74,7 +74,7 @@ class	Records	extends	MY_Controller
 								$data['media_types']	=	$this->mix->get_asset_media_types();
 								$data['physical_formats']	=	$this->mix->get_asset_physical_formats	();
 								$data['digital_formats']	=	$this->mix->get_asset_digital_formats	();
-								$data['generations']	=	$this->instantiation->get_generations	();
+								$data['generations']	=	$this->mix->get_asset_generations	();
 								$data['date_types']	=	$this->instantiation->get_date_types	();
 								$is_hidden	=	array	();
 								$data['table_type']	=	'assets';

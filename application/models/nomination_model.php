@@ -25,6 +25,8 @@ class	Nomination_Model	extends	CI_Model
 								$this->_stations_table	=	'stations';
 								$this->_media_type_table	=	'instantiation_media_types';
 								$this->formats_table	=	'instantiation_formats';
+								$this->instantiation_generations_table	=	'instantiation_generations';
+								$this->generations_table	=	'generations';
 				}
 
 				function	get_assets_nomination()
@@ -100,6 +102,25 @@ class	Nomination_Model	extends	CI_Model
 								$this->db->join($this->formats_table,	"$this->formats_table.instantiations_id = $this->_instantiations_table.id");
 								$this->db->where("$this->formats_table.format_type",	'digital');
 								$this->db->group_by("$this->formats_table.format_name");
+								return	$query	=	$this->db->get($this->_instantiations_table)->result();
+				}
+
+				function	get_asset_generations()
+				{
+								$this->db->select("COUNT(DISTINCT $this->_assets_table.id) as total,$this->generations_table.generation",	FALSE);
+								$this->db->join($this->_instantiations_table,	"$this->_instantiations_table.assets_id = $this->_assets_table.id");
+								$this->db->join($this->instantiation_generations_table,	"$this->instantiation_generations_table.instantiations_id = $this->_instantiations_table.id");
+								$this->db->join($this->generations_table,	"$this->generations_table.id = $this->instantiation_generations_table.generations_id");
+								$this->db->group_by("$this->generations_table.generation");
+								return	$query	=	$this->db->get($this->_assets_table)->result();
+				}
+
+				function	get_instantitation_generations()
+				{
+								$this->db->select("COUNT(DISTINCT $this->_instantiations_table.id) as total,$this->generations_table.generation",	FALSE);
+								$this->db->join($this->instantiation_generations_table,	"$this->instantiation_generations_table.instantiations_id = $this->_instantiations_table.id");
+								$this->db->join($this->generations_table,	"$this->generations_table.id = $this->instantiation_generations_table.generations_id");
+								$this->db->group_by("$this->generations_table.generation");
 								return	$query	=	$this->db->get($this->_instantiations_table)->result();
 				}
 

@@ -42,6 +42,7 @@ class	Records	extends	MY_Controller
 												$this->unset_facet_search();
 												$search['custom_search']	=	$this->input->post('keyword_field_main_search');
 												$search['organization']	=	$this->input->post('organization_main_search');
+												$search['states']	=	$this->input->post('states_main_search');
 												$search['nomination']	=	$this->input->post('nomination_status_main_search');
 												$search['media_type']	=	$this->input->post('media_type_main_search');
 												$search['physical_format']	=	$this->input->post('physical_format_main_search');
@@ -77,6 +78,7 @@ class	Records	extends	MY_Controller
 												$data['digital_formats']	=	$this->mix->get_asset_digital_formats();
 												$data['generations']	=	$this->mix->get_asset_generations();
 												$data['date_types']	=	$this->instantiation->get_date_types();
+													$data['org_states']	=	$this->station_model->get_asset_states();
 								}
 								$is_hidden	=	array();
 								$data['table_type']	=	'assets';

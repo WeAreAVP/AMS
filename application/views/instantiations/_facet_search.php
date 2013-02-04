@@ -159,6 +159,40 @@
 
 												<!-- Organization Search Display End  -->
 												<div class="clearfix"></div>
+												<!-- State Search Display Start  -->
+
+												<?php
+												if(isset($this->session->userdata['states'])	&&	$this->session->userdata['states']	!=	'')
+												{
+
+																$state	=	$this->session->userdata['states'];
+																$state_array	=	explode('|||',	$state);
+																?>
+																<div id="states_main">
+																				<div class="filter-fileds"><b>State</b></div>
+																				<input type="hidden" id="states_main_search" name="states_main_search" value="<?php	echo	$state;	?>" />
+																				<?php
+																				foreach($state_array	as	$value)
+																				{
+																								$search_id	=	name_slug($value);
+																								?>
+																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','states_main')"></i></div>
+																				<?php	}	?>
+																</div>
+																<?php
+												}
+												else
+												{
+																?>
+
+																<div id="states_main" style="display: none;">
+																				<div class="filter-fileds"><b>State</b></div>
+																				<input type="hidden" id="states_main_search" name="states_main_search"/>
+																</div>
+												<?php	}	?>
+
+												<!-- State Search Display End  -->
+												<div class="clearfix"></div>
 												<!-- Nomination Status Search Display Start  -->
 												<?php
 												if(isset($this->session->userdata['nomination'])	&&	$this->session->userdata['nomination']	!=	'')
@@ -526,23 +560,23 @@
 												</div>
 								<?php	}	?>
 								<!-- Organization  End      -->
-								<!--  Nomination Status Start      -->
+								<!--  States Start      -->
 								<?php
-								if(count($nomination_status)	>	0)
+								if(count($org_states)	>	0)
 								{
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Nomination Status</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('n_div',this);"></span>
+																				<b>States</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('org_st_div',this);"></span>
 																</div>
-																<div class="filter-fileds" id="n_div">
+																<div class="filter-fileds" id="org_st_div">
 																				<?php
-																				foreach($nomination_status	as	$key	=>	$value)
+																				foreach($org_states	as	$key	=>	$value)
 																				{
 																								if($key	<	4)
 																								{
 																												?>
-																				<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status.' ('.		number_format($value->total).')';	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','states_main');"><?php	echo	$value->state	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -559,7 +593,55 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status.' ('.		number_format($value->total).')';	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','states_main');"><?php	echo	$value->state	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
+																																				<?php
+																																}
+																												}
+																												if(count($nomination_status)	>	4)
+																												{
+																																echo	count($nomination_status);
+																																?>
+																												</ul>
+																								</div>
+																				<?php	}	?>
+																</div>
+												</div>
+								<?php	}	?>
+								<!--  States End      -->
+								<!--  Nomination Status Start      -->
+								<?php
+								if(count($nomination_status)	>	0)
+								{
+												?>
+												<div class="field-filters">
+																<div class="filter-fileds">
+																				<b>Nomination Status</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('n_div',this);"></span>
+																</div>
+																<div class="filter-fileds" id="n_div">
+																				<?php
+																				foreach($nomination_status	as	$key	=>	$value)
+																				{
+																								if($key	<	4)
+																								{
+																												?>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
+																												<?php
+																								}
+																								else	if($key	==	4)
+																								{
+																												?>
+																												<div class="dropdown">
+																																<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
+																																				More
+																																				<b class="caret"></b>
+																																</a>
+																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																				<?php
+																																}
+																																else
+																																{
+																																				?>
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
 																																				<?php
 																																}
 																												}
@@ -590,7 +672,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																				<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type.' ('.		number_format($value->total).')';	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -607,7 +689,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type.' ('.		number_format($value->total).')';	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
 																																				<?php
 																																}
 																												}
@@ -637,7 +719,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																				<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name.' ('.		number_format($value->total).')';	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -654,7 +736,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name.' ('.		number_format($value->total).')';	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
 																																				<?php
 																																}
 																												}
@@ -684,7 +766,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name.' ('.		number_format($value->total).')';	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -701,7 +783,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name.' ('.		number_format($value->total).')';	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
 																																				<?php
 																																}
 																												}
@@ -731,7 +813,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->generation);	?>','generation_main');"><?php	echo	$value->generation.' ('.number_format($value->total).')';	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->generation);	?>','generation_main');"><?php	echo	$value->generation	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -748,7 +830,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->generation);	?>','generation_main');"><?php	echo	$value->generation.' ('.number_format($value->total).')';	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->generation);	?>','generation_main');"><?php	echo	$value->generation	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
 																																				<?php
 																																}
 																												}

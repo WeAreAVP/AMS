@@ -197,7 +197,7 @@ class	Station_Model	extends	CI_Model
 
 				/**
 					* Get the hours of Crawford
-				 * 
+					* 
 					* @param string $msg_type
 					* @return type 
 					*/
@@ -209,6 +209,23 @@ class	Station_Model	extends	CI_Model
 								$result	=	$this->db->get($this->_table);
 
 								return	$result->result();
+				}
+
+				function	get_asset_states()
+				{
+								$this->db->select("COUNT($this->_assets_table.id) as total,$this->_table.state",	FALSE);
+								$this->db->join($this->_table,	"$this->_table.id = $this->_assets_table.stations_id");
+								$this->db->group_by("$this->_assets_table.stations_id");
+								return	$query	=	$this->db->get($this->_assets_table)->result();
+				}
+
+				function	get_instantiation_states()
+				{
+									$this->db->select("COUNT($this->_instantiations_table.id) as total,$this->_table.state",	FALSE);
+								$this->db->join($this->_assets_table,	"$this->_assets_table.id = $this->_instantiations_table.assets_id");
+								$this->db->join($this->_table,	"$this->_table.id = $this->_assets_table.stations_id");
+								$this->db->group_by("$this->_table.id");
+								return	$query	=	$this->db->get($this->_instantiations_table)->result();
 				}
 
 }

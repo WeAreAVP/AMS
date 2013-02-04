@@ -172,7 +172,7 @@
 																$('#myGeneral').on('hidden', function () {
 																				$('#myGeneral_body').html(''); 
 																})
-                
+                document.addEventListener("touchstart",function(){},true);
 																var dates = $( "#start_date, #end_date" ).datepicker({
 																				defaultDate: "+1w",
 																				changeMonth: true,

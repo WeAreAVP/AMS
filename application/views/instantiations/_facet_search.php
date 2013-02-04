@@ -576,7 +576,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','states_main');"><?php	echo	$value->state	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->state);	?>','states_main');"><?php	echo	$value->state	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -593,7 +593,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','states_main');"><?php	echo	$value->state	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->state);	?>','states_main');"><?php	echo	$value->state	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
 																																				<?php
 																																}
 																												}

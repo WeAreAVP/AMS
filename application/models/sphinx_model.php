@@ -170,13 +170,12 @@ class	Sphinx_Model	extends	CI_Model
 								}
 								if(isset($this->session->userdata['physical_format'])	&&	$this->session->userdata['physical_format']	!=	'')
 								{
-												$this->sphinxsearch->set_match_mode(SPH_MATCH_PHRASE);
+												$this->sphinxsearch->set_match_mode($mode);
 												$physical_format	=	str_replace('|||',	'" | "',	trim($this->session->userdata['physical_format']));
-												$where	.=" @format_name \"$physical_format\" @format_type \"physical\"";
+												$where	.=" @format_name \"^$physical_format$\" @format_type \"physical\"";
 								}
 								if(isset($this->session->userdata['digital_format'])	&&	$this->session->userdata['digital_format']	!=	'')
 								{
-												$this->sphinxsearch->set_match_mode(SPH_MATCH_PHRASE);
 												$digital_format	=	str_replace('|||',	'" | "',	trim($this->session->userdata['digital_format']));
 												$where	.=" @format_name \"$digital_format\" @format_type \"digital\"";
 								}

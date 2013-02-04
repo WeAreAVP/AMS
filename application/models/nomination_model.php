@@ -27,7 +27,7 @@ class	Nomination_Model	extends	CI_Model
 
 				function	get_assets_nomination_count()
 				{
-								$this->db->select("COUNT($this->_table.id) as total,$this->_nomination_table.status",	FALSE);
+								$this->db->select("COUNT($this->_assets_table.id) as total,$this->_nomination_table.status",	FALSE);
 								$this->db->join($this->_table,	"$this->_table.nomination_status_id = $this->_nomination_table.id");
 								$this->db->join($this->_instantiations_table,	"$this->_instantiations_table.id = $this->_table.instantiations_id");
 								$this->db->join($this->_assets_table,	"$this->_assets_table.id = $this->_instantiations_table.assets_id");

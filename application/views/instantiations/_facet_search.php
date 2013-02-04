@@ -561,52 +561,7 @@
 								<?php	}	?>
 								<!-- Organization  End      -->
 								<!--  States Start      -->
-								<?php
-								if(count($org_states)	>	0)
-								{
-												?>
-												<div class="field-filters">
-																<div class="filter-fileds">
-																				<b>States</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('org_st_div',this);"></span>
-																</div>
-																<div class="filter-fileds" id="org_st_div">
-																				<?php
-																				foreach($org_states	as	$key	=>	$value)
-																				{
-																								if($key	<	4)
-																								{
-																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->state);	?>','states_main');"><?php	echo	$value->state	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
-																												<?php
-																								}
-																								else	if($key	==	4)
-																								{
-																												?>
-																												<div class="dropdown">
-																																<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
-																																				More
-																																				<b class="caret"></b>
-																																</a>
-																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-																																				<?php
-																																}
-																																else
-																																{
-																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->state);	?>','states_main');"><?php	echo	$value->state	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
-																																				<?php
-																																}
-																												}
-																												if(count($nomination_status)	>	4)
-																												{
-																																echo	count($nomination_status);
-																																?>
-																												</ul>
-																								</div>
-																				<?php	}	?>
-																</div>
-												</div>
-								<?php	}	?>
+								
 								<!--  States End      -->
 								<!--  Nomination Status Start      -->
 								<?php

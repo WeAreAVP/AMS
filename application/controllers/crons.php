@@ -87,14 +87,15 @@ class	Crons	extends	CI_Controller
 																				{
 
 																								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$field);
-
+																								$this->excel->getActiveSheet()->disconnectCells();
 																								$col	++;
 																				}
 																				$row	++;
 																}
+																unset($records);
 												}
 												$filename	=	'csv_export_'	.	time()	.	'.csv';
-												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
+												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel5');
 												$objWriter->save("uploads/$filename");
 												$url	=	site_url()	.	"uploads/$filename";
 												$this->csv_job->update_job($job->id,	array('status'	=>	'1'));

@@ -52,6 +52,9 @@ class	Instantiations	extends	MY_Controller
 					* 
 					* @return instantiations/index view
 					*/
+				public function aadf(){
+							$this->station_model->get_asset_facet_stations();
+				}
 				public	function	index()
 				{
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;

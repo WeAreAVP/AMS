@@ -46,7 +46,8 @@ class	Station_Model	extends	CI_Model
 								$this->db->select("COUNT($this->_assets_table.id) as total,$this->_table.station_name",	FALSE);
 								$this->db->join($this->_table,	"$this->_table.id = $this->_assets_table.stations_id");
 								$this->db->group_by("$this->_assets_table.stations_id");
-								return	$query	=	$this->db->get($this->_assets_table)->result();
+								$query	=	$this->db->get($this->_assets_table)->result();
+								echo $this->db->last_query();
 				}
 
 				/**

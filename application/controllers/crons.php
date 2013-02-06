@@ -87,7 +87,7 @@ class	Crons	extends	CI_Controller
 																				{
 
 																								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$field);
-																								$this->excel->getActiveSheet()->disconnectCells();
+//																								$this->excel->getActiveSheet()->disconnectCells();
 																								$col	++;
 																				}
 																				$row	++;

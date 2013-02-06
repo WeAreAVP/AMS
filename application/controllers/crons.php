@@ -23,6 +23,7 @@ class	Crons	extends	CI_Controller
 								parent::__construct();
 								$this->load->model('email_template_model',	'email_template');
 								$this->load->model('cron_model');
+									$this->load->model('dx_auth/users',	'users');
 								$this->load->model('assets_model');
 								$this->load->model('instantiations_model',	'instant');
 								$this->load->model('essence_track_model',	'essence');
@@ -51,7 +52,7 @@ class	Crons	extends	CI_Controller
 
 				function	csv_export_job()
 				{
-								send_email('nouman@geekschicago.com',	'ssapienza@cpb.org',	'Limited CSV Export',	'Crons is started for exporting csv file.');
+								
 								$this->load->model('export_csv_job_model',	'csv_job');
 								$job	=	$this->csv_job->get_incomplete_jobs();
 
@@ -105,8 +106,8 @@ class	Crons	extends	CI_Controller
 												$objWriter->save("uploads/$filename");
 												$url	=	site_url()	.	"uploads/$filename";
 												$this->csv_job->update_job($job->id,	array('status'	=>	'1'));
-//																$this->users->get_user_by_id($job>user_id);
-												send_email('nouman@geekschicago.com',	'ssapienza@cpb.org',	'Limited CSV Export',	$url);
+																$user=$this->users->get_user_by_id($job>user_id)->row();
+												send_email($user->email,	'ssapienza@cpb.org',	'Limited CSV Export',	$url);
 												exit;
 								}
 				}

@@ -20,7 +20,7 @@ class	Emailtemplates
 				function	__construct()
 				{
 								$this->CI	=	&	get_instance();
-								$this->sent_now	=	false;	/* If set to true then email will sent immediately */
+								$this->sent_now	=	FALSE;	/* If set to true then email will sent immediately */
 								log_message('debug',	'Email Templates Initialized');
 								/* Load Email Tempalte Model */
 								$this->CI->load->model('email_template_model',	'email_templates');

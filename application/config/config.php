@@ -50,7 +50,7 @@ else	if(ENVIRONMENT	==	'qatesting')
 				$config['to_email']	=	'nouman@geekschicago.com';
 				$config['from_email']	=	'noreply@amsqa.avpreserve.com';
 //				$config['crawford_email']	=	'cstephenson@mail.crawford.com';
-				$config['crawford_email']	=	'nouman@geekschicago.com';
+				$config['crawford_email']	=	'noumantayyab@gmail.com';
 				$config['path']	=	'/var/www/html/';
 				$config['cookie_domain']	=	".amsqa.avpreserve.com";
 }	if(ENVIRONMENT	==	'production')

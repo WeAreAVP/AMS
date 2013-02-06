@@ -71,18 +71,19 @@ class	Records	extends	MY_Controller
 								$data['get_column_name']	=	$this->make_array();
 								if(	!	isAjax())
 								{
-//												$data['org_states']	=	$this->station_model->get_asset_states();
+
 												$states	=	$this->sphinx->facet_index('asset_state');
 												$data['org_states']	=	$states['records'];
 												unset($states);
-//												$data['stations']	=	$this->station_model->get_asset_facet_stations();
+												$stations	=	$this->sphinx->facet_index('assets_stations');
+												$data['stations']	=	$stations['records'];
+												unset($stations);
 //												$data['nomination_status']	=	$this->mix->get_assets_nomination();
 //												$data['media_types']	=	$this->mix->get_asset_media_types();
 //												$data['physical_formats']	=	$this->mix->get_asset_physical_formats();
 //												$data['digital_formats']	=	$this->mix->get_asset_digital_formats();
 //												$data['generations']	=	$this->mix->get_asset_generations();
 //												$data['date_types']	=	$this->instantiation->get_date_types();
-												
 								}
 								$is_hidden	=	array();
 								$data['table_type']	=	'assets';

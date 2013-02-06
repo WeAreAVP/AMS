@@ -46,12 +46,15 @@ class	Instantiations	extends	MY_Controller
 								$this->load->library('pagination');
 								$this->load->library('Ajax_pagination');
 				}
-				function queryst(){
-						$this->station_model->get_inst_facet_stations();
-						echo '<br/>';
-						$this->station_model->get_asset_facet_stations();
-						exit;
+
+				function	queryst()
+				{
+								$this->station_model->get_inst_facet_stations();
+								echo	'<br/>';
+								$this->station_model->get_asset_facet_stations();
+								exit;
 				}
+
 				/**
 					* List all the instantiation records with pagination and filters. 
 					* 
@@ -89,11 +92,12 @@ class	Instantiations	extends	MY_Controller
 								$data['get_column_name']	=	$this->make_array();
 								if(	!	isAjax())
 								{
-//													$data['org_states']	=	$this->station_model->get_instantiation_states();
 												$states	=	$this->sphinx->facet_index('instantiation_state');
 												$data['org_states']	=	$states['records'];
 												unset($states);
-//												$data['stations']	=	$this->station_model->get_inst_facet_stations();
+												$stations	=	$this->sphinx->facet_index('instantiation_stations');
+												$data['stations']	=	$stations['records'];
+												unset($stations);
 //												$data['nomination_status']	=	$this->mix->get_instantiation_nomination();
 //												$data['media_types']	=	$this->mix->get_instantiation_media_types();
 //												$data['physical_formats']	=	$this->mix->get_instantiation_physical_formats();

@@ -78,6 +78,42 @@ class	Sphinx_Model	extends	CI_Model
 								return	array("total_count"	=>	$total_record,	"records"					=>	$stations_list,	"query_time"		=>	$execution_time);
 				}
 
+				public	function	facet_index($index_name)
+				{
+								$list	=	array();
+								$total_record	=	0;
+								$this->sphinxsearch->reset_filters();
+								$this->sphinxsearch->reset_group_by();
+
+								$mode	=	SPH_MATCH_EXTENDED;
+								$this->sphinxsearch->set_array_result(true);
+								$this->sphinxsearch->set_match_mode($mode);
+								$this->sphinxsearch->set_connect_timeout(120);
+
+								$res	=	$this->sphinxsearch->query('',	$index_name);
+
+
+								$execution_time	=	$res['time'];
+								if($res)
+								{
+												$total_record	=	$res['total_found'];
+												if($total_record	>	0)
+												{
+																if(isset($res['matches']))
+																{
+																				foreach($res['matches']	as	$record)
+																				{
+
+
+																								$list[]	=	(object)	array_merge(array('id'	=>	$record['id']),	$record['attrs']);
+																				}
+																}
+												}
+								}
+
+								return	array("total_count"	=>	$total_record,	"records"					=>	$list,	"query_time"		=>	$execution_time);
+				}
+
 				/*
 					* Update Index Attribute Value
 					* @Perm Name of index
@@ -160,7 +196,7 @@ class	Sphinx_Model	extends	CI_Model
 								}
 								if(isset($this->session->userdata['states'])	&&	$this->session->userdata['states']	!=	'')
 								{
-												$station_state=	str_replace('|||',	'" | "',	trim($this->session->userdata['states']));
+												$station_state	=	str_replace('|||',	'" | "',	trim($this->session->userdata['states']));
 												$where	.=" @state \"^$station_state$\"";
 								}
 								if(isset($this->session->userdata['nomination'])	&&	$this->session->userdata['nomination']	!=	'')
@@ -175,7 +211,7 @@ class	Sphinx_Model	extends	CI_Model
 								}
 								if(isset($this->session->userdata['physical_format'])	&&	$this->session->userdata['physical_format']	!=	'')
 								{
-												
+
 												$physical_format	=	str_replace('|||',	'" | "',	trim($this->session->userdata['physical_format']));
 												$where	.=" @format_name \"^$physical_format$\" @format_type \"physical\"";
 								}

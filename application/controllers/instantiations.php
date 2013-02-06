@@ -84,7 +84,9 @@ class	Instantiations	extends	MY_Controller
 								$data['get_column_name']	=	$this->make_array();
 								if(	!	isAjax())
 								{
-													$data['org_states']	=	$this->station_model->get_instantiation_states();
+//													$data['org_states']	=	$this->station_model->get_instantiation_states();
+												$data['org_states']	=	$this->sphinx->facet_index('instantiation_state');
+												debug($data['org_states']);
 												$data['stations']	=	$this->station_model->get_inst_facet_stations();
 												$data['nomination_status']	=	$this->mix->get_instantiation_nomination();
 												$data['media_types']	=	$this->mix->get_instantiation_media_types();

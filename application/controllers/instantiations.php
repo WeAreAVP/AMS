@@ -46,7 +46,12 @@ class	Instantiations	extends	MY_Controller
 								$this->load->library('pagination');
 								$this->load->library('Ajax_pagination');
 				}
-
+				function queryst(){
+						$this->station_model->get_inst_facet_stations();
+						echo '<br/>';
+						$this->station_model->get_asset_facet_stations();
+						exit;
+				}
 				/**
 					* List all the instantiation records with pagination and filters. 
 					* 

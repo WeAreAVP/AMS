@@ -85,16 +85,16 @@ class	Instantiations	extends	MY_Controller
 								if(	!	isAjax())
 								{
 //													$data['org_states']	=	$this->station_model->get_instantiation_states();
-												$data['org_states']	=	$this->sphinx->facet_index('instantiation_state');
-												debug($data['org_states']);
-												$data['stations']	=	$this->station_model->get_inst_facet_stations();
-												$data['nomination_status']	=	$this->mix->get_instantiation_nomination();
-												$data['media_types']	=	$this->mix->get_instantiation_media_types();
-												$data['physical_formats']	=	$this->mix->get_instantiation_physical_formats();
-												$data['digital_formats']	=	$this->mix->get_instantiation_digital_formats();
-												$data['generations']	=	$this->mix->get_instantitation_generations();
-												$data['date_types']	=	$this->instantiation->get_date_types();
-											
+												$states	=	$this->sphinx->facet_index('instantiation_state');
+												$data['org_states']	=	$states['records'];
+												unset($states);
+//												$data['stations']	=	$this->station_model->get_inst_facet_stations();
+//												$data['nomination_status']	=	$this->mix->get_instantiation_nomination();
+//												$data['media_types']	=	$this->mix->get_instantiation_media_types();
+//												$data['physical_formats']	=	$this->mix->get_instantiation_physical_formats();
+//												$data['digital_formats']	=	$this->mix->get_instantiation_digital_formats();
+//												$data['generations']	=	$this->mix->get_instantitation_generations();
+//												$data['date_types']	=	$this->instantiation->get_date_types();
 								}
 
 								$data['current_tab']	=	'';
@@ -416,7 +416,7 @@ class	Instantiations	extends	MY_Controller
 								else
 								{
 												$query	=	$this->instantiation->export_limited_csv(TRUE);
-												$record	=	array('user_id'						=>	$this->user_id,	'status'							=>	0,	'export_query'	=>	$query,'query_loop'=>ceil($records['total_count']/15000));
+												$record	=	array('user_id'						=>	$this->user_id,	'status'							=>	0,	'export_query'	=>	$query,	'query_loop'			=>	ceil($records['total_count']	/	15000));
 												$this->csv_job->insert_job($record);
 												echo	json_encode(array('link'	=>	'false',	'msg'		=>	'Email will be sent to you with the link of limited csv export.'));
 												exit_function();

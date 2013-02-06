@@ -219,7 +219,7 @@ class	Station_Model	extends	CI_Model
 								$query	=	$this->db->get($this->_assets_table)->result();
 								echo 'Assets State<br/>';
 								echo $this->db->last_query();
-								echo '<br/>';
+								echo '<br/>';exit;
 				}
 
 				function	get_instantiation_states()
@@ -231,7 +231,7 @@ class	Station_Model	extends	CI_Model
 								$query	=	$this->db->get($this->_instantiations_table)->result();
 								echo 'Instantiations State<br/>';
 								echo $this->db->last_query();
-								echo '<br/>';
+								echo '<br/>';exit;
 				}
 
 }

@@ -15,7 +15,7 @@ $attributes	=	array(
 								<div class="controls">
 												<textarea type="text" id="crawford_contact_details" name="crawford_contact_details" style="width:400px;height: 100px;"><?php	echo	$detail->crawford_contact_detail;	?></textarea>
 												<div class="clearfix"></div>
-												<span style="color: firebrick;margin:10px;"><?php	echo	form_error('crawford_contact_details');	?></span></td>
+												<span style="color: firebrick;"><?php	echo	form_error('crawford_contact_details');	?></span></td>
 								</div>
 				</div>
 

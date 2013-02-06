@@ -84,6 +84,7 @@ class	Instantiations	extends	MY_Controller
 								$data['get_column_name']	=	$this->make_array();
 								if(	!	isAjax())
 								{
+													$data['org_states']	=	$this->station_model->get_instantiation_states();
 												$data['stations']	=	$this->station_model->get_inst_facet_stations();
 												$data['nomination_status']	=	$this->mix->get_instantiation_nomination();
 												$data['media_types']	=	$this->mix->get_instantiation_media_types();
@@ -91,7 +92,7 @@ class	Instantiations	extends	MY_Controller
 												$data['digital_formats']	=	$this->mix->get_instantiation_digital_formats();
 												$data['generations']	=	$this->mix->get_instantitation_generations();
 												$data['date_types']	=	$this->instantiation->get_date_types();
-												$data['org_states']	=	$this->station_model->get_instantiation_states();
+											
 								}
 
 								$data['current_tab']	=	'';

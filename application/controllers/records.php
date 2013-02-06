@@ -71,6 +71,7 @@ class	Records	extends	MY_Controller
 								$data['get_column_name']	=	$this->make_array();
 								if(	!	isAjax())
 								{
+												$data['org_states']	=	$this->station_model->get_asset_states();
 												$data['stations']	=	$this->station_model->get_asset_facet_stations();
 												$data['nomination_status']	=	$this->mix->get_assets_nomination();
 												$data['media_types']	=	$this->mix->get_asset_media_types();
@@ -78,7 +79,7 @@ class	Records	extends	MY_Controller
 												$data['digital_formats']	=	$this->mix->get_asset_digital_formats();
 												$data['generations']	=	$this->mix->get_asset_generations();
 												$data['date_types']	=	$this->instantiation->get_date_types();
-													$data['org_states']	=	$this->station_model->get_asset_states();
+												
 								}
 								$is_hidden	=	array();
 								$data['table_type']	=	'assets';

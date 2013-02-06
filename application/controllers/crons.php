@@ -61,12 +61,13 @@ class	Crons	extends	CI_Controller
 												@ini_set("memory_limit",	"3000M");	# 1GB
 												@ini_set("max_execution_time",	999999999999);	# 1GB
 												$this->load->library('excel');
+												PHPExcel_Settings::setCacheStorageMethod( PHPExcel_CachedObjectStorageFactory::cache_in_memory_gzip );
 												$this->excel->getActiveSheetIndex();
 												$this->excel->getActiveSheet()->setTitle('Limited CSV');
 												$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
 												$this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(25);
 												$this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(45);
-												$this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(10);
+												$this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(25);
 												$this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
 												$this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(25);
 												$this->excel->getActiveSheet()->getStyle("A1:F1")->getFont()->setBold(true);
@@ -100,7 +101,7 @@ class	Crons	extends	CI_Controller
 																echo memory_get_usage() . "\n";
 												}
 												$filename	=	'csv_export_'	.	time()	.	'.csv';
-												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel5');
+												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'CSV');
 												$objWriter->save("uploads/$filename");
 												$url	=	site_url()	.	"uploads/$filename";
 												$this->csv_job->update_job($job->id,	array('status'	=>	'1'));

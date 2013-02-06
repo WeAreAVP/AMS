@@ -78,11 +78,21 @@ class	Records	extends	MY_Controller
 												$stations	=	$this->sphinx->facet_index('assets_stations');
 												$data['stations']	=	$stations['records'];
 												unset($stations);
-//												$data['nomination_status']	=	$this->mix->get_assets_nomination();
-//												$data['media_types']	=	$this->mix->get_asset_media_types();
-//												$data['physical_formats']	=	$this->mix->get_asset_physical_formats();
-//												$data['digital_formats']	=	$this->mix->get_asset_digital_formats();
-//												$data['generations']	=	$this->mix->get_asset_generations();
+												$nomination	=	$this->sphinx->facet_index('assets_nomination');
+												$data['nomination_status']	=	$nomination['records'];
+												unset($nomination);
+												$media_type	=	$this->sphinx->facet_index('assets_media_type');
+												$data['media_types']	=	$media_type['records'];
+												unset($media_type);
+												$p_format	=	$this->sphinx->facet_index('assets_format_physical');
+												$data['physical_formats']	=	$p_format['records'];
+												unset($p_format);
+												$d_format	=	$this->sphinx->facet_index('assets_format_digital');
+												$data['digital_formats']	=	$d_format['records'];
+												unset($d_format);
+												$generation	=	$this->sphinx->facet_index('assets_generation');
+												$data['generations']	=	$generation['records'];
+												unset($generation);
 												$data['date_types']	=	$this->instantiation->get_date_types();
 								}
 								$is_hidden	=	array();

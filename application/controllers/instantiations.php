@@ -47,21 +47,6 @@ class	Instantiations	extends	MY_Controller
 								$this->load->library('Ajax_pagination');
 				}
 
-				function	queryst()
-				{
-								$this->mix->get_assets_nomination();
-								echo	'<hr/>';
-								$this->mix->get_asset_media_types();
-								echo	'<hr/>';
-								$this->mix->get_asset_physical_formats();
-								echo	'<hr/>';
-								$this->mix->get_asset_digital_formats();
-								echo	'<hr/>';
-								$this->mix->get_asset_generations();
-								echo	'<hr/>';
-								exit;
-				}
-
 				/**
 					* List all the instantiation records with pagination and filters. 
 					* 

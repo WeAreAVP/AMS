@@ -51,6 +51,7 @@ class	Crons	extends	CI_Controller
 
 				function	csv_export_job()
 				{
+								send_email('nouman@geekschicago.com',	'ssapienza@cpb.org',	'Limited CSV Export',	'Crons is started for exporting csv file.');
 								$this->load->model('export_csv_job_model',	'csv_job');
 								$job	=	$this->csv_job->get_incomplete_jobs();
 

@@ -2,8 +2,8 @@
 
 #####################################
 #                                   #
-#  Shell Script for export a        #
-#  csv file and email to the user.  #
+#  Shell Script for sending emails  #
+#  to users that are in queue       #
 #  This script will prevent         #
 #  from running method more         #
 #  than one time                    #

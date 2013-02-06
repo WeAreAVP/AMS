@@ -174,7 +174,7 @@ class	Tracking	extends	MY_Controller
 
 
 												$replacebale['inform_to']	=	'ssapienza@cpb.org';
-												$this->emailtemplates->sent_now	=	TRUE;
+//												$this->emailtemplates->sent_now	=	TRUE;
 												if($this->session->userdata['DX_email']	!==	$this->config->item('crawford_email'))
 												{
 																$user	=	$this->users->get_user_by_email($this->config->item('crawford_email'))->row();

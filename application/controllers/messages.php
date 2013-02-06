@@ -248,7 +248,7 @@ class	Messages	extends	MY_Controller
 																				$to_email	=	$this->config->item('to_email');
 																				$from_email	=	$this->config->item('from_email');
 																				$replacebale['user_name']	=	'The American Archive';
-																				$this->emailtemplates->sent_now	=	TRUE;
+//																				$this->emailtemplates->sent_now	=	TRUE;
 																}
 																else
 																{

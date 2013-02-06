@@ -49,15 +49,15 @@ class	Instantiations	extends	MY_Controller
 
 				function	queryst()
 				{
-								$this->mix->get_instantiation_nomination();
+								$this->mix->get_assets_nomination();
 								echo	'<hr/>';
-								$this->mix->get_instantiation_media_types();
+								$this->mix->get_asset_media_types();
 								echo	'<hr/>';
-								$this->mix->get_instantiation_physical_formats();
+								$this->mix->get_asset_physical_formats();
 								echo	'<hr/>';
-								$this->mix->get_instantiation_digital_formats();
+								$this->mix->get_asset_digital_formats();
 								echo	'<hr/>';
-								$this->mix->get_instantitation_generations();
+								$this->mix->get_asset_generations();
 								echo	'<hr/>';
 								exit;
 				}

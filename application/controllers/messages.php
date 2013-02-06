@@ -257,7 +257,7 @@ class	Messages	extends	MY_Controller
 																				$replacebale['user_name']	=	'The American Archive';
 																}
 																$replacebale['inform_to']	=	'cstephenson@mail.crawford.com';
-																$email_queue_id	=	$this->emailtemplates->queue_email($type,	$to_email,	$replacebale);
+																$email_queue_id	=	$this->emailtemplates->queue_email($template,	$to_email,	$replacebale);
 
 																$data	=	array('sender_id'			=>	$this->user_id,	'receiver_id'	=>	$to,	'msg_type'				=>	$type,	'subject'					=>	$subject,	'msg_extras'		=>	json_encode($extra),	'created_at'		=>	date('Y-m-d h:m:i'));
 																if(isset($email_queue_id)	&&	$email_queue_id)

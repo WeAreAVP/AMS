@@ -69,6 +69,7 @@ class	Emailtemplates
 																												else
 																												{
 																																log_message('error',	'Email template Replaceable '	.	$replaceable_key	.	' not found.');
+																																echo '4';exit;
 																																return	false;
 																												}
 																								}
@@ -78,6 +79,7 @@ class	Emailtemplates
 																{
 
 																				log_message('error',	'Email template body not define.');
+																				echo '3';echo '4';exit;
 																				return	false;
 																}
 																$queue_data['email_body']	=	$email_body;
@@ -95,13 +97,14 @@ class	Emailtemplates
 																				send_email($queue_data['email_to'],	$queue_data['email_from'],	$queue_data['email_subject'],	$queue_data['email_body'],	$queue_data['email_reply_to']);
 																				$this->CI->email_templates->update_email_queue_by_id($last_inserted_id,	array("is_sent"	=>	2,	"sent_at"	=>	date('Y-m-d H:i:s')));
 																}
-
+																echo '2';echo '4';exit;
 																return	$last_inserted_id;
 												}
 								}
 								else
 								{
 												log_message('error',	'Email template '	.	$template_sys_id	.	' not found.');
+												echo '1';echo '4';exit;
 												return	false;
 								}
 				}

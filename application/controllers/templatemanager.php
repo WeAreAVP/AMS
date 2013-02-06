@@ -234,9 +234,15 @@ class	Templatemanager	extends	MY_Controller
 								$data['is_updated']	=	FALSE;
 								if($this->input->post())
 								{
-												$data['is_updated']	=	TRUE;
-												$crawford_detail	=	$this->input->post('crawford_contact_details');
-												$this->email_template->update_email_template(NULL,	array('crawford_contact_detail'	=>	$crawford_detail));
+												$form_val	=	$this->form_validation;
+
+												$form_val->set_rules('crawford_contact_details',	'Crawford Contact Detail',	'trim|required|xss_clean');
+												if($form_val->run())
+												{
+																$data['is_updated']	=	TRUE;
+																$crawford_detail	=	$this->input->post('crawford_contact_details');
+																$this->email_template->update_email_template(NULL,	array('crawford_contact_detail'	=>	$crawford_detail));
+												}
 								}
 								$data['detail']	=	$this->email_template->get_crawford_detail();
 

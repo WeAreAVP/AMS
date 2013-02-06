@@ -78,7 +78,7 @@ class	Sphinx_Model	extends	CI_Model
 								return	array("total_count"	=>	$total_record,	"records"					=>	$stations_list,	"query_time"		=>	$execution_time);
 				}
 
-				public	function	facet_index($index_name)
+				public	function	facet_index($index_name,$offset	=	0,	$limit	=	1000)
 				{
 								$list	=	array();
 								$total_record	=	0;
@@ -89,7 +89,8 @@ class	Sphinx_Model	extends	CI_Model
 								$this->sphinxsearch->set_array_result(true);
 								$this->sphinxsearch->set_match_mode($mode);
 								$this->sphinxsearch->set_connect_timeout(120);
-
+								if($limit)
+												$this->sphinxsearch->set_limits((int)	$offset,	(int)	$limit,	(	$limit	>	1000	)	?	$limit	:	1000	);
 								$res	=	$this->sphinxsearch->query('',	$index_name);
 
 

@@ -62,7 +62,7 @@ class	Crons	extends	CI_Controller
 												@ini_set("memory_limit",	"3000M");	# 1GB
 												@ini_set("max_execution_time",	999999999999);	# 1GB
 												$this->load->library('excel');
-												PHPExcel_Settings::setCacheStorageMethod( PHPExcel_CachedObjectStorageFactory::cache_in_memory_gzip );
+												PHPExcel_Settings::setCacheStorageMethod( PHPExcel_CachedObjectStorageFactory::cache_to_discISAM );
 												$this->excel->getActiveSheetIndex();
 												$this->excel->getActiveSheet()->setTitle('Limited CSV');
 												$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
@@ -98,8 +98,10 @@ class	Crons	extends	CI_Controller
 																				$row	++;
 																}
 																unset($records);
-																 
-																echo memory_get_usage() . "\n";
+																$mem=memory_get_usage()/1024;
+																$mem=$mem/1024;
+																$mem=$mem/1024;
+																echo $mem . " GB\n";
 												}
 												$filename	=	'csv_export_'	.	time()	.	'.csv';
 												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');

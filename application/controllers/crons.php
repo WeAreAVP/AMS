@@ -75,11 +75,13 @@ class	Crons	extends	CI_Controller
 												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(3,	1,	'Format');
 												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(4,	1,	'Duration');
 												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(5,	1,	'Priority');
+												unset($this->excel);
 												for($i	=	0;	$i	<	$job->query_loop;	$i	++	)
 												{
 																$query	=	$job->export_query;
 																$query.='LIMIT '	.	($i	*	15000)	.	', 15000';
 																$records	=	$this->csv_job->get_csv_records($query);
+																$this->excel->getActiveSheetIndex();
 																foreach($records	as	$value)
 																{
 																				$col	=	0;
@@ -93,6 +95,7 @@ class	Crons	extends	CI_Controller
 																				$row	++;
 																}
 																unset($records);
+																unset($this->excel);
 												}
 												$filename	=	'csv_export_'	.	time()	.	'.csv';
 												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel5');

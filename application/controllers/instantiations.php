@@ -49,9 +49,16 @@ class	Instantiations	extends	MY_Controller
 
 				function	queryst()
 				{
-								$this->station_model->get_inst_facet_stations();
-								echo	'<br/>';
-								$this->station_model->get_asset_facet_stations();
+								$this->mix->get_instantiation_nomination();
+								echo	'<hr/>';
+								$this->mix->get_instantiation_media_types();
+								echo	'<hr/>';
+								$this->mix->get_instantiation_physical_formats();
+								echo	'<hr/>';
+								$this->mix->get_instantiation_digital_formats();
+								echo	'<hr/>';
+								$this->mix->get_instantitation_generations();
+								echo	'<hr/>';
 								exit;
 				}
 

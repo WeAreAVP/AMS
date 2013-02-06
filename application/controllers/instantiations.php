@@ -103,7 +103,7 @@ class	Instantiations	extends	MY_Controller
 //												$data['physical_formats']	=	$this->mix->get_instantiation_physical_formats();
 //												$data['digital_formats']	=	$this->mix->get_instantiation_digital_formats();
 //												$data['generations']	=	$this->mix->get_instantitation_generations();
-//												$data['date_types']	=	$this->instantiation->get_date_types();
+												$data['date_types']	=	$this->instantiation->get_date_types();
 								}
 
 								$data['current_tab']	=	'';

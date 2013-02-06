@@ -93,7 +93,7 @@ class	Crons	extends	CI_Controller
 																				$row	++;
 																}
 																unset($records);
-																$this->excel->getActiveSheet()->garbageCollect();
+																
 																echo memory_get_usage() . "\n";
 												}
 												$filename	=	'csv_export_'	.	time()	.	'.csv';

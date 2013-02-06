@@ -96,7 +96,6 @@ class	Instantiations	extends	MY_Controller
 												$data['org_states']	=	$states['records'];
 												unset($states);
 												$stations	=	$this->sphinx->facet_index('instantiation_stations');
-												debug($stations);
 												$data['stations']	=	$stations['records'];
 												unset($stations);
 //												$data['nomination_status']	=	$this->mix->get_instantiation_nomination();

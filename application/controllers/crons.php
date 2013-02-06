@@ -101,7 +101,7 @@ class	Crons	extends	CI_Controller
 																echo memory_get_usage() . "\n";
 												}
 												$filename	=	'csv_export_'	.	time()	.	'.csv';
-												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'CSV');
+												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
 												$objWriter->save("uploads/$filename");
 												$url	=	site_url()	.	"uploads/$filename";
 												$this->csv_job->update_job($job->id,	array('status'	=>	'1'));

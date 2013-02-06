@@ -76,7 +76,7 @@ class	Crons	extends	CI_Controller
 												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(3,	1,	'Format');
 												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(4,	1,	'Duration');
 												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(5,	1,	'Priority');
-												
+												$this->excel->getActiveSheet()->freezePaneByColumnAndRow();
 												for($i	=	0;	$i	<	$job->query_loop;	$i	++	)
 												{
 																$query	=	$job->export_query;
@@ -96,7 +96,7 @@ class	Crons	extends	CI_Controller
 																				$row	++;
 																}
 																unset($records);
-																$this->excel->getActiveSheet()->garbageCollect();
+																 
 																echo memory_get_usage() . "\n";
 												}
 												$filename	=	'csv_export_'	.	time()	.	'.csv';

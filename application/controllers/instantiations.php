@@ -105,11 +105,22 @@ class	Instantiations	extends	MY_Controller
 												$stations	=	$this->sphinx->facet_index('instantiation_stations');
 												$data['stations']	=	$stations['records'];
 												unset($stations);
-//												$data['nomination_status']	=	$this->mix->get_instantiation_nomination();
-//												$data['media_types']	=	$this->mix->get_instantiation_media_types();
-//												$data['physical_formats']	=	$this->mix->get_instantiation_physical_formats();
-//												$data['digital_formats']	=	$this->mix->get_instantiation_digital_formats();
-//												$data['generations']	=	$this->mix->get_instantitation_generations();
+												$nomination	=	$this->sphinx->facet_index('instantiation_nomination');
+												$data['nomination_status']	=	$nomination['records'];
+												unset($nomination);
+												$media_type	=	$this->sphinx->facet_index('instantiation_media_type');
+												$data['media_types']	=	$media_type['records'];
+												unset($media_type);
+												$p_format	=	$this->sphinx->facet_index('instantiation_format_physical');
+												$data['physical_formats']	=	$p_format['records'];
+												unset($p_format);
+												$d_format	=	$this->sphinx->facet_index('instantiation_format_digital');
+												$data['digital_formats']	=	$d_format['records'];
+												unset($d_format);
+												$generation	=	$this->sphinx->facet_index('instantiation_generation');
+												$data['generations']	=	$generation['records'];
+												unset($generation);
+
 												$data['date_types']	=	$this->instantiation->get_date_types();
 								}
 

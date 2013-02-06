@@ -57,8 +57,6 @@ class	Crons	extends	CI_Controller
 								if(count($job)	>	0)
 								{
 												$row	=	2;
-												@ini_set("memory_limit",	"3000M");	# 1GB
-												@ini_set("max_execution_time",	999999999999);	# 1GB
 												$this->load->library('excel');
 												$this->excel->getActiveSheetIndex();
 												$this->excel->getActiveSheet()->setTitle('Limited CSV');
@@ -96,6 +94,7 @@ class	Crons	extends	CI_Controller
 																}
 																unset($records);
 																$this->excel->getActiveSheet()->garbageCollect();
+																echo memory_get_usage() . "\n";
 												}
 												$filename	=	'csv_export_'	.	time()	.	'.csv';
 												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel5');

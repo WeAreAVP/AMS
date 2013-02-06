@@ -69,7 +69,6 @@ class	Emailtemplates
 																												else
 																												{
 																																log_message('error',	'Email template Replaceable '	.	$replaceable_key	.	' not found.');
-																																echo $replaceable_key;exit;
 																																return	false;
 																												}
 																								}

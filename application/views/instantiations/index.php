@@ -189,6 +189,19 @@ if(	!	$isAjax)
 				</div>
 
 
+				<div id="export_csv_confirm_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+												<h3>Limited CSV Export</h3>
+								</div>
+								<div class="modal-body">
+												<p>Are you sure you want to export records? </p>
+								</div>
+								<div class="modal-footer">
+												<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+												<a class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="export_csv_limited();" href="#export_csv_modal">Yes</a>
+								</div>
+				</div>
 				<div id="export_csv_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 								<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

@@ -57,24 +57,21 @@ class	Crons	extends	CI_Controller
 								if(count($job)	>	0)
 								{
 												$filename	=	'csv_export_'	.	time()	.	'.csv';
+												$fp	=	fopen("uploads/$filename",	'a');
+												$line="GUID,Unique ID,Title,Format,Duration,Priority\n";
+												fputs($fp, $line);
+												fclose($fp);
 												for($i	=	0;	$i	<	$job->query_loop;	$i	++	)
 												{
 																$query	=	$job->export_query;
 																$query.='LIMIT '	.	($i	*	15000)	.	', 15000';
 																$records	=	$this->csv_job->get_csv_records($query);
-																debug($records);
+																
 																$fp	=	fopen("uploads/$filename",	'a');
-																$line	=	"";
-																$comma	=	"";
+																$line='';
 																foreach($records	as	$value)
 																{
-																				foreach($value	as	$row)
-																				{
-																								$line	.=	$comma	.	'"'	.	str_replace('"',	'""',	$row)	.	'"';
-																								$comma	=	",";
-																				}
-																				$line .= "\n";
-																				
+																				$line.='"'.$value->GUID.'",="'.$value->unique_id.'","'.$value->titles.'","'.$value->format_name.'",="'.	$value->projected_duration.'","'.$value->status.'"\n';
 																}
 																fputs($fp, $line);
 																fclose($fp);

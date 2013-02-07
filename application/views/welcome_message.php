@@ -3,7 +3,7 @@
 				if($(window.parent.document).find('iframe').size()){
 					var inframe = true;
 				}
-				 $('input').daterangepicker({
+				 $('#dateRange').daterangepicker({
 				 	presetRanges: [
 						{text: 'Ad Campaign', dateStart: 'Today', dateEnd: '03/07/09' },
 						{text: 'Spring Vacation', dateStart: '03/04/09', dateEnd: '03/08/09' },

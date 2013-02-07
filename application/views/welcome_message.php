@@ -15,14 +15,15 @@
 											 
 												posX: null,
 												posY: null,
-												arrows: true, 
+												arrows: false, 
 												dateFormat: 'M d, yy',
 												rangeSplitter: 'to',
 										 	
 												datepickerOptions: {
 																changeMonth: true,
 																changeYear: true,
-																yearRange: '-500:+15'
+																yearRange: '-500:+15',
+																arrows: true,
 																
 												},
 												onOpen:function(){ if(inframe){ $(window.parent.document).find('iframe:eq(1)').width(700).height('35em');} }, 
@@ -32,6 +33,5 @@
 </script>
 
 
-<div>
+
 				<input type="text" value="Choose a Date" id="dateRange" />
-</div>

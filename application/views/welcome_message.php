@@ -18,7 +18,7 @@
 												arrows: true, 
 												dateFormat: 'M d, yy',
 												rangeSplitter: 'to',
-										 	yearRange:"-100:+10",
+										 	
 												datepickerOptions: {
 																changeMonth: true,
 																changeYear: true

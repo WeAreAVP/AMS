@@ -22,7 +22,7 @@ if(count($station_detail)	>	0)
 																				<th>DSD</th>
 																				<th>DED</th>
 																				<?php
-																				if(	!	$this->is_station_user || $this->role_id!='20')
+																				if(	!	$this->is_station_user && $this->role_id!='20')
 																												
 																				{
 																								?>
@@ -42,7 +42,7 @@ if(count($station_detail)	>	0)
 																				<td id="dsd_"><?php	echo	($station_detail->start_date)	?	$station_detail->start_date	:	'NO DSD';	?></td>
 																				<td id="ded_"><?php	echo	($station_detail->end_date)	?	$station_detail->end_date	:	'NO DED';	?></td>
 																				<?php
-																				if(	!	$this->is_station_user || $this->role_id!='20')
+																				if(	!	$this->is_station_user && $this->role_id!='20')
 																				{
 																								?>
 																								<td><a href="#myStationModal" data-toggle="modal" onclick="editSingleStation('<?php	echo	$station_detail->id;	?>','<?php	echo	$station_detail->start_date;	?>','<?php	echo	$station_detail->end_date;	?>','<?php	echo	$station_detail->is_certified;	?>','<?php	echo	$station_detail->is_agreed;	?>');"><i class="icon-cog"></i></a></td>
@@ -99,7 +99,9 @@ if(count($station_detail)	>	0)
 																								<th>Shipped Via</th>
 																								<th>Tracking Number</th>
 																								<th># Boxes Shipped</th>
+																									<?php if($this->role_id!='20') {?>
 																								<th style="width: 35px;"></th>
+																									<?php }?>
 																				</tr>
 																</thead>
 																<tbody>
@@ -114,9 +116,11 @@ if(count($station_detail)	>	0)
 																												<td><?php	echo	$value->ship_via;	?></td>
 																												<td><?php	echo	nl2br($value->tracking_no);	?></td>
 																												<td><?php	echo	$value->no_box_shipped;	?></td>
+																												<?php if($this->role_id!='20') {?>
 																												<td><a href="#trackingModel" data-toggle="modal" onclick="manageTracking('get','edit','<?php	echo	$value->id;	?>');"><i class="icon-cog"></i></a>
 																																<a  href="#deleteTracingModel" data-toggle="modal" onclick="deleteTracking('<?php	echo	$value->id;	?>','<?php	echo	$station_detail->id;	?>');"><i class="icon-remove-sign"></i></a>
 																												</td>
+																												<?php }?>
 																								</tr>
 
 

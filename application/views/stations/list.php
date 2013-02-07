@@ -100,7 +100,7 @@ if(	!	$is_ajax)
 												{
 																?><div class="alert" style="margin-bottom: 0px; margin-top: 0px;"><?php	echo	$this->session->userdata['sent'];	?></div><br/><?php	}	$this->session->unset_userdata('sent');	?>
 												<?php
-												if(	!	$this->is_station_user || $this->role_id!='20')
+												if(	!	$this->is_station_user && $this->role_id!='20')
 												{
 																?>
 																<div class="row" style="margin:5px 0px;">
@@ -115,7 +115,7 @@ if(	!	$is_ajax)
 																<thead>
 																				<tr>
 																								<?php
-																								if(	!	$this->is_station_user || $this->role_id!='20')
+																								if(	!	$this->is_station_user && $this->role_id!='20')
 																								{
 																												?>
 																												<td><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
@@ -140,7 +140,7 @@ if(	!	$is_ajax)
 																								?>
 																								<tr>
 																												<?php
-																												if(	!	$this->is_station_user || $this->role_id!='20')
+																												if(	!	$this->is_station_user && $this->role_id!='20')
 																												{
 																																?>
 																																<td><input style='margin-left:18px;margin-right: 4px;' type='checkbox' name='station[]' value='<?php	echo	$data->id;	?>'  class='checkboxes'/></td>

@@ -5,7 +5,7 @@ if(	!	$is_ajax)
 				<div class="row-fluid">
 								<?php
 								$class	=	'';
-								if($current_role	==	1	||	$current_role	==	2	||	$current_role	==	3)
+								if($current_role	==	1	||	$current_role	==	2	||	$current_role	==	3 || $current_role==20)
 								{
 												$class	=	'span9';
 												?>

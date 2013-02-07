@@ -1093,7 +1093,7 @@
 												$('#date_field_text').html('Date Type');
 												$('#date_field_main_search').val('');
 												$('#reset_date_search').hide();
-												$('#widgetCalendar').DatePickerClear();
+												
 								}
 								else{
 												$('#keyword_field_main .btn-img').each(function(){

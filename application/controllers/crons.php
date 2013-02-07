@@ -112,6 +112,8 @@ class	Crons	extends	CI_Controller
 																unset($records);
 																echo 'Sleeping for 3 seconds\n';
 																sleep(3);
+																echo 'Freeing memory\n';
+																gc_collect_cycles();
 																$mem=memory_get_usage()/1024;
 																$mem=$mem/1024;
 																$mem=$mem/1024;

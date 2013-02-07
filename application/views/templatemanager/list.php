@@ -10,7 +10,9 @@
 																<th>Reply To</th>
 																<th>From</th>
 																<th>Template Type</th>
+																<?php 	if($this->role_id==20){?>
 																<th style="width: 40px;"></th>
+																<?php }?>
 												</tr>
 								</thead>
 								<tbody>
@@ -29,10 +31,12 @@
 																								<td><?php	echo	$data->reply_to;	?></td>
 																								<td><?php	echo	$data->email_from;	?></td>
 																								<td><?php	echo	$data->email_type;	?></td>
+																								<?php 	if($this->role_id==20){ ?>
 																								<td>                   
 																												<a href="<?php	echo	site_url	('templatemanager/edit/'	.	$data->id)	?>" ><i class="icon-cog" style="margin-right: 5px; margin-top: 2px;" ></i></a>
 <!--																												<a href="<?php	echo	site_url	('templatemanager/delete/'	.	$data->id)	?>" ><i class="icon-remove-sign" style="margin-right: 5px; margin-top: 2px;"></i></a>-->
 																								</td>
+																									<?php } ?>
 																				</tr>
 																				<?php
 																}
@@ -44,5 +48,7 @@
 <?php	}	?>
 								</tbody>
 				</table>
+								<?php 	if($this->role_id==20){ ?>
 				<div style="text-align: center;"><a href="<?php	echo	site_url	('templatemanager/add');	?>"  ><i class="icon-plus-sign" style="margin-right: 5px; margin-top: 2px;" > </i>Add New</a></div>
+	<?php } ?>
 </div>

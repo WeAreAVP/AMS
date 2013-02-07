@@ -40,7 +40,7 @@ if(	!	$is_ajax)
 				<div class="row-fluid">
 								<?php
 								$class	=	'span12';
-								if(	!	$this->is_station_user && $this->role_id!='20' )
+								if(	!	$this->is_station_user )
 								{
 												$class	=	'span9'
 												?>

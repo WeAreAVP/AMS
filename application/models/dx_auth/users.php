@@ -55,7 +55,7 @@ class	Users	extends	CI_Model
 								$this->db->join($station_table,	"$station_table.id = $users_table.station_id",	'left');
 								if($role	!=	null)
 								{
-												if($role	==	1)
+												if($role	==	1 || $role==20)
 												{
 																
 												}

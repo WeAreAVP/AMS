@@ -46,6 +46,7 @@ class	Templatemanager	extends	MY_Controller
 								{
 												redirect(site_url());
 								}
+								
 				}
 
 				/**

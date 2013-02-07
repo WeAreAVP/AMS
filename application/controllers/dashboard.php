@@ -42,7 +42,9 @@ class	Dashboard	extends	MY_Controller
 												redirect('records/index');
 								}
 				}
-
+				public function date(){
+									$this->load->view('welcome_message');
+				}
 				/**
 					* Dashboard Functionality
 					* 

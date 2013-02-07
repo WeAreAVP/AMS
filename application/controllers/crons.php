@@ -66,7 +66,7 @@ class	Crons	extends	CI_Controller
 																$query	=	$job->export_query;
 																$query.='LIMIT '	.	($i	*	15000)	.	', 15000';
 																$records	=	$this->csv_job->get_csv_records($query);
-																debug($records);
+//																debug($records);
 																$fp	=	fopen("uploads/$filename",	'a');
 																$line='';
 																foreach($records	as	$value)

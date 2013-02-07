@@ -891,7 +891,7 @@
 								if($(window.parent.document).find('iframe').size()){
 												var inframe = true;
 								}
-								$('#dateRange').daterangepicker({
+								$('#date_range').daterangepicker({
 											 
 												posX: null,
 												posY: null,

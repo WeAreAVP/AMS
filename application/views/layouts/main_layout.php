@@ -120,7 +120,7 @@
 																				?>
 																				<ul class="nav nav-tabs">
 																								<?php
-																								if($this->can_compose_alert)
+																								if($this->can_compose_alert || $this->role_id==20)
 																								{
 																												?>
 																												<li class="<?php	echo	active_anchor('templatemanager',	array('add',	'lists',	'edit',	'details',	'readmessage'));	?>"><a href="<?php	echo	site_url('templatemanager/lists');	?>" >Email Template</a></li>

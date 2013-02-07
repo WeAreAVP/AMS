@@ -50,7 +50,7 @@
 				<div class="clearfix"></div>
 				<?php	$this->load->view('partials/_list');	?>
 
-				<div class="span12" style="margin-left: 285px;" id="ins_view_detail">
+				<div class="span12" style="margin-left: 250px;" id="ins_view_detail">
 								<div style="float: left;">
 												<?php  if($this->role_id!='20') {?>
 												<div><input type="button" class="btn" value="Edit Instantiation" onclick="toggleViews();"/></div>
@@ -497,7 +497,7 @@
 								?>
 				</div>
 				<div class="clearfix"></div>
-				<div class="span12" style="margin-left: 285px;display: none;" id="ins_edit_view">
+				<div class="span12" style="margin-left: 250px;display: none;" id="ins_edit_view">
 								<form method="POST" action="<?php	echo	site_url('instantiations/edit');	?>">
 												<table cellPadding="8" class="record-detail-table">
 																<tr>

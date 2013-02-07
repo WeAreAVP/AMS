@@ -23,8 +23,7 @@
 																changeMonth: true,
 																changeYear: true,
 																yearRange: '-500:+15',
-																arrows: true,
-																
+																arrows: true
 												},
 												onOpen:function(){ if(inframe){ $(window.parent.document).find('iframe:eq(1)').width(700).height('35em');} }, 
 												onClose: function(){ if(inframe){ $(window.parent.document).find('iframe:eq(1)').width('100%').height('5em');} }

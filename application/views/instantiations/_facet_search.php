@@ -471,12 +471,8 @@
 
 																								<div class="controls filter-fileds">
 																												<div class="input-append">
-																																<input type="text" name="date_range" id="date_range" value="" style="width: 180px;cursor: default;background-color: white;" readonly="readonly"/>
-																																<span class="add-on" onclick="$('#date_range').val('');$('#widgetCalendar').DatePickerClear();"><i class="icon-remove-circle"></i></span>
+																																<input type="text" name="date_range" id="date_range" value="" style="width: 180px;"/>
 																												</div>
-
-																								</div>
-																								<div id="widgetCalendar">
 																								</div>
 																				</div>
 
@@ -889,45 +885,30 @@
 								
 								
 				oTable=null;
-				var state = false;
+				
 				(function($){
-									
-								var initLayout = function() {
-												var hash = window.location.hash.replace('#', '');
-											
-												$('#clearSelection').bind('click', function(){
-																$('#widgetCalendar').DatePickerClear();
-																return false;
-												});
-										
-												$('#widgetCalendar').DatePicker({
-																flat: true,
-																format: 'd B, Y',
-																date: [new Date('11-12-2012'), new Date('16-12-2012')],
-																calendars: 3,
-																mode: 'range',
-																starts: 1,
-																onChange: function(formated) {
-																				$('#date_range').val( formated.join(' to '));
-																}
-												});
-													
-												$('#date_range').bind('click', function(){
-																$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
-																state = !state;
-																return false;
-												});
-												$('#widgetCalendar div.datepicker').css('position', 'absolute');
-								};
-	
-								EYE.register(initLayout, 'init');
-								$('html').click(function() {
-												if(state==true){
-																$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
-																state = !state;
-																return false;
-												}
-								});
+									var hash = window.location.hash.replace('#', '');
+								if($(window.parent.document).find('iframe').size()){
+												var inframe = true;
+								}
+								$('#dateRange').daterangepicker({
+											 
+												posX: null,
+												posY: null,
+												arrows: false, 
+												dateFormat: 'M d, yy',
+												rangeSplitter: 'to',
+										 	
+												datepickerOptions: {
+																changeMonth: true,
+																changeYear: true,
+																yearRange: '-500:+15',
+																arrows: true
+												},
+												onOpen:function(){ if(inframe){ $(window.parent.document).find('iframe:eq(1)').width(700).height('35em');} }, 
+												onClose: function(){ if(inframe){ $(window.parent.document).find('iframe:eq(1)').width('100%').height('5em');} }
+								}); 
+								
 								
 							
 								

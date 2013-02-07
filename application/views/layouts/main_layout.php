@@ -25,7 +25,10 @@
 								echo	link_js('ColReorder.js');
 								echo	link_js('ColVis.js');
 								echo	link_js('dataTables.scroller.js');
-								
+									
+echo	link_js('date.js');
+	echo	link_js('daterangepicker.jQuery.js');
+		echo	link_tag("css/ui.daterangepicker.css");
 								echo	link_tag("css/tableSorter.css");
 								echo	link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
 

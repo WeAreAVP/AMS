@@ -105,7 +105,7 @@ class	Crons	extends	CI_Controller
 																				}
 																				$row	++;
 																}
-																$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
+																$objWriter	=	PHPExcel_IOFactory::createWriter($objPHPExcel,	'Excel2007');
 																$objWriter->save("uploads/$filename");
 																unset($objPHPExcel);
 																unset($objWriter);

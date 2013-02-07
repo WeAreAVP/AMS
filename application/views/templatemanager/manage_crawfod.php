@@ -18,13 +18,15 @@ $attributes	=	array(
 												<span style="color: firebrick;"><?php	echo	form_error('crawford_contact_details');	?></span></td>
 								</div>
 				</div>
-
-				<div class="control-group">
-								<div class="controls">
-												<input type="submit" class="btn btn-success" value="Save"/>
+				<?php	if($this->role_id	!=	20)
+				{	?>
+								<div class="control-group">
+												<div class="controls">
+																<input type="submit" class="btn btn-success" value="Save"/>
+												</div>
 								</div>
-				</div>
-				<?php	echo	form_close();	?>
+				<?php	}	?>
+<?php	echo	form_close();	?>
 </div>
 <script type="text/javascript">
 				setTimeout(function(){

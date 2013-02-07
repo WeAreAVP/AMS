@@ -236,7 +236,7 @@ class	Templatemanager	extends	MY_Controller
 				public	function	manage_crawford()
 				{
 								$data['is_updated']	=	FALSE;
-								if($this->input->post())
+								if($this->input->post() && $this->role_id!=20)
 								{
 												$form_val	=	$this->form_validation;
 

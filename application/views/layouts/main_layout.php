@@ -76,7 +76,7 @@
 												<?php	}	?>
 												<div class="custom-nav-inner">
 																<div class="navbar-inner" style="margin: 0 auto;width: 1210px;background: none;border: none;">
-																				<a class="brand" href="<?php	echo	site_url()	?>"><img src="/images/ams_brand.png"/></a>
+																				<a class="brand" href="<?php	echo	site_url()	?>"><img src="/images/cpb_ams.png"/></a>
 																				<?php
 																				if($this->dx_auth->is_logged_in())
 																				{

@@ -19,7 +19,7 @@ class Roles extends CI_Model {
     function get_roles_list($role = null) {
         $this->db->order_by('id', 'asc');
         if ($role != null) {
-            if ($role == 1) {
+            if ($role == 1 || $role==20) {
                 
             } else if ($role == 2)
                 $this->db->where_not_in("id", array('1'));

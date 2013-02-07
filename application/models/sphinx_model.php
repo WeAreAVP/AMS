@@ -246,7 +246,7 @@ class	Sphinx_Model	extends	CI_Model
 												if(isset($date_range[0])	&&	trim($date_range[0])	!=	'')
 												{
 																$start_date	=	strtotime(trim($date_range[0]));
-																echo $start_date;exit;
+																var_dump($start_date);exit;
 												}
 												if(isset($date_range[1])	&&	trim($date_range[1])	!=	'')
 												{

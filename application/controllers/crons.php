@@ -69,7 +69,7 @@ class	Crons	extends	CI_Controller
 																{
 																				foreach($value	as	$row)
 																				{
-																								$line	.=	$comma	.	'"'	.	str_replace('"',	'""',	$value)	.	'"';
+																								$line	.=	$comma	.	'"'	.	str_replace('"',	'""',	$row)	.	'"';
 																								$comma	=	",";
 																				}
 																				$line .= "\n";
@@ -80,10 +80,11 @@ class	Crons	extends	CI_Controller
 																$mem	=	memory_get_usage()	/	1024;
 																$mem	=	$mem	/	1024;
 																$mem	=	$mem	/	1024;
-																echo	$mem	.	" GB\n";
+																$this->myLog($mem.' GB');
 												}
 								}
-								echo 'Done';
+								$this->myLog('Done');
+								$this->myLog($filename);
 								exit;
 				}
 

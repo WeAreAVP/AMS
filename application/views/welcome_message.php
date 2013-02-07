@@ -22,7 +22,7 @@
 												datepickerOptions: {
 																changeMonth: true,
 																changeYear: true,
-																yearRange: '-1000:+15'
+																yearRange: '-500:+15'
 																
 												},
 												onOpen:function(){ if(inframe){ $(window.parent.document).find('iframe:eq(1)').width(700).height('35em');} }, 

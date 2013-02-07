@@ -71,11 +71,11 @@ class	Crons	extends	CI_Controller
 																$line='';
 																foreach($records	as	$value)
 																{
-																				$line.=str_replace('"',	"'",	$value->GUID);
-																				$line.=str_replace('"',	"'",	$value->unique_id);
-																				$line.=str_replace('"',	"'",	$value->titles);
-																				$line.=str_replace('"',	"'",	$value->format_name);
-																				$line.=str_replace('"',	"'",	$value->projected_duration);
+																				$line.=str_replace('"',	"'",	$value->GUID).',';
+																				$line.=str_replace('"',	"'",	$value->unique_id).',';
+																				$line.=str_replace('"',	"'",	$value->titles).',';
+																				$line.=str_replace('"',	"'",	$value->format_name).',';
+																				$line.=str_replace('"',	"'",	$value->projected_duration).',';
 																				$line.=str_replace('"',	"'",	$value->status);
 																				$line .= "\n";
 																}

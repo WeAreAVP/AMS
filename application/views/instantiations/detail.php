@@ -529,7 +529,7 @@
 																				</td>
 																				<td>
 																								<p>
-																												<textarea style="width: 700px;height: 90px;" id="nomination_reason" name="nomination_reason"><?php	echo	(isset($ins_nomination->nomination_reason))	?	$ins_nomination->nomination_reason	:	'';	?></textarea>
+																												<textarea style="width: 540px;height: 90px;" id="nomination_reason" name="nomination_reason"><?php	echo	(isset($ins_nomination->nomination_reason))	?	$ins_nomination->nomination_reason	:	'';	?></textarea>
 																								</p>
 
 																				</td>
@@ -541,7 +541,7 @@
 																				<td>
 																								<p>
 																												<?php	$ins_identifier_src	=	trim(str_replace('(**)',	'',	$inst_identifier->instantiation_source));	?>
-																												<input type="text" value="<?php	echo	$ins_identifier_src;	?>" style="width: 700px;" id="ins_id_source" name="ins_id_source"/>
+																												<input type="text" value="<?php	echo	$ins_identifier_src;	?>" style="width: 540px;" id="ins_id_source" name="ins_id_source"/>
 																												<input type="hidden"  value="<?php	echo	$inst_id;	?>" id="ins_id" name="ins_id"/>
 																								</p>
 
@@ -617,7 +617,7 @@
 																				<td>
 																								<p>
 
-																												<input type="text" value="<?php	echo	$detail_instantiation->language;	?>" style="width: 700px;" id="language" name="language"/>
+																												<input type="text" value="<?php	echo	$detail_instantiation->language;	?>" style="width: 540px;" id="language" name="language"/>
 																								</p>
 
 																				</td>

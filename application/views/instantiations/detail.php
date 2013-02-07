@@ -52,7 +52,9 @@
 
 				<div class="span12" style="margin-left: 285px;" id="ins_view_detail">
 								<div style="float: left;">
+												<?php  if($this->role_id!='20') {?>
 												<div><input type="button" class="btn" value="Edit Instantiation" onclick="toggleViews();"/></div>
+												<?php }?>
 												<table  cellPadding="8" class="record-detail-table">
 																<!--				Instantiation ID	Start		-->
 																<?php

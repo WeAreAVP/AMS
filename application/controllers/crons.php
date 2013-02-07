@@ -23,7 +23,7 @@ class	Crons	extends	CI_Controller
 								parent::__construct();
 								$this->load->model('email_template_model',	'email_template');
 								$this->load->model('cron_model');
-									$this->load->model('dx_auth/users',	'users');
+								$this->load->model('dx_auth/users',	'users');
 								$this->load->model('assets_model');
 								$this->load->model('instantiations_model',	'instant');
 								$this->load->model('essence_track_model',	'essence');
@@ -52,7 +52,42 @@ class	Crons	extends	CI_Controller
 
 				function	csv_export_job()
 				{
-								
+								$this->load->model('export_csv_job_model',	'csv_job');
+								$job	=	$this->csv_job->get_incomplete_jobs();
+								if(count($job)	>	0)
+								{
+												$filename	=	'csv_export_'	.	time()	.	'.csv';
+												for($i	=	0;	$i	<	$job->query_loop;	$i	++	)
+												{
+																$query	=	$job->export_query;
+																$query.='LIMIT '	.	($i	*	15000)	.	', 15000';
+																$records	=	$this->csv_job->get_csv_records($query);
+																$fp	=	fopen("uploads/$filename",	'a');
+																$line	=	"";
+																$comma	=	"";
+																foreach($records	as	$value)
+																{
+																				foreach($value	as	$row)
+																				{
+																								$line	.=	$comma	.	'"'	.	str_replace('"',	'""',	$value)	.	'"';
+																								$comma	=	",";
+																				}
+																				$line .= "\n";
+																				
+																}
+																fputs($fp, $line);
+																fclose($fp);
+																$mem	=	memory_get_usage()	/	1024;
+																$mem	=	$mem	/	1024;
+																$mem	=	$mem	/	1024;
+																echo	$mem	.	" GB\n";
+												}
+								}
+				}
+
+				function	csv_export_jobs()
+				{
+
 								$this->load->model('export_csv_job_model',	'csv_job');
 								$job	=	$this->csv_job->get_incomplete_jobs();
 
@@ -62,9 +97,9 @@ class	Crons	extends	CI_Controller
 												@ini_set("memory_limit",	"3000M");	# 1GB
 												@ini_set("max_execution_time",	999999999999);	# 1GB
 												$this->load->library('excel');
-												$cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_discISAM; 
-												$cacheSettings = array( 'dir' => '/var/www/html/temp');
-												PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
+												$cacheMethod	=	PHPExcel_CachedObjectStorageFactory::	cache_to_discISAM;
+												$cacheSettings	=	array('dir'	=>	'/var/www/html/temp');
+												PHPExcel_Settings::setCacheStorageMethod($cacheMethod,	$cacheSettings);
 
 												$this->excel->getActiveSheetIndex();
 												$this->excel->getActiveSheet()->setTitle('Limited CSV');
@@ -92,7 +127,7 @@ class	Crons	extends	CI_Controller
 																$query	=	$job->export_query;
 																$query.='LIMIT '	.	($i	*	15000)	.	', 15000';
 																$records	=	$this->csv_job->get_csv_records($query);
-																$objPHPExcel = PHPExcel_IOFactory::load("uploads/$filename");
+																$objPHPExcel	=	PHPExcel_IOFactory::load("uploads/$filename");
 																foreach($records	as	$value)
 																{
 																				$col	=	0;
@@ -100,7 +135,7 @@ class	Crons	extends	CI_Controller
 																				{
 
 																								$objPHPExcel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$field);
-																								
+
 																								$col	++;
 																				}
 																				$row	++;
@@ -110,22 +145,22 @@ class	Crons	extends	CI_Controller
 																unset($objPHPExcel);
 																unset($objWriter);
 																unset($records);
-																$this->myLog('Sleeping for 3 seconds') ;
-																sleep(3);	
-															$this->myLog('Memory free') ;
+																$this->myLog('Sleeping for 3 seconds');
+																sleep(3);
+																$this->myLog('Memory free');
 																gc_collect_cycles();
-																	$this->myLog('Sleeping for 3 seconds') ;
-																sleep(3);	
-																$mem=memory_get_usage()/1024;
-																$mem=$mem/1024;
-																$mem=$mem/1024;
-																echo $mem . " GB\n";
+																$this->myLog('Sleeping for 3 seconds');
+																sleep(3);
+																$mem	=	memory_get_usage()	/	1024;
+																$mem	=	$mem	/	1024;
+																$mem	=	$mem	/	1024;
+																echo	$mem	.	" GB\n";
 												}
-												
-												
+
+
 												$url	=	site_url()	.	"uploads/$filename";
 												$this->csv_job->update_job($job->id,	array('status'	=>	'1'));
-												$user=$this->users->get_user_by_id($job>user_id)->row();
+												$user	=	$this->users->get_user_by_id($job	>	user_id)->row();
 												send_email($user->email,	'ssapienza@cpb.org',	'Limited CSV Export',	$url);
 												exit;
 								}

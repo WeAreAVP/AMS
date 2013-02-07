@@ -115,7 +115,7 @@
 																<!--				Date 	End		-->
 																<!--				Media Type 	Start		-->
 																<?php
-																if($inst_media_type->media_type	!=	'')
+																if(isset($inst_media_type->media_type)	&& $inst_media_type->media_type!=	'')
 																{
 																				$media_type	=	explode(' | ',	$inst_media_type->media_type);
 																				?>

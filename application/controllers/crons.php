@@ -58,8 +58,8 @@ class	Crons	extends	CI_Controller
 								{
 												$filename	=	'csv_export_'	.	time()	.	'.csv';
 												$fp	=	fopen("uploads/$filename",	'a');
-												$line="GUID,Unique ID,Title,Format,Duration,Priority\n";
-												fputs($fp, $line);
+												$line	=	"GUID,Unique ID,Title,Format,Duration,Priority\n";
+												fputs($fp,	$line);
 												fclose($fp);
 												for($i	=	0;	$i	<	$job->query_loop;	$i	++	)
 												{
@@ -67,32 +67,30 @@ class	Crons	extends	CI_Controller
 																$query.='LIMIT '	.	($i	*	15000)	.	', 15000';
 																$records	=	$this->csv_job->get_csv_records($query);
 																$fp	=	fopen("uploads/$filename",	'a');
-																$line='';
+																$line	=	'';
 																foreach($records	as	$value)
 																{
-																				$line.='"'.str_replace('"',	'""',	$value->GUID).'",';
-																				$line.='="'.str_replace('"',	'""',	$value->unique_id).'",';
-																				$line.='"'.str_replace('"',	'""',	$value->titles).'",';
-																				$line.='"'.str_replace('"',	'""',	$value->format_name).'",';
-																				$line.='="'.str_replace('"',	'""',	$value->projected_duration).'",';
-																				$line.='"'.str_replace('"',	'""',	$value->status).'"';
-																				$line .= "\n";
-																								
-																				
+																				$line.='"'	.	str_replace('"',	'""',	$value->GUID)	.	'",';
+																				$line.='="'	.	str_replace('"',	'""',	$value->unique_id)	.	'",';
+																				$line.='"'	.	str_replace('"',	'""',	$value->titles)	.	'",';
+																				$line.='"'	.	str_replace('"',	'""',	$value->format_name)	.	'",';
+																				$line.='="'	.	str_replace('"',	'""',	$value->projected_duration)	.	'",';
+																				$line.='"'	.	str_replace('"',	'""',	$value->status)	.	'"';
+																				$line	.=	"\n";
 																}
-																fputs($fp, $line);
+																fputs($fp,	$line);
 																fclose($fp);
 																$mem	=	memory_get_usage()	/	1024;
 																$mem	=	$mem	/	1024;
 																$mem	=	$mem	/	1024;
-																$this->myLog($mem.' GB');
+																$this->myLog($mem	.	' GB');
 												}
 								}
-												$url	=	site_url()	.	"uploads/$filename";
-												$this->csv_job->update_job($job->id,	array('status'	=>	'1'));
-												$user	=	$this->users->get_user_by_id($job	>	user_id)->row();
-												send_email($user->email,	'ssapienza@cpb.org',	'Limited CSV Export',	$url);
-												exit;
+								$url	=	site_url()	.	"uploads/$filename";
+								$this->csv_job->update_job($job->id,	array('status'	=>	'1'));
+								$user	=	$this->users->get_user_by_id($job	>	user_id)->row();
+								send_email($user->email,	'ssapienza@cpb.org',	'Limited CSV Export',	$url);
+								exit;
 				}
 
 				function	csv_export_jobs()

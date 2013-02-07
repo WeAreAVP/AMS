@@ -14,7 +14,7 @@ if(	!	$isAjax)
 								if(count($records)	>	0)
 								{
 												?>
-												<div style="width: 900px;">
+												<div style="width: 710px;">
 																<?php	$this->load->view('instantiations/_gear_dropdown');	?>
 																<div style="float: right;">
 																				<strong><?php	echo	number_format($start);	?> - <?php	echo	number_format($end);	?></strong> of <strong style="margin-right: 10px;" id="total_list_count"><?php	echo	number_format($total);	?></strong>
@@ -22,7 +22,7 @@ if(	!	$isAjax)
 																</div>
 												</div>
 												<br clear="all"/>
-												<div style="width: 900px;overflow: hidden;" id="instantiation-main">
+												<div style="width: 710px;overflow: hidden;" id="instantiation-main">
 
 																<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;border-collapse:collapse;">
 																				<thead>
@@ -169,7 +169,7 @@ if(	!	$isAjax)
 
 												</div>
 
-												<div style="text-align: right;width: 900px;">
+												<div style="text-align: right;width: 710px;">
 																<strong><?php	echo	number_format($start);	?> - <?php	echo	number_format($end);	?></strong> of <strong style="margin-right: 10px;" id="total_record_count"><?php	echo	number_format($total);	?></strong>
 																<?php	echo	$this->ajax_pagination->create_links();	?>
 												</div>
@@ -178,7 +178,7 @@ if(	!	$isAjax)
 								else
 								{
 												?>
-												<div  style="text-align: center;width: 860px;margin-top: 50px;font-size: 20px;">No instantiation record found.</div>
+												<div  style="text-align: center;width: 710px;margin-top: 50px;font-size: 20px;">No instantiation record found.</div>
 								<?php	}
 								?>
 								<?php

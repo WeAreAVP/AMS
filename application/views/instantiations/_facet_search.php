@@ -385,7 +385,7 @@
 																<div id="sk_div">
 																				<div>
 																								<div>
-																												<input type="text" name="search" id="search" value=""/>
+																												<input type="text" name="search" id="search" value="" style="width: 190px;"/>
 																								</div>
 																								<div class="btn-group" id="limit_field_dropdown" style="display:<?php	echo	$style;	?>">
 																												<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">

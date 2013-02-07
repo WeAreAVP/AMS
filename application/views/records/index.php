@@ -41,7 +41,7 @@ if(	!	$isAjax)
 								if(isset($records)	&&	($total	>	0))
 								{
 												?>
-												<div style="width: 900px;">
+												<div style="width: 710px;">
 																<?php
 																if(isset($current_tab)	&&	$current_tab	==	'full_table')
 																{
@@ -57,7 +57,7 @@ if(	!	$isAjax)
 												if(	!	isset($current_tab)	||	$current_tab	==	'simple')
 												{
 																?>
-																<div style="width:900px;overflow:hidden;" id="simple_view">
+																<div style="width:710px;overflow:hidden;" id="simple_view">
 																				<table class="table table-bordered" id="assets_table" >
 																								<thead>
 																												<tr style="background: rgb(235, 235, 235);">
@@ -159,7 +159,7 @@ if(	!	$isAjax)
 																{
 																												?>
 																<br clear="all"/>
-																<div style="width: 900px;overflow:hidden;" id="full_table_view">
+																<div style="width: 710px;overflow:hidden;" id="full_table_view">
 																				<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;border-collapse:collapse;"  >
 																								<thead>
 																												<tr>
@@ -624,18 +624,18 @@ if(	!	$isAjax)
 																												?>
 
 												<?php	}	?>
-												<div style="text-align: right;width: 900px;"> <strong><?php	echo	number_format($start);	?> - <?php	echo	number_format($end);	?></strong> of <strong style="margin-right: 10px;"><?php	echo	number_format($total);	?></strong> <?php	echo	$this->ajax_pagination->create_links();	?> </div>
+												<div style="text-align: right;width: 710px;"> <strong><?php	echo	number_format($start);	?> - <?php	echo	number_format($end);	?></strong> of <strong style="margin-right: 10px;"><?php	echo	number_format($total);	?></strong> <?php	echo	$this->ajax_pagination->create_links();	?> </div>
 												<?php
 								}
 								else	if($start	>=	1000)
 								{
 												?>
-												<div  style="text-align: center;width: 860px;margin-top: 50px;font-size: 20px;">Please refine your search</div><?php
+												<div  style="text-align: center;width: 710px;margin-top: 50px;font-size: 20px;">Please refine your search</div><?php
 				}
 				else
 				{
 												?>
-												<div  style="text-align: center;width: 860px;margin-top: 50px;font-size: 20px;"> No Assets Found</div><?php	}
+												<div  style="text-align: center;width: 710px;margin-top: 50px;font-size: 20px;"> No Assets Found</div><?php	}
 								?>
 								<?php
 								if(	!	$isAjax)

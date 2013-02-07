@@ -1,7 +1,7 @@
 
 <style>
   .container-map{
-    width:468px;
+    width:460px;
     margin:0 auto;
     height:320px;
     color:#FFF;

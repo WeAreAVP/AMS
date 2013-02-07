@@ -83,6 +83,8 @@ class	Crons	extends	CI_Controller
 																echo	$mem	.	" GB\n";
 												}
 								}
+								echo 'Done';
+								exit;
 				}
 
 				function	csv_export_jobs()

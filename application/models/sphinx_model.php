@@ -256,7 +256,7 @@ class	Sphinx_Model	extends	CI_Model
 												{
 																$this->sphinxsearch->set_filter_range("dates",	$start_date,	$end_date);
 												}
-												else
+												else if(is_numeric($start_date))
 												{
 																$this->sphinxsearch->set_filter_range("dates",	$start_date,	999999999999);
 												}

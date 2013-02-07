@@ -22,7 +22,8 @@ if(count($station_detail)	>	0)
 																				<th>DSD</th>
 																				<th>DED</th>
 																				<?php
-																				if(	!	$this->is_station_user)
+																				if(	!	$this->is_station_user || $this->role_id!='20')
+																												
 																				{
 																								?>
 																								<th></th>
@@ -41,7 +42,7 @@ if(count($station_detail)	>	0)
 																				<td id="dsd_"><?php	echo	($station_detail->start_date)	?	$station_detail->start_date	:	'NO DSD';	?></td>
 																				<td id="ded_"><?php	echo	($station_detail->end_date)	?	$station_detail->end_date	:	'NO DED';	?></td>
 																				<?php
-																				if(	!	$this->is_station_user)
+																				if(	!	$this->is_station_user || $this->role_id!='20')
 																				{
 																								?>
 																								<td><a href="#myStationModal" data-toggle="modal" onclick="editSingleStation('<?php	echo	$station_detail->id;	?>','<?php	echo	$station_detail->start_date;	?>','<?php	echo	$station_detail->end_date;	?>','<?php	echo	$station_detail->is_certified;	?>','<?php	echo	$station_detail->is_agreed;	?>');"><i class="icon-cog"></i></a></td>
@@ -132,7 +133,9 @@ if(count($station_detail)	>	0)
 												?>
 												<div style="text-align: center;">No Tracking Information available for station <?php	echo	$station_detail->station_name;	?>.</div>
 								<?php	}	?>
+												<?php if($this->role_id!='20') {?>
 								<div><a href="#trackingModel" class="btn btn-large" data-toggle="modal" onclick="manageTracking('get','add','<?php	echo	$station_detail->id;	?>');">Add Shipment</a></div>
+								<?php }?>
 								<?php	$this->load->view('stations/_edit_station');	?>
 
 

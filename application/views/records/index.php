@@ -61,12 +61,12 @@ if(	!	$isAjax)
 																				<table class="table table-bordered" id="assets_table" >
 																								<thead>
 																												<tr style="background: rgb(235, 235, 235);">
-																																<th style='width: 14px;'><span style="float:left;" ><i class="icon-flag "></i></span></th>
-																																<th style='width: 150px;'><span style="float:left;" >Organization</span></th>
-																																<th style='width: 150px;'><span style="float:left;" >AA GUID</span></th>
-																																<th style='width: 110px;'><span style="float:left;" >Local ID</span></th>
-																																<th style='width: 185px;'><span style="float:left;" >Titles</span></th>
-																																<th style='width: 175px;'><span style="float:left;" >Description</span></th>
+																																<th><i class="icon-flag "></i></th>
+																																<th>Organization</th>
+																																<th>AA GUID</th>
+																																<th>Local ID</th>
+																																<th>Titles</th>
+																																<th>Description</th>
 																												</tr>
 																								</thead>
 																								<tbody>

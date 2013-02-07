@@ -13,13 +13,13 @@
 
 				</ul>
 				<div class="tab-content">
-								<div class="tab-pane active" id="tv_radio" style="width: 600px;height: 380px; margin: 0 auto;">
-												<div id="tv_graph" style="width: 300px;height: 350px;float: left;"></div>
-												<div id="radio_graph" style="width: 300px;height: 350px;float: right;">
+								<div class="tab-pane active" id="tv_radio" style="width: 480px;height: 380px; margin: 0 auto;">
+												<div id="tv_graph" style="width: 240px;height: 350px;float: left;"></div>
+												<div id="radio_graph" style="width: 240px;height: 350px;float: right;">
 																
 												</div>
 								</div>
-								<div class="tab-pane" id="all_formats" style="width: 605px;height: 380px; margin: 0 auto;"></div>
+								<div class="tab-pane" id="all_formats" style="width: 480px;height: 380px; margin: 0 auto;"></div>
 				</div>
 
 </div>

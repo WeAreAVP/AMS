@@ -5,11 +5,13 @@ if(	!	$is_ajax)
 				<div class="row-fluid">
 								<?php
 								$class	=	'';
+								$style='';
 								if($current_role	==	1	||	$current_role	==	2	||	$current_role	==	3 || $current_role==20)
 								{
 												$class	=	'span9';
+												$style	=	'width:709px;';
 												?>
-												<div class="span3">
+								<div class="span3" style="width: 230px;">
 																<div id="search_bar">
 																				<b><h4>Filter Users</h4></b>
 																				<div class="filter-fileds">
@@ -30,7 +32,7 @@ if(	!	$is_ajax)
 																</div>
 												</div>
 								<?php	}	?>
-								<div id="users"  class="<?php	echo	$class;	?>">
+								<div id="users"  class="<?php	echo	$class;	?>" style="<?php	echo	$style;	?>">
 
 												<?php
 												if(isset($this->session->userdata['saved']))
@@ -56,7 +58,6 @@ if(	!	$is_ajax)
 																								<th style="width:160px;">Email</th>
 																								<th style="width:100px">Name</th>
 																								<th style="width: 110px;">Title</th>
-																								<th style="width: 140px;">Phone #</th>
 																								<th style="width: 200px;">Station</th>
 																								<th style="width:80px;">Role</th>
 																								<?php
@@ -80,7 +81,6 @@ if(	!	$is_ajax)
 																												<td><?php	echo	$row->email;	?></td>
 																												<td><?php	echo	$row->first_name	.	' '	.	$row->last_name;	?></td>
 																												<td><?php	echo	$row->title;	?></td>
-																												<td><?php	echo	$row->phone_no;	?></td>
 																												<td><?php	echo	$row->st_name;	?></td>
 																												<td><?php	echo	$row->role_name;	?></td>
 																												<?php

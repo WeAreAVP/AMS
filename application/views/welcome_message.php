@@ -1,3 +1,11 @@
+<?php 
+
+	echo	link_js('date.js');
+	echo	link_js('daterangepicker.jQuery.js');
+		echo	link_tag("css/ui.daterangepicker.css");
+
+?>
+
 <script type="text/javascript">
 				$(function(){
 								if($(window.parent.document).find('iframe').size()){
@@ -10,8 +18,7 @@
 												arrows: true, 
 												dateFormat: 'M d, yy',
 												rangeSplitter: 'to',
-												earliestDate: Date.parse('-100years'), //earliest date allowed 
-												latestDate: Date.parse('+15years'), //latest date allowed 
+										 	yearRange:"-100:+10",
 												datepickerOptions: {
 																changeMonth: true,
 																changeYear: true

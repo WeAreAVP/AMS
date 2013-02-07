@@ -11,10 +11,7 @@
 								<?php
 								echo	link_js('jquery-1.8.2.js');
 								echo	link_js('jquery-ui-1.9.0.custom.js');
-								echo	link_js('date.js');
-								echo	link_js('daterangepicker.js');
 								echo	link_js('bootstrap/bootstrap.js');
-								
 								echo	link_js('jquery.tablesorter.js');
 								echo	link_js('highcharts.js');
 								echo	link_js('custom.js');
@@ -28,7 +25,7 @@
 								echo	link_js('ColReorder.js');
 								echo	link_js('ColVis.js');
 								echo	link_js('dataTables.scroller.js');
-								echo	link_tag("css/daterangepicker.css");
+								
 								echo	link_tag("css/tableSorter.css");
 								echo	link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
 
@@ -36,13 +33,6 @@
 								echo	link_tag("css/ColVis.css");
 								echo	link_tag("css/dataTables.scroller.css");
 								
-//								echo	link_tag("css/base.css");
-//								echo	link_tag("css/clean.css");
-//								echo	link_tag("css/layout.css");
-//								echo	link_tag("css/jquery.jscrollpane.css");
-
-
-//								echo	link_tag("css/daterangepicker.css");
 								echo	link_tag("css/bootstrap/bootstrap.css");
 								echo	link_tag("css/style.css");
 								?> 

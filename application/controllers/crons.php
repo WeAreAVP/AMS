@@ -63,10 +63,9 @@ class	Crons	extends	CI_Controller
 												@ini_set("max_execution_time",	999999999999);	# 1GB
 												$this->load->library('excel');
 												$cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_discISAM; 
-												$cacheSettings = array( 'dir' => '/var/www/html/temp'
-                      );
-PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
-//												PHPExcel_Settings::setCacheStorageMethod( PHPExcel_CachedObjectStorageFactory::cache_to_discISAM );
+												$cacheSettings = array( 'dir' => '/var/www/html/temp');
+												PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
+
 												$this->excel->getActiveSheetIndex();
 												$this->excel->getActiveSheet()->setTitle('Limited CSV');
 												$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
@@ -82,34 +81,42 @@ PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
 												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(3,	1,	'Format');
 												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(4,	1,	'Duration');
 												$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(5,	1,	'Priority');
-												$this->excel->getActiveSheet()->freezePaneByColumnAndRow();
+												$this->excel->getActiveSheet()->freezePane('A2');
+												$filename	=	'csv_export_'	.	time()	.	'.csv';
+												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
+												$objWriter->save("uploads/$filename");
+												unset($this->excel);
+												unset($objWriter);
 												for($i	=	0;	$i	<	$job->query_loop;	$i	++	)
 												{
 																$query	=	$job->export_query;
 																$query.='LIMIT '	.	($i	*	15000)	.	', 15000';
 																$records	=	$this->csv_job->get_csv_records($query);
-																
+																$objPHPExcel = PHPExcel_IOFactory::load("uploads/$filename");
 																foreach($records	as	$value)
 																{
 																				$col	=	0;
 																				foreach($value	as	$field)
 																				{
 
-																								$this->excel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$field);
+																								$objPHPExcel->getActiveSheet()->setCellValueExplicitByColumnAndRow($col,	$row,	$field);
 																								
 																								$col	++;
 																				}
 																				$row	++;
 																}
+																$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
+																$objWriter->save("uploads/$filename");
+																unset($objPHPExcel);
+																unset($objWriter);
 																unset($records);
 																$mem=memory_get_usage()/1024;
 																$mem=$mem/1024;
 																$mem=$mem/1024;
 																echo $mem . " GB\n";
 												}
-												$filename	=	'csv_export_'	.	time()	.	'.csv';
-												$objWriter	=	PHPExcel_IOFactory::createWriter($this->excel,	'Excel2007');
-												$objWriter->save("uploads/$filename");
+												
+												
 												$url	=	site_url()	.	"uploads/$filename";
 												$this->csv_job->update_job($job->id,	array('status'	=>	'1'));
 												$user=$this->users->get_user_by_id($job>user_id)->row();

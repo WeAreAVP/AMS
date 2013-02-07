@@ -110,6 +110,8 @@ class	Crons	extends	CI_Controller
 																unset($objPHPExcel);
 																unset($objWriter);
 																unset($records);
+																echo 'Sleeping for 3 seconds\n';
+																sleep(3);
 																$mem=memory_get_usage()/1024;
 																$mem=$mem/1024;
 																$mem=$mem/1024;

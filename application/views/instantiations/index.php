@@ -199,7 +199,7 @@ if(	!	$isAjax)
 								</div>
 								<div class="modal-footer">
 												<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-												<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Yes</button>
+												<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="confirm_csv_export();">Yes</button>
 								</div>
 				</div>
 				<div id="export_csv_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

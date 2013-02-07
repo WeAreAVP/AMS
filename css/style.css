@@ -265,7 +265,7 @@ html, body {
 }
 .report-main{
     margin-top: 10px;
-    width: 376px !important;
+/*    width: 376px !important;*/
 }
 .report-main a{
     color: black;

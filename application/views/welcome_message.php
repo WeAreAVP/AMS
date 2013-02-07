@@ -21,7 +21,8 @@
 										 	
 												datepickerOptions: {
 																changeMonth: true,
-																changeYear: true
+																changeYear: true,yearRange: '-14:-75'
+																
 												},
 												onOpen:function(){ if(inframe){ $(window.parent.document).find('iframe:eq(1)').width(700).height('35em');} }, 
 												onClose: function(){ if(inframe){ $(window.parent.document).find('iframe:eq(1)').width('100%').height('5em');} }

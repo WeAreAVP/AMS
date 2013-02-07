@@ -66,12 +66,18 @@ class	Crons	extends	CI_Controller
 																$query	=	$job->export_query;
 																$query.='LIMIT '	.	($i	*	15000)	.	', 15000';
 																$records	=	$this->csv_job->get_csv_records($query);
-																
+																debug($records);
 																$fp	=	fopen("uploads/$filename",	'a');
 																$line='';
 																foreach($records	as	$value)
 																{
-																				$line.='"'.$value->GUID.'",="'.$value->unique_id.'","'.$value->titles.'","'.$value->format_name.'",="'.	$value->projected_duration.'","'.$value->status.'"\n';
+																				$line.=str_replace('"',	"'",	$value->GUID);
+																				$line.=str_replace('"',	"'",	$value->unique_id);
+																				$line.=str_replace('"',	"'",	$value->titles);
+																				$line.=str_replace('"',	"'",	$value->format_name);
+																				$line.=str_replace('"',	"'",	$value->projected_duration);
+																				$line.=str_replace('"',	"'",	$value->status);
+																				$line .= "\n";
 																}
 																fputs($fp, $line);
 																fclose($fp);

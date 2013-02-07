@@ -34,7 +34,7 @@ class	Export_csv_job_model	extends	CI_Model
 				
 				function	get_csv_records($query)
 				{
-								return $this->db->query($query)->result_array();
+								return $this->db->query($query)->result();
 								
 				}
 				

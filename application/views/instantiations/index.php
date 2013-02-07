@@ -199,7 +199,7 @@ if(	!	$isAjax)
 								</div>
 								<div class="modal-footer">
 												<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-												<a class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="export_csv_limited();" href="#export_csv_modal">Yes</a>
+												<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Yes</button>
 								</div>
 				</div>
 				<div id="export_csv_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -217,7 +217,11 @@ if(	!	$isAjax)
 				<script type="text/javascript">
 								$('#export_csv_modal').on('hidden', function () {
 												$('#export_csv_msg').html('<img src="/images/ajax-loader.gif" />Please wait...');
-								})
+								});
+								function confirm_csv_export(){
+												$('#export_csv_modal').modal('toggle');
+												export_csv_limited();
+								}
 				function export_csv_limited(){
 				$.ajax({
 								type: 'POST', 

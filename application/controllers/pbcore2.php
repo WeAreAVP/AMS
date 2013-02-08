@@ -49,6 +49,7 @@ class	Pbcore2	extends	CI_Controller
 				{
 								$file_path=	$this->pbcore_path.'1760_WILL_PBCoreXMLBag_20121114/data/cpb-aacip-16-00ns1t8b/pbcore';
 								$xml	=	@simplexml_load_string($file_path);
+								debug($xml_to_array,FALSE);
 								$xml_to_array	=	xmlObjToArr($xml);
 								debug($xml_to_array);
 				}

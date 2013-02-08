@@ -169,7 +169,7 @@ function	exit_function	()
 				exit;
 }
 
-function	debug	($argument,	$exit	=	true)
+function	debug	($argument,	$exit	=	TRUE)
 {
 				echo	'<pre>';
 				print_r	($argument);

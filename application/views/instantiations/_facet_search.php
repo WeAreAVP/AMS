@@ -1175,6 +1175,7 @@
 												"bDeferRender": true,
 												"bAutoWidth": true
 								});
+								 new FixedHeader( sTable );
 								$.extend( $.fn.dataTableExt.oStdClasses, {
 												"sWrapper": "dataTables_wrapper form-inline"
 								} );

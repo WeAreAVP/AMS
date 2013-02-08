@@ -1171,7 +1171,7 @@
 												'bFilter': false,
 												"bSort": false,
 												"sScrollY": $(window).height()-160,
-												"sScrollX": "100%",
+//												"sScrollX": "100%",
 												"bDeferRender": true,
 												"bAutoWidth": false
 								});

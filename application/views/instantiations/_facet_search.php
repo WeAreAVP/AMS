@@ -1176,7 +1176,12 @@
 ////												"bAutoWidth": true
 //								});
 //								 new FixedHeader( sTable );
-									var oTable = $('#assets_table').dataTable();
+									var oTable = $('#assets_table').dataTable({
+													'bPaginate':false,
+												'bInfo':false,
+												'bFilter': false,
+												"bSort": false
+									});
 	new FixedHeader( oTable );
 								$.extend( $.fn.dataTableExt.oStdClasses, {
 												"sWrapper": "dataTables_wrapper form-inline"

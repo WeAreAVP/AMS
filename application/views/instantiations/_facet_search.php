@@ -1053,7 +1053,7 @@
 				}
 				function make_slug_name(string){
 								string = string.split('/').join('');
-								string = string.split('??').join('');
+								string = string.split('?').join('');
 								string = string.split(' ').join('');
 								string = string.split('(').join('');
 								string = string.split(')').join('');

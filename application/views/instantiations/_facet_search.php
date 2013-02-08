@@ -4,7 +4,7 @@
 
 
 
-				<div id="search_bar_val" class="facet-search" style="height: 400px;overflow-y: scroll;"> 
+				<div id="search_bar_val" class="facet-search"> 
 								<h5 class="filter_title" id="filter_criteria" style="display: none;">FILTER CRITERIA&nbsp;<span id="filter_record_count"></span></h5>
 								<div id="tokens">
 
@@ -357,7 +357,7 @@
 								</div>
 				</div>
 				<div class="clearfix"></div>
-				<div id="search_bar" class="facet-search"> 
+				<div id="search_bar" class="facet-search" style="height: 400px;overflow-y: scroll;"> 
 								<input type="hidden" name="current_tab" id="current_tab" value="<?php	echo	isset($this->session->userdata['current_tab'])	?	$this->session->userdata['current_tab']	:	''	?>"  />
 								<b>
 												<h5 class="filter_title">FILTER</h5>

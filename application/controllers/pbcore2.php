@@ -168,6 +168,31 @@ class	Pbcore2	extends	CI_Controller
 												}
 								}
 								// Asset Description End  //
+								
+								// Asset Genre Start //
+
+								if(isset($asset_children['pbcoregenre']))
+								{
+												foreach($asset_children['pbcoregenre']	as	$pbcoregenre)
+												{
+
+																if(isset($pbcoregenre['text'])	&&	!	is_empty($pbcoregenre['text']))
+																{
+																				$this->myLog('Asset Genre: '	.	$pbcoregenre['text']);
+																}
+															
+																if(isset($pbcoregenre['attributes']['source'])	&&	!	is_empty($pbcoregenre['attributes']['source']))
+																{
+																				$this->myLog('Asset Genre Source: '	.	$pbcoregenre['attributes']['source']);
+																}
+																if(isset($pbcoregenre['attributes']['ref'])	&&	!	is_empty($pbcoregenre['attributes']['ref']))
+																{
+																				$this->myLog('Asset Genre Ref: '	.	$pbcoregenre['attributes']['ref']);
+																}
+												}
+								}
+								// Asset Genre End  //
+								
 				}
 
 				function	myLog($string)

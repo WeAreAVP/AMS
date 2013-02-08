@@ -1165,7 +1165,7 @@
 				{
 								
 								var sTable = $('#assets_table').dataTable({
-												"sDom": "frtiS",
+												"sDom": "frti",
 												'bPaginate':false,
 												'bInfo':false,
 												'bFilter': false,

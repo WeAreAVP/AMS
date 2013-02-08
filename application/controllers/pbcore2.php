@@ -59,6 +59,7 @@ class	Pbcore2	extends	CI_Controller
 
 				function	import_assets($asset_children)
 				{
+								// Asset Type Start //
 								if(isset($asset_children['pbcoreassettype']))
 								{
 												foreach($asset_children['pbcoreassettype']	as	$pbcoreassettype)
@@ -70,13 +71,16 @@ class	Pbcore2	extends	CI_Controller
 																}
 												}
 								}
+								// Asset Type End //
+								
+								// Asset Date and Type Start //
 								if(isset($asset_children['pbcoreassetdate'])){
 												foreach($asset_children['pbcoreassetdate']	as	$pbcoreassetdate)
 												{
 
 																if(isset($pbcoreassetdate['text'])	&&	!	is_empty($pbcoreassetdate['text']))
 																{
-																				$this->myLog('Asset Date: '.$pbcoreassettype['text']);
+																				$this->myLog('Asset Date: '.$pbcoreassetdate['text']);
 																}
 																if(isset($pbcoreassetdate['attributes']['datetype'])	&&	!	is_empty($pbcoreassetdate['attributes']['datetype']))
 																{
@@ -85,6 +89,7 @@ class	Pbcore2	extends	CI_Controller
 												}
 												
 								}
+								// Asset Date and Type End //
 				}
 
 				function	myLog($string)

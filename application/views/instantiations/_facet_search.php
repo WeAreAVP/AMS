@@ -1182,7 +1182,9 @@
 												'bFilter': false,
 												"bSort": false
 									});
-	new FixedHeader( oTable );
+	new FixedHeader( oTable, {
+        "offsetTop": 60
+    }  );
 								$.extend( $.fn.dataTableExt.oStdClasses, {
 												"sWrapper": "dataTables_wrapper form-inline"
 								} );

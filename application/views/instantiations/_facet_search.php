@@ -388,8 +388,7 @@
 																								<div>
 																												<input type="text" name="search" id="search" value="" style="width: 190px;"/>
 																								</div>
-																								<div>
-																								<div class="btn-group" id="limit_field_dropdown" style="position:absolute;z-index:999;display:<?php	echo	$style;	?>">
+																								<div class="btn-group" id="limit_field_dropdown" style="display:<?php	echo	$style;	?>">
 																												<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 																																<span id="limit_field_text">Limit Search to Field</span>
 																																<span class="caret"></span>
@@ -413,7 +412,7 @@
 																																				</ul>
 																																</li>
 																																<li class="dropdown"><a href="#"  style="white-space: normal;">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
-																																				<ul class="sub-menu dropdown-menu">
+																																				<div style="position:absolute;z-index:999;"> <ul class="sub-menu dropdown-menu">
 																																								<li><a href="javascript://;" onclick="add_custom_token('ID','instantiation_identifier');">ID</a></li>
 																																								<li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_source');">Identifier Source</a></li>
 																																								<li><a href="javascript://;" onclick="add_custom_token('Dimensions','instantiation_dimension');">Dimensions</a></li>
@@ -440,11 +439,11 @@
 																																								<li><a href="javascript://;" onclick="add_custom_token('Aspect Ratio','track_aspect_ratio');">Aspect Ratio</a></li>
 
 
-
-																																				</ul>
+																																								
+																																				</ul></div>
 																																</li>
 																												</ul>
-																								</div></div>
+																								</div>
 
 
 																				</div>

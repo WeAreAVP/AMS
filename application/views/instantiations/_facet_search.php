@@ -1165,15 +1165,15 @@
 				{
 								
 								var sTable = $('#assets_table').dataTable({
-												"sDom": "frtiS",
+//												"sDom": "frtiS",
 												'bPaginate':false,
 												'bInfo':false,
 												'bFilter': false,
 												"bSort": false,
 //												"sScrollY": $(window).height()-160,
 //												"sScrollX": "100%",
-												"bDeferRender": true,
-												"bAutoWidth": true
+//												"bDeferRender": true,
+//												"bAutoWidth": true
 								});
 								 new FixedHeader( sTable );
 								$.extend( $.fn.dataTableExt.oStdClasses, {

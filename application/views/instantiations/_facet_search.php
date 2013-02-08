@@ -1164,18 +1164,7 @@
 				function updateSimpleDataTable()
 				{
 								
-//								var sTable = $('#assets_table').dataTable({
-//												"sDom": "frti",
-//												'bPaginate':false,
-//												'bInfo':false,
-//												'bFilter': false,
-//												"bSort": false,
-////												"sScrollY": $(window).height()-160,
-////												"sScrollX": "100%",
-////												"bDeferRender": true,
-////												"bAutoWidth": true
-//								});
-//								 new FixedHeader( sTable );
+
 									var oTable = $('#assets_table').dataTable({
 													'bPaginate':false,
 												'bInfo':false,

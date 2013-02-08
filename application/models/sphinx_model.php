@@ -27,7 +27,7 @@ class	Sphinx_Model	extends	CI_Model
 					* @Perm Get Array of Perm possible value of array are certified,agreed,start_date,end_date,search_kewords
 					* @return Object 
 					*/
-				public	function	search_stations($params,	$offset	=	0,	$limit	=	100)
+				public	function	search_stations($params,	$offset	=	0,	$limit	=	1000)
 				{
 								$stations_list	=	array();
 								$total_record	=	0;

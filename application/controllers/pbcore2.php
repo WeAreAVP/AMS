@@ -54,7 +54,7 @@ class	Pbcore2	extends	CI_Controller
 								$xml	=	@simplexml_load_string($file_content);
 								$xml_to_array	=	xmlObjToArr($xml);
 								debug($xml_to_array,FALSE);
-								$this->import_assets($xml_to_array);
+								$this->import_assets($xml_to_array['children']);
 								
 								
 				}

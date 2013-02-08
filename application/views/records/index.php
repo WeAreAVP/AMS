@@ -58,7 +58,7 @@ if(	!	$isAjax)
 												{
 																?>
 																<div style="width:710px;overflow:hidden;" id="simple_view">
-																				<table class="table table-bordered" id="assets_table" >
+																				<table class="table table-bordered" id="assets_table" style="border-collapse:collapse;">
 																								<thead>
 																												<tr style="background: rgb(235, 235, 235);">
 																																<th><span style="float:left;" ><i class="icon-flag "></i></span></th>

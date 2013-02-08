@@ -81,25 +81,26 @@ if(	!	$isAjax)
 																																?>
 																																<tr style="cursor: pointer;">
 																																				<td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>
-																																				<td>
+																																				<td>				<span style="float:left;min-width: 100px;" >
 																																								<?php	echo	$asset->organization	?>
+																																												</span>
 																																				</td>
-																																				<td>
+																																				<td><span style="float:left;min-width: 100px;" >
 																																								<?php
 																																								if($guid_identifier)
 																																								{
 																																												?>
 																																												<a href="<?php	echo	site_url('records/details/'	.	$asset->id)	?>" ><?php	echo	$guid_identifier;	?></a>
 																																								<?php	}
-																																								?>
+																																								?></span>
 																																				</td>
-																																				<td>
+																																				<td><span style="float:left;min-width: 100px;" >
 																																								<?php
 																																								if($local_identifier)
 																																												echo	$local_identifier;
-																																								?>
+																																								?></span>
 																																				</td>
-																																				<td>
+																																				<td><span style="float:left;min-width: 175px;" >
 																																								<?php
 																																								$asset_title_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title_type)));
 																																								$asset_title	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title)));
@@ -125,10 +126,10 @@ if(	!	$isAjax)
 																																								}
 																																								echo	$column;
 																																								?>
-
+</span>
 
 																																				</td>
-																																				<td>
+																																				<td><span style="float:left;min-width: 175px;" >
 																																								<?php
 																																								if($asset_description)
 																																								{
@@ -144,6 +145,7 @@ if(	!	$isAjax)
 																																												}
 																																								}
 																																								?>
+																																												</span>
 																																				</td>
 																																</tr>
 																												<?php	}

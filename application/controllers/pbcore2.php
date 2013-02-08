@@ -67,29 +67,59 @@ class	Pbcore2	extends	CI_Controller
 
 																if(isset($pbcoreassettype['text'])	&&	!	is_empty($pbcoreassettype['text']))
 																{
-																				$this->myLog('Asset Type: '.$pbcoreassettype['text']);
+																				$this->myLog('Asset Type: '	.	$pbcoreassettype['text']);
 																}
 												}
 								}
 								// Asset Type End //
-								
 								// Asset Date and Type Start //
-								if(isset($asset_children['pbcoreassetdate'])){
+								if(isset($asset_children['pbcoreassetdate']))
+								{
 												foreach($asset_children['pbcoreassetdate']	as	$pbcoreassetdate)
 												{
 
 																if(isset($pbcoreassetdate['text'])	&&	!	is_empty($pbcoreassetdate['text']))
 																{
-																				$this->myLog('Asset Date: '.$pbcoreassetdate['text']);
+																				$this->myLog('Asset Date: '	.	$pbcoreassetdate['text']);
 																}
 																if(isset($pbcoreassetdate['attributes']['datetype'])	&&	!	is_empty($pbcoreassetdate['attributes']['datetype']))
 																{
-																				$this->myLog('Asset Date Type: '.$pbcoreassetdate['attributes']['datetype']);
+																				$this->myLog('Asset Date Type: '	.	$pbcoreassetdate['attributes']['datetype']);
 																}
 												}
-												
 								}
 								// Asset Date and Type End //
+								// Asset Identifier Start //
+								// 
+								// Logic will be written  //
+								// 
+								// Asset Identifier End //
+								// Asset Title Start //
+
+								if(isset($asset_children['pbcoretitle']))
+								{
+												foreach($asset_children['pbcoretitle']	as	$pbcoretitle)
+												{
+																
+																if(isset($pbcoretitle['pbcoretitle']['text'])	&&	!	is_empty($pbcoretitle['pbcoretitle']['text']))
+																{
+																				$this->myLog('Asset Title: '	.	$pbcoretitle['pbcoretitle']['text']);
+																}
+																if(isset($pbcoretitle['pbcoretitle']['attributes']['titletype'])	&&	!	is_empty($pbcoretitle['pbcoretitle']['attributes']['titletype']))
+																{
+																				$this->myLog('Asset Title Type: '	.	$pbcoretitle['pbcoretitle']['attributes']['titletype']);
+																}
+																if(isset($pbcoretitle['pbcoretitle']['attributes']['ref'])	&&	!	is_empty($pbcoretitle['pbcoretitle']['attributes']['ref']))
+																{
+																				$this->myLog('Asset Title Ref: '	.	$pbcoretitle['pbcoretitle']['attributes']['ref']);
+																}
+																if(isset($pbcoretitle['pbcoretitle']['attributes']['source'])	&&	!	is_empty($pbcoretitle['pbcoretitle']['attributes']['source']))
+																{
+																				$this->myLog('Asset Title Ref: '	.	$pbcoretitle['pbcoretitle']['attributes']['source']);
+																}
+												}
+								}
+								// Asset Title End  //
 				}
 
 				function	myLog($string)

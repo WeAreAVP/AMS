@@ -115,11 +115,38 @@ class	Pbcore2	extends	CI_Controller
 																}
 																if(isset($pbcoretitle['attributes']['source'])	&&	!	is_empty($pbcoretitle['attributes']['source']))
 																{
-																				$this->myLog('Asset Title Ref: '	.	$pbcoretitle['attributes']['source']);
+																				$this->myLog('Asset Title Source: '	.	$pbcoretitle['attributes']['source']);
 																}
 												}
 								}
 								// Asset Title End  //
+								// 
+								// Asset Subject Start //
+
+								if(isset($asset_children['pbcoresubject']))
+								{
+												foreach($asset_children['pbcoresubject']	as	$pbcoresubject)
+												{
+																
+																if(isset($pbcoresubject['text'])	&&	!	is_empty($pbcoresubject['text']))
+																{
+																				$this->myLog('Asset Subject: '	.	$pbcoresubject['text']);
+																}
+																if(isset($pbcoresubject['attributes']['subjecttype'])	&&	!	is_empty($pbcoresubject['attributes']['subjecttype']))
+																{
+																				$this->myLog('Asset Subject Type: '	.	$pbcoresubject['attributes']['subjecttype']);
+																}
+																if(isset($pbcoresubject['attributes']['ref'])	&&	!	is_empty($pbcoresubject['attributes']['ref']))
+																{
+																				$this->myLog('Asset Subject Ref: '	.	$pbcoresubject['attributes']['ref']);
+																}
+																if(isset($pbcoresubject['attributes']['source'])	&&	!	is_empty($pbcoresubject['attributes']['source']))
+																{
+																				$this->myLog('Asset Subject Source: '	.	$pbcoresubject['attributes']['source']);
+																}
+												}
+								}
+								// Asset Subject End  //
 				}
 
 				function	myLog($string)

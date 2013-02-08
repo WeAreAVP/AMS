@@ -27,13 +27,34 @@
 class	Pbcore2	extends	CI_Controller
 {
 
-				function	index()
+				/**
+					*
+					* Constructor.
+					* 
+					*/
+				public	$pbcore_path;
+
+				function	__construct()
 				{
-								echo	'here';
-								exit;
+								parent::__construct();
+								$this->load->model('cron_model');
+								$this->load->model('assets_model');
+								$this->load->model('instantiations_model',	'instant');
+								$this->load->model('essence_track_model',	'essence');
+								$this->load->model('station_model');
+								$this->pbcore_path	=	'assets/export_pbcore2/';
+				}
+
+				function	process_xml()
+				{
+								$file_path=	$this->pbcore_path.'pbcore';
+								$xml	=	@simplexml_load_string($file_path);
+								$xml_to_array	=	xmlObjToArr($xml);
+								debug($xml_to_array);
 				}
 
 }
+
 // END Pbcore2 Controller
 
 // End of file pbcore2.php 

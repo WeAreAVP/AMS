@@ -4,7 +4,7 @@
 
 
 
-				<div id="search_bar_val" class="facet-search"> 
+				<div id="search_bar_val" class="facet-search" style="height: 400px;overflow-y: scroll;"> 
 								<h5 class="filter_title" id="filter_criteria" style="display: none;">FILTER CRITERIA&nbsp;<span id="filter_record_count"></span></h5>
 								<div id="tokens">
 

@@ -49,16 +49,16 @@ class	Pbcore2	extends	CI_Controller
 				{
 								error_reporting(E_ALL);
 								ini_set('display_errors',	1);
-								$file_path=	$this->pbcore_path.'data/cpb-aacip-16-00ns1t8b/pbcore';
+								$file_path	=	$this->pbcore_path	.	'data/cpb-aacip-16-00ns1t8b/pbcore';
 								$file_content	=	file_get_contents($file_path);
 								$xml	=	@simplexml_load_string($file_content);
 								$xml_to_array	=	xmlObjToArr($xml);
-								debug($xml_to_array,FALSE);
+								debug($xml_to_array,	FALSE);
 								$this->import_assets($xml_to_array['children']);
-								
-								
 				}
-				function import_assets($asset_children){
+
+				function	import_assets($asset_children)
+				{
 								if(isset($asset_children['pbcoreassettype']))
 								{
 												foreach($asset_children['pbcoreassettype']	as	$pbcoreassettype)
@@ -66,10 +66,36 @@ class	Pbcore2	extends	CI_Controller
 
 																if(isset($pbcoreassettype['text'])	&&	!	is_empty($pbcoreassettype['text']))
 																{
-																				echo $pbcoreassettype['text'];exit;
+																				$this->myLog('Asset Type: '.$pbcoreassettype['text']);
 																}
 												}
 								}
+								if(isset($asset_children['pbcoreassetdate'])){
+												foreach($asset_children['pbcoreassetdate']	as	$pbcoreassetdate)
+												{
+
+																if(isset($pbcoreassetdate['text'])	&&	!	is_empty($pbcoreassetdate['text']))
+																{
+																				$this->myLog('Asset Date: '.$pbcoreassettype['text']);
+																}
+																if(isset($pbcoreassetdate['attributes']['datetype'])	&&	!	is_empty($pbcoreassetdate['attributes']['datetype']))
+																{
+																				$this->myLog('Asset Date Type: '.$pbcoreassetdate['attributes']['datetype']);
+																}
+												}
+												
+								}
+				}
+
+				function	myLog($string)
+				{
+								global	$argc;
+								if($argc)
+												$string.="\n";
+								else
+												$string.="<br>\n";
+								echo	date('Y-m-d H:i:s')	.	' >> '	.	$string;
+								flush();
 				}
 
 }

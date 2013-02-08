@@ -52,9 +52,23 @@ class	Pbcore2	extends	CI_Controller
 								$file_path=	$this->pbcore_path.'data/cpb-aacip-16-00ns1t8b/pbcore';
 								$file_content	=	file_get_contents($file_path);
 								$xml	=	@simplexml_load_string($file_content);
-								debug($xml_to_array,FALSE);
 								$xml_to_array	=	xmlObjToArr($xml);
-								debug($xml_to_array);
+								$this->import_assets($xml_to_array);
+								
+								
+				}
+				function import_assets($asset_children){
+								if(isset($asset_children['pbcoreassettype']))
+								{
+												foreach($asset_children['pbcoreassettype']	as	$pbcoreassettype)
+												{
+
+																if(isset($pbcoreassettype['text'])	&&	!	is_empty($pbcoreassettype['text']))
+																{
+																				echo $pbcoreassettype['text'];exit;
+																}
+												}
+								}
 				}
 
 }

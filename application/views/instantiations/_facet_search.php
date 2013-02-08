@@ -1170,8 +1170,8 @@
 												'bInfo':false,
 												'bFilter': false,
 												"bSort": false,
-												"sScrollY": $(window).height()-160,
-												"sScrollX": "100%",
+//												"sScrollY": $(window).height()-160,
+//												"sScrollX": "100%",
 												"bDeferRender": true,
 												"bAutoWidth": true
 								});

@@ -101,21 +101,21 @@ class	Pbcore2	extends	CI_Controller
 												foreach($asset_children['pbcoretitle']	as	$pbcoretitle)
 												{
 																
-																if(isset($pbcoretitle['pbcoretitle']['text'])	&&	!	is_empty($pbcoretitle['pbcoretitle']['text']))
+																if(isset($pbcoretitle['text'])	&&	!	is_empty($pbcoretitle['text']))
 																{
-																				$this->myLog('Asset Title: '	.	$pbcoretitle['pbcoretitle']['text']);
+																				$this->myLog('Asset Title: '	.	$pbcoretitle['text']);
 																}
-																if(isset($pbcoretitle['pbcoretitle']['attributes']['titletype'])	&&	!	is_empty($pbcoretitle['pbcoretitle']['attributes']['titletype']))
+																if(isset($pbcoretitle['attributes']['titletype'])	&&	!	is_empty($pbcoretitle['attributes']['titletype']))
 																{
 																				$this->myLog('Asset Title Type: '	.	$pbcoretitle['pbcoretitle']['attributes']['titletype']);
 																}
-																if(isset($pbcoretitle['pbcoretitle']['attributes']['ref'])	&&	!	is_empty($pbcoretitle['pbcoretitle']['attributes']['ref']))
+																if(isset($pbcoretitle['attributes']['ref'])	&&	!	is_empty($pbcoretitle['attributes']['ref']))
 																{
-																				$this->myLog('Asset Title Ref: '	.	$pbcoretitle['pbcoretitle']['attributes']['ref']);
+																				$this->myLog('Asset Title Ref: '	.	$pbcoretitle['attributes']['ref']);
 																}
-																if(isset($pbcoretitle['pbcoretitle']['attributes']['source'])	&&	!	is_empty($pbcoretitle['pbcoretitle']['attributes']['source']))
+																if(isset($pbcoretitle['attributes']['source'])	&&	!	is_empty($pbcoretitle['attributes']['source']))
 																{
-																				$this->myLog('Asset Title Ref: '	.	$pbcoretitle['pbcoretitle']['attributes']['source']);
+																				$this->myLog('Asset Title Ref: '	.	$pbcoretitle['attributes']['source']);
 																}
 												}
 								}

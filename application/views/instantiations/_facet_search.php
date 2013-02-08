@@ -357,7 +357,8 @@
 								</div>
 				</div>
 				<div class="clearfix"></div>
-				<div id="search_bar" class="facet-search" style="height: 400px;overflow-y: scroll;"> 
+				<div style="height: 400px;overflow-y: scroll;">
+				<div id="search_bar" class="facet-search"> 
 								<input type="hidden" name="current_tab" id="current_tab" value="<?php	echo	isset($this->session->userdata['current_tab'])	?	$this->session->userdata['current_tab']	:	''	?>"  />
 								<b>
 												<h5 class="filter_title">FILTER</h5>
@@ -872,6 +873,7 @@
 
 
 				</div>
+								</div>
 </form>
 
 <script type="text/javascript">

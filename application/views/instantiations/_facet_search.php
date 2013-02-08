@@ -412,7 +412,8 @@
 																																				</ul>
 																																</li>
 																																<li class="dropdown"><a href="#"  style="white-space: normal;">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
-																																				<div style="position:absolute;z-index:999;"> <ul class="sub-menu dropdown-menu">
+																																				<div style="position:absolute;z-index:999;">   
+																																								<ul class="sub-menu dropdown-menu">
 																																								<li><a href="javascript://;" onclick="add_custom_token('ID','instantiation_identifier');">ID</a></li>
 																																								<li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_source');">Identifier Source</a></li>
 																																								<li><a href="javascript://;" onclick="add_custom_token('Dimensions','instantiation_dimension');">Dimensions</a></li>
@@ -440,7 +441,8 @@
 
 
 																																								
-																																				</ul></div>
+																																				</ul>
+																																				</div>
 																																</li>
 																												</ul>
 																								</div>

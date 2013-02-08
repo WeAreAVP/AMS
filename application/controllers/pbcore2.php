@@ -107,7 +107,7 @@ class	Pbcore2	extends	CI_Controller
 																}
 																if(isset($pbcoretitle['attributes']['titletype'])	&&	!	is_empty($pbcoretitle['attributes']['titletype']))
 																{
-																				$this->myLog('Asset Title Type: '	.	$pbcoretitle['pbcoretitle']['attributes']['titletype']);
+																				$this->myLog('Asset Title Type: '	.	$pbcoretitle['attributes']['titletype']);
 																}
 																if(isset($pbcoretitle['attributes']['ref'])	&&	!	is_empty($pbcoretitle['attributes']['ref']))
 																{

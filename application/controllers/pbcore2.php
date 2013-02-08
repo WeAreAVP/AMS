@@ -100,7 +100,7 @@ class	Pbcore2	extends	CI_Controller
 								{
 												foreach($asset_children['pbcoretitle']	as	$pbcoretitle)
 												{
-																
+
 																if(isset($pbcoretitle['text'])	&&	!	is_empty($pbcoretitle['text']))
 																{
 																				$this->myLog('Asset Title: '	.	$pbcoretitle['text']);
@@ -120,14 +120,13 @@ class	Pbcore2	extends	CI_Controller
 												}
 								}
 								// Asset Title End  //
-								
 								// Asset Subject Start //
 
 								if(isset($asset_children['pbcoresubject']))
 								{
 												foreach($asset_children['pbcoresubject']	as	$pbcoresubject)
 												{
-																
+
 																if(isset($pbcoresubject['text'])	&&	!	is_empty($pbcoresubject['text']))
 																{
 																				$this->myLog('Asset Subject: '	.	$pbcoresubject['text']);
@@ -147,23 +146,25 @@ class	Pbcore2	extends	CI_Controller
 												}
 								}
 								// Asset Subject End  //
-								
 								// Asset Description Start //
 
 								if(isset($asset_children['pbcoredescription']))
 								{
 												foreach($asset_children['pbcoredescription']	as	$pbcoredescription)
 												{
-																
+
 																if(isset($pbcoredescription['text'])	&&	!	is_empty($pbcoredescription['text']))
 																{
 																				$this->myLog('Asset Description: '	.	$pbcoredescription['text']);
+																}
+																else
+																{
+																				$this->myLog('Asset Description: ');
 																}
 																if(isset($pbcoredescription['attributes']['descriptiontype'])	&&	!	is_empty($pbcoredescription['attributes']['descriptiontype']))
 																{
 																				$this->myLog('Asset Description Type: '	.	$pbcoredescription['attributes']['descriptiontype']);
 																}
-															
 												}
 								}
 								// Asset Description End  //

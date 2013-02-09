@@ -31,9 +31,7 @@ html, body {
 				border-radius: 2px 2px 0px 0px;
 
 }
-.custom-nav-ul li a:hover{
-				color:red;
-}
+
 /* The white background content wrapper */
 .container > .content {
 				background-color: #fff;

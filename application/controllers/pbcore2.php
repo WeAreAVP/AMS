@@ -637,18 +637,59 @@ class	Pbcore2	extends	CI_Controller
 																				}
 																				// Instantiations  Format End //
 																				// Instantiations  Generation Start //
-																				
+
 																				if(isset($pbcoreinstantiation_child['instantiationgenerations'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationgenerations']))
 																				{
 																								foreach($pbcoreinstantiation_child['instantiationgenerations']	as	$instantiation_generations)
 																								{
 																												if(isset($instantiation_generations['text'])	&&	!	is_empty($instantiation_generations['text']))
 																												{
-																															$this->myLog('Instantiation Generation: '	.	$instantiation_generations['text']);	
+																																$this->myLog('Instantiation Generation: '	.	$instantiation_generations['text']);
 																												}
 																								}
 																				}
 																				// Instantiations  Generation End //
+																				// Instantiations  Annotation Start //
+																				if(isset($pbcoreinstantiation_child['instantiationannotation']))
+																				{
+																								foreach($pbcoreinstantiation_child['instantiationannotation']	as	$pbcore_annotation)
+																								{
+																												if(isset($pbcore_annotation['text'])	&&	!	is_empty($pbcore_annotation['text']))
+																												{
+																																$this->myLog('Instantiation Annotation: '	.	$pbcore_annotation['text']);
+																																if(isset($pbcore_annotation['attributes']['annotationtype'])	&&	!	is_empty($pbcore_annotation['attributes']['annotationtype']))
+																																{
+																																				$this->myLog('Instantiation Annotation Type: '	.	$pbcore_annotation['attributes']['annotationtype']);
+																																}
+																												}
+																								}
+																				}
+																				// Instantiations  Annotation End //
+																				// Asset Relation Start  //
+																				if(isset($pbcoreinstantiation_child['pbcorerelation']))
+																				{
+																								foreach($pbcoreinstantiation_child['pbcorerelation']	as	$pbcorerelation)
+																								{
+
+																												if(isset($pbcorerelation['children']['pbcorerelationidentifier'][0]['text'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationidentifier'][0]['text']))
+																												{
+																																$this->myLog('Instantiation Relation Identifier: '	.	$pbcorerelation['children']['pbcorerelationidentifier'][0]['text']);
+																												}
+																												if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['text'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['text']))
+																												{
+																																$this->myLog('Instantiation Relation Type: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['text']);
+																																if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['attributes']['source']))
+																																{
+																																				$this->myLog('Instantiation Relation Type Source: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source']);
+																																}
+																																if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['attributes']['ref']))
+																																{
+																																				$this->myLog('Instantiation Relation Type Ref: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref']);
+																																}
+																												}
+																								}
+																				}
+																				// Asset Relation End  //
 																}
 												}
 								}

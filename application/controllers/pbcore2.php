@@ -49,7 +49,7 @@ class	Pbcore2	extends	CI_Controller
 				{
 								error_reporting(E_ALL);
 								ini_set('display_errors',	1);
-								$file_path	=	$this->pbcore_path	.	'data/cpb-aacip-16-00ns1t8b/pbcore';
+								$file_path	=	$this->pbcore_path	.	'sample/wnyc_pbcore.xml';
 								$file_content	=	file_get_contents($file_path);
 								$xml	=	@simplexml_load_string($file_content);
 								$xml_to_array	=	xmlObjToArr($xml);
@@ -168,7 +168,6 @@ class	Pbcore2	extends	CI_Controller
 												}
 								}
 								// Asset Description End  //
-								
 								// Asset Genre Start //
 
 								if(isset($asset_children['pbcoregenre']))
@@ -180,7 +179,7 @@ class	Pbcore2	extends	CI_Controller
 																{
 																				$this->myLog('Asset Genre: '	.	$pbcoregenre['text']);
 																}
-															
+
 																if(isset($pbcoregenre['attributes']['source'])	&&	!	is_empty($pbcoregenre['attributes']['source']))
 																{
 																				$this->myLog('Asset Genre Source: '	.	$pbcoregenre['attributes']['source']);
@@ -192,7 +191,6 @@ class	Pbcore2	extends	CI_Controller
 												}
 								}
 								// Asset Genre End  //
-								
 				}
 
 				function	myLog($string)

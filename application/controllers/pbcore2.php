@@ -553,6 +553,7 @@ class	Pbcore2	extends	CI_Controller
 																				//Instantiation Alternative Mode End //
 
 																				$insert_instantiation	=	TRUE;
+																				// Instantiations Identifier Start //
 																				if(isset($pbcoreinstantiation_child['instantiationidentifier']))
 																				{
 
@@ -568,6 +569,24 @@ class	Pbcore2	extends	CI_Controller
 																												}
 																								}
 																				}
+																				// Instantiations Identifier End //
+																				// Instantiations Date Start //
+																				if(isset($pbcoreinstantiation_child['instantiationdate']))
+																				{
+
+																								foreach($pbcoreinstantiation_child['instantiationdate']	as	$pbcore_date)
+																								{
+																												if(isset($pbcore_date['text'])	&&	!	is_empty($pbcore_date['text']))
+																												{
+																																$this->myLog('Instantiation Date: '	.	$pbcore_date['text']);
+																																if(isset($pbcore_date['attributes']['datetype'])	&&	!	is_empty($pbcore_identifier['attributes']['datetype']))
+																																{
+																																				$this->myLog('Instantiation Date Type: '	.	$pbcore_identifier['attributes']['datetype']);
+																																}
+																												}
+																								}
+																				}
+																				// Instantiations Date End //
 																}
 												}
 								}

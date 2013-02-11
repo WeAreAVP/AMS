@@ -216,6 +216,118 @@ class	Pbcore2	extends	CI_Controller
 												}
 								}
 								// Asset Genre End  //
+								// Asset Coverage Start  //
+								// 
+								// Logics will be written when I got sample
+								// 
+								// Asset Coverage End  //
+								// Asset Audience Level Start //
+
+								if(isset($asset_children['pbcoreaudiencelevel']))
+								{
+												foreach($asset_children['pbcoreaudiencelevel']	as	$pbcoreaudiencelevel)
+												{
+
+																if(isset($pbcoreaudiencelevel['text'])	&&	!	is_empty($pbcoreaudiencelevel['text']))
+																{
+																				$this->myLog('Asset Audience Level: '	.	$pbcoreaudiencelevel['text']);
+																}
+
+																if(isset($pbcoreaudiencelevel['attributes']['source'])	&&	!	is_empty($pbcoreaudiencelevel['attributes']['source']))
+																{
+																				$this->myLog('Asset Audience Level Source: '	.	$pbcoreaudiencelevel['attributes']['source']);
+																}
+																if(isset($pbcoreaudiencelevel['attributes']['ref'])	&&	!	is_empty($pbcoreaudiencelevel['attributes']['ref']))
+																{
+																				$this->myLog('Asset Audience Level Ref: '	.	$pbcoreaudiencelevel['attributes']['ref']);
+																}
+												}
+								}
+								// Asset Audience Level End  //
+								// Asset Audience Rating Start //
+
+								if(isset($asset_children['pbcoreaudiencerating']))
+								{
+												foreach($asset_children['pbcoreaudiencerating']	as	$pbcoreaudiencerating)
+												{
+
+																if(isset($pbcoreaudiencerating['text'])	&&	!	is_empty($pbcoreaudiencerating['text']))
+																{
+																				$this->myLog('Asset Audience Rating: '	.	$pbcoreaudiencerating['text']);
+																}
+
+																if(isset($pbcoreaudiencerating['attributes']['source'])	&&	!	is_empty($pbcoreaudiencerating['attributes']['source']))
+																{
+																				$this->myLog('Asset Audience Rating Source: '	.	$pbcoreaudiencerating['attributes']['source']);
+																}
+																if(isset($pbcoreaudiencerating['attributes']['ref'])	&&	!	is_empty($pbcoreaudiencerating['attributes']['ref']))
+																{
+																				$this->myLog('Asset Audience Rating Ref: '	.	$pbcoreaudiencerating['attributes']['ref']);
+																}
+												}
+								}
+								// Asset Audience Rating End  //
+								// Asset Annotation Start //
+
+								if(isset($asset_children['pbcoreannotation']))
+								{
+												foreach($asset_children['pbcoreannotation']	as	$pbcoreannotation)
+												{
+
+																if(isset($pbcoreannotation['text'])	&&	!	is_empty($pbcoreannotation['text']))
+																{
+																				$this->myLog('Asset Annotation: '	.	$pbcoreannotation['text']);
+																}
+
+																if(isset($pbcoreannotation['attributes']['annotationtype'])	&&	!	is_empty($pbcoreannotation['attributes']['annotationtype']))
+																{
+																				$this->myLog('Asset Annotation Type: '	.	$pbcoreannotation['attributes']['annotationtype']);
+																}
+																if(isset($pbcoreannotation['attributes']['ref'])	&&	!	is_empty($pbcoreannotation['attributes']['ref']))
+																{
+																				$this->myLog('Asset Annotation Ref: '	.	$pbcoreannotation['attributes']['ref']);
+																}
+												}
+								}
+								// Asset Annotation End  //
+								// Asset Relation Start  //
+								// 
+								// Logics will be written when I got sample
+								// 
+								// Asset Relation End  //
+								// Asset Creator Start  //
+								if(isset($asset_children['pbcorecreator']))
+								{
+												foreach($asset_children['pbcorecreator']	as	$pbcore_creator)
+												{
+
+																if(isset($pbcore_creator['children']['creator'][0]['text'])	&&	!	is_empty($pbcore_creator['children']['creator'][0]['text']))
+																{
+																				$this->myLog('Asset Creator: '	.	$pbcore_creator['children']['creator'][0]['text']);
+																				if(isset($pbcore_creator['children']['creator'][0]['attributes']['affiliation'])	&&	!	is_empty($pbcore_creator['children']['creator'][0]['attributes']['affiliation']))
+																				{
+																								$this->myLog('Asset Creator affiliation: '	.	$pbcore_creator['children']['creator'][0]['attributes']['affiliation']);
+																				}
+																				if(isset($pbcore_creator['children']['creator'][0]['attributes']['ref'])	&&	!	is_empty($pbcore_creator['children']['creator'][0]['attributes']['ref']))
+																				{
+																								$this->myLog('Asset Creator Ref: '	.	$pbcore_creator['children']['creator'][0]['attributes']['ref']);
+																				}
+																}
+																if(isset($pbcore_creator['children']['creatorrole'][0]['text'])	&&	!	is_empty($pbcore_creator['children']['creatorrole'][0]['text']))
+																{
+																				$this->myLog('Asset Creator Role: '	.	$pbcore_creator['children']['creatorrole'][0]['text']);
+																				if(isset($pbcore_creator['children']['creatorrole'][0]['attributes']['source'])	&&	!	is_empty($pbcore_creator['children']['creatorrole'][0]['attributes']['source']))
+																				{
+																								$this->myLog('Asset Creator Role Source: '	.	$pbcore_creator['children']['creatorrole'][0]['attributes']['source']);
+																				}
+																				if(isset($pbcore_creator['children']['creatorrole'][0]['attributes']['ref'])	&&	!	is_empty($pbcore_creator['children']['creatorrole'][0]['attributes']['ref']))
+																				{
+																								$this->myLog('Asset Creator Role Ref: '	.	$pbcore_creator['children']['creator'][0]['attributes']['ref']);
+																				}
+																}
+												}
+								}
+								// Asset Creator End  //
 				}
 
 				function	myLog($string)

@@ -480,25 +480,22 @@ class	Pbcore2	extends	CI_Controller
 																				// Instantiation Location Start //
 																				if(isset($pbcoreinstantiation_child['instantiationlocation'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationlocation'][0]['text']))
 																				{
-																								if(	!	is_empty($pbcoreinstantiation_child['instantiationlocation'][0]['text']))
-																								{
-																												$this->myLog('Instantiation Location: '	.	$pbcoreinstantiation_child['instantiationlocation '][0]['text']);
-																								}
+																								$this->myLog('Instantiation Location: '	.	$pbcoreinstantiation_child['instantiationlocation'][0]['text']);
 																				}
 																				// Instantiation Location End //
 																				// Instantiation Media Type Start //
 																				if(isset($pbcoreinstantiation_child['instantiationmediatype'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationmediatype'][0]['text']))
 																				{
-																								$this->myLog('Instantiation Media Type: '	.	$pbcoreinstantiation_child['instantiationmediatype '][0]['text']);
+																								$this->myLog('Instantiation Media Type: '	.	$pbcoreinstantiation_child['instantiationmediatype'][0]['text']);
 																				}
 																				// Instantiation Media Type End //
 																				// Instantiation File Size Start //
 																				if(isset($pbcoreinstantiation_child['instantiationfilesize'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationfilesize'][0]['text']))
 																				{
-																								$this->myLog('Instantiation File Size: '	.	$pbcoreinstantiation_child['instantiationfilesize '][0]['text']);
+																								$this->myLog('Instantiation File Size: '	.	$pbcoreinstantiation_child['instantiationfilesize'][0]['text']);
 																								if(isset($pbcoreinstantiation_child['instantiationfilesize'][0]['attributes']['unitsofmeasure'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationfilesize'][0]['attributes']['unitsofmeasure']))
 																								{
-																												$this->myLog('Instantiation File Size Type: '	.	$pbcoreinstantiation_child['instantiationfilesize '][0]['attributes']['unitsofmeasure']);
+																												$this->myLog('Instantiation File Size Type: '	.	$pbcoreinstantiation_child['instantiationfilesize'][0]['attributes']['unitsofmeasure']);
 																								}
 																				}
 																				// Instantiation File Size End //

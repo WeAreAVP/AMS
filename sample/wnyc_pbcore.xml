@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.pbcore.org/PBCore/PBCoreNamespace.html http://pbcore.org/xsd/pbcore-2.0.xsd">
+  <!--XML Generated at Fri Jan 27 02:57:47 +0000 2012 by rails pbcore database-->
+  <!--created at 2011-04-08 16:50:03 UTC by unknown-->
+  <!--updated at 2011-04-08 16:56:42 UTC by unknown-->
+  <pbcoreIdentifier source="WNYC Archive Catalog">70679</pbcoreIdentifier>
+  <pbcoreIdentifier source="pbcore XML database UUID"
+    >2f0a1d28-9ccc-4e22-9d45-fee8a39efa16</pbcoreIdentifier>
+  <pbcoreTitle titleType="Episode">Composers and lyricists</pbcoreTitle>
+  <pbcoreTitle titleType="Series">Spinning On Air</pbcoreTitle>
+  <pbcoreTitle titleType="Collection">WNYC</pbcoreTitle>
+  <pbcoreGenre source="PBCore Genre Picklist">Music talk</pbcoreGenre>
+  <pbcoreContributor>
+    <contributor>David Garland</contributor>
+    <contributorRole>Host</contributorRole>
+  </pbcoreContributor>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="WNYC Media Archive Label">70679.1</instantiationIdentifier>
+    <instantiationIdentifier source="pbcore XML database UUID"
+      >ed39b822-ec49-4265-8289-53979461ce6f</instantiationIdentifier>
+    <instantiationDate dateType="Created">1988-11-06</instantiationDate>
+    <instantiationDate dateType="Issued">1988-11-06</instantiationDate>
+    <instantiationPhysical>1/4 inch audio tape</instantiationPhysical>
+    <instantiationLocation>Archives Storage</instantiationLocation>
+    <instantiationMediaType>Sound</instantiationMediaType>
+    <instantiationDuration>02:58:23</instantiationDuration>
+    <instantiationChannelConfiguration>stereo</instantiationChannelConfiguration>
+    <instantiationLanguage>eng</instantiationLanguage>
+    <instantiationEssenceTrack>
+      <essenceTrackType>audio</essenceTrackType>
+      <essenceTrackIdentifier>70679.1a</essenceTrackIdentifier>
+      <essenceTrackFrameRate>7.5 ips.</essenceTrackFrameRate>
+      <essenceTrackDuration>01:37:13</essenceTrackDuration>
+    </instantiationEssenceTrack>
+    <instantiationEssenceTrack>
+      <essenceTrackType>audio</essenceTrackType>
+      <essenceTrackIdentifier>70679.1b</essenceTrackIdentifier>
+      <essenceTrackFrameRate>7.5 ips.</essenceTrackFrameRate>
+      <essenceTrackDuration>01:21:10</essenceTrackDuration>
+    </instantiationEssenceTrack>
+    <instantiationAnnotation annotationType="Container_information">air dates: 1988-11-06,
+      1989-07-29, 1990-12-16.</instantiationAnnotation>
+    <instantiationAnnotation annotationType="Condition_notes">flangeless
+      hubs</instantiationAnnotation>
+    <instantiationAnnotation annotationType="stock_brand"/>
+    <instantiationAnnotation annotationType="dimensions">10 in. </instantiationAnnotation>
+    <instantiationAnnotation annotationType="duration approximate">n</instantiationAnnotation>
+    <instantiationAnnotation annotationType="date approximate">n</instantiationAnnotation>
+    <instantiationAnnotation annotationType="CIP nomination">1</instantiationAnnotation>
+    <instantiationAnnotation annotationType="CIP Reasons">Potential to repurpose, National Cultural
+      Value, Local Cultural Value</instantiationAnnotation>
+    <instantiationAnnotation annotationType="nominated">Y</instantiationAnnotation>
+  </pbcoreInstantiation>
+  <pbcoreIdentifier source="http://americanarchiveinventory.org"
+    >cpb-aacip/80-01bk41nx</pbcoreIdentifier>
+  <pbcoreExtension>
+    <extensionWrap>
+      <extensionElement>record.organization.name</extensionElement>
+      <extensionValue>New York Public Radio</extensionValue>
+      <extensionAuthorityUsed>AACIP Record Creator</extensionAuthorityUsed>
+    </extensionWrap>
+  </pbcoreExtension>
+  <pbcoreExtension>
+    <extensionWrap>
+      <extensionElement>record.updated_at</extensionElement>
+      <extensionValue>2012-01-30 15:23:54 UTC</extensionValue>
+      <extensionAuthorityUsed>AACIP Record Last Modified</extensionAuthorityUsed>
+    </extensionWrap>
+  </pbcoreExtension>
+  <pbcoreExtension>
+    <extensionWrap>
+      <extensionElement>record.nomination</extensionElement>
+      <extensionValue>Nominated/1st Priority</extensionValue>
+      <extensionAuthorityUsed>AACIP Record Nomination Status</extensionAuthorityUsed>
+    </extensionWrap>
+  </pbcoreExtension>
+  <pbcoreExtension>
+    <extensionWrap>
+      <extensionElement>record.tag_list</extensionElement>
+      <extensionValue>risk of loss,National Cultural Value,Potential to repurpose,local
+        cultural</extensionValue>
+      <extensionAuthorityUsed>AACIP Record Tags</extensionAuthorityUsed>
+    </extensionWrap>
+  </pbcoreExtension>
+</pbcoreDescriptionDocument>

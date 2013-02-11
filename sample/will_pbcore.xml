@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.pbcore.org/PBCore/PBCoreNamespace.html http://pbcore.org/xsd/pbcore-2.0.xsd">
+  <pbcoreAssetType>Collection</pbcoreAssetType>
+  <pbcoreAssetDate>1994-04-01 01:00 AM</pbcoreAssetDate>
+  <pbcoreIdentifier source="Illinois Public Media">will_news9404</pbcoreIdentifier>
+  <pbcoreTitle titleType="Collection">News Programming April 1994</pbcoreTitle>
+  <pbcoreSubject subjectType="topic"/>
+  <pbcoreDescription descriptionType="--"/>
+
+
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="Illinois Public Media"
+      >will_news9404_dat</instantiationIdentifier>
+    <instantiationDate dateType="created">1994-04-01 01:00 AM</instantiationDate>
+    <instantiationPhysical>DAT</instantiationPhysical>
+    <instantiationLocation>Tape Library AM</instantiationLocation>
+    <instantiationMediaType>Sound</instantiationMediaType>
+    <instantiationGenerations>Master</instantiationGenerations>
+    <instantiationDuration>02:00:00</instantiationDuration>
+  </pbcoreInstantiation>
+  <pbcoreIdentifier source="http://americanarchiveinventory.org"
+    >cpb-aacip/16-01bk3nr0</pbcoreIdentifier>
+  <pbcoreExtension>
+    <extensionWrap>
+      <extensionElement>record.organization.name</extensionElement>
+      <extensionValue>Illinois Public Media</extensionValue>
+      <extensionAuthorityUsed>AACIP Record Creator</extensionAuthorityUsed>
+    </extensionWrap>
+  </pbcoreExtension>
+  <pbcoreExtension>
+    <extensionWrap>
+      <extensionElement>record.updated_at</extensionElement>
+      <extensionValue>2012-10-13 20:08:45 UTC</extensionValue>
+      <extensionAuthorityUsed>AACIP Record Last Modified</extensionAuthorityUsed>
+    </extensionWrap>
+  </pbcoreExtension>
+  <pbcoreExtension>
+    <extensionWrap>
+      <extensionElement>record.nomination</extensionElement>
+      <extensionValue>Nominated/1st Priority</extensionValue>
+      <extensionAuthorityUsed>AACIP Record Nomination Status</extensionAuthorityUsed>
+    </extensionWrap>
+  </pbcoreExtension>
+  <pbcoreExtension>
+    <extensionWrap>
+      <extensionElement>record.tag_list</extensionElement>
+      <extensionValue>historical value,risk of loss,Local Cultural Value,Potential to
+        repurpose</extensionValue>
+      <extensionAuthorityUsed>AACIP Record Tags</extensionAuthorityUsed>
+    </extensionWrap>
+  </pbcoreExtension>
+</pbcoreDescriptionDocument>

@@ -59,6 +59,7 @@ class	Pbcore2	extends	CI_Controller
 								$xml_to_array	=	xmlObjToArr($xml);
 								debug($xml_to_array,	FALSE);
 								$this->import_assets($xml_to_array['children']);
+								$this->import_instantiations($xml_to_array['children']);
 				}
 
 				function	import_assets($asset_children)
@@ -303,9 +304,29 @@ class	Pbcore2	extends	CI_Controller
 								}
 								// Asset Annotation End  //
 								// Asset Relation Start  //
-								// 
-								// Logics will be written when I got sample
-								// 
+								if(isset($asset_children['pbcorerelation']))
+								{
+												foreach($asset_children['pbcorerelation']	as	$pbcorerelation)
+												{
+
+																if(isset($pbcorerelation['children']['pbcorerelationidentifier'][0]['text'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationidentifier'][0]['text']))
+																{
+																				$this->myLog('Asset Relation Identifier: '	.	$pbcorerelation['children']['pbcorerelationidentifier'][0]['text']);
+																}
+																if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['text'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['text']))
+																{
+																				$this->myLog('Asset Relation Type: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['text']);
+																				if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['attributes']['source']))
+																				{
+																								$this->myLog('Asset Relation Type Source: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source']);
+																				}
+																				if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['attributes']['ref']))
+																				{
+																								$this->myLog('Asset Relation Type Ref: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref']);
+																				}
+																}
+												}
+								}
 								// Asset Relation End  //
 								// Asset Creator Start  //
 								if(isset($asset_children['pbcorecreator']))
@@ -444,6 +465,12 @@ class	Pbcore2	extends	CI_Controller
 												}
 								}
 								// Asset Extension End //
+				}
+
+				function	import_instantiations($asset_children)
+				{
+								// Instantiation Identifier Start //
+								// Instantiation Identifier End //
 				}
 
 				function	myLog($string)

@@ -478,7 +478,7 @@ class	Pbcore2	extends	CI_Controller
 																				$pbcoreinstantiation_child	=	$pbcoreinstantiation['children'];
 																				debug($pbcoreinstantiation_child,	FALSE);
 																				// Instantiation Location Start //
-																				if(isset($pbcoreinstantiation_child['instantiationlocation'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationlocation']))
+																				if(isset($pbcoreinstantiation_child['instantiationlocation'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationlocation'][0]['text']))
 																				{
 																								if(	!	is_empty($pbcoreinstantiation_child['instantiationlocation'][0]['text']))
 																								{

@@ -49,17 +49,20 @@ class	Pbcore2	extends	CI_Controller
 				{
 								error_reporting(E_ALL);
 								ini_set('display_errors',	1);
-								//will_pbcore.xml
-								//wnyc_pbcore.xml
-								//scetv_pbcore.xml
-								//mpr_pbcore.xml
-								$file_path	=	$this->pbcore_path	.	'sample/scetv_pbcore.xml';
-								$file_content	=	file_get_contents($file_path);
-								$xml	=	@simplexml_load_string($file_content);
-								$xml_to_array	=	xmlObjToArr($xml);
+
+								$sample	=	array('will_pbcore.xml',	'wnyc_pbcore.xml',	'scetv_pbcore.xml',	'mpr_pbcore.xml');
+								foreach($sample	as	$value)
+								{
+												$file_path	=	$this->pbcore_path	.	'sample/'	.	$value;
+												$this->myLog('File Name: '	.	$value);
+												$file_content	=	file_get_contents($file_path);
+												$xml	=	@simplexml_load_string($file_content);
+												$xml_to_array	=	xmlObjToArr($xml);
 //								debug($xml_to_array,	FALSE);
-								$this->import_assets($xml_to_array['children']);
-								$this->import_instantiations($xml_to_array['children']);
+												$this->import_assets($xml_to_array['children']);
+												$this->import_instantiations($xml_to_array['children']);
+												$this->myLog('<br/><br/>');
+								}
 				}
 
 				function	import_assets($asset_children)
@@ -687,7 +690,7 @@ class	Pbcore2	extends	CI_Controller
 																																				$this->myLog('Instantiation Relation Type Ref: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref']);
 																																}
 																												}
-																								}   
+																								}
 																				}
 																				// Asset Relation End  //
 																}

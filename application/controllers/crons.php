@@ -85,11 +85,12 @@ class	Crons	extends	CI_Controller
 																$mem	=	$mem	/	1024;
 																$this->myLog($mem	.	' GB');
 												}
+												$url	=	site_url()	.	"uploads/$filename";
+												$this->csv_job->update_job($job->id,	array('status'	=>	'1'));
+												$user	=	$this->users->get_user_by_id($job	>	user_id)->row();
+												send_email($user->email,	'ssapienza@cpb.org',	'Limited CSV Export',	$url);
+												exit;
 								}
-								$url	=	site_url()	.	"uploads/$filename";
-								$this->csv_job->update_job($job->id,	array('status'	=>	'1'));
-								$user	=	$this->users->get_user_by_id($job	>	user_id)->row();
-								send_email($user->email,	'ssapienza@cpb.org',	'Limited CSV Export',	$url);
 								exit;
 				}
 

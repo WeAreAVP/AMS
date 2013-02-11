@@ -540,7 +540,7 @@ class	Pbcore2	extends	CI_Controller
 																				}
 																				//Instantiation Channel Configuration End //
 																				//Instantiation Language Start //
-																				if(isset($pbcoreinstantiation_child['instantiationlanguage'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['language'][0]['text']))
+																				if(isset($pbcoreinstantiation_child['instantiationlanguage'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationlanguage'][0]['text']))
 																				{
 																								$this->myLog('Instantiation Language: '	.	$pbcoreinstantiation_child['instantiationlanguage'][0]['text']);
 																				}

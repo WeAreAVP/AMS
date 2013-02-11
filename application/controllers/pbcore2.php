@@ -217,9 +217,21 @@ class	Pbcore2	extends	CI_Controller
 								}
 								// Asset Genre End  //
 								// Asset Coverage Start  //
-								// 
-								// Logics will be written when I got sample
-								// 
+								if(isset($asset_children['pbcorecoverage']))
+								{
+												foreach($asset_children['pbcorecoverage']	as	$pbcore_coverage)
+												{
+
+																if(isset($pbcore_coverage['children']['coverage'][0]['text'])	&&	!	is_empty($pbcore_coverage['children']['coverage'][0]['text']))
+																{
+																				$this->myLog('Asset Coverage: '	.	$pbcore_coverage['children']['coverage'][0]['text']);
+																}
+																if(isset($pbcore_coverage['children']['coveragetype'][0]['text'])	&&	!	is_empty($pbcore_coverage['children']['coveragetype'][0]['text']))
+																{
+																				$this->myLog('Asset Coverage Type: '	.	$pbcore_coverage['children']['coveragetype'][0]['text']);
+																}
+												}
+								}
 								// Asset Coverage End  //
 								// Asset Audience Level Start //
 
@@ -394,6 +406,22 @@ class	Pbcore2	extends	CI_Controller
 												}
 								}
 								// Asset Publisher End  //
+								// Asset Right Summary Start  //
+								if(isset($asset_children['pbcorerightssummary']))
+								{
+												foreach($asset_children['pbcorerightssummary']	as	$pbcore_rights)
+												{
+																if(isset($pbcore_rights['children']['rightssummary'][0]['text'])	&&	!	is_empty($pbcore_rights['children']['rightssummary'][0]['text']))
+																{
+																				$this->myLog('Asset Right Summary: '	.	$pbcore_rights['children']['rightssummary'][0]['text']);
+																}
+																if(isset($pbcore_rights['children']['rightslink'][0]['text'])	&&	!	is_empty($pbcore_rights['children']['rightslink'][0]['text']))
+																{
+																				$this->myLog('Asset Right Summary Link: '	.	$pbcore_rights['children']['rightslink'][0]['text']);
+																}
+												}
+								}
+								// Asset Right Summary End  //
 				}
 
 				function	myLog($string)

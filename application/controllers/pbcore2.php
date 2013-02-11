@@ -469,8 +469,55 @@ class	Pbcore2	extends	CI_Controller
 
 				function	import_instantiations($asset_children)
 				{
-								// Instantiation Identifier Start //
-								// Instantiation Identifier End //
+								if(isset($asset_children['pbcoreinstantiation']))
+								{
+												foreach($asset_children['pbcoreinstantiation']	as	$pbcoreinstantiation)
+												{
+																if(isset($pbcoreinstantiation['children'])	&&	!	is_empty($pbcoreinstantiation['children']))
+																{
+																				$pbcoreinstantiation_child	=	$pbcoreinstantiation['children'];
+
+																				// Instantiation Location Start //
+																				if(isset($pbcoreinstantiation_child['instantiationlocation'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationlocation']))
+																				{
+																								if(	!	is_empty($pbcoreinstantiation_child['instantiationlocation'][0]['text']))
+																								{
+																												$this->myLog('Instantiation Location: '	.	$pbcoreinstantiation_child['instantiationlocation '][0]['text']);
+																								}
+																				}
+																				// Instantiation Location End //
+																				// Instantiation Media Type Start //
+																				if(isset($pbcoreinstantiation_child['instantiationmediatype'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationmediatype'][0]['text']))
+																				{
+																								$this->myLog('Instantiation Media Type: '	.	$pbcoreinstantiation_child['instantiationmediatype '][0]['text']);
+																				}
+																				// Instantiation Media Type End //
+																				// Instantiation File Size Start //
+																				if(isset($pbcoreinstantiation_child['instantiationfilesize'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationfilesize'][0]['text']))
+																				{
+																								$this->myLog('Instantiation File Size: '	.	$pbcoreinstantiation_child['instantiationfilesize '][0]['text']);
+																								if(isset($pbcoreinstantiation_child['instantiationfilesize'][0]['attributes']['unitsofmeasure'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationfilesize'][0]['attributes']['unitsofmeasure']))
+																								{
+																												$this->myLog('Instantiation File Size Type: '	.	$pbcoreinstantiation_child['instantiationfilesize '][0]['attributes']['unitsofmeasure']);
+																								}
+																				}
+																				// Instantiation File Size End //
+																				// Instantiation Time Start Start //
+																				if(isset($pbcoreinstantiation_child['instantiationtimestart'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationtimestart'][0]['text']))
+																				{
+																								$this->myLog('Instantiation Time Start: '	.	trim($pbcoreinstantiation_child['instantiationtimestart'][0]['text']));
+																				}
+																				// Instantiation Time Start End //
+																				// Instantiation Projected Duration Start //
+																				if(isset($pbcoreinstantiation_child['instantiationduration'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationduration'][0]['text']))
+																				{
+																								$this->myLog('Instantiation Projected Duration: '	.	trim($pbcoreinstantiation_child['instantiationduration'][0]['text']));
+																				}
+																				// Instantiation Projected Duration Start //
+																}
+												}
+												// Instantiation Identifier Start //
+								}
 				}
 
 				function	myLog($string)
@@ -485,8 +532,3 @@ class	Pbcore2	extends	CI_Controller
 				}
 
 }
-
-// END Pbcore2 Controller
-
-// End of file pbcore2.php 
-/* Location: ./application/controllers/pbcore2.php */

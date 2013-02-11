@@ -37,11 +37,11 @@ if(	!	$isAjax)
 
 																																if(in_array($type,	array('Organization',	'Instantiation_ID',	'Nomination',	'Media_Type',	'Generation',	'Format',	'Duration',	'Date',	'File_size',	'Colors',	'Language')))
 																																{
-																																				$width	=	'min-width:100px;';
+																																				$width	=	'width:100px;';
 																																}
 																																else	if($type	==	'Instantiation\'s_Asset_Title')
 																																{
-																																				$width	=	'min-width:200px;';
+																																				$width	=	'width:200px;';
 																																}
 																																echo	'<th id="'	.	$value['title']	.	'" class="'	.	$class	.	'"><span style="float:left;'	.	$width	.	'">'	.	str_replace("_",	' ',	$value['title'])	.	'</span></th>';
 																												}
@@ -150,11 +150,11 @@ if(	!	$isAjax)
 																																				}
 																																				if(in_array($type,	array('Organization',	'Instantiation_ID',	'Nomination',	'Media_Type',	'Generation',	'Format',	'Duration',	'Date',	'File_size',	'Colors',	'Language')))
 																																				{
-																																								$width	=	'min-width:100px;';
+																																								$width	=	'width:100px;';
 																																				}
 																																				else	if($type	==	'Instantiation\'s_Asset_Title')
 																																				{
-																																								$width	=	'min-width:200px;';
+																																								$width	=	'width:200px;';
 																																				}
 																																				echo	'<td><span style="float:left;'	.	$width	.	'">'	.	$column	.	'</span></td>';
 																																}
@@ -222,20 +222,20 @@ if(	!	$isAjax)
 												$('#export_csv_modal').modal('toggle');
 												export_csv_limited();
 								}
-				function export_csv_limited(){
-				$.ajax({
-								type: 'POST', 
-								url: site_url+'instantiations/export_csv',
-								dataType: 'json',
-								success: function (result) { 
-												if(result.link=='true')
-																$('#export_csv_msg').html('<a href="'+result.msg+'">Download</a>');
-												else
-																$('#export_csv_msg').html(result.msg);
-																																																                                        
+								function export_csv_limited(){
+												$.ajax({
+																type: 'POST', 
+																url: site_url+'instantiations/export_csv',
+																dataType: 'json',
+																success: function (result) { 
+																				if(result.link=='true')
+																								$('#export_csv_msg').html('<a href="'+result.msg+'">Download</a>');
+																				else
+																								$('#export_csv_msg').html(result.msg);
+																																																				                                        
+																}
+												});
 								}
-				});
-				}
 				</script>
 
 <?php	}	?>

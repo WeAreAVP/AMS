@@ -105,6 +105,10 @@ class	Pbcore2	extends	CI_Controller
 																				{
 																								$this->myLog('Asset Identifier Source: '	.	trim($pbcoreidentifier['attributes']['source']));
 																				}
+																				if(isset($pbcoreidentifier['attributes']['ref'])	&&	!	is_empty($pbcoreidentifier['attributes']['ref']))
+																				{
+																								$this->myLog('Asset Identifier Ref: '	.	trim($pbcoreidentifier['attributes']['ref']));
+																				}
 																}
 												}
 								}

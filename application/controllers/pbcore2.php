@@ -422,6 +422,32 @@ class	Pbcore2	extends	CI_Controller
 												}
 								}
 								// Asset Right Summary End  //
+								// Asset Extension Start //
+
+								if(isset($asset_children['pbcoreextension'])	&&	!	is_empty($asset_children['pbcoreextension']))
+								{
+												foreach($asset_children['pbcoreextension']	as	$pbcore_extension)
+												{
+																if(isset($pbcore_extension['children']['extensionauthorityused'][0]['text'])	&&	!	is_empty($pbcore_extension['children']['extensionauthorityused'][0]['text']))
+																{
+
+																				if(strtolower($pbcore_extension['children']['extensionauthorityused'][0]['text'])	!=	strtolower('AACIP Record Nomination Status'))
+																				{
+
+
+
+																								$this->myLog('Asset Extension Element: '	.	$pbcore_extension['children']['extensionauthorityused'][0]['text']);
+																								if(isset($pbcore_extension['children']['extensionvalue'][0]['text'])	&&	!	is_empty($pbcore_extension['children']['extensionvalue'][0]['text']))
+																								{
+																												$this->myLog('Asset Extension Value: '	.	$pbcore_extension['children']['extensionvalue'][0]['text']);
+																								}
+
+																								$this->assets_model->insert_extensions($extension_d);
+																				}
+																}
+												}
+								}
+								// Asset Extension End //
 				}
 
 				function	myLog($string)

@@ -551,6 +551,23 @@ class	Pbcore2	extends	CI_Controller
 																								$this->myLog('Instantiation Alternative Modes: '	.	$pbcoreinstantiation_child['instantiationalternativemodes'][0]['text']);
 																				}
 																				//Instantiation Alternative Mode End //
+
+																				$insert_instantiation	=	TRUE;
+																				if(isset($pbcoreinstantiation_child['instantiationidentifier']))
+																				{
+
+																								foreach($pbcoreinstantiation_child['instantiationidentifier']	as	$pbcore_identifier)
+																								{
+																												if(isset($pbcore_identifier['text'])	&&	!	is_empty($pbcore_identifier['text']))
+																												{
+																																$this->myLog('Instantiation Identifer: '	.	$pbcore_identifier['text']);
+																																if(isset($pbcore_identifier['attributes']['source'])	&&	!	is_empty($pbcore_identifier['attributes']['source']))
+																																{
+																																				$this->myLog('Instantiation Identifer Source: '	.	$pbcore_identifier['attributes']['source']);
+																																}
+																												}
+																								}
+																				}
 																}
 												}
 								}

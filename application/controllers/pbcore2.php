@@ -53,7 +53,7 @@ class	Pbcore2	extends	CI_Controller
 								//wnyc_pbcore.xml
 								//scetv_pbcore.xml
 								//mpr_pbcore.xml
-								$file_path	=	$this->pbcore_path	.	'sample/mpr_pbcore.xml';
+								$file_path	=	$this->pbcore_path	.	'sample/scetv_pbcore.xml';
 								$file_content	=	file_get_contents($file_path);
 								$xml	=	@simplexml_load_string($file_content);
 								$xml_to_array	=	xmlObjToArr($xml);

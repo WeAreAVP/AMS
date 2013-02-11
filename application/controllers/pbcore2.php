@@ -510,10 +510,49 @@ class	Pbcore2	extends	CI_Controller
 																				{
 																								$this->myLog('Instantiation Projected Duration: '	.	trim($pbcoreinstantiation_child['instantiationduration'][0]['text']));
 																				}
-																				// Instantiation Projected Duration Start //
+																				// Instantiation Projected Duration End //
+																				// Instantiation Data Rate Start //
+																				if(isset($pbcoreinstantiation_child['instantiationdatarate'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationdatarate'][0]['text']))
+																				{
+																								$this->myLog('Instantiation Data Rate : '	.	trim($pbcoreinstantiation_child['instantiationdatarate'][0]['text']));
+																								if(isset($pbcoreinstantiation_child['instantiationdatarate'][0]['attributes']['unitsofmeasure'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationdatarate'][0]['attributes']['unitsofmeasure']))
+																								{
+																												$this->myLog('Instantiation Data Rate Unit: '	.	$pbcoreinstantiation_child['instantiationdatarate'][0]['attributes']['unitsofmeasure']);
+																								}
+																				}
+																				// Instantiation Data Rate End //
+																				// Instantiation Color Start //
+																				if(isset($pbcoreinstantiation_child['instantiationcolors'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationcolors'][0]['text']))
+																				{
+																								$this->myLog('Instantiation Color: '	.	$pbcoreinstantiation_child['instantiationcolors'][0]['attributes']['unitsofmeasure']);
+																				}
+																				// Instantiation Color End //
+																				// Instantiation Tracks Start //
+																				if(isset($pbcoreinstantiation_child['instantiationtracks'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationtracks'][0]['text']))
+																				{
+																								$this->myLog('Instantiation Tracks: '	.	$pbcoreinstantiation_child['instantiationtracks'][0]['text']);
+																				}
+																				// Instantiation Tracks End //
+																				//Instantiation Channel Configuration Start //
+																				if(isset($pbcoreinstantiation_child['instantiationconfiguration'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationconfiguration'][0]['text']))
+																				{
+																								$this->myLog('Instantiation Cannel Configuration: '	.	$pbcoreinstantiation_child['instantiationconfiguration'][0]['text']);
+																				}
+																				//Instantiation Channel Configuration End //
+																				//Instantiation Language Start //
+																				if(isset($pbcoreinstantiation_child['instantiationlanguage'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['language'][0]['text']))
+																				{
+																								$this->myLog('Instantiation Language: '	.	$pbcoreinstantiation_child['instantiationlanguage'][0]['text']);
+																				}
+																				//Instantiation Language End //
+																				//Instantiation Alternative Mode Start //
+																				if(isset($pbcoreinstantiation_child['instantiationalternativemodes'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationalternativemodes'][0]['text']))
+																				{
+																								$this->myLog('Instantiation Alternative Modes: '	.	$pbcoreinstantiation_child['instantiationalternativemodes'][0]['text']);
+																				}
+																				//Instantiation Alternative Mode End //
 																}
 												}
-												// Instantiation Identifier Start //
 								}
 				}
 

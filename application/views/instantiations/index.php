@@ -35,9 +35,13 @@ if(	!	$isAjax)
 																																				$class	=	'drap-drop';
 																																$type	=	$value['title'];
 
-																																if(in_array($type,	array('Organization',	'Instantiation_ID',	'Nomination',	'Media_Type',	'Generation',	'Format',	'Duration',	'Date',	'File_size',	'Colors',	'Language')))
+																																if(in_array($type,	array('Organization',	'Nomination',	'Media_Type',	'Generation',	'Format',	'Duration',	'Date',	'File_size',	'Colors',	'Language')))
 																																{
 																																				$width	=	'width:100px;';
+																																}
+																																else	if($type	==	'Instantiation_ID')
+																																{
+																																				$width	=	'width:150px;';
 																																}
 																																else	if($type	==	'Instantiation\'s_Asset_Title')
 																																{
@@ -148,9 +152,13 @@ if(	!	$isAjax)
 																																				{
 																																								$column	=	($value->language)	?	$value->language	:	'';
 																																				}
-																																				if(in_array($type,	array('Organization',	'Instantiation_ID',	'Nomination',	'Media_Type',	'Generation',	'Format',	'Duration',	'Date',	'File_size',	'Colors',	'Language')))
+																																				if(in_array($type,	array('Organization',	'Nomination',	'Media_Type',	'Generation',	'Format',	'Duration',	'Date',	'File_size',	'Colors',	'Language')))
 																																				{
 																																								$width	=	'width:100px;';
+																																				}
+																																				else	if($type	==	'Instantiation_ID')
+																																				{
+																																								$width	=	'width:150px;';
 																																				}
 																																				else	if($type	==	'Instantiation\'s_Asset_Title')
 																																				{
@@ -232,7 +240,7 @@ if(	!	$isAjax)
 																								$('#export_csv_msg').html('<a href="'+result.msg+'">Download</a>');
 																				else
 																								$('#export_csv_msg').html(result.msg);
-																																																				                                        
+																																																												                                        
 																}
 												});
 								}

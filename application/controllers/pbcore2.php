@@ -483,6 +483,12 @@ class	Pbcore2	extends	CI_Controller
 																								$this->myLog('Instantiation Location: '	.	$pbcoreinstantiation_child['instantiationlocation'][0]['text']);
 																				}
 																				// Instantiation Location End //
+																				// Instantiation Standard Start //
+																				if(isset($pbcoreinstantiation_child['instantiationstandard'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationstandard'][0]['text']))
+																				{
+																								$this->myLog('Instantiation Standard: '	.	$pbcoreinstantiation_child['instantiationstandard'][0]['text']);
+																				}
+																				// Instantiation Standard End //
 																				// Instantiation Media Type Start //
 																				if(isset($pbcoreinstantiation_child['instantiationmediatype'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationmediatype'][0]['text']))
 																				{
@@ -630,6 +636,19 @@ class	Pbcore2	extends	CI_Controller
 																								}
 																				}
 																				// Instantiations  Format End //
+																				// Instantiations  Generation Start //
+																				
+																				if(isset($pbcoreinstantiation_child['instantiationgenerations'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationgenerations']))
+																				{
+																								foreach($pbcoreinstantiation_child['instantiationgenerations']	as	$instantiation_generations)
+																								{
+																												if(isset($instantiation_generations['text'])	&&	!	is_empty($instantiation_generations['text']))
+																												{
+																															$this->myLog('Instantiation Generation: '	.	$instantiation_generations['text']);	
+																												}
+																								}
+																				}
+																				// Instantiations  Generation End //
 																}
 												}
 								}

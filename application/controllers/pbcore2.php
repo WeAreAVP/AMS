@@ -587,6 +587,49 @@ class	Pbcore2	extends	CI_Controller
 																								}
 																				}
 																				// Instantiations Date End //
+																				// Instantiations Dimension Start //
+																				if(isset($pbcoreinstantiation_child['instantiationdimensions']))
+																				{
+
+																								foreach($pbcoreinstantiation_child['instantiationdimensions']	as	$pbcore_dimension)
+																								{
+																												if(isset($pbcore_dimension['text'])	&&	!	is_empty($pbcore_dimension['text']))
+																												{
+																																$this->myLog('Instantiation Dimension: '	.	$pbcore_dimension['text']);
+																																if(isset($pbcore_dimension['attributes']['unitofmeasure'])	&&	!	is_empty($pbcore_dimension['attributes']['unitofmeasure']))
+																																{
+																																				$this->myLog('Instantiation Dimension Unit: '	.	$pbcore_dimension['attributes']['unitofmeasure']);
+																																}
+																												}
+																								}
+																				}
+																				// Instantiations Dimension End //
+																				// Instantiations Format Start //
+																				if(isset($pbcoreinstantiation_child['instantiationphysical']))
+																				{
+
+																								foreach($pbcoreinstantiation_child['instantiationPhysical']	as	$pbcore_physical)
+																								{
+																												if(isset($pbcore_physical['text'])	&&	!	is_empty($pbcore_physical['text']))
+																												{
+																																$this->myLog('Instantiation Format Name: '	.	$pbcore_physical['text']);
+																																$this->myLog('Instantiation Format Type: physical');
+																												}
+																								}
+																				}
+																				else	if(isset($pbcoreinstantiation_child['instantiationdigital']))
+																				{
+
+																								foreach($pbcoreinstantiation_child['instantiationdigital']	as	$pbcore_digital)
+																								{
+																												if(isset($pbcore_digital['text'])	&&	!	is_empty($pbcore_digital['text']))
+																												{
+																																$this->myLog('Instantiation Format Name: '	.	$pbcore_physical['text']);
+																																$this->myLog('Instantiation Format Type: digital');
+																												}
+																								}
+																				}
+																				// Instantiations  Format End //
 																}
 												}
 								}

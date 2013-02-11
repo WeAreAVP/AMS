@@ -61,7 +61,7 @@ if(	!	$isAjax)
 																				<table class="table table-bordered" id="assets_table" style="border-collapse:collapse;">
 																								<thead>
 																												<tr style="background: rgb(235, 235, 235);">
-																																<th><span style="float:left;" ><i class="icon-flag "></i></span></th>
+																																<th><span style="float:left;"><i class="icon-flag "></i></span></th>
 																																<th><span style="float:left;min-width: 75px;" >Organization</span></th>
 																																<th><span style="float:left;min-width: 100px;" >AA GUID</span></th>
 																																<th><span style="float:left;min-width: 75px;" >Local ID</span></th>
@@ -81,71 +81,72 @@ if(	!	$isAjax)
 																																?>
 																																<tr style="cursor: pointer;">
 																																				<td style="vertical-align:middle;font-weight:bold"><i style="margin:0px" class="unflag"></i></td>
-																																				<td>				<span style="float:left;min-width: 75px;" >
-																																								<?php	echo	$asset->organization	?>
-																																												</span>
+																																				<td>				
+																																								<span style="float:left;width: 75px;" >
+																																												<?php	echo	$asset->organization	?>
+																																								</span>
 																																				</td>
-																																				<td><span style="float:left;min-width: 100px;" >
-																																								<?php
-																																								if($guid_identifier)
-																																								{
-																																												?>
-																																												<a href="<?php	echo	site_url('records/details/'	.	$asset->id)	?>" ><?php	echo	$guid_identifier;	?></a>
-																																								<?php	}
-																																								?></span>
-																																				</td>
-																																				<td><span style="float:left;min-width: 75px;" >
-																																								<?php
-																																								if($local_identifier)
-																																												echo	$local_identifier;
-																																								?></span>
-																																				</td>
-																																				<td><span style="float:left;min-width: 150px;" >
-																																								<?php
-																																								$asset_title_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title_type)));
-																																								$asset_title	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title)));
-																																								$asset_title_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title_ref)));
-																																								$column	=	'';
-																																								foreach($asset_title	as	$index	=>	$title)
-																																								{
-																																												if(isset($asset_title_type[$index])	&&	$asset_title_type[$index]	!=	'')
-																																																$column.=	$asset_title_type[$index]	.	': ';
-																																												if(isset($asset_title_ref[$index]))
+																																				<td><span style="float:left;width: 100px;" >
+																																												<?php
+																																												if($guid_identifier)
 																																												{
-																																																if($asset_title_ref[$index]	!=	'')
+																																																?>
+																																																<a href="<?php	echo	site_url('records/details/'	.	$asset->id)	?>" ><?php	echo	$guid_identifier;	?></a>
+																																												<?php	}
+																																												?></span>
+																																				</td>
+																																				<td><span style="float:left;width: 75px;" >
+																																												<?php
+																																												if($local_identifier)
+																																																echo	$local_identifier;
+																																												?></span>
+																																				</td>
+																																				<td><span style="float:left;width: 150px;" >
+																																												<?php
+																																												$asset_title_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title_type)));
+																																												$asset_title	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title)));
+																																												$asset_title_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title_ref)));
+																																												$column	=	'';
+																																												foreach($asset_title	as	$index	=>	$title)
+																																												{
+																																																if(isset($asset_title_type[$index])	&&	$asset_title_type[$index]	!=	'')
+																																																				$column.=	$asset_title_type[$index]	.	': ';
+																																																if(isset($asset_title_ref[$index]))
 																																																{
-																																																				$column.="<a target='_blank' href='$asset_title_ref[$index]'>$title</a>: ";
-																																																				$column.=' ('	.	$asset_title_ref[$index]	.	')';
+																																																				if($asset_title_ref[$index]	!=	'')
+																																																				{
+																																																								$column.="<a target='_blank' href='$asset_title_ref[$index]'>$title</a>: ";
+																																																								$column.=' ('	.	$asset_title_ref[$index]	.	')';
+																																																				}
+																																																				else
+																																																								$column.=$title;
 																																																}
 																																																else
 																																																				$column.=$title;
+																																																$column.='<div class="clearfix"></div>';
 																																												}
-																																												else
-																																																$column.=$title;
-																																												$column.='<div class="clearfix"></div>';
-																																								}
-																																								echo	$column;
-																																								?>
-</span>
+																																												echo	$column;
+																																												?>
+																																								</span>
 
 																																				</td>
-																																				<td><span style="float:left;min-width: 150px;" >
-																																								<?php
-																																								if($asset_description)
-																																								{
+																																				<td><span style="float:left;width: 150px;" >
+																																												<?php
+																																												if($asset_description)
+																																												{
 
-																																												if(strlen($asset_description)	>	160)
-																																												{
-																																																$messages	=	str_split($asset_description,	160);
-																																																echo	$messages[0]	.	' ...';
+																																																if(strlen($asset_description)	>	160)
+																																																{
+																																																				$messages	=	str_split($asset_description,	160);
+																																																				echo	$messages[0]	.	' ...';
+																																																}
+																																																else
+																																																{
+																																																				echo	$asset_description;
+																																																}
 																																												}
-																																												else
-																																												{
-																																																echo	$asset_description;
-																																												}
-																																								}
-																																								?>
-																																												</span>
+																																												?>
+																																								</span>
 																																				</td>
 																																</tr>
 																												<?php	}

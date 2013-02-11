@@ -87,10 +87,12 @@ class	Crons	extends	CI_Controller
 												}
 												$url	=	site_url()	.	"uploads/$filename";
 												$this->csv_job->update_job($job->id,	array('status'	=>	'1'));
-												$user	=	$this->users->get_user_by_id($job	>	user_id)->row();
+												$user	=	$this->users->get_user_by_id($job->user_id)->row();
+												$this->myLog('Sending Email to '	.	$user->email);
 												send_email($user->email,	'ssapienza@cpb.org',	'Limited CSV Export',	$url);
 												exit;
 								}
+								$this->myLog('No Record available for csv export.');
 								exit;
 				}
 

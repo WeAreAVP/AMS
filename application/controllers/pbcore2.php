@@ -608,7 +608,7 @@ class	Pbcore2	extends	CI_Controller
 																				if(isset($pbcoreinstantiation_child['instantiationphysical']))
 																				{
 
-																								foreach($pbcoreinstantiation_child['instantiationPhysical']	as	$pbcore_physical)
+																								foreach($pbcoreinstantiation_child['instantiationphysical']	as	$pbcore_physical)
 																								{
 																												if(isset($pbcore_physical['text'])	&&	!	is_empty($pbcore_physical['text']))
 																												{

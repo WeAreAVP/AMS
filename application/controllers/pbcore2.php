@@ -53,7 +53,7 @@ class	Pbcore2	extends	CI_Controller
 								//wnyc_pbcore.xml
 								//scetv_pbcore.xml
 								//mpr_pbcore.xml
-								$file_path	=	$this->pbcore_path	.	'sample/scetv_pbcore.xml';
+								$file_path	=	$this->pbcore_path	.	'sample/mpr_pbcore.xml';
 								$file_content	=	file_get_contents($file_path);
 								$xml	=	@simplexml_load_string($file_content);
 								$xml_to_array	=	xmlObjToArr($xml);
@@ -322,12 +322,78 @@ class	Pbcore2	extends	CI_Controller
 																				}
 																				if(isset($pbcore_creator['children']['creatorrole'][0]['attributes']['ref'])	&&	!	is_empty($pbcore_creator['children']['creatorrole'][0]['attributes']['ref']))
 																				{
-																								$this->myLog('Asset Creator Role Ref: '	.	$pbcore_creator['children']['creator'][0]['attributes']['ref']);
+																								$this->myLog('Asset Creator Role Ref: '	.	$pbcore_creator['children']['creatorrole'][0]['attributes']['ref']);
 																				}
 																}
 												}
 								}
 								// Asset Creator End  //
+								// Asset Contributor Start  //
+								if(isset($asset_children['pbcorecontributor']))
+								{
+												foreach($asset_children['pbcorecontributor']	as	$pbcore_contributor)
+												{
+
+																if(isset($pbcore_contributor['children']['contributor'][0]['text'])	&&	!	is_empty($pbcore_contributor['children']['contributor'][0]['text']))
+																{
+																				$this->myLog('Asset Contributor: '	.	$pbcore_contributor['children']['contributor'][0]['text']);
+																				if(isset($pbcore_contributor['children']['contributor'][0]['attributes']['affiliation'])	&&	!	is_empty($pbcore_contributor['children']['contributor'][0]['attributes']['affiliation']))
+																				{
+																								$this->myLog('Asset Contributor affiliation: '	.	$pbcore_contributor['children']['contributor'][0]['attributes']['affiliation']);
+																				}
+																				if(isset($pbcore_contributor['children']['contributor'][0]['attributes']['ref'])	&&	!	is_empty($pbcore_contributor['children']['contributor'][0]['attributes']['ref']))
+																				{
+																								$this->myLog('Asset Contributor Ref: '	.	$pbcore_contributor['children']['contributor'][0]['attributes']['ref']);
+																				}
+																}
+																if(isset($pbcore_contributor['children']['contributorrole'][0]['text'])	&&	!	is_empty($pbcore_contributor['children']['contributorrole'][0]['text']))
+																{
+																				$this->myLog('Asset Contributor Role: '	.	$pbcore_contributor['children']['contributorrole'][0]['text']);
+																				if(isset($pbcore_contributor['children']['contributorrole'][0]['attributes']['source'])	&&	!	is_empty($pbcore_contributor['children']['contributorrole'][0]['attributes']['source']))
+																				{
+																								$this->myLog('Asset Contributor Role Source: '	.	$pbcore_contributor['children']['contributorrole'][0]['attributes']['source']);
+																				}
+																				if(isset($pbcore_contributor['children']['contributorrole'][0]['attributes']['ref'])	&&	!	is_empty($pbcore_contributor['children']['contributorrole'][0]['attributes']['ref']))
+																				{
+																								$this->myLog('Asset Contributor Role Ref: '	.	$pbcore_contributor['children']['contributorrole'][0]['attributes']['ref']);
+																				}
+																}
+												}
+								}
+								// Asset Contributor End  //
+								// Asset Publisher Start  //
+								if(isset($asset_children['pbcorepublisher']))
+								{
+												foreach($asset_children['pbcorepublisher']	as	$pbcorepublisher)
+												{
+
+																if(isset($pbcorepublisher['children']['publisher'][0]['text'])	&&	!	is_empty($pbcorepublisher['children']['publisher'][0]['text']))
+																{
+																				$this->myLog('Asset Publisher: '	.	$pbcorepublisher['children']['publisher'][0]['text']);
+																				if(isset($pbcorepublisher['children']['publisher'][0]['attributes']['affiliation'])	&&	!	is_empty($pbcorepublisher['children']['publisher'][0]['attributes']['affiliation']))
+																				{
+																								$this->myLog('Asset Publisher affiliation: '	.	$pbcorepublisher['children']['publisher'][0]['attributes']['affiliation']);
+																				}
+																				if(isset($pbcorepublisher['children']['publisher'][0]['attributes']['ref'])	&&	!	is_empty($pbcorepublisher['children']['publisher'][0]['attributes']['ref']))
+																				{
+																								$this->myLog('Asset Publisher Ref: '	.	$pbcorepublisher['children']['publisher'][0]['attributes']['ref']);
+																				}
+																}
+																if(isset($pbcorepublisher['children']['publisherrole'][0]['text'])	&&	!	is_empty($pbcorepublisher['children']['publisherrole'][0]['text']))
+																{
+																				$this->myLog('Asset Publisher Role: '	.	$pbcorepublisher['children']['publisherrole'][0]['text']);
+																				if(isset($pbcorepublisher['children']['publisherrole'][0]['attributes']['source'])	&&	!	is_empty($pbcorepublisher['children']['publisherrole'][0]['attributes']['source']))
+																				{
+																								$this->myLog('Asset Publisher Role Source: '	.	$pbcorepublisher['children']['publisherrole'][0]['attributes']['source']);
+																				}
+																				if(isset($pbcorepublisher['children']['publisherrole'][0]['attributes']['ref'])	&&	!	is_empty($pbcorepublisher['children']['publisherrole'][0]['attributes']['ref']))
+																				{
+																								$this->myLog('Asset Publisher Role Ref: '	.	$pbcorepublisher['children']['publisherrole'][0]['attributes']['ref']);
+																				}
+																}
+												}
+								}
+								// Asset Publisher End  //
 				}
 
 				function	myLog($string)

@@ -479,7 +479,7 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcoreinstantiation['children'])	&&	!	is_empty($pbcoreinstantiation['children']))
 																{
 																				$pbcoreinstantiation_child	=	$pbcoreinstantiation['children'];
-																				debug($pbcoreinstantiation_child,	FALSE);
+//																				debug($pbcoreinstantiation_child,	FALSE);
 																				// Instantiation Location Start //
 																				if(isset($pbcoreinstantiation_child['instantiationlocation'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationlocation'][0]['text']))
 																				{
@@ -704,7 +704,7 @@ class	Pbcore2	extends	CI_Controller
 																																// Essence Track Standard Start //
 																																if(isset($pbcore_essence_child['essencetrackstandard'][0]['text'])	&&	!	is_empty($pbcore_essence_child['essencetrackstandard'][0]['text']))
 																																{
-																																				$this->myLog('Essence Track Type: '	.	$pbcore_essence_child['essencetrackstandard'][0]['text']);
+																																				$this->myLog('Essence Standard: '	.	$pbcore_essence_child['essencetrackstandard'][0]['text']);
 																																}
 																																// Essence Track Standard End //
 																																// Essence Track Data Rate Start //
@@ -776,6 +776,51 @@ class	Pbcore2	extends	CI_Controller
 																																				$this->myLog('Essence Track Type: '	.	$pbcore_essence_child['essencetracktype'][0]['text']);
 																																}
 																																// Essence Track Type End //
+																																$insert_essence_track	=	TRUE;
+																																// Essence Track Identifier Start //
+																																if(isset($pbcore_essence_child['essencetrackidentifier'][0]['text'])	&&	!	is_empty($pbcore_essence_child['essencetrackidentifier'][0]['text']))
+																																{
+																																				$this->myLog('Essence Track Identifier: '	.	$pbcore_essence_child['essencetrackidentifier'][0]['text']);
+																																				if(isset($pbcore_essence_child['essencetrackidentifier'][0]['attributes']['source'])	&&	!	is_empty($pbcore_essence_child['essencetrackidentifier'][0]['attributes']['source']))
+																																				{
+																																								$this->myLog('Essence Track Identifier Source: '	.	$pbcore_essence_child['essencetrackidentifier'][0]['attributes']['source']);
+																																				}
+																																}
+																																// Essence Track Identifier End //
+																																// Essence Track Encoding Start //
+																																if(isset($pbcore_essence_child['essencetrackencoding'][0]['text'])	&&	!	is_empty($pbcore_essence_child['essencetrackencoding'][0]['text']))
+																																{
+																																				$this->myLog('Essence Track Encoding: '	.	$pbcore_essence_child['essencetrackencoding'][0]['text']);
+																																				if(isset($pbcore_essence_child['essencetrackencoding'][0]['attributes']['ref'])	&&	!	is_empty($pbcore_essence_child['essencetrackencoding'][0]['attributes']['ref']))
+																																				{
+																																								$this->myLog('Essence Track Encoding Ref: '	.	$pbcore_essence_child['essencetrackencoding'][0]['attributes']['ref']);
+																																				}
+																																}
+																																// Essence Track Encoding End //
+																																// Essence Track Annotation Start //
+																																if(isset($pbcore_essence_child['essencetrackannotation'])	&&	!	is_empty($pbcore_essence_child['essencetrackannotation']))
+																																{
+																																				foreach($pbcore_essence_child['essencetrackannotation']	as	$trackannotation)
+																																				{
+																																								if(isset($trackannotation['text'])	&&	!	is_empty($trackannotation['text']))
+																																								{
+																																												$this->myLog('Essence Track Annotation: '	.	$trackannotation['text']);
+																																												if(isset($trackannotation['attributes']['type'])	&&	!	is_empty($trackannotation['attributes']['type']))
+																																												{
+																																																$this->myLog('Essence Track Annotation Type: '	.	$trackannotation['attributes']['type']);
+																																												}
+																																								}
+																																				}
+																																}
+																																// Essence Track Annotation End //
+																																// Essence Track Frame Size Start //
+																																if(isset($pbcore_essence_child['essencetrackframesize'][0]['text'])	&&	!	is_empty($pbcore_essence_child['essencetrackframesize'][0]['text']))
+																																{
+																																				$frame_sizes	=	explode("x",	strtolower($pbcore_essence_child['essencetrackframesize'][0]['text']));
+																																				$this->myLog('Essence Track Frame Size Width: '	.	$frame_sizes[0]);
+																																				$this->myLog('Essence Track Frame Size Height: '	.	$frame_sizes[1]);
+																																}
+																																// Essence Track Frame Size End //
 																												}
 																								}
 																				}

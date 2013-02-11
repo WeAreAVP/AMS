@@ -579,9 +579,9 @@ class	Pbcore2	extends	CI_Controller
 																												if(isset($pbcore_date['text'])	&&	!	is_empty($pbcore_date['text']))
 																												{
 																																$this->myLog('Instantiation Date: '	.	$pbcore_date['text']);
-																																if(isset($pbcore_date['attributes']['datetype'])	&&	!	is_empty($pbcore_identifier['attributes']['datetype']))
+																																if(isset($pbcore_date['attributes']['datetype'])	&&	!	is_empty($pbcore_date['attributes']['datetype']))
 																																{
-																																				$this->myLog('Instantiation Date Type: '	.	$pbcore_identifier['attributes']['datetype']);
+																																				$this->myLog('Instantiation Date Type: '	.	$pbcore_date['attributes']['datetype']);
 																																}
 																												}
 																								}

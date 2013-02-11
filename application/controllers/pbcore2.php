@@ -687,7 +687,7 @@ class	Pbcore2	extends	CI_Controller
 																																				$this->myLog('Instantiation Relation Type Ref: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref']);
 																																}
 																												}
-																								}
+																								}   
 																				}
 																				// Asset Relation End  //
 																}

@@ -54,14 +54,14 @@ class	Pbcore2	extends	CI_Controller
 								foreach($sample	as	$value)
 								{
 												$file_path	=	$this->pbcore_path	.	'sample/'	.	$value;
-												$this->myLog('File Name: '	.	$value);
+												$this->myLog('<b>File Name: '	.	$value.'</b>');
 												$file_content	=	file_get_contents($file_path);
 												$xml	=	@simplexml_load_string($file_content);
 												$xml_to_array	=	xmlObjToArr($xml);
 //								debug($xml_to_array,	FALSE);
 												$this->import_assets($xml_to_array['children']);
 												$this->import_instantiations($xml_to_array['children']);
-												$this->myLog('<br/><br/>');
+												echo '<br/><hr/>';
 								}
 				}
 
@@ -479,7 +479,7 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcoreinstantiation['children'])	&&	!	is_empty($pbcoreinstantiation['children']))
 																{
 																				$pbcoreinstantiation_child	=	$pbcoreinstantiation['children'];
-//																				debug($pbcoreinstantiation_child,	FALSE);
+																				debug($pbcoreinstantiation_child,	FALSE);
 																				// Instantiation Location Start //
 																				if(isset($pbcoreinstantiation_child['instantiationlocation'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationlocation'][0]['text']))
 																				{

@@ -99,11 +99,11 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcoreidentifier['text'])	&&	!	is_empty($pbcoreidentifier['text']))
 																{
 
-																				$this->myLog('Asset Date Type: '	.	trim($pbcoreidentifier['text']));
+																				$this->myLog('Asset Identifier: '	.	trim($pbcoreidentifier['text']));
 
 																				if(isset($pbcoreidentifier['attributes']['source'])	&&	!	is_empty($pbcoreidentifier['attributes']['source']))
 																				{
-																								$this->myLog('Asset Date Type: '	.	trim($pbcoreidentifier['attributes']['source']));
+																								$this->myLog('Asset Identifier Source: '	.	trim($pbcoreidentifier['attributes']['source']));
 																				}
 																}
 												}

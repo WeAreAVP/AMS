@@ -90,9 +90,26 @@ class	Pbcore2	extends	CI_Controller
 								}
 								// Asset Date and Type End //
 								// Asset Identifier Start //
-								// 
-								// Logic will be written  //
-								// 
+								if(isset($asset_children['pbcoreidentifier']))
+								{
+												foreach($asset_children['pbcoreidentifier']	as	$pbcoreidentifier)
+												{
+
+
+																if(isset($pbcoreidentifier['text'])	&&	!	is_empty($pbcoreidentifier['text']))
+																{
+
+																				$this->myLog('Asset Date Type: '	.	trim($pbcoreidentifier['text']));
+
+																				if(isset($pbcoreidentifier['attributes']['source'])	&&	!	is_empty($pbcoreidentifier['attributes']['source']))
+																				{
+																								$this->myLog('Asset Date Type: '	.	trim($pbcoreidentifier['attributes']['source']));
+																				}
+																}
+												}
+								}
+
+
 								// Asset Identifier End //
 								// Asset Title Start //
 

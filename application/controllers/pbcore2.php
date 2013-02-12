@@ -48,7 +48,7 @@ class	Pbcore2	extends	CI_Controller
 				function	process_dir()
 				{
 								set_time_limit(0);
-								$this->myLog("Calculating Number of process Directories");
+								$this->myLog("Calculating Number of Directories...");
 								$this->cron_model->scan_directory($this->pbcore_path,	$dir_files);
 								$count	=	count($dir_files);
 								$this->myLog("Total Directories: $count");

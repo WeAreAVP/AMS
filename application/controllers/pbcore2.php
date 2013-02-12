@@ -451,13 +451,13 @@ class	Pbcore2	extends	CI_Controller
 																{
 																				if(strtolower($map_extension['extensionauthorityused'][0]['text'])	==	strtolower('AACIP Record Tags'))
 																				{
+																								$this->myLog('Asset Extension Element: '	.	$map_extension['extensionauthorityused'][0]['text']);
 																								if(isset($map_extension['extensionvalue'][0]['text'])	&&	!	is_empty($map_extension['extensionvalue'][0]['text']))
 																								{
-//																												$match_text	=	array('historical value',	'risk of loss',	'local cultural value',	'potential to repurpose');
-																												if(preg_match('/historical value/',	$map_extension['extensionvalue'][0]['text'],	$match_text)){
-																																debug($match_text);
+																												if(!preg_match('/historical value|risk of loss|local cultural value|potential to repurpose/',	strtolower($map_extension['extensionvalue'][0]['text']),	$match_text))
+																												{
+																																$this->myLog('Asset Extension Value: '	.	$map_extension['extensionvalue'][0]['text']);
 																												}
-																												
 																								}
 																				}
 																				else	if(strtolower($map_extension['extensionauthorityused'][0]['text'])	!=	strtolower('AACIP Record Nomination Status'))

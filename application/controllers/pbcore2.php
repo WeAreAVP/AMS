@@ -62,13 +62,13 @@ class	Pbcore2	extends	CI_Controller
 												$this->import_assets($xml_to_array['children']);
 												$this->import_instantiations($xml_to_array['children']);
 												echo	'<br/><hr/>';
-												exit;
+//												exit;
 								}
 				}
 
 				function	import_assets($asset_children)
 				{
-								debug($asset_children,	FALSE);
+//								debug($asset_children,	FALSE);
 								// Asset Type Start //
 								if(isset($asset_children['pbcoreassettype']))
 								{
@@ -451,10 +451,10 @@ class	Pbcore2	extends	CI_Controller
 																{
 																				if(strtolower($map_extension['extensionauthorityused'][0]['text'])	==	strtolower('AACIP Record Tags'))
 																				{
-																								
+
 																								if(isset($map_extension['extensionvalue'][0]['text'])	&&	!	is_empty($map_extension['extensionvalue'][0]['text']))
 																								{
-																												if(!preg_match('/historical value|risk of loss|local cultural value|potential to repurpose/',	strtolower($map_extension['extensionvalue'][0]['text']),	$match_text))
+																												if(	!	preg_match('/historical value|risk of loss|local cultural value|potential to repurpose/',	strtolower($map_extension['extensionvalue'][0]['text']),	$match_text))
 																												{
 																																$this->myLog('Asset Extension Element: '	.	$map_extension['extensionauthorityused'][0]['text']);
 																																$this->myLog('Asset Extension Value: '	.	$map_extension['extensionvalue'][0]['text']);
@@ -831,6 +831,38 @@ class	Pbcore2	extends	CI_Controller
 																								}
 																				}
 																				// Instantiations Essence Tracks End //
+																				// Asset Extension Start //
+
+																				if(isset($asset_children['pbcoreextension'])	&&	!	is_empty($asset_children['pbcoreextension']))
+																				{
+																								foreach($asset_children['pbcoreextension']	as	$pbcore_extension)
+																								{
+																												$map_extension	=	$pbcore_extension['children']['extensionwrap'][0]['children'];
+																												if(isset($map_extension['extensionauthorityused'][0]['text'])	&&	!	is_empty($map_extension['extensionauthorityused'][0]['text']))
+																												{
+																																if(strtolower($map_extension['extensionauthorityused'][0]['text'])	==	strtolower('AACIP Record Nomination Status'))
+																																{
+																																				if(isset($map_extension['extensionvalue'][0]['text'])	&&	!	is_empty($map_extension['extensionvalue'][0]['text']))
+																																				{
+																																								$this->myLog('<b>Nomination Status:</b> '	.	$map_extension['extensionvalue'][0]['text']);
+																																				}
+																																}
+																																if(strtolower($map_extension['extensionauthorityused'][0]['text'])	==	strtolower('AACIP Record Tags'))
+																																{
+
+																																				if(isset($map_extension['extensionvalue'][0]['text'])	&&	!	is_empty($map_extension['extensionvalue'][0]['text']))
+																																				{
+																																								if(preg_match('/historical value|risk of loss|local cultural value|potential to repurpose/',	strtolower($map_extension['extensionvalue'][0]['text']),	$match_text))
+																																								{
+
+																																												$this->myLog('<b>Nomination Reason:</b> '	.	$map_extension['extensionvalue'][0]['text']);
+																																								}
+																																				}
+																																}
+																												}
+																								}
+																				}
+																				// Asset Extension End //
 																}
 												}
 								}

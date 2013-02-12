@@ -48,12 +48,13 @@ class	Pbcore2	extends	CI_Controller
 				function	process_dir()
 				{
 								set_time_limit(0);
+								$this->myLog("Calculating Number of process Directories");
 								$this->cron_model->scan_directory($this->pbcore_path,	$dir_files);
 								$count	=	count($dir_files);
-								debug($dir_files);
+								$this->myLog("Total Directories: $count");
 								if(isset($count)	&&	$count	>	0)
 								{
-												$this->myLog("Total Number of process "	.	$count);
+												$this->myLog("Total Number of process: "	.	$count);
 												$loop_counter	=	0;
 												$maxProcess	=	5;
 												foreach($dir_files	as	$dir)
@@ -69,25 +70,75 @@ class	Pbcore2	extends	CI_Controller
 																$loop_counter	++;
 																while	($proc_cnt	==	$maxProcess)
 																{
-																				$this->myLog('Number of Processes running : '	.	$loop_counter	.	'/.'	.	$count	.	' Sleeping ...');
+																				$this->myLog('Number of Processes running: '	.	$loop_counter	.	'/.'	.	$count	.	' Sleeping ...');
 																				sleep(30);
 																				$proc_cnt	=	$this->procCounter();
 																}
 												}
-												$this->myLog("Waiting for all process to complete");
+												$this->myLog("Waiting for all process to complete.");
 												$proc_cnt	=	$this->procCounter();
 												while	($proc_cnt	>	0)
 												{
-																echo	"Sleeping....\n";
+																echo	"Sleeping for 10 second...\n";
 																sleep(10);
 																echo	"\010\010\010\010\010\010\010\010\010\010\010\010";
 																echo	"\n";
 																$proc_cnt	=	$this->procCounter();
-																echo	"Number of Processes running : $proc_cnt/$maxProcess\n";
+																echo	"Number of Processes running: $proc_cnt/$maxProcess\n";
 												}
 								}
 								echo	"All Data Path Under {$this->assets_path} Directory Stored ";
 								exit_function();
+				}
+
+				function	pbcore2_dir_child($path)
+				{
+
+								$type	=	'assets';
+								$file	=	'manifest-md5.txt';
+								$directory	=	base64_decode($path);
+								$folder_status	=	'complete';
+								if(	!	$data_folder_id	=	$this->cron_model->get_data_folder_id_by_path($directory))
+								{
+												$data_folder_id	=	$this->cron_model->insert_data_folder(array("folder_path"	=>	$directory,	"created_at"		=>	date('Y-m-d H:i:s'),	"data_type"			=>	$type));
+								}
+								if(isset($data_folder_id)	&&	$data_folder_id	>	0)
+								{
+												$data_result	=	file($directory	.	$file);
+												if(isset($data_result)	&&	!	is_empty($data_result))
+												{
+																foreach($data_result	as	$value)
+																{
+																				$data_file	=	(explode(" ",	$value));
+																				$data_file_path	=	trim(str_replace(array('\r\n',	'\n',	'<br>'),	'',	trim($data_file[1])));
+																				$this->myLog('Checking File '	.	$data_file_path);
+																				if(isset($data_file_path)	&&	!	is_empty($data_file_path))
+																				{
+																								$file_path	=	trim($directory	.	$data_file_path);
+																								if(strpos($data_file_path,	'organization.xml')	===	false)
+																								{
+																												if(file_exists($file_path))
+																												{
+																																if(	!	$this->cron_model->is_pbcore_file_by_path($data_file_path))
+																																{
+																																				$this->cron_model->insert_prcoess_data(array('file_type'						=>	$type,	'file_path'						=>	($data_file_path),	'is_processed'			=>	0,	'created_at'					=>	date('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id));
+																																}
+																												}
+																												else
+																												{
+																																if(	!	$this->cron_model->is_pbcore_file_by_path($data_file_path))
+																																{
+																																				$this->cron_model->insert_prcoess_data(array('file_type'						=>	$type,	'file_path'						=>	($data_file_path),	'is_processed'			=>	0,	'created_at'					=>	date('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id,	'status_reason'		=>	'file_not_found'));
+																																}
+																																$folder_status	=	'incomplete';
+																												}
+																								}
+																				}
+																}
+												}
+												$this->myLog('folder Id '	.	$data_folder_id	.	' => folder_status '	.	$folder_status);
+												$this->cron_model->update_data_folder(array('updated_at'				=>	date('Y-m-d H:i:s'),	'folder_status'	=>	$folder_status),	$data_folder_id);
+								}
 				}
 
 				function	process_xml()

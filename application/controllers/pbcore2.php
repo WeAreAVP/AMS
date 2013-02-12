@@ -87,7 +87,7 @@ class	Pbcore2	extends	CI_Controller
 																echo	"Number of Processes running: $proc_cnt/$maxProcess\n";
 												}
 								}
-								echo	"All Data Path Under {$this->assets_path} Directory Stored ";
+								echo	"All Data Path Under {$this->pbcore_path} Directory Stored ";
 								exit_function();
 				}
 

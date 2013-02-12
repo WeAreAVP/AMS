@@ -852,7 +852,22 @@ class	Pbcore2	extends	CI_Controller
 
 																																				if(isset($map_extension['extensionvalue'][0]['text'])	&&	!	is_empty($map_extension['extensionvalue'][0]['text']))
 																																				{
-																																								if(preg_match('/^historical value$|^risk of loss$|^local cultural value$|^potential to repurpose$/',	strtolower($map_extension['extensionvalue'][0]['text']),	$match_text))
+																																								if(preg_match('/historical value/',	strtolower($map_extension['extensionvalue'][0]['text']),	$match_text))
+																																								{
+
+																																												$this->myLog('<b>Nomination Reason:</b> '	.	$map_extension['extensionvalue'][0]['text']);
+																																								}
+																																								else	if(preg_match('/risk of loss/',	strtolower($map_extension['extensionvalue'][0]['text']),	$match_text))
+																																								{
+
+																																												$this->myLog('<b>Nomination Reason:</b> '	.	$map_extension['extensionvalue'][0]['text']);
+																																								}
+																																								else	if(preg_match('/local cultural value/',	strtolower($map_extension['extensionvalue'][0]['text']),	$match_text))
+																																								{
+
+																																												$this->myLog('<b>Nomination Reason:</b> '	.	$map_extension['extensionvalue'][0]['text']);
+																																								}
+																																								else	if(preg_match('/potential to repurpose/',	strtolower($map_extension['extensionvalue'][0]['text']),	$match_text))
 																																								{
 
 																																												$this->myLog('<b>Nomination Reason:</b> '	.	$map_extension['extensionvalue'][0]['text']);

@@ -61,13 +61,14 @@ class	Pbcore2	extends	CI_Controller
 //								debug($xml_to_array,	FALSE);
 												$this->import_assets($xml_to_array['children']);
 												$this->import_instantiations($xml_to_array['children']);
-												echo	'<br/><hr/>';exit;
+												echo	'<br/><hr/>';
+												exit;
 								}
 				}
 
 				function	import_assets($asset_children)
 				{
-								debug($asset_children,FALSE);
+								debug($asset_children,	FALSE);
 								// Asset Type Start //
 								if(isset($asset_children['pbcoreassettype']))
 								{
@@ -448,7 +449,18 @@ class	Pbcore2	extends	CI_Controller
 																$map_extension	=	$pbcore_extension['children']['extensionwrap'][0]['children'];
 																if(isset($map_extension['extensionauthorityused'][0]['text'])	&&	!	is_empty($map_extension['extensionauthorityused'][0]['text']))
 																{
-																				if(strtolower($map_extension['extensionauthorityused'][0]['text'])	!=	strtolower('AACIP Record Nomination Status'))
+																				if(strtolower($map_extension['extensionauthorityused'][0]['text'])	==	strtolower('AACIP Record Tags'))
+																				{
+																								if(isset($map_extension['extensionvalue'][0]['text'])	&&	!	is_empty($map_extension['extensionvalue'][0]['text']))
+																								{
+//																												$match_text	=	array('historical value',	'risk of loss',	'local cultural value',	'potential to repurpose');
+																												if(preg_match('historical value',	$map_extension['extensionvalue'][0]['text'],	$match_text)){
+																																debug($match_text);
+																												}
+																												
+																								}
+																				}
+																				else	if(strtolower($map_extension['extensionauthorityused'][0]['text'])	!=	strtolower('AACIP Record Nomination Status'))
 																				{
 
 																								$this->myLog('Asset Extension Element: '	.	$map_extension['extensionauthorityused'][0]['text']);

@@ -133,18 +133,18 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcoretitle['text'])	&&	!	is_empty($pbcoretitle['text']))
 																{
 																				$this->myLog('Asset Title: '	.	$pbcoretitle['text']);
-																}
-																if(isset($pbcoretitle['attributes']['titletype'])	&&	!	is_empty($pbcoretitle['attributes']['titletype']))
-																{
-																				$this->myLog('Asset Title Type: '	.	$pbcoretitle['attributes']['titletype']);
-																}
-																if(isset($pbcoretitle['attributes']['ref'])	&&	!	is_empty($pbcoretitle['attributes']['ref']))
-																{
-																				$this->myLog('Asset Title Ref: '	.	$pbcoretitle['attributes']['ref']);
-																}
-																if(isset($pbcoretitle['attributes']['source'])	&&	!	is_empty($pbcoretitle['attributes']['source']))
-																{
-																				$this->myLog('Asset Title Source: '	.	$pbcoretitle['attributes']['source']);
+																				if(isset($pbcoretitle['attributes']['titletype'])	&&	!	is_empty($pbcoretitle['attributes']['titletype']))
+																				{
+																								$this->myLog('Asset Title Type: '	.	$pbcoretitle['attributes']['titletype']);
+																				}
+																				if(isset($pbcoretitle['attributes']['ref'])	&&	!	is_empty($pbcoretitle['attributes']['ref']))
+																				{
+																								$this->myLog('Asset Title Ref: '	.	$pbcoretitle['attributes']['ref']);
+																				}
+																				if(isset($pbcoretitle['attributes']['source'])	&&	!	is_empty($pbcoretitle['attributes']['source']))
+																				{
+																								$this->myLog('Asset Title Source: '	.	$pbcoretitle['attributes']['source']);
+																				}
 																}
 												}
 								}
@@ -159,18 +159,18 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcoresubject['text'])	&&	!	is_empty($pbcoresubject['text']))
 																{
 																				$this->myLog('Asset Subject: '	.	$pbcoresubject['text']);
-																}
-																if(isset($pbcoresubject['attributes']['subjecttype'])	&&	!	is_empty($pbcoresubject['attributes']['subjecttype']))
-																{
-																				$this->myLog('Asset Subject Type: '	.	$pbcoresubject['attributes']['subjecttype']);
-																}
-																if(isset($pbcoresubject['attributes']['ref'])	&&	!	is_empty($pbcoresubject['attributes']['ref']))
-																{
-																				$this->myLog('Asset Subject Ref: '	.	$pbcoresubject['attributes']['ref']);
-																}
-																if(isset($pbcoresubject['attributes']['source'])	&&	!	is_empty($pbcoresubject['attributes']['source']))
-																{
-																				$this->myLog('Asset Subject Source: '	.	$pbcoresubject['attributes']['source']);
+																				if(isset($pbcoresubject['attributes']['subjecttype'])	&&	!	is_empty($pbcoresubject['attributes']['subjecttype']))
+																				{
+																								$this->myLog('Asset Subject Type: '	.	$pbcoresubject['attributes']['subjecttype']);
+																				}
+																				if(isset($pbcoresubject['attributes']['ref'])	&&	!	is_empty($pbcoresubject['attributes']['ref']))
+																				{
+																								$this->myLog('Asset Subject Ref: '	.	$pbcoresubject['attributes']['ref']);
+																				}
+																				if(isset($pbcoresubject['attributes']['source'])	&&	!	is_empty($pbcoresubject['attributes']['source']))
+																				{
+																								$this->myLog('Asset Subject Source: '	.	$pbcoresubject['attributes']['source']);
+																				}
 																}
 												}
 								}
@@ -185,14 +185,10 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcoredescription['text'])	&&	!	is_empty($pbcoredescription['text']))
 																{
 																				$this->myLog('Asset Description: '	.	$pbcoredescription['text']);
-																}
-																else
-																{
-																				$this->myLog('Asset Description: ');
-																}
-																if(isset($pbcoredescription['attributes']['descriptiontype'])	&&	!	is_empty($pbcoredescription['attributes']['descriptiontype']))
-																{
-																				$this->myLog('Asset Description Type: '	.	$pbcoredescription['attributes']['descriptiontype']);
+																				if(isset($pbcoredescription['attributes']['descriptiontype'])	&&	!	is_empty($pbcoredescription['attributes']['descriptiontype']))
+																				{
+																								$this->myLog('Asset Description Type: '	.	$pbcoredescription['attributes']['descriptiontype']);
+																				}
 																}
 												}
 								}
@@ -207,15 +203,14 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcoregenre['text'])	&&	!	is_empty($pbcoregenre['text']))
 																{
 																				$this->myLog('Asset Genre: '	.	$pbcoregenre['text']);
-																}
-
-																if(isset($pbcoregenre['attributes']['source'])	&&	!	is_empty($pbcoregenre['attributes']['source']))
-																{
-																				$this->myLog('Asset Genre Source: '	.	$pbcoregenre['attributes']['source']);
-																}
-																if(isset($pbcoregenre['attributes']['ref'])	&&	!	is_empty($pbcoregenre['attributes']['ref']))
-																{
-																				$this->myLog('Asset Genre Ref: '	.	$pbcoregenre['attributes']['ref']);
+																				if(isset($pbcoregenre['attributes']['source'])	&&	!	is_empty($pbcoregenre['attributes']['source']))
+																				{
+																								$this->myLog('Asset Genre Source: '	.	$pbcoregenre['attributes']['source']);
+																				}
+																				if(isset($pbcoregenre['attributes']['ref'])	&&	!	is_empty($pbcoregenre['attributes']['ref']))
+																				{
+																								$this->myLog('Asset Genre Ref: '	.	$pbcoregenre['attributes']['ref']);
+																				}
 																}
 												}
 								}
@@ -229,10 +224,10 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcore_coverage['children']['coverage'][0]['text'])	&&	!	is_empty($pbcore_coverage['children']['coverage'][0]['text']))
 																{
 																				$this->myLog('Asset Coverage: '	.	$pbcore_coverage['children']['coverage'][0]['text']);
-																}
-																if(isset($pbcore_coverage['children']['coveragetype'][0]['text'])	&&	!	is_empty($pbcore_coverage['children']['coveragetype'][0]['text']))
-																{
-																				$this->myLog('Asset Coverage Type: '	.	$pbcore_coverage['children']['coveragetype'][0]['text']);
+																				if(isset($pbcore_coverage['children']['coveragetype'][0]['text'])	&&	!	is_empty($pbcore_coverage['children']['coveragetype'][0]['text']))
+																				{
+																								$this->myLog('Asset Coverage Type: '	.	$pbcore_coverage['children']['coveragetype'][0]['text']);
+																				}
 																}
 												}
 								}
@@ -247,15 +242,14 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcoreaudiencelevel['text'])	&&	!	is_empty($pbcoreaudiencelevel['text']))
 																{
 																				$this->myLog('Asset Audience Level: '	.	$pbcoreaudiencelevel['text']);
-																}
-
-																if(isset($pbcoreaudiencelevel['attributes']['source'])	&&	!	is_empty($pbcoreaudiencelevel['attributes']['source']))
-																{
-																				$this->myLog('Asset Audience Level Source: '	.	$pbcoreaudiencelevel['attributes']['source']);
-																}
-																if(isset($pbcoreaudiencelevel['attributes']['ref'])	&&	!	is_empty($pbcoreaudiencelevel['attributes']['ref']))
-																{
-																				$this->myLog('Asset Audience Level Ref: '	.	$pbcoreaudiencelevel['attributes']['ref']);
+																				if(isset($pbcoreaudiencelevel['attributes']['source'])	&&	!	is_empty($pbcoreaudiencelevel['attributes']['source']))
+																				{
+																								$this->myLog('Asset Audience Level Source: '	.	$pbcoreaudiencelevel['attributes']['source']);
+																				}
+																				if(isset($pbcoreaudiencelevel['attributes']['ref'])	&&	!	is_empty($pbcoreaudiencelevel['attributes']['ref']))
+																				{
+																								$this->myLog('Asset Audience Level Ref: '	.	$pbcoreaudiencelevel['attributes']['ref']);
+																				}
 																}
 												}
 								}
@@ -270,15 +264,14 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcoreaudiencerating['text'])	&&	!	is_empty($pbcoreaudiencerating['text']))
 																{
 																				$this->myLog('Asset Audience Rating: '	.	$pbcoreaudiencerating['text']);
-																}
-
-																if(isset($pbcoreaudiencerating['attributes']['source'])	&&	!	is_empty($pbcoreaudiencerating['attributes']['source']))
-																{
-																				$this->myLog('Asset Audience Rating Source: '	.	$pbcoreaudiencerating['attributes']['source']);
-																}
-																if(isset($pbcoreaudiencerating['attributes']['ref'])	&&	!	is_empty($pbcoreaudiencerating['attributes']['ref']))
-																{
-																				$this->myLog('Asset Audience Rating Ref: '	.	$pbcoreaudiencerating['attributes']['ref']);
+																				if(isset($pbcoreaudiencerating['attributes']['source'])	&&	!	is_empty($pbcoreaudiencerating['attributes']['source']))
+																				{
+																								$this->myLog('Asset Audience Rating Source: '	.	$pbcoreaudiencerating['attributes']['source']);
+																				}
+																				if(isset($pbcoreaudiencerating['attributes']['ref'])	&&	!	is_empty($pbcoreaudiencerating['attributes']['ref']))
+																				{
+																								$this->myLog('Asset Audience Rating Ref: '	.	$pbcoreaudiencerating['attributes']['ref']);
+																				}
 																}
 												}
 								}
@@ -293,15 +286,14 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcoreannotation['text'])	&&	!	is_empty($pbcoreannotation['text']))
 																{
 																				$this->myLog('Asset Annotation: '	.	$pbcoreannotation['text']);
-																}
-
-																if(isset($pbcoreannotation['attributes']['annotationtype'])	&&	!	is_empty($pbcoreannotation['attributes']['annotationtype']))
-																{
-																				$this->myLog('Asset Annotation Type: '	.	$pbcoreannotation['attributes']['annotationtype']);
-																}
-																if(isset($pbcoreannotation['attributes']['ref'])	&&	!	is_empty($pbcoreannotation['attributes']['ref']))
-																{
-																				$this->myLog('Asset Annotation Ref: '	.	$pbcoreannotation['attributes']['ref']);
+																				if(isset($pbcoreannotation['attributes']['annotationtype'])	&&	!	is_empty($pbcoreannotation['attributes']['annotationtype']))
+																				{
+																								$this->myLog('Asset Annotation Type: '	.	$pbcoreannotation['attributes']['annotationtype']);
+																				}
+																				if(isset($pbcoreannotation['attributes']['ref'])	&&	!	is_empty($pbcoreannotation['attributes']['ref']))
+																				{
+																								$this->myLog('Asset Annotation Ref: '	.	$pbcoreannotation['attributes']['ref']);
+																				}
 																}
 												}
 								}
@@ -315,17 +307,17 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcorerelation['children']['pbcorerelationidentifier'][0]['text'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationidentifier'][0]['text']))
 																{
 																				$this->myLog('Asset Relation Identifier: '	.	$pbcorerelation['children']['pbcorerelationidentifier'][0]['text']);
-																}
-																if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['text'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['text']))
-																{
-																				$this->myLog('Asset Relation Type: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['text']);
-																				if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['attributes']['source']))
+																				if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['text'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['text']))
 																				{
-																								$this->myLog('Asset Relation Type Source: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source']);
-																				}
-																				if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['attributes']['ref']))
-																				{
-																								$this->myLog('Asset Relation Type Ref: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref']);
+																								$this->myLog('Asset Relation Type: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['text']);
+																								if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['attributes']['source']))
+																								{
+																												$this->myLog('Asset Relation Type Source: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source']);
+																								}
+																								if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['attributes']['ref']))
+																								{
+																												$this->myLog('Asset Relation Type Ref: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref']);
+																								}
 																				}
 																}
 												}
@@ -543,9 +535,9 @@ class	Pbcore2	extends	CI_Controller
 																				}
 																				// Instantiation Tracks End //
 																				//Instantiation Channel Configuration Start //
-																				if(isset($pbcoreinstantiation_child['instantiationconfiguration'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationconfiguration'][0]['text']))
+																				if(isset($pbcoreinstantiation_child['instantiationchannelconfiguration'][0]['text'])	&&	!	is_empty($pbcoreinstantiation_child['instantiationchannelconfiguration'][0]['text']))
 																				{
-																								$this->myLog('Instantiation Cannel Configuration: '	.	$pbcoreinstantiation_child['instantiationconfiguration'][0]['text']);
+																								$this->myLog('Instantiation Cannel Configuration: '	.	$pbcoreinstantiation_child['instantiationchannelconfiguration'][0]['text']);
 																				}
 																				//Instantiation Channel Configuration End //
 																				//Instantiation Language Start //

@@ -45,6 +45,51 @@ class	Pbcore2	extends	CI_Controller
 								$this->pbcore_path	=	'assets/export_pbcore2/';
 				}
 
+				function	process_dir()
+				{
+								set_time_limit(0);
+								$this->cron_model->scan_directory($this->pbcore_path,	$dir_files);
+								$count	=	count($dir_files);
+								debug($dir_files);
+								if(isset($count)	&&	$count	>	0)
+								{
+												$this->myLog("Total Number of process "	.	$count);
+												$loop_counter	=	0;
+												$maxProcess	=	5;
+												foreach($dir_files	as	$dir)
+												{
+																$cmd	=	escapeshellcmd('/usr/bin/php '	.	$this->config->item('path')	.	'index.php pbcore2 pbcore2_dir_child '	.	base64_encode($dir));
+																$this->config->item('path')	.	"cronlog/pbcore2_dir_child.log";
+																$pidFile	=	$this->config->item('path')	.	"PIDs/pbcore2_dir_child/"	.	$loop_counter	.	".txt";
+																@exec('touch '	.	$pidFile);
+																$this->runProcess($cmd,	$pidFile,	$this->config->item('path')	.	"cronlog/pbcore2_dir_child.log");
+																$file_text	=	file_get_contents($pidFile);
+																$this->arrPIDs[$file_text]	=	$loop_counter;
+																$proc_cnt	=	$this->procCounter();
+																$loop_counter	++;
+																while	($proc_cnt	==	$maxProcess)
+																{
+																				$this->myLog('Number of Processes running : '	.	$loop_counter	.	'/.'	.	$count	.	' Sleeping ...');
+																				sleep(30);
+																				$proc_cnt	=	$this->procCounter();
+																}
+												}
+												$this->myLog("Waiting for all process to complete");
+												$proc_cnt	=	$this->procCounter();
+												while	($proc_cnt	>	0)
+												{
+																echo	"Sleeping....\n";
+																sleep(10);
+																echo	"\010\010\010\010\010\010\010\010\010\010\010\010";
+																echo	"\n";
+																$proc_cnt	=	$this->procCounter();
+																echo	"Number of Processes running : $proc_cnt/$maxProcess\n";
+												}
+								}
+								echo	"All Data Path Under {$this->assets_path} Directory Stored ";
+								exit_function();
+				}
+
 				function	process_xml()
 				{
 								error_reporting(E_ALL);
@@ -892,6 +937,47 @@ class	Pbcore2	extends	CI_Controller
 												$string.="<br>\n";
 								echo	date('Y-m-d H:i:s')	.	' >> '	.	$string;
 								flush();
+				}
+
+				function	checkProcessStatus($pid)
+				{
+								$proc_status	=	false;
+								try
+								{
+												$result	=	shell_exec("/bin/ps $pid");
+												if(count(preg_split("/\n/",	$result))	>	2)
+												{
+																$proc_status	=	TRUE;
+												}
+								}
+								catch	(Exception	$e)
+								{
+												
+								}
+								return	$proc_status;
+				}
+
+				function	procCounter()
+				{
+								foreach($this->arrPIDs	as	$pid	=>	$cityKey)
+								{
+												if(	!	$this->checkProcessStatus($pid))
+												{
+																$t_pid	=	str_replace("\r",	"",	str_replace("\n",	"",	trim($pid)));
+																unset($this->arrPIDs[$pid]);
+												}
+												else
+												{
+																
+												}
+								}
+								return	count($this->arrPIDs);
+				}
+
+				function	runProcess($cmd,	$pidFilePath,	$outputfile	=	"/dev/null")
+				{
+								$cmd	=	escapeshellcmd($cmd);
+								@exec(sprintf("%s >> %s 2>&1 & echo $! > %s",	$cmd,	$outputfile,	$pidFilePath));
 				}
 
 }

@@ -162,7 +162,7 @@ class	Pbcore2	extends	CI_Controller
 								}
 				}
 
-				function	import_assets($asset_children)
+				function	import_assets($asset_children,	$asset_id)
 				{
 //								debug($asset_children,	FALSE);
 								// Asset Type Start //
@@ -174,6 +174,18 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcoreassettype['text'])	&&	!	is_empty($pbcoreassettype['text']))
 																{
 																				$this->myLog('Asset Type: '	.	$pbcoreassettype['text']);
+																				$asset_type_detail	=	array();
+																				$asset_type_detail['assets_id']	=	$asset_id;
+																				if($asset_type	=	$this->assets_model->get_assets_type_by_type($pbcoreassettype['text']))
+																				{
+																								$asset_type_detail['asset_types_id']	=	$asset_type->id;
+																				}
+																				else
+																				{
+																								$asset_type_detail['asset_types_id']	=	$this->assets_model->insert_asset_types(array("asset_type"	=>	$pbcoreassettype['text']));
+																				}
+																				$this->assets_model->insert_assets_asset_types($asset_type_detail);
+																				unset($asset_type_detail);
 																}
 												}
 								}
@@ -201,20 +213,27 @@ class	Pbcore2	extends	CI_Controller
 												foreach($asset_children['pbcoreidentifier']	as	$pbcoreidentifier)
 												{
 
-
+																$identifier_detail	=	array();
 																if(isset($pbcoreidentifier['text'])	&&	!	is_empty($pbcoreidentifier['text']))
 																{
 
 																				$this->myLog('Asset Identifier: '	.	trim($pbcoreidentifier['text']));
-
+																				$identifier_detail['assets_id']	=	$asset_id;
+																				$identifier_detail['identifier']	=	trim($pbcoreidentifier['children']['identifier'][0]['text']);
+																				$identifier_detail['identifier_source']	=	'';
+																				$identifier_detail['identifier_ref']	=	'';
 																				if(isset($pbcoreidentifier['attributes']['source'])	&&	!	is_empty($pbcoreidentifier['attributes']['source']))
 																				{
 																								$this->myLog('Asset Identifier Source: '	.	trim($pbcoreidentifier['attributes']['source']));
+																								$identifier_detail['identifier_source']	=	trim($pbcoreidentifier['attributes']['source']);
 																				}
 																				if(isset($pbcoreidentifier['attributes']['ref'])	&&	!	is_empty($pbcoreidentifier['attributes']['ref']))
 																				{
 																								$this->myLog('Asset Identifier Ref: '	.	trim($pbcoreidentifier['attributes']['ref']));
+																								$identifier_detail['identifier_ref']	=	trim($pbcoreidentifier['attributes']['ref']);
 																				}
+																				$this->assets_model->insert_identifiers($identifier_detail);
+																				unset($identifier_detail);
 																}
 												}
 								}
@@ -227,22 +246,39 @@ class	Pbcore2	extends	CI_Controller
 								{
 												foreach($asset_children['pbcoretitle']	as	$pbcoretitle)
 												{
-
+																$title_detail	=	array();
 																if(isset($pbcoretitle['text'])	&&	!	is_empty($pbcoretitle['text']))
 																{
 																				$this->myLog('Asset Title: '	.	$pbcoretitle['text']);
+																				$title_detail['assets_id']	=	$asset_id;
+																				$title_detail['title']	=	$pbcoretitle['text'];
 																				if(isset($pbcoretitle['attributes']['titletype'])	&&	!	is_empty($pbcoretitle['attributes']['titletype']))
 																				{
 																								$this->myLog('Asset Title Type: '	.	$pbcoretitle['attributes']['titletype']);
+																								$asset_title_types	=	$this->assets_model->get_asset_title_types_by_title_type($pbcoretitle['attributes']['titletype']);
+																								if(isset($asset_title_types)	&&	isset($asset_title_types->id))
+																								{
+																												$asset_title_types_id	=	$asset_title_types->id;
+																								}
+																								else
+																								{
+																												$asset_title_types_id	=	$this->assets_model->insert_asset_title_types(array("title_type"																										=>	$pbcoretitle['attributes']['titletype']));
+																								}
+																								$title_detail['asset_title_types_id']	=	$asset_title_types_id;
 																				}
 																				if(isset($pbcoretitle['attributes']['ref'])	&&	!	is_empty($pbcoretitle['attributes']['ref']))
 																				{
 																								$this->myLog('Asset Title Ref: '	.	$pbcoretitle['attributes']['ref']);
+																								$title_detail['title_ref']	=	$pbcoretitle['attributes']['ref'];
 																				}
 																				if(isset($pbcoretitle['attributes']['source'])	&&	!	is_empty($pbcoretitle['attributes']['source']))
 																				{
 																								$this->myLog('Asset Title Source: '	.	$pbcoretitle['attributes']['source']);
+																								$title_detail['title_source']	=	$pbcoretitle['attributes']['source'];
 																				}
+																				$title_detail['created']	=	date('Y-m-d H:i:s');
+																				$this->assets_model->insert_asset_titles($title_detail);
+																				unset($title_detail);
 																}
 												}
 								}
@@ -253,21 +289,38 @@ class	Pbcore2	extends	CI_Controller
 								{
 												foreach($asset_children['pbcoresubject']	as	$pbcoresubject)
 												{
-
+																$subject_detail	=	array();
 																if(isset($pbcoresubject['text'])	&&	!	is_empty($pbcoresubject['text']))
 																{
+																				$subject_detail['assets_id']	=	$asset_id;
 																				$this->myLog('Asset Subject: '	.	$pbcoresubject['text']);
 																				if(isset($pbcoresubject['attributes']['subjecttype'])	&&	!	is_empty($pbcoresubject['attributes']['subjecttype']))
 																				{
+																								$subject_d	=	array();
 																								$this->myLog('Asset Subject Type: '	.	$pbcoresubject['attributes']['subjecttype']);
-																				}
-																				if(isset($pbcoresubject['attributes']['ref'])	&&	!	is_empty($pbcoresubject['attributes']['ref']))
-																				{
-																								$this->myLog('Asset Subject Ref: '	.	$pbcoresubject['attributes']['ref']);
-																				}
-																				if(isset($pbcoresubject['attributes']['source'])	&&	!	is_empty($pbcoresubject['attributes']['source']))
-																				{
-																								$this->myLog('Asset Subject Source: '	.	$pbcoresubject['attributes']['source']);
+																								$subject_d['subject']	=	$pbcoresubject['attributes']['subjecttype'];
+																								if(isset($pbcoresubject['attributes']['ref'])	&&	!	is_empty($pbcoresubject['attributes']['ref']))
+																								{
+																												$this->myLog('Asset Subject Ref: '	.	$pbcoresubject['attributes']['ref']);
+																												$subject_d['subject_ref']	=	$pbcoresubject['attributes']['ref'];
+																								}
+																								if(isset($pbcoresubject['attributes']['source'])	&&	!	is_empty($pbcoresubject['attributes']['source']))
+																								{
+																												$this->myLog('Asset Subject Source: '	.	$pbcoresubject['attributes']['source']);
+																												$subject_d['subject_source']	=	$pbcoresubject['attributes']['source'];
+																								}
+
+																								$subjects	=	$this->assets_model->get_subjects_id_by_subject($pbcoresubject['attributes']['subjecttype']);
+																								if(isset($subjects)	&&	isset($subjects->id))
+																								{
+																												$subject_id	=	$subjects->id;
+																								}
+																								else
+																								{
+																												$subject_id	=	$this->assets_model->insert_subjects($subject_d);
+																								}
+																								$subject_detail['subjects_id']	=	$subject_id;
+																								$assets_subject_id	=	$this->assets_model->insert_assets_subjects($pbcoreSubject_d);
 																				}
 																}
 												}
@@ -279,14 +332,27 @@ class	Pbcore2	extends	CI_Controller
 								{
 												foreach($asset_children['pbcoredescription']	as	$pbcoredescription)
 												{
-
+																$asset_descriptions_d	=	array();
 																if(isset($pbcoredescription['text'])	&&	!	is_empty($pbcoredescription['text']))
 																{
+																				$asset_descriptions_d['assets_id']	=	$asset_id;
+																				$asset_descriptions_d['description']	=	$pbcoredescription['text'];
 																				$this->myLog('Asset Description: '	.	$pbcoredescription['text']);
 																				if(isset($pbcoredescription['attributes']['descriptiontype'])	&&	!	is_empty($pbcoredescription['attributes']['descriptiontype']))
 																				{
 																								$this->myLog('Asset Description Type: '	.	$pbcoredescription['attributes']['descriptiontype']);
+																								$asset_description_type	=	$this->assets_model->get_description_by_type($pbcoredescription['attributes']['descriptiontype']);
+																								if(isset($asset_description_type)	&&	isset($asset_description_type->id))
+																								{
+																												$asset_description_types_id	=	$asset_description_type->id;
+																								}
+																								else
+																								{
+																												$asset_description_types_id	=	$this->assets_model->insert_asset_title_types(array("description_type"																												=>	$pbcoredescription['attributes']['descriptiontype']));
+																								}
+																								$asset_descriptions_d['description_types_id']	=	$asset_title_types_id;
 																				}
+																				$this->assets_model->insert_asset_descriptions($asset_descriptions_d);
 																}
 												}
 								}
@@ -297,18 +363,34 @@ class	Pbcore2	extends	CI_Controller
 								{
 												foreach($asset_children['pbcoregenre']	as	$pbcoregenre)
 												{
-
+																$asset_genre_d	=	array();
+																$asset_genre	=	array();
+																$asset_genre['assets_id']	=	$asset_id;
 																if(isset($pbcoregenre['text'])	&&	!	is_empty($pbcoregenre['text']))
 																{
 																				$this->myLog('Asset Genre: '	.	$pbcoregenre['text']);
-																				if(isset($pbcoregenre['attributes']['source'])	&&	!	is_empty($pbcoregenre['attributes']['source']))
+																				$asset_genre_d['genre']	=	$pbcoregenre['text'];
+																				$asset_genre_type	=	$this->assets_model->get_genre_type($pbcoregenre['text']);
+																				if(isset($asset_genre_type)	&&	isset($asset_genre_type->id))
 																				{
-																								$this->myLog('Asset Genre Source: '	.	$pbcoregenre['attributes']['source']);
+																								$asset_genre['genres_id']	=	$asset_genre_type->id;
 																				}
-																				if(isset($pbcoregenre['attributes']['ref'])	&&	!	is_empty($pbcoregenre['attributes']['ref']))
+																				else
 																				{
-																								$this->myLog('Asset Genre Ref: '	.	$pbcoregenre['attributes']['ref']);
+																								if(isset($pbcoregenre['attributes']['source'])	&&	!	is_empty($pbcoregenre['attributes']['source']))
+																								{
+																												$this->myLog('Asset Genre Source: '	.	$pbcoregenre['attributes']['source']);
+																												$asset_genre_d['genre_source']	=	$pbcoregenre['attributes']['source'];
+																								}
+																								if(isset($pbcoregenre['attributes']['ref'])	&&	!	is_empty($pbcoregenre['attributes']['ref']))
+																								{
+																												$this->myLog('Asset Genre Ref: '	.	$pbcoregenre['attributes']['ref']);
+																												$asset_genre_d['genre_ref']	=	$pbcoregenre['attributes']['ref'];
+																								}
+																								$asset_genre_id	=	$this->assets_model->insert_genre($asset_genre_d);
+																								$asset_genre['genres_id']	=	$asset_genre_id;
 																				}
+																				$this->assets_model->insert_asset_genre($asset_genre);
 																}
 												}
 								}
@@ -318,14 +400,18 @@ class	Pbcore2	extends	CI_Controller
 								{
 												foreach($asset_children['pbcorecoverage']	as	$pbcore_coverage)
 												{
-
+																$coverage	=	array();
+																$coverage['assets_id']	=	$asset_id;
 																if(isset($pbcore_coverage['children']['coverage'][0]['text'])	&&	!	is_empty($pbcore_coverage['children']['coverage'][0]['text']))
 																{
 																				$this->myLog('Asset Coverage: '	.	$pbcore_coverage['children']['coverage'][0]['text']);
+																				$coverage['coverage']	=	$pbcore_coverage['children']['coverage'][0]['text'];
 																				if(isset($pbcore_coverage['children']['coveragetype'][0]['text'])	&&	!	is_empty($pbcore_coverage['children']['coveragetype'][0]['text']))
 																				{
 																								$this->myLog('Asset Coverage Type: '	.	$pbcore_coverage['children']['coveragetype'][0]['text']);
+																								$coverage['coverage_type']	=	$pbcore_coverage['children']['coveragetype'][0]['text'];
 																				}
+																				$asset_coverage	=	$this->assets_model->insert_coverage($coverage);
 																}
 												}
 								}
@@ -336,18 +422,33 @@ class	Pbcore2	extends	CI_Controller
 								{
 												foreach($asset_children['pbcoreaudiencelevel']	as	$pbcoreaudiencelevel)
 												{
-
+																$audience_level	=	array();
+																$asset_audience_level	=	array();
+																$asset_audience_level['assets_id']	=	$asset_id;
 																if(isset($pbcoreaudiencelevel['text'])	&&	!	is_empty($pbcoreaudiencelevel['text']))
 																{
 																				$this->myLog('Asset Audience Level: '	.	$pbcoreaudiencelevel['text']);
+																				$audience_level['audience_level']	=	trim($pbcoreaudiencelevel['text']);
 																				if(isset($pbcoreaudiencelevel['attributes']['source'])	&&	!	is_empty($pbcoreaudiencelevel['attributes']['source']))
 																				{
 																								$this->myLog('Asset Audience Level Source: '	.	$pbcoreaudiencelevel['attributes']['source']);
+																								$audience_level['audience_level_source']	=	$pbcoreaudiencelevel['attributes']['source'];
 																				}
 																				if(isset($pbcoreaudiencelevel['attributes']['ref'])	&&	!	is_empty($pbcoreaudiencelevel['attributes']['ref']))
 																				{
 																								$this->myLog('Asset Audience Level Ref: '	.	$pbcoreaudiencelevel['attributes']['ref']);
+																								$audience_level['audience_level_ref']	=	$pbcoreaudiencelevel['attributes']['ref'];
 																				}
+																				$db_audience_level	=	$this->assets_model->get_audience_level($pbcoreaudiencelevel['text']);
+																				if(isset($db_audience_level)	&&	isset($db_audience_level->id))
+																				{
+																								$asset_audience_level['audience_levels_id']	=	$db_audience_level->id;
+																				}
+																				else
+																				{
+																								$asset_audience_level['audience_levels_id']	=	$this->assets_model->insert_audience_level($audience_level);
+																				}
+																				$asset_audience	=	$this->assets_model->insert_asset_audience($asset_audience_level);
 																}
 												}
 								}
@@ -358,18 +459,33 @@ class	Pbcore2	extends	CI_Controller
 								{
 												foreach($asset_children['pbcoreaudiencerating']	as	$pbcoreaudiencerating)
 												{
-
+																$audience_rating	=	array();
+																$asset_audience_rating	=	array();
+																$asset_audience_rating['assets_id']	=	$asset_id;
 																if(isset($pbcoreaudiencerating['text'])	&&	!	is_empty($pbcoreaudiencerating['text']))
 																{
 																				$this->myLog('Asset Audience Rating: '	.	$pbcoreaudiencerating['text']);
-																				if(isset($pbcoreaudiencerating['attributes']['source'])	&&	!	is_empty($pbcoreaudiencerating['attributes']['source']))
+																				$db_audience_rating	=	$this->assets_model->get_audience_rating($pbcoreaudiencerating['text']);
+																				if(isset($db_audience_rating)	&&	isset($db_audience_rating->id))
 																				{
-																								$this->myLog('Asset Audience Rating Source: '	.	$pbcoreaudiencerating['attributes']['source']);
+																								$asset_audience_rating['audience_ratings_id']	=	$db_audience_rating->id;
 																				}
-																				if(isset($pbcoreaudiencerating['attributes']['ref'])	&&	!	is_empty($pbcoreaudiencerating['attributes']['ref']))
+																				else
 																				{
-																								$this->myLog('Asset Audience Rating Ref: '	.	$pbcoreaudiencerating['attributes']['ref']);
+																								$audience_rating['audience_rating']	=	$pbcoreaudiencerating['text'];
+																								if(isset($pbcoreaudiencerating['attributes']['source'])	&&	!	is_empty($pbcoreaudiencerating['attributes']['source']))
+																								{
+																												$this->myLog('Asset Audience Rating Source: '	.	$pbcoreaudiencerating['attributes']['source']);
+																												$audience_rating['audience_rating_source']	=	$pbcoreaudiencerating['attributes']['source'];
+																								}
+																								if(isset($pbcoreaudiencerating['attributes']['ref'])	&&	!	is_empty($pbcoreaudiencerating['attributes']['ref']))
+																								{
+																												$this->myLog('Asset Audience Rating Ref: '	.	$pbcoreaudiencerating['attributes']['ref']);
+																												$audience_rating['audience_rating_ref']	=	$pbcoreaudiencerating['attributes']['ref'];
+																								}
+																								$asset_audience_rating['audience_ratings_id']	=	$this->assets_model->insert_audience_rating($audience_rating);
 																				}
+																				$asset_audience_rate	=	$this->assets_model->insert_asset_audience_rating($asset_audience_rating);
 																}
 												}
 								}
@@ -380,18 +496,24 @@ class	Pbcore2	extends	CI_Controller
 								{
 												foreach($asset_children['pbcoreannotation']	as	$pbcoreannotation)
 												{
-
+																$annotation	=	array();
+																$annotation['assets_id']	=	$asset_id;
 																if(isset($pbcoreannotation['text'])	&&	!	is_empty($pbcoreannotation['text']))
 																{
 																				$this->myLog('Asset Annotation: '	.	$pbcoreannotation['text']);
+																				$annotation['annotation']	=	$pbcoreannotation['text'];
 																				if(isset($pbcoreannotation['attributes']['annotationtype'])	&&	!	is_empty($pbcoreannotation['attributes']['annotationtype']))
 																				{
 																								$this->myLog('Asset Annotation Type: '	.	$pbcoreannotation['attributes']['annotationtype']);
+																								$annotation['annotation_type']	=	$pbcoreannotation['attributes']['annotationtype'];
 																				}
 																				if(isset($pbcoreannotation['attributes']['ref'])	&&	!	is_empty($pbcoreannotation['attributes']['ref']))
 																				{
 																								$this->myLog('Asset Annotation Ref: '	.	$pbcoreannotation['attributes']['ref']);
+																								$annotation['annotation_ref']	=	$pbcoreannotation['attributes']['ref'];
 																				}
+
+																				$asset_annotation	=	$this->assets_model->insert_annotation($annotation);
 																}
 												}
 								}
@@ -401,22 +523,35 @@ class	Pbcore2	extends	CI_Controller
 								{
 												foreach($asset_children['pbcorerelation']	as	$pbcorerelation)
 												{
-
+																$assets_relation	=	array();
+																$assets_relation['assets_id']	=	$asset_id;
+																$relation_types	=	array();
 																if(isset($pbcorerelation['children']['pbcorerelationidentifier'][0]['text'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationidentifier'][0]['text']))
 																{
-																				$this->myLog('Asset Relation Identifier: '	.	$pbcorerelation['children']['pbcorerelationidentifier'][0]['text']);
+																				$assets_relation['relation_identifier']	=	$pbcorerelation['children']['pbcorerelationidentifier'][0]['text'];
 																				if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['text'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['text']))
 																				{
-																								$this->myLog('Asset Relation Type: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['text']);
+
+																								$relation_types['relation_type']	=	$pbcorerelation['children']['pbcorerelationtype'][0]['text'];
 																								if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['attributes']['source']))
 																								{
-																												$this->myLog('Asset Relation Type Source: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source']);
+																												$relation_types['relation_type_source']	=	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source'];
 																								}
 																								if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['attributes']['ref']))
 																								{
-																												$this->myLog('Asset Relation Type Ref: '	.	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref']);
+																												$relation_types['relation_type_ref']	=	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref'];
+																								}
+																								$db_relations	=	$this->assets_model->get_relation_types($relation_types['relation_type']);
+																								if(isset($db_relations)	&&	isset($db_relations->id))
+																								{
+																												$assets_relation['relation_types_id']	=	$db_relations->id;
+																								}
+																								else
+																								{
+																												$assets_relation['relation_types_id']	=	$this->assets_model->insert_relation_types($relation_types);
 																								}
 																				}
+																				$this->assets_model->insert_asset_relation($assets_relation);
 																}
 												}
 								}

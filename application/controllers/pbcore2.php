@@ -61,12 +61,13 @@ class	Pbcore2	extends	CI_Controller
 //								debug($xml_to_array,	FALSE);
 												$this->import_assets($xml_to_array['children']);
 												$this->import_instantiations($xml_to_array['children']);
-												echo	'<br/><hr/>';
+												echo	'<br/><hr/>';exit;
 								}
 				}
 
 				function	import_assets($asset_children)
 				{
+								debug($asset_children,FALSE);
 								// Asset Type Start //
 								if(isset($asset_children['pbcoreassettype']))
 								{

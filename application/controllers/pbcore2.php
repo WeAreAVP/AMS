@@ -454,7 +454,7 @@ class	Pbcore2	extends	CI_Controller
 																								if(isset($map_extension['extensionvalue'][0]['text'])	&&	!	is_empty($map_extension['extensionvalue'][0]['text']))
 																								{
 //																												$match_text	=	array('historical value',	'risk of loss',	'local cultural value',	'potential to repurpose');
-																												if(preg_match('historical value',	$map_extension['extensionvalue'][0]['text'],	$match_text)){
+																												if(preg_match('/historical value/',	$map_extension['extensionvalue'][0]['text'],	$match_text)){
 																																debug($match_text);
 																												}
 																												

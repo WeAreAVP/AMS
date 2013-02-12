@@ -309,8 +309,6 @@ class	Stations	extends	MY_Controller
 																								}
 																				}
 																				$station_detail	=	array(
-																				'cpb_id'																	=>	$row[0],
-																				'station_name'											=>	$row[1],
 																				'type'																			=>	$type[$row[4]],
 																				'address_primary'								=>	$row[5],
 																				'address_secondary'						=>	$row[6],
@@ -336,6 +334,8 @@ class	Stations	extends	MY_Controller
 																				}
 																				else
 																				{
+																								$station_detail['cpb_id']	=	$row[0];
+																								$station_detail['station_name']	=	$row[1];
 																								$station_id	=	$this->station_model->insert_station($station_detail);
 																								if(	!	isset($station_update_count['station'][$row[0]]))
 																												$station_update_count['station'][$row[0]]	=	'inserted';

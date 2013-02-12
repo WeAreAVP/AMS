@@ -42,10 +42,13 @@ class	Dashboard	extends	MY_Controller
 												redirect('records/index');
 								}
 				}
-				public function date(){
-								
-									$this->load->view('welcome_message');
+
+				public	function	date()
+				{
+
+								$this->load->view('welcome_message');
 				}
+
 				/**
 					* Dashboard Functionality
 					* 
@@ -115,8 +118,8 @@ class	Dashboard	extends	MY_Controller
 								/* Start goal hours  */
 								$data['total_goal']	=	$this->instantiation->get_material_goal();
 								$digitized_hours	=	$this->instantiation->get_digitized_hours();
-								$data['total_hours']	=	$this->abbr_number($data['total_goal']->total);
-								$data['percentage_hours']	=	round(($digitized_hours->total	*	100)	/	$data['total_goal']->total);
+								$data['total_hours']	=	$this->abbr_number((isset($data['total_goal']->total))	?	$data['total_goal']->total	:	0);
+								$data['percentage_hours']	=	round(((isset($digitized_hours->total))	?	$digitized_hours->total	:	0	*	100)	/	(isset($data['total_goal']->total))	?	$data['total_goal']->total	:	0);
 
 								/* End goal hours  */
 

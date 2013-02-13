@@ -1023,6 +1023,15 @@ class	Assets_Model	extends	CI_Model
 								$this->db->insert($this->_table_assets_audience_ratings,	$data);
 								return	$this->db->insert_id();
 				}
+				function get_description_by_type($description){
+								$this->db->like('description_type',	$description);
+								$result	=	$this->db->get($this->_table_description_types);
+								if(isset($result)	&&	!	empty($result))
+								{
+												return	$result->row();
+								}
+								return	false;
+				}
 
 				/**
 					*  Insert the record in annotations table

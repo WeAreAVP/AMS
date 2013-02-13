@@ -549,9 +549,12 @@
 																																				<?php
 																																}
 																												}
-																												?>
-																								</ul>
-																				</div>
+																													if(count($stations)	>	4)
+																												{
+																																?>
+																												</ul>
+																								</div>
+																				<?php	}	?>
 																</div>
 												</div>
 								<?php	}	?>

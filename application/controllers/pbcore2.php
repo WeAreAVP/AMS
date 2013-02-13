@@ -1369,7 +1369,7 @@ class	Pbcore2	extends	CI_Controller
 
 																																				$essence_track_identifiers_d	=	array();
 																																				$essence_track_identifiers_d['essence_tracks_id']	=	$essence_tracks_id;
-																																				$essence_track_identifiers_d['essence_track_identifiers']	=	$$pbcore_essence_child['essencetrackidentifier'][0]['text'];
+																																				$essence_track_identifiers_d['essence_track_identifiers']	=	$pbcore_essence_child['essencetrackidentifier'][0]['text'];
 																																				if(isset($pbcore_essence_child['essencetrackidentifier'][0]['attributes']['source'])	&&	!	is_empty($pbcore_essence_child['essencetrackidentifier'][0]['attributes']['source']))
 																																				{
 																																								$essence_track_identifiers_d['essence_track_identifier_source']	=	$pbcore_essence_child['essencetrackidentifier'][0]['attributes']['source'];
@@ -1388,7 +1388,7 @@ class	Pbcore2	extends	CI_Controller
 																																				{
 																																								$essence_track_standard_d['encoding_source']	=	$pbcore_essence_child['essencetrackencoding'][0]['attributes']['ref'];
 																																				}
-																																				$this->essence->insert_essence_track_encodings($essence_track_identifiers_d);
+																																				$this->essence->insert_essence_track_encodings($essence_track_standard_d);
 																																}
 																																// Essence Track Encoding End //
 																																// Essence Track Annotation Start //

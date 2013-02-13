@@ -380,7 +380,7 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcoreidentifier['text'])	&&	!	is_empty($pbcoreidentifier['text']))
 																{
 																				$identifier_detail['assets_id']	=	$asset_id;
-																				$identifier_detail['identifier']	=	trim($pbcoreidentifier['children']['identifier'][0]['text']);
+																				$identifier_detail['identifier']	=	trim($pbcoreidentifier['text']);
 																				$identifier_detail['identifier_source']	=	'';
 																				$identifier_detail['identifier_ref']	=	'';
 																				if(isset($pbcoreidentifier['attributes']['source'])	&&	!	is_empty($pbcoreidentifier['attributes']['source']))
@@ -770,7 +770,7 @@ class	Pbcore2	extends	CI_Controller
 																				{
 																								$contributor_info['contributor_ref']	=	$pbcore_contributor['children']['contributor'][0]['attributes']['ref'];
 																				}
-																				$contributor_d	=	$this->assets_model->get_contributor_by_contributor_name($contributor_text);
+																				$contributor_d	=	$this->assets_model->get_contributor_by_contributor_name($contributor_info['contributor_name']);
 																				if(isset($contributor_d)	&&	isset($contributor_d->id))
 																				{
 																								$assets_contributors_d['contributors_id']	=	$contributor_d->id;
@@ -797,7 +797,7 @@ class	Pbcore2	extends	CI_Controller
 																				{
 																								$contributorrole_info['contributor_role_ref']	=	$pbcore_contributor['children']['contributorrole'][0]['attributes']['ref'];
 																				}
-																				$contributor_role	=	$this->assets_model->get_contributor_role_by_role($contributorrole);
+																				$contributor_role	=	$this->assets_model->get_contributor_role_by_role(	$contributorrole_info['contributor_role']);
 																				if(isset($contributor_role)	&&	isset($contributor_role->id))
 																				{
 																								$assets_contributors_d['contributor_roles_id']	=	$contributor_role->id;

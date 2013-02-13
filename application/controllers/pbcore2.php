@@ -167,9 +167,9 @@ class	Pbcore2	extends	CI_Controller
 																												$offset	=	$loop_counter	*	$limit;
 																												$this->myLog("Started $offset~$limit of $count");
 																												$cmd	=	escapeshellcmd('/usr/bin/php '	.	$this->config->item('path')	.	'index.php pbcore2 process_xml_file_child '	.	$folder->id	.	' '	.	$station_cpb_id	.	' '	.	$offset	.	' '	.	$limit);
-																												$pidFile	=	$this->config->item('path')	.	"PIDs/processxmlfile/"	.	$loop_counter	.	".txt";
+																												$pidFile	=	$this->config->item('path')	.	"PIDs/processxmlfile2/"	.	$loop_counter	.	".txt";
 																												@exec('touch '	.	$pidFile);
-																												$this->runProcess($cmd,	$pidFile,	$this->config->item('path')	.	"cronlog/processxmlfile.log");
+																												$this->runProcess($cmd,	$pidFile,	$this->config->item('path')	.	"cronlog/processxmlfile2.log");
 																												$file_text	=	file_get_contents($pidFile);
 																												$this->arrPIDs[$file_text]	=	$loop_counter;
 																												$proc_cnt	=	$this->procCounter();

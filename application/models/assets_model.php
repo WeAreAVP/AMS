@@ -1306,6 +1306,12 @@ class	Assets_Model	extends	CI_Model
 								return	FALSE;
 				}
 
+				function	insert_asset_date($data)
+				{
+								$this->db->insert($this->_table_asset_dates,	$data);
+								return	$this->db->insert_id();
+				}
+
 }
 
 ?>

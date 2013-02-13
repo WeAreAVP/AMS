@@ -48,6 +48,17 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->where('id ',	$id);
 								return	$this->db->get($this->table_instantiations)->row();
 				}
+				/**
+					*  Insert the record in relation_types table
+					*  @param array $data
+					*  @return integer last_inserted id
+					* 
+					*/
+				function	insert_instantiation_relation($data)
+				{
+								$this->db->insert($this->table_instantiation_relations,	$data);
+								return	$this->db->insert_id();
+				}
 
 				function	get_date_types()
 				{

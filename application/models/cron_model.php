@@ -134,6 +134,25 @@ class	Cron_Model	extends	CI_Model
 								$this->db->select	("*");
 								$this->db->from	($this->_table_data_folders);
 								$this->db->where ('folder_status','complete');
+								$this->db->where ('data_type','assets');
+								$this->db->order_by('id','ASC');
+								$res	=	$this->db->get	();
+								if	(isset	($res)	&&	!	empty	($res))
+								{
+												$folders	=	$res->result	();
+												if	(isset	($folders)	&&	!	empty	($folders))
+												{
+																return	$folders;
+												}
+								}
+								return	false;
+				}
+				function	get_all_pbcoretwo_folder	()
+				{
+								$this->db->select	("*");
+								$this->db->from	($this->_table_data_folders);
+								$this->db->where ('folder_status','complete');
+								$this->db->where ('data_type','pbcore2');
 								$this->db->order_by('id','ASC');
 								$res	=	$this->db->get	();
 								if	(isset	($res)	&&	!	empty	($res))

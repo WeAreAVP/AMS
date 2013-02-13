@@ -1347,17 +1347,19 @@ class	Pbcore2	extends	CI_Controller
 																																if(isset($pbcore_essence_child['essencetrackframesize'][0]['text'])	&&	!	is_empty($pbcore_essence_child['essencetrackframesize'][0]['text']))
 																																{
 																																				$frame_sizes	=	explode("x",	strtolower($pbcore_essence_child['essencetrackframesize'][0]['text']));
-																																				$this->myLog('Essence Track Frame Size Width: '	.	$frame_sizes[0]);
-																																				$this->myLog('Essence Track Frame Size Height: '	.	$frame_sizes[1]);
-																																				$track_frame_size_d	=	$this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame_sizes[0]),	trim($frame_sizes[1]));
-																																				if($track_frame_size_d)
+																																				if(isset($frame_sizes[0]) && isset($frame_sizes[1]))
 																																				{
-																																								$essence_tracks_d['essence_track_frame_sizes_id']	=	$track_frame_size_d->id;
+																																								$track_frame_size_d	=	$this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame_sizes[0]),	trim($frame_sizes[1]));
+																																								if($track_frame_size_d)
+																																								{
+																																												$essence_tracks_d['essence_track_frame_sizes_id']	=	$track_frame_size_d->id;
+																																								}
+																																								else
+																																								{
+																																												$essence_tracks_d['essence_track_frame_sizes_id']	=	$this->essence->insert_essence_track_frame_sizes(array("width"												=>	$frame_sizes[0],	"height"											=>	$frame_sizes[1]));
+																																								}
 																																				}
-																																				else
-																																				{
-																																								$essence_tracks_d['essence_track_frame_sizes_id']	=	$this->essence->insert_essence_track_frame_sizes(array("width"												=>	$frame_sizes[0],	"height"											=>	$frame_sizes[1]));
-																																				}
+																																				
 																																}
 																																// Essence Track Frame Size End //
 																																$essence_tracks_id	=	$this->essence->insert_essence_tracks($essence_tracks_d);

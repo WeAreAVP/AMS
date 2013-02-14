@@ -661,18 +661,18 @@ class	Pbcore2	extends	CI_Controller
 																$assets_relation	=	array();
 																$assets_relation['assets_id']	=	$asset_id;
 																$relation_types	=	array();
-																if(isset($pbcorerelation['children']['pbcorerelationidentifier'][0]['text'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationidentifier'][0]['text']))
+																if(isset($pbcorerelation['children']['pbcorerelationidentifier'][0]['text'])	&&	!	is_empty($pbcorerelation['children']['pbcorerelationidentifier'][0]['text']))
 																{
 																				$assets_relation['relation_identifier']	=	$pbcorerelation['children']['pbcorerelationidentifier'][0]['text'];
 																				if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['text'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['text']))
 																				{
 
 																								$relation_types['relation_type']	=	$pbcorerelation['children']['pbcorerelationtype'][0]['text'];
-																								if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['attributes']['source']))
+																								if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source'])	&&	!	is_empty($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source']))
 																								{
 																												$relation_types['relation_type_source']	=	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['source'];
 																								}
-																								if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['attributes']['ref']))
+																								if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref'])	&&	!	is_empty($pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref']))
 																								{
 																												$relation_types['relation_type_ref']	=	$pbcorerelation['children']['pbcorerelationtype'][0]['attributes']['ref'];
 																								}
@@ -797,7 +797,7 @@ class	Pbcore2	extends	CI_Controller
 																				{
 																								$contributorrole_info['contributor_role_ref']	=	$pbcore_contributor['children']['contributorrole'][0]['attributes']['ref'];
 																				}
-																				$contributor_role	=	$this->assets_model->get_contributor_role_by_role(	$contributorrole_info['contributor_role']);
+																				$contributor_role	=	$this->assets_model->get_contributor_role_by_role($contributorrole_info['contributor_role']);
 																				if(isset($contributor_role)	&&	isset($contributor_role->id))
 																				{
 																								$assets_contributors_d['contributor_roles_id']	=	$contributor_role->id;
@@ -1089,20 +1089,39 @@ class	Pbcore2	extends	CI_Controller
 																												$instantiation_dates_d['instantiations_id']	=	$instantiations_id;
 																												if(isset($pbcore_date['text'])	&&	!	is_empty($pbcore_date['text']))
 																												{
-																																$instantiation_dates_d['instantiation_date']	=	$pbcore_date['text'];
-																																if(isset($pbcore_date['attributes']['datetype'])	&&	!	is_empty($pbcore_date['attributes']['datetype']))
+																																$instantiation_dates_d['instantiation_date']	=	str_replace(array('?',	'Unknown',	'unknown',	'`',	'['	.	']',	'N/A',	'N/A?',	'Jim Cooper',	'various',	'.00',	'.0',	'John Kelling',	'Roll in',	'interview'),	'',	$pbcore_date['text']);
+																																if(isset($instantiation_dates_d['instantiation_date'])	&&	!	is_empty($instantiation_dates_d['instantiation_date']))
 																																{
-																																				$date_type	=	$this->instant->get_date_types_by_type($pbcore_date['attributes']['datetype']);
-																																				if(isset($date_type)	&&	isset($date_type->id))
+																																				$date_check	=	$this->is_valid_date($instantiation_dates_d['instantiation_date']);
+																																				if($date_check	===	FALSE)
 																																				{
-																																								$instantiation_dates_d['date_types_id']	=	$date_type->id;
+																																								$instantiation_annotation_d	=	array();
+																																								$instantiation_annotation_d['instantiations_id']	=	$instantiations_id;
+																																								$instantiation_annotation_d['annotation']	=	$instantiation_dates_d['instantiation_date'];
+																																								if(isset($pbcore_date['attributes']['datetype'])	&&	!	is_empty($pbcore_date['attributes']['datetype']))
+																																								{
+																																												$instantiation_annotation_d['annotation_type']	=	$pbcore_date['attributes']['datetype'];
+																																								}
+
+																																									$this->instant->insert_instantiation_annotations($instantiation_annotation_d);
 																																				}
 																																				else
 																																				{
-																																								$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types(array('date_type'	=>	$pbcore_date['attributes']['datetype']));
+																																								if(isset($pbcore_date['attributes']['datetype'])	&&	!	is_empty($pbcore_date['attributes']['datetype']))
+																																								{
+																																												$date_type	=	$this->instant->get_date_types_by_type($pbcore_date['attributes']['datetype']);
+																																												if(isset($date_type)	&&	isset($date_type->id))
+																																												{
+																																																$instantiation_dates_d['date_types_id']	=	$date_type->id;
+																																												}
+																																												else
+																																												{
+																																																$instantiation_dates_d['date_types_id']	=	$this->instant->insert_date_types(array('date_type'	=>	$pbcore_date['attributes']['datetype']));
+																																												}
+																																								}
+																																								$this->instant->insert_instantiation_dates($instantiation_dates_d);
 																																				}
 																																}
-																																$this->instant->insert_instantiation_dates($instantiation_dates_d);
 																												}
 																								}
 																				}
@@ -1347,7 +1366,7 @@ class	Pbcore2	extends	CI_Controller
 																																if(isset($pbcore_essence_child['essencetrackframesize'][0]['text'])	&&	!	is_empty($pbcore_essence_child['essencetrackframesize'][0]['text']))
 																																{
 																																				$frame_sizes	=	explode("x",	strtolower($pbcore_essence_child['essencetrackframesize'][0]['text']));
-																																				if(isset($frame_sizes[0]) && isset($frame_sizes[1]))
+																																				if(isset($frame_sizes[0])	&&	isset($frame_sizes[1]))
 																																				{
 																																								$track_frame_size_d	=	$this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame_sizes[0]),	trim($frame_sizes[1]));
 																																								if($track_frame_size_d)
@@ -1359,7 +1378,6 @@ class	Pbcore2	extends	CI_Controller
 																																												$essence_tracks_d['essence_track_frame_sizes_id']	=	$this->essence->insert_essence_track_frame_sizes(array("width"												=>	$frame_sizes[0],	"height"											=>	$frame_sizes[1]));
 																																								}
 																																				}
-																																				
 																																}
 																																// Essence Track Frame Size End //
 																																$essence_tracks_id	=	$this->essence->insert_essence_tracks($essence_tracks_d);

@@ -1211,7 +1211,11 @@
 								if($('.search_keys').length>0){
 												$('#filter_criteria').show();
 												$('#reset_all').show();
-												$('#filter_record_count').html('('+$('#total_list_count').html()+' RECORDS)');
+												count='0 RECORD';
+												if($('#total_list_count').html()!=undefined){
+																count=$('#total_list_count').html()+' RECORDS';
+												}
+												$('#filter_record_count').html('('+count+')');
 												$('#search_bar_val').css('margin-bottom','10px');
 												$('#search_bar_val').css('padding-bottom','10px');
 												

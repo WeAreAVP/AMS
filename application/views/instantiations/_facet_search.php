@@ -467,10 +467,9 @@
 												$DateStyleDisplay	=	0;
 								}
 								?>
-								<div class="field-filters">
-
-												<div id="date_range_filter_div">
-																<div class="filter-fileds"><b>Date</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('date_range_filter_div',this);"></span></div>
+								<div class="field-filters" id="date_range_filter_div">
+												<div class="filter-fileds"><b>Date</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('date_range_filter_div',this);"></span></div>
+												<div>
 																<div id="widget">
 																				<div id="date_range_filter">
 

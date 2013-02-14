@@ -306,7 +306,7 @@ function updateDataTable()
 												'bPaginate':false,
 												'bInfo':false,
 												'bFilter': false,
-												"bSort": false,
+												"bSort": false
 								//												"sScrollY": $(window).height()-180,
 								//												"sScrollX": "100%",	
 								//												"bDeferRender": true,
@@ -318,7 +318,7 @@ function updateDataTable()
 								});
 								new FixedHeader( oTable, {
 												"offsetTop": 60
-								} );
+								} ); 
 								if(frozen>0)
 								{
 												new FixedColumns( oTable, {

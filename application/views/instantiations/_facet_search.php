@@ -381,8 +381,8 @@
 												$reset	=	"none;";
 								}
 								?>
-								<div class="field-filters">
-												<div class="filter-fileds" id="limit_field_div" style="display:<?php	echo	$style;	?>">
+								<div class="field-filters" id="limit_field_div" style="display:<?php	echo	$style;	?>">
+												<div class="filter-fileds" >
 																<div><b>Keyword Search</b>	<span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('sk_div',this);"></span></div>
 
 																<!--																</div>-->

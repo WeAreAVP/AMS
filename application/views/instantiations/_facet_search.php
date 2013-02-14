@@ -1237,6 +1237,9 @@
 								$('#date_type').val('');
 								$('#digitized').attr('checked',false);
 								$('#migration_failed').attr('checked',false);
+								$('.btn-img').each(function(){
+												$(this).remove();
+								});
 								facet_search('0');
 				}
 </script>

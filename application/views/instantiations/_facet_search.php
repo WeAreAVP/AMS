@@ -451,7 +451,7 @@
 
 																				</div>
 																				<div id="limit_btn">
-																								<div><input type="button"  style="margin-top: 10px;display:<?php	echo	$style;	?>" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
+																								<div><input type="button"  style="margin-top: 10px;" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
 																				</div>
 																</div>
 												</div>
@@ -942,10 +942,10 @@
 																$('#'+type+'_search').val('');
 																$('#keyword_field_name').html();
 																$('#limit_btn').show(); 
-																$('#add_keyword').show(); 
+//																$('#add_keyword').show(); 
 																//																$('#reset_search').hide();
 																$('#limit_field_text').html('Limit Search to Field');
-																$('#limit_field_dropdown').show();
+//																$('#limit_field_dropdown').show();
 																$('#search').val('');
 																$('#limit_field_div').show();
 																customColumnName='';
@@ -957,9 +957,9 @@
 																				$('#keyword_field_main .btn-img').each(function(){
 																								$(this).remove();
 																				});
-																				$('#add_keyword').hide(); 
+//																				$('#add_keyword').hide(); 
 																				//																				$('#reset_search').show();
-																				$('#limit_field_dropdown').hide();
+//																				$('#limit_field_dropdown').hide();
 																				$('#limit_field_div').hide();
 																				var random_id=rand(0,1000365);
 																				slugName=make_slug_name(name);
@@ -1109,10 +1109,10 @@
 												});
 												$('#keyword_field_main_search').val('');
 												$('#limit_btn').show(); 
-												$('#add_keyword').show(); 
+//												$('#add_keyword').show(); 
 												//												$('#reset_search').hide();
 												$('#limit_field_text').html('Limit Search to Field');
-												$('#limit_field_dropdown').show();
+//												$('#limit_field_dropdown').show();
 												$('#search').val('');
 												$('#keyword_field_main').hide();
 												$('#limit_field_div').show();

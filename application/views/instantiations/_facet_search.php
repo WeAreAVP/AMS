@@ -355,7 +355,7 @@
 												<div class="clearfix"></div>
 
 								</div>
-								<div><input value="Reset" id="reset_all" name="reset_all" style="display: none;"/></div>
+								<div><input type="button" value="Reset" id="reset_all" name="reset_all" style="display: none;" class="btn"/></div>
 				</div>
 				<div class="clearfix"></div>
 				<div id="search_bar" class="facet-search"> 

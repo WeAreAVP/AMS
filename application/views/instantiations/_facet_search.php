@@ -942,10 +942,10 @@
 																$('#'+type+'_search').val('');
 																$('#keyword_field_name').html();
 																$('#limit_btn').show(); 
-//																$('#add_keyword').show(); 
+																//																$('#add_keyword').show(); 
 																//																$('#reset_search').hide();
 																$('#limit_field_text').html('Limit Search to Field');
-//																$('#limit_field_dropdown').show();
+																//																$('#limit_field_dropdown').show();
 																$('#search').val('');
 																$('#limit_field_div').show();
 																customColumnName='';
@@ -957,9 +957,9 @@
 																				$('#keyword_field_main .btn-img').each(function(){
 																								$(this).remove();
 																				});
-//																				$('#add_keyword').hide(); 
+																				//																				$('#add_keyword').hide(); 
 																				//																				$('#reset_search').show();
-//																				$('#limit_field_dropdown').hide();
+																				//																				$('#limit_field_dropdown').hide();
 																				$('#limit_field_div').hide();
 																				var random_id=rand(0,1000365);
 																				slugName=make_slug_name(name);
@@ -1109,10 +1109,10 @@
 												});
 												$('#keyword_field_main_search').val('');
 												$('#limit_btn').show(); 
-//												$('#add_keyword').show(); 
+												//												$('#add_keyword').show(); 
 												//												$('#reset_search').hide();
 												$('#limit_field_text').html('Limit Search to Field');
-//												$('#limit_field_dropdown').show();
+												//												$('#limit_field_dropdown').show();
 												$('#search').val('');
 												$('#keyword_field_main').hide();
 												$('#limit_field_div').show();
@@ -1214,7 +1214,10 @@
 												$('#reset_all').show();
 												count='0 RECORD';
 												if($('#total_list_count').html()!=undefined){
-																count=$('#total_list_count').html()+' RECORDS';
+																if($('#total_list_count').html()==1)
+																				count=$('#total_list_count').html()+' RECORD';
+																else
+																				count=$('#total_list_count').html()+' RECORDS';
 												}
 												$('#filter_record_count').html('('+count+')');
 												$('#search_bar_val').css('margin-bottom','10px');

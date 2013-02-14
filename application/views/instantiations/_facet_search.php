@@ -391,7 +391,7 @@
 																								<div>
 																												<input type="text" name="search" id="search" value="" style="width: 190px;"/>
 																								</div>
-																								<div class="btn-group" id="limit_field_dropdown" style="display:<?php	echo	$style;	?>">
+																								<div class="btn-group" id="limit_field_dropdown">
 																												<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 																																<span id="limit_field_text">Limit Search to Field</span>
 																																<span class="caret"></span>

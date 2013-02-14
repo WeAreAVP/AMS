@@ -1103,7 +1103,7 @@ class	Pbcore2	extends	CI_Controller
 																																												$instantiation_annotation_d['annotation_type']	=	$pbcore_date['attributes']['datetype'];
 																																								}
 
-																																									$this->instant->insert_instantiation_annotations($instantiation_annotation_d);
+																																								$this->instant->insert_instantiation_annotations($instantiation_annotation_d);
 																																				}
 																																				else
 																																				{
@@ -1552,6 +1552,16 @@ class	Pbcore2	extends	CI_Controller
 				{
 								$cmd	=	escapeshellcmd($cmd);
 								@exec(sprintf("%s >> %s 2>&1 & echo $! > %s",	$cmd,	$outputfile,	$pidFilePath));
+				}
+
+				function	is_valid_date($value)
+				{
+								$date	=	date_parse($value);
+								if($date['error_count']	==	0	&&	$date['warning_count']	==	0)
+								{
+												return	date("Y-m-d",	strtotime($value));
+								}
+								return	FALSE;
 				}
 
 }

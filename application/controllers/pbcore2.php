@@ -664,7 +664,7 @@ class	Pbcore2	extends	CI_Controller
 																if(isset($pbcorerelation['children']['pbcorerelationidentifier'][0]['text'])	&&	!	is_empty($pbcorerelation['children']['pbcorerelationidentifier'][0]['text']))
 																{
 																				$assets_relation['relation_identifier']	=	$pbcorerelation['children']['pbcorerelationidentifier'][0]['text'];
-																				if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['text'])	&&	!	is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['text']))
+																				if(isset($pbcorerelation['children']['pbcorerelationtype'][0]['text'])	&&	!	is_empty($pbcorerelation['children']['pbcorerelationtype'][0]['text']))
 																				{
 
 																								$relation_types['relation_type']	=	$pbcorerelation['children']['pbcorerelationtype'][0]['text'];

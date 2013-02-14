@@ -65,7 +65,7 @@
 
 																</div>
 																<div class="clearfix"></div>
-																<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" style="margin-left:10px;" class="btn" onclick="resetKeyword();"/></div>
+<!--																<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" style="margin-left:10px;" class="btn" onclick="resetKeyword();"/></div>-->
 																<?php
 												}
 												else
@@ -78,7 +78,7 @@
 																</div>
 												<?php	}	?>
 												<div class="clearfix"></div>
-												<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();" style="display: none;margin-left:10px;"/></div>
+<!--												<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();" style="display: none;margin-left:10px;"/></div>-->
 
 												<!-- Custom  Search Display End  -->
 
@@ -106,7 +106,7 @@
 																				<div class="clearfix"></div>
 																</div>
 																<div class="clearfix"></div>
-																<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset" style="margin: 5px 10px;" class="btn" onclick="resetKeyword('date');"/></div>
+<!--																<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset" style="margin: 5px 10px;" class="btn" onclick="resetKeyword('date');"/></div>-->
 																<?php
 												}
 												else
@@ -119,7 +119,7 @@
 
 																</div>
 																<div class="clearfix"></div>
-																<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset"  style="margin: 5px 10px;display:none;" class="btn" onclick="resetKeyword('date');"/></div>
+<!--																<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset"  style="margin: 5px 10px;display:none;" class="btn" onclick="resetKeyword('date');"/></div>-->
 												<?php	}
 												?>
 
@@ -355,6 +355,7 @@
 												<div class="clearfix"></div>
 
 								</div>
+								<div><input value="Reset" id="reset_all" name="reset_all" style="display: none;"/></div>
 				</div>
 				<div class="clearfix"></div>
 				<div id="search_bar" class="facet-search"> 
@@ -549,7 +550,7 @@
 																																				<?php
 																																}
 																												}
-																													if(count($stations)	>	4)
+																												if(count($stations)	>	4)
 																												{
 																																?>
 																												</ul>
@@ -890,7 +891,7 @@
 				oTable=null;
 				
 				(function($){
-									var hash = window.location.hash.replace('#', '');
+								var hash = window.location.hash.replace('#', '');
 								if($(window.parent.document).find('iframe').size()){
 												var inframe = true;
 								}
@@ -939,7 +940,7 @@
 																$('#keyword_field_name').html();
 																$('#limit_btn').show(); 
 																$('#add_keyword').show(); 
-																$('#reset_search').hide();
+//																$('#reset_search').hide();
 																$('#limit_field_text').html('Limit Search to Field');
 																$('#limit_field_dropdown').show();
 																$('#search').val('');
@@ -954,7 +955,7 @@
 																								$(this).remove();
 																				});
 																				$('#add_keyword').hide(); 
-																				$('#reset_search').show();
+//																				$('#reset_search').show();
 																				$('#limit_field_dropdown').hide();
 																				$('#limit_field_div').hide();
 																				var random_id=rand(0,1000365);
@@ -996,7 +997,7 @@
 																$('#date_type').val('');
 																$('#date_range_filter_div').show();
 																$('#date_field_text').html('Date Type');
-																$('#reset_date_search').hide();
+//																$('#reset_date_search').hide();
 												}
 												else{
 																if($('#date_range').val()=='')
@@ -1006,7 +1007,7 @@
 																slugName=make_slug_name(name);
 																$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
 																$('#'+type).show();
-																$('#reset_date_search').show();
+//																$('#reset_date_search').show();
 																if($('#date_type').val()=='')
 																				date_type_text='All';
 																else
@@ -1095,7 +1096,7 @@
 												$('#date_range_filter_div').show();
 												$('#date_field_text').html('Date Type');
 												$('#date_field_main_search').val('');
-												$('#reset_date_search').hide();
+//												$('#reset_date_search').hide();
 												
 								}
 								else{
@@ -1105,7 +1106,7 @@
 												$('#keyword_field_main_search').val('');
 												$('#limit_btn').show(); 
 												$('#add_keyword').show(); 
-												$('#reset_search').hide();
+//												$('#reset_search').hide();
 												$('#limit_field_text').html('Limit Search to Field');
 												$('#limit_field_dropdown').show();
 												$('#search').val('');
@@ -1168,15 +1169,15 @@
 				{
 								
 
-									var oTable = $('#assets_table').dataTable({
-													'bPaginate':false,
+								var oTable = $('#assets_table').dataTable({
+												'bPaginate':false,
 												'bInfo':false,
 												'bFilter': false,
 												"bSort": false
-									});
-	new FixedHeader( oTable, {
-        "offsetTop": 60
-    }  );
+								});
+								new FixedHeader( oTable, {
+												"offsetTop": 60
+								}  );
 								$.extend( $.fn.dataTableExt.oStdClasses, {
 												"sWrapper": "dataTables_wrapper form-inline"
 								} );
@@ -1206,13 +1207,16 @@
 				function isAnySearch(){
 								if($('.search_keys').length>0){
 												$('#filter_criteria').show();
+												$('#reset_all').show();
 												$('#filter_record_count').html('('+$('#total_list_count').html()+' RECORDS)');
 												$('#search_bar_val').css('margin-bottom','10px');
 												$('#search_bar_val').css('padding-bottom','10px');
 												
+												
 								}
 								else{
 												$('#filter_criteria').hide();
+												$('#reset_all').hide();
 												$('#search_bar_val').css('margin-bottom','0px');
 												$('#search_bar_val').css('padding-bottom','0px');
 								}

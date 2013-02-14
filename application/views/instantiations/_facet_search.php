@@ -468,8 +468,9 @@
 								}
 								?>
 								<div class="field-filters">
-												<div class="filter-fileds"><b>Date</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('date_range_filter_div',this);"></span></div>
+
 												<div id="date_range_filter_div">
+																<div class="filter-fileds"><b>Date</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('date_range_filter_div',this);"></span></div>
 																<div id="widget">
 																				<div id="date_range_filter">
 
@@ -1006,6 +1007,7 @@
 																if($('#date_range').val()=='')
 																				return false;
 																$('#date_range_filter_div').hide();
+																	
 																var random_id=rand(0,1000365);
 																slugName=make_slug_name(name);
 																$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');

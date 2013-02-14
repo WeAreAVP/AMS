@@ -355,7 +355,10 @@
 												<div class="clearfix"></div>
 
 								</div>
-								<div><input type="button" value="Reset" id="reset_all" name="reset_all" style="display: none;" class="btn"/></div>
+								<div style="margin: 4px 6px;">
+												<input type="hidden" value="0" id="reset_all_value" name="reset_all_value"/>
+												<input type="button" value="Reset" id="reset_all" name="reset_all" style="display: none;" class="btn" onclick="resetAll();"/>
+								</div>
 				</div>
 				<div class="clearfix"></div>
 				<div id="search_bar" class="facet-search"> 
@@ -1221,5 +1224,8 @@
 												$('#search_bar_val').css('padding-bottom','0px');
 								}
 				}
-				
+				function resetAll(){
+								$('#reset_all_value').val('1');
+								facet_search('0');
+				}
 </script>

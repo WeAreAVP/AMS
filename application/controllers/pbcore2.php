@@ -48,13 +48,13 @@ class	Pbcore2	extends	CI_Controller
 				function	process_dir()
 				{
 								set_time_limit(0);
-								$this->myLog("Calculating Number of Directories...");
+//								$this->myLog("Calculating Number of Directories...");
 								$this->cron_model->scan_directory($this->pbcore_path,	$dir_files);
 								$count	=	count($dir_files);
-								$this->myLog("Total Directories: $count");
+//								$this->myLog("Total Directories: $count");
 								if(isset($count)	&&	$count	>	0)
 								{
-												$this->myLog("Total Number of process: "	.	$count);
+//												$this->myLog("Total Number of process: "	.	$count);
 												$loop_counter	=	0;
 												$maxProcess	=	5;
 												foreach($dir_files	as	$dir)
@@ -70,21 +70,21 @@ class	Pbcore2	extends	CI_Controller
 																$loop_counter	++;
 																while	($proc_cnt	==	$maxProcess)
 																{
-																				$this->myLog('Number of Processes running: '	.	$loop_counter	.	'/.'	.	$count	.	' Sleeping ...');
+//																				$this->myLog('Number of Processes running: '	.	$loop_counter	.	'/.'	.	$count	.	' Sleeping ...');
 																				sleep(30);
 																				$proc_cnt	=	$this->procCounter();
 																}
 												}
-												$this->myLog("Waiting for all process to complete.");
+//												$this->myLog("Waiting for all process to complete.");
 												$proc_cnt	=	$this->procCounter();
 												while	($proc_cnt	>	0)
 												{
-																echo	"Sleeping for 10 second...\n";
+//																echo	"Sleeping for 10 second...\n";
 																sleep(10);
 																echo	"\010\010\010\010\010\010\010\010\010\010\010\010";
 																echo	"\n";
 																$proc_cnt	=	$this->procCounter();
-																echo	"Number of Processes running: $proc_cnt/$maxProcess\n";
+//																echo	"Number of Processes running: $proc_cnt/$maxProcess\n";
 												}
 								}
 								echo	"All Data Path Under {$this->pbcore_path} Directory Stored ";
@@ -111,7 +111,7 @@ class	Pbcore2	extends	CI_Controller
 																{
 																				$data_file	=	(explode(" ",	$value));
 																				$data_file_path	=	trim(str_replace(array('\r\n',	'\n',	'<br>'),	'',	trim($data_file[1])));
-																				$this->myLog('Checking File '	.	$data_file_path);
+//																				$this->myLog('Checking File '	.	$data_file_path);
 																				if(isset($data_file_path)	&&	!	is_empty($data_file_path))
 																				{
 																								$file_path	=	trim($directory	.	$data_file_path);
@@ -136,7 +136,7 @@ class	Pbcore2	extends	CI_Controller
 																				}
 																}
 												}
-												$this->myLog('folder Id '	.	$data_folder_id	.	' => folder_status '	.	$folder_status);
+//												$this->myLog('folder Id '	.	$data_folder_id	.	' => folder_status '	.	$folder_status);
 												$this->cron_model->update_data_folder(array('updated_at'				=>	date('Y-m-d H:i:s'),	'folder_status'	=>	$folder_status),	$data_folder_id);
 								}
 				}

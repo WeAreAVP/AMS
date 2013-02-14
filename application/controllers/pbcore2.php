@@ -222,7 +222,7 @@ class	Pbcore2	extends	CI_Controller
 																												$file_path	=	trim($folder_data->folder_path	.	$d_file->file_path);
 																												if(file_exists($file_path))
 																												{
-																																$this->myLog("Currently Parsing Files "	.	$file_path);
+//																																$this->myLog("Currently Parsing Files "	.	$file_path);
 																																$asset_data	=	file_get_contents($file_path);
 																																if(isset($asset_data)	&&	!	empty($asset_data))
 																																{
@@ -231,22 +231,22 @@ class	Pbcore2	extends	CI_Controller
 
 																																				//$this->db->trans_start	();
 																																				$asset_id	=	$this->assets_model->insert_assets(array("stations_id"			=>	$station_data->id,	"created"							=>	date("Y-m-d H:i:s")));
-																																				echo	"\n in Process \n";
+//																																				echo	"\n in Process \n";
 																																				$asset_children	=	$asset_d['children'];
 																																				if(isset($asset_children))
 																																				{
 																																								//echo "<pre>";
 																																								//print_r($asset_children);
 																																								// Assets Start
-																																								$this->myLog(" Assets Start ");
+//																																								$this->myLog(" Assets Start ");
 																																								$this->import_assets($asset_children,	$asset_id);
-																																								$this->myLog(" Assets Ends ");
+//																																								$this->myLog(" Assets Ends ");
 																																								// Assets End
 																																								// Instantiation Start
-																																								$this->myLog(" Instantiation Start ");
+//																																								$this->myLog(" Instantiation Start ");
 																																								$this->import_instantiations($asset_children,	$asset_id);
 																																								// Instantiation End
-																																								$this->myLog(" Instantiation End ");
+//																																								$this->myLog(" Instantiation End ");
 																																								$this->cron_model->update_prcoess_data(array('is_processed'		=>	1,	"processed_at"		=>	date('Y-m-d H:i:s'),	'status_reason'	=>	'Complete'),	$d_file->id);
 																																				}
 																																				else

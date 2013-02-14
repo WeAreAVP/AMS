@@ -64,9 +64,10 @@ class	Instantiations	extends	MY_Controller
 								if(isAjax())
 								{
 												$this->unset_facet_search();
+												echo $this->input->post('reset_all_value');exit;
 												if($this->input->post('reset_all_value')	!=	'1')
 												{
-																echo $this->input->post('reset_all_value');
+																
 
 																$search['custom_search']	=	$this->input->post('keyword_field_main_search');
 																$search['organization']	=	$this->input->post('organization_main_search');

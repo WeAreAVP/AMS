@@ -1239,6 +1239,12 @@
 																$('#'+type[cnt]).hide();
 												}
 								}
+								$('#date_range_filter_div').show();
+								$('#date_field_text').html('Date Type');
+								$('#limit_field_text').html('Limit Search to Field');
+								$('#limit_field_dropdown').show();
+								$('#search').val('');
+								$('#limit_field_div').show();
 								$('#keyword_field_main_search').val('');
 								$('#organization_main_search').val('');
 								$('#states_main_search').val('');

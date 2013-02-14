@@ -64,7 +64,7 @@ class	Instantiations	extends	MY_Controller
 								if(isAjax())
 								{
 												$this->unset_facet_search();
-												if($this->input->post('reset_all_value')	!==	'1')
+												if($this->input->post('reset_all_value')	!=	'1')
 												{
 
 

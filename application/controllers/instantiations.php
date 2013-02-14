@@ -64,33 +64,31 @@ class	Instantiations	extends	MY_Controller
 								if(isAjax())
 								{
 												$this->unset_facet_search();
-												echo $this->input->post('reset_all_value');exit;
-												if($this->input->post('reset_all_value')	!=	'1')
+
+
+
+												$search['custom_search']	=	$this->input->post('keyword_field_main_search');
+												$search['organization']	=	$this->input->post('organization_main_search');
+												$search['states']	=	$this->input->post('states_main_search');
+												$search['nomination']	=	$this->input->post('nomination_status_main_search');
+												$search['media_type']	=	$this->input->post('media_type_main_search');
+												$search['physical_format']	=	$this->input->post('physical_format_main_search');
+												$search['digital_format']	=	$this->input->post('digital_format_main_search');
+												$search['generation']	=	$this->input->post('generation_main_search');
+												$search['date_range']	=	$this->input->post('date_range');
+												$search['date_type']	=	$this->input->post('date_type');
+												if($this->input->post('digitized')	&&	$this->input->post('digitized')	===	'1')
 												{
-																
-
-																$search['custom_search']	=	$this->input->post('keyword_field_main_search');
-																$search['organization']	=	$this->input->post('organization_main_search');
-																$search['states']	=	$this->input->post('states_main_search');
-																$search['nomination']	=	$this->input->post('nomination_status_main_search');
-																$search['media_type']	=	$this->input->post('media_type_main_search');
-																$search['physical_format']	=	$this->input->post('physical_format_main_search');
-																$search['digital_format']	=	$this->input->post('digital_format_main_search');
-																$search['generation']	=	$this->input->post('generation_main_search');
-																$search['date_range']	=	$this->input->post('date_range');
-																$search['date_type']	=	$this->input->post('date_type');
-																if($this->input->post('digitized')	&&	$this->input->post('digitized')	===	'1')
-																{
-																				$search['digitized']	=	$this->input->post('digitized');
-																}
-																if($this->input->post('migration_failed')	&&	$this->input->post('migration_failed')	===	'1')
-																{
-																				$search['migration_failed']	=	$this->input->post('migration_failed');
-																}
-
-																$this->set_facet_search($search);
+																$search['digitized']	=	$this->input->post('digitized');
 												}
+												if($this->input->post('migration_failed')	&&	$this->input->post('migration_failed')	===	'1')
+												{
+																$search['migration_failed']	=	$this->input->post('migration_failed');
+												}
+
+												$this->set_facet_search($search);
 								}
+
 								$this->session->set_userdata('page_link',	'instantiations/index/'	.	$offset);
 								$data['get_column_name']	=	$this->make_array();
 								if(	!	isAjax())

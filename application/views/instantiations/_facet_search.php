@@ -356,7 +356,7 @@
 
 								</div>
 								<div style="margin: 4px 6px;">
-												<input type="hidden" value="0" id="reset_all_value" name="reset_all_value"/>
+											
 												<input type="button" value="Reset" id="reset_all" name="reset_all" style="display: none;" class="btn" onclick="resetAll();"/>
 								</div>
 				</div>
@@ -1225,7 +1225,18 @@
 								}
 				}
 				function resetAll(){
-								$('#reset_all_value').val('1');
+								$('#keyword_field_main_search').val('');
+								$('#organization_main_search').val('');
+								$('#states_main_search').val('');
+								$('#nomination_status_main_search').val('');
+								$('#media_type_main_search').val('');
+								$('#physical_format_main_search').val('');
+								$('#digital_format_main_search').val('');
+								$('#generation_main_search').val('');
+								$('#date_range').val('');
+								$('#date_type').val('');
+								$('#digitized').attr('checked',false);
+								$('#migration_failed').attr('checked',false);
 								facet_search('0');
 				}
 </script>

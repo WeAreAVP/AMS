@@ -65,7 +65,7 @@
 
 																</div>
 																<div class="clearfix"></div>
-<!--																<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" style="margin-left:10px;" class="btn" onclick="resetKeyword();"/></div>-->
+				<!--																<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" style="margin-left:10px;" class="btn" onclick="resetKeyword();"/></div>-->
 																<?php
 												}
 												else
@@ -106,7 +106,7 @@
 																				<div class="clearfix"></div>
 																</div>
 																<div class="clearfix"></div>
-<!--																<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset" style="margin: 5px 10px;" class="btn" onclick="resetKeyword('date');"/></div>-->
+				<!--																<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset" style="margin: 5px 10px;" class="btn" onclick="resetKeyword('date');"/></div>-->
 																<?php
 												}
 												else
@@ -119,7 +119,7 @@
 
 																</div>
 																<div class="clearfix"></div>
-<!--																<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset"  style="margin: 5px 10px;display:none;" class="btn" onclick="resetKeyword('date');"/></div>-->
+				<!--																<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset"  style="margin: 5px 10px;display:none;" class="btn" onclick="resetKeyword('date');"/></div>-->
 												<?php	}
 												?>
 
@@ -356,7 +356,7 @@
 
 								</div>
 								<div style="margin: 4px 6px;">
-											
+
 												<input type="button" value="Reset" id="reset_all" name="reset_all" style="display: none;" class="btn" onclick="resetAll();"/>
 								</div>
 				</div>
@@ -943,7 +943,7 @@
 																$('#keyword_field_name').html();
 																$('#limit_btn').show(); 
 																$('#add_keyword').show(); 
-//																$('#reset_search').hide();
+																//																$('#reset_search').hide();
 																$('#limit_field_text').html('Limit Search to Field');
 																$('#limit_field_dropdown').show();
 																$('#search').val('');
@@ -958,7 +958,7 @@
 																								$(this).remove();
 																				});
 																				$('#add_keyword').hide(); 
-//																				$('#reset_search').show();
+																				//																				$('#reset_search').show();
 																				$('#limit_field_dropdown').hide();
 																				$('#limit_field_div').hide();
 																				var random_id=rand(0,1000365);
@@ -1000,7 +1000,7 @@
 																$('#date_type').val('');
 																$('#date_range_filter_div').show();
 																$('#date_field_text').html('Date Type');
-//																$('#reset_date_search').hide();
+																//																$('#reset_date_search').hide();
 												}
 												else{
 																if($('#date_range').val()=='')
@@ -1010,7 +1010,7 @@
 																slugName=make_slug_name(name);
 																$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
 																$('#'+type).show();
-//																$('#reset_date_search').show();
+																//																$('#reset_date_search').show();
 																if($('#date_type').val()=='')
 																				date_type_text='All';
 																else
@@ -1099,7 +1099,7 @@
 												$('#date_range_filter_div').show();
 												$('#date_field_text').html('Date Type');
 												$('#date_field_main_search').val('');
-//												$('#reset_date_search').hide();
+												//												$('#reset_date_search').hide();
 												
 								}
 								else{
@@ -1109,7 +1109,7 @@
 												$('#keyword_field_main_search').val('');
 												$('#limit_btn').show(); 
 												$('#add_keyword').show(); 
-//												$('#reset_search').hide();
+												//												$('#reset_search').hide();
 												$('#limit_field_text').html('Limit Search to Field');
 												$('#limit_field_dropdown').show();
 												$('#search').val('');
@@ -1225,6 +1225,16 @@
 								}
 				}
 				function resetAll(){
+								$('.btn-img').each(function(){
+												$(this).remove();
+								});
+								type=new Array('keyword_field_main','organization_main' ,'states_main' ,'nomination_status_main','media_type_main',
+								'physical_format_main','digital_format_main','generation_main','date_field_main');
+								for(cnt in type){
+												if($('#'+type[cnt]+' div').length<=1){
+																$('#'+type[cnt]).hide();
+												}
+								}
 								$('#keyword_field_main_search').val('');
 								$('#organization_main_search').val('');
 								$('#states_main_search').val('');
@@ -1237,9 +1247,8 @@
 								$('#date_type').val('');
 								$('#digitized').attr('checked',false);
 								$('#migration_failed').attr('checked',false);
-								$('.btn-img').each(function(){
-												$(this).remove();
-								});
+								$('#checked_token').hide();
+								
 								facet_search('0');
 				}
 </script>

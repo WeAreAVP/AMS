@@ -290,7 +290,7 @@ function updateDataTable()
 								oTable = 
 								$('#listing_table').dataTable(
 								{
-												"sDom": 'RlfrtipS',
+												"sDom": 'Rlfrtip',
 												"aoColumnDefs": [{
 																"bVisible": false, 
 																"aTargets": hiden_column

@@ -391,8 +391,12 @@
 																								<div>
 																												<input type="text" name="search" id="search" value="" style="width: 190px;"/>
 																								</div>
-																								<div class="btn-group" id="limit_field_dropdown">
-																												<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+																								<a class="btn" href="javascript://;" onclick="$('#sample_toggle').dropdown('toggle');">
+																												<span>Limit Search to Field</span>
+																												<span class="caret"></span>
+																								</a>
+																								<div class="btn-group" id="limit_field_dropdown" style="position: absolute;z-index: 2000;display: none;">
+																												<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" id="sample_toggle">
 																																<span id="limit_field_text">Limit Search to Field</span>
 																																<span class="caret"></span>
 																												</a>
@@ -1145,7 +1149,7 @@
 												data:$('#form_search').serialize(),
 												success: function (result)
 												{ 
-//																$('#data_container').html(result);
+																//																$('#data_container').html(result);
 																$('.row-fluid').html(result);
 																if('<?php	echo	$current_tab;	?>'=='simple'){
 																				updateSimpleDataTable();

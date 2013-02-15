@@ -680,7 +680,8 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				position: absolute;
 				z-index: 2000;
 }
-#limit_field_dropdown:hover + #limit_btn{
+#limit_field_dropdown:hover#limit_btn{
 				margin-top: 30px;
 				position: relative;
 }
+

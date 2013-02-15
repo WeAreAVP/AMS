@@ -62,12 +62,12 @@ if(	!	$isAjax)
 																				<table class="table table-bordered" id="assets_table" style="border-collapse:collapse;">
 																								<thead>
 																												<tr style="background: rgb(235, 235, 235);">
-																																<th><i class="icon-flag "></i></th>
-																																<th>Organization</th>
-																																<th>AA GUID</th>
-																																<th>Local ID</th>
-																																<th>Titles</th>
-																																<th>Descriptio</th>
+																																<td><span style="float:left;width:30px; "><i class="icon-flag "></i></span></td>
+																																<th><span style="float:left;width: 85px;" >Organization</span></th>
+																																<th><span style="float:left;width: 100px;" >AA GUID</span></th>
+																																<th><span style="float:left;width: 75px;" >Local ID</span></th>
+																																<th><span style="float:left;width: 150px;" >Titles</span></th>
+																																<th><span style="float:left;width: 150px;" >Description</span></th>
 																												</tr>
 																								</thead>
 																								<tbody>
@@ -83,31 +83,26 @@ if(	!	$isAjax)
 																																<tr style="cursor: pointer;">
 																																				<td style="vertical-align:middle;font-weight:bold;width: 30px;"><i style="margin:0px" class="unflag"></i></td>
 																																				<td>				
-<!--																																								<span style="float:left;width: 85px;" >-->
+																																								<span style="width: 85px;" >
 																																												<?php	echo	$asset->organization	?>
-<!--																																								</span>-->
+																																								</span>
 																																				</td>
-																																				<td>
-<!--																																								<span style="float:left;width: 100px;" >-->
+																																				<td><span style="width: 100px;" >
 																																												<?php
 																																												if($guid_identifier)
 																																												{
 																																																?>
 																																																<a href="<?php	echo	site_url('records/details/'	.	$asset->id)	?>" ><?php	echo	$guid_identifier;	?></a>
 																																												<?php	}
-																																												?>
-<!--																																																</span>-->
+																																												?></span>
 																																				</td>
-																																				<td>
-<!--																																								<span style="float:left;width: 75px;" >-->
+																																				<td><span style="width: 75px;" >
 																																												<?php
 																																												if($local_identifier)
 																																																echo	$local_identifier;
-																																												?>
-<!--																																								</span>-->
+																																												?></span>
 																																				</td>
-																																				<td>
-<!--																																								<span style="float:left;width: 150px;" >-->
+																																				<td><span style="width: 150px;" >
 																																												<?php
 																																												$asset_title_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title_type)));
 																																												$asset_title	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title)));
@@ -133,11 +128,10 @@ if(	!	$isAjax)
 																																												}
 																																												echo	$column;
 																																												?>
-<!--																																								</span>-->
+																																								</span>
 
 																																				</td>
-																																				<td>
-<!--																																								<span style="float:left;width: 150px;" >-->
+																																				<td><span style="width: 150px;" >
 																																												<?php
 																																												if($asset_description)
 																																												{
@@ -153,7 +147,7 @@ if(	!	$isAjax)
 																																																}
 																																												}
 																																												?>
-<!--																																								</span>-->
+																																								</span>
 																																				</td>
 																																</tr>
 																												<?php	}

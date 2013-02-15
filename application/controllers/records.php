@@ -237,5 +237,20 @@ class	Records	extends	MY_Controller
 												show_404();
 								}
 				}
+				function sort_simple_table(){
+								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
+								$param	=	array('index'															=>	'assets_list');
+								$records	=	$this->sphinx->assets_listing($param,	$offset);
+								$data['total']	=	$records['total_count'];
+								$records	=	$records['records'];
+								$data['count']	=	count($data['records']);
+								$tablesort=array();
+								foreach($records as $index=>$value){
+												foreach($value as $column){
+																$tablesort[$index][]=$column;
+												}
+								}
+								debug($tablesort);
+				}
 
 }

@@ -1183,7 +1183,7 @@
 																'bPaginate':false,
 																'bInfo':false,
 																'bFilter': false,
-																"bSort": false,
+																"bSort": true,
 																"bDeferRender": true,
 																"fnDrawCallback": function( oSettings) {
 																				console.log( oSettings);

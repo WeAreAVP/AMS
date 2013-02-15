@@ -391,7 +391,10 @@
 																								<div>
 																												<input type="text" name="search" id="search" value="" style="width: 190px;"/>
 																								</div>
-																								<div class="btn-group" id="limit_field_dropdown">
+																								<a class="btn" href="javascript://;" onclick="$('#limit_field_dropdown').trigger('click');"><span>Limit Search to Field</span>
+																												<span class="caret"></span></a>
+
+																								<div class="btn-group" id="limit_field_dropdown" style="position:absolute;z-index: 2000;display: none;">
 																												<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 																																<span id="limit_field_text">Limit Search to Field</span>
 																																<span class="caret"></span>
@@ -1178,7 +1181,7 @@
 																'bPaginate':false,
 																'bInfo':false,
 																'bFilter': false,
-																"bSort": true
+																"bSort": false
 												});
 												new FixedHeader( oTable, {
 																"offsetTop": 60
@@ -1186,7 +1189,7 @@
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"
 												} );
-												oTable.fnSortListener(document.getElementById('sorter1a'), 0 );
+												//												oTable.fnSortListener(document.getElementById('sorter1a'), 0 );
 								}
 				}
 				function showHideSearch(divID,obj){

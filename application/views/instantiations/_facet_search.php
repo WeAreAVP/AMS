@@ -1172,20 +1172,21 @@
 				function updateSimpleDataTable()
 				{
 								
-
-								var oTable = $('#assets_table').dataTable({
-												'bPaginate':false,
-												'bInfo':false,
-												'bFilter': false,
-												"bSort": false
-								});
-								new FixedHeader( oTable, {
-												"offsetTop": 60
-								}  );
-								$.extend( $.fn.dataTableExt.oStdClasses, {
-												"sWrapper": "dataTables_wrapper form-inline"
-								} );
-
+								if($('#assets_table').length>0)
+								{
+												var oTable = $('#assets_table').dataTable({
+																'bPaginate':false,
+																'bInfo':false,
+																'bFilter': false,
+																"bSort": false
+												});
+												new FixedHeader( oTable, {
+																"offsetTop": 60
+												}  );
+												$.extend( $.fn.dataTableExt.oStdClasses, {
+																"sWrapper": "dataTables_wrapper form-inline"
+												} );
+								}
 				}
 				function showHideSearch(divID,obj){
 								

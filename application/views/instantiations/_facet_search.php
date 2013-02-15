@@ -1184,7 +1184,10 @@
 																'bInfo':false,
 																'bFilter': false,
 																"bSort": true,
-																"bDeferRender": true
+																"bDeferRender": true,
+																"fnDrawCallback": function() {
+																				console.log("[fnDrawCallback] enter: " + this.fnSettings().bSorted);
+																}
 												});
 												new FixedHeader( oTable, {
 																"offsetTop": 60

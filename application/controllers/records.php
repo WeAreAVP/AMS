@@ -244,7 +244,7 @@ class	Records	extends	MY_Controller
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];
 								$data['count']	=	count($records);
-								$tablesort=array();	debug($tablesort);
+								$tablesort=array();	debug($records);
 								foreach($records as $index=>$value){
 //												
 												foreach($value as $column){

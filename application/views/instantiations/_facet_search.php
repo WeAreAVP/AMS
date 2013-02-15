@@ -451,6 +451,7 @@
 
 
 																				</div>
+																				<div class="clearfix"></div>
 																				<div id="limit_btn">
 																								<div><input type="button"  style="margin-top: 10px;" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/></div>
 																				</div>

@@ -69,32 +69,29 @@ class	Records	extends	MY_Controller
 								}
 								$this->session->set_userdata('current_tab',	$data['current_tab']);
 								$data['get_column_name']	=	$this->make_array();
-								if(	!	isAjax())
-								{
+								$states	=	$this->sphinx->facet_index('asset_state');
+								$data['org_states']	=	$states['records'];
+								unset($states);
+								$stations	=	$this->sphinx->facet_index('assets_stations');
+								$data['stations']	=	$stations['records'];
+								unset($stations);
+								$nomination	=	$this->sphinx->facet_index('assets_nomination');
+								$data['nomination_status']	=	$nomination['records'];
+								unset($nomination);
+								$media_type	=	$this->sphinx->facet_index('assets_media_type');
+								$data['media_types']	=	$media_type['records'];
+								unset($media_type);
+								$p_format	=	$this->sphinx->facet_index('assets_format_physical');
+								$data['physical_formats']	=	$p_format['records'];
+								unset($p_format);
+								$d_format	=	$this->sphinx->facet_index('assets_format_digital');
+								$data['digital_formats']	=	$d_format['records'];
+								unset($d_format);
+								$generation	=	$this->sphinx->facet_index('assets_generation');
+								$data['generations']	=	$generation['records'];
+								unset($generation);
+								$data['date_types']	=	$this->instantiation->get_date_types();
 
-												$states	=	$this->sphinx->facet_index('asset_state');
-												$data['org_states']	=	$states['records'];
-												unset($states);
-												$stations	=	$this->sphinx->facet_index('assets_stations');
-												$data['stations']	=	$stations['records'];
-												unset($stations);
-												$nomination	=	$this->sphinx->facet_index('assets_nomination');
-												$data['nomination_status']	=	$nomination['records'];
-												unset($nomination);
-												$media_type	=	$this->sphinx->facet_index('assets_media_type');
-												$data['media_types']	=	$media_type['records'];
-												unset($media_type);
-												$p_format	=	$this->sphinx->facet_index('assets_format_physical');
-												$data['physical_formats']	=	$p_format['records'];
-												unset($p_format);
-												$d_format	=	$this->sphinx->facet_index('assets_format_digital');
-												$data['digital_formats']	=	$d_format['records'];
-												unset($d_format);
-												$generation	=	$this->sphinx->facet_index('assets_generation');
-												$data['generations']	=	$generation['records'];
-												unset($generation);
-												$data['date_types']	=	$this->instantiation->get_date_types();
-								}
 								$is_hidden	=	array();
 								$data['table_type']	=	'assets';
 								foreach($this->column_order	as	$key	=>	$value)

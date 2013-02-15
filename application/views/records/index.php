@@ -3,14 +3,15 @@ if(	!	$isAjax)
 {
 				?>
 				<div class="row-fluid">
-								<div class="span3">
+				<?php	}	?>
+				<div class="span3">
 
-												<?php	$this->load->view('instantiations/_facet_search');	?>
-								</div>
+								<?php	$this->load->view('instantiations/_facet_search');	?>
+				</div>
 
-								<div  class="span9" id="data_container">
+				<div  class="span9" id="data_container">
 
-								<?php	}	?>
+
 								<?php	$this->load->view('layouts/_records_nav');	?>
 								<ul class="nav nav-tabs records-nav-sub">
 
@@ -640,11 +641,12 @@ if(	!	$isAjax)
 												?>
 												<div  style="text-align: center;width: 710px;margin-top: 50px;font-size: 20px;"> No Assets Found</div><?php	}
 								?>
-								<?php
-								if(	!	$isAjax)
-								{
-												?>
-								</div>
+
+				</div>
+				<?php
+				if(	!	$isAjax)
+				{
+								?>
 				</div>
 
 

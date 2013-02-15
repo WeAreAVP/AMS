@@ -91,8 +91,6 @@ class	Instantiations	extends	MY_Controller
 
 								$this->session->set_userdata('page_link',	'instantiations/index/'	.	$offset);
 								$data['get_column_name']	=	$this->make_array();
-								if(	!	isAjax())
-								{
 												$states	=	$this->sphinx->facet_index('instantiation_state');
 												$data['org_states']	=	$states['records'];
 												unset($states);
@@ -117,7 +115,7 @@ class	Instantiations	extends	MY_Controller
 												unset($generation);
 
 												$data['date_types']	=	$this->instantiation->get_date_types();
-								}
+
 
 								$data['current_tab']	=	'';
 								$is_hidden	=	array();

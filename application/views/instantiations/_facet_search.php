@@ -1181,7 +1181,9 @@
 																'bInfo':false,
 																'bFilter': false,
 																"bSort": true,
-																"bDeferRender": true
+																"bDeferRender": true,
+																"bRetrieve": true,
+												"bAutoWidth": true
 												});
 												new FixedHeader( oTable, {
 																"offsetTop": 60

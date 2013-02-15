@@ -1207,9 +1207,10 @@
 												jQuery.extend( jQuery.fn.dataTableExt.oSort, {
                 "guid-pre": function ( s ) {
 																				console.log('pre');
+																				facet_search();
                     var a = s.split(' ');
                     // Date uses the American "MM DD YY" format
-                    return months[a[0]] +' '+ a[1];
+                    return s;
                 },
 
                 "guid-asc": function ( a, b ) {

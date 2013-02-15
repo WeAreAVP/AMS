@@ -36,7 +36,7 @@ html, body {
 .container > .content {
 				background-color: #fff;
 				padding: 20px 0px;
-/*				margin: 0 -20px;*/
+				/*				margin: 0 -20px;*/
 
 }
 .check-all{
@@ -263,7 +263,7 @@ html, body {
 }
 .report-main{
     margin-top: 10px;
-/*    width: 376px !important;*/
+				/*    width: 376px !important;*/
 }
 .report-main a{
     color: black;
@@ -645,25 +645,25 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 ::-webkit-scrollbar-thumb:vertical {
 				height: 50px;
 				background-color: #c5c5c5;
-				
+
 				-webkit-border-radius: 0px;
 }
 ::-webkit-scrollbar-thumb:horizontal {
 				height: 50px;
 				background-color: #c5c5c5;
-				
+
 				-webkit-border-radius: 0px;
 }
 ::-webkit-scrollbar-thumb:vertical:hover {
 				height: 50px;
 				background-color: #999;
-				
+
 				-webkit-border-radius: 0px;
 }
 ::-webkit-scrollbar-thumb:horizontal:hover {
 				height: 50px;
 				background-color: #999;
-				
+
 				-webkit-border-radius: 0px;
 }
 ::-webkit-scrollbar-corner:vertical{
@@ -685,6 +685,14 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				position: relative;
 }
 #limit_field_dropdown:hover ~ #limit_btn{
+				margin-top: 28px;
+				position: relative;
+}
+#limit_field_dropdown:hover + #add_date_keyword{
+				margin-top: 28px;
+				position: relative;
+}
+#limit_field_dropdown:hover ~ #add_date_keyword{
 				margin-top: 28px;
 				position: relative;
 }

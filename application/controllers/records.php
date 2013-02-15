@@ -246,9 +246,8 @@ class	Records	extends	MY_Controller
 								$data['count']	=	count($records);
 								$tablesort=array();
 								foreach($records as $index=>$value){
-												foreach($value as $column){
-																$tablesort[$index][]=		str_replace("(**)",	'',	$column);
-												}
+												$tablesort[$index][]=		$value;
+											
 								}
 								echo json_encode($tablesort);
 								exit;

@@ -244,14 +244,18 @@ class	Records	extends	MY_Controller
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];
 								$data['count']	=	count($records);
-								$tablesort=array();	debug($records);
+								$tablesort=array();
 								foreach($records as $index=>$value){
-//												
-												foreach($value as $column){
-															$tablesort[$index][]	=		str_replace("(**)",	'',	$column);
-												}
+//												guid_identifier
+												$tablesort[$index][]=str_replace("(**)",	'',$value->organization);
+												$tablesort[$index][]=str_replace("(**)",	'',$value->guid_identifier);
+												$tablesort[$index][]=str_replace("(**)",	'',$value->local_identifier);
+												$tablesort[$index][]=str_replace("(**)",	'',$value->asset_title);
+												$tablesort[$index][]=str_replace("(**)",	'',$value->description);
+												
+												
 								}
-								debug($tablesort,FALSE);
+								echo '<pre>';
 								echo json_encode($tablesort[0]);
 								exit;
 				}

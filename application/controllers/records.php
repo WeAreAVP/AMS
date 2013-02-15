@@ -14,7 +14,7 @@ class	Records	extends	MY_Controller
 					* 
 					*/
 
-			function	__construct()
+				function	__construct()
 				{
 								parent::__construct();
 								$this->load->model('assets_model');
@@ -33,8 +33,8 @@ class	Records	extends	MY_Controller
 
 				function	index()
 				{
-								
-								
+
+
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
 								if(isAjax())
 								{
@@ -237,27 +237,33 @@ class	Records	extends	MY_Controller
 												show_404();
 								}
 				}
-				public function sort_simple_table(){
+
+				public	function	sort_simple_table()
+				{
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
-								$param	=	array('index'															=>	'assets_list');
+								$param	=	array('index'								=>	'assets_list');
 								$records	=	$this->sphinx->assets_listing($param,	$offset);
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];
 								$data['count']	=	count($records);
-								$tablesort=array();
-								foreach($records as $index=>$value){
+								$tablesort	=	array();
+								foreach($records	as	$index	=>	$value)
+								{
 //												guid_identifier
-												$tablesort[$index][]=str_replace("(**)",	'',$value->organization);
-												$tablesort[$index][]=str_replace("(**)",	'',$value->guid_identifier);
-												$tablesort[$index][]=str_replace("(**)",	'',$value->local_identifier);
-												$tablesort[$index][]=str_replace("(**)",	'',$value->asset_title);
-												$tablesort[$index][]=str_replace("(**)",	'',$value->description);
-												
-												
+												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->organization);
+												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->guid_identifier);
+												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->local_identifier);
+												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->asset_title);
+												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->description);
 								}
-								echo '<pre>';
-								
-								echo json_encode(array('aaData'=>$tablesort));
+								echo	'<pre>';
+								$dataTable	=	array(
+								"sEcho"																=>	1,
+								"iTotalRecords"								=>	$data['count'],
+								"iTotalDisplayRecords"	=>	"100",
+								'aaData'															=>	$tablesort
+								);
+								echo	json_encode($dataTable);
 								exit;
 				}
 

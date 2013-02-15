@@ -1185,10 +1185,10 @@
 																'bFilter': false,
 																"bSort": true,
 																"bDeferRender": true,
-																"fnDrawCallback": function( oSettings) {
-																				console.log( oSettings);
-																				console.log("[fnDrawCallback] enter: " + this.fnSettings().bSorted);
-																},
+//																"fnDrawCallback": function( oSettings) {
+//																				console.log( oSettings);
+//																				console.log("[fnDrawCallback] enter: " + this.fnSettings().bSorted);
+//																}
 																
 												});
 												new FixedHeader( oTable, {
@@ -1197,10 +1197,10 @@
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"
 												} );
-												oTable.bind('sort', function (a,b) {
-																console.log(a);
-																console.log(b);
-												} );
+//												oTable.bind('sort', function (a,b) {
+//																console.log(a);
+//																console.log(b);
+//												} );
 												
 								}
 				}

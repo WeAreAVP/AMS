@@ -256,7 +256,7 @@ function updateDataTable()
 								if(frozen>0)
 								{
 												new FixedColumns( oTable, {
-																"iLeftColumns": frozen,
+																"iLeftColumns": frozen
 												//																"iLeftWidth": frozen*100 // pixels
 												} );
 								}

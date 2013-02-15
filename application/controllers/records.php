@@ -17,7 +17,7 @@ class	Records	extends	MY_Controller
 					* 
 					*/
 
-				function	Records()
+			function	__construct()
 				{
 								parent::__construct();
 								$this->load->model('assets_model');

@@ -243,11 +243,11 @@ class	Records	extends	MY_Controller
 								$records	=	$this->sphinx->assets_listing($param,	$offset);
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];
-								$data['count']	=	count($data['records']);
+								$data['count']	=	count($records);
 								$tablesort=array();
 								foreach($records as $index=>$value){
 												foreach($value as $column){
-																$tablesort[$index][]=$column;
+																$tablesort[$index][]=		str_replace("(**)",	'',	$column);
 												}
 								}
 								debug($tablesort);

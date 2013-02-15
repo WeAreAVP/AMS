@@ -256,7 +256,8 @@ class	Records	extends	MY_Controller
 												
 								}
 								echo '<pre>';
-								echo json_encode($tablesort);
+								
+								echo json_encode(array('aaData'=>$tablesort));
 								exit;
 				}
 

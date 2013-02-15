@@ -244,10 +244,11 @@ class	Records	extends	MY_Controller
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];
 								$data['count']	=	count($records);
-								$tablesort=array();
+								$tablesort=array();	debug($tablesort);
 								foreach($records as $index=>$value){
+//												
 												foreach($value as $column){
-																$tablesort[$index][]=		str_replace("(**)",	'',	$column);
+															$tablesort[$index][]	=		str_replace("(**)",	'',	$column);
 												}
 								}
 								debug($tablesort,FALSE);

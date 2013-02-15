@@ -256,7 +256,7 @@ class	Records	extends	MY_Controller
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->asset_title);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->description);
 								}
-								echo	'<pre>';
+								
 								$dataTable	=	array(
 								"sEcho"																=>	1,
 								"iTotalRecords"								=>	$data['count'],

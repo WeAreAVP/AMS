@@ -684,4 +684,8 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				margin-top: 30px;
 				position: relative;
 }
+#limit_field_dropdown:hover #add_keyword{
+				margin-top: 30px;
+				position: relative;
+}
 

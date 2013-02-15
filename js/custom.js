@@ -243,7 +243,7 @@ function updateDataTable()
 												'bPaginate':false,
 												'bInfo':false,
 												'bFilter': false,
-												"bSort": false,
+												"bSort": true,
 												"sScrollY": $(window).height()-180,
 												"sScrollX": "100%",	
 												"bDeferRender": true,

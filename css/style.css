@@ -688,12 +688,15 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				margin-top: 28px;
 				position: relative;
 }
+#add_date_btn{
+				margin-top: 12px;
+}
 #limit_field_dropdown:hover + #add_date_btn{
-				margin-top: 28px;
+				margin-top: 40px;
 				position: relative;
 }
 #limit_field_dropdown:hover ~ #add_date_btn{
-				margin-top: 28px;
+				margin-top: 40px;
 				position: relative;
 }
 

@@ -511,7 +511,7 @@
 																				<div id="add_date_btn">
 																								<input type="button" id="add_date_keyword" name="add_date_keyword" value="Add Date" class="btn btn-primary" onclick="add_token($('#date_range').val(),'date_field_main');"/>
 																				</div>
-																				
+
 																</div>
 												</div>
 								</div>
@@ -1180,7 +1180,8 @@
 																'bPaginate':false,
 																'bInfo':false,
 																'bFilter': false,
-																"bSort": true
+																"bSort": true,
+																"bDeferRender": true
 												});
 												new FixedHeader( oTable, {
 																"offsetTop": 60

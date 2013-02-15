@@ -65,7 +65,7 @@ if(	!	$isAjax)
 																																<td><span style="float:left;width:30px; "><i class="icon-flag "></i></span></td>
 																																<th><span style="float:left;width: 85px;" >Organization</span></th>
 																																<th><span style="float:left;width: 100px;" >AA GUID</span></th>
-																																<th><span style="float:left;width: 75px;" >Local ID</span></th>
+																																<th><span style="float:left;width: 100px;" >Local ID</span></th>
 																																<th><span style="float:left;width: 150px;" >Titles</span></th>
 																																<th><span style="float:left;width: 150px;" >Description</span></th>
 																												</tr>
@@ -83,11 +83,11 @@ if(	!	$isAjax)
 																																<tr style="cursor: pointer;">
 																																				<td style="vertical-align:middle;font-weight:bold;width: 30px;"><i style="margin:0px" class="unflag"></i></td>
 																																				<td>				
-																																								<span style="width: 85px;" >
+																																								<span style="float:left;width: 85px;" >
 																																												<?php	echo	$asset->organization	?>
 																																								</span>
 																																				</td>
-																																				<td><span style="width: 100px;" >
+																																				<td><span style="float:left;width: 100px;" >
 																																												<?php
 																																												if($guid_identifier)
 																																												{
@@ -96,13 +96,13 @@ if(	!	$isAjax)
 																																												<?php	}
 																																												?></span>
 																																				</td>
-																																				<td><span style="width: 75px;" >
+																																				<td><span style="float:left;width: 100px;" >
 																																												<?php
 																																												if($local_identifier)
 																																																echo	$local_identifier;
 																																												?></span>
 																																				</td>
-																																				<td><span style="width: 150px;" >
+																																				<td><span style="float:left;width: 150px;" >
 																																												<?php
 																																												$asset_title_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title_type)));
 																																												$asset_title	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title)));
@@ -131,7 +131,7 @@ if(	!	$isAjax)
 																																								</span>
 
 																																				</td>
-																																				<td><span style="width: 150px;" >
+																																				<td><span style="float:left;width: 150px;" >
 																																												<?php
 																																												if($asset_description)
 																																												{

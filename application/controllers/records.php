@@ -250,7 +250,8 @@ class	Records	extends	MY_Controller
 																$tablesort[$index][]=		str_replace("(**)",	'',	$column);
 												}
 								}
-								debug($tablesort);
+								echo json_encode($tablesort);
+								exit;
 				}
 
 }

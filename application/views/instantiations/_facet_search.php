@@ -478,12 +478,12 @@
 																				</div>
 
 																</div>
+																<div class="filter-fileds">
+																				<?php
+																				if(count($date_types)	>	0)
+																				{
+																								?>
 
-																<?php
-																if(count($date_types)	>	0)
-																{
-																				?>
-																				<div class="filter-fileds">
 
 																								<div class="btn-group" id="limit_field_dropdown">
 																												<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -501,14 +501,18 @@
 																																?>
 																												</ul>
 																								</div>
+
+
+
+
+																								<?php
+																				}
+																				?>
+																				<div id="add_date_btn">
+																								<input type="button" id="add_date_keyword" name="add_date_keyword" value="Add Date" class="btn btn-primary" onclick="add_token($('#date_range').val(),'date_field_main');"/>
 																				</div>
-
-
-
-																				<?php
-																}
-																?>
-																<div class="filter-fileds"><input type="button" id="add_date_keyword" name="add_date_keyword" value="Add Date" class="btn btn-primary" onclick="add_token($('#date_range').val(),'date_field_main');"/></div>
+																				
+																</div>
 												</div>
 								</div>
 								<!-- Organization  Start      -->

@@ -391,12 +391,9 @@
 																								<div>
 																												<input type="text" name="search" id="search" value="" style="width: 190px;"/>
 																								</div>
-																								<a class="btn" href="javascript://;" onclick="$('#sample_toggle').dropdown('toggle');">
-																												<span>Limit Search to Field</span>
-																												<span class="caret"></span>
-																								</a>
-																								<div class="btn-group" id="limit_field_dropdown" style="position: absolute;z-index: 2000;display: none;">
-																												<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" id="sample_toggle">
+																								
+																								<div class="btn-group" id="limit_field_dropdown">
+																												<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 																																<span id="limit_field_text">Limit Search to Field</span>
 																																<span class="caret"></span>
 																												</a>

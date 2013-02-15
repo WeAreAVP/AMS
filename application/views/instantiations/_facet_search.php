@@ -1185,7 +1185,8 @@
 																'bFilter': false,
 																"bSort": true,
 																"bDeferRender": true,
-																"fnDrawCallback": function() {
+																"fnDrawCallback": function( oSettings) {
+																				console.log( oSettings);
 																				console.log("[fnDrawCallback] enter: " + this.fnSettings().bSorted);
 																}
 												});

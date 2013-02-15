@@ -1178,7 +1178,7 @@
 								{
 												var oTable = $('#assets_table').dataTable({
 																"aoColumnDefs": [
-																				{ 'bSortable': false, 'aTargets': [ 1 ] }
+																				{ 'bSortable': false, 'aTargets': [ 0 ] }
 																],
 																'bPaginate':false,
 																'bInfo':false,

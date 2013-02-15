@@ -91,7 +91,8 @@ class	Sphinx_Model	extends	CI_Model
 								$this->sphinxsearch->set_connect_timeout(120);
 								if($limit)
 												$this->sphinxsearch->set_limits((int)	$offset,	(int)	$limit,	(	$limit	>	1000	)	?	$limit	:	1000	);
-								$res	=	$this->sphinxsearch->query('',	$index_name);
+								$query	=	$this->make_where_clause();
+								$res	=	$this->sphinxsearch->query($query,	$index_name);
 
 
 								$execution_time	=	$res['time'];

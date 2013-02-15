@@ -1188,7 +1188,15 @@
 																"fnDrawCallback": function( oSettings) {
 																				console.log( oSettings);
 																				console.log("[fnDrawCallback] enter: " + this.fnSettings().bSorted);
-																}
+																},
+																"aoColumns": [
+																				null,
+																				{ "sSortDataType": "dom-text", "sType": "organization" },
+																				{ "sSortDataType": "dom-text", "sType": "guid" },
+																				{ "sSortDataType": "dom-text", "sType": "local" },
+																				{ "sSortDataType": "dom-text", "sType": "title" },
+																				{ "sSortDataType": "dom-text", "sType": "desc" }
+																]
 												});
 												new FixedHeader( oTable, {
 																"offsetTop": 60
@@ -1196,7 +1204,24 @@
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"
 												} );
-												//												oTable.fnSortListener(document.getElementById('sorter1a'), 0 );
+												jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+                "guid-pre": function ( s ) {
+																				console.log('pre');
+                    var a = s.split(' ');
+                    // Date uses the American "MM DD YY" format
+                    return months[a[0]] +' '+ a[1];
+                },
+
+                "guid-asc": function ( a, b ) {
+																				console.log('asc');
+                    return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+                },
+
+                "guid-desc": function ( a, b ) {
+																				console.log('desc');
+                    return ((a < b) ? 1 : ((a > b) ?  -1 : 0));
+                }
+            } );
 								}
 				}
 				function showHideSearch(divID,obj){

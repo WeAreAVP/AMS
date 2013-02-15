@@ -1185,7 +1185,7 @@
 																'bFilter': false,
 																"bSort": true,
 																"bDeferRender": true,
-																"bProcessing": true,
+//																"bProcessing": true,
 																"bServerSide": true,
 																"sAjaxSource": "scripts/server_processing.php"
 //																"fnDrawCallback": function( oSettings) {

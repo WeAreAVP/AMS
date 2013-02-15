@@ -264,7 +264,7 @@ function updateDataTable()
 								$.extend( $.fn.dataTableExt.oStdClasses,{
 												"sWrapper": "dataTables_wrapper form-inline"
 								});
-												setTimeout($('.dataTable th').css('background','#EBEBEB'),500);
+//												setTimeout($('.dataTable th').css('background','#EBEBEB'),500);
 												
 								
 				}

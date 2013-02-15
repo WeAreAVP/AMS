@@ -1236,6 +1236,7 @@
 												$('#search_bar_val').css('margin-bottom','0px');
 												$('#search_bar_val').css('padding-bottom','0px');
 								}
+								$('.dataTable th').css('background','#EBEBEB');
 				}
 				function resetAll(){
 								$('.btn-img').each(function(){

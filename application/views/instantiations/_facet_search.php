@@ -1186,6 +1186,11 @@
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"
 												} );
+												oTable.fnSortListener(function(a,b,c){
+																console.log(a);
+																console.log(b);
+																console.log(c);
+												});
 								}
 				}
 				function showHideSearch(divID,obj){

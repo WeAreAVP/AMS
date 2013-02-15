@@ -1178,7 +1178,7 @@
 																'bPaginate':false,
 																'bInfo':false,
 																'bFilter': false,
-																"bSort": false
+																"bSort": true
 												});
 												new FixedHeader( oTable, {
 																"offsetTop": 60

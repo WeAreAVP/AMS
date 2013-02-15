@@ -1197,10 +1197,7 @@
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"
 												} );
-												oTable.bind('sort', function (a,b) {
-																console.log(a);
-																console.log(b);
-												} );
+											
 												
 								}
 				}

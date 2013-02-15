@@ -33,6 +33,7 @@ class	Records	extends	MY_Controller
 
 				function	index()
 				{
+								echo 'here';exit;
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
 								if(isAjax())
 								{

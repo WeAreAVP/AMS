@@ -264,7 +264,7 @@ function updateDataTable()
 								$.extend( $.fn.dataTableExt.oStdClasses,{
 												"sWrapper": "dataTables_wrapper form-inline"
 								});
-												$('.dataTable th').css('background','#EBEBEB');
+//												$('.dataTable th').css('background','#EBEBEB');
 												
 								
 				}

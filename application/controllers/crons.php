@@ -103,6 +103,8 @@ class	Crons	extends	CI_Controller
 				function	process_dir()
 				{
 								set_time_limit(0);
+								@ini_set("memory_limit",	"3000M");	# 1GB
+								@ini_set("max_execution_time",	999999999999);	# 1GB
 								$this->cron_model->scan_directory($this->assets_path,	$dir_files);
 								$count	=	count($dir_files);
 

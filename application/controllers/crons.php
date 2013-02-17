@@ -293,9 +293,9 @@ class	Crons	extends	CI_Controller
 																																{
 																																				$asset_xml_data	=	@simplexml_load_string($asset_data);
 																																				$asset_d	=	xmlObjToArr($asset_xml_data);
-																																				echo	"Current Version "	.	$asset_d['attributes']['version']	.	" \n ";
-																																				if(	!	isset($asset_d['attributes']['version'])	||	empty($asset_d['attributes']['version'])	||	$asset_d['attributes']['version']	==	'1.3')
-																																				{
+//																																				echo	"Current Version "	.	$asset_d['attributes']['version']	.	" \n ";
+//																																				if(	!	isset($asset_d['attributes']['version'])	||	empty($asset_d['attributes']['version'])	||	$asset_d['attributes']['version']	==	'1.3')
+//																																				{
 																																								//$this->db->trans_start	();
 																																								$asset_id	=	$this->assets_model->insert_assets(array("stations_id"			=>	$station_data->id,	"created"							=>	date("Y-m-d H:i:s")));
 																																								echo	"\n in Process \n";
@@ -326,12 +326,12 @@ class	Crons	extends	CI_Controller
 																																								unset($asset_d);
 																																								unset($asset_xml_data);
 																																								unset($asset_data);
-																																				}
-																																				else
-																																				{
-																																								$this->myLog(" Attribut version Issues "	.	$file_path);
-																																								$this->cron_model->update_prcoess_data(array('status_reason'	=>	'version_issues'),	$d_file->id);
-																																				}
+//																																				}
+//																																				else
+//																																				{
+//																																								$this->myLog(" Attribut version Issues "	.	$file_path);
+//																																								$this->cron_model->update_prcoess_data(array('status_reason'	=>	'version_issues'),	$d_file->id);
+//																																				}
 																																}
 																																else
 																																{

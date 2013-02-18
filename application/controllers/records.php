@@ -250,6 +250,7 @@ class	Records	extends	MY_Controller
 								foreach($records	as	$index	=>	$value)
 								{
 //												guid_identifier
+												$tablesort[$index][]	=	'<i style="margin:0px" class="unflag"></i>';
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->organization);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->guid_identifier);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->local_identifier);

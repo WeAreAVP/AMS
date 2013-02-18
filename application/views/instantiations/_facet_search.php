@@ -1188,7 +1188,7 @@
 																"bSort": true,
 																"bDeferRender": false,
 																"bAutoWidth": false,
-																"width":'710px',
+																"width":710,
 																"bProcessing": true,
 																"bServerSide": true,
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"

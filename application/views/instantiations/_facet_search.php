@@ -1185,13 +1185,14 @@
 																'bFilter': false,
 																"bSort": true,
 																"bDeferRender": true,
-//																"bProcessing": true,
+																'width':'100%',
+																//																"bProcessing": true,
 																"bServerSide": true,
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
-//																"fnDrawCallback": function( oSettings) {
-//																				console.log( oSettings);
-//																				console.log("[fnDrawCallback] enter: " + this.fnSettings().bSorted);
-//																}
+																//																"fnDrawCallback": function( oSettings) {
+																//																				console.log( oSettings);
+																//																				console.log("[fnDrawCallback] enter: " + this.fnSettings().bSorted);
+																//																}
 																
 												});
 												new FixedHeader( oTable, {

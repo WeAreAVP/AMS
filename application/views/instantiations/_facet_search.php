@@ -1186,7 +1186,7 @@
 																"bSort": true,
 																"bDeferRender": true,
 																'width':'100%',
-																//																"bProcessing": true,
+																"bProcessing": true,
 																"bServerSide": true,
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
 																//																"fnDrawCallback": function( oSettings) {

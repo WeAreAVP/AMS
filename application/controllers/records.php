@@ -199,7 +199,7 @@ class	Records	extends	MY_Controller
 																				}
 																				$num_search_results	=	count($search_results);
 																}
-																# Get result number of current asset
+# Get result number of current asset
 																$search_result_pointer	=	0;
 																foreach($search_results_array	as	$search_res)
 																{
@@ -209,16 +209,16 @@ class	Records	extends	MY_Controller
 																}
 																$data['cur_result']	=	$search_result_pointer	+	1;
 
-																# Get number of results
+# Get number of results
 																$data['num_results']	=	$num_search_results;
 
-																# Get result number of next listings
+# Get result number of next listings
 																if($search_result_pointer	>=	($num_search_results	-	1))
 																				$data['next_result_id']	=	FALSE;
 																else
 																				$data['next_result_id']	=	$search_results_array[$search_result_pointer	+	1]['id'];
 
-																# Get result number of previous listings
+# Get result number of previous listings
 																if($search_result_pointer	<=	0	||	$num_search_results	==	1)
 																				$data['prev_result_id']	=	FALSE;
 																else
@@ -240,7 +240,7 @@ class	Records	extends	MY_Controller
 
 				public	function	sort_simple_table()
 				{
-								$this->load->helper('string');
+								
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
 								$columns	=	array('flag',	'organization',	'guid_identifier',	'local_identifier',	'asset_title',	'description');
 								$this->session->unset_userdata('column');
@@ -301,6 +301,11 @@ class	Records	extends	MY_Controller
 								);
 								echo	json_encode($dataTable);
 								exit;
+				}
+
+				public	function	sort_full_table()
+				{
+							$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;	
 				}
 
 }

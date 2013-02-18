@@ -287,7 +287,7 @@ class	Records	extends	MY_Controller
 												}
 
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->organization);
-												$tablesort[$index][]	=	str_replace("(**)",	'',	'<a href="'	.	site_url('records/detail/'	.	$value->id)	.	'">'	.	$value->guid_identifier	.	'</a>');
+												$tablesort[$index][]	=	str_replace("(**)",	'',	'<a href="'	.	site_url('records/details/'	.	$value->id)	.	'">'	.	$value->guid_identifier	.	'</a>');
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->local_identifier);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$asset_combine);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->description);
@@ -324,7 +324,7 @@ class	Records	extends	MY_Controller
 								'Annotation'						=>	'asset_annotation',
 								'Rights'										=>	'asset_rights');
 
-								echo $this->input->get('iSortCol_0');
+								echo $this->column_order[$this->input->get('iSortCol_0')]['title'];
 								echo $this->input->get('sSortDir_0');exit;
 //								$this->session->unset_userdata('column');
 //								$this->session->unset_userdata('jscolumn');

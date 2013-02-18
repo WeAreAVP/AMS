@@ -474,7 +474,7 @@ class	Records	extends	MY_Controller
 																}
 																else	if($type	==	'Assets_Date')
 																{
-
+																				$column='';
 																				$asset_dates	=	explode(' | ',	$asset->dates);
 																				$asset_dates_types	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->date_type)));
 																				if(count($asset_dates)	>	0)
@@ -729,15 +729,15 @@ class	Records	extends	MY_Controller
 																}
 												}
 
-
-													$dataTable	=	array(
-								"sEcho"																=>	$this->input->get('sEcho')	+	1,
-								"iTotalRecords"								=>	$data['count'],
-								"iTotalDisplayRecords"	=>	"100",
-								'aaData'															=>	$tablesort
-								);
-								echo	json_encode($dataTable);
-								exit;
+												debug($tablesort);
+												$dataTable	=	array(
+												"sEcho"																=>	$this->input->get('sEcho')	+	1,
+												"iTotalRecords"								=>	$data['count'],
+												"iTotalDisplayRecords"	=>	"100",
+												'aaData'															=>	$tablesort
+												);
+												echo	json_encode($dataTable);
+												exit;
 								}
 				}
 

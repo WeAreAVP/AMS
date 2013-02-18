@@ -1180,11 +1180,11 @@
 												var oTable = $('#assets_table').dataTable({
 																"aoColumns": [
 																				{"bSortable": false },
-//																				{"sWidth": "100px"},
-//																				{"sWidth": "150px"},
-//																				{"sWidth": "100px"},
-//																				{"sWidth": "150px"},
-//																				{"sWidth": "200px"},
+																				{"sWidth": "100px"},
+																				{"sWidth": "150px"},
+																				{"sWidth": "100px"},
+																				{"sWidth": "150px"},
+																				{"sWidth": "200px"},
 																],
 																"aSorting": [[ column_index, column_order ]],
 																'bPaginate':false,
@@ -1192,17 +1192,17 @@
 																'bFilter': false,
 																"bSort": true,
 																"bDeferRender": true,
-																"bAutoWidth": false,
+																"bAutoWidth": true,
 																"bProcessing": true,
 																"bServerSide": true,
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
 																
 																
 												});
-												new FixedHeader( oTable, {
-																"offsetTop": 60,
+//												new FixedHeader( oTable, {
+//																"offsetTop": 60,
 //																'width':'100%',
-												}  );
+//												}  );
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"
 												} );

@@ -290,7 +290,7 @@ function updateDataTable()
 								oTable = 
 								$('#listing_table').dataTable(
 								{
-												"sDom": 'Rlfrtip',
+												"sDom": 'RlfrtipS',
 												"aoColumnDefs": [{
 																"bVisible": false, 
 																"aTargets": hiden_column,
@@ -312,12 +312,12 @@ function updateDataTable()
 												'bInfo':false,
 												'bFilter': false,
 												"bSort": true,
-//												"sScrollY": $(window).height()-180,
-//												"sScrollX": "100%",	
+												"sScrollY": $(window).height()-180,
+												"sScrollX": "100%",	
 												"bDeferRender": true, 
 												"bDestroy": is_destroy,
 												"bRetrieve": true,
-												"bAutoWidth": false
+												"bAutoWidth": true
 												
 												
 								});

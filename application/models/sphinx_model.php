@@ -292,7 +292,7 @@ class	Sphinx_Model	extends	CI_Model
 								$query	=	$this->make_where_clause();
 								if(isset($this->session->userdata['column'])	&&	$this->session->userdata['column']	!=	'')
 								{
-												$this->sphinxsearch->set_sort_mode('SPH_SORT_ATTR_ASC',	$this->session->userdata['column']);
+												$this->sphinxsearch->set_sort_mode(SPH_SORT_ATTR_ASC,	$this->session->userdata['column']);
 								}
 								$res	=	$this->sphinxsearch->query($query,	$params['index']);
 

@@ -59,7 +59,7 @@ if(	!	$isAjax)
 												if(	isset($current_tab)	||	$current_tab	==	'simple')
 												{
 																?>
-																<div style="width: 710px;overflow: hidden" id="simple_view">
+																<div style="width: 710px;overflow: hidden;display:inline;" id="simple_view">
 																				<table class="table table-bordered" id="assets_table" style="border-collapse:collapse;width:710px !important;">
 																								<thead>
 																												<tr style="background: rgb(235, 235, 235);">

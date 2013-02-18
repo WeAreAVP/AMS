@@ -1181,14 +1181,20 @@
 												
 												
 												var oTable = $('#assets_table').dataTable({
-																"aoColumnDefs": [
-																				{ 'bSortable': false, 'aTargets': [ 0 ],
-																								'bSortable': true, 'aTargets': [ 1,2,3,4,5 ],
-																
-																				}
+																//																"aoColumnDefs": [
+								//																				{ 'bSortable': false, 'aTargets': [ 0 ]
+								//																				}
+								//																],
+																"aoColumns": [
+																				{"bSortable": false },
+																				null,
+																				null,
+																				null,
+																				null,
+																				null
 																],
 																"aaSorting": [[ column_index, column_order ]],
-																'bPaginate':true,
+																'bPaginate':false,
 																'bInfo':false,
 																'bFilter': false,
 																"bSort": true,

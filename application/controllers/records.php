@@ -267,16 +267,16 @@ class	Records	extends	MY_Controller
 												$asset_title	=	explode(' | ',	trim(str_replace('(**)',	'',	$value->asset_title)));
 												$asset_title_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$value->asset_title_ref)));
 												$asset_combine	=	'';
-												foreach($asset_title	as	$index	=>	$title)
+												foreach($asset_title	as	$aindex	=>	$title)
 												{
-																if(isset($asset_title_type[$index])	&&	$asset_title_type[$index]	!=	'')
-																				$asset_combine.=	$asset_title_type[$index]	.	': ';
-																if(isset($asset_title_ref[$index]))
+																if(isset($asset_title_type[$aindex])	&&	$asset_title_type[$aindex]	!=	'')
+																				$asset_combine.=	$asset_title_type[$aindex]	.	': ';
+																if(isset($asset_title_ref[$aindex]))
 																{
-																				if($asset_title_ref[$index]	!=	'')
+																				if($asset_title_ref[$aindex]	!=	'')
 																				{
-																								$asset_combine.="<a target='_blank' href='$asset_title_ref[$index]'>$title</a>: ";
-																								$asset_combine.=' ('	.	$asset_title_ref[$index]	.	')';
+																								$asset_combine.="<a target='_blank' href='$asset_title_ref[$aindex]'>$title</a>: ";
+																								$asset_combine.=' ('	.	$asset_title_ref[$aindex]	.	')';
 																				}
 																				else
 																								$asset_combine.=$title;
@@ -289,7 +289,7 @@ class	Records	extends	MY_Controller
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->organization);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->guid_identifier);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->local_identifier);
-												$tablesort[$index][]	=	str_replace("(**)",	'',	addslashes(($asset_combine)));
+												$tablesort[$index][]	=	str_replace("(**)",	'',	$asset_combine);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->description);
 								}
 

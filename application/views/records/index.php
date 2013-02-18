@@ -54,7 +54,7 @@ if(	!	$isAjax)
 																				<?php	echo	$this->ajax_pagination->create_links();	?>
 																</div>
 												</div>
-								<div class="clearfix"></div>
+								<div class="clearfix" style="width: 710px;overflow: hidden;"></div>
 												<?php
 												if(	isset($current_tab)	||	$current_tab	==	'simple')
 												{

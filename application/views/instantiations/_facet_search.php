@@ -1199,14 +1199,14 @@
 																
 																
 												});
-//												new FixedHeader( oTable, {
-//																"offsetTop": 60,
-//																'width':'100%',
-//												}  );
+												new FixedHeader( oTable, {
+																"offsetTop": 60,
+																
+												}  );
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"
 												} );
-												$('.FixedHeader_Header table').width('100%');
+												$('.FixedHeader_Header table').width($('#assets_table').width());
 												oTable.fnAdjustColumnSizing();
 								}
 				}

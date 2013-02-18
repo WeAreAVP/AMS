@@ -290,7 +290,11 @@ class	Records	extends	MY_Controller
 												$tablesort[$index][]	=	str_replace("(**)",	'',	'<a href="'	.	site_url('records/details/'	.	$value->id)	.	'">'	.	$value->guid_identifier	.	'</a>');
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->local_identifier);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$asset_combine);
-												$tablesort[$index][]	=	str_replace("(**)",	'',	substr($value->description, 0, strpos($value->description, ' ', 800)));
+												if(strlen($value->description)	>	200)
+																$description	=	substr($value->description,	0,	strpos($value->description,	' ',	200));
+												else
+																$description	=	$value->description;
+												$tablesort[$index][]	=	str_replace("(**)",	'',	$description);
 								}
 
 								$dataTable	=	array(
@@ -474,7 +478,7 @@ class	Records	extends	MY_Controller
 																}
 																else	if($type	==	'Assets_Date')
 																{
-																				$column='';
+																				$column	=	'';
 																				$asset_dates	=	explode(' | ',	$asset->dates);
 																				$asset_dates_types	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->date_type)));
 																				if(count($asset_dates)	>	0)

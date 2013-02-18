@@ -1202,6 +1202,7 @@
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"
 												} );
+												$('#assets_table').css('width','100% !important');
 											
 												
 								}

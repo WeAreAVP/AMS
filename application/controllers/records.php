@@ -248,7 +248,7 @@ class	Records	extends	MY_Controller
 
 								$this->session->set_userdata('jscolumn',	$this->input->get('iSortCol_0'));
 								$this->session->set_userdata('column',	$columns[$this->input->get('iSortCol_0')]);
-								
+
 								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
 
 
@@ -262,10 +262,33 @@ class	Records	extends	MY_Controller
 								{
 //												guid_identifier
 												$tablesort[$index][]	=	'<i style="margin:0px" class="unflag"></i>';
+												$asset_title_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$value->asset_title_type)));
+												$asset_title	=	explode(' | ',	trim(str_replace('(**)',	'',	$value->asset_title)));
+												$asset_title_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$value->asset_title_ref)));
+												$asset_combine	=	'';
+												foreach($asset_title	as	$index	=>	$title)
+												{
+																if(isset($asset_title_type[$index])	&&	$asset_title_type[$index]	!=	'')
+																				$asset_combine.=	$asset_title_type[$index]	.	': ';
+																if(isset($asset_title_ref[$index]))
+																{
+																				if($asset_title_ref[$index]	!=	'')
+																				{
+																								$asset_combine.="<a target='_blank' href='$asset_title_ref[$index]'>$title</a>: ";
+																								$asset_combine.=' ('	.	$asset_title_ref[$index]	.	')';
+																				}
+																				else
+																								$asset_combine.=$title;
+																}
+																else
+																				$asset_combine.=$title;
+																$asset_combine.='<div class="clearfix"></div>';
+												}
+
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->organization);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->guid_identifier);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->local_identifier);
-												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->asset_title);
+												$tablesort[$index][]	=	str_replace("(**)",	'',	$asset_combine);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->description);
 								}
 

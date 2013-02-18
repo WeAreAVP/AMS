@@ -288,12 +288,12 @@ class	Sphinx_Model	extends	CI_Model
 								if($limit)
 												$this->sphinxsearch->set_limits((int)	$offset,	(int)	$limit,	(	$limit	>	1000	)	?	$limit	:	1000	);
 
-
-								$query	=	$this->make_where_clause();
 								if(isset($this->session->userdata['column'])	&&	$this->session->userdata['column']	!=	'')
 								{
 												$this->sphinxsearch->set_sort_mode(SPH_SORT_ATTR_ASC,	$this->session->userdata['column']);
 								}
+								$query	=	$this->make_where_clause();
+
 								$res	=	$this->sphinxsearch->query($query,	$params['index']);
 
 

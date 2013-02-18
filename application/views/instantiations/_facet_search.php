@@ -1181,9 +1181,9 @@
 												
 												
 												var oTable = $('#assets_table').dataTable({
-																"aoColumnDefs": [
-																				{ 'bSortable': false, 'aTargets': [ 0 ] }
-																],
+//																"aoColumnDefs": [
+//																				{ 'bSortable': false, 'aTargets': [ 0 ] }
+//																],
 																"aaSorting": [[ column_index, column_order ]],
 																'bPaginate':false,
 																'bInfo':false,

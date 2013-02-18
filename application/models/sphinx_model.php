@@ -288,7 +288,7 @@ class	Sphinx_Model	extends	CI_Model
 								if($limit)
 												$this->sphinxsearch->set_limits((int)	$offset,	(int)	$limit,	(	$limit	>	1000	)	?	$limit	:	1000	);
 
-								if(isset($this->session->userdata['column'])	&&	$this->session->userdata['column']	!=	'')
+								if(isset($this->session->userdata['column'])	&&	$this->session->userdata['column']	!=	'' &&	$this->session->userdata['column']	!=	'flag')
 								{
 												$this->sphinxsearch->set_sort_mode(SPH_SORT_ATTR_ASC,	$this->session->userdata['column']);
 								}

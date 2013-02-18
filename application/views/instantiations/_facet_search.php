@@ -1146,11 +1146,9 @@
 												data:$('#form_search').serialize(),
 												success: function (result)
 												{ 
-																//																$('#data_container').html(result);
 																$('.row-fluid').html(result);
-																if('<?php	echo	$current_tab;	?>'=='simple'){
+																if('<?php	echo	$current_tab;	?>'=='simple')
 																				updateSimpleDataTable();
-																}
 																else
 																				updateDataTable();
 																isAnySearch();
@@ -1178,7 +1176,6 @@
 								{
 												column_index='<?php	echo	isset($this->session->userdata['jscolumn'])	?	$this->session->userdata['jscolumn']	:	1;	?>';
 												column_order='<?php	echo	isset($this->session->userdata['column_order'])	?	$this->session->userdata['column_order']	:	'desc';	?>';
-												
 												
 												var oTable = $('#assets_table').dataTable({
 																"aoColumns": [

@@ -240,6 +240,7 @@ class	Records	extends	MY_Controller
 
 				public	function	sort_simple_table()
 				{
+								$this->load->helper('string');
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
 								$columns	=	array('flag',	'organization',	'guid_identifier',	'local_identifier',	'asset_title',	'description');
 								$this->session->unset_userdata('column');
@@ -288,7 +289,7 @@ class	Records	extends	MY_Controller
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->organization);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->guid_identifier);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->local_identifier);
-												$tablesort[$index][]	=	str_replace("(**)",	'',	html_escape($asset_combine));
+												$tablesort[$index][]	=	str_replace("(**)",	'',	(quotes_to_entities($asset_combine)));
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->description);
 								}
 

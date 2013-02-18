@@ -291,7 +291,7 @@ class	Records	extends	MY_Controller
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->local_identifier);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$asset_combine);
 												if(strlen($value->description)	>	200)
-																$description	=	substr($value->description,	0,	strpos($value->description,	' ',	200));
+																$description	=	substr($value->description,	0,	strpos($value->description,	' ',	200)).'...';
 												else
 																$description	=	$value->description;
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$description);

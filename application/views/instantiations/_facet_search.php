@@ -1180,10 +1180,10 @@
 												var oTable = $('#assets_table').dataTable({
 																"aoColumns": [
 																				{"bSortable": false },
-																				{"sWidth": "100px"},,
-																				{"sWidth": "150px"},,
-																				{"sWidth": "100px"},,
-																				{"sWidth": "150px"},,
+																				{"sWidth": "100px"},
+																				{"sWidth": "150px"},
+																				{"sWidth": "100px"},
+																				{"sWidth": "150px"},
 																				{"sWidth": "200px"},
 																],
 																"aSorting": [[ column_index, column_order ]],

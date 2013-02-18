@@ -281,9 +281,14 @@ function freezeColumns(count)
 				updateDatabase(1);
 				
 }
-function updateDataTable()
+function updateDataTable(tabType)
 {
-				
+				if(tabType=='full_table'){
+								url_tab_type='sort_full_table';
+				}
+				else{
+								url_tab_type='instantiation_table';
+				}
 				if($('#listing_table').length>0)
 				{
 								
@@ -293,7 +298,7 @@ function updateDataTable()
 												"sDom": 'RlfrtipS',
 												"aoColumnDefs": [{
 																"bVisible": false, 
-																"aTargets": hiden_column,
+																"aTargets": hiden_column
 																
 												},
 												//												{
@@ -321,7 +326,7 @@ function updateDataTable()
 												"bAutoWidth": true,
 												"bProcessing": true,
 												"bServerSide": true,
-												"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
+												"sAjaxSource": "http://amsqa.avpreserve.com/records/"+url_tab_type
 												
 												
 								});

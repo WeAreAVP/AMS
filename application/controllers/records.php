@@ -306,6 +306,7 @@ class	Records	extends	MY_Controller
 				public	function	sort_full_table()
 				{
 							$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;	
+							debug($this->column_order);
 				}
 
 }

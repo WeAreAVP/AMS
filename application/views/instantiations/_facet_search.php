@@ -1176,10 +1176,20 @@
 								
 								if($('#assets_table').length>0)
 								{
+												column_index='<?php echo $this->session->userdata['jscolumn']; ?>';
+												if(column_index!=''){
+																column_order='<?php echo $this->session->userdata['column_order']; ?>';
+												}
+												else{
+																column_index=1;
+																column_order'desc';
+												}
+												
 												var oTable = $('#assets_table').dataTable({
 																"aoColumnDefs": [
 																				{ 'bSortable': false, 'aTargets': [ 0 ] }
 																],
+																"aaSorting": [[ column_index, column_order ]],
 																'bPaginate':false,
 																'bInfo':false,
 																'bFilter': false,

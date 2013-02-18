@@ -1176,14 +1176,9 @@
 								
 								if($('#assets_table').length>0)
 								{
-												column_index='<?php echo $this->session->userdata['jscolumn']; ?>';
-												if(column_index!=''){
-																column_order='<?php echo $this->session->userdata['column_order']; ?>';
-												}
-												else{
-																column_index=1;
-																column_order'desc';
-												}
+												column_index='<?php	echo	isset($this->session->userdata['jscolumn'])	?	$this->session->userdata['jscolumn']	:	1;	?>';
+												column_order='<?php	echo	isset($this->session->userdata['column_order'])	?	$this->session->userdata['column_order']	:	'desc';	?>';
+												
 												
 												var oTable = $('#assets_table').dataTable({
 																"aoColumnDefs": [
@@ -1196,7 +1191,7 @@
 																"bSort": true,
 																"bDeferRender": true,
 																"bAutoWidth": false,
-//																'width':'100%',
+																//																'width':'100%',
 																"bProcessing": true,
 																"bServerSide": true,
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"

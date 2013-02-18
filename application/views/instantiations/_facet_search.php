@@ -1186,7 +1186,7 @@
 																				null,
 																				null
 																],
-																"aaSorting": [[ column_index, column_order ]],
+																"aSorting": [[ column_index, column_order ]],
 																'bPaginate':false,
 																'bInfo':false,
 																'bFilter': false,

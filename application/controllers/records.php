@@ -288,7 +288,7 @@ class	Records	extends	MY_Controller
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->organization);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->guid_identifier);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->local_identifier);
-												$tablesort[$index][]	=	str_replace("(**)",	'',	htmlspecialchars($asset_combine));
+												$tablesort[$index][]	=	str_replace("(**)",	'',	html_escape($asset_combine));
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->description);
 								}
 

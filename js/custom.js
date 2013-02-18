@@ -284,7 +284,7 @@ function freezeColumns(count)
 function updateDataTable()
 {
 				console.log(current_table_type);
-				if(current_table_type=='full_table'){
+				if(current_table_type=='assets'){
 								url_tab_type='sort_full_table';
 				}
 				else{

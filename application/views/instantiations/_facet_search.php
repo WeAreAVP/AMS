@@ -1202,9 +1202,7 @@
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"
 												} );
-												$('.FixedHeader_Header table').css('width','100% !important');
-											
-												
+												$('.FixedHeader_Header table').width('100%')
 								}
 				}
 				function showHideSearch(divID,obj){

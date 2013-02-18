@@ -296,11 +296,11 @@ function updateDataTable()
 																"aTargets": hiden_column,
 																
 												},
-//												{
-//																'bSortable': false, 
-//																'aTargets': [ 0 ]
-//												}
-								],
+												//												{
+												//																'bSortable': false, 
+												//																'aTargets': [ 0 ]
+												//												}
+												],
 												"oColReorder": {
 																"iFixedColumns": frozen,
 																"fnReorderCallback": function () {
@@ -318,7 +318,10 @@ function updateDataTable()
 												"bDeferRender": true, 
 												"bDestroy": is_destroy,
 												"bRetrieve": true,
-												"bAutoWidth": true
+												"bAutoWidth": true,
+												"bProcessing": true,
+												"bServerSide": true,
+												"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
 												
 												
 								});

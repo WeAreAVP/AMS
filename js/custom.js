@@ -296,10 +296,11 @@ function updateDataTable()
 																"aTargets": hiden_column,
 																
 												},
-												{
-																'bSortable': false, 
-																'aTargets': [ 0 ]
-												}],
+//												{
+//																'bSortable': false, 
+//																'aTargets': [ 0 ]
+//												}
+								],
 												"oColReorder": {
 																"iFixedColumns": frozen,
 																"fnReorderCallback": function () {

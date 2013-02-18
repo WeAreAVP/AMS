@@ -290,7 +290,7 @@ class	Records	extends	MY_Controller
 												$tablesort[$index][]	=	str_replace("(**)",	'',	'<a href="'	.	site_url('records/details/'	.	$value->id)	.	'">'	.	$value->guid_identifier	.	'</a>');
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->local_identifier);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$asset_combine);
-												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->description);
+												$tablesort[$index][]	=	str_replace("(**)",	'',	substr($value->description, 0, strpos($value->description, ' ', 800)));
 								}
 
 								$dataTable	=	array(

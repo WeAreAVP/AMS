@@ -1187,8 +1187,7 @@
 																'bFilter': false,
 																"bSort": true,
 																"bDeferRender": true,
-																"bAutoWidth": false,
-																"width":'100%',
+																"bAutoWidth": true,
 																"bProcessing": true,
 																"bServerSide": true,
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
@@ -1197,7 +1196,7 @@
 												});
 												new FixedHeader( oTable, {
 																"offsetTop": 60,
-																'width':'710px;',
+																
 												}  );
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"

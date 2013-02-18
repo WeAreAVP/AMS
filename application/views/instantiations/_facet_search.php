@@ -1192,7 +1192,7 @@
 																'bFilter': false,
 																"bSort": true,
 																"bDeferRender": true,
-																"bAutoWidth": true,
+																"bAutoWidth": false,
 																"bProcessing": true,
 																"bServerSide": true,
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"

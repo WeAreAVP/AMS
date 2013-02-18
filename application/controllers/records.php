@@ -324,8 +324,9 @@ class	Records	extends	MY_Controller
 								'Annotation'						=>	'asset_annotation',
 								'Rights'										=>	'asset_rights');
 
-								echo $this->column_order[$this->input->get('iSortCol_0')]['title'];
-								echo $this->input->get('sSortDir_0');exit;
+								echo	$column[$this->column_order[$this->input->get('iSortCol_0')]['title']];
+								echo	$this->input->get('sSortDir_0');
+								exit;
 //								$this->session->unset_userdata('column');
 //								$this->session->unset_userdata('jscolumn');
 //								$this->session->unset_userdata('column_order');

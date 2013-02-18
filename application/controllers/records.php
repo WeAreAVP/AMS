@@ -246,6 +246,7 @@ class	Records	extends	MY_Controller
 								$this->session->unset_userdata('column_order');
 
 								$this->session->set_userdata('column',	$columns[$this->input->get('iSortCol_0')]);
+								
 								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
 
 

@@ -1152,7 +1152,7 @@
 																				updateSimpleDataTable();
 																}
 																else
-																				updateDataTable('<?php	echo	$current_tab;	?>');
+																				updateDataTable();
 																isAnySearch();
 																$.unblockUI();
                                     

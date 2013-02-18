@@ -281,10 +281,10 @@ function freezeColumns(count)
 				updateDatabase(1);
 				
 }
-function updateDataTable(tabType)
+function updateDataTable()
 {
-				console.log(tabType);
-				if(tabType=='full_table'){
+				console.log(current_table_type);
+				if(current_table_type=='full_table'){
 								url_tab_type='sort_full_table';
 				}
 				else{

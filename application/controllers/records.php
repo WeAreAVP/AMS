@@ -342,15 +342,15 @@ class	Records	extends	MY_Controller
 								$records	=	$records['records'];
 								$data['count']	=	count($records);
 								$tablesort	=	array();
-								foreach($records	as	$index	=>	$asset)
+								foreach($records	as	$main_index	=>	$asset)
 								{
 												foreach($this->column_order	as	$row)
 												{
 																$type	=	$row['title'];
-																$column	=	'';
+																
 																if($type	==	'Organization')
 																{
-																				$tablesort[$index][]	=	$asset->organization;
+																				$tablesort[$main_index][]	=	$asset->organization;
 																}
 																else	if($type	==	'Titles')
 																{
@@ -376,15 +376,15 @@ class	Records	extends	MY_Controller
 																												$column.=$title;
 																								$column.='<div class="clearfix"></div>';
 																				}
-																				$tablesort[$index][]	=	$column;
+																				$tablesort[$main_index][]	=	$column;
 																}
 																else	if($type	==	'AA_GUID')
 																{
-																				$tablesort[$index][]	=	($asset->guid_identifier)	?	'<a href="'	.	site_url('records/details/'	.	$asset->id)	.	'" >'	.	$asset->guid_identifier	:	'';
+																				$tablesort[$main_index][]	=	($asset->guid_identifier)	?	'<a href="'	.	site_url('records/details/'	.	$asset->id)	.	'" >'	.	$asset->guid_identifier	:	'';
 																}
 																else	if($type	==	'Local_ID')
 																{
-																				$tablesort[$index][]	=	$asset->local_identifier;
+																				$tablesort[$main_index][]	=	$asset->local_identifier;
 																}
 																else	if($type	==	'Description')
 																{
@@ -414,7 +414,7 @@ class	Records	extends	MY_Controller
 																												}
 																								}
 																				}
-																				$tablesort[$index][]	=	$column;
+																				$tablesort[$main_index][]	=	$column;
 																}
 																else	if($type	==	'Subjects')
 																{
@@ -444,7 +444,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$index][]	=	$column;
+																				$tablesort[$main_index][]	=	$column;
 																}
 																else	if($type	==	'Genre')
 																{
@@ -474,7 +474,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$index][]	=	$column;
+																				$tablesort[$main_index][]	=	$column;
 																}
 																else	if($type	==	'Assets_Date')
 																{
@@ -497,7 +497,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$index][]	=	$column;
+																				$tablesort[$main_index][]	=	$column;
 																}
 																else	if($type	==	'Creator')
 																{
@@ -536,7 +536,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$index][]	=	$column;
+																				$tablesort[$main_index][]	=	$column;
 																}
 																else	if($type	==	'Contributor')
 																{
@@ -575,7 +575,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$index][]	=	$column;
+																				$tablesort[$main_index][]	=	$column;
 																}
 																else	if($type	==	'Publisher')
 																{
@@ -614,7 +614,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$index][]	=	$column;
+																				$tablesort[$main_index][]	=	$column;
 																}
 																else	if($type	==	'Coverage')
 																{
@@ -636,7 +636,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$index][]	=	$column;
+																				$tablesort[$main_index][]	=	$column;
 																}
 																else	if($type	==	'Audience_Level')
 																{
@@ -660,7 +660,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$index][]	=	$column;
+																				$tablesort[$main_index][]	=	$column;
 																}
 																else	if($type	==	'Audience_Rating')
 																{
@@ -684,7 +684,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$index][]	=	$column;
+																				$tablesort[$main_index][]	=	$column;
 																}
 																else	if($type	==	'Annotation')
 																{
@@ -708,7 +708,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$index][]	=	$column;
+																				$tablesort[$main_index][]	=	$column;
 																}
 																else	if($type	==	'Rights')
 																{
@@ -729,7 +729,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$index][]	=	$column;
+																				$tablesort[$main_index][]	=	$column;
 																}
 												}
 

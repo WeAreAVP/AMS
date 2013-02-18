@@ -283,6 +283,7 @@ function freezeColumns(count)
 }
 function updateDataTable(tabType)
 {
+				console.log(tabType);
 				if(tabType=='full_table'){
 								url_tab_type='sort_full_table';
 				}

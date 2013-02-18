@@ -241,6 +241,13 @@ class	Records	extends	MY_Controller
 				public	function	sort_simple_table()
 				{
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
+								$columns	=	array('flag',	'organization',	'guid_identifier',	'local_identifier',	'asset_title',	'description');
+								$this->session->unset_userdata('column');
+								$this->session->unset_userdata('column_order');
+								$this->session->set_userdata('column',	$this->input->get('iSortCol_0'));
+								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
+
+
 								$param	=	array('index'								=>	'assets_list');
 								$records	=	$this->sphinx->assets_listing($param,	$offset);
 								$data['total']	=	$records['total_count'];
@@ -257,7 +264,7 @@ class	Records	extends	MY_Controller
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->asset_title);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->description);
 								}
-								
+
 								$dataTable	=	array(
 								"sEcho"																=>	1,
 								"iTotalRecords"								=>	$data['count'],

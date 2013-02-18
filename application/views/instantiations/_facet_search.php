@@ -1197,7 +1197,7 @@
 												});
 												new FixedHeader( oTable, {
 																"offsetTop": 60,
-//																'width':'710px;',
+																'width':'710px;',
 												}  );
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"

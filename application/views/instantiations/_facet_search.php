@@ -1196,7 +1196,8 @@
 																
 												});
 												new FixedHeader( oTable, {
-//																"offsetTop": 60
+																"offsetTop": 60,
+																'width':'100%',
 												}  );
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"

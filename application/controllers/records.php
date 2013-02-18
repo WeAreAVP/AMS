@@ -338,9 +338,9 @@ class	Records	extends	MY_Controller
 								$records	=	$records['records'];
 								$data['count']	=	count($records);
 								$tablesort	=	array();
-								foreach($records	as	$index	=>	$value)
+								foreach($records	as	$index	=>	$asset)
 								{
-												foreach($this->column_order	as	$asset)
+												foreach($this->column_order	as	$row)
 												{
 																$type	=	$row['title'];
 																$column	=	'';

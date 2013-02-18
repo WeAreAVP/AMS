@@ -60,7 +60,7 @@ if(	!	$isAjax)
 												{
 																?>
 																<div style="" id="simple_view">
-																				<table class="table table-bordered" id="assets_table" style="border-collapse:collapse;">
+																				<table class="table table-bordered" id="assets_table" style="border-collapse:collapse;width:710px !important;">
 																								<thead>
 																												<tr style="background: rgb(235, 235, 235);">
 																																<td><i class="icon-flag "></i></td>

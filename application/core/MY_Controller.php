@@ -70,7 +70,7 @@ class	MY_Controller	extends	CI_Controller
 
 				function	_table_view_settings()
 				{
-								if(is_route_method(array('records'	=>	array('index'))))
+								if(is_route_method(array('records'	=>	array('index','sort_full_table'))))
 								{
 												$res	=	$this->user_settings->get_setting($this->user_id,	'assets',	'full');
 												if($res)

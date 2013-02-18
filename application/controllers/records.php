@@ -240,7 +240,7 @@ class	Records	extends	MY_Controller
 
 				public	function	sort_simple_table()
 				{
-								
+
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
 								$columns	=	array('flag',	'organization',	'guid_identifier',	'local_identifier',	'asset_title',	'description');
 								$this->session->unset_userdata('column');
@@ -287,7 +287,7 @@ class	Records	extends	MY_Controller
 												}
 
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->organization);
-												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->guid_identifier);
+												$tablesort[$index][]	=	str_replace("(**)",	'',	'<a href="'	.	site_url('records/detail/'	.	$value->id)	.	'">'	.	$value->guid_identifier	.	'</a>');
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->local_identifier);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$asset_combine);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->description);
@@ -305,8 +305,37 @@ class	Records	extends	MY_Controller
 
 				public	function	sort_full_table()
 				{
-							$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;	
-							debug($this->column_order);
+								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
+								$column	=	array(
+								'Organization'				=>	'organization',
+								'Titles'										=>	'asset_title',
+								'AA_GUID'									=>	'guid_identifier',
+								'Local_ID'								=>	'local_identifier',
+								'Description'					=>	'description',
+								'Subjects'								=>	'asset_subject',
+								'Genre'											=>	'asset_genre',
+								'Assets_Date'					=>	'dates',
+								'Creator'									=>	'asset_creator_name',
+								'Contributor'					=>	'asset_contributor_name',
+								'Publisher'							=>	'asset_publisher_name',
+								'Coverage'								=>	'asset_coverage',
+								'Audience_Level'		=>	'asset_audience_level',
+								'Audience_Rating'	=>	'asset_audience_rating',
+								'Annotation'						=>	'asset_annotation',
+								'Rights'										=>	'asset_rights');
+
+								echo $this->input->get('iSortCol_0');
+								echo $this->input->get('sSortDir_0');exit;
+//								$this->session->unset_userdata('column');
+//								$this->session->unset_userdata('jscolumn');
+//								$this->session->unset_userdata('column_order');
+//
+//								$this->session->set_userdata('jscolumn',	$this->input->get('iSortCol_0'));
+//								$this->session->set_userdata('column',	$column[$this->input->get('iSortCol_0')]['title']);
+//
+//								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
+
+								debug($this->column_order);
 				}
 
 }

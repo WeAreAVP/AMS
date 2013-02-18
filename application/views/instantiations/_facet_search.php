@@ -1185,7 +1185,8 @@
 																'bFilter': false,
 																"bSort": true,
 																"bDeferRender": true,
-																'width':'100%',
+																"bAutoWidth": false,
+//																'width':'100%',
 																"bProcessing": true,
 																"bServerSide": true,
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
@@ -1202,7 +1203,8 @@
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"
 												} );
-												$('.FixedHeader_Header table').width('100%')
+												$('.FixedHeader_Header table').width('100%');
+												oTable.fnAdjustColumnSizing();
 								}
 				}
 				function showHideSearch(divID,obj){

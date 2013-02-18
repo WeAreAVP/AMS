@@ -1186,7 +1186,7 @@
 																'bInfo':false,
 																'bFilter': false,
 																"bSort": true,
-																"bDeferRender": false,
+																"bDeferRender": true,
 																"bAutoWidth": false,
 																"width":710,
 																"bProcessing": true,

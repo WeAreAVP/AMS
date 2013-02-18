@@ -1181,10 +1181,6 @@
 												
 												
 												var oTable = $('#assets_table').dataTable({
-																//																"aoColumnDefs": [
-								//																				{ 'bSortable': false, 'aTargets': [ 0 ]
-								//																				}
-								//																],
 																"aoColumns": [
 																				{"bSortable": false },
 																				null,
@@ -1200,14 +1196,10 @@
 																"bSort": true,
 																"bDeferRender": true,
 																"bAutoWidth": false,
-																//																'width':'100%',
 																"bProcessing": true,
 																"bServerSide": true,
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
-																//																"fnDrawCallback": function( oSettings) {
-																//																				console.log( oSettings);
-																//																				console.log("[fnDrawCallback] enter: " + this.fnSettings().bSorted);
-																//																}
+																
 																
 												});
 												new FixedHeader( oTable, {

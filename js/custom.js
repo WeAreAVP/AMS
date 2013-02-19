@@ -285,9 +285,11 @@ function updateDataTable()
 {
 				if(current_table_type=='assets'){
 								url_tab_type='sort_full_table';
+								height=$(window).height()-250;
 				}
 				else{
 								url_tab_type='instantiation_table';
+								height=$(window).height()-210;
 				}
 				if($('#listing_table').length>0)
 				{
@@ -318,7 +320,7 @@ function updateDataTable()
 												'bInfo':false,
 												'bFilter': false,
 												"bSort": true,
-												"sScrollY": $(window).height()-250,
+												"sScrollY": height,
 												"sScrollX": "200%",	
 												"bDeferRender": true, 
 												"bDestroy": is_destroy,

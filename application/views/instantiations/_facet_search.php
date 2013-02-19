@@ -923,8 +923,8 @@
 								}); 
 								
 								
-							$('##limit_field_dropdown').trigger('click',function(){
-											$('##limit_field_dropdown').css('position','absolute');
+							$('#limit_field_dropdown').trigger('click',function(){
+											$('#limit_field_dropdown').css('position','absolute');
 							});
 								
 				})(jQuery)

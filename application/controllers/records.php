@@ -286,15 +286,15 @@ class	Records	extends	MY_Controller
 																$asset_combine.='<div class="clearfix"></div>';
 												}
 
-												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->organization);
-												$tablesort[$index][]	=	str_replace("(**)",	'',	'<a href="'	.	site_url('records/details/'	.	$value->id)	.	'">'	.	$value->guid_identifier	.	'</a>');
-												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->local_identifier);
-												$tablesort[$index][]	=	str_replace("(**)",	'',	$asset_combine);
+												$tablesort[$index][]	=	str_replace("(**)",	'',	'<span style="width:100px;">'.$value->organization.'</span>');
+												$tablesort[$index][]	=	str_replace("(**)",	'',	'<span style="width:150px;"><a href="'	.	site_url('records/details/'	.	$value->id)	.	'">'	.	$value->guid_identifier	.	'</a></span>');
+												$tablesort[$index][]	=	str_replace("(**)",	'',	'<span style="width:150px;">'.$value->local_identifier.'</span>');
+												$tablesort[$index][]	=	str_replace("(**)",	'',	'<span style="width:150px;">'.$asset_combine.'</span>');
 												if(strlen($value->description)	>	200)
 																$description	=	substr($value->description,	0,	strpos($value->description,	' ',	200)).'...';
 												else
 																$description	=	$value->description;
-												$tablesort[$index][]	=	str_replace("(**)",	'',	$description);
+												$tablesort[$index][]	=	'<span style="width:150px;">'.str_replace("(**)",	'',	$description).'</span>';
 								}
 
 								$dataTable	=	array(

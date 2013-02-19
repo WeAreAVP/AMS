@@ -1180,6 +1180,7 @@
 //																"sDom": 'Rlfrtip',
 																"aoColumns": [
 																				{"bSortable": false },
+																				null,null,null,null,null
 																],
 																"aSorting": [[ column_index, column_order ]],
 																'bPaginate':false,

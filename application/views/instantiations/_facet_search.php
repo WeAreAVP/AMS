@@ -923,17 +923,17 @@
 								}); 
 								
 								
-						$('#limit_field_dropdown').click(function(){
-										
-										$('#limit_field_dropdown').css('position','absolute');
-										$('#limit_field_dropdown').css('top',$('#limit_field_dropdown').top()-$(this).offset().top);
-
-										
-						});
-						$('body').click(function(){
+//						$('#limit_field_dropdown').click(function(){
+//										
+//										$('#limit_field_dropdown').css('position','absolute');
+//										$('#limit_field_dropdown').css('top',$('#limit_field_dropdown').top()-$(this).offset().top);
+//
+//										
+//						});
+//						$('body').click(function(){
 //										$('#limit_field_dropdown').css('position','relative');
 //										$('#limit_field_dropdown').css('top',0);
-						});
+//						});
 						
 								
 				})(jQuery)

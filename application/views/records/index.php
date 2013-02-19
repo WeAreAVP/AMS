@@ -42,7 +42,7 @@ if(	!	$isAjax)
 								if(isset($records)	&&	($total	>	0))
 								{
 												?>
-												<div  id="link_pagination">
+												<div id="link_pagination">
 																<?php
 																if(isset($current_tab)	&&	$current_tab	==	'full_table')
 																{

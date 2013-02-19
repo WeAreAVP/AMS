@@ -893,7 +893,9 @@
 				oTable=null;
 				
 				(function($){
-								$('.container').width($(window).width()-70);
+								$('.container').width($(window).width()-50);
+								$('.navbar-inner').width($(window).width()-50);
+								$('#top_setting_nav').width($(window).width()-50);
 								var hash = window.location.hash.replace('#', '');
 								if($(window.parent.document).find('iframe').size()){
 												var inframe = true;

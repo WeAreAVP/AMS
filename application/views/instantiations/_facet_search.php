@@ -1180,7 +1180,11 @@
 //																"sDom": 'Rlfrtip',
 																"aoColumns": [
 																				{"bSortable": false },
-																				null,null,null,null,null
+																				null,
+																				null,
+																				null,
+																				null,
+																				null
 																],
 																"aSorting": [[ column_index, column_order ]],
 																'bPaginate':false,
@@ -1189,8 +1193,8 @@
 																"bSort": true,
 																"bDeferRender": true,
 																"bRetrieve": true,
-																"bAutoWidth": true,
-																"width":'100%',
+//																"bAutoWidth": true,
+//																"width":'100%',
 																"bProcessing": true,
 																"bServerSide": true,
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"

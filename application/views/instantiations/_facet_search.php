@@ -1190,9 +1190,9 @@
 												{
 																//												"sDom": 'RlfrtipS',
 																"aoColumns": [
-																				{"bSortable": false ,'sWidth':'10%'},
+																				{"bSortable": false ,'sWidth':'5%'},
 																				{'sWidth':'15%'},
-																				{'sWidth':'15%'},
+																				{'sWidth':'20%'},
 																				{'sWidth':'20%'},
 																				{'sWidth':'20%'},
 																				{'sWidth':'20%'},

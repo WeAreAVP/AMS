@@ -1,10 +1,10 @@
 
-
+<div style="position: fixed;overflow: scroll;">
 <form name="form_search" id="form_search" method="post" onsubmit="return false;">
 
 
 
-				<div id="search_bar_val" class="facet-search" style="position: fixed;overflow: scroll;"> 
+				<div id="search_bar_val" class="facet-search"> 
 								<h5 class="filter_title" id="filter_criteria" style="display: none;">FILTER CRITERIA&nbsp;<span id="filter_record_count"></span></h5>
 								<div id="tokens">
 
@@ -881,7 +881,7 @@
 
 				</div>
 </form>
-
+</div>
 <script type="text/javascript">
     var is_destroy=false;
 				var columnsOrder=new Array();

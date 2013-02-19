@@ -7,7 +7,7 @@ if(	!	$isAjax)
 				<div class="span3" style="width: 230px;">
 								<?php	$this->load->view('instantiations/_facet_search');	?>
 				</div>
-				<div  class="span10" id="data_container">
+				<div  class="span10" id="data_container" style="margin-left: 10px;">
 
 
 								<?php	$this->load->view('layouts/_records_nav');	?>

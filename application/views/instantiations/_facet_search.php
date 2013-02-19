@@ -1193,7 +1193,7 @@
 																"bSort": true,
 																"bDeferRender": true,
 																"bRetrieve": true,
-//																"bAutoWidth": true,
+																"bAutoWidth": false,
 //																"width":'100%',
 																"bProcessing": true,
 																"bServerSide": true,
@@ -1205,9 +1205,9 @@
 																"offsetTop": 60,
 																
 												}  );
-												$.extend( $.fn.dataTableExt.oStdClasses, {
-																"sWrapper": "dataTables_wrapper form-inline"
-												} );
+//												$.extend( $.fn.dataTableExt.oStdClasses, {
+//																"sWrapper": "dataTables_wrapper form-inline"
+//												} );
 												//												$('.FixedHeader_Header table').width($('#assets_table').width());
 												sTable.fnAdjustColumnSizing();
 								}

@@ -360,8 +360,8 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     cursor: move;
 }
 .dataTables_processing {
-	position: absolute;
-	top: 0px;
+	position: fixed;
+	top: 160px;
 	left: 50%;
 	width: 250px;
 	margin-left: -125px;

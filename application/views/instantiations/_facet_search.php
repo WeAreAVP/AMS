@@ -1198,7 +1198,7 @@
 																				{'sWidth':'20%'},
 																				{'sWidth':'40%'},
 																],
-																"aSorting": [[ column_index, column_order ]],														  
+//																"aSorting": [[ column_index, column_order ]],														  
 																'bPaginate':false, 
 																'bInfo':false,
 																'bFilter': false,

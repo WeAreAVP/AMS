@@ -925,8 +925,9 @@
 								
 						$('#limit_field_dropdown').click(function(){
 										
-//										$('#limit_field_dropdown').css('position','fixed');
-console.log($(this).offset().top);
+										$('#limit_field_dropdown').css('position','absolute');
+										$('#limit_field_dropdown').css('top',$(this).offset().top);
+
 										
 						});
 						$('body').click(function(){

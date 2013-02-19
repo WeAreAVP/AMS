@@ -1167,6 +1167,7 @@
 												}
 								});
 				}
+				sTable=null;
 				function updateSimpleDataTable()
 				{
 								
@@ -1175,7 +1176,7 @@
 												column_index='<?php	echo	isset($this->session->userdata['jscolumn'])	?	$this->session->userdata['jscolumn']	:	1;	?>';
 												column_order='<?php	echo	isset($this->session->userdata['column_order'])	?	$this->session->userdata['column_order']	:	'desc';	?>';
 												
-												var oTable = $('#assets_table').dataTable({
+												var sTable = $('#assets_table').dataTable({
 																"aoColumns": [
 																				{"bSortable": false },
 																				{"sWidth": "100px"},
@@ -1197,15 +1198,15 @@
 																
 																
 												});
-												new FixedHeader( oTable, {
-																"offsetTop": 60,
-																
-												}  );
+//												new FixedHeader( oTable, {
+//																"offsetTop": 60,
+//																
+//												}  );
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"
 												} );
-												$('.FixedHeader_Header table').width($('#assets_table').width());
-//												oTable.fnAdjustColumnSizing();
+//												$('.FixedHeader_Header table').width($('#assets_table').width());
+												oTable.fnAdjustColumnSizing();
 								}
 				}
 				function showHideSearch(divID,obj){

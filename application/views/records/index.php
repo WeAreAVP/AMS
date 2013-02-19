@@ -166,9 +166,9 @@ if(	!	$isAjax)
 																												?>
 																<br clear="all"/>
 																<div id="full_table_view">
-																				<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;border-collapse:collapse;"  >
+																				<table class="table table-bordered" id="listing_table" style="border-collapse:collapse;"  >
 																								<thead>
-																												<tr>
+																												<tr style="background: rgb(235, 235, 235);">
 
 																																<?php
 																																if(	!	empty($this->column_order))

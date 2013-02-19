@@ -25,9 +25,9 @@ if(	!	$isAjax)
 												<div class="clearfix"></div>
 												<div style="" id="instantiation-main">
 
-																<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;border-collapse:collapse;">
+																<table class="table table-bordered" id="listing_table" style="border-collapse:collapse;">
 																				<thead>
-																								<tr>
+																								<tr style="background: rgb(235, 235, 235);">
 																												<?php
 																												foreach($this->column_order	as	$key	=>	$value)
 																												{

@@ -1177,13 +1177,9 @@
 												column_order='<?php	echo	isset($this->session->userdata['column_order'])	?	$this->session->userdata['column_order']	:	'desc';	?>';
 												
 												var sTable = $('#assets_table').dataTable({
+																"sDom": 'Rlfrtip',
 																"aoColumns": [
 																				{"bSortable": false },
-																				{"sWidth": "100px"},
-																				{"sWidth": "150px"},
-																				{"sWidth": "100px"},
-																				{"sWidth": "150px"},
-																				{"sWidth": "200px"},
 																],
 																"aSorting": [[ column_index, column_order ]],
 																'bPaginate':false,
@@ -1198,10 +1194,10 @@
 																
 																
 												});
-//												new FixedHeader( oTable, {
-//																"offsetTop": 60,
-//																
-//												}  );
+												new FixedHeader( sTable, {
+																"offsetTop": 60,
+																
+												}  );
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"
 												} );

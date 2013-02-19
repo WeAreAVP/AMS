@@ -894,6 +894,8 @@
 				
 				(function($){
 								$('.container').width($(window).width()-50);
+								$('#link_pagination').width($(window).width()-50);
+								
 								$('.navbar-inner').width($(window).width()-50);
 								$('#top_setting_nav').width($(window).width()-50);
 								$('body').css('overflow','hidden');

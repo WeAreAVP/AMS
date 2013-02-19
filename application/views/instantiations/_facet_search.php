@@ -1189,7 +1189,7 @@
 												sTable = 
 																$('#assets_table').dataTable(
 												{
-//																"sDom": 'S',
+															"sDom": 'frtiS',
 																"aoColumns": [
 																				{"bSortable": false ,'sWidth':'1%'},
 																				{'sWidth':'15%'},
@@ -1204,7 +1204,7 @@
 																'bFilter': false,
 																"bSort": true,
 																"sScrollY": $(window).height()-250,
-																"sScrollX": "100%",	
+//																"sScrollX": "100%",	
 																"bScrollCollapse": true,
 																"bDeferRender": true, 
 																"bDestroy": is_destroy,

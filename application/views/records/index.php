@@ -9,7 +9,7 @@ if(	!	$isAjax)
 								<?php	$this->load->view('instantiations/_facet_search');	?>
 				</div>
 
-								<div  class="span10" id="data_container" >
+								<div id="data_container" style="float:left;">
 
 
 								<?php	$this->load->view('layouts/_records_nav');	?>

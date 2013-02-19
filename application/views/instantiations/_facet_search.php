@@ -463,8 +463,8 @@
 								}
 								?>
 								<div class="field-filters" id="date_range_filter_div">
-												<div class="filter-fileds"><b>Date</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('date_range_filter_div',this);"></span></div>
-												<div>
+												<div class="filter-fileds"><b>Date</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('date_range_filter_div_1',this);"></span></div>
+												<div id="date_range_filter_div_1">
 																<div id="widget">
 																				<div id="date_range_filter">
 

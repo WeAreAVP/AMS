@@ -1203,7 +1203,7 @@
 																'bFilter': false,
 																"bSort": true,
 																"sScrollY": $(window).height()-250,
-																"sScrollX": "200%",	
+																"sScrollX": "100%",	
 																"bDeferRender": true, 
 																"bDestroy": is_destroy,
 																"bRetrieve": true,
@@ -1211,9 +1211,8 @@
 																"bProcessing": true,
 																"bServerSide": true,
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
-												
-												
 												});
+												
 												
 								}
 				}

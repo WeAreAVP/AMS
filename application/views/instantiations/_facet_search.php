@@ -1192,11 +1192,11 @@
 																//												"sDom": 'RlfrtipS',
 																"aoColumns": [
 																				{"bSortable": false ,'sWidth':'1%'},
-																				{'sWidth':'19%'},
+																				{'sWidth':'10%'},
 																				{'sWidth':'20%'},
 																				{'sWidth':'20%'},
 																				{'sWidth':'20%'},
-																				{'sWidth':'20%'},
+																				{'sWidth':'29%'},
 																],
 																"aSorting": [[ column_index, column_order ]],														  
 																'bPaginate':false, 

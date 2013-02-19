@@ -381,10 +381,10 @@
 								?>
 								<div class="field-filters" id="limit_field_div" style="display:<?php	echo	$style;	?>">
 												<div class="filter-fileds" >
-																<div><b>Keyword Search</b>	<span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('sk_div',this);"></span></div>
+																<div><b>Keyword Search</b>	<span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('sk_div',this);"></span></div>
 
 																<!--																</div>-->
-																<div id="sk_div">
+																<div id="sk_div" style="display: none;">
 																				<div>
 																								<input type="text" name="search" id="search" value="" style="width: 190px;"/>
 																				</div>
@@ -463,8 +463,8 @@
 								}
 								?>
 								<div class="field-filters" id="date_range_filter_div">
-												<div class="filter-fileds"><b>Date</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('date_range_filter_div_1',this);"></span></div>
-												<div id="date_range_filter_div_1">
+												<div class="filter-fileds"><b>Date</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('date_range_filter_div_1',this);"></span></div>
+												<div id="date_range_filter_div_1" style="display: none;">
 																<div id="widget">
 																				<div id="date_range_filter">
 
@@ -520,9 +520,9 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Organization</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('org_div',this);"></span>
+																				<b>Organization</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('org_div',this);"></span>
 																</div>
-																<div class="filter-fileds" id="org_div">
+																<div class="filter-fileds" id="org_div" style="display: none;">
 																				<?php
 																				foreach($stations	as	$key	=>	$value)
 																				{
@@ -569,9 +569,9 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>States</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('org_st_div',this);"></span>
+																				<b>States</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('org_st_div',this);"></span>
 																</div>
-																<div class="filter-fileds" id="org_st_div">
+																<div class="filter-fileds" id="org_st_div" style="display: none;">
 																				<?php
 																				foreach($org_states	as	$key	=>	$value)
 																				{
@@ -616,9 +616,9 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Nomination Status</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('n_div',this);"></span>
+																				<b>Nomination Status</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('n_div',this);"></span>
 																</div>
-																<div class="filter-fileds" id="n_div">
+																<div class="filter-fileds" id="n_div" style="display: none;">
 																				<?php
 																				foreach($nomination_status	as	$key	=>	$value)
 																				{
@@ -663,9 +663,9 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Media Type</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('md_div',this);"></span>
+																				<b>Media Type</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('md_div',this);"></span>
 																</div>
-																<div class="filter-fileds" id="md_div">
+																<div class="filter-fileds" id="md_div" style="display: none;">
 																				<?php
 																				foreach($media_types	as	$key	=>	$value)
 																				{
@@ -710,9 +710,9 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Physical Format</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('pf_div',this);"></span>
+																				<b>Physical Format</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('pf_div',this);"></span>
 																</div>
-																<div class="filter-fileds" id="pf_div">
+																<div class="filter-fileds" id="pf_div" style="display: none;">
 																				<?php
 																				foreach($physical_formats	as	$key	=>	$value)
 																				{
@@ -757,9 +757,9 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Digital Format</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('df_div',this);"></span>
+																				<b>Digital Format</b><span class="caret custom-caret"  style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('df_div',this);"></span>
 																</div>
-																<div class="filter-fileds" id="df_div">
+																<div class="filter-fileds" id="df_div" style="display: none;">
 																				<?php
 																				foreach($digital_formats	as	$key	=>	$value)
 																				{
@@ -804,9 +804,9 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Generations</b><span class="caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('generation_search_div',this);"></span>
+																				<b>Generations</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('generation_search_div',this);"></span>
 																</div>
-																<div class="filter-fileds" id="generation_search_div">
+																<div class="filter-fileds" id="generation_search_div" style="display: none;">
 																				<?php
 																				foreach($generations	as	$key	=>	$value)
 																				{

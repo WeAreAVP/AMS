@@ -1177,7 +1177,7 @@
 												column_order='<?php	echo	isset($this->session->userdata['column_order'])	?	$this->session->userdata['column_order']	:	'desc';	?>';
 												
 												var sTable = $('#assets_table').dataTable({
-																"sDom": 'Rlfrtip',
+//																"sDom": 'Rlfrtip',
 																"aoColumns": [
 																				{"bSortable": false },
 																],

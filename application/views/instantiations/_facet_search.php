@@ -927,6 +927,10 @@
 										$('#limit_field_dropdown').css('position','fixed');
 										
 						});
+						$('body').click(function(){
+										$('#limit_field_dropdown').css('position','relative');
+						});
+						
 								
 				})(jQuery)
 				

@@ -1146,7 +1146,7 @@
 												{ 
 																$('.row-fluid').html(result);
 																if('<?php	echo	$current_tab;	?>'=='simple')
-																				updateSimpleDataTable();
+																updateSimpleDataTable();
 																else
 																				updateDataTable();
 																isAnySearch();
@@ -1187,6 +1187,7 @@
 																'bFilter': false,
 																"bSort": true,
 																"bDeferRender": true,
+																"bRetrieve": true,
 																"bAutoWidth": true,
 																"bProcessing": true,
 																"bServerSide": true,
@@ -1201,7 +1202,7 @@
 												$.extend( $.fn.dataTableExt.oStdClasses, {
 																"sWrapper": "dataTables_wrapper form-inline"
 												} );
-//												$('.FixedHeader_Header table').width($('#assets_table').width());
+												//												$('.FixedHeader_Header table').width($('#assets_table').width());
 												sTable.fnAdjustColumnSizing();
 								}
 				}

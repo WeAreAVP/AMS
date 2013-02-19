@@ -1214,7 +1214,9 @@
 																"bServerSide": true,
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
 												});
-												
+												$.extend( $.fn.dataTableExt.oStdClasses,{
+												"sWrapper": "dataTables_wrapper form-inline"
+								});
 												
 								}
 				}

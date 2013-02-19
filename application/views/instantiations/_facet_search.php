@@ -899,7 +899,7 @@
 								$('#top_setting_nav').width($(window).width()-50);
 								$('body').css('overflow','hidden');
 								$('.span3').height($(window).height()-80);
-								$('#data_container').width($(window).width()-310);
+								$('#data_container').width($(window).width()-300);
 								var hash = window.location.hash.replace('#', '');
 								if($(window.parent.document).find('iframe').size()){
 												var inframe = true;
@@ -928,7 +928,7 @@
 				})(jQuery)
 				
 				$(window).load(function(){
-								$('#data_container').width($(window).width()-310);
+								$('#data_container').width($(window).width()-300);
 								display=<?php	echo	$DateStyleDisplay;	?>;
 								if(display==0){
 												$('#date_range_filter_div').hide();

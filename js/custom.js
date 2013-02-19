@@ -285,11 +285,11 @@ function updateDataTable()
 {
 				if(current_table_type=='assets'){
 								url_tab_type='sort_full_table';
-								height=$(window).height()-250;
+								height=$(window).height()-245;
 				}
 				else{
 								url_tab_type='instantiation_table';
-								height=$(window).height()-210;
+								height=$(window).height()-200;
 				}
 				if($('#listing_table').length>0)
 				{

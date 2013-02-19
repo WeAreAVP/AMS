@@ -893,7 +893,7 @@
 				oTable=null;
 				
 				(function($){
-								$('.container').width($(window).width()-100);
+								$('.container').width($(window).width());
 								var hash = window.location.hash.replace('#', '');
 								if($(window.parent.document).find('iframe').size()){
 												var inframe = true;

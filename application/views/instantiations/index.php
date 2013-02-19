@@ -4,10 +4,10 @@ if(	!	$isAjax)
 				?>
 				<div class="row-fluid">
 				<?php	}	?>
-				<div class="span3">
+				<div class="span3" style="width: 230px;">
 								<?php	$this->load->view('instantiations/_facet_search');	?>
 				</div>
-				<div  class="span9" id="data_container">
+				<div  class="span10" id="data_container">
 
 
 								<?php	$this->load->view('layouts/_records_nav');	?>

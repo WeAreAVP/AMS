@@ -894,7 +894,7 @@
 				
 				(function($){
 								$('.container').width($(window).width()-50);
-								$('#link_pagination').width($(window).width()-50);
+								$('#link_pagination').width($('.container').width());
 								
 								$('.navbar-inner').width($(window).width()-50);
 								$('#top_setting_nav').width($(window).width()-50);

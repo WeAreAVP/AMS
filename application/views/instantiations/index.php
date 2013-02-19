@@ -15,7 +15,7 @@ if(	!	$isAjax)
 								if(count($records)	>	0)
 								{
 												?>
-												<div style="width: 710px;">
+												<div>
 																<?php	$this->load->view('instantiations/_gear_dropdown');	?>
 																<div style="float: right;">
 																				<strong><?php	echo	number_format($start);	?> - <?php	echo	number_format($end);	?></strong> of <strong style="margin-right: 10px;" id="total_list_count"><?php	echo	number_format($total);	?></strong>

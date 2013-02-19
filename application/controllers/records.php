@@ -294,13 +294,13 @@ class	Records	extends	MY_Controller
 																$description	=	substr($value->description,	0,	strpos($value->description,	' ',	200)).'...';
 												else
 																$description	=	$value->description;
-												$tablesort[$index][]	=	'<span style="width:150px;">'.str_replace("(**)",	'',	$description).'</span>';
+												$tablesort[$index][]	=	str_replace("(**)",	'',	$description);
 								}
 
 								$dataTable	=	array(
 								"sEcho"																=>	$this->input->get('sEcho')	+	1,
 								"iTotalRecords"								=>	$data['count'],
-								"iTotalDisplayRecords"	=>	"100",
+								"iTotalDisplayRecords"	=>		$data['count'],
 								'aaData'															=>	$tablesort
 								);
 								echo	json_encode($dataTable);

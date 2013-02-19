@@ -1206,7 +1206,7 @@
 																"sWrapper": "dataTables_wrapper form-inline"
 												} );
 //												$('.FixedHeader_Header table').width($('#assets_table').width());
-												oTable.fnAdjustColumnSizing();
+												sTable.fnAdjustColumnSizing();
 								}
 				}
 				function showHideSearch(divID,obj){

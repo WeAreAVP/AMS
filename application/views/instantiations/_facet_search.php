@@ -1208,7 +1208,7 @@
 																"bDeferRender": true, 
 																"bDestroy": is_destroy,
 																"bRetrieve": true,
-																"bAutoWidth": true,
+																"bAutoWidth": false,
 																"bProcessing": true,
 																"bServerSide": true,
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"

@@ -22,7 +22,7 @@ if(	!	$isAjax)
 																				<?php	echo	$this->ajax_pagination->create_links();	?>
 																</div>
 												</div>
-												<br clear="all"/>
+												<div class="clearfix"></div>
 												<div style="" id="instantiation-main">
 
 																<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;border-collapse:collapse;">
@@ -178,10 +178,10 @@ if(	!	$isAjax)
 
 												</div>
 
-												<div style="text-align: right;width: 710px;">
+<!--												<div style="text-align: right;width: 710px;">
 																<strong><?php	echo	number_format($start);	?> - <?php	echo	number_format($end);	?></strong> of <strong style="margin-right: 10px;" id="total_record_count"><?php	echo	number_format($total);	?></strong>
 																<?php	echo	$this->ajax_pagination->create_links();	?>
-												</div>
+												</div>-->
 												<?php
 								}
 								else

@@ -289,7 +289,7 @@ function updateDataTable()
 				}
 				else{
 								url_tab_type='instantiation_table';
-								height=$(window).height()-190;
+								height=$(window).height()-195;
 				}
 				if($('#listing_table').length>0)
 				{

@@ -23,7 +23,7 @@ if(	!	$isAjax)
 																</div>
 												</div>
 												<br clear="all"/>
-												<div style="width: 710px;overflow: hidden;" id="instantiation-main">
+												<div style="" id="instantiation-main">
 
 																<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;border-collapse:collapse;">
 																				<thead>

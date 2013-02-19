@@ -927,7 +927,7 @@
 				})(jQuery)
 				
 				$(window).load(function(){
-				$('#data_container').width($(window).width()-320);
+								$('#data_container').width($(window).width()-320);
 								display=<?php	echo	$DateStyleDisplay;	?>;
 								if(display==0){
 												$('#date_range_filter_div').hide();
@@ -1186,8 +1186,39 @@
 												column_index='<?php	echo	isset($this->session->userdata['jscolumn'])	?	$this->session->userdata['jscolumn']	:	1;	?>';
 												column_order='<?php	echo	isset($this->session->userdata['column_order'])	?	$this->session->userdata['column_order']	:	'desc';	?>';
 												
-												var sTable = $('#assets_table').dataTable({
-//																"sDom": 'Rlfrtip',
+//												var sTable = $('#assets_table').dataTable({
+//																//																"sDom": 'Rlfrtip',
+//																"aoColumns": [
+//																				{"bSortable": false },
+//																				null,
+//																				null,
+//																				null,
+//																				null,
+//																				null
+//																],
+//																"aSorting": [[ column_index, column_order ]],
+//																'bPaginate':false,
+//																'bInfo':false,
+//																'bFilter': false,
+//																"bSort": true,
+//																"bDeferRender": true,
+//																"bRetrieve": true,
+//																"bAutoWidth": false,
+//																//																"width":'100%',
+//																"bProcessing": true,
+//																"bServerSide": true,
+//																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
+//																
+//																
+//												});
+//												new FixedHeader( sTable, {
+//																"offsetTop": 60,
+//																
+//												}  );
+												oTable = 
+																$('#assets_table').dataTable(
+												{
+																//												"sDom": 'RlfrtipS',
 																"aoColumns": [
 																				{"bSortable": false },
 																				null,
@@ -1196,30 +1227,24 @@
 																				null,
 																				null
 																],
-																"aSorting": [[ column_index, column_order ]],
-																'bPaginate':false,
+																"aSorting": [[ column_index, column_order ]],														  
+																'bPaginate':false, 
 																'bInfo':false,
 																'bFilter': false,
 																"bSort": true,
-																"bDeferRender": true,
+																"sScrollY": $(window).height()-250,
+																"sScrollX": "200%",	
+																"bDeferRender": true, 
+																"bDestroy": is_destroy,
 																"bRetrieve": true,
-																"bAutoWidth": false,
-//																"width":'100%',
+																"bAutoWidth": true,
 																"bProcessing": true,
 																"bServerSide": true,
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
-																
-																
+												
+												
 												});
-												new FixedHeader( sTable, {
-																"offsetTop": 60,
-																
-												}  );
-//												$.extend( $.fn.dataTableExt.oStdClasses, {
-//																"sWrapper": "dataTables_wrapper form-inline"
-//												} );
-												//												$('.FixedHeader_Header table').width($('#assets_table').width());
-												sTable.fnAdjustColumnSizing();
+												//												sTable.fnAdjustColumnSizing();
 								}
 				}
 				function showHideSearch(divID,obj){

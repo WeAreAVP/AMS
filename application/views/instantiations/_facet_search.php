@@ -1189,7 +1189,7 @@
 												sTable = 
 																$('#assets_table').dataTable(
 												{
-																//												"sDom": 'RlfrtipS',
+																"sDom": 'RlfrtipS',
 																"aoColumns": [
 																				{"bSortable": false ,'sWidth':'1%'},
 																				{'sWidth':'15%'},

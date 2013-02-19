@@ -4,7 +4,7 @@ if(	!	$isAjax)
 				?>
 				<div class="row-fluid">
 				<?php	}	?>
-				<div class="span3" style="width: 230px;">
+				<div class="span3" style="width: 230px;overflow-y: scroll;overflow-x: hidden;">
 
 								<?php	$this->load->view('instantiations/_facet_search');	?>
 				</div>

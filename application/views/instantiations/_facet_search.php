@@ -928,6 +928,9 @@
 								if('<?php	echo	$current_tab;	?>'=='simple'){
 												updateSimpleDataTable();
 								}
+								else{
+												$('#simple_view').hide();
+								}
 								isAnySearch();
 				});
 				function add_token(name,type,isRemoved){

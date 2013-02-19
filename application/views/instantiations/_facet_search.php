@@ -923,10 +923,7 @@
 								}); 
 								
 								
-							$('#limit_field_dropdown').trigger('click',function(){
-											alert(1);
-											$('#limit_field_dropdown').css('position','fixed');
-							});
+						
 								
 				})(jQuery)
 				

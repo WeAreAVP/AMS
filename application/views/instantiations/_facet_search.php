@@ -1185,37 +1185,7 @@
 								{
 												column_index='<?php	echo	isset($this->session->userdata['jscolumn'])	?	$this->session->userdata['jscolumn']	:	1;	?>';
 												column_order='<?php	echo	isset($this->session->userdata['column_order'])	?	$this->session->userdata['column_order']	:	'desc';	?>';
-												
-//												var sTable = $('#assets_table').dataTable({
-//																//																"sDom": 'Rlfrtip',
-//																"aoColumns": [
-//																				{"bSortable": false },
-//																				null,
-//																				null,
-//																				null,
-//																				null,
-//																				null
-//																],
-//																"aSorting": [[ column_index, column_order ]],
-//																'bPaginate':false,
-//																'bInfo':false,
-//																'bFilter': false,
-//																"bSort": true,
-//																"bDeferRender": true,
-//																"bRetrieve": true,
-//																"bAutoWidth": false,
-//																//																"width":'100%',
-//																"bProcessing": true,
-//																"bServerSide": true,
-//																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
-//																
-//																
-//												});
-//												new FixedHeader( sTable, {
-//																"offsetTop": 60,
-//																
-//												}  );
-												oTable = 
+												sTable = 
 																$('#assets_table').dataTable(
 												{
 																//												"sDom": 'RlfrtipS',
@@ -1244,7 +1214,7 @@
 												
 												
 												});
-												//												sTable.fnAdjustColumnSizing();
+												
 								}
 				}
 				function showHideSearch(divID,obj){

@@ -691,7 +691,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				background-color: #f8f8f8;
 }
 #limit_field_dropdown:hover{
-				position: fixed;
+/*				position: fixed;*/
 				z-index: 2000;
 }
 #limit_field_dropdown:hover + #limit_btn{

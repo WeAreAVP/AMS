@@ -483,7 +483,7 @@
 																								?>
 
 
-																								<div class="btn-group" id="limit_field_dropdown">
+																								<div class="btn-group" id="limit_field_dropdowns">
 																												<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 																																<span id="date_field_text">Date Type</span>
 
@@ -923,7 +923,10 @@
 								}); 
 								
 								
-						
+						$('#limit_field_dropdown').click(function(){
+										$('#limit_field_dropdown').css('position','fixed');
+										
+						});
 								
 				})(jQuery)
 				

@@ -1,5 +1,3 @@
-
-<div style="position: fixed;overflow: scroll;">
 <form name="form_search" id="form_search" method="post" onsubmit="return false;">
 
 
@@ -881,7 +879,7 @@
 
 				</div>
 </form>
-</div>
+
 <script type="text/javascript">
     var is_destroy=false;
 				var columnsOrder=new Array();

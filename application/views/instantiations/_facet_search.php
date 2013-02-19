@@ -1190,12 +1190,12 @@
 												{
 																//												"sDom": 'RlfrtipS',
 																"aoColumns": [
-																				{"bSortable": false },
-																				null,
-																				null,
-																				null,
-																				null,
-																				null
+																				{"bSortable": false ,'sWidth':'10%'},
+																				{'sWidth':'15%'},
+																				{'sWidth':'15%'},
+																				{'sWidth':'20%'},
+																				{'sWidth':'20%'},
+																				{'sWidth':'20%'},
 																],
 																"aSorting": [[ column_index, column_order ]],														  
 																'bPaginate':false, 

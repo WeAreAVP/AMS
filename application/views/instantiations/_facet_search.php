@@ -931,8 +931,8 @@
 										
 						});
 						$('body').click(function(){
-										$('#limit_field_dropdown').css('position','relative');
-										$('#limit_field_dropdown').css('top',0);
+//										$('#limit_field_dropdown').css('position','relative');
+//										$('#limit_field_dropdown').css('top',0);
 						});
 						
 								

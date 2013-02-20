@@ -479,7 +479,7 @@ class	Instantiations	extends	MY_Controller
 								$records	=	$records['records'];
 								$data['count']	=	count($records);
 								$table_view	=	instantiations_datatable_view($records,	$this->column_order);
-//								debug($table_view);
+
 								$dataTable	=	array(
 								"sEcho"																=>	$this->input->get('sEcho')	+	1,
 								"iTotalRecords"								=>	$data['count'],

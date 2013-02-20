@@ -715,7 +715,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 
 #form_search .dropdown-menu{
-				height: 200px;
+				max-height: 200px;
 				overflow-y: scroll;
-				overflow-x: hidden;
+				overflow-x: auto;
 }

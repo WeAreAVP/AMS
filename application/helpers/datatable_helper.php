@@ -479,7 +479,6 @@ function	instantiations_datatable_view($records,	$column_order)
 												{
 																$status	=	($value->status)	?	$value->status	:	'';
 																$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$status	.	'</span>';
-																
 												}
 												else	if($type	==	'Instantiation\'s_Asset_Title')
 												{
@@ -512,11 +511,11 @@ function	instantiations_datatable_view($records,	$column_order)
 
 																				$column.='<div class="clearfix"></div>';
 																}
-																$table_view[$main_index][]	=		'<span style="float:left;min-width:300px;max-width:300px;">'	.	$column	.	'</span>';
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:300px;max-width:300px;">'	.	$column	.	'</span>';
 												}
 												else	if($type	==	'Media_Type')
 												{
-																	$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$value->media_type	.	'</span>';
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$value->media_type	.	'</span>';
 												}
 												else	if($type	==	'Generation')
 												{
@@ -542,7 +541,7 @@ function	instantiations_datatable_view($records,	$column_order)
 												}
 												else	if($type	==	'File_size')
 												{
-																$file_size	=	($value->file_size	==	0)	?	''	:	$value->file_size	.	' '	.	($value->file_size_unit_of_measure)	?	$value->file_size_unit_of_measure	:	'';
+																$file_size	=	$value->file_size	.	' '	.	($value->file_size_unit_of_measure)	?	$value->file_size_unit_of_measure	:	'';
 																$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$file_size	.	'</span>';
 												}
 												else	if($type	==	'Colors')

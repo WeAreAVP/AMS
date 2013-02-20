@@ -923,17 +923,17 @@
 								}); 
 								
 								
-//						$('#limit_field_dropdown').click(function(){
-//										
-//										$('#limit_field_dropdown').css('position','absolute');
-//										$('#limit_field_dropdown').css('top',$('#limit_field_dropdown').top()-$(this).offset().top);
-//
-//										
-//						});
-//						$('body').click(function(){
-//										$('#limit_field_dropdown').css('position','relative');
-//										$('#limit_field_dropdown').css('top',0);
-//						});
+								//						$('#limit_field_dropdown').click(function(){
+								//										
+								//										$('#limit_field_dropdown').css('position','absolute');
+								//										$('#limit_field_dropdown').css('top',$('#limit_field_dropdown').top()-$(this).offset().top);
+								//
+								//										
+								//						});
+								//						$('body').click(function(){
+								//										$('#limit_field_dropdown').css('position','relative');
+								//										$('#limit_field_dropdown').css('top',0);
+								//						});
 						
 								
 				})(jQuery)
@@ -1147,27 +1147,22 @@
 																zIndex:999999
 												}
 								});
-//								$('.row-fluid').html('');
 								$.ajax({
 												type: 'POST', 
 												url: '<?php	echo	$facet_search_url	?>/'+page,
 												data:$('#form_search').serialize(),
 												success: function (result)
 												{ 
-																
 																$('.row-fluid').html(result);
 																if('<?php	echo	$current_tab;	?>'=='simple')
 																updateSimpleDataTable();
 																else{
 																				$('#simple_view').hide();
 																				updateDataTable();
-																				
 																}
-																				
 																isAnySearch();
 																$.unblockUI();
-                                    
-												}
+            }
 								});
 				}
 				function change_view(id)
@@ -1193,7 +1188,7 @@
 												sTable = 
 																$('#assets_table').dataTable(
 												{
-															"sDom": 'frtiS',
+																"sDom": 'frtiS',
 																"aoColumns": [
 																				{"bSortable": false ,'sWidth':'1%'},
 																				{'sWidth':'15%'},
@@ -1202,13 +1197,13 @@
 																				{'sWidth':'20%'},
 																				{'sWidth':'40%'},
 																],
-//																"aSorting": [[ column_index, column_order ]],														  
+																//																"aSorting": [[ column_index, column_order ]],														  
 																'bPaginate':false, 
 																'bInfo':false,
 																'bFilter': false,
 																"bSort": true,
 																"sScrollY": $(window).height()-230,
-																"sScrollX": "100%",	
+																"sScrollX": "200%",	
 																"bScrollCollapse": true,
 																"bDeferRender": true, 
 																"bDestroy": is_destroy,
@@ -1219,8 +1214,8 @@
 																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
 												});
 												$.extend( $.fn.dataTableExt.oStdClasses,{
-												"sWrapper": "dataTables_wrapper form-inline"
-								});
+																"sWrapper": "dataTables_wrapper form-inline"
+												});
 												
 								}
 				}

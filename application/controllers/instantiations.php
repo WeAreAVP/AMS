@@ -473,7 +473,7 @@ class	Instantiations	extends	MY_Controller
 								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
 
 								
-								$records	=	$this->sphinx->assets_listing('');
+								$records	=	$this->sphinx->instantiations_list('');
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];
 								$data['count']	=	count($records);

@@ -326,9 +326,9 @@ function updateDataTable()
 												"bDestroy": is_destroy,
 												"bRetrieve": true,
 												"bAutoWidth": true,
-//												"bProcessing": true,
-//												"bServerSide": true,
-//												"sAjaxSource": "http://amsqa.avpreserve.com/records/"+url_tab_type
+												"bProcessing": true,
+												"bServerSide": true,
+												"sAjaxSource": "http://amsqa.avpreserve.com/records/"+url_tab_type
 												
 												
 								});

@@ -739,7 +739,7 @@ class	Records	extends	MY_Controller
 																}
 												}
 								}
-								debug($tablesort);
+//								debug($tablesort);
 								$dataTable	=	array(
 								"sEcho"																=>	$this->input->get('sEcho')	+	1,
 								"iTotalRecords"								=>	$data['count'],

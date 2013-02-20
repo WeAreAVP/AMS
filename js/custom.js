@@ -348,7 +348,10 @@ function updateDataTable()
 								$.extend( $.fn.dataTableExt.oStdClasses,{
 												"sWrapper": "dataTables_wrapper form-inline"
 								});
-				//												setTimeout($('.dataTable th').css('background','#EBEBEB'),500);
+								if(current_table_type!='assets'){
+													$('#listing_table_processing').css('top','125px');
+								}
+			
 												
 								
 				}

@@ -332,7 +332,6 @@ function updateDataTable()
 								{
 												new FixedColumns( oTable, {
 																"iLeftColumns": frozen
-												//																"iLeftWidth": frozen*100 // pixels
 												} );
 								}
 								$('#freeze_col_'+frozen).show();                                                                                                                                                                                                                                           
@@ -377,6 +376,12 @@ function updateDatabase(refresh)
 												//												$('#listing_table').css('width','100%');
 //												if(refresh==1)
 //																window.location.reload();
+if(frozen>0)
+								{
+												new FixedColumns( oTable, {
+																"iLeftColumns": frozen
+												} );
+								}
 											
 								}
 				});

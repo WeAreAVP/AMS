@@ -983,7 +983,7 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->where("$this->table_instantiations.assets_id",	$asset_id);
 								$this->db->join($this->table_instantiation_formats,	"$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id",	'left');
 								$this->db->join($this->table_instantiation_generations,	"$this->table_instantiation_generations.instantiations_id = $this->table_instantiations.id",	'left');
-//								$this->db->join($this->table_generations,	"$this->table_generations.id = $this->table_instantiation_generations.generations_id",	'left');
+								$this->db->join($this->table_generations,	"$this->table_generations.id = $this->table_instantiation_generations.generations_id",	'left');
 //								$this->db->join($this->table_instantiation_identifier,	"$this->table_instantiation_identifier.instantiations_id = $this->table_instantiations.id",	'left');
 								return	$result	=	$this->db->get($this->table_instantiations)->result();
 				}

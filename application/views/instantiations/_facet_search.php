@@ -1201,7 +1201,7 @@
 																'bInfo':false,
 																'bFilter': false,
 																"bSort": true,
-																"sScrollY": $(window).height()-240,
+																"sScrollY": $(window).height()-230,
 																"sScrollX": "100%",	
 																"bScrollCollapse": true,
 																"bDeferRender": true, 

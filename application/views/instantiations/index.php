@@ -36,17 +36,21 @@ if(	!	$isAjax)
 																																				$class	=	'drap-drop';
 																																$type	=	$value['title'];
 
-																																if(in_array($type,	array('Organization',	'Nomination',	'Media_Type',	'Generation',	'Format',	'Duration',	'Date',	'File_size',	'Colors',	'Language')))
+																																if(in_array($type,	array('Media_Type',	'Duration',	'Colors',	'Language')))
 																																{
-																																				$width	=	'width:100px;';
+																																				$width	=	'min-width:100;max-width:100px;';
 																																}
-																																else	if($type	==	'Instantiation_ID')
+																																else	if(in_array($type,	array('Nomination',	'Generation',	'Format',	'Date',	'File_size')))
 																																{
-																																				$width	=	'width:150px;';
+																																				$width	=	'min-width:150;max-width:150px;';
 																																}
-																																else	if($type	==	'Instantiation\'s_Asset_Title')
+																																else	if(in_array($type,	array('Organization',	'Instantiation_ID')))
 																																{
-																																				$width	=	'width:200px;';
+																																				$width	=	'min-width:200;max-width:200px;';
+																																}
+																																else	if(in_array($type,	array('Instantiation\'s_Asset_Title',	'f')))
+																																{
+																																				$width	=	'min-width:300;max-width:300px;';
 																																}
 																																echo	'<th id="'	.	$value['title']	.	'" class="'	.	$class	.	'"><span style="float:left;'	.	$width	.	'">'	.	str_replace("_",	' ',	$value['title'])	.	'</span></th>';
 																												}
@@ -54,134 +58,17 @@ if(	!	$isAjax)
 																								</tr>
 																				</thead>
 																				<tbody>
-																								<?php
-																								foreach($records	as	$key	=>	$value)
-																								{
-																												?>
-																												<tr>
-																																<?php
-																																foreach($this->column_order	as	$key	=>	$row)
-																																{
-																																				$type	=	$row['title'];
-																																				if($type	==	'Organization')
-																																				{
-																																								$column	=	$value->organization;
-																																				}
-																																				else	if($type	==	'Instantiation_ID')
-																																				{
-																																								$ins_identifier	=	explode(' | ',	trim(str_replace('(**)',	'',	$value->instantiation_identifier)));
-																																								$ins_identifier_src	=	explode(' | ',	trim(str_replace('(**)',	'',	$value->instantiation_source)));
-																																								$column	=	'';
-																																								foreach($ins_identifier	as	$index	=>	$identifier)
-																																								{
-																																												$column.=	'<a href="'	.	site_url('instantiations/detail/'	.	$value->id)	.	'">';
-																																												$column.=	$identifier;
-																																												if(isset($ins_identifier_src[$index])	&&	!	empty($ins_identifier_src[$index]))
-																																																$column.=' ('	.	$ins_identifier_src[$index]	.	')';
-																																												$column.=	'</a>';
-																																												$column.='<div class="clearfix"></div>';
-																																								}
-																																				}
-																																				else	if($type	==	'Nomination')
-																																				{
-																																								$column	=	($value->status)	?	$value->status	:	'';
-																																				}
-																																				else	if($type	==	'Instantiation\'s_Asset_Title')
-																																				{
 
-																																								$asset_title_type	=	trim(str_replace('(**)',	'',	$value->asset_title_type));
-																																								$asset_title_type	=	explode(' | ',	$asset_title_type);
-																																								$asset_title	=	trim(str_replace('(**)',	'',	$value->asset_title));
-																																								$asset_title	=	explode(' | ',	$asset_title);
-																																								$asset_title_ref	=	trim(str_replace('(**)',	'',	$value->asset_title_ref));
-																																								$asset_title_ref	=	explode(' | ',	$asset_title_ref);
-																																								$column	=	'';
-																																								foreach($asset_title	as	$index	=>	$title)
-																																								{
-																																												if(isset($asset_title_type[$index])	&&	$asset_title_type[$index]	!=	'')
-																																																$column.=	$asset_title_type[$index]	.	': ';
-																																												if(isset($asset_title_ref[$index]))
-																																												{
-																																																if($asset_title_ref[$index]	!=	'')
-																																																{
-																																																				$column.="<a target='_blank' href='$asset_title_ref[$index]'>$title</a>: ";
-																																																				$column.=' ('	.	$asset_title_ref[$index]	.	')';
-																																																}
-																																																else
-																																																				$column.=$title;
-																																												}
-																																												else
-																																																$column.=$title;
-//																																												$column.=	'<a href="'	.	site_url('instantiations/detail/'	.	$value->id)	.	'">'	.	$title	.	'</a>';
-
-
-																																												$column.='<div class="clearfix"></div>';
-																																								}
-																																				}
-																																				else	if($type	==	'Media_Type')
-																																				{
-																																								$column	=	$value->media_type;
-																																				}
-																																				else	if($type	==	'Generation')
-																																				{
-																																								$column	=	$value->generation;
-																																				}
-																																				else	if($type	==	'Format')
-																																				{
-
-																																								$column	=	$value->format_type;
-																																								if($value->format_name	!=	'')
-																																												$column.=': '	.	$value->format_name;
-																																				}
-																																				else	if($type	==	'Duration')
-																																				{
-																																								$column	=	($value->actual_duration)	?	date('H:i:s',	strtotime($value->actual_duration))	:	date('H:i:s',	strtotime($value->projected_duration));
-																																				}
-																																				else	if($type	==	'Date')
-																																				{
-																																								$column	=	($value->dates	==	0)	?	''	:	date('Y-m-d',	$value->dates)	.	' '	.	$value->date_type;
-																																				}
-																																				else	if($type	==	'File_size')
-																																				{
-																																								$column	=	($value->file_size	==	0)	?	''	:	$value->file_size	.	' '	.	($value->file_size_unit_of_measure)	?	$value->file_size_unit_of_measure	:	'';
-																																				}
-																																				else	if($type	==	'Colors')
-																																				{
-																																								$column	=	($value->color)	?	$value->color	:	'';
-																																				}
-																																				else	if($type	==	'Language')
-																																				{
-																																								$column	=	($value->language)	?	$value->language	:	'';
-																																				}
-																																				if(in_array($type,	array('Organization',	'Nomination',	'Media_Type',	'Generation',	'Format',	'Duration',	'Date',	'File_size',	'Colors',	'Language')))
-																																				{
-																																								$width	=	'width:100px;';
-																																				}
-																																				else	if($type	==	'Instantiation_ID')
-																																				{
-																																								$width	=	'width:150px;';
-																																				}
-																																				else	if($type	==	'Instantiation\'s_Asset_Title')
-																																				{
-																																								$width	=	'width:200px;';
-																																				}
-																																				echo	'<td><span style="float:left;'	.	$width	.	'">'	.	$column	.	'</span></td>';
-																																}
-																																?>
-																												</tr>
-																												<?php
-																								}
-																								?>
 																				</tbody>
 
 																</table>
 
 												</div>
 
-<!--												<div style="text-align: right;width: 710px;">
-																<strong><?php	echo	number_format($start);	?> - <?php	echo	number_format($end);	?></strong> of <strong style="margin-right: 10px;" id="total_record_count"><?php	echo	number_format($total);	?></strong>
-																<?php	echo	$this->ajax_pagination->create_links();	?>
-												</div>-->
+												<!--												<div style="text-align: right;width: 710px;">
+																												<strong><?php	echo	number_format($start);	?> - <?php	echo	number_format($end);	?></strong> of <strong style="margin-right: 10px;" id="total_record_count"><?php	echo	number_format($total);	?></strong>
+												<?php	echo	$this->ajax_pagination->create_links();	?>
+																								</div>-->
 												<?php
 								}
 								else
@@ -242,7 +129,7 @@ if(	!	$isAjax)
 																								$('#export_csv_msg').html('<a href="'+result.msg+'">Download</a>');
 																				else
 																								$('#export_csv_msg').html(result.msg);
-																																																																				                                        
+																																																																												                                        
 																}
 												});
 								}

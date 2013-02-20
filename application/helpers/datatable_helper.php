@@ -457,7 +457,7 @@ function	instantiations_datatable_view($records,	$column_order)
 												$type	=	$row['title'];
 												if($type	==	'Organization')
 												{
-																$table_view[$main_index][]	=	$value->organization;
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:200px;max-width:200px;">'	.	$value->organization	.	'</span>';
 												}
 												else	if($type	==	'Instantiation_ID')
 												{
@@ -473,11 +473,13 @@ function	instantiations_datatable_view($records,	$column_order)
 																				$column.=	'</a>';
 																				$column.='<div class="clearfix"></div>';
 																}
-																	$table_view[$main_index][]=$column;
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:200px;max-width:200px;">'	.	$column	.	'</span>';
 												}
 												else	if($type	==	'Nomination')
 												{
-																$table_view[$main_index][]	=	($value->status)	?	$value->status	:	'';
+																$status	=	($value->status)	?	$value->status	:	'';
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$status	.	'</span>';
+																
 												}
 												else	if($type	==	'Instantiation\'s_Asset_Title')
 												{
@@ -510,15 +512,15 @@ function	instantiations_datatable_view($records,	$column_order)
 
 																				$column.='<div class="clearfix"></div>';
 																}
-																$table_view[$main_index][]=$column;
+																$table_view[$main_index][]	=	$table_view[$main_index][]	=	'<span style="float:left;min-width:300px;max-width:300px;">'	.	$column	.	'</span>';
 												}
 												else	if($type	==	'Media_Type')
 												{
-																$table_view[$main_index][]	=	$value->media_type;
+																$table_view[$main_index][]	=	$table_view[$main_index][]	=	'<span style="float:left;min-width:100px;max-width:100px;">'	.	$value->media_type	.	'</span>';
 												}
 												else	if($type	==	'Generation')
 												{
-																$table_view[$main_index][]	=	$value->generation;
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$value->generation	.	'</span>';
 												}
 												else	if($type	==	'Format')
 												{
@@ -526,32 +528,37 @@ function	instantiations_datatable_view($records,	$column_order)
 																$table_view[$main_index][]	=	$value->format_type;
 																if($value->format_name	!=	'')
 																				$column.=': '	.	$value->format_name;
-																$table_view[$main_index][]=$column;
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$column	.	'</span>';
 												}
 												else	if($type	==	'Duration')
 												{
-																$table_view[$main_index][]	=	($value->actual_duration)	?	date('H:i:s',	strtotime($value->actual_duration))	:	date('H:i:s',	strtotime($value->projected_duration));
+																$duration	=	($value->actual_duration)	?	date('H:i:s',	strtotime($value->actual_duration))	:	date('H:i:s',	strtotime($value->projected_duration));
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:100px;max-width:100px;">'	.	$duration	.	'</span>';
 												}
 												else	if($type	==	'Date')
 												{
-																$table_view[$main_index][]	=	($value->dates	==	0)	?	''	:	date('Y-m-d',	$value->dates)	.	' '	.	$value->date_type;
+																$date	=	($value->dates	==	0)	?	''	:	date('Y-m-d',	$value->dates)	.	' '	.	$value->date_type;
+																;
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$date	.	'</span>';
 												}
 												else	if($type	==	'File_size')
 												{
-																$table_view[$main_index][]	=	($value->file_size	==	0)	?	''	:	$value->file_size	.	' '	.	($value->file_size_unit_of_measure)	?	$value->file_size_unit_of_measure	:	'';
+																$file_size	=	($value->file_size	==	0)	?	''	:	$value->file_size	.	' '	.	($value->file_size_unit_of_measure)	?	$value->file_size_unit_of_measure	:	'';
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$file_size	.	'</span>';
 												}
 												else	if($type	==	'Colors')
 												{
-																$table_view[$main_index][]	=	($value->color)	?	$value->color	:	'';
+																$color	=	($value->color)	?	$value->color	:	'';
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:100px;max-width:100px;">'	.	$color	.	'</span>';
 												}
 												else	if($type	==	'Language')
 												{
-																$table_view[$main_index][]	=	($value->language)	?	$value->language	:	'';
+																$language	=	($value->language)	?	$value->language	:	'';
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:100px;max-width:100px;">'	.	$language	.	'</span>';
 												}
 								}
-							
 				}
-					return $table_view;
+				return	$table_view;
 }
 
 ?>

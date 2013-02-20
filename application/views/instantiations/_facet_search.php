@@ -1147,7 +1147,7 @@
 																zIndex:999999
 												}
 								});
-								$('.row-fluid').html('');
+//								$('.row-fluid').html('');
 								$.ajax({
 												type: 'POST', 
 												url: '<?php	echo	$facet_search_url	?>/'+page,
@@ -1158,8 +1158,8 @@
 																$('.row-fluid').html(result);
 																if('<?php	echo	$current_tab;	?>'=='simple')
 																updateSimpleDataTable();
-																else
-																				updateDataTable();
+//																else
+//																				updateDataTable();
 																isAnySearch();
 																$.unblockUI();
                                     

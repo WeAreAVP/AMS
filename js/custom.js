@@ -277,11 +277,11 @@ function reOrderDropDown(columnArray)
 function freezeColumns(count)
 {
 				frozen=count;
-				$('#frozen_ul i').each(function(){
-								console.log(this);
+				$('#frozen_ul i').each(function(obj,id){
+								console.log(id);
 				});
 				$('#freeze_col_'+frozen).toggle(); 
-				updateDatabase(1);
+//				updateDatabase(1);
 				
 }
 oFC=null;

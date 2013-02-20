@@ -1153,6 +1153,7 @@
 												data:$('#form_search').serialize(),
 												success: function (result)
 												{ 
+																$('.row-fluid').html('');
 																$('.row-fluid').html(result);
 																if('<?php	echo	$current_tab;	?>'=='simple')
 																updateSimpleDataTable();

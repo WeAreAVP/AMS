@@ -1156,8 +1156,8 @@
 												{ 
 																
 																$('.row-fluid').html(result);
-																if('<?php	echo	$current_tab;	?>'=='simple')
-																updateSimpleDataTable();
+//																if('<?php	echo	$current_tab;	?>'=='simple')
+//																updateSimpleDataTable();
 //																else
 //																				updateDataTable();
 																isAnySearch();

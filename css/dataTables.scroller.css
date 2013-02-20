@@ -31,12 +31,12 @@ div.DTS div.DTS_Loading {
 
 div.DTS div.dataTables_scrollHead {
 	background-color: white;
-	width:99% !important;
+	width:100% !important;
 }
 
 div.DTS div.dataTables_scrollBody {
 	z-index: 2;
-	width:100% !important;
+	width:101% !important;
 }
 
 div.DTS div.dataTables_scroll {

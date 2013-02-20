@@ -690,7 +690,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				height: 0px;
 				background-color: #f8f8f8;
 }
-#limit_field_dropdown:hover{
+/*#limit_field_dropdown:hover{
 				position: fixed;
 				z-index: 2000;
 }
@@ -712,10 +712,10 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 #limit_field_dropdown:hover ~ #add_date_btn{
 				margin-top: 40px;
 				position: relative;
-}
+}*/
 
 .custom-dropdown-menu{
-				max-height: 150px;
+				max-height: 120px;
 				overflow-y: scroll;
 				overflow-x: auto;
 }

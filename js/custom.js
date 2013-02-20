@@ -387,7 +387,7 @@ function updateDatabase(refresh)
 								//																"iLeftColumns": frozen
 								//												} );
 								//								}
-								oFC.fnUpdate();
+								oFC.fnRedrawLayout();
 											
 								}
 				});

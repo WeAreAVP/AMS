@@ -542,7 +542,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:200px;max-width:200px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:120px;max-width:120px;">'.$column.'</span>';
 																}
 																else	if($type	==	'Contributor')
 																{
@@ -581,7 +581,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:120px;max-width:120px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:200px;max-width:200px;">'.$column.'</span>';
 																}
 																else	if($type	==	'Publisher')
 																{

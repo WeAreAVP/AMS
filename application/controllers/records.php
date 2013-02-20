@@ -350,7 +350,7 @@ class	Records	extends	MY_Controller
 
 																if($type	==	'Organization')
 																{
-																				$tablesort[$main_index][]	=	'<span style="min-width:200px;max-width:200px;">'.$asset->organization.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:200px;max-width:200px;">'.$asset->organization.'</span>';
 																}
 																else	if($type	==	'Titles')
 																{
@@ -376,21 +376,21 @@ class	Records	extends	MY_Controller
 																												$column.=$title;
 																								$column.='<div class="clearfix"></div>';
 																				}
-																				$tablesort[$main_index][]	=	'<span style="min-width:300px;max-width:300px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:300px;max-width:300px;">'.$column.'</span>';
 																}
 																else	if($type	==	'AA_GUID')
 																{
 																				if($asset->guid_identifier){
-																								$tablesort[$main_index][]	='<span style="min-width:300px;max-width:300px;"><a href="'	.	site_url('records/details/'	.	$asset->id)	.	'" >'	.	$asset->guid_identifier.'</a></span>';
+																								$tablesort[$main_index][]	='<span style="float:left;min-width:300px;max-width:300px;"><a href="'	.	site_url('records/details/'	.	$asset->id)	.	'" >'	.	$asset->guid_identifier.'</a></span>';
 																				}
 																				else{
-																							$tablesort[$main_index][]	='<span style="min-width:300px;max-width:300px;"><a href="'	.	site_url('records/details/'	.	$asset->id)	.	'" >No GUID</a></span>';	
+																							$tablesort[$main_index][]	='<span style="float:left;min-width:300px;max-width:300px;"><a href="'	.	site_url('records/details/'	.	$asset->id)	.	'" >No GUID</a></span>';	
 																				}
 																				
 																}
 																else	if($type	==	'Local_ID')
 																{
-																				$tablesort[$main_index][]	=	'<span style="min-width:200px;max-width:200px;">'.$asset->local_identifier.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:200px;max-width:200px;">'.$asset->local_identifier.'</span>';
 																}
 																else	if($type	==	'Description')
 																{
@@ -420,7 +420,7 @@ class	Records	extends	MY_Controller
 																												}
 																								}
 																				}
-																				$tablesort[$main_index][]	=	'<span style="min-width:300px;max-width:300px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:300px;max-width:300px;">'.$column.'</span>';
 																}
 																else	if($type	==	'Subjects')
 																{
@@ -450,7 +450,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$main_index][]	=	'<span style="min-width:120px;max-width:120px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:120px;max-width:120px;">'.$column.'</span>';
 																}
 																else	if($type	==	'Genre')
 																{
@@ -480,7 +480,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$main_index][]	=	'<span style="min-width:120px;max-width:120px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:120px;max-width:120px;">'.$column.'</span>';
 																}
 																else	if($type	==	'Assets_Date')
 																{
@@ -503,7 +503,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$main_index][]	=	'<span style="min-width:120px;max-width:120px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:120px;max-width:120px;">'.$column.'</span>';
 																}
 																else	if($type	==	'Creator')
 																{
@@ -542,7 +542,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$main_index][]	=	'<span style="min-width:120px;max-width:120px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:120px;max-width:120px;">'.$column.'</span>';
 																}
 																else	if($type	==	'Contributor')
 																{
@@ -581,7 +581,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$main_index][]	=	'<span style="min-width:120px;max-width:120px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:120px;max-width:120px;">'.$column.'</span>';
 																}
 																else	if($type	==	'Publisher')
 																{
@@ -620,7 +620,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$main_index][]	=	'<span style="min-width:120px;max-width:120px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:120px;max-width:120px;">'.$column.'</span>';
 																}
 																else	if($type	==	'Coverage')
 																{
@@ -642,7 +642,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$main_index][]	=	'<span style="min-width:120px;max-width:120px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:120px;max-width:120px;">'.$column.'</span>';
 																}
 																else	if($type	==	'Audience_Level')
 																{
@@ -666,7 +666,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$main_index][]	=	'<span style="min-width:120px;max-width:120px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:120px;max-width:120px;">'.$column.'</span>';
 																}
 																else	if($type	==	'Audience_Rating')
 																{
@@ -690,7 +690,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$main_index][]	=	'<span style="min-width:300px;max-width:300px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:300px;max-width:300px;">'.$column.'</span>';
 																}
 																else	if($type	==	'Annotation')
 																{
@@ -714,7 +714,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$main_index][]	=	'<span style="min-width:120px;max-width:120px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:120px;max-width:120px;">'.$column.'</span>';
 																}
 																else	if($type	==	'Rights')
 																{
@@ -735,7 +735,7 @@ class	Records	extends	MY_Controller
 																												$column.='<div class="clearfix"></div>';
 																								}
 																				}
-																				$tablesort[$main_index][]	=	'<span style="min-width:120px;max-width:120px;">'.$column.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:120px;max-width:120px;">'.$column.'</span>';
 																}
 												}
 								}

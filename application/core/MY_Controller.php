@@ -56,7 +56,7 @@ class	MY_Controller	extends	CI_Controller
 								{
 												$this->_assing_user_info();
 								}
-								if(is_route_method(array('records'	=>	array('index','sort_full_table'),	'instantiations'	=>	array('index',	'update_user_settings'))))
+								if(is_route_method(array('records'	=>	array('index','sort_full_table'),	'instantiations'	=>	array('index',	'update_user_settings','instantiation_table'))))
 								{
 												$this->_table_view_settings();
 								}
@@ -98,7 +98,7 @@ class	MY_Controller	extends	CI_Controller
 																$this->column_order	=	$views_settings;
 												}
 								}
-								if(is_route_method(array('instantiations'	=>	array('index'))))
+								if(is_route_method(array('instantiations'	=>	array('index','instantiation_table','update_user_settings'))))
 								{
 												$res	=	$this->user_settings->get_setting($this->user_id,	'instantiation',	'full');
 												if($res)

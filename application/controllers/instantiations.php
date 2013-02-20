@@ -445,6 +445,50 @@ class	Instantiations	extends	MY_Controller
 //								}
 //								show_404();
 				}
+				public function instantiation_table(){
+								debug($this->column_order);
+									$column	=	array(
+								'Organization'				=>	'organization',
+								'Titles'										=>	'asset_title',
+								'AA_GUID'									=>	'guid_identifier',
+								'Local_ID'								=>	'local_identifier',
+								'Description'					=>	'description',
+								'Subjects'								=>	'asset_subject',
+								'Genre'											=>	'asset_genre',
+								'Assets_Date'					=>	'dates',
+								'Creator'									=>	'asset_creator_name',
+								'Contributor'					=>	'asset_contributor_name',
+								'Publisher'							=>	'asset_publisher_name',
+								'Coverage'								=>	'asset_coverage',
+								'Audience_Level'		=>	'asset_audience_level',
+								'Audience_Rating'	=>	'asset_audience_rating',
+								'Annotation'						=>	'asset_annotation',
+								'Rights'										=>	'asset_rights');
+
+
+								$this->session->unset_userdata('column');
+								$this->session->unset_userdata('jscolumn');
+								$this->session->unset_userdata('column_order');
+								$this->session->set_userdata('jscolumn',	$this->input->get('iSortCol_0'));
+								$this->session->set_userdata('column',	$column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
+								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
+
+								$param	=	array('index'								=>	'assets_list');
+								$records	=	$this->sphinx->assets_listing($param);
+								$data['total']	=	$records['total_count'];
+								$records	=	$records['records'];
+								$data['count']	=	count($records);
+								$table_view	=	full_assets_datatable_view($records,	$this->column_order);
+
+								$dataTable	=	array(
+								"sEcho"																=>	$this->input->get('sEcho')	+	1,
+								"iTotalRecords"								=>	$data['count'],
+								"iTotalDisplayRecords"	=>	$data['count'],
+								'aaData'															=>	$table_view
+								);
+								echo	json_encode($dataTable);
+								exit_function();
+				}
 
 }
 

@@ -290,11 +290,11 @@ oFC=null;
 function updateDataTable()
 {
 				if(current_table_type=='assets'){
-								url_tab_type='sort_full_table';
+								url_tab_type='records/sort_full_table';
 								height=$(window).height()-230;
 				}
 				else{
-								url_tab_type='instantiation_table';
+								url_tab_type='instantiations/instantiation_table';
 								height=$(window).height()-195;
 				}
 				if($('#listing_table').length>0)
@@ -330,7 +330,7 @@ function updateDataTable()
 												"bAutoWidth": true,
 												"bProcessing": true,
 												"bServerSide": true,
-												"sAjaxSource": "http://amsqa.avpreserve.com/records/"+url_tab_type,
+												"sAjaxSource": "http://amsqa.avpreserve.com/"+url_tab_type,
 												"fnInitComplete": function () {
 														oFC=		new FixedColumns( oTable, {
 																"iLeftColumns": frozen

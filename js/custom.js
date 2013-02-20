@@ -303,10 +303,6 @@ function updateDataTable()
 																"aTargets": hiden_column
 																
 												},
-												//												{
-												//																'bSortable': false, 
-												//																'aTargets': [ 0 ]
-												//												}
 												],
 												"oColReorder": {
 																"iFixedColumns": frozen,
@@ -379,8 +375,8 @@ function updateDatabase(refresh)
 								},
 								success: function (result){
 												//												$('#listing_table').css('width','100%');
-												if(refresh==1)
-																window.location.reload();
+//												if(refresh==1)
+//																window.location.reload();
 											
 								}
 				});

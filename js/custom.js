@@ -291,7 +291,7 @@ function updateDataTable()
 {
 				if(current_table_type=='assets'){
 								url_tab_type='sort_full_table';
-								height=$(window).height()-250;
+								height=$(window).height()-240;
 				}
 				else{
 								url_tab_type='instantiation_table';

@@ -63,7 +63,7 @@ if(	!	$isAjax)
 																				<table class="table table-bordered" id="assets_table" style="border-collapse:collapse;">
 																								<thead>
 																												<tr style="background: rgb(235, 235, 235);">
-																																<td><span style="float:left;min-width:20px;max-width:20px;margin-left: 6px;"><i class="icon-flag "></i></span></td>
+																																<td><span style="float:left;min-width:20px;max-width:20px;"><i class="icon-flag " style="margin-left: 6px;"></i></span></td>
 																																<th><span style="float:left;min-width:200px;max-width:200px;">Organization</span></th>
 																																<th><span style="float:left;min-width:250px;max-width:250px;">AA GUID</span></th>
 																																<th><span style="float:left;min-width:250px;max-width:250px;">Local ID</span></th>

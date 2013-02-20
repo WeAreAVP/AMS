@@ -516,7 +516,7 @@ function	instantiations_datatable_view($records,	$column_order)
 												}
 												else	if($type	==	'Media_Type')
 												{
-																$table_view[$main_index][]	=	$table_view[$main_index][]	=	'<span style="float:left;min-width:100px;max-width:100px;">'	.	$value->media_type	.	'</span>';
+																$table_view[$main_index][]	=	$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$value->media_type	.	'</span>';
 												}
 												else	if($type	==	'Generation')
 												{
@@ -533,7 +533,7 @@ function	instantiations_datatable_view($records,	$column_order)
 												else	if($type	==	'Duration')
 												{
 																$duration	=	($value->actual_duration)	?	date('H:i:s',	strtotime($value->actual_duration))	:	date('H:i:s',	strtotime($value->projected_duration));
-																$table_view[$main_index][]	=	'<span style="float:left;min-width:100px;max-width:100px;">'	.	$duration	.	'</span>';
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$duration	.	'</span>';
 												}
 												else	if($type	==	'Date')
 												{
@@ -549,12 +549,12 @@ function	instantiations_datatable_view($records,	$column_order)
 												else	if($type	==	'Colors')
 												{
 																$color	=	($value->color)	?	$value->color	:	'';
-																$table_view[$main_index][]	=	'<span style="float:left;min-width:100px;max-width:100px;">'	.	$color	.	'</span>';
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$color	.	'</span>';
 												}
 												else	if($type	==	'Language')
 												{
 																$language	=	($value->language)	?	$value->language	:	'';
-																$table_view[$main_index][]	=	'<span style="float:left;min-width:100px;max-width:100px;">'	.	$language	.	'</span>';
+																$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$language	.	'</span>';
 												}
 								}
 				}

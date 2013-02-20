@@ -36,21 +36,17 @@ if(	!	$isAjax)
 																																				$class	=	'drap-drop';
 																																$type	=	$value['title'];
 
-																																if(in_array($type,	array('Media_Type',	'Duration',	'Colors',	'Language')))
+																																if(in_array($type,	array('Nomination',	'Generation',	'Format',	'Date',	'File_size','Media_Type','Duration','Colors','Language')))
 																																{
-																																				$width	=	'min-width:100;max-width:100px;';
-																																}
-																																else	if(in_array($type,	array('Nomination',	'Generation',	'Format',	'Date',	'File_size')))
-																																{
-																																				$width	=	'min-width:150;max-width:150px;';
+																																				$width	=	'min-width:150px;max-width:150px;';
 																																}
 																																else	if(in_array($type,	array('Organization',	'Instantiation_ID')))
 																																{
-																																				$width	=	'min-width:200;max-width:200px;';
+																																				$width	=	'min-width:200px;max-width:200px;';
 																																}
-																																else	if(in_array($type,	array('Instantiation\'s_Asset_Title',	'f')))
+																																else	if(in_array($type,	array('Instantiation\'s_Asset_Title')))
 																																{
-																																				$width	=	'min-width:300;max-width:300px;';
+																																				$width	=	'min-width:300px;max-width:300px;';
 																																}
 																																echo	'<th id="'	.	$value['title']	.	'" class="'	.	$class	.	'"><span style="float:left;'	.	$width	.	'">'	.	str_replace("_",	' ',	$value['title'])	.	'</span></th>';
 																												}

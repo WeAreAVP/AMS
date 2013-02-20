@@ -963,10 +963,7 @@
 																$('#'+type+'_search').val('');
 																$('#keyword_field_name').html();
 																$('#limit_btn').show(); 
-																//																$('#add_keyword').show(); 
-																//																$('#reset_search').hide();
 																$('#limit_field_text').html('Limit Search to Field');
-																//																$('#limit_field_dropdown').show();
 																$('#search').val('');
 																$('#limit_field_div').show();
 																customColumnName='';
@@ -978,9 +975,6 @@
 																				$('#keyword_field_main .btn-img').each(function(){
 																								$(this).remove();
 																				});
-																				//																				$('#add_keyword').hide(); 
-																				//																				$('#reset_search').show();
-																				//																				$('#limit_field_dropdown').hide();
 																				$('#limit_field_div').hide();
 																				var random_id=rand(0,1000365);
 																				slugName=make_slug_name(name);
@@ -1021,7 +1015,6 @@
 																$('#date_type').val('');
 																$('#date_range_filter_div').show();
 																$('#date_field_text').html('Date Type');
-																//																$('#reset_date_search').hide();
 												}
 												else{
 																if($('#date_range').val()=='')
@@ -1032,7 +1025,6 @@
 																slugName=make_slug_name(name);
 																$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
 																$('#'+type).show();
-																//																$('#reset_date_search').show();
 																if($('#date_type').val()=='')
 																				date_type_text='All';
 																else
@@ -1121,8 +1113,6 @@
 												$('#date_range_filter_div').show();
 												$('#date_field_text').html('Date Type');
 												$('#date_field_main_search').val('');
-												//												$('#reset_date_search').hide();
-												
 								}
 								else{
 												$('#keyword_field_main .btn-img').each(function(){
@@ -1130,10 +1120,7 @@
 												});
 												$('#keyword_field_main_search').val('');
 												$('#limit_btn').show(); 
-												//												$('#add_keyword').show(); 
-												//												$('#reset_search').hide();
 												$('#limit_field_text').html('Limit Search to Field');
-												//												$('#limit_field_dropdown').show();
 												$('#search').val('');
 												$('#keyword_field_main').hide();
 												$('#limit_field_div').show();
@@ -1214,7 +1201,7 @@
 																'bInfo':false,
 																'bFilter': false,
 																"bSort": true,
-																"sScrollY": $(window).height()-250,
+																"sScrollY": $(window).height()-240,
 																"sScrollX": "100%",	
 																"bScrollCollapse": true,
 																"bDeferRender": true, 

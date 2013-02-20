@@ -512,11 +512,11 @@ function	instantiations_datatable_view($records,	$column_order)
 
 																				$column.='<div class="clearfix"></div>';
 																}
-																$table_view[$main_index][]	=	$table_view[$main_index][]	=	'<span style="float:left;min-width:300px;max-width:300px;">'	.	$column	.	'</span>';
+																$table_view[$main_index][]	=		'<span style="float:left;min-width:300px;max-width:300px;">'	.	$column	.	'</span>';
 												}
 												else	if($type	==	'Media_Type')
 												{
-																$table_view[$main_index][]	=	$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$value->media_type	.	'</span>';
+																	$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$value->media_type	.	'</span>';
 												}
 												else	if($type	==	'Generation')
 												{
@@ -525,7 +525,7 @@ function	instantiations_datatable_view($records,	$column_order)
 												else	if($type	==	'Format')
 												{
 
-																$table_view[$main_index][]	=	$value->format_type;
+																$column	=	$value->format_type;
 																if($value->format_name	!=	'')
 																				$column.=': '	.	$value->format_name;
 																$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$column	.	'</span>';
@@ -538,7 +538,6 @@ function	instantiations_datatable_view($records,	$column_order)
 												else	if($type	==	'Date')
 												{
 																$date	=	($value->dates	==	0)	?	''	:	date('Y-m-d',	$value->dates)	.	' '	.	$value->date_type;
-																;
 																$table_view[$main_index][]	=	'<span style="float:left;min-width:150px;max-width:150px;">'	.	$date	.	'</span>';
 												}
 												else	if($type	==	'File_size')

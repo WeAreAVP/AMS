@@ -1147,13 +1147,14 @@
 																zIndex:999999
 												}
 								});
+								$('.row-fluid').html('');
 								$.ajax({
 												type: 'POST', 
 												url: '<?php	echo	$facet_search_url	?>/'+page,
 												data:$('#form_search').serialize(),
 												success: function (result)
 												{ 
-																$('.row-fluid').html('');
+																
 																$('.row-fluid').html(result);
 																if('<?php	echo	$current_tab;	?>'=='simple')
 																updateSimpleDataTable();

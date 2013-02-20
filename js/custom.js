@@ -283,7 +283,7 @@ function freezeColumns(count)
 								}
 				});
 				$('#freeze_col_'+frozen).toggle(); 
-//				updateDatabase(1);
+				updateDatabase(1);
 				
 }
 oFC=null;

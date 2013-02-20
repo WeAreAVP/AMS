@@ -137,7 +137,7 @@
 																<!--				Media Type	End		-->
 																<!--				Format 	Start		-->
 																<?php
-																if($inst_format->format_name	!=	'')
+																if(isset($inst_format->format_name	) && $inst_format->format_name	!=	'')
 																{
 
 																				$format	=	'Format: ';

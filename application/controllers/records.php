@@ -251,9 +251,9 @@ class	Records	extends	MY_Controller
 
 								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
 
-
+								$offset	=	isset($this->session->userdata['offset'])	?	$this->session->userdata['offset']	:	0;
 								$param	=	array('index'								=>	'assets_list');
-								$records	=	$this->sphinx->assets_listing($param);
+								$records	=	$this->sphinx->assets_listing($param,$offset);
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];
 								$data['count']	=	count($records);

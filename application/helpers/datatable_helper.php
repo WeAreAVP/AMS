@@ -549,8 +549,9 @@ function	instantiations_datatable_view($records,	$column_order)
 																$table_view[$main_index][]	=	($value->language)	?	$value->language	:	'';
 												}
 								}
-								return $table_view;
+							
 				}
+					return $table_view;
 }
 
 ?>

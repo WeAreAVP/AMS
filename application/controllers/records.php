@@ -329,12 +329,12 @@ class	Records	extends	MY_Controller
 								'Rights'										=>	'asset_rights');
 
 
-								$this->session->unset_userdata('column');
-								$this->session->unset_userdata('jscolumn');
-								$this->session->unset_userdata('column_order');
-								$this->session->set_userdata('jscolumn',	$this->input->get('iSortCol_0'));
-								$this->session->set_userdata('column',	$column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
-								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
+//								$this->session->unset_userdata('column');
+//								$this->session->unset_userdata('jscolumn');
+//								$this->session->unset_userdata('column_order');
+//								$this->session->set_userdata('jscolumn',	$this->input->get('iSortCol_0'));
+//								$this->session->set_userdata('column',	$column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
+//								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
 
 								$param	=	array('index'								=>	'assets_list');
 								$records	=	$this->sphinx->assets_listing($param,	$offset);

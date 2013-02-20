@@ -277,8 +277,10 @@ function reOrderDropDown(columnArray)
 function freezeColumns(count)
 {
 				frozen=count;
-				$('#frozen_ul i').each(function(obj,id){
-								console.log(id);
+				$('#frozen_ul i').each(function(id,obj){
+								if(id!=frozen){
+												$(this).hide();
+								}
 				});
 				$('#freeze_col_'+frozen).toggle(); 
 //				updateDatabase(1);

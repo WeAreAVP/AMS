@@ -281,6 +281,7 @@ function freezeColumns(count)
 				updateDatabase(1);
 				
 }
+oFC=null;
 function updateDataTable()
 {
 				if(current_table_type=='assets'){
@@ -326,7 +327,7 @@ function updateDataTable()
 												"bServerSide": true,
 												"sAjaxSource": "http://amsqa.avpreserve.com/records/"+url_tab_type,
 												"fnInitComplete": function () {
-																new FixedColumns( oTable, {
+														oFC=		new FixedColumns( oTable, {
 																"iLeftColumns": frozen
 												} );
 												}
@@ -386,6 +387,7 @@ function updateDatabase(refresh)
 								//																"iLeftColumns": frozen
 								//												} );
 								//								}
+								oFC.fnUpdate();
 											
 								}
 				});

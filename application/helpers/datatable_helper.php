@@ -444,6 +444,7 @@ function	full_assets_datatable_view($records,$column_order)
 												}
 								}
 				}
+				return $tablesort;
 }
 
 ?>

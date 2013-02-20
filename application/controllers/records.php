@@ -390,7 +390,7 @@ class	Records	extends	MY_Controller
 																}
 																else	if($type	==	'Local_ID')
 																{
-																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:200px;max-width:200px;">'.$asset->local_identifier.'</span>';
+																				$tablesort[$main_index][]	=	'<span style="float:left;min-width:200px;max-width:200px;">'.str_replace('(**)','',$asset->local_identifier).'</span>';
 																}
 																else	if($type	==	'Description')
 																{

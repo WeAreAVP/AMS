@@ -294,7 +294,7 @@ class	Records	extends	MY_Controller
 																$description	=	substr($value->description,	0,	strpos($value->description,	' ',	200))	.	'...';
 												else
 																$description	=	$value->description;
-												$tablesort[$index][]	=	str_replace("(**)",	'',	'<span style="float:left:max-width:250px;">'.$description.'</span>');
+												$tablesort[$index][]	=	str_replace("(**)",	'',	'<span style="float:left;max-width:250px;">'.$description.'</span>');
 								}
 
 								$dataTable	=	array(

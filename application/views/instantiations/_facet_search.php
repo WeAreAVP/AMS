@@ -1156,10 +1156,14 @@
 												{ 
 																
 																$('.row-fluid').html(result);
-//																if('<?php	echo	$current_tab;	?>'=='simple')
-//																updateSimpleDataTable();
-//																else
-//																				updateDataTable();
+																if('<?php	echo	$current_tab;	?>'=='simple')
+																updateSimpleDataTable();
+																else{
+																				$('#simple_view').hide();
+																				updateDataTable();
+																				
+																}
+																				
 																isAnySearch();
 																$.unblockUI();
                                     

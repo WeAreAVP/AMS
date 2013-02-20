@@ -53,19 +53,16 @@ class	Instantiations	extends	MY_Controller
 					* 
 					* @return instantiations/index view
 					*/
-				public	function	aadf()
-				{
-								$this->station_model->get_asset_facet_stations();
-				}
-
+			
 				public	function	index()
 				{
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
+								$this->session->unset_userdata('offset');
 								$params	=	array('search'	=>	'');
 								if(isAjax())
 								{
 												$this->unset_facet_search();
-
+												$this->session->set_userdata('offset',	$offset);
 
 
 												$search['custom_search']	=	$this->input->post('keyword_field_main_search');
@@ -449,7 +446,7 @@ class	Instantiations	extends	MY_Controller
 
 				public	function	instantiation_table()
 				{
-								
+								$params	=	array('search'	=>	'');
 								$column	=	array(
 								'Organization'																	=>	'organization',
 								'Instantiation_ID'													=>	'instantiation_identifier',
@@ -472,9 +469,10 @@ class	Instantiations	extends	MY_Controller
 								$this->session->set_userdata('jscolumn',	$this->input->get('iSortCol_0'));
 								$this->session->set_userdata('column',	$column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
 								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
-
 								
-								$records	=	$this->sphinx->instantiations_list('');
+
+								$offset=isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
+								$records	=	$this->sphinx->instantiations_list($params,$offset);
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];
 								$data['count']	=	count($records);

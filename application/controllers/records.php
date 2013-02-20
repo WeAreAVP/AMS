@@ -34,12 +34,12 @@ class	Records	extends	MY_Controller
 
 				function	index()
 				{
-
-
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
+								$this->session->set_userdata('offset',	$offset);
 								if(isAjax())
 								{
 												$this->unset_facet_search();
+												$this->session->set_userdata('offset',	$offset);
 												$search['custom_search']	=	$this->input->post('keyword_field_main_search');
 												$search['organization']	=	$this->input->post('organization_main_search');
 												$search['states']	=	$this->input->post('states_main_search');
@@ -297,9 +297,9 @@ class	Records	extends	MY_Controller
 								$this->session->set_userdata('jscolumn',	$this->input->get('iSortCol_0'));
 								$this->session->set_userdata('column',	$column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
 								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
-
+								$offset	=	isset($this->session->userdata['offset'])	?	$this->session->userdata['offset']	:	0;
 								$param	=	array('index'								=>	'assets_list');
-								$records	=	$this->sphinx->assets_listing($param);
+								$records	=	$this->sphinx->assets_listing($param,	$offset);
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];
 								$data['count']	=	count($records);

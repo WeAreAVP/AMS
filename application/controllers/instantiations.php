@@ -57,12 +57,12 @@ class	Instantiations	extends	MY_Controller
 				public	function	index()
 				{
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
-								$this->session->unset_userdata('offset');
+								$this->session->set_userdata('offset',	$offset);
 								$params	=	array('search'	=>	'');
 								if(isAjax())
 								{
 												$this->unset_facet_search();
-												$this->session->set_userdata('offset',	$offset);
+												
 
 
 												$search['custom_search']	=	$this->input->post('keyword_field_main_search');

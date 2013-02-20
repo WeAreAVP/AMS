@@ -50,7 +50,7 @@
 				<div class="clearfix"></div>
 				<?php	$this->load->view('partials/_list');	?>
 
-				<div class="span12" style="margin-left: 250px;" id="ins_view_detail">
+				<div class="span9" style="margin-left: 250px;" id="ins_view_detail">
 								<div style="float: left;">
 												<?php  if($this->role_id!='20') {?>
 												<div><input type="button" class="btn" value="Edit Instantiation" onclick="toggleViews();"/></div>

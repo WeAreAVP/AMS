@@ -50,7 +50,7 @@
 				<div class="clearfix"></div>
 
 <?php	$this->load->view	('partials/_list');	?>
-    <div class="span12" style="margin-left: 250px;">
+    <div class="span9" style="margin-left: 250px;">
 								<div style="float: left;">
 												<table  cellPadding="8" class="record-detail-table">
 																<!--				Organization Start		-->

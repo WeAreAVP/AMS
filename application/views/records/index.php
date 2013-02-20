@@ -68,98 +68,11 @@ if(	!	$isAjax)
 																																<th><span style="float:left;min-width:250px;max-width:250px;">AA GUID</span></th>
 																																<th><span style="float:left;min-width:250px;max-width:250px;">Local ID</span></th>
 																																<th><span style="float:left;min-width:300px;max-width:300px;">Titles</span></th>
-																																<th><span style="float:left;min-width:320px;max-width:320px;">Description</span></th>
+																																<th><span style="float:left;min-width:300px;max-width:300px;">Description</span></th>
 																												</tr>
 																								</thead>
 																								<tbody>
-																												<?php
-																												foreach($records	as	$asset)
-																												{
-
-																																$guid_identifier	=	str_replace("(**)",	"",	$asset->guid_identifier);
-																																$local_identifier	=	str_replace("(**)",	"",	$asset->local_identifier);
-																																$asset_description	=	str_replace("(**)",	"",	$asset->description);
-																																$asset_title	=	str_replace("(**)",	"",	$asset->asset_title);
-																																?>
-																																<tr style="cursor: pointer;">
-																																				<td style="vertical-align:middle;font-weight:bold;"><i style="margin:0px" class="unflag"></i></td>
-																																				<td>				
-																																								
-																																												<?php	echo	$asset->organization	?>
-																																								
-																																				</td>
-																																				<td>
-																																								
-																																												<?php
-																																												if($guid_identifier)
-																																												{
-																																																?>
-																																																<a href="<?php	echo	site_url('records/details/'	.	$asset->id)	?>" ><?php	echo	$guid_identifier;	?></a>
-																																												<?php	}
-																																												?>
-																																								
-																																				</td>
-																																				<td>
-																																							
-
-																																												<?php
-																																												if($local_identifier)
-																																																echo	$local_identifier;
-																																												?>
-																																							
-																																				</td>
-																																				<td>
-																																							
-																																												<?php
-																																												$asset_title_type	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title_type)));
-																																												$asset_title	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title)));
-																																												$asset_title_ref	=	explode(' | ',	trim(str_replace('(**)',	'',	$asset->asset_title_ref)));
-																																												$column	=	'';
-																																												foreach($asset_title	as	$index	=>	$title)
-																																												{
-																																																if(isset($asset_title_type[$index])	&&	$asset_title_type[$index]	!=	'')
-																																																				$column.=	$asset_title_type[$index]	.	': ';
-																																																if(isset($asset_title_ref[$index]))
-																																																{
-																																																				if($asset_title_ref[$index]	!=	'')
-																																																				{
-																																																								$column.="<a target='_blank' href='$asset_title_ref[$index]'>$title</a>: ";
-																																																								$column.=' ('	.	$asset_title_ref[$index]	.	')';
-																																																				}
-																																																				else
-																																																								$column.=$title;
-																																																}
-																																																else
-																																																				$column.=$title;
-																																																$column.='<div class="clearfix"></div>';
-																																												}
-																																												echo	$column;
-																																												?>
-
-																																								
-																																				</td>
-																																				<td>
-																																							
-																																												<?php
-																																												if($asset_description)
-																																												{
-
-																																																if(strlen($asset_description)	>	160)
-																																																{
-																																																				$messages	=	str_split($asset_description,	160);
-																																																				echo	$messages[0]	.	' ...';
-																																																}
-																																																else
-																																																{
-																																																				echo	$asset_description;
-																																																}
-																																												}
-																																												?>
-																																							
-																																				</td>
-																																</tr>
-																												<?php	}
-																												?>
+																											
 																								</tbody>
 
 

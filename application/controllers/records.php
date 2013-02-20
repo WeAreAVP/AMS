@@ -289,12 +289,12 @@ class	Records	extends	MY_Controller
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->organization);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	'<a href="'	.	site_url('records/details/'	.	$value->id)	.	'">'	.	$value->guid_identifier	.	'</a>');
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->local_identifier);
-												$tablesort[$index][]	=	str_replace("(**)",	'',	$asset_combine);
+												$tablesort[$index][]	=	str_replace("(**)",	'',	'<span style="float:left;max-width:200px;">'	.	$asset_combine	.	'</span>');
 												if(strlen($value->description)	>	200)
 																$description	=	substr($value->description,	0,	strpos($value->description,	' ',	200))	.	'...';
 												else
 																$description	=	$value->description;
-												$tablesort[$index][]	=	str_replace("(**)",	'',	'<span style="float:left;max-width:250px;">'.$description.'</span>');
+												$tablesort[$index][]	=	str_replace("(**)",	'',	'<span style="float:left;max-width:250px;">'	.	$description	.	'</span>');
 								}
 
 								$dataTable	=	array(

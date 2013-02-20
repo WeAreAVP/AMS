@@ -64,11 +64,11 @@ if(	!	$isAjax)
 																								<thead>
 																												<tr style="background: rgb(235, 235, 235);">
 																																<td><i class="icon-flag "></i></td>
-																																<th>Organization</th>
-																																<th>AA GUID</th>
-																																<th>Local ID</th>
-																																<th>Titles</th>
-																																<th>Description</th>
+																																<th><span style="margin-right: 10px;">Organization</span></th>
+																																<th><span style="margin-right: 10px;">AA GUID</span></th>
+																																<th><span style="margin-right: 10px;">Local ID</span></th>
+																																<th><span style="margin-right: 10px;">Titles</span></th>
+																																<th><span style="margin-right: 10px;">Description</span></th>
 																												</tr>
 																								</thead>
 																								<tbody>

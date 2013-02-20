@@ -489,7 +489,7 @@
 
 																																<span class="caret"></span>
 																												</a>
-																												<ul class="dropdown-menu">
+																												<ul class="dropdown-menu custom-dropdown-menu">
 																																<?php
 																																foreach($date_types	as	$value)
 																																{
@@ -542,7 +542,7 @@
 																																				More
 																																				<b class="caret"></b>
 																																</a>
-																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
 																																				<?php
 																																}
 																																else
@@ -589,7 +589,7 @@
 																																				More
 																																				<b class="caret"></b>
 																																</a>
-																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
 																																				<?php
 																																}
 																																else
@@ -635,8 +635,8 @@
 																																<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
 																																				More
 																																				<b class="caret"></b>
-																																</a>
-																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																</a> 
+																																<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
 																																				<?php
 																																}
 																																else
@@ -683,7 +683,7 @@
 																																				More
 																																				<b class="caret"></b>
 																																</a>
-																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
 																																				<?php
 																																}
 																																else
@@ -725,7 +725,7 @@
 																								else	if($key	==	4)
 																								{
 																												?>
-																												<div class="dropdown">
+																												<div class="dropdown custom-dropdown-menu">
 																																<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
 																																				More
 																																				<b class="caret"></b>
@@ -777,7 +777,7 @@
 																																				More
 																																				<b class="caret"></b>
 																																</a>
-																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
 																																				<?php
 																																}
 																																else
@@ -824,7 +824,7 @@
 																																				More
 																																				<b class="caret"></b>
 																																</a>
-																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
 																																				<?php
 																																}
 																																else

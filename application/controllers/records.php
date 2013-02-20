@@ -291,16 +291,16 @@ class	Records	extends	MY_Controller
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$value->local_identifier);
 												$tablesort[$index][]	=	str_replace("(**)",	'',	$asset_combine);
 												if(strlen($value->description)	>	200)
-																$description	=	substr($value->description,	0,	strpos($value->description,	' ',	200)).'...';
+																$description	=	substr($value->description,	0,	strpos($value->description,	' ',	200))	.	'...';
 												else
 																$description	=	$value->description;
-												$tablesort[$index][]	=	str_replace("(**)",	'',	$description);
+												$tablesort[$index][]	=	str_replace("(**)",	'',	'<span style="float:left:max-width:250px;">'.$description.'</span>');
 								}
 
 								$dataTable	=	array(
 								"sEcho"																=>	$this->input->get('sEcho')	+	1,
 								"iTotalRecords"								=>	$data['count'],
-								"iTotalDisplayRecords"	=>		$data['count'],
+								"iTotalDisplayRecords"	=>	$data['count'],
 								'aaData'															=>	$tablesort
 								);
 								echo	json_encode($dataTable);
@@ -347,7 +347,7 @@ class	Records	extends	MY_Controller
 												foreach($this->column_order	as	$row)
 												{
 																$type	=	$row['title'];
-																
+
 																if($type	==	'Organization')
 																{
 																				$tablesort[$main_index][]	=	$asset->organization;

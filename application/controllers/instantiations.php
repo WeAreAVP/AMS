@@ -181,7 +181,7 @@ class	Instantiations	extends	MY_Controller
 																$data['asset_id']	=	$detail->assets_id;
 																$data['inst_id']	=	$instantiation_id;
 																$data['list_assets']	=	$this->instantiation->get_instantiations_by_asset_id($detail->assets_id);
-																
+
 																$data['ins_nomination']	=	$this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
 																$data['inst_identifier']	=	$this->instantiation->get_identifier_by_instantiation_id($instantiation_id);
 																$data['inst_dates']	=	$this->instantiation->get_dates_by_instantiation_id($instantiation_id);
@@ -445,25 +445,24 @@ class	Instantiations	extends	MY_Controller
 //								}
 //								show_404();
 				}
-				public function instantiation_table(){
-								debug($this->column_order);
-									$column	=	array(
-								'Organization'				=>	'organization',
-								'Titles'										=>	'asset_title',
-								'AA_GUID'									=>	'guid_identifier',
-								'Local_ID'								=>	'local_identifier',
-								'Description'					=>	'description',
-								'Subjects'								=>	'asset_subject',
-								'Genre'											=>	'asset_genre',
-								'Assets_Date'					=>	'dates',
-								'Creator'									=>	'asset_creator_name',
-								'Contributor'					=>	'asset_contributor_name',
-								'Publisher'							=>	'asset_publisher_name',
-								'Coverage'								=>	'asset_coverage',
-								'Audience_Level'		=>	'asset_audience_level',
-								'Audience_Rating'	=>	'asset_audience_rating',
-								'Annotation'						=>	'asset_annotation',
-								'Rights'										=>	'asset_rights');
+
+				public	function	instantiation_table()
+				{
+								
+								$column	=	array(
+								'Organization'																	=>	'organization',
+								'Instantiation_ID'													=>	'instantiation_identifier',
+								'Nomination'																			=>	'status',
+								'Instantiation\'s_Asset_Title'	=>	'asset_title',
+								'Media_Type'																			=>	'media_type',
+								'Generation'																			=>	'generation',
+								'Format'																							=>	'format_name',
+								'Duration'																					=>	'projected_duration',
+								'Date'																									=>	'dates',
+								'File_size'																				=>	'file_size',
+								'Colors'																							=>	'color',
+								'Language'																					=>	'language',
+								);
 
 
 								$this->session->unset_userdata('column');
@@ -473,13 +472,13 @@ class	Instantiations	extends	MY_Controller
 								$this->session->set_userdata('column',	$column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
 								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
 
-								$param	=	array('index'								=>	'assets_list');
-								$records	=	$this->sphinx->assets_listing($param);
+								
+								$records	=	$this->sphinx->assets_listing('');
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];
 								$data['count']	=	count($records);
 								$table_view	=	full_assets_datatable_view($records,	$this->column_order);
-
+								debug($table_view);
 								$dataTable	=	array(
 								"sEcho"																=>	$this->input->get('sEcho')	+	1,
 								"iTotalRecords"								=>	$data['count'],

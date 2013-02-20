@@ -43,7 +43,7 @@ function	simple_simple_datatable_view($records)
 				return	$tablesort;
 }
 
-function	full_assets_datatable_view($records,$column_order)
+function	full_assets_datatable_view($records,	$column_order)
 {
 				$tablesort	=	array();
 				foreach($records	as	$main_index	=>	$asset)
@@ -444,7 +444,113 @@ function	full_assets_datatable_view($records,$column_order)
 												}
 								}
 				}
-				return $tablesort;
+				return	$tablesort;
+}
+
+function	instantiations_datatable_view($records,	$column_order)
+{
+				$table_view	=	array();
+				foreach($records	as	$main_index	=>	$value)
+				{
+								foreach($column_order	as	$key	=>	$row)
+								{
+												$type	=	$row['title'];
+												if($type	==	'Organization')
+												{
+																$table_view[$main_index][]	=	$value->organization;
+												}
+												else	if($type	==	'Instantiation_ID')
+												{
+																$ins_identifier	=	explode(' | ',	trim(str_replace('(**)',	'',	$value->instantiation_identifier)));
+																$ins_identifier_src	=	explode(' | ',	trim(str_replace('(**)',	'',	$value->instantiation_source)));
+																$column	=	'';
+																foreach($ins_identifier	as	$index	=>	$identifier)
+																{
+																				$column.=	'<a href="'	.	site_url('instantiations/detail/'	.	$value->id)	.	'">';
+																				$column.=	$identifier;
+																				if(isset($ins_identifier_src[$index])	&&	!	empty($ins_identifier_src[$index]))
+																								$column.=' ('	.	$ins_identifier_src[$index]	.	')';
+																				$column.=	'</a>';
+																				$column.='<div class="clearfix"></div>';
+																}
+																	$table_view[$main_index][]=$column;
+												}
+												else	if($type	==	'Nomination')
+												{
+																$table_view[$main_index][]	=	($value->status)	?	$value->status	:	'';
+												}
+												else	if($type	==	'Instantiation\'s_Asset_Title')
+												{
+
+																$asset_title_type	=	trim(str_replace('(**)',	'',	$value->asset_title_type));
+																$asset_title_type	=	explode(' | ',	$asset_title_type);
+																$asset_title	=	trim(str_replace('(**)',	'',	$value->asset_title));
+																$asset_title	=	explode(' | ',	$asset_title);
+																$asset_title_ref	=	trim(str_replace('(**)',	'',	$value->asset_title_ref));
+																$asset_title_ref	=	explode(' | ',	$asset_title_ref);
+																$column	=	'';
+																foreach($asset_title	as	$index	=>	$title)
+																{
+																				if(isset($asset_title_type[$index])	&&	$asset_title_type[$index]	!=	'')
+																								$column.=	$asset_title_type[$index]	.	': ';
+																				if(isset($asset_title_ref[$index]))
+																				{
+																								if($asset_title_ref[$index]	!=	'')
+																								{
+																												$column.="<a target='_blank' href='$asset_title_ref[$index]'>$title</a>: ";
+																												$column.=' ('	.	$asset_title_ref[$index]	.	')';
+																								}
+																								else
+																												$column.=$title;
+																				}
+																				else
+																								$column.=$title;
+
+
+
+																				$column.='<div class="clearfix"></div>';
+																}
+																$table_view[$main_index][]=$column;
+												}
+												else	if($type	==	'Media_Type')
+												{
+																$table_view[$main_index][]	=	$value->media_type;
+												}
+												else	if($type	==	'Generation')
+												{
+																$table_view[$main_index][]	=	$value->generation;
+												}
+												else	if($type	==	'Format')
+												{
+
+																$table_view[$main_index][]	=	$value->format_type;
+																if($value->format_name	!=	'')
+																				$column.=': '	.	$value->format_name;
+																$table_view[$main_index][]=$column;
+												}
+												else	if($type	==	'Duration')
+												{
+																$table_view[$main_index][]	=	($value->actual_duration)	?	date('H:i:s',	strtotime($value->actual_duration))	:	date('H:i:s',	strtotime($value->projected_duration));
+												}
+												else	if($type	==	'Date')
+												{
+																$table_view[$main_index][]	=	($value->dates	==	0)	?	''	:	date('Y-m-d',	$value->dates)	.	' '	.	$value->date_type;
+												}
+												else	if($type	==	'File_size')
+												{
+																$table_view[$main_index][]	=	($value->file_size	==	0)	?	''	:	$value->file_size	.	' '	.	($value->file_size_unit_of_measure)	?	$value->file_size_unit_of_measure	:	'';
+												}
+												else	if($type	==	'Colors')
+												{
+																$table_view[$main_index][]	=	($value->color)	?	$value->color	:	'';
+												}
+												else	if($type	==	'Language')
+												{
+																$table_view[$main_index][]	=	($value->language)	?	$value->language	:	'';
+												}
+								}
+								return $table_view;
+				}
 }
 
 ?>

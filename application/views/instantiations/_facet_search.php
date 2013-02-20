@@ -725,12 +725,12 @@
 																								else	if($key	==	4)
 																								{
 																												?>
-																												<div class="dropdown custom-dropdown-menu">
+																												<div class="dropdown">
 																																<a class="dropdown-toggle btn" id="dLabel" role="button" data-toggle="dropdown">
 																																				More
 																																				<b class="caret"></b>
 																																</a>
-																																<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
 																																				<?php
 																																}
 																																else

@@ -324,16 +324,20 @@ function updateDataTable()
 												"bAutoWidth": true,
 												"bProcessing": true,
 												"bServerSide": true,
-												"sAjaxSource": "http://amsqa.avpreserve.com/records/"+url_tab_type
-												
-												
-								});
-								if(frozen>0)
-								{
-												new FixedColumns( oTable, {
+												"sAjaxSource": "http://amsqa.avpreserve.com/records/"+url_tab_type,
+												"fnInitComplete": function () {
+																new FixedColumns( oTable, {
 																"iLeftColumns": frozen
 												} );
-								}
+												}
+												
+								});
+//								if(frozen>0)
+								//								{
+								//												new FixedColumns( oTable, {
+								//																"iLeftColumns": frozen
+								//												} );
+								//								}
 								$('#freeze_col_'+frozen).show();                                                                                                                                                                                                                                           
 								$.extend( $.fn.dataTableExt.oStdClasses,{
 												"sWrapper": "dataTables_wrapper form-inline"
@@ -373,15 +377,15 @@ function updateDatabase(refresh)
 												table_type:current_table_type
 								},
 								success: function (result){
-												//												$('#listing_table').css('width','100%');
-//												if(refresh==1)
-//																window.location.reload();
-if(frozen>0)
-								{
-												new FixedColumns( oTable, {
-																"iLeftColumns": frozen
-												} );
-								}
+								//												$('#listing_table').css('width','100%');
+								//												if(refresh==1)
+								//																window.location.reload();
+								//if(frozen>0)
+								//								{
+								//												new FixedColumns( oTable, {
+								//																"iLeftColumns": frozen
+								//												} );
+								//								}
 											
 								}
 				});

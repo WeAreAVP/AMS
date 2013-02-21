@@ -352,7 +352,7 @@
 				<div id="search_bar" class="facet-search"> 
 								<input type="hidden" name="current_tab" id="current_tab" value="<?php	echo	isset($this->session->userdata['current_tab'])	?	$this->session->userdata['current_tab']	:	''	?>"  />
 								<b>
-												<h5 class="filter_title">FILTER</h5>
+												<h6 class="filter_title" style="font-weight: bold;">FILTER</h6>
 								</b>
 
 
@@ -385,7 +385,7 @@
 																												<span class="caret"></span>
 																								</a>
 																								<ul class="dropdown-menu" style="min-width: auto;">
-																												<li class="dropdown"><a href="#" style="white-space: normal;">Asset<span class="caret custom-caret" style="margin-left:32px;"></span></a>
+																												<li class="dropdown"><a href="javascript://;" style="white-space: normal;">Asset<span class="caret custom-caret" style="margin-left:32px;"></span></a>
 																																<ul class="sub-menu dropdown-menu" style="min-width: auto;width: 118px;">
 																																				<li href="javascript://;" onclick="add_custom_token('AA GUID','guid_identifier');"><a>AA GUID</a></li>
 																																				<li href="javascript://;" onclick="add_custom_token('Title','asset_title');"><a>Title</a></li>
@@ -402,7 +402,7 @@
 
 																																</ul>
 																												</li>
-																												<li class="dropdown"><a href="#"  style="white-space: normal;">Instantiation<span class="caret custom-caret"></span></a>
+																												<li class="dropdown"><a href="javascript://;"  style="white-space: normal;">Instantiation<span class="caret custom-caret"></span></a>
 																																<ul class="sub-menu dropdown-menu" style="min-width: auto;width: 118px;max-height: 250px;overflow-y: scroll;">
 																																				<li><a href="javascript://;" onclick="add_custom_token('ID','instantiation_identifier');">ID</a></li>
 																																				<li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_source');">Identifier Source</a></li>

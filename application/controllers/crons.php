@@ -117,7 +117,7 @@ class	Crons	extends	CI_Controller
 				{
 								error_reporting(E_ALL);
 								ini_set('display_errors',	1);
-								
+								echo exec('whoami');
 								$output	=	exec("/usr/bin/indexer --config /etc/sphinx/sphinx.conf stations --rotate",	$output);
 
 								print_r($output);

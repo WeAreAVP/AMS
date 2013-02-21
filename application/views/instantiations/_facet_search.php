@@ -1,11 +1,7 @@
 <form name="form_search" id="form_search" method="post" onsubmit="return false;" style="margin: 0;padding: 0;">
-
-
-
 				<div id="search_bar_val" class="facet-search"> 
-								<h5 class="filter_title" id="filter_criteria" style="display: none;">FILTER CRITERIA&nbsp;<span id="filter_record_count"></span></h5>
+								<h6 class="filter_title" id="filter_criteria" style="display: none;font-weight: bold;">FILTER CRITERIA&nbsp;<span id="filter_record_count"></span></h6>
 								<div id="tokens">
-
 												<!-- Checked Token Start  -->
 												<div id="checked_token">
 																<?php
@@ -63,21 +59,17 @@
 
 																</div>
 																<div class="clearfix"></div>
-				<!--																<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" style="margin-left:10px;" class="btn" onclick="resetKeyword();"/></div>-->
 																<?php
 												}
 												else
 												{
 																?>
-
 																<div id="keyword_field_main" style="display: none;">
 																				<div class="filter-fileds"><b id="keyword_field_name">Keyword</b></div>
 																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="" />
 																</div>
 												<?php	}	?>
 												<div class="clearfix"></div>
-<!--												<div><input type="reset"  id="reset_search" name="reset_search" value="Reset" class="btn" onclick="resetKeyword();" style="display: none;margin-left:10px;"/></div>-->
-
 												<!-- Custom  Search Display End  -->
 
 												<!-- Date Search Display Start  -->
@@ -104,7 +96,6 @@
 																				<div class="clearfix"></div>
 																</div>
 																<div class="clearfix"></div>
-				<!--																<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset" style="margin: 5px 10px;" class="btn" onclick="resetKeyword('date');"/></div>-->
 																<?php
 												}
 												else
@@ -117,7 +108,6 @@
 
 																</div>
 																<div class="clearfix"></div>
-				<!--																<div><input type="reset"  id="reset_date_search" name="reset_date_search" value="Reset"  style="margin: 5px 10px;display:none;" class="btn" onclick="resetKeyword('date');"/></div>-->
 												<?php	}
 												?>
 
@@ -395,7 +385,7 @@
 																												<span class="caret"></span>
 																								</a>
 																								<ul class="dropdown-menu">
-																												<li class="dropdown"><a href="#" style="white-space: normal;">Asset Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+																												<li class="dropdown"><a href="#" style="white-space: normal;">Asset Fields<span class="caret"></span></a>
 																																<ul class="sub-menu dropdown-menu">
 																																				<li href="javascript://;" onclick="add_custom_token('AA GUID','guid_identifier');"><a>AA GUID</a></li>
 																																				<li href="javascript://;" onclick="add_custom_token('Title','asset_title');"><a>Title</a></li>
@@ -412,7 +402,7 @@
 
 																																</ul>
 																												</li>
-																												<li class="dropdown"><a href="#"  style="white-space: normal;">Instantiation Fields <i class="icon-chevron-right" style="float: right;"></i></a>
+																												<li class="dropdown"><a href="#"  style="white-space: normal;">Instantiation Fields<span class="caret"></span></a>
 																																<ul class="sub-menu dropdown-menu">
 																																				<li><a href="javascript://;" onclick="add_custom_token('ID','instantiation_identifier');">ID</a></li>
 																																				<li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_source');">Identifier Source</a></li>
@@ -438,9 +428,6 @@
 																																				<li><a href="javascript://;" onclick="add_custom_token('Bit Depth','track_bit_depth');">Bit Depth</a></li>
 																																				<li><a href="javascript://;" onclick="add_custom_token('Frame Size','track_width track_height');">Frame Size</a></li>
 																																				<li><a href="javascript://;" onclick="add_custom_token('Aspect Ratio','track_aspect_ratio');">Aspect Ratio</a></li>
-
-
-
 																																</ul>
 																												</li>
 																								</ul>

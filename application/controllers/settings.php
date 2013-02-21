@@ -36,7 +36,6 @@ class	Settings	extends	MY_Controller
 				function	__construct()
 				{
 								parent::__construct();
-								
 				}
 
 				/**
@@ -125,7 +124,7 @@ class	Settings	extends	MY_Controller
 												$val->set_rules('first_name',	'First Name',	'trim|required|xss_clean');
 												$val->set_rules('last_name',	'Last Name',	'trim|required|xss_clean');
 												$val->set_rules('phone_no',	'Phone #',	'trim|xss_clean');
-            $val->set_rules('title', 'Title', 'trim|xss_clean');
+												$val->set_rules('title',	'Title',	'trim|xss_clean');
 												$val->set_rules('fax',	'Fax',	'trim|xss_clean');
 												$val->set_rules('address',	'Address',	'trim|xss_clean');
 
@@ -138,19 +137,19 @@ class	Settings	extends	MY_Controller
 																{
 
 																				$record	=	array('email'															=>	$val->set_value('email'),
-																								'password'												=>	crypt($this->dx_auth->_encode($val->set_value('password'))),
-																								'role_id'													=>	$val->set_value('role'),
+																				'password'												=>	crypt($this->dx_auth->_encode($val->set_value('password'))),
+																				'role_id'													=>	$val->set_value('role'),
 																				);
 																				if($val->set_value('role')	==	3	||	$val->set_value('role')	==	4)
 																								$record['station_id']	=	$val->set_value('station');
 																				else
 																								$record['station_id']	=	NULL;
 																				$profile_data	=	array('first_name'	=>	$val->set_value('first_name'),
-																								'last_name'		=>	$val->set_value('last_name'),
-																								'phone_no'			=>	$val->set_value('phone_no'),
-                        'title' => $val->set_value('title'),
-																								'fax'								=>	$val->set_value('fax'),
-																								'address'				=>	$val->set_value('address'),
+																				'last_name'		=>	$val->set_value('last_name'),
+																				'phone_no'			=>	$val->set_value('phone_no'),
+																				'title'						=>	$val->set_value('title'),
+																				'fax'								=>	$val->set_value('fax'),
+																				'address'				=>	$val->set_value('address'),
 																				);
 
 																				$id	=	$this->users->create_user($record);
@@ -203,7 +202,7 @@ class	Settings	extends	MY_Controller
 												$val->set_rules('first_name',	'First Name',	'trim|required|xss_clean');
 												$val->set_rules('last_name',	'Last Name',	'trim|required|xss_clean');
 												$val->set_rules('phone_no',	'Phone #',	'trim|xss_clean');
-            $val->set_rules('title', 'Title', 'trim|xss_clean');
+												$val->set_rules('title',	'Title',	'trim|xss_clean');
 												$val->set_rules('fax',	'Fax',	'trim|xss_clean');
 												$val->set_rules('address',	'Address',	'trim|xss_clean');
 												$val->set_rules('role',	'Role',	'trim|xss_clean|required');
@@ -215,7 +214,7 @@ class	Settings	extends	MY_Controller
 																{
 
 																				$record	=	array('email'															=>	$val->set_value('email'),
-																								'role_id'													=>	$val->set_value('role'),
+																				'role_id'													=>	$val->set_value('role'),
 																				);
 																				if($val->set_value('role')	==	3	||	$val->set_value('role')	==	4)
 																								$record['station_id']	=	$val->set_value('station');
@@ -225,11 +224,11 @@ class	Settings	extends	MY_Controller
 																								$record['password']	=	crypt($this->dx_auth->_encode($val->set_value('password')));
 
 																				$profile_data	=	array('first_name'	=>	$val->set_value('first_name'),
-																								'last_name'		=>	$val->set_value('last_name'),
-																								'phone_no'			=>	$val->set_value('phone_no'),
-                        'title' => $val->set_value('title'),
-																								'fax'								=>	$val->set_value('fax'),
-																								'address'				=>	$val->set_value('address'),
+																				'last_name'		=>	$val->set_value('last_name'),
+																				'phone_no'			=>	$val->set_value('phone_no'),
+																				'title'						=>	$val->set_value('title'),
+																				'fax'								=>	$val->set_value('fax'),
+																				'address'				=>	$val->set_value('address'),
 																				);
 																				$this->users->set_user($user_id,	$record);
 
@@ -319,17 +318,20 @@ class	Settings	extends	MY_Controller
 												if($val->run())
 												{
 
-																$record	=	array('email'													=>	$val->set_value('email'),
-																				'station_id'								=>	$val->set_value('station')
-																);
+																$record['email']	=	$val->set_value('email');
+																if($val->set_value('role')	==	3	||	$val->set_value('role')	==	4)
+																				$record['station_id']	=	$val->set_value('station');
+																else
+																				$record['station_id']	=	NULL;
 																if($val->set_value('password')	!=	'')
 																				$record['password']	=	crypt($this->dx_auth->_encode($val->set_value('password')));
 
 																$profile_data	=	array('first_name'	=>	$val->set_value('first_name'),
-																				'last_name'		=>	$val->set_value('last_name'),
-																				'phone_no'			=>	$val->set_value('phone_no'),
-																				'fax'								=>	$val->set_value('fax'),
-																				'address'				=>	$val->set_value('address'),
+																'last_name'		=>	$val->set_value('last_name'),
+																'phone_no'			=>	$val->set_value('phone_no'),
+																'title'						=>	$val->set_value('title'),
+																'fax'								=>	$val->set_value('fax'),
+																'address'				=>	$val->set_value('address'),
 																);
 																$this->users->set_user($user_id,	$record);
 

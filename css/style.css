@@ -337,6 +337,9 @@ ul.dropdown-menu .sub-menu-caret {
     color: #333333;
 
 }
+.facet-search .btn {
+				font-size: 11px;
+}
 
 #limit_field_dropdown a{
     text-decoration: none;

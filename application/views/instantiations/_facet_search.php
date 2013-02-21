@@ -381,7 +381,7 @@
 								?>
 								<div class="field-filters" id="limit_field_div" style="display:<?php	echo	$style;	?>">
 												<div class="filter-fileds" >
-																<div><b>Keyword Search</b>	<span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('sk_div',this);"></span></div>
+																<div><b>Keyword Search</b>	<span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;opacity: 1;" onclick="showHideSearch('sk_div',this);"></span></div>
 
 																<!--																</div>-->
 																<div id="sk_div" style="display: none;">
@@ -463,7 +463,7 @@
 								}
 								?>
 								<div class="field-filters" id="date_range_filter_div">
-												<div class="filter-fileds"><b>Date</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('date_range_filter_div_1',this);"></span></div>
+												<div class="filter-fileds"><b>Date</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;opacity: 1;" onclick="showHideSearch('date_range_filter_div_1',this);"></span></div>
 												<div id="date_range_filter_div_1" style="display: none;">
 																<div id="widget">
 																				<div id="date_range_filter">
@@ -520,7 +520,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Organization</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('org_div',this);"></span>
+																				<b>Organization</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;opacity: 1;" onclick="showHideSearch('org_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="org_div" style="display: none;">
 																				<?php
@@ -569,7 +569,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>States</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('org_st_div',this);"></span>
+																				<b>States</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;opacity: 1;" onclick="showHideSearch('org_st_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="org_st_div" style="display: none;">
 																				<?php
@@ -616,7 +616,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Nomination Status</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('n_div',this);"></span>
+																				<b>Nomination Status</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;opacity: 1;" onclick="showHideSearch('n_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="n_div" style="display: none;">
 																				<?php
@@ -663,7 +663,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Media Type</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('md_div',this);"></span>
+																				<b>Media Type</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;opacity: 1;" onclick="showHideSearch('md_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="md_div" style="display: none;">
 																				<?php
@@ -710,7 +710,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Physical Format</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('pf_div',this);"></span>
+																				<b>Physical Format</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;opacity: 1;" onclick="showHideSearch('pf_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="pf_div" style="display: none;">
 																				<?php
@@ -757,7 +757,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Digital Format</b><span class="caret custom-caret"  style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('df_div',this);"></span>
+																				<b>Digital Format</b><span class="caret custom-caret"  style="margin-top: 8px;margin-left: 3px;cursor: pointer;opacity: 1;" onclick="showHideSearch('df_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="df_div" style="display: none;">
 																				<?php
@@ -804,7 +804,7 @@
 												?>
 												<div class="field-filters">
 																<div class="filter-fileds">
-																				<b>Generations</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;" onclick="showHideSearch('generation_search_div',this);"></span>
+																				<b>Generations</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;opacity: 1;" onclick="showHideSearch('generation_search_div',this);"></span>
 																</div>
 																<div class="filter-fileds" id="generation_search_div" style="display: none;">
 																				<?php

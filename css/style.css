@@ -639,9 +639,6 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 #listing_table th{
 				background: #EBEBEB;
 }
-.message_box{
-				/*				background: url("/images/Mailing.png");width: 25px;height: 17px;margin-top: -5px;float: right;*/
-}
 
 ::-webkit-scrollbar {
 				width: 10px;
@@ -694,29 +691,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				height: 0px;
 				background-color: #f8f8f8;
 }
-/*#limit_field_dropdown:hover{
-				position: fixed;
-				z-index: 2000;
-}
-#limit_field_dropdown:hover + #limit_btn{
-				margin-top: 28px;
-				position: relative;
-}
-#limit_field_dropdown:hover ~ #limit_btn{
-				margin-top: 28px;
-				position: relative;
-}
-#add_date_btn{
-				margin-top: 12px;
-}
-#limit_field_dropdown:hover + #add_date_btn{
-				margin-top: 40px;
-				position: relative;
-}
-#limit_field_dropdown:hover ~ #add_date_btn{
-				margin-top: 40px;
-				position: relative;
-}*/
+
 
 .custom-dropdown-menu{
 				max-height: 120px;

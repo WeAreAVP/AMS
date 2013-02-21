@@ -114,16 +114,21 @@ class	Crons	extends	CI_Controller
 								$this->myLog('No Record available for csv export.');
 								exit;
 				}
+
 				/**
-				 * Update Sphnix Indexes
-				 *  
-				 */
-				public	function	update_sphnix_indexes()
+					* Update Sphnix Indexes
+					*  
+					*/
+				public	function	rotate_sphnix_indexes()
 				{
-								error_reporting(E_ALL);
-								ini_set('display_errors',	1);
-								echo `/usr/bin/sudo /usr/bin/indexer stations --rotate`;
-								exit;
+								$record	=	$this->cron_model->get_sphnix_indexes();
+								if($record)
+								{
+												$index	=	$record->index_name;
+												echo	`/usr/bin/sudo /usr/bin/indexer $index --rotate`;
+												$this->cron_model->update_rotate_indexes($record->id,	array('status'	=>	1));
+								}
+								exit_function();
 				}
 
 				/**

@@ -30,13 +30,14 @@ class	Stations	extends	MY_Controller
 				/**
 					* Constructor.
 					* 
-					* Load the layout. Sphinx and tracking model
+					* Load the layout. Sphinx and Cron model
 					*  
 					*/
 				function	__construct()
 				{
 								parent::__construct();
 								$this->load->model('sphinx_model',	'sphinx');
+								$this->load->model('cron_model');
 				}
 
 				/**
@@ -249,6 +250,10 @@ class	Stations	extends	MY_Controller
 								show_404();
 				}
 
+				/**
+					* Update Stations records from a csv file.
+					*  
+					*/
 				public	function	import_station_contacts()
 				{
 								$config['upload_path']	=	"./uploads/";
@@ -288,9 +293,6 @@ class	Stations	extends	MY_Controller
 								{
 												foreach($records	as	$index	=>	$row)
 												{
-
-
-
 																if($index	!==	0	&&	$index	!=	$count	-	1)
 																{
 																				if(count($row)	!==	22	&&	count($row)	!==	21)
@@ -345,7 +347,6 @@ class	Stations	extends	MY_Controller
 																				$station_user	=	array(
 																				'role_id'						=>	4,
 																				'station_id'			=>	$station_id,
-																				'email'								=>	$row[12],
 																				'is_secondary'	=>	(strtolower($row[20])	==	'yes')	?	0	:	1
 																				);
 																				if(isset($row[21]))
@@ -362,7 +363,7 @@ class	Stations	extends	MY_Controller
 																				'fax'								=>	$row[11],
 																				'title'						=>	$row[3],
 																				);
-//																				debug($station_user_detail,	FALSE);
+
 																				$db_usser	=	$this->users->get_user_by_email($row[12]);
 																				if($db_usser->num_rows()	==	1)
 																				{
@@ -376,6 +377,7 @@ class	Stations	extends	MY_Controller
 																				}
 																				else
 																				{
+																								$station_user['email']	=	$row[12];
 																								$user_id	=	$this->users->create_user($station_user);
 																								$station_user_detail['user_id']	=	$user_id;
 																								$this->user_profile->insert_profile($station_user_detail);
@@ -387,7 +389,7 @@ class	Stations	extends	MY_Controller
 																}
 												}
 								}
-
+								$this->cron_model->update_rotate_indexes(3,	array('status'										=>	0));
 								$inserted_user	=	0;
 								$updated_user	=	0;
 								$inserted_station	=	0;

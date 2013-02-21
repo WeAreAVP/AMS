@@ -707,7 +707,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				opacity: 1;
 }
 #show_hide_li li{
-				max-width: 220px;
-				word-break: keep-all;
-/*				white-space: nowrap;*/
+/*				max-width: 220px;*/
+/*				word-break: keep-all;*/
+				white-space: nowrap;
 }

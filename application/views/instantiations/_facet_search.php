@@ -1,4 +1,4 @@
-<form name="form_search" id="form_search" method="post" onsubmit="return false;" style="margin: 0;padding: 0;">
+<form name="form_search" id="form_search" method="post" onsubmit="return false;" style="margin: 0;padding: 0;" >
 
 
 

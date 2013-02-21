@@ -724,3 +724,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 				overflow-y: scroll;
 				overflow-wrap: break-word;
 }
+
+.add_date_btn{
+				margin-top: 10px;
+}

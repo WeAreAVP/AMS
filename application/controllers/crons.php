@@ -47,7 +47,8 @@ class	Crons	extends	CI_Controller
 				}
 
 				/**
-					* Process all pending email. 
+					* Process all pending email.
+					*  
 					*/
 				function	processemailqueues()
 				{
@@ -66,6 +67,7 @@ class	Crons	extends	CI_Controller
 
 				/**
 					* Process all pending csv exports. 
+					* 
 					*/
 				function	csv_export_job()
 				{
@@ -112,12 +114,15 @@ class	Crons	extends	CI_Controller
 								$this->myLog('No Record available for csv export.');
 								exit;
 				}
-
+				/**
+				 * Update Sphnix Indexes
+				 *  
+				 */
 				public	function	update_sphnix_indexes()
 				{
 								error_reporting(E_ALL);
 								ini_set('display_errors',	1);
-								echo exec('whoami').'<br/>';
+								echo	exec('which sudo')	.	'<br/>';
 								$output	=	shell_exec("sudo /usr/bin/indexer stations --rotate");
 
 								print_r($output);

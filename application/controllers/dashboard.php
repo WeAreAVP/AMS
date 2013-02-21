@@ -43,12 +43,7 @@ class	Dashboard	extends	MY_Controller
 								}
 				}
 
-				public	function	date()
-				{
-
-								$this->load->view('welcome_message');
-				}
-
+				
 				/**
 					* Dashboard Functionality
 					* 

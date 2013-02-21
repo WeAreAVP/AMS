@@ -8,9 +8,9 @@
 	* 
 	* @category AMS
 	* @package  CI
-	* @author   Nouman Tayyab <nouman@geekschicago.com>
+	* @author   Nouman Tayyab <nouman@avpreserve.com>
 	* @license  CPB http://ams.avpreserve.com
-	* @version  GIT: <$Id>
+	* @version  GIT: $Id
 	* @link     http://ams.avpreserve.com
 
 	*/
@@ -21,7 +21,7 @@
 	* @category   AMS
 	* @package    CI
 	* @subpackage Controller
-	* @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @author     Nouman Tayyab <nouman@avpreserve.com>
 	* @license    CPB http://ams.avpreserve.com
 	* @link       http://ams.avpreserve.com
 	*/
@@ -93,7 +93,8 @@ class	Pbcore	extends	MY_PBCore_Controller
 				}
 
 				/**
-					* Store all PBCore 1.x sub files in the database
+					* Store all PBCore 1.x sub files in the database.
+				 * 
 					* @param type $path 
 					*/
 				function	process_dir_child($path)

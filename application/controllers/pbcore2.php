@@ -1,5 +1,6 @@
 <?php
 
+// @codingStandardsIgnoreFile
 /**
 	* AMS Archive Management System
 	* 
@@ -24,12 +25,12 @@
 	* @license    CPB http://ams.avpreserve.com
 	* @link       http://ams.avpreserve.com
 	*/
-class	Pbcore2	extends	CI_Controller
+class	Pbcore2	extends	MY_PBCore_Controller
 {
 
 				/**
 					*
-					* Constructor.
+					* constructor. Load layout,Model,Library and helpers
 					* 
 					*/
 				public	$pbcore_path;
@@ -37,14 +38,13 @@ class	Pbcore2	extends	CI_Controller
 				function	__construct()
 				{
 								parent::__construct();
-								$this->load->model('cron_model');
-								$this->load->model('assets_model');
-								$this->load->model('instantiations_model',	'instant');
-								$this->load->model('essence_track_model',	'essence');
-								$this->load->model('station_model');
 								$this->pbcore_path	=	'assets/export_pbcore2/';
 				}
 
+				/**
+					* Store all PBCore 2.x directories and data files in the database.
+					*  
+					*/
 				function	process_dir()
 				{
 								set_time_limit(0);
@@ -91,6 +91,10 @@ class	Pbcore2	extends	CI_Controller
 								exit_function();
 				}
 
+				/**
+					* Store all PBCore 2.x sub files in the database
+					* @param type $path 
+					*/
 				function	pbcore2_dir_child($path)
 				{
 
@@ -141,6 +145,11 @@ class	Pbcore2	extends	CI_Controller
 								}
 				}
 
+				/**
+					* 
+					* Process all pending PBCore 2.x files.
+					*
+					*/
 				function	process_xml_file()
 				{
 								$folders	=	$this->cron_model->get_all_pbcoretwo_folder();
@@ -200,6 +209,13 @@ class	Pbcore2	extends	CI_Controller
 								}
 				}
 
+				/**
+					* Process all pending PBCore 1.x files.
+					* @param type $folder_id
+					* @param type $station_cpb_id
+					* @param type $offset
+					* @param type $limit 
+					*/
 				function	process_xml_file_child($folder_id,	$station_cpb_id,	$offset	=	0,	$limit	=	100)
 				{
 								error_reporting(E_ALL);
@@ -296,27 +312,11 @@ class	Pbcore2	extends	CI_Controller
 								}
 				}
 
-//				function	process_xml()
-//				{
-//								error_reporting(E_ALL);
-//								ini_set('display_errors',	1);
-//
-//								$sample	=	array('will_pbcore.xml',	'wnyc_pbcore.xml',	'scetv_pbcore.xml',	'mpr_pbcore.xml');
-//								foreach($sample	as	$value)
-//								{
-//												$file_path	=	$this->pbcore_path	.	'sample/'	.	$value;
-//												$this->myLog('<b>File Name: '	.	$value	.	'</b>');
-//												$file_content	=	file_get_contents($file_path);
-//												$xml	=	@simplexml_load_string($file_content);
-//												$xml_to_array	=	xmlObjToArr($xml);
-////								debug($xml_to_array,	FALSE);
-//												$this->import_assets($xml_to_array['children']);
-//												$this->import_instantiations($xml_to_array['children']);
-//												echo	'<br/><hr/>';
-////												exit;
-//								}
-//				}
-
+				/**
+					* Process Asset Elements and store into the database.
+					* @param type $asset_children
+					* @param type $asset_id 
+					*/
 				function	import_assets($asset_children,	$asset_id)
 				{
 //								debug($asset_children,	FALSE);
@@ -939,6 +939,11 @@ class	Pbcore2	extends	CI_Controller
 								// Asset Extension End //
 				}
 
+				/**
+					* Process Instantiation Elements and store into the database.
+					* @param type $asset_children
+					* @param type $asset_id 
+					*/
 				function	import_instantiations($asset_children,	$asset_id)
 				{
 								if(isset($asset_children['pbcoreinstantiation']))
@@ -1500,68 +1505,6 @@ class	Pbcore2	extends	CI_Controller
 																}
 												}
 								}
-				}
-
-				function	myLog($string)
-				{
-								global	$argc;
-								if($argc)
-												$string.="\n";
-								else
-												$string.="<br>\n";
-								echo	date('Y-m-d H:i:s')	.	' >> '	.	$string;
-								flush();
-				}
-
-				function	checkProcessStatus($pid)
-				{
-								$proc_status	=	false;
-								try
-								{
-												$result	=	shell_exec("/bin/ps $pid");
-												if(count(preg_split("/\n/",	$result))	>	2)
-												{
-																$proc_status	=	TRUE;
-												}
-								}
-								catch	(Exception	$e)
-								{
-												
-								}
-								return	$proc_status;
-				}
-
-				function	procCounter()
-				{
-								foreach($this->arrPIDs	as	$pid	=>	$cityKey)
-								{
-												if(	!	$this->checkProcessStatus($pid))
-												{
-																$t_pid	=	str_replace("\r",	"",	str_replace("\n",	"",	trim($pid)));
-																unset($this->arrPIDs[$pid]);
-												}
-												else
-												{
-																
-												}
-								}
-								return	count($this->arrPIDs);
-				}
-
-				function	runProcess($cmd,	$pidFilePath,	$outputfile	=	"/dev/null")
-				{
-								$cmd	=	escapeshellcmd($cmd);
-								@exec(sprintf("%s >> %s 2>&1 & echo $! > %s",	$cmd,	$outputfile,	$pidFilePath));
-				}
-
-				function	is_valid_date($value)
-				{
-								$date	=	date_parse($value);
-								if($date['error_count']	==	0	&&	$date['warning_count']	==	0)
-								{
-												return	date("Y-m-d",	strtotime($value));
-								}
-								return	FALSE;
 				}
 
 }

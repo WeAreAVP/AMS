@@ -123,7 +123,7 @@ class	Crons	extends	CI_Controller
 								error_reporting(E_ALL);
 								ini_set('display_errors',	1);
 								echo	exec('which sudo')	.	'<br/>';
-								$output	=	shell_exec("/usr/bin/sudo /usr/bin/indexer stations --rotate");
+								$output	=	shell_exec("/usr/bin/sudo /usr/bin/indexer stations --rotate > /var/www/html/test.html");
 
 								print_r($output);
 								exit;

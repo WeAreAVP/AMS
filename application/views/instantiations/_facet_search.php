@@ -384,8 +384,8 @@
 																												<span id="limit_field_text">Limit Search to Field</span>
 																												<span class="caret"></span>
 																								</a>
-																								<ul class="dropdown-menu">
-																												<li class="dropdown"><a href="#" style="white-space: normal;">Asset<span class="caret custom-caret"></span></a>
+																								<ul class="dropdown-menu" style="min-width: auto;">
+																												<li class="dropdown"><a href="#" style="white-space: normal;">Asset<span class="caret custom-caret" style="margin-left:32px;"></span></a>
 																																<ul class="sub-menu dropdown-menu">
 																																				<li href="javascript://;" onclick="add_custom_token('AA GUID','guid_identifier');"><a>AA GUID</a></li>
 																																				<li href="javascript://;" onclick="add_custom_token('Title','asset_title');"><a>Title</a></li>

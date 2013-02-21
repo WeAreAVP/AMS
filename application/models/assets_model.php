@@ -8,8 +8,8 @@
 	* @category   AMS
 	* @package    CI
 	* @subpackage Model
-	* @author     Ali Raza <ali.com>
-	* @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @author     Ali Raza <ali@geekschicago.com>
+	* @author     Nouman Tayyab <nouman@avpreserve.com>
 	* @license    AVPS http://ams.avpreserve.com
 	* @version    GIT: <$Id>
 	* @link       http://ams.avpreserve.com
@@ -21,8 +21,8 @@
 	* @category   Class
 	* @package    CI
 	* @subpackage Model
-	* @author     Ali Raza <ali.com>
-	* @author     Nouman Tayyab <nouman@geekschicago.com>
+	* @author     Ali Raza <ali@geekschicago.com.com>
+	* @author     Nouman Tayyab <nouman@avpreserve.com>
 	* @version    GIT: <$Id>
 	* @link       http://ams.avpreserve.com
 	*/

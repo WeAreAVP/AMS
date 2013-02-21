@@ -706,3 +706,6 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 #form_search .caret{
 				opacity: 1;
 }
+#show_hide_li li{
+				width: 180px;
+}

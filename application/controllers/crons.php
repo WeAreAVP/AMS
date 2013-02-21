@@ -115,10 +115,13 @@ class	Crons	extends	CI_Controller
 
 				public	function	update_sphnix_indexes()
 				{
-										error_reporting(E_ALL);
+								error_reporting(E_ALL);
 								ini_set('display_errors',	1);
-								$cmd	=	escapeshellcmd('/usr/bin/indexer stations --rotate');
-								debug($cmd);
+								
+								$output	=	exec("/usr/bin/indexer --config /etc/sphinx/sphinx.conf stations --rotate",	$output);
+
+								print_r($output);
+								exit;
 				}
 
 				/**

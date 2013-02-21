@@ -122,8 +122,7 @@ class	Crons	extends	CI_Controller
 				{
 								error_reporting(E_ALL);
 								ini_set('display_errors',	1);
-								echo	`whoami`	.	'<br/>';
-								echo `/usr/bin/sudo /usr/bin/indexer stations --rotate > /var/www/html/test.html`;
+								echo `/usr/bin/sudo /usr/bin/indexer stations --rotate`;
 								exit;
 				}
 

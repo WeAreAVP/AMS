@@ -386,7 +386,7 @@
 																								</a>
 																								<ul class="dropdown-menu" style="min-width: 98px;">
 																												<li class="dropdown"><a href="javascript://;" style="white-space: normal;">Asset<span class="caret custom-caret" style="margin-left:32px;"></span></a>
-																																<ul class="sub-menu dropdown-menu" style="min-width: auto;max-width: 116px;">
+																																<ul class="sub-menu dropdown-menu" style="min-width: auto;width: 116px;">
 																																				<li href="javascript://;" onclick="add_custom_token('AA GUID','guid_identifier');"><a>AA GUID</a></li>
 																																				<li href="javascript://;" onclick="add_custom_token('Title','asset_title');"><a>Title</a></li>
 																																				<li><a href="javascript://;" onclick="add_custom_token('Subject','asset_subject');">Subject</a></li>
@@ -403,7 +403,7 @@
 																																</ul>
 																												</li>
 																												<li class="dropdown"><a href="javascript://;"  style="white-space: normal;">Instantiation<span class="caret custom-caret"></span></a>
-																																<ul class="sub-menu dropdown-menu" style="min-width: auto;max-height: 116px;overflow-y: scroll;">
+																																<ul class="sub-menu dropdown-menu" style="min-width: auto;width: 116px;max-height: 250px;overflow-y: scroll;">
 																																				<li><a href="javascript://;" onclick="add_custom_token('ID','instantiation_identifier');">ID</a></li>
 																																				<li><a href="javascript://;" onclick="add_custom_token('ID Source','instantiation_source');">Identifier Source</a></li>
 																																				<li><a href="javascript://;" onclick="add_custom_token('Dimensions','instantiation_dimension');">Dimensions</a></li>

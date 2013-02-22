@@ -371,7 +371,7 @@
 								?>
 								<div class="field-filters" id="limit_field_div" style="display:<?php	echo	$style;	?>">
 												<div class="filter-fileds" >
-																<div onclick="showHideSearch('sk_div',this);"><b>Keyword Search</b>	<span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;cursor: pointer;"></span></div>
+																<div onclick="showHideSearch('sk_div',this);" style="cursor: pointer;"><b>Keyword Search</b>	<span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;"></span></div>
 
 																<!--																</div>-->
 																<div id="sk_div" style="display: none;">
@@ -1194,7 +1194,8 @@
 				}
 				function showHideSearch(divID,obj){
 								
-								$(obj+' span').toggleClass('custom-caret');
+								console.log(obj);
+								$(obj).toggleClass('custom-caret');
 								$('#'+divID).toggle();
 				}
 				function add_checked_token(id,name){

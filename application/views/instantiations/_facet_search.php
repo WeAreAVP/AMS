@@ -1194,7 +1194,7 @@
 				}
 				function showHideSearch(divID,obj){
 								
-								console.log(obj);
+								console.log(obj.children('span'));
 								$(obj).toggleClass('custom-caret');
 								$('#'+divID).toggle();
 				}

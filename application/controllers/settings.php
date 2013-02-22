@@ -302,7 +302,7 @@ class	Settings	extends	MY_Controller
 				{
 								$user_id	=	$this->user_id;
 								$val	=	$this->form_validation;
-
+								$data['user_info']	=	$this->users->get_user_detail($user_id)->row();
 								$val->set_rules('email',	'Email',	'trim|required|xss_clean|valid_email|callback_email_check['	.	$user_id	.	']');
 								$val->set_rules('password',	'Password',	'trim|xss_clean');
 								$val->set_rules('first_name',	'First Name',	'trim|required|xss_clean');
@@ -320,7 +320,7 @@ class	Settings	extends	MY_Controller
 												{
 
 																$record['email']	=	$val->set_value('email');
-																if($val->set_value('role')	==	3	||	$val->set_value('role')	==	4)
+																if($data['user_info']->role_id	==	3	||	$data['user_info']->role_id	==	4)
 																				$record['station_id']	=	$val->set_value('station');
 																else
 																				$record['station_id']	=	NULL;
@@ -345,7 +345,7 @@ class	Settings	extends	MY_Controller
 																$data['errors']	=	$errors;
 												}
 								}
-								$data['user_info']	=	$this->users->get_user_detail($user_id)->row();
+								
 
 								$roles	=	$this->roles->get_all()->result();
 

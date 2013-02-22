@@ -330,7 +330,7 @@ function updateDataTable()
 												"bAutoWidth": true,
 												"bProcessing": true,
 												"bServerSide": true,
-												"sAjaxSource": "http://amsqa.avpreserve.com/"+url_tab_type,
+												"sAjaxSource": site_url+url_tab_type,
 												"fnInitComplete": function () {
 														oFC=		new FixedColumns( oTable, {
 																"iLeftColumns": frozen

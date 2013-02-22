@@ -1184,7 +1184,7 @@
 																"bAutoWidth": true,
 																"bProcessing": true,
 																"bServerSide": true,
-																"sAjaxSource": "http://amsqa.avpreserve.com/records/sort_simple_table"
+																"sAjaxSource": site_url+"sort_simple_table"
 												});
 												$.extend( $.fn.dataTableExt.oStdClasses,{
 																"sWrapper": "dataTables_wrapper form-inline"

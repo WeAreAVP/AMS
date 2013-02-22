@@ -1195,8 +1195,12 @@
 				function showHideSearch(divID,obj){
 								
 								console.log(	$(obj).children('span'));
-									$(obj).children('span').toggleClass('custom-caret');
-								$('#'+divID).toggle();
+								$(obj).children('span').toggleClass('custom-caret');
+								$('#'+divID).toggle(function(){
+												$('#'+divID).animate({
+     
+												}, 500);
+								});
 				}
 				function add_checked_token(id,name){
 								if($('#'+id).is(':checked')){

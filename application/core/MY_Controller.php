@@ -156,7 +156,9 @@ class	MY_Controller	extends	CI_Controller
 
 				function	make_array()
 				{
-								return	array('asset_title'																			=>	'Title',
+								return	array(
+								'asset_title'																			=>	'Title',
+								'guid_identifier'																			=>	'AA GUID',
 								'asset_subject'																	=>	'Subject',
 								'asset_coverage'																=>	'Coverage',
 								'asset_genre'																			=>	'Genre',

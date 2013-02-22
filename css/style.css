@@ -369,12 +369,13 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 	left: 50%;
 	width: 250px;
 	margin-left: -125px;
-	border: 1px solid #ddd;
+	border: 1px solid #f0c36d;
 	text-align: center;
 	color: #000000;
 	font-size: 11px;
 	font-weight: bold;
 	padding: 2px 0;
+	background-color: #f9edbe;
 }
 #simple_view .dataTables_scrollHead{ height:35px;}
 #datepicker-calendar{

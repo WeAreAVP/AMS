@@ -1195,7 +1195,7 @@
 				function showHideSearch(divID,obj){
 								
 								console.log(	$(obj).children('span'));
-								$(obj).toggleClass('custom-caret');
+									$(obj).children('span').toggleClass('custom-caret');
 								$('#'+divID).toggle();
 				}
 				function add_checked_token(id,name){

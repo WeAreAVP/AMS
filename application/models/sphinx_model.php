@@ -85,18 +85,16 @@ class	Sphinx_Model	extends	CI_Model
 								$this->sphinxsearch->reset_filters();
 								$this->sphinxsearch->reset_group_by();
 
-								$mode	=	SPH_MATCH_ALL;
+								$mode	=	SPH_MATCH_EXTENDED;
 								$this->sphinxsearch->set_array_result(true);
 								$this->sphinxsearch->set_match_mode($mode);
-								
 								$this->sphinxsearch->set_sort_mode ( SPH_SORT_ATTR_DESC, "organization" );
-								$this->sphinxsearch->set_group_by ( 'organization', SPH_GROUPBY_ATTR );
 								$this->sphinxsearch->set_connect_timeout(120);
 								if($limit)
 												$this->sphinxsearch->set_limits((int)	$offset,	(int)	$limit,	(	$limit	>	1000	)	?	$limit	:	1000	);
 //								$query	=	$this->make_where_clause();
 //								$res	=	$this->sphinxsearch->query('',	$index_name);
-								$res	=	$this->sphinxsearch->query('',	'assets_list');
+								$res	=	$this->sphinxsearch->query('',	'instantiation_stations');
 
 
 								$execution_time	=	$res['time'];
@@ -111,12 +109,11 @@ class	Sphinx_Model	extends	CI_Model
 																				{
 
 
-																								$list[]	=	(object)	array_merge(array('id'	=>	$record['id']),	array('organization'=>$record['attrs']['organization'],'count'=>$record['attrs']['@count']));
+																								$list[]	=	(object)	array_merge(array('id'	=>	$record['id']),	$record['attrs']);
 																				}
 																}
 												}
 								}
-								
 								debug($list);
 								return	array("total_count"	=>	$total_record,	"records"					=>	$list,	"query_time"		=>	$execution_time);
 				}

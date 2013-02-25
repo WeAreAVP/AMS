@@ -115,7 +115,7 @@ class	Sphinx_Model	extends	CI_Model
 																}
 												}
 								}
-//								sort($list);
+								ksort($list);
 								debug($list);
 								return	array("total_count"	=>	$total_record,	"records"					=>	$list,	"query_time"		=>	$execution_time);
 				}

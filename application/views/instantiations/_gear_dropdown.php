@@ -10,7 +10,7 @@ if($table_type	==	'assets'	&&	$current_tab	==	'simple')
 								if($current_tab	==	'')
 								{
 												?>
-												<a class="btn"  href="#export_csv_confirm_modal" role="button" class="btn" data-toggle="modal" style="margin-left: 10px;height: 14px;">
+												<a class="btn"  href="#export_csv_confirm_modal" role="button" class="btn" data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
 																EXPORT LIMITED CSV
 												</a>
 								<?php	}	?>

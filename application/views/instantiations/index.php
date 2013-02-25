@@ -113,9 +113,10 @@ if(	!	$isAjax)
 								});
 								function confirm_csv_export(){
 													$('#export_csv_modal').modal({
-																backdrop: false
+																backdrop: 'static',
+																
 												});
-												$('#export_csv_modal').modal('toggle');
+//												$('#export_csv_modal').modal('toggle');
 											
 												export_csv_limited();
 								}

@@ -89,26 +89,27 @@ class	Instantiations	extends	MY_Controller
 
 								$this->session->set_userdata('page_link',	'instantiations/index/'	.	$offset);
 								$data['get_column_name']	=	$this->make_array();
-								$states	=	$this->sphinx->facet_index('instantiation_state');
+								$states	=	$this->sphinx->facet_index('state','instantiation_state');
 								$data['org_states']	=	$states['records'];
+								debug(	$data['org_states']);
 								unset($states);
-								$stations	=	$this->sphinx->facet_index('instantiation_stations');
+								$stations	=	$this->sphinx->facet_index('organization','instantiations_list');
 
 								$data['stations']	=	$stations['records'];
 								unset($stations);
-								$nomination	=	$this->sphinx->facet_index('instantiation_nomination');
+								$nomination	=	$this->sphinx->facet_index('status','instantiations_list');
 								$data['nomination_status']	=	$nomination['records'];
 								unset($nomination);
-								$media_type	=	$this->sphinx->facet_index('instantiation_media_type');
+								$media_type	=	$this->sphinx->facet_index('media_type','instantiations_list');
 								$data['media_types']	=	$media_type['records'];
 								unset($media_type);
-								$p_format	=	$this->sphinx->facet_index('instantiation_format_physical');
+								$p_format	=	$this->sphinx->facet_index('format_type','instantiations_list','physical');
 								$data['physical_formats']	=	$p_format['records'];
 								unset($p_format);
-								$d_format	=	$this->sphinx->facet_index('instantiation_format_digital');
+								$d_format	=	$this->sphinx->facet_index('format_type','instantiations_list','digital');
 								$data['digital_formats']	=	$d_format['records'];
 								unset($d_format);
-								$generation	=	$this->sphinx->facet_index('instantiation_generation');
+								$generation	=	$this->sphinx->facet_index('generation','instantiations_list');
 								$data['generations']	=	$generation['records'];
 								unset($generation);
 

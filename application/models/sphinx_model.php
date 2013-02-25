@@ -78,7 +78,7 @@ class	Sphinx_Model	extends	CI_Model
 								return	array("total_count"	=>	$total_record,	"records"					=>	$stations_list,	"query_time"		=>	$execution_time);
 				}
 
-				public	function	facet_index($index_name,	$offset	=	0,	$limit	=	1000)
+				public	function	facet_index($column_name,	$index_name,	$format_type	=	NULL,	$offset	=	0,	$limit	=	1000)
 				{
 								$list	=	array();
 								$total_record	=	0;
@@ -88,14 +88,15 @@ class	Sphinx_Model	extends	CI_Model
 								$mode	=	SPH_MATCH_EXTENDED;
 								$this->sphinxsearch->set_array_result(true);
 								$this->sphinxsearch->set_match_mode($mode);
-								$this->sphinxsearch->set_group_by ( 'organization', SPH_GROUPBY_ATTR );
-								$this->sphinxsearch->set_sort_mode ( SPH_SORT_ATTR_DESC, "@count" );
+								$this->sphinxsearch->set_group_by($column_name,	SPH_GROUPBY_ATTR);
+//								$this->sphinxsearch->set_sort_mode ( SPH_SORT_ATTR_DESC, "@count" );
 								$this->sphinxsearch->set_connect_timeout(120);
 								if($limit)
 												$this->sphinxsearch->set_limits((int)	$offset,	(int)	$limit,	(	$limit	>	1000	)	?	$limit	:	1000	);
-//								$query	=	$this->make_where_clause();
-//								$res	=	$this->sphinxsearch->query('',	$index_name);
-								$res	=	$this->sphinxsearch->query('',	'instantiations_list');
+
+								$query	=	$this->make_where_clause($format_type);
+								$res	=	$this->sphinxsearch->query($query,	$index_name);
+
 
 
 								$execution_time	=	$res['time'];
@@ -115,7 +116,7 @@ class	Sphinx_Model	extends	CI_Model
 																}
 												}
 								}
-								debug($list);
+//								debug($list);
 								return	array("total_count"	=>	$total_record,	"records"					=>	$list,	"query_time"		=>	$execution_time);
 				}
 
@@ -198,9 +199,17 @@ class	Sphinx_Model	extends	CI_Model
 								return	array("total_count"	=>	$total_record,	"records"					=>	$instantiations,	"query_time"		=>	$execution_time);
 				}
 
-				function	make_where_clause()
+				function	make_where_clause($format_type=NULL)
 				{
 								$where	=	'';
+								if($format_type	==	'physical')
+								{
+												$where	=	"@format_type \"physical\"";
+								}
+								if($format_type	==	'digital')
+								{
+												$where	=	"@format_type \"digital\"";
+								}
 								if(isset($this->session->userdata['organization'])	&&	$this->session->userdata['organization']	!=	'')
 								{
 												$station_name	=	str_replace('|||',	'" | "',	trim($this->session->userdata['organization']));

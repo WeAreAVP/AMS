@@ -69,25 +69,26 @@ class	Records	extends	MY_Controller
 								}
 								$this->session->set_userdata('current_tab',	$data['current_tab']);
 								$data['get_column_name']	=	$this->make_array();
-								$states	=	$this->sphinx->facet_index('asset_state');
+								$states	=	$this->sphinx->facet_index('state',	'assets_list');
 								$data['org_states']	=	$states['records'];
 								unset($states);
-								$stations	=	$this->sphinx->facet_index('assets_stations');
+								$stations	=	$this->sphinx->facet_index('organization',	'assets_list');
+
 								$data['stations']	=	$stations['records'];
 								unset($stations);
-								$nomination	=	$this->sphinx->facet_index('assets_nomination');
+								$nomination	=	$this->sphinx->facet_index('status',	'assets_list');
 								$data['nomination_status']	=	$nomination['records'];
 								unset($nomination);
-								$media_type	=	$this->sphinx->facet_index('assets_media_type');
+								$media_type	=	$this->sphinx->facet_index('media_type',	'assets_list');
 								$data['media_types']	=	$media_type['records'];
 								unset($media_type);
-								$p_format	=	$this->sphinx->facet_index('assets_format_physical');
+								$p_format	=	$this->sphinx->facet_index('format_type',	'assets_list');
 								$data['physical_formats']	=	$p_format['records'];
 								unset($p_format);
-								$d_format	=	$this->sphinx->facet_index('assets_format_digital');
+								$d_format	=	$this->sphinx->facet_index('format_type',	'assets_list');
 								$data['digital_formats']	=	$d_format['records'];
 								unset($d_format);
-								$generation	=	$this->sphinx->facet_index('assets_generation');
+								$generation	=	$this->sphinx->facet_index('generation',	'assets_list');
 								$data['generations']	=	$generation['records'];
 								unset($generation);
 								$data['date_types']	=	$this->instantiation->get_date_types();
@@ -253,7 +254,7 @@ class	Records	extends	MY_Controller
 
 								$offset	=	isset($this->session->userdata['offset'])	?	$this->session->userdata['offset']	:	0;
 								$param	=	array('index'								=>	'assets_list');
-								$records	=	$this->sphinx->assets_listing($param,$offset);
+								$records	=	$this->sphinx->assets_listing($param,	$offset);
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];
 								$data['count']	=	count($records);

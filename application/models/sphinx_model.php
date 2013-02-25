@@ -95,7 +95,7 @@ class	Sphinx_Model	extends	CI_Model
 								if($limit)
 												$this->sphinxsearch->set_limits((int)	$offset,	(int)	$limit,	(	$limit	>	1000	)	?	$limit	:	1000	);
 
-//								$query	=	$this->make_where_clause($format_type);
+								$query	=	$this->make_where_clause($format_type);
 								$res	=	$this->sphinxsearch->query($query,	$index_name);
 
 

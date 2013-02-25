@@ -90,8 +90,8 @@ class	Instantiations	extends	MY_Controller
 								$this->session->set_userdata('page_link',	'instantiations/index/'	.	$offset);
 								$data['get_column_name']	=	$this->make_array();
 								$states	=	$this->sphinx->facet_index('state','instantiations_list');
-								$data['org_states']	=	$states['records'];
-//								debug(	$data['org_states']);
+								$data['org_states']	=	sortByOneKey($states['records'],'station');
+								debug(	$data['org_states']);
 								unset($states);
 								$stations	=	$this->sphinx->facet_index('organization','instantiations_list');
 

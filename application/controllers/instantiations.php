@@ -53,7 +53,6 @@ class	Instantiations	extends	MY_Controller
 					* 
 					* @return instantiations/index view
 					*/
-			
 				public	function	index()
 				{
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
@@ -62,7 +61,7 @@ class	Instantiations	extends	MY_Controller
 								if(isAjax())
 								{
 												$this->unset_facet_search();
-												
+
 
 
 												$search['custom_search']	=	$this->input->post('keyword_field_main_search');
@@ -89,29 +88,28 @@ class	Instantiations	extends	MY_Controller
 
 								$this->session->set_userdata('page_link',	'instantiations/index/'	.	$offset);
 								$data['get_column_name']	=	$this->make_array();
-								$states	=	$this->sphinx->facet_index('state','instantiations_list');
-//								debug($states);
-								$data['org_states']	=	sortByOneKey($states['records'],'organization');
-								debug(	$data['org_states']);
+								$states	=	$this->sphinx->facet_index('state',	'instantiations_list');
+								$data['org_states']	=	sortByOneKey($states['records'],	'state');
 								unset($states);
-								$stations	=	$this->sphinx->facet_index('organization','instantiations_list');
 
-								$data['stations']	=	$stations['records'];
+								$stations	=	$this->sphinx->facet_index('organization',	'instantiations_list');
+								$data['stations']	=	sortByOneKey($stations['records'],	'organization');
 								unset($stations);
-								$nomination	=	$this->sphinx->facet_index('status','instantiations_list');
-								$data['nomination_status']	=	$nomination['records'];
+								$nomination	=	$this->sphinx->facet_index('status',	'instantiations_list');
+								$data['nomination_status']	=	sortByOneKey($nomination['records'],	'status');
 								unset($nomination);
-								$media_type	=	$this->sphinx->facet_index('media_type','instantiations_list');
-								$data['media_types']	=	$media_type['records'];
+								$media_type	=	$this->sphinx->facet_index('media_type',	'instantiations_list');
+								$data['media_types']	=	sortByOneKey($media_type['records'],	'media_type');
+
 								unset($media_type);
-								$p_format	=	$this->sphinx->facet_index('format_type','instantiations_list','physical');
-								$data['physical_formats']	=	$p_format['records'];
+								$p_format	=	$this->sphinx->facet_index('format_type',	'instantiations_list',	'physical');
+								$data['physical_formats']	=	sortByOneKey($p_format['records'],	'format_name');
 								unset($p_format);
-								$d_format	=	$this->sphinx->facet_index('format_type','instantiations_list','digital');
-								$data['digital_formats']	=	$d_format['records'];
+								$d_format	=	$this->sphinx->facet_index('format_type',	'instantiations_list',	'digital');
+								$data['digital_formats']	=	sortByOneKey($d_format['records'],	'format_name');
 								unset($d_format);
-								$generation	=	$this->sphinx->facet_index('generation','instantiations_list');
-								$data['generations']	=	$generation['records'];
+								$generation	=	$this->sphinx->facet_index('generation',	'instantiations_list');
+								$data['generations']	=	sortByOneKey($generation['records'],	'generation');
 								unset($generation);
 
 								$data['date_types']	=	$this->instantiation->get_date_types();
@@ -473,10 +471,10 @@ class	Instantiations	extends	MY_Controller
 								$this->session->set_userdata('jscolumn',	$this->input->get('iSortCol_0'));
 								$this->session->set_userdata('column',	$column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
 								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
-								
 
-								$offset=isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
-								$records	=	$this->sphinx->instantiations_list($params,$offset);
+
+								$offset	=	isset($this->session->userdata['offset'])	?	$this->session->userdata['offset']	:	0;
+								$records	=	$this->sphinx->instantiations_list($params,	$offset);
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];
 								$data['count']	=	count($records);

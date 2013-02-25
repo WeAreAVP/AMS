@@ -518,7 +518,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['organization']);	?>','organization_main');"><?php	echo	$value['organization']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -535,7 +535,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->station_name);	?>','organization_main');"><?php	echo	$value->station_name	.	' ('	.	number_format($value->total)	.	')';	?></a></li>
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['organization']);	?>','organization_main');"><?php	echo	$value['organization']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>
 																																				<?php
 																																}
 																												}
@@ -565,7 +565,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->state);	?>','states_main');"><?php	echo	$value->state	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['state']);	?>','states_main');"><?php	echo	$value['state']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -582,7 +582,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->state);	?>','states_main');"><?php	echo	$value->state	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['state']);	?>','states_main');"><?php	echo	$value['state']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
 																																				<?php
 																																}
 																												}
@@ -612,7 +612,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['status']);	?>','nomination_status_main');"><?php	echo	$value['status']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -629,7 +629,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->status);	?>','nomination_status_main');"><?php	echo	$value->status	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['status']);	?>','nomination_status_main');"><?php	echo	$value['status']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
 																																				<?php
 																																}
 																												}
@@ -659,7 +659,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['media_type']);	?>','media_type_main');"><?php	echo	$value['media_type']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -676,7 +676,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->media_type);	?>','media_type_main');"><?php	echo	$value->media_type	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['media_type']);	?>','media_type_main');"><?php	echo	$value['media_type']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
 																																				<?php
 																																}
 																												}
@@ -706,7 +706,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['format_name']);	?>','physical_format_main');"><?php	echo	$value['format_name']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -723,7 +723,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','physical_format_main');"><?php	echo	$value->format_name	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['format_name']);	?>','physical_format_main');"><?php	echo	$value['format_name']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
 																																				<?php
 																																}
 																												}
@@ -753,7 +753,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['format_name']);	?>','digital_format_main');"><?php	echo	$value['format_name']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -770,7 +770,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->format_name);	?>','digital_format_main');"><?php	echo	$value->format_name	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['format_name']);	?>','digital_format_main');"><?php	echo	$value['format_name']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
 																																				<?php
 																																}
 																												}
@@ -800,7 +800,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->generation);	?>','generation_main');"><?php	echo	$value->generation	.	' ('	.	number_format($value->total)	.	')';	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['generation']);	?>','generation_main');"><?php	echo	$value['generation']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -817,7 +817,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value->generation);	?>','generation_main');"><?php	echo	$value->generation	.	' ('	.	number_format($value->total)	.	')';	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['generation']);	?>','generation_main');"><?php	echo	$value['format_name']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
 																																				<?php
 																																}
 																												}

@@ -88,14 +88,14 @@ class	Sphinx_Model	extends	CI_Model
 								$mode	=	SPH_MATCH_ALL;
 								$this->sphinxsearch->set_array_result(true);
 								$this->sphinxsearch->set_match_mode($mode);
-//								$this->sphinxsearch->set_group_by ( 'organization', SPH_GROUPBY_ATTR );
-//								$this->sphinxsearch->set_sort_mode ( SPH_SORT_EXTENDED, "organization ASC" );
+								$this->sphinxsearch->set_group_by ( 'organization', SPH_GROUPBY_ATTR );
+								$this->sphinxsearch->set_sort_mode ( SPH_SORT_ATTR_DESC, "@count" );
 								$this->sphinxsearch->set_connect_timeout(120);
 								if($limit)
 												$this->sphinxsearch->set_limits((int)	$offset,	(int)	$limit,	(	$limit	>	1000	)	?	$limit	:	1000	);
 //								$query	=	$this->make_where_clause();
-								$res	=	$this->sphinxsearch->query('',	$index_name);
-//								$res	=	$this->sphinxsearch->query('',	'assets_list');
+//								$res	=	$this->sphinxsearch->query('',	$index_name);
+								$res	=	$this->sphinxsearch->query('',	'assets_list');
 
 
 								$execution_time	=	$res['time'];
@@ -115,7 +115,7 @@ class	Sphinx_Model	extends	CI_Model
 																}
 												}
 								}
-//								debug($list);
+								debug($list);
 								return	array("total_count"	=>	$total_record,	"records"					=>	$list,	"query_time"		=>	$execution_time);
 				}
 

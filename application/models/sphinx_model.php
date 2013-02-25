@@ -106,6 +106,7 @@ class	Sphinx_Model	extends	CI_Model
 												{
 																if(isset($res['matches']))
 																{
+																				debug($res['matches']);
 																				foreach($res['matches']	as	$record)
 																				{
 

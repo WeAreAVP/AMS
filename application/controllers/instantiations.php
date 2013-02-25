@@ -91,7 +91,7 @@ class	Instantiations	extends	MY_Controller
 								$data['get_column_name']	=	$this->make_array();
 								$states	=	$this->sphinx->facet_index('state','instantiation_state');
 								$data['org_states']	=	$states['records'];
-								debug(	$data['org_states']);
+//								debug(	$data['org_states']);
 								unset($states);
 								$stations	=	$this->sphinx->facet_index('organization','instantiations_list');
 

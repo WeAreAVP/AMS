@@ -85,11 +85,11 @@ class	Sphinx_Model	extends	CI_Model
 								$this->sphinxsearch->reset_filters();
 								$this->sphinxsearch->reset_group_by();
 
-								$mode	=	SPH_MATCH_EXTENDED;
+								$mode	=	SPH_MATCH_ALL;
 								$this->sphinxsearch->set_array_result(true);
 								$this->sphinxsearch->set_match_mode($mode);
 								$this->sphinxsearch->set_group_by ( 'organization', SPH_GROUPBY_ATTR );
-								$this->sphinxsearch->set_sort_mode ( SPH_SORT_ATTR_DESC, "@count" );
+								$this->sphinxsearch->set_sort_mode ( SPH_SORT_EXTENDED, "organization ASC , @count DESC" );
 								$this->sphinxsearch->set_connect_timeout(120);
 								if($limit)
 												$this->sphinxsearch->set_limits((int)	$offset,	(int)	$limit,	(	$limit	>	1000	)	?	$limit	:	1000	);

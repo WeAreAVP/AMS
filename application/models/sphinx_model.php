@@ -110,11 +110,12 @@ class	Sphinx_Model	extends	CI_Model
 																				{
 
 
-																								$list[]	=	(object)	array_merge(array('id'	=>	$record['id']),	$record['attrs']['organization']);
+																								$list[]	=	(object)	array_merge(array('id'	=>	$record['id']),	array($record['attrs']['organization']));
 																				}
 																}
 												}
 								}
+//								sort($list);
 								debug($list);
 								return	array("total_count"	=>	$total_record,	"records"					=>	$list,	"query_time"		=>	$execution_time);
 				}

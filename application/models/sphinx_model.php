@@ -106,12 +106,11 @@ class	Sphinx_Model	extends	CI_Model
 												{
 																if(isset($res['matches']))
 																{
-																				debug($res['matches']);
 																				foreach($res['matches']	as	$record)
 																				{
 
 
-																								$list[]	=	(object)	array_merge(array('id'	=>	$record['id']),	$record['attrs']);
+																								$list[]	=	(object)	array_merge(array('id'	=>	$record['id']),	$record['attrs']['organization']);
 																				}
 																}
 												}

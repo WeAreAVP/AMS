@@ -880,13 +880,7 @@
 				oTable=null;
 				
 				(function($){
-								$('.container').width($(window).width()-50);
-								
-								$('.navbar-inner').width($(window).width()-50);
-								$('#top_setting_nav').width($(window).width()-50);
-								$('body').css('overflow','hidden');
-								$('.span3').css('max-height',$(window).height()-90);
-								$('#data_container').width($(window).width()-300);
+							manageLayout();
 								var hash = window.location.hash.replace('#', '');
 								if($(window.parent.document).find('iframe').size()){
 												var inframe = true;
@@ -923,6 +917,7 @@
 								else{
 												$('#simple_view').hide();
 								}
+								manageLayout();
 								isAnySearch();
 				});
 				function add_token(name,type,isRemoved){
@@ -1275,5 +1270,14 @@
 								$('#checked_token').hide();
 								
 								facet_search('0');
+				}
+				function manageLayout(){
+								$('.container').width($(window).width()-50);
+								
+								$('.navbar-inner').width($(window).width()-50);
+								$('#top_setting_nav').width($(window).width()-50);
+								$('body').css('overflow','hidden');
+								$('.span3').css('max-height',$(window).height()-90);
+								$('#data_container').width($(window).width()-300);
 				}
 </script>

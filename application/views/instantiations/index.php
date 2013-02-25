@@ -36,7 +36,7 @@ if(	!	$isAjax)
 																																				$class	=	'drap-drop';
 																																$type	=	$value['title'];
 
-																																if(in_array($type,	array('Nomination',	'Generation',	'Format',	'Date',	'File_size','Media_Type','Duration','Colors','Language')))
+																																if(in_array($type,	array('Nomination',	'Generation',	'Format',	'Date',	'File_size',	'Media_Type',	'Duration',	'Colors',	'Language')))
 																																{
 																																				$width	=	'min-width:150px;max-width:150px;';
 																																}
@@ -112,7 +112,11 @@ if(	!	$isAjax)
 												$('#export_csv_msg').html('<img src="/images/ajax-loader.gif" />Please wait...');
 								});
 								function confirm_csv_export(){
+													$('#export_csv_modal').modal({
+																backdrop: false
+												});
 												$('#export_csv_modal').modal('toggle');
+											
 												export_csv_limited();
 								}
 								function export_csv_limited(){
@@ -125,7 +129,7 @@ if(	!	$isAjax)
 																								$('#export_csv_msg').html('<a href="'+result.msg+'">Download</a>');
 																				else
 																								$('#export_csv_msg').html(result.msg);
-																																																																												                                        
+																																																																																                                        
 																}
 												});
 								}

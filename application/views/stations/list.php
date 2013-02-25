@@ -105,7 +105,7 @@ if(	!	$is_ajax)
 																?>
 																<div class="row" style="margin:5px 0px;">
 																				<a href="javascript://" class="btn btn-large" onclick="editStations();">Batch Edit</a>
-																				<a href="#updateStations" role="button" class="btn btn-large" data-toggle="modal">Update Station Records</a>
+																				<a href="#updateStations" role="button" class="btn btn-large" data-toggle="modal" data-backdrop="static">Update Station Records</a>
 																				<a href="javascript://" class="btn btn-large" onclick="checkStations();">Send Message</a>
 																</div>
 

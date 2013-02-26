@@ -89,8 +89,8 @@ class	Records	extends	MY_Controller
 								$d_format	=	$this->sphinx->facet_index('format_name',	'assets_list',	'digital');
 								$data['digital_formats']	=	sortByOneKey($d_format['records'],	'format_name',TRUE);
 								unset($d_format);
-								$generation	=	$this->sphinx->facet_index('generation',	'assets_list');
-								$data['generations']	=	sortByOneKey($generation['records'],	'generation',TRUE);
+								$generation	=	$this->sphinx->facet_index('facet_generation',	'assets_list');
+								$data['generations']	=	sortByOneKey($generation['records'],	'facet_generation',TRUE);
 								$data['digitized']=$this->sphinx->facet_index('digitized',	'assets_list','digitized');
 								$data['migration']=$this->sphinx->facet_index('migration',	'assets_list','migration');
 								

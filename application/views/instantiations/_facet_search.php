@@ -801,7 +801,7 @@
 																								if($key	<	4)
 																								{
 																												?>
-																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['generation']);	?>','generation_main');"><?php	echo	$value['generation']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></div>
+																												<div><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['facet_generation']);	?>','generation_main');"><?php	echo	$value['facet_generation']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></div>
 																												<?php
 																								}
 																								else	if($key	==	4)
@@ -840,7 +840,7 @@
 																																								?>
 																																								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
 																																				<?php	}	?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['generation']);	?>','generation_main');"><?php	echo	$value['generation']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['facet_generation']);	?>','generation_main');"><?php	echo	$value['facet_generation']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
 																																				<?php
 																																}
 																												}

@@ -817,13 +817,13 @@
 																																				if($value['@count']	>=	100)
 																																				{
 																																								?>
-																																								<li><a href="javascript://">--commonly used--</a></li>  
+																																								<li><a href="javascript://"><b>--commonly used--</b></a></li>  
 																																								<?php
 																																				}
 																																				else
 																																				{
 																																								?>
-																																								<li><a href="javascript://">--less commonly used--</a></li>  
+																																								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
 																																								<?php
 																																								$less_common	=	TRUE;
 																																				}
@@ -838,7 +838,7 @@
 																																				{
 																																								$less_common	=	TRUE;
 																																								?>
-																																								<li><a href="javascript://">--less commonly used--</a></li>  
+																																								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
 																																				<?php	}	?>
 																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['generation']);	?>','generation_main');"><?php	echo	$value['generation']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
 																																				<?php

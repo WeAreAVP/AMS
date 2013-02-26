@@ -103,7 +103,7 @@ class	Instantiations	extends	MY_Controller
 
 								unset($media_type);
 								$p_format	=	$this->sphinx->facet_index('format_name',	'instantiations_list',	'physical');
-								$data['physical_formats']	=	sortByOneKey($p_format['records'],	'format_name');
+								$data['physical_formats']	=	sortByOneKey($p_format['records'],	'format_name',TRUE);
 								unset($p_format);
 								$d_format	=	$this->sphinx->facet_index('format_name',	'instantiations_list',	'digital');
 								$data['digital_formats']	=	sortByOneKey($d_format['records'],	'format_name');

@@ -187,7 +187,7 @@ function	is_empty($str)
 				return	true;
 }
 
-function	sortByOneKey(array	$array,	$key,	$asc	=	true)
+function	sortByOneKey(array	$array,	$key,	$manage_count	=	FALSE,	$asc	=	TRUE)
 {
 				$result	=	array();
 
@@ -205,11 +205,33 @@ function	sortByOneKey(array	$array,	$key,	$asc	=	true)
 				{
 								arsort($values);
 				}
-
+				$count_greater	=	array();
+				$count_lesser	=	array();
 				foreach($values	as	$index	=>	$value)
 				{
 								if(trim(str_replace('(**)',	'',	$array[$index][$key]))	!=	'')
-												$result[]	=	$array[$index];
+								{
+												if($manage_count)
+												{
+
+																if($array[$index]['@count']	>=	100)
+																{
+																				$count_greater[]	=	$array[$index];
+																}
+																else
+																{
+																				$count_lesser[]	=	$array[$index];
+																}
+												}
+												else
+												{
+																$result[]	=	$array[$index];
+												}
+								}
+				}
+				if($manage_count)
+				{
+								$result	=	array_merge($count_greater,	$count_lesser);
 				}
 
 				return	$result;

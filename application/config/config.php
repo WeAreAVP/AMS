@@ -28,16 +28,16 @@ else
 $config['index_page']	=	'';
 if(ENVIRONMENT	==	'testing')
 {
-				$config['base_url']	=	HTTP_PREFIX_STR	.	"ams.iserver.purelogics.info/";
+				$config['base_url']	=	HTTP_PREFIX_STR	.	"ams.dev.xohotech.com/";
 				$config['to_email']	=	'nouman@geekschicago.com';
-				$config['from_email']	=	'noreply@amsdev.avpreserve.com';
+				$config['from_email']	=	'noreply@dev.xohotech.com';
 				$config['path']	=	'/home/ams/public_html/';
-				$config['cookie_domain']	=	".ams.iserver.purelogics.info";
+				$config['cookie_domain']	=	".ams.dev.xohotech.com";
 }
 else	if(ENVIRONMENT	==	'development')
 {
 				$config['base_url']	=	HTTP_PREFIX_STR	.	"amsdev.avpreserve.com/";
-				$config['to_email']	=	'noumantayyab@gmail.com';
+				$config['to_email']	=	'noumantayyab@avpreserve.com';
 				$config['from_email']	=	'noreply@amsdev.avpreserve.com';
 				$config['crawford_email']	=	'cstephenson@mail.crawford.com';
 				$config['path']	=	'/var/www/html/';
@@ -46,7 +46,7 @@ else	if(ENVIRONMENT	==	'development')
 else	if(ENVIRONMENT	==	'qatesting')
 {
 				$config['base_url']	=	HTTP_PREFIX_STR	.	"amsqa.avpreserve.com/";
-				$config['to_email']	=	'nouman@geekschicago.com';
+				$config['to_email']	=	'ssapienza@cpb.org';
 				$config['from_email']	=	'noreply@amsqa.avpreserve.com';
 				$config['crawford_email']	=	'cstephenson@mail.crawford.com';
 				$config['path']	=	'/var/www/html/';

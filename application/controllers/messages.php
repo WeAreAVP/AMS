@@ -243,7 +243,7 @@ class	Messages	extends	MY_Controller
 																}
 
 																$replacebale['station_name']	=	isset($station_details->station_name)	?	$station_details->station_name	:	'';
-																
+
 
 																if($this->config->item('demo')	==	TRUE)
 																{

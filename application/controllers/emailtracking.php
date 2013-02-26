@@ -1,13 +1,30 @@
 <?php
 
-if(	!	defined('BASEPATH'))
-				exit('No direct script access allowed');
+/**
+	* AMS Archive Management System
+	* 
+	* PHP version 5
+	* 
+	* @category AMS
+	* @package  CI
+	* @author   Ali Raza <ali@geekschicago.com>
+	* @author   Nouman Tayyab <nouman@avpreserve.com
+	* @license  CPB http://ams.avpreserve.com
+	* @version  GIT: <$Id>
+	* @link     http://ams.avpreserve.com
+
+	*/
 
 /**
-	* Email Tracking controller.
+	* Crons Class
 	*
-	* @package    AMS
-	* @author     Ali Raza
+	* @category   AMS
+	* @package    CI
+	* @subpackage Controller
+	* @author     Ali Raza <ali@geekschicago.com>
+	* @author     Nouman Tayyab <nouman@avpreserve.com
+	* @license    CPB http://ams.avpreserve.com
+	* @link       http://ams.avpreserve.com
 	*/
 class	EmailTracking	extends	CI_Controller
 {

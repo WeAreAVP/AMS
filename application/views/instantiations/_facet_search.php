@@ -876,7 +876,9 @@
 				var current_table_type='<?php	echo	$table_type	?>';
 					
 								
-								
+								$(window).resize(function() {
+												manageLayout();
+								});
 				oTable=null;
 				
 				(function($){

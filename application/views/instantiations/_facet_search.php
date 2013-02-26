@@ -832,32 +832,42 @@
 								<?php	}	?>
 								<!-- Generation End      -->
 								<!--				Digitized Start				-->
-								<div class="field-filters">
-												<div class="filter-fileds">
-																<?php
-																$checked	=	'';
-																if(isset($this->session->userdata['digitized'])	&&	$this->session->userdata['digitized']	===	'1')
-																{
-																				$checked	=	'checked="checked"';
-																}
-																?>
-																<b>Digitized</b><span style="margin: 0px 10px;"><input type="checkbox" name="digitized" id="digitized" value="1" <?php	echo	$checked;	?> onchange="add_checked_token('digitized','Digitized');" /></span>
+								<?php
+								if(count($digitized)	>	0)
+								{
+												?>
+												<div class="field-filters">
+																<div class="filter-fileds">
+																				<?php
+																				$checked	=	'';
+																				if(isset($this->session->userdata['digitized'])	&&	$this->session->userdata['digitized']	===	'1')
+																				{
+																								$checked	=	'checked="checked"';
+																				}
+																				?>
+																				<b>Digitized</b><span style="margin: 0px 10px;"><input type="checkbox" name="digitized" id="digitized" value="1" <?php	echo	$checked;	?> onchange="add_checked_token('digitized','Digitized');" /></span>
+																</div>
 												</div>
-								</div>
+								<?php	}	?>
 								<!--				Digitized End      -->
 								<!--				Migration Start				-->
-								<div class="field-filters">
-												<div class="filter-fileds">
-																<?php
-																$checked	=	'';
-																if(isset($this->session->userdata['migration_failed'])	&&	$this->session->userdata['migration_failed']	===	'1')
-																{
-																				$checked	=	'checked="checked"';
-																}
-																?>
-																<b>Migration Failed?</b><span style="margin: 0px 10px;"><input type="checkbox" name="migration_failed" id="migration_failed" value="1"  <?php	echo	$checked;	?> onchange="add_checked_token('migration_failed','Migration Failed');" /></span>
+								<?php
+								if(count($migration)	>	0)
+								{
+												?>
+												<div class="field-filters">
+																<div class="filter-fileds">
+																				<?php
+																				$checked	=	'';
+																				if(isset($this->session->userdata['migration_failed'])	&&	$this->session->userdata['migration_failed']	===	'1')
+																				{
+																								$checked	=	'checked="checked"';
+																				}
+																				?>
+																				<b>Migration Failed?</b><span style="margin: 0px 10px;"><input type="checkbox" name="migration_failed" id="migration_failed" value="1"  <?php	echo	$checked;	?> onchange="add_checked_token('migration_failed','Migration Failed');" /></span>
+																</div>
 												</div>
-								</div>
+								<?php	}	?>
 								<!--				Migration End      -->
 
 
@@ -876,13 +886,13 @@
 				var current_table_type='<?php	echo	$table_type	?>';
 					
 								
-//								$(window).resize(function() {
-//												manageLayout();
-//								});
+				//								$(window).resize(function() {
+				//												manageLayout();
+				//								});
 				oTable=null;
 				
 				(function($){
-							manageLayout();
+								manageLayout();
 								var hash = window.location.hash.replace('#', '');
 								if($(window.parent.document).find('iframe').size()){
 												var inframe = true;

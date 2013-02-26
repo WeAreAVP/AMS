@@ -111,7 +111,9 @@ class	Instantiations	extends	MY_Controller
 								$generation	=	$this->sphinx->facet_index('generation',	'instantiations_list');
 								$data['generations']	=	sortByOneKey($generation['records'],	'generation',TRUE);
 								unset($generation);
-
+								
+								$data['digitized']=$this->sphinx->facet_index('digitized',	'instantiations_list','digitized');
+								$data['migration']=$this->sphinx->facet_index('migration',	'instantiations_list','migration');
 								$data['date_types']	=	$this->instantiation->get_date_types();
 
 

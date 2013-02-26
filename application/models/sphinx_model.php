@@ -200,14 +200,14 @@ class	Sphinx_Model	extends	CI_Model
 								return	array("total_count"	=>	$total_record,	"records"					=>	$instantiations,	"query_time"		=>	$execution_time);
 				}
 
-				function	make_where_clause($format_type=NULL)
+				function	make_where_clause($type=NULL)
 				{
 								$where	=	'';
-								if($format_type	==	'physical')
+								if($type	==	'physical')
 								{
 												$where	=	"@format_type \"physical\"";
 								}
-								if($format_type	==	'digital')
+								if($type	==	'digital')
 								{
 												$where	=	"@format_type \"digital\"";
 								}
@@ -247,11 +247,11 @@ class	Sphinx_Model	extends	CI_Model
 												$generation	=	str_replace('|||',	'" | "',	trim($this->session->userdata['generation']));
 												$where	.=" @generation \"^$generation$\"";
 								}
-								if(isset($this->session->userdata['digitized'])	&&	$this->session->userdata['digitized']	===	'1')
+								if((isset($this->session->userdata['digitized'])	&&	$this->session->userdata['digitized']	===	'1') || $type=='digitized')
 								{
 												$where	.=' @digitized "1" @!actual_duration "0"';
 								}
-								if(isset($this->session->userdata['migration_failed'])	&&	$this->session->userdata['migration_failed']	===	'1')
+								if((isset($this->session->userdata['migration_failed'])	&&	$this->session->userdata['migration_failed']	===	'1' ) || $type=='migration')
 								{
 												$where	.=' @event_type "migration" @event_outcome "FAIL"';
 								}

@@ -83,14 +83,17 @@ class	Records	extends	MY_Controller
 								$data['media_types']	=	sortByOneKey($media_type['records'],	'media_type');
 
 								unset($media_type);
-							$p_format	=	$this->sphinx->facet_index('format_name',	'instantiations_list',	'physical');
+							$p_format	=	$this->sphinx->facet_index('format_name',	'assets_list',	'physical');
 								$data['physical_formats']	=	sortByOneKey($p_format['records'],	'format_name',TRUE);
 								unset($p_format);
-								$d_format	=	$this->sphinx->facet_index('format_name',	'instantiations_list',	'digital');
+								$d_format	=	$this->sphinx->facet_index('format_name',	'assets_list',	'digital');
 								$data['digital_formats']	=	sortByOneKey($d_format['records'],	'format_name',TRUE);
 								unset($d_format);
-								$generation	=	$this->sphinx->facet_index('generation',	'instantiations_list');
+								$generation	=	$this->sphinx->facet_index('generation',	'assets_list');
 								$data['generations']	=	sortByOneKey($generation['records'],	'generation',TRUE);
+								$data['digitized']=$this->sphinx->facet_index('digitized',	'assets_list','digitized');
+								$data['migration']=$this->sphinx->facet_index('migration',	'assets_list','migration');
+								
 								$data['date_types']	=	$this->instantiation->get_date_types();
 
 								$is_hidden	=	array();

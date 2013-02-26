@@ -208,7 +208,8 @@ function	sortByOneKey(array	$array,	$key,	$asc	=	true)
 
 				foreach($values	as	$key	=>	$value)
 				{
-								$result[]	=	$array[$key];
+								if($array[$key]	!=	'')
+												$result[]	=	$array[$key];
 				}
 
 				return	$result;

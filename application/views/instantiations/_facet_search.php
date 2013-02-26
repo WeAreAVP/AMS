@@ -812,7 +812,9 @@
 																																				<b class="caret"></b>
 																																</a>
 																																<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
-																																				<?php
+																																				<?php	if($value['@count']	>=	100)		?>
+																																				<li><a href="javascript://">--commonly used--</a></li>  
+																																<?php
 																																}
 																																else
 																																{

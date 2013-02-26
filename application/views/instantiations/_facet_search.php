@@ -795,6 +795,7 @@
 																</div>
 																<div class="filter-fileds" id="generation_search_div" style="display: none;">
 																				<?php
+																				$less_common	=	FALSE;
 																				foreach($generations	as	$key	=>	$value)
 																				{
 																								if($key	<	4)
@@ -812,13 +813,33 @@
 																																				<b class="caret"></b>
 																																</a>
 																																<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
-																																				<?php	if($value['@count']	>=	100)		?>
-																																				<li><a href="javascript://">--commonly used--</a></li>  
-																																<?php
+																																				<?php
+																																				if($value['@count']	>=	100)
+																																				{
+																																								?>
+																																								<li><a href="javascript://">--commonly used--</a></li>  
+																																								<?php
+																																				}
+																																				else
+																																				{
+																																								?>
+																																								<li><a href="javascript://">--less commonly used--</a></li>  
+																																								<?php
+																																								$less_common	=	TRUE;
+																																				}
+																																				?>
+																																				<?php
 																																}
 																																else
 																																{
 																																				?>
+																																				<?php
+																																				if($value['@count']	<	100	&&	!	$less_common)
+																																				{
+																																								$less_common	=	TRUE;
+																																								?>
+																																								<li><a href="javascript://">--less commonly used--</a></li>  
+																																				<?php	}	?>
 																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['generation']);	?>','generation_main');"><?php	echo	$value['generation']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
 																																				<?php
 																																}

@@ -817,7 +817,7 @@
 																																else
 																																{
 																																				?>
-																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['generation']);	?>','generation_main');"><?php	echo	$value['format_name']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
+																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['generation']);	?>','generation_main');"><?php	echo	$value['generation']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
 																																				<?php
 																																}
 																												}

@@ -701,6 +701,7 @@
 																</div>
 																<div class="filter-fileds" id="pf_div" style="display: none;">
 																				<?php
+																				$less_common	=	FALSE;
 																				foreach($physical_formats	as	$key	=>	$value)
 																				{
 																								if($key	<	4)
@@ -718,11 +719,33 @@
 																																				<b class="caret"></b>
 																																</a>
 																																<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
+																																					<?php
+																																				if($value['@count']	>=	100)
+																																				{
+																																								?>
+																																								<li><a href="javascript://"><b>--commonly used--</b></a></li>  
+																																								<?php
+																																				}
+																																				else
+																																				{
+																																								?>
+																																								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
+																																								<?php
+																																								$less_common	=	TRUE;
+																																				}
+																																				?>
 																																				<?php
 																																}
 																																else
 																																{
 																																				?>
+																																					<?php
+																																				if($value['@count']	<	100	&&	!	$less_common)
+																																				{
+																																								$less_common	=	TRUE;
+																																								?>
+																																								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
+																																				<?php	}	?>
 																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['format_name']);	?>','physical_format_main');"><?php	echo	$value['format_name']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
 																																				<?php
 																																}
@@ -748,6 +771,7 @@
 																</div>
 																<div class="filter-fileds" id="df_div" style="display: none;">
 																				<?php
+																				$less_common	=	FALSE;
 																				foreach($digital_formats	as	$key	=>	$value)
 																				{
 																								if($key	<	4)
@@ -766,10 +790,32 @@
 																																</a>
 																																<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
 																																				<?php
+																																				if($value['@count']	>=	100)
+																																				{
+																																								?>
+																																								<li><a href="javascript://"><b>--commonly used--</b></a></li>  
+																																								<?php
+																																				}
+																																				else
+																																				{
+																																								?>
+																																								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
+																																								<?php
+																																								$less_common	=	TRUE;
+																																				}
+																																				?>
+																																				<?php
 																																}
 																																else
 																																{
 																																				?>
+																																				<?php
+																																				if($value['@count']	<	100	&&	!	$less_common)
+																																				{
+																																								$less_common	=	TRUE;
+																																								?>
+																																								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
+																																				<?php	}	?>
 																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['format_name']);	?>','digital_format_main');"><?php	echo	$value['format_name']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
 																																				<?php
 																																}

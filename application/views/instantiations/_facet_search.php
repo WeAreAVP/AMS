@@ -833,7 +833,7 @@
 								<!-- Generation End      -->
 								<!--				Digitized Start				-->
 								<?php
-								if(count($digitized)	>	0)
+								if(count($digitized['records'])	>	0)
 								{
 												?>
 												<div class="field-filters">
@@ -852,7 +852,7 @@
 								<!--				Digitized End      -->
 								<!--				Migration Start				-->
 								<?php
-								if(count($migration)	>	0)
+								if(count($migration['records'])	>	0)
 								{
 												?>
 												<div class="field-filters">

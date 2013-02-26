@@ -206,10 +206,10 @@ function	sortByOneKey(array	$array,	$key,	$asc	=	true)
 								arsort($values);
 				}
 
-				foreach($values	as	$key	=>	$value)
+				foreach($values	as	$index	=>	$value)
 				{
-					
-												$result[]	=	$array[$key];
+								if($array[$index][$key]	!=	'')
+												$result[]	=	$array[$index];
 				}
 
 				return	$result;

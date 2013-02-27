@@ -189,6 +189,7 @@ function	is_empty($str)
 
 function	sortByOneKey(array	$array,	$key,	$manage_count	=	FALSE,	$asc	=	TRUE)
 {
+				echo $this->role_id;exit;
 				$result	=	array();
 
 				$values	=	array();
@@ -229,7 +230,7 @@ function	sortByOneKey(array	$array,	$key,	$manage_count	=	FALSE,	$asc	=	TRUE)
 												}
 								}
 				}
-				if($manage_count)
+				if($manage_count && $this->role_id!='20')
 				{
 								$result	=	array_merge($count_greater,	$count_lesser);
 				}

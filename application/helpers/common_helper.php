@@ -182,15 +182,15 @@ function	is_empty($str)
 {
 				if(isset($str)	&&	!	empty($str)	&&	$str	!==	NULL)
 				{
-								return	false;
+								return	FALSE;
 				}
-				return	true;
+				return	TRUE;
 }
 
 function	sortByOneKey(array	$array,	$key,	$manage_count	=	FALSE,	$asc	=	TRUE)
 {
 				$CI	=	&	get_instance();
-				echo $CI->role_id;exit;
+
 				$result	=	array();
 
 				$values	=	array();
@@ -231,9 +231,12 @@ function	sortByOneKey(array	$array,	$key,	$manage_count	=	FALSE,	$asc	=	TRUE)
 												}
 								}
 				}
-				if($manage_count && $this->role_id!='20')
+				if($manage_count)
 				{
-								$result	=	array_merge($count_greater,	$count_lesser);
+								if($CI->role_id	!=	'20')
+												$result	=	array_merge($count_greater,	$count_lesser);
+								else
+												$result	=	$count_greater;
 				}
 
 				return	$result;

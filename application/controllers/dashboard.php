@@ -5,24 +5,24 @@
 	* 
 	* PHP version 5
 	* 
-	* @category   AMS
+	* @category   Time Tracking
 	* @package    CI
 	* @subpackage Controller
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
-	* @license    CPB http://nouman.com
+	* @license    XohoTech http://xohotech.com
 	* @version    GIT: <$Id>
-	* @link       http://amsqa.avpreserve.com
+	* @link       http://timetracking.xohotech.com
 	*/
 
 /**
-	* AMS Dashboard Class
+	* XohoTech Dashboard Class
 	*
 	* @category   Class
 	* @package    CI
 	* @subpackage Controller
 	* @author     Nouman Tayyab <nouman@geekschicago.com>
-	* @license    CPB http://nouman.com
-	* @link       http://amsqa.avpreserve.com
+	* @license    XohoTech http://xohotech.com
+	* @link       http://timetracking.xohotech.com
 	*/
 class	Dashboard	extends	MY_Controller
 {
@@ -43,7 +43,6 @@ class	Dashboard	extends	MY_Controller
 								}
 				}
 
-				
 				/**
 					* Dashboard Functionality
 					* 

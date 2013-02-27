@@ -99,7 +99,7 @@ class	Instantiations	extends	MY_Controller
 								$data['nomination_status']	=	sortByOneKey($nomination['records'],	'status');
 								unset($nomination);
 								$media_type	=	$this->sphinx->facet_index('media_type',	'instantiations_list');
-								$data['media_types']	=	sortByOneKey($media_type['records'],	'media_type');
+								$data['media_types']	=	sortByOneKey($media_type['records'],	'media_type',TRUE);
 
 								unset($media_type);
 								$p_format	=	$this->sphinx->facet_index('format_name',	'instantiations_list',	'physical');

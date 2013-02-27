@@ -654,6 +654,7 @@
 																</div>
 																<div class="filter-fileds" id="md_div" style="display: none;">
 																				<?php
+																				$less_common	=	FALSE;
 																				foreach($media_types	as	$key	=>	$value)
 																				{
 																								if($key	<	4)
@@ -672,10 +673,32 @@
 																																</a>
 																																<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
 																																				<?php
+																																				if($value['@count']	>=	100)
+																																				{
+																																								?>
+																																								<li><a href="javascript://"><b>--commonly used--</b></a></li>  
+																																								<?php
+																																				}
+																																				else
+																																				{
+																																								?>
+																																								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
+																																								<?php
+																																								$less_common	=	TRUE;
+																																				}
+																																				?>
+																																				<?php
 																																}
 																																else
 																																{
 																																				?>
+																																				<?php
+																																				if($value['@count']	<	100	&&	!	$less_common)
+																																				{
+																																								$less_common	=	TRUE;
+																																								?>
+																																								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
+																																				<?php	}	?>
 																																				<li><a href="javascript://" onclick="add_token('<?php	echo	htmlentities($value['media_type']);	?>','media_type_main');"><?php	echo	$value['media_type']	.	' ('	.	number_format($value['@count'])	.	')';	?></a></li>  
 																																				<?php
 																																}
@@ -719,7 +742,7 @@
 																																				<b class="caret"></b>
 																																</a>
 																																<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
-																																					<?php
+																																				<?php
 																																				if($value['@count']	>=	100)
 																																				{
 																																								?>
@@ -739,7 +762,7 @@
 																																else
 																																{
 																																				?>
-																																					<?php
+																																				<?php
 																																				if($value['@count']	<	100	&&	!	$less_common)
 																																				{
 																																								$less_common	=	TRUE;

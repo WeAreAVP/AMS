@@ -189,7 +189,8 @@ function	is_empty($str)
 
 function	sortByOneKey(array	$array,	$key,	$manage_count	=	FALSE,	$asc	=	TRUE)
 {
-				echo $this->role_id;exit;
+				$CI	=	&	get_instance();
+				echo $CI->role_id;exit;
 				$result	=	array();
 
 				$values	=	array();

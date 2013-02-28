@@ -5,7 +5,7 @@ if(	!	$isAjax)
 				<div class="row-fluid">
 				<?php	}	?>
 				<div class="span3" style="min-width:240px; width: 240px;overflow-y: scroll;overflow-x: hidden;">
-								<?php	//$this->load->view('instantiations/_facet_search');	?>
+								<?php	$this->load->view('instantiations/_facet_search');	?>
 				</div>
 				<div  class="span9" id="data_container" style="margin-left: 10px;">
 
@@ -111,12 +111,12 @@ if(	!	$isAjax)
 								$('#export_csv_modal').on('hidden', function () {
 												$('#export_csv_msg').html('<img src="/images/ajax-loader.gif" />Please wait...');
 								});
-								var current_table_type='<?php	echo	$table_type	?>';
-								var is_destroy=false;
-				var columnsOrder=new Array();
-				var orderString='';
-				var frozen='<?php	echo	$this->frozen_column;	?>';
-				var hiden_column=new Array();
+//								var current_table_type='<?php	echo	$table_type	?>';
+//								var is_destroy=false;
+//				var columnsOrder=new Array();
+//				var orderString='';
+//				var frozen='<?php	echo	$this->frozen_column;	?>';
+//				var hiden_column=new Array();
 								function confirm_csv_export(){
 												$('#export_csv_modal').modal({
 																backdrop: 'static',
@@ -140,17 +140,17 @@ if(	!	$isAjax)
 																}
 												});
 								}
-								$(document).ready(function() {
-												$.ajax({
-																type: 'POST', 
-																url: site_url+'instantiations/load_facet_columns',
-																dataType: 'html',
-																success: function (result) { 
-																				
-																												$('.span3').html(result);																																																								                                        
-																}
-												});
-								});
+//								$(document).ready(function() {
+//												$.ajax({
+//																type: 'POST', 
+//																url: site_url+'instantiations/load_facet_columns',
+//																dataType: 'html',
+//																success: function (result) { 
+//																				
+//																												$('.span3').html(result);																																																								                                        
+//																}
+//												});
+//								});
 				</script>
 
 <?php	}	?>

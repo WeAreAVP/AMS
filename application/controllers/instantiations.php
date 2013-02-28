@@ -127,6 +127,7 @@ class	Instantiations	extends	MY_Controller
 								$config['js_method']	=	'facet_search';
 								$config['postVar']	=	'page';
 								$this->ajax_pagination->initialize($config);
+								$this->load_facet_columns();
 								if(isAjax())
 								{
 												$data['isAjax']	=	TRUE;
@@ -501,6 +502,7 @@ class	Instantiations	extends	MY_Controller
 
 								$data['migration']	=	$this->sphinx->facet_index('migration',	'instantiations_list',	'migration');
 								$data['date_types']	=	$this->instantiation->get_date_types();
+								return $data;
 								echo	$this->load->view('instantiations/_facet_search',$data,	TRUE);
 								exit_function();
 				}

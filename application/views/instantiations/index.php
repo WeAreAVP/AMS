@@ -5,7 +5,7 @@ if(	!	$isAjax)
 				<div class="row-fluid">
 				<?php	}	?>
 				<div class="span3" style="width: 240px;overflow-y: scroll;overflow-x: hidden;">
-								<?php	$this->load->view('instantiations/_facet_search');	?>
+								<?php	//$this->load->view('instantiations/_facet_search');	?>
 				</div>
 				<div  class="span9" id="data_container" style="margin-left: 10px;">
 
@@ -112,12 +112,12 @@ if(	!	$isAjax)
 												$('#export_csv_msg').html('<img src="/images/ajax-loader.gif" />Please wait...');
 								});
 								function confirm_csv_export(){
-													$('#export_csv_modal').modal({
+												$('#export_csv_modal').modal({
 																backdrop: 'static',
-																
+																				
 												});
-//												$('#export_csv_modal').modal('toggle');
-											
+												//												$('#export_csv_modal').modal('toggle');
+															
 												export_csv_limited();
 								}
 								function export_csv_limited(){
@@ -130,10 +130,21 @@ if(	!	$isAjax)
 																								$('#export_csv_msg').html('<a href="'+result.msg+'">Download</a>');
 																				else
 																								$('#export_csv_msg').html(result.msg);
-																																																																																                                        
+																																																																																				                                        
 																}
 												});
 								}
+								$(document).ready(function() {
+												$.ajax({
+																type: 'POST', 
+																url: site_url+'instantiations/load_facet_columns',
+																dataType: 'html',
+																success: function (result) { 
+																				
+																												$('.span3').html(result);																																																								                                        
+																}
+												});
+								});
 				</script>
 
 <?php	}	?>

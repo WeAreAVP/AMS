@@ -111,6 +111,7 @@ if(	!	$isAjax)
 								$('#export_csv_modal').on('hidden', function () {
 												$('#export_csv_msg').html('<img src="/images/ajax-loader.gif" />Please wait...');
 								});
+								var current_table_type='<?php	echo	$table_type	?>';
 								function confirm_csv_export(){
 												$('#export_csv_modal').modal({
 																backdrop: 'static',

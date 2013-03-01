@@ -592,7 +592,7 @@
 																				$('#keyword_field_main .btn-img').each(function(){
 																								$(this).remove();
 																				});
-																				$('#limit_field_div').hide();
+//																				$('#limit_field_div').hide();
 																				var random_id=rand(0,1000365);
 																				slugName=make_slug_name(name);
 																				var search_id=slugName+random_id;

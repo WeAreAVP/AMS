@@ -139,6 +139,7 @@ if(	!	$isAjax)
 												$.ajax({
 																type: 'POST', 
 																url: site_url+'instantiations/load_facet_columns',
+																data:{'index':'instantiations_list'},
 																dataType: 'html',
 																success: function (result) { 
 																				

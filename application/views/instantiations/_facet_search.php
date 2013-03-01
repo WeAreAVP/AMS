@@ -501,7 +501,10 @@
 												</div>
 								</div>
 								<div id="append_facet_columns">
-												<img src="/images/ajax-loader.gif" />
+												<div style="text-align: center;padding: 10px;">
+																<img src="/images/ajax-loader.gif" />
+												</div>
+
 								</div>
 
 

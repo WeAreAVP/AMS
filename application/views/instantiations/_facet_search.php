@@ -663,7 +663,7 @@
             
 				}
 				var customFieldName='All';
-				var customColumnName='@all';
+				var customColumnName='all';
 				
 				function add_custom_token(fieldName,columnName){
 								text=$('#search').val();

@@ -777,6 +777,12 @@
 																				$('#simple_view').hide();
 																				updateDataTable();
 																}
+																if(current_table_type=='assets'){
+																				load_facet_columns('assets_list');
+																}
+																else{
+																				load_facet_columns('instantiations_list');	
+																}
 																isAnySearch();
 																$.unblockUI();
             }

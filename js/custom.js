@@ -292,12 +292,12 @@ function updateDataTable()
 				if(current_table_type=='assets'){
 								url_tab_type='records/sort_full_table';
 								height=$(window).height()-230;
-								load_facet_columns('assets_list');
+								
 				}
 				else{
 								url_tab_type='instantiations/instantiation_table';
 								height=$(window).height()-195;
-								load_facet_columns('instantiations_list');
+								
 				}
 				if($('#listing_table').length>0)
 				{

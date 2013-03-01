@@ -577,35 +577,30 @@
 												}
 												else{
 																if($('#search').val()!=''){
-//																				$('#keyword_field_main .btn-img').each(function(){
-//																								$(this).remove();
-//																				});
+																				//																				$('#keyword_field_main .btn-img').each(function(){
+																				//																								$(this).remove();
+																				//																				});
 																				
-//																				var random_id=rand(0,1000365);
-//																				slugName=make_slug_name(name);
-//																				var search_id=slugName+random_id;
-//																				$('#keyword_field_name').html('Keyword: '+customFieldName);
-//																				$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
-//																				$('#'+type).show();
+																				//																				var random_id=rand(0,1000365);
+																				//																				slugName=make_slug_name(name);
+																				//																				var search_id=slugName+random_id;
+																				//																				$('#keyword_field_name').html('Keyword: '+customFieldName);
+																				//																				$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
+																				//																				$('#'+type).show();
 																				var searchString='';
-																				if(customColumnName!=''){
-																								customColumnName= customColumnName.split(' ');
-																								if(customColumnName.length>1){
-																												searchString=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
-																												searchString +=' @'+customColumnName[1]+' |||'+$('#search').val()+'||| ';
-																								}
-																								else{
-																												searchString=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
-																								}
-                            
+																				
+																				customColumnName= customColumnName.split(' ');
+																				if(customColumnName.length>1){
+																								searchString +=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
+																								searchString +=' @'+customColumnName[1]+' |||'+$('#search').val()+'||| ';
 																				}
 																				else{
-																								searchString+=' |||'+$('#search').val()+'||| ';
+																								searchString +=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
 																				}
-																				console.log($('#keyword_field_main_search').val());
-																				console.log(searchString);
+                    
 																				$('#keyword_field_main_search').val($('#keyword_field_main_search').val()+searchString);
-																				console.log($('#keyword_field_main_search').val());
+																				console.log(	$('#keyword_field_main_search').val());
+																				return false;
                             
 																}
 																else{
@@ -668,7 +663,8 @@
             
 				}
 				var customFieldName='All';
-				var customColumnName='';
+				var customColumnName='@all';
+				
 				function add_custom_token(fieldName,columnName){
 								text=$('#search').val();
 								customFieldName=fieldName;

@@ -602,8 +602,8 @@
 																				console.log(	$('#keyword_field_main_search').val());
 																				customFieldName='All';
 																				customColumnName='all';
-																					$('#limit_field_text').html('Limit Search to Field');
-																				return false;
+																				$('#limit_field_text').html('Limit Search to Field');
+																				
                             
 																}
 																else{

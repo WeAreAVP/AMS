@@ -26,7 +26,7 @@
 												if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
 												{
 
-																$custom_search='@all== "nouamn" @guid== "fahad" @all== "test" @title== "abc"';
+																$custom_search='@all== "nouamn" @guid== "fahad" @all== "testing" @title== "abc"';
 																$custom_search	=	explode('@',	$custom_search);
 																unset($custom_search[0]);
 

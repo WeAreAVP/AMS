@@ -26,8 +26,23 @@
 												if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
 												{
 
-																$custom_search	=	$this->session->userdata['custom_search'];
 
+																$custom_search	=	explode('@',	$this->session->userdata['custom_search']);
+																unset($custom_search[0]);
+
+																foreach($custom_search	as	$index	=>	$keyword)
+																{
+																				$column_explode[]	=	explode('==',	$keyword);
+																}
+																$custom_keyword	=	array();
+																foreach($column_explode	as	$key	=>	$value)
+																{
+																				if(isset($custom_keyword[$value[0]]))
+																								$custom_keyword[$value[0]][]=	$value[1];
+																				else
+																								$custom_keyword[$value[0]][]	=	$value[1];
+																}
+																debug($custom_keyword);
 																$column_name	=	explode('@',	$custom_search);
 																if(count($column_name)	>	1)
 																{
@@ -52,9 +67,10 @@
 																$search_id	=	name_slug($custom_value);
 																?>
 																<div id="keyword_field_main">
+																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php	echo	$this->session->userdata['custom_search'];	?>" />
 																				<div class="filter-fileds"><b id="keyword_field_name">Keyword<?php	echo	$column_name;	?></b></div>
-																				<div class="btn-img" id="<?php	echo	$search_id;	?>" ><span class="search_keys"><?php	echo	$custom_value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($custom_value);	?>','<?php //	echo	$search_id;	?>','keyword_field_main');"></i></div>
-<!--																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php	echo	$custom_value;	?>" />-->
+																				<div class="btn-img" id="<?php	echo	$search_id;	?>" ><span class="search_keys"><?php	echo	$custom_value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($custom_value);	?>','<?php	//	echo	$search_id;			?>','keyword_field_main');"></i></div>
+																				
 																				<div class="clearfix"></div>
 
 																</div>
@@ -591,11 +607,11 @@
 																				console.log(customColumnName);
 																				customColumnName= customColumnName.split(' ');
 																				if(customColumnName.length>1){
-																								searchString +=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
-																								searchString +=' @'+customColumnName[1]+' |||'+$('#search').val()+'||| ';
+																								searchString +=' @'+customColumnName[0]+' ==|||'+$('#search').val()+'||| ';
+																								searchString +=' @'+customColumnName[1]+' ==|||'+$('#search').val()+'||| ';
 																				}
 																				else{
-																								searchString +=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
+																								searchString +=' @'+customColumnName[0]+' ==|||'+$('#search').val()+'||| ';
 																				}
                     
 																				$('#keyword_field_main_search').val($('#keyword_field_main_search').val()+searchString);

@@ -26,13 +26,13 @@
 												if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
 												{
 
-																$custom_search	=	'@all== "nouamn" @guid== "fahad" @all== "testing" @title== "abc"';
+																$custom_search	=	'@all=||= "nouamn" @guid=||= "fahad" @all=||= "testing" @title=||= "abc"';
 																$custom_search	=	explode('@',	$custom_search);
 																unset($custom_search[0]);
 
 																foreach($custom_search	as	$index	=>	$keyword)
 																{
-																				$column_explode[]	=	explode('==',	$keyword);
+																				$column_explode[]	=	explode('=||=',	$keyword);
 																}
 
 																$custom_keyword	=	array();

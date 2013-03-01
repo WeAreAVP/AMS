@@ -38,12 +38,12 @@
 																$custom_keyword	=	array();
 																foreach($column_explode	as	$key	=>	$value)
 																{
-																				
-																				
-																								$custom_keyword[$value[0]][]	=	$value[1];
-																				
+
+
+																				$custom_keyword[$value[0]][]	=	$value[1];
 																}
-																debug($custom_keyword);
+//																debug($custom_keyword);
+
 																$column_name	=	explode('@',	$custom_search);
 																if(count($column_name)	>	1)
 																{
@@ -69,8 +69,23 @@
 																?>
 																<div id="keyword_field_main">
 																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php	echo	$this->session->userdata['custom_search'];	?>" />
+																				<?php
+																				foreach($custom_keyword	as $index=>	$keyword)
+																				{
+																								if($index=='all'){
+																												$column_name='All';
+																								}
+																								else {
+																												$get_column_name[trim($index)];
+																								}
+																								foreach($keyword	as	$ket_token)
+																								{
+																												
+																								}
+																				}
+																				?>
 																				<div class="filter-fileds"><b id="keyword_field_name">Keyword<?php	echo	$column_name;	?></b></div>
-																				<div class="btn-img" id="<?php	echo	$search_id;	?>" ><span class="search_keys"><?php	echo	$custom_value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($custom_value);	?>','<?php	//	echo	$search_id;				?>','keyword_field_main');"></i></div>
+																				<div class="btn-img" id="<?php	echo	$search_id;	?>" ><span class="search_keys"><?php	echo	$custom_value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($custom_value);	?>','<?php	//	echo	$search_id;					?>','keyword_field_main');"></i></div>
 
 																				<div class="clearfix"></div>
 
@@ -85,7 +100,7 @@
 																				<div class="filter-fileds"><b id="keyword_field_name">Keyword</b></div>
 																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="" />
 																</div>
-												<?php	}	?>
+<?php	}	?>
 												<div class="clearfix"></div>
 												<!-- Custom  Search Display End  -->
 
@@ -125,8 +140,8 @@
 
 																</div>
 																<div class="clearfix"></div>
-												<?php	}
-												?>
+<?php	}
+?>
 
 												<!-- Date Search Display End  -->
 												<div class="clearfix"></div>
@@ -148,7 +163,7 @@
 																								$search_id	=	name_slug($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','organization_main')"></i></div>
-																				<?php	}	?>
+																<?php	}	?>
 																</div>
 																<?php
 												}
@@ -160,7 +175,7 @@
 																				<div class="filter-fileds"><b>Organization</b></div>
 																				<input type="hidden" id="organization_main_search" name="organization_main_search"/>
 																</div>
-												<?php	}	?>
+<?php	}	?>
 
 												<!-- Organization Search Display End  -->
 												<div class="clearfix"></div>
@@ -182,7 +197,7 @@
 																								$search_id	=	name_slug($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','states_main')"></i></div>
-																				<?php	}	?>
+																<?php	}	?>
 																</div>
 																<?php
 												}
@@ -194,7 +209,7 @@
 																				<div class="filter-fileds"><b>State</b></div>
 																				<input type="hidden" id="states_main_search" name="states_main_search"/>
 																</div>
-												<?php	}	?>
+<?php	}	?>
 
 												<!-- State Search Display End  -->
 												<div class="clearfix"></div>
@@ -215,7 +230,7 @@
 																								$search_id	=	name_slug($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','nomination_status_main')"></i></div>
-																				<?php	}	?>
+																<?php	}	?>
 																</div>
 																<?php
 												}
@@ -247,7 +262,7 @@
 																								$search_id	=	name_slug($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','media_type_main')"></i></div>
-																				<?php	}	?>
+																<?php	}	?>
 																</div>
 																<?php
 												}
@@ -279,7 +294,7 @@
 																								$search_id	=	name_slug($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','physical_format_main')"></i></div>
-																				<?php	}	?>
+																<?php	}	?>
 																</div>
 																<?php
 												}
@@ -311,7 +326,7 @@
 																								$search_id	=	name_slug($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','digital_format_main')"></i></div>
-																				<?php	}	?>
+																<?php	}	?>
 																</div>
 																<?php
 												}
@@ -343,7 +358,7 @@
 																								$search_id	=	name_slug($value);
 																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','generation_main')"></i></div>
-																				<?php	}	?>
+																<?php	}	?>
 																</div>
 																<?php
 												}
@@ -355,7 +370,7 @@
 																				<div class="filter-fileds"><b>Generation</b></div>
 																				<input type="hidden" id="generation_main_search" name="generation_main_search"/>
 																</div>
-												<?php	}	?>
+<?php	}	?>
 												<!-- Generation Search Display End  -->
 												<div class="clearfix"></div>
 
@@ -487,17 +502,17 @@
 																																{
 																																				?>
 																																				<li><a href="javascript://;" onclick="add_date_token('<?php	echo	$value->date_type;	?>');"><?php	echo	$value->date_type;	?></a></li>
-																																<?php	}
-																																?>
+				<?php	}
+				?>
 																												</ul>
 																								</div>
 
 
 
 
-																								<?php
-																				}
-																				?>
+				<?php
+}
+?>
 																				<div id="add_date_btn">
 																								<input type="button" id="add_date_keyword" name="add_date_keyword" value="Add Date" class="btn btn-primary" onclick="add_token($('#date_range').val(),'date_field_main');"/>
 																				</div>

@@ -69,30 +69,30 @@ class	Records	extends	MY_Controller
 								}
 								$this->session->set_userdata('current_tab',	$data['current_tab']);
 								$data['get_column_name']	=	$this->make_array();
-								$states	=	$this->sphinx->facet_index('state',	'assets_list');
-								$data['org_states']	=	sortByOneKey($states['records'],	'state');
-								unset($states);
-
-								$stations	=	$this->sphinx->facet_index('organization',	'assets_list');
-								$data['stations']	=	sortByOneKey($stations['records'],	'organization');
-								unset($stations);
-								$nomination	=	$this->sphinx->facet_index('status',	'assets_list');
-								$data['nomination_status']	=	sortByOneKey($nomination['records'],	'status');
-								unset($nomination);
-								$media_type	=	$this->sphinx->facet_index('media_type',	'assets_list');
-								$data['media_types']	=	sortByOneKey($media_type['records'],	'media_type',TRUE);
-
-								unset($media_type);
-							$p_format	=	$this->sphinx->facet_index('format_name',	'assets_list',	'physical');
-								$data['physical_formats']	=	sortByOneKey($p_format['records'],	'format_name',TRUE);
-								unset($p_format);
-								$d_format	=	$this->sphinx->facet_index('format_name',	'assets_list',	'digital');
-								$data['digital_formats']	=	sortByOneKey($d_format['records'],	'format_name',TRUE);
-								unset($d_format);
-								$generation	=	$this->sphinx->facet_index('facet_generation',	'assets_list');
-								$data['generations']	=	sortByOneKey($generation['records'],	'facet_generation',TRUE);
-								$data['digitized']=$this->sphinx->facet_index('digitized',	'assets_list','digitized');
-								$data['migration']=$this->sphinx->facet_index('migration',	'assets_list','migration');
+//								$states	=	$this->sphinx->facet_index('state',	'assets_list');
+//								$data['org_states']	=	sortByOneKey($states['records'],	'state');
+//								unset($states);
+//
+//								$stations	=	$this->sphinx->facet_index('organization',	'assets_list');
+//								$data['stations']	=	sortByOneKey($stations['records'],	'organization');
+//								unset($stations);
+//								$nomination	=	$this->sphinx->facet_index('status',	'assets_list');
+//								$data['nomination_status']	=	sortByOneKey($nomination['records'],	'status');
+//								unset($nomination);
+//								$media_type	=	$this->sphinx->facet_index('media_type',	'assets_list');
+//								$data['media_types']	=	sortByOneKey($media_type['records'],	'media_type',TRUE);
+//
+//								unset($media_type);
+//							$p_format	=	$this->sphinx->facet_index('format_name',	'assets_list',	'physical');
+//								$data['physical_formats']	=	sortByOneKey($p_format['records'],	'format_name',TRUE);
+//								unset($p_format);
+//								$d_format	=	$this->sphinx->facet_index('format_name',	'assets_list',	'digital');
+//								$data['digital_formats']	=	sortByOneKey($d_format['records'],	'format_name',TRUE);
+//								unset($d_format);
+//								$generation	=	$this->sphinx->facet_index('facet_generation',	'assets_list');
+//								$data['generations']	=	sortByOneKey($generation['records'],	'facet_generation',TRUE);
+//								$data['digitized']=$this->sphinx->facet_index('digitized',	'assets_list','digitized');
+//								$data['migration']=$this->sphinx->facet_index('migration',	'assets_list','migration');
 								
 								$data['date_types']	=	$this->instantiation->get_date_types();
 

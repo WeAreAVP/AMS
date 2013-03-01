@@ -38,6 +38,7 @@
 																$custom_keyword	=	array();
 																foreach($column_explode	as	$key	=>	$value)
 																{
+																				echo $value[1].'<br/>';
 																				if(isset($custom_keyword[$value[0]]))
 																								$custom_keyword[$value[0]].=' | '	.	$value[1];
 																				else

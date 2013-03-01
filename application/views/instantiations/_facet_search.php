@@ -356,20 +356,8 @@
 								</b>
 
 
-								<?php
-								if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
-								{
-
-												$style	=	"none;";
-												$reset	=	"block;";
-								}
-								else
-								{
-												$style	=	"block;";
-												$reset	=	"none;";
-								}
-								?>
-								<div class="field-filters" id="limit_field_div" style="display:<?php	echo	$style;	?>">
+							
+								<div class="field-filters" id="limit_field_div">
 												<div class="filter-fileds" >
 																<div onclick="showHideSearch('sk_div',this);" style="cursor: pointer;"><b>Keyword Search</b>	<span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;"></span></div>
 

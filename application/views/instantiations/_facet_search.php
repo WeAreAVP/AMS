@@ -588,7 +588,7 @@
 																				//																				$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
 																				//																				$('#'+type).show();
 																				var searchString='';
-																				
+																				console.log(customColumnName);
 																				customColumnName= customColumnName.split(' ');
 																				if(customColumnName.length>1){
 																								searchString +=' @'+customColumnName[0]+' |||'+$('#search').val()+'||| ';
@@ -600,6 +600,7 @@
                     
 																				$('#keyword_field_main_search').val($('#keyword_field_main_search').val()+searchString);
 																				console.log(	$('#keyword_field_main_search').val());
+																				customFieldName='All';
 																				return false;
                             
 																}

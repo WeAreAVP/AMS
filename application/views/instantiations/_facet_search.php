@@ -601,6 +601,7 @@
 																				$('#keyword_field_main_search').val($('#keyword_field_main_search').val()+searchString);
 																				console.log(	$('#keyword_field_main_search').val());
 																				customFieldName='All';
+																				customColumnName='';
 																				return false;
                             
 																}

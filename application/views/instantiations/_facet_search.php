@@ -356,7 +356,7 @@
 								</b>
 
 
-							
+
 								<div class="field-filters" id="limit_field_div">
 												<div class="filter-fileds" >
 																<div onclick="showHideSearch('sk_div',this);" style="cursor: pointer;"><b>Keyword Search</b>	<span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;"></span></div>
@@ -580,7 +580,7 @@
 																				$('#keyword_field_main .btn-img').each(function(){
 																								$(this).remove();
 																				});
-//																				$('#limit_field_div').hide();
+																				//																				$('#limit_field_div').hide();
 																				var random_id=rand(0,1000365);
 																				slugName=make_slug_name(name);
 																				var search_id=slugName+random_id;
@@ -602,8 +602,10 @@
 																				else{
 																								searchString+=' |||'+$('#search').val()+'||| ';
 																				}
-                        
+																				console.log($('#keyword_field_main_search').val());
+																				console.log(searchString);
 																				$('#keyword_field_main_search').val($('#keyword_field_main_search').val()+searchString);
+																				console.log($('#keyword_field_main_search').val());
                             
 																}
 																else{

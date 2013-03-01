@@ -86,40 +86,7 @@ class	Instantiations	extends	MY_Controller
 								$this->session->set_userdata('page_link',	'instantiations/index/'	.	$offset);
 								$data['get_column_name']	=	$this->make_array();
 
-$states	=	$this->sphinx->facet_index('state',	'instantiations_list');
-
-								$data['org_states']	=	sortByOneKey($states['records'],	'state');
-								unset($states);
-
-								$stations	=	$this->sphinx->facet_index('organization',	'instantiations_list');
-
-								$data['stations']	=	sortByOneKey($stations['records'],	'organization');
-								unset($stations);
-								$nomination	=	$this->sphinx->facet_index('status',	'instantiations_list');
-
-								$data['nomination_status']	=	sortByOneKey($nomination['records'],	'status');
-								unset($nomination);
-								$media_type	=	$this->sphinx->facet_index('media_type',	'instantiations_list');
-
-								$data['media_types']	=	sortByOneKey($media_type['records'],	'media_type',	TRUE);
-
-								unset($media_type);
-								$p_format	=	$this->sphinx->facet_index('format_name',	'instantiations_list',	'physical');
-
-								$data['physical_formats']	=	sortByOneKey($p_format['records'],	'format_name',	TRUE);
-								unset($p_format);
-								$d_format	=	$this->sphinx->facet_index('format_name',	'instantiations_list',	'digital');
-
-								$data['digital_formats']	=	sortByOneKey($d_format['records'],	'format_name',	TRUE);
-								unset($d_format);
-								$generation	=	$this->sphinx->facet_index('facet_generation',	'instantiations_list');
-
-								$data['generations']	=	sortByOneKey($generation['records'],	'facet_generation',	TRUE);
-								unset($generation);
-
-								$data['digitized']	=	$this->sphinx->facet_index('digitized',	'instantiations_list',	'digitized');
-
-								$data['migration']	=	$this->sphinx->facet_index('migration',	'instantiations_list',	'migration');
+								
 								$data['date_types']	=	$this->instantiation->get_date_types();
 								
 
@@ -536,9 +503,9 @@ $states	=	$this->sphinx->facet_index('state',	'instantiations_list');
 								$data['digitized']	=	$this->sphinx->facet_index('digitized',	'instantiations_list',	'digitized');
 
 								$data['migration']	=	$this->sphinx->facet_index('migration',	'instantiations_list',	'migration');
-								$data['date_types']	=	$this->instantiation->get_date_types();
-								return $data;
-								echo	$this->load->view('instantiations/_facet_search',$data,	TRUE);
+								
+								
+								echo	$this->load->view('instantiations/_facet_columns',$data,	TRUE);
 								exit_function();
 				}
 

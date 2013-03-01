@@ -89,6 +89,7 @@ class	Sphinx_Model	extends	CI_Model
 								$mode	=	SPH_MATCH_EXTENDED;
 								$this->sphinxsearch->set_array_result(true);
 								$this->sphinxsearch->set_match_mode($mode);
+								
 								$this->sphinxsearch->set_group_by($column_name,	SPH_GROUPBY_ATTR);
 //								$this->sphinxsearch->set_sort_mode ( SPH_SORT_ATTR_DESC, $column_name );
 								$this->sphinxsearch->set_connect_timeout(120);

@@ -571,7 +571,7 @@
 																$('#limit_field_text').html('Limit Search to Field');
 																$('#search').val('');
 																$('#limit_field_div').show();
-																customColumnName='';
+																customColumnName='all';
 																customFieldName='All';
                         
 												}
@@ -601,7 +601,8 @@
 																				$('#keyword_field_main_search').val($('#keyword_field_main_search').val()+searchString);
 																				console.log(	$('#keyword_field_main_search').val());
 																				customFieldName='All';
-																				customColumnName='';
+																				customColumnName='all';
+																					$('#limit_field_text').html(customFieldName);
 																				return false;
                             
 																}

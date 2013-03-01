@@ -26,7 +26,7 @@
 												if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
 												{
 
-																$custom_search='@all== "nouamn" @guid== "fahad" @all== "testing" @title== "abc"';
+																$custom_search	=	'@all== "nouamn" @guid== "fahad" @all== "testing" @title== "abc"';
 																$custom_search	=	explode('@',	$custom_search);
 																unset($custom_search[0]);
 
@@ -34,13 +34,13 @@
 																{
 																				$column_explode[]	=	explode('==',	$keyword);
 																}
-																
+
 																$custom_keyword	=	array();
 																foreach($column_explode	as	$key	=>	$value)
 																{
-																				echo $value[1].'<br/>';
+																				echo	$value[1]	.	'<br/>';
 																				if(isset($custom_keyword[$value[0]]))
-																								$custom_keyword[$value[0]].=' | '	.	$value[1];
+																								$custom_keyword[$value[0]]	.=' | '	.	$value[1];
 																				else
 																								$custom_keyword[$value[0]]	=	$value[1];
 																}
@@ -71,8 +71,8 @@
 																<div id="keyword_field_main">
 																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php	echo	$this->session->userdata['custom_search'];	?>" />
 																				<div class="filter-fileds"><b id="keyword_field_name">Keyword<?php	echo	$column_name;	?></b></div>
-																				<div class="btn-img" id="<?php	echo	$search_id;	?>" ><span class="search_keys"><?php	echo	$custom_value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($custom_value);	?>','<?php	//	echo	$search_id;			?>','keyword_field_main');"></i></div>
-																				
+																				<div class="btn-img" id="<?php	echo	$search_id;	?>" ><span class="search_keys"><?php	echo	$custom_value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($custom_value);	?>','<?php	//	echo	$search_id;				?>','keyword_field_main');"></i></div>
+
 																				<div class="clearfix"></div>
 
 																</div>

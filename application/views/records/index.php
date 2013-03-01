@@ -140,7 +140,7 @@ if(	!	$isAjax)
 																																?>
 
 												<?php	}	?>
-																																				<!--												<div style="text-align: right;width: 710px;"> <strong><?php	echo	number_format($start);	?> - <?php	echo	number_format($end);	?></strong> of <strong style="margin-right: 10px;"><?php	echo	number_format($total);	?></strong> <?php	echo	$this->ajax_pagination->create_links();	?> </div>-->
+																																								<!--												<div style="text-align: right;width: 710px;"> <strong><?php	echo	number_format($start);	?> - <?php	echo	number_format($end);	?></strong> of <strong style="margin-right: 10px;"><?php	echo	number_format($total);	?></strong> <?php	echo	$this->ajax_pagination->create_links();	?> </div>-->
 												<?php
 								}
 								else	if($start	>=	1000)
@@ -160,6 +160,10 @@ if(	!	$isAjax)
 				{
 								?>
 				</div>
-
+				<script type="text/javascript">
+								$(document).ready(function() {
+												load_facet_columns('assets_list');
+								});
+				</script>
 
 <?php	}	?>

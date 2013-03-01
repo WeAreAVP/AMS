@@ -115,10 +115,10 @@ if(	!	$isAjax)
 								function confirm_csv_export(){
 												$('#export_csv_modal').modal({
 																backdrop: 'static',
-																				
+																								
 												});
 												//												$('#export_csv_modal').modal('toggle');
-															
+																			
 												export_csv_limited();
 								}
 								function export_csv_limited(){
@@ -131,22 +131,14 @@ if(	!	$isAjax)
 																								$('#export_csv_msg').html('<a href="'+result.msg+'">Download</a>');
 																				else
 																								$('#export_csv_msg').html(result.msg);
-																																																																																				                                        
+																																																																																								                                        
 																}
 												});
 								}
 								$(document).ready(function() {
-												$.ajax({
-																type: 'POST', 
-																url: site_url+'instantiations/load_facet_columns',
-																data:{'index':'instantiations_list'},
-																dataType: 'html',
-																success: function (result) { 
-																				
-																												$('#append_facet_columns').html(result);																																																								                                        
-																}
-												});
+												load_facet_columns('instantiations_list');
 								});
+								
 				</script>
 
 <?php	}	?>

@@ -929,4 +929,16 @@
 								$('.span3').css('max-height',$(window).height()-90);
 								$('#data_container').width($(window).width()-300);
 				}
+				function load_facet_columns(index){
+								$.ajax({
+												type: 'POST', 
+												url: site_url+'instantiations/load_facet_columns',
+												data:{'index':index},
+												dataType: 'html',
+												success: function (result) { 
+																								
+																$('#append_facet_columns').html(result);																																																								                                        
+												}
+								});
+				}
 </script>

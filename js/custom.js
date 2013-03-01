@@ -292,10 +292,12 @@ function updateDataTable()
 				if(current_table_type=='assets'){
 								url_tab_type='records/sort_full_table';
 								height=$(window).height()-230;
+								load_facet_columns('assets_list');
 				}
 				else{
 								url_tab_type='instantiations/instantiation_table';
 								height=$(window).height()-195;
+								load_facet_columns('instantiations_list');
 				}
 				if($('#listing_table').length>0)
 				{
@@ -332,13 +334,13 @@ function updateDataTable()
 												"bServerSide": true,
 												"sAjaxSource": site_url+url_tab_type,
 												"fnInitComplete": function () {
-														oFC=		new FixedColumns( oTable, {
-																"iLeftColumns": frozen
-												} );
+																oFC=		new FixedColumns( oTable, {
+																				"iLeftColumns": frozen
+																} );
 												}
 												
 								});
-//								if(frozen>0)
+								//								if(frozen>0)
 								//								{
 								//												new FixedColumns( oTable, {
 								//																"iLeftColumns": frozen
@@ -349,7 +351,7 @@ function updateDataTable()
 												"sWrapper": "dataTables_wrapper form-inline"
 								});
 								if(current_table_type!='assets'){
-													$('#listing_table_processing').css('top','125px');
+												$('#listing_table_processing').css('top','125px');
 								}
 			
 												
@@ -387,8 +389,8 @@ function updateDatabase(refresh)
 								},
 								success: function (result){
 								
-																				if(refresh==1)
-																								window.location.reload();
+												if(refresh==1)
+																window.location.reload();
 								
 											
 								}

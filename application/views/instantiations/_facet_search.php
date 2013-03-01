@@ -577,16 +577,16 @@
 												}
 												else{
 																if($('#search').val()!=''){
-																				$('#keyword_field_main .btn-img').each(function(){
-																								$(this).remove();
-																				});
-																				//																				$('#limit_field_div').hide();
-																				var random_id=rand(0,1000365);
-																				slugName=make_slug_name(name);
-																				var search_id=slugName+random_id;
-																				$('#keyword_field_name').html('Keyword: '+customFieldName);
-																				$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
-																				$('#'+type).show();
+//																				$('#keyword_field_main .btn-img').each(function(){
+//																								$(this).remove();
+//																				});
+																				
+//																				var random_id=rand(0,1000365);
+//																				slugName=make_slug_name(name);
+//																				var search_id=slugName+random_id;
+//																				$('#keyword_field_name').html('Keyword: '+customFieldName);
+//																				$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
+//																				$('#'+type).show();
 																				var searchString='';
 																				if(customColumnName!=''){
 																								customColumnName= customColumnName.split(' ');

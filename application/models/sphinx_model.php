@@ -263,11 +263,11 @@ class	Sphinx_Model	extends	CI_Model
 												$custom_search='@all== "nouamn" @guid== "fahad" @all== "test" @title== "abc"';
 												$custom_search=explode('@',$custom_search);
 												unset($custom_search[0]);
-												debug($custom_search);
+												
 												foreach($custom_search as $index=>$keyword){
-																$column_explode=explode('==',$keyword);
+																$column_explode[]=explode('==',$keyword);
 												}
-												debug($custom_search);
+												debug($column_explode);
 												$where	.=$custom_search;
 								}
 								if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')

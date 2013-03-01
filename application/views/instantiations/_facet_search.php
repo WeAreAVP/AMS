@@ -34,6 +34,7 @@
 																{
 																				$column_explode[]	=	explode('==',	$keyword);
 																}
+																debug($custom_search);
 																$custom_keyword	=	array();
 																foreach($column_explode	as	$key	=>	$value)
 																{

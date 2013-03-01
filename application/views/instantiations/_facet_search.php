@@ -603,7 +603,7 @@
 																								searchString+=' |||'+$('#search').val()+'||| ';
 																				}
                         
-																				$('#keyword_field_main_search').val(searchString);
+																				$('#keyword_field_main_search').val($('#keyword_field_main_search').val()+searchString);
                             
 																}
 																else{

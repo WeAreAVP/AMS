@@ -28,7 +28,7 @@
 												{
 																?>
 																<div id="keyword_field_main">
-																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php	echo	json_encode($this->session->userdata['custom_search']);	?>" />
+																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php	echo	htmlentities(json_encode($this->session->userdata['custom_search']));	?>" />
 																				<?php
 																				$custom_search	=	$this->session->userdata['custom_search'];
 

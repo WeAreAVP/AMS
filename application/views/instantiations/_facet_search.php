@@ -626,7 +626,7 @@
 //																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
 //																				}
                     
-																				$('#keyword_field_main_search').val(keywordJson);
+																				$('#keyword_field_main_search').val(keywordJson.serialize());
 																				console.log(	$('#keyword_field_main_search').val());
 																				customFieldName='All';
 																				customColumnName='all';

@@ -71,7 +71,7 @@
 																												?>
 																												<div class="btn-img" id="<?php	echo	$search_id;	?>" >
 																																<span class="search_keys"><?php	echo	$token_val;	?></span>
-																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;															?>','keyword_field_main');"></i>
+																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;																	?>','keyword_field_main');"></i>
 																												</div>
 																												<?php
 																								}
@@ -602,8 +602,10 @@
 												else{
 																if($('#search').val()!=''){
 																				if(typeof(keywordJson[customColumnName])!=undefined){
-																								keywordJson[customColumnName]=$('#search').val();
-
+																								if(keywordJson[customColumnName].length==0)
+																												keywordJson[customColumnName]=$('#search').val();
+																								else
+																												keywordJson[customColumnName].push($('#search').val());
 																				}
 																				
 																				console.log(keywordJson);
@@ -795,7 +797,7 @@
 																}
 																isAnySearch();
 																$.unblockUI();
-            }
+												}
 								});
 				}
 				function change_view(id)

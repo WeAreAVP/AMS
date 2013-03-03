@@ -39,7 +39,7 @@
 																				{
 																								$column_explode[]	=	explode('=||=',	$keyword);
 																				}
-																				
+
 																				$custom_keyword	=	array();
 																				foreach($column_explode	as	$key	=>	$value)
 																				{
@@ -47,18 +47,18 @@
 
 																								$custom_keyword[$value[0]][]	=	$value[1];
 																				}
-																				
+
 																				foreach($custom_keyword	as	$index	=>	$token)
 																				{
-																								
+
 																								if(trim($index)	==	'all')
 																								{
-																												
+
 																												$column_name	=	'All';
 																								}
 																								else
 																								{
-																												
+
 																												$column_name	=	$get_column_name[trim($index)];
 																								}
 																								?>	
@@ -66,54 +66,49 @@
 																								<?php
 																								foreach($token	as	$key	=>	$token_val)
 																								{
-																												$token_val=str_replace('|||',	'',$token_val);
+																												$token_val	=	str_replace('|||',	'',	$token_val);
 																												$search_id	=	name_slug($token_val);
 																												?>
 																												<div class="btn-img" id="<?php	echo	$search_id;	?>" >
 																																<span class="search_keys"><?php	echo	$token_val;	?></span>
-																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;												?>','keyword_field_main');"></i>
+																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;														?>','keyword_field_main');"></i>
 																												</div>
-																								<?php
+																												<?php
 																								}
 																				}
 																				?>
-
-
-
-
-
 																				<div class="clearfix"></div>
 
 																</div>
 																<div class="clearfix"></div>
-				<?php
-}
-else
-{
-				?>
+																<?php
+												}
+												else
+												{
+																?>
 																<div id="keyword_field_main" style="display: none;">
 																				<div class="filter-fileds"><b id="keyword_field_name">Keyword</b></div>
 																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="" />
 																</div>
-<?php	}	?>
+												<?php	}	?>
 												<div class="clearfix"></div>
 												<!-- Custom  Search Display End  -->
 
 												<!-- Date Search Display Start  -->
-<?php
-if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
-{
-				$date	=	$this->session->userdata['date_range'];
-				$search_id	=	name_slug($date);
-				if(isset($this->session->userdata['date_type'])	&&	$this->session->userdata['date_type']	!=	'')
-				{
-								$type	=	$this->session->userdata['date_type'];
-				}
-				else
-				{
-								$type	=	'All';
-				}
-				?>
+												<?php
+												if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
+												{
+																$date	=	$this->session->userdata['date_range'];
+																$search_id	=	name_slug($date);
+																if(isset($this->session->userdata['date_type'])	&&	$this->session->userdata['date_type']	!=	'')
+																{
+																				$type	=	$this->session->userdata['date_type'];
+																}
+																else
+																{
+																				$type	=	'All';
+																}
+																?>
 																<div id = "date_field_main">
 																				<input id="date_type" name="date_type" value="<?php	echo	$this->session->userdata['date_type'];	?>" type="hidden"/>
 																				<div class = "filter-fileds"><b id = "date_field_name">Date Keyword: <?php	echo	$type;	?></b></div>
@@ -123,11 +118,11 @@ if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['da
 																				<div class="clearfix"></div>
 																</div>
 																<div class="clearfix"></div>
-				<?php
-}
-else
-{
-				?>
+																<?php
+												}
+												else
+												{
+																?>
 																<div id="date_field_main" style="display: none;">
 																				<input id="date_type" name="date_type" value="" type="hidden"/>
 																				<div class="filter-fileds"><b id="date_field_name">Keyword</b></div>
@@ -135,237 +130,237 @@ else
 
 																</div>
 																<div class="clearfix"></div>
-<?php	}
-?>
+												<?php	}
+												?>
 
 												<!-- Date Search Display End  -->
 												<div class="clearfix"></div>
 												<!-- Organization Search Display Start  -->
 
-<?php
-if(isset($this->session->userdata['organization'])	&&	$this->session->userdata['organization']	!=	'')
-{
+												<?php
+												if(isset($this->session->userdata['organization'])	&&	$this->session->userdata['organization']	!=	'')
+												{
 
-				$organization	=	$this->session->userdata['organization'];
-				$organization_array	=	explode('|||',	$organization);
-				?>
+																$organization	=	$this->session->userdata['organization'];
+																$organization_array	=	explode('|||',	$organization);
+																?>
 																<div id="organization_main">
 																				<div class="filter-fileds"><b>Organization</b></div>
 																				<input type="hidden" id="organization_main_search" name="organization_main_search" value="<?php	echo	$organization;	?>" />
-				<?php
-				foreach($organization_array	as	$value)
-				{
-								$search_id	=	name_slug($value);
-								?>
+																				<?php
+																				foreach($organization_array	as	$value)
+																				{
+																								$search_id	=	name_slug($value);
+																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','organization_main')"></i></div>
 																				<?php	}	?>
 																</div>
-																				<?php
-																}
-																else
-																{
-																				?>
+																<?php
+												}
+												else
+												{
+																?>
 
 																<div id="organization_main" style="display: none;">
 																				<div class="filter-fileds"><b>Organization</b></div>
 																				<input type="hidden" id="organization_main_search" name="organization_main_search"/>
 																</div>
-<?php	}	?>
+												<?php	}	?>
 
 												<!-- Organization Search Display End  -->
 												<div class="clearfix"></div>
 												<!-- State Search Display Start  -->
 
-<?php
-if(isset($this->session->userdata['states'])	&&	$this->session->userdata['states']	!=	'')
-{
+												<?php
+												if(isset($this->session->userdata['states'])	&&	$this->session->userdata['states']	!=	'')
+												{
 
-				$state	=	$this->session->userdata['states'];
-				$state_array	=	explode('|||',	$state);
-				?>
+																$state	=	$this->session->userdata['states'];
+																$state_array	=	explode('|||',	$state);
+																?>
 																<div id="states_main">
 																				<div class="filter-fileds"><b>State</b></div>
 																				<input type="hidden" id="states_main_search" name="states_main_search" value="<?php	echo	$state;	?>" />
-				<?php
-				foreach($state_array	as	$value)
-				{
-								$search_id	=	name_slug($value);
-								?>
+																				<?php
+																				foreach($state_array	as	$value)
+																				{
+																								$search_id	=	name_slug($value);
+																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','states_main')"></i></div>
 																				<?php	}	?>
 																</div>
-																				<?php
-																}
-																else
-																{
-																				?>
+																<?php
+												}
+												else
+												{
+																?>
 
 																<div id="states_main" style="display: none;">
 																				<div class="filter-fileds"><b>State</b></div>
 																				<input type="hidden" id="states_main_search" name="states_main_search"/>
 																</div>
-<?php	}	?>
+												<?php	}	?>
 
 												<!-- State Search Display End  -->
 												<div class="clearfix"></div>
 												<!-- Nomination Status Search Display Start  -->
-<?php
-if(isset($this->session->userdata['nomination'])	&&	$this->session->userdata['nomination']	!=	'')
-{
+												<?php
+												if(isset($this->session->userdata['nomination'])	&&	$this->session->userdata['nomination']	!=	'')
+												{
 
-				$nomination	=	$this->session->userdata['nomination'];
-				$nomination_array	=	explode('|||',	$nomination);
-				?>
+																$nomination	=	$this->session->userdata['nomination'];
+																$nomination_array	=	explode('|||',	$nomination);
+																?>
 																<div id="nomination_status_main">
 																				<div class="filter-fileds"><b>Nomination Status</b></div>
 																				<input type="hidden" id="nomination_status_main_search" name="nomination_status_main_search" value="<?php	echo	$nomination;	?>" />
-				<?php
-				foreach($nomination_array	as	$value)
-				{
-								$search_id	=	name_slug($value);
-								?>
+																				<?php
+																				foreach($nomination_array	as	$value)
+																				{
+																								$search_id	=	name_slug($value);
+																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','nomination_status_main')"></i></div>
 																				<?php	}	?>
 																</div>
-																				<?php
-																}
-																else
-																{
-																				?>
+																<?php
+												}
+												else
+												{
+																?>
 
 																<div id="nomination_status_main" style="display: none;">
 																				<div class="filter-fileds"><b>Nomination Status</b></div>
 																				<input type="hidden" id="nomination_status_main_search" name="nomination_status_main_search"/>
 																</div>
-<?php	}	?>
+												<?php	}	?>
 												<!-- Nomination Status Search Display End  -->
 												<div class="clearfix"></div>
 												<!-- Media Type Search Display Start  -->
-<?php
-if(isset($this->session->userdata['media_type'])	&&	$this->session->userdata['media_type']	!=	'')
-{
+												<?php
+												if(isset($this->session->userdata['media_type'])	&&	$this->session->userdata['media_type']	!=	'')
+												{
 
-				$media_type	=	$this->session->userdata['media_type'];
-				$media_type_array	=	explode('|||',	$media_type);
-				?>
+																$media_type	=	$this->session->userdata['media_type'];
+																$media_type_array	=	explode('|||',	$media_type);
+																?>
 																<div id="media_type_main">
 																				<div class="filter-fileds"><b>Media Type</b></div>
 																				<input type="hidden" id="media_type_main_search" name="media_type_main_search" value="<?php	echo	$media_type;	?>" />
-				<?php
-				foreach($media_type_array	as	$value)
-				{
-								$search_id	=	name_slug($value);
-								?>
+																				<?php
+																				foreach($media_type_array	as	$value)
+																				{
+																								$search_id	=	name_slug($value);
+																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','media_type_main')"></i></div>
 																				<?php	}	?>
 																</div>
-																				<?php
-																}
-																else
-																{
-																				?>
+																<?php
+												}
+												else
+												{
+																?>
 
 																<div id="media_type_main" style="display: none;">
 																				<div class="filter-fileds"><b>Media Type</b></div>
 																				<input type="hidden" id="media_type_main_search" name="media_type_main_search"/>
 																</div>
-<?php	}	?>
+												<?php	}	?>
 												<!-- Media Type Search Display End  -->
 												<div class="clearfix"></div>
 												<!-- Physical Format Search Display Start  -->
-<?php
-if(isset($this->session->userdata['physical_format'])	&&	$this->session->userdata['physical_format']	!=	'')
-{
+												<?php
+												if(isset($this->session->userdata['physical_format'])	&&	$this->session->userdata['physical_format']	!=	'')
+												{
 
-				$physical_format	=	$this->session->userdata['physical_format'];
-				$physical_format_array	=	explode('|||',	$physical_format);
-				?>
+																$physical_format	=	$this->session->userdata['physical_format'];
+																$physical_format_array	=	explode('|||',	$physical_format);
+																?>
 																<div id="physical_format_main">
 																				<div class="filter-fileds"><b>Physical Format</b></div>
 																				<input type="hidden" id="physical_format_main_search" name="physical_format_main_search" value="<?php	echo	$physical_format;	?>" />
-				<?php
-				foreach($physical_format_array	as	$value)
-				{
-								$search_id	=	name_slug($value);
-								?>
+																				<?php
+																				foreach($physical_format_array	as	$value)
+																				{
+																								$search_id	=	name_slug($value);
+																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','physical_format_main')"></i></div>
 																				<?php	}	?>
 																</div>
-																				<?php
-																}
-																else
-																{
-																				?>
+																<?php
+												}
+												else
+												{
+																?>
 
 																<div id="physical_format_main" style="display: none;">
 																				<div class="filter-fileds"><b>Physical Format</b></div>
 																				<input type="hidden" id="physical_format_main_search" name="physical_format_main_search"/>
 																</div>
-<?php	}	?>
+												<?php	}	?>
 												<!-- Physical Format Search Display End  -->
 												<div class="clearfix"></div>
 												<!-- Digital Format Search Display Start  -->
-<?php
-if(isset($this->session->userdata['digital_format'])	&&	$this->session->userdata['digital_format']	!=	'')
-{
+												<?php
+												if(isset($this->session->userdata['digital_format'])	&&	$this->session->userdata['digital_format']	!=	'')
+												{
 
-				$digital_format	=	$this->session->userdata['digital_format'];
-				$digital_format_array	=	explode('|||',	$digital_format);
-				?>
+																$digital_format	=	$this->session->userdata['digital_format'];
+																$digital_format_array	=	explode('|||',	$digital_format);
+																?>
 																<div id="digital_format_main">
 																				<div class="filter-fileds"><b>Digital Format</b></div>
 																				<input type="hidden" id="digital_format_main_search" name="digital_format_main_search" value="<?php	echo	$digital_format;	?>" />
-				<?php
-				foreach($digital_format_array	as	$value)
-				{
-								$search_id	=	name_slug($value);
-								?>
+																				<?php
+																				foreach($digital_format_array	as	$value)
+																				{
+																								$search_id	=	name_slug($value);
+																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','digital_format_main')"></i></div>
 																				<?php	}	?>
 																</div>
-																				<?php
-																}
-																else
-																{
-																				?>
+																<?php
+												}
+												else
+												{
+																?>
 
 																<div id="digital_format_main" style="display: none;">
 																				<div class="filter-fileds"><b>Digital Format</b></div>
 																				<input type="hidden" id="digital_format_main_search" name="digital_format_main_search"/>
 																</div>
-<?php	}	?>
+												<?php	}	?>
 												<!-- Digital Format Search Display End  -->
 												<div class="clearfix"></div>
 												<!-- Generation Search Display Start  -->
-<?php
-if(isset($this->session->userdata['generation'])	&&	$this->session->userdata['generation']	!=	'')
-{
+												<?php
+												if(isset($this->session->userdata['generation'])	&&	$this->session->userdata['generation']	!=	'')
+												{
 
-				$generation	=	$this->session->userdata['generation'];
-				$generation_array	=	explode('|||',	$generation);
-				?>
+																$generation	=	$this->session->userdata['generation'];
+																$generation_array	=	explode('|||',	$generation);
+																?>
 																<div id="generation_main">
 																				<div class="filter-fileds"><b>Generation</b></div>
 																				<input type="hidden" id="generation_main_search" name="generation_main_search" value="<?php	echo	$generation;	?>" />
-				<?php
-				foreach($generation_array	as	$value)
-				{
-								$search_id	=	name_slug($value);
-								?>
+																				<?php
+																				foreach($generation_array	as	$value)
+																				{
+																								$search_id	=	name_slug($value);
+																								?>
 																								<div class="btn-img" id="<?php	echo	$search_id	?>" ><span class="search_keys"><?php	echo	$value;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($value);	?>','<?php	echo	$search_id	?>','generation_main')"></i></div>
 																				<?php	}	?>
 																</div>
-																				<?php
-																}
-																else
-																{
-																				?>
+																<?php
+												}
+												else
+												{
+																?>
 
 																<div id="generation_main" style="display: none;">
 																				<div class="filter-fileds"><b>Generation</b></div>
 																				<input type="hidden" id="generation_main_search" name="generation_main_search"/>
 																</div>
-<?php	}	?>
+												<?php	}	?>
 												<!-- Generation Search Display End  -->
 												<div class="clearfix"></div>
 
@@ -454,16 +449,16 @@ if(isset($this->session->userdata['generation'])	&&	$this->session->userdata['ge
 												</div>
 								</div>
 								<div class="clearfix"></div>
-<?php
-if((	!	isset($this->session->userdata['date_range'])	||	isset($this->session->userdata['date_range'])	)	&&	empty($this->session->userdata['date_range']))
-{
-				$DateStyleDisplay	=	1;
-}
-else
-{
-				$DateStyleDisplay	=	0;
-}
-?>
+								<?php
+								if((	!	isset($this->session->userdata['date_range'])	||	isset($this->session->userdata['date_range'])	)	&&	empty($this->session->userdata['date_range']))
+								{
+												$DateStyleDisplay	=	1;
+								}
+								else
+								{
+												$DateStyleDisplay	=	0;
+								}
+								?>
 								<div class="field-filters" id="date_range_filter_div">
 												<div class="filter-fileds" onclick="showHideSearch('date_range_filter_div_1',this);" style="cursor: pointer;"><b>Date</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;"></span></div>
 												<div id="date_range_filter_div_1" style="display: none;">
@@ -479,10 +474,10 @@ else
 
 																</div>
 																<div class="filter-fileds">
-<?php
-if(count($date_types)	>	0)
-{
-				?>
+																				<?php
+																				if(count($date_types)	>	0)
+																				{
+																								?>
 
 
 																								<div class="btn-group" id="limit_field_dropdowns">
@@ -492,10 +487,10 @@ if(count($date_types)	>	0)
 																																<span class="caret"></span>
 																												</a>
 																												<ul class="dropdown-menu custom-dropdown-menu">
-				<?php
-				foreach($date_types	as	$value)
-				{
-								?>
+																																<?php
+																																foreach($date_types	as	$value)
+																																{
+																																				?>
 																																				<li><a href="javascript://;" onclick="add_date_token('<?php	echo	$value->date_type;	?>');"><?php	echo	$value->date_type;	?></a></li>
 																																<?php	}
 																																?>
@@ -505,9 +500,9 @@ if(count($date_types)	>	0)
 
 
 
-				<?php
-}
-?>
+																								<?php
+																				}
+																				?>
 																				<div id="add_date_btn">
 																								<input type="button" id="add_date_keyword" name="add_date_keyword" value="Add Date" class="btn btn-primary" onclick="add_token($('#date_range').val(),'date_field_main');"/>
 																				</div>
@@ -584,16 +579,18 @@ if(count($date_types)	>	0)
 								manageLayout();
 								isAnySearch();
 				});
+				var keywordJson=<?php echo json_encde($get_column_name); ?>
+				console.log(keywordJson);
 				function add_token(name,type,isRemoved){
 								if(type=='keyword_field_main'){
                 
 												name=$('#search').val();  
 												if(isRemoved==1){
-																$('#'+type+' .btn-img').each(function(){
-																				$(this).remove();
-																});
-																$('#'+type+'_search').val('');
-																$('#keyword_field_name').html();
+//																$('#'+type+' .btn-img').each(function(){
+//																				$(this).remove();
+//																});
+//																$('#'+type+'_search').val('');
+//																$('#keyword_field_name').html();
 																$('#limit_btn').show(); 
 																$('#limit_field_text').html('Limit Search to Field');
 																$('#search').val('');
@@ -604,16 +601,6 @@ if(count($date_types)	>	0)
 												}
 												else{
 																if($('#search').val()!=''){
-																				//																				$('#keyword_field_main .btn-img').each(function(){
-																				//																								$(this).remove();
-																				//																				});
-																				
-																				//																				var random_id=rand(0,1000365);
-																				//																				slugName=make_slug_name(name);
-																				//																				var search_id=slugName+random_id;
-																				//																				$('#keyword_field_name').html('Keyword: '+customFieldName);
-																				//																				$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
-																				//																				$('#'+type).show();
 																				var searchString='';
 																				console.log(customColumnName);
 																				customColumnName= customColumnName.split(' ');

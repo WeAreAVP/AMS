@@ -58,8 +58,9 @@
 																								else
 																								{
 																												echo $index;
-																												debug($get_column_name);
 																												echo $get_column_name[$index];
+																												debug($get_column_name);
+																												
 																												$column_name	=	$get_column_name[$index];
 																								}
 																								?>	

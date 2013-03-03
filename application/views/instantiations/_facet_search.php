@@ -39,7 +39,7 @@
 																				{
 																								$column_explode[]	=	explode('=||=',	$keyword);
 																				}
-																				debug($column_explode);
+																				
 																				$custom_keyword	=	array();
 																				foreach($column_explode	as	$key	=>	$value)
 																				{

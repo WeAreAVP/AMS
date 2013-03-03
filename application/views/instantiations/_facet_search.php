@@ -45,7 +45,7 @@
 																												?>
 																												<div class="btn-img" id="<?php	echo	$search_id;	?>" >
 																																<span class="search_keys"><?php	echo	$token_val;	?></span>
-																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;																						?>','keyword_field_main');"></i>
+																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;																							?>','keyword_field_main');"></i>
 																												</div>
 																												<?php
 																								}
@@ -575,7 +575,8 @@
 												}
 												else{
 																if($('#search').val()!=''){
-																			keywordJson=	JSON.parse($('#keyword_field_main_search').val());
+																				if($('#keyword_field_main_search').val()!='')
+																								keywordJson=	JSON.parse($('#keyword_field_main_search').val());
 																				if(typeof(keywordJson[customColumnName])!=undefined){
 																								if(keywordJson[customColumnName]!=undefined && keywordJson[customColumnName].length!=undefined){
 																												keywordJson[customColumnName].push($('#search').val());
@@ -585,20 +586,6 @@
 																								}
 																				}
 																				
-																				
-																				//																				return;
-																				//																				var searchString='';
-																				//																				console.log(customColumnName);
-																				//																				customColumnName= customColumnName.split(' ');
-																				//																				if(customColumnName.length>1){
-																				//																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
-																				//																								searchString +=' @'+customColumnName[1]+' =||= |||'+$('#search').val()+'||| ';
-																				//																				}
-																				//																				else{
-																				//																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
-																				//																				}
-																				//                    console.log($.param(keywordJson));
-																				//JSON.stringify(yourArray);
 																				$('#keyword_field_main_search').val(JSON.stringify(keywordJson));
 																				console.log(	$('#keyword_field_main_search').val());
 																				customFieldName='All';

@@ -269,14 +269,14 @@ class	Sphinx_Model	extends	CI_Model
 																								if($keys	==	0)
 																												$where	.=" $keywords ";
 																								else
-																												$where	.=" | $keywords ";
+																												$where	.=" | \"$keywords\" ";
 																				}
 																				else
 																				{
 																								if($keys	==	0)
-																												$where	.="@$index $keyword ";
+																												$where	.="@$index \"$keywords\" ";
 																								else
-																												$where	.=" | $keywords ";
+																												$where	.=" | \"$keywords\" ";
 																				}
 																}
 												}

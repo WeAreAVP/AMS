@@ -602,7 +602,8 @@
 												else{
 																if($('#search').val()!=''){
 																				if(typeof(keywordJson[customColumnName])!=undefined){
-																								keywordJson[customColumnName].push({customColumnName:$('#search').val()});
+																								keywordJson[customColumnName]={customColumnName:$('#search').val()};
+//																								keywordJson[customColumnName].push({customColumnName:$('#search').val()});
 																				}
 																				else{
 																								keywordJson[customColumnName]={customColumnName:$('#search').val()};

@@ -780,8 +780,8 @@
 								});
 								$.ajax({
 												type: 'POST', 
-												url: '<?php	echo	$facet_search_url	?>/'+page,
-												data:{data:$('#form_search').serialize(),keyword:keywordJson},
+												url: '<?php	echo	$facet_search_url	?>/'+page+'keyword='+keywordJson,
+												data:$('#form_search').serialize(),
 												success: function (result)
 												{ 
 																$('.row-fluid').html(result);

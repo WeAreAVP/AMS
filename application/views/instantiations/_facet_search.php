@@ -47,7 +47,7 @@
 
 																								$custom_keyword[$value[0]][]	=	$value[1];
 																				}
-																				debug($custom_keyword);
+																				
 																				foreach($custom_keyword	as	$index	=>	$token)
 																				{
 																								if($index	==	'all')
@@ -55,8 +55,9 @@
 																												$column_name	=	'All';
 																								}
 																								else
-																								{echo $index;
-																												debug($get_column_name);
+																								{
+																												
+																				
 																												$column_name	=	$get_column_name[$index];
 																								}
 																								?>	

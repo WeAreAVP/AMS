@@ -602,8 +602,9 @@
 												else{
 																if($('#search').val()!=''){
 																				if(typeof(keywordJson[customColumnName])!=undefined){
-																								
-																												keywordJson.customColumnName.push($('#search').val());
+																								 
+//																												keywordJson.customColumnName($('#search').val());
+				console.log(keywordJson.customColumnName.length);
 																								
 																				}
 																				

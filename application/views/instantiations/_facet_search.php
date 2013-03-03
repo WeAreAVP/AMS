@@ -780,7 +780,7 @@
 								});
 								$.ajax({
 												type: 'POST', 
-												url: '<?php	echo	$facet_search_url	?>/'+page+'?keyword='+$.param(keywordJson),
+												url: '<?php	echo	$facet_search_url	?>/'+page,
 												data:$('#form_search').serialize(),
 												success: function (result)
 												{ 

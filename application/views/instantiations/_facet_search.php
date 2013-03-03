@@ -610,7 +610,7 @@
 																								}
 																				}
 																				
-																				console.log(keywordJson);
+																				
 																				//																				return;
 																				//																				var searchString='';
 																				//																				console.log(customColumnName);
@@ -622,13 +622,13 @@
 																				//																				else{
 																				//																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
 																				//																				}
-                    console.log($.param(keywordJson));
+//                    console.log($.param(keywordJson));
 																				$('#keyword_field_main_search').val($.param(keywordJson));
 																				console.log(	$('#keyword_field_main_search').val());
 																				customFieldName='All';
 																				customColumnName='all';
 																				$('#limit_field_text').html('Limit Search to Field');
-																				return;
+																				
                             
 																}
 																else{

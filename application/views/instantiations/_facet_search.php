@@ -71,7 +71,7 @@
 																												?>
 																												<div class="btn-img" id="<?php	echo	$search_id;	?>" >
 																																<span class="search_keys"><?php	echo	$token_val;	?></span>
-																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;																	?>','keyword_field_main');"></i>
+																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;																		?>','keyword_field_main');"></i>
 																												</div>
 																												<?php
 																								}
@@ -602,36 +602,33 @@
 												else{
 																if($('#search').val()!=''){
 																				if(typeof(keywordJson[customColumnName])!=undefined){
-																								 if(keywordJson[customColumnName]!=undefined && keywordJson[customColumnName].length!=undefined){
-																														keywordJson[customColumnName].push($('#search').val());
-																									}
-																									else{
-																															keywordJson[customColumnName]=new Array($('#search').val());
-																									}
-																										
-				
-																								
+																								if(keywordJson[customColumnName]!=undefined && keywordJson[customColumnName].length!=undefined){
+																												keywordJson[customColumnName].push($('#search').val());
+																								}
+																								else{
+																												keywordJson[customColumnName]=new Array($('#search').val());
+																								}
 																				}
 																				
 																				console.log(keywordJson);
-//																				return;
-//																				var searchString='';
-//																				console.log(customColumnName);
-//																				customColumnName= customColumnName.split(' ');
-//																				if(customColumnName.length>1){
-//																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
-//																								searchString +=' @'+customColumnName[1]+' =||= |||'+$('#search').val()+'||| ';
-//																				}
-//																				else{
-//																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
-//																				}
+																				//																				return;
+																				//																				var searchString='';
+																				//																				console.log(customColumnName);
+																				//																				customColumnName= customColumnName.split(' ');
+																				//																				if(customColumnName.length>1){
+																				//																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
+																				//																								searchString +=' @'+customColumnName[1]+' =||= |||'+$('#search').val()+'||| ';
+																				//																				}
+																				//																				else{
+																				//																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
+																				//																				}
                     console.log($.param(keywordJson));
 																				$('#keyword_field_main_search').val($.param(keywordJson));
 																				console.log(	$('#keyword_field_main_search').val());
 																				customFieldName='All';
 																				customColumnName='all';
 																				$('#limit_field_text').html('Limit Search to Field');
-																				return;
+																				
                             
 																}
 																else{
@@ -784,7 +781,7 @@
 								$.ajax({
 												type: 'POST', 
 												url: '<?php	echo	$facet_search_url	?>/'+page,
-												data:$('#form_search').serialize(),
+												data:{data:$('#form_search').serialize(),keyword:keywordJson},
 												success: function (result)
 												{ 
 																$('.row-fluid').html(result);

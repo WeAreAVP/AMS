@@ -602,7 +602,7 @@
 												else{
 																if($('#search').val()!=''){
 																				if(typeof(keywordJson[customColumnName])!=undefined){
-																								 if(keywordJson['all']!=undefined && keywordJson['all'].length!=undefined){
+																								 if(keywordJson[customColumnName]!=undefined && keywordJson[customColumnName].length!=undefined){
 																														keywordJson[customColumnName].push($('#search').val());
 																									}
 																									else{

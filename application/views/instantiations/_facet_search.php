@@ -579,7 +579,7 @@
 								manageLayout();
 								isAnySearch();
 				});
-				var keywordJson=array();
+				var keywordJson=new Array();
 				
 				function add_token(name,type,isRemoved){
 								if(type=='keyword_field_main'){

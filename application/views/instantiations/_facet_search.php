@@ -603,9 +603,9 @@
 																if($('#search').val()!=''){
 																				if(typeof(keywordJson[customColumnName])!=undefined){
 																								if(keywordJson[customColumnName]==undefined)
-																												keywordJson[customColumnName]=$('#search').val();
+																												keywordJson[customColumnName][0]=$('#search').val();
 																								else
-																												keywordJson[customColumnName].push($('#search').val());
+																												keywordJson[customColumnName][1]=($('#search').val());
 																				}
 																				
 																				console.log(keywordJson);

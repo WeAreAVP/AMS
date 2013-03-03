@@ -625,7 +625,7 @@
 //																				else{
 //																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
 //																				}
-                    
+                    console.log($.param(keywordJson));
 																				$('#keyword_field_main_search').val($.param(keywordJson));
 																				console.log(	$('#keyword_field_main_search').val());
 																				customFieldName='All';

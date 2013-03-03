@@ -54,8 +54,8 @@
 																												$column_name	=	'All';
 																								}
 																								else
-																								{
-																												debug($get_column_name[$index]);
+																								{echo $index;
+																												debug($get_column_name);
 																												$column_name	=	$get_column_name[$index];
 																								}
 																								?>	

@@ -47,6 +47,7 @@
 
 																								$custom_keyword[$value[0]][]	=	$value[1];
 																				}
+																				debug($custom_keyword);
 																				foreach($custom_keyword	as	$index	=>	$token)
 																				{
 																								if($index	==	'all')

@@ -605,7 +605,7 @@
 																								keywordJson[customColumnName].push({customColumnName:$('#search').val()});
 																				}
 																				else{
-																								keywordJson[customColumnName].({customColumnName:$('#search').val()});
+																								keywordJson[customColumnName]={customColumnName:$('#search').val()};
 																				}
 																				console.log(keywordJson);
 																				return;

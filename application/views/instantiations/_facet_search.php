@@ -604,7 +604,7 @@
 																				if(typeof(keywordJson[customColumnName])!=undefined){
 																								 
 //																												keywordJson.customColumnName($('#search').val());
-				console.log(keywordJson.customColumnName.length);
+				console.log(keywordJson.customColumnName[0]='nouman');
 																								
 																				}
 																				

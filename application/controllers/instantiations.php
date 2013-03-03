@@ -61,7 +61,9 @@ class	Instantiations	extends	MY_Controller
 								if(isAjax())
 								{
 												$this->unset_facet_search();
-												debug($this->input->post('data'));
+												$variable=$this->input->post('data');
+												
+												debug($variable['keyword_field_main_search']);
 												$search['custom_search']	=	$this->input->post('keyword_field_main_search');
 												$search['organization']	=	$this->input->post('organization_main_search');
 												$search['states']	=	$this->input->post('states_main_search');

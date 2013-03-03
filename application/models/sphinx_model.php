@@ -82,14 +82,14 @@ class	Sphinx_Model	extends	CI_Model
 				{
 								$list	=	array();
 								$total_record	=	0;
-								$query='';
+								$query	=	'';
 								$this->sphinxsearch->reset_filters();
 								$this->sphinxsearch->reset_group_by();
 
 								$mode	=	SPH_MATCH_EXTENDED;
 								$this->sphinxsearch->set_array_result(true);
 								$this->sphinxsearch->set_match_mode($mode);
-								
+
 								$this->sphinxsearch->set_group_by($column_name,	SPH_GROUPBY_ATTR);
 //								$this->sphinxsearch->set_sort_mode ( SPH_SORT_ATTR_DESC, $column_name );
 								$this->sphinxsearch->set_connect_timeout(120);
@@ -113,12 +113,12 @@ class	Sphinx_Model	extends	CI_Model
 																				{
 
 
-																								$list[]	=		array_merge(array('id'	=>	$record['id']),	$record['attrs']);
+																								$list[]	=	array_merge(array('id'	=>	$record['id']),	$record['attrs']);
 																				}
 																}
 												}
 								}
-							
+
 								return	array("total_count"	=>	$total_record,	"records"					=>	$list,	"query_time"		=>	$execution_time);
 				}
 
@@ -201,7 +201,7 @@ class	Sphinx_Model	extends	CI_Model
 								return	array("total_count"	=>	$total_record,	"records"					=>	$instantiations,	"query_time"		=>	$execution_time);
 				}
 
-				function	make_where_clause($type=NULL)
+				function	make_where_clause($type	=	NULL)
 				{
 								$where	=	'';
 								if($type	==	'physical')
@@ -248,21 +248,38 @@ class	Sphinx_Model	extends	CI_Model
 												$generation	=	str_replace('|||',	'" | "',	trim($this->session->userdata['generation']));
 												$where	.=" @generation \"^$generation$\"";
 								}
-								if((isset($this->session->userdata['digitized'])	&&	$this->session->userdata['digitized']	===	'1') || $type=='digitized')
+								if((isset($this->session->userdata['digitized'])	&&	$this->session->userdata['digitized']	===	'1')	||	$type	==	'digitized')
 								{
 												$where	.=' @digitized "1" @!actual_duration "0"';
 								}
-								if((isset($this->session->userdata['migration_failed'])	&&	$this->session->userdata['migration_failed']	===	'1' ) || $type=='migration')
+								if((isset($this->session->userdata['migration_failed'])	&&	$this->session->userdata['migration_failed']	===	'1'	)	||	$type	==	'migration')
 								{
 												$where	.=' @event_type "migration" @event_outcome "FAIL"';
 								}
 
 								if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
 								{
-												$custom_search	=	str_replace('|||',	'"',	trim($this->session->userdata['custom_search']));
-												$custom_search	=	str_replace('=||=',	'',	$custom_search);
-												$custom_search	=	str_replace('@all',	'',	$custom_search);
-												$where	.=$custom_search;
+												$keyword_json	=	$this->session->userdata['custom_search'];
+												foreach($keyword_json	as	$index	=>	$key_columns)
+												{
+																foreach($key_columns	as	$keys	=>	$keywords)
+																{
+																				if($index	==	'all')
+																				{
+																								if($keys	==	0)
+																												$where	.=" $keywords ";
+																								else
+																												$where	.=" | $keywords ";
+																				}
+																				else
+																				{
+																								if($keys	==	0)
+																												$where	.="@$index $keyword ";
+																								else
+																												$where	.=" | $keywords ";
+																				}
+																}
+												}
 								}
 								if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
 								{

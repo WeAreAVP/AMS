@@ -28,50 +28,24 @@
 												{
 																?>
 																<div id="keyword_field_main">
-																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php	echo	$this->session->userdata['custom_search'];	?>" />
+																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php	echo	json_encode($this->session->userdata['custom_search']);	?>" />
 																				<?php
 																				$custom_search	=	$this->session->userdata['custom_search'];
-//																				$custom_search	=	'@all=||= "nouamn" @guid=||= "fahad" @all=||= "testing" @title=||= "abc"';
-																				$custom_search	=	explode('@',	$custom_search);
-																				unset($custom_search[0]);
 
-																				foreach($custom_search	as	$index	=>	$keyword)
-																				{
-																								$column_explode[]	=	explode('=||=',	$keyword);
-																				}
-
-																				$custom_keyword	=	array();
-																				foreach($column_explode	as	$key	=>	$value)
+																				foreach($custom_search	as	$index	=>	$token)
 																				{
 
-
-																								$custom_keyword[$value[0]][]	=	$value[1];
-																				}
-
-																				foreach($custom_keyword	as	$index	=>	$token)
-																				{
-
-																								if(trim($index)	==	'all')
-																								{
-
-																												$column_name	=	'All';
-																								}
-																								else
-																								{
-
-																												$column_name	=	$get_column_name[trim($index)];
-																								}
+																								$column_name	=	$get_column_name[trim($index)];
 																								?>	
 																								<div class="filter-fileds"><b id="keyword_field_name">Keyword: <?php	echo	$column_name;	?></b></div>
 																								<?php
 																								foreach($token	as	$key	=>	$token_val)
 																								{
-																												$token_val	=	str_replace('|||',	'',	$token_val);
 																												$search_id	=	name_slug($token_val);
 																												?>
 																												<div class="btn-img" id="<?php	echo	$search_id;	?>" >
 																																<span class="search_keys"><?php	echo	$token_val;	?></span>
-																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;																		?>','keyword_field_main');"></i>
+																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;																						?>','keyword_field_main');"></i>
 																												</div>
 																												<?php
 																								}
@@ -622,8 +596,8 @@
 																				//																				else{
 																				//																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
 																				//																				}
-//                    console.log($.param(keywordJson));
-//JSON.stringify(yourArray);
+																				//                    console.log($.param(keywordJson));
+																				//JSON.stringify(yourArray);
 																				$('#keyword_field_main_search').val(JSON.stringify(keywordJson));
 																				console.log(	$('#keyword_field_main_search').val());
 																				customFieldName='All';

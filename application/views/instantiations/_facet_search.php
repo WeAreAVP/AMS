@@ -71,7 +71,7 @@
 																												?>
 																												<div class="btn-img" id="<?php	echo	$search_id;	?>" >
 																																<span class="search_keys"><?php	echo	$token_val;	?></span>
-																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;														?>','keyword_field_main');"></i>
+																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;															?>','keyword_field_main');"></i>
 																												</div>
 																												<?php
 																								}
@@ -586,11 +586,11 @@
                 
 												name=$('#search').val();  
 												if(isRemoved==1){
-//																$('#'+type+' .btn-img').each(function(){
-//																				$(this).remove();
-//																});
-//																$('#'+type+'_search').val('');
-//																$('#keyword_field_name').html();
+																//																$('#'+type+' .btn-img').each(function(){
+																//																				$(this).remove();
+																//																});
+																//																$('#'+type+'_search').val('');
+																//																$('#keyword_field_name').html();
 																$('#limit_btn').show(); 
 																$('#limit_field_text').html('Limit Search to Field');
 																$('#search').val('');
@@ -601,11 +601,11 @@
 												}
 												else{
 																if($('#search').val()!=''){
-																				if(keywordJson[customColumnName]!=undefined){
-																								keywordJson[customColumnName][keywordJson[customColumnName].length]=$('#search').val();
+																				if(typeof keywordJson[customColumnName]!=undefined){
+																								keywordJson[customColumnName].push($('#search').val());
 																				}
 																				else{
-																									keywordJson[customColumnName][0]=$('#search').val();
+																								keywordJson[customColumnName].push($('#search').val());
 																				}
 																				console.log(keywordJson);
 																				return;

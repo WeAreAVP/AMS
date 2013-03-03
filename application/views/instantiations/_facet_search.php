@@ -579,8 +579,8 @@
 								manageLayout();
 								isAnySearch();
 				});
-				var keywordJson=<?php echo json_encode($get_column_name); ?>;
-				console.log(keywordJson);
+				var keywordJson=array();
+				
 				function add_token(name,type,isRemoved){
 								if(type=='keyword_field_main'){
                 
@@ -601,6 +601,14 @@
 												}
 												else{
 																if($('#search').val()!=''){
+																				if(keywordJson[customColumnName]!=undefined){
+																								keywordJson[customColumnName][keywordJson[customColumnName].length]=$('#search').val();
+																				}
+																				else{
+																									keywordJson[customColumnName][0]=$('#search').val();
+																				}
+																				console.log(keywordJson);
+																				return;
 																				var searchString='';
 																				console.log(customColumnName);
 																				customColumnName= customColumnName.split(' ');
@@ -617,7 +625,7 @@
 																				customFieldName='All';
 																				customColumnName='all';
 																				$('#limit_field_text').html('Limit Search to Field');
-																				
+																				return;
                             
 																}
 																else{

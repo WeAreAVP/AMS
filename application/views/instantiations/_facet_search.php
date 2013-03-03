@@ -58,7 +58,7 @@
 																								else
 																								{
 																												echo $index;
-																												echo $get_column_name['asset_title'];
+																												echo $get_column_name[trim($index)];
 																												debug($get_column_name);
 																												
 																												$column_name	=	$get_column_name[$index];

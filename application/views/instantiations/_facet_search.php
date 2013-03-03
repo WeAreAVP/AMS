@@ -42,7 +42,7 @@
 
 																				$custom_keyword[$value[0]][]	=	$value[1];
 																}
-//																debug($custom_keyword);
+																debug($custom_keyword);
 
 																$column_name	=	explode('@',	$custom_search);
 																if(count($column_name)	>	1)

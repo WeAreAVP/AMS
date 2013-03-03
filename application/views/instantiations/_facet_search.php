@@ -602,7 +602,7 @@
 												else{
 																if($('#search').val()!=''){
 																				if(typeof(keywordJson[customColumnName])!=undefined){
-																								if(keywordJson[customColumnName].length==0)
+																								if(keywordJson[customColumnName]==undefined)
 																												keywordJson[customColumnName]=$('#search').val();
 																								else
 																												keywordJson[customColumnName].push($('#search').val());

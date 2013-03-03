@@ -53,6 +53,7 @@
 
 																								if($index	==	'all')
 																								{
+																												echo $index;exit;
 																												$column_name	=	'All';
 																								}
 																								else

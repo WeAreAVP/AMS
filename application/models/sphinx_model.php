@@ -274,7 +274,7 @@ class	Sphinx_Model	extends	CI_Model
 																				else
 																				{
 																								if($keys	==	0)
-																												$where	.="@$index \"$keywords\" ";
+																												$where	.=" @$index \"$keywords\" ";
 																								else
 																												$where	.=" | \"$keywords\" ";
 																				}

@@ -579,7 +579,7 @@
 								manageLayout();
 								isAnySearch();
 				});
-				var keywordJson='<?php echo json_encde($get_column_name); ?>';
+				var keywordJson=<?php echo json_encode($get_column_name); ?>;
 				console.log(keywordJson);
 				function add_token(name,type,isRemoved){
 								if(type=='keyword_field_main'){

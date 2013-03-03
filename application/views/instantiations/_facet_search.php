@@ -575,6 +575,7 @@
 												}
 												else{
 																if($('#search').val()!=''){
+																			keywordJson=	JSON.parse($('#keyword_field_main_search').val());
 																				if(typeof(keywordJson[customColumnName])!=undefined){
 																								if(keywordJson[customColumnName]!=undefined && keywordJson[customColumnName].length!=undefined){
 																												keywordJson[customColumnName].push($('#search').val());

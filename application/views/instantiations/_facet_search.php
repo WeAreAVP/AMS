@@ -30,7 +30,8 @@
 																<div id="keyword_field_main">
 																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php	echo	$this->session->userdata['custom_search'];	?>" />
 																				<?php
-																				$custom_search	=	'@all=||= "nouamn" @guid=||= "fahad" @all=||= "testing" @title=||= "abc"';
+																				$custom_search	=	$this->session->userdata['custom_search'];
+//																				$custom_search	=	'@all=||= "nouamn" @guid=||= "fahad" @all=||= "testing" @title=||= "abc"';
 																				$custom_search	=	explode('@',	$custom_search);
 																				unset($custom_search[0]);
 

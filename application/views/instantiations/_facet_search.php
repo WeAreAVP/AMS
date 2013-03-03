@@ -28,7 +28,7 @@
 												{
 																?>
 																<div id="keyword_field_main">
-																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search[]" value="<?php	echo	$this->session->userdata['custom_search'];	?>" />
+																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php	echo	$this->session->userdata['custom_search'];	?>" />
 																				<?php
 																				$custom_search	=	$this->session->userdata['custom_search'];
 //																				$custom_search	=	'@all=||= "nouamn" @guid=||= "fahad" @all=||= "testing" @title=||= "abc"';
@@ -88,7 +88,7 @@
 																?>
 																<div id="keyword_field_main" style="display: none;">
 																				<div class="filter-fileds"><b id="keyword_field_name">Keyword</b></div>
-																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search[]" value="" />
+																				<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="" />
 																</div>
 												<?php	}	?>
 												<div class="clearfix"></div>
@@ -623,7 +623,8 @@
 																				//																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
 																				//																				}
 //                    console.log($.param(keywordJson));
-																				$('#keyword_field_main_search').val($.param(keywordJson));
+//JSON.stringify(yourArray);
+																				$('#keyword_field_main_search').val(JSON.stringify(keywordJson));
 																				console.log(	$('#keyword_field_main_search').val());
 																				customFieldName='All';
 																				customColumnName='all';

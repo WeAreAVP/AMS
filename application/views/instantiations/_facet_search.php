@@ -614,19 +614,19 @@
 																				}
 																				
 																				console.log(keywordJson);
-																				return;
-																				var searchString='';
-																				console.log(customColumnName);
-																				customColumnName= customColumnName.split(' ');
-																				if(customColumnName.length>1){
-																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
-																								searchString +=' @'+customColumnName[1]+' =||= |||'+$('#search').val()+'||| ';
-																				}
-																				else{
-																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
-																				}
+//																				return;
+//																				var searchString='';
+//																				console.log(customColumnName);
+//																				customColumnName= customColumnName.split(' ');
+//																				if(customColumnName.length>1){
+//																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
+//																								searchString +=' @'+customColumnName[1]+' =||= |||'+$('#search').val()+'||| ';
+//																				}
+//																				else{
+//																								searchString +=' @'+customColumnName[0]+' =||= |||'+$('#search').val()+'||| ';
+//																				}
                     
-																				$('#keyword_field_main_search').val($('#keyword_field_main_search').val()+searchString);
+																				$('#keyword_field_main_search').val(keywordJson);
 																				console.log(	$('#keyword_field_main_search').val());
 																				customFieldName='All';
 																				customColumnName='all';

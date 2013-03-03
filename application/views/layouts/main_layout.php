@@ -17,7 +17,7 @@
 								echo	link_js('custom.js');
 								echo	link_js('modules/exporting.js');
 								echo	link_js('jquery.blockUI.js');
-
+								echo	link_js('json2.js');
 								echo	link_js('jquery.multiselect.min.js');
 								echo	link_js('jquery.dataTables.js');
 								echo	link_js('FixedColumns.js');

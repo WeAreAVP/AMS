@@ -602,8 +602,13 @@
 												else{
 																if($('#search').val()!=''){
 																				if(typeof(keywordJson[customColumnName])!=undefined){
-																								 
-																												keywordJson[customColumnName]=new Array($('#search').val());
+																								 if(keywordJson['all']!=undefined && keywordJson['all'].length!=undefined){
+																														keywordJson[customColumnName].push($('#search').val());
+																									}
+																									else{
+																															keywordJson[customColumnName]=new Array($('#search').val());
+																									}
+																										
 				
 																								
 																				}

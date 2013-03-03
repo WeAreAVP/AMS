@@ -603,7 +603,7 @@
 																if($('#search').val()!=''){
 																				if(typeof(keywordJson[customColumnName])!=undefined){
 																								 
-																												keywordJson.customColumnName=$('#search').val();
+																												keywordJson[customColumnName]=$('#search').val();
 				
 																								
 																				}

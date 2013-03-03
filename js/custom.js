@@ -310,7 +310,7 @@ function updateDataTable()
 																"bVisible": false, 
 																"aTargets": hiden_column
 																
-												},
+												}
 												],
 												"oColReorder": {
 																"iFixedColumns": frozen,

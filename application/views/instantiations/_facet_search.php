@@ -839,7 +839,7 @@
 																				{'sWidth':'15%'},
 																				{'sWidth':'18%'},
 																				{'sWidth':'20%'},
-																				{'sWidth':'40%'},
+																				{'sWidth':'40%'}
 																],
 																//																"aSorting": [[ column_index, column_order ]],														  
 																'bPaginate':false, 

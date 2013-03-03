@@ -39,7 +39,7 @@
 																				{
 																								$column_explode[]	=	explode('=||=',	$keyword);
 																				}
-																				debug($column_explode);
+																				
 																				$custom_keyword	=	array();
 																				foreach($column_explode	as	$key	=>	$value)
 																				{
@@ -65,7 +65,7 @@
 																								<?php
 																								foreach($token	as	$key	=>	$token_val)
 																								{
-																												$search_id	=	name_slug($token_val);
+																												$search_id	=	name_slug(str_replace('|||',	'',$token_val));
 																												?>
 																												<div class="btn-img" id="<?php	echo	$search_id;	?>" >
 																																<span class="search_keys"><?php	echo	$token_val;	?></span>

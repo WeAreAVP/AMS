@@ -603,8 +603,8 @@
 																if($('#search').val()!=''){
 																				if(typeof(keywordJson[customColumnName])!=undefined){
 																								 
-//																												keywordJson.customColumnName($('#search').val());
-				console.log(keywordJson.customColumnName[0]='nouman');
+																												keywordJson.customColumnName=$('#search').val();
+				
 																								
 																				}
 																				

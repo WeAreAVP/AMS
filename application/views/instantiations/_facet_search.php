@@ -601,7 +601,7 @@
 												}
 												else{
 																if($('#search').val()!=''){
-																				if(typeof keywordJson[customColumnName]!=undefined){
+																				if(typeof(keywordJson[customColumnName])!=undefined){
 																								keywordJson[customColumnName].push({customColumnName:$('#search').val()});
 																				}
 																				else{

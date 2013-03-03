@@ -57,11 +57,8 @@
 																								}
 																								else
 																								{
-																												echo $index;
-																												echo $get_column_name[trim($index)];
-																												debug($get_column_name);
 																												
-																												$column_name	=	$get_column_name[$index];
+																												$column_name	=	$get_column_name[trim($index)];
 																								}
 																								?>	
 																								<div class="filter-fileds"><b id="keyword_field_name">Keyword: <?php	echo	$column_name;	?></b></div>

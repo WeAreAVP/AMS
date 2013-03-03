@@ -628,7 +628,7 @@
 																				customFieldName='All';
 																				customColumnName='all';
 																				$('#limit_field_text').html('Limit Search to Field');
-																				
+																				return;
                             
 																}
 																else{

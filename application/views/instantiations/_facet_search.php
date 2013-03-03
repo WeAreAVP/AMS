@@ -65,7 +65,8 @@
 																								<?php
 																								foreach($token	as	$key	=>	$token_val)
 																								{
-																												$search_id	=	name_slug(str_replace('|||',	'',$token_val));
+																												$token_val=str_replace('|||',	'',$token_val);
+																												$search_id	=	name_slug($token_val);
 																												?>
 																												<div class="btn-img" id="<?php	echo	$search_id;	?>" >
 																																<span class="search_keys"><?php	echo	$token_val;	?></span>

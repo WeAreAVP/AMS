@@ -602,10 +602,10 @@
 												else{
 																if($('#search').val()!=''){
 																				if(typeof keywordJson[customColumnName]!=undefined){
-																								keywordJson[customColumnName].push($('#search').val());
+																								keywordJson[customColumnName].push({customColumnName:$('#search').val()});
 																				}
 																				else{
-																								keywordJson[customColumnName].push($('#search').val());
+																								keywordJson[customColumnName].push({customColumnName:$('#search').val()});
 																				}
 																				console.log(keywordJson);
 																				return;

@@ -206,11 +206,11 @@ class	Sphinx_Model	extends	CI_Model
 								$where	=	'';
 								if($type	==	'physical')
 								{
-												$where	=	"@format_type \"physical\"";
+												$where	=	" @format_type \"physical\"";
 								}
 								if($type	==	'digital')
 								{
-												$where	=	"@format_type \"digital\"";
+												$where	=	" @format_type \"digital\"";
 								}
 								if(isset($this->session->userdata['organization'])	&&	$this->session->userdata['organization']	!=	'')
 								{

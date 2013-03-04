@@ -270,18 +270,18 @@ class	Sphinx_Model	extends	CI_Model
 																								if($keys	==	0)
 																												$where	.=" $keyword ";
 																								else
-																												$where	.=" | \"$keyword\" ";
+																												$where	.=" | \"$keyword\"";
 																				}
 																				else
 																				{
 																								if($keys	==	0)
-																												$where	.=" @$index \"$keyword\" ";
+																												$where	.=" @$index \"$keyword\"";
 																								else
-																												$where	.=" | \"$keyword\" ";
+																												$where	.=" | \"$keyword\"";
 																				}
 																}
 												}
-												echo	$where;
+//												echo	$where;
 								}
 								if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
 								{

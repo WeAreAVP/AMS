@@ -45,7 +45,7 @@
 																												?>
 																												<div class="btn-img" id="<?php	echo	$search_id;	?>" >
 																																<span class="search_keys"><?php	echo	$token_val;	?></span>
-																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;																							?>','keyword_field_main');"></i>
+																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;																								?>','keyword_field_main');"></i>
 																												</div>
 																												<?php
 																								}
@@ -587,12 +587,7 @@
 																				}
 																				
 																				$('#keyword_field_main_search').val(JSON.stringify(keywordJson));
-																				console.log(	$('#keyword_field_main_search').val());
-																				customFieldName='All';
-																				customColumnName='all';
-																				$('#limit_field_text').html('Limit Search to Field');
 																				
-                            
 																}
 																else{
 																				return false;

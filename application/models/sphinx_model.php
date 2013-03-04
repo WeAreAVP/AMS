@@ -280,6 +280,7 @@ class	Sphinx_Model	extends	CI_Model
 																				}
 																}
 												}
+												echo $where;
 								}
 								if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
 								{

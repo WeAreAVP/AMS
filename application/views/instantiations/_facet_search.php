@@ -553,7 +553,7 @@
 								manageLayout();
 								isAnySearch();
 				});
-				var keywordJson=new Object();
+				var Filters=new Object();
 				
 				function add_token(name,type,isRemoved){
 								if(type=='keyword_field_main'){
@@ -574,24 +574,48 @@
                         
 												}
 												else{
-																if($('#search').val()!=''){
-																				if($('#keyword_field_main_search').val()!='')
-																								keywordJson=	JSON.parse($('#keyword_field_main_search').val());
-																				if(typeof(keywordJson[customColumnName])!=undefined){
-																								if(keywordJson[customColumnName]!=undefined && keywordJson[customColumnName].length!=undefined){
-																												keywordJson[customColumnName].push($('#search').val());
-																								}
-																								else{
-																												keywordJson[customColumnName]=new Array($('#search').val());
-																								}
-																				}
-																				
-																				$('#keyword_field_main_search').val(JSON.stringify(keywordJson));
+																if($.trim($('#search').val())!=''){
+//																				if($('#keyword_field_main_search').val()!='')
+//																								keywordJson=	JSON.parse($('#keyword_field_main_search').val());
+//																				if(typeof(keywordJson[customColumnName])!=undefined){
+//																								if(keywordJson[customColumnName]!=undefined && keywordJson[customColumnName].length!=undefined){
+//																												keywordJson[customColumnName].push($('#search').val());
+//																								}
+//																								else{
+//																												keywordJson[customColumnName]=new Array($('#search').val());
+//																								}
+//																				}
+//																				
+//																				$('#keyword_field_main_search').val(JSON.stringify(keywordJson));
+var count = get_timestamp();
+if(Filters[customColumnName] == undefined) {
+            Filters[customColumnName] = new Object();
+
+            } else {
+            for (x in Filters[customColumnName]) {
+
+                if(Filters[customColumnName][x].value == $('#search').val()) {
+                    alert("Filter already applied.");
+                    return false;
+                } 
+            }
+            }
+
+//            $("#"+field).val("");
+
+            var temp = {};
+            temp.id = count;
+            temp.value = value;
+            temp.options = Ops;
+
+
+            Filters[customColumnName][count] = temp;
 																				
 																}
 																else{
 																				return false;
 																}
+																console.log(Filters);return;
 												}
 								}
 								else if(type=='date_field_main'){

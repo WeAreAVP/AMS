@@ -84,7 +84,7 @@
 
 																								$column_name	=	trim($index);
 																								?>	
-																								<div class="filter-fileds"><b id="date_field_name">Keyword: <?php	echo	$column_name;	?></b></div>
+																								<div class="filter-fileds"><b id="date_field_name">Date Keyword: <?php	echo	$column_name;	?></b></div>
 																								<?php
 																								foreach($token	as	$key	=>	$token_val)
 																								{

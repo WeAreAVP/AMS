@@ -204,7 +204,7 @@ class	Sphinx_Model	extends	CI_Model
 
 				function	make_where_clause($type	=	NULL)
 				{
-								
+
 								$where	=	'';
 								if($type	==	'physical')
 								{
@@ -214,8 +214,8 @@ class	Sphinx_Model	extends	CI_Model
 								{
 												$where	=	" @format_type \"digital\"";
 								}
-								
-								
+
+
 								if(isset($this->session->userdata['organization'])	&&	$this->session->userdata['organization']	!=	'')
 								{
 												$station_name	=	str_replace('|||',	'" | "',	trim($this->session->userdata['organization']));
@@ -287,33 +287,62 @@ class	Sphinx_Model	extends	CI_Model
 																				$count	++;
 																}
 												}
-												
 								}
 								if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
 								{
-												$date_range	=	explode("to",	$this->session->userdata['date_range']);
-												if(isset($date_range[0])	&&	trim($date_range[0])	!=	'')
+												$keyword_json	=	$this->session->userdata['date_range'];
+												foreach($keyword_json	as	$index	=>	$key_columns)
 												{
-																$start_date	=	strtotime(trim($date_range[0]));
+																
+																foreach($key_columns	as	$keys	=>	$keywords)
+																{
+
+																				$date_range	=	explode("to",	$keywords->value);
+																				if(isset($date_range[0])	&&	trim($date_range[0])	!=	'')
+																				{
+																								$start_date	=	strtotime(trim($date_range[0]));
+																				}
+																				if(isset($date_range[1])	&&	trim($date_range[1])	!=	'')
+																				{
+																								$end_date	=	strtotime(trim($date_range[1]));
+																				}
+																				if($start_date	!=	''	&&	is_numeric($start_date)	&&	isset($end_date)	&&	is_numeric($end_date)	&&	$end_date	>=	$start_date)
+																				{
+																								$this->sphinxsearch->set_filter_range("dates",	$start_date,	$end_date);
+																								if($index	!=	'All')
+																								{
+																												$where	.=" @date_type \"$index\"";
+																								}
+																							
+																				}
+																}
 												}
-												if(isset($date_range[1])	&&	trim($date_range[1])	!=	'')
-												{
-																$end_date	=	strtotime(trim($date_range[1]));
-												}
-												if($start_date	!=	''	&&	is_numeric($start_date)	&&	isset($end_date)	&&	is_numeric($end_date)	&&	$end_date	>=	$start_date)
-												{
-																$this->sphinxsearch->set_filter_range("dates",	$start_date,	$end_date);
-												}
-												else	if(is_numeric($start_date))
-												{
-																$this->sphinxsearch->set_filter_range("dates",	$start_date,	999999999999);
-												}
+
+												// old code
+//												$date_range	=	explode("to",	$this->session->userdata['date_range']);
+//												if(isset($date_range[0])	&&	trim($date_range[0])	!=	'')
+//												{
+//																$start_date	=	strtotime(trim($date_range[0]));
+//												}
+//												if(isset($date_range[1])	&&	trim($date_range[1])	!=	'')
+//												{
+//																$end_date	=	strtotime(trim($date_range[1]));
+//												}
+//												if($start_date	!=	''	&&	is_numeric($start_date)	&&	isset($end_date)	&&	is_numeric($end_date)	&&	$end_date	>=	$start_date)
+//												{
+//																$this->sphinxsearch->set_filter_range("dates",	$start_date,	$end_date);
+//												}
+//												else	if(is_numeric($start_date))
+//												{
+//																$this->sphinxsearch->set_filter_range("dates",	$start_date,	999999999999);
+//												}
+												// old code
 								}
-								if(isset($this->session->userdata['date_type'])	&&	$this->session->userdata['date_type']	!=	'')
-								{
-												$date_type	=	str_replace('|||',	'" | "',	trim($this->session->userdata['date_type']));
-												$where	.=" @date_type \"$date_type\"";
-								}
+//								if(isset($this->session->userdata['date_type'])	&&	$this->session->userdata['date_type']	!=	'')
+//								{
+//												$date_type	=	str_replace('|||',	'" | "',	trim($this->session->userdata['date_type']));
+//												$where	.=" @date_type \"$date_type\"";
+//								}
 								if($this->is_station_user)
 								{
 

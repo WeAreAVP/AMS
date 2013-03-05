@@ -567,8 +567,7 @@
 				}
 				function add_token(name,type,isRemoved){
 								if(type=='keyword_field_main'){
-                
-												name=$('#search').val();  
+           	name=$('#search').val();  
 												if(isRemoved==1){
 																$('#limit_btn').show(); 
 																$('#limit_field_text').html('Limit Search to Field');

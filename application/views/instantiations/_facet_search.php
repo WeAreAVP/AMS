@@ -45,7 +45,7 @@
 																												?>
 																												<div class="btn-img" id="<?php	echo	$search_id;	?>" >
 																																<span class="search_keys"><?php	echo	$token_val;	?></span>
-																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;																								?>','keyword_field_main');"></i>
+																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;																									?>','keyword_field_main');"></i>
 																												</div>
 																												<?php
 																								}
@@ -555,9 +555,9 @@
 				});
 				var Filters=new Object();
 				function get_timestamp() {
-    var d= new Date();
-    return d.getTime();
-}
+								var d= new Date();
+								return d.getTime();
+				}
 				function add_token(name,type,isRemoved){
 								if(type=='keyword_field_main'){
                 
@@ -578,41 +578,36 @@
 												}
 												else{
 																if($.trim($('#search').val())!=''){
-//																				if($('#keyword_field_main_search').val()!='')
-//																								keywordJson=	JSON.parse($('#keyword_field_main_search').val());
-//																				if(typeof(keywordJson[customColumnName])!=undefined){
-//																								if(keywordJson[customColumnName]!=undefined && keywordJson[customColumnName].length!=undefined){
-//																												keywordJson[customColumnName].push($('#search').val());
-//																								}
-//																								else{
-//																												keywordJson[customColumnName]=new Array($('#search').val());
-//																								}
-//																				}
-//																				
-//																				$('#keyword_field_main_search').val(JSON.stringify(keywordJson));
-var count = get_timestamp();
-if(Filters[customColumnName] == undefined) {
-            Filters[customColumnName] = new Object();
+																				//																				if($('#keyword_field_main_search').val()!='')
+																				//																								keywordJson=	JSON.parse($('#keyword_field_main_search').val());
+																				//																				if(typeof(keywordJson[customColumnName])!=undefined){
+																				//																								if(keywordJson[customColumnName]!=undefined && keywordJson[customColumnName].length!=undefined){
+																				//																												keywordJson[customColumnName].push($('#search').val());
+																				//																								}
+																				//																								else{
+																				//																												keywordJson[customColumnName]=new Array($('#search').val());
+																				//																								}
+																				//																				}
+																				//																				
+																				//																				$('#keyword_field_main_search').val(JSON.stringify(keywordJson));
+																				var count = get_timestamp();
+																				if(Filters[customColumnName] == undefined) {
+																								Filters[customColumnName] = new Object();
 
-            } else {
-            for (x in Filters[customColumnName]) {
+																				} else {
+																								for (x in Filters[customColumnName]) {
 
-                if(Filters[customColumnName][x].value == $('#search').val()) {
-                    alert("Filter already applied.");
-                    return false;
-                } 
-            }
-            }
-
-//            $("#"+field).val("");
-
-            var temp = {};
-            temp.id = count;
-            temp.value = $('#search').val();
-//            temp.options = Ops;
-
-
-            Filters[customColumnName][count] = temp;
+																												if(Filters[customColumnName][x].value == $('#search').val()) {
+																																alert("Filter already applied.");
+																																return false;
+																												} 
+																								}
+																				}
+																				var temp = {};
+																				temp.id = count;
+																				temp.value = $('#search').val();
+																				Filters[customColumnName][count] = temp;
+																				$('#keyword_field_main_search').val(JSON.stringify(Filters));
 																				
 																}
 																else{

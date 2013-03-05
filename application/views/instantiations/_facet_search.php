@@ -698,28 +698,22 @@
 				function remove_token(name,id,type,field)
 				{
 								if(type=='keyword_field_main'){
-										
 												delete (Filters[field][id]);
 												if(size_of_object(Filters[field])==0)
 																delete (Filters[field]);
-								
 												$('#keyword_field_main_search').val(JSON.stringify(Filters));
-							
-								
-							
 								}
 								else if(type=='date_field_main'){
 												delete (DateFilter[field][id]);
 												if(size_of_object(DateFilter[field])==0)
 																delete (DateFilter[field]);
-								
 												$('#date_field_main_search').val(JSON.stringify(DateFilter));
 								}
 								$("#"+id).remove();
 								if($('#'+type+' div').length<=1){
 												$('#'+type).hide();
 								}
-								add_token(unescape(name),type,1);        
+							facet_search('0');
 				}
 				
 				function facet_search(page)
@@ -819,8 +813,6 @@
 								}
 				}
 				function showHideSearch(divID,obj){
-								
-								
 								$(obj).children('span').toggleClass('custom-caret');
 								$('#'+divID).toggle(function(){
 												$('#'+divID).animate({
@@ -870,36 +862,6 @@
 								
 				}
 				function resetAll(){
-								//								$('.btn-img').each(function(){
-								//												$(this).remove();
-								//								});
-								//								type=new Array('keyword_field_main','organization_main' ,'states_main' ,'nomination_status_main','media_type_main',
-								//								'physical_format_main','digital_format_main','generation_main','date_field_main');
-								//								for(cnt in type){
-								//												if($('#'+type[cnt]+' div').length<=1){
-								//																$('#'+type[cnt]).hide();
-								//												}
-								//								}
-								//								$('#date_range_filter_div').show();
-								//								$('#date_field_text').html('Date Type');
-								//								$('#limit_field_text').html('Limit Search to Field');
-								//								$('#limit_field_dropdown').show();
-								//								$('#search').val('');
-								//								$('#limit_field_div').show();
-								//								$('#keyword_field_main_search').val('');
-								//								$('#organization_main_search').val('');
-								//								$('#states_main_search').val('');
-								//								$('#nomination_status_main_search').val('');
-								//								$('#media_type_main_search').val('');
-								//								$('#physical_format_main_search').val('');
-								//								$('#digital_format_main_search').val('');
-								//								$('#generation_main_search').val('');
-								//								$('#date_range').val('');
-								//								$('#date_type').val('');
-								//								$('#digitized').attr('checked',false);
-								//								$('#migration_failed').attr('checked',false);
-								//								$('#checked_token').hide();
-								//							
 								$('#form_search').find('input:hidden, input:text, select').val('');
 								$('#form_search').find('input:radio, input:checkbox')
 								.removeAttr('checked').removeAttr('selected');
@@ -907,7 +869,6 @@
 				}
 				function manageLayout(){
 								$('.container').width($(window).width()-50);
-								
 								$('.navbar-inner').width($(window).width()-50);
 								$('#top_setting_nav').width($(window).width()-50);
 								$('body').css('overflow','hidden');
@@ -921,7 +882,6 @@
 												data:{'index':index},
 												dataType: 'html',
 												success: function (result) { 
-																								
 																$('#append_facet_columns').html(result);																																																								                                        
 												}
 								});

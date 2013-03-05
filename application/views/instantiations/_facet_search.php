@@ -432,16 +432,7 @@
 												</div>
 								</div>
 								<div class="clearfix"></div>
-								<?php
-								if((	!	isset($this->session->userdata['date_range'])	||	isset($this->session->userdata['date_range'])	)	&&	empty($this->session->userdata['date_range']))
-								{
-												$DateStyleDisplay	=	1;
-								}
-								else
-								{
-												$DateStyleDisplay	=	0;
-								}
-								?>
+								
 								<div class="field-filters" id="date_range_filter_div">
 												<div class="filter-fileds" onclick="showHideSearch('date_range_filter_div_1',this);" style="cursor: pointer;"><b>Date</b><span class="caret custom-caret" style="margin-top: 8px;margin-left: 3px;"></span></div>
 												<div id="date_range_filter_div_1" style="display: none;">
@@ -556,10 +547,7 @@
 				
 				$(window).load(function(){
 								$('#data_container').width($(window).width()-300);
-//								display=<?php	echo	$DateStyleDisplay;	?>;
-//								if(display==0){
-//												$('#date_range_filter_div').hide();
-//								}
+								
 								if('<?php	echo	$current_tab;	?>'=='simple'){
 												updateSimpleDataTable();
 								}
@@ -640,15 +628,15 @@
 												}
 								}
 								else{
-												if(isRemoved!=1){
-																if($('#'+type+'_search').val().indexOf(name) < 0){
-																				var random_id=rand(0,1000365);
-																				slugName=make_slug_name(name);
-																				var search_id=slugName+random_id;
-																				$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+name+'\',\''+search_id+'\',\''+type+'\')"></i></div>');
-																				$('#'+type).show();
-																}
-												}
+//												if(isRemoved!=1){
+//																if($('#'+type+'_search').val().indexOf(name) < 0){
+//																				var random_id=rand(0,1000365);
+//																				slugName=make_slug_name(name);
+//																				var search_id=slugName+random_id;
+//																				$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+name+'\',\''+search_id+'\',\''+type+'\')"></i></div>');
+//																				$('#'+type).show();
+//																}
+//												}
 												var my_search_words='';
 												$('#'+type+'_search').val('');
 												$("#"+type+" .search_keys").each(function(index) {

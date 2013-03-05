@@ -562,6 +562,7 @@
 				function addTokenOnEnter(name,type){
 								if(this.event.keyCode==13 && $.trim($('#'+name).val())!=''){
 												add_token('',type);
+												$('#'+name).trigger('click');
 								}
 				}
 				function add_token(name,type,isRemoved){
@@ -671,6 +672,7 @@
 				function add_date_token(type){
 								$('#date_type').val(type);
 								$('#date_field_text').html(type);
+								
 				}
 				function make_slug_name(string){
 								string = string.split('/').join('');

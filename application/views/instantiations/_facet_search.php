@@ -612,15 +612,15 @@
 																								DateFilter[date_type_text] = new Object();
 																				} else {
 																								for (x in DateFilter[date_type_text]) {
-																												if(DateFilter[date_type_text][x].value == $('#search').val()) {
-																																alert($('#search').val()+ " filter is already applied.");
+																												if(DateFilter[date_type_text][x].value == $('#date_range').val()) {
+																																alert($('#date_range').val()+ " filter is already applied.");
 																																return false;
 																												} 
 																								}
 																				}
 																				var temp = {};
 																				temp.id = count;
-																				temp.value = $('#search').val();
+																				temp.value = $('#date_range').val();
 																				DateFilter[date_type_text][count] = temp;
 																				$('#date_field_main_search').val(JSON.stringify(DateFilter));
 																				return;

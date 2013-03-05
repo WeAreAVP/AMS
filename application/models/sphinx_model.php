@@ -204,6 +204,7 @@ class	Sphinx_Model	extends	CI_Model
 
 				function	make_where_clause($type	=	NULL)
 				{
+								
 								$where	=	'';
 								if($type	==	'physical')
 								{
@@ -213,6 +214,8 @@ class	Sphinx_Model	extends	CI_Model
 								{
 												$where	=	" @format_type \"digital\"";
 								}
+								
+								
 								if(isset($this->session->userdata['organization'])	&&	$this->session->userdata['organization']	!=	'')
 								{
 												$station_name	=	str_replace('|||',	'" | "',	trim($this->session->userdata['organization']));
@@ -284,7 +287,7 @@ class	Sphinx_Model	extends	CI_Model
 																				$count	++;
 																}
 												}
-												echo	$where;exit;
+												$where ='@asset_title "Element: #1 Ethel Caffie Austin & Choir Seedtime 6-5-94"';
 								}
 								if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
 								{

@@ -287,7 +287,7 @@ class	Sphinx_Model	extends	CI_Model
 																				$count	++;
 																}
 												}
-												$where ='@asset_title "Element: #1 Ethel Caffie Austin & Choir Seedtime 6-5-94"';
+												
 								}
 								if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
 								{

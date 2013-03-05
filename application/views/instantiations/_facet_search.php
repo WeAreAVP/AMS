@@ -41,7 +41,7 @@
 																								<?php
 																								foreach($token	as	$key	=>	$token_val)
 																								{
-																												$search_id	=	name_slug($token_val->id);
+																												$search_id	=	$token_val->id;
 																												?>
 																												<div class="btn-img" id="<?php	echo	$search_id;	?>" >
 																																<span class="search_keys"><?php	echo	$token_val->value;	?></span>

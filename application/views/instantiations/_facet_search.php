@@ -706,9 +706,11 @@
 				function remove_token(name,id,type,field)
 				{
 								if(type=='keyword_field_main'){
-												console.log()
+											
 												delete (Filters[field][id]);
+												console.log(Filters);
 												$('#keyword_field_main_search').val(JSON.stringify(Filters));
+												return;
 								}
 								else if(type=='date_field_main'){
 												$('#'+type).hide();

@@ -714,13 +714,16 @@ function size_of_object(obj) {
 function remove_token(name,id,type,field)
 {
 				if(type=='keyword_field_main'){
-											
+											console.log(field);
+											console.log(id);
 								delete (Filters[field][id]);
 								if(size_of_object(Filters[field])==0)
 												delete (Filters[field]);
 								
 								$('#keyword_field_main_search').val(JSON.stringify(Filters));
+								$('#keyword_field_main_search').val();
 								
+								return;
 				}
 				else if(type=='date_field_main'){
 								$('#'+type).hide();

@@ -265,24 +265,24 @@ class	Sphinx_Model	extends	CI_Model
 												{
 																foreach($key_columns	as	$keys	=>	$keywords)
 																{
-																				$keyword	=	trim($keywords);
+																				$keyword	=	trim($keywords->value);
 																				if($index	==	'all')
 																				{
 																								if($keys	==	0)
-																												$where	.=" $keyword->value ";
+																												$where	.=" \"$keyword\"";
 																								else
-																												$where	.=" | \"$keyword->value\"";
+																												$where	.=" | \"$keyword\"";
 																				}
 																				else
 																				{
 																								if($keys	==	0)
-																												$where	.=" @$index \"$keyword->value\"";
+																												$where	.=" @$index \"$keyword\"";
 																								else
-																												$where	.=" | \"$keyword->value\"";
+																												$where	.=" | \"$keyword\"";
 																				}
 																}
 												}
-//												echo	$where;
+												echo	$where;
 								}
 								if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
 								{

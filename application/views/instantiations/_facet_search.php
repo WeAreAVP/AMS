@@ -569,11 +569,6 @@
                 
 												name=$('#search').val();  
 												if(isRemoved==1){
-																//																$('#'+type+' .btn-img').each(function(){
-																//																				$(this).remove();
-																//																});
-																//																$('#'+type+'_search').val('');
-																//																$('#keyword_field_name').html();
 																$('#limit_btn').show(); 
 																$('#limit_field_text').html('Limit Search to Field');
 																$('#search').val('');
@@ -584,21 +579,6 @@
 												}
 												else{
 																if($.trim($('#search').val())!=''){
-																				//																				if($('#keyword_field_main_search').val()!='')
-																				//																								keywordJson=	JSON.parse($('#keyword_field_main_search').val());
-																				//																				if(typeof(keywordJson[customColumnName])!=undefined){
-																				//																								if(keywordJson[customColumnName]!=undefined && keywordJson[customColumnName].length!=undefined){
-																				//																												keywordJson[customColumnName].push($('#search').val());
-																				//																								}
-																				//																								else{
-																				//																												keywordJson[customColumnName]=new Array($('#search').val());
-																				//																								}
-																				//																				}
-																				//																				
-																				//																				$('#keyword_field_main_search').val(JSON.stringify(keywordJson));
-																				
-																				//																				if($('#keyword_field_main_search').val()!='')
-																				//																								Filters=	JSON.parse($('#keyword_field_main_search').val());
 																				var count = get_timestamp();
 																				if(Filters[customColumnName] == undefined) {
 																								Filters[customColumnName] = new Object();
@@ -622,7 +602,7 @@
 																else{
 																				return false;
 																}
-																console.log(Filters);
+																
 												}
 								}
 								else if(type=='date_field_main'){

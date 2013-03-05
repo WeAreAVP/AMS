@@ -556,10 +556,10 @@
 				
 				$(window).load(function(){
 								$('#data_container').width($(window).width()-300);
-								display=<?php	echo	$DateStyleDisplay;	?>;
-								if(display==0){
-												$('#date_range_filter_div').hide();
-								}
+//								display=<?php	echo	$DateStyleDisplay;	?>;
+//								if(display==0){
+//												$('#date_range_filter_div').hide();
+//								}
 								if('<?php	echo	$current_tab;	?>'=='simple'){
 												updateSimpleDataTable();
 								}

@@ -223,10 +223,10 @@ class	Records	extends	MY_Controller
 				public	function	sort_simple_table()
 				{
 								$columns	=	array('flag',	'organization',	'guid_identifier',	'local_identifier',	'asset_title',	'description');
-								$this->session->unset_userdata('column');
-								$this->session->unset_userdata('jscolumn');
-								$this->session->unset_userdata('column_order');
-
+//								$this->session->unset_userdata('column');
+//								$this->session->unset_userdata('jscolumn');
+//								$this->session->unset_userdata('column_order');
+//
 								$this->session->set_userdata('jscolumn',	$this->input->get('iSortCol_0'));
 								$this->session->set_userdata('column',	$columns[$this->input->get('iSortCol_0')]);
 

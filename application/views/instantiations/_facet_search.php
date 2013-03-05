@@ -511,7 +511,8 @@
 				//												manageLayout();
 				//								});
 				oTable=null;
-				
+					if($('#keyword_field_main_search').val()!='')
+																								Filters=	JSON.parse($('#keyword_field_main_search').val());
 				(function($){
 								manageLayout();
 								var hash = window.location.hash.replace('#', '');
@@ -591,8 +592,8 @@
 																				//																				
 																				//																				$('#keyword_field_main_search').val(JSON.stringify(keywordJson));
 																				
-																				if($('#keyword_field_main_search').val()!='')
-																								Filters=	JSON.parse($('#keyword_field_main_search').val());
+//																				if($('#keyword_field_main_search').val()!='')
+//																								Filters=	JSON.parse($('#keyword_field_main_search').val());
 																				var count = get_timestamp();
 																				if(Filters[customColumnName] == undefined) {
 																								Filters[customColumnName] = new Object();

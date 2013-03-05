@@ -554,7 +554,10 @@
 								isAnySearch();
 				});
 				var Filters=new Object();
-				
+				function get_timestamp() {
+    var d= new Date();
+    return d.getTime();
+}
 				function add_token(name,type,isRemoved){
 								if(type=='keyword_field_main'){
                 

@@ -623,6 +623,7 @@
 																				temp.value = $('#search').val();
 																				DateFilter[date_type_text][count] = temp;
 																				$('#date_field_main_search').val(JSON.stringify(DateFilter));
+																				return;
 																}
 																else{
 																				return false;
@@ -713,7 +714,7 @@
 								if($('#'+type+' div').length<=1){
 												$('#'+type).hide();
 								}
-							facet_search('0');
+								add_token(unescape(name),type,1);        
 				}
 				
 				function facet_search(page)

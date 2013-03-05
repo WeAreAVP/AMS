@@ -507,12 +507,18 @@
 				var current_table_type='<?php	echo	$table_type	?>';
 					
 				var Filters=new Object();
+				var dateFilter=new Object();
 				//								$(window).resize(function() {
 				//												manageLayout();
 				//								});
 				oTable=null;
+				// if session is already set for keyword search then set the Filters Object
 				if($('#keyword_field_main_search').val()!='')
 								Filters=	JSON.parse($('#keyword_field_main_search').val());
+				// if session is already set for date search then set the dateFilter Object
+				if($('#date_field_main_search').val()!='')
+								dateFilter=	JSON.parse($('#date_field_main_search').val());
+				// initialize the date range pickers
 				(function($){
 								manageLayout();
 								var hash = window.location.hash.replace('#', '');
@@ -568,26 +574,15 @@
 				function add_token(name,type,isRemoved){
 								if(type=='keyword_field_main'){
            	name=$('#search').val();  
-												if(isRemoved==1){
-																$('#limit_btn').show(); 
-																$('#limit_field_text').html('Limit Search to Field');
-																$('#search').val('');
-																$('#limit_field_div').show();
-																customColumnName='all';
-																customFieldName='All';
-                        
-												}
-												else{
+												if(isRemoved!=1){
 																if($.trim($('#search').val())!=''){
 																				var count = get_timestamp();
 																				if(Filters[customColumnName] == undefined) {
 																								Filters[customColumnName] = new Object();
-
 																				} else {
 																								for (x in Filters[customColumnName]) {
-
 																												if(Filters[customColumnName][x].value == $('#search').val()) {
-																																alert("Filter already applied.");
+																																alert($('#search').val()+ " filter is already applied.");
 																																return false;
 																												} 
 																								}
@@ -602,8 +597,9 @@
 																else{
 																				return false;
 																}
-																
 												}
+												
+												
 								}
 								else if(type=='date_field_main'){
         

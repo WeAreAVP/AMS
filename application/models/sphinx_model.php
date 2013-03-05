@@ -277,14 +277,14 @@ class	Sphinx_Model	extends	CI_Model
 																				else
 																				{
 																								if($count	==	0)
-																												$where	.=" @$index \"$keyword\"";
+																												$where	.="@$index \"$keyword\"";
 																								else
 																												$where	.=" | \"$keyword\"";
 																				}
 																				$count	++;
 																}
 												}
-//												echo	$where;
+												echo	$where;exit;
 								}
 								if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
 								{

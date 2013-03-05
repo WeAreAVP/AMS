@@ -63,7 +63,7 @@ class	Instantiations	extends	MY_Controller
 												$this->unset_facet_search();
 
 												$search['custom_search']	=	json_decode($this->input->post('keyword_field_main_search'));
-												$search['date_range']	=	json_decode($this->input->post('date_range'));
+												$search['date_range']	=	json_decode($this->input->post('date_field_main_search'));
 
 												$search['organization']	=	$this->input->post('organization_main_search');
 												$search['states']	=	$this->input->post('states_main_search');

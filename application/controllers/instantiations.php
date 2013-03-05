@@ -472,9 +472,9 @@ class	Instantiations	extends	MY_Controller
 
 				function	load_facet_columns()
 				{
-								if(isAjax())
+								if(!isAjax())
 								{
-												$states	=	$this->sphinx->facet_index('state',	$this->input->post('index'));
+												$states	=	$this->sphinx->facet_index('state','instantiations_list');
 
 												$data['org_states']	=	sortByOneKey($states['records'],	'state');
 												unset($states);

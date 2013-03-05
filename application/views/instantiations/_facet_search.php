@@ -417,7 +417,7 @@
 																								</ul>
 																				</div>
 																				<div id="limit_btn">
-																								<input type="button"  style="margin-top: 10px;" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');"/>
+																								<input type="button"  style="margin-top: 10px;" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');" onkeyup="addTokenOnEnter('','keyword_field_main');"/>
 																				</div>
 																</div>
 												</div>
@@ -558,6 +558,9 @@ $(window).load(function(){
 function get_timestamp() {
 				var d= new Date();
 				return d.getTime();
+}
+function addTokenOnEnter(name,type){
+				console.log(this.event);
 }
 function add_token(name,type,isRemoved){
 				if(type=='keyword_field_main'){

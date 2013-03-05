@@ -705,6 +705,7 @@
 				function remove_token(name,id,type,field)
 				{
 								if(type=='keyword_field_main'){
+												console.log()
 												delete (Filters[field][id]);
 												$('#keyword_field_main_search').val(JSON.stringify(Filters));
 								}

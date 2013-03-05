@@ -507,7 +507,7 @@
 				var current_table_type='<?php	echo	$table_type	?>';
 					
 				var Filters=new Object();
-				var dateFilter=new Object();
+				var DateFilter=new Object();
 				//								$(window).resize(function() {
 				//												manageLayout();
 				//								});
@@ -515,9 +515,9 @@
 				// if session is already set for keyword search then set the Filters Object
 				if($('#keyword_field_main_search').val()!='')
 								Filters=	JSON.parse($('#keyword_field_main_search').val());
-				// if session is already set for date search then set the dateFilter Object
+				// if session is already set for date search then set the DateFilter Object
 				if($('#date_field_main_search').val()!='')
-								dateFilter=	JSON.parse($('#date_field_main_search').val());
+								DateFilter=	JSON.parse($('#date_field_main_search').val());
 				// initialize the date range pickers
 				(function($){
 								manageLayout();
@@ -602,29 +602,31 @@
 												
 								}
 								else if(type=='date_field_main'){
-        
-            
-												if(isRemoved==1){
-																$('#date_range').val('');
-																$('#'+type+'_search').val('');
-																$('#date_type').val('');
-																$('#date_range_filter_div').show();
-																$('#date_field_text').html('Date Type');
-												}
-												else{
-																if($('#date_range').val()=='')
-																				return false;
-																$('#date_range_filter_div').hide();
-																	
-																var random_id=rand(0,1000365);
-																slugName=make_slug_name(name);
-																$('#'+type).append('<div class="btn-img" id="'+search_id+'" ><span class="search_keys">'+name+'</span><i class="icon-remove-sign" style="float: right;" onclick="remove_token(\''+escape(name)+'\',\''+search_id+'\',\''+type+'\');"></i></div>');
-																$('#'+type).show();
-																if($('#date_type').val()=='')
+												if(isRemoved!=1){
+																if($.trim($('#date_range').val())!=''){
 																				date_type_text='All';
-																else
-																				date_type_text=$('#date_type').val();
-																$('#date_field_name').html('Date Keyword: '+date_type_text);
+																				if($('#date_type').val()!='')
+																								date_type_text=$('#date_type').val();
+																				var count = get_timestamp();
+																				if(DateFilter[date_type_text] == undefined) {
+																								DateFilter[date_type_text] = new Object();
+																				} else {
+																								for (x in DateFilter[date_type_text]) {
+																												if(DateFilter[date_type_text][x].value == $('#search').val()) {
+																																alert($('#search').val()+ " filter is already applied.");
+																																return false;
+																												} 
+																								}
+																				}
+																				var temp = {};
+																				temp.id = count;
+																				temp.value = $('#search').val();
+																				DateFilter[date_type_text][count] = temp;
+																				$('#date_field_main_search').val(JSON.stringify(DateFilter));
+																}
+																else{
+																				return false;
+																}
 												}
 								}
 								else{
@@ -707,10 +709,11 @@
 							
 								}
 								else if(type=='date_field_main'){
-												$('#'+type).hide();
-												$('#'+type+' .btn-img').each(function(){
-																$(this).remove();
-												});	
+												delete (DateFilter[field][id]);
+												if(size_of_object(DateFilter[field])==0)
+																delete (DateFilter[field]);
+								
+												$('#date_field_main_search').val(JSON.stringify(DateFilter));
 								}
 								$("#"+id).remove();
 								if($('#'+type+' div').length<=1){
@@ -718,33 +721,7 @@
 								}
 								add_token(unescape(name),type,1);        
 				}
-				function resetKeyword(type){
-								if(type=='date'){
-												$('#date_field_main .btn-img').each(function(){
-																$(this).remove();
-												});
-												$('#date_field_main').hide();
-												$('#date_range').val('');
-												$('#date_type').val('');
-												$('#date_range_filter_div').show();
-												$('#date_field_text').html('Date Type');
-												$('#date_field_main_search').val('');
-								}
-								else{
-												$('#keyword_field_main .btn-img').each(function(){
-																$(this).remove();
-												});
-												$('#keyword_field_main_search').val('');
-												$('#limit_btn').show(); 
-												$('#limit_field_text').html('Limit Search to Field');
-												$('#search').val('');
-												$('#keyword_field_main').hide();
-												$('#limit_field_div').show();
-												customColumnName='';
-												customFieldName='All';
-								}
-								facet_search('0');
-				}
+				
 				function facet_search(page)
 				{
 								if(typeof(page) == undefined)
@@ -893,36 +870,39 @@
 								
 				}
 				function resetAll(){
-								$('.btn-img').each(function(){
-												$(this).remove();
-								});
-								type=new Array('keyword_field_main','organization_main' ,'states_main' ,'nomination_status_main','media_type_main',
-								'physical_format_main','digital_format_main','generation_main','date_field_main');
-								for(cnt in type){
-												if($('#'+type[cnt]+' div').length<=1){
-																$('#'+type[cnt]).hide();
-												}
-								}
-								$('#date_range_filter_div').show();
-								$('#date_field_text').html('Date Type');
-								$('#limit_field_text').html('Limit Search to Field');
-								$('#limit_field_dropdown').show();
-								$('#search').val('');
-								$('#limit_field_div').show();
-								$('#keyword_field_main_search').val('');
-								$('#organization_main_search').val('');
-								$('#states_main_search').val('');
-								$('#nomination_status_main_search').val('');
-								$('#media_type_main_search').val('');
-								$('#physical_format_main_search').val('');
-								$('#digital_format_main_search').val('');
-								$('#generation_main_search').val('');
-								$('#date_range').val('');
-								$('#date_type').val('');
-								$('#digitized').attr('checked',false);
-								$('#migration_failed').attr('checked',false);
-								$('#checked_token').hide();
-								
+								//								$('.btn-img').each(function(){
+								//												$(this).remove();
+								//								});
+								//								type=new Array('keyword_field_main','organization_main' ,'states_main' ,'nomination_status_main','media_type_main',
+								//								'physical_format_main','digital_format_main','generation_main','date_field_main');
+								//								for(cnt in type){
+								//												if($('#'+type[cnt]+' div').length<=1){
+								//																$('#'+type[cnt]).hide();
+								//												}
+								//								}
+								//								$('#date_range_filter_div').show();
+								//								$('#date_field_text').html('Date Type');
+								//								$('#limit_field_text').html('Limit Search to Field');
+								//								$('#limit_field_dropdown').show();
+								//								$('#search').val('');
+								//								$('#limit_field_div').show();
+								//								$('#keyword_field_main_search').val('');
+								//								$('#organization_main_search').val('');
+								//								$('#states_main_search').val('');
+								//								$('#nomination_status_main_search').val('');
+								//								$('#media_type_main_search').val('');
+								//								$('#physical_format_main_search').val('');
+								//								$('#digital_format_main_search').val('');
+								//								$('#generation_main_search').val('');
+								//								$('#date_range').val('');
+								//								$('#date_type').val('');
+								//								$('#digitized').attr('checked',false);
+								//								$('#migration_failed').attr('checked',false);
+								//								$('#checked_token').hide();
+								//							
+								$('#form_search').find('input:hidden, input:text, select').val('');
+								$('#form_search').find('input:radio, input:checkbox')
+								.removeAttr('checked').removeAttr('selected');
 								facet_search('0');
 				}
 				function manageLayout(){

@@ -613,7 +613,7 @@
 																else{
 																				return false;
 																}
-																console.log(Filters);return;
+																console.log(Filters);
 												}
 								}
 								else if(type=='date_field_main'){

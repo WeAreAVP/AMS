@@ -61,10 +61,10 @@ class	Instantiations	extends	MY_Controller
 								if(isAjax())
 								{
 												$this->unset_facet_search();
-												
-												$search['custom_search']	=	json_decode($this->input->post('keyword_field_main_search'));
 
-																								
+												$search['custom_search']	=	json_decode($this->input->post('keyword_field_main_search'));
+												$search['date_range']	=	json_decode($this->input->post('date_range'));
+
 												$search['organization']	=	$this->input->post('organization_main_search');
 												$search['states']	=	$this->input->post('states_main_search');
 												$search['nomination']	=	$this->input->post('nomination_status_main_search');
@@ -72,8 +72,8 @@ class	Instantiations	extends	MY_Controller
 												$search['physical_format']	=	$this->input->post('physical_format_main_search');
 												$search['digital_format']	=	$this->input->post('digital_format_main_search');
 												$search['generation']	=	$this->input->post('generation_main_search');
-												$search['date_range']	=	$this->input->post('date_range');
-												$search['date_type']	=	$this->input->post('date_type');
+
+//												$search['date_type']	=	$this->input->post('date_type');
 												if($this->input->post('digitized')	&&	$this->input->post('digitized')	===	'1')
 												{
 																$search['digitized']	=	$this->input->post('digitized');

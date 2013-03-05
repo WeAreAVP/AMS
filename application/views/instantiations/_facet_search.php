@@ -72,26 +72,35 @@
 												<?php
 												if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
 												{
-																$date	=	$this->session->userdata['date_range'];
-																$search_id	=	name_slug($date);
-																if(isset($this->session->userdata['date_type'])	&&	$this->session->userdata['date_type']	!=	'')
-																{
-																				$type	=	$this->session->userdata['date_type'];
-																}
-																else
-																{
-																				$type	=	'All';
-																}
 																?>
 																<div id = "date_field_main">
-																				<input id="date_type" name="date_type" value="<?php	echo	$this->session->userdata['date_type'];	?>" type="hidden"/>
-																				<div class = "filter-fileds"><b id = "date_field_name">Date Keyword: <?php	echo	$type;	?></b></div>
-																				<div class="btn-img" id="<?php	echo	$search_id;	?>" ><span class="search_keys"><?php	echo	$date;	?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($date);	?>','<?php	echo	$search_id;	?>','date_field_main');"></i></div>
-																				<input type="hidden" id="date_field_main_search" name="date_field_main_search" value="<?php	echo	$date;	?>" />
+																				<input id="date_type" name="date_type" value="" type="hidden"/>
+																				<input type="hidden" id="date_field_main_search" name="date_field_main_search" value="<?php	echo	htmlentities(json_encode($this->session->userdata['date_range']));	?>" />
+																				<?php
+																				$date_search	=	$this->session->userdata['date_range'];
 
+																				foreach($date_search	as	$index	=>	$token)
+																				{
+
+																								$column_name	=	trim($index);
+																								?>	
+																								<div class="filter-fileds"><b id="date_field_name">Keyword: <?php	echo	$column_name;	?></b></div>
+																								<?php
+																								foreach($token	as	$key	=>	$token_val)
+																								{
+																												$search_id	=	$token_val->id;
+																												?>
+																												<div class="btn-img" id="<?php	echo	$search_id;	?>" >
+																																<span class="search_keys"><?php	echo	$token_val->value;	?></span>
+																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val->value);	?>','<?php	echo	$search_id;	?>','date_field_main','<?php	echo	$index;	?>');"></i>
+																												</div>
+																												<?php
+																								}
+																				}
+																				?>
 																				<div class="clearfix"></div>
 																</div>
-																<div class="clearfix"></div>
+																<div class="clearfix"></div>	
 																<?php
 												}
 												else
@@ -623,7 +632,7 @@
 																				temp.value = $('#date_range').val();
 																				DateFilter[date_type_text][count] = temp;
 																				$('#date_field_main_search').val(JSON.stringify(DateFilter));
-																				return;
+//																				return;
 																}
 																else{
 																				return false;

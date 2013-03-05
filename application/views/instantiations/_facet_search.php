@@ -608,8 +608,8 @@ if(Filters[customColumnName] == undefined) {
 
             var temp = {};
             temp.id = count;
-            temp.value = value;
-            temp.options = Ops;
+            temp.value = $('#search').val();
+//            temp.options = Ops;
 
 
             Filters[customColumnName][count] = temp;

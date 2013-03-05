@@ -37,7 +37,7 @@ class	Sphinx_Model	extends	CI_Model
 								$mode	=	SPH_MATCH_EXTENDED;
 								$this->sphinxsearch->set_array_result(true);
 								$this->sphinxsearch->set_match_mode($mode);
-								$this->sphinxsearch->set_sort_mode ( SPH_SORT_ATTR_ASC, 'station_name' );
+								$this->sphinxsearch->set_sort_mode(SPH_SORT_ATTR_ASC,	'station_name');
 								$this->sphinxsearch->set_connect_timeout(120);
 								if($limit)
 												$this->sphinxsearch->set_limits((int)	$offset,	(int)	$limit,	(	$limit	>	1000	)	?	$limit	:	1000	);
@@ -92,7 +92,7 @@ class	Sphinx_Model	extends	CI_Model
 								$this->sphinxsearch->set_match_mode($mode);
 
 								$this->sphinxsearch->set_group_by($column_name,	SPH_GROUPBY_ATTR);
-								
+
 								$this->sphinxsearch->set_connect_timeout(120);
 								if($limit)
 												$this->sphinxsearch->set_limits((int)	$offset,	(int)	$limit,	(	$limit	>	1000	)	?	$limit	:	1000	);
@@ -263,23 +263,25 @@ class	Sphinx_Model	extends	CI_Model
 												$keyword_json	=	$this->session->userdata['custom_search'];
 												foreach($keyword_json	as	$index	=>	$key_columns)
 												{
+																$count	=	0;
 																foreach($key_columns	as	$keys	=>	$keywords)
 																{
 																				$keyword	=	trim($keywords->value);
 																				if($index	==	'all')
 																				{
-																								if($keys	==	0)
+																								if($count	==	0)
 																												$where	.=" \"$keyword\"";
 																								else
 																												$where	.=" | \"$keyword\"";
 																				}
 																				else
 																				{
-																								if($keys	==	0)
+																								if($count	==	0)
 																												$where	.=" @$index \"$keyword\"";
 																								else
 																												$where	.=" | \"$keyword\"";
 																				}
+																				$count	++;
 																}
 												}
 												echo	$where;

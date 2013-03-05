@@ -441,7 +441,7 @@
 
 																								<div class="controls filter-fileds">
 																												<div class="input-append">
-																																<input type="text" name="date_range" id="date_range" value="" style="width: 180px;"/>
+																																<input type="text" name="date_range" id="date_range" value="" style="width: 180px;" onkeyup="addTokenOnEnter('date_range','keyword_field_main');"/>
 																												</div>
 																								</div>
 																				</div>

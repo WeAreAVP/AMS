@@ -41,11 +41,11 @@
 																								<?php
 																								foreach($token	as	$key	=>	$token_val)
 																								{
-																												$search_id	=	name_slug($token_val);
+																												$search_id	=	name_slug($token_val->id);
 																												?>
 																												<div class="btn-img" id="<?php	echo	$search_id;	?>" >
-																																<span class="search_keys"><?php	echo	$token_val;	?></span>
-																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val);	?>','<?php	//	echo	$search_id;																									?>','keyword_field_main');"></i>
+																																<span class="search_keys"><?php	echo	$token_val->value;	?></span>
+																																<i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php	echo	htmlentities($token_val->value);	?>','<?php	echo	$search_id;	?>','keyword_field_main','<?php	echo	$index;	?>');"></i>
 																												</div>
 																												<?php
 																								}
@@ -699,13 +699,17 @@
 								string = string.toLowerCase();
 								return string;
 				}
-				function remove_token(name,id,type)
+				function remove_token(name,id,type,field)
 				{
-								if(type=='keyword_field_main' || type=='date_field_main'){
+								if(type=='keyword_field_main'){
+												delete (Filters[field][id]);
+												$('#keyword_field_main_search').val(JSON.stringify(Filters));
+								}
+								else if(type=='date_field_main'){
 												$('#'+type).hide();
 												$('#'+type+' .btn-img').each(function(){
 																$(this).remove();
-												});
+												});	
 								}
 								$("#"+id).remove();
 								if($('#'+type+' div').length<=1){

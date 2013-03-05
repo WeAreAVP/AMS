@@ -441,7 +441,7 @@
 
 																								<div class="controls filter-fileds">
 																												<div class="input-append">
-																																<input type="text" name="date_range" id="date_range" value="" style="width: 180px;" onkeyup="addTokenOnEnter('date_range','keyword_field_main');"/>
+																																<input type="text" name="date_range" id="date_range" value="" style="width: 180px;" onkeyup="addTokenOnEnter('date_range','date_field_main');"/>
 																												</div>
 																								</div>
 																				</div>
@@ -561,7 +561,7 @@
 				}
 				function addTokenOnEnter(name,type){
 								if(this.event.keyCode==13 && $.trim($('#'+name).val())!=''){
-												add_token('','keyword_field_main');
+												add_token('',type);
 								}
 				}
 				function add_token(name,type,isRemoved){

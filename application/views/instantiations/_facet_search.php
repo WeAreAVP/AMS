@@ -590,6 +590,9 @@
 																				//																				}
 																				//																				
 																				//																				$('#keyword_field_main_search').val(JSON.stringify(keywordJson));
+																				
+																				if($('#keyword_field_main_search').val()!='')
+																								Filters=	JSON.parse($('#keyword_field_main_search').val());
 																				var count = get_timestamp();
 																				if(Filters[customColumnName] == undefined) {
 																								Filters[customColumnName] = new Object();

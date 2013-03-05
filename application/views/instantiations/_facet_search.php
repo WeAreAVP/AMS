@@ -506,7 +506,7 @@
 				var hiden_column=new Array();
 				var current_table_type='<?php	echo	$table_type	?>';
 					
-								
+								var Filters=new Object();
 				//								$(window).resize(function() {
 				//												manageLayout();
 				//								});
@@ -554,7 +554,7 @@
 								manageLayout();
 								isAnySearch();
 				});
-				var Filters=new Object();
+				
 				function get_timestamp() {
 								var d= new Date();
 								return d.getTime();

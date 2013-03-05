@@ -360,7 +360,7 @@
 																<!--																</div>-->
 																<div id="sk_div" style="display: none;">
 																				<div>
-																								<input type="text" name="search" id="search" value="" style="width: 190px;"/>
+																								<input type="text" name="search" id="search" value="" style="width: 190px;" onkeyup="addTokenOnEnter('','keyword_field_main');"/>
 																				</div>
 
 																				<div class="btn-group" id="limit_field_dropdown">
@@ -417,7 +417,7 @@
 																								</ul>
 																				</div>
 																				<div id="limit_btn">
-																								<input type="button"  style="margin-top: 10px;" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');" onkeyup="addTokenOnEnter('','keyword_field_main');"/>
+																								<input type="button"  style="margin-top: 10px;" id="add_keyword" name="add_keyword" value="Add Keyword" class="btn btn-primary" onclick="add_token('','keyword_field_main');" />
 																				</div>
 																</div>
 												</div>

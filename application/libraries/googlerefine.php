@@ -3,7 +3,7 @@
 class	Googlerefine
 {
 
-				var	$server	=	'http://amsqa.avpreserve.com:3333';
+				var	$server	=	'http://localhost:3333';
 				var	$project_id	=	FALSE;
 
 				function	__construct()

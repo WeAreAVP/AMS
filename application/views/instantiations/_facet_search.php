@@ -620,7 +620,6 @@
 																				temp.value = $('#date_range').val();
 																				DateFilter[date_type_text][count] = temp;
 																				$('#date_field_main_search').val(JSON.stringify(DateFilter));
-//																				return;
 																}
 																else{
 																				return false;
@@ -651,7 +650,6 @@
 																$('#'+type+'_search').val(my_search_words);
 												}
 								}
-								
 								facet_search('0');
             
 				}

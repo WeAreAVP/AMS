@@ -15,13 +15,13 @@ class	Googlerefine
 				{
 								
 								$uri	=	$this->server	.	'/command/core/create-project-from-upload';
-								echo $uri;exit;
+							
 								$post_field	=	array('project-file'	=>	"@$file_path",	'project-name'	=>	$project_name);
 								$response	=	$this->send_curl_request($uri,	$post_field);
 								$pattern	=	'`.*?((http)://[\w#$&+,\/:;=?@.-]+)[^\w#$&+,\/:;=?@.-]*?`i';	//this regexp finds your url
 								if(preg_match_all($pattern,	$response,	$matches))
 												$project_url	=	$matches[1][0];	//project ID URL
-
+								echo $project_url;exit;
 								if(isset($project_url))
 								{
 												$explode_url	=	explode('project=',	$project_url);

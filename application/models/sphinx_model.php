@@ -103,6 +103,7 @@ class	Sphinx_Model	extends	CI_Model
 
 
 								$execution_time	=	$res['time'];
+								echo $execution_time.'<br/>';
 								if($res)
 								{
 												$total_record	=	$res['total_found'];

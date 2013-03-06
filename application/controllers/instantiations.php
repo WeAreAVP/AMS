@@ -510,7 +510,7 @@ class	Instantiations	extends	MY_Controller
 
 												$data['migration']	=	$this->sphinx->facet_index('migration',	$index,	'migration');
 
-												exit;
+												
 												echo	$this->load->view('instantiations/_facet_columns',	$data,	TRUE);
 												exit_function();
 								}

@@ -79,7 +79,7 @@ class	Sphinx_Model	extends	CI_Model
 								return	array("total_count"	=>	$total_record,	"records"					=>	$stations_list,	"query_time"		=>	$execution_time);
 				}
 
-				public	function	facet_index($column_name,	$index_name,	$type	=	NULL,	$offset	=	0,	$limit	=	1000)
+				public	function	facet_index($column_name,	$index_name,	$type	=	NULL,	$offset	=	0,	$limit	=	300)
 				{
 								$list	=	array();
 								$total_record	=	0;
@@ -103,7 +103,7 @@ class	Sphinx_Model	extends	CI_Model
 
 
 								$execution_time	=	$res['time'];
-								echo $execution_time.'<br/>';
+								
 								if($res)
 								{
 												$total_record	=	$res['total_found'];

@@ -45,7 +45,7 @@ class	Refine	extends	MY_Controller
 								
 								$project_name='Refine_'.time();
 								$file_path='/var/www/html/uploads/Workbook7.csv';
-								$this->googlerefine->create_project($project_name);
+								$this->googlerefine->create_project($project_name,$file_path);
 				}
 
 // Location: ./controllers/googledoc.php

@@ -473,8 +473,8 @@ class	Instantiations	extends	MY_Controller
 				{
 								if(isAjax())
 								{
-												$index='facet_list';
-//												$index=	$this->input->post('index');
+//												$index='facet_list';
+												$index=	$this->input->post('index');
 												$states	=	$this->sphinx->facet_index('state',$index);
 												
 												$data['org_states']	=	sortByOneKey($states['records'],	'state');

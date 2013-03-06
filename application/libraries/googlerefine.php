@@ -17,6 +17,7 @@ class	Googlerefine
 								$uri	=	$this->server	.	'/command/core/create-project-from-upload';
 							
 								$post_field	=	array('project-file'	=>	"@$file_path",	'project-name'	=>	$project_name);
+								debug($post_field,FALSE);
 								$response	=	$this->send_curl_request($uri,	$post_field);
 								
 								$pattern	=	'`.*?((http)://[\w#$&+,\/:;=?@.-]+)[^\w#$&+,\/:;=?@.-]*?`i';	//this regexp finds your url

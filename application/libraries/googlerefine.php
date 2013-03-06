@@ -18,7 +18,7 @@ class	Googlerefine
 							
 								$post_field	=	array('project-file'	=>	"@$file_path",	'project-name'	=>	$project_name);
 								$response	=	$this->send_curl_request($uri,	$post_field);
-								debug($response);
+								
 								$pattern	=	'`.*?((http)://[\w#$&+,\/:;=?@.-]+)[^\w#$&+,\/:;=?@.-]*?`i';	//this regexp finds your url
 								if(preg_match_all($pattern,	$response,	$matches))
 												$project_url	=	$matches[1][0];	//project ID URL
@@ -51,7 +51,10 @@ class	Googlerefine
 								curl_setopt($ch,	CURLOPT_HEADER,	$headers);
 
 								$page	=	curl_exec($ch);
+								debug($page,FALSE);
+								
 								$response	=	curl_getinfo($ch);
+								debug($response);
 								return	$page;
 				}
 

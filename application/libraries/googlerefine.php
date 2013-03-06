@@ -22,14 +22,14 @@ class	Googlerefine
 								$pattern	=	'`.*?((http)://[\w#$&+,\/:;=?@.-]+)[^\w#$&+,\/:;=?@.-]*?`i';	//this regexp finds your url
 								if(preg_match_all($pattern,	$response,	$matches))
 												$project_url	=	$matches[1][0];	//project ID URL
-								echo $project_url;exit;
+								
 								if(isset($project_url))
 								{
 												$explode_url	=	explode('project=',	$project_url);
 												$this->project_id	=	$explode_url[1];
 								}
-								echo	$project_url;
-								exit;
+								
+								
 								redirect($project_url);
 //								$this->export_rows($this->project_id);
 				}
@@ -51,10 +51,10 @@ class	Googlerefine
 								curl_setopt($ch,	CURLOPT_HEADER,	$headers);
 
 								$page	=	curl_exec($ch);
-								debug($page,FALSE);
+								
 								
 								$response	=	curl_getinfo($ch);
-								debug($response);
+								
 								return	$page;
 				}
 

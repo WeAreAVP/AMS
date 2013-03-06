@@ -473,40 +473,42 @@ class	Instantiations	extends	MY_Controller
 				{
 								if(isAjax())
 								{
-												$states	=	$this->sphinx->facet_index('state',	$this->input->post('index'));
+												$index='facet_list';
+//												$index=	$this->input->post('index');
+												$states	=	$this->sphinx->facet_index('state',$index);
 
 												$data['org_states']	=	sortByOneKey($states['records'],	'state');
 												unset($states);
 
-												$stations	=	$this->sphinx->facet_index('organization',	$this->input->post('index'));
+												$stations	=	$this->sphinx->facet_index('organization',	$index);
 
 												$data['stations']	=	sortByOneKey($stations['records'],	'organization');
 												unset($stations);
-												$nomination	=	$this->sphinx->facet_index('status',	$this->input->post('index'));
+												$nomination	=	$this->sphinx->facet_index('status',	$index);
 
 												$data['nomination_status']	=	sortByOneKey($nomination['records'],	'status');
 												unset($nomination);
-												$media_type	=	$this->sphinx->facet_index('media_type',	$this->input->post('index'));
+												$media_type	=	$this->sphinx->facet_index('media_type',	$index);
 
 												$data['media_types']	=	sortByOneKey($media_type['records'],	'media_type',	TRUE);
 
 												unset($media_type);
-												$p_format	=	$this->sphinx->facet_index('format_name',	$this->input->post('index'),	'physical');
+												$p_format	=	$this->sphinx->facet_index('format_name',	$index,	'physical');
 
 												$data['physical_formats']	=	sortByOneKey($p_format['records'],	'format_name',	TRUE);
 												unset($p_format);
-												$d_format	=	$this->sphinx->facet_index('format_name',	$this->input->post('index'),	'digital');
+												$d_format	=	$this->sphinx->facet_index('format_name',	$index,	'digital');
 
 												$data['digital_formats']	=	sortByOneKey($d_format['records'],	'format_name',	TRUE);
 												unset($d_format);
-												$generation	=	$this->sphinx->facet_index('facet_generation',	$this->input->post('index'));
+												$generation	=	$this->sphinx->facet_index('facet_generation',	$index);
 
 												$data['generations']	=	sortByOneKey($generation['records'],	'facet_generation',	TRUE);
 												unset($generation);
 
-												$data['digitized']	=	$this->sphinx->facet_index('digitized',	$this->input->post('index'),	'digitized');
+												$data['digitized']	=	$this->sphinx->facet_index('digitized',	$index,	'digitized');
 
-												$data['migration']	=	$this->sphinx->facet_index('migration',	$this->input->post('index'),	'migration');
+												$data['migration']	=	$this->sphinx->facet_index('migration',	$index,	'migration');
 
 
 												echo	$this->load->view('instantiations/_facet_columns',	$data,	TRUE);

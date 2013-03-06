@@ -3,22 +3,19 @@
 class	Googlerefine
 {
 
-				public	$server	=	'http://amsqa.avpreserve.com:3333';
-				public	$project_id	=	FALSE;
-				public	$file_path;
-				public	$project_name;
+				var	$server	=	'http://amsqa.avpreserve.com:3333';
+				var	$project_id	=	FALSE;
 
 				function	__construct()
 				{
 								
-//								$this->create_project();
-//								$this->delete_project('1528840031742');
 				}
 
-				function	create_project($project_name,$file_path)
+				function	create_project($project_name,	$file_path)
 				{
-
+								
 								$uri	=	$this->server	.	'/command/core/create-project-from-upload';
+								echo $uri;exit;
 								$post_field	=	array('project-file'	=>	"@$file_path",	'project-name'	=>	$project_name);
 								$response	=	$this->send_curl_request($uri,	$post_field);
 								$pattern	=	'`.*?((http)://[\w#$&+,\/:;=?@.-]+)[^\w#$&+,\/:;=?@.-]*?`i';	//this regexp finds your url
@@ -30,7 +27,8 @@ class	Googlerefine
 												$explode_url	=	explode('project=',	$project_url);
 												$this->project_id	=	$explode_url[1];
 								}
-								echo $project_url;exit;
+								echo	$project_url;
+								exit;
 								redirect($project_url);
 //								$this->export_rows($this->project_id);
 				}
@@ -88,6 +86,5 @@ class	Googlerefine
 				}
 
 }
-
 
 ?>

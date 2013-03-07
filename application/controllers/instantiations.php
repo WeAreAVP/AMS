@@ -525,6 +525,7 @@ class	Instantiations	extends	MY_Controller
 								{
 												echo	'Already Exist';
 												debug($this->memcached_library->get('state'));
+												exit;
 								}
 								else
 								{
@@ -533,6 +534,7 @@ class	Instantiations	extends	MY_Controller
 												echo	count($states);
 												$this->memcached_library->add('state',	$states);
 												echo	'now added in state key';
+												exit;
 								}
 				}
 

@@ -456,7 +456,8 @@ class	Instantiations	extends	MY_Controller
 								
 //								$offset	=	isset($this->session->userdata['offset'])	?	$this->session->userdata['offset']	:	$this->input->get('iDisplayStart');
 								$offset	=	intval($this->input->get('iDisplayStart'));
-								$records	=	$this->sphinx->instantiations_list($params,	$offset);
+								$limit	=	intval($this->input->get('iDisplayLength'));
+								$records	=	$this->sphinx->instantiations_list($params,	$offset,$limit);
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];
 								$data['count']	=	count($records);
@@ -464,7 +465,7 @@ class	Instantiations	extends	MY_Controller
 
 								$dataTable	=	array(
 								"sEcho"																=>	intval($this->input->get('sEcho')),
-								"iTotalRecords"								=>	intval($data['count']),
+								"iTotalRecords"								=>	intval($data['total']),
 								"iTotalDisplayRecords"	=>	intval($data['total']),
 								'aaData'															=>	$table_view
 								);

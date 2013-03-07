@@ -473,7 +473,7 @@ class	Instantiations	extends	MY_Controller
 
 				function	load_facet_columns()
 				{
-								echo phpinfo();exit;
+//								echo phpinfo();exit;
 //								if(isAjax())
 //								{
 //												$index='facet_list';

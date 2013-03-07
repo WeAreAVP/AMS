@@ -516,22 +516,22 @@ class	Instantiations	extends	MY_Controller
 												{
 																if($index	==	'assets_list')
 																{
-																				$key_name	=	'ins';
+																				$key_name	=	'asset';
 																}
 																else
 																{
-																				$key_name	=	'asset';
+																				$key_name	=	'ins';
 																}
-																$data['org_states']	=	$this->memcached_library->get("$key_name._state");
-																debug($this->memcached_library->get("ins_state"));
-																$data['stations']	=	$this->memcached_library->get("$key_name._stations");
-																$data['nomination_status']	=	$this->memcached_library->get("$key_name._status");
-																$data['media_types']	=	$this->memcached_library->get("$key_name._media_type");
-																$data['physical_formats']	=	$this->memcached_library->get("$key_name._physical");
-																$data['digital_formats']	=	$this->memcached_library->get("$key_name._digital");
-																$data['generations']	=	$this->memcached_library->get("$key_name._generation");
-																$data['digitized']	=	$this->memcached_library->get("$key_name._digitized");
-																$data['migration']	=	$this->memcached_library->get("$key_name._migration");
+																$data['org_states']	=	$this->memcached_library->get($key_name.'_state');
+																debug($data['org_states']);
+																$data['stations']	=	$this->memcached_library->get($key_name.'_stations');
+																$data['nomination_status']	=	$this->memcached_library->get($key_name.'_status');
+																$data['media_types']	=	$this->memcached_library->get($key_name.'_media_type');
+																$data['physical_formats']	=	$this->memcached_library->get($key_name.'_physical');
+																$data['digital_formats']	=	$this->memcached_library->get($key_name.'_digital');
+																$data['generations']	=	$this->memcached_library->get($key_name.'_generation');
+																$data['digitized']	=	$this->memcached_library->get($key_name.'_digitized');
+																$data['migration']	=	$this->memcached_library->get($key_name.'_migration');
 												}
 
 												echo	$this->load->view('instantiations/_facet_columns',	$data,	TRUE);

@@ -787,7 +787,7 @@
 																				{'sWidth':'40%'}
 																],
 																//																"aSorting": [[ column_index, column_order ]],														  
-																'bPaginate':false, 
+																'bPaginate':true, 
 																'bInfo':false,
 																'bFilter': false,
 																"bSort": true,

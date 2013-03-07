@@ -128,7 +128,7 @@ class	Instantiations	extends	MY_Controller
 								$config['first_link']	=	FALSE;
 								$config['last_link']	=	FALSE;
 								$config['display_pages']	=	FALSE;
-								$config['js_method']	=	'facet_search';
+								$config['js_method']	=	'pagination';
 								$config['postVar']	=	'page';
 								$this->ajax_pagination->initialize($config);
 
@@ -140,7 +140,9 @@ class	Instantiations	extends	MY_Controller
 								}
 								$this->load->view('instantiations/index',	$data);
 				}
-
+				public function paginate(){
+								
+				}
 				/**
 					* Show the detail of an instantiation
 					*  

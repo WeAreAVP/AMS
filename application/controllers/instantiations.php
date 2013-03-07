@@ -532,7 +532,7 @@ class	Instantiations	extends	MY_Controller
 												$states	=	$this->sphinx->facet_index('state',	'instantiations_list');
 												$states	=	sortByOneKey($states['records'],	'state');
 												echo	count($states);
-												$this->memcached_library->add('state',	$states);
+												$this->memcached_library->set('state',	$states);
 												echo	'now added in state key';
 												exit;
 								}

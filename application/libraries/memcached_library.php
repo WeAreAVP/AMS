@@ -46,7 +46,6 @@ class	Memcached_library
 								}
 								else
 								{
-												echo 'Memcached Library: Failed to load Memcached or Memcache Class';exit;
 												log_message('error',	"Memcached Library: Failed to load Memcached or Memcache Class");
 								}
 				}
@@ -67,12 +66,10 @@ class	Memcached_library
 												if(	!	$this->add_server($server))
 												{
 																$this->errors[]	=	"Memcached Library: Could not connect to the server named $key";
-																echo 'Memcached Library: Failed to load Memcached or Memcache Class1';exit;
 																log_message('error',	'Memcached Library: Could not connect to the server named "'	.	$key	.	'"');
 												}
 												else
 												{
-																echo 'Memcached Library: Failed to load Memcached or Memcache Class2';exit;
 																log_message('debug',	'Memcached Library: Successfully connected to the server named "'	.	$key	.	'"');
 												}
 								}

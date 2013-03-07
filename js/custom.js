@@ -321,12 +321,10 @@ function updateDataTable()
 																}
 												},																		  
 												'bPaginate':false, 
-												'bInfo':true,
+												'bInfo':false,
 												'bFilter': false,
 												"bSort": true,
 												"sScrollY": height,
-												"bScrollInfinite": false,
-												"bScrollCollapse": true,
 												"sScrollX": "200%",	
 												"bDeferRender": true, 
 												"bDestroy": is_destroy,

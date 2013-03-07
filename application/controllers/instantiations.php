@@ -465,7 +465,7 @@ class	Instantiations	extends	MY_Controller
 
 								$dataTable	=	array(
 								"sEcho"																=>	intval($this->input->get('sEcho')),
-								"iTotalRecords"								=>	intval($data['count']),
+								"iTotalRecords"								=>	intval($data['total']),
 								"iTotalDisplayRecords"	=>	intval($data['total']),
 								'aaData'															=>	$table_view
 								);

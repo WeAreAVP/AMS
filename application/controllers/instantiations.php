@@ -523,6 +523,7 @@ class	Instantiations	extends	MY_Controller
 																				$key_name	=	'asset';
 																}
 																$data['org_states']	=	$this->memcached_library->get("$key_name._state");
+																debug($data['org_state']);
 																$data['stations']	=	$this->memcached_library->get("$key_name._stations");
 																$data['nomination_status']	=	$this->memcached_library->get("$key_name._status");
 																$data['media_types']	=	$this->memcached_library->get("$key_name._media_type");

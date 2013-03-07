@@ -520,7 +520,7 @@ if(isAjax())
 				}
 				function mem(){
 															$this->load->library('memcached_library');
-
+debug($this->memcached_library->get('state'));
 								$this->memcached_library->getversion();
 								$states	=	$this->sphinx->facet_index('state',	'instantiations_list');
 
@@ -528,7 +528,7 @@ if(isAjax())
 								
 								$this->memcached_library->add('state', $data['org_states']);
 								echo 'test';
-								debug($this->memcached_library->get('state'));
+								
 	
 				}
 

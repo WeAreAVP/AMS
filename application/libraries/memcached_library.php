@@ -40,7 +40,6 @@ class	Memcached_library
 																				}
 																				break;
 												}
-												echo "Memcached Library: $this->client_type Class Loaded";exit;
 												log_message('debug',	"Memcached Library: $this->client_type Class Loaded");
 
 												$this->auto_connect();

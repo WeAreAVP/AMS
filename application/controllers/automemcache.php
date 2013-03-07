@@ -44,7 +44,7 @@ class	Automemcache	extends	CI_Controller
 				{
 								$this->set_instantiation_facet();
 								$this->set_asset_facet();
-								echo 'Updated';
+								echo 'Updated Successfully'.'\n';
 								exit;
 				}
 
@@ -70,7 +70,7 @@ class	Automemcache	extends	CI_Controller
 								$this->memcached_library->set('ins_generation',	sortByOneKey($generation['records'],	'facet_generation',	TRUE));
 								$this->memcached_library->set('ins_digitized',	$digitized);
 								$this->memcached_library->set('ins_migration',	$migration);
-								echo 'Succussfully Updated Instantiations Facet Search';
+								echo 'Succussfully Updated Instantiations Facet Search'.'\n';
 					
 				}
 
@@ -96,7 +96,7 @@ class	Automemcache	extends	CI_Controller
 								$this->memcached_library->set('asset_generation',	sortByOneKey($generation['records'],	'facet_generation',	TRUE));
 								$this->memcached_library->set('asset_digitized',	$digitized);
 								$this->memcached_library->set('asset_migration',	$migration);
-								echo 'Succussfully Updated Assets Facet Search';
+								echo 'Succussfully Updated Assets Facet Search'.'\n';
 								
 				}
 

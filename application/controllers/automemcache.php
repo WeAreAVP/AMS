@@ -37,6 +37,7 @@ class	Automemcache	extends	CI_Controller
 				{
 								parent::__construct();
 								$this->load->library('memcached_library');
+								$this->load->model('sphinx_model',	'sphinx');
 				}
 
 				public	function	index()

@@ -478,11 +478,15 @@ class	Instantiations	extends	MY_Controller
 //								{
 //												$index='facet_list';
 								$this->load->library('memcached_library');
+
+		echo $this->memcached_library->getversion();
+		echo "<br/>";exit;
 								$index	=	$this->input->post('index');
 								$states	=	$this->sphinx->facet_index('state',	$index);
 
 								$data['org_states']	=	sortByOneKey($states['records'],	'state');
 								unset($states);
+								
 								$this->memcached_library->add('state', 	$data['org_states']);
 								debug($this->memcached_library->get('state'));
 								$stations	=	$this->sphinx->facet_index('organization',	$index);

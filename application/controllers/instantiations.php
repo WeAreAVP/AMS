@@ -473,22 +473,15 @@ class	Instantiations	extends	MY_Controller
 
 				function	load_facet_columns()
 				{
-//								echo phpinfo();exit;
-//								if(isAjax())
-//								{
-//												$index='facet_list';
-								$this->load->library('memcached_library');
+if(isAjax())
+								{
 
-		echo $this->memcached_library->getversion();
-		echo "<br/>";exit;
 								$index	=	$this->input->post('index');
 								$states	=	$this->sphinx->facet_index('state',	$index);
 
 								$data['org_states']	=	sortByOneKey($states['records'],	'state');
 								unset($states);
 								
-								$this->memcached_library->add('state', 	$data['org_states']);
-								debug($this->memcached_library->get('state'));
 								$stations	=	$this->sphinx->facet_index('organization',	$index);
 
 								$data['stations']	=	sortByOneKey($stations['records'],	'organization');
@@ -522,8 +515,16 @@ class	Instantiations	extends	MY_Controller
 
 								echo	$this->load->view('instantiations/_facet_columns',	$data,	TRUE);
 								exit_function();
-//								}
-//								show_404();
+								}
+								show_404();
+				}
+				function mem(){
+															$this->load->library('memcached_library');
+
+								$this->memcached_library->getversion();
+								$this->memcached_library->add('state', 	array(1,2,3));
+								debug($this->memcached_library->get('state'));
+	
 				}
 
 }

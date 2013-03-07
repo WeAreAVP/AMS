@@ -136,7 +136,7 @@ if(	!	$isAjax)
 												});
 								}
 								$(document).ready(function() {
-												load_facet_columns('instantiations_list');
+												load_facet_columns('instantiations_list',$('.search_keys').length);	
 								});
 								
 				</script>

@@ -473,42 +473,64 @@ class	Instantiations	extends	MY_Controller
 				{
 								if(isAjax())
 								{
-
+												$is_all_facet	=	$this->input->post('issearch');
 												$index	=	$this->input->post('index');
-												$states	=	$this->sphinx->facet_index('state',	$index);
-												$data['org_states']	=	sortByOneKey($states['records'],	'state');
-												unset($states);
+												if($is_all_facet	>	0)
+												{
+																$states	=	$this->sphinx->facet_index('state',	$index);
+																$data['org_states']	=	sortByOneKey($states['records'],	'state');
+																unset($states);
 
-												$stations	=	$this->sphinx->facet_index('organization',	$index);
+																$stations	=	$this->sphinx->facet_index('organization',	$index);
 
-												$data['stations']	=	sortByOneKey($stations['records'],	'organization');
-												unset($stations);
-												$nomination	=	$this->sphinx->facet_index('status',	$index);
+																$data['stations']	=	sortByOneKey($stations['records'],	'organization');
+																unset($stations);
+																$nomination	=	$this->sphinx->facet_index('status',	$index);
 
-												$data['nomination_status']	=	sortByOneKey($nomination['records'],	'status');
-												unset($nomination);
-												$media_type	=	$this->sphinx->facet_index('media_type',	$index);
+																$data['nomination_status']	=	sortByOneKey($nomination['records'],	'status');
+																unset($nomination);
+																$media_type	=	$this->sphinx->facet_index('media_type',	$index);
 
-												$data['media_types']	=	sortByOneKey($media_type['records'],	'media_type',	TRUE);
+																$data['media_types']	=	sortByOneKey($media_type['records'],	'media_type',	TRUE);
 
-												unset($media_type);
-												$p_format	=	$this->sphinx->facet_index('format_name',	$index,	'physical');
+																unset($media_type);
+																$p_format	=	$this->sphinx->facet_index('format_name',	$index,	'physical');
 
-												$data['physical_formats']	=	sortByOneKey($p_format['records'],	'format_name',	TRUE);
-												unset($p_format);
-												$d_format	=	$this->sphinx->facet_index('format_name',	$index,	'digital');
+																$data['physical_formats']	=	sortByOneKey($p_format['records'],	'format_name',	TRUE);
+																unset($p_format);
+																$d_format	=	$this->sphinx->facet_index('format_name',	$index,	'digital');
 
-												$data['digital_formats']	=	sortByOneKey($d_format['records'],	'format_name',	TRUE);
-												unset($d_format);
-												$generation	=	$this->sphinx->facet_index('facet_generation',	$index);
+																$data['digital_formats']	=	sortByOneKey($d_format['records'],	'format_name',	TRUE);
+																unset($d_format);
+																$generation	=	$this->sphinx->facet_index('facet_generation',	$index);
 
-												$data['generations']	=	sortByOneKey($generation['records'],	'facet_generation',	TRUE);
-												unset($generation);
+																$data['generations']	=	sortByOneKey($generation['records'],	'facet_generation',	TRUE);
+																unset($generation);
 
-												$data['digitized']	=	$this->sphinx->facet_index('digitized',	$index,	'digitized');
+																$data['digitized']	=	$this->sphinx->facet_index('digitized',	$index,	'digitized');
 
-												$data['migration']	=	$this->sphinx->facet_index('migration',	$index,	'migration');
-
+																$data['migration']	=	$this->sphinx->facet_index('migration',	$index,	'migration');
+												}
+												else
+												{
+																if($index	==	'assets_list')
+																{
+																				$key_name	=	'ins';
+																}
+																else
+																{
+																				$key_name	=	'asset';
+																}
+																$data['org_states']	=	$this->memcached_library->get("$key_name._state");
+																$data['stations']	=	$this->memcached_library->get("$key_name._stations");
+																$data['nomination_status']	=	$this->memcached_library->get("$key_name._status");
+																$data['media_types']	=	$this->memcached_library->get("$key_name._media_type");
+																$data['physical_formats']	=	$this->memcached_library->get("$key_name._physical");
+																$data['digital_formats']	=	$this->memcached_library->get("$key_name._digital");
+																$data['generations']	=	$this->memcached_library->get("$key_name._generation");
+																$data['digitized']	=	$this->memcached_library->get("$key_name._digitized");
+																$data['migration']	=	$this->memcached_library->get("$key_name._migration");
+												}
 
 												echo	$this->load->view('instantiations/_facet_columns',	$data,	TRUE);
 												exit_function();
@@ -519,8 +541,8 @@ class	Instantiations	extends	MY_Controller
 				function	mem()
 				{
 								$this->load->library('memcached_library');
-								$state=$this->memcached_library->get('asset_state');
-								echo debug($state[0]);
+								$state	=	$this->memcached_library->get('asset_state');
+								echo	debug($state);
 								exit;
 				}
 

@@ -162,7 +162,7 @@ if(	!	$isAjax)
 				</div>
 				<script type="text/javascript">
 								$(document).ready(function() {
-												load_facet_columns('assets_list');
+												load_facet_columns('assets_list',$('.search_keys').length);	
 								});
 				</script>
 

@@ -744,10 +744,10 @@
 																				updateDataTable();
 																}
 																if(current_table_type=='assets'){
-																				load_facet_columns('assets_list');
+																				load_facet_columns('assets_list',$('.search_keys').length);
 																}
 																else{
-																				load_facet_columns('instantiations_list');	
+																				load_facet_columns('instantiations_list',$('.search_keys').length);	
 																}
 																isAnySearch();
 																$.unblockUI();
@@ -871,11 +871,11 @@
 								$('.span3').css('max-height',$(window).height()-90);
 								$('#data_container').width($(window).width()-300);
 				}
-				function load_facet_columns(index){
+				function load_facet_columns(index,isSearch){
 								$.ajax({
 												type: 'POST', 
 												url: site_url+'instantiations/load_facet_columns',
-												data:{'index':index},
+												data:{'index':index,'issearch':isSearch},
 												dataType: 'html',
 												success: function (result) { 
 																$('#append_facet_columns').html(result);																																																								                                        

@@ -479,9 +479,9 @@ class	Instantiations	extends	MY_Controller
 //								if(isAjax())
 //								{
 //												$index='facet_list';
-								$this->load->driver('cache');
-								$this->cache->memcached->save('foo',	'bar',	10);
-								debug($this->cache);
+//								$this->load->driver('cache');
+//								$this->cache->memcached->save('foo',	'bar',	10);
+//								debug($this->cache);
 								$index	=	$this->input->post('index');
 								$states	=	$this->sphinx->facet_index('state',	$index);
 

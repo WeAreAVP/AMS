@@ -476,7 +476,6 @@ class	Instantiations	extends	MY_Controller
 
 												$index	=	$this->input->post('index');
 												$states	=	$this->sphinx->facet_index('state',	$index);
-
 												$data['org_states']	=	sortByOneKey($states['records'],	'state');
 												unset($states);
 

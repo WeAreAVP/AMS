@@ -321,7 +321,7 @@ function updateDataTable()
 																}
 												},																		  
 //												'bPaginate':true, 
-												'bInfo':false,
+												'bInfo':true,
 //												"iDisplayLength":100,
 												'bFilter': false,
 												"bSort": true,

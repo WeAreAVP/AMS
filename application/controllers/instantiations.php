@@ -455,7 +455,7 @@ class	Instantiations	extends	MY_Controller
 
 								
 //								$offset	=	isset($this->session->userdata['offset'])	?	$this->session->userdata['offset']	:	$this->input->get('iDisplayStart');
-								$offset	=	$this->input->get('iDisplayStart');
+								$offset	=	intval($this->input->get('iDisplayStart'));
 								$records	=	$this->sphinx->instantiations_list($params,	$offset);
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];

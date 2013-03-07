@@ -51,8 +51,6 @@ class	Googlerefine
 								curl_setopt($ch,	CURLOPT_HEADER,	$headers);
 
 								$page	=	curl_exec($ch);
-								
-								
 								$response	=	curl_getinfo($ch);
 								
 								return	$page;

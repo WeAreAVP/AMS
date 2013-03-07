@@ -45,6 +45,7 @@ class	Instantiations	extends	MY_Controller
 								$this->load->model('sphinx_model',	'sphinx');
 								$this->load->library('pagination');
 								$this->load->library('Ajax_pagination');
+								$this->load->library('memcached_library');
 								$this->load->helper('datatable');
 				}
 

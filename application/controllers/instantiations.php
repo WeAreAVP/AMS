@@ -453,8 +453,9 @@ class	Instantiations	extends	MY_Controller
 								$this->session->set_userdata('column',	$column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
 								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
 
-
-								$offset	=	isset($this->session->userdata['offset'])	?	$this->session->userdata['offset']	:	0;
+								
+//								$offset	=	isset($this->session->userdata['offset'])	?	$this->session->userdata['offset']	:	$this->input->get('iDisplayStart');
+								$offset	=	$this->input->get('iDisplayStart');
 								$records	=	$this->sphinx->instantiations_list($params,	$offset);
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];

@@ -68,7 +68,7 @@ class	Automemcache	extends	CI_Controller
 								$this->memcached_library->set('ins_media_type',	sortByOneKey($media_type['records'],	'media_type',	TRUE));
 								$this->memcached_library->set('ins_physical',	sortByOneKey($p_format['records'],	'format_name',	TRUE));
 								$this->memcached_library->set('ins_digital',	sortByOneKey($d_format['records'],	'format_name',	TRUE));
-								$this->memcached_library->set('ins_generation',	sortByOneKey($generation['records'],	'facet_generation',	TRUE));
+								$this->memcached_library->set('ins_generations',	sortByOneKey($generation['records'],	'facet_generation',	TRUE));
 								$this->memcached_library->set('ins_digitized',	$digitized);
 								$this->memcached_library->set('ins_migration',	$migration);
 								echo 'Succussfully Updated Instantiations Facet Search'.'\n';
@@ -94,7 +94,7 @@ class	Automemcache	extends	CI_Controller
 								$this->memcached_library->set('asset_media_type',	sortByOneKey($media_type['records'],	'media_type',	TRUE));
 								$this->memcached_library->set('asset_physical',	sortByOneKey($p_format['records'],	'format_name',	TRUE));
 								$this->memcached_library->set('asset_digital',	sortByOneKey($d_format['records'],	'format_name',	TRUE));
-								$this->memcached_library->set('asset_generation',	sortByOneKey($generation['records'],	'facet_generation',	TRUE));
+								$this->memcached_library->set('asset_generations',	sortByOneKey($generation['records'],	'facet_generation',	TRUE));
 								$this->memcached_library->set('asset_digitized',	$digitized);
 								$this->memcached_library->set('asset_migration',	$migration);
 								echo 'Succussfully Updated Assets Facet Search'.'\n';

@@ -322,7 +322,7 @@ function updateDataTable()
 												},																		  
 //												'bPaginate':true, 
 												'bInfo':false,
-												"iDisplayLength":100,
+//												"iDisplayLength":100,
 												'bFilter': false,
 												"bSort": true,
 												"sScrollY": height,

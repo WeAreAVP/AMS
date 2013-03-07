@@ -520,21 +520,8 @@ class	Instantiations	extends	MY_Controller
 				{
 								$this->load->library('memcached_library');
 
-								if($this->memcached_library->get('state'))
-								{
-												echo	'Already Exist';
-												debug($this->memcached_library->get('state'));
-												exit;
-								}
-								else
-								{
-												$states	=	$this->sphinx->facet_index('state',	'instantiations_list');
-												$states	=	sortByOneKey($states['records'],	'state');
-												echo	count($states);
-												$this->memcached_library->set('state',	$states);
-												echo	'now added in state key';
-												exit;
-								}
+								echo count($this->memcached_library->get('asset_state'));
+								exit;
 				}
 
 }

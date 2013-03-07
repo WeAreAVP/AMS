@@ -140,9 +140,12 @@ class	Instantiations	extends	MY_Controller
 								}
 								$this->load->view('instantiations/index',	$data);
 				}
-				public function paginate(){
+
+				public	function	paginate()
+				{
 								
 				}
+
 				/**
 					* Show the detail of an instantiation
 					*  
@@ -453,10 +456,8 @@ class	Instantiations	extends	MY_Controller
 								$this->session->set_userdata('column',	$column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
 								$this->session->set_userdata('column_order',	$this->input->get('sSortDir_0'));
 
-								
-//								$offset	=	isset($this->session->userdata['offset'])	?	$this->session->userdata['offset']	:	$this->input->get('iDisplayStart');
-								$offset	=	intval($this->input->get('iDisplayStart'));
-//								$limit	=	intval($this->input->get('iDisplayLength'));
+
+								$offset	=	isset($this->session->userdata['offset'])	?	$this->session->userdata['offset']	:	0;
 								$records	=	$this->sphinx->instantiations_list($params,	$offset);
 								$data['total']	=	$records['total_count'];
 								$records	=	$records['records'];
@@ -475,50 +476,53 @@ class	Instantiations	extends	MY_Controller
 
 				function	load_facet_columns()
 				{
-								if(isAjax())
-								{
+//								if(isAjax())
+//								{
 //												$index='facet_list';
-												$index=	$this->input->post('index');
-												$states	=	$this->sphinx->facet_index('state',$index);
-												
-												$data['org_states']	=	sortByOneKey($states['records'],	'state');
-												unset($states);
+								$this->load->driver('cache');
+								$this->cache->memcached->save('foo',	'bar',	10);
+								debug($this->cache->memcached);
+								$index	=	$this->input->post('index');
+								$states	=	$this->sphinx->facet_index('state',	$index);
 
-												$stations	=	$this->sphinx->facet_index('organization',	$index);
+								$data['org_states']	=	sortByOneKey($states['records'],	'state');
+								unset($states);
 
-												$data['stations']	=	sortByOneKey($stations['records'],	'organization');
-												unset($stations);
-												$nomination	=	$this->sphinx->facet_index('status',	$index);
+								$stations	=	$this->sphinx->facet_index('organization',	$index);
 
-												$data['nomination_status']	=	sortByOneKey($nomination['records'],	'status');
-												unset($nomination);
-												$media_type	=	$this->sphinx->facet_index('media_type',	$index);
+								$data['stations']	=	sortByOneKey($stations['records'],	'organization');
+								unset($stations);
+								$nomination	=	$this->sphinx->facet_index('status',	$index);
 
-												$data['media_types']	=	sortByOneKey($media_type['records'],	'media_type',	TRUE);
+								$data['nomination_status']	=	sortByOneKey($nomination['records'],	'status');
+								unset($nomination);
+								$media_type	=	$this->sphinx->facet_index('media_type',	$index);
 
-												unset($media_type);
-												$p_format	=	$this->sphinx->facet_index('format_name',	$index,	'physical');
+								$data['media_types']	=	sortByOneKey($media_type['records'],	'media_type',	TRUE);
 
-												$data['physical_formats']	=	sortByOneKey($p_format['records'],	'format_name',	TRUE);
-												unset($p_format);
-												$d_format	=	$this->sphinx->facet_index('format_name',	$index,	'digital');
+								unset($media_type);
+								$p_format	=	$this->sphinx->facet_index('format_name',	$index,	'physical');
 
-												$data['digital_formats']	=	sortByOneKey($d_format['records'],	'format_name',	TRUE);
-												unset($d_format);
-												$generation	=	$this->sphinx->facet_index('facet_generation',	$index);
+								$data['physical_formats']	=	sortByOneKey($p_format['records'],	'format_name',	TRUE);
+								unset($p_format);
+								$d_format	=	$this->sphinx->facet_index('format_name',	$index,	'digital');
 
-												$data['generations']	=	sortByOneKey($generation['records'],	'facet_generation',	TRUE);
-												unset($generation);
+								$data['digital_formats']	=	sortByOneKey($d_format['records'],	'format_name',	TRUE);
+								unset($d_format);
+								$generation	=	$this->sphinx->facet_index('facet_generation',	$index);
 
-												$data['digitized']	=	$this->sphinx->facet_index('digitized',	$index,	'digitized');
+								$data['generations']	=	sortByOneKey($generation['records'],	'facet_generation',	TRUE);
+								unset($generation);
 
-												$data['migration']	=	$this->sphinx->facet_index('migration',	$index,	'migration');
+								$data['digitized']	=	$this->sphinx->facet_index('digitized',	$index,	'digitized');
 
-												
-												echo	$this->load->view('instantiations/_facet_columns',	$data,	TRUE);
-												exit_function();
-								}
-								show_404();
+								$data['migration']	=	$this->sphinx->facet_index('migration',	$index,	'migration');
+
+
+								echo	$this->load->view('instantiations/_facet_columns',	$data,	TRUE);
+								exit_function();
+//								}
+//								show_404();
 				}
 
 }

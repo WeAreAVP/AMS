@@ -325,8 +325,6 @@ function updateDataTable()
 												'bFilter': false,
 												"bSort": true,
 												"sScrollY": height,
-												"bScrollInfinite": false,
-												"bScrollCollapse": true,
 												"sScrollX": "200%",	
 												"bDeferRender": true, 
 												"bDestroy": is_destroy,

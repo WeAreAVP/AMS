@@ -519,8 +519,8 @@ class	Instantiations	extends	MY_Controller
 				function	mem()
 				{
 								$this->load->library('memcached_library');
-
-								echo debug($this->memcached_library->get('asset_state'));
+								$state=$this->memcached_library->get('asset_state');
+								echo debug($state[0]);
 								exit;
 				}
 

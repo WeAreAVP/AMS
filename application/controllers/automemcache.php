@@ -58,6 +58,7 @@ class	Automemcache	extends	CI_Controller
 								$p_format	=	$this->sphinx->facet_index('format_name',	$index,	'physical');
 								$d_format	=	$this->sphinx->facet_index('format_name',	$index,	'digital');
 								$generation	=	$this->sphinx->facet_index('facet_generation',	$index);
+								debug($generation);
 								$digitized	=	$this->sphinx->facet_index('digitized',	$index,	'digitized');
 								$migration	=	$this->sphinx->facet_index('migration',	$index,	'migration');
 

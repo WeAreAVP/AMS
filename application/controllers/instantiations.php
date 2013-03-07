@@ -141,8 +141,6 @@ class	Instantiations	extends	MY_Controller
 								$this->load->view('instantiations/index',	$data);
 				}
 
-				
-
 				/**
 					* Show the detail of an instantiation
 					*  
@@ -473,67 +471,69 @@ class	Instantiations	extends	MY_Controller
 
 				function	load_facet_columns()
 				{
-if(isAjax())
+								if(isAjax())
 								{
 
-								$index	=	$this->input->post('index');
-								$states	=	$this->sphinx->facet_index('state',	$index);
+												$index	=	$this->input->post('index');
+												$states	=	$this->sphinx->facet_index('state',	$index);
 
-								$data['org_states']	=	sortByOneKey($states['records'],	'state');
-								unset($states);
-								
-								$stations	=	$this->sphinx->facet_index('organization',	$index);
+												$data['org_states']	=	sortByOneKey($states['records'],	'state');
+												unset($states);
 
-								$data['stations']	=	sortByOneKey($stations['records'],	'organization');
-								unset($stations);
-								$nomination	=	$this->sphinx->facet_index('status',	$index);
+												$stations	=	$this->sphinx->facet_index('organization',	$index);
 
-								$data['nomination_status']	=	sortByOneKey($nomination['records'],	'status');
-								unset($nomination);
-								$media_type	=	$this->sphinx->facet_index('media_type',	$index);
+												$data['stations']	=	sortByOneKey($stations['records'],	'organization');
+												unset($stations);
+												$nomination	=	$this->sphinx->facet_index('status',	$index);
 
-								$data['media_types']	=	sortByOneKey($media_type['records'],	'media_type',	TRUE);
+												$data['nomination_status']	=	sortByOneKey($nomination['records'],	'status');
+												unset($nomination);
+												$media_type	=	$this->sphinx->facet_index('media_type',	$index);
 
-								unset($media_type);
-								$p_format	=	$this->sphinx->facet_index('format_name',	$index,	'physical');
+												$data['media_types']	=	sortByOneKey($media_type['records'],	'media_type',	TRUE);
 
-								$data['physical_formats']	=	sortByOneKey($p_format['records'],	'format_name',	TRUE);
-								unset($p_format);
-								$d_format	=	$this->sphinx->facet_index('format_name',	$index,	'digital');
+												unset($media_type);
+												$p_format	=	$this->sphinx->facet_index('format_name',	$index,	'physical');
 
-								$data['digital_formats']	=	sortByOneKey($d_format['records'],	'format_name',	TRUE);
-								unset($d_format);
-								$generation	=	$this->sphinx->facet_index('facet_generation',	$index);
+												$data['physical_formats']	=	sortByOneKey($p_format['records'],	'format_name',	TRUE);
+												unset($p_format);
+												$d_format	=	$this->sphinx->facet_index('format_name',	$index,	'digital');
 
-								$data['generations']	=	sortByOneKey($generation['records'],	'facet_generation',	TRUE);
-								unset($generation);
+												$data['digital_formats']	=	sortByOneKey($d_format['records'],	'format_name',	TRUE);
+												unset($d_format);
+												$generation	=	$this->sphinx->facet_index('facet_generation',	$index);
 
-								$data['digitized']	=	$this->sphinx->facet_index('digitized',	$index,	'digitized');
+												$data['generations']	=	sortByOneKey($generation['records'],	'facet_generation',	TRUE);
+												unset($generation);
 
-								$data['migration']	=	$this->sphinx->facet_index('migration',	$index,	'migration');
+												$data['digitized']	=	$this->sphinx->facet_index('digitized',	$index,	'digitized');
+
+												$data['migration']	=	$this->sphinx->facet_index('migration',	$index,	'migration');
 
 
-								echo	$this->load->view('instantiations/_facet_columns',	$data,	TRUE);
-								exit_function();
+												echo	$this->load->view('instantiations/_facet_columns',	$data,	TRUE);
+												exit_function();
 								}
 								show_404();
 				}
-				function mem(){
-															$this->load->library('memcached_library');
-																
-																$this->memcached_library->getversion();
-																$states	=	$this->sphinx->facet_index('state',	'instantiations_list');
 
-								$data['org_states']	=	sortByOneKey($states['records'],	'state');
-								
-								$this->memcached_library->add('state', json_encode($data['org_states']));
-								echo 'test';
-								
-	
-				}
-				function test_mem(){
+				function	mem()
+				{
 								$this->load->library('memcached_library');
-								debug(json_decode($this->memcached_library->get('state')));
+
+								if($this->memcached_library->get('state'))
+								{
+												echo	'Already Exist';
+												debug($this->memcached_library->get('state'));
+								}
+								else
+								{
+												$states	=	$this->sphinx->facet_index('state',	'instantiations_list');
+												$states	=	sortByOneKey($states['records'],	'state');
+												echo	count($states);
+												$this->memcached_library->add('state',	$states);
+												echo	'now added in state key';
+								}
 				}
 
 }

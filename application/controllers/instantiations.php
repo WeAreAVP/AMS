@@ -532,6 +532,7 @@ if(isAjax())
 	
 				}
 				function test_mem(){
+								$this->load->library('memcached_library');
 								debug(json_decode($this->memcached_library->get('state')));
 				}
 

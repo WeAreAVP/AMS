@@ -520,7 +520,7 @@ class	Instantiations	extends	MY_Controller
 				{
 								$this->load->library('memcached_library');
 
-								echo count($this->memcached_library->get('asset_state'));
+								echo debug($this->memcached_library->get('asset_state'));
 								exit;
 				}
 

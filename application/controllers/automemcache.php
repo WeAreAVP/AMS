@@ -58,7 +58,7 @@ class	Automemcache	extends	CI_Controller
 								$p_format	=	$this->sphinx->facet_index('format_name',	$index,	'physical');
 								$d_format	=	$this->sphinx->facet_index('format_name',	$index,	'digital');
 								$generation	=	$this->sphinx->facet_index('facet_generation',	$index);
-								debug($generation);
+								
 								$digitized	=	$this->sphinx->facet_index('digitized',	$index,	'digitized');
 								$migration	=	$this->sphinx->facet_index('migration',	$index,	'migration');
 
@@ -69,6 +69,7 @@ class	Automemcache	extends	CI_Controller
 								$this->memcached_library->set('ins_physical',	sortByOneKey($p_format['records'],	'format_name',	TRUE));
 								$this->memcached_library->set('ins_digital',	sortByOneKey($d_format['records'],	'format_name',	TRUE));
 								$this->memcached_library->set('ins_generation',	sortByOneKey($generation['records'],	'facet_generation',	TRUE));
+								debug($this->memcached_library->get('ins_generation'));
 								$this->memcached_library->set('ins_digitized',	$digitized);
 								$this->memcached_library->set('ins_migration',	$migration);
 								echo 'Succussfully Updated Instantiations Facet Search'.'\n';

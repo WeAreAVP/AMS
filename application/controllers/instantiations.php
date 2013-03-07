@@ -59,6 +59,7 @@ class	Instantiations	extends	MY_Controller
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
 								$this->session->set_userdata('offset',	$offset);
 								$params	=	array('search'	=>	'');
+								
 								if(isAjax())
 								{
 												$this->unset_facet_search();
@@ -85,7 +86,7 @@ class	Instantiations	extends	MY_Controller
 
 												$this->set_facet_search($search);
 								}
-
+								
 								$this->session->set_userdata('page_link',	'instantiations/index/'	.	$offset);
 								$data['get_column_name']	=	$this->make_array();
 
@@ -110,7 +111,7 @@ class	Instantiations	extends	MY_Controller
 								$config['total_rows']	=	$data['total'];
 								$config['per_page']	=	100;
 								$data['records']	=	$records['records'];
-//								debug($data['records'],false);
+
 								$data['count']	=	count($data['records']);
 								if($data['count']	>	0	&&	$offset	===	0)
 								{
@@ -522,16 +523,16 @@ class	Instantiations	extends	MY_Controller
 																{
 																				$key_name	=	'ins';
 																}
-																$data['org_states']	=	$this->memcached_library->get($key_name.'_state');
-															
-																$data['stations']	=	$this->memcached_library->get($key_name.'_stations');
-																$data['nomination_status']	=	$this->memcached_library->get($key_name.'_status');
-																$data['media_types']	=	$this->memcached_library->get($key_name.'_media_type');
-																$data['physical_formats']	=	$this->memcached_library->get($key_name.'_physical');
-																$data['digital_formats']	=	$this->memcached_library->get($key_name.'_digital');
-																$data['generations']	=	$this->memcached_library->get($key_name.'_generation');
-																$data['digitized']	=	$this->memcached_library->get($key_name.'_digitized');
-																$data['migration']	=	$this->memcached_library->get($key_name.'_migration');
+																$data['org_states']	=	$this->memcached_library->get($key_name	.	'_state');
+
+																$data['stations']	=	$this->memcached_library->get($key_name	.	'_stations');
+																$data['nomination_status']	=	$this->memcached_library->get($key_name	.	'_status');
+																$data['media_types']	=	$this->memcached_library->get($key_name	.	'_media_type');
+																$data['physical_formats']	=	$this->memcached_library->get($key_name	.	'_physical');
+																$data['digital_formats']	=	$this->memcached_library->get($key_name	.	'_digital');
+																$data['generations']	=	$this->memcached_library->get($key_name	.	'_generation');
+																$data['digitized']	=	$this->memcached_library->get($key_name	.	'_digitized');
+																$data['migration']	=	$this->memcached_library->get($key_name	.	'_migration');
 												}
 
 												echo	$this->load->view('instantiations/_facet_columns',	$data,	TRUE);

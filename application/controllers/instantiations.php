@@ -141,10 +141,7 @@ class	Instantiations	extends	MY_Controller
 								$this->load->view('instantiations/index',	$data);
 				}
 
-				public	function	paginate()
-				{
-								
-				}
+				
 
 				/**
 					* Show the detail of an instantiation
@@ -476,6 +473,7 @@ class	Instantiations	extends	MY_Controller
 
 				function	load_facet_columns()
 				{
+								echo phpinfo();exit;
 //								if(isAjax())
 //								{
 //												$index='facet_list';

@@ -320,9 +320,9 @@ function updateDataTable()
 																				updateDatabase(0);
 																}
 												},																		  
-//												'bPaginate':true, 
+												'bPaginate':false, 
 												'bInfo':true,
-												"sPaginationType": "two_button",
+//												"sPaginationType": "two_button",
 												"iDisplayLength":100,
 												"iDisplayStart": 0,
 												'bFilter': false,

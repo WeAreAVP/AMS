@@ -320,7 +320,7 @@ function updateDataTable()
 																				updateDatabase(0);
 																}
 												},																		  
-												'bPaginate':true, 
+												'bPaginate':false, 
 												'bInfo':false,
 												'bFilter': false,
 												"bSort": true,

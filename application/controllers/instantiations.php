@@ -527,6 +527,7 @@ if(isAjax())
 								$data['org_states']	=	sortByOneKey($states['records'],	'state');
 								
 								$this->memcached_library->add('state', $data['org_states']);
+								echo 'test';
 								debug($this->memcached_library->get('state'));
 	
 				}

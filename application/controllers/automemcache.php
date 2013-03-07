@@ -69,7 +69,6 @@ class	Automemcache	extends	CI_Controller
 								$this->memcached_library->set('ins_physical',	sortByOneKey($p_format['records'],	'format_name',	TRUE));
 								$this->memcached_library->set('ins_digital',	sortByOneKey($d_format['records'],	'format_name',	TRUE));
 								$this->memcached_library->set('ins_generation',	sortByOneKey($generation['records'],	'facet_generation',	TRUE));
-								debug($this->memcached_library->get('ins_generation'));
 								$this->memcached_library->set('ins_digitized',	$digitized);
 								$this->memcached_library->set('ins_migration',	$migration);
 								echo 'Succussfully Updated Instantiations Facet Search'.'\n';

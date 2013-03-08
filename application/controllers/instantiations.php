@@ -531,7 +531,7 @@ class	Instantiations	extends	MY_Controller
 																$data['physical_formats']	=	json_decode($this->memcached_library->get($key_name	.	'_physical'));
 																$data['digital_formats']	=	json_decode($this->memcached_library->get($key_name	.	'_digital'));
 																$data['generations']	=	json_decode($this->memcached_library->get($key_name	.	'_generations'));
-															 
+															 debug($data['generations']);
 																
 																$data['digitized']	=	json_decode($this->memcached_library->get($key_name	.	'_digitized'));
 																$data['migration']	=	json_decode($this->memcached_library->get($key_name	.	'_migration'));

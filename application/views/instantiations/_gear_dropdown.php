@@ -14,6 +14,9 @@ if($table_type	==	'assets'	&&	$current_tab	==	'simple')
 																EXPORT LIMITED CSV
 												</a>
 								<?php	}	?>
+								<a class="btn"  href="javascript://" role="button" class="btn" style="margin-left: 10px;height: 14px;">
+												Refine Data
+								</a>
         <ul class="dropdown-menu">
             <li class="dropdown"><a href="#" style="white-space: normal;">Show/Hide Fields <span class="caret custom-caret" style="float: right;"></span></a>
                 <ul class="sub-menu dropdown-menu" id="show_hide_li">

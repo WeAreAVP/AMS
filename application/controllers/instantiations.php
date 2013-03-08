@@ -523,19 +523,19 @@ class	Instantiations	extends	MY_Controller
 																{
 																				$key_name	=	'ins';
 																}
-																$data['org_states']	=	json_decode($this->memcached_library->get($key_name	.	'_state'));
+																$data['org_states']	=	json_decode($this->memcached_library->get($key_name	.	'_state'),TRUE);
 																
-																$data['stations']	=	json_decode($this->memcached_library->get($key_name	.	'_stations'));
-																debug($data['stations']);
-																$data['nomination_status']	=	json_decode($this->memcached_library->get($key_name	.	'_status'));
-																$data['media_types']	=	json_decode($this->memcached_library->get($key_name	.	'_media_type'));
-																$data['physical_formats']	=	json_decode($this->memcached_library->get($key_name	.	'_physical'));
-																$data['digital_formats']	=	json_decode($this->memcached_library->get($key_name	.	'_digital'));
-																$data['generations']	=	json_decode($this->memcached_library->get($key_name	.	'_generations'));
+																$data['stations']	=	json_decode($this->memcached_library->get($key_name	.	'_stations'),TRUE);
+																
+																$data['nomination_status']	=	json_decode($this->memcached_library->get($key_name	.	'_status'),TRUE);
+																$data['media_types']	=	json_decode($this->memcached_library->get($key_name	.	'_media_type'),TRUE);
+																$data['physical_formats']	=	json_decode($this->memcached_library->get($key_name	.	'_physical'),TRUE);
+																$data['digital_formats']	=	json_decode($this->memcached_library->get($key_name	.	'_digital'),TRUE);
+																$data['generations']	=	json_decode($this->memcached_library->get($key_name	.	'_generations'),TRUE);
 															
 																
-																$data['digitized']	=	json_decode($this->memcached_library->get($key_name	.	'_digitized'));
-																$data['migration']	=	json_decode($this->memcached_library->get($key_name	.	'_migration'));
+																$data['digitized']	=	json_decode($this->memcached_library->get($key_name	.	'_digitized'),TRUE);
+																$data['migration']	=	json_decode($this->memcached_library->get($key_name	.	'_migration'),TRUE);
 												}
 
 												echo	$this->load->view('instantiations/_facet_columns',	$data,	TRUE);

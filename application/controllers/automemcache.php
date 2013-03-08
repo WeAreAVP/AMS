@@ -61,9 +61,13 @@ class	Automemcache	extends	CI_Controller
 								
 								$digitized	=	$this->sphinx->facet_index('digitized',	$index,	'digitized');
 								$migration	=	$this->sphinx->facet_index('migration',	$index,	'migration');
-
+								echo 	json_encode(sortByOneKey($states['records'],	'state'));
 								$this->memcached_library->set('ins_state',	json_encode(sortByOneKey($states['records'],	'state')));
 								$this->myLog('State Count '.count($this->memcached_library->get('ins_state')));
+								
+								echo "\n\n\n";
+								echo $this->memcached_library->get('ins_state');
+								exit;
 								
 								$this->memcached_library->set('ins_stations',	json_encode(sortByOneKey($stations['records'],	'organization')));
 								$this->myLog('Station Count '.count($this->memcached_library->get('ins_stations')));

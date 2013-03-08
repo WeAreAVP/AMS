@@ -531,8 +531,8 @@ class	Instantiations	extends	MY_Controller
 																$data['physical_formats']	=	$this->memcached_library->get($key_name	.	'_physical');
 																$data['digital_formats']	=	$this->memcached_library->get($key_name	.	'_digital');
 																$data['generations']	=	$this->memcached_library->get($key_name	.	'_generations');
-															 echo "$key_name	.	'_generations' <pre>";
-																print_r($data);
+															 echo $key_name	.	'_generations'. "<pre>";
+																print_r($data['generations']);
 																exit;
 																
 																$data['digitized']	=	$this->memcached_library->get($key_name	.	'_digitized');

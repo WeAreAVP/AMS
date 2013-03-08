@@ -122,7 +122,7 @@ class	Pbcore	extends	CI_Controller
 																{
 																				$data_file	=	(explode(" ",	$value));
 																				$data_file_path	=	trim(str_replace(array('\r\n',	'\n',	'<br>'),	'',	trim($data_file[1])));
-//																				$this->myLog('Checking File '	.	$data_file_path);
+																				$this->myLog('Checking File '	.	$data_file_path);
 																				if(isset($data_file_path)	&&	!	is_empty($data_file_path))
 																				{
 																								$file_path	=	trim($directory	.	$data_file_path);

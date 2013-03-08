@@ -48,6 +48,7 @@ class	Instantiations_Model	extends	CI_Model
 								$this->db->where('id ',	$id);
 								return	$this->db->get($this->table_instantiations)->row();
 				}
+
 				/**
 					*  Insert the record in relation_types table
 					*  @param array $data
@@ -794,69 +795,79 @@ class	Instantiations_Model	extends	CI_Model
 												'track_height'																		=>	'essence_track_frame_sizes.height',
 												'track_aspect_ratio'												=>	'essence_tracks.aspect_ratio',
 												);
-												$custom_search	=	str_replace('|||',	'',	trim($session['custom_search']));
-												$custom_search	=	explode('@',	$custom_search);
-												$first_where	=	TRUE;
-												if(count($custom_search)	==	1)
+
+												$keyword_json	=	$session['custom_search'];
+												foreach($keyword_json	as	$index	=>	$key_columns)
 												{
-																foreach($facet_columns	as	$column)
+																$count	=	0;
+																foreach($key_columns	as	$keys	=>	$keywords)
 																{
-																				if($first_where	==	TRUE)
+																				$keyword	=	trim($keywords->value);
+																				if($index	==	'all')
 																				{
-																								$first_where	=	FALSE;
-																								$this->db->like($column,	$custom_search[0]);
+
+																								foreach($facet_columns	as	$column)
+																								{
+																												if($count	==	0)
+																																$this->db->like($column,	$keyword);
+																												else
+																																$this->db->or_like($column,	$keyword);
+																												$count	++;
+																								}
 																				}
 																				else
 																				{
-																								$this->db->or_like($column,	$custom_search[0]);
+																								if($count	==	0)
+																												$this->db->like($index,	$keyword);
+																								else
+																												$this->db->or_like($index,	$keyword);
 																				}
-																}
-												}
-												else
-												{
-																unset($custom_search[0]);	// remove item at index 0
-																$custom_search	=	array_values($custom_search);
-																foreach($custom_search	as	$keyword)
-																{
-																				$word_column	=	explode(' ',	$keyword,	2);
-																				if($first_where	==	TRUE)
-																				{
-																								$first_where	=	FALSE;
-																								$this->db->like($facet_columns[$word_column[0]],	$word_column[1]);
-																				}
-																				else
-																				{
-																								$this->db->or_like($facet_columns[$word_column[0]],	$word_column[1]);
-																				}
+																				$count	++;
 																}
 												}
 								}
 								if(isset($session['date_range'])	&&	$session['date_range']	!=	'')
 								{
-												$date_range	=	explode("to",	$session['date_range']);
-												if(isset($date_range[0])	&&	trim($date_range[0])	!=	'')
+												$keyword_json	=	$this->session->userdata['date_range'];
+												foreach($keyword_json	as	$index	=>	$key_columns)
 												{
-																$start_date	=	strtotime(trim($date_range[0]));
-												}
-												if(isset($date_range[1])	&&	trim($date_range[1])	!=	'')
-												{
-																$end_date	=	strtotime(trim($date_range[1]));
-												}
-												if($start_date	!=	''	&&	isset($end_date)	&&	is_numeric($end_date)	&&	$end_date	>=	$start_date)
-												{
-																$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates >=",	$start_date);
-																$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates <=",	$end_date);
-												}
-												else
-												{
-																$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates >=",	$start_date);
+																$count	=	0;
+																foreach($key_columns	as	$keys	=>	$keywords)
+																{
+
+																				$date_range	=	explode("to",	$keywords->value);
+																				if(isset($date_range[0])	&&	trim($date_range[0])	!=	'')
+																				{
+																								$start_date	=	strtotime(trim($date_range[0]));
+																				}
+																				if(isset($date_range[1])	&&	trim($date_range[1])	!=	'')
+																				{
+																								$end_date	=	strtotime(trim($date_range[1]));
+																				}
+																				if($start_date	!=	''	&&	is_numeric($start_date)	&&	isset($end_date)	&&	is_numeric($end_date)	&&	$end_date	>=	$start_date)
+																				{
+																								if($count	==	0)
+																								{
+																												$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates >=",	$start_date);
+																												$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates <=",	$end_date);
+																								}
+																								else
+																								{
+																												$this->db->or_where("$this->table_instantiation_dates.$this->table_instantiation_dates >=",	$start_date);
+																												$this->db->or_where("$this->table_instantiation_dates.$this->table_instantiation_dates <=",	$end_date);
+																								}
+
+
+																								if($index	!=	'All')
+																								{
+																												$this->db->where_in("$this->table_date_types.date_type",	$index);
+																								}
+																				}
+																				$count	++;
+																}
 												}
 								}
-								if(isset($session['date_type'])	&&	$session['date_type']	!=	'')
-								{
-												$date_type	=	explode('|||',	trim($session['date_type']));
-												$this->db->where_in("$this->table_date_types.date_type",	$date_type);
-								}
+
 								if($this->is_station_user)
 								{
 												$this->db->where_in("$this->stations.station_name",	$this->station_name);

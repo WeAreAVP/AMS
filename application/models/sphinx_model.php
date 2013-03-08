@@ -319,31 +319,9 @@ class	Sphinx_Model	extends	CI_Model
 																}
 												}
 
-												// old code
-//												$date_range	=	explode("to",	$this->session->userdata['date_range']);
-//												if(isset($date_range[0])	&&	trim($date_range[0])	!=	'')
-//												{
-//																$start_date	=	strtotime(trim($date_range[0]));
-//												}
-//												if(isset($date_range[1])	&&	trim($date_range[1])	!=	'')
-//												{
-//																$end_date	=	strtotime(trim($date_range[1]));
-//												}
-//												if($start_date	!=	''	&&	is_numeric($start_date)	&&	isset($end_date)	&&	is_numeric($end_date)	&&	$end_date	>=	$start_date)
-//												{
-//																$this->sphinxsearch->set_filter_range("dates",	$start_date,	$end_date);
-//												}
-//												else	if(is_numeric($start_date))
-//												{
-//																$this->sphinxsearch->set_filter_range("dates",	$start_date,	999999999999);
-//												}
-												// old code
+												
 								}
-//								if(isset($this->session->userdata['date_type'])	&&	$this->session->userdata['date_type']	!=	'')
-//								{
-//												$date_type	=	str_replace('|||',	'" | "',	trim($this->session->userdata['date_type']));
-//												$where	.=" @date_type \"$date_type\"";
-//								}
+
 								if($this->is_station_user)
 								{
 

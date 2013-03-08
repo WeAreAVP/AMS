@@ -147,20 +147,7 @@ class	Memcached_library
 								{
 												$expiration	=	$this->config['config']['expiration'];
 								}
-								if(is_array($key))
-								{
-												foreach($key	as	$multi)
-												{
-																if(	!	isset($multi['expiration'])	||	$multi['expiration']	==	'')
-																{
-																				$multi['expiration']	=	$this->config['config']['expiration'];
-																}
-																$this->set($this->key_name($multi['key']),	$multi['value'],	$multi['expiration']);
-												}
-								}
-								else
-								{
-												$this->local_cache[$this->key_name($key)]	=	$value;
+								
 												switch	($this->client_type)
 												{
 																case	'Memcache':
@@ -174,7 +161,6 @@ class	Memcached_library
 												}
 
 												return	$add_status;
-								}
 				}
 
 				/*

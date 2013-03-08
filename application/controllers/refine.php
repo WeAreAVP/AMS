@@ -44,7 +44,7 @@ class	Refine	extends	MY_Controller
 				function create(){
 								
 								$project_name='Refine_'.time();
-								$file_path='/var/www/html/uploads/csv_export_1362732127.csv';
+								$file_path='/var/www/html/uploads/Workbook7.csv';
 								$this->googlerefine->create_project($project_name,$file_path);
 				}
 

@@ -36,14 +36,34 @@ class	Refine_modal	extends	CI_Model
 								$this->table_event_types	=	'event_types';
 				}
 
+				function	insert_job($data)
+				{
+								$data['updated_at']	=	date('Y-m-d H:i:s');
+								$data['created_at']	=	date('Y-m-d H:i:s');
+								$this->db->insert('google_refine',	$data);
+								return	$this->db->insert_id();
+				}
+				function	get_csv_records($query)
+				{
+								return $this->db->query($query)->result();
+								
+				}
+				
 				function	export_refine_csv($real_time	=	FALSE)
 				{
-								$this->db->select("identifiers.identifier as GUID",	FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT local.identifier SEPARATOR ' | ') AS unique_id",	FALSE);
-								$this->db->select("GROUP_CONCAT(DISTINCT $this->asset_titles.title SEPARATOR ' | ') as titles",	FALSE);
-								$this->db->select("$this->table_instantiation_formats.format_name",	FALSE);
-								$this->db->select("$this->table_instantiations.projected_duration",	FALSE);
+								
+								$this->db->select("$this->stations.station_name as organization",	FALSE);
+								$this->db->select("$this->asset_titles.title as asset_title",	FALSE);
+								$this->db->select("asset_descriptions.description",	FALSE);
+								$this->db->select("instantiation_identifier.instantiation_identifier",	FALSE);
+								$this->db->select("instantiation_identifier.instantiation_source",	FALSE);
+								$this->db->select("$this->table_generations.generation",	FALSE);
 								$this->db->select("$this->table_nomination_status.status",	FALSE);
+								$this->db->select("$this->table_nominations.nomination_reason",	FALSE);
+								$this->db->select("$this->table_instantiation_media_types.media_type",	FALSE);
+								$this->db->select("$this->table_instantiations.language",	FALSE);
+								
+								
 
 								$this->db->join($this->_assets_table,	"$this->_assets_table.id = $this->table_instantiations.assets_id",	'left');
 								$this->db->join("identifiers AS local",	"$this->_assets_table.id = local.assets_id AND local.identifier_source!='http://americanarchiveinventory.org'",	'left');

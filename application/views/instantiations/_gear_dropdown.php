@@ -14,7 +14,7 @@ if($table_type	==	'assets'	&&	$current_tab	==	'simple')
 																EXPORT LIMITED CSV
 												</a>
 								<?php	}	?>
-								<a class="btn"  href="javascript://" role="button" class="btn" style="margin-left: 10px;height: 14px;">
+								<a class="btn"  href="<?php echo site_url('refine/export'); ?>" role="button" class="btn" style="margin-left: 10px;height: 14px;">
 												Refine Data
 								</a>
         <ul class="dropdown-menu">

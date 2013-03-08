@@ -175,6 +175,7 @@ class	Memcached_library
 				{
 								if($this->m)
 								{
+												return	$this->m->get($this->key_name($key));
 												if(isset($this->local_cache[$this->key_name($key)]))
 												{
 																return	$this->local_cache[$this->key_name($key)];

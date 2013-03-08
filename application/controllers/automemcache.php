@@ -80,6 +80,7 @@ class	Automemcache	extends	CI_Controller
 								$this->memcached_library->set('ins_digital',	sortByOneKey($d_format['records'],	'format_name',	TRUE));
 								$this->myLog('Digital Format Count '.count($this->memcached_library->get('ins_digital')));
 								
+								$this->memcached_library->delete('ins_generations');
 								$this->memcached_library->set('ins_generations',	sortByOneKey($generation['records'],	'facet_generation',	TRUE));
 								$this->myLog('Generation Count '.count($this->memcached_library->get('ins_generations')));
 								

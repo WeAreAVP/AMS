@@ -57,9 +57,9 @@ class	Refine	extends	MY_Controller
 								$records	=	$this->sphinx->instantiations_list($params);
 								$total_loop	=	ceil($records['total_count']	/	15000);
 								$query	=	$this->refine_modal->export_refine_csv(TRUE);
-								echo $query;exit;
+								
 								$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query,	'query_loop'			=>	$total_loop);
-								$this->refine_modal->insert_job($record);
+								$job_id=$this->refine_modal->insert_job($record);
 								$filename	=	'google_refine_'	.	time()	.	'.csv';
 								$fp	=	fopen("uploads/google_refine/$filename",	'a');
 								$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language\n";
@@ -94,12 +94,14 @@ class	Refine	extends	MY_Controller
 												$this->myLog($mem	.	' GB');
 								}
 								$path	=	$this->config->item('path')	.	"uploads/google_refine/$filename";
+								$data=array('export_csv_path'=>$path);
+								$this->refine_modal->update_job($job_id,$data);
 				}
 
-// Location: ./controllers/googledoc.php
+// Location: ./controllers/refine.php
 }
 
 // END Google Doc Controller
 
 // End of file googledoc.php
-// Location: ./application/controllers/googledoc.php
+// Location: ./application/controllers/refine.php

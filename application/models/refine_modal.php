@@ -43,6 +43,12 @@ class	Refine_modal	extends	CI_Model
 								$this->db->insert('google_refine',	$data);
 								return	$this->db->insert_id();
 				}
+					function	update_job($job_id,	$data)
+				{
+								$data['updated_at']	=	date('Y-m-d H:i:s');
+								$this->db->where('id',	$job_id);
+								return	$this->db->update('google_refine',	$data);
+				}
 				function	get_csv_records($query)
 				{
 								return $this->db->query($query)->result();

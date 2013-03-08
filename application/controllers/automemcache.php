@@ -44,7 +44,7 @@ class	Automemcache	extends	CI_Controller
 				{
 								$this->set_instantiation_facet();
 								$this->set_asset_facet();
-								echo 'Updated Successfully'.'\n';
+								$this->myLog('Succussfully Updated.');
 								exit;
 				}
 
@@ -63,15 +63,33 @@ class	Automemcache	extends	CI_Controller
 								$migration	=	$this->sphinx->facet_index('migration',	$index,	'migration');
 
 								$this->memcached_library->set('ins_state',	sortByOneKey($states['records'],	'state'));
+								$this->myLog('State Count '.count($this->memcached_library->get('ins_state')));
+								
 								$this->memcached_library->set('ins_stations',	sortByOneKey($stations['records'],	'organization'));
+								$this->myLog('Station Count '.count($this->memcached_library->get('ins_stations')));
+								
 								$this->memcached_library->set('ins_status',	sortByOneKey($nomination['records'],	'status'));
+								$this->myLog('Status Count '.count($this->memcached_library->get('ins_status')));
+								
 								$this->memcached_library->set('ins_media_type',	sortByOneKey($media_type['records'],	'media_type',	TRUE));
+								$this->myLog('Media Type Count '.count($this->memcached_library->get('ins_media_type')));
+								
 								$this->memcached_library->set('ins_physical',	sortByOneKey($p_format['records'],	'format_name',	TRUE));
+								$this->myLog('Physical Format Count '.count($this->memcached_library->get('ins_physical')));
+								
 								$this->memcached_library->set('ins_digital',	sortByOneKey($d_format['records'],	'format_name',	TRUE));
+								$this->myLog('Digital Format Count '.count($this->memcached_library->get('ins_digital')));
+								
 								$this->memcached_library->set('ins_generations',	sortByOneKey($generation['records'],	'facet_generation',	TRUE));
+								$this->myLog('Generation Count '.count($this->memcached_library->get('ins_generations')));
+								
 								$this->memcached_library->set('ins_digitized',	$digitized);
+								$this->myLog('Digitized Count '.count($this->memcached_library->get('ins_digitized')));
+								
 								$this->memcached_library->set('ins_migration',	$migration);
-								echo 'Succussfully Updated Instantiations Facet Search'.'\n';
+								$this->myLog('Migration Count '.count($this->memcached_library->get('ins_migration')));
+								
+								$this->myLog('Succussfully Updated Instantiations Facet Search');
 					
 				}
 
@@ -97,8 +115,23 @@ class	Automemcache	extends	CI_Controller
 								$this->memcached_library->set('asset_generations',	sortByOneKey($generation['records'],	'facet_generation',	TRUE));
 								$this->memcached_library->set('asset_digitized',	$digitized);
 								$this->memcached_library->set('asset_migration',	$migration);
-								echo 'Succussfully Updated Assets Facet Search'.'\n';
+								$this->myLog('Succussfully Updated Assets Facet Search');
 								
+				}
+				/**
+					* Display the Output
+					* @global type $argc
+					* @param type $s 
+					*/
+				function	myLog($s)
+				{
+								global	$argc;
+								if($argc)
+												$s.="\n";
+								else
+												$s.="<br>\n";
+								echo	date('Y-m-d H:i:s')	.	' >> '	.	$s;
+								flush();
 				}
 
 }

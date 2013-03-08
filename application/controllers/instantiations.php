@@ -526,6 +526,7 @@ class	Instantiations	extends	MY_Controller
 																$data['org_states']	=	json_decode($this->memcached_library->get($key_name	.	'_state'));
 																
 																$data['stations']	=	json_decode($this->memcached_library->get($key_name	.	'_stations'));
+																debug($data['stations']);
 																$data['nomination_status']	=	json_decode($this->memcached_library->get($key_name	.	'_status'));
 																$data['media_types']	=	json_decode($this->memcached_library->get($key_name	.	'_media_type'));
 																$data['physical_formats']	=	json_decode($this->memcached_library->get($key_name	.	'_physical'));

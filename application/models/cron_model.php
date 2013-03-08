@@ -46,11 +46,12 @@ class	Cron_Model	extends	CI_Model
 					 @return object
 					*/
 
-				function	is_pbcore_file_by_path($file_path)
+				function	is_pbcore_file_by_path($file_path,$data_folder_id)
 				{
 								$this->db->select("COUNT(id) AS total");
 								$this->db->from($this->_table);
 								$this->db->where("file_path",	$file_path);
+								$this->db->where("data_folder_id",	$data_folder_id);
 								$this->db->limit(1);
 								$res	=	$this->db->get()->row();
 								if(isset($res)	&&	$res->total	>	0)

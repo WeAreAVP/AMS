@@ -75,10 +75,10 @@ class	Refine	extends	MY_Controller
 												foreach($records	as	$value)
 												{
 																$line.='"'	.	str_replace('"',	'""',	$value->organization)	.	'",';
-																$line.='="'	.	str_replace('"',	'""',	$value->asset_title)	.	'",';
+																$line.='"'	.	str_replace('"',	'""',	$value->asset_title)	.	'",';
 																$line.='"'	.	str_replace('"',	'""',	$value->asset_description)	.	'",';
 																$line.='"'	.	str_replace('"',	'""',	$value->instantiation_identifier)	.	'",';
-																$line.='="'	.	str_replace('"',	'""',	$value->instantiation_source)	.	'",';
+																$line.='"'	.	str_replace('"',	'""',	$value->instantiation_source)	.	'",';
 																$line.='"'	.	str_replace('"',	'""',	$value->generation)	.	'"';
 																$line.='"'	.	str_replace('"',	'""',	$value->status)	.	'"';
 																$line.='"'	.	str_replace('"',	'""',	$value->nomination_reason)	.	'"';

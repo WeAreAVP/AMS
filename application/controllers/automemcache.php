@@ -62,31 +62,31 @@ class	Automemcache	extends	CI_Controller
 								$digitized	=	$this->sphinx->facet_index('digitized',	$index,	'digitized');
 								$migration	=	$this->sphinx->facet_index('migration',	$index,	'migration');
 
-								$this->memcached_library->set('ins_state',	sortByOneKey($states['records'],	'state'));
+								$this->memcached_library->set('ins_state',	json_encode(sortByOneKey($states['records'],	'state'));
 								$this->myLog('State Count '.count($this->memcached_library->get('ins_state')));
 								
-								$this->memcached_library->set('ins_stations',	sortByOneKey($stations['records'],	'organization'));
+								$this->memcached_library->set('ins_stations',	json_encode(sortByOneKey($stations['records'],	'organization')));
 								$this->myLog('Station Count '.count($this->memcached_library->get('ins_stations')));
 								
-								$this->memcached_library->set('ins_status',	sortByOneKey($nomination['records'],	'status'));
+								$this->memcached_library->set('ins_status',	json_encode(sortByOneKey($nomination['records'],	'status')));
 								$this->myLog('Status Count '.count($this->memcached_library->get('ins_status')));
 								
-								$this->memcached_library->set('ins_media_type',	sortByOneKey($media_type['records'],	'media_type',	TRUE));
+								$this->memcached_library->set('ins_media_type',	json_encode(sortByOneKey($media_type['records'],	'media_type',	TRUE)));
 								$this->myLog('Media Type Count '.count($this->memcached_library->get('ins_media_type')));
 								
-								$this->memcached_library->set('ins_physical',	sortByOneKey($p_format['records'],	'format_name',	TRUE));
+								$this->memcached_library->set('ins_physical',	json_encode(sortByOneKey($p_format['records'],	'format_name',	TRUE)));
 								$this->myLog('Physical Format Count '.count($this->memcached_library->get('ins_physical')));
 								
-								$this->memcached_library->set('ins_digital',	sortByOneKey($d_format['records'],	'format_name',	TRUE));
+								$this->memcached_library->set('ins_digital',	json_encode(sortByOneKey($d_format['records'],	'format_name',	TRUE)));
 								$this->myLog('Digital Format Count '.count($this->memcached_library->get('ins_digital')));
 								
-								$this->memcached_library->set('ins_generations',	sortByOneKey($generation['records'],	'facet_generation',	TRUE));
+								$this->memcached_library->set('ins_generations',	json_encode(sortByOneKey($generation['records'],	'facet_generation',	TRUE)));
 								$this->myLog('Generation Count '.count($this->memcached_library->get('ins_generations')));
 								
-								$this->memcached_library->set('ins_digitized',	$digitized);
+								$this->memcached_library->set('ins_digitized',	json_encode($digitized));
 								$this->myLog('Digitized Count '.count($this->memcached_library->get('ins_digitized')));
 								
-								$this->memcached_library->set('ins_migration',	$migration);
+								$this->memcached_library->set('ins_migration',	json_encode($migration));
 								$this->myLog('Migration Count '.count($this->memcached_library->get('ins_migration')));
 								
 								$this->myLog('Succussfully Updated Instantiations Facet Search');

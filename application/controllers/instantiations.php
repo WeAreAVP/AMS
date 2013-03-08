@@ -523,18 +523,18 @@ class	Instantiations	extends	MY_Controller
 																{
 																				$key_name	=	'ins';
 																}
-																$data['org_states']	=	$this->memcached_library->get($key_name	.	'_state');
+																$data['org_states']	=	json_decode($this->memcached_library->get($key_name	.	'_state'),true);;
 
-																$data['stations']	=	$this->memcached_library->get($key_name	.	'_stations');
-																$data['nomination_status']	=	$this->memcached_library->get($key_name	.	'_status');
-																$data['media_types']	=	$this->memcached_library->get($key_name	.	'_media_type');
-																$data['physical_formats']	=	$this->memcached_library->get($key_name	.	'_physical');
-																$data['digital_formats']	=	$this->memcached_library->get($key_name	.	'_digital');
-																$data['generations']	=	$this->memcached_library->get($key_name	.	'_generations');
+																$data['stations']	=	json_decode($this->memcached_library->get($key_name	.	'_stations'));
+																$data['nomination_status']	=	json_decode($this->memcached_library->get($key_name	.	'_status'));
+																$data['media_types']	=	json_decode($this->memcached_library->get($key_name	.	'_media_type'));
+																$data['physical_formats']	=	json_decode($this->memcached_library->get($key_name	.	'_physical'));
+																$data['digital_formats']	=	json_decode($this->memcached_library->get($key_name	.	'_digital'));
+																$data['generations']	=	json_decode($this->memcached_library->get($key_name	.	'_generations'));
 															 
 																
-																$data['digitized']	=	$this->memcached_library->get($key_name	.	'_digitized');
-																$data['migration']	=	$this->memcached_library->get($key_name	.	'_migration');
+																$data['digitized']	=	json_decode($this->memcached_library->get($key_name	.	'_digitized'));
+																$data['migration']	=	json_decode($this->memcached_library->get($key_name	.	'_migration'));
 												}
 
 												echo	$this->load->view('instantiations/_facet_columns',	$data,	TRUE);

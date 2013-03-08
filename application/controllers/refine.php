@@ -40,7 +40,7 @@ class	Refine	extends	MY_Controller
 								parent::__construct();
 								$this->load->library('googlerefine');
 								$this->load->model('refine_modal');
-								$this->load->model('sphnix_model','sphinx');
+								$this->load->model('sphinx_model',	'sphinx');
 				}
 
 				function	create()

@@ -146,6 +146,7 @@ class	Pbcore	extends	CI_Controller
 																												}
 																								}
 																				}
+																				sleep(1);
 																}
 												}
 												$this->myLog('folder Id '	.	$data_folder_id	.	' => folder_status '	.	$folder_status);

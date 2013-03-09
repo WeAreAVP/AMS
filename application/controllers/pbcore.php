@@ -99,7 +99,7 @@ class	Pbcore	extends	CI_Controller
 
 				/**
 					* Store all PBCore 1.x sub files in the database.
-				 * 
+					* 
 					* @param type $path 
 					*/
 				function	process_dir_child($path)
@@ -107,7 +107,7 @@ class	Pbcore	extends	CI_Controller
 								set_time_limit(0);
 								@ini_set("memory_limit",	"4000M");	# 1GB
 								@ini_set("max_execution_time",	999999999999);	# 1GB
-									error_reporting(E_ALL);
+								error_reporting(E_ALL);
 								ini_set('display_errors',	1);
 								$type	=	'assets';
 								$file	=	'manifest-md5.txt';
@@ -122,6 +122,7 @@ class	Pbcore	extends	CI_Controller
 												$data_result	=	file($directory	.	$file);
 												if(isset($data_result)	&&	!	is_empty($data_result))
 												{
+																$db_error_counter	=	0;
 																foreach($data_result	as	$value)
 																{
 																				$data_file	=	(explode(" ",	$value));
@@ -135,14 +136,14 @@ class	Pbcore	extends	CI_Controller
 																								{
 																												if(file_exists($file_path))
 																												{
-																																if(	!	$this->cron_model->is_pbcore_file_by_path($data_file_path,$data_folder_id))
+																																if(	!	$this->cron_model->is_pbcore_file_by_path($data_file_path,	$data_folder_id))
 																																{
 																																				$this->cron_model->insert_prcoess_data(array('file_type'						=>	$type,	'file_path'						=>	($data_file_path),	'is_processed'			=>	0,	'created_at'					=>	date('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id));
 																																}
 																												}
 																												else
 																												{
-																																if(	!	$this->cron_model->is_pbcore_file_by_path($data_file_path,$data_folder_id))
+																																if(	!	$this->cron_model->is_pbcore_file_by_path($data_file_path,	$data_folder_id))
 																																{
 																																				$this->cron_model->insert_prcoess_data(array('file_type'						=>	$type,	'file_path'						=>	($data_file_path),	'is_processed'			=>	0,	'created_at'					=>	date('Y-m-d H:i:s'),	"data_folder_id"	=>	$data_folder_id,	'status_reason'		=>	'file_not_found'));
 																																}
@@ -150,7 +151,12 @@ class	Pbcore	extends	CI_Controller
 																												}
 																								}
 																				}
-																				sleep(1);
+																				if($db_error_counter	==	20000)
+																				{
+																								$db_error_counter	=	0;
+																								sleep(3);
+																				}
+																				$db_error_counter	++;
 																}
 												}
 												$this->myLog('folder Id '	.	$data_folder_id	.	' => folder_status '	.	$folder_status);
@@ -1445,7 +1451,8 @@ class	Pbcore	extends	CI_Controller
 								//pbcoreExtension End
 								// End By Ali Raza
 				}
-/**
+
+				/**
 					* Display the output.
 					* @global type $argc
 					* @param type $s 
@@ -1535,4 +1542,5 @@ class	Pbcore	extends	CI_Controller
 								}
 								return	FALSE;
 				}
+
 }

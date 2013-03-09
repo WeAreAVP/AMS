@@ -43,7 +43,7 @@ class	Pbcore	extends	CI_Controller
 								$this->load->model('instantiations_model',	'instant');
 								$this->load->model('essence_track_model',	'essence');
 								$this->load->model('station_model');
-								$this->assets_path	=	'assets/export_pbcore/17842_WGBH_20131502/';
+								$this->assets_path	=	'assets/export_pbcore/';
 				}
 
 				/**
@@ -487,16 +487,21 @@ class	Pbcore	extends	CI_Controller
 																																				$nomination_d['instantiations_id']	=	$instantiations_id;
 																																				if(isset($pbcore_extension['children']['extension'][0]['text'])	&&	!	is_empty($pbcore_extension['children']['extension'][0]['text']))
 																																				{
-																																								if(in_array(trim($pbcore_extension['children']['extension'][0]['text']),	array('Nominated/1st Priority',	'Nominated/2nd Priority',	'Waiting List')))
+																																								if(in_array(trim($pbcore_extension['children']['extension'][0]['text']),	array('Nominated/1st Priority',	'Nominated/2nd Priority',	'Waiting List','1st Priority','2nd Priority')))
 																																								{
-																																												$nomunation_status	=	$this->assets_model->get_nomination_status_by_status($pbcore_extension['children']['extension'][0]['text']);
+																																												$nomination_value_store=$pbcore_extension['children']['extension'][0]['text'];
+																																												if($nomination_value_store=='1st Priority')
+																																																$nomination_value_store='Nominated/1st Priority';
+																																												else if($nomination_value_store=='2nd Priority')
+																																																$nomination_value_store='Nominated/2nd Priority';
+																																												$nomunation_status	=	$this->assets_model->get_nomination_status_by_status($nomination_value_store);
 																																												if(isset($nomunation_status)	&&	!	is_empty($nomunation_status))
 																																												{
 																																																$nomination_d['nomination_status_id']	=	$nomunation_status->id;
 																																												}
 																																												else
 																																												{
-																																																$nomination_d['nomination_status_id']	=	$this->assets_model->insert_nomination_status(array("status"																	=>	$pbcore_extension['children']['extension'][0]['text']));
+																																																$nomination_d['nomination_status_id']	=	$this->assets_model->insert_nomination_status(array("status"																	=>	$nomination_value_store));
 																																												}
 																																												$nomination_d['created']	=	date("Y-m-d H:i:s");
 																																												$this->assets_model->insert_nominations($nomination_d);

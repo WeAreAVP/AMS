@@ -53,7 +53,7 @@ class	Pbcore	extends	CI_Controller
 				function	process_dir()
 				{
 								set_time_limit(0);
-								@ini_set("memory_limit",	"3000M");	# 1GB
+								@ini_set("memory_limit",	"4000M");	# 1GB
 								@ini_set("max_execution_time",	999999999999);	# 1GB
 								$this->cron_model->scan_directory($this->assets_path,	$dir_files);
 								$count	=	count($dir_files);
@@ -104,7 +104,8 @@ class	Pbcore	extends	CI_Controller
 					*/
 				function	process_dir_child($path)
 				{
-
+									error_reporting(E_ALL);
+								ini_set('display_errors',	1);
 								$type	=	'assets';
 								$file	=	'manifest-md5.txt';
 								$directory	=	base64_decode($path);
@@ -122,7 +123,7 @@ class	Pbcore	extends	CI_Controller
 																{
 																				$data_file	=	(explode(" ",	$value));
 																				$data_file_path	=	trim(str_replace(array('\r\n',	'\n',	'<br>'),	'',	trim($data_file[1])));
-																				$this->myLog('Checking File '	.	$data_file_path);
+//																				$this->myLog('Checking File '	.	$data_file_path);
 																				if(isset($data_file_path)	&&	!	is_empty($data_file_path))
 																				{
 																								$file_path	=	trim($directory	.	$data_file_path);

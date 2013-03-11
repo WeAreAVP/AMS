@@ -57,9 +57,9 @@ class	Refine	extends	MY_Controller
 								$records	=	$this->sphinx->instantiations_list($params);
 								$total_loop	=	ceil($records['total_count']	/	15000);
 								$query	=	$this->refine_modal->export_refine_csv(TRUE);
-								
+
 								$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query,	'query_loop'			=>	$total_loop);
-								$job_id=$this->refine_modal->insert_job($record);
+								$job_id	=	$this->refine_modal->insert_job($record);
 								$filename	=	'google_refine_'	.	time()	.	'.csv';
 								$fp	=	fopen("uploads/google_refine/$filename",	'a');
 								$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,Ins_id\n";
@@ -74,21 +74,22 @@ class	Refine	extends	MY_Controller
 												$query	=	$query;
 												$query.='LIMIT '	.	($i	*	15000)	.	', 15000';
 												$records	=	$this->refine_modal->get_csv_records($query);
+												debug($records);
 												$fp	=	fopen("uploads/google_refine/$filename",	'a');
 												$line	=	'';
 												foreach($records	as	$value)
 												{
-																$line.='"'	.	str_replace('"',	'""',	$value->organization)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->asset_title)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->asset_description)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->instantiation_identifier)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->instantiation_source)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->generation)	.	'"';
-																$line.='"'	.	str_replace('"',	'""',	$value->status)	.	'"';
-																$line.='"'	.	str_replace('"',	'""',	$value->nomination_reason)	.	'"';
-																$line.='"'	.	str_replace('"',	'""',	$value->media_type)	.	'"';
-																$line.='"'	.	str_replace('"',	'""',	$value->langugage)	.	'"';
-																$line.='"'	.	str_replace('"',	'""',	$value->ins_id)	.	'"';
+																$line.= $value->organization	.	',';
+																$line.=	$value->asset_title	.	',';
+																$line.=	$value->asset_description	.	',';
+																$line.= $value->instantiation_identifier	.	',';
+																$line.= $value->instantiation_source	.	',';
+																$line.= $value->generation	.	',';
+																$line.= $value->status	.	',';
+																$line.= $value->nomination_reason	.	',';
+																$line.= $value->media_type	.	',';
+																$line.= $value->langugage	.	',';
+																$line.=	$value->ins_id	.	'"';
 																$line	.=	"\n";
 												}
 												fputs($fp,	$line);
@@ -99,9 +100,8 @@ class	Refine	extends	MY_Controller
 												$this->myLog($mem	.	' GB');
 								}
 								$path	=	$this->config->item('path')	.	"uploads/google_refine/$filename";
-								$data=array('export_csv_path'=>$path);
-								$this->refine_modal->update_job($job_id,$data);
-								
+								$data	=	array('export_csv_path'	=>	$path);
+								$this->refine_modal->update_job($job_id,	$data);
 				}
 
 // Location: ./controllers/refine.php

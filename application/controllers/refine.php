@@ -43,12 +43,19 @@ class	Refine	extends	MY_Controller
 								$this->load->model('sphinx_model',	'sphinx');
 				}
 
-				function	create()
+				function	create($path,	$filename,	$job_id)
 				{
 
-								$project_name	=	'Refine_'	.	time();
-								$file_path	=	'/var/www/html/uploads/Workbook7.csv';
-								$this->googlerefine->create_project($project_name,	$file_path);
+								$project_name	=	$filename;
+								$file_path	=	$path;
+								$data	=	$this->googlerefine->create_project($project_name,	$file_path);
+								if($data)
+								{
+												$data['is_active	']=1;
+												$this->refine_modal->update_job($job_id,	$data);
+												return $data['project_url'];
+								}
+								return FALSE;
 				}
 
 				function	export()
@@ -74,7 +81,7 @@ class	Refine	extends	MY_Controller
 												$query	=	$query;
 												$query.='LIMIT '	.	($i	*	15000)	.	', 15000';
 												$records	=	$this->refine_modal->get_csv_records($query);
-												
+
 												$fp	=	fopen("uploads/google_refine/$filename",	'a');
 												$line	=	'';
 												foreach($records	as	$value)
@@ -102,6 +109,11 @@ class	Refine	extends	MY_Controller
 								$path	=	$this->config->item('path')	.	"uploads/google_refine/$filename";
 								$data	=	array('export_csv_path'	=>	$path);
 								$this->refine_modal->update_job($job_id,	$data);
+								$project_url=$this->create($path,	$filename,	$job_id);
+								if($project_url){
+												echo $project_url;
+								}
+								exit;
 				}
 
 // Location: ./controllers/refine.php

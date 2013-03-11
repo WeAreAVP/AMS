@@ -51,37 +51,31 @@ class	Refine	extends	MY_Controller
 								$data	=	$this->googlerefine->create_project($project_name,	$file_path);
 								if($data)
 								{
-												$data['is_active	']=1;
+												$data['is_active	']	=	1;
 												$this->refine_modal->update_job($job_id,	$data);
-												return $data['project_url'];
+												return	$data['project_url'];
 								}
-								return FALSE;
+								return	FALSE;
 				}
 
 				function	export()
 				{
 								$params	=	array('search'				=>	'');
-								$records	=	$this->sphinx->instantiations_list($params);
-								$total_loop	=	ceil($records['total_count']	/	15000);
 								$query	=	$this->refine_modal->export_refine_csv(TRUE);
-
-								$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query,	'query_loop'			=>	$total_loop);
+								$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query);
 								$job_id	=	$this->refine_modal->insert_job($record);
 								$filename	=	'google_refine_'	.	time()	.	'.csv';
 								$fp	=	fopen("uploads/google_refine/$filename",	'a');
-								$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,Ins_id\n";
+								$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,___Ins_id\n";
 								fputs($fp,	$line);
 								fclose($fp);
-//								while($cnt=0){
-//												
-//												
-//								}
-								for($i	=	0;	$i	<	$total_loop;	$i	++	)
+								$db_count	=	0;
+								$offset	=	0;
+								while	($db_count	=	0)
 								{
 												$query	=	$query;
-												$query.='LIMIT '	.	($i	*	15000)	.	', 15000';
+												$query.='LIMIT '	.	($offset	*	15000)	.	', 15000';
 												$records	=	$this->refine_modal->get_csv_records($query);
-
 												$fp	=	fopen("uploads/google_refine/$filename",	'a');
 												$line	=	'';
 												foreach($records	as	$value)
@@ -101,25 +95,41 @@ class	Refine	extends	MY_Controller
 												}
 												fputs($fp,	$line);
 												fclose($fp);
-												$mem	=	memory_get_usage()	/	1024;
-												$mem	=	$mem	/	1024;
-												$mem	=	$mem	/	1024;
-//												$this->myLog($mem	.	' GB');
+												$offset	++;
+												if(count($records)	<	15000)
+																$db_count	++;
 								}
+
 								$path	=	$this->config->item('path')	.	"uploads/google_refine/$filename";
 								$data	=	array('export_csv_path'	=>	$path);
 								$this->refine_modal->update_job($job_id,	$data);
-								$project_url=$this->create($path,	$filename,	$job_id);
-								if($project_url){
-												echo $project_url;
+								$project_url	=	$this->create($path,	$filename,	$job_id);
+								if($project_url)
+								{
+												echo	$project_url;
 								}
 								exit;
+				}
+
+				function	remove($project_id)
+				{
+								echo $project_id;
+								$this->googlerefine->delete_project($project_id);
+								$db_detail	=	$this->refine_modal->get_by_project_id($project_id);
+								if($db_detail)
+								{
+												$data	=	array('is_active'	=>	0);
+												$this->refine_modal->update_job($db_detail->id,	$data);
+								}
+								exit;
+//								redirect('records');
+//								/window.location.search.split('=')[1]
 				}
 
 // Location: ./controllers/refine.php
 }
 
-// END Google Doc Controller
+// END Google Refine Controller
 
-// End of file googledoc.php
+// End of file refine.php
 // Location: ./application/controllers/refine.php

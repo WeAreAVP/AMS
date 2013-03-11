@@ -86,6 +86,7 @@ class	Googlerefine
 								$post_field	=	array('project'			=>	$project_id);
 								$post_field	=	$this->prepare_post_fields($post_field);
 								$response	=	$this->send_curl_request($uri,	$post_field);
+								return TRUE;
 				}
 
 }

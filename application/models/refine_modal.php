@@ -49,6 +49,10 @@ class	Refine_modal	extends	CI_Model
 								$this->db->where('id',	$job_id);
 								return	$this->db->update('google_refine',	$data);
 				}
+				function get_by_project_id($project_id){
+								$this->db->where('project_id',	$project_id);
+								return $this->db->get('google_refine')->row();
+				}
 				function	get_csv_records($query)
 				{
 								return $this->db->query($query)->result();

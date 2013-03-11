@@ -52,6 +52,7 @@ class	Refine	extends	MY_Controller
 								if($data)
 								{
 												$data['is_active	']	=	1;
+												$data['project_name	']	=	$filename;
 												$this->refine_modal->update_job($job_id,	$data);
 												return	$data['project_url'];
 								}
@@ -66,7 +67,7 @@ class	Refine	extends	MY_Controller
 								$job_id	=	$this->refine_modal->insert_job($record);
 								$filename	=	'google_refine_'	.	time()	.	'.csv';
 								$fp	=	fopen("uploads/google_refine/$filename",	'a');
-								$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,___Ins_id\n";
+								$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,_Ins_id\n";
 								fputs($fp,	$line);
 								fclose($fp);
 								$db_count	=	0;
@@ -122,9 +123,12 @@ class	Refine	extends	MY_Controller
 												$data	=	array('is_active'	=>	0);
 												$this->refine_modal->update_job($db_detail->id,	$data);
 								}
-								exit;
-//								redirect('records');
-//								/window.location.search.split('=')[1]
+								
+								redirect('records');
+
+				}
+				function save(){
+								
 				}
 
 // Location: ./controllers/refine.php

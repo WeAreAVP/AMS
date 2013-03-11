@@ -69,12 +69,12 @@ class	Googlerefine
 								return	implode('&',	$params);
 				}
 
-				function	export_rows($project_id,	$format	=	'csv')
+				function	export_rows($project_name,$project_id,	$format	=	'csv')
 				{
 
 
-								$uri	=	$this->server	.	'/command/core/export-rows/'	.	$this->project_name	.	'.'	.	$format;
-								$post_field	=	array('engine'						=>	'{"facets":[],"mode":"row-based"}',	'project'					=>	$this->project_id,	'format'						=>	$format,	"contentType"	=>	"application-unknown");
+								$uri	=	$this->server	.	'/command/core/export-rows/'	.	$project_name	.	'.'	.	$format;
+								$post_field	=	array('engine'						=>	'{"facets":[],"mode":"row-based"}',	'project'					=>	$project_id,	'format'						=>	$format,	"contentType"	=>	"application-unknown");
 								$post_field	=	$this->prepare_post_fields($post_field);
 								$response	=	$this->send_curl_request($uri,	$post_field,	0);
 								file_put_contents("/Users/noumantayyab/test.txt",	$response);

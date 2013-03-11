@@ -79,17 +79,17 @@ class	Refine	extends	MY_Controller
 												$line	=	'';
 												foreach($records	as	$value)
 												{
-																$line.= $value->organization	.	',';
-																$line.=	$value->asset_title	.	',';
-																$line.=	$value->description	.	',';
-																$line.= $value->instantiation_identifier	.	',';
-																$line.= $value->instantiation_source	.	',';
-																$line.= $value->generation	.	',';
-																$line.= $value->status	.	',';
-																$line.= $value->nomination_reason	.	',';
-																$line.= $value->media_type	.	',';
-																$line.= $value->language	.	',';
-																$line.=	$value->ins_id	.	'';
+																$line.='"'	.	str_replace('"',	'""',	$value->organization)	.	'",';
+																$line.='"'	.	str_replace('"',	'""',	$value->asset_title)	.	'",';
+																$line.='"'	.	str_replace('"',	'""',	$value->description)	.	'",';
+																$line.='"'	.	str_replace('"',	'""',	$value->instantiation_identifier)	.	'",';
+																$line.='"'	.	str_replace('"',	'""',	$value->instantiation_source)	.	'",';
+																$line.='"'	.	str_replace('"',	'""',	$value->generation)	.	'",';
+																$line.='"'	.	str_replace('"',	'""',	$value->status)	.	'",';
+																$line.='"'	.	str_replace('"',	'""',	$value->nomination_reason)	.	'",';
+																$line.='"'	.	str_replace('"',	'""',	$value->media_type)	.	'",';
+																$line.='"'	.	str_replace('"',	'""',	$value->language)	.	'",';
+																$line.='"'	.	str_replace('"',	'""',	$value->ins_id)	.	'"';
 																$line	.=	"\n";
 												}
 												fputs($fp,	$line);

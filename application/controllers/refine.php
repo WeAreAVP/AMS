@@ -97,7 +97,7 @@ class	Refine	extends	MY_Controller
 												$mem	=	memory_get_usage()	/	1024;
 												$mem	=	$mem	/	1024;
 												$mem	=	$mem	/	1024;
-												$this->myLog($mem	.	' GB');
+//												$this->myLog($mem	.	' GB');
 								}
 								$path	=	$this->config->item('path')	.	"uploads/google_refine/$filename";
 								$data	=	array('export_csv_path'	=>	$path);

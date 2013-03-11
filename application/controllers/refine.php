@@ -62,9 +62,13 @@ class	Refine	extends	MY_Controller
 								$job_id=$this->refine_modal->insert_job($record);
 								$filename	=	'google_refine_'	.	time()	.	'.csv';
 								$fp	=	fopen("uploads/google_refine/$filename",	'a');
-								$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language\n";
+								$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,Ins_id\n";
 								fputs($fp,	$line);
 								fclose($fp);
+//								while($cnt=0){
+//												
+//												
+//								}
 								for($i	=	0;	$i	<	$total_loop;	$i	++	)
 								{
 												$query	=	$query;
@@ -84,6 +88,7 @@ class	Refine	extends	MY_Controller
 																$line.='"'	.	str_replace('"',	'""',	$value->nomination_reason)	.	'"';
 																$line.='"'	.	str_replace('"',	'""',	$value->media_type)	.	'"';
 																$line.='"'	.	str_replace('"',	'""',	$value->langugage)	.	'"';
+																$line.='"'	.	str_replace('"',	'""',	$value->ins_id)	.	'"';
 																$line	.=	"\n";
 												}
 												fputs($fp,	$line);
@@ -96,6 +101,7 @@ class	Refine	extends	MY_Controller
 								$path	=	$this->config->item('path')	.	"uploads/google_refine/$filename";
 								$data=array('export_csv_path'=>$path);
 								$this->refine_modal->update_job($job_id,$data);
+								
 				}
 
 // Location: ./controllers/refine.php

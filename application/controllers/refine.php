@@ -81,15 +81,15 @@ class	Refine	extends	MY_Controller
 												{
 																$line.= $value->organization	.	',';
 																$line.=	$value->asset_title	.	',';
-																$line.=	$value->asset_description	.	',';
+																$line.=	$value->description	.	',';
 																$line.= $value->instantiation_identifier	.	',';
 																$line.= $value->instantiation_source	.	',';
 																$line.= $value->generation	.	',';
 																$line.= $value->status	.	',';
 																$line.= $value->nomination_reason	.	',';
 																$line.= $value->media_type	.	',';
-																$line.= $value->langugage	.	',';
-																$line.=	$value->ins_id	.	'"';
+																$line.= $value->language	.	',';
+																$line.=	$value->ins_id	.	'';
 																$line	.=	"\n";
 												}
 												fputs($fp,	$line);

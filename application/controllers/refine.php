@@ -62,8 +62,6 @@ class	Refine	extends	MY_Controller
 				function	export()
 				{
 
-	error_reporting(E_ALL);
-												ini_set('display_errors',	1);
 								$params	=	array('search'	=>	'');
 								$query	=	$this->refine_modal->export_refine_csv(TRUE);
 								$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query);
@@ -75,14 +73,14 @@ class	Refine	extends	MY_Controller
 								fclose($fp);
 								$db_count	=	0;
 								$offset	=	0;
-								
+
 								while	($db_count	==	0)
 								{
-												
+
 												$query.=' LIMIT '	.	($offset	*	15000)	.	', 15000';
-												
+
 												$records	=	$this->refine_modal->get_csv_records($query);
-												
+
 												$fp	=	fopen("uploads/google_refine/$filename",	'a');
 												$line	=	'';
 												foreach($records	as	$value)
@@ -117,7 +115,7 @@ class	Refine	extends	MY_Controller
 
 				function	remove($project_id)
 				{
-								
+
 								$this->googlerefine->delete_project($project_id);
 								$db_detail	=	$this->refine_modal->get_by_project_id($project_id);
 								if($db_detail)

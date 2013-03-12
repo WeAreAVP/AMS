@@ -24,6 +24,7 @@ class	Records	extends	MY_Controller
 								$this->load->library('pagination');
 								$this->load->library('Ajax_pagination');
 								$this->load->helper('datatable');
+								$this->load->model('refine_modal');
 				}
 
 				/*
@@ -72,7 +73,7 @@ class	Records	extends	MY_Controller
 
 
 								$data['date_types']	=	$this->instantiation->get_date_types();
-
+$data['is_refine']=$this->refine_modal->get_active_refine();
 								$is_hidden	=	array();
 								$data['table_type']	=	'assets';
 								foreach($this->column_order	as	$key	=>	$value)

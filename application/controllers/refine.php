@@ -51,8 +51,8 @@ class	Refine	extends	MY_Controller
 								$data	=	$this->googlerefine->create_project($project_name,	$file_path);
 								if($data)
 								{
-												$data['is_active	']	=	1;
-												$data['project_name	']	=	$filename;
+												$data['is_active']	=	1;
+												$data['project_name']	=	$filename;
 												$this->refine_modal->update_job($job_id,	$data);
 												return	$data['project_url'];
 								}
@@ -117,7 +117,7 @@ class	Refine	extends	MY_Controller
 
 				function	remove($project_id)
 				{
-								echo	$project_id;
+								
 								$this->googlerefine->delete_project($project_id);
 								$db_detail	=	$this->refine_modal->get_by_project_id($project_id);
 								if($db_detail)

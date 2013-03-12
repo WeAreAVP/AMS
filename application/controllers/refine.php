@@ -59,58 +59,64 @@ class	Refine	extends	MY_Controller
 								return	FALSE;
 				}
 
-				function	export()
+				function	export($type)
 				{
-
-								$params	=	array('search'	=>	'');
-								$query	=	$this->refine_modal->export_refine_csv(TRUE);
-								$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query);
-								$job_id	=	$this->refine_modal->insert_job($record);
-								$filename	=	'google_refine_'	.	time()	.	'.csv';
-								$fp	=	fopen("uploads/google_refine/$filename",	'a');
-								$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,__Ins_id\n";
-								fputs($fp,	$line);
-								fclose($fp);
-								$db_count	=	0;
-								$offset	=	0;
-
-								while	($db_count	==	0)
+								if($type	==	'instantiation')
 								{
-
-												$query.=' LIMIT '	.	($offset	*	15000)	.	', 15000';
-
-												$records	=	$this->refine_modal->get_csv_records($query);
-
+												$params	=	array('search'	=>	'');
+												$query	=	$this->refine_modal->export_refine_csv(TRUE);
+												$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query);
+												$job_id	=	$this->refine_modal->insert_job($record);
+												$filename	=	'google_refine_'	.	time()	.	'.csv';
 												$fp	=	fopen("uploads/google_refine/$filename",	'a');
-												$line	=	'';
-												foreach($records	as	$value)
-												{
-																$line.='"'	.	str_replace('"',	'""',	$value->organization)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->asset_title)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->description)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->instantiation_identifier)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->instantiation_source)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->generation)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->status)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->nomination_reason)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->media_type)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->language)	.	'",';
-																$line.='"'	.	str_replace('"',	'""',	$value->ins_id)	.	'"';
-																$line	.=	"\n";
-												}
+												$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,__Ins_id\n";
 												fputs($fp,	$line);
 												fclose($fp);
-												$offset	++;
-												if(count($records)	<	15000)
-																$db_count	++;
-								}
+												$db_count	=	0;
+												$offset	=	0;
 
-								$path	=	$this->config->item('path')	.	"uploads/google_refine/$filename";
-								$data	=	array('export_csv_path'	=>	$path);
-								$this->refine_modal->update_job($job_id,	$data);
-								$project_url	=	$this->create($path,	$filename,	$job_id);
-								echo	json_encode(array('project_url'	=>	$project_url));
-								exit;
+												while	($db_count	==	0)
+												{
+
+																$query.=' LIMIT '	.	($offset	*	15000)	.	', 15000';
+
+																$records	=	$this->refine_modal->get_csv_records($query);
+
+																$fp	=	fopen("uploads/google_refine/$filename",	'a');
+																$line	=	'';
+																foreach($records	as	$value)
+																{
+																				$line.='"'	.	str_replace('"',	'""',	$value->organization)	.	'",';
+																				$line.='"'	.	str_replace('"',	'""',	$value->asset_title)	.	'",';
+																				$line.='"'	.	str_replace('"',	'""',	$value->description)	.	'",';
+																				$line.='"'	.	str_replace('"',	'""',	$value->instantiation_identifier)	.	'",';
+																				$line.='"'	.	str_replace('"',	'""',	$value->instantiation_source)	.	'",';
+																				$line.='"'	.	str_replace('"',	'""',	$value->generation)	.	'",';
+																				$line.='"'	.	str_replace('"',	'""',	$value->status)	.	'",';
+																				$line.='"'	.	str_replace('"',	'""',	$value->nomination_reason)	.	'",';
+																				$line.='"'	.	str_replace('"',	'""',	$value->media_type)	.	'",';
+																				$line.='"'	.	str_replace('"',	'""',	$value->language)	.	'",';
+																				$line.='"'	.	str_replace('"',	'""',	$value->ins_id)	.	'"';
+																				$line	.=	"\n";
+																}
+																fputs($fp,	$line);
+																fclose($fp);
+																$offset	++;
+																if(count($records)	<	15000)
+																				$db_count	++;
+												}
+
+												$path	=	$this->config->item('path')	.	"uploads/google_refine/$filename";
+												$data	=	array('export_csv_path'	=>	$path);
+												$this->refine_modal->update_job($job_id,	$data);
+												$project_url	=	$this->create($path,	$filename,	$job_id);
+												echo	json_encode(array('project_url'	=>	$project_url));
+												exit;
+								}
+								else
+								{
+												
+								}
 				}
 
 				function	remove($project_id)

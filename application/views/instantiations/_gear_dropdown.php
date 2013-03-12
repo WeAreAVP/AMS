@@ -17,29 +17,34 @@ if($table_type	==	'assets'	&&	$current_tab	==	'simple')
 								<?php
 								if($this->role_id	==	1	||	$this->role_id	==	2)
 								{
-												$message='Are you sure you want to refine data.';
-												$type=0;
-												$is_current_user=FALSE;
+												$message	=	'Are you sure you want to refine data.';
+												$type	=	0;
+												$is_current_user	=	FALSE;
+												$record_type	=	($current_tab	==	'')	?	'instantiation'	:	'asset';
+
 												if(count($is_refine)	>	0)
 												{
-																$message=$is_refine->name.' is already editing the records.';
-																$type=1;
-																if($is_refine->user_id==$this->user_id)
-																				$is_current_user=TRUE;
+																$message	=	$is_refine->name	.	' is already editing the records.';
+																$type	=	1;
+																if($is_refine->user_id	==	$this->user_id)
+																				$is_current_user	=	TRUE;
 												}
 												?>
-												<?php if(!$is_current_user){ ?>
-												<a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>','<?php echo $type; ?>');" style="margin-left: 10px;height: 14px;">
-																Refine Data
-												</a>
-								<?php } else { ?>
-												<a id="cancel_refine_data" class="btn"  href="#refine_cancel" role="button" data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
-																Cancel Refining
-												</a>
-								<?php	
+												<?php	if(	!	$is_current_user)
+												{	?>
+																<a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php	echo	$message;	?>','<?php	echo	$type;	?>','<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
+																				Refine Data
+																</a>
+				<?php	}
+				else
+				{	?>
+																<a id="cancel_refine_data" class="btn"  href="#refine_cancel" role="button" data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
+																				Cancel Refining
+																</a>
+																<?php
+												}
 								}
-								
-								}	?>
+								?>
         <ul class="dropdown-menu">
             <li class="dropdown"><a href="#" style="white-space: normal;">Show/Hide Fields <span class="caret custom-caret" style="float: right;"></span></a>
                 <ul class="sub-menu dropdown-menu" id="show_hide_li">

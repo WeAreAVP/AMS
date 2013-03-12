@@ -37,7 +37,9 @@
 
 
 <script type="text/javascript">
-				function refineConfirm(msg,type){
+				var type_record;
+				function refineConfirm(msg,type,record_type){
+								type_record=record_type;
 								$('#refine_body').html(msg);
 								if(type==0){
 												$('#already_refine_footer').hide();
@@ -54,7 +56,7 @@
 								$('#refine_footer').hide();
 								$.ajax({
 												type: 'POST', 
-												url: site_url+'refine/export',
+												url: site_url+'refine/export/'+type_record,
 												dataType: 'json',
 												success: function (result) { 
 																url=result.project_url;

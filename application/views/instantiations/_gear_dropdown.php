@@ -21,7 +21,7 @@ if($table_type	==	'assets'	&&	$current_tab	==	'simple')
 												$type=0;
 												if(count($is_refine)	>	0)
 												{
-																$message=$is_refine->name.' is refining the records.';
+																$message=$is_refine->name.' is already editing the records.';
 																$type=1;
 												}
 												?>

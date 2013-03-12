@@ -9,7 +9,7 @@
     </div>
     <div class="modal-footer" id="refine_footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-        <button class="btn btn-primary"  data-dismiss="modal" onclick="doRefine();">Yes</button>
+        <button class="btn btn-primary" onclick="doRefine();">Yes</button>
     </div>
     <div class="modal-footer" id="already_refine_footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>

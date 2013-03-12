@@ -73,7 +73,7 @@ class	Refine	extends	MY_Controller
 								$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,Ins_id\n";
 								fputs($fp,	$line);
 								fclose($fp);
-								$db_count	=	0;
+								$db_count	=	1;
 								$offset	=	0;
 								while	($db_count	=	0)
 								{
@@ -101,7 +101,7 @@ class	Refine	extends	MY_Controller
 												fclose($fp);
 												$offset	++;
 												if(count($records)	<	15000)
-																$db_count	++;
+																$db_count	=0;
 								}
 
 								$path	=	$this->config->item('path')	.	"uploads/google_refine/$filename";

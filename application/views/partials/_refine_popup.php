@@ -34,7 +34,7 @@
 											
 				}
 				function doRefine(){
-								$('#export_csv_msg').html('<img src="/images/ajax-loader.gif" />Creating AMS Refine Project. It might take some time...');
+								$('#refine_body').html('<img src="/images/ajax-loader.gif" />Creating AMS Refine Project. It might take some time...');
 								$('#refine_footer').hide();
 								return;
 								$.ajax({

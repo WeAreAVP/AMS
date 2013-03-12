@@ -116,7 +116,23 @@ class	Refine	extends	MY_Controller
 								}
 								else
 								{
-												echo $type;exit;
+											$params	=	array('search'	=>	'');
+												$query	=	$this->refine_modal->export_asset_refine_csv(TRUE);	
+												$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query);
+												$job_id	=	$this->refine_modal->insert_job($record);
+												$filename	=	'google_refine_'	.	time()	.	'.csv';
+												$fp	=	fopen("uploads/google_refine/$filename",	'a');
+												$line	=	"Organization,Asset Title,Description,Subject,Subject Source,Subject Ref,Genre,Genre Source,Genre Ref,Creator Name,Creator Affiliation,Creator Source,Creator Ref,";
+												$line .="Contributors Name,Contributors Affiliation,Contributors Source,Contributors Ref,Publisher,Publisher Affiliation,Publisher Ref,Coverage,Coverage Type,";
+												$line .="Audience Level,Audience Level Source,Audience Level Ref,";
+												$line .="Audience Rating,Audience Rating Source,Audience Rating Ref,";
+												$line .="Annotation,Annotation Type,Annotation Ref,";
+												$line .="Rights,Rights Link,Asset Type,Identifier,Identifier Source,Identifier Ref,Asset Date,";
+												$line .="__asset_id\n";
+												fputs($fp,	$line);
+												fclose($fp);
+												$db_count	=	0;
+												$offset	=	0;
 								}
 				}
 

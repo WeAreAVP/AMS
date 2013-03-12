@@ -38,7 +38,7 @@ if($table_type	==	'assets'	&&	$current_tab	==	'simple')
 												</a>
 								<?php	
 								}
-								$this->load->view('partials/_refine_popup');
+								
 								}	?>
         <ul class="dropdown-menu">
             <li class="dropdown"><a href="#" style="white-space: normal;">Show/Hide Fields <span class="caret custom-caret" style="float: right;"></span></a>

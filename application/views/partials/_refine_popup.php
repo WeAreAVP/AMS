@@ -1,24 +1,42 @@
-<div class="modal hide" id="refine_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>AMS Refine</h3>
+<?php	if(	!	$is_current_user)
+{	?>
+				<div class="modal hide" id="refine_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				    <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				        <h3>AMS Refine</h3>
 
-    </div>
-    <div class="modal-body" id="refine_body">
-								Are you sure you want to refine data.
-    </div>
-    <div class="modal-footer" id="refine_footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-        <button class="btn btn-primary" onclick="doRefine();">Yes</button>
-    </div>
-    <div class="modal-footer" id="already_refine_footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>
+				    </div>
+				    <div class="modal-body" id="refine_body">
+												Are you sure you want to refine data.
+				    </div>
+				    <div class="modal-footer" id="refine_footer">
+				        <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+				        <button class="btn btn-primary" onclick="doRefine();">Yes</button>
+				    </div>
+				    <div class="modal-footer" id="already_refine_footer">
+				        <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>
 
-    </div>
-</div>
+				    </div>
+				</div>
+<?php	}
+else
+{	?>
+				<div class="modal hide" id="refine_cancel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				    <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				        <h3>AMS Refine</h3>
 
+				    </div>
+				    <div class="modal-body">
+												Are you sure you want to cancel refining.It will remove all your changes.
+				    </div>
+				    <div class="modal-footer">
+				        <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+				        <a href="<?php	echo	site_url('refine/remove/'	.	$is_refine->project_id);	?>" class="btn btn-primary">Yes</a>
+				    </div>
 
-
+				</div>
+<?php	}	?>
 
 <script type="text/javascript">
 				function refineConfirm(msg,type){

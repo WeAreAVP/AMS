@@ -19,18 +19,25 @@ if($table_type	==	'assets'	&&	$current_tab	==	'simple')
 								{
 												$message='Are you sure you want to refine data.';
 												$type=0;
+												$is_current_user=FALSE;
 												if(count($is_refine)	>	0)
 												{
 																$message=$is_refine->name.' is already editing the records.';
 																$type=1;
+																if($is_refine->user_id==$this->user_id)
+																				$is_current_user=TRUE;
 												}
 												?>
-
-												<a class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>','<?php echo $type; ?>');" style="margin-left: 10px;height: 14px;">
+												<?php if(!$is_current_user){ ?>
+												<a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>','<?php echo $type; ?>');" style="margin-left: 10px;height: 14px;">
 																Refine Data
 												</a>
+								<?php } else { ?>
+												<a id="cancel_refine_data" class="btn"  href="#refine_cancel" role="button" data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
+																Cancel Refining
+												</a>
 								<?php	
-								
+								}
 								$this->load->view('partials/_refine_popup');
 								}	?>
         <ul class="dropdown-menu">

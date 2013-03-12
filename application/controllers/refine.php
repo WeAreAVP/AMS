@@ -63,7 +63,7 @@ class	Refine	extends	MY_Controller
 				{
 								if($type	==	'instantiation')
 								{
-												
+
 												$params	=	array('search'	=>	'');
 												$query	=	$this->refine_modal->export_refine_csv(TRUE);
 												$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query);
@@ -116,23 +116,52 @@ class	Refine	extends	MY_Controller
 								}
 								else
 								{
-											$params	=	array('search'	=>	'');
-												$query	=	$this->refine_modal->export_asset_refine_csv(TRUE);	
+												$params	=	array('search'	=>	'');
+												$query	=	$this->refine_modal->export_asset_refine_csv(TRUE);
 												$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query);
 												$job_id	=	$this->refine_modal->insert_job($record);
 												$filename	=	'google_refine_'	.	time()	.	'.csv';
 												$fp	=	fopen("uploads/google_refine/$filename",	'a');
 												$line	=	"Organization,Asset Title,Description,Subject,Subject Source,Subject Ref,Genre,Genre Source,Genre Ref,Creator Name,Creator Affiliation,Creator Source,Creator Ref,";
-												$line .="Contributors Name,Contributors Affiliation,Contributors Source,Contributors Ref,Publisher,Publisher Affiliation,Publisher Ref,Coverage,Coverage Type,";
-												$line .="Audience Level,Audience Level Source,Audience Level Ref,";
-												$line .="Audience Rating,Audience Rating Source,Audience Rating Ref,";
-												$line .="Annotation,Annotation Type,Annotation Ref,";
-												$line .="Rights,Rights Link,Asset Type,Identifier,Identifier Source,Identifier Ref,Asset Date,";
-												$line .="__asset_id\n";
+												$line	.="Contributors Name,Contributors Affiliation,Contributors Source,Contributors Ref,Publisher,Publisher Affiliation,Publisher Ref,Coverage,Coverage Type,";
+												$line	.="Audience Level,Audience Level Source,Audience Level Ref,";
+												$line	.="Audience Rating,Audience Rating Source,Audience Rating Ref,";
+												$line	.="Annotation,Annotation Type,Annotation Ref,";
+												$line	.="Rights,Rights Link,Asset Type,Identifier,Identifier Source,Identifier Ref,Asset Date,";
+												$line	.="__asset_id\n";
 												fputs($fp,	$line);
 												fclose($fp);
 												$db_count	=	0;
 												$offset	=	0;
+												while	($db_count	==	0)
+												{
+
+																$query.=' LIMIT '	.	($offset	*	15000)	.	', 15000';
+
+																$records	=	$this->refine_modal->get_csv_records($query);
+
+																$fp	=	fopen("uploads/google_refine/$filename",	'a');
+																$line	=	'';
+																foreach($records	as	$value)
+																{
+																				foreach($value as $column){
+																									$line.='"'	.	str_replace('"',	'""',	$column)	.	'",';
+																				}
+																				$line	.=	"\n";
+																}
+																fputs($fp,	$line);
+																fclose($fp);
+																$offset	++;
+																if(count($records)	<	15000)
+																				$db_count	++;
+												}
+
+												$path	=	$this->config->item('path')	.	"uploads/google_refine/$filename";
+												$data	=	array('export_csv_path'	=>	$path);
+												$this->refine_modal->update_job($job_id,	$data);
+												$project_url	=	$this->create($path,	$filename,	$job_id);
+												echo	json_encode(array('project_url'	=>	$project_url));
+												exit;
 								}
 				}
 

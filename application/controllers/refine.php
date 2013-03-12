@@ -118,6 +118,7 @@ class	Refine	extends	MY_Controller
 								{
 												$params	=	array('search'	=>	'');
 												$query	=	$this->refine_modal->export_asset_refine_csv(TRUE);
+												echo $query;exit;
 												$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query);
 												$job_id	=	$this->refine_modal->insert_job($record);
 												$filename	=	'google_refine_'	.	time()	.	'.csv';

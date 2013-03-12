@@ -321,7 +321,7 @@ class	Refine_modal	extends	CI_Model
 								$this->db->select("coverages.coverage,coverages.coverage_type",	FALSE);
 								$this->db->select("audience_levels.audience_level,audience_levels.audience_level_source,audience_levels.audience_level_ref",	FALSE);
 								$this->db->select("audience_ratings.audience_rating,audience_ratings.audience_rating_source,audience_ratings.audience_rating_ref",	FALSE);
-								$this->db->select("annotatios.annotation,annotations.annotation_type,annotations.annotation_ref",	FALSE);
+								$this->db->select("annotations.annotation,annotations.annotation_type,annotations.annotation_ref",	FALSE);
 								$this->db->select("rights_summaries.rights,rights_summaries.rights_link",	FALSE);
 								$this->db->select("asset_types.asset_type",	FALSE);
 								$this->db->select("identifiers.identifier,identifiers.identifier_source,identifiers.identifier_ref",	FALSE);

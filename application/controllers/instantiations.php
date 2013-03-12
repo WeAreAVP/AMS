@@ -92,7 +92,7 @@ class	Instantiations	extends	MY_Controller
 
 
 								$data['date_types']	=	$this->instantiation->get_date_types();
-
+								
 
 
 								$data['current_tab']	=	'';

@@ -43,25 +43,36 @@ class	Refine_modal	extends	CI_Model
 								$this->db->insert('google_refine',	$data);
 								return	$this->db->insert_id();
 				}
-					function	update_job($job_id,	$data)
+
+				function	update_job($job_id,	$data)
 				{
 								$data['updated_at']	=	date('Y-m-d H:i:s');
 								$this->db->where('id',	$job_id);
 								return	$this->db->update('google_refine',	$data);
 				}
-				function get_by_project_id($project_id){
+
+				function	get_by_project_id($project_id)
+				{
 								$this->db->where('project_id',	$project_id);
-								return $this->db->get('google_refine')->row();
+								return	$this->db->get('google_refine')->row();
 				}
+
 				function	get_csv_records($query)
 				{
-								return $this->db->query($query)->result();
-								
+								return	$this->db->query($query)->result();
 				}
-				
+
+				function	get_active_refine()
+				{
+								$this->db->select('CONCAT(user_profile.first_name," ", user_profile.last_name) name');
+								$this->db->where('google_refine.is_active',	1);
+								$this->db->join('user_profile',	'user_profile.user_id=google_refine.user_id');
+								return	$this->db->get('google_refine')->row();
+				}
+
 				function	export_refine_csv($real_time	=	FALSE)
 				{
-								
+
 								$this->db->select("$this->stations.station_name as organization",	FALSE);
 								$this->db->select("$this->asset_titles.title as asset_title",	FALSE);
 								$this->db->select("asset_descriptions.description",	FALSE);
@@ -73,8 +84,8 @@ class	Refine_modal	extends	CI_Model
 								$this->db->select("$this->table_instantiation_media_types.media_type",	FALSE);
 								$this->db->select("$this->table_instantiations.language",	FALSE);
 								$this->db->select("$this->table_instantiations.id AS ins_id",	FALSE);
-								
-								
+
+
 
 								$this->db->join($this->_assets_table,	"$this->_assets_table.id = $this->table_instantiations.assets_id",	'left');
 								$this->db->join("identifiers AS local",	"$this->_assets_table.id = local.assets_id AND local.identifier_source!='http://americanarchiveinventory.org'",	'left');

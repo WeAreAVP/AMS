@@ -61,15 +61,15 @@ class	Refine	extends	MY_Controller
 
 				function	export()
 				{
-								
-								
-								$params	=	array('search'				=>	'');
+
+
+								$params	=	array('search'	=>	'');
 								$query	=	$this->refine_modal->export_refine_csv(TRUE);
 								$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query);
 								$job_id	=	$this->refine_modal->insert_job($record);
 								$filename	=	'google_refine_'	.	time()	.	'.csv';
 								$fp	=	fopen("uploads/google_refine/$filename",	'a');
-								$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,_Ins_id\n";
+								$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,__Ins_id\n";
 								fputs($fp,	$line);
 								fclose($fp);
 								$db_count	=	0;
@@ -106,18 +106,14 @@ class	Refine	extends	MY_Controller
 								$path	=	$this->config->item('path')	.	"uploads/google_refine/$filename";
 								$data	=	array('export_csv_path'	=>	$path);
 								$this->refine_modal->update_job($job_id,	$data);
-								echo $path;exit;
 								$project_url	=	$this->create($path,	$filename,	$job_id);
-								if($project_url)
-								{
-												echo	$project_url;
-								}
+								echo	json_encode(array('project_url'	=>	$project_url));
 								exit;
 				}
 
 				function	remove($project_id)
 				{
-								echo $project_id;
+								echo	$project_id;
 								$this->googlerefine->delete_project($project_id);
 								$db_detail	=	$this->refine_modal->get_by_project_id($project_id);
 								if($db_detail)
@@ -125,11 +121,12 @@ class	Refine	extends	MY_Controller
 												$data	=	array('is_active'	=>	0);
 												$this->refine_modal->update_job($db_detail->id,	$data);
 								}
-								
-								redirect('records');
 
+								redirect('records');
 				}
-				function save(){
+
+				function	save()
+				{
 								
 				}
 

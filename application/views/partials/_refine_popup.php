@@ -34,18 +34,15 @@
 											
 				}
 				function doRefine(){
-								$('#refine_body').html('<img src="/images/ajax-loader.gif" />Creating AMS Refine Project. It might take some time...');
+								$('#refine_body').html('<img src="/images/ajax-loader.gif" style="margin-right: 15px;" />Creating AMS Refine Project. It might take some time...');
 								$('#refine_footer').hide();
-								return;
 								$.ajax({
 												type: 'POST', 
-												url: site_url+'instantiations/export_csv',
+												url: site_url+'refine/export',
 												dataType: 'json',
 												success: function (result) { 
-																if(result.link=='true')
-																				$('#export_csv_msg').html('<a href="'+result.msg+'">Download</a>');
-																else
-																				$('#export_csv_msg').html(result.msg);
+																url=result.project_url;
+																window.location.replace(url);
 																																																																																								                                        
 												}
 								});

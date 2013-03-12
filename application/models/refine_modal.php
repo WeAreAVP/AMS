@@ -316,7 +316,7 @@ class	Refine_modal	extends	CI_Model
 								$this->db->select("subjects.subject,subjects.subject_source,subjects.subject_ref",	FALSE);
 								$this->db->select("genres.genre,genres.genre_source,genres.genre_ref",	FALSE);
 								$this->db->select("creators.creator_name,creators.creator_affiliation,creators.creator_source,creators.creator_ref",	FALSE);
-								$this->db->select("contributors.contributors_name,contributors.contributors_affiliation,contributors.contributors_source,contributors.contributors_ref",	FALSE);
+								$this->db->select("contributors.contributor_name,contributors.contributor_affiliation,contributors.contributor_source,contributors.contributor_ref",	FALSE);
 								$this->db->select("publishers.publisher,publishers.publisher_affiliation,publishers.publisher_ref",	FALSE);
 								$this->db->select("coverages.coverage,coverages.coverage_type",	FALSE);
 								$this->db->select("audience_levels.audience_level,audience_levels.audience_level_source,audience_levels.audience_level_ref",	FALSE);

@@ -61,8 +61,8 @@ class	Refine	extends	MY_Controller
 
 				function	export()
 				{
-								$user=$this->refine_modal->get_active_refine();
-								debug($user);
+								
+								
 								$params	=	array('search'				=>	'');
 								$query	=	$this->refine_modal->export_refine_csv(TRUE);
 								$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query);

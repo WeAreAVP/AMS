@@ -47,6 +47,7 @@ class	Instantiations	extends	MY_Controller
 								$this->load->library('Ajax_pagination');
 								$this->load->library('memcached_library');
 								$this->load->helper('datatable');
+								$this->load->model('refine_modal');
 				}
 
 				/**
@@ -92,7 +93,7 @@ class	Instantiations	extends	MY_Controller
 
 
 								$data['date_types']	=	$this->instantiation->get_date_types();
-								
+								$data['is_refine']=$this->refine_modal->get_active_refine();
 
 
 								$data['current_tab']	=	'';

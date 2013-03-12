@@ -17,8 +17,16 @@ if($table_type	==	'assets'	&&	$current_tab	==	'simple')
 								<?php
 								if($this->role_id	==	1	||	$this->role_id	==	2)
 								{
+												$message='Are you sure you want to refine data.';
+												$type=0;
+												if(count($is_refine)	>	0)
+												{
+																$message=$is_refine->name.' is refining the records.';
+																$type=1;
+												}
 												?>
-												<a class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
+
+												<a class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>','<?php echo $type; ?>');" style="margin-left: 10px;height: 14px;">
 																Refine Data
 												</a>
 								<?php	}	?>

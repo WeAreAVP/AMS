@@ -7,9 +7,13 @@
     <div class="modal-body" id="refine_body">
 							Are you sure you want to refine data.
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer" id="refine_footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
         <button class="btn btn-primary"  data-dismiss="modal" onclick="sentEmail();">Yes</button>
+    </div>
+    <div class="modal-footer" id="already_refine_footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>
+        
     </div>
 </div>
 
@@ -17,5 +21,16 @@
 
 
 <script type="text/javascript">
-   
+   function refineConfirm(msg,type){
+							$('#refine_body').html(msg);
+							if(type==0){
+											$('#already_refine_footer').hide();
+											$('#refine_footer').show();
+							}
+							else{
+												$('#refine_footer').hide();
+											$('#already_refine_footer').show();
+							}
+											
+			}
 </script>

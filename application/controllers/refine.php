@@ -69,7 +69,7 @@ class	Refine	extends	MY_Controller
 								$job_id	=	$this->refine_modal->insert_job($record);
 								$filename	=	'google_refine_'	.	time()	.	'.csv';
 								$fp	=	fopen("uploads/google_refine/$filename",	'a');
-								$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,__Ins_id\n";
+								$line	=	"Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,Ins_id\n";
 								fputs($fp,	$line);
 								fclose($fp);
 								$db_count	=	0;

@@ -1,5 +1,4 @@
-<?php	if(	!	$is_current_user)
-{	?>
+
 				<div class="modal hide" id="refine_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				    <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -18,9 +17,8 @@
 
 				    </div>
 				</div>
-<?php	}
-else
-{	?>
+
+
 				<div class="modal hide" id="refine_cancel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				    <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -36,7 +34,7 @@ else
 				    </div>
 
 				</div>
-<?php	}	?>
+
 
 <script type="text/javascript">
 				function refineConfirm(msg,type){

@@ -367,6 +367,10 @@ class	Refine_modal	extends	CI_Model
 								$this->db->join('assets_asset_types',	"assets_asset_types.assets_id = assets.id",	'left');
 								$this->db->join('asset_types',	"asset_types.id = assets_asset_types.asset_types_id",	'left');
 								$this->db->join('asset_dates',	"asset_dates.assets_id = assets.id",	'left');
+								$this->db->join('assets_audience_levels',	"assets_audience_levels.assets_id = assets.id",	'left');
+								$this->db->join('audience_levels',	"audience_levels.id = assets_audience_levels.audience_levels_id",	'left');
+								$this->db->join('assets_audience_ratings',	"assets_audience_ratings.assets_id = assets.id",	'left');
+								$this->db->join('audience_ratings',	"audience_ratings.id = assets_audience_ratings.audience_ratings_id",	'left');
 								$this->db->join($this->asset_titles,	"$this->asset_titles.assets_id	 = $this->table_instantiations.assets_id",	'left');
 								$this->db->join($this->stations,	"$this->stations.id = $this->_assets_table.stations_id",	'left');
 								$this->db->join($this->table_instantiation_dates,	"$this->table_instantiation_dates.instantiations_id = $this->table_instantiations.id",	'left');

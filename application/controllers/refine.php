@@ -63,6 +63,7 @@ class	Refine	extends	MY_Controller
 				{
 								if($type	==	'instantiation')
 								{
+												
 												$params	=	array('search'	=>	'');
 												$query	=	$this->refine_modal->export_refine_csv(TRUE);
 												$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query);

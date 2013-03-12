@@ -80,7 +80,6 @@ class	Refine	extends	MY_Controller
 								{
 												
 												$query.=' LIMIT '	.	($offset	*	15000)	.	', 15000';
-												echo $query;exit;
 												$records	=	$this->refine_modal->get_csv_records($query);
 												$fp	=	fopen("uploads/google_refine/$filename",	'a');
 												$line	=	'';

@@ -62,7 +62,8 @@ class	Refine	extends	MY_Controller
 				function	export()
 				{
 
-
+	error_reporting(E_ALL);
+												ini_set('display_errors',	1);
 								$params	=	array('search'	=>	'');
 								$query	=	$this->refine_modal->export_refine_csv(TRUE);
 								$record	=	array('user_id'						=>	$this->user_id,	'is_active'				=>	0,	'export_query'	=>	$query);
@@ -106,6 +107,8 @@ class	Refine	extends	MY_Controller
 								$path	=	$this->config->item('path')	.	"uploads/google_refine/$filename";
 								$data	=	array('export_csv_path'	=>	$path);
 								$this->refine_modal->update_job($job_id,	$data);
+								echo $path;
+								exit;
 								$project_url	=	$this->create($path,	$filename,	$job_id);
 								echo	json_encode(array('project_url'	=>	$project_url));
 								exit;

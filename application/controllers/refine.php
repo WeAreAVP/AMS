@@ -75,7 +75,7 @@ class	Refine	extends	MY_Controller
 								fclose($fp);
 								$db_count	=	1;
 								$offset	=	0;
-								while	($db_count	=	0)
+								while	($db_count	==	0)
 								{
 												
 												$query.='LIMIT '	.	($offset	*	15000)	.	', 15000';

@@ -29,7 +29,10 @@ if($table_type	==	'assets'	&&	$current_tab	==	'simple')
 												<a class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>','<?php echo $type; ?>');" style="margin-left: 10px;height: 14px;">
 																Refine Data
 												</a>
-								<?php	}	?>
+								<?php	
+								
+								$this->load->view('partials/_refine_popup');
+								}	?>
         <ul class="dropdown-menu">
             <li class="dropdown"><a href="#" style="white-space: normal;">Show/Hide Fields <span class="caret custom-caret" style="float: right;"></span></a>
                 <ul class="sub-menu dropdown-menu" id="show_hide_li">

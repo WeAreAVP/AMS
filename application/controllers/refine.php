@@ -116,7 +116,7 @@ class	Refine	extends	MY_Controller
 								}
 								else
 								{
-												
+												echo $type;exit;
 								}
 				}
 

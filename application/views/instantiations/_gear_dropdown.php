@@ -32,15 +32,15 @@ if($table_type	==	'assets'	&&	$current_tab	==	'simple')
 												?>
 												<?php	if(	!	$is_current_user)
 												{	?>
-<!--																<a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php	echo	$message;	?>','<?php	echo	$type;	?>','<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
+																<a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php	echo	$message;	?>','<?php	echo	$type;	?>','<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
 																				Refine Data
-																</a>-->
+																</a>
 				<?php	}
 				else
 				{	?>
-<!--																<a id="cancel_refine_data" class="btn"  href="#refine_cancel" role="button" data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
+																<a id="cancel_refine_data" class="btn"  href="#refine_cancel" role="button" data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
 																				Cancel Refining
-																</a>-->
+																</a>
 																<?php
 												}
 								}

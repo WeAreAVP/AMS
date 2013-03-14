@@ -103,7 +103,7 @@ class	Sphinx_Model	extends	CI_Model
 
 
 								$execution_time	=	$res['time'];
-								
+
 								if($res)
 								{
 												$total_record	=	$res['total_found'];
@@ -216,7 +216,45 @@ class	Sphinx_Model	extends	CI_Model
 												$where	=	" @format_type \"digital\"";
 								}
 
-
+								if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
+								{
+												$keyword_json	=	$this->session->userdata['custom_search'];
+												foreach($keyword_json	as	$index	=>	$key_columns)
+												{
+																$count	=	0;
+																foreach($key_columns	as	$keys	=>	$keywords)
+																{
+																				$keyword	=	trim($keywords->value);
+																				if($index	==	'all')
+																				{
+																								$colums	=	array(
+																								'asset_title',	'guid_identifier',	'asset_subject',	'asset_coverage',	'asset_genre',	'asset_publisher_name',	'asset_description',	'asset_creator_name',
+																								'asset_creator_affiliation',	'asset_contributor_name',	'asset_contributor_affiliation',	'asset_rights',	'asset_annotation',
+																								'instantiation_identifier',	'instantiation_source',	'unit_of_measure',
+																								'standard',	'location',	'file_size',	'actual_duration',	'track_data_rate',	'tracks',	'channel_configuration',	'track_language',	'alternative_modes',
+																								'ins_annotation',	'ins_annotation_type',	'track_essence_track_type',	'track_encoding',	'track_standard',	'track_frame_rate',
+																								'track_playback_speed',	'track_sampling_rate',	'track_bit_depth',	'track_width',	'track_aspect_ratio',
+																								);
+																								if($count	==	0)
+																								{
+																												$where	.=" \"$keyword\"";
+																								}
+																								else
+																								{
+																												$where	.=" | \"$keyword\"";
+																								}
+																				}
+																				else
+																				{
+																								if($count	==	0)
+																												$where	.="@$index \"$keyword\"";
+																								else
+																												$where	.=" | \"$keyword\"";
+																				}
+																				$count	++;
+																}
+												}
+								}
 								if(isset($this->session->userdata['organization'])	&&	$this->session->userdata['organization']	!=	'')
 								{
 												$station_name	=	str_replace('|||',	'" | "',	trim($this->session->userdata['organization']));
@@ -262,39 +300,13 @@ class	Sphinx_Model	extends	CI_Model
 												$where	.=' @event_type "migration" @event_outcome "FAIL"';
 								}
 
-								if(isset($this->session->userdata['custom_search'])	&&	$this->session->userdata['custom_search']	!=	'')
-								{
-												$keyword_json	=	$this->session->userdata['custom_search'];
-												foreach($keyword_json	as	$index	=>	$key_columns)
-												{
-																$count	=	0;
-																foreach($key_columns	as	$keys	=>	$keywords)
-																{
-																				$keyword	=	trim($keywords->value);
-																				if($index	==	'all')
-																				{
-																								if($count	==	0)
-																												$where	.=" \"$keyword\"";
-																								else
-																												$where	.=" | \"$keyword\"";
-																				}
-																				else
-																				{
-																								if($count	==	0)
-																												$where	.="@$index \"$keyword\"";
-																								else
-																												$where	.=" | \"$keyword\"";
-																				}
-																				$count	++;
-																}
-												}
-								}
+								
 								if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
 								{
 												$keyword_json	=	$this->session->userdata['date_range'];
 												foreach($keyword_json	as	$index	=>	$key_columns)
 												{
-																
+
 																foreach($key_columns	as	$keys	=>	$keywords)
 																{
 
@@ -314,12 +326,9 @@ class	Sphinx_Model	extends	CI_Model
 																								{
 																												$where	.=" @date_type \"$index\"";
 																								}
-																							
 																				}
 																}
 												}
-
-												
 								}
 
 								if($this->is_station_user)

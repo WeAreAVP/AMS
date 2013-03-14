@@ -75,13 +75,16 @@ class	Crons	extends	CI_Controller
 								$job	=	$this->csv_job->get_incomplete_jobs();
 								if(count($job)	>	0)
 								{
+													$this->myLog('CSV Job Started.');
 												$filename	=	'csv_export_'	.	time()	.	'.csv';
 												$fp	=	fopen("uploads/$filename",	'a');
 												$line	=	"GUID,Unique ID,Title,Format,Duration,Priority\n";
 												fputs($fp,	$line);
 												fclose($fp);
+												$this->myLog('Header File Saved.');
 												for($i	=	0;	$i	<	$job->query_loop;	$i	++	)
 												{
+																$this->myLog('Query Loop.'.$i);
 																$query	=	$job->export_query;
 																$query.='LIMIT '	.	($i	*	15000)	.	', 15000';
 																$records	=	$this->csv_job->get_csv_records($query);

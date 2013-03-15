@@ -82,11 +82,11 @@ class	Crons	extends	CI_Controller
 												fputs($fp,	$line);
 												fclose($fp);
 												$this->myLog('Header File Saved.');
-												for($i	=	0;	$i	<	$job->query_loop;	$i	++	)
-												{
-																$this->myLog('Query Loop '.$i);
+//												for($i	=	0;	$i	<	$job->query_loop;	$i	++	)
+//												{
+//																$this->myLog('Query Loop '.$i);
 																$query	=	$job->export_query;
-																$query.=' LIMIT '	.	($i	*	15000)	.	', 15000';
+//																$query.=' LIMIT '	.	($i	*	15000)	.	', 15000';
 																
 																$records	=	$this->csv_job->get_csv_records($query);
 															
@@ -108,7 +108,7 @@ class	Crons	extends	CI_Controller
 																$mem	=	$mem	/	1024;
 																$mem	=	$mem	/	1024;
 																$this->myLog($mem	.	' GB');
-												}
+//												}
 												$url	=	site_url()	.	"uploads/$filename";
 												$this->csv_job->update_job($job->id,	array('status'	=>	'1'));
 												$user	=	$this->users->get_user_by_id($job->user_id)->row();

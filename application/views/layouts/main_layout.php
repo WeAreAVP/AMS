@@ -25,7 +25,7 @@
 								echo	link_js('ColReorder.js');
 								echo	link_js('ColVis.js');
 								echo	link_js('dataTables.scroller.js');
-									
+
 								echo	link_js('date.js');
 								echo	link_js('daterangepicker.jQuery.js');
 								echo	link_tag("css/ui.daterangepicker.css");
@@ -35,7 +35,7 @@
 								echo	link_tag("css/ColReorder.css");
 								echo	link_tag("css/ColVis.css");
 								echo	link_tag("css/dataTables.scroller.css");
-								
+
 								echo	link_tag("css/bootstrap/bootstrap.css");
 								echo	link_tag("css/style.css");
 								?> 
@@ -48,7 +48,7 @@
 																?>
 																<div class="custom-nav">
 																				<div style="margin: 0 auto;width: 960px;background: none;border: none;" id="top_setting_nav">
-																									<div class="dropdown pull-right" style="margin-left:5px;margin-right:17px;">
+																								<div class="dropdown pull-right" style="margin-left:5px;margin-right:17px;">
 																												<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog icon-white"></i></a>
 																												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="right:-15px;top:18px;min-width: auto;">
 																																<li><a href="<?php	echo	site_url('settings/index')	?>">Settings</a> </li>
@@ -57,19 +57,19 @@
 																								</div>
 																								<div  class="pull-right" id="msg_text_link">
 																												<?php
-																												if(isset($this->total_unread)	&&	$this->total_unread	>	0	&&	($this->is_station_user || $this->session->userdata['DX_email']	===	$this->config->item('crawford_email')))
+																												if(isset($this->total_unread)	&&	$this->total_unread	>	0	&&	($this->is_station_user	||	$this->session->userdata['DX_email']	===	$this->config->item('crawford_email')))
 																												{
 																																?>
-																												<a class="message_box" href="<?php	echo	site_url('messages/inbox')	?>"><i class="icon-envelope icon-white"></i><span class="badge label-important message-alert"><?php	echo	$this->total_unread	?></span></a>
+																																<a class="message_box" href="<?php	echo	site_url('messages/inbox')	?>"><i class="icon-envelope icon-white"></i><span class="badge label-important message-alert"><?php	echo	$this->total_unread	?></span></a>
 																																<?php
 																												}
 																												else
 																												{
 																																?>
-																												<a class="message_box" href="<?php	echo	site_url('messages/inbox')	?>"><i class="icon-envelope icon-white"></i></a>
+																																<a class="message_box" href="<?php	echo	site_url('messages/inbox')	?>"><i class="icon-envelope icon-white"></i></a>
 																												<?php	}	?>
 																								</div>
-																							
+
 
 																				</div>
 																</div>
@@ -123,7 +123,7 @@
 																				?>
 																				<ul class="nav nav-tabs">
 																								<?php
-																								if($this->can_compose_alert || $this->role_id==20)
+																								if($this->can_compose_alert	||	$this->role_id	==	20)
 																								{
 																												?>
 																												<li class="<?php	echo	active_anchor('templatemanager',	array('add',	'lists',	'edit',	'details',	'readmessage'));	?>"><a href="<?php	echo	site_url('templatemanager/lists');	?>" >Email Template</a></li>
@@ -158,14 +158,22 @@
         <div class="modal hide" id="myGeneral" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div id="myGeneral_body" > </div>
         </div>
-							
-								
+
+
 								<script type="text/javascript"> 
 												$(document).ready(function() {
 																$('#myGeneral').on('hidden', function () {
 																				$('#myGeneral_body').html(''); 
 																})
-                document.addEventListener("touchstart",function(){},true);
+																if($.browser.msie){
+																				if($.browser.version!='7.0' || $.browser.version!='8.0'){
+																								document.addEventListener("touchstart",function(){},true);
+																				}
+																}
+																else{
+																				document.addEventListener("touchstart",function(){},true);
+																}
+                
 																var dates = $( "#start_date, #end_date" ).datepicker({
 																				defaultDate: "+1w",
 																				changeMonth: true,

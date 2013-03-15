@@ -111,6 +111,8 @@ class	Crons	extends	CI_Controller
 																$mem	=	$mem	/	1024;
 																$mem	=	$mem	/	1024;
 																$this->myLog($mem	.	' GB');
+																$this->myLog('Sleeping for 5 seconds');
+																sleep(5);
 												}
 												$url	=	site_url()	.	"uploads/$filename";
 												$this->csv_job->update_job($job->id,	array('status'	=>	'1'));

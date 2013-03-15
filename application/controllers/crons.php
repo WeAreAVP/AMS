@@ -89,7 +89,7 @@ class	Crons	extends	CI_Controller
 												{
 																$this->myLog('Query Loop '.$i);
 																$query	=	$job->export_query;
-																$query.=' LIMIT '	.	($i	*	360000)	.	', 360000';
+																$query.=' LIMIT '	.	($i	*	100000)	.	', 100000';
 																
 																$records	=	$this->csv_job->get_csv_records($query);
 															

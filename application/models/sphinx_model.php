@@ -255,6 +255,35 @@ class	Sphinx_Model	extends	CI_Model
 																}
 												}
 								}
+								if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
+								{
+												$keyword_json	=	$this->session->userdata['date_range'];
+												foreach($keyword_json	as	$index	=>	$key_columns)
+												{
+
+																foreach($key_columns	as	$keys	=>	$keywords)
+																{
+
+																				$date_range	=	explode("to",	$keywords->value);
+																				if(isset($date_range[0])	&&	trim($date_range[0])	!=	'')
+																				{
+																								$start_date	=	strtotime(trim($date_range[0]));
+																				}
+																				if(isset($date_range[1])	&&	trim($date_range[1])	!=	'')
+																				{
+																								$end_date	=	strtotime(trim($date_range[1]));
+																				}
+																				if($start_date	!=	''	&&	is_numeric($start_date)	&&	isset($end_date)	&&	is_numeric($end_date)	&&	$end_date	>=	$start_date)
+																				{
+																								$this->sphinxsearch->set_filter_range("dates",	$start_date,	$end_date);
+																								if($index	!=	'All')
+																								{
+																												$where	.=" @date_type \"$index\"";
+																								}
+																				}
+																}
+												}
+								}
 								if(isset($this->session->userdata['organization'])	&&	$this->session->userdata['organization']	!=	'')
 								{
 												$station_name	=	str_replace('|||',	'" | "',	trim($this->session->userdata['organization']));
@@ -299,38 +328,6 @@ class	Sphinx_Model	extends	CI_Model
 								{
 												$where	.=' @event_type "migration" @event_outcome "FAIL"';
 								}
-
-								
-								if(isset($this->session->userdata['date_range'])	&&	$this->session->userdata['date_range']	!=	'')
-								{
-												$keyword_json	=	$this->session->userdata['date_range'];
-												foreach($keyword_json	as	$index	=>	$key_columns)
-												{
-
-																foreach($key_columns	as	$keys	=>	$keywords)
-																{
-
-																				$date_range	=	explode("to",	$keywords->value);
-																				if(isset($date_range[0])	&&	trim($date_range[0])	!=	'')
-																				{
-																								$start_date	=	strtotime(trim($date_range[0]));
-																				}
-																				if(isset($date_range[1])	&&	trim($date_range[1])	!=	'')
-																				{
-																								$end_date	=	strtotime(trim($date_range[1]));
-																				}
-																				if($start_date	!=	''	&&	is_numeric($start_date)	&&	isset($end_date)	&&	is_numeric($end_date)	&&	$end_date	>=	$start_date)
-																				{
-																								$this->sphinxsearch->set_filter_range("dates",	$start_date,	$end_date);
-																								if($index	!=	'All')
-																								{
-																												$where	.=" @date_type \"$index\"";
-																								}
-																				}
-																}
-												}
-								}
-
 								if($this->is_station_user)
 								{
 

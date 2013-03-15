@@ -345,7 +345,7 @@ class	Stations	extends	MY_Controller
 																				unset($station_detail);
 
 																				$station_user	=	array(
-																				'role_id'						=>	4,
+																				'role_id'						=>	3,
 																				'station_id'			=>	$station_id,
 																				'is_secondary'	=>	(strtolower($row[20])	==	'yes')	?	0	:	1
 																				);

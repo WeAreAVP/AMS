@@ -48,6 +48,7 @@ class	Instantiations	extends	MY_Controller
 								$this->load->library('memcached_library');
 								$this->load->helper('datatable');
 								$this->load->model('refine_modal');
+								$this->load->model('cron_model');
 				}
 
 				/**
@@ -60,7 +61,7 @@ class	Instantiations	extends	MY_Controller
 								$offset	=	($this->uri->segment(3))	?	$this->uri->segment(3)	:	0;
 								$this->session->set_userdata('offset',	$offset);
 								$params	=	array('search'	=>	'');
-								
+
 								if(isAjax())
 								{
 												$this->unset_facet_search();
@@ -87,13 +88,13 @@ class	Instantiations	extends	MY_Controller
 
 												$this->set_facet_search($search);
 								}
-								
+
 								$this->session->set_userdata('page_link',	'instantiations/index/'	.	$offset);
 								$data['get_column_name']	=	$this->make_array();
 
 
 								$data['date_types']	=	$this->instantiation->get_date_types();
-								$data['is_refine']=$this->refine_modal->get_active_refine();
+								$data['is_refine']	=	$this->refine_modal->get_active_refine();
 
 
 								$data['current_tab']	=	'';
@@ -355,6 +356,7 @@ class	Instantiations	extends	MY_Controller
 												$gen_array	=	implode('|',	$generation);
 								}
 								$this->instantiation->update_instantiations($ins_id,	array('instantiation_media_type_id'	=>	$media_type_id,	'language'																				=>	$language));
+								$this->cron_model->update_rotate_indexes(2,	array('status'	=>	0));
 								redirect('instantiations/detail/'	.	$ins_id);
 				}
 
@@ -524,19 +526,19 @@ class	Instantiations	extends	MY_Controller
 																{
 																				$key_name	=	'ins';
 																}
-																$data['org_states']	=	json_decode($this->memcached_library->get($key_name	.	'_state'),TRUE);
-																
-																$data['stations']	=	json_decode($this->memcached_library->get($key_name	.	'_stations'),TRUE);
-																
-																$data['nomination_status']	=	json_decode($this->memcached_library->get($key_name	.	'_status'),TRUE);
-																$data['media_types']	=	json_decode($this->memcached_library->get($key_name	.	'_media_type'),TRUE);
-																$data['physical_formats']	=	json_decode($this->memcached_library->get($key_name	.	'_physical'),TRUE);
-																$data['digital_formats']	=	json_decode($this->memcached_library->get($key_name	.	'_digital'),TRUE);
-																$data['generations']	=	json_decode($this->memcached_library->get($key_name	.	'_generations'),TRUE);
-															
-																
-																$data['digitized']	=	json_decode($this->memcached_library->get($key_name	.	'_digitized'),TRUE);
-																$data['migration']	=	json_decode($this->memcached_library->get($key_name	.	'_migration'),TRUE);
+																$data['org_states']	=	json_decode($this->memcached_library->get($key_name	.	'_state'),	TRUE);
+
+																$data['stations']	=	json_decode($this->memcached_library->get($key_name	.	'_stations'),	TRUE);
+
+																$data['nomination_status']	=	json_decode($this->memcached_library->get($key_name	.	'_status'),	TRUE);
+																$data['media_types']	=	json_decode($this->memcached_library->get($key_name	.	'_media_type'),	TRUE);
+																$data['physical_formats']	=	json_decode($this->memcached_library->get($key_name	.	'_physical'),	TRUE);
+																$data['digital_formats']	=	json_decode($this->memcached_library->get($key_name	.	'_digital'),	TRUE);
+																$data['generations']	=	json_decode($this->memcached_library->get($key_name	.	'_generations'),	TRUE);
+
+
+																$data['digitized']	=	json_decode($this->memcached_library->get($key_name	.	'_digitized'),	TRUE);
+																$data['migration']	=	json_decode($this->memcached_library->get($key_name	.	'_migration'),	TRUE);
 												}
 
 												echo	$this->load->view('instantiations/_facet_columns',	$data,	TRUE);
@@ -544,8 +546,6 @@ class	Instantiations	extends	MY_Controller
 								}
 								show_404();
 				}
-
-				
 
 }
 

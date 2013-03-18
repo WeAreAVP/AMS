@@ -207,6 +207,7 @@ class Refine extends MY_Controller
     function update_instantiations($csv_path)
     {
         $records = file($csv_path);
+        echo $csv_path;exit;
         foreach ($records as $index => $line)
         {
             if ($index != 0)

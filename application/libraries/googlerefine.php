@@ -69,7 +69,7 @@ class Googlerefine
         return implode('&', $params);
     }
 
-    function export_rows($project_name, $project_id, $format = 'csv')
+    function export_rows($project_name, $project_id, $format = 'tsv')
     {
 
 

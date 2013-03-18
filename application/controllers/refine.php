@@ -187,7 +187,7 @@ class Refine extends MY_Controller
         if ($project_detail)
         {
             $response = $this->googlerefine->export_rows($project_detail->project_name, $project_id);
-            $filename = 'google_refined_data_' . time() . '.csv';
+            $filename = 'google_refined_data_' . time() . '.txt';
             $path = $this->config->item('path') . "uploads/google_refine/$filename";
             file_put_contents($path, $response);
 //            $this->googlerefine->delete_project($project_id);
@@ -213,8 +213,8 @@ class Refine extends MY_Controller
             {
 //                echo $line . '<br/>';
                 list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type, $language, $instantiation_id)
-                = explode(',', $line);
-                echo $organization . '<br/><br/>';
+                = explode('\t', $line);
+                echo $organization . '<br/>';
                 echo $asset_title . '<br/>';
                 echo $description . '<br/>';
                 echo $ins_id . '<br/>';

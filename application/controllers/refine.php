@@ -213,9 +213,9 @@ class Refine extends MY_Controller
             if ($index != 0)
             {
                 echo $line . '<br/>';
-                debug( preg_split("/\t/", $line));exit;
+                
                 list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type, $language, $instantiation_id)
-                = explode('\t', $line);
+                =  preg_split("/\t/", $line);
                 echo $organization . '<br/>';
                 echo $asset_title . '<br/>';
                 echo $description . '<br/>';

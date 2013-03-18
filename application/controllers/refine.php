@@ -211,10 +211,10 @@ class Refine extends MY_Controller
         {
             if ($index != 0)
             {
-                echo $line . '<br/>';
+//                echo $line . '<br/>';
                 list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type, $language, $instantiation_id)
                 = explode(',', $line);
-                echo $organization . '<br/>';
+                echo $organization . '<br/><br/>';
                 echo $asset_title . '<br/>';
                 echo $description . '<br/>';
                 echo $ins_id . '<br/>';

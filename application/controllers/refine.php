@@ -192,7 +192,7 @@ class Refine extends MY_Controller
             file_put_contents($path, $response);
 //            $this->googlerefine->delete_project($project_id);
             $data = array('is_active' => 0, 'import_csv_path' => $path);
-            $this->refine_modal->update_job($db_detail->id, $data);
+            $this->refine_modal->update_job($project_detail->id, $data);
             if($project_detail->refine_type=='instantiation'){
                 $this->update_instantiations($path);
             }
@@ -204,8 +204,8 @@ class Refine extends MY_Controller
 
     function update_instantiations($csv_path)
     {
-        $records=file_get_contents($csv_path);
-        echo $records;exit;
+        $records=file($csv_path);
+        echo count($records);exit;
     }
 
     function update_assets($csv_path)

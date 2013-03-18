@@ -207,14 +207,14 @@ class Refine extends MY_Controller
     function update_instantiations($csv_path)
     {
         $records = file($csv_path);
-        echo count($records);exit;
+        
         foreach ($records as $index => $line)
         {
             if ($index != 0)
             {
-                echo $line . '<br/>';exit;
+                echo $line . '<br/><br/>';
                 list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type, $language, $instantiation_id)
-                = explode('\t', $line);
+                = preg_split('/[\s]+/', $line);
                 echo $organization . '<br/>';
                 echo $asset_title . '<br/>';
                 echo $description . '<br/>';

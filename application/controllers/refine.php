@@ -209,22 +209,24 @@ class Refine extends MY_Controller
         $records = file($csv_path);
         foreach ($records as $index => $line)
         {
-            echo $line.'<br/>';
-            list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type,$language,$instantiation_id)
-            = explode(',', $line);
-            echo $organization.'<br/>';
-            echo $asset_title.'<br/>';
-            echo $description.'<br/>';
-            echo $ins_id.'<br/>';
-            echo $ins_id_src.'<br/>';
-            echo $generation.'<br/>';
-            echo $nomination.'<br/>';
-            echo $nomination_reason.'<br/>';
-            echo $media_type.'<br/>';
-            echo $language.'<br/>';
-            echo $instantiation_id.'<br/>';
-            exit;
-            
+            if ($index != 0)
+            {
+                echo $line . '<br/>';
+                list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type, $language, $instantiation_id)
+                = explode(',', $line);
+                echo $organization . '<br/>';
+                echo $asset_title . '<br/>';
+                echo $description . '<br/>';
+                echo $ins_id . '<br/>';
+                echo $ins_id_src . '<br/>';
+                echo $generation . '<br/>';
+                echo $nomination . '<br/>';
+                echo $nomination_reason . '<br/>';
+                echo $media_type . '<br/>';
+                echo $language . '<br/>';
+                echo $instantiation_id . '<br/>';
+                exit;
+            }
         }
     }
 

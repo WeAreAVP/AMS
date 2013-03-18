@@ -210,7 +210,7 @@ class Refine extends MY_Controller
         foreach ($records as $index => $line)
         {
             echo $line.'<br/>';
-            list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type, $instantiation_id)
+            list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type,$language,$instantiation_id)
             = explode(',', $line);
             echo $organization.'<br/>';
             echo $asset_title.'<br/>';

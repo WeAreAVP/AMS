@@ -221,6 +221,7 @@ class Refine extends MY_Controller
             echo $nomination.'<br/>';
             echo $nomination_reason.'<br/>';
             echo $media_type.'<br/>';
+            echo $language.'<br/>';
             echo $instantiation_id.'<br/>';
             exit;
             

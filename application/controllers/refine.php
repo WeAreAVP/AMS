@@ -186,15 +186,31 @@ class Refine extends MY_Controller
         $project_detail = $this->refine_modal->get_by_project_id($project_id);
         if ($project_detail)
         {
-            $response=$this->googlerefine->export_rows($project_detail->project_name,$project_id);
+            $response = $this->googlerefine->export_rows($project_detail->project_name, $project_id);
             $filename = 'google_refined_data_' . time() . '.csv';
             $path = $this->config->item('path') . "uploads/google_refine/$filename";
             file_put_contents($path, $response);
-            echo $path;
-            exit;
-            $data = array('is_active' => 0);
+//            $this->googlerefine->delete_project($project_id);
+            $data = array('is_active' => 0, 'import_csv_path' => $path);
             $this->refine_modal->update_job($db_detail->id, $data);
+            if($project_detail->refine_type=='instantiation'){
+                $this->update_instantiations($path);
+            }
+            else{
+                $this->update_assets($path);
+            }
         }
+    }
+
+    function update_instantiations($csv_path)
+    {
+        $records=file_get_contents($csv_path);
+        echo $records;exit;
+    }
+
+    function update_assets($csv_path)
+    {
+        
     }
 
 // Location: ./controllers/refine.php

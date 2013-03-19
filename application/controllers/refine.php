@@ -99,8 +99,8 @@ class Refine extends MY_Controller
                     $line.='"' . str_replace('"', '""', $value->nomination_reason) . '",';
                     $line.='"' . str_replace('"', '""', $value->media_type) . '",';
                     $line.='"' . str_replace('"', '""', $value->language) . '",';
-                    $line.='"' . str_replace('"', '""', $value->ins_id) . '"';
-                    $line.='"' . str_replace('"', '""', $value->identifier_id) . '"';
+                    $line.='"' . str_replace('"', '""', $value->ins_id) . '",';
+                    $line.='"' . str_replace('"', '""', $value->identifier_id) . '",';
                     $line.='"' . str_replace('"', '""', $value->gen_id) . '"';
                     $line .= "\n";
                 }

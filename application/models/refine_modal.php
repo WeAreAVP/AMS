@@ -336,7 +336,6 @@ class Refine_modal extends CI_Model
 
 
         $this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id = $this->_assets_table.id", 'left');
-//								$this->db->join("identifiers AS local",	"$this->_assets_table.id = local.assets_id AND local.identifier_source!='http://americanarchiveinventory.org'",	'left');
         $this->db->join("identifiers", "$this->_assets_table.id = identifiers.assets_id", 'left');
         $this->db->join($this->table_instantiation_formats, "$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id", 'left');
         $this->db->join($this->table_nominations, "$this->table_nominations.instantiations_id = $this->table_instantiations.id", 'left');

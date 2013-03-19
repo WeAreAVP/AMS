@@ -153,7 +153,7 @@ class Refine extends MY_Controller
                     {
                         $line.='"' . str_replace('"', '""', $column) . '",';
                     }
-                    $line .=substr($line, 0, -1);
+                    
                     $line .= "\n";
                 }
                 fputs($fp, $line);

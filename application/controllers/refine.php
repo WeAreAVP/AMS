@@ -41,6 +41,7 @@ class Refine extends MY_Controller
         $this->load->model('refine_modal');
         $this->load->model('sphinx_model', 'sphinx');
         $this->load->model('instantiations_model', 'instantiation');
+        $this->load->model('assets_model');
     }
 
     function create($path, $filename, $job_id)
@@ -217,10 +218,114 @@ class Refine extends MY_Controller
             {
                 echo $line . '<br/>';
 
-                list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type, $language, $instantiation_id,$identifier_id,$generation_id)
+                list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type, $language, $instantiation_id, $identifier_id, $generation_id)
                 = preg_split("/\t/", $line);
-                $ins_detail=$this->instantiation->get_by_id($instantiation_id);
-                
+                /* Check and update Media Type and Language Start */
+                $media_type_id = 0;
+                if ( ! empty($media_type))
+                {
+                    $inst_media_type = $this->instantiation->get_instantiation_media_types_by_media_type($media_type);
+                    if ( ! is_empty($inst_media_type))
+                        $media_type_id = $inst_media_type->id;
+                    else
+                        $media_type_id = $this->instantiation->insert_instantiation_media_types(array("media_type" => $media_type));
+                }
+                $ins_detail = $this->instantiation->get_by_id($instantiation_id);
+                if ($ins_detail)
+                {
+                    $data = array('instantiation_media_type_id' => $media_type_id,
+                    'language' => $language);
+                    $ins_detail = $this->instantiation->update_instantiations($instantiation_id, $data);
+                }
+                /* Check and update Media Type and Language End */
+                /* Check and update Generation Start */
+                if ( ! empty($generation))
+                {
+                    $db_gen_id = FALSE;
+                    $db_generation = $this->instantiation->get_generations_by_generation($generation);
+                    if ($db_generation)
+                    {
+                        $db_gen_id = $db_generation->id;
+                    }
+                    else
+                    {
+                        $db_gen_id = $this->instantiation->insert_generations(array('generation' => $generation));
+                    }
+                    if ($db_gen_id)
+                    {
+                        if ( ! empty($generation_id))
+                        {
+                            $ins_gen_db = $this->refine_modal->get_instantiation_generation_by_id($generation_id);
+                            if ($ins_gen_db)
+                            {
+                                $this->refine_modal->update_instantiation_generation_by_id($ins_gen_db->id, array('generations_id' => $db_gen_id));
+                            }
+                            else
+                            {
+                                $inst_gen = array('instantiations_id' => $instantiation_id, 'generations_id' => $db_gen_id);
+                                $this->instantiation->insert_instantiation_generations($inst_gen);
+                            }
+                        }
+                        else
+                        {
+                            $inst_gen = array('instantiations_id' => $instantiation_id, 'generations_id' => $db_gen_id);
+                            $this->instantiation->insert_instantiation_generations($inst_gen);
+                        }
+                    }
+                }
+                /* Check and update Generation End */
+                /* Check and update Instantiations Identifier Start */
+                if ( ! empty($ins_id))
+                {
+                    if ( ! empty($identifier_id))
+                    {
+                        $db_ins_identifier = $this->refine_modal->get_instantiation_idetifier_by_id($identifier_id);
+                        if ($db_ins_identifier)
+                        {
+                            $identifier_data = array('instantiation_identifier ' => $ins_id,
+                            'instantiation_source ' => $ins_id_src);
+                            $this->refine_modal->update_instantiation_idetifier_by_id($identifier_id, $identifier_data);
+                        }
+                        else
+                        {
+                            $identifier_data = array('instantiations_id' => $instantiation_id,
+                            'instantiation_identifier ' => $ins_id,
+                            'instantiation_source ' => $ins_id_src
+                            );
+                            $this->instantiation->insert_instantiation_identifier($identifier_data);
+                        }
+                    }
+                    else
+                    {
+                        $identifier_data = array('instantiations_id' => $instantiation_id,
+                        'instantiation_identifier ' => $ins_id,
+                        'instantiation_source ' => $ins_id_src,
+                        );
+                        $this->instantiation->insert_instantiation_identifier($identifier_data);
+                    }
+                }
+                /* Check and update Instantiations Identifier End */
+                /* Check and update Nomination Start */
+                if ( ! empty($nomination))
+                {
+                    $nomination_exist = $this->assets_model->get_nominations($instantiation_id);
+
+                    $nomination_id = $this->assets_model->get_nomination_status_by_status($nomination)->id;
+
+                    $nomination_record = array('nomination_status_id' => $nomination_id, 'nomination_reason' => $nomination_reason, 'nominated_at' => date('Y-m-d H:i:s'));
+                    if ($nomination_exist)
+                    {
+                        $nomination_record['updated'] = date('Y-m-d H:i:s');
+                        $this->assets_model->update_nominations($instantiation_id, $nomination_record);
+                    }
+                    else
+                    {
+                        $nomination_record['instantiations_id'] = $instantiation_id;
+                        $nomination_record['created'] = date('Y-m-d H:i:s');
+                        $this->assets_model->insert_nominations($nomination_record);
+                    }
+                }
+                /* Check and update Nomination End */
             }
         }
     }

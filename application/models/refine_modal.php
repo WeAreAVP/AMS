@@ -85,7 +85,7 @@ class Refine_modal extends CI_Model
         $this->db->select("$this->table_instantiations.language", FALSE);
         $this->db->select("$this->table_instantiations.id AS ins_id", FALSE);
         $this->db->select("instantiation_identifier.id AS identifier_id", FALSE);
-        $this->db->select("$this->table_instantiation_media_types.id AS gen_id", FALSE);
+        $this->db->select("$this->table_instantiation_generations.id AS gen_id", FALSE);
 
 
 
@@ -562,6 +562,41 @@ class Refine_modal extends CI_Model
             return $result->result();
         }
         return false;
+    }
+
+    function get_instantiation_generation_by_id($id)
+    {
+
+        $this->db->where('id', $id);
+        $result = $this->db->get($this->table_instantiation_generations);
+        if (isset($result) && ! empty($result))
+        {
+            return $result->row();
+        }
+        return FALSE;
+    }
+
+    function update_instantiation_generation_by_id($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update($this->table_instantiation_generations, $data);
+    }
+
+    function get_instantiation_idetifier_by_id($id)
+    {
+        $this->db->where('id', $id);
+        $result = $this->db->get($this->table_instantiation_identifier);
+        if (isset($result) && ! empty($result))
+        {
+            return $result->row();
+        }
+        return FALSE;
+    }
+
+    function update_instantiation_idetifier_by_id($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update($this->table_instantiation_identifier, $data);
     }
 
 }

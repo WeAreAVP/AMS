@@ -149,13 +149,11 @@ class Refine extends MY_Controller
                 $line = '';
                 foreach ($records as $value)
                 {
-                    foreach ($value as $index => $column)
+                    foreach ($value as $column)
                     {
-                        if (count($value) == $index + 1)
-                            $line.='"' . str_replace('"', '""', $column) . '"';
-                        else
-                            $line.='"' . str_replace('"', '""', $column) . '",';
+                        $line.='"' . str_replace('"', '""', $column) . '",';
                     }
+                    $line .=substr($line, 0, -1);
                     $line .= "\n";
                 }
                 fputs($fp, $line);

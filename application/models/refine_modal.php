@@ -328,9 +328,6 @@ class Refine_modal extends CI_Model
         $this->db->select("asset_types.asset_type", FALSE);
         $this->db->select("identifiers.identifier,identifiers.identifier_source,identifiers.identifier_ref", FALSE);
         $this->db->select("asset_dates.asset_date", FALSE);
-
-
-
         $this->db->select("$this->_assets_table.id AS asset_id", FALSE);
 
 

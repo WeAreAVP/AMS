@@ -156,6 +156,7 @@ class Refine extends MY_Controller
                     
                     $line .= "\n";
                 }
+                $line=str_replace(',\n','\n', $line);
                 fputs($fp, $line);
                 fclose($fp);
                 $offset ++;

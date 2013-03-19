@@ -152,11 +152,9 @@ class Refine extends MY_Controller
                     $count = 1;
                     foreach ($value as $column)
                     {
-                        if (count($value) == $count)
-                            $line.='"' . str_replace('"', '""', $column) . '"';
-                        else
+                        
                             $line.='"' . str_replace('"', '""', $column) . '",';
-                        $count ++;
+                        
                     }
 
                     $line .= "\n";

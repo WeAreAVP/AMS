@@ -144,17 +144,18 @@ class Refine extends MY_Controller
                 $query.=' LIMIT ' . ($offset * 15000) . ', 15000';
 
                 $records = $this->refine_modal->get_csv_records($query);
-                
+
                 $fp = fopen("uploads/google_refine/$filename", 'a');
                 $line = '';
                 foreach ($records as $value)
                 {
                     $count = 1;
-                    foreach ($value as $column)
+                    foreach ($value as $index => $column)
                     {
-                        
+                        if ($index == 'asset_id')
+                            $line.='"' . str_replace('"', '""', $column) . '"';
+                        else
                             $line.='"' . str_replace('"', '""', $column) . '",';
-                        
                     }
 
                     $line .= "\n";
@@ -168,7 +169,8 @@ class Refine extends MY_Controller
             }
 
             $path = $this->config->item('path') . "uploads/google_refine/$filename";
-            echo $path;exit;
+            echo $path;
+            exit;
             $data = array('export_csv_path' => $path);
             $this->refine_modal->update_job($job_id, $data);
             $project_url = $this->create($path, $filename, $job_id);

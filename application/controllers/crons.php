@@ -140,7 +140,7 @@ class Crons extends CI_Controller
             $db_output = implode("\n", $output);
             
             $this->cron_model->update_rotate_indexes($record->id, array('status' => 1,'output'=>$db_output));
-            exit;
+            
             send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'Index Rotation for ' . $index, $email_output);
             $this->myLog("$index rotated successfully");
         }

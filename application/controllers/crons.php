@@ -139,6 +139,10 @@ class Crons extends CI_Controller
             
             $this->cron_model->update_rotate_indexes($record->id, array('status' => 1));
             send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'Index Rotation for '.$index, $output);
+            $this->myLog("$index rotated successfully");
+        }
+        else{
+            $this->myLog('No index available for rotation');
         }
         exit_function();
     }

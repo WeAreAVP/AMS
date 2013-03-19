@@ -84,6 +84,8 @@ class Refine_modal extends CI_Model
         $this->db->select("$this->table_instantiation_media_types.media_type", FALSE);
         $this->db->select("$this->table_instantiations.language", FALSE);
         $this->db->select("$this->table_instantiations.id AS ins_id", FALSE);
+        $this->db->select("instantiation_identifier.id AS identifier_id", FALSE);
+        $this->db->select("$this->table_instantiation_media_types.id AS gen_id", FALSE);
 
 
 

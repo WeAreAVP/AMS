@@ -40,6 +40,7 @@ class Refine extends MY_Controller
         $this->load->library('googlerefine');
         $this->load->model('refine_modal');
         $this->load->model('sphinx_model', 'sphinx');
+        $this->load->model('instantiations_model', 'instantiation');
     }
 
     function create($path, $filename, $job_id)
@@ -70,7 +71,7 @@ class Refine extends MY_Controller
             $filename = 'google_refine_' . time() . '.csv';
             $fp = fopen("uploads/google_refine/$filename", 'a');
 
-            $line = "Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,__Ins_id\n";
+            $line = "Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,__Ins_id,__identifier_id,__gen_id\n";
             fputs($fp, $line);
             fclose($fp);
             $db_count = 0;
@@ -98,6 +99,8 @@ class Refine extends MY_Controller
                     $line.='"' . str_replace('"', '""', $value->media_type) . '",';
                     $line.='"' . str_replace('"', '""', $value->language) . '",';
                     $line.='"' . str_replace('"', '""', $value->ins_id) . '"';
+                    $line.='"' . str_replace('"', '""', $value->identifier_id) . '"';
+                    $line.='"' . str_replace('"', '""', $value->gen_id) . '"';
                     $line .= "\n";
                 }
                 fputs($fp, $line);
@@ -207,27 +210,17 @@ class Refine extends MY_Controller
     function update_instantiations($csv_path)
     {
         $records = file($csv_path);
-        
+
         foreach ($records as $index => $line)
         {
             if ($index != 0)
             {
                 echo $line . '<br/>';
+
+                list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type, $language, $instantiation_id,$identifier_id,$generation_id)
+                = preg_split("/\t/", $line);
+                $ins_detail=$this->instantiation->get_by_id($instantiation_id);
                 
-                list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type, $language, $instantiation_id)
-                =  preg_split("/\t/", $line);
-                echo $organization . '<br/>';
-                echo $asset_title . '<br/>';
-                echo $description . '<br/>';
-                echo $ins_id . '<br/>';
-                echo $ins_id_src . '<br/>';
-                echo $generation . '<br/>';
-                echo $nomination . '<br/>';
-                echo $nomination_reason . '<br/>';
-                echo $media_type . '<br/>';
-                echo $language . '<br/>';
-                echo $instantiation_id . '<br/>';
-                exit;
             }
         }
     }

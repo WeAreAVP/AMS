@@ -357,6 +357,7 @@ class Instantiations extends MY_Controller
         }
         $this->instantiation->update_instantiations($ins_id, array('instantiation_media_type_id' => $media_type_id, 'language' => $language));
         $this->cron_model->update_rotate_indexes(2, array('status' => 0));
+        $this->cron_model->update_rotate_indexes(1, array('status' => 0));
         redirect('instantiations/detail/' . $ins_id);
     }
 

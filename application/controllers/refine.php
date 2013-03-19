@@ -169,8 +169,6 @@ class Refine extends MY_Controller
             }
 
             $path = $this->config->item('path') . "uploads/google_refine/$filename";
-            echo $path;
-            exit;
             $data = array('export_csv_path' => $path);
             $this->refine_modal->update_job($job_id, $data);
             $project_url = $this->create($path, $filename, $job_id);

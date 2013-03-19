@@ -135,7 +135,7 @@ class Crons extends CI_Controller
         if ($record)
         {
             $index = $record->index_name;
-            @exec("sudo /usr/bin/indexer $index --rotate", $output);
+            @exec("/usr/bin/indexer $index --rotate", $output);
             $email_output = implode('<br/>', $output);
             $db_output = implode("\n", $output);
             

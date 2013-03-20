@@ -328,6 +328,19 @@ class Refine_modal extends CI_Model
         $this->db->select("asset_types.asset_type", FALSE);
         $this->db->select("identifiers.identifier,identifiers.identifier_source,identifiers.identifier_ref", FALSE);
         $this->db->select("asset_dates.asset_date", FALSE);
+        $this->db->select("assets_subjects.subjects_id AS subject_id", FALSE);
+        $this->db->select("assets_genres.genres_id AS genre_id", FALSE);
+        $this->db->select("assets_creators_roles.creators_id AS creator_id", FALSE);
+        $this->db->select("assets_contributors_roles.contributors_id AS contributor_id", FALSE);
+        $this->db->select("assets_publishers_role.publishers_id AS publisher_id", FALSE);
+        $this->db->select("coverages.id AS coverage_id", FALSE);
+        $this->db->select("assets_audience_levels.audience_levels_id AS audience_levels_id", FALSE);
+        $this->db->select("assets_audience_ratings.audience_ratings_id AS audience_ratings_id", FALSE);
+        $this->db->select("annotations.id AS annotation_id", FALSE);
+        $this->db->select("rights_summaries.id AS right_id", FALSE);
+        $this->db->select("assets_asset_types.asset_types_id AS asset_types_id", FALSE);
+        $this->db->select("identifiers.id AS identifier_id", FALSE);
+        $this->db->select("asset_dates.id AS asset_date_id", FALSE);
         $this->db->select("$this->_assets_table.id AS asset_id", FALSE);
 
 

@@ -133,7 +133,7 @@ class Refine extends MY_Controller
             $line .="Audience Rating,Audience Rating Source,Audience Rating Ref,";
             $line .="Annotation,Annotation Type,Annotation Ref,";
             $line .="Rights,Rights Link,Asset Type,Identifier,Identifier Source,Identifier Ref,Asset Date,";
-            $line .="__subject_id,__genre_id,__creator_id,__contributor_id,__publisher_id,__coverage_id,__audience_levels_id,__audience_ratings_id,__annotation_id,__right_id,__asset_types_id,__identifier_id,__asset_date_id__asset_id\n";
+            $line .="__subject_id,__genre_id,__creator_id,__contributor_id,__publisher_id,__coverage_id,__audience_levels_id,__audience_ratings_id,__annotation_id,__right_id,__asset_types_id,__identifier_id,__asset_date_id,__asset_id\n";
             fputs($fp, $line);
             fclose($fp);
             $db_count = 0;

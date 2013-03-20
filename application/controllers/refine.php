@@ -152,7 +152,7 @@ class Refine extends MY_Controller
                     $count = 1;
                     foreach ($value as $index => $column)
                     {
-                        if ($index == ' asset_id')
+                        if ($index == 'asset_id')
                             $line.='"' . str_replace('"', '""', $column) . '"';
                         else
                             $line.='"' . str_replace('"', '""', $column) . '",';
@@ -206,10 +206,12 @@ class Refine extends MY_Controller
             if ($project_detail->refine_type == 'instantiation')
             {
                 $this->update_instantiations($path);
+                redirect('instantiations');
             }
             else
             {
                 $this->update_assets($path);
+                redirect('records');
             }
         }
     }
@@ -222,8 +224,6 @@ class Refine extends MY_Controller
         {
             if ($index != 0)
             {
-                echo $line . '<br/>';
-
                 list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type, $language, $instantiation_id, $identifier_id, $generation_id)
                 = preg_split("/\t/", $line);
                 /* Check and update Media Type and Language Start */
@@ -338,7 +338,15 @@ class Refine extends MY_Controller
 
     function update_assets($csv_path)
     {
-        
+        $records = file($csv_path);
+        foreach ($records as $index => $line)
+        {
+            if ($index != 0)
+            {
+                $exploded_columns = preg_split("/\t/", $line);
+                debug($exploded_columns);
+            }
+        }
     }
 
 // Location: ./controllers/refine.php

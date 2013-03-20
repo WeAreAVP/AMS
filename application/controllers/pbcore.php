@@ -747,7 +747,7 @@ class Pbcore extends CI_Controller
                     }
 
                     //Instantiation formatdigital  Start
-                    if (isset($pbcoreinstantiation_child['formatdigital'][0]['text']) && ! is_empty($pbcoreinstantiation_child['formatdigital'][0]['text']))
+                    else if (isset($pbcoreinstantiation_child['formatdigital'][0]['text']) && ! is_empty($pbcoreinstantiation_child['formatdigital'][0]['text']))
                     {
                         $instantiation_format_digital_d = array();
                         $instantiation_format_digital_d['instantiations_id'] = $instantiations_id;

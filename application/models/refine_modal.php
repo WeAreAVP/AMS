@@ -608,6 +608,97 @@ class Refine_modal extends CI_Model
         return $this->db->update($this->table_instantiation_identifier, $data);
     }
 
+    function update_asset_subject($asset_id, $old_subject_id, $data)
+    {
+        $this->db->where('assets_id', $asset_id);
+        $this->db->where('subjects_id', $old_subject_id);
+        return $this->db->update('assets_subjects', $data);
+    }
+
+    function update_asset_genre($asset_id, $old_genre_id, $data)
+    {
+        $this->db->where('assets_id', $asset_id);
+        $this->db->where('genres_id', $old_genre_id);
+        return $this->db->update('assets_genres', $data);
+    }
+
+    function update_creator_role($asset_id, $creator_id, $data)
+    {
+        $this->db->where('assets_id', $asset_id);
+        $this->db->where('creators_id', $creator_id);
+        return $this->db->update('assets_creators_roles', $data);
+    }
+
+    function update_contributer_role($asset_id, $contributer_id, $data)
+    {
+        $this->db->where('assets_id', $asset_id);
+        $this->db->where('contributors_id', $contributer_id);
+        return $this->db->update('assets_contributors_roles', $data);
+    }
+
+    function update_publisher_role($asset_id, $publisher_id, $data)
+    {
+        $this->db->where('assets_id', $asset_id);
+        $this->db->where('publishers_id', $publisher_id);
+        return $this->db->update('assets_publishers_role', $data);
+    }
+
+    function update_asset_coverage($asset_id, $asset_coverage_id, $data)
+    {
+        $this->db->where('assets_id', $asset_id);
+        $this->db->where('id', $asset_coverage_id);
+        return $this->db->update('coverages', $data);
+    }
+
+    function update_asset_audience_level($asset_id, $audience_level_id, $data)
+    {
+        $this->db->where('assets_id', $asset_id);
+        $this->db->where('audience_levels_id', $audience_level_id);
+        return $this->db->update('assets_audience_levels', $data);
+    }
+
+    function update_asset_audience_rating($asset_id, $audience_rating_id, $data)
+    {
+        $this->db->where('assets_id', $asset_id);
+        $this->db->where('audience_ratings_id', $audience_rating_id);
+        return $this->db->update('assets_audience_ratings', $data);
+    }
+
+    function update_annotation_type($asset_id, $annotation_id, $data)
+    {
+        $this->db->where('assets_id', $asset_id);
+        $this->db->where('id', $annotation_id);
+        return $this->db->update('annotations', $data);
+    }
+
+    function update_right_summary($asset_id, $right_id, $data)
+    {
+        $this->db->where('assets_id', $asset_id);
+        $this->db->where('id', $right_id);
+        return $this->db->update('rights_summaries', $data);
+    }
+
+    function update_asset_type($asset_id, $type_id, $data)
+    {
+        $this->db->where('assets_id', $asset_id);
+        $this->db->where('asset_types_id', $type_id);
+        return $this->db->update('assets_asset_types', $data);
+    }
+
+    function update_asset_identifier($asset_id, $identifier_id, $data)
+    {
+        $this->db->where('assets_id', $asset_id);
+        $this->db->where('id', $identifier_id);
+        return $this->db->update('identifiers', $data);
+    }
+
+    function update_asset_date($asset_id, $date_id, $data)
+    {
+        $this->db->where('assets_id', $asset_id);
+        $this->db->where('id', $date_id);
+        return $this->db->update('asset_dates', $data);
+    }
+
 }
 
 ?>

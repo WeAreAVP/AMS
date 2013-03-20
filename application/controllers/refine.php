@@ -344,7 +344,319 @@ class Refine extends MY_Controller
             if ($index != 0)
             {
                 $exploded_columns = preg_split("/\t/", $line);
-                debug($exploded_columns);
+                $asset_id = $exploded_columns[51];
+                $asset_date_id = $exploded_columns[50];
+                $asset_identifier_id = $exploded_columns[49];
+                $asset_type_id = $exploded_columns[48];
+                $asset_right_id = $exploded_columns[47];
+                $asset_annotation_id = $exploded_columns[46];
+                $asset_rating_id = $exploded_columns[45];
+                $asset_level_id = $exploded_columns[44];
+                $asset_coverage_id = $exploded_columns[43];
+                $asset_publisher_id = $exploded_columns[42];
+                $asset_contributer_id = $exploded_columns[41];
+                $asset_creator_id = $exploded_columns[40];
+                $asset_genre_id = $exploded_columns[39];
+                $asset_subject_id = $exploded_columns[38];
+                /* Check and update Subject Start */
+                if ( ! empty($exploded_columns[3]))
+                {
+
+                    $subjects = $this->assets_model->get_subjects_id_by_subject($exploded_columns[3]);
+                    if (isset($subjects) && isset($subjects->id))
+                    {
+                        $subject_id = $subjects->id;
+                    }
+                    else
+                    {
+                        $subject_d['subject'] = $exploded_columns[3];
+                        $subject_d['subject_source'] = $exploded_columns[4];
+                        $subject_d['subject_ref'] = $exploded_columns[5];
+
+                        $subject_id = $this->assets_model->insert_subjects($subject_d);
+                    }
+                    if ( ! empty($asset_subject_id))
+                    {
+                        $this->refine_modal->update_asset_subject($asset_id, $asset_subject_id, array('subjects_id' => $subject_id));
+                    }
+                    else
+                    {
+                        $subject_data = array('subjects_id' => $subject_id, 'assets_id' => $asset_id);
+                        $this->assets_model->insert_assets_subjects($subject_data);
+                    }
+                }
+                /* Check and update Subject End */
+                /* Check and update Genre Start */
+                if ( ! empty($exploded_columns[6]))
+                {
+                    $asset_genre['assets_id'] = $asset_id;
+                    $asset_genre_type = $this->assets_model->get_genre_type($exploded_columns[6]);
+                    if (isset($asset_genre_type) && isset($asset_genre_type->id))
+                    {
+                        $asset_genre['genres_id'] = $asset_genre_type->id;
+                    }
+                    else
+                    {
+                        $asset_genre_d['genre'] = $exploded_columns[6];
+                        $asset_genre_d['genre_source'] = $exploded_columns[7];
+                        $asset_genre_d['genre_ref'] = $exploded_columns[8];
+
+                        $asset_genre['genres_id'] = $this->assets_model->insert_genre($asset_genre_d);
+                    }
+                    if ( ! empty($asset_genre_id))
+                    {
+                        $this->refine_modal->update_asset_genre($asset_id, $asset_genre_id, array('genres_id' => $asset_genre['genres_id']));
+                    }
+                    else
+                    {
+                        $this->assets_model->insert_asset_genre($asset_genre);
+                    }
+                }
+                /* Check and update Genre Start */
+
+                /* Check and update Creator Start */
+                if ( ! empty($exploded_columns[9]))
+                {
+                    $assets_creators_roles_d['assets_id'] = $asset_id;
+                    $creator_d = $this->assets_model->get_creator_by_creator_name($exploded_columns[9]);
+                    if (isset($creator_d) && isset($creator_d->id))
+                    {
+                        $assets_creators_roles_d['creators_id'] = $creator_d->id;
+                    }
+                    else
+                    {
+                        $creator_data = array('creator_name' => $exploded_columns[9],
+                        'creator_affiliation' => $exploded_columns[10],
+                        'creator_source' => $exploded_columns[11],
+                        'creator_ref' => $exploded_columns[12],
+                        );
+                        $assets_creators_roles_d['creators_id'] = $this->assets_model->insert_creators($creator_data);
+                    }
+                    if ( ! empty($asset_creator_id))
+                    {
+                        $this->refine_modal->update_creator_role($asset_id, $asset_creator_id, array('creators_id' => $assets_creators_roles_d['creators_id']));
+                    }
+                    else
+                    {
+                        $this->assets_model->insert_assets_creators_roles($assets_creators_roles_d);
+                    }
+                }
+                /* Check and update Creator End */
+
+                /* Check and update Contributer Start */
+                if ( ! empty($exploded_columns[13]))
+                {
+                    $assets_contributer_roles_d['assets_id'] = $asset_id;
+                    $contributer_d = $this->assets_model->get_contributor_by_contributor_name($exploded_columns[13]);
+                    if (isset($contributer_d) && isset($contributer_d->id))
+                    {
+                        $assets_contributer_roles_d['contributors_id'] = $contributer_d->id;
+                    }
+                    else
+                    {
+                        $contributer_data = array('contributor_name' => $exploded_columns[13],
+                        'contributor_affiliation' => $exploded_columns[14],
+                        'contributor_source' => $exploded_columns[15],
+                        'contributor_ref' => $exploded_columns[16],
+                        );
+                        $assets_contributer_roles_d['contributors_id'] = $this->assets_model->insert_contributors($contributer_data);
+                    }
+                    if ( ! empty($asset_contributer_id))
+                    {
+                        $this->refine_modal->update_contributer_role($asset_id, $asset_contributer_id, array('contributors_id' => $assets_contributer_roles_d['contributors_id']));
+                    }
+                    else
+                    {
+                        $this->assets_model->insert_assets_contributors_roles($assets_contributer_roles_d);
+                    }
+                }
+                /* Check and update Contributer End */
+
+                /* Check and update Publisher Start */
+                if ( ! empty($exploded_columns[17]))
+                {
+                    $assets_publisher_d['assets_id'] = $asset_id;
+                    $publisher_d = $this->assets_model->get_publishers_by_publisher($exploded_columns[17]);
+                    if (isset($publisher_d) && isset($publisher_d->id))
+                    {
+                        $assets_publisher_d['publishers_id'] = $publisher_d->id;
+                    }
+                    else
+                    {
+                        $publisher_data = array('publisher' => $exploded_columns[17],
+                        'publisher_affiliation' => $exploded_columns[18],
+                        'publisher_ref' => $exploded_columns[19],
+                        );
+                        $assets_publisher_d['publishers_id'] = $this->assets_model->insert_publishers($publisher_data);
+                    }
+                    if ( ! empty($asset_publisher_id))
+                    {
+                        $this->refine_modal->update_publisher_role($asset_id, $asset_publisher_id, array('publishers_id' => $assets_publisher_d['publishers_id']));
+                    }
+                    else
+                    {
+                        $this->assets_model->insert_assets_publishers_role($assets_publisher_d);
+                    }
+                }
+                /* Check and update Publisher End */
+
+                /* Check and update Coverage Start */
+                if ( ! empty($exploded_columns[20]))
+                {
+                    $coverage['coverage'] = $exploded_columns[20];
+                    $coverage['coverage_type'] = $exploded_columns[21];
+                    if ( ! empty($asset_coverage_id))
+                    {
+                        $this->refine_modal->update_asset_coverage($asset_id, $asset_coverage_id, $coverage);
+                    }
+                    else
+                    {
+                        $coverage['assets_id'] = $asset_id;
+                        $asset_coverage = $this->assets_model->insert_coverage($coverage);
+                    }
+                }
+                /* Check and update Coverage End */
+                /* Check and update Audience Level Start */
+                if ( ! empty($exploded_columns[22]))
+                {
+                    $asset_audience_level['assets_id'] = $asset_id;
+                    $db_audience_level = $this->assets_model->get_audience_level($exploded_columns[22]);
+                    if (isset($db_audience_level) && isset($db_audience_level->id))
+                    {
+                        $asset_audience_level['audience_levels_id'] = $db_audience_level->id;
+                    }
+                    else
+                    {
+                        $audience_level['audience_level'] = $exploded_columns[22];
+                        $audience_level['audience_level_source'] = $exploded_columns[23];
+                        $audience_level['audience_level_ref'] = $exploded_columns[24];
+                        $asset_audience_level['audience_levels_id'] = $this->assets_model->insert_audience_level($audience_level);
+                    }
+                    if ( ! empty($asset_level_id))
+                    {
+                        $this->refine_modal->update_asset_audience_level($asset_id, $asset_level_id, array('audience_levels_id' => $asset_audience_level['audience_levels_id']));
+                    }
+                    else
+                    {
+                        $asset_audience = $this->assets_model->insert_asset_audience($asset_audience_level);
+                    }
+                }
+                /* Check and update Audience Level End */
+                /* Check and update Audience Rating Start */
+                if ( ! empty($exploded_columns[25]))
+                {
+                    $asset_audience_rating['assets_id'] = $asset_id;
+                    $db_audience_rating = $this->assets_model->get_audience_rating($audience_rating['audience_rating']);
+                    if (isset($db_audience_rating) && isset($db_audience_rating->id))
+                    {
+                        $asset_audience_rating['audience_ratings_id'] = $db_audience_rating->id;
+                    }
+                    else
+                    {
+                        $audience_rating['audience_rating'] = $exploded_columns[25];
+                        $audience_rating['audience_rating_source'] = $exploded_columns[26];
+                        $audience_rating['audience_rating_ref'] = $exploded_columns[27];
+                        $asset_audience_rating['audience_ratings_id'] = $this->assets_model->insert_audience_rating($audience_rating);
+                    }
+                    if ( ! empty($asset_rating_id))
+                    {
+                        $this->refine_modal->update_asset_audience_rating($asset_id, $asset_rating_id, array('audience_ratings_id' => $asset_audience_rating['audience_ratings_id']));
+                    }
+                    else
+                    {
+                        $asset_audience_rate = $this->assets_model->insert_asset_audience_rating($asset_audience_rating);
+                    }
+                }
+                /* Check and update Audience Rating End */
+
+                /* Check and update Annotation Start */
+                if ( ! empty($exploded_columns[28]))
+                {
+                    $annotation['annotation'] = $exploded_columns[28];
+                    $annotation['annotation_type'] = $exploded_columns[29];
+                    $annotation['annotation_ref'] = $exploded_columns[30];
+                    if ( ! empty($asset_annotation_id))
+                    {
+                        $this->refine_modal->update_annotation_type($asset_id, $asset_annotation_id, $annotation);
+                    }
+                    else
+                    {
+                        $annotation['assets_id'] = $asset_id;
+                        $asset_annotation = $this->assets_model->insert_annotation($annotation);
+                    }
+                }
+                /* Check and update Annotation End */
+                /* Check and update Rights Start */
+                if ( ! empty($exploded_columns[31]))
+                {
+
+                    $rights_summary_d['rights'] = $exploded_columns[31];
+                    $rights_summary_d['rights_link'] = $exploded_columns[32];
+                    if ( ! empty($asset_right_id))
+                    {
+                        $this->refine_modal->update_right_summary($asset_id, $asset_right_id, $rights_summary_d);
+                    }
+                    else
+                    {
+                        $rights_summary_d['assets_id'] = $asset_id;
+                        $this->assets_model->insert_rights_summaries($rights_summary_d);
+                    }
+                }
+                /* Check and update Rights End */
+                /* Check and update Asset Type Start */
+                if ( ! empty($exploded_columns[33]))
+                {
+                    $asset_type_d['assets_id'] = $asset_id;
+                    if ($asset_type = $this->assets_model->get_assets_type_by_type($exploded_columns[33]))
+                    {
+                        $asset_type_d['asset_types_id'] = $asset_type->id;
+                    }
+                    else
+                    {
+                        $asset_type_d['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $exploded_columns[33]));
+                    }
+                    if ( ! empty($asset_type_id))
+                    {
+                        $this->refine_modal->update_asset_type($asset_id, $asset_right_id, array('asset_types_id' => $asset_type_d['asset_types_id']));
+                    }
+                    else
+                    {
+                        $this->assets_model->insert_assets_asset_types($asset_type_d);
+                    }
+                }
+                /* Check and update Asset Type End */
+                /* Check and update Asset Identifier Start */
+                if ( ! empty($exploded_columns[34]))
+                {
+                    $identifier_d['identifier'] = $exploded_columns[34];
+                    $identifier_d['identifier_source'] = $exploded_columns[35];
+                    $identifier_d['identifier_ref'] = $exploded_columns[36];
+                    if ( ! empty($asset_identifier_id))
+                    {
+                        $this->refine_modal->update_asset_identifier($asset_id, $asset_identifier_id, $identifier_d);
+                    }
+                    else
+                    {
+                        $identifier_d['assets_id'] = $asset_id;
+                        $this->assets_model->insert_identifiers($identifier_d);
+                    }
+                }
+                /* Check and update Asset Identifier End */
+                /* Check and update Asset Date Start */
+                if ( ! empty($exploded_columns[37]))
+                {
+                    $asset_date['asset_date'] = $exploded_columns[37];
+                    if ( ! empty($asset_date_id))
+                    {
+                        $this->refine_modal->update_asset_date($asset_id, $asset_date_id, $asset_date);
+                    }
+                    else
+                    {
+                        $asset_date['assets_id'] = $asset_id;
+                        $this->assets_model->insert_asset_date($asset_date);
+                    }
+                }
+                /* Check and update Asset Date Start */
             }
         }
     }

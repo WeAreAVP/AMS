@@ -201,7 +201,7 @@ class Refine extends MY_Controller
             $path = $this->config->item('path') . "uploads/google_refine/$filename";
             file_put_contents($path, $response);
             $this->googlerefine->delete_project($project_id);
-            $data = array('is_active' => 0, 'import_csv_path' => $path);
+            $data = array('is_active' => 2, 'import_csv_path' => $path);
             $this->refine_modal->update_job($project_detail->id, $data);
             if ($project_detail->refine_type == 'instantiation')
             {

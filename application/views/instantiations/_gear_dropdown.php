@@ -20,18 +20,21 @@ if ($table_type == 'assets' && $current_tab == 'simple')
             $message = 'Are you sure you want to refine data.';
             $type = 0;
             $is_current_user = FALSE;
+            $updating = FALSE;
             $record_type = ($current_tab == '') ? 'instantiation' : 'asset';
 
             if (count($is_refine) > 0)
             {
                 $message = $is_refine->name . ' is already editing the records.';
                 $type = 1;
+                if ($is_refine->is_active == 2)
+                    $updating = TRUE;
                 if ($is_refine->user_id == $this->user_id)
                     $is_current_user = TRUE;
             }
             ?>
             <?php
-            if ( ! $is_current_user)
+            if ( ! $is_current_user && !$updating)
             {
                 ?>
                 <a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
@@ -39,11 +42,18 @@ if ($table_type == 'assets' && $current_tab == 'simple')
                 </a>
                 <?php
             }
-            else
+            else if(!$updating)
             {
                 ?>
                 <a id="cancel_refine_data" class="btn"  href="#refine_cancel" role="button" data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
                     Cancel Refining
+                </a>
+                <?php
+            }
+            else if($updating){
+                ?>
+                <a id="cancel_refine_data" class="btn"  href="javascript://" role="button" style="margin-left: 10px;height: 14px;">
+                    Updating Records
                 </a>
                 <?php
             }

@@ -43,6 +43,7 @@ class Crons extends CI_Controller
         $this->load->model('instantiations_model', 'instant');
         $this->load->model('essence_track_model', 'essence');
         $this->load->model('station_model');
+        $this->load->model('refine_modal');
         $this->assets_path = 'assets/export_pbcore/';
     }
 
@@ -138,15 +139,33 @@ class Crons extends CI_Controller
             @exec("/usr/bin/indexer $index --rotate", $output);
             $email_output = implode('<br/>', $output);
             $db_output = implode("\n", $output);
-            
-            $this->cron_model->update_rotate_indexes($record->id, array('status' => 1,'output'=>$db_output));
-            
+
+            $this->cron_model->update_rotate_indexes($record->id, array('status' => 1, 'output' => $db_output));
+
             send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'Index Rotation for ' . $index, $email_output);
             $this->myLog("$index rotated successfully");
         }
         else
         {
             $this->myLog('No index available for rotation');
+        }
+        exit_function();
+    }
+
+    public function update_after_refine()
+    {
+        $record = $this->refine_modal->refine_update_records();
+        if ($record)
+        {
+            @exec("/usr/bin/indexer --all --rotate", $output);
+            $email_output = implode('<br/>', $output);
+            $this->refine_modal->update_job($record->id, array('is_active' => 0));
+            send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'Google Refine Index Rotation', $email_output);
+            $this->myLog("All indexes rotated successfully.");
+        }
+        else
+        {
+            $this->myLog('No refine update available');
         }
         exit_function();
     }

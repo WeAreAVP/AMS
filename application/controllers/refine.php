@@ -144,7 +144,8 @@ class Refine extends MY_Controller
             while ($db_count == 0)
             {
 
-                $query.=' LIMIT ' . ($offset * 15000) . ', 15000';
+                $custom_query = $query;
+                $custom_query.=' LIMIT ' . ($offset * 15000) . ', 15000';
 
                 $records = $this->refine_modal->get_csv_records($query);
 

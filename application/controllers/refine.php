@@ -62,6 +62,9 @@ class Refine extends MY_Controller
 
     function export($type)
     {
+        set_time_limit(0);
+        @ini_set("memory_limit", "1000M"); # 1GB
+        @ini_set("max_execution_time", 999999999999); # 1GB
         if ($type == 'instantiation')
         {
 

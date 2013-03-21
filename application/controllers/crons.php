@@ -155,7 +155,7 @@ class Crons extends CI_Controller
     public function update_after_refine()
     {
         $record = $this->refine_modal->refine_update_records();
-        if ($record)
+        if (count($record)>0)
         {
             @exec("/usr/bin/indexer --all --rotate", $output);
             $email_output = implode('<br/>', $output);

@@ -106,7 +106,7 @@ class Googledoc extends CI_Controller
 					$instantiation = $this->instantiation->get_instantiation_by_guid_physical_format($db_guid, $event_row[5]);
 					if ($instantiation)
 					{
-						echo '<pre>';
+						
 						$instantiation_data = array();
 						if (isset($event_row[32]) && ! empty($event_row[32]))
 						{
@@ -135,7 +135,7 @@ class Googledoc extends CI_Controller
 						$this->_store_event_type_baked($event_row, $instantiation->id);
 						$this->_store_event_type_cleaned($event_row, $instantiation->id);
 						$this->_store_event_type_migration($event_row, $instantiation->id);
-						exit(0);
+						
 					}
 					else
 					{

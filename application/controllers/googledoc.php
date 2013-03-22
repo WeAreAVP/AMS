@@ -49,7 +49,9 @@ class Googledoc extends CI_Controller
 	 */
 	function parse_american_archive()
 	{
-
+		set_time_limit(0);
+		@ini_set("memory_limit", "4000M"); # 1GB
+		@ini_set("max_execution_time", 999999999999); # 1GB
 		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM=', 'ss' => 'test_archive', 'ws' => 'Template'));
 		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('');
 		if ($spreed_sheets)

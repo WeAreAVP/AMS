@@ -127,10 +127,10 @@ class Googledoc extends CI_Controller
 								}
 							}
 						}
-						echo '<strong>Instantiation Table Changes According to american_archive spreadsheet template v1 Description <br/>Instantiation Id :' . $instantiation->id . '</strong><br>';
+						myLog('<strong>Instantiation Table Changes According to american_archive spreadsheet template v1 Description <br/>Instantiation Id :' . $instantiation->id . '</strong>');
 						print_r($instantiation_data);
 						$this->instantiation->update_instantiations($instantiation->id, $instantiation_data);
-						echo '<br> <strong>Events Table changes</strong> <br/>';
+						myLog(' <strong>Events Table changes</strong> <br/>');
 						$this->_store_event_type_inspection($event_row, $instantiation->id);
 						$this->_store_event_type_baked($event_row, $instantiation->id);
 						$this->_store_event_type_cleaned($event_row, $instantiation->id);

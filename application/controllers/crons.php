@@ -307,6 +307,7 @@ function create($path, $filename, $job_id)
 		}
 		else
 		{
+			send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Refine', 'Test');
 			$this->myLog('No job available for refinement.');
 		}
 		exit_function();

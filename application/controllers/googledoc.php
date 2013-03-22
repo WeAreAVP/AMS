@@ -134,6 +134,14 @@ class Googledoc extends CI_Controller
 						$this->_store_event_type_migration($event_row, $instantiation->id);
 						exit(0);
 					}
+					else
+					{
+						myLog('No instantiation found against ' . $event_row[2]);
+					}
+				}
+				else
+				{
+					myLog('Event rows are empty');
 				}
 			}
 		}

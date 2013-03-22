@@ -245,3 +245,18 @@ function sortByOneKey(array $array, $key, $manage_count = FALSE, $asc = TRUE)
 
 	return $result;
 }
+/**
+	 * Display the output.
+	 * @global type $argc
+	 * @param type $s 
+	 */
+	function myLog($s)
+	{
+		global $argc;
+		if ($argc)
+			$s.="\n";
+		else
+			$s.="<br>\n";
+		echo date('Y-m-d H:i:s') . ' >> ' . $s;
+		flush();
+	}

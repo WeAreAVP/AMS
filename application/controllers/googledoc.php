@@ -53,9 +53,9 @@ class Googledoc extends CI_Controller
 		@ini_set("memory_limit", "4000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999); # 1GB
 		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM=', 'ss' => 'test_archive', 'ws' => 'Template'));
-
+		myLog('Getting Spreadsheet Info');
 		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('');
-
+		myLog('Total Spreadsheet Count '.count($spreed_sheets));
 		if ($spreed_sheets)
 		{
 			foreach ($spreed_sheets as $spreed_sheet)
@@ -70,11 +70,13 @@ class Googledoc extends CI_Controller
 					}
 				}
 			}
+			
 			foreach ($work_sheets as $work_sheet)
 			{
 				if ($work_sheet[0]['name'] === 'Template')
 				{
 					$data = $this->google_spreadsheet->displayWorksheetData($work_sheet[0]['spreedSheetId'], $work_sheet[0]['workSheetId']);
+					myLog('Start importing Spreadsheet');
 					$this->_store_event_data($data);
 				}
 			}
@@ -92,6 +94,7 @@ class Googledoc extends CI_Controller
 	{
 		if (isset($data) && ! empty($data))
 		{
+			myLog('Start storing Event info from Spreadsheet');
 			foreach ($data as $event_row)
 			{
 				if (isset($event_row[2]) && ! empty($event_row[2]) && isset($event_row[5]) && ! empty($event_row[5]))

@@ -54,13 +54,14 @@
 			function doRefine() {
 				$('#refine_body').html('<img src="/images/ajax-loader.gif" style="margin-right: 15px;" />');
 				$('#refine_footer').hide();
+				
 				$.ajax({
 					type: 'POST',
 					url: site_url + 'refine/export/' + type_record,
 					dataType: 'json',
 					success: function(result) {
 						$('#refine_body').html(result.msg);
-
+$('#already_refine_footer').show();
 					}
 				});
 			}

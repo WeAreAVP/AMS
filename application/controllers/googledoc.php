@@ -40,6 +40,7 @@ class Googledoc extends CI_Controller
 		parent::__construct();
 		$this->load->model('instantiations_model', 'instantiation');
 		$this->load->model('station_model', 'station');
+		$this->load->model('cron_model');
 	}
 
 	/**
@@ -81,6 +82,8 @@ class Googledoc extends CI_Controller
 					$this->_store_event_data($data);
 				}
 			}
+			$this->cron_model->update_rotate_indexes(2, array('status' => 0));
+			$this->cron_model->update_rotate_indexes(1, array('status' => 0));
 		}
 	}
 
@@ -106,7 +109,7 @@ class Googledoc extends CI_Controller
 					$instantiation = $this->instantiation->get_instantiation_by_guid_physical_format($db_guid, $event_row[5]);
 					if ($instantiation)
 					{
-						
+
 						$instantiation_data = array();
 						if (isset($event_row[32]) && ! empty($event_row[32]))
 						{
@@ -135,7 +138,6 @@ class Googledoc extends CI_Controller
 						$this->_store_event_type_baked($event_row, $instantiation->id);
 						$this->_store_event_type_cleaned($event_row, $instantiation->id);
 						$this->_store_event_type_migration($event_row, $instantiation->id);
-						
 					}
 					else
 					{

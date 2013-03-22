@@ -148,6 +148,7 @@ class Googledoc extends CI_Controller
 	 */
 	private function _store_event_type_inspection($event_row, $instantiation_id)
 	{
+		myLog('Start storing Event Inspection info from Spreadsheet');
 		if ((isset($event_row[8]) && ! empty($event_row[8])) OR (isset($event_row[9]) && ! empty($event_row[9])))
 		{
 			$event_data = array();

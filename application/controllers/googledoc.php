@@ -54,7 +54,7 @@ class Googledoc extends CI_Controller
 		@ini_set("max_execution_time", 999999999999); # 1GB
 		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM=', 'ss' => 'test_archive', 'ws' => 'Template'));
 		echo 'Login Email Address: nouman@avpreserve.com<br/>';
-		echo 'Nouman Tayyab <br/>';
+		echo 'Welcome Nouman Tayyab <br/>';
 		
 		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('');
 		echo 'Total Spreadsheet Count '.count($spreed_sheets);
@@ -79,10 +79,11 @@ class Googledoc extends CI_Controller
 				if ($work_sheet[0]['name'] === 'Template')
 				{
 					$data = $this->google_spreadsheet->displayWorksheetData($work_sheet[0]['spreedSheetId'], $work_sheet[0]['workSheetId']);
+					$this->_store_event_data($data);
 					
 				}
 
-//				$this->_store_event_data($data);
+//				
 //				break;
 			}
 		}

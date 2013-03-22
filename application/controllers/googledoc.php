@@ -69,16 +69,16 @@ class Googledoc extends CI_Controller
 					if ($station_info)
 					{
 						$work_sheets[] = $this->google_spreadsheet->getAllWorksSheetsDetails($spreed_sheet['spreedSheetId']);
-						foreach ($work_sheets as $work_sheet)
-						{
-							if ($work_sheet[0]['name'] === 'Template')
-							{
-								$data = $this->google_spreadsheet->displayWorksheetData($work_sheet[0]['spreedSheetId'], $work_sheet[0]['workSheetId']);
-								myLog('Start importing Spreadsheet');
-								$this->_store_event_data($data);
-							}
-						}
 					}
+				}
+			}
+			foreach ($work_sheets as $work_sheet)
+			{
+				if ($work_sheet[0]['name'] === 'Template')
+				{
+					$data = $this->google_spreadsheet->displayWorksheetData($work_sheet[0]['spreedSheetId'], $work_sheet[0]['workSheetId']);
+					myLog('Start importing Spreadsheet');
+					$this->_store_event_data($data);
 				}
 			}
 		}
@@ -100,9 +100,9 @@ class Googledoc extends CI_Controller
 			{
 				if (isset($event_row[2]) && ! empty($event_row[2]) && isset($event_row[5]) && ! empty($event_row[5]))
 				{
-					$guid=$event_row[2];
-					$explode=explode('-',$guid,3);
-					$db_guid='cpb-aacip/'.$explode[2];
+					$guid = $event_row[2];
+					$explode = explode('-', $guid, 3);
+					$db_guid = 'cpb-aacip/' . $explode[2];
 					$instantiation = $this->instantiation->get_instantiation_by_guid_physical_format($db_guid, $event_row[5]);
 					if ($instantiation)
 					{

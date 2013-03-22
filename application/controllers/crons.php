@@ -174,7 +174,8 @@ class Crons extends CI_Controller
 		}
 		exit_function();
 	}
-function create($path, $filename, $job_id)
+
+	function create($path, $filename, $job_id)
 	{
 
 		$project_name = $filename;
@@ -189,6 +190,7 @@ function create($path, $filename, $job_id)
 		}
 		return FALSE;
 	}
+
 	/**
 	 * Make CSV File for google refinement
 	 * 
@@ -247,7 +249,7 @@ function create($path, $filename, $job_id)
 				$project_url = $this->create($path, $filename, $record->id);
 				$user = $this->users->get_user_by_id($record->user_id)->row();
 				$this->myLog('Sending Email to ' . $user->email);
-				
+
 				send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
 			}
 			else
@@ -307,7 +309,6 @@ function create($path, $filename, $job_id)
 		}
 		else
 		{
-			send_default_email();
 			$this->myLog('No job available for refinement.');
 		}
 		exit_function();

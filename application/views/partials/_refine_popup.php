@@ -13,7 +13,7 @@
 		<button class="btn btn-primary" onclick="doRefine();">Yes</button>
 	</div>
 	<div class="modal-footer" id="already_refine_footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>
+		<button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true">OK</button>
 
 	</div>
 </div>
@@ -54,14 +54,14 @@
 			function doRefine() {
 				$('#refine_body').html('<img src="/images/ajax-loader.gif" style="margin-right: 15px;" />');
 				$('#refine_footer').hide();
-				
+
 				$.ajax({
 					type: 'POST',
 					url: site_url + 'refine/export/' + type_record,
 					dataType: 'json',
 					success: function(result) {
 						$('#refine_body').html(result.msg);
-$('#already_refine_footer').show();
+						$('#already_refine_footer').show();
 					}
 				});
 			}

@@ -44,8 +44,6 @@ class Refine extends MY_Controller
 		$this->load->model('assets_model');
 	}
 
-	
-
 	function export($type)
 	{
 		set_time_limit(0);
@@ -63,7 +61,7 @@ class Refine extends MY_Controller
 			$record = array('user_id' => $this->user_id, 'is_active' => 1, 'export_query' => $query, 'refine_type' => 'asset');
 			$job_id = $this->refine_modal->insert_job($record);
 		}
-		echo json_encode(array('msg'=>'You will receive an email containing the link for AMS Refine.'));
+		echo json_encode(array('msg' => 'You will receive an email containing the link for AMS Refine.'));
 		exit_function();
 	}
 

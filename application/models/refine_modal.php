@@ -75,11 +75,14 @@ class Refine_modal extends CI_Model
 		$this->db->where('google_refine.is_active', 2);
 		return $this->db->get('google_refine')->row();
 	}
-	function get_job_for_refine(){
+
+	function get_job_for_refine()
+	{
 		$this->db->where('google_refine.is_active', 1);
 		$this->db->where('google_refine.project_id IS NULL');
 		return $this->db->get('google_refine')->row();
 	}
+
 	function export_refine_csv($real_time = FALSE)
 	{
 

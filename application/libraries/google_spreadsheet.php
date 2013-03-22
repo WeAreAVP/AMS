@@ -33,8 +33,8 @@ class Google_Spreadsheet
 	private $spreadsheet_id;
 	private $worksheet = "";
 	private $worksheet_id;
-	var $user = 'ali@geekschicago.com';
-	var $pass = 'purelogics12';
+	var $user = 'nouman@avpreserve.com';
+	var $pass = 'bm91bWFuQGF2cHM=';
 	var $ss = false;
 	var $ws = false;
 
@@ -55,7 +55,7 @@ class Google_Spreadsheet
 		$this->ci->zend->load('Zend/Gdata/ClientLogin');
 		if ( ! isset($this->client))
 		{
-			$this->login($this->user, $this->pass);
+			$this->login($this->user, base64_decode($this->pass));
 		}
 		if ($this->ss)
 			$this->useSpreadsheet($this->ss);

@@ -48,8 +48,8 @@ class Googledoc extends MY_Controller
 	 */
 	function parse_american_archive()
 	{
-		echo base64_encode('nouman@avps');
-		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'nouman@avps', 'ss' => 'test_archive', 'ws' => 'Template'));
+		
+		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM=', 'ss' => 'test_archive', 'ws' => 'Template'));
 		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('');
 		debug($spreed_sheets);
 		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('american_archive spreadsheet template v1 - samples');

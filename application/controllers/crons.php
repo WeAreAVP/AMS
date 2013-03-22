@@ -247,6 +247,7 @@ function create($path, $filename, $job_id)
 				$project_url = $this->create($path, $filename, $record->id);
 				$user = $this->users->get_user_by_id($record->user_id)->row();
 				$this->myLog('Sending Email to ' . $user->email);
+				
 				send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
 			}
 			else

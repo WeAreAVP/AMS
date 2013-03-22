@@ -52,7 +52,6 @@ class Googledoc extends CI_Controller
 
 		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM=', 'ss' => 'test_archive', 'ws' => 'Template'));
 		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('');
-		debug($spreed_sheets,FALSE);
 		if ($spreed_sheets)
 		{
 			foreach ($spreed_sheets as $spreed_sheet)
@@ -67,12 +66,16 @@ class Googledoc extends CI_Controller
 					}
 				}
 			}
-			debug($work_sheets);
 			foreach ($work_sheets as $work_sheet)
 			{
-				$data = $this->google_spreadsheet->displayWorksheetData($work_sheet[0]['spreedSheetId'], $work_sheet[0]['workSheetId']);
-				$this->_store_event_data($data);
-				break;
+				if ($work_sheet[0]['name'] === 'Template')
+				{
+					$data = $this->google_spreadsheet->displayWorksheetData($work_sheet[0]['spreedSheetId'], $work_sheet[0]['workSheetId']);
+					debug($data);
+				}
+
+//				$this->_store_event_data($data);
+//				break;
 			}
 		}
 	}

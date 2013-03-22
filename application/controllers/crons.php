@@ -36,6 +36,7 @@ class Crons extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->library('googlerefine');
 		$this->load->model('email_template_model', 'email_template');
 		$this->load->model('cron_model');
 		$this->load->model('dx_auth/users', 'users');

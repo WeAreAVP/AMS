@@ -25,7 +25,7 @@
  * @license    ams http://ams.appreserve.com
  * @link       http://ams.appreserve.com
  */
-class Googledoc extends MY_Controller
+class Googledoc extends CI_Controller
 {
 
 	/**
@@ -39,6 +39,7 @@ class Googledoc extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('instantiations_model', 'instantiation');
+		$this->load->model('station_model', 'station');
 	}
 
 	/**
@@ -48,23 +49,31 @@ class Googledoc extends MY_Controller
 	 */
 	function parse_american_archive()
 	{
-		
+
 		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM=', 'ss' => 'test_archive', 'ws' => 'Template'));
 		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('');
-		debug($spreed_sheets);
-		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('american_archive spreadsheet template v1 - samples');
+		debug($spreed_sheets,FALSE);
 		if ($spreed_sheets)
 		{
 			foreach ($spreed_sheets as $spreed_sheet)
 			{
-				$work_sheets[] = $this->google_spreadsheet->getAllWorksSheetsDetails($spreed_sheet['spreedSheetId']);
+				$explode_name = explode('_', $spreed_sheet['name']);
+				if (isset($explode_name[0]))
+				{
+					$station_info = $this->station->get_station_by_cpb_id($explode_name[0]);
+					if ($station_info)
+					{
+						$work_sheets[] = $this->google_spreadsheet->getAllWorksSheetsDetails($spreed_sheet['spreedSheetId']);
+					}
+				}
 			}
-		}
-		foreach ($work_sheets as $work_sheet)
-		{
-			$data = $this->google_spreadsheet->displayWorksheetData($work_sheet[0]['spreedSheetId'], $work_sheet[0]['workSheetId']);
-			$this->_store_event_data($data);
-			break;
+			debug($work_sheets);
+			foreach ($work_sheets as $work_sheet)
+			{
+				$data = $this->google_spreadsheet->displayWorksheetData($work_sheet[0]['spreedSheetId'], $work_sheet[0]['workSheetId']);
+				$this->_store_event_data($data);
+				break;
+			}
 		}
 	}
 

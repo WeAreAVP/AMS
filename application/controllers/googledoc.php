@@ -100,7 +100,10 @@ class Googledoc extends CI_Controller
 			{
 				if (isset($event_row[2]) && ! empty($event_row[2]) && isset($event_row[5]) && ! empty($event_row[5]))
 				{
-					$instantiation = $this->instantiation->get_instantiation_by_guid_physical_format($event_row[2], $event_row[5]);
+					$guid=$event_row[2];
+					$explode=explode('-',$guid,3);
+					$db_guid='cpb-aacip/'.$explode[2];
+					$instantiation = $this->instantiation->get_instantiation_by_guid_physical_format($db_guid, $event_row[5]);
 					if ($instantiation)
 					{
 						echo '<pre>';

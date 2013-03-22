@@ -52,6 +52,8 @@ class Googledoc extends CI_Controller
 		set_time_limit(0);
 		@ini_set("memory_limit", "4000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999); # 1GB
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
 		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM=', 'ss' => 'test_archive', 'ws' => 'Template'));
 		myLog('Getting Spreadsheet Info');
 		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('');
@@ -130,7 +132,7 @@ class Googledoc extends CI_Controller
 						$this->_store_event_type_baked($event_row, $instantiation->id);
 						$this->_store_event_type_cleaned($event_row, $instantiation->id);
 						$this->_store_event_type_migration($event_row, $instantiation->id);
-						return TRUE;
+						exit(0);
 					}
 				}
 			}

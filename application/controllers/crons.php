@@ -180,7 +180,120 @@ class Crons extends CI_Controller
 	 */
 	public function make_refine_csv()
 	{
-		
+		$record = $this->refine_modal->get_job_for_refine();
+		if (count($record) > 0)
+		{
+			if ($record->refine_type == 'instantiation')
+			{
+				$filename = 'google_refine_' . time() . '.csv';
+				$fp = fopen("uploads/google_refine/$filename", 'a');
+
+				$line = "Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,__Ins_id,__identifier_id,__gen_id\n";
+				fputs($fp, $line);
+				fclose($fp);
+				$db_count = 0;
+				$offset = 0;
+				while ($db_count == 0)
+				{
+					$custom_query = $record->export_query;
+					$custom_query.=' LIMIT ' . ($offset * 15000) . ', 15000';
+
+					$records = $this->refine_modal->get_csv_records($custom_query);
+
+					$fp = fopen("uploads/google_refine/$filename", 'a');
+					$line = '';
+					foreach ($records as $value)
+					{
+						$line.='"' . str_replace('"', '""', $value->organization) . '",';
+						$line.='"' . str_replace('"', '""', $value->asset_title) . '",';
+						$line.='"' . str_replace('"', '""', $value->description) . '",';
+						$line.='"' . str_replace('"', '""', $value->instantiation_identifier) . '",';
+						$line.='"' . str_replace('"', '""', $value->instantiation_source) . '",';
+						$line.='"' . str_replace('"', '""', $value->generation) . '",';
+						$line.='"' . str_replace('"', '""', $value->status) . '",';
+						$line.='"' . str_replace('"', '""', $value->nomination_reason) . '",';
+						$line.='"' . str_replace('"', '""', $value->media_type) . '",';
+						$line.='"' . str_replace('"', '""', $value->language) . '",';
+						$line.='"' . str_replace('"', '""', $value->ins_id) . '",';
+						$line.='"' . str_replace('"', '""', $value->identifier_id) . '",';
+						$line.='"' . str_replace('"', '""', $value->gen_id) . '"';
+						$line .= "\n";
+					}
+					fputs($fp, $line);
+					fclose($fp);
+					$offset ++;
+					if (count($records) < 15000)
+						$db_count ++;
+				}
+
+				$path = $this->config->item('path') . "uploads/google_refine/$filename";
+				$data = array('export_csv_path' => $path);
+				$this->refine_modal->update_job($record->id, $data);
+				$project_url = $this->create($path, $filename, $record->id);
+				$user = $this->users->get_user_by_id($record->user_id)->row();
+				$this->myLog('Sending Email to ' . $user->email);
+				send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
+			}
+			else
+			{
+				$filename = 'google_refine_' . time() . '.csv';
+				$fp = fopen("uploads/google_refine/$filename", 'a');
+				$line = "Organization,Asset Title,Description,Subject,Subject Source,Subject Ref,Genre,Genre Source,Genre Ref,Creator Name,Creator Affiliation,Creator Source,Creator Ref,";
+				$line .="Contributors Name,Contributors Affiliation,Contributors Source,Contributors Ref,Publisher,Publisher Affiliation,Publisher Ref,Coverage,Coverage Type,";
+				$line .="Audience Level,Audience Level Source,Audience Level Ref,";
+				$line .="Audience Rating,Audience Rating Source,Audience Rating Ref,";
+				$line .="Annotation,Annotation Type,Annotation Ref,";
+				$line .="Rights,Rights Link,Asset Type,Identifier,Identifier Source,Identifier Ref,Asset Date,";
+				$line .="__subject_id,__genre_id,__creator_id,__contributor_id,__publisher_id,__coverage_id,__audience_levels_id,__audience_ratings_id,__annotation_id,__right_id,__asset_types_id,__identifier_id,__asset_date_id,__asset_id\n";
+				fputs($fp, $line);
+				fclose($fp);
+				$db_count = 0;
+				$offset = 0;
+				while ($db_count == 0)
+				{
+
+					$custom_query = $record->export_query;
+					$custom_query.=' LIMIT ' . ($offset * 15000) . ', 15000';
+
+					$records = $this->refine_modal->get_csv_records($custom_query);
+
+					$fp = fopen("uploads/google_refine/$filename", 'a');
+					$line = '';
+					foreach ($records as $value)
+					{
+						$count = 1;
+						foreach ($value as $index => $column)
+						{
+							if ($index == 'asset_id')
+								$line.='"' . str_replace('"', '""', $column) . '"';
+							else
+								$line.='"' . str_replace('"', '""', $column) . '",';
+						}
+
+						$line .= "\n";
+					}
+
+					fputs($fp, $line);
+					fclose($fp);
+					$offset ++;
+					if (count($records) < 15000)
+						$db_count ++;
+				}
+
+				$path = $this->config->item('path') . "uploads/google_refine/$filename";
+				$data = array('export_csv_path' => $path);
+				$this->refine_modal->update_job($record->id, $data);
+				$project_url = $this->create($path, $filename, $record->id);
+				$user = $this->users->get_user_by_id($record->user_id)->row();
+				$this->myLog('Sending Email to ' . $user->email);
+				send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
+			}
+		}
+		else
+		{
+			$this->myLog('No job available for refinement.');
+		}
+		exit_function();
 	}
 
 	/**

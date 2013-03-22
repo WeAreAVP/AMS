@@ -238,15 +238,19 @@ class Crons extends CI_Controller
 					}
 					fputs($fp, $line);
 					fclose($fp);
+					$this->myLog('Total Records on CSV' . ($offset * 15000));
 					$offset ++;
 					if (count($records) < 15000)
 						$db_count ++;
 				}
 
 				$path = $this->config->item('path') . "uploads/google_refine/$filename";
+				$this->myLog('CSV file successfully created');
 				$data = array('export_csv_path' => $path);
 				$this->refine_modal->update_job($record->id, $data);
+				$this->myLog('Creating AMS Refine Project');
 				$project_url = $this->create($path, $filename, $record->id);
+				$this->myLog('Successfully Created AMS Refine Project');
 				$user = $this->users->get_user_by_id($record->user_id)->row();
 				$this->myLog('Sending Email to ' . $user->email);
 
@@ -294,6 +298,7 @@ class Crons extends CI_Controller
 					fputs($fp, $line);
 					fclose($fp);
 					$offset ++;
+					
 					if (count($records) < 15000)
 						$db_count ++;
 				}

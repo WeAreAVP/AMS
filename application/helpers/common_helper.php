@@ -73,13 +73,26 @@ function send_email($to, $from, $subject, $message, $reply_to = '')
 	$email->subject($subject);
 	$email->message($message);
 	echo $email->print_debugger();
-	if ($email->send()){
+	if ($email->send())
+	{
 		echo $email->print_debugger();
 		return true;
 	}
-		
 	else
 		return false;
+}
+
+function send_default_email()
+{
+	$CI = & get_instance();
+	$CI->load->library('email');
+	$CI->email->from('no-reply@catalyst.com', 'Email');
+	$CI->email->to('nouman@avpreserve.com');
+	$CI->email->subject('Exported Records');
+	$CI->email->message('Please download your XLSX/CSV File at the following link ' );
+
+	$CI->email->send();
+	echo $CI->email->print_debugger();
 }
 
 function xmlObjToArr($obj)

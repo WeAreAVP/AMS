@@ -44,21 +44,7 @@ class Refine extends MY_Controller
 		$this->load->model('assets_model');
 	}
 
-	function create($path, $filename, $job_id)
-	{
-
-		$project_name = $filename;
-		$file_path = $path;
-		$data = $this->googlerefine->create_project($project_name, $file_path);
-		if ($data)
-		{
-			$data['is_active'] = 1;
-			$data['project_name'] = $filename;
-			$this->refine_modal->update_job($job_id, $data);
-			return $data['project_url'];
-		}
-		return FALSE;
-	}
+	
 
 	function export($type)
 	{

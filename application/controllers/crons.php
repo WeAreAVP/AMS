@@ -174,7 +174,21 @@ class Crons extends CI_Controller
 		}
 		exit_function();
 	}
+function create($path, $filename, $job_id)
+	{
 
+		$project_name = $filename;
+		$file_path = $path;
+		$data = $this->googlerefine->create_project($project_name, $file_path);
+		if ($data)
+		{
+			$data['is_active'] = 1;
+			$data['project_name'] = $filename;
+			$this->refine_modal->update_job($job_id, $data);
+			return $data['project_url'];
+		}
+		return FALSE;
+	}
 	/**
 	 * Make CSV File for google refinement
 	 * 

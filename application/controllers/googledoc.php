@@ -47,7 +47,7 @@ class Googledoc extends CI_Controller
 	 * 
 	 * @return view
 	 */
-	function parse_american_archive()
+	function import_gsheets()
 	{
 		set_time_limit(0);
 		@ini_set("memory_limit", "4000M"); # 1GB

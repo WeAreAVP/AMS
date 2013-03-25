@@ -5,7 +5,7 @@
  * 
  * PHP version 5
  * 
- * @category   Time Tracking
+ * @category   AMS
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@geekschicago.com>
@@ -60,8 +60,9 @@ class Deployment extends CI_Controller
 
 	function memcached_connect()
 	{
+		$this->ci->load->config('memcached');
 		$memcached_server = $this->config->item('servers');
-		debug($memcached_server);exit;
+		
 		$fp = @fsockopen($memcached_server['default']['host'], $memcached_server['default']['port'], $errno, $errstr, 300);
 		if ( ! $fp)
 		{

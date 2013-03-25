@@ -38,6 +38,8 @@ class Deployment extends CI_Controller
 		$this->sphnix_connect();
 		/** Connect & Check status of Memcached  */
 		$this->memcached_connect();
+		/** Check DB Name and BASE URL */
+		$this->check_values();
 	}
 
 	/**
@@ -58,11 +60,15 @@ class Deployment extends CI_Controller
 		}
 	}
 
+	/**
+	 * Connect and test the memcached server.
+	 * 
+	 */
 	function memcached_connect()
 	{
 		$this->config->load('memcached');
 		$memcached_server = $this->config->item('memcached');
-		
+
 		$fp = @fsockopen($memcached_server['servers']['default']['host'], $memcached_server['servers']['default']['port'], $errno, $errstr, 300);
 		if ( ! $fp)
 		{
@@ -71,6 +77,28 @@ class Deployment extends CI_Controller
 		else
 		{
 			deployment_display('Memcached is running.', 'OK');
+		}
+	}
+
+	/**
+	 * Check DB names
+	 * 
+	 */
+	function check_values()
+	{
+		if (ENVIRONMENT === 'production')
+		{
+			if ($this->db->database === 'ams_live')
+				deployment_display('Database name is correct.', 'OK');
+			else
+				deployment_display('Database name is incorrect.');
+		}
+		else if (ENVIRONMENT === 'qatesting')
+		{
+			if ($this->db->database === 'ams_qa')
+				deployment_display('Database name is correct.', 'OK');
+			else
+				deployment_display('Database name is incorrect.');
 		}
 	}
 

@@ -264,7 +264,7 @@ function myLog($s)
 
 function deployment_display($msg, $status = 'FAILED')
 {
-	
+
 	if ($status === 'FAILED')
 		$color = 'color:red;';
 	else
@@ -272,7 +272,6 @@ function deployment_display($msg, $status = 'FAILED')
 
 	echo "<body style='background:black;color:white;'><nobr><h5>$msg\t\t[ <b style='$color'>$status</b> ]</h5></nobr><hr/></body>";
 	flush_buffers();
-	
 }
 
 function flush_buffers()

@@ -276,7 +276,6 @@ function deployment_display($msg, $status = 'FAILED')
 
 function flush_buffers()
 {
-	header('Content-type: text/html; charset=utf-8');
 	ob_end_flush();
 	ob_flush();
 	flush();

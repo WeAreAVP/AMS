@@ -117,11 +117,11 @@ class Deployment extends CI_Controller
 	 */
 	function check_reporting()
 	{
-		if (ini_get('display_errors') === 0)
+		if (ini_get('display_errors') == 0)
 			deployment_display('Display Errors. ', 'OFF');
 		else
 			deployment_display('Display Errors. ', 'ON');
-		if (ini_get('error_reporting') === 0)
+		if (ini_get('error_reporting') == 0)
 			deployment_display('Display Reporting. ', 'OFF');
 		else
 			deployment_display('Display Reporting. ', ini_get('error_reporting'));

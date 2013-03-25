@@ -40,6 +40,8 @@ class Deployment extends CI_Controller
 		$this->memcached_connect();
 		/** Check DB Name and BASE URL */
 		$this->check_values();
+		/** Check Error Reporting  */
+		$this->check_reporting();
 	}
 
 	/**
@@ -108,6 +110,13 @@ class Deployment extends CI_Controller
 			else
 				deployment_display('Base URL is incorrect.');
 		}
+
+		function check_reporting()
+		{
+			deployment_display('Display Errors. ', ini_get('display_errors'));
+			deployment_display('Error Reporting. ', ini_get('error_reporting'));
+		}
+
 	}
 
 }

@@ -36,7 +36,8 @@ class Deployment extends CI_Controller
 	{
 		/** Connect & Check status of Sphnix  */
 		$this->sphnix_connect();
-		/** Connect & Check status of Sphnix  */
+		/** Connect & Check status of Memcached  */
+		$this->memcached_connect();
 	}
 
 	/**

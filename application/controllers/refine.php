@@ -74,9 +74,11 @@ class Refine extends MY_Controller
 		{
 			$data = array('is_active' => 0);
 			$this->refine_modal->update_job($db_detail->id, $data);
+			if ($db_detail->refine_type == 'instantiation')
+				redirect('instantiations');
+			else
+				redirect('records');
 		}
-
-		redirect('records');
 	}
 
 	function save($project_id)

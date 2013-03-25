@@ -270,7 +270,7 @@ function deployment_display($msg, $status = 'FAILED')
 	else
 		$color = 'color:green;';
 
-	echo "<$msg   [ <b style='$color'>$status</b> ]";
+	echo "$msg   [ <b style='$color'>$status</b> ]";
 	flush_buffers();
 }
 

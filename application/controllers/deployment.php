@@ -40,7 +40,7 @@ class Deployment extends CI_Controller
 	 */
 	public function check()
 	{
-
+		$this->load->view('welcome_message');
 		/** Connect & Check status of Sphnix  */
 		$this->sphnix_connect();
 		/** Connect & Check status of Memcached  */

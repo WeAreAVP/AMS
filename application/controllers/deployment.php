@@ -61,9 +61,9 @@ class Deployment extends CI_Controller
 	function memcached_connect()
 	{
 		$this->config->load('memcached');
-		$memcached_server = $this->config->item('servers');
+		$memcached_server = $this->config->item('memcached');
 		debug($memcached_server);
-		$fp = @fsockopen($memcached_server['default']['host'], $memcached_server['default']['port'], $errno, $errstr, 300);
+		$fp = @fsockopen($memcached_server['servers']['default']['host'], $memcached_server['servers']['default']['port'], $errno, $errstr, 300);
 		if ( ! $fp)
 		{
 			deployment_display("$errstr ($errno)");

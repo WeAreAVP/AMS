@@ -62,7 +62,7 @@ class Deployment extends CI_Controller
 	{
 		$this->config->load('memcached');
 		$memcached_server = $this->config->item('memcached');
-		debug($memcached_server);
+		
 		$fp = @fsockopen($memcached_server['servers']['default']['host'], $memcached_server['servers']['default']['port'], $errno, $errstr, 300);
 		if ( ! $fp)
 		{

@@ -245,18 +245,28 @@ function sortByOneKey(array $array, $key, $manage_count = FALSE, $asc = TRUE)
 
 	return $result;
 }
+
 /**
-	 * Display the output.
-	 * @global type $argc
-	 * @param type $s 
-	 */
-	function myLog($s)
-	{
-		global $argc;
-		if ($argc)
-			$s.="\n";
-		else
-			$s.="<br>\n";
-		echo date('Y-m-d H:i:s') . ' >> ' . $s;
-		flush();
-	}
+ * Display the output.
+ * @global type $argc
+ * @param type $s 
+ */
+function myLog($s)
+{
+	global $argc;
+	if ($argc)
+		$s.="\n";
+	else
+		$s.="<br>\n";
+	echo date('Y-m-d H:i:s') . ' >> ' . $s;
+	flush();
+}
+
+function deployment_display($msg, $status = 'FAILED')
+{
+	if ($status === 'FAILED')
+		$color = 'color:red;';
+	else
+		$color = 'color:green;';
+	echo "$msg\t\t[ <b style='$color'>$status</b> ]";
+}

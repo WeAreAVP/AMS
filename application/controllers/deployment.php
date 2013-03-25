@@ -43,11 +43,11 @@ class Deployment extends CI_Controller
 		$fp = @fsockopen('127.0.0.1', '9312', $errno, $errstr, 300);
 		if ( ! $fp)
 		{
-			myLog("$errstr ($errno)");
+			deployment_display("$errstr ($errno)");
 		}
 		else
 		{
-			myLog('Sphnix is running.');
+			deployment_display('Sphnix is running.','OK');
 		}
 	}
 

@@ -41,7 +41,7 @@ class Deployment extends CI_Controller
 	 */
 	public function check()
 	{
-		echo '<body style="background:black;">';
+		echo '<body style="background:black;font-size:12pt;font:family:monaco,monospace;color:black;">';
 		echo flush_buffers();
 		/** Connect & Check status of Sphnix  */
 		$this->sphnix_connect();

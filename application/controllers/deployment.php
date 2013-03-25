@@ -92,7 +92,7 @@ class Deployment extends CI_Controller
 				deployment_display('Database name is correct.', 'OK');
 			else
 				deployment_display('Database name is incorrect.');
-			echo $this->config->item('base_url');
+			echo $this->config->item('base_url');exit;
 		}
 		else if (ENVIRONMENT === 'qatesting')
 		{

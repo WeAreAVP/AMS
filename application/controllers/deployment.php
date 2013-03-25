@@ -40,14 +40,15 @@ class Deployment extends CI_Controller
 
 	function sphnix_connect()
 	{
-		$fp = @fsockopen('127.0.0.1', '9312', $errno, $errstr, 300);
+		$sphnix_server = $this->config->item('server');
+		$fp = @fsockopen($sphnix_server[0], $sphnix_server[1], $errno, $errstr, $this->config->item('connect_timeout'));
 		if ( ! $fp)
 		{
 			deployment_display("$errstr ($errno)");
 		}
 		else
 		{
-			deployment_display('Sphnix is running.','OK');
+			deployment_display('Sphnix is running.', 'OK');
 		}
 	}
 

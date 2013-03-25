@@ -41,7 +41,7 @@ class Deployment extends CI_Controller
 	function sphnix_connect()
 	{
 		$sphnix_server = $this->config->item('server');
-		$fp = @fsockopen($sphnix_server[0], $sphnix_server[1], $errno, $errstr, $this->config->item('connect_timeout'));
+		$fp = @fsockopen($sphnix_server[0], $sphnix_server[0], $errno, $errstr, $this->config->item('connect_timeout'));
 		if ( ! $fp)
 		{
 			deployment_display("$errstr ($errno)");

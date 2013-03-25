@@ -111,11 +111,20 @@ class Deployment extends CI_Controller
 				deployment_display('Base URL is incorrect.');
 		}
 	}
-
+	/**
+	 * Check the error reporting status.
+	 * 
+	 */
 	function check_reporting()
 	{
-		deployment_display('Display Errors. ', ini_get('display_errors'));
-		deployment_display('Error Reporting. ', ini_get('error_reporting'));
+		if (ini_get('display_errors') === 0)
+			deployment_display('Display Errors. ', 'OFF');
+		else
+			deployment_display('Display Errors. ', 'ON');
+		if (ini_get('error_reporting') === 0)
+			deployment_display('Display Reporting. ', 'OFF');
+		else
+			deployment_display('Display Reporting. ', ini_get('error_reporting'));
 	}
 
 }

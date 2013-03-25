@@ -111,6 +111,7 @@ class Deployment extends CI_Controller
 				deployment_display('Base URL is incorrect.');
 		}
 	}
+
 	/**
 	 * Check the error reporting status.
 	 * 

@@ -92,7 +92,10 @@ class Deployment extends CI_Controller
 				deployment_display('Database name is correct.', 'OK');
 			else
 				deployment_display('Database name is incorrect.');
-			
+			if ($this->config->item('base_url') === 'http://ams.avpreserve.com/')
+				deployment_display('Base URL is correct.', 'OK');
+			else
+				deployment_display('Base URL is incorrect.');
 		}
 		else if (ENVIRONMENT === 'qatesting')
 		{
@@ -100,7 +103,10 @@ class Deployment extends CI_Controller
 				deployment_display('Database name is correct.', 'OK');
 			else
 				deployment_display('Database name is incorrect.');
-			echo $this->config->item('base_url');exit;
+			if ($this->config->item('base_url') === 'http://amsqa.avpreserve.com/')
+				deployment_display('Base URL is correct.', 'OK');
+			else
+				deployment_display('Base URL is incorrect.');
 		}
 	}
 

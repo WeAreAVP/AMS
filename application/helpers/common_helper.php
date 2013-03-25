@@ -269,10 +269,8 @@ function deployment_display($msg, $status = 'FAILED')
 		$color = 'color:red;';
 	else
 		$color = 'color:green;';
-	$hr = '<hr/>';
-	if ($status === '...')
-		$hr = '';
-	echo "<body style='background:black;color:white;'><nobr><h5>$msg\t\t[ <b style='$color'>$status</b> ]</h5></nobr>$hr</body>";
+
+	echo "<body style='background:black;color:white;'><nobr><h5>$msg\t\t[ <b style='$color'>$status</b> ]</h5></nobr>/body>";
 	flush_buffers();
 }
 

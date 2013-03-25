@@ -234,7 +234,7 @@ class Refine extends MY_Controller
 			if ($index != 0)
 			{
 				$exploded_columns = preg_split("/\t/", $line);
-				debug($exploded_columns,FALSE);
+				
 				$asset_id = $exploded_columns[51];
 				$asset_date_id = $exploded_columns[50];
 				$asset_identifier_id = $exploded_columns[49];

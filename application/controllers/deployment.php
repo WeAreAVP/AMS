@@ -50,7 +50,7 @@ class Deployment extends CI_Controller
 	 */
 	function sphnix_connect()
 	{
-		deployment_display("Connecting",'...');
+		deployment_display("Connecting to Sphnix",'...');
 		sleep(3);
 		$sphnix_server = $this->config->item('server');
 		$fp = @fsockopen($sphnix_server[0], $sphnix_server[1], $errno, $errstr, $this->config->item('connect_timeout'));
@@ -70,6 +70,7 @@ class Deployment extends CI_Controller
 	 */
 	function memcached_connect()
 	{
+		deployment_display("Connecting to Memcached",'...');
 		sleep(3);
 		$this->config->load('memcached');
 		$memcached_server = $this->config->item('memcached');
@@ -91,6 +92,7 @@ class Deployment extends CI_Controller
 	 */
 	function check_values()
 	{
+		deployment_display("Checking Server values",'...');
 		sleep(3);
 		if (ENVIRONMENT === 'production')
 		{
@@ -122,6 +124,7 @@ class Deployment extends CI_Controller
 	 */
 	function check_reporting()
 	{
+		deployment_display("Checking Error Reporting",'...');
 		sleep(3);
 		if (ini_get('display_errors') == 0)
 			deployment_display('Display Errors. ', 'OFF');

@@ -70,7 +70,7 @@ class Deployment extends CI_Controller
 		}
 		else
 		{
-			deployment_display('Sphnix is running.', 'OK');
+			deployment_display('Memcached is running.', 'OK');
 		}
 	}
 

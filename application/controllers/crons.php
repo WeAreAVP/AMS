@@ -197,6 +197,10 @@ class Crons extends CI_Controller
 	 */
 	public function make_refine_csv()
 	{
+		
+		set_time_limit(0);
+		@ini_set("memory_limit", "1000M"); # 1GB
+		@ini_set("max_execution_time", 999999999999); # 1GB
 		$record = $this->refine_modal->get_job_for_refine();
 		if (count($record) > 0)
 		{

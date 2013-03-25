@@ -27,6 +27,7 @@
 class Deployment extends CI_Controller
 {
 
+	var $display_error=array();
 	function __construct()
 	{
 		parent::__construct();
@@ -40,7 +41,8 @@ class Deployment extends CI_Controller
 	 */
 	public function check()
 	{
-		$this->load->view('welcome_message');
+		echo '<body style="background:black;">';
+		echo flush_buffers();
 		/** Connect & Check status of Sphnix  */
 		$this->sphnix_connect();
 		/** Connect & Check status of Memcached  */
@@ -49,6 +51,8 @@ class Deployment extends CI_Controller
 		$this->check_values();
 		/** Check Error Reporting  */
 		$this->check_reporting();
+		echo '</body>';
+		echo flush_buffers();
 	}
 
 	/**

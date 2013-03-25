@@ -272,4 +272,5 @@ function deployment_display($msg, $status = 'FAILED')
 
 	echo "<body style='background:black;color:white;'><nobr><center><h5>$msg\t\t[ <b style='$color'>$status</b> ]</h5></center></nobr><hr/></body>";
 	@flush();
+	@ob_flush();
 }

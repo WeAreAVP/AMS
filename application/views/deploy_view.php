@@ -5,21 +5,28 @@
 <div id="sphnix_result" style="display: none;">
 	<?php echo $sphnix['msg']; ?>
 </div>
-
+<br/>
 <div id="searchd_loading" style="display: none;">
 	<?php echo $searchd['waiting']; ?>
 </div>
 <div id="searchd_result" style="display: none;">
 	<?php echo $searchd['msg']; ?>
 </div>
-
+<br/>
 <div id="memcached_loading" style="display: none;">
 	<?php echo $memcached['waiting']; ?>
 </div>
 <div id="memcached_result" style="display: none;">
 	<?php echo $memcached['msg']; ?>
 </div>
-
+<br/>
+<div id="mem_service_loading" style="display: none;">
+	<?php echo $memcached_service['waiting']; ?>
+</div>
+<div id="mem_service_result" style="display: none;">
+	<?php echo $memcached_service['msg']; ?>
+</div>
+<br/>
 
 
 
@@ -52,14 +59,23 @@
 				$('#memcached_loading').append('.');
 			}, '1000');
 		}, 6000);
-		
+
 		setTimeout(function() {
 			clearInterval(memcachedInterval);
 			$('#memcached_result').show();
-//			$('#memcached_loading').show();
-//			memcachedInterval = setInterval(function() {
-//				$('#memcached_loading').append('.');
-//			}, '1000');
+			$('#mem_service_loading').show();
+			memcachedInterval = setInterval(function() {
+				$('#mem_service_loading').append('.');
+			}, '1000');
 		}, 9000);
+		
+		setTimeout(function() {
+			clearInterval(memcachedInterval);
+			$('#mem_service_result').show();
+//			$('#mem_service_loading').show();
+//			memcachedInterval = setInterval(function() {
+//				$('#mem_service_loading').append('.');
+//			}, '1000');
+		}, 12000);
 	});
 </script>

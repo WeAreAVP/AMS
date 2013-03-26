@@ -50,6 +50,7 @@ class Deployment extends CI_Controller
 		$data['searchd'] = $this->sphinx_searchd();
 		/** Connect & Check status of Memcached  */
 		$data['memcached'] = $this->memcached_connect();
+		$data['memcached_service'] = $this->memcached_service();
 		/** Check DB Name and BASE URL */
 		$data['values'] = $this->check_values();
 		/** Check Error Reporting  */
@@ -107,6 +108,14 @@ class Deployment extends CI_Controller
 		{
 			$display['msg'] = deployment_display('Memcached is running.', 'OK');
 		}
+		return $display;
+	}
+
+	function memcached_service()
+	{
+		$display['waiting'] = "Checking Memcached Status .";
+		$output = @exec("/etc/init.d/memcached status");
+		$display['msg'] = $output;
 		return $display;
 	}
 

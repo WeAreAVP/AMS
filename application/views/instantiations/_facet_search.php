@@ -506,7 +506,7 @@
 	var hiden_column = new Array();
 	var current_table_type = '<?php echo $table_type ?>';
 	var index_column = '<?php echo isset($this->session->userdata['jscolumn']) ? $this->session->userdata['jscolumn'] : 1; ?>';
-			var		order_column = '<?php echo isset($this->session->userdata['column_order']) ? $this->session->userdata['column_order'] : 'asc'; ?>';
+	var order_column = '<?php echo isset($this->session->userdata['column_order']) ? $this->session->userdata['column_order'] : 'asc'; ?>';
 
 	var Filters = new Object();
 	var DateFilter = new Object();
@@ -750,8 +750,8 @@
 					updateSimpleDataTable();
 				else {
 					$('#simple_view').hide();
-					
-					
+
+
 					updateDataTable();
 				}
 				if (current_table_type == 'assets') {

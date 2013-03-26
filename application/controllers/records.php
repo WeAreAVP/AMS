@@ -37,6 +37,9 @@ class Records extends MY_Controller
 	{
 		$offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$this->session->set_userdata('offset', $offset);
+		$this->session->unset_userdata('column');
+		$this->session->unset_userdata('jscolumn');
+		$this->session->unset_userdata('column_order');
 		if (isAjax())
 		{
 			$this->unset_facet_search();

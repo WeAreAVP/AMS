@@ -1,8 +1,8 @@
 <div id="sphnix_loading">
-	<?php $sphnix['waiting'] ?>
+	<?php echo $sphnix['waiting']; ?>
 </div>
 <div id="sphnix_result" style="display: none;">
-	<?php $sphnix['msg'] ?>
+	<?php echo $sphnix['msg']; ?>
 </div>
 
 

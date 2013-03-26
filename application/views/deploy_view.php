@@ -48,6 +48,18 @@
 			clearInterval(searchdInterval);
 			$('#searchd_result').show();
 			$('#memcached_loading').show();
+			memcachedInterval = setInterval(function() {
+				$('#memcached_loading').append('.');
+			}, '1000');
 		}, 6000);
+		
+		setTimeout(function() {
+			clearInterval(searchdInterval);
+			$('#memcached_result').show();
+//			$('#memcached_loading').show();
+//			memcachedInterval = setInterval(function() {
+//				$('#memcached_loading').append('.');
+//			}, '1000');
+		}, 9000);
 	});
 </script>

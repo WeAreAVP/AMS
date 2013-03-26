@@ -10,7 +10,7 @@
 				background-color: black;
 				font-size: 12px;
 				font-family: monaco,monospace;
-				color: white;
+				color: #BAB9BB;
 			}
 			.title{
 				text-align: center;

@@ -82,7 +82,8 @@ class Deployment extends CI_Controller
 	function sphinx_searchd()
 	{
 		$display['waiting'] = "Checking Sphnix Status .";
-		$output = shell_exec("/etc/init.d/searchd status");
+		exec("/etc/init.d/searchd status",$output);
+		debug($output);
 		$display['msg'] = $output;
 		return $display;
 	}
@@ -93,7 +94,7 @@ class Deployment extends CI_Controller
 	 */
 	function memcached_connect()
 	{
-		$display['waiting'] = deployment_display("Connecting to Memcached", '...');
+		$display['waiting'] = "Connecting to Memcached .";
 
 		$this->config->load('memcached');
 		$memcached_server = $this->config->item('memcached');

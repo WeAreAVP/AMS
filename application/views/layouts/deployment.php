@@ -14,7 +14,7 @@
 			}
 			.title{
 				text-align: center;
-				font-size: 15px;
+				font-size: 20px;
 			}
 		</style>
     </head>

@@ -13,29 +13,27 @@
 	<?php echo $searchd['msg']; ?>
 </div>
 
-<!--<div id="sphnix_loading">
-<?php echo $sphnix['waiting']; ?>
+<div id="memcached_loading" style="display: none;">
+	<?php echo $memcached['waiting']; ?>
 </div>
-<div id="sphnix_result" style="display: none;">
-<?php echo $sphnix['msg']; ?>
+<div id="memcached_result" style="display: none;">
+	<?php echo $memcached['msg']; ?>
 </div>
 
-<div id="sphnix_loading">
-<?php echo $sphnix['waiting']; ?>
-</div>
-<div id="sphnix_result" style="display: none;">
-<?php echo $sphnix['msg']; ?>
-</div>-->
+
 
 
 <script type="text/javascript">
 	var sphnixInterval;
 	var searchdInterval;
+	var memcachedInterval;
 	$(document).ready(function() {
 
 		sphnixInterval = setInterval(function() {
 			$('#sphnix_loading').append('.');
 		}, '1000');
+
+
 		setTimeout(function() {
 			clearInterval(sphnixInterval);
 			$('#sphnix_result').show();
@@ -43,11 +41,13 @@
 			searchdInterval = setInterval(function() {
 				$('#searchd_loading').append('.');
 			}, '1000');
-		}, 5000);
+		}, 3000);
+
+
 		setTimeout(function() {
 			clearInterval(searchdInterval);
 			$('#searchd_result').show();
-
-		}, 10000);
+			$('#memcached_loading').show();
+		}, 6000);
 	});
 </script>

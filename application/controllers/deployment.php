@@ -82,7 +82,7 @@ class Deployment extends CI_Controller
 	function sphinx_searchd()
 	{
 		$display['waiting'] = "Checking Sphnix Status .";
-		exec("/etc/init.d/searchd status",$output);
+		@exec("/etc/init.d/searchd status",$output);
 		debug($output);
 		$display['msg'] = $output;
 		return $display;

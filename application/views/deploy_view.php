@@ -8,7 +8,12 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		sphnixInterval;
+	sphnixInterval=setInterval(function(){
+		$('#sphnix_loading').append('.');
+	},'1000');
 		setTimeout(function() {
+			clearInterval(sphnixInterval);
 			$('#sphnix_result').show();
 		}, 5000);
 	});

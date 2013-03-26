@@ -1,4 +1,4 @@
-<div class="title">AMS Reporting</div>
+<div class="title">AMS Server Reporting</div>
 <div id="sphnix_loading">
 	<?php echo $sphnix['waiting']; ?>
 </div>

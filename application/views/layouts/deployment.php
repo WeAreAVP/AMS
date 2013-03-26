@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="author" content="Nouman Tayyab"/>
-        <title>AMS Reporting</title>
+        <title>AMS Server Reporting</title>
 		<?php echo link_js('jquery-1.8.2.js'); ?>
 		<style type="text/css">
 			body{

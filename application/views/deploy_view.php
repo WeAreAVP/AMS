@@ -35,6 +35,14 @@
 	<?php echo $values['url']; ?>
 </div>
 <br/>
+<div id="reporting_loading" style="display: none;">
+	<?php echo $reporting['waiting']; ?>
+</div>
+<div id="reporting_result" style="display: none;">
+	<?php echo $reporting['errors']; ?>
+	<?php echo $reporting['reporting']; ?>
+</div>
+<br/>
 
 
 
@@ -84,14 +92,19 @@
 				$('#values_loading').append('.');
 			}, '1000');
 		}, 12000);
-		
+
 		setTimeout(function() {
 			clearInterval(interval);
 			$('#values_result').show();
-//			$('#values_loading').show();
-//			interval = setInterval(function() {
-//				$('#values_loading').append('.');
-//			}, '1000');
+			$('#reporting_loading').show();
+			interval = setInterval(function() {
+				$('#reporting_loading').append('.');
+			}, '1000');
 		}, 15000);
+		setTimeout(function() {
+			clearInterval(interval);
+			$('#reporting_result').show();
+
+		}, 18000);
 	});
 </script>

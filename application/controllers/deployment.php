@@ -75,7 +75,7 @@ class Deployment extends CI_Controller
 		}
 		else
 		{
-			$display['msg'] = deployment_display('Sphnix is running.', 'OK');
+			$display['msg'] = deployment_display('Sphnix Connection', 'OK');
 		}
 		return $display;
 	}
@@ -106,7 +106,7 @@ class Deployment extends CI_Controller
 		}
 		else
 		{
-			$display['msg'] = deployment_display('Memcached is running.', 'OK');
+			$display['msg'] = deployment_display('Memcached Connection', 'OK');
 		}
 		return $display;
 	}

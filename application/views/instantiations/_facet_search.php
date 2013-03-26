@@ -752,6 +752,8 @@
 					$('#simple_view').hide();
 					index_column = '<?php echo isset($this->session->userdata['jscolumn']) ? $this->session->userdata['jscolumn'] : 1; ?>';
 					order_column = '<?php echo isset($this->session->userdata['column_order']) ? $this->session->userdata['column_order'] : 'asc'; ?>';
+					console.log(index_column);
+					console.log(order_column);
 					updateDataTable();
 				}
 				if (current_table_type == 'assets') {

@@ -125,7 +125,7 @@ class Deployment extends CI_Controller
 	 */
 	function check_values()
 	{
-		$display['waiting'] = deployment_display("Checking Server values", '...');
+		$display['waiting'] = "Checking Server values .";
 
 		if (ENVIRONMENT === 'production')
 		{

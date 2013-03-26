@@ -27,55 +27,71 @@
 	<?php echo $memcached_service['msg']; ?>
 </div>
 <br/>
+<div id="values_loading" style="display: none;">
+	<?php echo $values['waiting']; ?>
+</div>
+<div id="values_result" style="display: none;">
+	<?php echo $values['db_name']; ?>
+	<?php echo $values['url']; ?>
+</div>
+<br/>
 
 
 
 <script type="text/javascript">
-	var sphnixInterval;
-	var searchdInterval;
-	var memcachedInterval;
+	var interval;
+
 	$(document).ready(function() {
 
-		sphnixInterval = setInterval(function() {
+		interval = setInterval(function() {
 			$('#sphnix_loading').append('.');
 		}, '1000');
 
 
 		setTimeout(function() {
-			clearInterval(sphnixInterval);
+			clearInterval(interval);
 			$('#sphnix_result').show();
 			$('#searchd_loading').show();
-			searchdInterval = setInterval(function() {
+			interval = setInterval(function() {
 				$('#searchd_loading').append('.');
 			}, '1000');
 		}, 3000);
 
 
 		setTimeout(function() {
-			clearInterval(searchdInterval);
+			clearInterval(interval);
 			$('#searchd_result').show();
 			$('#memcached_loading').show();
-			memcachedInterval = setInterval(function() {
+			interval = setInterval(function() {
 				$('#memcached_loading').append('.');
 			}, '1000');
 		}, 6000);
 
 		setTimeout(function() {
-			clearInterval(memcachedInterval);
+			clearInterval(interval);
 			$('#memcached_result').show();
 			$('#mem_service_loading').show();
-			memcachedInterval = setInterval(function() {
+			interval = setInterval(function() {
 				$('#mem_service_loading').append('.');
 			}, '1000');
 		}, 9000);
+
+		setTimeout(function() {
+			clearInterval(interval);
+			$('#mem_service_result').show();
+			$('#values_loading').show();
+			interval = setInterval(function() {
+				$('#values_loading').append('.');
+			}, '1000');
+		}, 12000);
 		
 		setTimeout(function() {
-			clearInterval(memcachedInterval);
-			$('#mem_service_result').show();
-//			$('#mem_service_loading').show();
-//			memcachedInterval = setInterval(function() {
-//				$('#mem_service_loading').append('.');
+			clearInterval(interval);
+			$('#values_result').show();
+//			$('#values_loading').show();
+//			interval = setInterval(function() {
+//				$('#values_loading').append('.');
 //			}, '1000');
-		}, 12000);
+		}, 15000);
 	});
 </script>

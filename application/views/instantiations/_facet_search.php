@@ -800,7 +800,7 @@
 							{'sWidth': '20%'},
 							{'sWidth': '40%'}
 						],
-						"aaSorting": [[column_index, column_order]],
+						"aaSorting": [column_index, column_order],
 						'bPaginate': false,
 						'bInfo': false,
 						'bFilter': false,

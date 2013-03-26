@@ -53,6 +53,7 @@ class Deployment extends CI_Controller
 		$data['values'] = $this->check_values();
 		/** Check Error Reporting  */
 		$data['reporting'] = $this->check_reporting();
+		debug($data);
 		$this->load->view('deploy_view', $data);
 	}
 

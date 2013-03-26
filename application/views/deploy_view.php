@@ -1,12 +1,15 @@
-<div>
-	<?php $controller->sphnix_connect(); ?>
+<div id="sphnix_loading">
+	<?php $sphnix['waiting'] ?>
 </div>
-<div>
-	<?php $controller->memcached_connect(); ?>
+<div id="sphnix_result" style="display: none;">
+	<?php $sphnix['msg'] ?>
 </div>
-<div>
-	<?php $controller->check_values(); ?>
-</div>
-<div>
-	<?php $controller->check_reporting(); ?>
-</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		setTimeout(function() {
+			$('#sphnix_result').show();
+		}, 5000);
+	});
+</script>

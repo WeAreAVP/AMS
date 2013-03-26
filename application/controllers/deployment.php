@@ -42,20 +42,18 @@ class Deployment extends CI_Controller
 	 */
 	public function check()
 	{
-		$data['controller']=$this;
-		$this->load->view('deploy_view',$data);
-//		echo '<body style="background:black;font-size:12pt;font:family:monaco,monospace;color:white;">';
-//		echo flush_buffers();
+
+
+
 		/** Connect & Check status of Sphnix  */
-//		$this->sphnix_connect();
+		$data['sphnix'] = $this->sphnix_connect();
 		/** Connect & Check status of Memcached  */
-//		$this->memcached_connect();
+		$data['memcached'] = $this->memcached_connect();
 		/** Check DB Name and BASE URL */
-//		$this->check_values();
+		$data['values'] = $this->check_values();
 		/** Check Error Reporting  */
-//		$this->check_reporting();
-//		echo '</body>';
-//		echo flush_buffers();
+		$data['reporting'] = $this->check_reporting();
+		$this->load->view('deploy_view', $data);
 	}
 
 	/**
@@ -64,18 +62,19 @@ class Deployment extends CI_Controller
 	 */
 	function sphnix_connect()
 	{
-		deployment_display("Connecting to Sphnix", '...');
-		sleep(3);
+		$display['waiting'] = deployment_display("Connecting to Sphnix", '...');
+//		sleep(3);
 		$sphnix_server = $this->config->item('server');
 		$fp = @fsockopen($sphnix_server[0], $sphnix_server[1], $errno, $errstr, $this->config->item('connect_timeout'));
 		if ( ! $fp)
 		{
-			deployment_display("$errstr ($errno)");
+			$display['msg'] = deployment_display("$errstr ($errno)");
 		}
 		else
 		{
-			deployment_display('Sphnix is running.', 'OK');
+			$display['msg'] = deployment_display('Sphnix is running.', 'OK');
 		}
+		return $display;
 	}
 
 	/**
@@ -84,20 +83,21 @@ class Deployment extends CI_Controller
 	 */
 	function memcached_connect()
 	{
-		deployment_display("Connecting to Memcached", '...');
-		sleep(3);
+		$display['waiting'] = deployment_display("Connecting to Memcached", '...');
+//		sleep(3);
 		$this->config->load('memcached');
 		$memcached_server = $this->config->item('memcached');
 
 		$fp = @fsockopen($memcached_server['servers']['default']['host'], $memcached_server['servers']['default']['port'], $errno, $errstr, 300);
 		if ( ! $fp)
 		{
-			deployment_display("$errstr ($errno)");
+			$display['msg'] = deployment_display("$errstr ($errno)");
 		}
 		else
 		{
-			deployment_display('Memcached is running.', 'OK');
+			$display['msg'] = deployment_display('Memcached is running.', 'OK');
 		}
+		return $display;
 	}
 
 	/**
@@ -106,30 +106,31 @@ class Deployment extends CI_Controller
 	 */
 	function check_values()
 	{
-		deployment_display("Checking Server values", '...');
-		sleep(3);
+		$display['waiting'] = deployment_display("Checking Server values", '...');
+//		sleep(3);
 		if (ENVIRONMENT === 'production')
 		{
 			if ($this->db->database === 'ams_live')
-				deployment_display('Database name is correct.', 'OK');
+				$display['db_name'] = deployment_display('Database name is correct.', 'OK');
 			else
-				deployment_display('Database name is incorrect.');
+				$display['db_name'] = deployment_display('Database name is incorrect.');
 			if ($this->config->item('base_url') === 'http://ams.avpreserve.com/')
-				deployment_display('Base URL is correct.', 'OK');
+				$display['url'] = deployment_display('Base URL is correct.', 'OK');
 			else
-				deployment_display('Base URL is incorrect.');
+				$display['url'] = deployment_display('Base URL is incorrect.');
 		}
 		else if (ENVIRONMENT === 'qatesting')
 		{
 			if ($this->db->database === 'ams_qa')
-				deployment_display('Database name is correct.', 'OK');
+				$display['db_name'] = deployment_display('Database name is correct.', 'OK');
 			else
-				deployment_display('Database name is incorrect.');
+				$display['db_name'] = deployment_display('Database name is incorrect.');
 			if ($this->config->item('base_url') === 'http://amsqa.avpreserve.com/')
-				deployment_display('Base URL is correct.', 'OK');
+				$display['url'] = deployment_display('Base URL is correct.', 'OK');
 			else
-				deployment_display('Base URL is incorrect.');
+				$display['url'] = deployment_display('Base URL is incorrect.');
 		}
+		return $display;
 	}
 
 	/**
@@ -138,16 +139,17 @@ class Deployment extends CI_Controller
 	 */
 	function check_reporting()
 	{
-		deployment_display("Checking Error Reporting", '...');
-		sleep(3);
+		$display['waiting'] = deployment_display("Checking Error Reporting", '...');
+//		sleep(3);
 		if (ini_get('display_errors') == 0)
-			deployment_display('Display Errors. ', 'OFF');
+			$display['errors'] = deployment_display('Display Errors. ', 'OFF');
 		else
-			deployment_display('Display Errors. ', 'ON');
+			$display['errors'] = deployment_display('Display Errors. ', 'ON');
 		if (ini_get('error_reporting') == 0)
-			deployment_display('Display Reporting. ', 'OFF');
+			$display['reporting'] = deployment_display('Display Reporting. ', 'OFF');
 		else
-			deployment_display('Display Reporting. ', ini_get('error_reporting'));
+			$display['reporting'] = deployment_display('Display Reporting. ', ini_get('error_reporting'));
+		return $display;
 	}
 
 }

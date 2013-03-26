@@ -13,7 +13,7 @@
 		<button class="btn btn-primary" onclick="doRefine();">Yes</button>
 	</div>
 	<div class="modal-footer" id="already_refine_footer">
-		<button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true">OK</button>
+		<button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true" onclick="window.location.reload();">OK</button>
 
 	</div>
 </div>

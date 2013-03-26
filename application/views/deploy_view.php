@@ -47,10 +47,7 @@
 		setTimeout(function() {
 			clearInterval(searchdInterval);
 			$('#searchd_result').show();
-//			$('#searchd_loading').show();
-//			searchdInterval = setInterval(function() {
-//				$('#searchd_loading').append('.');
-//			}, '1000');
-		}, 5000);
+
+		}, 10000);
 	});
 </script>

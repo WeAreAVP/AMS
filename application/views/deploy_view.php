@@ -7,8 +7,9 @@
 
 
 <script type="text/javascript">
+	var sphnixInterval;
 	$(document).ready(function() {
-		sphnixInterval;
+		
 	sphnixInterval=setInterval(function(){
 		$('#sphnix_loading').append('.');
 	},'1000');

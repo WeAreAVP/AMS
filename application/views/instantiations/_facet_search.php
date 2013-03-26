@@ -505,7 +505,7 @@
 	var frozen = '<?php echo $this->frozen_column; ?>';
 	var hiden_column = new Array();
 	var current_table_type = '<?php echo $table_type ?>';
-	index_column=1;
+	index_column=0;
 	order_column='asc';
 
 	var Filters = new Object();

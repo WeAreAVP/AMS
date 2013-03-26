@@ -803,7 +803,7 @@
 //							{"asSorting": ["desc"], "aTargets": [4]},
 //							{"asSorting": ["desc"], "aTargets": [5]},
 //						],
-						"aSorting": [[ column_index, column_order ]],														  
+						"aSorting": [[ column_order, column_index ]],														  
 						'bPaginate': false,
 						'bInfo': false,
 						'bFilter': false,

@@ -781,8 +781,7 @@
 		{
 			column_index = '<?php echo isset($this->session->userdata['jscolumn']) ? $this->session->userdata['jscolumn'] : 1; ?>';
 			column_order = '<?php echo isset($this->session->userdata['column_order']) ? $this->session->userdata['column_order'] : 'asc'; ?>';
-			console.log(column_index);
-			console.log(column_order);
+			
 			sTable =
 					$('#assets_table').dataTable(
 					{
@@ -803,7 +802,7 @@
 //							{"asSorting": ["desc"], "aTargets": [4]},
 //							{"asSorting": ["desc"], "aTargets": [5]},
 //						],
-						"aSorting": [[ column_order, column_index ]],														  
+						"aaSorting": [[ column_index, column_order ]],														  
 						'bPaginate': false,
 						'bInfo': false,
 						'bFilter': false,

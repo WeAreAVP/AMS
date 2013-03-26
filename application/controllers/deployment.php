@@ -130,24 +130,24 @@ class Deployment extends CI_Controller
 		if (ENVIRONMENT === 'production')
 		{
 			if ($this->db->database === 'ams_live')
-				$display['db_name'] = deployment_display('Database name is correct.', 'OK');
+				$display['db_name'] = deployment_display('Database name (ams_live)', 'OK');
 			else
-				$display['db_name'] = deployment_display('Database name is incorrect.');
+				$display['db_name'] = deployment_display('Database name (ams_live).');
 			if ($this->config->item('base_url') === 'http://ams.avpreserve.com/')
-				$display['url'] = deployment_display('Base URL is correct.', 'OK');
+				$display['url'] = deployment_display('Base URL (http://ams.avpreserve.com/)', 'OK');
 			else
-				$display['url'] = deployment_display('Base URL is incorrect.');
+				$display['url'] = deployment_display('Base URL (http://ams.avpreserve.com/).');
 		}
 		else if (ENVIRONMENT === 'qatesting')
 		{
 			if ($this->db->database === 'ams_qa')
-				$display['db_name'] = deployment_display('Database name is correct.', 'OK');
+				$display['db_name'] = deployment_display('Database name (ams_qa)', 'OK');
 			else
-				$display['db_name'] = deployment_display('Database name is incorrect.');
+				$display['db_name'] = deployment_display('Database name (ams_qa).');
 			if ($this->config->item('base_url') === 'http://amsqa.avpreserve.com/')
-				$display['url'] = deployment_display('Base URL is correct.', 'OK');
+				$display['url'] = deployment_display('Base URL (http://amsqa.avpreserve.com/)', 'OK');
 			else
-				$display['url'] = deployment_display('Base URL is incorrect.');
+				$display['url'] = deployment_display('Base URL (http://amsqa.avpreserve.com/)');
 		}
 		return $display;
 	}

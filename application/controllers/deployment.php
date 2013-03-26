@@ -27,7 +27,8 @@
 class Deployment extends CI_Controller
 {
 
-	var $display_error=array();
+	var $display_error = array();
+
 	function __construct()
 	{
 		parent::__construct();
@@ -41,18 +42,20 @@ class Deployment extends CI_Controller
 	 */
 	public function check()
 	{
-		echo '<body style="background:black;font-size:12pt;font:family:monaco,monospace;color:white;">';
-		echo flush_buffers();
+		$data['controller']=$this;
+		$this->load->view('deploy_view',$data);
+//		echo '<body style="background:black;font-size:12pt;font:family:monaco,monospace;color:white;">';
+//		echo flush_buffers();
 		/** Connect & Check status of Sphnix  */
-		$this->sphnix_connect();
+//		$this->sphnix_connect();
 		/** Connect & Check status of Memcached  */
-		$this->memcached_connect();
+//		$this->memcached_connect();
 		/** Check DB Name and BASE URL */
-		$this->check_values();
+//		$this->check_values();
 		/** Check Error Reporting  */
-		$this->check_reporting();
-		echo '</body>';
-		echo flush_buffers();
+//		$this->check_reporting();
+//		echo '</body>';
+//		echo flush_buffers();
 	}
 
 	/**

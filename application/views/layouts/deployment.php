@@ -4,13 +4,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="author" content="Nouman Tayyab"/>
         <title>AMS Reporting</title>
-		<?php echo	link_js('jquery-1.8.2.js'); ?>
+		<?php echo link_js('jquery-1.8.2.js'); ?>
 		<style type="text/css">
 			body{
 				background-color: black;
 				font-size: 12px;
 				font-family: monaco,monospace;
 				color: white;
+			}
+			.title{
+				text-align: center;
+				font-size: 15px;
 			}
 		</style>
     </head>

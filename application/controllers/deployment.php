@@ -47,6 +47,7 @@ class Deployment extends CI_Controller
 
 		/** Connect & Check status of Sphnix  */
 		$data['sphnix'] = $this->sphnix_connect();
+		$data['searchd'] = $this->sphinx_searchd();
 		/** Connect & Check status of Memcached  */
 		$data['memcached'] = $this->memcached_connect();
 		/** Check DB Name and BASE URL */
@@ -76,6 +77,13 @@ class Deployment extends CI_Controller
 			$display['msg'] = deployment_display('Sphnix is running.', 'OK');
 		}
 		return $display;
+	}
+
+	function sphinx_searchd()
+	{
+		$display['waiting'] = "Checking Sphnix Status .";
+		$output = shell_exec("/etc/init.d/searchd status");
+		$display['msg'] = $output;
 	}
 
 	/**

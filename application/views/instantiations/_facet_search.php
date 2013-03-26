@@ -780,7 +780,9 @@
 		if ($('#assets_table').length > 0)
 		{
 			column_index = '<?php echo isset($this->session->userdata['jscolumn']) ? $this->session->userdata['jscolumn'] : 1; ?>';
-			column_order = '<?php echo isset($this->session->userdata['column_order']) ? $this->session->userdata['column_order'] : 'desc'; ?>';
+			column_order = '<?php echo isset($this->session->userdata['column_order']) ? $this->session->userdata['column_order'] : 'asc'; ?>';
+			console.log(column_index);
+			console.log(column_order);
 			sTable =
 					$('#assets_table').dataTable(
 					{

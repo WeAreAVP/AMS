@@ -306,7 +306,7 @@ function updateDataTable()
 
                         }
                     ],
-                    "aaSorting": [index_column, order_column],
+                    "aaSorting": [[index_column, order_column]],
                     "oColReorder": {
                         "iFixedColumns": frozen,
                         "fnReorderCallback": function() {

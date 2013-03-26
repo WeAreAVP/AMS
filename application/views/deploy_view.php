@@ -54,7 +54,7 @@
 		}, 6000);
 		
 		setTimeout(function() {
-			clearInterval(searchdInterval);
+			clearInterval(memcachedInterval);
 			$('#memcached_result').show();
 //			$('#memcached_loading').show();
 //			memcachedInterval = setInterval(function() {

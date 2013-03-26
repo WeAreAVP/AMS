@@ -505,6 +505,8 @@
 	var frozen = '<?php echo $this->frozen_column; ?>';
 	var hiden_column = new Array();
 	var current_table_type = '<?php echo $table_type ?>';
+	index_column=1;
+	order_column='asc';
 
 	var Filters = new Object();
 	var DateFilter = new Object();
@@ -748,6 +750,8 @@
 					updateSimpleDataTable();
 				else {
 					$('#simple_view').hide();
+					index_column = '<?php echo isset($this->session->userdata['jscolumn']) ? $this->session->userdata['jscolumn'] : 1; ?>';
+					order_column = '<?php echo isset($this->session->userdata['column_order']) ? $this->session->userdata['column_order'] : 'asc'; ?>';
 					updateDataTable();
 				}
 				if (current_table_type == 'assets') {
@@ -781,7 +785,7 @@
 		{
 			column_index = '<?php echo isset($this->session->userdata['jscolumn']) ? $this->session->userdata['jscolumn'] : 1; ?>';
 			column_order = '<?php echo isset($this->session->userdata['column_order']) ? $this->session->userdata['column_order'] : 'asc'; ?>';
-			
+
 			sTable =
 					$('#assets_table').dataTable(
 					{
@@ -794,15 +798,7 @@
 							{'sWidth': '20%'},
 							{'sWidth': '40%'}
 						],
-//						"aoColumnDefs": [
-//							null,
-//							{"asSorting": ["desc", "asc", "asc"], "aTargets": [1]},
-//							{"asSorting": ["desc"], "aTargets": [2]},
-//							{"asSorting": ["desc"], "aTargets": [3]},
-//							{"asSorting": ["desc"], "aTargets": [4]},
-//							{"asSorting": ["desc"], "aTargets": [5]},
-//						],
-						"aaSorting": [[ column_index, column_order ]],														  
+						"aaSorting": [[column_index, column_order]],
 						'bPaginate': false,
 						'bInfo': false,
 						'bFilter': false,

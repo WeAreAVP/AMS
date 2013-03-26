@@ -158,7 +158,7 @@ class Deployment extends CI_Controller
 	 */
 	function check_reporting()
 	{
-		$display['waiting'] = deployment_display("Checking Error Reporting", '...');
+		$display['waiting'] = "Checking Error Reporting .";
 
 		if (ini_get('display_errors') == 0)
 			$display['errors'] = deployment_display('Display Errors. ', 'OFF');

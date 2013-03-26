@@ -1,4 +1,4 @@
-<div style="float: left;margin-top: 10px;<?php
+<div style="float: left;margin-bottom:10px;margin-top: 10px;<?php
 if ($table_type == 'assets' && $current_tab == 'simple')
 {
     ?> display:none;<?php } ?>" id="gear_box">

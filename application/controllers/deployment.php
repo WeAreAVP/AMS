@@ -84,6 +84,7 @@ class Deployment extends CI_Controller
 		$display['waiting'] = "Checking Sphnix Status .";
 		$output = shell_exec("/etc/init.d/searchd status");
 		$display['msg'] = $output;
+		return $display;
 	}
 
 	/**

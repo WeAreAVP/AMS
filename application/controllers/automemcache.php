@@ -1,6 +1,5 @@
 <?php
 
-// @codingStandardsIgnoreFile
 /**
  * AMS Archive Management System
  * 
@@ -42,10 +41,49 @@ class Automemcache extends CI_Controller
 
 	public function index()
 	{
+
+
 		$this->set_instantiation_facet();
 		$this->set_asset_facet();
 		myLog('Succussfully Updated.');
 		exit_function();
+	}
+
+	function test()
+	{
+		$memcached = new StdClass;
+		$memcached->ins = 'instantiations_list';
+		$memcached->asset = 'assets_list';
+		$search_facet = new stdClass;
+		$search_facet->state = 'state';
+		$search_facet->stations = 'organization';
+		$search_facet->status = 'status';
+		$search_facet->media_type = 'media_type';
+		$search_facet->physical = 'format_name';
+		$search_facet->digital = 'format_name';
+		$search_facet->generations = 'facet_generation';
+		$search_facet->digitized = 'digitized';
+		$search_facet->migration = 'migration';
+		foreach ($memcached as $index => $index_name)
+		{
+			foreach ($search_facet as $columns => $facet)
+			{
+				$grouping = FALSE;
+				if (in_array($facet, array('media_type', 'format_name', 'facet_generation')))
+					$grouping = TRUE;
+				if (in_array($columns, array('physical', 'digital', 'digitized', 'migration')))
+				{
+					$result = $this->sphinx->facet_index($facet, $index_name, $columns);
+					$this->memcached_library->set($index . $columns, json_encode(sortByOneKey($result['records'], $facet,$grouping)), 3600);
+				}
+				else
+				{
+					$result = $this->sphinx->facet_index($facet, $index_name);
+					$this->memcached_library->set($index . $columns, json_encode(sortByOneKey($result['records'], $facet,$grouping)), 3600);
+				}
+			}
+			myLog("Succussfully Updated $index_name Facet Search");
+		}
 	}
 
 	public function set_instantiation_facet()

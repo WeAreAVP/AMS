@@ -232,7 +232,7 @@ class Refinecrons extends CI_Controller
 
 	function rotate_all_indexes()
 	{
-		$output = `"/usr/bin/indexer --all --rotate --config /etc/sphinx/sphinx.conf"`;
+		$output = `/usr/bin/indexer --all --rotate --config /etc/sphinx/sphinx.conf`;
 		send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Refine Index Rotation', $output);
 		exit_function();
 	}

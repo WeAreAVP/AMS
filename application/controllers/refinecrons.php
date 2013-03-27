@@ -24,7 +24,7 @@
  * @license    CPB http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */
-class Refinecron extends CI_Controller
+class Refinecrons extends CI_Controller
 {
 
 	/**

@@ -1,46 +1,46 @@
 <div class="title">AMS Server Reporting</div>
 <div id="sphnix_loading">
-	<?php echo $sphnix['waiting']; ?>
+	<?php echo $this->user_detail->first_name.' '.$this->user_detail->last_name.': ' .$sphnix['waiting']; ?>
 </div>
 <div id="sphnix_result" style="display: none;">
-	<?php echo $sphnix['msg']; ?>
+	<?php echo $this->user_detail->first_name.' '.$this->user_detail->last_name.': '.$sphnix['msg']; ?>
 </div>
 <br/>
 <div id="searchd_loading" style="display: none;">
-	<?php echo $searchd['waiting']; ?>
+	<?php echo $this->user_detail->first_name.' '.$this->user_detail->last_name.': '.$searchd['waiting']; ?>
 </div>
 <div id="searchd_result" style="display: none;">
-	<?php echo $searchd['msg']; ?>
+	<?php echo $this->user_detail->first_name.' '.$this->user_detail->last_name.': '.$searchd['msg']; ?>
 </div>
 <br/>
 <div id="memcached_loading" style="display: none;">
-	<?php echo $memcached['waiting']; ?>
+	<?php echo $this->user_detail->first_name.' '.$this->user_detail->last_name.': '.$memcached['waiting']; ?>
 </div>
 <div id="memcached_result" style="display: none;">
-	<?php echo $memcached['msg']; ?>
+	<?php echo $this->user_detail->first_name.' '.$this->user_detail->last_name.': '.$memcached['msg']; ?>
 </div>
 <br/>
 <div id="mem_service_loading" style="display: none;">
-	<?php echo $memcached_service['waiting']; ?>
+	<?php echo $this->user_detail->first_name.' '.$this->user_detail->last_name.': '.$memcached_service['waiting']; ?>
 </div>
 <div id="mem_service_result" style="display: none;">
-	<?php echo $memcached_service['msg']; ?>
+	<?php echo $this->user_detail->first_name.' '.$this->user_detail->last_name.': '.$memcached_service['msg']; ?>
 </div>
 <br/>
 <div id="values_loading" style="display: none;">
-	<?php echo $values['waiting']; ?>
+	<?php echo $this->user_detail->first_name.' '.$this->user_detail->last_name.': '.$values['waiting']; ?>
 </div>
 <div id="values_result" style="display: none;">
-	<?php echo $values['db_name']; ?>
-	<?php echo $values['url']; ?>
+	<?php echo $this->user_detail->first_name.' '.$this->user_detail->last_name.': '.$values['db_name']; ?>
+	<?php echo $this->user_detail->first_name.' '.$this->user_detail->last_name.': '.$values['url']; ?>
 </div>
 <br/>
 <div id="reporting_loading" style="display: none;">
-	<?php echo $reporting['waiting']; ?>
+	<?php echo $this->user_detail->first_name.' '.$this->user_detail->last_name.': '.$reporting['waiting']; ?>
 </div>
 <div id="reporting_result" style="display: none;">
-	<?php echo $reporting['errors']; ?>
-	<?php echo $reporting['reporting']; ?>
+	<?php echo $this->user_detail->first_name.' '.$this->user_detail->last_name.': '.$reporting['errors']; ?>
+	<?php echo $this->user_detail->first_name.' '.$this->user_detail->last_name.': '.$reporting['reporting']; ?>
 </div>
 <br/>
 

@@ -128,7 +128,7 @@ class Crons extends CI_Controller
 	 *  
 	 * @return
 	 */
-	public function rotate_sphnix_indexes()
+	function rotate_sphnix_indexes()
 	{
 		$record = $this->cron_model->get_sphnix_indexes();
 		if ($record)
@@ -149,7 +149,11 @@ class Crons extends CI_Controller
 		}
 		exit_function();
 	}
-
+	/**
+	 * Save Facet Search Values into memcahed.
+	 * 
+	 * @return 
+	 */
 	function auto_memcached_facets()
 	{
 		$this->load->library('memcached_library');

@@ -15,7 +15,7 @@
  */
 
 /**
- * XohoTech Dashboard Class
+ * Dashboard Class
  *
  * @category   Class
  * @package    CI

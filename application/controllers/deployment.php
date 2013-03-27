@@ -40,9 +40,6 @@ class Deployment extends MY_Controller
 	 */
 	public function check()
 	{
-
-
-
 		/** Connect & Check status of Sphnix  */
 		$data['sphnix'] = $this->sphnix_connect();
 		$data['searchd'] = $this->sphinx_searchd();
@@ -61,7 +58,7 @@ class Deployment extends MY_Controller
 	 * Connect and test the sphnix server.
 	 * 
 	 */
-	function sphnix_connect()
+	private function sphnix_connect()
 	{
 		$display['waiting'] = "Connecting to Sphnix .";
 
@@ -83,7 +80,7 @@ class Deployment extends MY_Controller
 	 * 
 	 * @return array
 	 */
-	function sphinx_searchd()
+	private function sphinx_searchd()
 	{
 		$display['waiting'] = "Checking Sphnix Status .";
 		$output = @exec("/etc/init.d/searchd status");
@@ -95,7 +92,7 @@ class Deployment extends MY_Controller
 	 * Connect and test the memcached server.
 	 * 
 	 */
-	function memcached_connect()
+	private function memcached_connect()
 	{
 		$display['waiting'] = "Connecting to Memcached .";
 
@@ -119,7 +116,7 @@ class Deployment extends MY_Controller
 	 * 
 	 * @return array
 	 */
-	function memcached_service()
+	private function memcached_service()
 	{
 		$display['waiting'] = "Checking Memcached Status .";
 		$output = @exec("/etc/init.d/memcached status");
@@ -131,7 +128,7 @@ class Deployment extends MY_Controller
 	 * Check DB names
 	 * 
 	 */
-	function check_values()
+	private function check_values()
 	{
 		$display['waiting'] = "Checking Server values .";
 
@@ -164,7 +161,7 @@ class Deployment extends MY_Controller
 	 * Check the error reporting status.
 	 * 
 	 */
-	function check_reporting()
+	 private function check_reporting()
 	{
 		$display['waiting'] = "Checking Error Reporting .";
 

@@ -128,7 +128,7 @@ class Crons extends CI_Controller
 	 *  
 	 * @return
 	 */
-	function rotate_sphnix_indexes()
+	public function rotate_sphnix_indexes()
 	{
 		$record = $this->cron_model->get_sphnix_indexes();
 		if ($record)

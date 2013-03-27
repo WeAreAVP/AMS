@@ -217,10 +217,10 @@ class Refinecrons extends CI_Controller
 			else
 				$this->update_assets($record->import_csv_path);
 
-			$output = @shell_exec("/usr/bin/indexer --all --rotate");
-
+			@exec("/usr/bin/indexer --all --rotate", $output);
+			$email_output = implode('<br/>', $output);
 			$this->refine_modal->update_job($record->id, array('is_active' => 0));
-			send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Refine Index Rotation', $output);
+			send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Refine Index Rotation', $email_output);
 			myLog("All Indexes Rotated Successfully.");
 		}
 		else
@@ -234,6 +234,7 @@ class Refinecrons extends CI_Controller
 	{
 		$output = @shell_exec("/usr/bin/indexer --all --rotate");
 		send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Refine Index Rotation', $output);
+		exit_function();
 	}
 
 	/**

@@ -74,10 +74,7 @@ function send_email($to, $from, $subject, $message, $reply_to = '')
 	$email->message($message);
 	echo $email->print_debugger();
 	if ($email->send())
-	{
-
 		return true;
-	}
 	else
 		return false;
 }
@@ -271,7 +268,6 @@ function deployment_display($msg, $status = 'FAILED')
 		$color = 'color:green;';
 
 	return "$msg   [ <b style='$color'>$status</b> ] <br/>";
-	
 }
 
 function flush_buffers()

@@ -24,13 +24,22 @@
  * @license    AMS http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */
-class Deployment extends MY_Controller
+class Deployment extends CI_Controller
 {
+
+	var $name = FALSE;
 
 	function __construct()
 	{
 		parent::__construct();
 		$this->layout = 'deployment.php';
+		if ($this->dx_auth->is_logged_in())
+		{
+			$this->load->model('dx_auth/users', 'users');
+			$this->load->model('dx_auth/user_profile', 'user_profile');
+			$user_detail = $this->users->get_user_detail($this->user_id)->row();
+			$this->name = $user_detail->first_name . ' ' . $user_detail->last_name;
+		}
 	}
 
 	/**
@@ -40,6 +49,7 @@ class Deployment extends MY_Controller
 	 */
 	public function check()
 	{
+		$data['name'] = $this->name;
 		/** Connect & Check status of Sphnix  */
 		$data['sphnix'] = $this->sphnix_connect();
 		$data['searchd'] = $this->sphinx_searchd();
@@ -161,7 +171,7 @@ class Deployment extends MY_Controller
 	 * Check the error reporting status.
 	 * 
 	 */
-	 private function check_reporting()
+	private function check_reporting()
 	{
 		$display['waiting'] = "Checking Error Reporting .";
 

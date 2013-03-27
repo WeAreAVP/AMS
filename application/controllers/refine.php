@@ -10,7 +10,7 @@
  * @author   Nouman Tayyab <nouman@geekschicago.com>
  * @license  CPB http://nouman.com
  * @version  GIT: <$Id>
- * @link     http://amsqa.avpreserve.com
+ * @link     http://ams.avpreserve.com
 
  */
 
@@ -22,7 +22,7 @@
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@geekschicago.com>
  * @license    CPB http://nouman.com
- * @link       http://amsqa.avpreserve.com
+ * @link       http://ams.avpreserve.com
  */
 class Refine extends MY_Controller
 {
@@ -44,11 +44,15 @@ class Refine extends MY_Controller
 		$this->load->model('assets_model');
 	}
 
-	function export($type)
+	/**
+	 * Make query for exporting the AMS Refine and insert in database
+	 * 
+	 * @param string $type
+	 * 
+	 * @return json with message
+	 */
+	public function export($type)
 	{
-		set_time_limit(0);
-		@ini_set("memory_limit", "1000M"); # 1GB
-		@ini_set("max_execution_time", 999999999999); # 1GB
 		if ($type == 'instantiation')
 		{
 			$query = $this->refine_modal->export_refine_csv(TRUE);
@@ -65,7 +69,14 @@ class Refine extends MY_Controller
 		exit_function();
 	}
 
-	function remove($project_id)
+	/**
+	 * Remove Project from AMS Refine
+	 * 
+	 * @param type $project_id
+	 * 
+	 * @retun 
+	 */
+	public function remove($project_id)
 	{
 
 		$this->googlerefine->delete_project($project_id);
@@ -81,7 +92,14 @@ class Refine extends MY_Controller
 		}
 	}
 
-	function save($project_id)
+	/**
+	 * Save the Project info when changes are commited on AMS Refine.
+	 * 
+	 * @param type $project_id
+	 * 
+	 * @return 
+	 */
+	public function save($project_id)
 	{
 		$project_detail = $this->refine_modal->get_by_project_id($project_id);
 		if ($project_detail)
@@ -108,7 +126,7 @@ class Refine extends MY_Controller
 // Location: ./controllers/refine.php
 }
 
-// END Google Refine Controller
+// END Google Refine Class
 
 // End of file refine.php
 // Location: ./application/controllers/refine.php

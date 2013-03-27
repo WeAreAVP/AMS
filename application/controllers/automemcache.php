@@ -44,8 +44,8 @@ class Automemcache extends CI_Controller
 	{
 		$this->set_instantiation_facet();
 		$this->set_asset_facet();
-		$this->myLog('Succussfully Updated.');
-		exit;
+		myLog('Succussfully Updated.');
+		exit_function();
 	}
 
 	public function set_instantiation_facet()
@@ -73,7 +73,7 @@ class Automemcache extends CI_Controller
 		$this->memcached_library->set('ins_migration', json_encode($migration), 3600);
 
 
-		$this->myLog('Succussfully Updated Instantiations Facet Search');
+		myLog('Succussfully Updated Instantiations Facet Search');
 	}
 
 	public function set_asset_facet()
@@ -98,23 +98,7 @@ class Automemcache extends CI_Controller
 		$this->memcached_library->set('asset_generations', json_encode(sortByOneKey($generation['records'], 'facet_generation', TRUE)), 3600);
 		$this->memcached_library->set('asset_digitized', json_encode($digitized), 3600);
 		$this->memcached_library->set('asset_migration', json_encode($migration), 3600);
-		$this->myLog('Succussfully Updated Assets Facet Search');
-	}
-
-	/**
-	 * Display the Output
-	 * @global type $argc
-	 * @param type $s 
-	 */
-	function myLog($s)
-	{
-		global $argc;
-		if ($argc)
-			$s.="\n";
-		else
-			$s.="<br>\n";
-		echo date('Y-m-d H:i:s') . ' >> ' . $s;
-		flush();
+		myLog('Succussfully Updated Assets Facet Search');
 	}
 
 }

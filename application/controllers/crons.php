@@ -126,6 +126,7 @@ class Crons extends CI_Controller
 	/**
 	 * Update Sphnix Indexes
 	 *  
+	 * @return
 	 */
 	public function rotate_sphnix_indexes()
 	{

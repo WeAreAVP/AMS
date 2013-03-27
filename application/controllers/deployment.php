@@ -24,10 +24,8 @@
  * @license    AMS http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */
-class Deployment extends CI_Controller
+class Deployment extends MY_Controller
 {
-
-	var $display_error = array();
 
 	function __construct()
 	{
@@ -80,6 +78,11 @@ class Deployment extends CI_Controller
 		return $display;
 	}
 
+	/**
+	 * Check the searchd service status
+	 * 
+	 * @return array
+	 */
 	function sphinx_searchd()
 	{
 		$display['waiting'] = "Checking Sphnix Status .";
@@ -111,6 +114,11 @@ class Deployment extends CI_Controller
 		return $display;
 	}
 
+	/**
+	 * Check the memcached service status
+	 * 
+	 * @return array
+	 */
 	function memcached_service()
 	{
 		$display['waiting'] = "Checking Memcached Status .";

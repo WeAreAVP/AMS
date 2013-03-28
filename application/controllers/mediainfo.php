@@ -246,7 +246,7 @@ class Mediainfo extends CI_Controller
 
 							$db_asset_id = $this->get_asset_id_for_media_import($identifier['instantiation_identifier']);
 							$parent_instantiations = $this->instant->get_instantiation_by_asset_id($db_asset_id);
-							debug($parent_instantiations);
+							debug($parent_instantiations[0]->id);
 							if (count($parent_instantiations) == 1)
 							{
 								$this->instant->update_instantiations($parent_instantiations[0]->id, array('digitized' => 1));

@@ -664,14 +664,14 @@ class Mediainfo extends CI_Controller
 		{
 			$asset_guid = $asset_guid[0];
 			$make_db_name = explode('cpb-aacip-', $asset_guid);
-			debug($make_db_name);
+			
 			if (count($make_db_name) > 1)
 			{
 
 				$guid_db = 'cpb-aacip/' . $make_db_name[1];
 
 				$asset_id = $this->assets_model->get_asset_id_by_guid($guid_db);
-
+				debug($asset_id);
 				if ($asset_id && ! empty($asset_id))
 				{
 					return $assets_id->assets_id;

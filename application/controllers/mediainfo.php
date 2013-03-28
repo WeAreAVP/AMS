@@ -29,7 +29,6 @@ class Mediainfo extends CI_Controller
 {
 
 	/**
-	 *
 	 * constructor. Load layout,Model,Library and helpers
 	 * 
 	 */
@@ -43,6 +42,123 @@ class Mediainfo extends CI_Controller
 		$this->load->model('essence_track_model', 'essence');
 		$this->load->model('station_model');
 		$this->media_info_path = 'assets/mediainfo/';
+	}
+
+	/**
+	 * Store all mediainfo directories and data files in the database.
+	 *  
+	 */
+	function process_dir()
+	{
+		@set_time_limit(0);
+		@ini_set("memory_limit", "1000M"); # 1GB
+		@ini_set("max_execution_time", 999999999999); # 1GB
+		$this->cron_model->scan_directory($this->media_info_path, $dir_files);
+		$count = count($dir_files);
+		if (isset($count) && $count > 0)
+		{
+			myLog("Total Number of process " . $count);
+			$loop_counter = 0;
+			$maxProcess = 10;
+			foreach ($dir_files as $dir)
+			{
+				$cmd = escapeshellcmd('/usr/bin/php ' . $this->config->item('path') . 'index.php mediainfo process_dir_child ' . base64_encode($dir));
+				$this->config->item('path') . "cronlog/media_info.log";
+				$pidFile = $this->config->item('path') . "PIDs/media_info/" . $loop_counter . ".txt";
+				@exec('touch ' . $pidFile);
+				$this->runProcess($cmd, $pidFile, $this->config->item('path') . "cronlog/media_info.log");
+				$file_text = file_get_contents($pidFile);
+				$this->arrPIDs[$file_text] = $loop_counter;
+				$proc_cnt = $this->procCounter();
+				$loop_counter ++;
+				while ($proc_cnt == $maxProcess)
+				{
+					myLog('Number of Processes running : ' . $loop_counter . '/.' . $count . ' Sleeping ...');
+					sleep(30);
+					$proc_cnt = $this->procCounter();
+				}
+			}
+			myLog("Waiting for all process to complete");
+			$proc_cnt = $this->procCounter();
+			while ($proc_cnt > 0)
+			{
+				echo "Sleeping....\n";
+				sleep(10);
+				echo "\010\010\010\010\010\010\010\010\010\010\010\010";
+				echo "\n";
+				$proc_cnt = $this->procCounter();
+				echo "Number of Processes running : $proc_cnt/$maxProcess\n";
+			}
+		}
+		echo "All Data Path Under {$this->assets_path} Directory Stored ";
+		exit_function();
+	}
+
+	/**
+	 * Store all PBCore 1.x sub files in the database.
+	 * 
+	 * @param type $path 
+	 */
+	function process_dir_child($path)
+	{
+		set_time_limit(0);
+		@ini_set("memory_limit", "1000M"); # 1GB
+		@ini_set("max_execution_time", 999999999999); # 1GB
+		@error_reporting(E_ALL);
+		@ini_set('display_errors', 1);
+		$type = 'mediainfo';
+		$file = 'manifest-md5.txt';
+		$directory = base64_decode($path);
+		$folder_status = 'complete';
+		if ( ! $data_folder_id = $this->cron_model->get_data_folder_id_by_path($directory))
+		{
+			$data_folder_id = $this->cron_model->insert_data_folder(array("folder_path" => $directory, "created_at" => date('Y-m-d H:i:s'), "data_type" => $type));
+		}
+		if (isset($data_folder_id) && $data_folder_id > 0)
+		{
+			$data_result = file($directory . $file);
+			if (isset($data_result) && ! is_empty($data_result))
+			{
+				$db_error_counter = 0;
+				foreach ($data_result as $value)
+				{
+					$data_file = (explode(" ", $value));
+					$data_file_path = trim(str_replace(array('\r\n', '\n', '<br>'), '', trim($data_file[1])));
+					unset($data_file);
+					myLog('Checking File ' . $data_file_path);
+					if (isset($data_file_path) && ! is_empty($data_file_path))
+					{
+						$file_path = trim($directory . $data_file_path);
+						if (strpos($data_file_path, 'organization.xml') === false)
+						{
+							if (file_exists($file_path))
+							{
+								if ( ! $this->cron_model->is_pbcore_file_by_path($data_file_path, $data_folder_id))
+								{
+									$this->cron_model->insert_prcoess_data(array('file_type' => $type, 'file_path' => ($data_file_path), 'is_processed' => 0, 'created_at' => date('Y-m-d H:i:s'), "data_folder_id" => $data_folder_id));
+								}
+							}
+							else
+							{
+								if ( ! $this->cron_model->is_pbcore_file_by_path($data_file_path, $data_folder_id))
+								{
+									$this->cron_model->insert_prcoess_data(array('file_type' => $type, 'file_path' => ($data_file_path), 'is_processed' => 0, 'created_at' => date('Y-m-d H:i:s'), "data_folder_id" => $data_folder_id, 'status_reason' => 'file_not_found'));
+								}
+								$folder_status = 'incomplete';
+							}
+						}
+					}
+					if ($db_error_counter == 20000)
+					{
+						$db_error_counter = 0;
+						sleep(3);
+					}
+					$db_error_counter ++;
+				}
+			}
+			myLog('folder Id ' . $data_folder_id . ' => folder_status ' . $folder_status);
+			$this->cron_model->update_data_folder(array('updated_at' => date('Y-m-d H:i:s'), 'folder_status' => $folder_status), $data_folder_id);
+		}
 	}
 
 	/**
@@ -99,10 +215,10 @@ class Mediainfo extends CI_Controller
 						{
 							echo '<br/>Media Type = ' . $media_type;
 							$inst_media_type = $this->instant->get_instantiation_media_types_by_media_type($media_type);
-//							if ( ! is_empty($inst_media_type))
-//								$instantiation['instantiation_media_type_id'] = $inst_media_type->id;
-//							else
-//								$instantiation['instantiation_media_type_id'] = $this->instant->insert_instantiation_media_types(array('media_type' => $media_type));
+							if ( ! is_empty($inst_media_type))
+								$instantiation['instantiation_media_type_id'] = $inst_media_type->id;
+							else
+								$instantiation['instantiation_media_type_id'] = $this->instant->insert_instantiation_media_types(array('media_type' => $media_type));
 						}
 					}
 					else if (isset($general_track['audiocount']) && isset($general_track['audiocount'][0]))
@@ -111,11 +227,11 @@ class Mediainfo extends CI_Controller
 						{
 							$media_type = 'Sound';
 							echo '<br/>Media Type = ' . $media_type;
-//							$inst_media_type = $this->instant->get_instantiation_media_types_by_media_type($media_type);
-//							if ( ! is_empty($inst_media_type))
-//								$instantiation['instantiation_media_type_id'] = $inst_media_type->id;
-//							else
-//								$instantiation['instantiation_media_type_id'] = $this->instant->insert_instantiation_media_types(array('media_type' => $media_type));
+							$inst_media_type = $this->instant->get_instantiation_media_types_by_media_type($media_type);
+							if ( ! is_empty($inst_media_type))
+								$instantiation['instantiation_media_type_id'] = $inst_media_type->id;
+							else
+								$instantiation['instantiation_media_type_id'] = $this->instant->insert_instantiation_media_types(array('media_type' => $media_type));
 						}
 					}
 					/* Media Type End */
@@ -211,14 +327,14 @@ class Mediainfo extends CI_Controller
 							echo '<br/>Data Rate = ' . $instantiation['data_rate'];
 							$data_rate_unit = (isset($datarate[1])) ? $datarate[1] : '';
 							echo '<br/>Data Rate Unit = ' . $data_rate_unit;
-//							if ($data_rate_unit != '')
-//							{
-//								$inst_media_type = $this->instant->get_data_rate_units_by_unit($data_rate_unit);
-//								if ( ! is_empty($inst_media_type))
-//									$instantiation['data_rate_units_id'] = $inst_media_type->id;
-//								else
-//									$instantiation['data_rate_units_id'] = $this->instant->insert_data_rate_units(array('unit_of_measure' => $data_rate_unit));
-//							}
+							if ($data_rate_unit != '')
+							{
+								$inst_media_type = $this->instant->get_data_rate_units_by_unit($data_rate_unit);
+								if ( ! is_empty($inst_media_type))
+									$instantiation['data_rate_units_id'] = $inst_media_type->id;
+								else
+									$instantiation['data_rate_units_id'] = $this->instant->insert_data_rate_units(array('unit_of_measure' => $data_rate_unit));
+							}
 						}
 					}
 					/* Data Rate End */
@@ -246,7 +362,6 @@ class Mediainfo extends CI_Controller
 
 							$db_asset_id = $this->get_asset_id_for_media_import($identifier['instantiation_identifier']);
 							$parent_instantiations = $this->instant->get_instantiation_by_asset_id($db_asset_id);
-							debug($parent_instantiations[0]->id);
 							if (count($parent_instantiations) == 1)
 							{
 								$this->instant->update_instantiations($parent_instantiations[0]->id, array('digitized' => 1));
@@ -254,8 +369,9 @@ class Mediainfo extends CI_Controller
 							else
 							{
 								$parent_instantiations = $this->instant->get_instantiation_with_event_by_asset_id($db_asset_id);
-								if(count($parent_instantiations)>0){
-								$this->instant->update_instantiations($parent_instantiations->id, array('digitized' => 1));
+								if (count($parent_instantiations) > 0)
+								{
+									$this->instant->update_instantiations($parent_instantiations->id, array('digitized' => 1));
 								}
 							}
 

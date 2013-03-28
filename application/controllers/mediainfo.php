@@ -245,8 +245,8 @@ class Mediainfo extends CI_Controller
 							
 
 							$db_asset_id = $this->get_asset_id_for_media_import($identifier['instantiation_identifier']);
-							echo 'getting asset_id<br/>';
-							echo $db_asset_id;exit;
+							$parent_instantiations=$this->instant->get_instantiation_by_asset_id($db_asset_id);
+							echo count($parent_instantiations);exit;
 							$identifier['instantiation_identifier'] = $general_track['filename'][0]['text'] . '.' . $general_track['fileextension'][0]['text'];
 							echo '<br/>Instantitation Identifier = ' . $identifier['instantiation_identifier'];
 							if ($db_asset_id)

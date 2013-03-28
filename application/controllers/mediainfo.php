@@ -51,9 +51,9 @@ class Mediainfo extends CI_Controller
 	 */
 	function import_media_files()
 	{
-		$file_name=$this->media_info_path.'audio_metadata/cpb-aacip-305-22v41qw8-sparse/data/cpb-aacip-305-22v41qw8.mp3.mediainfo.xml';
+		$file_name = $this->media_info_path . 'audio_metadata/cpb-aacip-305-22v41qw8-sparse/data/cpb-aacip-305-22v41qw8.mp3.mediainfo.xml';
 		echo '<br/>File: ' . $file_name . '<br/>';
-		$data = file_get_contents( $file_name);
+		$data = file_get_contents($file_name);
 		$x = @simplexml_load_string($data);
 		$data = xmlObjToArr($x);
 		$tracks_data = $data['children']['file'][0]['children']['track'];
@@ -242,11 +242,20 @@ class Mediainfo extends CI_Controller
 						if (isset($general_track['fileextension']) && isset($general_track['fileextension'][0]))
 						{
 							$identifier['instantiation_identifier'] = $general_track['filename'][0]['text'];
-							
+
 
 							$db_asset_id = $this->get_asset_id_for_media_import($identifier['instantiation_identifier']);
-							$parent_instantiations=$this->instant->get_instantiation_by_asset_id($db_asset_id);
-							echo count($parent_instantiations);exit;
+							$parent_instantiations = $this->instant->get_instantiation_by_asset_id($db_asset_id);
+							if (count($parent_instantiations) != 1)
+							{
+								// update parent instantiation here
+							}
+							else
+							{
+								$parent_instantiations = $this->instant->get_instantiation_with_event_by_asset_id($db_asset_id);
+								debug($parent_instantiations);
+							}
+
 							$identifier['instantiation_identifier'] = $general_track['filename'][0]['text'] . '.' . $general_track['fileextension'][0]['text'];
 							echo '<br/>Instantitation Identifier = ' . $identifier['instantiation_identifier'];
 							if ($db_asset_id)
@@ -661,12 +670,12 @@ class Mediainfo extends CI_Controller
 	function get_asset_id_for_media_import($guid)
 	{
 		$asset_guid = explode('.', $guid);
-		
+
 		if (count($asset_guid) > 0)
 		{
 			$asset_guid = $asset_guid[0];
 			$make_db_name = explode('cpb-aacip-', $asset_guid);
-			
+
 			if (count($make_db_name) > 1)
 			{
 

@@ -1013,10 +1013,19 @@ class Instantiations_Model extends CI_Model
 		$this->db->delete($this->table_nominations);
 		return $this->db->affected_rows() > 0;
 	}
-	function get_instantiation_by_asset_id($asset_id){
+
+	function get_instantiation_by_asset_id($asset_id)
+	{
 		$this->db->where('assets_id', $asset_id);
 		return $this->db->get($this->table_instantiations)->result();
-		
+	}
+
+	function get_instantiation_with_event_by_asset_id($asset_id)
+	{
+		$this->db->where("$this->table_instantiations.assets_id", $asset_id);
+		$this->db->join($this->table_events, "$this->table_events.instantiations_id=$this->table_instantiations.id");
+		$this->db->limit(1);
+		return $this->db->get($this->table_instantiations)->result();
 	}
 
 }

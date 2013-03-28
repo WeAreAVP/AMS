@@ -246,14 +246,17 @@ class Mediainfo extends CI_Controller
 
 							$db_asset_id = $this->get_asset_id_for_media_import($identifier['instantiation_identifier']);
 							$parent_instantiations = $this->instant->get_instantiation_by_asset_id($db_asset_id);
-							if (count($parent_instantiations) != 1)
+							debug($parent_instantiations);
+							if (count($parent_instantiations) == 1)
 							{
-								// update parent instantiation here
+								$this->instant->update_instantiations($parent_instantiations[0]->id, array('digitized' => 1));
 							}
 							else
 							{
 								$parent_instantiations = $this->instant->get_instantiation_with_event_by_asset_id($db_asset_id);
-								debug($parent_instantiations);
+								if(count($parent_instantiations)>0){
+								$this->instant->update_instantiations($parent_instantiations->id, array('digitized' => 1));
+								}
 							}
 
 							$identifier['instantiation_identifier'] = $general_track['filename'][0]['text'] . '.' . $general_track['fileextension'][0]['text'];

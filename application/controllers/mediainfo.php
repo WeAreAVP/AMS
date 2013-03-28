@@ -659,12 +659,12 @@ class Mediainfo extends CI_Controller
 	function get_asset_id_for_media_import($guid)
 	{
 		$asset_guid = explode('.', $guid);
-		debug($asset_guid);
+		
 		if (count($asset_guid) > 0)
 		{
 			$asset_guid = $asset_guid[0];
 			$make_db_name = explode('cpb-aacip-', $asset_guid);
-
+			debug($make_db_name);
 			if (count($make_db_name) > 1)
 			{
 

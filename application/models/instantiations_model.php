@@ -1029,7 +1029,7 @@ class Instantiations_Model extends CI_Model
 		$this->db->join($this->table_events, "$this->table_events.instantiations_id=$this->table_instantiations.id");
 		
 
-		debug($this->db->get()->result(),FALSE);
+		print_r($this->db->get()->result());
 		echo $this->db->last_query();
 		exit;
 		

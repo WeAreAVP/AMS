@@ -1023,8 +1023,9 @@ class Instantiations_Model extends CI_Model
 	function get_instantiation_with_event_by_asset_id($asset_id)
 	{
 		$this->db->select("$this->table_instantiations.id");
-		$this->db->where("$this->table_instantiations.assets_id", $asset_id);
+		$this->db->select("$this->table_events.event_types_id");
 		$this->db->join($this->table_events, "$this->table_events.instantiations_id=$this->table_instantiations.id");
+		$this->db->where("$this->table_instantiations.assets_id", $asset_id);
 		$this->db->limit(1);
 		return $this->db->get($this->table_instantiations)->row();
 		

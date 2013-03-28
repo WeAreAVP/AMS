@@ -1024,10 +1024,11 @@ class Instantiations_Model extends CI_Model
 	{
 		$this->db->select("$this->table_instantiations.id");
 		$this->db->select("$this->table_events.event_types_id");
+		$this->db->from($this->table_instantiations);
 		$this->db->join($this->table_events, "$this->table_events.instantiations_id=$this->table_instantiations.id");
 		$this->db->where("$this->table_instantiations.assets_id", $asset_id);
 
-		return $this->db->get($this->table_instantiations)->row();
+		return $this->db->get()->row();
 		
 	}
 

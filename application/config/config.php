@@ -93,7 +93,7 @@ $config['uri_protocol'] = 'AUTO';
   | http://codeigniter.com/user_guide/general/urls.html
  */
 
-$config['url_suffix'] = '.aspx';
+$config['url_suffix'] = '';
 
 /*
   |--------------------------------------------------------------------------

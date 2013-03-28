@@ -129,23 +129,21 @@ class Mediainfo extends CI_Controller
 					if (isset($data_file_path) && ! is_empty($data_file_path))
 					{
 						$file_path = trim($directory . $data_file_path);
-						if (strpos($data_file_path, 'organization.xml') === false)
+//						
+						if (file_exists($file_path))
 						{
-							if (file_exists($file_path))
+							if ( ! $this->cron_model->is_pbcore_file_by_path($data_file_path, $data_folder_id))
 							{
-								if ( ! $this->cron_model->is_pbcore_file_by_path($data_file_path, $data_folder_id))
-								{
-									$this->cron_model->insert_prcoess_data(array('file_type' => $type, 'file_path' => ($data_file_path), 'is_processed' => 0, 'created_at' => date('Y-m-d H:i:s'), "data_folder_id" => $data_folder_id));
-								}
+								$this->cron_model->insert_prcoess_data(array('file_type' => $type, 'file_path' => ($data_file_path), 'is_processed' => 0, 'created_at' => date('Y-m-d H:i:s'), "data_folder_id" => $data_folder_id));
 							}
-							else
+						}
+						else
+						{
+							if ( ! $this->cron_model->is_pbcore_file_by_path($data_file_path, $data_folder_id))
 							{
-								if ( ! $this->cron_model->is_pbcore_file_by_path($data_file_path, $data_folder_id))
-								{
-									$this->cron_model->insert_prcoess_data(array('file_type' => $type, 'file_path' => ($data_file_path), 'is_processed' => 0, 'created_at' => date('Y-m-d H:i:s'), "data_folder_id" => $data_folder_id, 'status_reason' => 'file_not_found'));
-								}
-								$folder_status = 'incomplete';
+								$this->cron_model->insert_prcoess_data(array('file_type' => $type, 'file_path' => ($data_file_path), 'is_processed' => 0, 'created_at' => date('Y-m-d H:i:s'), "data_folder_id" => $data_folder_id, 'status_reason' => 'file_not_found'));
 							}
+							$folder_status = 'incomplete';
 						}
 					}
 					if ($db_error_counter == 20000)
@@ -162,14 +160,121 @@ class Mediainfo extends CI_Controller
 	}
 
 	/**
+	 * 
+	 * Process all pending PBCore 2.x files.
+	 *
+	 */
+	function process_xml_file()
+	{
+		$folders = $this->cron_model->get_all_mediainfo_folder();
+		if (isset($folders) && ! empty($folders))
+		{
+			foreach ($folders as $folder)
+			{
+				$count = $this->cron_model->get_pbcore_file_count_by_folder_id($folder->id);
+				if (isset($count) && $count > 0)
+				{
+					$maxProcess = 50;
+					$limit = 500;
+					$loop_end = ceil($count / $limit);
+					$this->myLog("Run $loop_end times  $maxProcess at a time");
+					for ($loop_counter = 0; $loop_end > $loop_counter; $loop_counter ++ )
+					{
+						$offset = $loop_counter * $limit;
+						myLog("Started $offset~$limit of $count");
+						$cmd = escapeshellcmd('/usr/bin/php ' . $this->config->item('path') . 'index.php mediainfo process_xml_file_child ' . $folder->id . ' ' . $offset . ' ' . $limit);
+						$pidFile = $this->config->item('path') . "PIDs/mediainfo/" . $loop_counter . ".txt";
+						@exec('touch ' . $pidFile);
+						$this->runProcess($cmd, $pidFile, $this->config->item('path') . "cronlog/mediainfo.log");
+						$file_text = file_get_contents($pidFile);
+						$this->arrPIDs[$file_text] = $loop_counter;
+						$proc_cnt = $this->procCounter();
+						while ($proc_cnt == $maxProcess)
+						{
+							$this->myLog("Sleeping ...");
+							sleep(30);
+							$proc_cnt = $this->procCounter();
+							echo "Number of Processes running : $proc_cnt/$maxProcess\n";
+						}
+					}
+					$this->myLog("Waiting for all process to complete");
+					$proc_cnt = $this->procCounter();
+					while ($proc_cnt > 0)
+					{
+						echo "Sleeping....\n";
+						sleep(10);
+						echo "\010\010\010\010\010\010\010\010\010\010\010\010";
+						echo "\n";
+						$proc_cnt = $this->procCounter();
+						echo "Number of Processes running : $proc_cnt/$maxProcess\n";
+					}
+				}
+
+				unset($x);
+				unset($data);
+			}
+		}
+	}
+
+	/**
+	 * Process all pending PBCore 1.x files.
+	 * @param type $folder_id
+	 * @param type $station_cpb_id
+	 * @param type $offset
+	 * @param type $limit 
+	 */
+	function process_xml_file_child($folder_id, $offset = 0, $limit = 100)
+	{
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
+
+		$folder_data = $this->cron_model->get_data_folder_by_id($folder_id);
+		if ($folder_data)
+		{
+			$data_files = $this->cron_model->get_pbcore_file_by_folder_id($folder_data->id, $offset, $limit);
+			if (isset($data_files) && ! is_empty($data_files))
+			{
+				foreach ($data_files as $d_file)
+				{
+					if ($d_file->is_processed == 0)
+					{
+						$this->cron_model->update_prcoess_data(array("processed_start_at" => date('Y-m-d H:i:s')), $d_file->id);
+						$file_path = '';
+						$file_path = trim($folder_data->folder_path . $d_file->file_path);
+						if (file_exists($file_path))
+						{
+							$this->import_media_files($file_path);
+							$this->cron_model->update_prcoess_data(array('is_processed' => 1, "processed_at" => date('Y-m-d H:i:s'), 'status_reason' => 'Complete'), $d_file->id);
+						}
+						else
+						{
+							$this->myLog(" Is File Check Issues " . $file_path);
+							$this->cron_model->update_prcoess_data(array('status_reason' => 'file_not_found'), $d_file->id);
+						}
+					}
+				}
+				unset($data_files);
+			}
+			else
+			{
+				$this->myLog(" Data files not found " . $file_path);
+			}
+		}
+		else
+		{
+			$this->myLog(" folders Data not found " . $file_path);
+		}
+	}
+
+	/**
 	 * Its a sample.
 	 *  
 	 */
-	function import_media_files()
+	function import_media_files($file_path)
 	{
-		$file_name = $this->media_info_path . 'audio_metadata/cpb-aacip-305-22v41qw8-sparse/data/cpb-aacip-305-22v41qw8.mp3.mediainfo.xml';
-		echo '<br/>File: ' . $file_name . '<br/>';
-		$data = file_get_contents($file_name);
+//		$file_path = $this->media_info_path . 'audio_metadata/cpb-aacip-305-22v41qw8-sparse/data/cpb-aacip-305-22v41qw8.mp3.mediainfo.xml';
+		echo '<br/>File: ' . $file_path . '<br/>';
+		$data = file_get_contents($file_path);
 		$x = @simplexml_load_string($data);
 		$data = xmlObjToArr($x);
 		$tracks_data = $data['children']['file'][0]['children']['track'];

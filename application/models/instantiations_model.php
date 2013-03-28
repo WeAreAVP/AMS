@@ -1014,7 +1014,7 @@ class Instantiations_Model extends CI_Model
 		return $this->db->affected_rows() > 0;
 	}
 	function get_instantiation_by_asset_id($asset_id){
-		$this->db->where('instantiations_id', $ins_id);
+		$this->db->where('assets_id', $asset_id);
 		return $this->db->get($this->table_instantiations)->result();
 		
 	}

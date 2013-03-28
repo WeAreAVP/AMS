@@ -242,8 +242,10 @@ class Mediainfo extends CI_Controller
 						if (isset($general_track['fileextension']) && isset($general_track['fileextension'][0]))
 						{
 							$identifier['instantiation_identifier'] = $general_track['filename'][0]['text'];
+							
 
 							$db_asset_id = $this->get_asset_id_for_media_import($identifier['instantiation_identifier']);
+							echo 'getting asset_id<br/>';
 							echo $db_asset_id;exit;
 							$identifier['instantiation_identifier'] = $general_track['filename'][0]['text'] . '.' . $general_track['fileextension'][0]['text'];
 							echo '<br/>Instantitation Identifier = ' . $identifier['instantiation_identifier'];
@@ -671,10 +673,9 @@ class Mediainfo extends CI_Controller
 				$guid_db = 'cpb-aacip/' . $make_db_name[1];
 
 				$asset_id = $this->assets_model->get_asset_id_by_guid($guid_db);
-				debug($asset_id);
 				if ($asset_id && ! empty($asset_id))
 				{
-					return $assets_id->assets_id;
+					return $asset_id->assets_id;
 				}
 			}
 			return FALSE;

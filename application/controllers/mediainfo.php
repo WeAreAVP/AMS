@@ -187,7 +187,7 @@ class Mediainfo extends CI_Controller
 						$offset = $loop_counter * $limit;
 						myLog("Started $offset~$limit of $count");
 						$cmd = escapeshellcmd('/usr/bin/php ' . $this->config->item('path') . 'index.php mediainfo process_xml_file_child ' . $folder->id . ' ' . $offset . ' ' . $limit);
-						$pidFile = $this->config->item('path') . "PIDs/mediainfo/" . $loop_counter . ".txt";
+						$pidFile = $this->config->item('path') . "PIDs/media_info/" . $loop_counter . ".txt";
 						@exec('touch ' . $pidFile);
 						$this->runProcess($cmd, $pidFile, $this->config->item('path') . "cronlog/mediainfo.log");
 						$file_text = file_get_contents($pidFile);

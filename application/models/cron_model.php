@@ -270,10 +270,9 @@ class Cron_Model extends CI_Model
 		$dir = rtrim(trim($dir, '\\'), '/') . '/';
 		$d = @opendir($dir);
 		
-		if( ! $d){
-			echo 'killed';exit;
+		if( ! $d)
 			die('The directory ' . $dir . ' does not exists or PHP have no access to it<br>');
-		}
+		
 		while (false !== ($file = @readdir($d)))
 		{
 			if ($file != '.' && $file != '..')
@@ -281,6 +280,7 @@ class Cron_Model extends CI_Model
 				if (is_file($dir . $file) && $file === 'manifest-md5.txt')
 				{
 					$my_data_array[] = $dir;
+					
 				}
 				else
 				{
@@ -295,6 +295,7 @@ class Cron_Model extends CI_Model
 				}
 			}
 		}
+		debug($my_data_array);
 		@closedir($d);
 	}
 

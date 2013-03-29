@@ -273,7 +273,6 @@ class Cron_Model extends CI_Model
 
 		if ( ! $d)
 		{
-			echo 'PHP issue'."\n";
 			die('The directory ' . $dir . ' does not exists or PHP have no access to it<br>');
 		}
 		while (false !== ($file = @readdir($d)))
@@ -290,7 +289,6 @@ class Cron_Model extends CI_Model
 					
 					if (is_dir($dir . $file) && strpos($dir, 'data') === false)
 					{
-						echo "$dir . $file\n";
 						$this->scan_directory($dir . $file, $my_data_array);
 					}
 					else

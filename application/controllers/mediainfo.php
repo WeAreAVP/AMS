@@ -127,7 +127,7 @@ class Mediainfo extends CI_Controller
 				foreach ($data_result as $value)
 				{
 					$data_file = (explode(" ", $value));
-					$data_file_path = trim(str_replace(array('\r\n', '\n', '<br>'), '', trim($data_file[1])));
+					$data_file_path = trim(str_replace(array('\r\n', '\n', '<br>'), '', trim($data_file[2])));
 					debug($data_file);
 					unset($data_file);
 					myLog('Checking File ' . $data_file_path);

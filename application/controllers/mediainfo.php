@@ -128,7 +128,6 @@ class Mediainfo extends CI_Controller
 				{
 					$data_file = (explode(" ", $value));
 					$data_file_path = trim(str_replace(array('\r\n', '\n', '<br>'), '', trim($data_file[2])));
-					debug($data_file);
 					unset($data_file);
 					myLog('Checking File ' . $data_file_path);
 					if (isset($data_file_path) && ! is_empty($data_file_path))

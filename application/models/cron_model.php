@@ -280,13 +280,14 @@ class Cron_Model extends CI_Model
 		{
 			if ($file != '.' && $file != '..')
 			{
-				echo $file . "\n";
+				
 				if (is_file($dir . $file) && $file === 'manifest-md5.txt')
 				{
 					$my_data_array[] = $dir;
 				}
 				else
 				{
+					echo $file . "\n";
 					if (is_dir($dir . $file) && strpos($dir, 'data') === false)
 					{
 						echo "$dir . $file\n";

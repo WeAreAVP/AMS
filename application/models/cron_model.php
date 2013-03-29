@@ -297,7 +297,7 @@ class Cron_Model extends CI_Model
 				}
 			}
 		}
-		debug($my_data_array);
+		
 		@closedir($d);
 	}
 

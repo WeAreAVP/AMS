@@ -32,6 +32,7 @@ class Mediainfo extends CI_Controller
 	 * constructor. Load layout,Model,Library and helpers
 	 * 
 	 */
+	public $media_info_path;
 	function __construct()
 	{
 		parent::__construct();

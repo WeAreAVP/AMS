@@ -57,6 +57,7 @@ class Mediainfo extends CI_Controller
 		@error_reporting(E_ALL);
 		@ini_set('display_errors', 1);
 		$this->cron_model->scan_directory($this->media_info_path, $dir_files);
+		debug($dir_files);
 		$count = count($dir_files);
 		if (isset($count) && $count > 0)
 		{

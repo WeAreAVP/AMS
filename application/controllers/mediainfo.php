@@ -33,6 +33,7 @@ class Mediainfo extends CI_Controller
 	 * 
 	 */
 	public $media_info_path;
+	
 	function __construct()
 	{
 		parent::__construct();

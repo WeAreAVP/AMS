@@ -269,8 +269,8 @@ class Cron_Model extends CI_Model
 	{
 		$dir = rtrim(trim($dir, '\\'), '/') . '/';
 		$d = @opendir($dir);
-
-		if ( ! $d)
+		debug($d);
+		if( ! $d)
 			die('The directory ' . $dir . ' does not exists or PHP have no access to it<br>');
 		while (false !== ($file = @readdir($d)))
 		{

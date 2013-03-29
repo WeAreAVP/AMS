@@ -43,7 +43,7 @@ class Mediainfo extends CI_Controller
 		$this->load->model('instantiations_model', 'instant');
 		$this->load->model('essence_track_model', 'essence');
 		$this->load->model('station_model');
-		$this->media_info_path = 'assets/mediainfo/audio_metadata/cpb-aacip-345-98z8wm3r-sparse/';
+		$this->media_info_path = 'assets/mediainfo/';
 	}
 
 	/**

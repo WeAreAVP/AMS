@@ -287,7 +287,7 @@ class Cron_Model extends CI_Model
 				}
 				else
 				{
-					echo $file . "\n";
+					
 					if (is_dir($dir . $file) && strpos($dir, 'data') === false)
 					{
 						echo "$dir . $file\n";

@@ -513,9 +513,11 @@ class Instantiations extends MY_Controller
 				$data['generations'] = sortByOneKey($generation['records'], 'facet_generation', TRUE);
 				unset($generation);
 
-				$data['digitized'] = $this->sphinx->facet_index('digitized', $index, 'digitized');
+				$digitized= $this->sphinx->facet_index('digitized', $index, 'digitized');
+				$data['digitized']=$digitized['records'];
 
-				$data['migration'] = $this->sphinx->facet_index('migration', $index, 'migration');
+				$migration = $this->sphinx->facet_index('migration', $index, 'migration');
+				$data['migration']=$migration['records'];
 			}
 			else
 			{
@@ -539,7 +541,7 @@ class Instantiations extends MY_Controller
 
 
 				$data['digitized'] = json_decode($this->memcached_library->get($key_name . '_digitized'), TRUE);
-				debug($data['digitized']);
+				
 				$data['migration'] = json_decode($this->memcached_library->get($key_name . '_migration'), TRUE);
 			}
 

@@ -1323,6 +1323,15 @@ class Assets_Model extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	function get_digitized_assets_by_region()
+	{
+		$station = $this->stations;
+		$assets = $this->_assets_table;
+		$instantiations = 'instantiations';
+		
+		$result = $this->db->get($assets)->result();
+	}
+
 }
 
 ?>

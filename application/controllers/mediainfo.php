@@ -531,7 +531,7 @@ class Mediainfo extends CI_Controller
 							}
 						}
 					}
-					exit;
+					
 					/* Identifier and Generation End */
 					/* Instantiation Date Start */
 					if (isset($general_track['encoded_date']) && isset($general_track['encoded_date'][0]))
@@ -887,7 +887,7 @@ class Mediainfo extends CI_Controller
 		unset($instantiation);
 		unset($essence_track);
 		echo '<br/><br/>Essence Tracks';
-		debug($dessence_track, FALSE);
+//		debug($dessence_track, FALSE);
 		echo '<br/>These values will be saved in the respective tables';
 	}
 

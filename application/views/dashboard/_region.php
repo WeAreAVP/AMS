@@ -106,23 +106,23 @@
     <div class="tab-pane active" id="region_digitized" style=" margin: 0 auto">
       <div class="container-map">
         <div class="first-asset">
-          <h2>825</h2>
+          <h2>south</h2>
           <span>Assets</span>
         </div><!--end of first-asset-->
         <div class="second-asset">
-          <h2>452</h2>
+          <h2>midwest</h2>
           <span>Assets</span>
         </div><!--end of first-asset-->
         <div class="third-asset">
-          <h2>613</h2>
+          <h2>northwest</h2>
           <span>Assets</span>
         </div><!--end of first-asset-->
         <div class="forth-asset">
-          <h2>12,052</h2>
+          <h2>west</h2>
           <span>Assets</span>
         </div><!--end of first-asset-->
         <div class="fifth-asset">
-          <h2>12,052</h2>
+          <h2>other</h2>
           <span>Assets</span>
         </div><!--end of first-asset-->
         <div class="other">

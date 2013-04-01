@@ -113,15 +113,15 @@ class Dashboard_Model extends CI_Model
 		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id=$this->_table_assets.id");
 		$this->db->where("$this->table_instantiations.digitized", 1);
 		if ($region == 'other')
-			$this->db->where_in("$this->_table.state", array('AK', 'GU', 'HI', 'NM')); //other
+			$this->db->where_in("$this->_table.state", array('AK', 'GU', 'HI', )); //other
 		else if ($region == 'midwest')
-			$this->db->where_in("$this->_table.state", array('IA', 'IL', 'IN', 'MI', 'MN', 'MO', 'ND', 'OH', 'PA', 'WI')); //midwest
+			$this->db->where_in("$this->_table.state", array('IA', 'IL', 'IN', 'MI', 'MN', 'MO', 'ND', 'OH', 'WI')); //midwest
 		else if ($region == 'northeast')
 			$this->db->where_in("$this->_table.state", array('CT', 'MA', 'ME', 'NH', 'NJ', 'NY', 'PA', 'RI', 'VT')); //northeast
 		else if ($region == 'south')
-			$this->db->where_in("$this->_table.state", array('AR', 'DC', 'FL', 'GA', 'KY', 'LA', 'MD', 'MI', 'NC', 'SC', 'TN', 'TX', 'VA')); //south
+			$this->db->where_in("$this->_table.state", array('AR', 'DC', 'FL', 'GA', 'KY', 'LA', 'MD', 'NC', 'SC', 'TN', 'TX', 'VA')); //south
 		else if ($region == 'west')
-			$this->db->where_in("$this->_table.state", array('AK', 'AZ', 'CA', 'CO', 'ID', 'MT', 'NM', 'NV', 'OR', 'UT', 'WA', 'WY')); //west
+			$this->db->where_in("$this->_table.state", array( 'AZ', 'CA', 'CO', 'ID', 'MT', 'NM', 'NV', 'OR', 'UT', 'WA', 'WY')); //west
 
 		$result = $this->db->get($this->_table_assets);
 
@@ -134,15 +134,15 @@ class Dashboard_Model extends CI_Model
 		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id=$this->_table_assets.id");
 		$this->db->where("$this->table_instantiations.digitized", 0);
 		if ($region == 'other')
-			$this->db->where_in("$this->_table.state", array('AK', 'GU', 'HI', 'NM')); //other
+			$this->db->where_in("$this->_table.state", array('AK', 'GU', 'HI', )); //other
 		else if ($region == 'midwest')
-			$this->db->where_in("$this->_table.state", array('IA', 'IL', 'IN', 'MI', 'MN', 'MO', 'ND', 'OH', 'PA', 'WI')); //midwest
+			$this->db->where_in("$this->_table.state", array('IA', 'IL', 'IN', 'MI', 'MN', 'MO', 'ND', 'OH', 'WI')); //midwest
 		else if ($region == 'northeast')
 			$this->db->where_in("$this->_table.state", array('CT', 'MA', 'ME', 'NH', 'NJ', 'NY', 'PA', 'RI', 'VT')); //northeast
 		else if ($region == 'south')
-			$this->db->where_in("$this->_table.state", array('AR', 'DC', 'FL', 'GA', 'KY', 'LA', 'MD', 'MI', 'NC', 'SC', 'TN', 'TX', 'VA')); //south
+			$this->db->where_in("$this->_table.state", array('AR', 'DC', 'FL', 'GA', 'KY', 'LA', 'MD', 'NC', 'SC', 'TN', 'TX', 'VA')); //south
 		else if ($region == 'west')
-			$this->db->where_in("$this->_table.state", array('AK', 'AZ', 'CA', 'CO', 'ID', 'MT', 'NM', 'NV', 'OR', 'UT', 'WA', 'WY')); //west
+			$this->db->where_in("$this->_table.state", array( 'AZ', 'CA', 'CO', 'ID', 'MT', 'NM', 'NV', 'OR', 'UT', 'WA', 'WY')); //west
 
 		$result = $this->db->get($this->_table_assets);
 

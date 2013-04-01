@@ -52,6 +52,12 @@ class Dashboard extends MY_Controller
 	public function index()
 	{
 		
+		
+		
+		
+		
+		
+		
 		$data['digitized_format_name'] = json_decode($this->memcached_library->get('graph_digitized_format_name'), TRUE);
 		$data['digitized_total'] = json_decode($this->memcached_library->get('graph_digitized_total'), TRUE);
 		$data['scheduled_format_name'] = json_decode($this->memcached_library->get('graph_scheduled_format_name'), TRUE);

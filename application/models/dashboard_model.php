@@ -36,6 +36,11 @@ class Dashboard_Model extends CI_Model
 		parent::__construct();
 		$this->_prefix = '';
 		$this->_table = 'stations';
+		$this->table_instantiation_formats = 'instantiation_formats';
+		$this->table_instantiations = 'instantiations';
+		$this->table_nominations = 'nominations';
+		$this->table_nomination_status = 'nomination_status';
+		$this->_table_messages = 'messages';
 	}
 
 	function get_digitized_formats()

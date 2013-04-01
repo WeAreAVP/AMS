@@ -56,7 +56,7 @@ class Dashboard extends MY_Controller
 		$data['scheduled_format_name'] = json_decode($this->memcached_library->get('graph_scheduled_format_name'), TRUE);
 		$data['scheduled_total'] = json_decode($this->memcached_library->get('graph_scheduled_total'), TRUE);
 		$data['material_goal'] = json_decode($this->memcached_library->get('material_goal'), TRUE);
-		debug($data['material_goal']);
+		
 		$data['at_crawford'] = json_decode($this->memcached_library->get('at_crawford'), TRUE);
 		$data['total_hours'] = json_decode($this->memcached_library->get('total_hours'), TRUE);
 		$data['percentage_hours'] = json_decode($this->memcached_library->get('percentage_hours'), TRUE);

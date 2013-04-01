@@ -243,6 +243,7 @@ class Crons extends CI_Controller
 			$data['scheduled_format_name'][] = $index;
 			$data['scheduled_total'][] = (int) $format;
 		}
+		debug($data['scheduled_format_name']);
 		$this->memcached_library->set('graph_scheduled_format_name', json_encode($data['scheduled_format_name']), 3600);
 		$this->memcached_library->set('graph_scheduled_total', json_encode($data['scheduled_total']), 3600);
 		/* End Graph Get Scheduled Formats  */

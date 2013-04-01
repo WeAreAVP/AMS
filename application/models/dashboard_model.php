@@ -41,6 +41,7 @@ class Dashboard_Model extends CI_Model
 		$this->table_nominations = 'nominations';
 		$this->table_nomination_status = 'nomination_status';
 		$this->_table_messages = 'messages';
+		$this->_table_assets = 'assets';
 	}
 
 	function get_digitized_formats()
@@ -104,8 +105,17 @@ class Dashboard_Model extends CI_Model
 
 		return $result->result();
 	}
-	function get_digitized(){
-		
+
+	function digitized_other_region()
+	{
+		$this->db->select("COUNT($this->_table_assets.id) AS total", FALSE);
+		$this->db->join($this->_table, "$this->_table.id=$this->_table_assets.stations_id");
+		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id=$this->_table_assets.id");
+		$this->db->where("$this->table_instantiations.digitized", 1);
+		$this->db->where_in("$this->_table.state", array('AK', 'GU', 'HI', 'NM'));
+		$result = $this->db->get($this->_table_assets);
+
+		return $result->result();
 	}
 
 }

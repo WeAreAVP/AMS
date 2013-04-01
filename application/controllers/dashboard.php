@@ -52,10 +52,8 @@ class Dashboard extends MY_Controller
 	public function index()
 	{
 
-		$regions = array('other', 'midwest', 'northwest', 'south', 'west');
-		foreach ($regions as $region)
-			$total_region_digitized[$region] = $this->dashboard_model->digitized_other_region($region)->total;
-		debug($total_region_digitized);
+		
+		
 		$data['digitized_format_name'] = json_decode($this->memcached_library->get('graph_digitized_format_name'), TRUE);
 		$data['digitized_total'] = json_decode($this->memcached_library->get('graph_digitized_total'), TRUE);
 		$data['scheduled_format_name'] = json_decode($this->memcached_library->get('graph_scheduled_format_name'), TRUE);
@@ -65,7 +63,8 @@ class Dashboard extends MY_Controller
 		$data['at_crawford'] = json_decode($this->memcached_library->get('at_crawford'), TRUE);
 		$data['total_hours'] = json_decode($this->memcached_library->get('total_hours'), TRUE);
 		$data['percentage_hours'] = json_decode($this->memcached_library->get('percentage_hours'), TRUE);
-
+		$data['total_region_digitized'] = json_decode($this->memcached_library->get('total_region_digitized'), TRUE);
+		debug($data['total_region_digitized']);
 		$this->load->view('dashboard/index', $data);
 	}
 

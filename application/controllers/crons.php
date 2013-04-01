@@ -243,13 +243,13 @@ class Crons extends CI_Controller
 			$data['scheduled_format_name'][] = $index;
 			$data['scheduled_total'][] = (int) $format;
 		}
-		
+
 		$this->memcached_library->set('graph_scheduled_format_name', json_encode($data['scheduled_format_name']), 3600);
 		$this->memcached_library->set('graph_scheduled_total', json_encode($data['scheduled_total']), 3600);
 		/* End Graph Get Scheduled Formats  */
 		/* Start Meterial Goal  */
 		$data['material_goal'] = $this->dashboard_model->get_digitized_hours();
-		
+
 		$this->memcached_library->set('material_goal', json_encode($data['material_goal']), 3600);
 		/* End Meterial Goal  */
 
@@ -281,12 +281,16 @@ class Crons extends CI_Controller
 		$this->memcached_library->set('total_hours', json_encode($data['total_hours']), 3600);
 		$this->memcached_library->set('percentage_hours', json_encode($data['percentage_hours']), 3600);
 		/* End goal hours  */
-		
+
 		/* Start Total digitized assets by Region */
 		$regions = array('other', 'midwest', 'northeast', 'south', 'west');
 		foreach ($regions as $region)
-			$total_region_digitized[$region] = $this->dashboard_model->digitized_other_region($region);
+		{
+			$total_region_digitized[$region] = $this->dashboard_model->digitized_total_by_region($region)->total;
+			$total_hours_region_digitized[$region] = $this->dashboard_model->digitized_hours_by_region($region)->time;
+		}
 		$this->memcached_library->set('total_region_digitized', json_encode($total_region_digitized), 3600);
+		$this->memcached_library->set('total_hours_region_digitized', json_encode($total_hours_region_digitized), 3600);
 		/* End Total digitized assets by Region */
 	}
 

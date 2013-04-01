@@ -64,7 +64,9 @@ class Dashboard extends MY_Controller
 		$data['total_hours'] = json_decode($this->memcached_library->get('total_hours'), TRUE);
 		$data['percentage_hours'] = json_decode($this->memcached_library->get('percentage_hours'), TRUE);
 		$data['total_region_digitized'] = json_decode($this->memcached_library->get('total_region_digitized'), TRUE);
-		debug($data['total_region_digitized']);
+		$data['total_hours_region_digitized'] = json_decode($this->memcached_library->get('total_hours_region_digitized'), TRUE);
+		debug($data['total_region_digitized'],FALSE);
+		debug($data['total_hours_region_digitized'],FALSE);
 		$this->load->view('dashboard/index', $data);
 	}
 

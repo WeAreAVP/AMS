@@ -287,7 +287,11 @@ class Crons extends CI_Controller
 		foreach ($regions as $region)
 		{
 			$total_region_digitized[$region] = $this->dashboard_model->digitized_total_by_region($region)->total;
-			$total_hours_region_digitized[$region] = $this->dashboard_model->digitized_hours_by_region($region)->time;
+			if (empty($this->dashboard_model->digitized_hours_by_region($region)->time))
+				$time = 0;
+			else
+				$time = $this->dashboard_model->digitized_hours_by_region($region)->time;
+			$total_hours_region_digitized[$region] = $time;
 		}
 		$this->memcached_library->set('total_region_digitized', json_encode($total_region_digitized), 3600);
 		$this->memcached_library->set('total_hours_region_digitized', json_encode($total_hours_region_digitized), 3600);

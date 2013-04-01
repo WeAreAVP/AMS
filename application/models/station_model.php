@@ -1,11 +1,29 @@
 <?php
 
+
 /**
- * station Model.
+ * Station Model
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage Model
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AVPS http://ams.avpreserve.com
+ * @version    GIT: <$Id>
+ * @link       http://ams.avpreserve.com
+ */
+
+/**
+ * Station Class
  *
- * @package    AMS
- * @subpackage station_model
- * @author     Nouman Tayyab
+ * @category   Class
+ * @package    CI
+ * @subpackage Model
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @link       http://ams.avpreserve.com
  */
 class Station_Model extends CI_Model
 {
@@ -196,38 +214,11 @@ class Station_Model extends CI_Model
 		return $query = $this->db->get($this->_table_backup)->result();
 	}
 
-	/**
-	 * Get the hours of Crawford
-	 * 
-	 * @param string $msg_type
-	 * @return type 
-	 */
-	function get_hours_at_crawford($msg_type)
-	{
-		$this->db->select("($this->_table.nominated_hours_final+$this->_table.nominated_buffer_final) AS total", FALSE);
-		$this->db->join($this->_table_messages, "$this->_table_messages.receiver_id = $this->_table.id");
-		$this->db->where("$this->_table_messages.msg_type", $msg_type);
-		$result = $this->db->get($this->_table);
+	
 
-		return $result->result();
-	}
+	
 
-	function get_asset_states()
-	{
-		$this->db->select("COUNT($this->_assets_table.id) as total,$this->_table.state", FALSE);
-		$this->db->join($this->_table, "$this->_table.id = $this->_assets_table.stations_id");
-		$this->db->group_by("$this->_table.state");
-		return $query = $this->db->get($this->_assets_table)->result();
-	}
-
-	function get_instantiation_states()
-	{
-		$this->db->select("COUNT($this->_instantiations_table.id) as total,$this->_table.state", FALSE);
-		$this->db->join($this->_assets_table, "$this->_assets_table.id = $this->_instantiations_table.assets_id");
-		$this->db->join($this->_table, "$this->_table.id = $this->_assets_table.stations_id");
-		$this->db->group_by("$this->_table.state");
-		return $query = $this->db->get($this->_instantiations_table)->result();
-	}
+	
 
 }
 

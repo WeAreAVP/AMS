@@ -1,11 +1,28 @@
 <?php
 
 /**
- * Migrate Model.
+ * Migrate Model
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage Model
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AVPS http://ams.avpreserve.com
+ * @version    GIT: <$Id>
+ * @link       http://ams.avpreserve.com
+ */
+
+/**
+ * Migrate  Class
  *
- * @package    AMS
- * @subpackage Migrate Model
- * @author     Nouman Tayyab
+ * @category   Class
+ * @package    CI
+ * @subpackage Model
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @link       http://ams.avpreserve.com
  */
 class Migrate_Model extends CI_Model
 {

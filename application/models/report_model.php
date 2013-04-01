@@ -1,11 +1,28 @@
 <?php
 
 /**
- * Report Model.
+ * Reports Model
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage Model
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AVPS http://ams.avpreserve.com
+ * @version    GIT: <$Id>
+ * @link       http://ams.avpreserve.com
+ */
+
+/**
+ * Reports Class
  *
- * @package    AMS
- * @subpackage report_model
- * @author     Ali Raza
+ * @category   Class
+ * @package    CI
+ * @subpackage Model
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @link       http://ams.avpreserve.com
  */
 class Report_Model extends CI_Model
 {

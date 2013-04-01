@@ -1,11 +1,28 @@
 <?php
 
 /**
- * Essence Track Model.
+ * Essence Track Class
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage Model
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AVPS http://ams.avpreserve.com
+ * @version    GIT: <$Id>
+ * @link       http://ams.avpreserve.com
+ */
+
+/**
+ * Essence Track Model
  *
- * @package    AMS
- * @subpackage Essence_Track_Model
- * @author     ALi RAza
+ * @category   Class
+ * @package    CI
+ * @subpackage Model
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @link       http://ams.avpreserve.com
  */
 class Essence_Track_Model extends CI_Model
 {

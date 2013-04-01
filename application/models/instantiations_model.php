@@ -1,11 +1,28 @@
 <?php
 
 /**
- * Assets Model.
+ * Instantiations Model
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage Model
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AVPS http://ams.avpreserve.com
+ * @version    GIT: <$Id>
+ * @link       http://ams.avpreserve.com
+ */
+
+/**
+ * Instantiations  Class
  *
- * @package    AMS
- * @subpackage assets_model
- * @author     ALi RAza
+ * @category   Class
+ * @package    CI
+ * @subpackage Model
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @link       http://ams.avpreserve.com
  */
 class Instantiations_Model extends CI_Model
 {
@@ -612,52 +629,6 @@ class Instantiations_Model extends CI_Model
 			));
 		}
 		return $event_types_id;
-	}
-
-	function get_digitized_formats()
-	{
-		$this->db->select("$this->table_instantiation_formats.format_name", FALSE);
-
-		$this->db->join($this->table_instantiation_formats, "$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id");
-		$this->db->where("$this->table_instantiations.digitized", '1');
-		$this->db->group_by("$this->table_instantiation_formats.instantiations_id");
-		$result = $this->db->get($this->table_instantiations);
-
-		return $result->result();
-	}
-
-	function get_scheduled_formats()
-	{
-		$this->db->select("$this->table_instantiation_formats.format_name", FALSE);
-
-		$this->db->join($this->table_instantiations, "$this->table_instantiations.id = $this->table_instantiation_formats.instantiations_id");
-		$this->db->join($this->table_nominations, "$this->table_nominations.instantiations_id = $this->table_instantiation_formats.instantiations_id");
-		$this->db->where("$this->table_instantiations.digitized", '0');
-		$this->db->or_where("$this->table_instantiations.digitized IS NULL");
-		$this->db->group_by("$this->table_instantiation_formats.instantiations_id");
-		$result = $this->db->get($this->table_instantiation_formats);
-
-		return $result->result();
-	}
-
-	function get_material_goal()
-	{
-		$this->db->select("count(DISTINCT $this->table_instantiations.id) AS total", FALSE);
-		$this->db->join($this->table_nominations, "$this->table_nominations.instantiations_id = $this->table_instantiations.id");
-		$this->db->join($this->table_nomination_status, "$this->table_nomination_status.id = $this->table_nominations.nomination_status_id");
-		$this->db->where("$this->table_nomination_status.status", 'Nominated/1st Priority');
-		$result = $this->db->get($this->table_instantiations);
-
-		return $result->row();
-	}
-
-	function get_digitized_hours()
-	{
-		$this->db->select("count(DISTINCT $this->table_instantiations.id) AS total", FALSE);
-		$this->db->where("$this->table_instantiations.digitized", '1');
-		$result = $this->db->get($this->table_instantiations);
-
-		return $result->row();
 	}
 
 	function export_limited_csv($real_time = FALSE)

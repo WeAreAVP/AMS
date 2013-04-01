@@ -5,13 +5,13 @@
  * 
  * PHP version 5
  * 
- * @category   Time Tracking
+ * @category   AMS
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@geekschicago.com>
- * @license    XohoTech http://xohotech.com
+ * @license    AVPS http://ams.avpreserve.com
  * @version    GIT: <$Id>
- * @link       http://timetracking.xohotech.com
+ * @link       http://ams.avpreserve.com
  */
 
 /**
@@ -21,8 +21,8 @@
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@geekschicago.com>
- * @license    XohoTech http://xohotech.com
- * @link       http://timetracking.xohotech.com
+ * @license    AVPS http://ams.avpreserve.com
+ * @link       http://ams.avpreserve.com
  */
 class Dashboard extends MY_Controller
 {
@@ -36,7 +36,7 @@ class Dashboard extends MY_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('instantiations_model', 'instantiation');
+		$this->load->model('dashboard_model');
 		if ($this->is_station_user)
 		{
 			redirect('records/index');
@@ -51,7 +51,7 @@ class Dashboard extends MY_Controller
 	public function index()
 	{
 		/* Start Graph Get Digitized Formats  */
-		$total_digitized = $this->instantiation->get_digitized_formats();
+		$total_digitized = $this->dashboard_model->get_digitized_formats();
 		$data['digitized_format_name'] = NULL;
 		$data['digitized_total'] = NULL;
 		$dformat_array = array();
@@ -70,7 +70,7 @@ class Dashboard extends MY_Controller
 
 		/* End Graph Get Digitized Formats  */
 		/* Start Graph Get Scheduled Formats  */
-		$total_scheduled = $this->instantiation->get_scheduled_formats();
+		$total_scheduled = $this->dashboard_model->get_scheduled_formats();
 		$data['scheduled_format_name'] = NULL;
 		$data['scheduled_total'] = NULL;
 
@@ -90,7 +90,7 @@ class Dashboard extends MY_Controller
 		}
 		/* End Graph Get Scheduled Formats  */
 		/* Start Meterial Goal  */
-		$data['material_goal'] = $this->instantiation->get_digitized_hours();
+		$data['material_goal'] = $this->dashboard_model->get_digitized_hours();
 		/* End Meterial Goal  */
 		/* Start Hours at crawford  */
 		foreach ($this->config->item('messages_type') as $index => $msg_type)
@@ -101,7 +101,7 @@ class Dashboard extends MY_Controller
 			}
 		}
 
-		$hours_at_craword = $this->station_model->get_hours_at_crawford($data['msg_type']);
+		$hours_at_craword = $this->dashboard_model->get_hours_at_crawford($data['msg_type']);
 
 		$data['at_crawford'] = 0;
 		foreach ($hours_at_craword as $hours)
@@ -110,8 +110,8 @@ class Dashboard extends MY_Controller
 		}
 		/* End Hours at crawford  */
 		/* Start goal hours  */
-		$data['total_goal'] = $this->instantiation->get_material_goal();
-		$digitized_hours = $this->instantiation->get_digitized_hours();
+		$data['total_goal'] = $this->dashboard_model->get_material_goal();
+		$digitized_hours = $this->dashboard_model->get_digitized_hours();
 		$data['total_hours'] = $this->abbr_number((isset($data['total_goal']->total)) ? $data['total_goal']->total : 0);
 		$data['percentage_hours'] = round(((isset($digitized_hours->total)) ? $digitized_hours->total : 0 * 100) / (isset($data['total_goal']->total)) ? $data['total_goal']->total : 0);
 

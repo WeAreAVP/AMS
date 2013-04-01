@@ -1,11 +1,31 @@
 <?php
 
+
+
+
 /**
- * Export Model.
+ * Export CSV Job Model
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage Model
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AVPS http://ams.avpreserve.com
+ * @version    GIT: <$Id>
+ * @link       http://ams.avpreserve.com
+ */
+
+/**
+ * Export CSV Job  Class
  *
- * @package    AMS
- * @subpackage export
- * @author     Nouman Tayyab
+ * @category   Class
+ * @package    CI
+ * @subpackage Model
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @link       http://ams.avpreserve.com
  */
 class Export_csv_job_model extends CI_Model
 {

@@ -57,6 +57,7 @@ class Deployment extends CI_Controller
 	/**
 	 * Connect and test the sphnix server.
 	 * 
+	 * @return
 	 */
 	private function sphnix_connect()
 	{
@@ -91,6 +92,7 @@ class Deployment extends CI_Controller
 	/**
 	 * Connect and test the memcached server.
 	 * 
+	 * @return
 	 */
 	private function memcached_connect()
 	{
@@ -127,6 +129,7 @@ class Deployment extends CI_Controller
 	/**
 	 * Check DB names
 	 * 
+	 * @return
 	 */
 	private function check_values()
 	{
@@ -160,8 +163,9 @@ class Deployment extends CI_Controller
 	/**
 	 * Check the error reporting status.
 	 * 
+	 * @return
 	 */
-	 private function check_reporting()
+	private function check_reporting()
 	{
 		$display['waiting'] = "Checking Error Reporting .";
 

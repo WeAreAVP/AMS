@@ -1,11 +1,28 @@
 <?php
 
 /**
- * Cron Model.
+ * Cron model
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage Model
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @version    GIT: <$Id>
+ * @link       http://ams.avpreserve.com
+ */
+
+/**
+ * Cron Model Class
  *
- * @package    AMS
- * @subpackage Cron_model
- * @author     Ali Raza
+ * @category   Class
+ * @package    CI
+ * @subpackage Model
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @link       http://ams.avpreserve.com
  */
 class Cron_Model extends CI_Model
 {
@@ -279,14 +296,14 @@ class Cron_Model extends CI_Model
 		{
 			if ($file != '.' && $file != '..')
 			{
-				
+
 				if (is_file($dir . $file) && $file === 'manifest-md5.txt')
 				{
 					$my_data_array[] = $dir;
 				}
 				else
 				{
-					
+
 					if (is_dir($dir . $file) && strpos($dir, 'data') === false)
 					{
 						$this->scan_directory($dir . $file, $my_data_array);

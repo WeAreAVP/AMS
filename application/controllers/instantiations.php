@@ -39,7 +39,7 @@ class Instantiations extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('instantiations_model', 'instantiation');
-		$this->load->model('nomination_model', 'mix');
+		
 		$this->load->model('export_csv_job_model', 'csv_job');
 		$this->load->model('assets_model');
 		$this->load->model('sphinx_model', 'sphinx');

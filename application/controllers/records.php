@@ -20,7 +20,7 @@ class Records extends MY_Controller
 		$this->load->model('assets_model');
 		$this->load->model('sphinx_model', 'sphinx');
 		$this->load->model('instantiations_model', 'instantiation');
-		$this->load->model('nomination_model', 'mix');
+		
 		$this->load->library('pagination');
 		$this->load->library('Ajax_pagination');
 		$this->load->helper('datatable');

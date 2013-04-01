@@ -133,23 +133,23 @@
 		<div class="tab-pane" id="region_hours" style=" margin: 0 auto">
 			<div class="container-map" id="">
 				<div class="first-asset">
-					<h2>50</h2>
+					<h2><?php echo number_format($total_hours_region_digitized['west']); ?></h2>
 					<span>Hours</span>
 				</div><!--end of first-asset-->
 				<div class="second-asset">
-					<h2>40</h2>
+					<h2><?php echo number_format($total_hours_region_digitized['midwest']); ?></h2>
 					<span>Hours</span>
 				</div><!--end of first-asset-->
 				<div class="third-asset">
-					<h2>67</h2>
+					<h2><?php echo number_format($total_hours_region_digitized['south']); ?></h2>
 					<span>Hours</span>
 				</div><!--end of first-asset-->
 				<div class="forth-asset">
-					<h2>95</h2>
+					<h2><?php echo number_format($total_hours_region_digitized['northeast']); ?></h2>
 					<span>Hours</span>
 				</div><!--end of first-asset-->
 				<div class="fifth-asset">
-					<h2>12</h2>
+					<h2><?php echo number_format($total_hours_region_digitized['other']); ?></h2>
 					<span>Hours</span>
 				</div><!--end of first-asset-->
 				<div class="other">

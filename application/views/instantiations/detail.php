@@ -56,7 +56,7 @@
 
 				jwplayer("mediaplayer").setup({
 					flashplayer: "../js/player.swf",
-					file: "/leapcommunications/includes/hip_leap_guy.mp4",
+					file: "http://cpbaaaccess.crawfordmedia.com/data/55/cpb-aacip-55-40xpppz0.h264.mp4",
 					autostart: true
 				});
 

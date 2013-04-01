@@ -283,9 +283,9 @@ class Crons extends CI_Controller
 		/* End goal hours  */
 		
 		/* Start Total digitized assets by Region */
-		$regions = array('other', 'midwest', 'northwest', 'south', 'west');
+		$regions = array('other', 'midwest', 'northeast', 'south', 'west');
 		foreach ($regions as $region)
-			$total_region_digitized[$region] = $this->dashboard_model->digitized_other_region($region)->total;
+			$total_region_digitized[$region] = $this->dashboard_model->digitized_other_region($region);
 		$this->memcached_library->set('total_region_digitized', json_encode($total_region_digitized), 3600);
 		/* End Total digitized assets by Region */
 	}

@@ -104,5 +104,8 @@ class Dashboard_Model extends CI_Model
 
 		return $result->result();
 	}
+	function get_digitized(){
+		
+	}
 
 }

@@ -54,7 +54,7 @@ class Dashboard extends MY_Controller
 
 		$regions = array('other', 'midwest', 'northwest', 'south', 'west');
 		foreach ($regions as $region)
-			$total_region_digitized[$region] = $this->dashboard_model->digitized_other_region($region);
+			$total_region_digitized[$region] = $this->dashboard_model->digitized_other_region($region)->total;
 		debug($total_region_digitized);
 		$data['digitized_format_name'] = json_decode($this->memcached_library->get('graph_digitized_format_name'), TRUE);
 		$data['digitized_total'] = json_decode($this->memcached_library->get('graph_digitized_total'), TRUE);

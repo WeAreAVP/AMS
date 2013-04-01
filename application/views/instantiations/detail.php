@@ -52,11 +52,13 @@
 
 	<div class="span9" style="margin-left: 250px;" id="ins_view_detail">
 		<div style="float: left;">
-			<?php if ($this->role_id != '20')
+			<div>fadfadfadf</div>
+			<?php
+			if ($this->role_id != '20')
 			{
 				?>
 				<div><input type="button" class="btn" value="Edit Instantiation" onclick="toggleViews();"/></div>
-<?php } ?>
+			<?php } ?>
 			<table  cellPadding="8" class="record-detail-table">
 				<!--				Instantiation ID	Start		-->
 				<?php
@@ -84,7 +86,7 @@
 
 						</td>
 					</tr>
-<?php } ?>
+				<?php } ?>
 				<!--				Instantiation ID	End		-->
 				<!--				Date 	Start		-->
 				<?php
@@ -108,12 +110,12 @@
 								?>
 								<span><?php echo date("Y-m-d", strtotime($inst_dates->dates)); ?></span>
 
-	<?php } ?>
+							<?php } ?>
 
 
 						</td>
 					</tr>
-<?php } ?>
+				<?php } ?>
 				<!--				Date 	End		-->
 				<!--				Media Type 	Start		-->
 				<?php
@@ -135,7 +137,7 @@
 							?>
 						</td>
 					</tr>
-<?php } ?>
+				<?php } ?>
 				<!--				Media Type	End		-->
 				<!--				Format 	Start		-->
 				<?php
@@ -159,7 +161,7 @@
 							<span>	<?php echo $inst_format->format_name; ?></span>
 						</td>
 					</tr>
-<?php } ?>
+				<?php } ?>
 				<!--				Format	End		-->
 				<!--				Generation 	Start		-->
 				<?php
@@ -178,11 +180,11 @@
 							{
 								?>
 								<p>	<?php echo $generation; ?></p>
-	<?php } ?>
+							<?php } ?>
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Generation	End		-->
 				<!--				Location 	Start		-->
 				<?php
@@ -199,7 +201,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Location	End		-->
 				<!--				Duration 	Start		-->
 				<?php
@@ -232,7 +234,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Duration	End		-->
 				<!--				Time Start 	Start		-->
 				<?php
@@ -249,7 +251,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Time Start	End		-->
 				<!--				File Size 	Start		-->
 				<?php
@@ -266,7 +268,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				File Size	End		-->
 				<!--				Standard 	Start		-->
 				<?php
@@ -283,7 +285,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Standard	End		-->
 				<!--				Dimensions: 	Start		-->
 				<?php
@@ -300,7 +302,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Dimensions	End		-->
 				<!--				Data Rate 	Start		-->
 				<?php
@@ -317,7 +319,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Data Rate	End		-->
 				<!--			 Color 	Start		-->
 				<?php
@@ -334,7 +336,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Color	End		-->
 				<!--			 Tracks 	Start		-->
 				<?php
@@ -351,7 +353,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Tracks	End		-->
 				<!--			 Channel Configuration 	Start		-->
 				<?php
@@ -368,7 +370,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Channel Configuration	End		-->
 				<!--			 Language 	Start		-->
 				<?php
@@ -385,7 +387,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Language	End		-->
 				<!--			 Annotation 	Start		-->
 				<?php
@@ -440,7 +442,7 @@
 					?>	
 
 
-<?php } ?>
+				<?php } ?>
 				<!--				Annotation	End		-->
 			</table>
 
@@ -494,7 +496,7 @@
 							<td><?php echo (isset($events->event_note) && ! is_empty($events->event_note)) ? $events->event_note : ''; ?></td>
 							<td><?php echo (isset($events->event_outcome) && ! is_empty($events->event_outcome)) ? $events->event_outcome : ''; ?></td>
 						</tr>
-			<?php } ?>
+					<?php } ?>
 				</tbody></table>
 		<?php }
 		?>
@@ -543,7 +545,7 @@
 					</td>
 					<td>
 						<p>
-<?php $ins_identifier_src = trim(str_replace('(**)', '', $inst_identifier->instantiation_source)); ?>
+							<?php $ins_identifier_src = trim(str_replace('(**)', '', $inst_identifier->instantiation_source)); ?>
 							<input type="text" value="<?php echo $ins_identifier_src; ?>" style="width: 540px;" id="ins_id_source" name="ins_id_source"/>
 							<input type="hidden"  value="<?php echo $inst_id; ?>" id="ins_id" name="ins_id"/>
 						</p>

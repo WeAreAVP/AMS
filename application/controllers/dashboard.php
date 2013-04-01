@@ -50,89 +50,17 @@ class Dashboard extends MY_Controller
 	 */
 	public function index()
 	{
-		/* Start Graph Get Digitized Formats  */
-		$total_digitized = $this->dashboard_model->get_digitized_formats();
-		$data['digitized_format_name'] = NULL;
-		$data['digitized_total'] = NULL;
-		$dformat_array = array();
-		foreach ($total_digitized as $digitized)
-		{
-			if ( ! isset($dformat_array[$digitized->format_name]))
-				$dformat_array[$digitized->format_name] = 1;
-			else
-				$dformat_array[$digitized->format_name] = $dformat_array[$digitized->format_name] + 1;
-		}
-		foreach ($dformat_array as $index => $format)
-		{
-			$data['digitized_format_name'][] = $index;
-			$data['digitized_total'][] = (int) $format;
-		}
-
-		/* End Graph Get Digitized Formats  */
-		/* Start Graph Get Scheduled Formats  */
-		$total_scheduled = $this->dashboard_model->get_scheduled_formats();
-		$data['scheduled_format_name'] = NULL;
-		$data['scheduled_total'] = NULL;
-
-		$format_array = array();
-		foreach ($total_scheduled as $scheduled)
-		{
-
-			if ( ! isset($format_array[$scheduled->format_name]))
-				$format_array[$scheduled->format_name] = 1;
-			else
-				$format_array[$scheduled->format_name] = $format_array[$scheduled->format_name] + 1;
-		}
-		foreach ($format_array as $index => $format)
-		{
-			$data['scheduled_format_name'][] = $index;
-			$data['scheduled_total'][] = (int) $format;
-		}
-		/* End Graph Get Scheduled Formats  */
-		/* Start Meterial Goal  */
-		$data['material_goal'] = $this->dashboard_model->get_digitized_hours();
-		/* End Meterial Goal  */
-		/* Start Hours at crawford  */
-		foreach ($this->config->item('messages_type') as $index => $msg_type)
-		{
-			if ($msg_type === 'Materials Received Digitization Vendor')
-			{
-				$data['msg_type'] = $index;
-			}
-		}
-
-		$hours_at_craword = $this->dashboard_model->get_hours_at_crawford($data['msg_type']);
-
-		$data['at_crawford'] = 0;
-		foreach ($hours_at_craword as $hours)
-		{
-			$data['at_crawford'] = $data['at_crawford'] + $hours->total;
-		}
-		/* End Hours at crawford  */
-		/* Start goal hours  */
-		$data['total_goal'] = $this->dashboard_model->get_material_goal();
-		$digitized_hours = $this->dashboard_model->get_digitized_hours();
-		$data['total_hours'] = $this->abbr_number((isset($data['total_goal']->total)) ? $data['total_goal']->total : 0);
-		$data['percentage_hours'] = round(((isset($digitized_hours->total)) ? $digitized_hours->total : 0 * 100) / (isset($data['total_goal']->total)) ? $data['total_goal']->total : 0);
-
-		/* End goal hours  */
-
-
+		
+		$data['digitized_format_name'] = json_decode($this->memcached_library->get('graph_digitized_format_name'), TRUE);
+		$data['digitized_total'] = json_decode($this->memcached_library->get('graph_digitized_total'), TRUE);
+		$data['scheduled_format_name'] = json_decode($this->memcached_library->get('graph_scheduled_format_name'), TRUE);
+		$data['scheduled_total'] = json_decode($this->memcached_library->get('graph_scheduled_total'), TRUE);
+		$data['material_goal'] = json_decode($this->memcached_library->get('material_goal'), TRUE);
+		$data['at_crawford'] = json_decode($this->memcached_library->get('at_crawford'), TRUE);
+		$data['total_hours'] = json_decode($this->memcached_library->get('total_hours'), TRUE);
+		$data['percentage_hours'] = json_decode($this->memcached_library->get('percentage_hours'), TRUE);
+		
 		$this->load->view('dashboard/index', $data);
-	}
-
-	function abbr_number($size)
-	{
-		$size = preg_replace('/[^0-9]/', '', $size);
-		$sizes = array("", "K", "M");
-		if ($size == 0)
-		{
-			return('n/a');
-		}
-		else
-		{
-			return (round($size / pow(1000, ($i = floor(log($size, 1000)))), 0) . $sizes[$i]);
-		}
 	}
 
 }

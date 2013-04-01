@@ -149,6 +149,7 @@ class Crons extends CI_Controller
 		}
 		exit_function();
 	}
+
 	/**
 	 * Save Facet Search Values into memcahed.
 	 * 
@@ -158,11 +159,11 @@ class Crons extends CI_Controller
 	{
 		$this->load->library('memcached_library');
 		$this->load->model('sphinx_model', 'sphinx');
-		
+
 		$memcached = new StdClass;
 		$memcached->ins = 'instantiations_list';
 		$memcached->asset = 'assets_list';
-		
+
 		$search_facet = new stdClass;
 		$search_facet->state = 'state';
 		$search_facet->stations = 'organization';
@@ -183,15 +184,114 @@ class Crons extends CI_Controller
 				if (in_array($columns, array('physical', 'digital', 'digitized', 'migration')))
 				{
 					$result = $this->sphinx->facet_index($facet, $index_name, $columns);
-					$this->memcached_library->set($index .'_'. $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 3600);
+					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 3600);
 				}
 				else
 				{
 					$result = $this->sphinx->facet_index($facet, $index_name);
-					$this->memcached_library->set($index .'_'. $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 3600);
+					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 3600);
 				}
 			}
 			myLog("Succussfully Updated $index_name Facet Search");
+		}
+	}
+
+	/**
+	 * Memcached dashboard data
+	 * 
+	 */
+	function dashboard_memcached()
+	{
+		$this->load->model('dashboard_model');
+		$this->load->library('memcached_library');
+		/* Start Graph Get Digitized Formats  */
+		$total_digitized = $this->dashboard_model->get_digitized_formats();
+		$data['digitized_format_name'] = NULL;
+		$data['digitized_total'] = NULL;
+		$dformat_array = array();
+		foreach ($total_digitized as $digitized)
+		{
+			if ( ! isset($dformat_array[$digitized->format_name]))
+				$dformat_array[$digitized->format_name] = 1;
+			else
+				$dformat_array[$digitized->format_name] = $dformat_array[$digitized->format_name] + 1;
+		}
+		foreach ($dformat_array as $index => $format)
+		{
+			$data['digitized_format_name'][] = $index;
+			$data['digitized_total'][] = (int) $format;
+		}
+		$this->memcached_library->set('graph_digitized_format_name', json_encode($data['digitized_format_name']), 3600);
+		$this->memcached_library->set('graph_digitized_total', json_encode($data['digitized_total']), 3600);
+		/* End Graph Get Digitized Formats  */
+		/* Start Graph Get Scheduled Formats  */
+		$total_scheduled = $this->dashboard_model->get_scheduled_formats();
+		$data['scheduled_format_name'] = NULL;
+		$data['scheduled_total'] = NULL;
+
+		$format_array = array();
+		foreach ($total_scheduled as $scheduled)
+		{
+
+			if ( ! isset($format_array[$scheduled->format_name]))
+				$format_array[$scheduled->format_name] = 1;
+			else
+				$format_array[$scheduled->format_name] = $format_array[$scheduled->format_name] + 1;
+		}
+		foreach ($format_array as $index => $format)
+		{
+			$data['scheduled_format_name'][] = $index;
+			$data['scheduled_total'][] = (int) $format;
+		}
+		$this->memcached_library->set('graph_scheduled_format_name', json_encode($data['scheduled_format_name']), 3600);
+		$this->memcached_library->set('graph_scheduled_total', json_encode($data['scheduled_total']), 3600);
+		/* End Graph Get Scheduled Formats  */
+		/* Start Meterial Goal  */
+		$data['material_goal'] = $this->dashboard_model->get_digitized_hours();
+		$this->memcached_library->set('material_goal', json_encode($data['material_goal']), 3600);
+		/* End Meterial Goal  */
+
+
+		/* Start Hours at crawford  */
+		foreach ($this->config->item('messages_type') as $index => $msg_type)
+		{
+			if ($msg_type === 'Materials Received Digitization Vendor')
+			{
+				$data['msg_type'] = $index;
+			}
+		}
+
+		$hours_at_craword = $this->dashboard_model->get_hours_at_crawford($data['msg_type']);
+
+		$data['at_crawford'] = 0;
+		foreach ($hours_at_craword as $hours)
+		{
+			$data['at_crawford'] = $data['at_crawford'] + $hours->total;
+		}
+		$this->memcached_library->set('at_crawford', json_encode($data['at_crawford']), 3600);
+		/* End Hours at crawford  */
+
+		/* Start goal hours  */
+		$data['total_goal'] = $this->dashboard_model->get_material_goal();
+		$digitized_hours = $this->dashboard_model->get_digitized_hours();
+		$data['total_hours'] = $this->abbr_number((isset($data['total_goal']->total)) ? $data['total_goal']->total : 0);
+		$data['percentage_hours'] = round(((isset($digitized_hours->total)) ? $digitized_hours->total * 100 : 0 * 100) / $data['total_hours']);
+		$this->memcached_library->set('total_hours', json_encode($data['total_hours']), 3600);
+		$this->memcached_library->set('percentage_hours', json_encode($data['percentage_hours']), 3600);
+		/* End goal hours  */
+	}
+
+	function abbr_number($size)
+	{
+		$size = preg_replace('/[^0-9]/', '', $size);
+		$sizes = array("", "K", "M");
+		if ($size == 0)
+		{
+			return('n/a');
+		}
+		else
+		{
+			return (round($size / pow(1000, ($i = floor(log($size, 1000)))), 0) . $sizes[$i]);
 		}
 	}
 

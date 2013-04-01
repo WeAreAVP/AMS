@@ -54,7 +54,7 @@
 <div>
 	<div class="asset-stats">
 		<div class="span4">
-			<div class="assets-sum"><?php echo number_format($material_goal->total); ?></div>
+			<div class="assets-sum"><?php echo number_format($material_goal['total']); ?></div>
 			<div class="assets-subdetail">hrs digitized</div>
 
 		</div>

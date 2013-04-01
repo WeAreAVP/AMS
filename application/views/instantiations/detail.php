@@ -324,7 +324,8 @@
 							<label><i class="icon-question-sign"></i><b> Data Rate:</b></label>
 						</td>
 						<td>
-							<p>	<?php echo $detail_instantiation->data_rate . ' ' . (isset($inst_data_rate_unit->unit_of_measure)) ? $inst_data_rate_unit->unit_of_measure : ''; ?></p>
+							<?php $data_rate_unit=(isset($inst_data_rate_unit->unit_of_measure)) ? $inst_data_rate_unit->unit_of_measure : ''; ?>
+							<p>	<?php echo $detail_instantiation->data_rate . ' ' . $data_rate_unit; ?></p>
 
 						</td>
 					</tr>

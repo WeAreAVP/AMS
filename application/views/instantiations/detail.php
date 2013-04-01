@@ -55,7 +55,7 @@
 			<script type="text/javascript">
 
 				jwplayer("mediaplayer").setup({
-					flashplayer: "/js/player.swf", 
+					flashplayer: "/js/jwplayer/player.swf", 
 					file: "http://cpbaaaccess.crawfordmedia.com/data/55/cpb-aacip-55-40xpppz0.h264.mp4",
 					autostart: true
 				});

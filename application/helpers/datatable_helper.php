@@ -541,7 +541,8 @@ function instantiations_datatable_view($records, $column_order)
             }
             else if ($type == 'File_size')
             {
-                $file_size = $value->file_size . ' ' . ($value->file_size_unit_of_measure) ? $value->file_size_unit_of_measure : '';
+				$file_size_unit= ($value->file_size_unit_of_measure) ? $value->file_size_unit_of_measure : '';
+                $file_size = $value->file_size . ' ' .$file_size_unit;
                 $table_view[$main_index][] = '<span style="float:left;min-width:150px;max-width:150px;">' . $file_size . '</span>';
             }
             else if ($type == 'Colors')

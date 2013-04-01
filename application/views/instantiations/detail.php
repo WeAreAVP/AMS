@@ -51,7 +51,7 @@
 	<?php $this->load->view('partials/_list'); ?>
 
 	<div class="span9" style="margin-left: 250px;" id="ins_view_detail">
-		<div id="mediaplayer">JW Player goes here</div>
+<!--		<div id="mediaplayer">JW Player goes here</div>
 			<script type="text/javascript">
 
 				jwplayer("mediaplayer").setup({
@@ -60,7 +60,7 @@
 					autostart: true
 				});
 
-			</script>
+			</script>-->
 		<div style="float: left;">
 			
 			<?php

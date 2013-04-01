@@ -52,7 +52,16 @@
 
 	<div class="span9" style="margin-left: 250px;" id="ins_view_detail">
 		<div style="float: left;">
-			<div>fadfadfadf</div>
+			<div id="mediaplayer">JW Player goes here</div>
+			<script type="text/javascript">
+
+				jwplayer("mediaplayer").setup({
+					flashplayer: "../js/player.swf",
+					file: "/leapcommunications/includes/hip_leap_guy.mp4",
+					autostart: true
+				});
+
+			</script>
 			<?php
 			if ($this->role_id != '20')
 			{
@@ -639,45 +648,45 @@
 	</div>
 </div>
 <script type="text/javascript">
-					$(function() {
-						//        $("#nomination").multiselect({
-						//												noneSelectedText: 'Select Nomination',
-						//												selectedList: 1,
-						//												multiple:false,
-						//												height:'auto'
-						//								}); 
-						//        $("#media_type").multiselect({
-						//												noneSelectedText: 'Select Media Type',
-						//												selectedList: 3,
-						//												height:'auto'
-						//								}); 
-						$("#generation").multiselect({
-							noneSelectedText: 'Select Generation',
-							selectedList: 3
+			$(function() {
+				//        $("#nomination").multiselect({
+				//												noneSelectedText: 'Select Nomination',
+				//												selectedList: 1,
+				//												multiple:false,
+				//												height:'auto'
+				//								}); 
+				//        $("#media_type").multiselect({
+				//												noneSelectedText: 'Select Media Type',
+				//												selectedList: 3,
+				//												height:'auto'
+				//								}); 
+				$("#generation").multiselect({
+					noneSelectedText: 'Select Generation',
+					selectedList: 3
 //												height:'auto'				
-						});
-						$("#ins_id_source").autocomplete({
-							source: site_url + "instantiations/get_ins_source",
-							minLength: 1,
-							delay: 300,
-							enable: true,
-							cacheLength: 1
+				});
+				$("#ins_id_source").autocomplete({
+					source: site_url + "instantiations/get_ins_source",
+					minLength: 1,
+					delay: 300,
+					enable: true,
+					cacheLength: 1
 
 
-						});
-						$("#language").autocomplete({
-							source: site_url + "instantiations/get_ins_languages",
-							minLength: 0,
-							delay: 300,
-							enable: true,
-							cacheLength: 1
+				});
+				$("#language").autocomplete({
+					source: site_url + "instantiations/get_ins_languages",
+					minLength: 0,
+					delay: 300,
+					enable: true,
+					cacheLength: 1
 
 
-						});
+				});
 
-					});
-					function toggleViews() {
-						$('#ins_view_detail').toggle();
-						$('#ins_edit_view').toggle();
-					}
+			});
+			function toggleViews() {
+				$('#ins_view_detail').toggle();
+				$('#ins_edit_view').toggle();
+			}
 </script>

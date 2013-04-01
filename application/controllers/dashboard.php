@@ -37,6 +37,7 @@ class Dashboard extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('dashboard_model');
+		$this->load->library('memcached_library');
 		if ($this->is_station_user)
 		{
 			redirect('records/index');

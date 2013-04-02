@@ -14,10 +14,10 @@ class Dompdf_lib {
 
     function convert_html_to_pdf($data, $filename = 'sample.pdf', $stream = TRUE) {
         
-        $html='<h2>Digitization Statistics</h2>';
+        $html='<center><h2>Digitization Statistics</h2></center>';
         $this->_dompdf->load_html($html);
         $this->_dompdf->render();
-        return $this->_dompdf->stream($filename, array("Attachment" => 0));
+        return $this->_dompdf->stream($filename, array("Attachment" => 1));
 //        return $this->_dompdf->stream($filename);
 //        if ($stream) {
 //            $this->_dompdf->stream($filename);

@@ -100,6 +100,7 @@ class Report_Model extends CI_Model
 		$this->db->join($this->_nomination_table, "$this->_nomination_table.instantiations_id = $this->_instantiations_table.id");
 		$this->db->join($this->_messages_table, "$this->_messages_table.receiver_id = $this->_stations_table.id");
 		$this->db->where("$this->_messages_table.msg_type", 3); //Shipment Return
+		$this->db->group_by("$this->_stations_table.id");
 		$result = $this->db->get($this->_stations_table);
 		return $result->result();
 	}
@@ -111,6 +112,7 @@ class Report_Model extends CI_Model
 		$this->db->join($this->_instantiations_table, "$this->_instantiations_table.assets_id = $this->_assets_table.id");
 		$this->db->join($this->_messages_table, "$this->_messages_table.receiver_id = $this->_stations_table.id");
 		$this->db->where("$this->_messages_table.msg_type", 4); //Hard Drive Return Date
+		$this->db->group_by("$this->_stations_table.id");
 		$result = $this->db->get($this->_stations_table);
 		return $result->result();
 	}

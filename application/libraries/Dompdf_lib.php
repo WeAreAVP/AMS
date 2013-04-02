@@ -40,7 +40,8 @@ class Dompdf_lib
 		}
 		if (count($data['material_at_crawford_report']) > 0)
 		{
-			$html .='<div style="page-break-after: always;"><br/><div><h4 style="background-color:#748C47;">Materials at Crawford</h4></div><br/>';
+			
+			$html .='<div style="page-break-after: always;"><br/><div style="padding:5px;background-color:#FDD800;font-size:14px;">Materials at Crawford</div><br/>';
 			$html .='<table style="width:100%;><thead style="font-weight:bold;"><tr><td></td><td style="border-bottom:2px solid black;">Nominated Assets</td><td style="border-bottom:2px solid black;">City</td><td style="border-bottom:2px solid black;">State</td></tr></thead><tbody>';
 			$total = 0;
 			foreach ($data['material_at_crawford_report'] as $value)
@@ -58,7 +59,7 @@ class Dompdf_lib
 		}
 		if (count($data['shipment_report']) > 0)
 		{
-			$html .='<div style="page-break-after: always;"><br/><div><h4 style="background-color:#748C47;">Files Delivered for Verification</h4></div><br/>';
+			$html .='<div style="page-break-after: always;"><br/><div style="padding:5px;background-color:#ED5C4C;font-size:14px;">Files Delivered for Verification</div><br/>';
 			$html .='<table style="width:100%;><thead style="font-weight:bold;"><tr><td></td><td style="border-bottom:2px solid black;">Nominated Assets</td><td style="border-bottom:2px solid black;">City</td><td style="border-bottom:2px solid black;">State</td></tr></thead><tbody>';
 			$total = 0;
 			foreach ($data['shipment_report'] as $value)
@@ -77,7 +78,8 @@ class Dompdf_lib
 		if (count($data['hd_return_report']) > 0)
 		{
 
-			$html .='<div style="page-break-after: always;"><br/><div><h4 style="background-color:#748C47;">Verified/Complete</h4></div><br/>';
+			
+			$html .='<div style="page-break-after: always;"><br/><div style="padding:5px;background-color:#4493CC;font-size:14px;">Verified/Complete</div><br/>';
 			$html .='<table style="width:100%;><thead style="font-weight:bold;"><tr><td>Station Names</td></tr></thead><tbody>';
 			foreach ($data['hd_return_report'] as $value)
 			{

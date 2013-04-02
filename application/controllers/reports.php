@@ -68,7 +68,7 @@ class Reports extends MY_Controller
 	public function alerts_report()
 	{
 		$this->load->library('dompdf_lib');
-		$html = 'Test';
+		$html = '<div>Test</div>Test 123';
 		$this->dompdf_lib->convert_html_to_pdf($html);
 	}
 

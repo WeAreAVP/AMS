@@ -20,7 +20,7 @@ class Dompdf_lib
 	{
 
 
-		$html = '<div style="background:url(/images/nav-back.png) transparent repeat-x;margin-top:-40px;margin-left:-40px;padding:0;width:900px;"><img src="' . base_url() . 'images/cpb_ams.png"></div>';
+		$html = '<div style="background:url(/images/nav-back.png) transparent repeat-x;margin-top:-35px;margin-left:-40px;padding:0;width:900px;"><img src="' . base_url() . 'images/cpb_ams.png" width="127" height="44"></div>';
 		$html .= '<center><h1>Digitization Statistics</h1></center>';
 		if (count($data['dsd_report']) > 0)
 		{

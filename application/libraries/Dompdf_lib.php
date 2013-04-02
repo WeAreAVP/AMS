@@ -17,7 +17,7 @@ class Dompdf_lib {
         $html='<h2>Digitization Statistics</h2>';
         $this->_dompdf->load_html($html);
         $this->_dompdf->render();
-//        return $this->_dompdf->stream($filename, array("Attachment" => 0));
+        return $this->_dompdf->stream($filename, array("Attachment" => 0));
 //        return $this->_dompdf->stream($filename);
 //        if ($stream) {
 //            $this->_dompdf->stream($filename);

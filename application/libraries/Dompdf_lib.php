@@ -35,7 +35,7 @@ class Dompdf_lib
 				$html .='</tr>';
 				$total = $total + $value->total;
 			}
-			$html .='<tr><td>Total</td><td>' . number_format($total) . '</td><td></td><td></td></tr>';
+			$html .='<tr><td style="text-align:right;">Total</td><td style="border-top:2px solid black;">' . number_format($total) . '</td><td style="border-top:2px solid black;"></td><td style="border-top:2px solid black;"></td></tr>';
 			$html .='</tbody></table></div>';
 		}
 		if (count($data['material_at_crawford_report']) > 0)

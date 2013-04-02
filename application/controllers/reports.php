@@ -68,12 +68,13 @@ class Reports extends MY_Controller
 	public function alerts_report()
 	{
 		$this->load->library('dompdf_lib');
+		$file_name='Digitization_Statistics_'.time();
 		$data['dsd_report'] = $this->report_model->scheduled_for_digitization_report();
 		$data['material_at_crawford_report'] = $this->report_model->materials_at_crawford_report();
 		$data['shipment_report'] = $this->report_model->shipment_return_report();
 		$data['hd_return_report'] = $this->report_model->hard_disk_return_report();
 
-		$this->dompdf_lib->convert_html_to_pdf($data);
+		$this->dompdf_lib->convert_html_to_pdf($data,$file_name);
 	}
 
 }

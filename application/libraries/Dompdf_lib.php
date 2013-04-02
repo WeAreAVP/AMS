@@ -51,6 +51,7 @@ class Dompdf_lib
 				$total = $total + $value->total;
 			}
 			$html .='<tr><td>Total</td><td>' . number_format($total) . '</td><td></td><td></td></tr>';
+			
 			$html .='</tbody></table></div>';
 		}
 		if (count($data['shipment_report']) > 0)

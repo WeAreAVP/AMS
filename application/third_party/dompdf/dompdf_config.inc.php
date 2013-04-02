@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DOMPDF - PHP5 HTML to PDF renderer
  *
@@ -36,7 +37,6 @@
  * @package dompdf
  * @version 0.5.1
  */
-
 /* $Id: dompdf_config.inc.php,v 1.19 2006/07/07 21:31:02 benjcarson Exp $ */
 
 error_reporting(E_STRICT | E_ALL);
@@ -194,7 +194,7 @@ define("DOMPDF_ENABLE_PHP", false);
  * @var bool 
  */
 define("DOMPDF_ENABLE_REMOTE", true);
- 
+
 /**
  * DOMPDF autoload function
  *
@@ -207,23 +207,33 @@ define("DOMPDF_ENABLE_REMOTE", true);
 //  $filename = mb_strtolower($class) . ".cls.php";
 //  require_once(DOMPDF_INC_DIR . "/$filename");
 //}
-function DOMPDF_autoload($class) {
-	require_once(DOMPDF_INC_DIR . "/dompdf.cls.php");
-   $filename = mb_strtolower($class) . ".cls.php";
-   if($filename != "ci_exceptions.cls.php"){
-      require_once(DOMPDF_INC_DIR . "/$filename");
-      // require_once(DOMPDF_INC_DIR . "/dompdf.cls.php");
-   }
+function DOMPDF_autoload($class)
+{
+
+	$filename = mb_strtolower($class) . ".cls.php";
+
+	if ($filename == "ci_dompdf_lib.cls.php")
+		require_once(DOMPDF_INC_DIR . "/dompdf.cls.php");
+	else if ($filename != "ci_exceptions.cls.php")
+	{
+		require_once(DOMPDF_INC_DIR . "/$filename");
+		// require_once(DOMPDF_INC_DIR . "/dompdf.cls.php");
+	}
 }
-if ( !function_exists("__autoload") ) {
-  /**
-   * Default __autoload() function
-   *
-   * @param string $class
-   */
-  function __autoload($class) {
-    DOMPDF_autoload($class);
-  }
+
+if ( ! function_exists("__autoload"))
+{
+
+	/**
+	 * Default __autoload() function
+	 *
+	 * @param string $class
+	 */
+	function __autoload($class)
+	{
+		DOMPDF_autoload($class);
+	}
+
 }
 
 // ### End of user-configurable options ###

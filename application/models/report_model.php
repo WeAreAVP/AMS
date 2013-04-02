@@ -98,8 +98,8 @@ class Report_Model extends CI_Model
 		$this->db->join($this->_assets_table, "$this->_assets_table.stations_id = $this->_stations_table.id");
 		$this->db->join($this->_instantiations_table, "$this->_instantiations_table.assets_id = $this->_assets_table.id");
 		$this->db->join($this->_nomination_table, "$this->_nomination_table.instantiations_id = $this->_instantiations_table.id");
-		$this->db->join($this->_table_messages, "$this->_table_messages.receiver_id = $this->_stations_table.id");
-		$this->db->where("$this->_table_messages.msg_type", 3); //Shipment Return
+		$this->db->join($this->_messages_table, "$this->_messages_table.receiver_id = $this->_stations_table.id");
+		$this->db->where("$this->_messages_table.msg_type", 3); //Shipment Return
 		$result = $this->db->get($this->_stations_table);
 		return $result->result();
 	}
@@ -110,8 +110,8 @@ class Report_Model extends CI_Model
 		$this->db->join($this->_assets_table, "$this->_assets_table.stations_id = $this->_stations_table.id");
 		$this->db->join($this->_instantiations_table, "$this->_instantiations_table.assets_id = $this->_assets_table.id");
 		$this->db->join($this->_nomination_table, "$this->_nomination_table.instantiations_id = $this->_instantiations_table.id");
-		$this->db->join($this->_table_messages, "$this->_table_messages.receiver_id = $this->_stations_table.id");
-		$this->db->where("$this->_table_messages.msg_type", 4); //Hard Drive Return Date
+		$this->db->join($this->_messages_table, "$this->_messages_table.receiver_id = $this->_stations_table.id");
+		$this->db->where("$this->_messages_table.msg_type", 4); //Hard Drive Return Date
 		$result = $this->db->get($this->_stations_table);
 		return $result->result();
 	}

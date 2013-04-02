@@ -65,6 +65,13 @@ class Reports extends MY_Controller
 		$this->report_model->get_email_queue();
 	}
 
+	public function alerts_report()
+	{
+		$this->load->library('dompdf_lib');
+		$html = 'Test';
+		$this->dompdf_lib->convert_html_to_pdf($html);
+	}
+
 }
 
 // END Reports Controller

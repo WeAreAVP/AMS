@@ -39,6 +39,7 @@ class Dompdf_lib
 		{
 			$html .='<div style="page-break-after: always;"><br/><div><h4>Materials at Crawford</h4></div><br/>';
 			$html .='<table border="1"><thead style="font-weight:bold;"><tr><td>Station Name</td><td>Nominated Assets</td><td>City</td><td>State</td></tr></thead><tbody>';
+			$total = 0;
 			foreach ($data['material_at_crawford_report'] as $value)
 			{
 				$html .='<tr>';
@@ -47,7 +48,9 @@ class Dompdf_lib
 				$html .='<td>' . $value->city . '</td>';
 				$html .='<td>' . $value->state . '</td>';
 				$html .='</tr>';
+				$total = $total + $value->total;
 			}
+			$html .='<tr><td>Total</td><td>' . number_format($total) . '</td><td></td><td></td></tr>';
 			$html .='</tbody></table></div>';
 		}
 		if (count($data['shipment_report']) > 0)

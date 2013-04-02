@@ -22,7 +22,7 @@ class Dompdf_lib
 		$html = '<center><h2>Digitization Statistics</h2></center>';
 		if (count($data['dsd_report']) > 0)
 		{
-			$html .='<div style="background:green;">Scheduled for Digitization</div>';
+			$html .='<br/><div><h4>Scheduled for Digitization</h4></div><br/>';
 			$html .='<table border="1"><thead style="font-weight:bold;"><tr><td>Station Name</td><td>Nominated Assets</td><td>City</td><td>State</td></tr></thead><tbody>';
 			foreach ($data['dsd_report'] as $value)
 			{

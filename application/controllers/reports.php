@@ -70,7 +70,8 @@ class Reports extends MY_Controller
 		$this->load->library('dompdf_lib');
 		$html = '<div>Test</div>Test 123';
 		$dsd_report=$this->report_model->scheduled_for_digitization_report();
-		debug($dsd_report);
+		$material_at_crawford_report=$this->report_model->materials_at_crawford_report();
+		debug($material_at_crawford_report);
 		$this->dompdf_lib->convert_html_to_pdf($html);
 	}
 

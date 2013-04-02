@@ -22,7 +22,7 @@ class Dompdf_lib
 		$html = '<center><h2>Digitization Statistics</h2></center>';
 		if (count($data['dsd_report']) > 0)
 		{
-			$html .='<br/><div><h4>Scheduled for Digitization</h4></div><br/>';
+			$html .='<div style="page-break-after: always;"><br/><div><h4>Scheduled for Digitization</h4></div><br/>';
 			$html .='<table border="1"><thead style="font-weight:bold;"><tr><td>Station Name</td><td>Nominated Assets</td><td>City</td><td>State</td></tr></thead><tbody>';
 			foreach ($data['dsd_report'] as $value)
 			{
@@ -33,8 +33,9 @@ class Dompdf_lib
 				$html .='<td>' . $value->state . '</td>';
 				$html .='</tr>';
 			}
-			$html .='</tbody></table>';
+			$html .='</tbody></table></div>';
 		}
+		$html .='test';
 		$this->_dompdf->load_html($html);
 		$this->_dompdf->render();
 		return $this->_dompdf->stream($filename, array("Attachment" => 0));

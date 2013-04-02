@@ -24,7 +24,7 @@ class Dompdf_lib
 		{
 			$html .='<div style="page-break-after: always;"><br/><div><h4 style="background-color:green;">Scheduled for Digitization</h4></div><br/>';
 			$html .='<table style="width:100%;><thead style="font-weight:bold;"><tr><td></td><td style="border-bottom:2px solid black;">Nominated Assets</td><td style="border-bottom:2px solid black;">City</td><td style="border-bottom:2px solid black;">State</td></tr></thead><tbody>';
-						$total = 0;
+			$total = 0;
 			foreach ($data['dsd_report'] as $value)
 			{
 				$html .='<tr>';
@@ -40,21 +40,20 @@ class Dompdf_lib
 		}
 		if (count($data['material_at_crawford_report']) > 0)
 		{
-			$html .='<div style="page-break-after: always;"><br/><div><h4>Materials at Crawford</h4></div><br/>';
-			$html .='<table border="1"><thead style="font-weight:bold;"><tr><td>Station Name</td><td>Nominated Assets</td><td>City</td><td>State</td></tr></thead><tbody>';
+			$html .='<div style="page-break-after: always;"><br/><div><h4 style="background-color:green;">Materials at Crawford</h4></div><br/>';
+			$html .='<table style="width:100%;><thead style="font-weight:bold;"><tr><td></td><td style="border-bottom:2px solid black;">Nominated Assets</td><td style="border-bottom:2px solid black;">City</td><td style="border-bottom:2px solid black;">State</td></tr></thead><tbody>';
 			$total = 0;
 			foreach ($data['material_at_crawford_report'] as $value)
 			{
 				$html .='<tr>';
 				$html .='<td>' . $value->station_name . '</td>';
-				$html .='<td>' . $value->total . '</td>';
+				$html .='<td>' . number_format($value->total) . '</td>';
 				$html .='<td>' . $value->city . '</td>';
 				$html .='<td>' . $value->state . '</td>';
 				$html .='</tr>';
 				$total = $total + $value->total;
 			}
-			
-			
+			$html .='<tr><td style="text-align:center;">Total</td><td style="border-top:2px solid black;">' . number_format($total) . '</td><td style="border-top:2px solid black;"></td><td style="border-top:2px solid black;"></td></tr>';
 			$html .='</tbody></table></div>';
 		}
 		if (count($data['shipment_report']) > 0)

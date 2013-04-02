@@ -39,7 +39,7 @@
 	</div>
 	<div class="span4 report-main">
 		<div class="navbar-inner">
-			<a href="#reportPopUp" role="button"  data-toggle="modal" onclick="manageReports('Nominated List');"><div class="report-tab"><i class="icon-th-list"></i><span>Nominated List</span></div></a>
+			<a href="#reportPopUp" role="button" data-backdrop="static"  data-toggle="modal" onclick="manageReports('Nominated List');"><div class="report-tab"><i class="icon-th-list"></i><span>Nominated List</span></div></a>
 		</div>
 		<div class="report-tab-detail">Display all Notes related to a particular Station</div> 
 	</div>
@@ -71,7 +71,7 @@
 <div class="row">
 	<div class="span4 report-main">
 		<div class="navbar-inner">
-			<a href="#reportPopUp" role="button"  data-toggle="modal" onclick="set_report_type(10);"><div class="report-tab"><i class="icon-pencil"></i><span>Station Digitization</span></div></a>
+			<a href="#generate_report" data-backdrop="static" role="button"  data-toggle="modal" onclick="set_report_type(10);"><div class="report-tab"><i class="icon-pencil"></i><span>Station Digitization</span></div></a>
 		</div>
 		<div class="report-tab-detail">List digitized material for a station</div> 
 	</div>

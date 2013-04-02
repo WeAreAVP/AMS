@@ -74,8 +74,8 @@ class Report_Model extends CI_Model
 		$this->db->join($this->_nomination_table, "$this->_nomination_table.instantiations_id = $this->_instantiations_table.id");
 //		$this->db->join($this->_nomination_status_table, "$this->_nomination_status_table.id = $this->_nomination_table.nomination_status_id");
 
-		$this->db->where("$this->_stations_table.start_date NOT IS NULL");
-//		$this->db->or_where("$this->_stations_table.start_date", 0);
+		$this->db->where("$this->_stations_table.start_date IS NOT NULL");
+		$this->db->or_where("$this->_stations_table.start_date !=", 0);
 		$this->db->group_by("$this->_stations_table.id");
 		$result = $this->db->get($this->_stations_table);
 		return $result->result();

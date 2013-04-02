@@ -12,7 +12,7 @@ class Dompdf_lib {
         }
     }
 
-    function convert_html_to_pdf($html, $filename = '', $stream = TRUE) {
+    function convert_html_to_pdf($html, $filename = 'sample.pdf', $stream = TRUE) {
         
         
         $this->_dompdf->load_html($html);

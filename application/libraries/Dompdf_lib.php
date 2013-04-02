@@ -19,8 +19,8 @@ class Dompdf_lib
 	function convert_html_to_pdf($data, $filename = 'sample.pdf', $stream = TRUE)
 	{
 
-		
-		$html = '<div style="background:url(/images/nav-back.png) transparent repeat-x;margin-left:-40px;padding:0;width:900px;"><img src="' . base_url() . 'images/cpb_ams.png"></div>';
+
+		$html = '<div style="background:url(/images/nav-back.png) transparent repeat-x;margin-top:-40px;margin-left:-40px;padding:0;width:900px;"><img src="' . base_url() . 'images/cpb_ams.png"></div>';
 		$html .= '<center><h1>Digitization Statistics</h1></center>';
 		if (count($data['dsd_report']) > 0)
 		{
@@ -42,7 +42,7 @@ class Dompdf_lib
 		}
 		if (count($data['material_at_crawford_report']) > 0)
 		{
-			
+
 			$html .='<div style="page-break-after: always;"><br/><div style="padding:5px;background-color:#FDD800;font-size:14px;">Materials at Crawford</div><br/>';
 			$html .='<table style="width:100%;><thead style="font-weight:bold;"><tr><td></td><td style="border-bottom:1px solid black;">Nominated Assets</td><td style="border-bottom:1px solid black;">City</td><td style="border-bottom:1px solid black;">State</td></tr></thead><tbody>';
 			$total = 0;
@@ -80,7 +80,7 @@ class Dompdf_lib
 		if (count($data['hd_return_report']) > 0)
 		{
 
-			
+
 			$html .='<div style="page-break-after: always;"><br/><div style="padding:5px;background-color:#4493CC;font-size:14px;">Verified/Complete</div><br/>';
 			$html .='<table style="width:100%;><thead style="font-weight:bold;"><tr><td style="border-bottom:1px solid black;">Station Names</td></tr></thead><tbody>';
 			foreach ($data['hd_return_report'] as $value)

@@ -28,7 +28,7 @@ class Dompdf_lib
 			{
 				$html .='<tr>';
 				$html .='<td>' . $value->station_name . '</td>';
-				$html .='<td>' . $value->total . '</td>';
+				$html .='<td>' . number_format($value->total) . '</td>';
 				$html .='<td>' . $value->city . '</td>';
 				$html .='<td>' . $value->state . '</td>';
 				$html .='</tr>';

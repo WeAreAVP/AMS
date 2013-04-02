@@ -208,12 +208,11 @@ define("DOMPDF_ENABLE_REMOTE", true);
 //  require_once(DOMPDF_INC_DIR . "/$filename");
 //}
 function DOMPDF_autoload($class) {
-//   $filename = mb_strtolower($class) . ".cls.php";
-//   if($filename != "ci_exceptions.cls.php"){
-//      require_once(DOMPDF_INC_DIR . "/$filename");
-//      // require_once(DOMPDF_INC_DIR . "/dompdf.cls.php");
-//   }
-	require_once(DOMPDF_INC_DIR . "/dompdf.cls.php");
+   $filename = mb_strtolower($class) . ".cls.php";
+   if($filename != "ci_exceptions.cls.php"){
+      require_once(DOMPDF_INC_DIR . "/$filename");
+      // require_once(DOMPDF_INC_DIR . "/dompdf.cls.php");
+   }
 }
 if ( !function_exists("__autoload") ) {
   /**

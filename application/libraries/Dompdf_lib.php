@@ -19,7 +19,7 @@ class Dompdf_lib
 	function convert_html_to_pdf($data, $filename = 'sample.pdf', $stream = TRUE)
 	{
 
-		$html = '<center><h2>Digitization Statistics</h2></center>';
+		$html = '<center><h1>Digitization Statistics</h1></center>';
 		if (count($data['dsd_report']) > 0)
 		{
 			$html .='<div style="page-break-after: always;"><br/><div style="padding:5px;background-color:#5BC15B;font-size:14px;">Scheduled for Digitization</div><br/>';

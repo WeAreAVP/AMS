@@ -1,12 +1,12 @@
 <?php
-define('DOM_PDF_HOME', dirname(dirname(__FILE__)));
-require_once(DOM_PDF_HOME . '/third_party/dompdf/dompdf_config.inc.php');
+//define('DOM_PDF_HOME', dirname(dirname(__FILE__)));
+//require_once(DOM_PDF_HOME . '/third_party/dompdf/dompdf_config.inc.php');
 class Dompdf_lib {
 
     var $_dompdf = NULL;
 
     function __construct() {
-//        require_once("dompdf/dompdf_config.inc.php");
+        require_once("dompdf/dompdf_config.inc.php");
         if (is_null($this->_dompdf)) {
             $this->_dompdf = new DOMPDF();
         }

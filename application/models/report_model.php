@@ -76,6 +76,7 @@ class Report_Model extends CI_Model
 
 		$this->db->where("$this->_stations_table.start_date IS NULL");
 		$this->db->or_where("$this->_stations_table.start_date", 0);
+		$this->db->group_by("$this->_stations_table.id");
 		$result = $this->db->get($this->_stations_table);
 		return $result->result();
 	}

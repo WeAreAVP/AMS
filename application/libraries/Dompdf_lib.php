@@ -35,7 +35,50 @@ class Dompdf_lib
 			}
 			$html .='</tbody></table></div>';
 		}
-		$html .='test';
+		if (count($data['material_at_crawford_report']) > 0)
+		{
+			$html .='<div style="page-break-after: always;"><br/><div><h4>Materials at Crawford</h4></div><br/>';
+			$html .='<table border="1"><thead style="font-weight:bold;"><tr><td>Station Name</td><td>Nominated Assets</td><td>City</td><td>State</td></tr></thead><tbody>';
+			foreach ($data['material_at_crawford_report'] as $value)
+			{
+				$html .='<tr>';
+				$html .='<td>' . $value->station_name . '</td>';
+				$html .='<td>' . $value->total . '</td>';
+				$html .='<td>' . $value->city . '</td>';
+				$html .='<td>' . $value->state . '</td>';
+				$html .='</tr>';
+			}
+			$html .='</tbody></table></div>';
+		}
+		if (count($data['shipment_report']) > 0)
+		{
+			$html .='<div style="page-break-after: always;"><br/><div><h4>Files Delivered for Verification</h4></div><br/>';
+			$html .='<table border="1"><thead style="font-weight:bold;"><tr><td>Station Name</td><td>Nominated Assets</td><td>City</td><td>State</td></tr></thead><tbody>';
+			foreach ($data['shipment_report'] as $value)
+			{
+				$html .='<tr>';
+				$html .='<td>' . $value->station_name . '</td>';
+				$html .='<td>' . $value->total . '</td>';
+				$html .='<td>' . $value->city . '</td>';
+				$html .='<td>' . $value->state . '</td>';
+				$html .='</tr>';
+			}
+			$html .='</tbody></table></div>';
+		}
+		if (count($data['hd_return_report']) > 0)
+		{
+			$html .='<div style="page-break-after: always;"><br/><div><h4>Verified/Complete</h4></div><br/>';
+			$html .='<table border="1"><thead style="font-weight:bold;"><tr><td>Station Name</td></tr></thead><tbody>';
+			foreach ($data['hd_return_report'] as $value)
+			{
+				$html .='<tr>';
+				$html .='<td>' . $value->station_name . '</td>';
+
+				$html .='</tr>';
+			}
+			$html .='</tbody></table></div>';
+		}
+
 		$this->_dompdf->load_html($html);
 		$this->_dompdf->render();
 		return $this->_dompdf->stream($filename, array("Attachment" => 0));

@@ -68,7 +68,7 @@ class Report_Model extends CI_Model
 
 	function scheduled_for_digitization_report()
 	{
-		$this->db->select("COUNT($this->_assets_table.id) as total,$this->_stations_table.station_name,$this->_stations_table.city,$this->_stations_table.state", FALSE);
+		$this->db->select("COUNT($this->_assets_table.id) as total,$this->_stations_table.station_name,$this->_stations_table.city,$this->_stations_table.state,$this->_stations_table.start_date", FALSE);
 		$this->db->join($this->_assets_table, "$this->_assets_table.stations_id = $this->_stations_table.id");
 		$this->db->join($this->_instantiations_table, "$this->_instantiations_table.assets_id = $this->_assets_table.id");
 		$this->db->join($this->_nomination_table, "$this->_nomination_table.instantiations_id = $this->_instantiations_table.id");

@@ -36,7 +36,7 @@ class Reports extends MY_Controller
 	function __construct()
 	{
 		parent::__construct();
-
+		$this->load->model('report_model');
 		if ($this->is_station_user)
 		{
 			redirect('records/index');
@@ -69,6 +69,8 @@ class Reports extends MY_Controller
 	{
 		$this->load->library('dompdf_lib');
 		$html = '<div>Test</div>Test 123';
+		$dsd_report=$this->report_model->scheduled_for_digitization_report();
+		debug($dsd_report);
 		$this->dompdf_lib->convert_html_to_pdf($html);
 	}
 

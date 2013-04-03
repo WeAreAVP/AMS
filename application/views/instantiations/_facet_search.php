@@ -1,7 +1,4 @@
-<?php
-$standalone = 0;
-$other_filters = 0;
-?>
+
 <form name="form_search" id="form_search" method="post" onsubmit="return false;" style="margin: 0;padding: 0;">
     <div id="search_bar_val" class="facet-search"> 
         <h6 class="filter_title" id="filter_criteria" style="display: none;font-weight: bold;">FILTER CRITERIA&nbsp;<span id="filter_record_count"></span></h6>

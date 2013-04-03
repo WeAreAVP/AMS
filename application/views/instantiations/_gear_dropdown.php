@@ -17,7 +17,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			if ($this->role_id == 1 || $this->role_id == 2 || $this->role_id == 5)
 			{
 				?>
-				<a class = "btn" href = "#export_csv_confirm_modal" role = "button" data-toggle = "modal" data-backdrop = "static" style = "margin-left: 10px;height: 14px;">
+				<a class = "btn" href = "#standalone_model" role = "button" data-toggle = "modal" data-backdrop = "static" style = "margin-left: 10px;height: 14px;">
 					Standalone Report
 				</a>
 
@@ -48,9 +48,9 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			if ( ! $is_current_user && ! $updating)
 			{
 				?>
-							<!--                <a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
-											Refine Data
-										</a>-->
+											<!--                <a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
+															Refine Data
+														</a>-->
 				<?php
 			}
 			else if ( ! $updating)

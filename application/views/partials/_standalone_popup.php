@@ -6,7 +6,7 @@
 
 	</div>
 	<div class="modal-body" id="standalone_body">
-		
+		Are you sure you want to generate report?
 	</div>
 	<div class="modal-footer" id="standalone_footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
@@ -14,6 +14,15 @@
 	</div>
 
 </div>
+<script type="text/javascript">
+	function openPopup() {
+		if (!$('#standalone_btn').hasClass('disabled')) {
+			$('#standalone_model').modal({
+				backdrop: 'static'
+			});
+		}
+	}
+</script>
 
 
 

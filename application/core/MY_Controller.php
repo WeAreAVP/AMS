@@ -31,7 +31,7 @@ class MY_Controller extends CI_Controller
 
 		if ( ! $this->dx_auth->is_logged_in())
 		{
-			if ( ! is_route_method(array('standalone' => array('report'))))
+			if ( ! is_route_method(array('reports' => array('standalone'))))
 				redirect('auth/login');
 		}
 		$this->is_station_user = FALSE;

@@ -77,6 +77,18 @@ class Reports extends MY_Controller
 		$this->dompdf_lib->convert_html_to_pdf($data, $file_name);
 	}
 
+	public function standalone($report_id)
+	{
+		if ( ! $report_id)
+		{
+			
+		}
+		else
+		{
+			show_404();
+		}
+	}
+
 }
 
 // END Reports Controller

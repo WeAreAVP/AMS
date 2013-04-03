@@ -46,7 +46,7 @@ if ( ! $isAjax)
 		$('#top_setting_nav').width($(window).width() - 50);
 		$('body').css('overflow', 'hidden');
 		
-		$('#data_container').width($(window).width() - 300);
+		
 	}
 	);
 </script>

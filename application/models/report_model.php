@@ -121,7 +121,7 @@ class Report_Model extends CI_Model
 	function get_report_by_id($report_id)
 	{
 		$this->db->where('id', $report_id);
-		$result = $this->db->get($this->_table)->row();
+		return $result = $this->db->get($this->_table)->row();
 	}
 
 	function insert_report($data)

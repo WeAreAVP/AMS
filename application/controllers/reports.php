@@ -82,8 +82,7 @@ class Reports extends MY_Controller
 		$report_id = $this->uri->segment(3);
 		if ( ! empty($report_id))
 		{
-			echo $report_id.'<br/>';
-			echo base64_decode($report_id);
+			
 			$report_info = $this->report_model->get_report_by_id(base64_decode($report_id));
 			debug($report_info);
 		}

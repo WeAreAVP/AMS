@@ -64,7 +64,6 @@ if ( ! $isAjax)
 				"sScrollY": $(window).height() - 195,
 				"sScrollX": "200%",
 				"bDeferRender": true,
-				"bDestroy": is_destroy,
 				"bRetrieve": true,
 				"bAutoWidth": true,
 				"bProcessing": true,

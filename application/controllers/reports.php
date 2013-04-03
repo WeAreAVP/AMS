@@ -126,10 +126,10 @@ class Reports extends MY_Controller
 
 				if (isAjax())
 				{
-					echo $this->load->view('reports/standalone_report', TRUE);
+					echo $this->load->view('reports/standalone_report',$data, TRUE);
 					exit_function();
 				}
-				$this->load->view('reports/standalone_report');
+				$this->load->view('reports/standalone_report',$data);
 			}
 			else
 			{

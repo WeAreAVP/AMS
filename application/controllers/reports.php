@@ -80,7 +80,7 @@ class Reports extends MY_Controller
 	public function standalone()
 	{
 		$report_id = $this->uri->segment(3);
-		if ( ! $report_id)
+		if ( ! empty($report_id))
 		{
 			
 		}

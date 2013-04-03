@@ -54,6 +54,7 @@
 		html2canvas(document.body, {
 			onrendered: function(canvas) {
 				var img = canvas.toDataURL("image/png");
+
 				console.log(img);
 
 			}
@@ -61,7 +62,27 @@
 	}
 
 </script>
-<div>
+<p><canvas id="canvas" style="border:2px solid black;" width="200" height="200"></canvas>
+	<script>
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		var data = "<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'>" +
+		"<foreignObject width='100%' height='100%'>" +
+		$('#abc').html()+
+		"</foreignObject>" +
+		"</svg>";
+		var DOMURL = self.URL || self.webkitURL || self;
+		var img = new Image();
+		var svg = new Blob([data], {type: "image/svg+xml;charset=utf-8"});
+		var url = DOMURL.createObjectURL(svg);
+		img.onload = function() {
+//			ctx.drawImage(img, 0, 0);
+//			DOMURL.revokeObjectURL(url);
+		};
+//		img.src = url;
+		console.log(url);
+	</script>
+<div id="abc">
 	<div><button onclick="takeScreenShot();" class="btn">Take Screen Shot</button></div>
 	<div class="asset-stats">
 		<div class="span4">

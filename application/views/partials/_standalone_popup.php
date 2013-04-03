@@ -20,18 +20,23 @@
 
 </div>
 <script type="text/javascript">
-		other_filter='<?php echo $other_filters; ?>';
-		standalone='<?php echo $standalone; ?>';
-		if(other_filter==0 && standalone==1){
-			console.log('now fine');
-		}
+			other_filter = '<?php echo $other_filters; ?>';
+			standalone = '<?php echo $standalone; ?>';
+			$(document).ready(function() {
+				if (other_filter == '0' && standalone == '1') {
+					console.log('now fine');
+				}
+				else {
+					console.log('isise');
+				}}
+			});
 			$('#standalone_model').on('hidden', function() {
 				$('#standalone_body').html('Are you sure you want to generate report?');
 				$('#standalone_footer').show();
 				$('#close_standalone_footer').hide();
 
 			});
-			
+
 			function openPopup() {
 				if (!$('#standalone_btn').hasClass('disabled')) {
 					$('#standalone_model').modal({
@@ -47,7 +52,7 @@
 					url: site_url + 'reports/generate_report/',
 					dataType: 'json',
 					success: function(result) {
-						
+
 						$('#standalone_body').html(result.msg);
 						$('#close_standalone_footer').show();
 					}

@@ -17,29 +17,19 @@ if ( ! $isAjax)
 			<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;border-collapse:collapse;">
 				<thead>
 					<tr style="background: rgb(235, 235, 235);">
-						<?php
-						foreach ($this->column_order as $key => $value)
-						{
-							$class = '';
-							if ( ! ($this->frozen_column > $key))
-								$class = 'drap-drop';
-							$type = $value['title'];
+						<th><span style="float:left;min-width:200px;max-width:200px;">Organization</span></th>
+						<th><span style="float:left;min-width:200px;max-width:200px;">Instantiation ID</span></th>
+						<th><span style="float:left;min-width:300px;max-width:300px;">Instantiation's Asset Title</span></th>
+						<th ><span style="float:left;min-width:150px;max-width:150px;">Nomination</span></th>
+						<th ><span style="float:left;min-width:150px;max-width:150px;">Generation</span></th>
+						<th ><span style="float:left;min-width:150px;max-width:150px;">Format</span></th>
+						<th ><span style="float:left;min-width:150px;max-width:150px;">Date</span></th>
+						<th ><span style="float:left;min-width:150px;max-width:150px;">File_size</span></th>
+						<th ><span style="float:left;min-width:150px;max-width:150px;">Media_Type</span></th>
+						<th ><span style="float:left;min-width:150px;max-width:150px;">Duration</span></th>
+						<th ><span style="float:left;min-width:150px;max-width:150px;">Colors</span></th>
+						<th ><span style="float:left;min-width:150px;max-width:150px;">Language</span></th>
 
-							if (in_array($type, array('Nomination', 'Generation', 'Format', 'Date', 'File_size', 'Media_Type', 'Duration', 'Colors', 'Language')))
-							{
-								$width = 'min-width:150px;max-width:150px;';
-							}
-							else if (in_array($type, array('Organization', 'Instantiation_ID')))
-							{
-								$width = 'min-width:200px;max-width:200px;';
-							}
-							else if (in_array($type, array('Instantiation\'s_Asset_Title')))
-							{
-								$width = 'min-width:300px;max-width:300px;';
-							}
-							echo '<th id="' . $value['title'] . '" class="' . $class . '"><span style="float:left;' . $width . '">' . str_replace("_", ' ', $value['title']) . '</span></th>';
-						}
-						?>
 					</tr>
 				</thead>
 				<tbody>

@@ -28,7 +28,7 @@
 				}
 				else {
 					console.log('isise');
-				}}
+				}
 			});
 			$('#standalone_model').on('hidden', function() {
 				$('#standalone_body').html('Are you sure you want to generate report?');

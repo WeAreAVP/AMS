@@ -272,7 +272,7 @@ class Sphinx_Model extends CI_Model
 				}
 			}
 		}
-		if (isset($this->session->userdata['date_range']) && $this->session->userdata['date_range'] != '')
+		if ((isset($this->session->userdata['date_range']) && $this->session->userdata['date_range'] != '')  || $this->session->userdata['date_filter']!='')
 		{
 			$keyword_json = $this->session->userdata['date_range'];
 			foreach ($keyword_json as $index => $key_columns)
@@ -337,7 +337,7 @@ class Sphinx_Model extends CI_Model
 			$generation = str_replace('|||', '" | "', trim($this->session->userdata['generation']));
 			$where .=" @generation \"^$generation$\"";
 		}
-		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
+		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized' || $this->session->userdata['digitized_filter']==1)
 		{
 //			$where .=' @digitized "1" @!actual_duration "0"';
 			$where .=' @digitized "1"';

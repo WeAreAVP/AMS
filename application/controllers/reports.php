@@ -82,13 +82,15 @@ class Reports extends MY_Controller
 		$this->load->model('sphinx_model', 'sphinx');
 		$this->load->library('pagination');
 		$this->load->library('Ajax_pagination');
-		
+
 		$report_id = $this->uri->segment(3);
 		$offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 		if ( ! empty($report_id))
 		{
 
 			$report_info = $this->report_model->get_report_by_id(base64_decode($report_id));
+			$this->session->set_userdata('date_filter', json_decode($report_info->filters));
+			$this->session->set_userdata('digitized_filter', '1');
 			if (count($report_info) > 0)
 			{
 
@@ -114,7 +116,7 @@ class Reports extends MY_Controller
 					$data['start'] = $offset;
 					$data['end'] = intval($offset) + intval($data['count']);
 				}
-				
+
 				$config['prev_link'] = '<i class="icon-chevron-left"></i>';
 				$config['next_link'] = '<i class="icon-chevron-right"></i>';
 				$config['use_page_numbers'] = FALSE;
@@ -128,10 +130,10 @@ class Reports extends MY_Controller
 				if (isAjax())
 				{
 					$data['isAjax'] = TRUE;
-					echo $this->load->view('reports/standalone_report',$data, TRUE);
+					echo $this->load->view('reports/standalone_report', $data, TRUE);
 					exit_function();
 				}
-				$this->load->view('reports/standalone_report',$data);
+				$this->load->view('reports/standalone_report', $data);
 			}
 			else
 			{

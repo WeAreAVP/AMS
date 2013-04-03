@@ -28,9 +28,11 @@ class MY_Controller extends CI_Controller
 	{
 		parent::__construct();
 		$this->layout = 'main_layout.php';
+
 		if ( ! $this->dx_auth->is_logged_in())
 		{
-			redirect('auth/login');
+			if ( ! is_route_method(array('standalone' => array('report'))))
+				redirect('auth/login');
 		}
 		$this->is_station_user = FALSE;
 		$this->load->library('Form_validation');
@@ -44,21 +46,24 @@ class MY_Controller extends CI_Controller
 		$this->load->model('report_model');
 		$this->load->model('dx_auth/user_settings', 'user_settings');
 		$this->load->model('tracking_model', 'tracking');
-		if ($this->dx_auth->is_station_user())
+		if ($this->dx_auth->is_logged_in())
 		{
-			$this->is_station_user = TRUE;
-			$this->station_id = $this->dx_auth->get_station_id();
-			$this->station_name = $this->station_model->get_station_by_id($this->station_id)->station_name;
-		}
-		$this->frozen_column = 0;
-		$this->column_order = '';
-		if ( ! isset($this->user_id))
-		{
-			$this->_assing_user_info();
-		}
-		if (is_route_method(array('records' => array('index', 'sort_full_table'), 'instantiations' => array('index', 'update_user_settings', 'instantiation_table'))))
-		{
-			$this->_table_view_settings();
+			if ($this->dx_auth->is_station_user())
+			{
+				$this->is_station_user = TRUE;
+				$this->station_id = $this->dx_auth->get_station_id();
+				$this->station_name = $this->station_model->get_station_by_id($this->station_id)->station_name;
+			}
+			$this->frozen_column = 0;
+			$this->column_order = '';
+			if ( ! isset($this->user_id))
+			{
+				$this->_assing_user_info();
+			}
+			if (is_route_method(array('records' => array('index', 'sort_full_table'), 'instantiations' => array('index', 'update_user_settings', 'instantiation_table'))))
+			{
+				$this->_table_view_settings();
+			}
 		}
 	}
 

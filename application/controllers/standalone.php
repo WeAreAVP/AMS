@@ -24,7 +24,7 @@
  * @license    CPB http://nouman.com
  * @link       http://amsqa.avpreserve.com
  */
-class Standalone extends CI_Controller
+class Standalone extends MY_Controller
 {
 
 	/**

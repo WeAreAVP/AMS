@@ -1,3 +1,7 @@
+<?php
+$standalone = 0;
+$other_filters = 0;
+?>
 <form name="form_search" id="form_search" method="post" onsubmit="return false;" style="margin: 0;padding: 0;">
     <div id="search_bar_val" class="facet-search"> 
         <h6 class="filter_title" id="filter_criteria" style="display: none;font-weight: bold;">FILTER CRITERIA&nbsp;<span id="filter_record_count"></span></h6>
@@ -7,6 +11,7 @@
 				<?php
 				if (isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1')
 				{
+					$standalone = 1;
 					?>
 					<div class="btn-img" id="digitized_token" ><span class="search_keys">Digitized</span><i class="icon-remove-sign" style="float: right;" onclick="remove_checked_token('digitized')"></i></div>
 					<?php
@@ -26,6 +31,7 @@
 			<?php
 			if (isset($this->session->userdata['custom_search']) && $this->session->userdata['custom_search'] != '')
 			{
+				$other_filters = 1;
 				?>
 				<div id="keyword_field_main">
 					<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="<?php echo htmlentities(json_encode($this->session->userdata['custom_search'])); ?>" />
@@ -64,7 +70,7 @@
 					<div class="filter-fileds"><b id="keyword_field_name">Keyword</b></div>
 					<input type="hidden" id="keyword_field_main_search" name="keyword_field_main_search" value="" />
 				</div>
-			<?php } ?>
+<?php } ?>
             <div class="clearfix"></div>
             <!-- Custom  Search Display End  -->
 
@@ -72,6 +78,7 @@
 			<?php
 			if (isset($this->session->userdata['date_range']) && $this->session->userdata['date_range'] != '')
 			{
+				
 				?>
 				<div id = "date_field_main">
 					<input id="date_type" name="date_type" value="" type="hidden"/>
@@ -123,7 +130,7 @@
 			<?php
 			if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
 			{
-
+				$other_filters = 1;
 				$organization = $this->session->userdata['organization'];
 				$organization_array = explode('|||', $organization);
 				?>
@@ -136,7 +143,7 @@
 						$search_id = name_slug($value);
 						?>
 						<div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>', '<?php echo $search_id ?>', 'organization_main')"></i></div>
-					<?php } ?>
+				<?php } ?>
 				</div>
 				<?php
 			}
@@ -148,7 +155,7 @@
 					<div class="filter-fileds"><b>Organization</b></div>
 					<input type="hidden" id="organization_main_search" name="organization_main_search"/>
 				</div>
-			<?php } ?>
+<?php } ?>
 
             <!-- Organization Search Display End  -->
             <div class="clearfix"></div>
@@ -157,7 +164,7 @@
 			<?php
 			if (isset($this->session->userdata['states']) && $this->session->userdata['states'] != '')
 			{
-
+				$other_filters = 1;
 				$state = $this->session->userdata['states'];
 				$state_array = explode('|||', $state);
 				?>
@@ -170,7 +177,7 @@
 						$search_id = name_slug($value);
 						?>
 						<div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>', '<?php echo $search_id ?>', 'states_main')"></i></div>
-					<?php } ?>
+				<?php } ?>
 				</div>
 				<?php
 			}
@@ -182,7 +189,7 @@
 					<div class="filter-fileds"><b>State</b></div>
 					<input type="hidden" id="states_main_search" name="states_main_search"/>
 				</div>
-			<?php } ?>
+<?php } ?>
 
             <!-- State Search Display End  -->
             <div class="clearfix"></div>
@@ -190,7 +197,7 @@
 			<?php
 			if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
 			{
-
+				$other_filters = 1;
 				$nomination = $this->session->userdata['nomination'];
 				$nomination_array = explode('|||', $nomination);
 				?>
@@ -203,7 +210,7 @@
 						$search_id = name_slug($value);
 						?>
 						<div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>', '<?php echo $search_id ?>', 'nomination_status_main')"></i></div>
-					<?php } ?>
+				<?php } ?>
 				</div>
 				<?php
 			}
@@ -215,14 +222,14 @@
 					<div class="filter-fileds"><b>Nomination Status</b></div>
 					<input type="hidden" id="nomination_status_main_search" name="nomination_status_main_search"/>
 				</div>
-			<?php } ?>
+<?php } ?>
             <!-- Nomination Status Search Display End  -->
             <div class="clearfix"></div>
             <!-- Media Type Search Display Start  -->
 			<?php
 			if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
 			{
-
+				$other_filters = 1;
 				$media_type = $this->session->userdata['media_type'];
 				$media_type_array = explode('|||', $media_type);
 				?>
@@ -235,7 +242,7 @@
 						$search_id = name_slug($value);
 						?>
 						<div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>', '<?php echo $search_id ?>', 'media_type_main')"></i></div>
-					<?php } ?>
+				<?php } ?>
 				</div>
 				<?php
 			}
@@ -247,14 +254,14 @@
 					<div class="filter-fileds"><b>Media Type</b></div>
 					<input type="hidden" id="media_type_main_search" name="media_type_main_search"/>
 				</div>
-			<?php } ?>
+<?php } ?>
             <!-- Media Type Search Display End  -->
             <div class="clearfix"></div>
             <!-- Physical Format Search Display Start  -->
 			<?php
 			if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
 			{
-
+				$other_filters = 1;
 				$physical_format = $this->session->userdata['physical_format'];
 				$physical_format_array = explode('|||', $physical_format);
 				?>
@@ -267,7 +274,7 @@
 						$search_id = name_slug($value);
 						?>
 						<div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>', '<?php echo $search_id ?>', 'physical_format_main')"></i></div>
-					<?php } ?>
+				<?php } ?>
 				</div>
 				<?php
 			}
@@ -279,14 +286,14 @@
 					<div class="filter-fileds"><b>Physical Format</b></div>
 					<input type="hidden" id="physical_format_main_search" name="physical_format_main_search"/>
 				</div>
-			<?php } ?>
+<?php } ?>
             <!-- Physical Format Search Display End  -->
             <div class="clearfix"></div>
             <!-- Digital Format Search Display Start  -->
 			<?php
 			if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
 			{
-
+				$other_filters = 1;
 				$digital_format = $this->session->userdata['digital_format'];
 				$digital_format_array = explode('|||', $digital_format);
 				?>
@@ -299,7 +306,7 @@
 						$search_id = name_slug($value);
 						?>
 						<div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>', '<?php echo $search_id ?>', 'digital_format_main')"></i></div>
-					<?php } ?>
+				<?php } ?>
 				</div>
 				<?php
 			}
@@ -311,14 +318,14 @@
 					<div class="filter-fileds"><b>Digital Format</b></div>
 					<input type="hidden" id="digital_format_main_search" name="digital_format_main_search"/>
 				</div>
-			<?php } ?>
+<?php } ?>
             <!-- Digital Format Search Display End  -->
             <div class="clearfix"></div>
             <!-- Generation Search Display Start  -->
 			<?php
 			if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
 			{
-
+				$other_filters = 1;
 				$generation = $this->session->userdata['generation'];
 				$generation_array = explode('|||', $generation);
 				?>
@@ -331,7 +338,7 @@
 						$search_id = name_slug($value);
 						?>
 						<div class="btn-img" id="<?php echo $search_id ?>" ><span class="search_keys"><?php echo $value; ?></span><i class="icon-remove-sign" style="float: right;" onclick="remove_token('<?php echo htmlentities($value); ?>', '<?php echo $search_id ?>', 'generation_main')"></i></div>
-					<?php } ?>
+				<?php } ?>
 				</div>
 				<?php
 			}
@@ -343,7 +350,7 @@
 					<div class="filter-fileds"><b>Generation</b></div>
 					<input type="hidden" id="generation_main_search" name="generation_main_search"/>
 				</div>
-			<?php } ?>
+<?php } ?>
             <!-- Generation Search Display End  -->
             <div class="clearfix"></div>
 

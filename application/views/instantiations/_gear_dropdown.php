@@ -16,8 +16,13 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			<?php
 			if ($this->role_id == 1 || $this->role_id == 2 || $this->role_id == 5)
 			{
+				$class = 'disabled';
+				if ($other_filters == 0 && $standalone == 1)
+				{
+					$class = '';
+				}
 				?>
-				<a id="standalone_btn" class="btn disabled" href="javascript://" onclick="openPopup();" style="margin-left: 10px;height: 14px;">
+				<a id="standalone_btn" class="btn <?php echo $class; ?>" href="javascript://" onclick="openPopup();" style="margin-left: 10px;height: 14px;">
 					Standalone Report
 				</a>
 
@@ -48,9 +53,9 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			if ( ! $is_current_user && ! $updating)
 			{
 				?>
-																			<!--                <a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
-																							Refine Data
-																						</a>-->
+																					<!--                <a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
+																									Refine Data
+																								</a>-->
 				<?php
 			}
 			else if ( ! $updating)

@@ -95,6 +95,7 @@ class Reports extends MY_Controller
 				$is_hidden = array();
 
 				$params = array('search' => '');
+				$data['isAjax'] = FALSE;
 				$data['hidden_fields'] = $is_hidden;
 				$records = $this->sphinx->instantiations_list($params, $offset);
 				$data['total'] = $records['total_count'];
@@ -126,6 +127,7 @@ class Reports extends MY_Controller
 
 				if (isAjax())
 				{
+					$data['isAjax'] = TRUE;
 					echo $this->load->view('reports/standalone_report',$data, TRUE);
 					exit_function();
 				}

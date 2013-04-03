@@ -4,7 +4,7 @@ if ( ! $isAjax)
 	?>
 	<div class="row-fluid">
 	<?php } ?>
-	<div  class="span12" id="data_container" style="margin-left: 10px;">
+	<div id="data_container" style="margin-left: 10px;">
 		<div>
 			<div style="float: right;">
 				<strong><?php echo number_format($start); ?> - <?php echo number_format($end); ?></strong> of <strong style="margin-right: 10px;" id="total_list_count"><?php echo number_format($total); ?></strong>

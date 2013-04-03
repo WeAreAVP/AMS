@@ -20,15 +20,15 @@ if ( ! $isAjax)
 						<th><span style="float:left;min-width:200px;max-width:200px;">Organization</span></th>
 						<th><span style="float:left;min-width:200px;max-width:200px;">Instantiation ID</span></th>
 						<th><span style="float:left;min-width:300px;max-width:300px;">Instantiation's Asset Title</span></th>
-						<th ><span style="float:left;min-width:150px;max-width:150px;">Nomination</span></th>
+						<th ><span style="float:left;min-width:100px;max-width:100px;">Nomination</span></th>
 						<th ><span style="float:left;min-width:150px;max-width:150px;">Generation</span></th>
 						<th ><span style="float:left;min-width:150px;max-width:150px;">Format</span></th>
 						<th ><span style="float:left;min-width:150px;max-width:150px;">Date</span></th>
-						<th ><span style="float:left;min-width:150px;max-width:150px;">File_size</span></th>
-						<th ><span style="float:left;min-width:150px;max-width:150px;">Media_Type</span></th>
-						<th ><span style="float:left;min-width:150px;max-width:150px;">Duration</span></th>
-						<th ><span style="float:left;min-width:150px;max-width:150px;">Colors</span></th>
-						<th ><span style="float:left;min-width:150px;max-width:150px;">Language</span></th>
+						<th ><span style="float:left;min-width:100px;max-width:100px;">File_size</span></th>
+						<th ><span style="float:left;min-width:100px;max-width:100px;">Media_Type</span></th>
+						<th ><span style="float:left;min-width:100px;max-width:100px;">Duration</span></th>
+						<th ><span style="float:left;min-width:100px;max-width:100px;">Colors</span></th>
+						<th ><span style="float:left;min-width:100px;max-width:100px;">Language</span></th>
 
 					</tr>
 				</thead>

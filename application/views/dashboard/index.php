@@ -77,8 +77,8 @@
 		var svg = new Blob([data], {type: "image/svg+xml;charset=utf-8"});
 		var url = DOMURL.createObjectURL(svg);
 		img.onload = function() {
-//			ctx.drawImage(img, 0, 0);
-//			DOMURL.revokeObjectURL(url);
+			ctx.drawImage(img, 0, 0);
+			DOMURL.revokeObjectURL(url);
 		};
 //		img.src = url;
 		console.log(url);

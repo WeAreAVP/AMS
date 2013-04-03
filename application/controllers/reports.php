@@ -111,7 +111,7 @@ class Reports extends MY_Controller
 				$standalone = 1;
 			else if ($value != 'date_range')
 			{
-				if ($this->session->userdata[$value] != '')
+				if (isset($this->session->userdata[$value]) && $this->session->userdata[$value] != '')
 					$other = 1;
 			}
 		}

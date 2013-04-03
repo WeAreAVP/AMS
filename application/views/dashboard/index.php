@@ -64,6 +64,7 @@
 </script>
 <p><canvas id="canvas" style="border:2px solid black;" width="100%" height="100%"></canvas>
 	<script>
+		function test(){
 		var canvas = document.getElementById("canvas");
 		var ctx = canvas.getContext("2d");
 		var data = "<svg xmlns='http://www.w3.org/2000/svg'>" +
@@ -81,9 +82,11 @@
 		};
 //		img.src = url;
 		console.log(url);
+		}
 	</script>
+	
 <div id="abc">
-	<div><button onclick="takeScreenShot();" class="btn">Take Screen Shot</button></div>
+	<div><button onclick="test();" class="btn">Take Screen Shot</button></div>
 	<div class="asset-stats">
 		<div class="span4">
 			<div class="assets-sum"><?php echo number_format($material_goal['total']); ?></div>

@@ -79,6 +79,10 @@ class Reports extends MY_Controller
 
 	public function standalone()
 	{
+		$this->load->model('sphinx_model', 'sphinx');
+		$this->load->library('pagination');
+		$this->load->library('Ajax_pagination');
+		
 		$report_id = $this->uri->segment(3);
 		$offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 		if ( ! empty($report_id))

@@ -41,7 +41,8 @@
 					url: site_url + 'reports/generate_report/',
 					dataType: 'json',
 					success: function(result) {
-						$('#refine_body').html(result.msg);
+						
+						$('#standalone_body').html(result.msg);
 						$('#close_standalone_footer').show();
 					}
 				});

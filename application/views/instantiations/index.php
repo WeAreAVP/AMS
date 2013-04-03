@@ -78,7 +78,7 @@ if ( ! $isAjax)
 	<?php
 	if ( ! $isAjax)
 	{
-		$this->load->view('partials/_standalone_popup');
+		
 		?>
 	</div>
 
@@ -141,6 +141,7 @@ if ( ! $isAjax)
 
 	</script>
 	<?php
+	$this->load->view('partials/_standalone_popup');
 	$this->load->view('partials/_refine_popup');
 }
 ?>

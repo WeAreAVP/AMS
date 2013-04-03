@@ -61,7 +61,7 @@ if ( ! $isAjax)
 				'bInfo': false,
 				'bFilter': false,
 				"bSort": true,
-				"sScrollY": $(window).height() - 150,
+				"sScrollY": $(window).height() - 160,
 				"sScrollX": "200%",
 				"bDeferRender": true,
 				"bRetrieve": true,
@@ -75,9 +75,7 @@ if ( ! $isAjax)
 			$.extend($.fn.dataTableExt.oStdClasses, {
 				"sWrapper": "dataTables_wrapper form-inline"
 			});
-			if (current_table_type != 'assets') {
-				$('#listing_table_processing').css('top', '80px');
-			}
+			$('#listing_table_processing').css('top', '80px');
 		}
 
 	});

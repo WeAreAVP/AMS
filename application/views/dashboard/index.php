@@ -62,11 +62,11 @@
 	}
 
 </script>
-<p><canvas id="canvas" style="border:2px solid black;" width="200" height="200"></canvas>
+<p><canvas id="canvas" style="border:2px solid black;" width="100%" height="100%"></canvas>
 	<script>
 		var canvas = document.getElementById("canvas");
 		var ctx = canvas.getContext("2d");
-		var data = "<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'>" +
+		var data = "<svg xmlns='http://www.w3.org/2000/svg'>" +
 		"<foreignObject width='100%' height='100%'>" +
 		$('#abc').html()+
 		"</foreignObject>" +

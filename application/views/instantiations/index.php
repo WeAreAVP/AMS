@@ -1,6 +1,5 @@
 <?php
-$standalone = 0;
-$other_filters = 0;
+
 if ( ! $isAjax)
 {
 	?>

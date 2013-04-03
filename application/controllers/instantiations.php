@@ -39,7 +39,7 @@ class Instantiations extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('instantiations_model', 'instantiation');
-		
+
 		$this->load->model('export_csv_job_model', 'csv_job');
 		$this->load->model('assets_model');
 		$this->load->model('sphinx_model', 'sphinx');
@@ -61,7 +61,7 @@ class Instantiations extends MY_Controller
 		$offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$this->session->set_userdata('offset', $offset);
 		$params = array('search' => '');
-		
+
 		if (isAjax())
 		{
 			$this->unset_facet_search();
@@ -92,7 +92,8 @@ class Instantiations extends MY_Controller
 		$this->session->set_userdata('page_link', 'instantiations/index/' . $offset);
 		$data['get_column_name'] = $this->make_array();
 
-
+		$data['standalone'] = 0;
+		$data['other_filters'] = 0;
 		$data['date_types'] = $this->instantiation->get_date_types();
 		$data['is_refine'] = $this->refine_modal->get_active_refine();
 
@@ -513,11 +514,11 @@ class Instantiations extends MY_Controller
 				$data['generations'] = sortByOneKey($generation['records'], 'facet_generation', TRUE);
 				unset($generation);
 
-				$digitized= $this->sphinx->facet_index('digitized', $index, 'digitized');
-				$data['digitized']=$digitized['records'];
+				$digitized = $this->sphinx->facet_index('digitized', $index, 'digitized');
+				$data['digitized'] = $digitized['records'];
 
 				$migration = $this->sphinx->facet_index('migration', $index, 'migration');
-				$data['migration']=$migration['records'];
+				$data['migration'] = $migration['records'];
 			}
 			else
 			{
@@ -541,7 +542,7 @@ class Instantiations extends MY_Controller
 
 
 				$data['digitized'] = json_decode($this->memcached_library->get($key_name . '_digitized'), TRUE);
-				
+
 				$data['migration'] = json_decode($this->memcached_library->get($key_name . '_migration'), TRUE);
 			}
 

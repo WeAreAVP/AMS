@@ -48,9 +48,9 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			if ( ! $is_current_user && ! $updating)
 			{
 				?>
-																	<!--                <a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
-																					Refine Data
-																				</a>-->
+																			<!--                <a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
+																							Refine Data
+																						</a>-->
 				<?php
 			}
 			else if ( ! $updating)
@@ -108,21 +108,21 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 
 </div>
 <script type="text/javascript">
-						var hiden_column =<?php echo json_encode($hidden_fields); ?>;
+			var hiden_column =<?php echo json_encode($hidden_fields); ?>;
 <?php
 if ($isAjax)
 {
 	?>
-							is_destroy = true;
+				is_destroy = true;
 <?php } ?>
 <?php
 if ($total > 0)
 {
 	?>
-							$(function()
-							{
-								updateDataTable();
-							});
+				$(function()
+				{
+					updateDataTable();
+				});
 <?php } ?>
 </script>
 

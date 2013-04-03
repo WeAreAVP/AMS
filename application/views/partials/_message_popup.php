@@ -32,36 +32,36 @@
     </div>
 </div>
 <script>
-    function sentEmail(){
-        $.ajax({
-            type: 'POST', 
-            url: '<?php echo site_url('messages/compose') ?>',
-            data:{"extras":extras,to:to,subject:subject,type:type,html:msg_body},
-            dataType: 'json',
-            success: function (result) { 
-                if(result.success)
-                {
-                    window.location.reload();
-                }
-                else
-                {
-                    if(error_id==1)
-                    {
-                        $('#message_station_error').show();
-                    }
-                    else
-                    {
-                        $('#message_type_error').show();
-                    }
-                }
-            }
-        });
-    }
-    function resetMessagesForm(){
-        $('#alert_type').html('');
-        $('#msg_type').val('');
-								$('.edit-btn').each(function(){
-											$(this).show();	
-								});
-    }
+			function sentEmail() {
+				$.ajax({
+					type: 'POST',
+					url: '<?php echo site_url('messages/compose') ?>',
+					data: {"extras": extras, to: to, subject: subject, type: type, html: msg_body},
+					dataType: 'json',
+					success: function(result) {
+						if (result.success)
+						{
+							window.location.reload();
+						}
+						else
+						{
+							if (error_id == 1)
+							{
+								$('#message_station_error').show();
+							}
+							else
+							{
+								$('#message_type_error').show();
+							}
+						}
+					}
+				});
+			}
+			function resetMessagesForm() {
+				$('#alert_type').html('');
+				$('#msg_type').val('');
+				$('.edit-btn').each(function() {
+					$(this).show();
+				});
+			}
 </script>

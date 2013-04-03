@@ -787,33 +787,33 @@
 			column_order = '<?php echo isset($this->session->userdata['column_order']) ? $this->session->userdata['column_order'] : 'asc'; ?>';
 
 			sTable =
-					$('#assets_table').dataTable(
-					{
-						"sDom": 'frtiS',
-						"aoColumns": [
-							{"bSortable": false, 'sWidth': '1%'},
-							{'sWidth': '15%'},
-							{'sWidth': '15%'},
-							{'sWidth': '18%'},
-							{'sWidth': '20%'},
-							{'sWidth': '40%'}
-						],
-						"aaSorting": [[column_index, column_order]],
-						'bPaginate': false,
-						'bInfo': false,
-						'bFilter': false,
-						"bSort": true,
-						"sScrollY": $(window).height() - 230,
-						"sScrollX": "200%",
-						"bScrollCollapse": true,
-						"bDeferRender": true,
-						"bDestroy": is_destroy,
-						"bRetrieve": true,
-						"bAutoWidth": true,
-						"bProcessing": true,
-						"bServerSide": true,
-						"sAjaxSource": site_url + "records/sort_simple_table"
-					});
+			$('#assets_table').dataTable(
+			{
+				"sDom": 'frtiS',
+				"aoColumns": [
+					{"bSortable": false, 'sWidth': '1%'},
+					{'sWidth': '15%'},
+					{'sWidth': '15%'},
+					{'sWidth': '18%'},
+					{'sWidth': '20%'},
+					{'sWidth': '40%'}
+				],
+				"aaSorting": [[column_index, column_order]],
+				'bPaginate': false,
+				'bInfo': false,
+				'bFilter': false,
+				"bSort": true,
+				"sScrollY": $(window).height() - 230,
+				"sScrollX": "200%",
+				"bScrollCollapse": true,
+				"bDeferRender": true,
+				"bDestroy": is_destroy,
+				"bRetrieve": true,
+				"bAutoWidth": true,
+				"bProcessing": true,
+				"bServerSide": true,
+				"sAjaxSource": site_url + "records/sort_simple_table"
+			});
 			$.extend($.fn.dataTableExt.oStdClasses, {
 				"sWrapper": "dataTables_wrapper form-inline"
 			});
@@ -871,7 +871,7 @@
 	function resetAll() {
 		$('#form_search').find('input:hidden, input:text, select').val('');
 		$('#form_search').find('input:radio, input:checkbox')
-				.removeAttr('checked').removeAttr('selected');
+		.removeAttr('checked').removeAttr('selected');
 		facet_search('0');
 	}
 	function manageLayout() {

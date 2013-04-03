@@ -10,18 +10,42 @@
 	</div>
 	<div class="modal-footer" id="standalone_footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-		<button class="btn btn-primary">Yes</button>
+		<button class="btn btn-primary" onclick="generateStandaloneReport();">Yes</button>
 	</div>
+	<div class="modal-footer" id="close_standalone_footer" style="display: none;">
+		<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+
+	</div>
+
 
 </div>
 <script type="text/javascript">
-	function openPopup() {
-		if (!$('#standalone_btn').hasClass('disabled')) {
-			$('#standalone_model').modal({
-				backdrop: 'static'
+			$('#standalone_model').on('hidden', function() {
+				$('#standalone_body').html('Are you sure you want to generate report?');
+				$('#standalone_footer').show();
+				$('#close_standalone_footer').hide();
+
 			});
-		}
-	}
+			function openPopup() {
+				if (!$('#standalone_btn').hasClass('disabled')) {
+					$('#standalone_model').modal({
+						backdrop: 'static'
+					});
+				}
+			}
+			function generateStandaloneReport() {
+				$('#standalone_body').html('<img src="/images/ajax-loader.gif" style="margin-right: 15px;" />');
+				$('#standalone_footer').hide();
+				$.ajax({
+					type: 'POST',
+					url: site_url + 'reports/generate_report/',
+					dataType: 'json',
+					success: function(result) {
+						$('#refine_body').html(result.msg);
+						$('#close_standalone_footer').show();
+					}
+				});
+			}
 </script>
 
 

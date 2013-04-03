@@ -90,6 +90,16 @@ class Reports extends MY_Controller
 		}
 	}
 
+	public function generate_report()
+	{
+		if (isAjax())
+		{
+			$date_range = $this->session->userdata['date_range'];
+			echo json_encode(array('msg' => $date_range));
+		}
+		exit_function();
+	}
+
 }
 
 // END Reports Controller

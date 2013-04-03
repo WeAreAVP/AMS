@@ -78,7 +78,6 @@ if ( ! $isAjax)
 	<?php
 	if ( ! $isAjax)
 	{
-		
 		?>
 	</div>
 

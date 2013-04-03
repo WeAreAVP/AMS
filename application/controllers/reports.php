@@ -82,7 +82,8 @@ class Reports extends MY_Controller
 		$report_id = $this->uri->segment(3);
 		if ( ! empty($report_id))
 		{
-			
+			$report_info = $this->report_model->get_report_by_id(base64_decode($report_id));
+			debug($report_info);
 		}
 		else
 		{
@@ -92,10 +93,12 @@ class Reports extends MY_Controller
 
 	public function generate_report()
 	{
-		$date_range = $this->session->userdata['date_range'];
-		debug($date_range);
-		echo json_encode(array('msg' => $date_range));
-
+		$data['filters'] = json_encode($this->session->userdata['date_range']);
+		$data['user_id'] = $this->user_id;
+		$data['report_type'] = 'standalone';
+		$report_id = $this->report_model->insert_report($data);
+		$url = site_url() . "reports/standalone/" . base64_encode($report_id);
+		echo json_encode(array('msg' => "<a href='$url' target='_blank'>$url</a>"));
 		exit_function();
 	}
 

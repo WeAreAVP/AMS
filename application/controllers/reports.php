@@ -80,13 +80,52 @@ class Reports extends MY_Controller
 	public function standalone()
 	{
 		$report_id = $this->uri->segment(3);
+		$offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 		if ( ! empty($report_id))
 		{
 
-			$report_info = $this->report_model->get_report_by_id(base64_decode($report_id));
+			$report_info = $this->report_model->get_report_by_id($report_id);
 			if (count($report_info) > 0)
 			{
+
+				$is_hidden = array();
+
+				$params = array('search' => '');
+				$data['hidden_fields'] = $is_hidden;
+				$records = $this->sphinx->instantiations_list($params, $offset);
+				$data['total'] = $records['total_count'];
+				$config['total_rows'] = $data['total'];
+				$config['per_page'] = 100;
+				$data['records'] = $records['records'];
+
+				$data['count'] = count($data['records']);
+				if ($data['count'] > 0 && $offset === 0)
+				{
+					$data['start'] = 1;
+					$data['end'] = $data['count'];
+				}
+				else
+				{
+					$data['start'] = $offset;
+					$data['end'] = intval($offset) + intval($data['count']);
+				}
 				
+				$config['prev_link'] = '<i class="icon-chevron-left"></i>';
+				$config['next_link'] = '<i class="icon-chevron-right"></i>';
+				$config['use_page_numbers'] = FALSE;
+				$config['first_link'] = FALSE;
+				$config['last_link'] = FALSE;
+				$config['display_pages'] = FALSE;
+				$config['js_method'] = 'facet_search';
+				$config['postVar'] = 'page';
+				$this->ajax_pagination->initialize($config);
+
+				if (isAjax())
+				{
+					echo $this->load->view('reports/standalone_report', TRUE);
+					exit_function();
+				}
+				$this->load->view('reports/standalone_report');
 			}
 			else
 			{
@@ -126,7 +165,7 @@ class Reports extends MY_Controller
 		}
 		else
 		{
-			echo json_encode(array('msg' => "Please apply digitized filter and date filter for standalone report."));
+			echo json_encode(array('msg' => "Please apply digitized filter and date filter only for standalone report."));
 		}
 
 		exit_function();

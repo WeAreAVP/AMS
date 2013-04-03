@@ -48,25 +48,25 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			if ( ! $is_current_user && ! $updating)
 			{
 				?>
-																					<!--                <a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
-																									Refine Data
-																								</a>-->
+				<a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
+					Refine Data
+				</a>
 				<?php
 			}
 			else if ( ! $updating)
 			{
 				?>
-				<!--                <a id="cancel_refine_data" class="btn"  href="#refine_cancel" role="button" data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
-									Cancel Refining
-								</a>-->
+				<a id="cancel_refine_data" class="btn"  href="#refine_cancel" role="button" data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
+					Cancel Refining
+				</a>
 				<?php
 			}
 			else if ($updating)
 			{
 				?>
-				<!--                <a id="cancel_refine_data" class="btn"  href="javascript://" role="button" style="margin-left: 10px;height: 14px;">
-									Updating Records
-								</a>-->
+				<a id="cancel_refine_data" class="btn"  href="javascript://" role="button" style="margin-left: 10px;height: 14px;">
+					Updating Records
+				</a>
 				<?php
 			}
 		}
@@ -97,11 +97,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
                     <li><a href="javascript://;" onclick="freezeColumns(2);"><i id="freeze_col_2" class="icon-ok" style="display: none;float: left;margin-right: 5px;"></i>Freeze 2 Columns</a></li>
                     <li><a href="javascript://;" onclick="freezeColumns(3);"><i id="freeze_col_3" class="icon-ok" style="display: none;float: left;margin-right: 5px;"></i>Freeze 3 Columns</a></li>
                     <li><a href="javascript://;" onclick="freezeColumns(4);"><i id="freeze_col_4" class="icon-ok" style="display: none;float: left;margin-right: 5px;"></i>Freeze 4 Columns</a></li>
-
-
-
-
-                </ul>
+				</ul>
             </li>
         </ul>
     </div>

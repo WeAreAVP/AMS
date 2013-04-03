@@ -20,16 +20,7 @@
 
 </div>
 <script type="text/javascript">
-			other_filter = '<?php echo $other_filters; ?>';
-			standalone = '<?php echo $standalone; ?>';
-			$(document).ready(function() {
-				if (other_filter == '0' && standalone == '1') {
-					console.log('now fine');
-				}
-				else {
-					console.log('isise');
-				}
-			});
+			
 			$('#standalone_model').on('hidden', function() {
 				$('#standalone_body').html('Are you sure you want to generate report?');
 				$('#standalone_footer').show();

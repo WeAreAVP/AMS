@@ -92,8 +92,7 @@ class Instantiations extends MY_Controller
 		$this->session->set_userdata('page_link', 'instantiations/index/' . $offset);
 		$data['get_column_name'] = $this->make_array();
 
-		$data['standalone'] = 0;
-		$data['other_filters'] = 0;
+		
 		$data['date_types'] = $this->instantiation->get_date_types();
 		$data['is_refine'] = $this->refine_modal->get_active_refine();
 

@@ -17,7 +17,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			if ($this->role_id == 1 || $this->role_id == 2 || $this->role_id == 5)
 			{
 				?>
-				<a id="standalone_btn" class="btn disabled" href="javascript://" onclick="openPopup();" style="margin-left: 10px;height: 14px;">
+				<a id="standalone_btn" class="btn" href="javascript://" onclick="openPopup();" style="margin-left: 10px;height: 14px;">
 					Standalone Report
 				</a>
 

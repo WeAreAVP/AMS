@@ -43,6 +43,7 @@ class Report_Model extends CI_Model
 		$this->_nomination_status_table = 'nomination_status';
 		$this->_messages_table = 'messages';
 		$this->_tracking_info_table = 'tracking_info';
+		$this->_table = 'reports';
 	}
 
 	/*
@@ -115,6 +116,18 @@ class Report_Model extends CI_Model
 		$this->db->group_by("$this->_stations_table.id");
 		$result = $this->db->get($this->_stations_table);
 		return $result->result();
+	}
+
+	function get_report_by_id($report_id)
+	{
+		$this->db->where('id', $report_id);
+		$result = $this->db->get($this->_table)->row();
+	}
+
+	function insert_report($data)
+	{
+		$this->db->insert($this->_table, $data);
+		return $this->db->insert_id();
 	}
 
 }

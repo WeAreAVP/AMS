@@ -39,23 +39,17 @@ if ( ! $isAjax)
 		</div>
 	</div>
 </div>
-<script>
+<script type="text/javascript">
 	$(document).ready(function() {
 		$('.container').width($(window).width() - 50);
 		$('.navbar-inner').width($(window).width() - 50);
 		$('#top_setting_nav').width($(window).width() - 50);
 		$('body').css('overflow', 'hidden');
-
-
-
 		if ($('#listing_table').length > 0)
 		{
-
-			oTable =
-			$('#listing_table').dataTable(
+			oTable = $('#listing_table').dataTable(
 			{
 				"sDom": 'frtiS',
-				
 //				"aaSorting": [[index_column, order_column]],
 				'bPaginate': false,
 				'bInfo': false,
@@ -70,8 +64,6 @@ if ( ! $isAjax)
 				"bServerSide": true,
 				"sAjaxSource": site_url + 'reports/abc',
 			});
-
-
 			$.extend($.fn.dataTableExt.oStdClasses, {
 				"sWrapper": "dataTables_wrapper form-inline"
 			});

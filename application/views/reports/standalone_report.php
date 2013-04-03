@@ -45,8 +45,41 @@ if ( ! $isAjax)
 		$('.navbar-inner').width($(window).width() - 50);
 		$('#top_setting_nav').width($(window).width() - 50);
 		$('body').css('overflow', 'hidden');
-		
-		
-	}
-	);
+
+
+
+		if ($('#listing_table').length > 0)
+		{
+
+			oTable =
+			$('#listing_table').dataTable(
+			{
+				"sDom": 'frtiS',
+				
+//				"aaSorting": [[index_column, order_column]],
+				'bPaginate': false,
+				'bInfo': false,
+				'bFilter': false,
+				"bSort": true,
+				"sScrollY": $(window).height() - 195,
+				"sScrollX": "200%",
+				"bDeferRender": true,
+				"bDestroy": is_destroy,
+				"bRetrieve": true,
+				"bAutoWidth": true,
+				"bProcessing": true,
+				"bServerSide": true,
+				"sAjaxSource": site_url + 'reports/abc',
+			});
+
+
+			$.extend($.fn.dataTableExt.oStdClasses, {
+				"sWrapper": "dataTables_wrapper form-inline"
+			});
+			if (current_table_type != 'assets') {
+				$('#listing_table_processing').css('top', '125px');
+			}
+		}
+
+	});
 </script>

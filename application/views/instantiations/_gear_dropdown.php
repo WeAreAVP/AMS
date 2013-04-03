@@ -17,7 +17,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			if ($this->role_id == 1 || $this->role_id == 2 || $this->role_id == 5)
 			{
 				$class = 'disabled';
-				echo $other_filters.'   '.$standalone;exit;
+				
 				if ($other_filters == 0 && $standalone == 1)
 				{
 					$class = '';

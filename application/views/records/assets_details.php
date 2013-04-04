@@ -65,22 +65,26 @@
 								<embed src="<?php echo $media['url']; ?>" width="700px" height="320px">
 							</object> 
 						</video>-->
-			<div class="player" data-engine="flash">
-				<video preload="none" autoplay="false">
-					<!--<source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/<?php echo $media['format']; ?>">-->
-					<source src="<?php echo $media['url']; ?>" type="video/<?php echo $media['format']; ?>">
+			<!--			<div class="player" data-engine="flash">
+							<video preload="none" autoplay="false">
+								<source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/<?php echo $media['format']; ?>">
+								<source src="<?php echo $media['url']; ?>" type="video/<?php echo $media['format']; ?>">
+							</video>
+						</div>
+						<script>
+							// run script after document is ready
+							$(function() {
+			
+								// install flowplayer to an element with CSS class "player"
+								$(".player").flowplayer({swf: "/js/flowplayer/flowplayer.swf"});
+			
+							});
+						</script>-->
+			<div class="flowplayer">
+				<video>
+					<source type="video/mp4" src="<?php echo $media['url']; ?>"/>
 				</video>
 			</div>
-			<script>
-				// run script after document is ready
-				$(function() {
-
-					// install flowplayer to an element with CSS class "player"
-					$(".player").flowplayer({swf: "/js/flowplayer/flowplayer.swf"});
-
-				});
-			</script>
-
 
 		<?php } ?>
 		<div style="float: left;">

@@ -57,21 +57,25 @@
 		<?php
 		if ($media)
 		{
-			
 			?>
-		<video src="<?php echo $media['url']; ?>"></video>
-<!--		<div id="mediaplayer" style="width: 700px;height: 320px;padding-left: 10px;">JW Player goes here</div>
-			<script type="text/javascript">
-
-				jwplayer("mediaplayer").setup({
-					flashplayer: "/js/jwplayer/player.swf",
-//					file: '<?php echo $media['url']; ?>',
-					file: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4	',
-//					autostart: false,
-					startparam:'starttime'
-				});
-
-			</script>-->
+			
+			<video width="320" height="240" controls>
+				<source src="<?php echo $media['url']; ?>" type="video/mp4">
+				
+				Your browser does not support the video tag.
+			</video>
+			<!--		<div id="mediaplayer" style="width: 700px;height: 320px;padding-left: 10px;">JW Player goes here</div>
+						<script type="text/javascript">
+			
+							jwplayer("mediaplayer").setup({
+								flashplayer: "/js/jwplayer/player.swf",
+			//					file: '<?php echo $media['url']; ?>',
+								file: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4	',
+			//					autostart: false,
+								startparam:'starttime'
+							});
+			
+						</script>-->
 		<?php } ?>
 		<div style="float: left;">
 			<table  cellPadding="8" class="record-detail-table">

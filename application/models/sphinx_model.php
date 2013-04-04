@@ -166,7 +166,7 @@ class Sphinx_Model extends CI_Model
 		}
 	}
 
-	function standalone_report( $offset = 0, $limit = 100)
+	function standalone_report($offset = 0, $limit = 100)
 	{
 		$instantiations = array();
 		$total_record = 0;
@@ -178,6 +178,12 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->set_connect_timeout(120);
 		if ($limit)
 			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
+		if ($this->session->userdata['column_order'] == 'asc')
+			$sort_mode = SPH_SORT_ATTR_ASC;
+		else
+			$sort_mode = SPH_SORT_ATTR_DESC;
+		$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['column']);
+
 		$query = $this->where_filter();
 		$res = $this->sphinxsearch->query($query, 'instantiations_list');
 		$execution_time = $res['time'];
@@ -202,7 +208,7 @@ class Sphinx_Model extends CI_Model
 	function where_filter()
 	{
 		$where = ' @digitized "1"';
-		
+
 		if (isset($this->session->userdata['stand_date_filter']) && $this->session->userdata['stand_date_filter'] != '')
 		{
 			$keyword_json = $this->session->userdata['stand_date_filter'];

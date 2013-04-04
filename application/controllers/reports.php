@@ -83,6 +83,9 @@ class Reports extends MY_Controller
 
 	public function standalone()
 	{
+		$column = array('organization', 'instantiation_identifier', 'status', 'asset_title', 'generation', 'format_name',
+			'dates', 'file_size', 'media_type', 'projected_duration', 'color', 'language',
+		);
 		$report_id = $this->uri->segment(3);
 		$offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 		$this->session->set_userdata('stand_offset', $offset);
@@ -92,6 +95,10 @@ class Reports extends MY_Controller
 			if (count($report_info) > 0)
 			{
 				$data['isAjax'] = FALSE;
+
+				$this->session->set_userdata('standalone_jscolumn', $this->input->get('iSortCol_0'));
+				$this->session->set_userdata('standalone_column_order', $this->input->get('sSortDir_0'));
+				$this->session->set_userdata('column', $column[$this->input->get('iSortCol_0')]);
 				$this->session->set_userdata('stand_date_filter', json_decode($report_info->filters));
 				$records = $this->sphinx->standalone_report($offset);
 				$data['total'] = $records['total_count'];

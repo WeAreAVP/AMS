@@ -41,6 +41,8 @@ if ( ! $isAjax)
 	</div>
 </div>
 <script type="text/javascript">
+	var index_column = '<?php echo isset($this->session->userdata['standalone_jscolumn']) ? $this->session->userdata['standalone_jscolumn'] : 0; ?>';
+	var order_column = '<?php echo isset($this->session->userdata['standalone_column_order']) ? $this->session->userdata['standalone_column_order'] : 'asc'; ?>';
 	$(document).ready(function() {
 		$('.container').width($(window).width() - 50);
 		$('.navbar-inner').width($(window).width() - 50);
@@ -68,7 +70,7 @@ if ( ! $isAjax)
 		});
 		$.ajax({
 			type: 'POST',
-			url: site_url+'reports/standalone/<?php echo $this->uri->segment(3); ?>/'+page,
+			url: site_url + 'reports/standalone/<?php echo $this->uri->segment(3); ?>/' + page,
 			success: function(result)
 			{
 				$('.row-fluid').html(result);
@@ -83,11 +85,11 @@ if ( ! $isAjax)
 			oTable = $('#listing_table').dataTable(
 			{
 				"sDom": 'frtiS',
-//				"aaSorting": [[index_column, order_column]],
+				"aaSorting": [[index_column, order_column]],
 				'bPaginate': false,
 				'bInfo': false,
 				'bFilter': false,
-				"bSort": false,
+				"bSort": true,
 				"sScrollY": $(window).height() - 157,
 				"sScrollX": "200%",
 				"bDeferRender": true,

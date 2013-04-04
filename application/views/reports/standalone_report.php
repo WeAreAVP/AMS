@@ -87,7 +87,7 @@ if ( ! $isAjax)
 				'bPaginate': false,
 				'bInfo': false,
 				'bFilter': false,
-				"bSort": true,
+				"bSort": false,
 				"sScrollY": $(window).height() - 157,
 				"sScrollX": "200%",
 				"bDeferRender": true,

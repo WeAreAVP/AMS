@@ -179,12 +179,15 @@ class Reports extends MY_Controller
 			'digital_format', 'generation', 'digitized', 'migration_failed');
 		foreach ($session_keys as $value)
 		{
-			if ($value == 'digitized' && $this->session->userdata[$value] == 1)
-				$standalone = 1;
-			else if ($value != 'date_range')
+			if (isset($this->session->userdata[$value]))
 			{
-				if (isset($this->session->userdata[$value]) && $this->session->userdata[$value] != '')
-					$other = 1;
+				if ($value == 'digitized' && $this->session->userdata[$value] == 1)
+					$standalone = 1;
+				else if ($value != 'date_range')
+				{
+					if (isset($this->session->userdata[$value]) && $this->session->userdata[$value] != '')
+						$other = 1;
+				}
 			}
 		}
 		if ($standalone == 1 && $other == 0)

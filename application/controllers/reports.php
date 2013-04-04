@@ -98,7 +98,7 @@ class Reports extends MY_Controller
 
 				$this->session->set_userdata('standalone_jscolumn', $this->input->get('iSortCol_0'));
 				$this->session->set_userdata('standalone_column_order', $this->input->get('sSortDir_0'));
-				$this->session->set_userdata('column', $column[$this->input->get('iSortCol_0')]);
+				$this->session->set_userdata('index_column', $column[$this->input->get('iSortCol_0')]);
 				$this->session->set_userdata('stand_date_filter', json_decode($report_info->filters));
 				$records = $this->sphinx->standalone_report($offset);
 				$data['total'] = $records['total_count'];

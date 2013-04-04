@@ -83,25 +83,17 @@ class Reports extends MY_Controller
 
 	public function standalone()
 	{
-		
-
 		$report_id = $this->uri->segment(3);
 		$offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+		$this->session->set_userdata('stand_offset', $offset);
 		if ( ! empty($report_id))
 		{
-
 			$report_info = $this->report_model->get_report_by_id(base64_decode($report_id));
-			$this->session->set_userdata('date_filter', json_decode($report_info->filters));
-			$this->session->set_userdata('digitized_filter', '1');
 			if (count($report_info) > 0)
 			{
-
-				$is_hidden = array();
-
-				$params = array('search' => '');
+				$params = array('date_filter' => json_decode($report_info->filters), 'digitized' => 1);
 				$data['isAjax'] = FALSE;
-				$data['hidden_fields'] = $is_hidden;
-				$records = $this->sphinx->instantiations_list($params, $offset);
+				$records = $this->sphinx->standalone_report($params, $offset);
 				$data['total'] = $records['total_count'];
 				$config['total_rows'] = $data['total'];
 				$config['per_page'] = 100;
@@ -119,6 +111,7 @@ class Reports extends MY_Controller
 					$data['end'] = intval($offset) + intval($data['count']);
 				}
 
+				$config['uri_segment'] = 4;
 				$config['prev_link'] = '<i class="icon-chevron-left"></i>';
 				$config['next_link'] = '<i class="icon-chevron-right"></i>';
 				$config['use_page_numbers'] = FALSE;
@@ -175,8 +168,8 @@ class Reports extends MY_Controller
 //		$this->session->set_userdata('column_order', $this->input->get('sSortDir_0'));
 
 
-		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
-		$records = $this->sphinx->instantiations_list($params, $offset);
+		$offset = isset($this->session->userdata['stand_offset']) ? $this->session->userdata['stand_offset'] : 0;
+		$records = $this->sphinx->standalone_report($params, $offset);
 		$data['total'] = $records['total_count'];
 		$records = $records['records'];
 		$data['count'] = count($records);

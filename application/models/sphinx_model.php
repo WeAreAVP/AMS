@@ -166,6 +166,73 @@ class Sphinx_Model extends CI_Model
 		}
 	}
 
+	function standalone_report($params, $offset = 0, $limit = 100)
+	{
+		$instantiations = array();
+		$total_record = 0;
+		$this->sphinxsearch->reset_filters();
+		$this->sphinxsearch->reset_group_by();
+		$mode = SPH_MATCH_EXTENDED;
+		$this->sphinxsearch->set_array_result(true);
+		$this->sphinxsearch->set_match_mode($mode);
+		$this->sphinxsearch->set_connect_timeout(120);
+		if ($limit)
+			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
+		$query = $this->where_filter($params);
+		$res = $this->sphinxsearch->query($query, 'instantiations_list');
+		$execution_time = $res['time'];
+		if ($res)
+		{
+			$total_record = $res['total_found'];
+			if ($total_record > 0)
+			{
+				if (isset($res['matches']))
+				{
+					foreach ($res['matches'] as $record)
+					{
+						$instantiations[] = (object) array_merge(array('id' => $record['id']), $record['attrs']);
+					}
+				}
+			}
+		}
+
+		return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
+	}
+
+	function where_filter($params)
+	{
+		$where = ' @digitized "1"';
+
+		if (isset($params['date_filter']) && $params['date_filter'] != '')
+		{
+			$keyword_json = $params['date_filter'];
+			foreach ($keyword_json as $index => $key_columns)
+			{
+				foreach ($key_columns as $keys => $keywords)
+				{
+					$date_range = explode("to", $keywords->value);
+					if (isset($date_range[0]) && trim($date_range[0]) != '')
+					{
+						$start_date = strtotime(trim($date_range[0]));
+					}
+					if (isset($date_range[1]) && trim($date_range[1]) != '')
+					{
+						$end_date = strtotime(trim($date_range[1]));
+					}
+					if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
+					{
+						$this->sphinxsearch->set_filter_range("dates", $start_date, $end_date);
+						if ($index != 'All')
+						{
+							$where .=" @date_type \"$index\"";
+						}
+					}
+				}
+			}
+		}
+		return $where;
+	}
+
 	function instantiations_list($params, $offset = 0, $limit = 100)
 	{
 //        /usr/bin/indexer --all --rotate

@@ -57,7 +57,7 @@
 		<a id="mb" style="display:block;width:648px;height:30px;" href="/media/data/fake_empire.mp3"></a>
 		<script>
 			$(function() {
-				$f("mb", "http://releases.flowplayer.org/swf/flowplayer-3.2.16.swf", {
+				$.flowplayer("mb", "http://releases.flowplayer.org/swf/flowplayer-3.2.16.swf", {
 					// fullscreen button not needed here
 					plugins: {
 						controls: {

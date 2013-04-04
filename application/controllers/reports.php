@@ -91,9 +91,9 @@ class Reports extends MY_Controller
 			$report_info = $this->report_model->get_report_by_id(base64_decode($report_id));
 			if (count($report_info) > 0)
 			{
-				$params = array('date_filter' => json_decode($report_info->filters), 'digitized' => 1);
 				$data['isAjax'] = FALSE;
-				$records = $this->sphinx->standalone_report($params, $offset);
+				$this->session->set_userdata('stand_date_filter', json_decode($report_info->filters));
+				$records = $this->sphinx->standalone_report($offset);
 				$data['total'] = $records['total_count'];
 				$config['total_rows'] = $data['total'];
 				$config['per_page'] = 100;
@@ -169,7 +169,7 @@ class Reports extends MY_Controller
 
 
 		$offset = isset($this->session->userdata['stand_offset']) ? $this->session->userdata['stand_offset'] : 0;
-		$records = $this->sphinx->standalone_report($params, $offset);
+		$records = $this->sphinx->standalone_report($offset);
 		$data['total'] = $records['total_count'];
 		$records = $records['records'];
 		$data['count'] = count($records);

@@ -83,7 +83,7 @@ class Reports extends MY_Controller
 
 	public function standalone()
 	{
-		
+
 		$report_id = $this->uri->segment(3);
 		$offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 		$this->session->set_userdata('stand_offset', $offset);
@@ -146,22 +146,6 @@ class Reports extends MY_Controller
 
 	public function standalone_datatable()
 	{
-		$params = array('search' => '');
-		$column = array(
-			'Organization' => 'organization',
-			'Instantiation_ID' => 'instantiation_identifier',
-			'Nomination' => 'status',
-			'Instantiation\'s_Asset_Title' => 'asset_title',
-			'Media_Type' => 'media_type',
-			'Generation' => 'generation',
-			'Format' => 'format_name',
-			'Duration' => 'projected_duration',
-			'Date' => 'dates',
-			'File_size' => 'file_size',
-			'Colors' => 'color',
-			'Language' => 'language',
-		);
-
 		$columns = array('organization', 'instantiation_identifier', 'status', 'asset_title', 'generation', 'format_name',
 			'dates', 'file_size', 'media_type', 'projected_duration', 'color', 'language',
 		);

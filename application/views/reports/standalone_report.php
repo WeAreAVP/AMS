@@ -49,7 +49,7 @@ if ( ! $isAjax)
 		updateStandaloneTable();
 
 	});
-	function standalone_paginate() {
+	function standalone_paginate(page) {
 		if (typeof(page) == undefined)
 		{
 			page = 0;

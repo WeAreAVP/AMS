@@ -85,6 +85,9 @@ if ( ! $isAjax)
 			oTable = $('#listing_table').dataTable(
 			{
 				"sDom": 'frtiS',
+				"aoColumns": [
+					null,null,null,null,null,null,null,null,null,null,null,null
+				],
 				"aaSorting": [[index_column, order_column]],
 				'bPaginate': false,
 				'bInfo': false,

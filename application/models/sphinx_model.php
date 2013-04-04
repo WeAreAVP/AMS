@@ -184,9 +184,10 @@ class Sphinx_Model extends CI_Model
 				$sort_mode = SPH_SORT_ATTR_ASC;
 			else
 				$sort_mode = SPH_SORT_ATTR_DESC;
-		}
-		if (isset($this->session->userdata['index_column']))
 			$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['index_column']);
+		}
+
+
 
 		$query = $this->where_filter();
 		$res = $this->sphinxsearch->query($query, 'instantiations_list');

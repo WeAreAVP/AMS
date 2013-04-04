@@ -118,7 +118,7 @@ class Reports extends MY_Controller
 				$config['first_link'] = FALSE;
 				$config['last_link'] = FALSE;
 				$config['display_pages'] = FALSE;
-				$config['js_method'] = 'facet_search';
+				$config['js_method'] = 'standalone_paginate';
 				$config['postVar'] = 'page';
 				$this->ajax_pagination->initialize($config);
 

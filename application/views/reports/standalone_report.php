@@ -21,7 +21,7 @@ if ( ! $isAjax)
 						<th><span style="float:left;min-width:200px;max-width:200px;">Instantiation ID</span></th>
 						<th ><span style="float:left;min-width:100px;max-width:100px;">Nomination</span></th>
 						<th><span style="float:left;min-width:300px;max-width:300px;">Instantiation's Asset Title</span></th>
-						
+
 						<th ><span style="float:left;min-width:100px;max-width:100px;">Generation</span></th>
 						<th ><span style="float:left;min-width:100px;max-width:100px;">Format</span></th>
 						<th ><span style="float:left;min-width:150px;max-width:150px;">Date</span></th>
@@ -46,6 +46,38 @@ if ( ! $isAjax)
 		$('.navbar-inner').width($(window).width() - 50);
 		$('#top_setting_nav').width($(window).width() - 50);
 		$('body').css('overflow', 'hidden');
+		updateStandaloneTable();
+
+	});
+	function standalone_paginate() {
+		if (typeof(page) == undefined)
+		{
+			page = 0;
+		}
+		$.blockUI({
+			css: {
+				border: 'none',
+				padding: '15px',
+				backgroundColor: '#000',
+				'-webkit-border-radius': '10px',
+				'-moz-border-radius': '10px',
+				opacity: .5,
+				color: '#fff',
+				zIndex: 999999
+			}
+		});
+		$.ajax({
+			type: 'POST',
+			url: '<?php echo $this->uri->string() ?>/' + page,
+			success: function(result)
+			{
+				$('.row-fluid').html(result);
+				updateStandaloneTable();
+				$.unblockUI();
+			}
+		});
+	}
+	function updateStandaloneTable() {
 		if ($('#listing_table').length > 0)
 		{
 			oTable = $('#listing_table').dataTable(
@@ -70,6 +102,5 @@ if ( ! $isAjax)
 			});
 			$('#listing_table_processing').css('top', '80px');
 		}
-
-	});
+	}
 </script>

@@ -57,6 +57,7 @@
 		<?php
 		if ($media)
 		{
+			echo $media['url'];exit;
 			?>
 			<div id="mediaplayer">JW Player goes here</div>
 			<script type="text/javascript">

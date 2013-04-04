@@ -88,7 +88,7 @@ class Reports extends MY_Controller
 		$this->session->set_userdata('stand_offset', $offset);
 		if ( ! empty($report_id))
 		{
-			$report_info = $this->report_model->get_report_by_id($report_id);
+			$report_info = $this->report_model->get_report_by_id(base64_decode($report_id));
 			if (count($report_info) > 0)
 			{
 				$data['isAjax'] = FALSE;

@@ -62,7 +62,7 @@
 			<video width="700" height="320" controls>
 				<source src="<?php echo $media['url']; ?>" type="video/<?php echo $media['format']; ?>">
 				<object data="movie.mp4" width="320" height="240">
-					<embed src="<?php echo $media['url']; ?>" width="700" height="320">
+					<embed src="<?php echo $media['url']; ?>" width="700px" height="320px">
 				</object> 
 			</video>
 

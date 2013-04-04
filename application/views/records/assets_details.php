@@ -75,7 +75,7 @@
 				$(function() {
 
 					// install flowplayer to an element with CSS class "player"
-					$(".player").flowplayer({swf: "js/flowplayer/flowplayer.swf"});
+					$(".player").flowplayer({swf: "/js/flowplayer/flowplayer.swf"});
 
 				});
 			</script>

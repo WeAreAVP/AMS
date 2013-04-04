@@ -54,56 +54,66 @@
 
 	<?php $this->load->view('partials/_list'); ?>
     <div class="span9" style="margin-left: 250px;">
-		<a id="mb" style="display:block;width:648px;height:30px;" href="/media/data/fake_empire.mp3"></a>
+        <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+
+        <div id="jp_container_1" class="jp-audio">
+            <div class="jp-type-single">
+                <div class="jp-gui jp-interface">
+                    <ul class="jp-controls">
+
+                        <!-- comment out any of the following <li>s to remove these buttons -->
+
+                        <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                        <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+                        <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+                        <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+                        <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+                        <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+                    </ul>
+
+                    <!-- you can comment out any of the following <div>s too -->
+
+                    <div class="jp-progress">
+                        <div class="jp-seek-bar">
+                            <div class="jp-play-bar"></div>
+                        </div>
+                    </div>
+                    <div class="jp-volume-bar">
+                        <div class="jp-volume-bar-value"></div>
+                    </div>
+                    <div class="jp-current-time"></div>
+                    <div class="jp-duration"></div>                   
+                </div>
+                <div class="jp-title">
+                    <ul>
+                        <li>Cro Magnon Man</li>
+                    </ul>
+                </div>
+                <div class="jp-no-solution">
+                    <span>Update Required</span>
+                    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                </div>
+            </div>
+        </div>
 		<script>
-			$(function() {
-				flowplayer("mb", "http://releases.flowplayer.org/swf/flowplayer-3.2.16.swf", {
-					// fullscreen button not needed here
-					plugins: {
-						controls: {
-							fullscreen: false,
-							height: 30,
-							autoHide: false
-						}
+			$(document).ready(function() {
+
+				$("#jquery_jplayer_1").jPlayer({
+					ready: function(event) {
+						$(this).jPlayer("setMedia", {
+							mp3: "http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
+							oga: "http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg"
+						});
 					},
-					clip: {
-						autoPlay: false,
-						// optional: when playback starts close the first audio playback
-						onBeforeBegin: function() {
-							$f("player").close();
-						}
-
-					}
-
+					swfPath: "http://www.jplayer.org/2.1.0/js",
+					supplied: "mp3, oga"
 				});
-			});
-		</script>
+			});</script>
 		<?php
 		if ($media)
 		{
 			?>
 
-			<!--			<video width="700" height="320" controls>
-							<source src="<?php echo $media['url']; ?>" type="video/<?php echo $media['format']; ?>">
-							<object data="movie.mp4" width="320" height="240">
-								<embed src="<?php echo $media['url']; ?>" width="700px" height="320px">
-							</object> 
-						</video>-->
-			<!--			<div class="player" data-engine="flash">
-							<video preload="none" autoplay="false">
-								<source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/<?php echo $media['format']; ?>">
-								<source src="<?php echo $media['url']; ?>" type="video/<?php echo $media['format']; ?>">
-							</video>
-						</div>
-						<script>
-							// run script after document is ready
-							$(function() {
-			
-								// install flowplayer to an element with CSS class "player"
-								$(".player").flowplayer({swf: "/js/flowplayer/flowplayer.swf"});
-			
-							});
-						</script>-->
 			<div class="flowplayer">
 				<video>
 					<source type="video/mp4" src="<?php echo $media['url']; ?>"/>

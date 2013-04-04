@@ -59,7 +59,8 @@
 		{
 			
 			?>
-		<div id="mediaplayer" style="width: 700px;height: 320px;padding-left: 10px;">JW Player goes here</div>
+		<video src="<?php echo $media['url']; ?>"></video>
+<!--		<div id="mediaplayer" style="width: 700px;height: 320px;padding-left: 10px;">JW Player goes here</div>
 			<script type="text/javascript">
 
 				jwplayer("mediaplayer").setup({
@@ -70,7 +71,7 @@
 					startparam:'starttime'
 				});
 
-			</script>
+			</script>-->
 		<?php } ?>
 		<div style="float: left;">
 			<table  cellPadding="8" class="record-detail-table">

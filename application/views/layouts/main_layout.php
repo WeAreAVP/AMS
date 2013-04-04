@@ -41,6 +41,7 @@
 
 		echo link_tag("css/bootstrap/bootstrap.css");
 		echo link_tag("css/style.css");
+		echo link_tag("css/jplayer.blue.monday.css");
 		echo link_tag("js/flowplayer/skin/minimalist.css");
 		?> 
     </head>

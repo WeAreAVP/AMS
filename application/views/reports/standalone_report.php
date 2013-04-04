@@ -68,7 +68,7 @@ if ( ! $isAjax)
 		});
 		$.ajax({
 			type: 'POST',
-			url: site_url+'/<?php echo $this->uri->uri_string(); ?>/' + page,
+			url: site_url+'reports/standalone/<?php echo $this->uri->segment(3); ?>/'+page,
 			success: function(result)
 			{
 				$('.row-fluid').html(result);

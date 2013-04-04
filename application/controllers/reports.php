@@ -96,9 +96,7 @@ class Reports extends MY_Controller
 			{
 				$data['isAjax'] = FALSE;
 
-				$this->session->set_userdata('standalone_jscolumn', $this->input->get('iSortCol_0'));
-				$this->session->set_userdata('standalone_column_order', $this->input->get('sSortDir_0'));
-				$this->session->set_userdata('index_column', $column[$this->input->get('iSortCol_0')]);
+
 				$this->session->set_userdata('stand_date_filter', json_decode($report_info->filters));
 				$records = $this->sphinx->standalone_report($offset);
 				$data['total'] = $records['total_count'];
@@ -167,12 +165,9 @@ class Reports extends MY_Controller
 		);
 
 
-//		$this->session->unset_userdata('column');
-//		$this->session->unset_userdata('jscolumn');
-//		$this->session->unset_userdata('column_order');
-//		$this->session->set_userdata('jscolumn', $this->input->get('iSortCol_0'));
-//		$this->session->set_userdata('column', $column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
-//		$this->session->set_userdata('column_order', $this->input->get('sSortDir_0'));
+		$this->session->set_userdata('standalone_jscolumn', $this->input->get('iSortCol_0'));
+		$this->session->set_userdata('standalone_column_order', $this->input->get('sSortDir_0'));
+		$this->session->set_userdata('index_column', $column[$this->input->get('iSortCol_0')]);
 
 
 		$offset = isset($this->session->userdata['stand_offset']) ? $this->session->userdata['stand_offset'] : 0;

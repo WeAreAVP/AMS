@@ -1328,7 +1328,7 @@ class Assets_Model extends CI_Model
 		$station = $this->stations;
 		$assets = $this->_assets_table;
 		$instantiations = 'instantiations';
-		
+
 		$result = $this->db->get($assets)->result();
 	}
 

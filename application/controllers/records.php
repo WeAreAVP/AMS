@@ -170,7 +170,8 @@ class Records extends MY_Controller
 			$search_results_data = $this->sphinx->assets_listing(array('index' => 'assets_list'), 0, 1000);
 			$data['next_result_id'] = FALSE;
 			$data['prev_result_id'] = FALSE;
-			debug($data['asset_guid']);
+			$proxy_guid = str_replace('/', '-', $data['asset_guid']);
+			echo $proxy_guid;exit;
 			if (isset($search_results_data['records']) && ! is_empty($search_results_data['records']))
 			{
 				$search_results = $search_results_data['records'];

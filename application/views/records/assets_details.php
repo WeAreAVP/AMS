@@ -66,7 +66,7 @@
 							</object> 
 						</video>-->
 			<div class="player" data-engine="flash">
-				<video preload="none">
+				<video preload="none" autoplay="false">
 					<!--<source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/<?php echo $media['format']; ?>">-->
 					<source src="<?php echo $media['url']; ?>" type="video/<?php echo $media['format']; ?>">
 				</video>

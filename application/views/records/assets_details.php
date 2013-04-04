@@ -59,7 +59,7 @@
 		{
 			
 			?>
-			<div id="mediaplayer">JW Player goes here</div>
+		<div id="mediaplayer" style="width: 700px;height: 320px;padding-left: 10px;">JW Player goes here</div>
 			<script type="text/javascript">
 
 				jwplayer("mediaplayer").setup({

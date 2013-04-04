@@ -57,7 +57,7 @@
 		<?php
 		if ($media)
 		{
-			echo $media['url'];exit;
+			
 			?>
 			<div id="mediaplayer">JW Player goes here</div>
 			<script type="text/javascript">
@@ -65,7 +65,7 @@
 				jwplayer("mediaplayer").setup({
 					flashplayer: "/js/jwplayer/player.swf",
 					file: '<?php echo $media['url']; ?>',
-					autostart: true
+					autostart: false
 				});
 
 			</script>

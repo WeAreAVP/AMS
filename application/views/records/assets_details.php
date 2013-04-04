@@ -64,7 +64,8 @@
 
 				jwplayer("mediaplayer").setup({
 					flashplayer: "/js/jwplayer/player.swf",
-					file: '<?php echo $media['url']; ?>',
+//					file: '<?php echo $media['url']; ?>',
+					file: '/uploads/cpb-aacip-55-76f1wc38.h264.mp4',
 //					autostart: false,
 					startparam:'starttime'
 				});

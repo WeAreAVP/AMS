@@ -65,8 +65,8 @@
 								<embed src="<?php echo $media['url']; ?>" width="700px" height="320px">
 							</object> 
 						</video>-->
-			<div class="flowplayer" data-engine="flash">
-				<video>
+			<div class="player" data-engine="flash">
+				<video preload="none">
 					<source src="<?php echo $media['url']; ?>" type="video/<?php echo $media['format']; ?>">
 				</video>
 			</div>

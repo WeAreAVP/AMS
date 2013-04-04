@@ -19,8 +19,9 @@ if ( ! $isAjax)
 					<tr style="background: rgb(235, 235, 235);">
 						<th><span style="float:left;min-width:200px;max-width:200px;">Organization</span></th>
 						<th><span style="float:left;min-width:200px;max-width:200px;">Instantiation ID</span></th>
-						<th><span style="float:left;min-width:300px;max-width:300px;">Instantiation's Asset Title</span></th>
 						<th ><span style="float:left;min-width:100px;max-width:100px;">Nomination</span></th>
+						<th><span style="float:left;min-width:300px;max-width:300px;">Instantiation's Asset Title</span></th>
+						
 						<th ><span style="float:left;min-width:100px;max-width:100px;">Generation</span></th>
 						<th ><span style="float:left;min-width:100px;max-width:100px;">Format</span></th>
 						<th ><span style="float:left;min-width:150px;max-width:150px;">Date</span></th>
@@ -62,7 +63,7 @@ if ( ! $isAjax)
 				"bAutoWidth": true,
 				"bProcessing": true,
 				"bServerSide": true,
-				"sAjaxSource": site_url + 'reports/abc',
+				"sAjaxSource": site_url + 'reports/standalone_datatable',
 			});
 			$.extend($.fn.dataTableExt.oStdClasses, {
 				"sWrapper": "dataTables_wrapper form-inline"

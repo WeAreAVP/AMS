@@ -37,6 +37,7 @@ class Reports extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('report_model');
+		$this->load->helper('datatable');
 		if ($this->is_station_user)
 		{
 			redirect('records/index');
@@ -144,6 +145,50 @@ class Reports extends MY_Controller
 		{
 			show_error('Not a valid report url.');
 		}
+	}
+
+	public function standalone_datatable()
+	{
+		$params = array('search' => '');
+		$column = array(
+			'Organization' => 'organization',
+			'Instantiation_ID' => 'instantiation_identifier',
+			'Nomination' => 'status',
+			'Instantiation\'s_Asset_Title' => 'asset_title',
+			'Media_Type' => 'media_type',
+			'Generation' => 'generation',
+			'Format' => 'format_name',
+			'Duration' => 'projected_duration',
+			'Date' => 'dates',
+			'File_size' => 'file_size',
+			'Colors' => 'color',
+			'Language' => 'language',
+		);
+
+
+//		$this->session->unset_userdata('column');
+//		$this->session->unset_userdata('jscolumn');
+//		$this->session->unset_userdata('column_order');
+//		$this->session->set_userdata('jscolumn', $this->input->get('iSortCol_0'));
+//		$this->session->set_userdata('column', $column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
+//		$this->session->set_userdata('column_order', $this->input->get('sSortDir_0'));
+
+
+		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
+		$records = $this->sphinx->instantiations_list($params, $offset);
+		$data['total'] = $records['total_count'];
+		$records = $records['records'];
+		$data['count'] = count($records);
+		$table_view = standalone_datatable_view($records);
+
+		$dataTable = array(
+			"sEcho" => intval($this->input->get('sEcho')),
+			"iTotalRecords" => intval($data['count']),
+			"iTotalDisplayRecords" => intval($data['count']),
+			'aaData' => $table_view
+		);
+		echo json_encode($dataTable);
+		exit_function();
 	}
 
 	public function generate_report()

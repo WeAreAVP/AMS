@@ -20,7 +20,7 @@ class Records extends MY_Controller
 		$this->load->model('assets_model');
 		$this->load->model('sphinx_model', 'sphinx');
 		$this->load->model('instantiations_model', 'instantiation');
-		
+
 		$this->load->library('pagination');
 		$this->load->library('Ajax_pagination');
 		$this->load->helper('datatable');
@@ -37,7 +37,7 @@ class Records extends MY_Controller
 	{
 		$offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$this->session->set_userdata('offset', $offset);
-		
+
 		if (isAjax())
 		{
 			$this->unset_facet_search();
@@ -170,6 +170,7 @@ class Records extends MY_Controller
 			$search_results_data = $this->sphinx->assets_listing(array('index' => 'assets_list'), 0, 1000);
 			$data['next_result_id'] = FALSE;
 			$data['prev_result_id'] = FALSE;
+			debug($data['asset_guid']);
 			if (isset($search_results_data['records']) && ! is_empty($search_results_data['records']))
 			{
 				$search_results = $search_results_data['records'];

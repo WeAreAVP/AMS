@@ -205,7 +205,7 @@ class Sphinx_Model extends CI_Model
 		
 		if (isset($this->session->userdata['stand_date_filter']) && $this->session->userdata['stand_date_filter'] != '')
 		{
-			$keyword_json = $params['date_filter'];
+			$keyword_json = $this->session->userdata['stand_date_filter'];
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				foreach ($key_columns as $keys => $keywords)

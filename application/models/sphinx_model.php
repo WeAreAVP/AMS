@@ -178,11 +178,15 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->set_connect_timeout(120);
 		if ($limit)
 			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
-		if ($this->session->userdata['standalone_column_order'] == 'asc')
-			$sort_mode = SPH_SORT_ATTR_ASC;
-		else
-			$sort_mode = SPH_SORT_ATTR_DESC;
-		$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['index_column']);
+		if (isset($this->session->userdata['standalone_column_order']))
+		{
+			if ($this->session->userdata['standalone_column_order'] == 'asc')
+				$sort_mode = SPH_SORT_ATTR_ASC;
+			else
+				$sort_mode = SPH_SORT_ATTR_DESC;
+		}
+		if (isset($this->session->userdata['index_column']))
+			$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['index_column']);
 
 		$query = $this->where_filter();
 		$res = $this->sphinxsearch->query($query, 'instantiations_list');

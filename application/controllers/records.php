@@ -171,7 +171,8 @@ class Records extends MY_Controller
 			$data['next_result_id'] = FALSE;
 			$data['prev_result_id'] = FALSE;
 			$proxy_guid = str_replace('/', '-', $data['asset_guid']->guid_identifier);
-			echo $proxy_guid;exit;
+			$proxy_response=file_get_contents("http://cpbproxy.crawfordmedia.com/xml.php?GUID=$proxy_guid");
+			echo $proxy_response;exit;
 			if (isset($search_results_data['records']) && ! is_empty($search_results_data['records']))
 			{
 				$search_results = $search_results_data['records'];

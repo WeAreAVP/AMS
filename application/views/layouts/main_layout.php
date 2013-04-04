@@ -25,7 +25,7 @@
 		echo link_js('ColReorder.js');
 		echo link_js('ColVis.js');
 		echo link_js('dataTables.scroller.js');
-		echo link_js('jwplayer/jwplayer.js');
+//		echo link_js('jwplayer/jwplayer.js');
 		echo link_js('html2canvas.js');
 
 		echo link_js('date.js');

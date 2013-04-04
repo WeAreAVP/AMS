@@ -65,7 +65,8 @@
 				jwplayer("mediaplayer").setup({
 					flashplayer: "/js/jwplayer/player.swf",
 					file: '<?php echo $media['url']; ?>',
-					autostart: false
+//					autostart: false,
+					startparam:'starttime'
 				});
 
 			</script>

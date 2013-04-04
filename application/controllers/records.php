@@ -170,12 +170,7 @@ class Records extends MY_Controller
 			$search_results_data = $this->sphinx->assets_listing(array('index' => 'assets_list'), 0, 1000);
 			$data['next_result_id'] = FALSE;
 			$data['prev_result_id'] = FALSE;
-			$proxy_guid = str_replace('/', '-', $data['asset_guid']->guid_identifier);
-			$proxy_response = file_get_contents("http://cpbproxy.crawfordmedia.com/xml.php?GUID=$proxy_guid");
-			$x = @simplexml_load_string($proxy_response);
-			$data = xmlObjToArr($x);
-			debug($data);
-			exit;
+			$data['media']=$this->proxy_files($data['asset_guid']->guid_identifier);
 			if (isset($search_results_data['records']) && ! is_empty($search_results_data['records']))
 			{
 				$search_results = $search_results_data['records'];
@@ -225,6 +220,31 @@ class Records extends MY_Controller
 		else
 		{
 			show_404();
+		}
+	}
+
+	function proxy_files($guid)
+	{
+		$proxy_guid = str_replace('/', '-', $guid);
+		$proxy_response = file_get_contents("http://cpbproxy.crawfordmedia.com/xml.php?GUID=$proxy_guid");
+		$x = @simplexml_load_string($proxy_response);
+		$data = xmlObjToArr($x);
+		$child = $data['children'];
+		if (isset($child['error'][0]))
+		{
+			return FALSE;
+		}
+		else
+		{
+			if (isset($child['mediaurl'][0]))
+			{
+				$media['url'] = $child['mediaurl'][0]['text'];
+			}
+			if (isset($child['format'][0]))
+			{
+				$media['format'] = $child['format'][0]['text'];
+			}
+			return $media;
 		}
 	}
 

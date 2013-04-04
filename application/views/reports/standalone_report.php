@@ -68,7 +68,7 @@ if ( ! $isAjax)
 		});
 		$.ajax({
 			type: 'POST',
-			url: '<?php echo $this->uri->uri_string(); ?>/' + page,
+			url: site_url+'/<?php echo $this->uri->uri_string(); ?>/' + page,
 			success: function(result)
 			{
 				$('.row-fluid').html(result);

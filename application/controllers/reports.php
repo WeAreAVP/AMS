@@ -132,7 +132,7 @@ class Reports extends MY_Controller
 			}
 			else
 			{
-				show_error('Not a valid report url.');
+				show_error('Not a valid report url..');
 			}
 		}
 		else

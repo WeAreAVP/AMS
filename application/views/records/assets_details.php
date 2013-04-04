@@ -59,12 +59,26 @@
 		{
 			?>
 
-			<video width="700" height="320" controls>
-				<source src="<?php echo $media['url']; ?>" type="video/<?php echo $media['format']; ?>">
-				<object data="movie.mp4" width="320" height="240">
-					<embed src="<?php echo $media['url']; ?>" width="700px" height="320px">
-				</object> 
-			</video>
+			<!--			<video width="700" height="320" controls>
+							<source src="<?php echo $media['url']; ?>" type="video/<?php echo $media['format']; ?>">
+							<object data="movie.mp4" width="320" height="240">
+								<embed src="<?php echo $media['url']; ?>" width="700px" height="320px">
+							</object> 
+						</video>-->
+			<div class="flowplayer" data-engine="flash">
+				<video>
+					<source src="<?php echo $media['url']; ?>" type="video/<?php echo $media['format']; ?>">
+				</video>
+			</div>
+			<script>
+				// run script after document is ready
+				$(function() {
+
+					// install flowplayer to an element with CSS class "player"
+					$(".player").flowplayer({swf: "js/flowplayer/flowplayer.swf"});
+
+				});
+			</script>
 
 
 		<?php } ?>

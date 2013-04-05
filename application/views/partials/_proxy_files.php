@@ -12,8 +12,8 @@ if ($media)
 		?>
 		<video controls="controls" width="640" height="360">
 			<source src="<?php echo $media['url']; ?>" type="video/mp4" />
-			<object data="<?php echo $media['url']; ?>" width="640" height="360">
-				<embed src="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="640" height="360">
+			<object data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="640" height="360">
+				<param name="src" value="<?php echo $media['url']; ?>">
 			</object> 
 
 

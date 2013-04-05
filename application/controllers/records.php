@@ -229,6 +229,7 @@ class Records extends MY_Controller
 		$proxy_response = file_get_contents("http://cpbproxy.crawfordmedia.com/xml.php?GUID=$proxy_guid");
 		$x = @simplexml_load_string($proxy_response);
 		$data = xmlObjToArr($x);
+		debug($data);
 		$child = $data['children'];
 		if (isset($data['name']) && $data['name']=='error')
 		{

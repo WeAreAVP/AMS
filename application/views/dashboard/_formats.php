@@ -165,7 +165,7 @@
 						rotation: 270,
 						color: '#000000',
 						align: 'center',
-						x: 5,
+						x: 4,
 						y: -15,
 						style: {
 							fontSize: '9px',

@@ -27,6 +27,7 @@
 		echo link_js('dataTables.scroller.js');
 //		echo link_js('flowplayer/flowplayer.min.js');
 //		echo link_js('jPlayer/jquery.jplayer.min.js');
+		echo link_js('jwplayer/jwplayer.js');
 		echo link_js('html2canvas.js');
 
 		echo link_js('date.js');

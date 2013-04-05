@@ -1,5 +1,5 @@
 <div class="row">
-	<div style="margin: 2px 0px 10px 0px;float:left;">
+	<div style="margin: 2px 0px 10px 0px;float:left;width: 570px;">
 		<?php
 		$asset_title_type = explode('|', trim(str_replace('(**)', '', $asset_details->title_type)));
 		$asset_title = explode('|', trim(str_replace('(**)', '', $asset_details->title)));

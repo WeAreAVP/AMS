@@ -128,7 +128,7 @@ if ($media)
 					},
 					swfPath: "http://www.jplayer.org/2.1.0/js",
 					solution: "flash, html",
-					supplied: "mp4",
+					supplied: "m4v",
 					size: {
 						width: "640px",
 						height: "360px",

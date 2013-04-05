@@ -225,11 +225,8 @@ class Records extends MY_Controller
 
 	function proxy_files($guid)
 	{
-		
 		$proxy_guid = str_replace('/', '-', $guid);
-		$proxy_response = file_get_contents("http://cpbproxy.crawfordmedia.com/playback.php?GUID=cpb-aacip-55-55z61v9s");
-		echo $proxy_response;exit;
-//		$proxy_response = file_get_contents("http://cpbproxy.crawfordmedia.com/xml.php?GUID=$proxy_guid");
+		$proxy_response = file_get_contents("http://cpbproxy.crawfordmedia.com/xml.php?GUID=$proxy_guid");
 		$x = @simplexml_load_string($proxy_response);
 		$data = xmlObjToArr($x);
 		$child = $data['children'];

@@ -162,7 +162,7 @@
 					data: scheduled_total,
 					dataLabels: {
 						enabled: true,
-						rotation: 90,
+						rotation: 120,
 						color: '#000000',
 						align: 'center',
 						x: 0,

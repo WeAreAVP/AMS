@@ -122,14 +122,13 @@ if ($media)
 					ready: function() {
 						$(this).jPlayer("setMedia", {
 							m4v: "http://www.jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v",
-							ogv: "http://www.jplayer.org/video/ogv/Big_Buck_Bunny_Trailer.ogv",
-							webmv: "http://www.jplayer.org/video/webm/Big_Buck_Bunny_Trailer.webm",
-							poster: "http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
+							
+//							poster: "http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
 						});
 					},
 					swfPath: "http://www.jplayer.org/2.1.0/js",
 					solution: "flash, html",
-					supplied: "webmv, ogv, m4v",
+					supplied: "m4v",
 					size: {
 						width: "640px",
 						height: "360px",

@@ -1,6 +1,6 @@
-<div class="my-navbar">
+	<div class="dashboard-nav">
 	<div>
-		Formats
+		FORMATS
 	</div>
 
 </div>

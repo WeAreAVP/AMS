@@ -2,7 +2,7 @@
 	<?php
 	if ($media)
 	{
-		if ($media['format'] == 'mp3')
+		if ($media['format'] != 'mp3')
 		{
 			?>
 			<div id="jquery_jplayer_1" class="jp-jplayer"></div>

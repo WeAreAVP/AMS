@@ -92,7 +92,7 @@
 
 <div style="width: 48%;float: left;">
 	<div class="records-nav">
-		<div>
+		<div style="font-size: 9pt;color: #FFFFFF;">
 			Regions
 		</div>
 

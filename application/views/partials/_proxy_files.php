@@ -121,14 +121,14 @@ if ($media)
 				$("#jquery_jplayer_1").jPlayer({
 					ready: function() {
 						$(this).jPlayer("setMedia", {
-							mp4: "<?php echo $media['url']; ?>",
+							m4v: "<?php echo $media['url']; ?>",
 							
 //							poster: "http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
 						});
 					},
 					swfPath: "http://www.jplayer.org/2.1.0/js",
 					solution: "flash, html",
-					supplied: "mp4",
+					supplied: "m4v",
 					size: {
 						width: "640px",
 						height: "360px",

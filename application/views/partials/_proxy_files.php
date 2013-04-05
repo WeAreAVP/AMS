@@ -10,7 +10,12 @@ if ($media)
 	else
 	{
 		?>
-
+<object width="320" height="240" wmode="transparent" 
+data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf?file=<?php echo $media['url']; ?>&autoStart=false">
+<param name="movie" 
+value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf?file=<?php echo $media['url']; ?>&autoStart=false"/>
+<param name="wmode" value="transparent"/>
+</object>
  <object data="<?php echo $media['url']; ?>" width="320" height="240">
     <embed src="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="320" height="240">
   </object> 

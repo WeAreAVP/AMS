@@ -166,7 +166,7 @@
 						color: '#000000',
 						align: 'center',
 						x: 0,
-						y: -30,
+						y: -20,
 						style: {
 							fontSize: '9px',
 							fontFamily: 'Verdana, sans-serif'

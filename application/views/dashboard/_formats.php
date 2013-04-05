@@ -11,7 +11,7 @@
 </ul>
 <div class="tab-content">
 	<div class="tab-pane active" id="digitized" style="width:960px;height: 550px; margin: 0 auto;"></div>
-	<div class="tab-pane" id="scheduled" style="width:auto;height: 550px; margin: 0 auto;"></div>
+	<div class="tab-pane" id="scheduled" style="width:960px; max-width: auto;overflow: scroll;height: 550px; margin: 0 auto;"></div>
 </div>
 
 

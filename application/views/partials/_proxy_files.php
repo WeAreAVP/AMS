@@ -5,6 +5,7 @@
 		if ($media['format'] != 'mp3')
 		{
 			?>
+	<div style="margin-left: 30px;"> 
 			<div id="jquery_jplayer_1" class="jp-jplayer"></div>
 
 			<div id="jp_container_1" class="jp-audio">
@@ -42,6 +43,7 @@
 						To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
 					</div>
 				</div>
+			</div>
 			</div>
 			<script type="text/javascript">
 			//<![CDATA[

@@ -230,7 +230,7 @@ class Records extends MY_Controller
 		$x = @simplexml_load_string($proxy_response);
 		$data = xmlObjToArr($x);
 		$child = $data['children'];
-		if (isset($child['error'][0]))
+		if (isset($data['name']) && $data['name']=='error')
 		{
 			return FALSE;
 		}

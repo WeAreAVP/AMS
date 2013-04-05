@@ -16,7 +16,9 @@ if ($media)
 			jwplayer("myElement").setup({
 				flashplayer: "/js/jwplayer/jwplayer.flash.swf",
 				file: "<?php echo $media['url']; ?>",
-				image: "http://content.bitsontherun.com/thumbs/3XnJSIm4-640.jpg"
+				width:700,
+				height:300,
+//				image: "http://content.bitsontherun.com/thumbs/3XnJSIm4-640.jpg"
 			});
 		</script>
 		<?php

@@ -71,7 +71,7 @@
 		{
 			?>
 			<video width="700" height="320" controls>
-				<source src="<?php echo $media['url']; ?>" type="video/mp4">
+				<source src="<?php echo $media['url']; ?>" type="video/<?php echo $media['format']; ?>">
 				<object data="<?php echo $media['url']; ?>" width="700" height="320">
 					<embed src="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="700" height="320">
 				</object> 

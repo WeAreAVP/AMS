@@ -54,7 +54,7 @@
 
 	<?php $this->load->view('partials/_list'); ?>
     <div class="span9" style="margin-left: 250px;">
-        <iframe src="http://cpbproxy.crawfordmedia.com/playback.php?GUID=cpb-aacip-55-55z61v9s"></iframe>
+        <iframe src="http://cpbproxy.crawfordmedia.com/playback.php?GUID=cpb-aacip-55-55z61v9s" width="700" height="320"></iframe>
 		<?php $this->load->view('partials/_proxy_files'); ?>
 		<?php
 		if ($media)

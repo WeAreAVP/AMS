@@ -10,24 +10,24 @@ if ($media)
 	else
 	{
 		?>
-<object width="320" height="240" wmode="transparent" 
-data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf?file=<?php echo $media['url']; ?>&autoStart=false">
-<param name="movie" 
-value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf?file=<?php echo $media['url']; ?>&autoStart=false"/>
-<param name="wmode" value="transparent"/>
-</object>
- <object data="<?php echo $media['url']; ?>" width="320" height="240">
-    <embed src="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="320" height="240">
-  </object> 
-<!--		<video controls="controls" width="640" height="360">
-			<source src="<?php echo $media['url']; ?>" type="video/mp4" />
-			<object data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="640" height="360">
-				<param name="src" value="<?php echo $media['url']; ?>">
-				<embed src="<?php echo $media['url']; ?>" type="video/mp4" width="640" height="360"/>
+		<video width="700" height="320" controls>
+			<source src="<?php echo $media['url']; ?>" type="video/mp4">
+
+			<object data="<?php echo $media['url']; ?>" width="700" height="320">
+				<embed src="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="700" height="320">
 			</object> 
+		</video>
 
 
-		</video>-->
+		<!--		<video controls="controls" width="640" height="360">
+					<source src="<?php echo $media['url']; ?>" type="video/mp4" />
+					<object data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="640" height="360">
+						<param name="src" value="<?php echo $media['url']; ?>">
+						<embed src="<?php echo $media['url']; ?>" type="video/mp4" width="640" height="360"/>
+					</object> 
+
+
+				</video>-->
 		<!--		<div id="myElement">Loading the player...</div>
 
 				<script type="text/javascript">

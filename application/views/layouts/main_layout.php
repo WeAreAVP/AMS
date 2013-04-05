@@ -26,7 +26,7 @@
 		echo link_js('ColVis.js');
 		echo link_js('dataTables.scroller.js');
 //		echo link_js('flowplayer/flowplayer.min.js');
-//		echo link_js('jPlayer/jquery.jplayer.min.js');
+		echo link_js('jPlayer/jquery.jplayer.min.js');
 		echo link_js('jwplayer/jwplayer.js');
 		echo link_js('html2canvas.js');
 
@@ -42,7 +42,7 @@
 
 		echo link_tag("css/bootstrap/bootstrap.css");
 		echo link_tag("css/style.css");
-//		echo link_tag("css/jplayer.blue.monday.css");
+		echo link_tag("css/jplayer.blue.monday.css");
 //		echo link_tag("js/flowplayer/skin/minimalist.css");
 		?> 
     </head>
@@ -171,16 +171,16 @@
 				$('#myGeneral').on('hidden', function() {
 					$('#myGeneral_body').html('');
 				})
-//				if ($.browser.msie) {
-//					if ($.browser.version != '7.0' || $.browser.version != '8.0') {
-//						document.addEventListener("touchstart", function() {
-//						}, true);
-//					}
-//				}
-//				else {
-//					document.addEventListener("touchstart", function() {
-//					}, true);
-//				}
+				if ($.browser.msie) {
+					if ($.browser.version != '7.0' || $.browser.version != '8.0') {
+						document.addEventListener("touchstart", function() {
+						}, true);
+					}
+				}
+				else {
+					document.addEventListener("touchstart", function() {
+					}, true);
+				}
 
 				var dates = $("#start_date, #end_date").datepicker({
 					defaultDate: "+1w",

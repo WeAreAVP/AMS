@@ -91,7 +91,7 @@
 <div style="clear: both;"></div>
 
 <div style="width: 48%;float: left;">
-	<div class="my-navbar" style="margin-bottom: 5px;">
+	<div class="records-nav">
 		<div>
 			Regions
 		</div>

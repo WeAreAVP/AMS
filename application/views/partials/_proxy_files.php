@@ -58,7 +58,7 @@
 								
 							});
 						},
-						swfPath: "js",
+						swfPath: "/js/jPlayer",
 						solution: "flash, html",
 						supplied: "mp3",
 						wmode: "window"

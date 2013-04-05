@@ -171,16 +171,16 @@
 				$('#myGeneral').on('hidden', function() {
 					$('#myGeneral_body').html('');
 				})
-				if ($.browser.msie) {
-					if ($.browser.version != '7.0' || $.browser.version != '8.0') {
-						document.addEventListener("touchstart", function() {
-						}, true);
-					}
-				}
-				else {
-					document.addEventListener("touchstart", function() {
-					}, true);
-				}
+//				if ($.browser.msie) {
+//					if ($.browser.version != '7.0' || $.browser.version != '8.0') {
+//						document.addEventListener("touchstart", function() {
+//						}, true);
+//					}
+//				}
+//				else {
+//					document.addEventListener("touchstart", function() {
+//					}, true);
+//				}
 
 				var dates = $("#start_date, #end_date").datepicker({
 					defaultDate: "+1w",

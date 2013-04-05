@@ -54,7 +54,7 @@
 					$("#jquery_jplayer_1").jPlayer({
 						ready: function() {
 							$(this).jPlayer("setMedia", {
-								mp3: "http://www.jplayer.org/audio/m4a/TSP-01-Cro_magnon_man.m4a",
+								mp3: "http://url2.bollywoodmp3.se/%5BSongs.PK%5D%20Shootout%20At%20Wadala%20-%20Laila%20-%20128Kbps%20%5BFunmaza.com%5D.mp3",
 								
 							});
 						},

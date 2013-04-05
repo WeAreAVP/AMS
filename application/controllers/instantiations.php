@@ -162,7 +162,7 @@ class Instantiations extends MY_Controller
 				$data['asset_id'] = $detail->assets_id;
 				$data['inst_id'] = $instantiation_id;
 				$data['list_assets'] = $this->instantiation->get_instantiations_by_asset_id($detail->assets_id);
-				$data['asset_guid'] = $this->assets_model->get_guid_by_asset_id($asset_id);
+				$data['asset_guid'] = $this->assets_model->get_guid_by_asset_id($data['asset_id']);
 				$data['ins_nomination'] = $this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
 				$data['inst_identifier'] = $this->instantiation->get_identifier_by_instantiation_id($instantiation_id);
 				$data['inst_dates'] = $this->instantiation->get_dates_by_instantiation_id($instantiation_id);

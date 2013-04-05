@@ -2,7 +2,7 @@
 	<?php
 	if ($media)
 	{
-		if ($media['format'] != 'mp3')
+		if ($media['format'] == 'mp3')
 		{
 			?>
 	<div style="margin-left: 30px;"> 

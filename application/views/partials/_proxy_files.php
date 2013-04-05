@@ -10,10 +10,10 @@ if ($media)
 	else
 	{
 		?>
-<object data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="640" height="360">
-				<param name="src" value="<?php echo $media['url']; ?>">
-				<embed src="<?php echo $media['url']; ?>" type="video/mp4" width="640" height="360"/>
-			</object> 
+
+ <object data="<?php echo $media['url']; ?>" width="320" height="240">
+    <embed src="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="320" height="240">
+  </object> 
 <!--		<video controls="controls" width="640" height="360">
 			<source src="<?php echo $media['url']; ?>" type="video/mp4" />
 			<object data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="640" height="360">

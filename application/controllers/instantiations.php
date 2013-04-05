@@ -180,7 +180,7 @@ class Instantiations extends MY_Controller
 				$data['asset_details'] = $this->assets_model->get_asset_by_asset_id($detail->assets_id);
 				$search_results_data = $this->sphinx->instantiations_list(array('index' => 'assets_list'), 0, 1000);
 				$data['nominations'] = $this->instantiation->get_nomination_status();
-				
+				$data['media']=FALSE;
 				$data['media']=$this->proxy_files($data['asset_guid']->guid_identifier);
 				$data['next_result_id'] = FALSE;
 				$data['prev_result_id'] = FALSE;
@@ -246,6 +246,7 @@ function proxy_files($guid)
 		$proxy_response = file_get_contents("http://cpbproxy.crawfordmedia.com/xml.php?GUID=$proxy_guid");
 		$x = @simplexml_load_string($proxy_response);
 		$data = xmlObjToArr($x);
+		debug($data);
 		$child = $data['children'];
 		if (isset($child['error'][0]))
 		{

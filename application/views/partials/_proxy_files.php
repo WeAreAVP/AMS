@@ -127,7 +127,7 @@ if ($media)
 							poster: "http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
 						});
 					},
-					swfPath: "js",
+					swfPath: "http://www.jplayer.org/2.1.0/js",
 					solution: "flash, html",
 					supplied: "webmv, ogv, m4v",
 					size: {

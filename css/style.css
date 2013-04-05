@@ -599,6 +599,17 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .label_star{
     color:red;
 }
+.dashboard-nav{
+    list-style: none;
+    background:url(/images/sub-nav-bg.png) transparent repeat-x;
+    margin-left: 0;
+    margin-bottom: 10px;
+    height: 23px;
+    padding-left: 15px;
+    padding-top: 4px;
+    font-weight: 500;
+    color: #FFFFFF;
+}
 .records-nav{
     list-style: none;
     background:url(/images/sub-nav-bg.png) transparent repeat-x;

@@ -91,9 +91,9 @@
 <div style="clear: both;"></div>
 
 <div style="width: 48%;float: left;">
-	<div class="records-nav">
-		<div style="font-size: 9pt;color: #FFFFFF;">
-			Regions
+	<div class="dashboard-nav">
+		<div>
+			REGIONS
 		</div>
 
 	</div>

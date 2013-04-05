@@ -64,8 +64,8 @@
 </script>
 
 	
-<div id="abc">
-	<div><button onclick="takeScreenShot();" class="btn">Take Screen Shot</button></div>
+
+	<!--<div><button onclick="takeScreenShot();" class="btn">Take Screen Shot</button></div>-->
 	<div class="asset-stats">
 		<div class="span4">
 			<div class="assets-sum"><?php echo number_format($material_goal['total']); ?></div>
@@ -89,5 +89,5 @@
 	<?php $this->load->view('dashboard/_tv_radio'); ?>
 	<div class="clearfix"></div>
 	<?php $this->load->view('dashboard/_formats'); ?>
-</div>
+
 

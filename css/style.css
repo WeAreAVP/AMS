@@ -247,9 +247,9 @@ html, body {
     font-size: 63pt;padding-top: 16px;color: #333333;
 }
 .assets-subdetail{
-    font-size: 20px;
+    font-size: 13pt;
     font-weight: bold;
-    padding-top: 23px;
+    /*padding-top: 23px;*/
 }
 .report-tab{
     font-size: 17px;

@@ -12,11 +12,12 @@
 	.container-map h2{
 		margin:5px 0 0;
 		line-height: 23px;
-		font-size:22px;
+		font-weight: bold;
+		font-size:13pt;
 	}
 	.container-map h3{
 		margin:5px 0 0;
-		font-size:13px;
+		font-size:9pt;
 		color:#000;
 	}
 	.other{

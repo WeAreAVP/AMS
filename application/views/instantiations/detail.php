@@ -51,16 +51,7 @@
 	<?php $this->load->view('partials/_list'); ?>
 
 	<div class="span9" style="margin-left: 250px;" id="ins_view_detail">
-		<!--		<div id="mediaplayer">JW Player goes here</div>
-					<script type="text/javascript">
-		
-						jwplayer("mediaplayer").setup({
-							flashplayer: "/js/jwplayer/player.swf", 
-							file: "http://cpbaaaccess.crawfordmedia.com/data/55/cpb-aacip-55-40xpppz0.h264.mp4",
-							autostart: true
-						});
-		
-					</script>-->
+		<?php $this->load->view('partials/_proxy_files'); ?>
 		<div style="float: left;">
 
 			<?php

@@ -162,7 +162,7 @@ class Instantiations extends MY_Controller
 				$data['asset_id'] = $detail->assets_id;
 				$data['inst_id'] = $instantiation_id;
 				$data['list_assets'] = $this->instantiation->get_instantiations_by_asset_id($detail->assets_id);
-
+				$data['asset_guid'] = $this->assets_model->get_guid_by_asset_id($asset_id);
 				$data['ins_nomination'] = $this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
 				$data['inst_identifier'] = $this->instantiation->get_identifier_by_instantiation_id($instantiation_id);
 				$data['inst_dates'] = $this->instantiation->get_dates_by_instantiation_id($instantiation_id);
@@ -180,7 +180,8 @@ class Instantiations extends MY_Controller
 				$data['asset_details'] = $this->assets_model->get_asset_by_asset_id($detail->assets_id);
 				$search_results_data = $this->sphinx->instantiations_list(array('index' => 'assets_list'), 0, 1000);
 				$data['nominations'] = $this->instantiation->get_nomination_status();
-
+				$records_obj=new Records();
+				$data['media']=$records_obj->proxy_files($data['asset_guid']->guid_identifier);
 				$data['next_result_id'] = FALSE;
 				$data['prev_result_id'] = FALSE;
 				if (isset($search_results_data['records']) && ! is_empty($search_results_data['records']))

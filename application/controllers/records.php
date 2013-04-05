@@ -246,6 +246,7 @@ class Records extends MY_Controller
 			}
 			return $media;
 		}
+		return FALSE;
 	}
 
 	public function sort_simple_table()

@@ -1,9 +1,9 @@
 
 
 <div style="width: 50%;float: right;">
-	<div class="my-navbar">
+	<div class="dashboard-nav">
 		<div>
-			Scheduled vs. Completed
+			SCHEDULED VS. COMPLETED
 		</div>
 
 	</div>

@@ -77,7 +77,7 @@
 			<div class="assets-subdetail">of <?php echo 'of ' . $total_hours . ' hrs'; ?> </div>
 
 		</div>
-		<div class="span3">
+		<div class="span4">
 			<div class="assets-sum"><?php echo number_format($at_crawford); ?></div>
 			<div class="assets-subdetail">hrs at Crawford</div>
 

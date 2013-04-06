@@ -156,8 +156,8 @@
 						type: 'pie',
 						name: 'All Formats',
 						data: [
-							['Completed', <?php echo $pie_total_completed; ?>],
-							['Scheduled', <?php echo $pie_total_scheduled; ?>]
+							['Scheduled', <?php echo $pie_total_scheduled; ?>],
+							['Completed', <?php echo $pie_total_completed; ?>]
 
 						]
 					}]

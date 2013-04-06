@@ -69,8 +69,8 @@ class Dashboard extends MY_Controller
 		$pie_total_scheduled = $this->dashboard_model->pie_total_scheduled();
 		$pie_total = $pie_total_completed->total + $pie_total_scheduled->total;
 		$pie_total = ($pie_total == 0) ? 1 : $pie_total;
-		$data['pie_total_completed'] = (int) ($pie_total_completed * 100) / $pie_total;
-		$data['pie_total_scheduled'] = (int) ($pie_total_scheduled * 100) / $pie_total;
+		$data['pie_total_completed'] = (int) ($pie_total_completed->total * 100) / $pie_total;
+		$data['pie_total_scheduled'] = (int) ($pie_total_scheduled->total * 100) / $pie_total;
 		$this->load->view('dashboard/index', $data);
 	}
 

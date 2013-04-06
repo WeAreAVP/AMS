@@ -71,7 +71,12 @@ if ( ! $isAjax)
 		else
 		{
 			?>
-			<div  style="text-align: center;width: 710px;margin-top: 50px;font-size: 20px;">No instantiation record found.</div>
+			<div  style="text-align: center;width: 710px;margin-top: 50px;font-size: 20px;">
+				<div>
+					<img src="/images/no_result.png" />
+				</div>
+				<div>No result found. Refine your search.
+				</div></div>
 		<?php }
 		?>
 

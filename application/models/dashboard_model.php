@@ -111,7 +111,7 @@ class Dashboard_Model extends CI_Model
 		$this->db->select("COUNT($this->_table_assets.id) AS total", FALSE);
 		$this->db->join($this->_table, "$this->_table.id=$this->_table_assets.stations_id");
 		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id=$this->_table_assets.id");
-		
+
 		$this->db->where("$this->table_instantiations.digitized", 1);
 		if ($region == 'other')
 			$this->db->where_in("$this->_table.state", array('AK', 'GU', 'HI',)); //other
@@ -135,7 +135,7 @@ class Dashboard_Model extends CI_Model
 		$this->db->join($this->_table, "$this->_table.id=$this->_table_assets.stations_id");
 		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id=$this->_table_assets.id");
 		$this->db->where("$this->table_instantiations.digitized", 0);
-		
+
 		if ($region == 'other')
 			$this->db->where_in("$this->_table.state", array('AK', 'GU', 'HI',)); //other
 		else if ($region == 'midwest')
@@ -149,6 +149,25 @@ class Dashboard_Model extends CI_Model
 
 		$result = $this->db->get($this->_table_assets);
 
+		return $result->row();
+	}
+
+	function pie_total_scheduled()
+	{
+		$this->db->select("COUNT($this->_assets_table.id) as total");
+		$this->db->join($this->_assets_table, "$this->_assets_table.stations_id = $this->_stations_table.id");
+		$this->db->where("$this->_stations_table.start_date IS NOT NULL");
+		$this->db->or_where("$this->_stations_table.start_date !=", 0);
+		$result = $this->db->get($this->_stations_table);
+		return $result->row();
+	}
+	function pie_total_completed()
+	{
+		$this->db->select("COUNT($this->_assets_table.id) as total");
+		$this->db->join($this->_assets_table, "$this->_assets_table.stations_id = $this->_stations_table.id");
+		$this->db->join($this->_messages_table, "$this->_messages_table.receiver_id = $this->_stations_table.id");
+		$this->db->where("$this->_messages_table.msg_type", 4); //Hard Drive Return Date
+		$result = $this->db->get($this->_stations_table);
 		return $result->row();
 	}
 

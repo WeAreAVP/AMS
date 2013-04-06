@@ -48,7 +48,7 @@
 					text: "AMS"
 				},
 				exporting: {
-					enabled: false
+					enabled: true
 				},
 				plotOptions: {
 					pie: {
@@ -156,8 +156,8 @@
 						type: 'pie',
 						name: 'All Formats',
 						data: [
-							['Digitized', 50.0],
-							['Scheduled', 50.0]
+							['Completed', <?php echo $pie_total_completed; ?>],
+							['Scheduled', <?php echo $pie_total_scheduled; ?>]
 
 						]
 					}]

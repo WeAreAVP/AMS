@@ -1,5 +1,4 @@
 <?php
-
 if ( ! $isAjax)
 {
 	?>
@@ -75,8 +74,10 @@ if ( ! $isAjax)
 				<div>
 					<img src="/images/no_result.png" />
 				</div>
-				<div>No result found. Refine your search.
-				</div></div>
+				<div style="color: #cccccc;font-size: 11pt;">No result found. Refine your search.
+				</div>
+
+			</div>
 		<?php }
 		?>
 

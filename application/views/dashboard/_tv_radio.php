@@ -68,8 +68,8 @@
 						type: 'pie',
 						name: 'Radio',
 						data: [
-							['Digitized', 45.0],
-							['Scheduled', 26.8]
+							['Scheduled', <?php echo $pie_total_radio_scheduled; ?>],
+							['Completed', <?php echo $pie_total_radio_completed; ?>]
 
 						]
 					}]

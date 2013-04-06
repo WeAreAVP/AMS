@@ -112,8 +112,8 @@
 						type: 'pie',
 						name: 'TV',
 						data: [
-							['Digitized', 75.0],
-							['Scheduled', 25.0]
+							['Scheduled', <?php echo $pie_total_tv_scheduled; ?>],
+							['Completed', <?php echo $pie_total_tv_completed; ?>]
 
 						]
 					}]

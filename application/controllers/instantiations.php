@@ -42,6 +42,7 @@ class Instantiations extends MY_Controller
 
 		$this->load->model('export_csv_job_model', 'csv_job');
 		$this->load->model('assets_model');
+		$this->load->model('essence_track_model','essence_track');
 		$this->load->model('sphinx_model', 'sphinx');
 		$this->load->library('pagination');
 		$this->load->library('Ajax_pagination');
@@ -92,7 +93,7 @@ class Instantiations extends MY_Controller
 		$this->session->set_userdata('page_link', 'instantiations/index/' . $offset);
 		$data['get_column_name'] = $this->make_array();
 
-		
+
 		$data['date_types'] = $this->instantiation->get_date_types();
 		$data['is_refine'] = $this->refine_modal->get_active_refine();
 
@@ -173,15 +174,16 @@ class Instantiations extends MY_Controller
 				$data['inst_data_rate_unit'] = $this->instantiation->get_data_rate_unit_by_data_id($detail->data_rate_units_id);
 				$data['inst_color'] = $this->instantiation->get_color_by_instantiation_colors_id($detail->instantiation_colors_id);
 				$data['inst_annotation'] = $this->instantiation->get_annotation_by_instantiation_id($instantiation_id);
-
+				$data['essence_track'] = $this->essence_track->get_essence_tracks_by_instantiations_id($instantiation_id);
+				debug($data['essence_track']);
 
 				$data['instantiation_events'] = $this->instantiation->get_events_by_instantiation_id($instantiation_id);
 
 				$data['asset_details'] = $this->assets_model->get_asset_by_asset_id($detail->assets_id);
 				$search_results_data = $this->sphinx->instantiations_list(array('index' => 'assets_list'), 0, 1000);
 				$data['nominations'] = $this->instantiation->get_nomination_status();
-				
-				$data['media']=$this->proxy_files($data['asset_guid']->guid_identifier);
+
+				$data['media'] = $this->proxy_files($data['asset_guid']->guid_identifier);
 				$data['next_result_id'] = FALSE;
 				$data['prev_result_id'] = FALSE;
 				if (isset($search_results_data['records']) && ! is_empty($search_results_data['records']))
@@ -240,15 +242,16 @@ class Instantiations extends MY_Controller
 			show_404();
 		}
 	}
-function proxy_files($guid)
+
+	function proxy_files($guid)
 	{
 		$proxy_guid = str_replace('/', '-', $guid);
 		$proxy_response = file_get_contents("http://cpbproxy.crawfordmedia.com/xml.php?GUID=$proxy_guid");
 		$x = @simplexml_load_string($proxy_response);
 		$data = xmlObjToArr($x);
-		
+
 		$child = $data['children'];
-		if (isset($data['name']) && $data['name']=='error')
+		if (isset($data['name']) && $data['name'] == 'error')
 		{
 			return FALSE;
 		}
@@ -266,6 +269,7 @@ function proxy_files($guid)
 		}
 		return FALSE;
 	}
+
 	/**
 	 * Set last state of table view
 	 *  

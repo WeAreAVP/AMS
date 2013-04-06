@@ -154,20 +154,20 @@ class Dashboard_Model extends CI_Model
 
 	function pie_total_scheduled()
 	{
-		$this->db->select("COUNT($this->_assets_table.id) as total");
-		$this->db->join($this->_assets_table, "$this->_assets_table.stations_id = $this->_stations_table.id");
-		$this->db->where("$this->_stations_table.start_date IS NOT NULL");
-		$this->db->or_where("$this->_stations_table.start_date !=", 0);
-		$result = $this->db->get($this->_stations_table);
+		$this->db->select("COUNT($this->_table_assets.id) as total");
+		$this->db->join($this->_table_assets, "$this->_table_assets.stations_id = $this->_table.id");
+		$this->db->where("$this->_table.start_date IS NOT NULL");
+		$this->db->or_where("$this->_table.start_date !=", 0);
+		$result = $this->db->get($this->_table);
 		return $result->row();
 	}
 	function pie_total_completed()
 	{
-		$this->db->select("COUNT($this->_assets_table.id) as total");
-		$this->db->join($this->_assets_table, "$this->_assets_table.stations_id = $this->_stations_table.id");
-		$this->db->join($this->_messages_table, "$this->_messages_table.receiver_id = $this->_stations_table.id");
-		$this->db->where("$this->_messages_table.msg_type", 4); //Hard Drive Return Date
-		$result = $this->db->get($this->_stations_table);
+		$this->db->select("COUNT($this->_table_assets.id) as total");
+		$this->db->join($this->_table_assets, "$this->_table_assets.stations_id = $this->_table.id");
+		$this->db->join($this->_table_messages, "$this->_table_messages.receiver_id = $this->_table.id");
+		$this->db->where("$this->_table_messages.msg_type", 4); //Hard Drive Return Date
+		$result = $this->db->get($this->_table);
 		return $result->row();
 	}
 

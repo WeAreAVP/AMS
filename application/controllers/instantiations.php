@@ -175,7 +175,7 @@ class Instantiations extends MY_Controller
 				$data['inst_color'] = $this->instantiation->get_color_by_instantiation_colors_id($detail->instantiation_colors_id);
 				$data['inst_annotation'] = $this->instantiation->get_annotation_by_instantiation_id($instantiation_id);
 				$data['essence_track'] = $this->essence_track->get_essence_tracks_by_instantiations_id($instantiation_id);
-				debug($data['essence_track']);
+//				debug($data['essence_track']);
 
 				$data['instantiation_events'] = $this->instantiation->get_events_by_instantiation_id($instantiation_id);
 

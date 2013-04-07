@@ -766,10 +766,10 @@
 			},
 			statusCode: {
 				200: function() {
-					console.log('worked');
+					
 				},
-				304: function() {
-					console.log('got error');
+				302: function() {
+					window.location.reload();
 				}
 			}
 		});

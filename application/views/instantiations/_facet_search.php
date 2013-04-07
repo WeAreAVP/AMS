@@ -746,7 +746,7 @@
 			data: $('#form_search').serialize(),
 			success: function(result,textStatus,request)
 			{
-				console.log(request.getAllResponseHeaders());
+				console.log(request.getResponseHeader('status_code'));
 				$('.row-fluid').html(result);
 				if ('<?php echo $current_tab; ?>' == 'simple')
 					updateSimpleDataTable();

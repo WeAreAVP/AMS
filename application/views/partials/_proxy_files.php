@@ -9,7 +9,7 @@
 			</video>
 		</div>
 		<div class="clearfix"></div>
-		<div><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
+		<div style="margin-left: 20px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
 
 		<?php
 	}

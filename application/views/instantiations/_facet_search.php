@@ -746,7 +746,6 @@
 			data: $('#form_search').serialize(),
 			success: function(result,textStatus,request)
 			{
-				console.log(textStatus);
 				console.log(request.getAllResponseHeaders());
 				$('.row-fluid').html(result);
 				if ('<?php echo $current_tab; ?>' == 'simple')

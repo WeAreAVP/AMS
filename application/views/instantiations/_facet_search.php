@@ -764,11 +764,8 @@
 				isAnySearch();
 				$.unblockUI();
 			},
-			error:function(e,d){
-				console.log(e);
-				console.log(d);
-				alert('2');
-				window.location.reload();
+			complete: function(xhr, textStatus) {
+				console.log(xhr.status);
 			}
 		});
 	}

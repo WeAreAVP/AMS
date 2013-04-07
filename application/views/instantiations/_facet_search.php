@@ -740,33 +740,14 @@
 				zIndex: 999999
 			}
 		});
-		$.ajaxSetup({
-			error: function(jqXHR, exception) {
-				if (jqXHR.status === 0) {
-					alert('Not connect.\n Verify Network.');
-				} else if (jqXHR.status == 404) {
-					alert('Requested page not found. [404]');
-				} else if (jqXHR.status == 302) {
-					alert('Requested page not found. [302]');
-				} else if (jqXHR.status == 500) {
-					alert('Internal Server Error [500].');
-				} else if (exception === 'parsererror') {
-					alert('Requested JSON parse failed.');
-				} else if (exception === 'timeout') {
-					alert('Time out error.');
-				} else if (exception === 'abort') {
-					alert('Ajax request aborted.');
-				} else {
-					alert('Uncaught Error.\n' + jqXHR.responseText);
-				}
-			}
-		});
 		$.ajax({
 			type: 'POST',
 			url: '<?php echo $facet_search_url ?>/' + page,
 			data: $('#form_search').serialize(),
-			success: function(result)
+			success: function(result,textStatus,request)
 			{
+				console.log(textStatus);
+				console.log(request);
 				$('.row-fluid').html(result);
 				if ('<?php echo $current_tab; ?>' == 'simple')
 					updateSimpleDataTable();
@@ -784,16 +765,8 @@
 				}
 				isAnySearch();
 				$.unblockUI();
-			},
-			failure: function() {
-				alert("There was some error, please try again in some time.");
-			},
-			statusCode: {
-				302: function() {
-
-					window.location.reload();
-				}
 			}
+			
 		});
 	}
 	function change_view(id)

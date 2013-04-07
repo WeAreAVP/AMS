@@ -764,12 +764,12 @@
 				isAnySearch();
 				$.unblockUI();
 			},
+			failure: function() {
+				alert("There was some error, please try again in some time.");
+			},
 			statusCode: {
-				200: function() {
-					
-				},
 				302: function() {
-					console.log('funk');
+
 					window.location.reload();
 				}
 			}

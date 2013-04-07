@@ -769,6 +769,7 @@
 					
 				},
 				302: function() {
+					console.log('funk');
 					window.location.reload();
 				}
 			}

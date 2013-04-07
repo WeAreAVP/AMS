@@ -764,8 +764,13 @@
 				isAnySearch();
 				$.unblockUI();
 			},
-			complete: function(xhr, textStatus) {
-				console.log(xhr.status);
+			statusCode: {
+				200: function() {
+					console.log('worked');
+				},
+				304: function() {
+					console.log('got error');
+				}
 			}
 		});
 	}

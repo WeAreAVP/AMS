@@ -734,7 +734,7 @@ class Mediainfo extends CI_Controller
 					}
 					/* Essence Track Bitdepth End */
 					/* Essence Track Duration Start */
-					echo $track['attributes']['type'];
+					debug($track['children']);
 					if (isset($track['children']['duration_string3']) && isset($track['children']['duration_string3'][0]) && isset($track['children']['duration_string3'][0]['text']) && ! empty($track['children']['duration_string3'][0]['text']))
 					{
 						$essence_track_duration=explode('.',$general_track['duration_string3'][0]['text']);

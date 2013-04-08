@@ -21,11 +21,44 @@ if ($essence_track)
 
 
 		</ul>
-
 		<div class="tab-content">
-			<div class="tab-pane active" id="region_digitized" style=" margin: 0 auto">
+			<?php
+			foreach ($essence_track as $key => $value)
+			{
+				$class = '';
+				if ($key == 0)
+				{
+					$class = 'active';
+				}
+				?>
+				<div class="tab-pane <?php echo $class; ?>" id="<?php echo $value->id; ?>" style=" margin: 0 auto">
+					<table  cellPadding="8" class="record-detail-table">
+						<?php
+						if ( ! empty($value->essence_track_identifiers) || ! empty($value->essence_track_identifier_source))
+						{
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span>Track Identifier:</b></label>
+								</td>
+								<td>
 
-			</div>
+									<p>
+										<?php
+										echo $value->essence_track_identifiers . ' ';
+										echo ( ! empty($value->essence_track_identifier_source)) ? "($value->essence_track_identifier_source)" : '';
+										?>
+									</p>
+
+								</td>
+							</tr>
+						<?php } ?>
+					</table>
+				</div>
+				<?php
+			}
+			?>
+
 		</div>
 	</div>
 <?php } ?>

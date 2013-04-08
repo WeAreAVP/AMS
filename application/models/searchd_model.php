@@ -38,7 +38,7 @@ class Searchd_Model extends CI_Model
 		$this->sphinxdb = $this->load->database('sphnix',TRUE);
 	}
 	function check_sphnix(){
-		$query=$this->sphinxdb->query('SELECT * FROM instantiations_list LIMIT 10');
+		$query=$this->sphinxdb->query('SHOW TABLES');
 		debug($query->result());
 	}
 

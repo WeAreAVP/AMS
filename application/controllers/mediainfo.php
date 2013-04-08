@@ -787,22 +787,20 @@ class Mediainfo extends CI_Controller
 					/* Essence Track Encoding End */
 					/* Essence Track Identifier Start */
 					$essence_track_identifier = array();
-					
-					if (isset($track['children']['id']) && isset($track['children']['id'][0]) && isset($track['children']['id'][0]['text']) && ! empty($track['children']['id'][0]['text']))
+					$identifier_insert=FALSE;
+					if (isset($track['children']['id']) && isset($track['children']['id'][0]))
 					{
-						echo '1fadfadf';exit;
+						if(isset($track['children']['id'][0]['text']) && ! empty($track['children']['id'][0]['text'])){$identifier_insert=TRUE;echo 'yep';
 						$dessence_track[$dessence_track_counter]['identifier'] = $essence_track_identifier['essence_track_identifiers'] = $track['children']['id'][0]['text'];
-						$dessence_track[$dessence_track_counter]['identifier_source'] = $essence_track_identifier['essence_track_identifier_source'] = 'mediainfo';
+						$dessence_track[$dessence_track_counter]['identifier_source'] = $essence_track_identifier['essence_track_identifier_source'] = 'mediainfo';}
 					}
-					else if (isset($track['children']['streamkindid']) && isset($track['children']['streamkindid'][0]) && isset($track['children']['streamkindid'][0]['text']) && ! empty($track['children']['streamkindid'][0]['text']))
+					if (isset($track['children']['streamkindid']) && isset($track['children']['streamkindid'][0]) && !$identifier_insert)
 					{
-						echo '2';
+						if( isset($track['children']['streamkindid'][0]['text']) && ! empty($track['children']['streamkindid'][0]['text'])){echo 'inserted';
 						$dessence_track[$dessence_track_counter]['identifier'] = $essence_track_identifier['essence_track_identifiers'] = $track['children']['streamkindid'][0]['text'];
-						$dessence_track[$dessence_track_counter]['identifier_source'] = $essence_track_identifier['essence_track_identifier_source'] = 'mediainfo';
+						$dessence_track[$dessence_track_counter]['identifier_source'] = $essence_track_identifier['essence_track_identifier_source'] = 'mediainfo';}
 					}
-					else{
-						echo 'here';
-					}
+					
 					if (isset($essence_track_identifier['essence_track_identifiers']))
 					{
 						$essence_track_identifier['essence_tracks_id'] = $db_essence_track_id;

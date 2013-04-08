@@ -324,11 +324,11 @@ class Mediainfo extends CI_Controller
 						if ($media_type != '')
 						{
 							echo '<br/>Media Type = ' . $media_type;
-							$inst_media_type = $this->instant->get_instantiation_media_types_by_media_type($media_type);
-							if ( ! is_empty($inst_media_type))
-								$instantiation['instantiation_media_type_id'] = $inst_media_type->id;
-							else
-								$instantiation['instantiation_media_type_id'] = $this->instant->insert_instantiation_media_types(array('media_type' => $media_type));
+//							$inst_media_type = $this->instant->get_instantiation_media_types_by_media_type($media_type);
+//							if ( ! is_empty($inst_media_type))
+//								$instantiation['instantiation_media_type_id'] = $inst_media_type->id;
+//							else
+//								$instantiation['instantiation_media_type_id'] = $this->instant->insert_instantiation_media_types(array('media_type' => $media_type));
 						}
 					}
 					else if (isset($general_track['audiocount']) && isset($general_track['audiocount'][0]))
@@ -337,11 +337,11 @@ class Mediainfo extends CI_Controller
 						{
 							$media_type = 'Sound';
 							echo '<br/>Media Type = ' . $media_type;
-							$inst_media_type = $this->instant->get_instantiation_media_types_by_media_type($media_type);
-							if ( ! is_empty($inst_media_type))
-								$instantiation['instantiation_media_type_id'] = $inst_media_type->id;
-							else
-								$instantiation['instantiation_media_type_id'] = $this->instant->insert_instantiation_media_types(array('media_type' => $media_type));
+//							$inst_media_type = $this->instant->get_instantiation_media_types_by_media_type($media_type);
+//							if ( ! is_empty($inst_media_type))
+//								$instantiation['instantiation_media_type_id'] = $inst_media_type->id;
+//							else
+//								$instantiation['instantiation_media_type_id'] = $this->instant->insert_instantiation_media_types(array('media_type' => $media_type));
 						}
 					}
 					/* Media Type End */
@@ -439,11 +439,11 @@ class Mediainfo extends CI_Controller
 							echo '<br/>Data Rate Unit = ' . $data_rate_unit;
 							if ($data_rate_unit != '')
 							{
-								$inst_media_type = $this->instant->get_data_rate_units_by_unit($data_rate_unit);
-								if ( ! is_empty($inst_media_type))
-									$instantiation['data_rate_units_id'] = $inst_media_type->id;
-								else
-									$instantiation['data_rate_units_id'] = $this->instant->insert_data_rate_units(array('unit_of_measure' => $data_rate_unit));
+//								$inst_media_type = $this->instant->get_data_rate_units_by_unit($data_rate_unit);
+//								if ( ! is_empty($inst_media_type))
+//									$instantiation['data_rate_units_id'] = $inst_media_type->id;
+//								else
+//									$instantiation['data_rate_units_id'] = $this->instant->insert_data_rate_units(array('unit_of_measure' => $data_rate_unit));
 							}
 						}
 					}
@@ -474,14 +474,14 @@ class Mediainfo extends CI_Controller
 							$parent_instantiations = $this->instant->get_instantiation_by_asset_id($db_asset_id);
 							if (count($parent_instantiations) == 1)
 							{
-								$this->instant->update_instantiations($parent_instantiations[0]->id, array('digitized' => 1));
+//								$this->instant->update_instantiations($parent_instantiations[0]->id, array('digitized' => 1));
 							}
 							else
 							{
 								$parent_instantiations = $this->instant->get_instantiation_with_event_by_asset_id($db_asset_id);
 								if (count($parent_instantiations) > 0)
 								{
-									$this->instant->update_instantiations($parent_instantiations->id, array('digitized' => 1));
+//									$this->instant->update_instantiations($parent_instantiations->id, array('digitized' => 1));
 								}
 							}
 
@@ -494,9 +494,9 @@ class Mediainfo extends CI_Controller
 
 							$identifier['instantiation_source'] = 'mediainfo';
 							echo '<br/>Instantitation Identifier source = ' . $identifier['instantiation_source'];
-							$db_instantiation_id = $this->instant->insert_instantiations($instantiation);
-							$identifier['instantiations_id'] = $db_instantiation_id;
-							$this->instant->insert_instantiation_identifier($identifier);
+//							$db_instantiation_id = $this->instant->insert_instantiations($instantiation);
+//							$identifier['instantiations_id'] = $db_instantiation_id;
+//							$this->instant->insert_instantiation_identifier($identifier);
 							$filename = $identifier['instantiation_identifier'];
 							$generation = '';
 							if (strstr($filename, '.j2k.mxf'))
@@ -529,10 +529,10 @@ class Mediainfo extends CI_Controller
 								}
 								else
 								{
-									$generations['generations_id'] = $this->instant->insert_generations(array("generation" => $generation));
+//									$generations['generations_id'] = $this->instant->insert_generations(array("generation" => $generation));
 								}
 								$generations['instantiations_id'] = $db_instantiation_id;
-								$this->instant->insert_instantiation_generations($generations);
+//								$this->instant->insert_instantiation_generations($generations);
 							}
 						}
 					}
@@ -563,10 +563,10 @@ class Mediainfo extends CI_Controller
 							}
 							else
 							{
-								$date['date_types_id'] = $this->instant->insert_date_types(array('date_type' => 'encoded'));
+//								$date['date_types_id'] = $this->instant->insert_date_types(array('date_type' => 'encoded'));
 							}
 							$date['instantiations_id'] = $db_instantiation_id;
-							$this->instant->insert_instantiation_dates($date);
+//							$this->instant->insert_instantiation_dates($date);
 						}
 					}
 					else if (isset($general_track['file_modified_date']) && isset($general_track['file_modified_date'][0]))
@@ -585,10 +585,10 @@ class Mediainfo extends CI_Controller
 							}
 							else
 							{
-								$date['date_types_id'] = $this->instant->insert_date_types(array('date_type' => 'encoded'));
+//								$date['date_types_id'] = $this->instant->insert_date_types(array('date_type' => 'encoded'));
 							}
 							$date['instantiations_id'] = $db_instantiation_id;
-							$this->instant->insert_instantiation_dates($date);
+//							$this->instant->insert_instantiation_dates($date);
 						}
 					}
 					/* Instantiation Date End */
@@ -601,7 +601,7 @@ class Mediainfo extends CI_Controller
 						echo '<br/>Instantitation Format = ' . $format['format_name'];
 						echo '<br/>Instantitation Format Type = digital';
 						$format['instantiations_id'] = $db_instantiation_id;
-						$this->instant->insert_instantiation_formats($format);
+//						$this->instant->insert_instantiation_formats($format);
 					}
 					/* Instantiation Format End */
 					/* Instantiation Annotation Start */
@@ -614,7 +614,7 @@ class Mediainfo extends CI_Controller
 							echo '<br/>Instantitation annotation = ' . $annotation['annotation'];
 							echo '<br/>Instantitation annotation Type = ' . $annotation['annotation_type'];
 							$annotation['instantiations_id'] = $db_instantiation_id;
-							$this->instant->insert_instantiation_annotations($annotation);
+//							$this->instant->insert_instantiation_annotations($annotation);
 						}
 					}
 					else if (isset($general_track['encodedby']) && isset($general_track['encodedby'][0]))
@@ -626,7 +626,7 @@ class Mediainfo extends CI_Controller
 							echo '<br/>Instantitation annotation = ' . $annotation['annotation'];
 							echo '<br/>Instantitation annotation Type = ' . $annotation['annotation_type'];
 							$annotation['instantiations_id'] = $db_instantiation_id;
-							$this->instant->insert_instantiation_annotations($annotation);
+//							$this->instant->insert_instantiation_annotations($annotation);
 						}
 					}
 					/* Instantiation Annotation End */
@@ -647,7 +647,7 @@ class Mediainfo extends CI_Controller
 								$channel = substr_replace($audio_track['channel_s__string'][0]['text'], "", -1);
 								echo '<br/>Channel Configuration = ' . $channel;
 
-								$this->instant->update_instantiations($db_instantiation_id, array('channel_configuration' => $channel));
+//								$this->instant->update_instantiations($db_instantiation_id, array('channel_configuration' => $channel));
 							}
 						}
 						if (isset($audio_track['samplingrate_string']) && isset($audio_track['samplingrate_string'][0]))
@@ -662,10 +662,11 @@ class Mediainfo extends CI_Controller
 					if (isset($track['children']['format']) && isset($track['children']['format'][0]))
 					{
 						$track_type = '';
-						if ( ! empty($track['children']['format'][0]['text']))
+						if ((isset($track['attributes']['type']) && $track['attributes']['type'] !== 'Audio') || (isset($track['attributes']['type']) && $track['attributes']['type'] !== 'Video'))
 						{
-							if ((isset($track['attributes']['type']) && $track['attributes']['type'] === 'Audio') || (isset($track['attributes']['type']) && $track['attributes']['type'] === 'Video'))
+							if ( ! empty($track['children']['format'][0]['text']))
 							{
+
 								if ($track['children']['format'][0]['text'] == 'EIA-608' || $track['children']['format'][0]['text'] == 'EIA-708')
 								{
 									$track_type = 'Caption';
@@ -679,19 +680,22 @@ class Mediainfo extends CI_Controller
 									$track_type = $track['children']['format'][0]['text'];
 								}
 							}
-
-							if ($track_type != '')
+						}
+						else
+						{
+							$track_type = strtolower($track['attributes']['type']);
+						}
+						if ($track_type != '')
+						{
+							$dessence_track[$dessence_track_counter]['track_type'] = $track_type;
+							$essence_track_type = $this->essence->get_essence_track_by_type($track_type);
+							if (isset($essence_track_type) && isset($essence_track_type->id))
 							{
-								$dessence_track[$dessence_track_counter]['track_type'] = $track_type;
-								$essence_track_type = $this->essence->get_essence_track_by_type($track_type);
-								if (isset($essence_track_type) && isset($essence_track_type->id))
-								{
-									$essence_track['essence_track_types_id'] = $essence_track_type->id;
-								}
-								else
-								{
-									$essence_track['essence_track_types_id'] = $this->essence->insert_essence_track_types(array('essence_track_type' => $track_type));
-								}
+								$essence_track['essence_track_types_id'] = $essence_track_type->id;
+							}
+							else
+							{
+//								$essence_track['essence_track_types_id'] = $this->essence->insert_essence_track_types(array('essence_track_type' => $track_type));
 							}
 						}
 					}
@@ -718,7 +722,7 @@ class Mediainfo extends CI_Controller
 							if ( ! is_empty($data_rate))
 								$essence_track['data_rate_units_id'] = $data_rate->id;
 							else
-								$essence_track['data_rate_units_id'] = $this->instant->insert_data_rate_units(array('unit_of_measure' => $data_rate_unit));
+//								$essence_track['data_rate_units_id'] = $this->instant->insert_data_rate_units(array('unit_of_measure' => $data_rate_unit));
 						}
 					}
 					/* Essence Track Date Rate End */
@@ -748,7 +752,7 @@ class Mediainfo extends CI_Controller
 					/* Insert Essence Track Start */
 					$essence_track['instantiations_id'] = $db_instantiation_id;
 
-					$db_essence_track_id = $this->essence->insert_essence_tracks($essence_track);
+//					$db_essence_track_id = $this->essence->insert_essence_tracks($essence_track);
 
 					/* Insert Essence Track End */
 
@@ -777,7 +781,7 @@ class Mediainfo extends CI_Controller
 					{
 						$essence_track_encodeing['essence_tracks_id'] = $db_essence_track_id;
 						$dessence_track[$dessence_track_counter]['encoding_source'] = $essence_track_encodeing['encoding_source'] = 'mediainfo';
-						$this->essence->insert_essence_track_encodings($essence_track_encodeing);
+//						$this->essence->insert_essence_track_encodings($essence_track_encodeing);
 					}
 					unset($essence_track_encodeing);
 					/* Essence Track Encoding End */
@@ -785,19 +789,22 @@ class Mediainfo extends CI_Controller
 					$essence_track_identifier = array();
 					if (isset($track['children']['id']) && isset($track['children']['id'][0]) && isset($track['children']['id'][0]['text']) && ! empty($track['children']['id'][0]['text']))
 					{
+						echo '1';
 						$dessence_track[$dessence_track_counter]['identifier'] = $essence_track_identifier['essence_track_identifiers'] = $track['children']['id'][0]['text'];
 						$dessence_track[$dessence_track_counter]['identifier_source'] = $essence_track_identifier['essence_track_identifier_source'] = 'mediainfo';
 					}
 					else if (isset($track['children']['streamkindid']) && isset($track['children']['streamkindid'][0]) && isset($track['children']['streamkindid'][0]['text']) && ! empty($track['children']['streamkindid'][0]['text']))
 					{
+						echo '2';
 						$dessence_track[$dessence_track_counter]['identifier'] = $essence_track_identifier['essence_track_identifiers'] = $track['children']['streamkindid'][0]['text'];
 						$dessence_track[$dessence_track_counter]['identifier_source'] = $essence_track_identifier['essence_track_identifier_source'] = 'mediainfo';
 					}
 					if (isset($essence_track_identifier['essence_track_identifiers']))
 					{
 						$essence_track_identifier['essence_tracks_id'] = $db_essence_track_id;
-						$this->essence->insert_essence_track_identifiers($essence_track_identifier);
+//						$this->essence->insert_essence_track_identifiers($essence_track_identifier);
 					}
+					exit;
 					unset($essence_track_identifier);
 					/* Essence Track Identifier End */
 					if (isset($track['attributes']['type']) && $track['attributes']['type'] === 'Video')
@@ -848,13 +855,13 @@ class Mediainfo extends CI_Controller
 							}
 							else
 							{
-								$essence_track['essence_track_frame_sizes_id'] = $this->essence->insert_essence_track_frame_sizes($frame);
+//								$essence_track['essence_track_frame_sizes_id'] = $this->essence->insert_essence_track_frame_sizes($frame);
 							}
 						}
 						unset($frame);
 						/* Essence Track Frame Size End */
 						/* Update Essence Track Start */
-						$this->essence->update_essence_track($db_essence_track_id, $essence_track);
+//						$this->essence->update_essence_track($db_essence_track_id, $essence_track);
 						/* Update Essence Track End */
 
 						/* Essence Track Annotation Start */
@@ -879,7 +886,7 @@ class Mediainfo extends CI_Controller
 							foreach ($essence_annotation as $annotation)
 							{
 								$annotation['essence_tracks_id'] = $db_essence_track_id;
-								$this->essence->insert_essence_track_annotations($annotation);
+//								$this->essence->insert_essence_track_annotations($annotation);
 							}
 						}
 						unset($essence_annotation);

@@ -39,7 +39,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span>Track Identifier:</b></label>
+									<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Track Identifier:</b></label>
 								</td>
 								<td>
 
@@ -47,6 +47,32 @@ if ($essence_track)
 										<?php
 										echo $value->essence_track_identifiers . ' ';
 										echo ( ! empty($value->essence_track_identifier_source)) ? "($value->essence_track_identifier_source)" : '';
+										?>
+									</p>
+
+								</td>
+							</tr>
+						<?php } ?>
+
+						<?php
+						if ( ! empty($value->encoding))
+						{
+							if ( ! empty($value->encoding_ref))
+								$encoding = "<a href='$value->encoding_ref'>$value->encoding</a>";
+							else
+								$encoding = "$value->encoding";
+							if ( ! empty($value->encoding_source))
+								$encoding .=" ($value->encoding_source)";
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Track Identifier:</b></label>
+								</td>
+								<td>
+
+									<p>
+										<?php
+										echo $encoding;
 										?>
 									</p>
 

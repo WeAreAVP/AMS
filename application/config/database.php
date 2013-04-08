@@ -93,7 +93,16 @@ $db['sphnix']['password'] = '';
 $db['sphnix']['database'] = '';
 $db['sphnix']['dbdriver'] = 'mysql';
 $db['sphnix']['db_debug'] = FALSE;
+$db['sphnix']['dbprefix'] = '';
 $db['sphnix']['pconnect'] = FALSE;
+$db['sphnix']['cache_on'] = FALSE;
+$db['sphnix']['cachedir'] = '';
+$db['sphnix']['char_set'] = 'utf8';
+$db['sphnix']['dbcollat'] = 'utf8_general_ci';
+$db['sphnix']['swap_pre'] = '';
+$db['sphnix']['autoinit'] = TRUE;
+$db['sphnix']['stricton'] = FALSE;
+
 
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

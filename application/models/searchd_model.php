@@ -39,7 +39,7 @@ class Searchd_Model extends CI_Model
 	}
 	function check_sphnix(){
 	debug($this->sphnix_db,FALSE);
-		$query=$this->sphnix_db->query('SHOW TABLES');
+		$query=$this->sphnix_db->query('SELECT * FROM stations');
 		debug($query->result());
 	}
 

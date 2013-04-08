@@ -93,6 +93,7 @@ $db['sphnix']['password'] = '';
 $db['sphnix']['database'] = '';
 $db['sphnix']['dbdriver'] = 'mysql';
 $db['sphnix']['db_debug'] = FALSE;
+$db['sphnix']['pconnect'] = FALSE;
 
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

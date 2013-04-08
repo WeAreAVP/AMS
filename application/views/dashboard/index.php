@@ -6,7 +6,7 @@
 				'#7D7D7D',
 			],
 			chart: {
-				plotBackgroundColor: '#DDD',
+				plotBackgroundColor: '#F5F5F5',
 				plotShadow: false,
 				shadow: false,
 				pointBorderWidth: 0

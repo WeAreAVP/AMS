@@ -63,6 +63,7 @@ class Refinecrons extends CI_Controller
 		{
 			$data['is_active'] = 1;
 			$data['project_name'] = $filename;
+			myLog('Successfully Created AMS Refine Project');
 			$this->refine_modal->update_job($job_id, $data);
 			return $data['project_url'];
 		}
@@ -121,7 +122,7 @@ class Refinecrons extends CI_Controller
 					}
 					fputs($fp, $line);
 					fclose($fp);
-					myLog('Total Records on CSV' . ($offset * 15000));
+					myLog('Total Records on CSV ' . ($offset * 15000));
 					$offset ++;
 					if (count($records) < 15000)
 						$db_count ++;

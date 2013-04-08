@@ -1,55 +1,55 @@
 <script>
-	$(document).ready(function() {
-		Highcharts.theme = {
-			colors: [
-				'#000000',
-				'#7D7D7D',
-			],
-			chart: {
-				plotBackgroundColor: 'whiteSmoke',
-				plotShadow: false,
-				shadow: false,
-				pointBorderWidth: 0
-			},
-			xAxis: {
-				gridLineWidth: 0,
-				labels: {
-					style: {
-						color: '#060b10',
-						fontSize: '15px'
-					}
-				}
-			},
-			yAxis: {
-				lineWidth: 0,
-				tickWidth: 0,
-				labels: {
-					style: {
-						color: '#000000'
-					}
-				}
-			},
-			legend: {
-				itemStyle: {
-					font: 'Verdana, sans-serif',
-					color: '#000000'
-				},
-				itemHoverStyle: {
-					color: '#000000'
-				},
-				itemHiddenStyle: {
-					color: '#000000'
-				}
-			},
-			labels: {
-				style: {
-					color: '#000000'
-				}
-			}
-		};
-
-		var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
-	});
+//	$(document).ready(function() {
+//		Highcharts.theme = {
+//			colors: [
+//				'#000000',
+//				'#7D7D7D',
+//			],
+//			chart: {
+//				plotBackgroundColor: 'whiteSmoke',
+//				plotShadow: false,
+//				shadow: false,
+//				pointBorderWidth: 0
+//			},
+//			xAxis: {
+//				gridLineWidth: 0,
+//				labels: {
+//					style: {
+//						color: '#060b10',
+//						fontSize: '15px'
+//					}
+//				}
+//			},
+//			yAxis: {
+//				lineWidth: 0,
+//				tickWidth: 0,
+//				labels: {
+//					style: {
+//						color: '#000000'
+//					}
+//				}
+//			},
+//			legend: {
+//				itemStyle: {
+//					font: 'Verdana, sans-serif',
+//					color: '#000000'
+//				},
+//				itemHoverStyle: {
+//					color: '#000000'
+//				},
+//				itemHiddenStyle: {
+//					color: '#000000'
+//				}
+//			},
+//			labels: {
+//				style: {
+//					color: '#000000'
+//				}
+//			}
+//		};
+//
+//		var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
+//	});
 	function takeScreenShot() {
 		html2canvas(document.body, {
 			onrendered: function(canvas) {

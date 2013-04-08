@@ -317,6 +317,14 @@ if ($essence_track)
 						<?php
 						if (count(get_essence_track_annotation($value->id)) > 0)
 						{
+							$annotations = get_essence_track_annotation($value->id);
+							$combine_annotation = '';
+							foreach ($annotations as $key => $annotation)
+							{
+								$combine_annotation .=$annotation->annotation;
+								$combine_annotation .=( ! empty($annotation->annotation_type)) ? " ($annotation->annotation_type)" : '';
+								$combine_annotation .='<br/>';
+							}
 							?>
 							<tr>
 								<td class="record-detail-page">
@@ -326,14 +334,7 @@ if ($essence_track)
 
 									<p>
 										<?php
-										$annotations = get_essence_track_annotation($value->id);
-										$combine_annotation = '';
-										foreach ($annotations as $key => $annotation)
-										{
-											$combine_annotation .=$annotation->annotation;
-											$combine_annotation .=( ! empty($annotation->annotation_type)) ? " ($annotation->annotation_type)" : '';
-											$combine_annotation .='<br/>';
-										}
+										echo $combine_annotation;
 										?>
 									</p>
 

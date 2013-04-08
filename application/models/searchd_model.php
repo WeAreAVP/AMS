@@ -38,7 +38,7 @@ class Searchd_Model extends CI_Model
 		$this->load->database('sphnix');
 	}
 	function check_sphnix(){
-		$query=$this->db->query('SELECT * FROM stations');
+		$query=$this->db->query('SELECT * FROM instantiations_list LIMIT 10');
 		debug($query->result());
 	}
 

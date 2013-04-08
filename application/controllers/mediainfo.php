@@ -737,7 +737,7 @@ class Mediainfo extends CI_Controller
 					if (isset($track['children']['duration_string3']) && isset($track['children']['duration_string3'][0]) && isset($track['children']['duration_string3'][0]['text']) && ! empty($track['children']['duration_string3'][0]['text']))
 					{
 						$essence_track_duration=explode('.',$general_track['duration_string3'][0]['text']);
-						debug($essence_track_duration,FALSE);
+						debug($general_track['duration_string3'][0]['text'],FALSE);
 						echo date('H:i:s', strtotime($essence_track_duration[0]));exit;
 						$dessence_track[$dessence_track_counter]['duration'] = $essence_track['duration'] = date('H:i:s', strtotime($general_track['duration_string3'][0]['text']));
 					}

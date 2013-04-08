@@ -794,7 +794,7 @@ class Mediainfo extends CI_Controller
 						$dessence_track[$dessence_track_counter]['identifier'] = $essence_track_identifier['essence_track_identifiers'] = $track['children']['id'][0]['text'];
 						$dessence_track[$dessence_track_counter]['identifier_source'] = $essence_track_identifier['essence_track_identifier_source'] = 'mediainfo';
 					}
-					else if (isset($track['children']['streamkindid']) && isset($track['children']['streamkindid'][0]) && isset($track['children']['streamkindid'][0]['text']))
+					else if (isset($track['children']['streamkindid']) && isset($track['children']['streamkindid'][0]) && isset($track['children']['streamkindid'][0]['text']) && ! empty($track['children']['streamkindid'][0]['text']))
 					{
 						echo '2';
 						$dessence_track[$dessence_track_counter]['identifier'] = $essence_track_identifier['essence_track_identifiers'] = $track['children']['streamkindid'][0]['text'];

@@ -719,9 +719,9 @@ class Mediainfo extends CI_Controller
 						if ($data_rate_unit != '')
 						{
 							$data_rate = $this->instant->get_data_rate_units_by_unit($data_rate_unit);
-							if ( ! is_empty($data_rate))
-								$essence_track['data_rate_units_id'] = $data_rate->id;
-							else
+//							if ( ! is_empty($data_rate))
+//								$essence_track['data_rate_units_id'] = $data_rate->id;
+//							else
 //								$essence_track['data_rate_units_id'] = $this->instant->insert_data_rate_units(array('unit_of_measure' => $data_rate_unit));
 						}
 					}

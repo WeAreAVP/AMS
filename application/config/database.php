@@ -88,9 +88,9 @@ else if (ENVIRONMENT == 'production')
 }
 
 $db['sphnix']['hostname'] = 'localhost';
-$db['sphnix']['username'] = 'root';
+$db['sphnix']['username'] = '';
 $db['sphnix']['password'] = '';
-$db['sphnix']['database'] = 'ams_qa';
+$db['sphnix']['database'] = '';
 $db['sphnix']['dbdriver'] = 'mysql';
 $db['sphnix']['db_debug'] = FALSE;
 

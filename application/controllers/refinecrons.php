@@ -118,21 +118,21 @@ class Refinecrons extends CI_Controller
 					}
 					fputs($fp, $line);
 					fclose($fp);
-					$this->myLog('Total Records on CSV' . ($offset * 15000));
+					myLog('Total Records on CSV' . ($offset * 15000));
 					$offset ++;
 					if (count($records) < 15000)
 						$db_count ++;
 				}
 
 				$path = $this->config->item('path') . "uploads/google_refine/$filename";
-				$this->myLog('CSV file successfully created');
+				myLog('CSV file successfully created');
 				$data = array('export_csv_path' => $path);
 				$this->refine_modal->update_job($record->id, $data);
-				$this->myLog('Creating AMS Refine Project');
+				myLog('Creating AMS Refine Project');
 				$project_url = $this->create($path, $filename, $record->id);
-				$this->myLog('Successfully Created AMS Refine Project');
+				myLog('Successfully Created AMS Refine Project');
 				$user = $this->users->get_user_by_id($record->user_id)->row();
-				$this->myLog('Sending Email to ' . $user->email);
+				myLog('Sending Email to ' . $user->email);
 
 				send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
 			}
@@ -188,13 +188,13 @@ class Refinecrons extends CI_Controller
 				$this->refine_modal->update_job($record->id, $data);
 				$project_url = $this->create($path, $filename, $record->id);
 				$user = $this->users->get_user_by_id($record->user_id)->row();
-				$this->myLog('Sending Email to ' . $user->email);
+				myLog('Sending Email to ' . $user->email);
 				send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
 			}
 		}
 		else
 		{
-			$this->myLog('No job available for refinement.');
+			myLog('No job available for refinement.');
 		}
 		exit_function();
 	}

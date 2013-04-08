@@ -787,7 +787,7 @@ class Mediainfo extends CI_Controller
 					/* Essence Track Encoding End */
 					/* Essence Track Identifier Start */
 					$essence_track_identifier = array();
-					echo 'fadfadfad';
+					
 					if (isset($track['children']['id']) && isset($track['children']['id'][0]) && isset($track['children']['id'][0]['text']) && ! empty($track['children']['id'][0]['text']))
 					{
 						echo '1fadfadf';exit;
@@ -799,6 +799,9 @@ class Mediainfo extends CI_Controller
 						echo '2';
 						$dessence_track[$dessence_track_counter]['identifier'] = $essence_track_identifier['essence_track_identifiers'] = $track['children']['streamkindid'][0]['text'];
 						$dessence_track[$dessence_track_counter]['identifier_source'] = $essence_track_identifier['essence_track_identifier_source'] = 'mediainfo';
+					}
+					else{
+						echo 'here';
 					}
 					if (isset($essence_track_identifier['essence_track_identifiers']))
 					{

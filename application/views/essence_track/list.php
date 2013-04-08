@@ -2,7 +2,7 @@
 if ($essence_track)
 {
 	?>
-	<div>
+	<div style="margin-left: 250px;">
 		<ul class="nav nav-tabs">
 			<?php
 			foreach ($essence_track as $key => $value)
@@ -24,7 +24,7 @@ if ($essence_track)
 
 		<div class="tab-content">
 			<div class="tab-pane active" id="region_digitized" style=" margin: 0 auto">
-				
+
 			</div>
 		</div>
 	</div>

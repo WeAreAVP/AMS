@@ -639,7 +639,7 @@
 			</table>
 		</form>
 	</div>
-	<div class="clearfix"></div>
+	
 	<?php $this->load->view('essence_track/list'); ?>
 </div>
 <script type="text/javascript">

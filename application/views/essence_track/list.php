@@ -33,6 +33,7 @@ if ($essence_track)
 				?>
 				<div class="tab-pane <?php echo $class; ?>" id="<?php echo $value->id; ?>" style=" margin: 0 auto">
 					<table  cellPadding="8" class="record-detail-table">
+						<!-- Essence Track Identifier Start -->
 						<?php
 						if ( ! empty($value->essence_track_identifiers) || ! empty($value->essence_track_identifier_source))
 						{
@@ -53,7 +54,8 @@ if ($essence_track)
 								</td>
 							</tr>
 						<?php } ?>
-
+						<!-- Essence Track Identifier End -->
+						<!-- Essence Track Encoding Start -->
 						<?php
 						if ( ! empty($value->encoding))
 						{
@@ -66,7 +68,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Track Identifier:</b></label>
+									<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Encoding:</b></label>
 								</td>
 								<td>
 
@@ -79,6 +81,238 @@ if ($essence_track)
 								</td>
 							</tr>
 						<?php } ?>
+						<!-- Essence Track Encoding End -->
+						<!-- Essence Track Standard Start -->
+						<?php
+						if ( ! empty($value->standard))
+						{
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Track Standard:</b></label>
+								</td>
+								<td>
+
+									<p>
+										<?php
+										echo $value->standard;
+										?>
+									</p>
+
+								</td>
+							</tr>
+						<?php } ?>
+						<!-- Essence Track Standard End -->
+						<!-- Essence Track Data Rate Start -->
+						<?php
+						if ( ! empty($value->data_rate))
+						{
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b> Track Data Rate:</b></label>
+								</td>
+								<td>
+
+									<p>
+										<?php
+										echo $value->data_rate + $value->unit_of_measure;
+										?>
+									</p>
+
+								</td>
+							</tr>
+						<?php } ?>
+						<!-- Essence Track Date Rate End -->
+						<!-- Essence Track Frame Rate Start -->
+						<?php
+						if ( ! empty($value->frame_rate))
+						{
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b>Frame Rate:</b></label>
+								</td>
+								<td>
+
+									<p>
+										<?php
+										echo $value->frame_rate;
+										?>
+									</p>
+
+								</td>
+							</tr>
+						<?php } ?>
+						<!-- Essence Track Frame Rate End -->
+						<!-- Essence Track Playback Speed Start -->
+						<?php
+						if ( ! empty($value->playback_speed))
+						{
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b>Playback Speed:</b></label>
+								</td>
+								<td>
+
+									<p>
+										<?php
+										echo $value->playback_speed;
+										?>
+									</p>
+
+								</td>
+							</tr>
+						<?php } ?>
+						<!-- Essence Track Playback Speed End -->
+						<!-- Essence Track Sampling Rate Start -->
+						<?php
+						if ( ! empty($value->sampling_rate))
+						{
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b>Sampling Rate:</b></label>
+								</td>
+								<td>
+
+									<p>
+										<?php
+										echo $value->sampling_rate;
+										?>
+									</p>
+
+								</td>
+							</tr>
+						<?php } ?>
+						<!-- Essence Track Sampling Rate End -->
+						<!-- Essence Track Bit Depth Start -->
+						<?php
+						if ( ! empty($value->bit_depth))
+						{
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b>Bit Depth:</b></label>
+								</td>
+								<td>
+
+									<p>
+										<?php
+										echo $value->bit_depth;
+										?>
+									</p>
+
+								</td>
+							</tr>
+						<?php } ?>
+						<!-- Essence Track Sampling Bit Depth -->
+						<!-- Essence Track Frame Size Start -->
+						<?php
+						if ( ! empty($value->width) && ! empty($value->height))
+						{
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b>Frame Size:</b></label>
+								</td>
+								<td>
+
+									<p>
+										<?php
+										echo $value->width . ' X ' . $value->height;
+										?>
+									</p>
+
+								</td>
+							</tr>
+						<?php } ?>
+						<!-- Essence Track Frame Bit Size -->
+						<!-- Essence Track Aspect Ratio Start -->
+						<?php
+						if ( ! empty($value->aspect_ratio))
+						{
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b>Aspect Ratio:</b></label>
+								</td>
+								<td>
+
+									<p>
+										<?php
+										echo $value->aspect_ratio;
+										?>
+									</p>
+
+								</td>
+							</tr>
+						<?php } ?>
+						<!-- Essence Track Aspect Ratio End -->
+						<!-- Essence Track Time Start Start -->
+						<?php
+						if ( ! empty($value->time_start))
+						{
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b>Time Start:</b></label>
+								</td>
+								<td>
+
+									<p>
+										<?php
+										echo $value->time_start;
+										?>
+									</p>
+
+								</td>
+							</tr>
+						<?php } ?>
+						<!-- Essence Track Time Start End -->
+						<!-- Essence Track Duration Start -->
+						<?php
+						if ( ! empty($value->duration))
+						{
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b>Duration:</b></label>
+								</td>
+								<td>
+
+									<p>
+										<?php
+										echo $value->duration;
+										?>
+									</p>
+
+								</td>
+							</tr>
+						<?php } ?>
+						<!-- Essence Duration End -->
+						<!-- Essence Track Language Start -->
+						<?php
+						if ( ! empty($value->language))
+						{
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b>Track Language:</b></label>
+								</td>
+								<td>
+
+									<p>
+										<?php
+										echo $value->language;
+										?>
+									</p>
+
+								</td>
+							</tr>
+						<?php } ?>
+						<!-- Essence Language End -->
 					</table>
 				</div>
 				<?php

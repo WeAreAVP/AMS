@@ -52,7 +52,9 @@ class Refinecrons extends CI_Controller
 	 */
 	function create($path, $filename, $job_id)
 	{
-
+		set_time_limit(0);
+		@ini_set("memory_limit", "1000M"); # 1GB
+		@ini_set("max_execution_time", 999999999999); # 1GB
 		$project_name = $filename;
 		$file_path = $path;
 		$data = $this->googlerefine->create_project($project_name, $file_path);

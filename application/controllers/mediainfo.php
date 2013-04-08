@@ -33,7 +33,7 @@ class Mediainfo extends CI_Controller
 	 * 
 	 */
 	public $media_info_path;
-	
+
 	function __construct()
 	{
 		parent::__construct();
@@ -276,11 +276,12 @@ class Mediainfo extends CI_Controller
 	 */
 	function import_media_files($file_path)
 	{
-//		$file_path = $this->media_info_path . 'audio_metadata/cpb-aacip-305-22v41qw8-sparse/data/cpb-aacip-305-22v41qw8.mp3.mediainfo.xml';
+		$file_path = $this->media_info_path . 'cpb-aacip-27-00ns1rzm.mp3.mediainfo.xml';
 		echo '<br/>File: ' . $file_path . '<br/>';
 		$data = file_get_contents($file_path);
 		$x = @simplexml_load_string($data);
 		$data = xmlObjToArr($x);
+		debug($data);
 		$tracks_data = $data['children']['file'][0]['children']['track'];
 		$db_asset_id = NULL;
 		$db_instantiation_id = NULL;
@@ -535,7 +536,7 @@ class Mediainfo extends CI_Controller
 							}
 						}
 					}
-					
+
 					/* Identifier and Generation End */
 					/* Instantiation Date Start */
 					if (isset($general_track['encoded_date']) && isset($general_track['encoded_date'][0]))

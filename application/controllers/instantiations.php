@@ -42,7 +42,7 @@ class Instantiations extends MY_Controller
 
 		$this->load->model('export_csv_job_model', 'csv_job');
 		$this->load->model('assets_model');
-		$this->load->model('essence_track_model','essence_track');
+		$this->load->model('essence_track_model', 'essence_track');
 		$this->load->model('sphinx_model', 'sphinx');
 		$this->load->library('pagination');
 		$this->load->library('Ajax_pagination');

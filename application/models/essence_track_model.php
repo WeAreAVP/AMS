@@ -42,7 +42,6 @@ class Essence_Track_Model extends CI_Model
 		$this->_table_essence_track_annotations = 'essence_track_annotations';
 		$this->_table_essence_track_frame_sizes = 'essence_track_frame_sizes';
 		$this->_table_data_rate_units = 'data_rate_units';
-		
 	}
 
 	/**

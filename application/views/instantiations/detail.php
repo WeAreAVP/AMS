@@ -639,6 +639,7 @@
 			</table>
 		</form>
 	</div>
+	<?php $this->load->view('essence_track/list');?>
 </div>
 <script type="text/javascript">
 				$(function() {

@@ -13,7 +13,7 @@ if ($essence_track)
 					$class = 'class="active"';
 				}
 				?>
-				<li <?php echo $class; ?>><a href="#<?php echo $value->id; ?>" data-toggle="tab"><?php echo $value->essence_track_type; ?></a></li>
+				<li <?php echo $class; ?>><a href="#<?php echo $value->id; ?>" data-toggle="tab"><?php echo ucwords($value->essence_track_type); ?></a></li>
 				<?php
 			}
 			?>

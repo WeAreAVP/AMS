@@ -40,6 +40,7 @@ class Refinecrons extends CI_Controller
 		$this->load->model('sphinx_model', 'sphinx');
 		$this->load->model('instantiations_model', 'instantiation');
 		$this->load->model('assets_model');
+		$this->load->model('dx_auth/users', 'users');
 	}
 
 	/**

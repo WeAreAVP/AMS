@@ -281,7 +281,7 @@ class Mediainfo extends CI_Controller
 		$data = file_get_contents($file_path);
 		$x = @simplexml_load_string($data);
 		$data = xmlObjToArr($x);
-		debug($data);
+//		debug($data);
 		$tracks_data = $data['children']['file'][0]['children']['track'];
 		$db_asset_id = NULL;
 		$db_instantiation_id = NULL;
@@ -736,7 +736,7 @@ class Mediainfo extends CI_Controller
 					/* Essence Track Duration Start */
 					if (isset($track['children']['duration_string3']) && isset($track['children']['duration_string3'][0]) && isset($track['children']['duration_string3'][0]['text']) && ! empty($track['children']['duration_string3'][0]['text']))
 					{
-
+						echo date('H:i:s', strtotime($general_track['duration_string3'][0]['text']));exit;
 						$dessence_track[$dessence_track_counter]['duration'] = $essence_track['duration'] = date('H:i:s', strtotime($general_track['duration_string3'][0]['text']));
 					}
 					/* Essence Track Duration End */

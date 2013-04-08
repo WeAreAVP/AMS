@@ -35,10 +35,10 @@ class Searchd_Model extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->database('sphnix');
+		$this->sphinxdb = $this->load->database('sphnix');
 	}
 	function check_sphnix(){
-		$query=$this->db->query('SHOW TABLES');
+		$query=$this->sphinxdb->query('SHOW TABLES');
 		debug($query->result());
 	}
 

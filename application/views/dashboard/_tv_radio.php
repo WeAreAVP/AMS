@@ -31,7 +31,7 @@
 			chart = new Highcharts.Chart({
 				chart: {
 					renderTo: 'tv_graph',
-					plotBackgroundColor: 'whiteSmoke',
+					plotBackgroundColor: '#DDD',
 					plotBorderWidth: null,
 					plotShadow: false
 				},
@@ -78,7 +78,7 @@
 			chart = new Highcharts.Chart({
 				chart: {
 					renderTo: 'radio_graph',
-					plotBackgroundColor: 'whiteSmoke',
+					plotBackgroundColor: '#DDD',
 					plotBorderWidth: null,
 					plotShadow: false
 				},
@@ -122,7 +122,7 @@
 			chart = new Highcharts.Chart({
 				chart: {
 					renderTo: 'all_formats',
-					plotBackgroundColor: 'whiteSmoke',
+					plotBackgroundColor: '#DDD',
 					plotBorderWidth: null,
 					plotShadow: false
 				},

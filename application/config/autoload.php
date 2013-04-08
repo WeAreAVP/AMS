@@ -55,7 +55,7 @@ $autoload['packages'] = array();
   |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
  */
 
-$autoload['libraries'] = array('DX_Auth', 'Form_validation','Emailtemplates');
+$autoload['libraries'] = array('DX_Auth', 'Form_validation','Emailtemplates','SphinxRT');
 
 
 /*

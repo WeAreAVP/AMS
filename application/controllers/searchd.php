@@ -47,6 +47,7 @@ class Searchd extends MY_Controller
 	 * @return view dashboard/index
 	 */
 	function index(){
+		echo 'fafd';
 		$data=$this->SphnixRT->search('stations',array('search',''));
 		debug($data);
 	}

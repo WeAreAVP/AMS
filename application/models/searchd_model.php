@@ -38,8 +38,10 @@ class Searchd_Model extends CI_Model
 		$this->sphnix_db = $this->load->database('sphnix',TRUE);
 	}
 	function check_sphnix(){
-	debug($this->sphnix_db,FALSE);
-		$query=$this->sphnix_db->query('SELECT * FROM stations	1');
+		
+		$this->sphnix_db->reconnect(); 
+	
+		$query=$this->sphnix_db->query('SELECT * FROM stations limit 10');
 		debug($query->result());
 	}
 

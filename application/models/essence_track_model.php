@@ -172,6 +172,7 @@ class Essence_Track_Model extends CI_Model
 
 	function get_essence_tracks_by_instantiations_id($ins_id)
 	{
+		$this->db->select("$this->_table_essence_tracks.id");
 		$this->db->select("$this->_table_essence_tracks.standard,$this->_table_essence_tracks.frame_rate");
 		$this->db->select("$this->_table_essence_tracks.playback_speed,$this->_table_essence_tracks.sampling_rate");
 		$this->db->select("$this->_table_essence_tracks.bit_depth,$this->_table_essence_tracks.aspect_ratio");

@@ -281,7 +281,7 @@ class Mediainfo extends CI_Controller
 		$data = file_get_contents($file_path);
 		$x = @simplexml_load_string($data);
 		$data = xmlObjToArr($x);
-//		debug($data);
+		debug($data);
 		$tracks_data = $data['children']['file'][0]['children']['track'];
 		$db_asset_id = NULL;
 		$db_instantiation_id = NULL;
@@ -794,7 +794,6 @@ class Mediainfo extends CI_Controller
 					}
 					else if (isset($track['children']['streamkindid']) && isset($track['children']['streamkindid'][0]) && isset($track['children']['streamkindid'][0]['text']))
 					{
-						echo '2';
 						$dessence_track[$dessence_track_counter]['identifier'] = $essence_track_identifier['essence_track_identifiers'] = $track['children']['streamkindid'][0]['text'];
 						$dessence_track[$dessence_track_counter]['identifier_source'] = $essence_track_identifier['essence_track_identifier_source'] = 'mediainfo';
 					}

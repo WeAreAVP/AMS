@@ -291,7 +291,7 @@ if ($essence_track)
 								</td>
 							</tr>
 						<?php } ?>
-						<!-- Essence Duration End -->
+						<!-- Essence Track Duration End -->
 						<!-- Essence Track Language Start -->
 						<?php
 						if ( ! empty($value->language))
@@ -312,7 +312,35 @@ if ($essence_track)
 								</td>
 							</tr>
 						<?php } ?>
-						<!-- Essence Language End -->
+						<!-- Essence Track Language End -->
+						<!-- Essence Track Annotation Start -->
+						<?php
+						if (count(get_essence_track_annotation($value->id)) > 0)
+						{
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b>Track Annotation:</b></label>
+								</td>
+								<td>
+
+									<p>
+										<?php
+										$annotations = get_essence_track_annotation($value->id);
+										$combine_annotation = '';
+										foreach ($annotations as $key => $annotation)
+										{
+											$combine_annotation .=$annotation->annotation;
+											$combine_annotation .=( ! empty($annotation->annotation_type)) ? " ($annotation->annotation_type)" : '';
+											$combine_annotation .='<br/>';
+										}
+										?>
+									</p>
+
+								</td>
+							</tr>
+						<?php } ?>
+						<!-- Essence Track Annotation End -->
 					</table>
 				</div>
 				<?php

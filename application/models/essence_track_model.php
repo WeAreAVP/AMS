@@ -42,6 +42,7 @@ class Essence_Track_Model extends CI_Model
 		$this->_table_essence_track_annotations = 'essence_track_annotations';
 		$this->_table_essence_track_frame_sizes = 'essence_track_frame_sizes';
 		$this->_table_data_rate_units = 'data_rate_units';
+		
 	}
 
 	/**
@@ -192,6 +193,12 @@ class Essence_Track_Model extends CI_Model
 		$this->db->join($this->_table_essence_track_identifiers, "$this->_table_essence_track_identifiers.essence_tracks_id=$this->_table_essence_tracks.id", 'LEFT');
 		$this->db->where("$this->_table_essence_tracks.instantiations_id", $ins_id);
 		return $this->db->get($this->_table_essence_tracks)->result();
+	}
+
+	function get_annotation_by_essence_track_id($essence_track_id)
+	{
+		$this->db->where("$this->_table_essence_track_annotations.essence_tracks_id", $essence_track_id);
+		return $this->db->get($this->_table_essence_track_annotations)->result();
 	}
 
 }

@@ -37,6 +37,10 @@ class Searchd_Model extends CI_Model
 		parent::__construct();
 		$this->load->database('sphnix');
 	}
+	function check_sphnix(){
+		$query=$this->db->query('SELECT * FROM stations');
+		debug($query->result());
+	}
 
 }
 

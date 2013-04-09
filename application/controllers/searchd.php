@@ -36,8 +36,8 @@ class Searchd extends MY_Controller
 	function __construct()
 	{
 		parent::__construct();
-		echo 'fadfad';
-		$this->load->library('sphinxrt');
+		
+		$this->load->library('sphnixrt');
 		
 		
 	}

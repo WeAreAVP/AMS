@@ -40,7 +40,74 @@ class Sphnixrt
 			$this->link_status = true;
 		}
 	}
+	public function select($index_name)
+	{
+		
 
+		
+		
+			// build first part of query
+			$query = 'SELECT * FROM `' . $index_name . '`';
+
+			// execute query
+			$result = $this->sphinxql_link->query($query);
+
+			// successful query?
+			if($result)
+			{
+				// loop through results
+				while($rows = $result->fetch_array())
+				{
+					// add in row
+					$this->storage['results']['records'][] = $rows;
+				}
+
+				// are there any results?
+				if(isset($this->storage['results']))
+				{
+					// clean up the records
+					$this->storage['results']['records'] = $this->_fix_records($this->storage['results']['records']);
+
+					// we need meta information
+					$result_meta = $this->sphinxql_link->query('SHOW META');
+
+					// let's parse that result meta information
+					while($rows_meta = $result_meta->fetch_array())
+					{
+						// add in meta
+						$this->storage['results']['meta'][$rows_meta['Variable_name']] = $rows_meta['Value'];
+					}
+
+					// pass back all the result data
+					return $this->storage['results'];
+				}
+				else
+				{
+					// define
+					$this->storage['results'] = array();
+
+					// still need meta information
+					$result_meta = $this->sphinxql_link->query('SHOW META');
+
+					// let's parse that result meta information
+					while($rows_meta = $result_meta->fetch_array())
+					{
+						// add in meta
+						$this->storage['results']['meta'][$rows_meta['Variable_name']] = $rows_meta['Value'];
+					}
+
+					// no results
+					return $this->storage['results'];
+				}
+			} 
+			else 
+			{
+				// no results
+				return array('error' 	=> $this->errors[3],
+							 'native' 	=> $this->sphinxql_link->error);
+			}
+		
+	}
 	// fix up "records"
 	public function _fix_records($records)
 	{

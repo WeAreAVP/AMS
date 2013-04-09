@@ -7,4 +7,4 @@
 $config['hostname'] 	= '127.0.0.1';
 
 // port, you set this in the sphinx config
-$config['port'] 		= '9306';
+$config['port'] 		= '3306';

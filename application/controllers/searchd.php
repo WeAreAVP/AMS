@@ -48,8 +48,8 @@ class Searchd extends MY_Controller
 	 * @return view dashboard/index
 	 */
 	function index(){
-		echo 'fafd';
-		$data=$this->sphnixrt->select('stations');
+		
+		$data=$this->sphnixrt->select('stations',array('start'=>0,'limit'=>1000));
 		debug($data);
 	}
 	

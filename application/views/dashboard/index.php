@@ -74,7 +74,7 @@
 		</div>
 		<div class="span4" style="width: 31%;">
 			<div class="assets-sum"><?php echo $percentage_hours . '%'; ?></div>
-			<div class="assets-subdetail">of <?php echo 'of ' . $total_hours . ' hrs'; ?> </div>
+			<div class="assets-subdetail"> <?php echo 'of ' . $total_hours . ' hrs'; ?> </div>
 
 		</div>
 		<div class="span4" style="width: 31%;">

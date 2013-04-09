@@ -24,8 +24,8 @@
 
 					var video = $('#my-video');
 					var videoUrl = video.find('source').attr('src');
-					var flashUrl = '/js/flowplayer/flowplayer.swf';
-					alert(1);
+					var flashUrl = 'http://amsqa.avpreserve.com/js/flowplayer/flowplayer.swf';
+					
 					// create flash
 					var flash = '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" ' +
 					'	codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" ' +

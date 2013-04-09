@@ -13,6 +13,7 @@
 		<div class="clearfix"></div>
 		<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
 <div id="wowza" style="width:644px;height:276px;margin:0 auto;text-align:center">
+	  <script src="http://releases.flowplayer.org/js/flowplayer-3.2.12.min.js"></script>
     <img src="/media/img/player/splash_black.jpg" height="276" width="548" />
 </div>
 		<script>

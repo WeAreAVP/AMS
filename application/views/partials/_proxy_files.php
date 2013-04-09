@@ -4,15 +4,15 @@
 	if ($media)
 	{
 		?>
-<!--		<div class="flowplayer">
-			<video>
-				<source type="video/mp4" src="<?php echo $media['url']; ?>"/>
-
-			</video>
-		</div>-->
+		<!--		<div class="flowplayer">
+					<video>
+						<source type="video/mp4" src="<?php echo $media['url']; ?>"/>
+		
+					</video>
+				</div>-->
 		<div class="clearfix"></div>
 		<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
-		<video id="my-video" controls>
+		<video id="my-video" controls height="320" width="700">
 			<source src="<?php echo $media['url']; ?>" type="video/mp4">
 		</video>
 
@@ -24,7 +24,7 @@
 
 					var video = $('#my-video');
 					var videoUrl = video.find('source').attr('src');
-					var flashUrl = 'http://amsqa.avpreserve.com/js/flowplayer/flowplayer.swf';
+					var flashUrl = 'http://releases.flowplayer.org/swf/flowplayer.content-3.2.8.swf';
 					
 					// create flash
 					var flash = '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" ' +

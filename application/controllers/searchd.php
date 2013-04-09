@@ -49,7 +49,7 @@ class Searchd extends MY_Controller
 	 */
 	function index(){
 		echo 'fafd';
-		$data=$this->sphinxrt->search('stations',array('search',''));
+		$data=$this->sphnixrt->search('stations',array('search',''));
 		debug($data);
 	}
 	

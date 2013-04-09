@@ -52,10 +52,8 @@ class Dashboard_Model extends CI_Model
 		$this->db->where("$this->table_instantiations.digitized", '1');
 		$this->db->group_by("$this->table_instantiation_formats.instantiations_id");
 		$result = $this->db->get($this->table_instantiations);
-		if ($result)
-			return $result->result();
-		else
-			return FALSE;
+
+		return $result->result();
 	}
 
 	function get_scheduled_formats()
@@ -69,10 +67,7 @@ class Dashboard_Model extends CI_Model
 		$this->db->group_by("$this->table_instantiation_formats.instantiations_id");
 		$result = $this->db->get($this->table_instantiation_formats);
 
-		if ($result)
-			return $result->result();
-		else
-			return FALSE;
+		return $result->result();
 	}
 
 	function get_material_goal()
@@ -83,10 +78,7 @@ class Dashboard_Model extends CI_Model
 		$this->db->where("$this->table_nomination_status.status", 'Nominated/1st Priority');
 		$result = $this->db->get($this->table_instantiations);
 
-		if ($result)
-			return $result->row();
-		else
-			return FALSE;
+		return $result->row();
 	}
 
 	function get_digitized_hours()
@@ -201,7 +193,6 @@ class Dashboard_Model extends CI_Model
 		$result = $this->db->get($this->_table);
 		return $result->row();
 	}
-
 	function pie_total_tv_scheduled()
 	{
 		$this->db->select("COUNT($this->_table_assets.id) as total");

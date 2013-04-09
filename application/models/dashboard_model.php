@@ -52,8 +52,10 @@ class Dashboard_Model extends CI_Model
 		$this->db->where("$this->table_instantiations.digitized", '1');
 		$this->db->group_by("$this->table_instantiation_formats.instantiations_id");
 		$result = $this->db->get($this->table_instantiations);
-
-		return $result->result();
+		if ($result)
+			return $result->result();
+		else
+			return FALSE;
 	}
 
 	function get_scheduled_formats()
@@ -193,6 +195,7 @@ class Dashboard_Model extends CI_Model
 		$result = $this->db->get($this->_table);
 		return $result->row();
 	}
+
 	function pie_total_tv_scheduled()
 	{
 		$this->db->select("COUNT($this->_table_assets.id) as total");

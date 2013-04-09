@@ -11,9 +11,19 @@
 		</div>
 		<div class="clearfix"></div>
 		<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
+		<a id='player' href='<?php echo $media['url']; ?>'></a>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				flowplayer("flowplayer", "/js/flowplayer/flowplayer.swf");
+				flowplayer('player', {
+					src: '/js/flowplayer/flowplayer.swf',
+					version: [10, 0],
+					onFail: function() {
+						alert(1);
+					}
+				},
+				{
+					clip: '<?php echo $media['url']; ?>'
+				});
 			});
 		</script>
 		<?php

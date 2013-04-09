@@ -36,7 +36,7 @@ class Searchd extends MY_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->library('sphnixRT');
+		$this->load->library('sphnixrt');
 		
 		
 	}
@@ -48,7 +48,7 @@ class Searchd extends MY_Controller
 	 */
 	function index(){
 		echo 'fafd';
-		$data=$this->sphnixRT->search('stations',array('search',''));
+		$data=$this->sphnixrt->search('stations',array('search',''));
 		debug($data);
 	}
 	

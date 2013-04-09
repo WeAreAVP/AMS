@@ -7,7 +7,7 @@
 		<div class="flowplayer">
 			<video>
 				<source type="video/mp4" src="<?php echo $media['url']; ?>"/>
-				
+
 			</video>
 		</div>
 		<div class="clearfix"></div>

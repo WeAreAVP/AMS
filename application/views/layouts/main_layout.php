@@ -46,6 +46,9 @@
 		echo link_tag("css/jplayer.blue.monday.css");
 		echo link_tag("js/flowplayer/skin/minimalist.css");
 		?> 
+		<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
     </head>
 	<body>
         <div class="navbar navbar-fixed-top">
@@ -190,11 +193,11 @@
 					dateFormat: 'yy-mm-dd',
 					onSelect: function(selectedDate) {
 						var option = this.id == "start_date" ? "minDate" : "maxDate",
-								instance = $(this).data("datepicker"),
-								date = $.datepicker.parseDate(
-								instance.settings.dateFormat ||
-								$.datepicker._defaults.dateFormat,
-								selectedDate, instance.settings);
+						instance = $(this).data("datepicker"),
+						date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings);
 						dates.not(this).datepicker("option", option, date);
 					}
 				});

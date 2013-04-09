@@ -69,7 +69,10 @@ class Dashboard_Model extends CI_Model
 		$this->db->group_by("$this->table_instantiation_formats.instantiations_id");
 		$result = $this->db->get($this->table_instantiation_formats);
 
-		return $result->result();
+		if ($result)
+			return $result->result();
+		else
+			return FALSE;
 	}
 
 	function get_material_goal()
@@ -80,7 +83,10 @@ class Dashboard_Model extends CI_Model
 		$this->db->where("$this->table_nomination_status.status", 'Nominated/1st Priority');
 		$result = $this->db->get($this->table_instantiations);
 
-		return $result->row();
+		if ($result)
+			return $result->row();
+		else
+			return FALSE;
 	}
 
 	function get_digitized_hours()

@@ -3,6 +3,12 @@ if ($essence_track)
 {
 	?>
 	<div style="margin-left: 250px;">
+		<div class="dashboard-nav">
+		<div>
+			ESSENCE TRACKS
+		</div>
+
+	</div>
 		<ul class="nav nav-tabs">
 			<?php
 			foreach ($essence_track as $key => $value)

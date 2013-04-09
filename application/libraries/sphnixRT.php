@@ -20,6 +20,7 @@ class SphinxRT
 		$this->CI = &get_instance();
 
 		// load the config
+		echo 'terer';exit;
 		$this->CI->config->load('sphinxrt');
 
 		// attempt to connect to Sphinx

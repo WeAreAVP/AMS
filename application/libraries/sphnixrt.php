@@ -1,7 +1,7 @@
 <?php
 
 // SphinxRT Search Interface for CodeIgniter
-class Sphinxrt
+class Sphnixrt
 {
 	// variables
 	public $sphinxql_link;

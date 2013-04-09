@@ -12,7 +12,7 @@
 		</div>-->
 		<div class="clearfix"></div>
 		<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
-		<video id="my-video">
+		<video id="my-video" controls>
 			<source src="<?php echo $media['url']; ?>" type="video/mp4">
 		</video>
 

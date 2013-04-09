@@ -802,7 +802,7 @@ class Mediainfo extends CI_Controller
 						$essence_track_identifier['essence_tracks_id'] = $db_essence_track_id;
 						$this->essence->insert_essence_track_identifiers($essence_track_identifier);
 					}
-					exit;
+					
 					unset($essence_track_identifier);
 					/* Essence Track Identifier End */
 					if (isset($track['attributes']['type']) && $track['attributes']['type'] === 'Video')

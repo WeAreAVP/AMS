@@ -4,15 +4,15 @@
 	if ($media)
 	{
 		?>
-		<!--		<div class="flowplayer">
+				<div class="flowplayer">
 					<video>
 						<source type="video/mp4" src="<?php echo $media['url']; ?>"/>
 		
 					</video>
-				</div>-->
+				</div>
 		<div class="clearfix"></div>
 		<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
-		<video id="my-video" controls height="320" width="700">
+<!--		<video id="my-video" controls height="320" width="700">
 			<source src="<?php echo $media['url']; ?>" type="video/mp4">
 		</video>
 
@@ -42,7 +42,7 @@
 					video.detach();
 				}
 			});
-		</script>
+		</script>-->
 		<?php
 	}
 	?>

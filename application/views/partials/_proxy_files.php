@@ -1,4 +1,4 @@
-
+<meta http-equiv="Content-Type" content="video/mp4" />
 <div style="margin-bottom: 10px;">
 	<?php
 	if ($media)
@@ -7,25 +7,12 @@
 		<div class="flowplayer">
 			<video>
 				<source type="video/mp4" src="<?php echo $media['url']; ?>"/>
+				<embed src="<?php echo $media['url']; ?>" type="application/x-shockwave-flash" width="700" height="320" allowscriptaccess="always" allowfullscreen="true" autoplay="false"></embed>
 			</video>
 		</div>
 		<div class="clearfix"></div>
 		<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
-		<a id='player' href='<?php echo $media['url']; ?>'></a>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				flowplayer('player', {
-					src: '/js/flowplayer/flowplayer.swf',
-					version: [10, 0],
-					onFail: function() {
-						alert(1);
-					}
-				},
-				{
-					clip: '<?php echo $media['url']; ?>'
-				});
-			});
-		</script>
+		
 		<?php
 	}
 	?>

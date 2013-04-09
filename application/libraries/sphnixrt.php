@@ -20,7 +20,7 @@ class Sphnixrt
 		$this->CI = &get_instance();
 
 		// load the config
-		$this->CI->config->load('sphinxrt');
+		$this->CI->config->load('sphnixrt');
 
 		// attempt to connect to Sphinx
 		$this->sphinxql_link = new mysqli($this->CI->config->config['hostname'], 'sphinx', '', '', $this->CI->config->config['port']);

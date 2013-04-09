@@ -41,3 +41,6 @@ AddOutputFilterByType DEFLATE application/rss+xml
 AddOutputFilterByType DEFLATE application/javascript
 AddOutputFilterByType DEFLATE application/x-javascript  
 AddType application/octet-stream csv
+AddType video/ogg .ogv
+AddType video/mp4 .mp4
+AddType video/webm .webm

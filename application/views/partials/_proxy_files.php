@@ -1,3 +1,4 @@
+<meta http-equiv="Content-Type" content="video/mp4" />
 <div style="margin-bottom: 10px;">
 	<?php
 	if ($media)

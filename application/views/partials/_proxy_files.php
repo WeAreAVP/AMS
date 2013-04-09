@@ -11,7 +11,9 @@
 		</div>
 		<div class="clearfix"></div>
 		<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
-
+		<script type="text/javascript">
+		flowplayer("player", "/path/to/file/flowplayer-3.2.6.swf");
+		</script>
 		<?php
 	}
 	?>

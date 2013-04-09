@@ -3,6 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="author" content="Nouman Tayyab"/>
+		<meta http-equiv="Content-Type" content="video/mp4" />
         <title>AMS</title>
         <script type="text/javascript">
 			var site_url = '<?php echo site_url() ?>';

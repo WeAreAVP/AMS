@@ -35,14 +35,14 @@ $attributes = 'class="form-horizontal"';
 <div class="alert alert-error"><?php echo $this->dx_auth->get_auth_error(); ?></div>
 <?php } ?>
     <div class="control-group">
-        <label class="control-label" for="<?php echo $username['id']; ?>"><?php echo form_label('Username', $username['id']); ?></label>
+        <label class="control-label" for="<?php echo $username['id']; ?>"><?php echo form_label('Email:', $username['id']); ?></label>
         <div class="controls">
             <?php echo form_input($username) ?>
             <div class="help-block" style="color: #B94A48;"> <?php echo form_error($username['name']); ?></div>
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="<?php echo $password['id']; ?>"><?php echo form_label('Password', $password['id']); ?></label>
+        <label class="control-label" for="<?php echo $password['id']; ?>"><?php echo form_label('Password:', $password['id']); ?></label>
         <div class="controls">
             <?php echo form_password($password) ?>
             <div class="help-block" style="color: #B94A48;"> <?php echo form_error($password['name']); ?></div>

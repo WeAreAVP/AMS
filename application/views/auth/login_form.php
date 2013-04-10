@@ -29,7 +29,7 @@ $attributes = 'class="form-horizontal"';
 ?>
 <div class="row"> 
     <div class="span12">
-<fieldset><legend>Login</legend>
+<fieldset><legend>Sign in</legend>
     <?php echo form_open($this->uri->uri_string(), $attributes) ?>
     <?php if($this->dx_auth->get_auth_error()){?>
 <div class="alert alert-error"><?php echo $this->dx_auth->get_auth_error(); ?></div>
@@ -81,7 +81,7 @@ $attributes = 'class="form-horizontal"';
            </div>
 
    
-        <div class="controls"><?php echo form_submit('login', 'Login','class="btn btn-inverse"'); ?></div>
+        <div class="controls"><?php echo form_submit('login', 'Sign in','class="btn btn-inverse"'); ?></div>
 
 
 <?php echo form_close() ?>

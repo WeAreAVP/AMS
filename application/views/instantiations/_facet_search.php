@@ -746,9 +746,7 @@
 			data: $('#form_search').serialize(),
 			success: function(result, textStatus, request)
 			{
-//				console.log(request);
-				if(result=='logout')
-					window.location.reload();
+
 				$('.row-fluid').html(result);
 				
 				if ('<?php echo $current_tab; ?>' == 'simple')

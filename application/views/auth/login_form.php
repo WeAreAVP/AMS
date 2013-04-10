@@ -64,9 +64,9 @@ $attributes = 'class="form-horizontal"';
 
     
    
-        <div class="controls">
+<!--        <div class="controls">
             <?php echo form_checkbox($remember); ?><?php echo form_label('Remember me', $remember['id']); ?>
-        </div>
+        </div>-->
         <div class="controls">
            <?php echo anchor($this->dx_auth->forgot_password_uri, 'Forgot password'); ?> 
 

@@ -122,7 +122,7 @@ if ($essence_track)
 
 									<p>
 										<?php
-										echo $value->data_rate + $value->unit_of_measure;
+										echo $value->data_rate .' '. $value->unit_of_measure;
 										?>
 									</p>
 
@@ -206,7 +206,7 @@ if ($essence_track)
 
 									<p>
 										<?php
-										echo $value->bit_depth;
+										echo $value->bit_depth .' bits';
 										?>
 									</p>
 

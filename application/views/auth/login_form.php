@@ -83,7 +83,7 @@ $attributes = 'class="form-horizontal"';
 	</div>
 
 
-	<div class="controls"><?php echo form_submit('login', 'Sign in', 'class="btn btn-inverse" style="background:url(/images/nav-back.png) transparent repeat-x;"'); ?></div>
+	<div class="controls"><?php echo form_submit('login', 'Sign in', 'class="btn btn-inverse"'); ?></div>
 
 
 <?php echo form_close() ?>

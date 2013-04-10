@@ -659,46 +659,50 @@ class Mediainfo extends CI_Controller
 						}
 					}
 					/* Essence Track type Start */
-					if (isset($track['children']['format']) && isset($track['children']['format'][0]))
+//					if (isset($track['children']['format']) && isset($track['children']['format'][0]))
+//					{
+					$track_type = '';
+//						if ((isset($track['attributes']['type']) && $track['attributes']['type'] !== 'Audio') || (isset($track['attributes']['type']) && $track['attributes']['type'] !== 'Video'))
+//						{
+//							if ( ! empty($track['children']['format'][0]['text']))
+//							{
+//
+//								if ($track['children']['format'][0]['text'] == 'EIA-608' || $track['children']['format'][0]['text'] == 'EIA-708')
+//								{
+//									$track_type = 'Caption';
+//								}
+//								else if ($track['children']['format'][0]['text'] == 'TimeCode')
+//								{
+//									$track_type = 'Timecode';
+//								}
+//								else
+//								{
+//									$track_type = $track['children']['format'][0]['text'];
+//								}
+//							}
+//						}
+//						else
+//						{
+//							$track_type = strtolower($track['attributes']['type']);
+//						}
+					if (isset($track['attributes']['type']))
 					{
-						$track_type = '';
-						if ((isset($track['attributes']['type']) && $track['attributes']['type'] !== 'Audio') || (isset($track['attributes']['type']) && $track['attributes']['type'] !== 'Video'))
+						$track_type = strtolower($track['attributes']['type']);
+					}
+					if ($track_type != '')
+					{
+						$dessence_track[$dessence_track_counter]['track_type'] = $track_type;
+						$essence_track_type = $this->essence->get_essence_track_by_type($track_type);
+						if (isset($essence_track_type) && isset($essence_track_type->id))
 						{
-							if ( ! empty($track['children']['format'][0]['text']))
-							{
-
-								if ($track['children']['format'][0]['text'] == 'EIA-608' || $track['children']['format'][0]['text'] == 'EIA-708')
-								{
-									$track_type = 'Caption';
-								}
-								else if ($track['children']['format'][0]['text'] == 'TimeCode')
-								{
-									$track_type = 'Timecode';
-								}
-								else
-								{
-									$track_type = $track['children']['format'][0]['text'];
-								}
-							}
+							$essence_track['essence_track_types_id'] = $essence_track_type->id;
 						}
 						else
 						{
-							$track_type = strtolower($track['attributes']['type']);
-						}
-						if ($track_type != '')
-						{
-							$dessence_track[$dessence_track_counter]['track_type'] = $track_type;
-							$essence_track_type = $this->essence->get_essence_track_by_type($track_type);
-							if (isset($essence_track_type) && isset($essence_track_type->id))
-							{
-								$essence_track['essence_track_types_id'] = $essence_track_type->id;
-							}
-							else
-							{
-								$essence_track['essence_track_types_id'] = $this->essence->insert_essence_track_types(array('essence_track_type' => $track_type));
-							}
+							$essence_track['essence_track_types_id'] = $this->essence->insert_essence_track_types(array('essence_track_type' => $track_type));
 						}
 					}
+//					}
 					/* Essence Track type End */
 
 
@@ -737,7 +741,6 @@ class Mediainfo extends CI_Controller
 					if (isset($track['children']['duration_string3']) && isset($track['children']['duration_string3'][0]) && isset($track['children']['duration_string3'][0]['text']) && ! empty($track['children']['duration_string3'][0]['text']))
 					{
 						$dessence_track[$dessence_track_counter]['duration'] = $essence_track['duration'] = date('H:i:s', strtotime($track['children']['duration_string3'][0]['text']));
-						
 					}
 					/* Essence Track Duration End */
 					/* Essence Track Language Start */
@@ -802,7 +805,7 @@ class Mediainfo extends CI_Controller
 						$essence_track_identifier['essence_tracks_id'] = $db_essence_track_id;
 						$this->essence->insert_essence_track_identifiers($essence_track_identifier);
 					}
-					
+
 					unset($essence_track_identifier);
 					/* Essence Track Identifier End */
 					if (isset($track['attributes']['type']) && $track['attributes']['type'] === 'Video')

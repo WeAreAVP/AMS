@@ -78,7 +78,7 @@ class Googledoc extends CI_Controller
 				if ($work_sheet[0]['name'] === 'Template')
 				{
 					$data = $this->google_spreadsheet->displayWorksheetData($work_sheet[0]['spreedSheetId'], $work_sheet[0]['workSheetId']);
-					myLog('Start importing Spreadsheet');
+					myLog('Start importing Spreadsheet ' . $work_sheet[0]['spreedSheetId']);
 					$this->_store_event_data($data);
 				}
 			}
@@ -130,10 +130,10 @@ class Googledoc extends CI_Controller
 								}
 							}
 						}
-						myLog('<strong>Instantiation Table Changes According to american_archive spreadsheet template v1 Description <br/>Instantiation Id :' . $instantiation->id . '</strong>');
+						myLog('nstantiation Table Changes According to american_archive spreadsheet template v1 Description <br/>Instantiation Id :' . $instantiation->id);
 //						print_r($instantiation_data);
 						$this->instantiation->update_instantiations($instantiation->id, $instantiation_data);
-						myLog(' <strong>Events Table changes</strong> <br/>');
+						myLog('Events Table changes');
 						$this->_store_event_type_inspection($event_row, $instantiation->id);
 						$this->_store_event_type_baked($event_row, $instantiation->id);
 						$this->_store_event_type_cleaned($event_row, $instantiation->id);
@@ -179,6 +179,10 @@ class Googledoc extends CI_Controller
 			}
 			$this->instantiation->_insert_or_update_event($instantiation_id, $event_data['event_types_id'], $event_data);
 		}
+		else
+		{
+			myLog('No Event Inspection info from Spreadsheet');
+		}
 	}
 
 	/**
@@ -191,6 +195,7 @@ class Googledoc extends CI_Controller
 	 */
 	private function _store_event_type_baked($event_row, $instantiation_id)
 	{
+
 		if ((isset($event_row[12]) && ! empty($event_row[12])) OR (isset($event_row[13]) && ! empty($event_row[13])))
 		{
 			$event_type = 'baked';
@@ -205,6 +210,10 @@ class Googledoc extends CI_Controller
 				$event_data['event_note'] = $event_row[13];
 			}
 			$this->instantiation->_insert_or_update_event($instantiation_id, $event_data['event_types_id'], $event_data);
+		}
+		else
+		{
+			myLog('No Event Baked info from Spreadsheet');
 		}
 	}
 
@@ -233,10 +242,14 @@ class Googledoc extends CI_Controller
 			}
 			$this->instantiation->_insert_or_update_event($instantiation_id, $event_data['event_types_id'], $event_data);
 		}
+		else
+		{
+			myLog('No Event Cleaned info from Spreadsheet');
+		}
 	}
 
 	/**
-	 * Store or Udpate migration event type
+	 * Store or Update migration event type
 	 * 
 	 * @param Array   $event_row        row of spreed sheet
 	 * @param Integer $instantiation_id use to match event instantiation id
@@ -263,6 +276,10 @@ class Googledoc extends CI_Controller
 				$event_data['event_note'] = $event_row[35];
 			}
 			$this->instantiation->_insert_or_update_event($instantiation_id, $event_data['event_types_id'], $event_data);
+		}
+		else
+		{
+			myLog('No Event Migration info from Spreadsheet');
 		}
 	}
 

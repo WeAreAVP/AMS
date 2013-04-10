@@ -661,7 +661,7 @@ class Mediainfo extends CI_Controller
 					/* Essence Track type Start */
 //					if (isset($track['children']['format']) && isset($track['children']['format'][0]))
 //					{
-					$track_type = '';
+					
 //						if ((isset($track['attributes']['type']) && $track['attributes']['type'] !== 'Audio') || (isset($track['attributes']['type']) && $track['attributes']['type'] !== 'Video'))
 //						{
 //							if ( ! empty($track['children']['format'][0]['text']))
@@ -685,6 +685,7 @@ class Mediainfo extends CI_Controller
 //						{
 //							$track_type = strtolower($track['attributes']['type']);
 //						}
+					$track_type = '';
 					if (isset($track['attributes']['type']))
 					{
 						$track_type = strtolower($track['attributes']['type']);

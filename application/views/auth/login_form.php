@@ -27,7 +27,7 @@ $confirmation_code = array(
 );
 $attributes = 'class="form-horizontal"';
 ?>
-<center>
+
 <div class="span12">
 	<!--<h3>Sign in</h3>-->
 	<?php echo form_open($this->uri->uri_string(), $attributes) ?>
@@ -89,4 +89,4 @@ $attributes = 'class="form-horizontal"';
 <?php echo form_close() ?>
 
 </div>
-</center>
+

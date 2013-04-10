@@ -49,7 +49,7 @@ class Searchd extends MY_Controller
 	 */
 	function index(){
 		
-		$data=$this->sphnixrt->select('station_sample',array('start'=>0,'limit'=>1000));
+		$data=$this->sphnixrt->select('station_sample',array('start'=>0,'limit'=>1));
 		debug($data);
 	}
 	

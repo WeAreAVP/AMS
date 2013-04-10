@@ -77,6 +77,7 @@
 						}
 						if ($asset_instantiation->projected_duration !== '')
 						{
+							echo $asset_instantiation->projected_duration;
 							?>
 							<div><b>Projected Duration: </b><?php echo $asset_instantiation->projected_duration; ?></div>
 						<?php } ?>

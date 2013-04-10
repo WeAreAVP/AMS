@@ -81,7 +81,7 @@ $attributes = 'class="form-horizontal"';
            </div>
 
    
-        <div class="controls"><?php echo form_submit('login', 'Login','class="btn btn-primary"'); ?></div>
+        <div class="controls"><?php echo form_submit('login', 'Login','class="btn btn-inverse"'); ?></div>
 
 
 <?php echo form_close() ?>

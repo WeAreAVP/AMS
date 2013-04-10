@@ -49,9 +49,9 @@ class Searchd extends MY_Controller
 	 */
 	function index(){
 		
-		$data=$this->sphnixrt->select('station_sample',array('start'=>0,'limit'=>1));
-		$this->sphnixrt->update('station_sample',array('cpb_id'=>'1234'));
-		$data=$this->sphnixrt->select('station_sample',array('start'=>0,'limit'=>1000));
+		$data=$this->sphnixrt->select('rt',array('start'=>0,'limit'=>1));
+		$this->sphnixrt->update('rt',array('cpb_id'=>'1234'));
+		$data=$this->sphnixrt->select('rt',array('start'=>0,'limit'=>1000));
 		debug($data);
 	}
 	

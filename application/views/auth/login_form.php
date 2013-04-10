@@ -29,7 +29,7 @@ $attributes = 'class="form-horizontal"';
 ?>
 
 <div class="span12">
-	<h3>Sign in</h3>
+	<!--<h3>Sign in</h3>-->
 	<?php echo form_open($this->uri->uri_string(), $attributes) ?>
 	<?php if ($this->dx_auth->get_auth_error())
 	{

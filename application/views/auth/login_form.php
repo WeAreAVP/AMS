@@ -28,7 +28,7 @@ $confirmation_code = array(
 $attributes = 'class="form-horizontal"';
 ?>
 <div class="row"> 
-    <div class="span6">
+    <div class="span12">
 <fieldset><legend>Login</legend>
     <?php echo form_open($this->uri->uri_string(), $attributes) ?>
     <?php if($this->dx_auth->get_auth_error()){?>

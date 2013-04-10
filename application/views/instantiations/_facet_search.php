@@ -744,9 +744,11 @@
 			type: 'POST',
 			url: '<?php echo $facet_search_url ?>/' + page,
 			data: $('#form_search').serialize(),
-			success: function(result,textStatus,request)
+			success: function(result, textStatus, request)
 			{
 //				console.log(request);
+				if ($('#username').length > 0)
+					window.location.reload();
 				$('.row-fluid').html(result);
 				if ('<?php echo $current_tab; ?>' == 'simple')
 					updateSimpleDataTable();
@@ -765,7 +767,7 @@
 				isAnySearch();
 				$.unblockUI();
 			}
-			
+
 		});
 	}
 	function change_view(id)

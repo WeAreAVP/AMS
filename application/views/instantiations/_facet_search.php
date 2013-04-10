@@ -747,10 +747,10 @@
 			success: function(result, textStatus, request)
 			{
 //				console.log(request);
-				
-				$('.row-fluid').html(result);
-				if ($('#username').length > 0)
+				if(result=='logout')
 					window.location.reload();
+				$('.row-fluid').html(result);
+				
 				if ('<?php echo $current_tab; ?>' == 'simple')
 					updateSimpleDataTable();
 				else {

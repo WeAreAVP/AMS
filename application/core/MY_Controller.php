@@ -31,8 +31,12 @@ class MY_Controller extends CI_Controller
 
 		if ( ! $this->dx_auth->is_logged_in())
 		{
+			
 			if ( ! is_route_method(array('reports' => array('standalone','standalone_datatable'))))
 				redirect('auth/login');
+			else if(isAjax()){
+				echo 'logout';exit;
+			}
 		}
 		$this->is_station_user = FALSE;
 		$this->load->library('Form_validation');

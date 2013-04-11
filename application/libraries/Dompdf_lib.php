@@ -91,6 +91,7 @@ class Dompdf_lib
 
 				$html .='</tr>';
 			}
+			$html .='<tr><td style="border-top:1px solid black;"><b style="margin-right:20px;">Total:</b>' . number_format(count($data['hd_return_report'])) . ' Station(s)</td></td></tr>';
 			$html .='</tbody></table></div>';
 		}
 

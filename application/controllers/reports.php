@@ -208,12 +208,12 @@ class Reports extends MY_Controller
 			}
 			else
 			{
-				echo json_encode(array('msg' => "No record available against " . $data['filters']));
+				echo json_encode(array('msg' => "No record available against " . $data['filters'].'.'));
 			}
 		}
 		else
 		{
-			echo json_encode(array('msg' => "Please apply Digitized filter for standalone report."));
+			echo json_encode(array('msg' => "Please apply Digitized filter from facet sidebar for standalone report."));
 		}
 
 		exit_function();

@@ -61,12 +61,13 @@
 				}
 			}
 			function generateStandaloneReport() {
+				date=$('#migration_date').val();
 				$('#standalone_body').html('<img src="/images/ajax-loader.gif" style="margin-right: 15px;" />');
 				$('#standalone_footer').hide();
 				$.ajax({
 					type: 'POST',
 					url: site_url + 'reports/generate_report/',
-					data: {date: $('#migration_date').val()},
+					data: {date: date},
 					dataType: 'json',
 					success: function(result) {
 

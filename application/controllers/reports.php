@@ -175,6 +175,7 @@ class Reports extends MY_Controller
 	{
 		$other = 0;
 		$standalone = 0;
+		
 		$session_keys = array('date_range', 'custom_search', 'organization', 'states', 'nomination', 'media_type', 'physical_format',
 			'digital_format', 'generation', 'digitized', 'migration_failed');
 		foreach ($session_keys as $value)
@@ -201,7 +202,7 @@ class Reports extends MY_Controller
 		}
 		else
 		{
-			echo json_encode(array('msg' => "Please apply digitized filter and date filter only for standalone report."));
+			echo json_encode(array('msg' => "Please apply Digitized filter for standalone report. ".$this->input->get('date')));
 		}
 
 		exit_function();

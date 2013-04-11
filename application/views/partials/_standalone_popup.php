@@ -66,6 +66,7 @@
 				$.ajax({
 					type: 'POST',
 					url: site_url + 'reports/generate_report/',
+					data: {'date': $('#migration_date').val()},
 					dataType: 'json',
 					success: function(result) {
 

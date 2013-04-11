@@ -2,7 +2,7 @@
 <div class="modal hide" id="standalone_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3>Report</h3>
+		<h3>Standalone Report</h3>
 
 	</div>
 	<div class="modal-body" id="standalone_body">
@@ -15,7 +15,7 @@
 	</div>
 	<div class="modal-footer" id="standalone_footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-		<button class="btn btn-primary" onclick="generateStandaloneReport();">Generate Report</button>
+		<button class="btn btn-primary" onclick="generateStandaloneReport();">Generate</button>
 	</div>
 	<div class="modal-footer" id="close_standalone_footer" style="display: none;">
 		<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -43,7 +43,7 @@
 
 			});
 			$('#standalone_model').on('hidden', function() {
-				$('#standalone_body').html('Are you sure you want to generate report?');
+				$('#standalone_body').html('<div>Select Date:</div><div><input type="text" id="migration_date" name="migration_date" /></div>');
 				$('#standalone_footer').show();
 				$('#close_standalone_footer').hide();
 

@@ -157,8 +157,13 @@ class Dashboard_Model extends CI_Model
 	{
 		$this->db->select("COUNT($this->_table_assets.id) as total");
 		$this->db->join($this->_table_assets, "$this->_table_assets.stations_id = $this->_table.id");
-		$this->db->where("$this->_table.start_date IS NOT NULL");
-		$this->db->or_where("$this->_table.start_date !=", 0);
+		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id = $this->_table_assets.id");
+		$this->db->join($this->table_instantiation_media_types, "$this->table_instantiation_media_types.id = $this->table_instantiations.instantiation_media_type_id");
+		$this->db->join($this->table_nominations, "$this->table_nominations.instantiations_id = $this->table_instantiations.id");
+		$this->db->join($this->_table_messages, "$this->_table_messages.receiver_id = $this->_table.id");
+//		$this->db->where_in("$this->_table.type", array(0, 2));
+		$this->db->where("$this->_table_messages.msg_type", 1); //DSD Alert
+		$this->db->where("$this->table_instantiations.digitized IS NULL");
 		$result = $this->db->get($this->_table);
 		return $result->row();
 	}
@@ -167,8 +172,9 @@ class Dashboard_Model extends CI_Model
 	{
 		$this->db->select("COUNT($this->_table_assets.id) as total");
 		$this->db->join($this->_table_assets, "$this->_table_assets.stations_id = $this->_table.id");
-		$this->db->join($this->_table_messages, "$this->_table_messages.receiver_id = $this->_table.id");
-		$this->db->where("$this->_table_messages.msg_type", 4); //Hard Drive Return Date
+		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id = $this->_table_assets.id");
+		$this->db->join($this->table_instantiation_media_types, "$this->table_instantiation_media_types.id = $this->table_instantiations.instantiation_media_type_id");
+		$this->db->where("$this->table_instantiations.digitized",1);
 		$result = $this->db->get($this->_table);
 		return $result->row();
 	}

@@ -175,7 +175,7 @@ class Reports extends MY_Controller
 	{
 		$other = 0;
 		$standalone = 0;
-
+		$this->session->unset_userdata('stand_date_filter');
 		$session_keys = array('date_range', 'custom_search', 'organization', 'states', 'nomination', 'media_type', 'physical_format',
 			'digital_format', 'generation', 'digitized', 'migration_failed');
 		foreach ($session_keys as $value)
@@ -204,18 +204,18 @@ class Reports extends MY_Controller
 			{
 				$report_id = $this->report_model->insert_report($data);
 				$url = site_url() . "reports/standalone/" . base64_encode($report_id);
-				$this->session->unset_userdata('stand_date_filter');
+
 				echo json_encode(array('msg' => "<a href='$url' target='_blank'>$url</a>"));
 			}
 			else
 			{
-				$this->session->unset_userdata('stand_date_filter');
-				echo json_encode(array('msg' => "No record available against " . $data['filters'].'.'));
+
+				echo json_encode(array('msg' => "No record available against " . $data['filters'] . '.'));
 			}
 		}
 		else
 		{
-			$this->session->unset_userdata('stand_date_filter');
+
 			echo json_encode(array('msg' => "Please apply Digitized filter from facet sidebar for standalone report."));
 		}
 

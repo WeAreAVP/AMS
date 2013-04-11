@@ -199,6 +199,7 @@ class Reports extends MY_Controller
 			if ( ! empty($data['filters']))
 				$this->session->set_userdata('stand_date_filter', $data['filters']);
 			$records = $this->sphinx->standalone_report();
+			debug($records['records']);
 			if (count($records['records']) > 0)
 			{
 				$report_id = $this->report_model->insert_report($data);

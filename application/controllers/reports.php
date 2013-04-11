@@ -208,7 +208,7 @@ class Reports extends MY_Controller
 			}
 			else
 			{
-				echo json_encode(array('msg' => "No Record Available for Report."));
+				echo json_encode(array('msg' => "No record available against " . $data['filters']));
 			}
 		}
 		else

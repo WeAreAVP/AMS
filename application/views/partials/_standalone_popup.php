@@ -6,6 +6,7 @@
 
 	</div>
 	<div class="modal-body" id="standalone_body">
+		<input type="text" id="migration_date" name="migration_date" />
 		Are you sure you want to generate report?
 	</div>
 	<div class="modal-footer" id="standalone_footer">
@@ -20,7 +21,19 @@
 
 </div>
 <script type="text/javascript">
-			
+			$('#migration_date').daterangepicker({
+				posX: null,
+				posY: null,
+				arrows: false,
+				dateFormat: 'M d, yy',
+				rangeSplitter: 'to',
+				datepickerOptions: {
+					changeMonth: true,
+					changeYear: true,
+					yearRange: '-500:+15',
+					arrows: true
+				},
+			});
 			$('#standalone_model').on('hidden', function() {
 				$('#standalone_body').html('Are you sure you want to generate report?');
 				$('#standalone_footer').show();

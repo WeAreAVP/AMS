@@ -220,15 +220,15 @@ class Sphinx_Model extends CI_Model
 
 			if (isset($date_range[0]) && trim($date_range[0]) != '')
 			{
-				$start_date = strtotime(trim($date_range[0]));
+				$start_date = strtotime(date('Y-m-d',trim($date_range[0])));
 			}
 			if (isset($date_range[1]) && trim($date_range[1]) != '')
 			{
-				$end_date = strtotime(trim($date_range[1]));
+				$end_date = strtotime(date('Y-m-d',trim($date_range[1])));
 			}
 			else
 			{
-				$end_date = strtotime(trim($date_range[0]));
+				$end_date = strtotime(date('Y-m-d',trim($date_range[0])));
 			}
 			echo $start_date.' '.$end_date;
 			if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)

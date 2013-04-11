@@ -190,7 +190,9 @@ class Sphinx_Model extends CI_Model
 
 
 		$query = $this->where_filter();
+		debug($this->sphinxsearch->get_filters(),FALSE);
 		$res = $this->sphinxsearch->query($query, 'instantiations_list');
+		debug($query,FALSE);
 		$execution_time = $res['time'];
 		if ($res)
 		{
@@ -238,7 +240,7 @@ class Sphinx_Model extends CI_Model
 				$where .=' @event_type "migration"';
 			}
 			
-			debug($this->sphinxsearch->get_filters(),FALSE);
+			
 			
 		}
 		return $where;

@@ -214,8 +214,8 @@ class Sphinx_Model extends CI_Model
 
 	function where_filter()
 	{
-		// $where = '@digitized "1"';
-		$where = ' ';
+		 $where = '@digitized "1"';
+		
 		if (isset($this->session->userdata['stand_date_filter']) && $this->session->userdata['stand_date_filter'] != '')
 		{
 			$date_range = explode("to", str_replace('-', '/', $this->session->userdata['stand_date_filter']));

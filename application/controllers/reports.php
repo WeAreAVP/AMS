@@ -202,7 +202,7 @@ class Reports extends MY_Controller
 		}
 		else
 		{
-			echo json_encode(array('msg' => "Please apply Digitized filter for standalone report. ".$this->input->get('date')));
+			echo json_encode(array('msg' => "Please apply Digitized filter for standalone report. ".$this->input->post('date')));
 		}
 
 		exit_function();

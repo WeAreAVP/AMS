@@ -36,7 +36,7 @@
 			//presetRanges: array of objects for each menu preset.
 			//Each obj must have text, dateStart, dateEnd. dateStart, dateEnd accept date.js string or a function which returns a date object
 			presets: {
-				specificDate: 'Specific Date',
+//				specificDate: 'Specific Date',
 				allDatesBefore: 'All Dates Before',
 				allDatesAfter: 'All Dates After',
 				dateRange: 'Date Range'

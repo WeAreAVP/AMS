@@ -10,7 +10,7 @@
 		<div>Select Date:</div>
 		<div>
 			<input type="text" id="migration_date" name="migration_date" />
-			<span class="help-block">You can refine report by selecting date.</span>
+			<span class="help-block">You can refine report by selecting date(s).</span>
 		</div>
 
 	</div>
@@ -28,7 +28,7 @@
 <script type="text/javascript">
 
 			$('#standalone_model').on('hidden', function() {
-				$('#standalone_body').html('<div>Select Date:</div><div><input type="text" id="migration_date" name="migration_date" /></div>');
+				$('#standalone_body').html('<div>Select Date:</div><div><input type="text" id="migration_date" name="migration_date" /><span class="help-block">You can refine report by selecting date(s).</span></div>');
 				$('#standalone_footer').show();
 				$('#close_standalone_footer').hide();
 

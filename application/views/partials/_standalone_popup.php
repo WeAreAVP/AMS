@@ -25,28 +25,32 @@
 
 </div>
 <script type="text/javascript">
-			$('#migration_date').daterangepicker({
-				posX: null,
-				posY: null,
-				arrows: false,
-				dateFormat: 'M d, yy',
-				rangeSplitter: 'to',
-				datepickerOptions: {
-					changeMonth: true,
-					changeYear: true,
-					yearRange: '-500:+15',
-					arrows: true
-				},
-				onOpen: function() {
-					$('.ui-daterangepickercontain').css('z-index', '9999');
-				}
 
-			});
 			$('#standalone_model').on('hidden', function() {
 				$('#standalone_body').html('<div>Select Date:</div><div><input type="text" id="migration_date" name="migration_date" /></div>');
 				$('#standalone_footer').show();
 				$('#close_standalone_footer').hide();
 
+			});
+			$('#standalone_model').on('show', function() {
+
+				$('#migration_date').daterangepicker({
+					posX: null,
+					posY: null,
+					arrows: false,
+					dateFormat: 'M d, yy',
+					rangeSplitter: 'to',
+					datepickerOptions: {
+						changeMonth: true,
+						changeYear: true,
+						yearRange: '-500:+15',
+						arrows: true
+					},
+					onOpen: function() {
+						$('.ui-daterangepickercontain').css('z-index', '9999');
+					}
+
+				});
 			});
 
 			function openPopup() {

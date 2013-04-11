@@ -36,6 +36,7 @@ class Sphinx_Model extends CI_Model
 	{
 		parent::__construct();
 		$this->load->library('sphinxsearch');
+		$this->load->library('sphinxsearch', '', 'standalone_sphinxsearch');
 	}
 
 	/**
@@ -170,29 +171,29 @@ class Sphinx_Model extends CI_Model
 	{
 		$instantiations = array();
 		$total_record = 0;
-		$this->sphinxsearch->reset_filters();
-		$this->sphinxsearch->reset_group_by();
+		$this->standalone_sphinxsearch->reset_filters();
+		$this->standalone_sphinxsearch->reset_group_by();
 		$mode = SPH_MATCH_EXTENDED;
-		$this->sphinxsearch->set_array_result(true);
-		$this->sphinxsearch->set_match_mode($mode);
-		$this->sphinxsearch->set_connect_timeout(120);
+		$this->standalone_sphinxsearch->set_array_result(true);
+		$this->standalone_sphinxsearch->set_match_mode($mode);
+		$this->standalone_sphinxsearch->set_connect_timeout(120);
 		if ($limit)
-			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
+			$this->standalone_sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 		if (isset($this->session->userdata['standalone_column_order']))
 		{
 			if ($this->session->userdata['standalone_column_order'] == 'asc')
 				$sort_mode = SPH_SORT_ATTR_ASC;
 			else
 				$sort_mode = SPH_SORT_ATTR_DESC;
-			$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['index_column']);
+			$this->standalone_sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['index_column']);
 		}
 
 
 
 		$query = $this->where_filter();
-		debug($this->sphinxsearch->get_filters(),FALSE);
-		$res = $this->sphinxsearch->query($query, 'instantiations_list');
-		debug($query,FALSE);
+
+		$res = $this->standalone_sphinxsearch->query($query, 'instantiations_list');
+
 		$execution_time = $res['time'];
 		if ($res)
 		{
@@ -214,8 +215,8 @@ class Sphinx_Model extends CI_Model
 
 	function where_filter()
 	{
-		// $where = ' @digitized "1"';
-		$where = ' ';
+		$where = ' @digitized "1"';
+
 		if (isset($this->session->userdata['stand_date_filter']) && $this->session->userdata['stand_date_filter'] != '')
 		{
 			$date_range = explode("to", $this->session->userdata['stand_date_filter']);
@@ -232,16 +233,12 @@ class Sphinx_Model extends CI_Model
 			{
 				$end_date = strtotime(trim($date_range[0]));
 			}
-			echo $start_date.' '.$end_date;
 			if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
 			{
-				$this->sphinxsearch->set_filter_range("event_date", $start_date, $end_date);
+				$this->standalone_sphinxsearch->set_filter_range("event_date", $start_date, $end_date);
 
 				$where .=' @event_type "migration"';
 			}
-			
-			
-			
 		}
 		return $where;
 	}

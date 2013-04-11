@@ -35,12 +35,12 @@
 				},
 				onOpen: function() {
 					$('.ui-daterangepickercontain').css('z-index','9999');
-				},
-				onClose: function() {
-					if (inframe) {
-						$(window.parent.document).find('iframe:eq(1)').width('100%').height('5em');
-					}
 				}
+//				onClose: function() {
+//					if (inframe) {
+//						$(window.parent.document).find('iframe:eq(1)').width('100%').height('5em');
+//					}
+//				}
 			});
 			$('#standalone_model').on('hidden', function() {
 				$('#standalone_body').html('Are you sure you want to generate report?');

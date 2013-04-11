@@ -29,6 +29,10 @@ class Sphinxsearch {
     }
   }
   
+  function get_filters() {
+	  return $this->client->_filters;
+  }
+  
   //delegates all method calls to sphinx client providing ci method naming convention
   function __call($method, $args)
   {

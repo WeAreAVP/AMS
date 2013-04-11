@@ -238,7 +238,7 @@ class Sphinx_Model extends CI_Model
 				$where .=' @event_type "migration"';
 			}
 			
-			debug($this->sphinxsearch->_filters,FALSE);
+			debug($this->sphinxsearch->get_filters(),FALSE);
 			
 		}
 		return $where;

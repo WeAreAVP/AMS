@@ -6,12 +6,16 @@
 
 	</div>
 	<div class="modal-body" id="standalone_body">
-		<input type="text" id="migration_date" name="migration_date" />
-		Are you sure you want to generate report?
+
+		<div>Select Date:</div>
+		<div>
+			<input type="text" id="migration_date" name="migration_date" />
+		</div>
+
 	</div>
 	<div class="modal-footer" id="standalone_footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-		<button class="btn btn-primary" onclick="generateStandaloneReport();">Yes</button>
+		<button class="btn btn-primary" onclick="generateStandaloneReport();">Generate Report</button>
 	</div>
 	<div class="modal-footer" id="close_standalone_footer" style="display: none;">
 		<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -34,13 +38,9 @@
 					arrows: true
 				},
 				onOpen: function() {
-					$('.ui-daterangepickercontain').css('z-index','9999');
+					$('.ui-daterangepickercontain').css('z-index', '9999');
 				}
-//				onClose: function() {
-//					if (inframe) {
-//						$(window.parent.document).find('iframe:eq(1)').width('100%').height('5em');
-//					}
-//				}
+
 			});
 			$('#standalone_model').on('hidden', function() {
 				$('#standalone_body').html('Are you sure you want to generate report?');

@@ -235,9 +235,10 @@ class Sphinx_Model extends CI_Model
 
 			if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
 			{
+				$where .=' @event_type "migration"';
 				$this->sphinxsearch->set_filter_range("event_date", $start_date, $end_date);
 
-				$where .=' @event_type "migration"';
+				
 			}
 		}
 		return $where;

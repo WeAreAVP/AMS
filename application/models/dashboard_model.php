@@ -163,8 +163,6 @@ class Dashboard_Model extends CI_Model
 		$this->db->join($this->_table_messages, "$this->_table_messages.receiver_id = $this->_table.id");
 		$this->db->where("$this->_table_messages.msg_type", 1); //DSD Alert
 		$this->db->where("$this->table_instantiations.digitized IS NULL");
-		$this->db->like("$this->table_instantiation_media_types.media_type", 'sound');
-		$this->db->or_like("$this->table_instantiation_media_types.media_type", 'moving image');
 		$result = $this->db->get($this->_table);
 		return $result->row();
 	}
@@ -176,8 +174,6 @@ class Dashboard_Model extends CI_Model
 		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id = $this->_table_assets.id");
 		$this->db->join($this->table_instantiation_media_types, "$this->table_instantiation_media_types.id = $this->table_instantiations.instantiation_media_type_id");
 		$this->db->where("$this->table_instantiations.digitized", 1);
-		$this->db->like("$this->table_instantiation_media_types.media_type", 'sound');
-		$this->db->or_like("$this->table_instantiation_media_types.media_type", 'moving image');
 		$result = $this->db->get($this->_table);
 		return $result->row();
 	}

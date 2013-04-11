@@ -209,11 +209,13 @@ class Reports extends MY_Controller
 			}
 			else
 			{
+				$this->session->unset_userdata('stand_date_filter');
 				echo json_encode(array('msg' => "No record available against " . $data['filters'].'.'));
 			}
 		}
 		else
 		{
+			$this->session->unset_userdata('stand_date_filter');
 			echo json_encode(array('msg' => "Please apply Digitized filter from facet sidebar for standalone report."));
 		}
 

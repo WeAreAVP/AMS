@@ -216,29 +216,25 @@ class Sphinx_Model extends CI_Model
 
 		if (isset($this->session->userdata['stand_date_filter']) && $this->session->userdata['stand_date_filter'] != '')
 		{
-			$keyword_json = $this->session->userdata['stand_date_filter'];
-			foreach ($keyword_json as $index => $key_columns)
+			$date_range = explode("to", $this->session->userdata['stand_date_filter']);
+
+			if (isset($date_range[0]) && trim($date_range[0]) != '')
 			{
-				foreach ($key_columns as $keys => $keywords)
-				{
-					$date_range = explode("to", $keywords->value);
-					if (isset($date_range[0]) && trim($date_range[0]) != '')
-					{
-						$start_date = strtotime(trim($date_range[0]));
-					}
-					if (isset($date_range[1]) && trim($date_range[1]) != '')
-					{
-						$end_date = strtotime(trim($date_range[1]));
-					}
-					if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
-					{
-						$this->sphinxsearch->set_filter_range("dates", $start_date, $end_date);
-						if ($index != 'All')
-						{
-							$where .=" @date_type \"$index\"";
-						}
-					}
-				}
+				$start_date = strtotime(trim($date_range[0]));
+			}
+			if (isset($date_range[1]) && trim($date_range[1]) != '')
+			{
+				$end_date = strtotime(trim($date_range[1]));
+			}
+			else
+			{
+				$end_date = strtotime(trim($date_range[0]));
+			}
+			if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
+			{
+				$this->sphinxsearch->set_filter_range("event_date", $start_date, $end_date);
+
+				$where .=' @event_type "migration"';
 			}
 		}
 		return $where;

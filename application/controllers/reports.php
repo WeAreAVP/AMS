@@ -95,7 +95,7 @@ class Reports extends MY_Controller
 				$data['isAjax'] = FALSE;
 
 
-				$this->session->set_userdata('stand_date_filter', json_decode($report_info->filters));
+				$this->session->set_userdata('stand_date_filter', $report_info->filters);
 				$records = $this->sphinx->standalone_report($offset);
 				$data['total'] = $records['total_count'];
 				$config['total_rows'] = $data['total'];
@@ -175,7 +175,7 @@ class Reports extends MY_Controller
 	{
 		$other = 0;
 		$standalone = 0;
-		
+
 		$session_keys = array('date_range', 'custom_search', 'organization', 'states', 'nomination', 'media_type', 'physical_format',
 			'digital_format', 'generation', 'digitized', 'migration_failed');
 		foreach ($session_keys as $value)
@@ -184,7 +184,7 @@ class Reports extends MY_Controller
 			{
 				if ($value == 'digitized' && $this->session->userdata[$value] == 1)
 					$standalone = 1;
-				else if ($value != 'date_range')
+				else
 				{
 					if (isset($this->session->userdata[$value]) && $this->session->userdata[$value] != '')
 						$other = 1;
@@ -193,16 +193,27 @@ class Reports extends MY_Controller
 		}
 		if ($standalone == 1 && $other == 0)
 		{
-			$data['filters'] = json_encode($this->session->userdata['date_range']);
+			$data['filters'] = $this->input->post('date');
 			$data['user_id'] = $this->user_id;
 			$data['report_type'] = 'standalone';
-			$report_id = $this->report_model->insert_report($data);
-			$url = site_url() . "reports/standalone/" . base64_encode($report_id);
-			echo json_encode(array('msg' => "<a href='$url' target='_blank'>$url</a>"));
+			if ( ! empty($data['filters']))
+				$this->session->set_userdata('stand_date_filter', $data['filters']);
+			$records = $this->sphinx->standalone_report();
+			if (count($records['records']) > 0)
+			{
+				$report_id = $this->report_model->insert_report($data);
+				$url = site_url() . "reports/standalone/" . base64_encode($report_id);
+				$this->session->unset_userdata('stand_date_filter');
+				echo json_encode(array('msg' => "<a href='$url' target='_blank'>$url</a>"));
+			}
+			else
+			{
+				echo json_encode(array('msg' => "No Record Available for Report."));
+			}
 		}
 		else
 		{
-			echo json_encode(array('msg' => "Please apply Digitized filter for standalone report. ".$this->input->post('date')));
+			echo json_encode(array('msg' => "Please apply Digitized filter for standalone report."));
 		}
 
 		exit_function();

@@ -37,7 +37,7 @@ class Dompdf_lib
 				$html .='</tr>';
 				$total = $total + $value->total;
 			}
-			$html .='<tr><td style="border-top:1px solid black;"><b style="margin-right:20px;">Total</b>' . number_format(count($data['dsd_report'])) . '</td><td style="border-top:1px solid black;">' . number_format($total) . '</td><td style="border-top:1px solid black;"></td><td style="border-top:1px solid black;"></td></tr>';
+			$html .='<tr><td style="border-top:1px solid black;"><b style="margin-right:20px;">Total:</b>' . number_format(count($data['dsd_report'])) . ' Station(s)</td><td style="border-top:1px solid black;">' . number_format($total) . '</td><td style="border-top:1px solid black;"></td><td style="border-top:1px solid black;"></td></tr>';
 			$html .='</tbody></table></div>';
 		}
 		if (count($data['material_at_crawford_report']) > 0)
@@ -56,7 +56,7 @@ class Dompdf_lib
 				$html .='</tr>';
 				$total = $total + $value->total;
 			}
-			$html .='<tr><td style="border-top:1px solid black;"><b style="margin-right:20px;">Total</b>' . number_format(count($data['material_at_crawford_report'])) . '</td><td style="border-top:1px solid black;">' . number_format($total) . '</td><td style="border-top:1px solid black;"></td><td style="border-top:1px solid black;"></td></tr>';
+			$html .='<tr><td style="border-top:1px solid black;"><b style="margin-right:20px;">Total:</b>' . number_format(count($data['material_at_crawford_report'])) . ' Station(s)</td><td style="border-top:1px solid black;">' . number_format($total) . '</td><td style="border-top:1px solid black;"></td><td style="border-top:1px solid black;"></td></tr>';
 			$html .='</tbody></table></div>';
 		}
 		if (count($data['shipment_report']) > 0)
@@ -75,7 +75,7 @@ class Dompdf_lib
 				$html .='</tr>';
 				$total = $total + $value->total;
 			}
-			$html .='<tr><td style="border-top:1px solid black;"><b style="margin-right:20px;">Total</b>' . number_format(count($data['shipment_report'])) . '</td><td style="border-top:1px solid black;">' . number_format($total) . '</td><td style="border-top:1px solid black;"></td><td style="border-top:1px solid black;"></td></tr>';
+			$html .='<tr><td style="border-top:1px solid black;"><b style="margin-right:20px;">Total:</b>' . number_format(count($data['shipment_report'])) . ' Station(s)</td><td style="border-top:1px solid black;">' . number_format($total) . '</td><td style="border-top:1px solid black;"></td><td style="border-top:1px solid black;"></td></tr>';
 			$html .='</tbody></table></div>';
 		}
 		if (count($data['hd_return_report']) > 0)

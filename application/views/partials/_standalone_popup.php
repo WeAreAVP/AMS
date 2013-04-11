@@ -10,6 +10,7 @@
 		<div>Select Date:</div>
 		<div>
 			<input type="text" id="migration_date" name="migration_date" />
+			<span class="help-block">You can refine report by selecting date.</span>
 		</div>
 
 	</div>

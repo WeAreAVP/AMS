@@ -166,7 +166,7 @@ class Sphinx_Model extends CI_Model
 		}
 	}
 
-	function standalone_report($offset = 0, $limit = 100)
+	function standalone_report($offset = 0, $limit = 1000)
 	{
 		$instantiations = array();
 		$total_record = 0;
@@ -230,6 +230,7 @@ class Sphinx_Model extends CI_Model
 			{
 				$end_date = strtotime(trim($date_range[0]));
 			}
+			echo $start_date.' '.$end_date;
 			if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
 			{
 				$this->sphinxsearch->set_filter_range("event_date", $start_date, $end_date);

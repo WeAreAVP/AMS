@@ -61,7 +61,7 @@
 					{
 						?>
 						<p>
-							<input id="asset_date_<?php echo $index; ?>" name="asset_date[]" value="<?php echo $dates; ?>" readonly="readonly" />
+							<input id="asset_date_<?php echo $index; ?>" name="asset_date[]" value="<?php echo $dates; ?>" />
 						</p>
 						<?php
 						if (isset($asset_date_types[$index]) && $dates > 0)
@@ -100,6 +100,6 @@
 			selectedList: 3
 		});
 		
-		$('input[name="asset_date[]"]').datepicker("option", "dateFormat", 'yy-mm-dd');
+		$('input[name="asset_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
 	});
 </script>

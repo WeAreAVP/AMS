@@ -69,6 +69,7 @@ class Manage_Asset_Model extends CI_Model
 	function get_picklist_values($element_id)
 	{
 		$this->db->where('element_type_id', $element_id);
+		$this->db->order_by('value');
 		$result = $this->db->get('pbcore_picklist_value_by_type');
 		return $result->result();
 	}

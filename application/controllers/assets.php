@@ -74,11 +74,12 @@ class Assets extends MY_Controller
 
 	public function insert_pbcore_values()
 	{
-		$asset_type = array('G', 'PG', 'PG-13', 'R', 'NC-17', 'TV-Y', 'TV-Y7', 'TV-G', 'TV-PG', 'TV-14', 'TV-MA'
+		$asset_type = array('Cloned to','Derived from','Dubbed to','Fragmented to','Has Format','Has Part','Has Version','Is Clone of','Is Derivate of','Is Dub of',
+			'Is Format Of','Is Fragment of','Is Part Of','Is Referenced By','Is Replaced By','Is Required By','Is Version Of','References','Replaces','Requires'
 			);
 		foreach ($asset_type as $value)
 		{
-			$this->manage_asset->insert_picklist_value(array('element_type_id' => 6, 'value' => $value));
+			$this->manage_asset->insert_picklist_value(array('element_type_id' => 7, 'value' => $value));
 		}
 	}
 

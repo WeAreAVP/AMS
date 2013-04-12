@@ -69,11 +69,11 @@ class Assets extends MY_Controller
 
 	public function insert_pbcore_values()
 	{
-		$asset_type = array('availableEnd', 'availableStart', 'broadcast', 'content', 'created', 'date time stamp', 'issued', 'portrayed', 'published',
-			'revised');
+		$asset_type = array('Clip', 'Collection', 'Composition', 'Container', 'Dataset', 'Descriptive Audio', 'Diagram', 'Document', 'Documentary',
+			'Drawing','Drill and Practice','Element','Episode','Essay','Evaluation','Event','Excerpt','File','Framework','Franchise');
 		foreach ($asset_type as $value)
 		{
-			$this->manage_asset->insert_picklist_value(array('element_type_id' => 2, 'value' => $value));
+			$this->manage_asset->insert_picklist_value(array('element_type_id' => 3, 'value' => $value));
 		}
 	}
 

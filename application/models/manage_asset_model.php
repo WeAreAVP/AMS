@@ -41,9 +41,9 @@ class Manage_Asset_Model extends CI_Model
 	function get_asset_detail_by_id($asset_id)
 	{
 		$this->db->select('assets.id,assets.stations_id,stations.station_name');
-		$this->db->select("GROUP_CONCAT(DISTINCT asset_types.asset_type  SEPARATOR ' | ') AS asset_type",FALSE);
-		$this->db->select("GROUP_CONCAT(DISTINCT asset_dates.asset_date  SEPARATOR ' | ') AS asset_date",FALSE);
-		$this->db->select("GROUP_CONCAT(DISTINCT date_types.date_type  SEPARATOR ' | ') AS date_type",FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_types.asset_type,'(**)'))  SEPARATOR ' | ') AS asset_type",FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_dates.asset_date,'(**)'))  SEPARATOR ' | ') AS asset_date",FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(date_types.date_type,'(**)'))  SEPARATOR ' | ') AS date_type",FALSE);
 		
 
 		$this->db->join('stations', 'stations.id=assets.stations_id');

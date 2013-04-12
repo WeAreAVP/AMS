@@ -30,7 +30,7 @@
 				<p>
 					<select id="asset_type" name="asset_type"  multiple="multiple">
 						<?php
-						$asset_type_separate = explode(' | ', $asset_detail->asset_type);
+						$asset_type_separate =explode(' | ', trim(str_replace('(**)', '', $asset_detail->asset_type)));
 						foreach ($pbcore_asset_types as $row)
 						{
 							$selected = '';

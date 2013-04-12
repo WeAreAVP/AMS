@@ -41,7 +41,10 @@ class Manage_Asset_Model extends CI_Model
 	function get_asset_detail_by_id($asset_id)
 	{
 		$this->db->select('assets.id,assets.stations_id,stations.station_name');
+		$this->db->select('asset_types.asset_type');
 		$this->db->join('stations', 'stations.id=assets.stations_id');
+		$this->db->join('assets_asset_types', 'assets_asset_types.assets_id=assets.id', 'LEFT');
+		$this->db->join('asset_types', 'asset_types.id=assets_asset_types.asset_types_id', 'LEFT');
 		$this->db->where('assets.id', $asset_id);
 		$result = $this->db->get('assets');
 		if (isset($result) && ! empty($result))
@@ -50,12 +53,19 @@ class Manage_Asset_Model extends CI_Model
 		}
 		return FALSE;
 	}
+
+	function get_asset_types($element_id)
+	{
+		$this->db->where('element_type_id', $element_id);
+		$result = $this->db->get('pbcore_picklist_value_by_type');
+		return $result->result();
+	}
+
 	function insert_picklist_value($data)
 	{
 		$this->db->insert('pbcore_picklist_value_by_type', $data);
 		return $this->db->insert_id();
 	}
-	
 
 }
 

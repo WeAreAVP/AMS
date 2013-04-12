@@ -30,14 +30,13 @@
 				<p>
 					<select id="asset_type" name="asset_type">
 						<?php
-						
-						foreach ($organization as $row)
+						foreach ($pbcore_asset_types as $row)
 						{
 							$selected = '';
-							if ($asset_detail->stations_id == $row->id)
+							if ($asset_detail->asset_type == $row->value)
 								$selected = 'selected="selected"'
 								?>
-							<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->station_name; ?></option>
+							<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
 						<?php }
 						?>
 					</select>
@@ -52,7 +51,6 @@
 		$("#asset_type").multiselect({
 			noneSelectedText: 'Select Asset Type',
 			selectedList: 3
-//												height:'auto'				
 		});
 	});
 </script>

@@ -53,6 +53,7 @@ class Assets extends MY_Controller
 				debug($data['asset_detail'],FALSE);
 				$data['pbcore_asset_types'] = $this->manage_asset->get_picklist_values(1);
 				$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);
+				$data['pbcore_asset_title_types'] = $this->manage_asset->get_picklist_values(3);
 				$data['organization'] = $this->station_model->get_all();
 				$this->load->view('assets/edit', $data);
 			}

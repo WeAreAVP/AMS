@@ -259,7 +259,7 @@
 			<?php
 			$descriptions = explode(' | ', trim(str_replace('(**)', '', $asset_detail->description)));
 			$description_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->description_type)));
-			
+
 			if (count($descriptions) > 0)
 			{
 				?>
@@ -312,7 +312,7 @@
 			$genres = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre)));
 			$genre_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre_source)));
 			$genre_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre_ref)));
-			
+
 			if (count($genres) > 0)
 			{
 				?>
@@ -341,6 +341,53 @@
 							<p>
 								<input id="asset_genre_ref_<?php echo $index; ?>" name="asset_genre_ref[]" value="<?php echo (isset($genre_refs[$index])) ? $genre_refs[$index] : ''; ?>" />
 							</p>
+
+
+						</div>
+						<div class="remove_element"><img src="/images/remove-item.png"/></div>
+						<div class="clearfix" style="margin-bottom: 10px;"></div>
+						<?php
+					}
+					?>
+
+
+				</td>
+			<?php } ?>
+		</tr>
+		<tr>
+			<?php
+			$coverages = explode(' | ', trim(str_replace('(**)', '', $asset_detail->coverage)));
+			$coverage_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->coverage_type)));
+
+
+			if (count($coverages) > 0)
+			{
+				?>
+				<td class="record-detail-page">
+					<label><i class="icon-question-sign"></i><b> Coverage:</b></label>
+				</td>
+				<td>
+					<?php
+					foreach ($coverages as $index => $coverage)
+					{
+						?>
+						<div class="edit_form_div">
+							<p>Coverage:</p>
+							<p>
+								<input id="asset_coverage_<?php echo $index; ?>" name="asset_coverage[]" value="<?php echo $coverage; ?>" />
+							</p>
+							<p>
+								Coverage Type:
+							</p>
+							<p>
+								<select id="asset_coverage_type_<?php echo $index; ?>" name="asset_coverage_type[]">
+									<option value="">Select Coverage Type</option>
+									<option value="spatial" <?php echo (isset($coverage_types[$index]) && $coverage_types[$index] == 'spatial') ? 'selected="selected"' : ''; ?> >spatial</option>
+									<option value="temporal" <?php echo (isset($coverage_types[$index]) && $coverage_types[$index] == 'temporal') ? 'selected="selected"' : ''; ?>>temporal</option>
+
+								</select>
+							</p>
+
 
 
 						</div>

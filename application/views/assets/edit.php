@@ -49,14 +49,14 @@
 			<?php
 			$asset_dates = explode(' | ', trim(str_replace('(**)', '', $asset_detail->asset_date)));
 			$asset_date_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->date_type)));
-			?>
-			<td class="record-detail-page">
-				<label><i class="icon-question-sign"></i><b> Asset Date:</b></label>
-			</td>
-			<td>
-				<?php
-				if (count($asset_dates) > 1)
-				{
+			if (count($asset_dates) > 1)
+			{
+				?>
+				<td class="record-detail-page">
+					<label><i class="icon-question-sign"></i><b> Asset Date:</b></label>
+				</td>
+				<td>
+					<?php
 					foreach ($asset_dates as $index => $dates)
 					{
 						?>
@@ -87,25 +87,25 @@
 						<div class="remove_element"><img src="/images/remove-item.png"/></div>
 						<?php
 					}
-				}
-				?>
+					?>
 
 
-			</td>
+				</td>
+			<?php } ?>
 		</tr>
 		<tr>
 			<?php
 			$identifiers = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier)));
 			$identifier_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier_source)));
 			$identifier_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier_ref)));
-			?>
-			<td class="record-detail-page">
-				<label><i class="icon-question-sign"></i><b> Local ID:</b></label>
-			</td>
-			<td>
-				<?php
-				if (count($identifiers) > 1)
-				{
+			if (count($identifiers) > 1)
+			{
+				?>
+				<td class="record-detail-page">
+					<label><i class="icon-question-sign"></i><b> Local ID:</b></label>
+				</td>
+				<td>
+					<?php
 					foreach ($identifiers as $index => $identifier)
 					{
 						?>
@@ -129,11 +129,11 @@
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
-				}
-				?>
+					?>
 
 
-			</td>
+				</td>
+			<?php } ?>
 		</tr>
 		<tr>
 			<?php
@@ -141,14 +141,14 @@
 			$title_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_source)));
 			$title_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_ref)));
 			$title_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_type)));
-			?>
-			<td class="record-detail-page">
-				<label><i class="icon-question-sign"></i><b> Title:</b></label>
-			</td>
-			<td>
-				<?php
-				if (count($titles) > 1)
-				{
+			if (count($titles) > 1)
+			{
+				?>
+				<td class="record-detail-page">
+					<label><i class="icon-question-sign"></i><b> Title:</b></label>
+				</td>
+				<td>
+					<?php
 					foreach ($titles as $index => $title)
 					{
 						?>
@@ -189,11 +189,11 @@
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
-				}
-				?>
+					?>
 
 
-			</td>
+				</td>
+			<?php } ?>
 		</tr>
 		<tr>
 			<?php
@@ -201,15 +201,14 @@
 			$subject_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_source)));
 			$subject_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_ref)));
 			$subject_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_type)));
-			
-			?>
-			<td class="record-detail-page">
-				<label><i class="icon-question-sign"></i><b> Subject:</b></label>
-			</td>
-			<td>
-				<?php
-				if (count($subjects) > 1)
-				{
+			if (count($subjects) > 1)
+			{
+				?>
+				<td class="record-detail-page">
+					<label><i class="icon-question-sign"></i><b> Subject:</b></label>
+				</td>
+				<td>
+					<?php
 					foreach ($subjects as $index => $subject)
 					{
 						?>
@@ -250,11 +249,11 @@
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
-				}
-				?>
+					?>
 
 
-			</td>
+				</td>
+			<?php } ?>
 		</tr>
 	</table>
 </div>

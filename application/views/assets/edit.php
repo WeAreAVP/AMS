@@ -83,7 +83,8 @@
 								</select>
 							</p>
 
-						</div>	
+						</div>
+				<div><img src="/images/remove-item.png"/></div>
 						<?php
 					}
 				}

@@ -32,11 +32,11 @@
 						<?php
 						foreach ($pbcore_asset_types as $row)
 						{
-							$selected = '';
-							if (!empty($asset_detail->asset_type) && $asset_detail->asset_type == $row->value)
-								$selected = 'selected="selected"'
+//							$selected = '';
+//							if (!empty($asset_detail->asset_type) && $asset_detail->asset_type == $row->value)
+//								$selected = 'selected="selected"'
 								?>
-							<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+							<option value="<?php echo $row->value; ?>"><?php echo $row->value; ?></option>
 						<?php }
 						?>
 					</select>

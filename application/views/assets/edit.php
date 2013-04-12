@@ -556,6 +556,65 @@
 				</td>
 			<?php } ?>
 		</tr>
+		<tr>
+			<?php
+			$relation_identifiers = explode(' | ', trim(str_replace('(**)', '', $asset_detail->relation_identifier)));
+			$relation_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->relation_type)));
+			$relation_type_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->relation_type_source)));
+			$relation_type_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->relation_type_ref)));
+			if (count($relation_identifiers) > 0)
+			{
+				?>
+				<td class="record-detail-page">
+					<label><i class="icon-question-sign"></i><b> Relation:</b></label>
+				</td>
+				<td>
+					<?php
+					foreach ($relation_identifiers as $index => $relation_identifier)
+					{
+						?>
+						<div class="edit_form_div">
+							<p>
+								Relation:
+							</p>
+							<p>
+								<input id="asset_relation_identifier_<?php echo $index; ?>" name="asset_relation_identifier[]" value="<?php echo $relation_identifier; ?>" />
+							</p>
+							<p> Relation Type:</p>
+							<p>
+								<select id="asset_relation_type_<?php echo $index; ?>" name="asset_relation_type[]">
+									<option value="">Select Relation Type</option>
+									<?php
+									foreach ($pbcore_asset_relation_types as $row)
+									{
+										$selected = '';
+										if (isset($relation_types[$index]) && $relation_types[$index] == $row->value)
+											$selected = 'selected="selected"'
+											?>
+										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+									<?php }
+									?>
+								</select>
+
+							</p>
+							<p> Relation Source:</p>
+							<p>
+								<input id="asset_relation_source_<?php echo $index; ?>" name="asset_relation_source[]" value="<?php echo (isset($relation_type_sources[$index])) ? $relation_type_sources[$index] : ''; ?>" />
+							</p>
+							<p> Relation Ref:</p>
+							<p>
+								<input id="asset_relation_ref_<?php echo $index; ?>" name="asset_relation_ref[]" value="<?php echo (isset($relation_type_refs[$index])) ? $relation_type_refs[$index] : ''; ?>" />
+							</p>
+
+						</div>
+						<div class="remove_element"><img src="/images/remove-item.png"/></div>
+						<div class="clearfix" style="margin-bottom: 10px;"></div>
+						<?php
+					}
+					?>
+				</td>
+			<?php } ?>
+		</tr>
 	</table>
 </div>
 <script type="text/javascript">

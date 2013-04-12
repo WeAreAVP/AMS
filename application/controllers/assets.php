@@ -58,6 +58,7 @@ class Assets extends MY_Controller
 				$data['pbcore_asset_description_types'] = $this->manage_asset->get_picklist_values(4);
 				$data['pbcore_asset_audience_level'] = $this->manage_asset->get_picklist_values(5);
 				$data['pbcore_asset_audience_rating'] = $this->manage_asset->get_picklist_values(6);
+				$data['pbcore_asset_relation_types'] = $this->manage_asset->get_picklist_values(7);
 				$data['organization'] = $this->station_model->get_all();
 				$this->load->view('assets/edit', $data);
 			}

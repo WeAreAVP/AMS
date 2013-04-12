@@ -71,6 +71,10 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(annotations.annotation,'(**)'))  SEPARATOR ' | ') AS annotation", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(annotations.annotation_type,'(**)'))  SEPARATOR ' | ') AS annotation_type", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(annotations.annotation_ref,'(**)'))  SEPARATOR ' | ') AS annotation_ref", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(assets_relations.relation_identifier,'(**)'))  SEPARATOR ' | ') AS relation_identifier", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type,'(**)'))  SEPARATOR ' | ') AS relation_type", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type_source,'(**)'))  SEPARATOR ' | ') AS relation_type_source", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type_ref,'(**)'))  SEPARATOR ' | ') AS relation_type_ref", FALSE);
 
 
 		$this->db->join('stations', 'stations.id=assets.stations_id');
@@ -94,6 +98,8 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->join('assets_audience_ratings', 'assets_audience_ratings.assets_id=assets.id', 'LEFT');
 		$this->db->join('audience_ratings', 'audience_ratings.id=assets_audience_ratings.audience_ratings_id', 'LEFT');
 		$this->db->join('annotations', 'annotations.assets_id=assets.id', 'LEFT');
+		$this->db->join('assets_relations', 'assets_relations.assets_id=assets.id', 'LEFT');
+		$this->db->join('relation_types', 'relation_types.id=assets_relations.relation_types_id', 'LEFT');
 
 
 		$this->db->where('assets.id', $asset_id);

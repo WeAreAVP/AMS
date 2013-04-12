@@ -99,5 +99,6 @@
 			noneSelectedText: 'Select Asset Type',
 			selectedList: 3
 		});
+		$('input[name="asset_date[]"]').datepicker("option", "dateFormat", 'yy-mm-dd');
 	});
 </script>

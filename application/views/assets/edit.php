@@ -69,6 +69,7 @@
 							?>
 							<p>
 								<select id="asset_date_type_<?php echo $index; ?>" name="asset_date_type[]">
+									<option value="">Select Date Type</option>
 									<?php
 									foreach ($pbcore_asset_date_types as $row)
 									{

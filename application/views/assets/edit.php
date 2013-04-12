@@ -259,6 +259,7 @@
 			<?php
 			$descriptions = explode(' | ', trim(str_replace('(**)', '', $asset_detail->description)));
 			$description_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->description_type)));
+			echo count($descriptions);exit;
 			if (count($descriptions) > 1)
 			{
 				?>

@@ -55,7 +55,7 @@
 			</td>
 			<td>
 				<?php
-				if (count($asset_dates) > 0)
+				if (count($asset_dates) > 1)
 				{
 					foreach ($asset_dates as $index => $dates)
 					{
@@ -104,7 +104,7 @@
 			</td>
 			<td>
 				<?php
-				if (count($identifiers) > 0)
+				if (count($identifiers) > 1)
 				{
 					foreach ($identifiers as $index => $identifier)
 					{
@@ -147,7 +147,7 @@
 			</td>
 			<td>
 				<?php
-				if (count($titles) > 0)
+				if (count($titles) > 1)
 				{
 					foreach ($titles as $index => $title)
 					{
@@ -201,14 +201,14 @@
 			$subject_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_source)));
 			$subject_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_ref)));
 			$subject_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_type)));
-			echo debug($subjects);
+			
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Subject:</b></label>
 			</td>
 			<td>
 				<?php
-				if (count($subjects) > 0)
+				if (count($subjects) > 1)
 				{
 					foreach ($subjects as $index => $subject)
 					{

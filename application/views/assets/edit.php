@@ -85,6 +85,47 @@
 
 						</div>
 						<div class="remove_element"><img src="/images/remove-item.png"/></div>
+						<?php
+					}
+				}
+				?>
+
+
+			</td>
+		</tr>
+		<tr>
+			<?php
+			$identifiers = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier)));
+			$identifier_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier_source)));
+			$identifier_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier_ref)));
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Local ID:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($identifiers) > 0)
+				{
+					foreach ($identifiers as $index => $identifier)
+					{
+						?>
+						<div class="edit_form_div">
+							<p>Local ID:</p>
+							<p>
+								<input id="asset_identifier_<?php echo $index; ?>" name="asset_identifier[]" value="<?php echo $identifier; ?>" />
+							</p>
+
+							<p>ID Source:</p>
+							<p>
+								<input id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($identifier_sources[$index])) ? $identifier_sources : ''; ?>" />
+							</p>
+							<p>ID Ref:</p>
+							<p>
+								<input id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($identifier_refs[$index])) ? $identifier_refs : ''; ?>" />
+							</p>
+
+						</div>
+						<div class="remove_element"><img src="/images/remove-item.png"/></div>
 							<?php
 						}
 					}

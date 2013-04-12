@@ -61,7 +61,7 @@
 					{
 						?>
 						<p>
-							<input id="asset_date_<?php echo $index; ?>" name="asset_date[]"/>
+							<input id="asset_date_<?php echo $index; ?>" name="asset_date[]" value="<?php echo $dates; ?>"/>
 						</p>
 						<?php
 						if (isset($asset_date_types[$index]) && $dates > 0)

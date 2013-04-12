@@ -84,11 +84,11 @@
 							</p>
 
 						</div>
-				<div class="remove_element"><img src="/images/remove-item.png"/></div>
-						<?php
+						<div class="remove_element"><img src="/images/remove-item.png"/></div>
+							<?php
+						}
 					}
-				}
-				?>
+					?>
 
 
 			</td>

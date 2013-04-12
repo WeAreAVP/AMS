@@ -28,7 +28,7 @@
 			</td>
 			<td>
 				<p>
-					<select id="asset_type" name="asset_type">
+					<select id="asset_type" name="asset_type"  multiple="multiple">
 						<?php
 						foreach ($pbcore_asset_types as $row)
 						{

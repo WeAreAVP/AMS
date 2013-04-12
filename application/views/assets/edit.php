@@ -126,7 +126,7 @@
 
 						</div>
 						<div class="remove_element"><img src="/images/remove-item.png"/></div>
-						<div class="clearfix separate"></div>
+						<div class="clearfix" style="margin-bottom: 10px;"></div>
 							<?php
 						}
 					}

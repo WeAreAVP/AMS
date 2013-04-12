@@ -44,6 +44,17 @@
 
 			</td>
 		</tr>
+		<tr>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Asset Date:</b></label>
+			</td>
+			<td>
+				<p>
+					
+				</p>
+
+			</td>
+		</tr>
 	</table>
 </div>
 <script type="text/javascript">

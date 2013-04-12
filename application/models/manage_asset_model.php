@@ -55,7 +55,6 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subjects.subject_source,'(**)'))  SEPARATOR ' | ') AS subject_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subjects.subject_ref,'(**)'))  SEPARATOR ' | ') AS subject_ref", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subject_types.subject_type,'(**)'))  SEPARATOR ' | ') AS subject_type", FALSE);
-
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_descriptions.description,'(**)'))  SEPARATOR ' | ') AS description", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(description_types.description_type,'(**)'))  SEPARATOR ' | ') AS description_type", FALSE);
 

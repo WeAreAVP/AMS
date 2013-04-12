@@ -255,6 +255,57 @@
 				</td>
 			<?php } ?>
 		</tr>
+		<tr>
+			<?php
+			$descriptions = explode(' | ', trim(str_replace('(**)', '', $asset_detail->description)));
+			$description_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->description_type)));
+			if (count($descriptions) > 1)
+			{
+				?>
+				<td class="record-detail-page">
+					<label><i class="icon-question-sign"></i><b> Description:</b></label>
+				</td>
+				<td>
+					<?php
+					foreach ($descriptions as $index => $description)
+					{
+						?>
+						<div class="edit_form_div">
+							<p>Description:</p>
+							<p>
+								<textarea id="asset_description_<?php echo $index; ?>" name="asset_description[]"><?php echo $description; ?></textarea>
+							</p>
+							<p>
+								Subject Type:
+							</p>
+							<p>
+								<select id="asset_description_type_<?php echo $index; ?>" name="asset_description_type[]">
+									<option value="">Select Description Type</option>
+									<?php
+									foreach ($pbcore_asset_description_types as $row)
+									{
+										$selected = '';
+										if (isset($description_types[$index]) && $description_types[$index] == $row->value)
+											$selected = 'selected="selected"'
+											?>
+										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+									<?php }
+									?>
+								</select>
+							</p>
+
+
+						</div>
+						<div class="remove_element"><img src="/images/remove-item.png"/></div>
+						<div class="clearfix" style="margin-bottom: 10px;"></div>
+						<?php
+					}
+					?>
+
+
+				</td>
+			<?php } ?>
+		</tr>
 	</table>
 </div>
 <script type="text/javascript">

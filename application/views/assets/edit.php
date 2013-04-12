@@ -478,7 +478,7 @@
 							</p>
 							<p>
 								<select id="asset_audience_rating_<?php echo $index; ?>" name="asset_audience_rating[]">
-									<option value="">Select Audience Level</option>
+									<option value="">Select Audience Rating</option>
 									<?php
 									foreach ($pbcore_asset_audience_rating as $row)
 									{
@@ -493,7 +493,13 @@
 							</p>
 							<p> Audience Rating Source:</p>
 							<p>
-								<input id="asset_audience_rating_source_<?php echo $index; ?>" name="asset_audience_rating_source[]" value="<?php echo (isset($audience_rating_sources[$index])) ? $audience_rating_sources[$index] : ''; ?>" />
+									<select id="asset_audience_rating_source_<?php echo $index; ?>" name="asset_audience_rating_source[]">
+									<option value="">Select Coverage Type</option>
+									<option value="MPAA" <?php echo (isset($audience_rating_sources[$index]) && $audience_rating_sources[$index] == 'MPAA') ? 'selected="selected"' : ''; ?> >MPAA</option>
+									<option value="TV Parental Guidelines" <?php echo (isset($audience_rating_sources[$index]) && $audience_rating_sources[$index] == 'TV Parental Guidelines') ? 'selected="selected"' : ''; ?>>TV Parental Guidelines</option>
+
+								</select>
+								
 							</p>
 							<p> Audience Rating Ref:</p>
 							<p>

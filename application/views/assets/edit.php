@@ -162,7 +162,7 @@
 							</p>
 							<p>
 								<select id="asset_title_type_<?php echo $index; ?>" name="asset_title_type[]">
-									<option value="">Select Date Type</option>
+									<option value="">Select Title Type</option>
 									<?php
 									foreach ($pbcore_asset_title_types as $row)
 									{
@@ -182,6 +182,66 @@
 							<p>Title Ref:</p>
 							<p>
 								<input id="asset_title_ref_<?php echo $index; ?>" name="asset_title_ref[]" value="<?php echo (isset($title_refs[$index])) ? $title_refs[$index] : ''; ?>" />
+							</p>
+
+						</div>
+						<div class="remove_element"><img src="/images/remove-item.png"/></div>
+						<div class="clearfix" style="margin-bottom: 10px;"></div>
+						<?php
+					}
+				}
+				?>
+
+
+			</td>
+		</tr>
+		<tr>
+			<?php
+			$subjects = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject)));
+			$subject_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_source)));
+			$subject_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_ref)));
+			$subject_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_type)));
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Subject:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($subjects) > 0)
+				{
+					foreach ($subjects as $index => $subject)
+					{
+						?>
+						<div class="edit_form_div">
+							<p>Subject:</p>
+							<p>
+								<input id="asset_subject_<?php echo $index; ?>" name="asset_subject[]" value="<?php echo $subject; ?>"/>
+							</p>
+							<p>
+								Subject Type:
+							</p>
+							<p>
+								<select id="asset_subject_type_<?php echo $index; ?>" name="asset_subject_type[]">
+									<option value="">Select Subject Type</option>
+									<?php
+									foreach ($pbcore_asset_subject_types as $row)
+									{
+										$selected = '';
+										if (isset($subject_types[$index]) && $subject_types[$index] == $row->value)
+											$selected = 'selected="selected"'
+											?>
+										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+									<?php }
+									?>
+								</select>
+							</p>
+							<p>Subject Source:</p>
+							<p>
+								<input id="asset_subject_source_<?php echo $index; ?>" name="asset_subject_source[]" value="<?php echo (isset($subject_sources[$index])) ? $subject_sources[$index] : ''; ?>" />
+							</p>
+							<p>Subject Ref:</p>
+							<p>
+								<input id="asset_subject_ref_<?php echo $index; ?>" name="asset_subject_ref[]" value="<?php echo (isset($subject_refs[$index])) ? $subject_refs[$index] : ''; ?>" />
 							</p>
 
 						</div>

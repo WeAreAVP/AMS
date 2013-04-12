@@ -52,6 +52,11 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_titles.title_ref,'(**)'))  SEPARATOR ' | ') AS title_ref", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_title_types.title_type,'(**)'))  SEPARATOR ' | ') AS title_type", FALSE);
 
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subjects.subject,'(**)'))  SEPARATOR ' | ') AS subject", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subjects.subject_source,'(**)'))  SEPARATOR ' | ') AS subject_source", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subjects.subject_ref,'(**)'))  SEPARATOR ' | ') AS subject_ref", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subject_types.subject_type,'(**)'))  SEPARATOR ' | ') AS subject_type", FALSE);
+
 
 		$this->db->join('stations', 'stations.id=assets.stations_id');
 		$this->db->join('assets_asset_types', 'assets_asset_types.assets_id=assets.id', 'LEFT');
@@ -61,6 +66,9 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->join('identifiers', 'identifiers.assets_id=assets.id AND identifiers.identifier_source != "http://americanarchiveinventory.org"', 'LEFT');
 		$this->db->join('asset_titles', 'asset_titles.assets_id=assets.id', 'LEFT');
 		$this->db->join('asset_title_types', 'asset_title_types.id=asset_titles.asset_title_types_id', 'LEFT');
+		$this->db->join('assets_subjects', 'assets_subjects.assets_id=assets.id', 'LEFT');
+		$this->db->join('subjects', 'subjects.id=assets_subjects.subjects_id', 'LEFT');
+		$this->db->join('subject_types', 'subject_types.id=subjects.subjects_types_id', 'LEFT');
 
 
 		$this->db->where('assets.id', $asset_id);
@@ -77,6 +85,13 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->where('element_type_id', $element_id);
 		$this->db->order_by('value');
 		$result = $this->db->get('pbcore_picklist_value_by_type');
+		return $result->result();
+	}
+	function get_subject_types()
+	{
+		
+		$this->db->order_by('subject_type');
+		$result = $this->db->get('subject_types');
 		return $result->result();
 	}
 

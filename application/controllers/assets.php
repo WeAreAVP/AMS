@@ -71,11 +71,17 @@ class Assets extends MY_Controller
 
 	public function insert_pbcore_values()
 	{
-		$asset_type = array('Subtitle', 'Supplied', 'Syllabus', 'Teacher\'s Guide', 'Test', 'Track', 'Trailer', 'Transcript', 'Translation',
-			'Transmission','Version','Voice','Web page','Web site','Working');
+		$asset_type = array('Abstract', 'Anecdotal Comments & Reflections', 'Annotation', 'Art Work', 'Assessment', 'Awards', 'Bookmarks', 'Caption', 'Clip',
+			'Collection','Comments','Content Flags','Credit Line','Cue Words','Description','Dopesheet','DVS','Edit Decision List','Element','Ensemble',
+			'Episode','Evaluation','Event','Excerpt','Headline','Highlights','Instructions','Item','Key Points','Keyword','Listing Services',
+			'Log','Model','Movement','Number','Object','Outline','Package','Playlist','PODS','Process','Program',
+			'Project','Promotional','Public','Purpose','Review','Rundown','Script','Segment','Selection','Sequence','Series',
+			'Shot List','Speech-to-text','Story','Subtitles','Summary','Synopsis','Table of Contents','Text-to-speech','Theme'
+			
+			);
 		foreach ($asset_type as $value)
 		{
-			$this->manage_asset->insert_picklist_value(array('element_type_id' => 3, 'value' => $value));
+			$this->manage_asset->insert_picklist_value(array('element_type_id' => 4, 'value' => $value));
 		}
 	}
 

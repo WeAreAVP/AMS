@@ -74,12 +74,11 @@ class Assets extends MY_Controller
 
 	public function insert_pbcore_values()
 	{
-		$asset_type = array('Adult', 'College', 'Educator', 'Female', 'General', 'General Education', 'High School (grades 10-12)', 'Intermediate (grades 7-9)', 'K-12 (general)',
-			'Male','Post Graduate','Pre-school (kindergarten)','Primary (grades 1-6)','Special Audiences','Vocational'
+		$asset_type = array('G', 'PG', 'PG-13', 'R', 'NC-17', 'TV-Y', 'TV-Y7', 'TV-G', 'TV-PG', 'TV-14', 'TV-MA'
 			);
 		foreach ($asset_type as $value)
 		{
-			$this->manage_asset->insert_picklist_value(array('element_type_id' => 5, 'value' => $value));
+			$this->manage_asset->insert_picklist_value(array('element_type_id' => 6, 'value' => $value));
 		}
 	}
 

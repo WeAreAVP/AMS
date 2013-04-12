@@ -49,7 +49,7 @@
 			<?php
 			$asset_dates = explode(' | ', trim(str_replace('(**)', '', $asset_detail->asset_date)));
 			$asset_date_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->date_type)));
-			if (count($asset_dates) > 1)
+			if (count($asset_dates) > 0)
 			{
 				?>
 				<td class="record-detail-page">
@@ -98,7 +98,7 @@
 			$identifiers = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier)));
 			$identifier_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier_source)));
 			$identifier_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier_ref)));
-			if (count($identifiers) > 1)
+			if (count($identifiers) > 0)
 			{
 				?>
 				<td class="record-detail-page">
@@ -141,7 +141,7 @@
 			$title_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_source)));
 			$title_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_ref)));
 			$title_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_type)));
-			if (count($titles) > 1)
+			if (count($titles) > 0)
 			{
 				?>
 				<td class="record-detail-page">
@@ -201,7 +201,7 @@
 			$subject_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_source)));
 			$subject_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_ref)));
 			$subject_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_type)));
-			if (count($subjects) > 1)
+			if (count($subjects) > 0)
 			{
 				?>
 				<td class="record-detail-page">

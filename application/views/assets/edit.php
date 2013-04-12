@@ -307,6 +307,53 @@
 				</td>
 			<?php } ?>
 		</tr>
+		<tr>
+			<?php
+			$genres = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre)));
+			$genre_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre_source)));
+			$genre_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre_ref)));
+			
+			if (count($genres) > 0)
+			{
+				?>
+				<td class="record-detail-page">
+					<label><i class="icon-question-sign"></i><b> Genre:</b></label>
+				</td>
+				<td>
+					<?php
+					foreach ($genres as $index => $genre)
+					{
+						?>
+						<div class="edit_form_div">
+							<p>Genre:</p>
+							<p>
+								<input id="asset_genre_<?php echo $index; ?>" name="asset_genre[]" value="<?php echo $genre; ?>" />
+							</p>
+							<p>
+								Genre Source:
+							</p>
+							<p>
+								<input id="asset_genre_source_<?php echo $index; ?>" name="asset_genre_source[]" value="<?php echo (isset($genre_sources[$index])) ? $genre_sources[$index] : ''; ?>" />
+							</p>
+							<p>
+								Genre Ref:
+							</p>
+							<p>
+								<input id="asset_genre_ref_<?php echo $index; ?>" name="asset_genre_ref[]" value="<?php echo (isset($genre_refs[$index])) ? $genre_refs[$index] : ''; ?>" />
+							</p>
+
+
+						</div>
+						<div class="remove_element"><img src="/images/remove-item.png"/></div>
+						<div class="clearfix" style="margin-bottom: 10px;"></div>
+						<?php
+					}
+					?>
+
+
+				</td>
+			<?php } ?>
+		</tr>
 	</table>
 </div>
 <script type="text/javascript">

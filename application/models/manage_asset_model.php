@@ -57,6 +57,9 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subject_types.subject_type,'(**)'))  SEPARATOR ' | ') AS subject_type", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_descriptions.description,'(**)'))  SEPARATOR ' | ') AS description", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(description_types.description_type,'(**)'))  SEPARATOR ' | ') AS description_type", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genres.genre,'(**)'))  SEPARATOR ' | ') AS genre", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genres.genre_source,'(**)'))  SEPARATOR ' | ') AS genre_source", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genres.genre_ref,'(**)'))  SEPARATOR ' | ') AS genre_ref", FALSE);
 
 
 		$this->db->join('stations', 'stations.id=assets.stations_id');
@@ -72,6 +75,8 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->join('subject_types', 'subject_types.id=subjects.subjects_types_id', 'LEFT');
 		$this->db->join('asset_descriptions', 'asset_descriptions.assets_id=assets.id', 'LEFT');
 		$this->db->join('description_types', 'description_types.id=asset_descriptions.description_types_id', 'LEFT');
+		$this->db->join('assets_genres', 'assets_genres.assets_id=assets.id', 'LEFT');
+		$this->db->join('genres', 'genres.id=assets_genres.genres_id', 'LEFT');
 
 
 		$this->db->where('assets.id', $asset_id);

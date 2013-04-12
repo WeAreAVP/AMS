@@ -50,6 +50,12 @@ class Manage_Asset_Model extends CI_Model
 		}
 		return FALSE;
 	}
+	function insert_picklist_value($data)
+	{
+		$this->db->insert('pbcore_picklist_value_by_type', $data);
+		return $this->db->insert_id();
+	}
+	
 
 }
 

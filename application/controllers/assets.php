@@ -42,8 +42,17 @@ class Assets extends MY_Controller
 	public function edit()
 	{
 		$asset_id = $this->uri->segment(3);
+		
 		if ( ! empty($asset_id))
 		{
+			$asset_type=array('Advertisement','Air Check','Album','Brand','Clip','Collection','Element','Episode','Event',
+							'Excerpt','Framework','Franchise','Item','Media Object','Pilot','Program','Project','Scene','Season','Segment',
+							'Series','Shot','Song','Story','Track');
+						foreach ($asset_type as $value)
+						{
+							$this->manage_asset->insert_picklist_value(array('element_type_id'=>1,'value'=>$value));
+						}
+			$data['asset_detail'] = 
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
 			if ($data['asset_detail'])
 			{
@@ -60,5 +69,6 @@ class Assets extends MY_Controller
 			show_error('Require asset id for editing');
 		}
 	}
+	
 
 }

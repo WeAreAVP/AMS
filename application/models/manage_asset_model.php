@@ -46,7 +46,7 @@ class Manage_Asset_Model extends CI_Model
 		$result = $this->db->get('assets');
 		if (isset($result) && ! empty($result))
 		{
-			return $result;
+			return $result->row();
 		}
 		return FALSE;
 	}

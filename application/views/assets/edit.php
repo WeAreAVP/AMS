@@ -419,7 +419,7 @@
 						?>
 						<div class="edit_form_div">
 							<p>
-								 Audience Level:
+								Audience Level:
 							</p>
 							<p>
 								<select id="asset_audience_level_<?php echo $index; ?>" name="asset_audience_level[]">
@@ -443,6 +443,61 @@
 							<p> Audience Level Ref:</p>
 							<p>
 								<input id="asset_audience_level_ref_<?php echo $index; ?>" name="asset_audience_level_ref[]" value="<?php echo (isset($audience_level_refs[$index])) ? $audience_level_refs[$index] : ''; ?>" />
+							</p>
+
+						</div>
+						<div class="remove_element"><img src="/images/remove-item.png"/></div>
+						<div class="clearfix" style="margin-bottom: 10px;"></div>
+						<?php
+					}
+					?>
+
+
+				</td>
+			<?php } ?>
+		</tr>
+		<tr>
+			<?php
+			$audience_ratings = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level)));
+			$audience_rating_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_source)));
+			$audience_rating_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_ref)));
+			if (count($audience_ratings) > 0)
+			{
+				?>
+				<td class="record-detail-page">
+					<label><i class="icon-question-sign"></i><b> Audience Rating:</b></label>
+				</td>
+				<td>
+					<?php
+					foreach ($audience_ratings as $index => $audience_rating)
+					{
+						?>
+						<div class="edit_form_div">
+							<p>
+								Audience Rating:
+							</p>
+							<p>
+								<select id="asset_audience_rating_<?php echo $index; ?>" name="asset_audience_rating[]">
+									<option value="">Select Audience Level</option>
+									<?php
+									foreach ($pbcore_asset_audience_rating as $row)
+									{
+										$selected = '';
+										if ($audience_rating == $row->value)
+											$selected = 'selected="selected"'
+											?>
+										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+									<?php }
+									?>
+								</select>
+							</p>
+							<p> Audience Rating Source:</p>
+							<p>
+								<input id="asset_audience_rating_source_<?php echo $index; ?>" name="asset_audience_rating_source[]" value="<?php echo (isset($audience_rating_sources[$index])) ? $audience_rating_sources[$index] : ''; ?>" />
+							</p>
+							<p> Audience Rating Ref:</p>
+							<p>
+								<input id="asset_audience_rating_ref_<?php echo $index; ?>" name="asset_audience_rating_ref[]" value="<?php echo (isset($audience_rating_refs[$index])) ? $audience_rating_refs[$index] : ''; ?>" />
 							</p>
 
 						</div>

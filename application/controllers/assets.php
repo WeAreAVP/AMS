@@ -46,11 +46,11 @@ class Assets extends MY_Controller
 		if ( ! empty($asset_id))
 		{
 
-			$data['pbcore_asset_types'] = $this->manage_asset->get_asset_types(1);
+			
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
 			if ($data['asset_detail'])
 			{
-				debug($data);
+				$data['pbcore_asset_types'] = $this->manage_asset->get_asset_types(1);
 				$data['organization'] = $this->station_model->get_all();
 				$this->load->view('assets/edit', $data);
 			}

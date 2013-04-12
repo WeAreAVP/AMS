@@ -725,3 +725,6 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     /*				word-break: keep-all;*/
     white-space: nowrap;
 }
+.edit_form_div{
+    background: #DDD;
+}

@@ -60,13 +60,13 @@
 					foreach ($asset_dates as $index => $dates)
 					{
 						?>
-						<p>
-							<input id="asset_date_<?php echo $index; ?>" name="asset_date[]" value="<?php echo $dates; ?>" />
-						</p>
-						<?php
-						if (isset($asset_date_types[$index]) && $dates > 0)
-						{
-							?>
+						<div class="edit_form_div">
+							<p>Asset Date:</p>
+							<p>
+								<input id="asset_date_<?php echo $index; ?>" name="asset_date[]" value="<?php echo $dates; ?>" />
+							</p>
+
+							<p>Asset Date Type:</p>
 							<p>
 								<select id="asset_date_type_<?php echo $index; ?>" name="asset_date_type[]">
 									<option value="">Select Date Type</option>
@@ -74,7 +74,7 @@
 									foreach ($pbcore_asset_date_types as $row)
 									{
 										$selected = '';
-										if ($asset_date_types[$index] == $row->value)
+										if (isset($asset_date_types[$index]) && $asset_date_types[$index] == $row->value)
 											$selected = 'selected="selected"'
 											?>
 										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
@@ -82,8 +82,9 @@
 									?>
 								</select>
 							</p>
-							<?php
-						}
+
+						</div>	
+						<?php
 					}
 				}
 				?>
@@ -99,7 +100,7 @@
 			noneSelectedText: 'Select Asset Type',
 			selectedList: 3
 		});
-		
+
 		$('input[name="asset_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
 	});
 </script>

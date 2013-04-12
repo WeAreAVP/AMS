@@ -69,8 +69,8 @@ class Assets extends MY_Controller
 
 	public function insert_pbcore_values()
 	{
-		$asset_type = array('Full', 'Game', 'Graphic', 'Image', 'Ingest', 'Interactive', 'International', 'Interstitial', 'Issue',
-			'Item','Kiosk Event','Label','Lesson Plan','Long','Lyrics','Main','Manuscript','Map','Model','Model Building');
+		$asset_type = array('Module', 'Music', 'Object', 'Original', 'Package', 'Painting', 'Periodical', 'Photograph', 'Picture',
+			'Pilot','Pledged','Postcard','Poster','Presentation','Program','Project','Promo','PSA','Pseudo','Published');
 		foreach ($asset_type as $value)
 		{
 			$this->manage_asset->insert_picklist_value(array('element_type_id' => 3, 'value' => $value));

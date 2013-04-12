@@ -201,6 +201,7 @@
 			$subject_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_source)));
 			$subject_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_ref)));
 			$subject_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_type)));
+			echo count($subjects);exit;
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Subject:</b></label>

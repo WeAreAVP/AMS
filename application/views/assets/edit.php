@@ -401,6 +401,61 @@
 				</td>
 			<?php } ?>
 		</tr>
+		<tr>
+			<?php
+			$audience_levels = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level)));
+			$audience_level_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_source)));
+			$audience_level_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_ref)));
+			if (count($audience_levels) > 0)
+			{
+				?>
+				<td class="record-detail-page">
+					<label><i class="icon-question-sign"></i><b> Audience Level:</b></label>
+				</td>
+				<td>
+					<?php
+					foreach ($audience_levels as $index => $audience_level)
+					{
+						?>
+						<div class="edit_form_div">
+							<p>
+								 Audience Level:
+							</p>
+							<p>
+								<select id="asset_audience_level_<?php echo $index; ?>" name="asset_audience_level[]">
+									<option value="">Select Audience Level</option>
+									<?php
+									foreach ($pbcore_asset_audience_level as $row)
+									{
+										$selected = '';
+										if ($audience_level == $row->value)
+											$selected = 'selected="selected"'
+											?>
+										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+									<?php }
+									?>
+								</select>
+							</p>
+							<p> Audience Level Source:</p>
+							<p>
+								<input id="asset_audience_level_source_<?php echo $index; ?>" name="asset_audience_level_source[]" value="<?php echo (isset($audience_level_sources[$index])) ? $audience_level_sources[$index] : ''; ?>" />
+							</p>
+							<p> Audience Level Ref:</p>
+							<p>
+								<input id="asset_audience_level_ref_<?php echo $index; ?>" name="asset_audience_level_ref[]" value="<?php echo (isset($audience_level_refs[$index])) ? $audience_level_refs[$index] : ''; ?>" />
+							</p>
+
+						</div>
+						<div class="remove_element"><img src="/images/remove-item.png"/></div>
+						<div class="clearfix" style="margin-bottom: 10px;"></div>
+						<?php
+					}
+					?>
+
+
+				</td>
+			<?php } ?>
+		</tr>
 	</table>
 </div>
 <script type="text/javascript">

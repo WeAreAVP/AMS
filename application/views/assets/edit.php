@@ -30,7 +30,7 @@
 				<p>
 					<select id="asset_type" name="asset_type"  multiple="multiple">
 						<?php
-						$asset_type_separate =explode(' | ', trim(str_replace('(**)', '', $asset_detail->asset_type)));
+						$asset_type_separate = explode(' | ', trim(str_replace('(**)', '', $asset_detail->asset_type)));
 						foreach ($pbcore_asset_types as $row)
 						{
 							$selected = '';
@@ -46,13 +46,47 @@
 			</td>
 		</tr>
 		<tr>
+			<?php
+			$asset_dates = explode(' | ', trim(str_replace('(**)', '', $asset_detail->asset_date)));
+			$asset_date_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->date_type)));
+			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Asset Date:</b></label>
 			</td>
 			<td>
-				<p>
+				<?php
+				if (count($asset_dates) > 0)
+				{
+					foreach ($asset_dates as $index => $dates)
+					{
+						?>
+						<p>
+							<input id="asset_date_<?php echo $index; ?>" name="asset_date[]"/>
+						</p>
+						<?php
+						if (isset($asset_date_types[$index]) && $dates > 0)
+						{
+							?>
+							<p>
+								<select id="asset_date_type_<?php echo $index; ?>" name="asset_date_type[]">
+									<?php
+									foreach ($pbcore_asset_date_types as $row)
+									{
+										$selected = '';
+										if ($asset_date_types[$index] == $row->value)
+											$selected = 'selected="selected"'
+											?>
+										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+									<?php }
+									?>
+								</select>
+							</p>
+							<?php
+						}
+					}
+				}
+				?>
 
-				</p>
 
 			</td>
 		</tr>

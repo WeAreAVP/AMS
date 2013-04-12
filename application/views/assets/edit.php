@@ -30,10 +30,11 @@
 				<p>
 					<select id="asset_type" name="asset_type"  multiple="multiple">
 						<?php
+						$asset_type_separate = explode(' | ', $asset_detail->asset_type);
 						foreach ($pbcore_asset_types as $row)
 						{
 							$selected = '';
-							if (!empty($asset_detail->asset_type) && $asset_detail->asset_type == $row->value)
+							if (in_array($row->value, $asset_type_separate))
 								$selected = 'selected="selected"'
 								?>
 							<option value="<?php echo $row->value; ?>" <?php echo $selected; ?> ><?php echo $row->value; ?></option>
@@ -50,7 +51,7 @@
 			</td>
 			<td>
 				<p>
-					
+
 				</p>
 
 			</td>

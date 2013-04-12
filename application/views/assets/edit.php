@@ -493,13 +493,12 @@
 							</p>
 							<p> Audience Rating Source:</p>
 							<p>
-									<select id="asset_audience_rating_source_<?php echo $index; ?>" name="asset_audience_rating_source[]">
-									<option value="">Select Coverage Type</option>
+								<select id="asset_audience_rating_source_<?php echo $index; ?>" name="asset_audience_rating_source[]">
+									<option value="">Select Audience Rating Source</option>
 									<option value="MPAA" <?php echo (isset($audience_rating_sources[$index]) && $audience_rating_sources[$index] == 'MPAA') ? 'selected="selected"' : ''; ?> >MPAA</option>
 									<option value="TV Parental Guidelines" <?php echo (isset($audience_rating_sources[$index]) && $audience_rating_sources[$index] == 'TV Parental Guidelines') ? 'selected="selected"' : ''; ?>>TV Parental Guidelines</option>
-
 								</select>
-								
+
 							</p>
 							<p> Audience Rating Ref:</p>
 							<p>
@@ -512,8 +511,48 @@
 						<?php
 					}
 					?>
+				</td>
+			<?php } ?>
+		</tr>
+		<tr>
+			<?php
+			$annotations = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation)));
+			$annotation_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation_type)));
+			$annotation_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation_ref)));
+			if (count($annotations) > 0)
+			{
+				?>
+				<td class="record-detail-page">
+					<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
+				</td>
+				<td>
+					<?php
+					foreach ($annotations as $index => $annotation)
+					{
+						?>
+						<div class="edit_form_div">
+							<p>
+								Annotation:
+							</p>
+							<p>
+								<input id="asset_annotation_<?php echo $index; ?>" name="asset_annotation[]" value="<?php echo $annotation; ?>" />
+							</p>
+							<p> Annotation Type:</p>
+							<p>
+								<input id="asset_annotation_type_<?php echo $index; ?>" name="asset_annotation_type[]" value="<?php echo (isset($annotation_types[$index])) ? $annotation_types[$index] : ''; ?>" />
 
+							</p>
+							<p> Annotation Ref:</p>
+							<p>
+								<input id="asset_annotation_ref_<?php echo $index; ?>" name="asset_annotation_ref[]" value="<?php echo (isset($annotation_refs[$index])) ? $annotation_refs[$index] : ''; ?>" />
+							</p>
 
+						</div>
+						<div class="remove_element"><img src="/images/remove-item.png"/></div>
+						<div class="clearfix" style="margin-bottom: 10px;"></div>
+						<?php
+					}
+					?>
 				</td>
 			<?php } ?>
 		</tr>

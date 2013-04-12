@@ -117,15 +117,16 @@
 
 							<p>ID Source:</p>
 							<p>
-								<input id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($identifier_sources[$index])) ? $identifier_sources : ''; ?>" />
+								<input id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($identifier_sources[$index])) ? $identifier_sources[$index] : ''; ?>" />
 							</p>
 							<p>ID Ref:</p>
 							<p>
-								<input id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($identifier_refs[$index])) ? $identifier_refs : ''; ?>" />
+								<input id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($identifier_refs[$index])) ? $identifier_refs[$index] : ''; ?>" />
 							</p>
 
 						</div>
 						<div class="remove_element"><img src="/images/remove-item.png"/></div>
+						<div class="clearfix"></div>
 							<?php
 						}
 					}

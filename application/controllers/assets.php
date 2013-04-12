@@ -50,6 +50,7 @@ class Assets extends MY_Controller
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
 			if ($data['asset_detail'])
 			{
+				debug($data);
 				$data['organization'] = $this->station_model->get_all();
 				$this->load->view('assets/edit', $data);
 			}

@@ -926,6 +926,104 @@
 			enable: true,
 			cacheLength: 1
 		});
+		$('input[name="asset_genre_source[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=genres&column=genre_source",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_audience_level_source[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=audience_levels&column=audience_level_source",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_annotation_type[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=annotations&column=annotation_type",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_relation_identifier[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=assets_relations&column=relation_identifier",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_relation_source[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=relation_types&column=relation_type_source",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_creator_name[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=creators&column=creator_name",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_creator_affiliation[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=creators&column=creator_affiliation",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_creator_role_source[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=creator_roles&column=creator_role_source",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_contributor_name[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=contributors&column=contributor_name",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_contributor_affiliation[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=contributors&column=contributor_affiliation",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_contributor_role_source[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=contributor_roles&column=contributor_role_source",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_publisher[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=publishers&column=publisher",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_publisher_affiliation[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=publishers&column=publisher_affiliation",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_publisher_role_source[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=publisher_roles&column=publisher_role_source",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
 		
 	});
 </script>

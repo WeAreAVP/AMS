@@ -1,5 +1,5 @@
 <div>
-	<table cellPadding="8" class="record-detail-table">
+	<table cellPadding="8" class="record-detail-table manage-records">
 		<tr>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Organization:</b></label>

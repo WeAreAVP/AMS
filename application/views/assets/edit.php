@@ -507,7 +507,12 @@
 							</p>
 							<p> Audience Rating Ref:</p>
 							<p>
-								<input id="asset_audience_rating_ref_<?php echo $index; ?>" name="asset_audience_rating_ref[]" value="<?php echo (isset($audience_rating_refs[$index])) ? $audience_rating_refs[$index] : ''; ?>" />
+								<select id="asset_audience_rating_ref_<?php echo $index; ?>" name="asset_audience_rating_ref[]">
+									<option value="">Select Audience Rating Source</option>
+									<option value="http://www.filmratings.com" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.filmratings.com') ? 'selected="selected"' : ''; ?> >http://www.filmratings.com</option>
+									<option value="http://www.tvguidelines.org/ratings.htm" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.tvguidelines.org/ratings.htm') ? 'selected="selected"' : ''; ?>>http://www.tvguidelines.org/ratings.htm</option>
+								</select>
+								
 							</p>
 
 						</div>

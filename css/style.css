@@ -735,3 +735,11 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     float: left;
     margin-left: -5px;
 }
+.add-new-element{
+    background: #515151;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 5px;
+    float: left;
+}

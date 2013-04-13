@@ -75,13 +75,26 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type,'(**)'))  SEPARATOR ' | ') AS relation_type", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type_source,'(**)'))  SEPARATOR ' | ') AS relation_type_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type_ref,'(**)'))  SEPARATOR ' | ') AS relation_type_ref", FALSE);
-
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_name,'(**)'))  SEPARATOR ' | ') AS creator_name", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_affiliation,'(**)'))  SEPARATOR ' | ') AS creator_affiliation", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_ref,'(**)'))  SEPARATOR ' | ') AS creator_ref", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_roles.creator_role,'(**)'))  SEPARATOR ' | ') AS creator_role", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_roles.creator_role_source,'(**)'))  SEPARATOR ' | ') AS creator_role_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_roles.creator_role_ref,'(**)'))  SEPARATOR ' | ') AS creator_role_ref", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributors.contributor_name,'(**)'))  SEPARATOR ' | ') AS contributor_name", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributors.contributor_affiliation,'(**)'))  SEPARATOR ' | ') AS contributor_affiliation", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributors.contributor_ref,'(**)'))  SEPARATOR ' | ') AS contributor_ref", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributor_roles.contributor_role,'(**)'))  SEPARATOR ' | ') AS contributor_role", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributor_roles.contributor_role_source,'(**)'))  SEPARATOR ' | ') AS contributor_role_source", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributor_roles.contributor_role_ref,'(**)'))  SEPARATOR ' | ') AS contributor_role_ref", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publishers.publisher,'(**)'))  SEPARATOR ' | ') AS publisher", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publishers.publisher_affiliation,'(**)'))  SEPARATOR ' | ') AS publisher_affiliation", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publishers.publisher_ref,'(**)'))  SEPARATOR ' | ') AS publisher_ref", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher_roles.publisher_role,'(**)'))  SEPARATOR ' | ') AS publisher_role", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher_roles.publisher_role_source,'(**)'))  SEPARATOR ' | ') AS publisher_role_source", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher_roles.publisher_role_ref,'(**)'))  SEPARATOR ' | ') AS publisher_role_ref", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(rights_summaries.rights,'(**)'))  SEPARATOR ' | ') AS rights", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(rights_summaries.rights_link,'(**)'))  SEPARATOR ' | ') AS rights_link", FALSE);
 
 
 		$this->db->join('stations', 'stations.id=assets.stations_id');
@@ -107,10 +120,16 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->join('annotations', 'annotations.assets_id=assets.id', 'LEFT');
 		$this->db->join('assets_relations', 'assets_relations.assets_id=assets.id', 'LEFT');
 		$this->db->join('relation_types', 'relation_types.id=assets_relations.relation_types_id', 'LEFT');
-
 		$this->db->join('assets_creators_roles', 'assets_creators_roles.assets_id=assets.id', 'LEFT');
 		$this->db->join('creators', 'creators.id=assets_creators_roles.creators_id', 'LEFT');
 		$this->db->join('creator_roles', 'creator_roles.id=assets_creators_roles.creator_roles_id', 'LEFT');
+		$this->db->join('assets_contributors_roles', 'assets_contributors_roles.assets_id=assets.id', 'LEFT');
+		$this->db->join('contributors', 'contributors.id=assets_contributors_roles.contributors_id', 'LEFT');
+		$this->db->join('contributor_roles', 'contributor_roles.id=assets_contributors_roles.contributor_roles_id', 'LEFT');
+		$this->db->join('assets_publishers_role', 'assets_publishers_role.assets_id=assets.id', 'LEFT');
+		$this->db->join('publishers', 'publishers.id=assets_publishers_role.publishers_id', 'LEFT');
+		$this->db->join('publisher_roles', 'publisher_roles.id=assets_publishers_role.publisher_roles_id', 'LEFT');
+		$this->db->join('rights_summaries', 'rights_summaries.assets_id=assets.id', 'LEFT');
 
 
 		$this->db->where('assets.id', $asset_id);

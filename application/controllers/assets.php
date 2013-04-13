@@ -75,14 +75,33 @@ class Assets extends MY_Controller
 
 	public function insert_pbcore_values()
 	{
-		$asset_type = array('Actor','Artist','Associate Producer','Cinematographer','Co-Producer','Composer','Concept','Director','Editor',
-			'Essayist','Executive Producer','Host','Illustrator','Interviewer','Moderator','Performer','Photographer','Producer',
-			'Production Unit','Reporter'
+		$asset_type = array('Actor','Advisor','Anchor','Announcer','Arranger','Artist' ,'Assistant Camera Operator',
+			'Assistant Director','Assistant Editor','Assistant Producer','Assistant Researcher','Assistant Stage Manager',
+			'Assistant to the Producer','Assistant Unit Manager','Associate Director','Associate Producer','Audio',
+			'Audio Assistant','Audio Editor','Audio Engineer','Audio Mixer','Author','Boom Operator','Broadcast Engineer',
+			'Camera Assistant','Camera Operator','Captions','Casting','Chief Camera Operator','Cinematographer','Co-Producer',
+			'Commentary Editor','Commentator','Community Coordinator','Composer','Concept','Conductor','Crane','Describer',
+			'Designer','Developer','Director','Director: Artistic','Director: Dance','Director: Documentary Material',
+			'Director: Photography','Director: Segment','Edit Programmer','Editor','Editor: Graphics','Editor: Segment',
+			'Editorial Director','Engineer','Essayist','Executive Producer','Fashion Consultant','Field Producer',
+			'Film Editor','Film Sound','Filmmaker','Floor Manager','Funder','Gaffer','Graphic Designer','Graphics',
+			'Guest','Host','Illustrator','Instrumentalist','Intern','Interpreter','Interviewee','Interviewer','Lecturer',
+			'Lighting','Lighting Assistant','Lighting Director','Make-Up','Manager','Mobile Unit Supervisor','Moderator',
+			'Music Assistant','Music Coordinator','Music Director','Musical Staging','Musician','Narrator','News Director',
+			'Panelist','Performer','Performing Group','Photographer','Post-production Audio','Post-production Supervisor',
+			'Producer','Producer: Coordinating','Producer: Segment','Producer: Website','Production Assistant','Production Manager',
+			'Production Personnel','Production Secretary','Production Unit','Project Director','Publicist','Reader',
+			'Recording engineer','Recordist','Reporter','Researcher','Scenic Design','Senior Broadcast Engineer','Senior Editor',
+			'Senior Producer','Senior Researcher','Series Producer','Sound','Sound Mix','Speaker','Sponsor','Staff Volunteer',
+			'Stage Manager','Still Photography','Studio Technician','Subject','Switcher','Synthesis','Synthesis Musician',
+			'Talent Coordinator','Technical Consultant','Technical Director','Technical Production','Theme Music','Titlist',
+			'Translator','Unit Manager','Video','Videotape Assembly','Videotape Editor','Videotape Engineer','Videotape Recordist',
+			'Vidifont Operator','Vocalist','VTR Recordist','Wardrobe','Writer'
 			
 			);
 		foreach ($asset_type as $value)
 		{
-			$this->manage_asset->insert_picklist_value(array('element_type_id' => 8, 'value' => $value));
+			$this->manage_asset->insert_picklist_value(array('element_type_id' => 9, 'value' => $value));
 		}
 	}
 

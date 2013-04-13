@@ -738,8 +738,9 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .add-new-element{
     background: #515151;
     color: #ffffff;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: bold;
-    padding: 5px;
+    padding: 3px 10px;
     float: left;
+    border-radius: 3px;
 }

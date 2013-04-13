@@ -697,6 +697,80 @@
 			</td>
 
 		</tr>
+		<tr>
+			<?php
+			$contributor_names = explode(' | ', trim(str_replace('(**)', '', $asset_detail->contributor_name)));
+			$contributor_affiliation = explode(' | ', trim(str_replace('(**)', '', $asset_detail->contributor_affiliation)));
+			$contributor_ref = explode(' | ', trim(str_replace('(**)', '', $asset_detail->contributor_ref)));
+			$contributor_role = explode(' | ', trim(str_replace('(**)', '', $asset_detail->contributor_role)));
+			$contributor_role_source = explode(' | ', trim(str_replace('(**)', '', $asset_detail->contributor_role_source)));
+			$contributor_role_ref = explode(' | ', trim(str_replace('(**)', '', $asset_detail->contributor_role_ref)));
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Contributor:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($contributor_names) > 0 && isset($contributor_names[0]) && ! empty($contributor_names[0]))
+				{
+					foreach ($contributor_names as $index => $contributor_name)
+					{
+						?>
+						<div class="edit_form_div">
+							<p>
+								Contributor:
+							</p>
+							<p>
+								<input id="asset_contributor_name_<?php echo $index; ?>" name="asset_contributor_name[]" value="<?php echo $contributor_name; ?>" />
+							</p>
+							<p>
+								Contributor Affiliation:
+							</p>
+							<p>
+								<input id="asset_contributor_affiliation_<?php echo $index; ?>" name="asset_contributor_affiliation[]" value="<?php echo (isset($contributor_affiliation[$index])) ? $contributor_affiliation[$index] : ''; ?>" />
+							</p>
+							<p>
+								Contributor Ref:
+							</p>
+							<p>
+								<input id="asset_contributor_ref_<?php echo $index; ?>" name="asset_contributor_ref[]" value="<?php echo (isset($contributor_ref[$index])) ? $contributor_ref[$index] : ''; ?>" />
+							</p>
+							<p> Contributor Role:</p>
+							<p>
+								<select id="asset_contributor_role_<?php echo $index; ?>" name="asset_contributor_role[]">
+									<option value="">Select Contributor Role</option>
+									<?php
+									foreach ($pbcore_asset_contributor_roles as $row)
+									{
+										$selected = '';
+										if (isset($contributor_role[$index]) && $contributor_role[$index] == $row->value)
+											$selected = 'selected="selected"'
+											?>
+										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+									<?php }
+									?>
+								</select>
+
+							</p>
+							<p> Contributor Role Source:</p>
+							<p>
+								<input id="asset_contributor_role_source_<?php echo $index; ?>" name="asset_contributor_role_source[]" value="<?php echo (isset($contributor_role_source[$index])) ? $contributor_role_source[$index] : ''; ?>" />
+							</p>
+							<p> Contributor Role Ref:</p>
+							<p>
+								<input id="asset_contributor_role_ref_<?php echo $index; ?>" name="asset_contributor_role_ref[]" value="<?php echo (isset($contributor_role_ref[$index])) ? $contributor_role_ref[$index] : ''; ?>" />
+							</p>
+
+						</div>
+						<div class="remove_element"><img src="/images/remove-item.png"/></div>
+						<div class="clearfix" style="margin-bottom: 10px;"></div>
+						<?php
+					}
+				}
+				?>
+			</td>
+
+		</tr>
 	</table>
 </div>
 <script type="text/javascript">

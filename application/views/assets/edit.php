@@ -512,7 +512,7 @@
 									<option value="http://www.filmratings.com" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.filmratings.com') ? 'selected="selected"' : ''; ?> >http://www.filmratings.com</option>
 									<option value="http://www.tvguidelines.org/ratings.htm" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.tvguidelines.org/ratings.htm') ? 'selected="selected"' : ''; ?>>http://www.tvguidelines.org/ratings.htm</option>
 								</select>
-								
+
 							</p>
 
 						</div>
@@ -897,5 +897,15 @@
 		});
 
 		$('input[name="asset_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
+
+		$('input[name="asset_identifier_source[]"]').autocomplete({
+			source: site_url + "autocomplete/local_idenifier",
+			minLength: 1,
+			delay: 200,
+			enable: true,
+			cacheLength: 1
+
+
+		});
 	});
 </script>

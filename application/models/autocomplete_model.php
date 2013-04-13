@@ -36,16 +36,36 @@ class Autocomplete_Model extends CI_Model
 		parent::__construct();
 	}
 
-	function get_identifier_source($term)
+	function get_autocomplete_value($table, $column, $term)
 	{
-		$this->db->select("DISTINCT identifier_source", FALSE);
-		$this->db->like("identifier_source", $term);
-		$this->db->where('identifier_source !=', "http://americanarchiveinventory.org");
+		$this->db->select("DISTINCT $column AS value", FALSE);
+		$this->db->like("$column", $term);
+		if ($table === 'identifiers')
+			$this->db->where("$column !=", "http://americanarchiveinventory.org");
 		$this->db->limit(50);
-		$result = $this->db->get('identifiers')->result();
+		$result = $this->db->get($table)->result();
 		return $result;
 	}
+
 	function get_title_source($term)
+	{
+		$this->db->select("DISTINCT title_source", FALSE);
+		$this->db->like("title_source", $term);
+		$this->db->limit(50);
+		$result = $this->db->get('asset_titles')->result();
+		return $result;
+	}
+
+	function get_subjects($term)
+	{
+		$this->db->select("DISTINCT title_source", FALSE);
+		$this->db->like("title_source", $term);
+		$this->db->limit(50);
+		$result = $this->db->get('asset_titles')->result();
+		return $result;
+	}
+
+	function get_subject_source($term)
 	{
 		$this->db->select("DISTINCT title_source", FALSE);
 		$this->db->like("title_source", $term);

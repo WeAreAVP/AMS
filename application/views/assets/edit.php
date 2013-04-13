@@ -899,7 +899,7 @@
 		$('input[name="asset_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
 
 		$('input[name="asset_identifier_source[]"]').autocomplete({
-			source: site_url + "autocomplete/local_idenifier",
+			source: site_url + "autocomplete/values?table=identifiers&column=identifier_source",
 			minLength: 1,
 			delay: 100,
 			enable: true,
@@ -912,5 +912,20 @@
 			enable: true,
 			cacheLength: 1
 		});
+		$('input[name="asset_subject[]"]').autocomplete({
+			source: site_url + "autocomplete/subject",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_subject_source[]"]').autocomplete({
+			source: site_url + "autocomplete/subject_source",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		
 	});
 </script>

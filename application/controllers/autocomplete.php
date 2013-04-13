@@ -39,14 +39,17 @@ class Autocomplete extends MY_Controller
 		$this->load->model('autocomplete_model', 'autocomplete');
 	}
 
-	public function local_idenifier()
+	public function values()
 	{
-		$source = $this->autocomplete->get_identifier_source($this->input->get('term'));
+		$term=$this->input->get('term');
+		$table=$this->input->get('table');
+		$column=$this->input->get('column');
+		$source = $this->autocomplete->get_autocomplete_value($table,$column,$term);
 		$autoSource = array();
 
 		foreach ($source as $key => $value)
 		{
-			$autoSource[$key] = $value->identifier_source;
+			$autoSource[$key] = $value->value;
 		}
 		echo json_encode($autoSource);
 		exit_function();
@@ -54,6 +57,30 @@ class Autocomplete extends MY_Controller
 	public function title_source()
 	{
 		$source = $this->autocomplete->get_title_source($this->input->get('term'));
+		$autoSource = array();
+
+		foreach ($source as $key => $value)
+		{
+			$autoSource[$key] = $value->title_source;
+		}
+		echo json_encode($autoSource);
+		exit_function();
+	}
+	public function subject()
+	{
+		$source = $this->autocomplete->get_subjects($this->input->get('term'));
+		$autoSource = array();
+
+		foreach ($source as $key => $value)
+		{
+			$autoSource[$key] = $value->title_source;
+		}
+		echo json_encode($autoSource);
+		exit_function();
+	}
+	public function subject_source()
+	{
+		$source = $this->autocomplete->get_subject_source($this->input->get('term'));
 		$autoSource = array();
 
 		foreach ($source as $key => $value)

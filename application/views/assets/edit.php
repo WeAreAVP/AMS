@@ -49,7 +49,7 @@
 			<?php
 			$asset_dates = explode(' | ', trim(str_replace('(**)', '', $asset_detail->asset_date)));
 			$asset_date_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->date_type)));
-			if (count($asset_dates) > 0)
+			if (count($asset_dates) > 0 && isset($asset_dates[0]) && !empty($asset_dates[0]))
 			{
 				?>
 				<td class="record-detail-page">
@@ -98,7 +98,7 @@
 			$identifiers = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier)));
 			$identifier_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier_source)));
 			$identifier_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier_ref)));
-			if (count($identifiers) > 0)
+			if (count($identifiers) > 0 && isset($identifiers[0]) && !empty($identifiers[0]))
 			{
 				?>
 				<td class="record-detail-page">
@@ -141,7 +141,7 @@
 			$title_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_source)));
 			$title_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_ref)));
 			$title_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_type)));
-			if (count($titles) > 0)
+			if (count($titles) > 0 && isset($titles[0]) && !empty($titles[0]))
 			{
 				?>
 				<td class="record-detail-page">
@@ -201,7 +201,7 @@
 			$subject_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_source)));
 			$subject_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_ref)));
 			$subject_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_type)));
-			if (count($subjects) > 0)
+			if (count($subjects) > 0 && isset($subjects[0]) && !empty($subjects[0]))
 			{
 				?>
 				<td class="record-detail-page">
@@ -260,7 +260,7 @@
 			$descriptions = explode(' | ', trim(str_replace('(**)', '', $asset_detail->description)));
 			$description_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->description_type)));
 
-			if (count($descriptions) > 0)
+			if (count($descriptions) > 0 && isset($descriptions[0]) && !empty($descriptions[0]))
 			{
 				?>
 				<td class="record-detail-page">
@@ -313,7 +313,7 @@
 			$genre_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre_source)));
 			$genre_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre_ref)));
 
-			if (count($genres) > 0)
+			if (count($genres) > 0 && isset($genres[0]) && !empty($genres[0]))
 			{
 				?>
 				<td class="record-detail-page">
@@ -360,7 +360,7 @@
 			$coverage_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->coverage_type)));
 
 
-			if (count($coverages) > 0)
+			if (count($coverages) > 0 && isset($coverages[0]) && !empty($coverages[0]))
 			{
 				?>
 				<td class="record-detail-page">
@@ -406,7 +406,7 @@
 			$audience_levels = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level)));
 			$audience_level_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_source)));
 			$audience_level_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_ref)));
-			if (count($audience_levels) > 0)
+			if (count($audience_levels) > 0 && isset($audience_levels[0]) && !empty($audience_levels[0]))
 			{
 				?>
 				<td class="record-detail-page">
@@ -461,7 +461,7 @@
 			$audience_ratings = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level)));
 			$audience_rating_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_source)));
 			$audience_rating_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_ref)));
-			if (count($audience_ratings) > 0)
+			if (count($audience_ratings) > 0 && isset($audience_ratings[0]) && !empty($audience_ratings[0]))
 			{
 				?>
 				<td class="record-detail-page">
@@ -519,7 +519,7 @@
 			$annotations = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation)));
 			$annotation_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation_type)));
 			$annotation_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation_ref)));
-			if (count($annotations) > 0)
+			if (count($annotations) > 0 && isset($annotations[0]) && !empty($annotations[0]))
 			{
 				?>
 				<td class="record-detail-page">
@@ -562,7 +562,7 @@
 			$relation_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->relation_type)));
 			$relation_type_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->relation_type_source)));
 			$relation_type_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->relation_type_ref)));
-			if (count($relation_identifiers) > 0)
+			if (count($relation_identifiers) > 0 && isset($relation_identifiers[0]) && !empty($relation_identifiers[0]))
 			{
 				?>
 				<td class="record-detail-page">

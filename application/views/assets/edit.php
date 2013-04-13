@@ -884,6 +884,7 @@
 					}
 				}
 				?>
+						<div><i class="con-plus-sign icon-white"></i> ADD ANOTHER RIGHT</div>
 			</td>
 
 		</tr>

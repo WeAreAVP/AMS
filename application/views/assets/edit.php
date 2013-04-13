@@ -901,7 +901,7 @@
 		$('input[name="asset_identifier_source[]"]').autocomplete({
 			source: site_url + "autocomplete/local_idenifier",
 			minLength: 1,
-			delay: 200,
+			delay: 100,
 			enable: true,
 			cacheLength: 1
 

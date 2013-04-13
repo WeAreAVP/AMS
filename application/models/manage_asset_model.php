@@ -76,6 +76,13 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type_source,'(**)'))  SEPARATOR ' | ') AS relation_type_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type_ref,'(**)'))  SEPARATOR ' | ') AS relation_type_ref", FALSE);
 
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_name,'(**)'))  SEPARATOR ' | ') AS creator_name", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_affiliation,'(**)'))  SEPARATOR ' | ') AS creator_affiliation", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_ref,'(**)'))  SEPARATOR ' | ') AS creator_ref", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_roles.creator_role,'(**)'))  SEPARATOR ' | ') AS creator_role", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_roles.creator_role_source,'(**)'))  SEPARATOR ' | ') AS creator_role_source", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_roles.creator_role_ref,'(**)'))  SEPARATOR ' | ') AS creator_role_ref", FALSE);
+
 
 		$this->db->join('stations', 'stations.id=assets.stations_id');
 		$this->db->join('assets_asset_types', 'assets_asset_types.assets_id=assets.id', 'LEFT');
@@ -100,6 +107,10 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->join('annotations', 'annotations.assets_id=assets.id', 'LEFT');
 		$this->db->join('assets_relations', 'assets_relations.assets_id=assets.id', 'LEFT');
 		$this->db->join('relation_types', 'relation_types.id=assets_relations.relation_types_id', 'LEFT');
+
+		$this->db->join('assets_creators_roles', 'assets_creators_roles.assets_id=assets.id', 'LEFT');
+		$this->db->join('creators', 'creators.id=assets_creators_roles.creators_id', 'LEFT');
+		$this->db->join('creator_roles', 'creator_roles.id=assets_creators_roles.creator_roles_id', 'LEFT');
 
 
 		$this->db->where('assets.id', $asset_id);

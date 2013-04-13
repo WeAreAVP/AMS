@@ -41,6 +41,7 @@ class Autocomplete_Model extends CI_Model
 		$this->db->select("DISTINCT identifier_source", FALSE);
 		$this->db->like("identifier_source", $term);
 		$this->db->where('identifier_source !=', "http://americanarchiveinventory.org");
+		$this->db->limit(100);
 		$result = $this->db->get('identifiers')->result();
 		return $result;
 	}

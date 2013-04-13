@@ -54,42 +54,7 @@ class Autocomplete extends MY_Controller
 		echo json_encode($autoSource);
 		exit_function();
 	}
-	public function title_source()
-	{
-		$source = $this->autocomplete->get_title_source($this->input->get('term'));
-		$autoSource = array();
-
-		foreach ($source as $key => $value)
-		{
-			$autoSource[$key] = $value->title_source;
-		}
-		echo json_encode($autoSource);
-		exit_function();
-	}
-	public function subject()
-	{
-		$source = $this->autocomplete->get_subjects($this->input->get('term'));
-		$autoSource = array();
-
-		foreach ($source as $key => $value)
-		{
-			$autoSource[$key] = $value->title_source;
-		}
-		echo json_encode($autoSource);
-		exit_function();
-	}
-	public function subject_source()
-	{
-		$source = $this->autocomplete->get_subject_source($this->input->get('term'));
-		$autoSource = array();
-
-		foreach ($source as $key => $value)
-		{
-			$autoSource[$key] = $value->title_source;
-		}
-		echo json_encode($autoSource);
-		exit_function();
-	}
+	
 
 }
 

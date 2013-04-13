@@ -47,32 +47,9 @@ class Autocomplete_Model extends CI_Model
 		return $result;
 	}
 
-	function get_title_source($term)
-	{
-		$this->db->select("DISTINCT title_source", FALSE);
-		$this->db->like("title_source", $term);
-		$this->db->limit(50);
-		$result = $this->db->get('asset_titles')->result();
-		return $result;
-	}
+	
 
-	function get_subjects($term)
-	{
-		$this->db->select("DISTINCT title_source", FALSE);
-		$this->db->like("title_source", $term);
-		$this->db->limit(50);
-		$result = $this->db->get('asset_titles')->result();
-		return $result;
-	}
-
-	function get_subject_source($term)
-	{
-		$this->db->select("DISTINCT title_source", FALSE);
-		$this->db->like("title_source", $term);
-		$this->db->limit(50);
-		$result = $this->db->get('asset_titles')->result();
-		return $result;
-	}
+	
 
 }
 

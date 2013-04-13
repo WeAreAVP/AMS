@@ -906,21 +906,21 @@
 			cacheLength: 1
 		});
 		$('input[name="asset_title_source[]"]').autocomplete({
-			source: site_url + "autocomplete/title_source",
+			source: site_url + "autocomplete/values?table=asset_titles&column=title_source",
 			minLength: 1,
 			delay: 100,
 			enable: true,
 			cacheLength: 1
 		});
 		$('input[name="asset_subject[]"]').autocomplete({
-			source: site_url + "autocomplete/subject",
+			source: site_url + "autocomplete/values?table=subjects&column=subject",
 			minLength: 1,
 			delay: 100,
 			enable: true,
 			cacheLength: 1
 		});
 		$('input[name="asset_subject_source[]"]').autocomplete({
-			source: site_url + "autocomplete/subject_source",
+			source: site_url + "autocomplete/values?table=subjects&column=subject_source",
 			minLength: 1,
 			delay: 100,
 			enable: true,

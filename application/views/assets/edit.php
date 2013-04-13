@@ -781,7 +781,7 @@
 			$publisher_role_ref = explode(' | ', trim(str_replace('(**)', '', $asset_detail->publisher_role_ref)));
 			?>
 			<td class="record-detail-page">
-				<label><i class="icon-question-sign"></i><b> Contributor:</b></label>
+				<label><i class="icon-question-sign"></i><b> Publisher:</b></label>
 			</td>
 			<td>
 				<?php
@@ -835,6 +835,43 @@
 								<input id="asset_publisher_role_ref_<?php echo $index; ?>" name="asset_publisher_role_ref[]" value="<?php echo (isset($publisher_role_ref[$index])) ? $publisher_role_ref[$index] : ''; ?>" />
 							</p>
 
+						</div>
+						<div class="remove_element"><img src="/images/remove-item.png"/></div>
+						<div class="clearfix" style="margin-bottom: 10px;"></div>
+						<?php
+					}
+				}
+				?>
+			</td>
+
+		</tr>
+		<tr>
+			<?php
+			$rights = explode(' | ', trim(str_replace('(**)', '', $asset_detail->rights)));
+			$rights_link = explode(' | ', trim(str_replace('(**)', '', $asset_detail->rights_link)));
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Right Summary:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($rights) > 0 && isset($rights[0]) && ! empty($rights[0]))
+				{
+					foreach ($rights as $index => $right)
+					{
+						?>
+						<div class="edit_form_div">
+							<p>
+								Right:
+							</p>
+							<p>
+								<input id="asset_rights_<?php echo $index; ?>" name="asset_rights[]" value="<?php echo $right; ?>" />
+							</p>
+							<p> Right Link:</p>
+							<p>
+								<input id="asset_right_link_<?php echo $index; ?>" name="asset_right_link[]" value="<?php echo (isset($rights_link[$index])) ? $rights_link[$index] : ''; ?>" />
+
+							</p>
 						</div>
 						<div class="remove_element"><img src="/images/remove-item.png"/></div>
 						<div class="clearfix" style="margin-bottom: 10px;"></div>

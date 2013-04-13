@@ -1,5 +1,5 @@
 <div>
-	<table cellPadding="8" class="record-detail-table manage-records">
+	<table cellPadding="8" class="record-detail-table">
 		<tr>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Organization:</b></label>
@@ -49,14 +49,15 @@
 			<?php
 			$asset_dates = explode(' | ', trim(str_replace('(**)', '', $asset_detail->asset_date)));
 			$asset_date_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->date_type)));
-			if (count($asset_dates) > 0 && isset($asset_dates[0]) && !empty($asset_dates[0]))
-			{
-				?>
-				<td class="record-detail-page">
-					<label><i class="icon-question-sign"></i><b> Asset Date:</b></label>
-				</td>
-				<td>
-					<?php
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Asset Date:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($asset_dates) > 0 && isset($asset_dates[0]) && ! empty($asset_dates[0]))
+				{
+
 					foreach ($asset_dates as $index => $dates)
 					{
 						?>
@@ -87,25 +88,26 @@
 						<div class="remove_element"><img src="/images/remove-item.png"/></div>
 						<?php
 					}
-					?>
+				}
+				?>
 
 
-				</td>
-			<?php } ?>
+			</td>
+
 		</tr>
 		<tr>
 			<?php
 			$identifiers = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier)));
 			$identifier_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier_source)));
 			$identifier_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier_ref)));
-			if (count($identifiers) > 0 && isset($identifiers[0]) && !empty($identifiers[0]))
-			{
-				?>
-				<td class="record-detail-page">
-					<label><i class="icon-question-sign"></i><b> Local ID:</b></label>
-				</td>
-				<td>
-					<?php
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Local ID:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($identifiers) > 0 && isset($identifiers[0]) && ! empty($identifiers[0]))
+				{
 					foreach ($identifiers as $index => $identifier)
 					{
 						?>
@@ -129,11 +131,12 @@
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
-					?>
+				}
+				?>
 
 
-				</td>
-			<?php } ?>
+			</td>
+
 		</tr>
 		<tr>
 			<?php
@@ -141,14 +144,14 @@
 			$title_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_source)));
 			$title_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_ref)));
 			$title_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_type)));
-			if (count($titles) > 0 && isset($titles[0]) && !empty($titles[0]))
-			{
-				?>
-				<td class="record-detail-page">
-					<label><i class="icon-question-sign"></i><b> Title:</b></label>
-				</td>
-				<td>
-					<?php
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Title:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($titles) > 0 && isset($titles[0]) && ! empty($titles[0]))
+				{
 					foreach ($titles as $index => $title)
 					{
 						?>
@@ -189,11 +192,12 @@
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
-					?>
+				}
+				?>
 
 
-				</td>
-			<?php } ?>
+			</td>
+
 		</tr>
 		<tr>
 			<?php
@@ -201,14 +205,14 @@
 			$subject_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_source)));
 			$subject_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_ref)));
 			$subject_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_type)));
-			if (count($subjects) > 0 && isset($subjects[0]) && !empty($subjects[0]))
-			{
-				?>
-				<td class="record-detail-page">
-					<label><i class="icon-question-sign"></i><b> Subject:</b></label>
-				</td>
-				<td>
-					<?php
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Subject:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($subjects) > 0 && isset($subjects[0]) && ! empty($subjects[0]))
+				{
 					foreach ($subjects as $index => $subject)
 					{
 						?>
@@ -249,25 +253,25 @@
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
-					?>
+				}
+				?>
 
 
-				</td>
-			<?php } ?>
+			</td>
+
 		</tr>
 		<tr>
 			<?php
 			$descriptions = explode(' | ', trim(str_replace('(**)', '', $asset_detail->description)));
 			$description_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->description_type)));
-
-			if (count($descriptions) > 0 && isset($descriptions[0]) && !empty($descriptions[0]))
-			{
-				?>
-				<td class="record-detail-page">
-					<label><i class="icon-question-sign"></i><b> Description:</b></label>
-				</td>
-				<td>
-					<?php
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Description:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($descriptions) > 0 && isset($descriptions[0]) && ! empty($descriptions[0]))
+				{
 					foreach ($descriptions as $index => $description)
 					{
 						?>
@@ -301,26 +305,26 @@
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
-					?>
+				}
+				?>
 
 
-				</td>
-			<?php } ?>
+			</td>
+
 		</tr>
 		<tr>
 			<?php
 			$genres = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre)));
 			$genre_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre_source)));
 			$genre_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre_ref)));
-
-			if (count($genres) > 0 && isset($genres[0]) && !empty($genres[0]))
-			{
-				?>
-				<td class="record-detail-page">
-					<label><i class="icon-question-sign"></i><b> Genre:</b></label>
-				</td>
-				<td>
-					<?php
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Genre:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($genres) > 0 && isset($genres[0]) && ! empty($genres[0]))
+				{
 					foreach ($genres as $index => $genre)
 					{
 						?>
@@ -348,26 +352,25 @@
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
-					?>
+				}
+				?>
 
 
-				</td>
-			<?php } ?>
+			</td>
+
 		</tr>
 		<tr>
 			<?php
 			$coverages = explode(' | ', trim(str_replace('(**)', '', $asset_detail->coverage)));
 			$coverage_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->coverage_type)));
-
-
-			if (count($coverages) > 0 && isset($coverages[0]) && !empty($coverages[0]))
-			{
-				?>
-				<td class="record-detail-page">
-					<label><i class="icon-question-sign"></i><b> Coverage:</b></label>
-				</td>
-				<td>
-					<?php
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Coverage:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($coverages) > 0 && isset($coverages[0]) && ! empty($coverages[0]))
+				{
 					foreach ($coverages as $index => $coverage)
 					{
 						?>
@@ -395,25 +398,26 @@
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
-					?>
+				}
+				?>
 
 
-				</td>
-			<?php } ?>
+			</td>
+
 		</tr>
 		<tr>
 			<?php
 			$audience_levels = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level)));
 			$audience_level_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_source)));
 			$audience_level_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_ref)));
-			if (count($audience_levels) > 0 && isset($audience_levels[0]) && !empty($audience_levels[0]))
-			{
-				?>
-				<td class="record-detail-page">
-					<label><i class="icon-question-sign"></i><b> Audience Level:</b></label>
-				</td>
-				<td>
-					<?php
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Audience Level:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($audience_levels) > 0 && isset($audience_levels[0]) && ! empty($audience_levels[0]))
+				{
 					foreach ($audience_levels as $index => $audience_level)
 					{
 						?>
@@ -450,25 +454,26 @@
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
-					?>
+				}
+				?>
 
 
-				</td>
-			<?php } ?>
+			</td>
+
 		</tr>
 		<tr>
 			<?php
 			$audience_ratings = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level)));
 			$audience_rating_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_source)));
 			$audience_rating_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_ref)));
-			if (count($audience_ratings) > 0 && isset($audience_ratings[0]) && !empty($audience_ratings[0]))
-			{
-				?>
-				<td class="record-detail-page">
-					<label><i class="icon-question-sign"></i><b> Audience Rating:</b></label>
-				</td>
-				<td>
-					<?php
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Audience Rating:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($audience_ratings) > 0 && isset($audience_ratings[0]) && ! empty($audience_ratings[0]))
+				{
 					foreach ($audience_ratings as $index => $audience_rating)
 					{
 						?>
@@ -510,23 +515,24 @@
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
-					?>
-				</td>
-			<?php } ?>
+				}
+				?>
+			</td>
+
 		</tr>
 		<tr>
 			<?php
 			$annotations = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation)));
 			$annotation_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation_type)));
 			$annotation_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation_ref)));
-			if (count($annotations) > 0 && isset($annotations[0]) && !empty($annotations[0]))
-			{
-				?>
-				<td class="record-detail-page">
-					<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
-				</td>
-				<td>
-					<?php
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($annotations) > 0 && isset($annotations[0]) && ! empty($annotations[0]))
+				{
 					foreach ($annotations as $index => $annotation)
 					{
 						?>
@@ -552,9 +558,10 @@
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
-					?>
-				</td>
-			<?php } ?>
+				}
+				?>
+			</td>
+
 		</tr>
 		<tr>
 			<?php
@@ -562,14 +569,14 @@
 			$relation_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->relation_type)));
 			$relation_type_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->relation_type_source)));
 			$relation_type_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->relation_type_ref)));
-			if (count($relation_identifiers) > 0 && isset($relation_identifiers[0]) && !empty($relation_identifiers[0]))
-			{
-				?>
-				<td class="record-detail-page">
-					<label><i class="icon-question-sign"></i><b> Relation:</b></label>
-				</td>
-				<td>
-					<?php
+			?>
+			<td class="record-detail-page">
+				<label><i class="icon-question-sign"></i><b> Relation:</b></label>
+			</td>
+			<td>
+				<?php
+				if (count($relation_identifiers) > 0 && isset($relation_identifiers[0]) && ! empty($relation_identifiers[0]))
+				{
 					foreach ($relation_identifiers as $index => $relation_identifier)
 					{
 						?>
@@ -611,9 +618,10 @@
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
-					?>
-				</td>
-			<?php } ?>
+				}
+				?>
+			</td>
+
 		</tr>
 	</table>
 </div>

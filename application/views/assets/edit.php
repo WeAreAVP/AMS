@@ -427,34 +427,38 @@
 					<label><i class="icon-question-sign"></i><b> Coverage:</b></label>
 				</td>
 				<td>
-					<?php
-					if (count($coverages) > 0 && isset($coverages[0]) && ! empty($coverages[0]))
-					{
-						$add = ' ADD ANOTHER COVERAGE';
-						foreach ($coverages as $index => $coverage)
+					<div id="main_coverage">
+						<?php
+						if (count($coverages) > 0 && isset($coverages[0]) && ! empty($coverages[0]))
 						{
-							?>
-							<div class="edit_form_div">
-								<div>
-									<p>Coverage:</p>
-									<p><input id="asset_coverage_<?php echo $index; ?>" name="asset_coverage[]" value="<?php echo $coverage; ?>" /></p>
+							$add = ' ADD ANOTHER COVERAGE';
+							foreach ($coverages as $index => $coverage)
+							{
+								?>
+								<div id="remove_coverage_<?php echo $index; ?>" class="remove_coverage">
+									<div class="edit_form_div">
+										<div>
+											<p>Coverage:</p>
+											<p><input id="asset_coverage_<?php echo $index; ?>" name="asset_coverage[]" value="<?php echo $coverage; ?>" /></p>
+										</div>
+										<div>
+											<p>Coverage Type:</p>
+											<p><select id="asset_coverage_type_<?php echo $index; ?>" name="asset_coverage_type[]">
+													<option value="">Select Coverage Type</option>
+													<option value="spatial" <?php echo (isset($coverage_types[$index]) && $coverage_types[$index] == 'spatial') ? 'selected="selected"' : ''; ?> >spatial</option>
+													<option value="temporal" <?php echo (isset($coverage_types[$index]) && $coverage_types[$index] == 'temporal') ? 'selected="selected"' : ''; ?>>temporal</option>
+												</select></p>
+										</div>
+									</div>
+									<div class="remove_element" onclick="removeElement('#remove_coverage_<?php echo $index; ?>', 'coverage');"><img src="/images/remove-item.png" /></div>
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
 								</div>
-								<div>
-									<p>Coverage Type:</p>
-									<p><select id="asset_coverage_type_<?php echo $index; ?>" name="asset_coverage_type[]">
-											<option value="">Select Coverage Type</option>
-											<option value="spatial" <?php echo (isset($coverage_types[$index]) && $coverage_types[$index] == 'spatial') ? 'selected="selected"' : ''; ?> >spatial</option>
-											<option value="temporal" <?php echo (isset($coverage_types[$index]) && $coverage_types[$index] == 'temporal') ? 'selected="selected"' : ''; ?>>temporal</option>
-										</select></p>
-								</div>
-							</div>
-							<div class="remove_element"><img src="/images/remove-item.png"/></div>
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
-							<?php
+								<?php
+							}
 						}
-					}
-					?>
-					<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+						?>
+					</div>
+					<div class="add-new-element" onclick="addElement('#main_coverage');"><i class="icon-plus-sign icon-white"></i><span id="add_coverage"><?php echo $add; ?></span></div>
 
 				</td>
 

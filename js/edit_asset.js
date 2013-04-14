@@ -277,4 +277,13 @@ function addElement(elementID) {
 			cacheLength: 1
 		});
 	}
+	else if (elementID == '#main_coverage') {
+		html = '<div id="remove_coverage_' + number + '" class="remove_coverage"><div class="edit_form_div"><div>' +
+		'<p>Coverage:</p><p><input id="asset_coverage_' + number + '" name="asset_coverage[]" value="" /></p>' +
+		'</div><div><p>Coverage Type:</p><p><select id="asset_coverage_type_' + number + '" name="asset_coverage_type[]">' +
+		'<option value="">Select Coverage Type</option><option value="spatial">spatial</option><option value="temporal">temporal</option>' +
+		'</select></p></div></div><div class="remove_element" onclick="removeElement(\'#remove_coverage_' + number + '\', \'coverage\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+	}
 }

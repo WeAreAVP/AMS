@@ -246,4 +246,19 @@ function addElement(elementID) {
 			cacheLength: 1
 		});
 	}
+	else if (elementID == '#main_description') {
+		descriptionType = '';
+
+		for (cnt in pbcoreDescriptionTypes)
+		{
+			descriptionType += '<option value= "' + pbcoreDescriptionTypes[cnt]['value'] + '">' + pbcoreDescriptionTypes[cnt]['value'] + '</option>';
+		}
+		html = '<div id="remove_description_' + number + '" class="remove_description"><div class="edit_form_div">' +
+		'<div><p>Description:</p><p><textarea id="asset_description_' + number + '" name="asset_description[]"></textarea>' +
+		'</p></div><div><p>Description Type:</p><p><select id="asset_description_type_' + number + '" name="asset_description_type[]">' +
+		'<option value="">Select Description Type</option>' + descriptionType + '</select></p></div></div>' +
+		'<div class="remove_element" onclick="removeElement(\'#remove_description_' + number + '\', \'description\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+	}
 }

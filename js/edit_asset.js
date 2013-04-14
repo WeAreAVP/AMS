@@ -215,4 +215,35 @@ function addElement(elementID) {
 			cacheLength: 1
 		});
 	}
+	else if (elementID == '#main_subject') {
+		subjectType = '';
+
+		for (cnt in pbcoreSubjectTypes)
+		{
+			subjectType += '<option value= "' + pbcoreSubjectTypes[cnt]['value'] + '">' + pbcoreSubjectTypes[cnt]['value'] + '</option>';
+		}
+		html = '<div id="remove_subject_' + number + '" class="remove_subject"><div class="edit_form_div"><div>' +
+		'<p>Subject:</p><p><input id="asset_subject_' + number + '" name="asset_subject[]" value=""/></p></div>' +
+		'<div><p>Subject Type:</p><p><select id="asset_subject_type_' + number + '" name="asset_subject_type[]">' +
+		'<option value="">Select Subject Type</option>' + subjectType + '</select></p></div><div><p>Subject Source:</p>' +
+		'<p><input id="asset_subject_source_' + number + '" name="asset_subject_source[]" value="" /></p></div>' +
+		'<div><p>Subject Ref:</p><p><input id="asset_subject_ref_' + number + '" name="asset_subject_ref[]" value="" /></p></div>' +
+		'</div><div class="remove_element" onclick="removeElement(\'#remove_subject_' + number + '\', \'subject\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+		$('input[name="asset_subject[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=subjects&column=subject",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_subject_source[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=subjects&column=subject_source",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+	}
 }

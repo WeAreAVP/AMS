@@ -204,7 +204,7 @@ function addElement(elementID) {
 		'<option value="">Select Title Type</option>' + titleTypes + '</select></p></div><div><p>Title Source:</p>' +
 		'<p><input id="asset_title_source_' + number + '" name="asset_title_source[]" value="" /></p>' +
 		'</div><div><p>Title Ref:</p><p><input id="asset_title_ref_' + number + '" name="asset_title_ref[]" value="" /></p>' +
-		'</div></div><div class="remove_element" onclick="removeElement(\'#asset_title_' + number + '\', \'title\');"><img src="/images/remove-item.png" /></div>' +
+		'</div></div><div class="remove_element" onclick="removeElement(\'#remove_title_' + number + '\', \'title\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
 		$('input[name="asset_title_source[]"]').autocomplete({

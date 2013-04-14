@@ -179,37 +179,44 @@
 						{
 							?>
 							<div class="edit_form_div">
-								<p>Title:</p>
-								<p>
-									<textarea id="asset_title_<?php echo $index; ?>" name="asset_title[]"><?php echo $title; ?></textarea>
-								</p>
-								<p>
-									Title Type:
-								</p>
-								<p>
-									<select id="asset_title_type_<?php echo $index; ?>" name="asset_title_type[]">
-										<option value="">Select Title Type</option>
-										<?php
-										foreach ($pbcore_asset_title_types as $row)
-										{
-											$selected = '';
-											if (isset($title_types[$index]) && $title_types[$index] == $row->value)
-												$selected = 'selected="selected"'
-												?>
-											<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-										<?php }
-										?>
-									</select>
-								</p>
-								<p>Title Source:</p>
-								<p>
-									<input id="asset_title_source_<?php echo $index; ?>" name="asset_title_source[]" value="<?php echo (isset($title_sources[$index])) ? $title_sources[$index] : ''; ?>" />
-								</p>
-								<p>Title Ref:</p>
-								<p>
-									<input id="asset_title_ref_<?php echo $index; ?>" name="asset_title_ref[]" value="<?php echo (isset($title_refs[$index])) ? $title_refs[$index] : ''; ?>" />
-								</p>
-
+								<div>
+									<p>Title:</p>
+									<p>
+										<textarea id="asset_title_<?php echo $index; ?>" name="asset_title[]"><?php echo $title; ?></textarea>
+									</p>
+								</div>
+								<div>
+									<p>
+										Title Type:
+									</p>
+									<p>
+										<select id="asset_title_type_<?php echo $index; ?>" name="asset_title_type[]">
+											<option value="">Select Title Type</option>
+											<?php
+											foreach ($pbcore_asset_title_types as $row)
+											{
+												$selected = '';
+												if (isset($title_types[$index]) && $title_types[$index] == $row->value)
+													$selected = 'selected="selected"'
+													?>
+												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+											<?php }
+											?>
+										</select>
+									</p>
+								</div>
+								<div>
+									<p>Title Source:</p>
+									<p>
+										<input id="asset_title_source_<?php echo $index; ?>" name="asset_title_source[]" value="<?php echo (isset($title_sources[$index])) ? $title_sources[$index] : ''; ?>" />
+									</p>
+								</div>
+								<div>
+									<p>Title Ref:</p>
+									<p>
+										<input id="asset_title_ref_<?php echo $index; ?>" name="asset_title_ref[]" value="<?php echo (isset($title_refs[$index])) ? $title_refs[$index] : ''; ?>" />
+									</p>
+								</div>
 							</div>
 							<div class="remove_element"><img src="/images/remove-item.png"/></div>
 							<div class="clearfix" style="margin-bottom: 10px;"></div>
@@ -242,37 +249,44 @@
 						{
 							?>
 							<div class="edit_form_div">
-								<p>Subject:</p>
-								<p>
-									<input id="asset_subject_<?php echo $index; ?>" name="asset_subject[]" value="<?php echo $subject; ?>"/>
-								</p>
-								<p>
-									Subject Type:
-								</p>
-								<p>
-									<select id="asset_subject_type_<?php echo $index; ?>" name="asset_subject_type[]">
-										<option value="">Select Subject Type</option>
-										<?php
-										foreach ($pbcore_asset_subject_types as $row)
-										{
-											$selected = '';
-											if (isset($subject_types[$index]) && $subject_types[$index] == $row->value)
-												$selected = 'selected="selected"'
-												?>
-											<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-										<?php }
-										?>
-									</select>
-								</p>
-								<p>Subject Source:</p>
-								<p>
-									<input id="asset_subject_source_<?php echo $index; ?>" name="asset_subject_source[]" value="<?php echo (isset($subject_sources[$index])) ? $subject_sources[$index] : ''; ?>" />
-								</p>
-								<p>Subject Ref:</p>
-								<p>
-									<input id="asset_subject_ref_<?php echo $index; ?>" name="asset_subject_ref[]" value="<?php echo (isset($subject_refs[$index])) ? $subject_refs[$index] : ''; ?>" />
-								</p>
-
+								<div>
+									<p>Subject:</p>
+									<p>
+										<input id="asset_subject_<?php echo $index; ?>" name="asset_subject[]" value="<?php echo $subject; ?>"/>
+									</p>
+								</div>
+								<div>
+									<p>
+										Subject Type:
+									</p>
+									<p>
+										<select id="asset_subject_type_<?php echo $index; ?>" name="asset_subject_type[]">
+											<option value="">Select Subject Type</option>
+											<?php
+											foreach ($pbcore_asset_subject_types as $row)
+											{
+												$selected = '';
+												if (isset($subject_types[$index]) && $subject_types[$index] == $row->value)
+													$selected = 'selected="selected"'
+													?>
+												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+											<?php }
+											?>
+										</select>
+									</p>
+								</div>
+								<div>
+									<p>Subject Source:</p>
+									<p>
+										<input id="asset_subject_source_<?php echo $index; ?>" name="asset_subject_source[]" value="<?php echo (isset($subject_sources[$index])) ? $subject_sources[$index] : ''; ?>" />
+									</p>
+								</div>
+								<div>
+									<p>Subject Ref:</p>
+									<p>
+										<input id="asset_subject_ref_<?php echo $index; ?>" name="asset_subject_ref[]" value="<?php echo (isset($subject_refs[$index])) ? $subject_refs[$index] : ''; ?>" />
+									</p>
+								</div>
 							</div>
 							<div class="remove_element"><img src="/images/remove-item.png"/></div>
 							<div class="clearfix" style="margin-bottom: 10px;"></div>
@@ -303,29 +317,32 @@
 						{
 							?>
 							<div class="edit_form_div">
-								<p>Description:</p>
-								<p>
-									<textarea id="asset_description_<?php echo $index; ?>" name="asset_description[]"><?php echo $description; ?></textarea>
-								</p>
-								<p>
-									Description Type:
-								</p>
-								<p>
-									<select id="asset_description_type_<?php echo $index; ?>" name="asset_description_type[]">
-										<option value="">Select Description Type</option>
-										<?php
-										foreach ($pbcore_asset_description_types as $row)
-										{
-											$selected = '';
-											if (isset($description_types[$index]) && $description_types[$index] == $row->value)
-												$selected = 'selected="selected"'
-												?>
-											<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-										<?php }
-										?>
-									</select>
-								</p>
-
+								<div>
+									<p>Description:</p>
+									<p>
+										<textarea id="asset_description_<?php echo $index; ?>" name="asset_description[]"><?php echo $description; ?></textarea>
+									</p>
+								</div>
+								<div>
+									<p>
+										Description Type:
+									</p>
+									<p>
+										<select id="asset_description_type_<?php echo $index; ?>" name="asset_description_type[]">
+											<option value="">Select Description Type</option>
+											<?php
+											foreach ($pbcore_asset_description_types as $row)
+											{
+												$selected = '';
+												if (isset($description_types[$index]) && $description_types[$index] == $row->value)
+													$selected = 'selected="selected"'
+													?>
+												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+											<?php }
+											?>
+										</select>
+									</p>
+								</div>
 
 							</div>
 							<div class="remove_element"><img src="/images/remove-item.png"/></div>
@@ -358,23 +375,18 @@
 						{
 							?>
 							<div class="edit_form_div">
-								<p>Genre:</p>
-								<p>
-									<input id="asset_genre_<?php echo $index; ?>" name="asset_genre[]" value="<?php echo $genre; ?>" />
-								</p>
-								<p>
-									Genre Source:
-								</p>
-								<p>
-									<input id="asset_genre_source_<?php echo $index; ?>" name="asset_genre_source[]" value="<?php echo (isset($genre_sources[$index])) ? $genre_sources[$index] : ''; ?>" />
-								</p>
-								<p>
-									Genre Ref:
-								</p>
-								<p>
-									<input id="asset_genre_ref_<?php echo $index; ?>" name="asset_genre_ref[]" value="<?php echo (isset($genre_refs[$index])) ? $genre_refs[$index] : ''; ?>" />
-								</p>
-
+								<div>
+									<p>Genre:</p>
+									<p><input id="asset_genre_<?php echo $index; ?>" name="asset_genre[]" value="<?php echo $genre; ?>" /></p>
+								</div>
+								<div>
+									<p>Genre Source:</p>
+									<p><input id="asset_genre_source_<?php echo $index; ?>" name="asset_genre_source[]" value="<?php echo (isset($genre_sources[$index])) ? $genre_sources[$index] : ''; ?>" /></p>
+								</div>
+								<div>
+									<p>Genre Ref:</p>
+									<p><input id="asset_genre_ref_<?php echo $index; ?>" name="asset_genre_ref[]" value="<?php echo (isset($genre_refs[$index])) ? $genre_refs[$index] : ''; ?>" /></p>
+								</div>
 
 							</div>
 							<div class="remove_element"><img src="/images/remove-item.png"/></div>
@@ -406,24 +418,18 @@
 						{
 							?>
 							<div class="edit_form_div">
-								<p>Coverage:</p>
-								<p>
-									<input id="asset_coverage_<?php echo $index; ?>" name="asset_coverage[]" value="<?php echo $coverage; ?>" />
-								</p>
-								<p>
-									Coverage Type:
-								</p>
-								<p>
-									<select id="asset_coverage_type_<?php echo $index; ?>" name="asset_coverage_type[]">
-										<option value="">Select Coverage Type</option>
-										<option value="spatial" <?php echo (isset($coverage_types[$index]) && $coverage_types[$index] == 'spatial') ? 'selected="selected"' : ''; ?> >spatial</option>
-										<option value="temporal" <?php echo (isset($coverage_types[$index]) && $coverage_types[$index] == 'temporal') ? 'selected="selected"' : ''; ?>>temporal</option>
-
-									</select>
-								</p>
-
-
-
+								<div>
+									<p>Coverage:</p>
+									<p><input id="asset_coverage_<?php echo $index; ?>" name="asset_coverage[]" value="<?php echo $coverage; ?>" /></p>
+								</div>
+								<div>
+									<p>Coverage Type:</p>
+									<p><select id="asset_coverage_type_<?php echo $index; ?>" name="asset_coverage_type[]">
+											<option value="">Select Coverage Type</option>
+											<option value="spatial" <?php echo (isset($coverage_types[$index]) && $coverage_types[$index] == 'spatial') ? 'selected="selected"' : ''; ?> >spatial</option>
+											<option value="temporal" <?php echo (isset($coverage_types[$index]) && $coverage_types[$index] == 'temporal') ? 'selected="selected"' : ''; ?>>temporal</option>
+										</select></p>
+								</div>
 							</div>
 							<div class="remove_element"><img src="/images/remove-item.png"/></div>
 							<div class="clearfix" style="margin-bottom: 10px;"></div>
@@ -455,32 +461,39 @@
 						{
 							?>
 							<div class="edit_form_div">
-								<p>
-									Audience Level:
-								</p>
-								<p>
-									<select id="asset_audience_level_<?php echo $index; ?>" name="asset_audience_level[]">
-										<option value="">Select Audience Level</option>
-										<?php
-										foreach ($pbcore_asset_audience_level as $row)
-										{
-											$selected = '';
-											if ($audience_level == $row->value)
-												$selected = 'selected="selected"'
-												?>
-											<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-										<?php }
-										?>
-									</select>
-								</p>
-								<p> Audience Level Source:</p>
-								<p>
-									<input id="asset_audience_level_source_<?php echo $index; ?>" name="asset_audience_level_source[]" value="<?php echo (isset($audience_level_sources[$index])) ? $audience_level_sources[$index] : ''; ?>" />
-								</p>
-								<p> Audience Level Ref:</p>
-								<p>
-									<input id="asset_audience_level_ref_<?php echo $index; ?>" name="asset_audience_level_ref[]" value="<?php echo (isset($audience_level_refs[$index])) ? $audience_level_refs[$index] : ''; ?>" />
-								</p>
+								<div>
+									<p>
+										Audience Level:
+									</p>
+									<p>
+										<select id="asset_audience_level_<?php echo $index; ?>" name="asset_audience_level[]">
+											<option value="">Select Audience Level</option>
+											<?php
+											foreach ($pbcore_asset_audience_level as $row)
+											{
+												$selected = '';
+												if ($audience_level == $row->value)
+													$selected = 'selected="selected"'
+													?>
+												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+											<?php }
+											?>
+										</select>
+									</p>
+								</div>
+								<div>
+									<p> Audience Level Source:</p>
+									<p>
+										<input id="asset_audience_level_source_<?php echo $index; ?>" name="asset_audience_level_source[]" value="<?php echo (isset($audience_level_sources[$index])) ? $audience_level_sources[$index] : ''; ?>" />
+									</p>
+								</div>
+								<div>
+									<p> Audience Level Ref:</p>
+									<p>
+										<input id="asset_audience_level_ref_<?php echo $index; ?>" name="asset_audience_level_ref[]" value="<?php echo (isset($audience_level_refs[$index])) ? $audience_level_refs[$index] : ''; ?>" />
+									</p>
+								</div>
+
 
 							</div>
 							<div class="remove_element"><img src="/images/remove-item.png"/></div>
@@ -513,42 +526,49 @@
 						{
 							?>
 							<div class="edit_form_div">
-								<p>
-									Audience Rating:
-								</p>
-								<p>
-									<select id="asset_audience_rating_<?php echo $index; ?>" name="asset_audience_rating[]">
-										<option value="">Select Audience Rating</option>
-										<?php
-										foreach ($pbcore_asset_audience_rating as $row)
-										{
-											$selected = '';
-											if ($audience_rating == $row->value)
-												$selected = 'selected="selected"'
-												?>
-											<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-										<?php }
-										?>
-									</select>
-								</p>
-								<p> Audience Rating Source:</p>
-								<p>
-									<select id="asset_audience_rating_source_<?php echo $index; ?>" name="asset_audience_rating_source[]">
-										<option value="">Select Audience Rating Source</option>
-										<option value="MPAA" <?php echo (isset($audience_rating_sources[$index]) && $audience_rating_sources[$index] == 'MPAA') ? 'selected="selected"' : ''; ?> >MPAA</option>
-										<option value="TV Parental Guidelines" <?php echo (isset($audience_rating_sources[$index]) && $audience_rating_sources[$index] == 'TV Parental Guidelines') ? 'selected="selected"' : ''; ?>>TV Parental Guidelines</option>
-									</select>
+								<div>
+									<p>
+										Audience Rating:
+									</p>
+									<p>
+										<select id="asset_audience_rating_<?php echo $index; ?>" name="asset_audience_rating[]">
+											<option value="">Select Audience Rating</option>
+											<?php
+											foreach ($pbcore_asset_audience_rating as $row)
+											{
+												$selected = '';
+												if ($audience_rating == $row->value)
+													$selected = 'selected="selected"'
+													?>
+												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+											<?php }
+											?>
+										</select>
+									</p>
+								</div>
+								<div>
+									<p> Audience Rating Source:</p>
+									<p>
+										<select id="asset_audience_rating_source_<?php echo $index; ?>" name="asset_audience_rating_source[]">
+											<option value="">Select Audience Rating Source</option>
+											<option value="MPAA" <?php echo (isset($audience_rating_sources[$index]) && $audience_rating_sources[$index] == 'MPAA') ? 'selected="selected"' : ''; ?> >MPAA</option>
+											<option value="TV Parental Guidelines" <?php echo (isset($audience_rating_sources[$index]) && $audience_rating_sources[$index] == 'TV Parental Guidelines') ? 'selected="selected"' : ''; ?>>TV Parental Guidelines</option>
+										</select>
 
-								</p>
-								<p> Audience Rating Ref:</p>
-								<p>
-									<select id="asset_audience_rating_ref_<?php echo $index; ?>" name="asset_audience_rating_ref[]">
-										<option value="">Select Audience Rating Source</option>
-										<option value="http://www.filmratings.com" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.filmratings.com') ? 'selected="selected"' : ''; ?> >http://www.filmratings.com</option>
-										<option value="http://www.tvguidelines.org/ratings.htm" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.tvguidelines.org/ratings.htm') ? 'selected="selected"' : ''; ?>>http://www.tvguidelines.org/ratings.htm</option>
-									</select>
+									</p>
+								</div>
+								<div>
+									<p> Audience Rating Ref:</p>
+									<p>
+										<select id="asset_audience_rating_ref_<?php echo $index; ?>" name="asset_audience_rating_ref[]">
+											<option value="">Select Audience Rating Source</option>
+											<option value="http://www.filmratings.com" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.filmratings.com') ? 'selected="selected"' : ''; ?> >http://www.filmratings.com</option>
+											<option value="http://www.tvguidelines.org/ratings.htm" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.tvguidelines.org/ratings.htm') ? 'selected="selected"' : ''; ?>>http://www.tvguidelines.org/ratings.htm</option>
+										</select>
 
-								</p>
+									</p>
+								</div>
+
 
 							</div>
 							<div class="remove_element"><img src="/images/remove-item.png"/></div>
@@ -580,21 +600,28 @@
 						{
 							?>
 							<div class="edit_form_div">
-								<p>
-									Annotation:
-								</p>
-								<p>
-									<input id="asset_annotation_<?php echo $index; ?>" name="asset_annotation[]" value="<?php echo $annotation; ?>" />
-								</p>
-								<p> Annotation Type:</p>
-								<p>
-									<input id="asset_annotation_type_<?php echo $index; ?>" name="asset_annotation_type[]" value="<?php echo (isset($annotation_types[$index])) ? $annotation_types[$index] : ''; ?>" />
+								<div>
+									<p>
+										Annotation:
+									</p>
+									<p>
+										<input id="asset_annotation_<?php echo $index; ?>" name="asset_annotation[]" value="<?php echo $annotation; ?>" />
+									</p>
+								</div>
+								<div>
+									<p> Annotation Type:</p>
+									<p>
+										<input id="asset_annotation_type_<?php echo $index; ?>" name="asset_annotation_type[]" value="<?php echo (isset($annotation_types[$index])) ? $annotation_types[$index] : ''; ?>" />
 
-								</p>
-								<p> Annotation Ref:</p>
-								<p>
-									<input id="asset_annotation_ref_<?php echo $index; ?>" name="asset_annotation_ref[]" value="<?php echo (isset($annotation_refs[$index])) ? $annotation_refs[$index] : ''; ?>" />
-								</p>
+									</p>
+								</div>
+								<div>
+									<p> Annotation Ref:</p>
+									<p>
+										<input id="asset_annotation_ref_<?php echo $index; ?>" name="asset_annotation_ref[]" value="<?php echo (isset($annotation_refs[$index])) ? $annotation_refs[$index] : ''; ?>" />
+									</p>
+								</div>
+
 
 							</div>
 							<div class="remove_element"><img src="/images/remove-item.png"/></div>
@@ -627,38 +654,45 @@
 						{
 							?>
 							<div class="edit_form_div">
-								<p>
-									Relation:
-								</p>
-								<p>
-									<input id="asset_relation_identifier_<?php echo $index; ?>" name="asset_relation_identifier[]" value="<?php echo $relation_identifier; ?>" />
-								</p>
-								<p> Relation Type:</p>
-								<p>
-									<select id="asset_relation_type_<?php echo $index; ?>" name="asset_relation_type[]">
-										<option value="">Select Relation Type</option>
-										<?php
-										foreach ($pbcore_asset_relation_types as $row)
-										{
-											$selected = '';
-											if (isset($relation_types[$index]) && $relation_types[$index] == $row->value)
-												$selected = 'selected="selected"'
-												?>
-											<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-										<?php }
-										?>
-									</select>
+								<div>
+									<p>
+										Relation:
+									</p>
+									<p>
+										<input id="asset_relation_identifier_<?php echo $index; ?>" name="asset_relation_identifier[]" value="<?php echo $relation_identifier; ?>" />
+									</p>
+								</div>
+								<div>
+									<p> Relation Type:</p>
+									<p>
+										<select id="asset_relation_type_<?php echo $index; ?>" name="asset_relation_type[]">
+											<option value="">Select Relation Type</option>
+											<?php
+											foreach ($pbcore_asset_relation_types as $row)
+											{
+												$selected = '';
+												if (isset($relation_types[$index]) && $relation_types[$index] == $row->value)
+													$selected = 'selected="selected"'
+													?>
+												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+											<?php }
+											?>
+										</select>
 
-								</p>
-								<p> Relation Source:</p>
-								<p>
-									<input id="asset_relation_source_<?php echo $index; ?>" name="asset_relation_source[]" value="<?php echo (isset($relation_type_sources[$index])) ? $relation_type_sources[$index] : ''; ?>" />
-								</p>
-								<p> Relation Ref:</p>
-								<p>
-									<input id="asset_relation_ref_<?php echo $index; ?>" name="asset_relation_ref[]" value="<?php echo (isset($relation_type_refs[$index])) ? $relation_type_refs[$index] : ''; ?>" />
-								</p>
-
+									</p>
+								</div>
+								<div>
+									<p> Relation Source:</p>
+									<p>
+										<input id="asset_relation_source_<?php echo $index; ?>" name="asset_relation_source[]" value="<?php echo (isset($relation_type_sources[$index])) ? $relation_type_sources[$index] : ''; ?>" />
+									</p>
+								</div>
+								<div>
+									<p> Relation Ref:</p>
+									<p>
+										<input id="asset_relation_ref_<?php echo $index; ?>" name="asset_relation_ref[]" value="<?php echo (isset($relation_type_refs[$index])) ? $relation_type_refs[$index] : ''; ?>" />
+									</p>
+								</div>
 							</div>
 							<div class="remove_element"><img src="/images/remove-item.png"/></div>
 							<div class="clearfix" style="margin-bottom: 10px;"></div>
@@ -692,50 +726,61 @@
 						{
 							?>
 							<div class="edit_form_div">
-								<p>
-									Creator:
-								</p>
-								<p>
-									<input id="asset_creator_name_<?php echo $index; ?>" name="asset_creator_name[]" value="<?php echo $creator_name; ?>" />
-								</p>
-								<p>
-									Creator Affiliation:
-								</p>
-								<p>
-									<input id="asset_creator_affiliation_<?php echo $index; ?>" name="asset_creator_affiliation[]" value="<?php echo (isset($creator_affiliation[$index])) ? $creator_affiliation[$index] : ''; ?>" />
-								</p>
-								<p>
-									Creator Ref:
-								</p>
-								<p>
-									<input id="asset_creator_ref_<?php echo $index; ?>" name="asset_creator_ref[]" value="<?php echo (isset($creator_ref[$index])) ? $creator_ref[$index] : ''; ?>" />
-								</p>
-								<p> Creator Role:</p>
-								<p>
-									<select id="asset_creator_role_<?php echo $index; ?>" name="asset_creator_role[]">
-										<option value="">Select Creator Role</option>
-										<?php
-										foreach ($pbcore_asset_creator_roles as $row)
-										{
-											$selected = '';
-											if (isset($creator_role[$index]) && $creator_role[$index] == $row->value)
-												$selected = 'selected="selected"'
-												?>
-											<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-										<?php }
-										?>
-									</select>
+								<div>
+									<p>
+										Creator:
+									</p>
+									<p>
+										<input id="asset_creator_name_<?php echo $index; ?>" name="asset_creator_name[]" value="<?php echo $creator_name; ?>" />
+									</p>
+								</div>
+								<div>
+									<p>
+										Creator Affiliation:
+									</p>
+									<p>
+										<input id="asset_creator_affiliation_<?php echo $index; ?>" name="asset_creator_affiliation[]" value="<?php echo (isset($creator_affiliation[$index])) ? $creator_affiliation[$index] : ''; ?>" />
+									</p>
+								</div>
+								<div>
+									<p>
+										Creator Ref:
+									</p>
+									<p>
+										<input id="asset_creator_ref_<?php echo $index; ?>" name="asset_creator_ref[]" value="<?php echo (isset($creator_ref[$index])) ? $creator_ref[$index] : ''; ?>" />
+									</p>
+								</div>
+								<div>
+									<p> Creator Role:</p>
+									<p>
+										<select id="asset_creator_role_<?php echo $index; ?>" name="asset_creator_role[]">
+											<option value="">Select Creator Role</option>
+											<?php
+											foreach ($pbcore_asset_creator_roles as $row)
+											{
+												$selected = '';
+												if (isset($creator_role[$index]) && $creator_role[$index] == $row->value)
+													$selected = 'selected="selected"'
+													?>
+												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+											<?php }
+											?>
+										</select>
 
-								</p>
-								<p> Creator Role Source:</p>
-								<p>
-									<input id="asset_creator_role_source_<?php echo $index; ?>" name="asset_creator_role_source[]" value="<?php echo (isset($creator_role_source[$index])) ? $creator_role_source[$index] : ''; ?>" />
-								</p>
-								<p> Creator Role Ref:</p>
-								<p>
-									<input id="asset_creator_role_ref_<?php echo $index; ?>" name="asset_creator_role_ref[]" value="<?php echo (isset($creator_role_ref[$index])) ? $creator_role_ref[$index] : ''; ?>" />
-								</p>
-
+									</p>
+								</div>
+								<div>
+									<p> Creator Role Source:</p>
+									<p>
+										<input id="asset_creator_role_source_<?php echo $index; ?>" name="asset_creator_role_source[]" value="<?php echo (isset($creator_role_source[$index])) ? $creator_role_source[$index] : ''; ?>" />
+									</p>
+								</div>
+								<div>
+									<p> Creator Role Ref:</p>
+									<p>
+										<input id="asset_creator_role_ref_<?php echo $index; ?>" name="asset_creator_role_ref[]" value="<?php echo (isset($creator_role_ref[$index])) ? $creator_role_ref[$index] : ''; ?>" />
+									</p>
+								</div>
 							</div>
 							<div class="remove_element"><img src="/images/remove-item.png"/></div>
 							<div class="clearfix" style="margin-bottom: 10px;"></div>
@@ -769,49 +814,61 @@
 						{
 							?>
 							<div class="edit_form_div">
-								<p>
-									Contributor:
-								</p>
-								<p>
-									<input id="asset_contributor_name_<?php echo $index; ?>" name="asset_contributor_name[]" value="<?php echo $contributor_name; ?>" />
-								</p>
-								<p>
-									Contributor Affiliation:
-								</p>
-								<p>
-									<input id="asset_contributor_affiliation_<?php echo $index; ?>" name="asset_contributor_affiliation[]" value="<?php echo (isset($contributor_affiliation[$index])) ? $contributor_affiliation[$index] : ''; ?>" />
-								</p>
-								<p>
-									Contributor Ref:
-								</p>
-								<p>
-									<input id="asset_contributor_ref_<?php echo $index; ?>" name="asset_contributor_ref[]" value="<?php echo (isset($contributor_ref[$index])) ? $contributor_ref[$index] : ''; ?>" />
-								</p>
-								<p> Contributor Role:</p>
-								<p>
-									<select id="asset_contributor_role_<?php echo $index; ?>" name="asset_contributor_role[]">
-										<option value="">Select Contributor Role</option>
-										<?php
-										foreach ($pbcore_asset_contributor_roles as $row)
-										{
-											$selected = '';
-											if (isset($contributor_role[$index]) && $contributor_role[$index] == $row->value)
-												$selected = 'selected="selected"'
-												?>
-											<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-										<?php }
-										?>
-									</select>
+								<div>
+									<p>
+										Contributor:
+									</p>
+									<p>
+										<input id="asset_contributor_name_<?php echo $index; ?>" name="asset_contributor_name[]" value="<?php echo $contributor_name; ?>" />
+									</p>
+								</div>
+								<div>
+									<p>
+										Contributor Affiliation:
+									</p>
+									<p>
+										<input id="asset_contributor_affiliation_<?php echo $index; ?>" name="asset_contributor_affiliation[]" value="<?php echo (isset($contributor_affiliation[$index])) ? $contributor_affiliation[$index] : ''; ?>" />
+									</p>
+								</div>
+								<div>
+									<p>
+										Contributor Ref:
+									</p>
+									<p>
+										<input id="asset_contributor_ref_<?php echo $index; ?>" name="asset_contributor_ref[]" value="<?php echo (isset($contributor_ref[$index])) ? $contributor_ref[$index] : ''; ?>" />
+									</p>
+								</div>
+								<div>
+									<p> Contributor Role:</p>
+									<p>
+										<select id="asset_contributor_role_<?php echo $index; ?>" name="asset_contributor_role[]">
+											<option value="">Select Contributor Role</option>
+											<?php
+											foreach ($pbcore_asset_contributor_roles as $row)
+											{
+												$selected = '';
+												if (isset($contributor_role[$index]) && $contributor_role[$index] == $row->value)
+													$selected = 'selected="selected"'
+													?>
+												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+											<?php }
+											?>
+										</select>
 
-								</p>
-								<p> Contributor Role Source:</p>
-								<p>
-									<input id="asset_contributor_role_source_<?php echo $index; ?>" name="asset_contributor_role_source[]" value="<?php echo (isset($contributor_role_source[$index])) ? $contributor_role_source[$index] : ''; ?>" />
-								</p>
-								<p> Contributor Role Ref:</p>
-								<p>
-									<input id="asset_contributor_role_ref_<?php echo $index; ?>" name="asset_contributor_role_ref[]" value="<?php echo (isset($contributor_role_ref[$index])) ? $contributor_role_ref[$index] : ''; ?>" />
-								</p>
+									</p>
+								</div>
+								<div>
+									<p> Contributor Role Source:</p>
+									<p>
+										<input id="asset_contributor_role_source_<?php echo $index; ?>" name="asset_contributor_role_source[]" value="<?php echo (isset($contributor_role_source[$index])) ? $contributor_role_source[$index] : ''; ?>" />
+									</p>
+								</div>
+								<div>
+									<p> Contributor Role Ref:</p>
+									<p>
+										<input id="asset_contributor_role_ref_<?php echo $index; ?>" name="asset_contributor_role_ref[]" value="<?php echo (isset($contributor_role_ref[$index])) ? $contributor_role_ref[$index] : ''; ?>" />
+									</p>
+								</div>
 
 							</div>
 							<div class="remove_element"><img src="/images/remove-item.png"/></div>
@@ -846,49 +903,61 @@
 						{
 							?>
 							<div class="edit_form_div">
-								<p>
-									Publisher:
-								</p>
-								<p>
-									<input id="asset_publisher_<?php echo $index; ?>" name="asset_publisher[]" value="<?php echo $publisher; ?>" />
-								</p>
-								<p>
-									Publisher Affiliation:
-								</p>
-								<p>
-									<input id="asset_publisher_affiliation_<?php echo $index; ?>" name="asset_publisher_affiliation[]" value="<?php echo (isset($publisher_affiliation[$index])) ? $publisher_affiliation[$index] : ''; ?>" />
-								</p>
-								<p>
-									Publisher Ref:
-								</p>
-								<p>
-									<input id="asset_publisher_ref_<?php echo $index; ?>" name="asset_publisher_ref[]" value="<?php echo (isset($publisher_ref[$index])) ? $publisher_ref[$index] : ''; ?>" />
-								</p>
-								<p> Publisher Role:</p>
-								<p>
-									<select id="asset_publisher_role_<?php echo $index; ?>" name="asset_publisher_role[]">
-										<option value="">Select Publisher Role</option>
-										<?php
-										foreach ($pbcore_asset_publisher_roles as $row)
-										{
-											$selected = '';
-											if (isset($publisher_role[$index]) && $publisher_role[$index] == $row->value)
-												$selected = 'selected="selected"'
-												?>
-											<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-										<?php }
-										?>
-									</select>
+								<div>
+									<p>
+										Publisher:
+									</p>
+									<p>
+										<input id="asset_publisher_<?php echo $index; ?>" name="asset_publisher[]" value="<?php echo $publisher; ?>" />
+									</p>
+								</div>
+								<div>
+									<p>
+										Publisher Affiliation:
+									</p>
+									<p>
+										<input id="asset_publisher_affiliation_<?php echo $index; ?>" name="asset_publisher_affiliation[]" value="<?php echo (isset($publisher_affiliation[$index])) ? $publisher_affiliation[$index] : ''; ?>" />
+									</p>
+								</div>
+								<div>
+									<p>
+										Publisher Ref:
+									</p>
+									<p>
+										<input id="asset_publisher_ref_<?php echo $index; ?>" name="asset_publisher_ref[]" value="<?php echo (isset($publisher_ref[$index])) ? $publisher_ref[$index] : ''; ?>" />
+									</p>
+								</div>
+								<div>
+									<p> Publisher Role:</p>
+									<p>
+										<select id="asset_publisher_role_<?php echo $index; ?>" name="asset_publisher_role[]">
+											<option value="">Select Publisher Role</option>
+											<?php
+											foreach ($pbcore_asset_publisher_roles as $row)
+											{
+												$selected = '';
+												if (isset($publisher_role[$index]) && $publisher_role[$index] == $row->value)
+													$selected = 'selected="selected"'
+													?>
+												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+											<?php }
+											?>
+										</select>
 
-								</p>
-								<p> Publisher Role Source:</p>
-								<p>
-									<input id="asset_publisher_role_source_<?php echo $index; ?>" name="asset_publisher_role_source[]" value="<?php echo (isset($publisher_role_source[$index])) ? $publisher_role_source[$index] : ''; ?>" />
-								</p>
-								<p> Publisher Role Ref:</p>
-								<p>
-									<input id="asset_publisher_role_ref_<?php echo $index; ?>" name="asset_publisher_role_ref[]" value="<?php echo (isset($publisher_role_ref[$index])) ? $publisher_role_ref[$index] : ''; ?>" />
-								</p>
+									</p>
+								</div>
+								<div>
+									<p> Publisher Role Source:</p>
+									<p>
+										<input id="asset_publisher_role_source_<?php echo $index; ?>" name="asset_publisher_role_source[]" value="<?php echo (isset($publisher_role_source[$index])) ? $publisher_role_source[$index] : ''; ?>" />
+									</p>
+								</div>
+								<div>
+									<p> Publisher Role Ref:</p>
+									<p>
+										<input id="asset_publisher_role_ref_<?php echo $index; ?>" name="asset_publisher_role_ref[]" value="<?php echo (isset($publisher_role_ref[$index])) ? $publisher_role_ref[$index] : ''; ?>" />
+									</p>
+								</div>
 
 							</div>
 							<div class="remove_element"><img src="/images/remove-item.png"/></div>
@@ -919,17 +988,21 @@
 						{
 							?>
 							<div class="edit_form_div">
-								<p>
-									Right:
-								</p>
-								<p>
-									<input id="asset_rights_<?php echo $index; ?>" name="asset_rights[]" value="<?php echo $right; ?>" />
-								</p>
-								<p> Right Link:</p>
-								<p>
-									<input id="asset_right_link_<?php echo $index; ?>" name="asset_right_link[]" value="<?php echo (isset($rights_link[$index])) ? $rights_link[$index] : ''; ?>" />
+								<div>
+									<p>
+										Right:
+									</p>
+									<p>
+										<input id="asset_rights_<?php echo $index; ?>" name="asset_rights[]" value="<?php echo $right; ?>" />
+									</p>
+								</div>
+								<div>
+									<p> Right Link:</p>
+									<p>
+										<input id="asset_right_link_<?php echo $index; ?>" name="asset_right_link[]" value="<?php echo (isset($rights_link[$index])) ? $rights_link[$index] : ''; ?>" />
 
-								</p>
+									</p>
+								</div>
 							</div>
 							<div class="remove_element"><img src="/images/remove-item.png"/></div>
 							<div class="clearfix" style="margin-bottom: 10px;"></div>

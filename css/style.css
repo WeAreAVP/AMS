@@ -727,9 +727,12 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 .edit_form_div{
     background: #DDD;
-    padding: 10px;
+    
     float: left;
     width: 650px;
+}
+.edit_form_div div {
+	padding: 10px;
 }
 .remove_element{
     float: left;

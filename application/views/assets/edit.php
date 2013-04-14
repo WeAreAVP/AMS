@@ -109,38 +109,40 @@
 				<label><i class="icon-question-sign"></i><b> Local ID:</b></label>
 			</td>
 			<td>
-				<?php
-				if (count($identifiers) > 0 && isset($identifiers[0]) && ! empty($identifiers[0]))
-				{
-					$add = ' ADD ANOTHER LOCAL ID';
-					foreach ($identifiers as $index => $identifier)
+				<div id="main_local_id">
+					<?php
+					if (count($identifiers) > 0 && isset($identifiers[0]) && ! empty($identifiers[0]))
 					{
-						?>
-						<div id="remove_local_<?php echo $index; ?>" class="remove_local_id">
-							<div class="edit_form_div">
-								<p>Local ID:</p>
-								<p>
-									<input id="asset_identifier_<?php echo $index; ?>" name="asset_identifier[]" value="<?php echo $identifier; ?>" />
-								</p>
+						$add = ' ADD ANOTHER LOCAL ID';
+						foreach ($identifiers as $index => $identifier)
+						{
+							?>
+							<div id="remove_local_<?php echo $index; ?>" class="remove_local_id">
+								<div class="edit_form_div">
+									<p>Local ID:</p>
+									<p>
+										<input id="asset_identifier_<?php echo $index; ?>" name="asset_identifier[]" value="<?php echo $identifier; ?>" />
+									</p>
 
-								<p>ID Source:</p>
-								<p>
-									<input id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($identifier_sources[$index])) ? $identifier_sources[$index] : ''; ?>" />
-								</p>
-								<p>ID Ref:</p>
-								<p>
-									<input id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($identifier_refs[$index])) ? $identifier_refs[$index] : ''; ?>" />
-								</p>
+									<p>ID Source:</p>
+									<p>
+										<input id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($identifier_sources[$index])) ? $identifier_sources[$index] : ''; ?>" />
+									</p>
+									<p>ID Ref:</p>
+									<p>
+										<input id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($identifier_refs[$index])) ? $identifier_refs[$index] : ''; ?>" />
+									</p>
 
+								</div>
+								<div class="remove_element" onclick="removeElement('#remove_local_<?php echo $index; ?>', 'local_id');"><img src="/images/remove-item.png" /></div>
 							</div>
-							<div class="remove_element" onclick="removeElement('#remove_local_<?php echo $index; ?>', 'local_id');"><img src="/images/remove-item.png" /></div>
-						</div>
-						<div class="clearfix" style="margin-bottom: 10px;"></div>
-						<?php
+							<div class="clearfix" style="margin-bottom: 10px;"></div>
+							<?php
+						}
 					}
-				}
-				?>
-				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><span id="add_local_id"><?php echo $add; ?></span></div>
+					?>
+				</div>
+				<div class="add-new-element" onclick="addElement('#main_local_id');"><i class="icon-plus-sign icon-white"></i><span id="add_local_id"><?php echo $add; ?></span></div>
 
 			</td>
 
@@ -1081,5 +1083,11 @@
 								}
 							});
 
+						}
+						function addElement(elementID) {
+							if (elementID == '#main_local_id') {
+								$(#main_local_id).append('dfadfadfadf');
+
+							}
 						}
 </script>

@@ -1100,6 +1100,14 @@
 
 
 								$(elementID).append(html);
+														$('input[name="asset_identifier_source[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=identifiers&column=identifier_source",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+	
 
 							}
 						}

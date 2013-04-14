@@ -62,7 +62,7 @@
 					foreach ($asset_dates as $index => $dates)
 					{
 						?>
-						<div id="remove_local_<?php echo $index; ?>">
+						<div id="remove_date_<?php echo $index; ?>">
 							<div class="edit_form_div">
 								<p>Asset Date:</p>
 								<p>
@@ -87,7 +87,7 @@
 								</p>
 
 							</div>
-							<div class="remove_element" ><img src="/images/remove-item.png" onclick="removeElement('#remove_local_<?php echo $index; ?>');"/></div>
+							<div class="remove_element" onclick="removeElement('#remove_date_<?php echo $index; ?>');"><img src="/images/remove-item.png" /></div>
 						</div>
 						<?php
 					}
@@ -116,23 +116,25 @@
 					foreach ($identifiers as $index => $identifier)
 					{
 						?>
-						<div class="edit_form_div">
-							<p>Local ID:</p>
-							<p>
-								<input id="asset_identifier_<?php echo $index; ?>" name="asset_identifier[]" value="<?php echo $identifier; ?>" />
-							</p>
+						<div id="remove_local_<?php echo $index; ?>">
+							<div class="edit_form_div">
+								<p>Local ID:</p>
+								<p>
+									<input id="asset_identifier_<?php echo $index; ?>" name="asset_identifier[]" value="<?php echo $identifier; ?>" />
+								</p>
 
-							<p>ID Source:</p>
-							<p>
-								<input id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($identifier_sources[$index])) ? $identifier_sources[$index] : ''; ?>" />
-							</p>
-							<p>ID Ref:</p>
-							<p>
-								<input id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($identifier_refs[$index])) ? $identifier_refs[$index] : ''; ?>" />
-							</p>
+								<p>ID Source:</p>
+								<p>
+									<input id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($identifier_sources[$index])) ? $identifier_sources[$index] : ''; ?>" />
+								</p>
+								<p>ID Ref:</p>
+								<p>
+									<input id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($identifier_refs[$index])) ? $identifier_refs[$index] : ''; ?>" />
+								</p>
 
+							</div>
+							<div class="remove_element" onclick="removeElement('#remove_local_<?php echo $index; ?>');"><img src="/images/remove-item.png" /></div>
 						</div>
-						<div class="remove_element"><img src="/images/remove-item.png"/></div>
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
@@ -928,143 +930,143 @@
 	</table>
 </div>
 <script type="text/javascript">
-	$(function() {
-		$("#asset_type").multiselect({
-			noneSelectedText: 'Select Asset Type',
-			selectedList: 3
-		});
+						$(function() {
+							$("#asset_type").multiselect({
+								noneSelectedText: 'Select Asset Type',
+								selectedList: 3
+							});
 
-		$('input[name="asset_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
+							$('input[name="asset_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
 
-		$('input[name="asset_identifier_source[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=identifiers&column=identifier_source",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_title_source[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=asset_titles&column=title_source",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_subject[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=subjects&column=subject",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_subject_source[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=subjects&column=subject_source",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_genre_source[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=genres&column=genre_source",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_audience_level_source[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=audience_levels&column=audience_level_source",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_annotation_type[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=annotations&column=annotation_type",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_relation_identifier[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=assets_relations&column=relation_identifier",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_relation_source[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=relation_types&column=relation_type_source",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_creator_name[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=creators&column=creator_name",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_creator_affiliation[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=creators&column=creator_affiliation",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_creator_role_source[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=creator_roles&column=creator_role_source",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_contributor_name[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=contributors&column=contributor_name",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_contributor_affiliation[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=contributors&column=contributor_affiliation",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_contributor_role_source[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=contributor_roles&column=contributor_role_source",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_publisher[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=publishers&column=publisher",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_publisher_affiliation[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=publishers&column=publisher_affiliation",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
-		$('input[name="asset_publisher_role_source[]"]').autocomplete({
-			source: site_url + "autocomplete/values?table=publisher_roles&column=publisher_role_source",
-			minLength: 1,
-			delay: 100,
-			enable: true,
-			cacheLength: 1
-		});
+							$('input[name="asset_identifier_source[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=identifiers&column=identifier_source",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_title_source[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=asset_titles&column=title_source",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_subject[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=subjects&column=subject",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_subject_source[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=subjects&column=subject_source",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_genre_source[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=genres&column=genre_source",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_audience_level_source[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=audience_levels&column=audience_level_source",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_annotation_type[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=annotations&column=annotation_type",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_relation_identifier[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=assets_relations&column=relation_identifier",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_relation_source[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=relation_types&column=relation_type_source",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_creator_name[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=creators&column=creator_name",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_creator_affiliation[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=creators&column=creator_affiliation",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_creator_role_source[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=creator_roles&column=creator_role_source",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_contributor_name[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=contributors&column=contributor_name",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_contributor_affiliation[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=contributors&column=contributor_affiliation",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_contributor_role_source[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=contributor_roles&column=contributor_role_source",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_publisher[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=publishers&column=publisher",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_publisher_affiliation[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=publishers&column=publisher_affiliation",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
+							$('input[name="asset_publisher_role_source[]"]').autocomplete({
+								source: site_url + "autocomplete/values?table=publisher_roles&column=publisher_role_source",
+								minLength: 1,
+								delay: 100,
+								enable: true,
+								cacheLength: 1
+							});
 
-	});
-	function removeElement(elementID){
-		$(elementID).remove();
-	}
+						});
+						function removeElement(elementID) {
+							$(elementID).remove();
+						}
 </script>

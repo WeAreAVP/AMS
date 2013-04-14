@@ -221,7 +221,7 @@
 											</p>
 										</div>
 									</div>
-									<div class="remove_element" onclick="removeElement('#asset_title_<?php echo $index; ?>', 'title');"><img src="/images/remove-item.png" /></div>
+									<div class="remove_element" onclick="removeElement('#remove_title_<?php echo $index; ?>', 'title');"><img src="/images/remove-item.png" /></div>
 									<div class="clearfix" style="margin-bottom: 10px;"></div>
 								</div>
 								<?php

@@ -1125,7 +1125,7 @@
 
 									for (cnt in pbcoreDateTypes)
 									{
-										dateTypes += '<option value= "' + pbcoreDateTypes[cnt]['value'] + '">' + pbcore_date_types[cnt]['value'] + '</option>';
+										dateTypes += '<option value= "' + pbcoreDateTypes[cnt]['value'] + '">' + pbcoreDateTypes[cnt]['value'] + '</option>';
 									}
 
 

@@ -89,6 +89,7 @@
 							</div>
 							<div class="remove_element" onclick="removeElement('#remove_date_<?php echo $index; ?>');"><img src="/images/remove-item.png" /></div>
 						</div>
+				<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
 				}

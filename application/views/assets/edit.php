@@ -1067,6 +1067,14 @@
 
 						});
 						function removeElement(elementID) {
-							$(elementID).remove();
+//							$(elementID).remove();
+							$(elementID).delay(200).fadeOut(1000);
+							$(elementID).animate({
+								"opacity": "0",
+							}, {
+								"complete": function() {
+									$(elementID).remove();
+								}
+							});
 						}
 </script>

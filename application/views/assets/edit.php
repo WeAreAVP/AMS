@@ -62,31 +62,33 @@
 					foreach ($asset_dates as $index => $dates)
 					{
 						?>
-						<div class="edit_form_div">
-							<p>Asset Date:</p>
-							<p>
-								<input id="asset_date_<?php echo $index; ?>" name="asset_date[]" value="<?php echo $dates; ?>" />
-							</p>
+						<div id="remove_local_<?php echo $index; ?>">
+							<div class="edit_form_div">
+								<p>Asset Date:</p>
+								<p>
+									<input id="asset_date_<?php echo $index; ?>" name="asset_date[]" value="<?php echo $dates; ?>" />
+								</p>
 
-							<p>Asset Date Type:</p>
-							<p>
-								<select id="asset_date_type_<?php echo $index; ?>" name="asset_date_type[]">
-									<option value="">Select Date Type</option>
-									<?php
-									foreach ($pbcore_asset_date_types as $row)
-									{
-										$selected = '';
-										if (isset($asset_date_types[$index]) && $asset_date_types[$index] == $row->value)
-											$selected = 'selected="selected"'
-											?>
-										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-									<?php }
-									?>
-								</select>
-							</p>
+								<p>Asset Date Type:</p>
+								<p>
+									<select id="asset_date_type_<?php echo $index; ?>" name="asset_date_type[]">
+										<option value="">Select Date Type</option>
+										<?php
+										foreach ($pbcore_asset_date_types as $row)
+										{
+											$selected = '';
+											if (isset($asset_date_types[$index]) && $asset_date_types[$index] == $row->value)
+												$selected = 'selected="selected"'
+												?>
+											<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+										<?php }
+										?>
+									</select>
+								</p>
 
+							</div>
+							<div class="remove_element" onclick="removeElement('#remove_local_<?php echo $index; ?>');"><img src="/images/remove-item.png"/></div>
 						</div>
-						<div class="remove_element"><img src="/images/remove-item.png"/></div>
 						<?php
 					}
 				}
@@ -1062,4 +1064,7 @@
 		});
 
 	});
+	function removeElement(elementID){
+		$(elementID).remove();
+	}
 </script>

@@ -65,28 +65,30 @@
 							?>
 							<div id="remove_date_<?php echo $index; ?>" class="remove_date">
 								<div class="edit_form_div">
-									<p>Asset Date:</p>
-									<p>
-										<input id="asset_date_<?php echo $index; ?>" name="asset_date[]" value="<?php echo $dates; ?>" />
-									</p>
-
-									<p>Asset Date Type:</p>
-									<p>
-										<select id="asset_date_type_<?php echo $index; ?>" name="asset_date_type[]">
-											<option value="">Select Date Type</option>
-											<?php
-											foreach ($pbcore_asset_date_types as $row)
-											{
-												$selected = '';
-												if (isset($asset_date_types[$index]) && $asset_date_types[$index] == $row->value)
-													$selected = 'selected="selected"'
-													?>
-												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-											<?php }
-											?>
-										</select>
-									</p>
-
+									<div>
+										<p>Asset Date:</p>
+										<p>
+											<input id="asset_date_<?php echo $index; ?>" name="asset_date[]" value="<?php echo $dates; ?>" />
+										</p>
+									</div>
+									<div>
+										<p>Asset Date Type:</p>
+										<p>
+											<select id="asset_date_type_<?php echo $index; ?>" name="asset_date_type[]">
+												<option value="">Select Date Type</option>
+												<?php
+												foreach ($pbcore_asset_date_types as $row)
+												{
+													$selected = '';
+													if (isset($asset_date_types[$index]) && $asset_date_types[$index] == $row->value)
+														$selected = 'selected="selected"'
+														?>
+													<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+												<?php }
+												?>
+											</select>
+										</p>
+									</div>
 								</div>
 								<div class="remove_element" onclick="removeElement('#remove_date_<?php echo $index; ?>', 'date');"><img src="/images/remove-item.png" /></div>
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
@@ -123,20 +125,24 @@
 							?>
 							<div id="remove_local_<?php echo $index; ?>" class="remove_local_id">
 								<div class="edit_form_div">
-									<p>Local ID:</p>
-									<p>
-										<input id="asset_identifier_<?php echo $index; ?>" name="asset_identifier[]" value="<?php echo $identifier; ?>" />
-									</p>
-
-									<p>ID Source:</p>
-									<p>
-										<input id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($identifier_sources[$index])) ? $identifier_sources[$index] : ''; ?>" />
-									</p>
-									<p>ID Ref:</p>
-									<p>
-										<input id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($identifier_refs[$index])) ? $identifier_refs[$index] : ''; ?>" />
-									</p>
-
+									<div>
+										<p>Local ID:</p>
+										<p>
+											<input id="asset_identifier_<?php echo $index; ?>" name="asset_identifier[]" value="<?php echo $identifier; ?>" />
+										</p>
+									</div>
+									<div>
+										<p>ID Source:</p>
+										<p>
+											<input id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($identifier_sources[$index])) ? $identifier_sources[$index] : ''; ?>" />
+										</p>
+									</div>
+									<div>
+										<p>ID Ref:</p>
+										<p>
+											<input id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($identifier_refs[$index])) ? $identifier_refs[$index] : ''; ?>" />
+										</p>
+									</div>
 								</div>
 								<div class="remove_element" onclick="removeElement('#remove_local_<?php echo $index; ?>', 'local_id');"><img src="/images/remove-item.png" /></div>
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
@@ -1101,12 +1107,12 @@
 
 
 									html = '<div id="remove_local_' + number + '" class="remove_local_id">' +
-									'<div class="edit_form_div"><p>Local ID:</p>' +
-									'<p><input id="asset_identifier_' + number + '" name="asset_identifier[]" value="" /></p>' +
-									'<p>ID Source:</p>' +
-									'<p><input id="asset_identifier_source_' + number + '" name="asset_identifier_source[]" value="" /></p>' +
-									'<p>ID Ref:</p>' +
-									'<p><input id="asset_identifier_ref_' + number + '" name="asset_identifier_ref[]" value="" /></p>' +
+									'<div class="edit_form_div"><div><p>Local ID:</p>' +
+									'<p><input id="asset_identifier_' + number + '" name="asset_identifier[]" value="" /></p></div>' +
+									'<div><p>ID Source:</p>' +
+									'<p><input id="asset_identifier_source_' + number + '" name="asset_identifier_source[]" value="" /></p></div>' +
+									'<div><p>ID Ref:</p>' +
+									'<p><input id="asset_identifier_ref_' + number + '" name="asset_identifier_ref[]" value="" /></p></div>' +
 									'</div><div class="remove_element" onclick="removeElement(\'#remove_local_' + number + '\', \'local_id\');"><img src="/images/remove-item.png" /></div></div>' +
 									'<div class="clearfix" style="margin-bottom: 10px;"></div>'
 
@@ -1130,11 +1136,11 @@
 
 
 									html = '<div id="remove_date_' + number + '" class="remove_date"><div class="edit_form_div">' +
-									'<p>Asset Date:</p><p><input id="asset_date_' + number + '" name="asset_date[]" value="" /></p>' +
-									'<p>Asset Date Type:</p><p><select id="asset_date_type_' + number + '" name="asset_date_type[]">' +
+									'<div><p>Asset Date:</p><p><input id="asset_date_' + number + '" name="asset_date[]" value="" /></p></div>' +
+									'<div><p>Asset Date Type:</p><p><select id="asset_date_type_' + number + '" name="asset_date_type[]">' +
 									'<option value="">Select Date Type</option>' +
 									dateTypes +
-									'</select></p></div>' +
+									'</select></p></div></div>' +
 									'<div class="remove_element" onclick="removeElement(\'#remove_date_' + number + '\', \'date\');"><img src="/images/remove-item.png" /></div>' +
 									'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 									$(elementID).append(html);

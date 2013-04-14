@@ -1086,7 +1086,7 @@
 						}
 						function addElement(elementID) {
 							if (elementID == '#main_local_id') {
-								$(#main_local_id).append('dfadfadfadf');
+								$(elementID).append('dfadfadfadf');
 
 							}
 						}

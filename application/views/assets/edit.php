@@ -88,7 +88,7 @@
 									</p>
 
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_date_<?php echo $index; ?>','date');"><img src="/images/remove-item.png" /></div>
+								<div class="remove_element" onclick="removeElement('#remove_date_<?php echo $index; ?>', 'date');"><img src="/images/remove-item.png" /></div>
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -936,14 +936,13 @@
 	</table>
 </div>
 <script type="text/javascript">
+							var pbcore_date_types =<?php echo json_encode($pbcore_asset_date_types); ?>;
 							$(function() {
 								$("#asset_type").multiselect({
 									noneSelectedText: 'Select Asset Type',
 									selectedList: 3
 								});
-
 								$('input[name="asset_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
-
 								$('input[name="asset_identifier_source[]"]').autocomplete({
 									source: site_url + "autocomplete/values?table=identifiers&column=identifier_source",
 									minLength: 1,
@@ -1070,7 +1069,6 @@
 									enable: true,
 									cacheLength: 1
 								});
-
 							});
 							function removeElement(elementID, type) {
 								$(elementID).delay(200).fadeOut(1000);
@@ -1086,11 +1084,11 @@
 											$('#add_' + type).html(' ADD ANOTHER ' + type.replace(/_/g, " ").toUpperCase());
 									}
 								});
-
 							}
 							function addElement(elementID) {
+								var number = 10 + Math.floor(Math.random() * 100);
 								if (elementID == '#main_local_id') {
-									var number = 1 + Math.floor(Math.random() * 100);
+
 
 									html = '<div id="remove_local_' + number + '" class="remove_local_id">' +
 									'<div class="edit_form_div"><p>Local ID:</p>' +
@@ -1111,8 +1109,25 @@
 										enable: true,
 										cacheLength: 1
 									});
+								}
+								else if (elementID == '#main_date') {
+									dateTypes = '';
+
+									for (cnt in pbcore_date_types)
+									{
+										dateTypes += '<option value= "' + pbcore_date_types[cnt]['value'] + '">' + pbcore_date_types[cnt]['value'] + '</option>';
+									}
 
 
+									html = '<div id="remove_date_' + number + '" class="remove_date"><div class="edit_form_div">' +
+									'<p>Asset Date:</p><p><input id="asset_date_' + number + '" name="asset_date[]" value="" /></p>' +
+									'<p>Asset Date Type:</p><p><select id="asset_date_type_' + number + '" name="asset_date_type[]">' +
+									'<option value="">Select Date Type</option>' +
+									dateTypes +
+									'</select></p></div>' +
+									'<div class="remove_element" onclick="removeElement(\'#remove_date_' + number + '\', \'date\');"><img src="/images/remove-item.png" /></div>' +
+									'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+									$(elementID).append(html);
 								}
 							}
 </script>

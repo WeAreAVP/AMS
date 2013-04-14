@@ -229,7 +229,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_title');"><i class="icon-plus-sign icon-white"></i><span id="add_local_id"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_title');"><i class="icon-plus-sign icon-white"></i><span id="add_title"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -246,60 +246,64 @@
 					<label><i class="icon-question-sign"></i><b> Subject:</b></label>
 				</td>
 				<td>
-					<?php
-					if (count($subjects) > 0 && isset($subjects[0]) && ! empty($subjects[0]))
-					{
-						$add = ' ADD ANOTHER SUBJECT';
-						foreach ($subjects as $index => $subject)
+					<div id="main_subject">
+						<?php
+						if (count($subjects) > 0 && isset($subjects[0]) && ! empty($subjects[0]))
 						{
-							?>
-							<div class="edit_form_div">
-								<div>
-									<p>Subject:</p>
-									<p>
-										<input id="asset_subject_<?php echo $index; ?>" name="asset_subject[]" value="<?php echo $subject; ?>"/>
-									</p>
-								</div>
-								<div>
-									<p>
-										Subject Type:
-									</p>
-									<p>
-										<select id="asset_subject_type_<?php echo $index; ?>" name="asset_subject_type[]">
-											<option value="">Select Subject Type</option>
-											<?php
-											foreach ($pbcore_asset_subject_types as $row)
-											{
-												$selected = '';
-												if (isset($subject_types[$index]) && $subject_types[$index] == $row->value)
-													$selected = 'selected="selected"'
+							$add = ' ADD ANOTHER SUBJECT';
+							foreach ($subjects as $index => $subject)
+							{
+								?>
+								<div id="remove_subject_<?php echo $index; ?>" class="remove_subject">
+									<div class="edit_form_div">
+										<div>
+											<p>Subject:</p>
+											<p>
+												<input id="asset_subject_<?php echo $index; ?>" name="asset_subject[]" value="<?php echo $subject; ?>"/>
+											</p>
+										</div>
+										<div>
+											<p>
+												Subject Type:
+											</p>
+											<p>
+												<select id="asset_subject_type_<?php echo $index; ?>" name="asset_subject_type[]">
+													<option value="">Select Subject Type</option>
+													<?php
+													foreach ($pbcore_asset_subject_types as $row)
+													{
+														$selected = '';
+														if (isset($subject_types[$index]) && $subject_types[$index] == $row->value)
+															$selected = 'selected="selected"'
+															?>
+														<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+													<?php }
 													?>
-												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-											<?php }
-											?>
-										</select>
-									</p>
+												</select>
+											</p>
+										</div>
+										<div>
+											<p>Subject Source:</p>
+											<p>
+												<input id="asset_subject_source_<?php echo $index; ?>" name="asset_subject_source[]" value="<?php echo (isset($subject_sources[$index])) ? $subject_sources[$index] : ''; ?>" />
+											</p>
+										</div>
+										<div>
+											<p>Subject Ref:</p>
+											<p>
+												<input id="asset_subject_ref_<?php echo $index; ?>" name="asset_subject_ref[]" value="<?php echo (isset($subject_refs[$index])) ? $subject_refs[$index] : ''; ?>" />
+											</p>
+										</div>
+									</div>
+									<div class="remove_element" onclick="removeElement('#remove_subject_<?php echo $index; ?>', 'subject');"><img src="/images/remove-item.png" /></div>
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
 								</div>
-								<div>
-									<p>Subject Source:</p>
-									<p>
-										<input id="asset_subject_source_<?php echo $index; ?>" name="asset_subject_source[]" value="<?php echo (isset($subject_sources[$index])) ? $subject_sources[$index] : ''; ?>" />
-									</p>
-								</div>
-								<div>
-									<p>Subject Ref:</p>
-									<p>
-										<input id="asset_subject_ref_<?php echo $index; ?>" name="asset_subject_ref[]" value="<?php echo (isset($subject_refs[$index])) ? $subject_refs[$index] : ''; ?>" />
-									</p>
-								</div>
-							</div>
-							<div class="remove_element"><img src="/images/remove-item.png"/></div>
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
-							<?php
+								<?php
+							}
 						}
-					}
-					?>
-					<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+						?>
+					</div>
+					<div class="add-new-element" onclick="addElement('#main_subject');"><i class="icon-plus-sign icon-white"></i><span id="add_subject"><?php echo $add; ?></span></div>
 
 				</td>
 

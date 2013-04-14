@@ -208,11 +208,11 @@ function addElement(elementID) {
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
 		$('input[name="asset_title_source[]"]').autocomplete({
-		source: site_url + "autocomplete/values?table=asset_titles&column=title_source",
-		minLength: 1,
-		delay: 100,
-		enable: true,
-		cacheLength: 1
-	});
+			source: site_url + "autocomplete/values?table=asset_titles&column=title_source",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
 	}
 }

@@ -734,6 +734,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .remove_element{
     float: left;
     margin-left: -5px;
+    cursor: pointer;
 }
 .add-new-element{
     background: #515151;

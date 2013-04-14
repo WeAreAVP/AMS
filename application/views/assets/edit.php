@@ -318,49 +318,53 @@
 					<label><i class="icon-question-sign"></i><b> Description:</b></label>
 				</td>
 				<td>
-					<?php
-					if (count($descriptions) > 0 && isset($descriptions[0]) && ! empty($descriptions[0]))
-					{
-						$add = ' ADD ANOTHER DESCRIPTION';
-						foreach ($descriptions as $index => $description)
+					<div id="main_description">
+						<?php
+						if (count($descriptions) > 0 && isset($descriptions[0]) && ! empty($descriptions[0]))
 						{
-							?>
-							<div class="edit_form_div">
-								<div>
-									<p>Description:</p>
-									<p>
-										<textarea id="asset_description_<?php echo $index; ?>" name="asset_description[]"><?php echo $description; ?></textarea>
-									</p>
-								</div>
-								<div>
-									<p>
-										Description Type:
-									</p>
-									<p>
-										<select id="asset_description_type_<?php echo $index; ?>" name="asset_description_type[]">
-											<option value="">Select Description Type</option>
-											<?php
-											foreach ($pbcore_asset_description_types as $row)
-											{
-												$selected = '';
-												if (isset($description_types[$index]) && $description_types[$index] == $row->value)
-													$selected = 'selected="selected"'
+							$add = ' ADD ANOTHER DESCRIPTION';
+							foreach ($descriptions as $index => $description)
+							{
+								?>
+								<div id="remove_description_<?php echo $index; ?>" class="remove_description">
+									<div class="edit_form_div">
+										<div>
+											<p>Description:</p>
+											<p>
+												<textarea id="asset_description_<?php echo $index; ?>" name="asset_description[]"><?php echo $description; ?></textarea>
+											</p>
+										</div>
+										<div>
+											<p>
+												Description Type:
+											</p>
+											<p>
+												<select id="asset_description_type_<?php echo $index; ?>" name="asset_description_type[]">
+													<option value="">Select Description Type</option>
+													<?php
+													foreach ($pbcore_asset_description_types as $row)
+													{
+														$selected = '';
+														if (isset($description_types[$index]) && $description_types[$index] == $row->value)
+															$selected = 'selected="selected"'
+															?>
+														<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+													<?php }
 													?>
-												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-											<?php }
-											?>
-										</select>
-									</p>
-								</div>
+												</select>
+											</p>
+										</div>
 
-							</div>
-							<div class="remove_element"><img src="/images/remove-item.png"/></div>
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
-							<?php
+									</div>
+									<div class="remove_element" onclick="removeElement('#remove_description_<?php echo $index; ?>', 'description');"><img src="/images/remove-item.png" /></div>
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
+								</div>
+								<?php
+							}
 						}
-					}
-					?>
-					<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+						?>
+					</div>
+					<div class="add-new-element" onclick="addElement('#main_description');"><i class="icon-plus-sign icon-white"></i><span id="add_description"><?php echo $add; ?></span></div>
 
 				</td>
 

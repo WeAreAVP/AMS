@@ -1086,7 +1086,20 @@
 						}
 						function addElement(elementID) {
 							if (elementID == '#main_local_id') {
-								$(elementID).append('dfadfadfadf');
+								var number = 1 + Math.floor(Math.random() * 100);
+
+								html = '<div id="remove_local_' + number + '" class="remove_local_id">' +
+								'<div class="edit_form_div"><p>Local ID:</p>' +
+								'<p><input id="asset_identifier_' + number + '" name="asset_identifier[]" value="" /></p>' +
+								'<p>ID Source:</p>' +
+								'<p><input id="asset_identifier_source_' + number + '" name="asset_identifier_source[]" value="" /></p>' +
+								'<p>ID Ref:</p>' +
+								'<p><input id="asset_identifier_ref_' + number + '" name="asset_identifier_ref[]" value="" /></p>' +
+								'</div><div class="remove_element" onclick="removeElement(\'#remove_local_' + number + '\', \'local_id\');"><img src="/images/remove-item.png" /></div></div>' +
+								'<div class="clearfix" style="margin-bottom: 10px;"></div>'
+
+
+								$(elementID).append(html);
 
 							}
 						}

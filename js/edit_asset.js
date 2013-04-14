@@ -206,5 +206,13 @@ function addElement(elementID) {
 		'</div><div><p>Title Ref:</p><p><input id="asset_title_ref_' + number + '" name="asset_title_ref[]" value="" /></p>' +
 		'</div></div><div class="remove_element" onclick="removeElement(\'#asset_title_' + number + '\', \'title\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+		$('input[name="asset_title_source[]"]').autocomplete({
+		source: site_url + "autocomplete/values?table=asset_titles&column=title_source",
+		minLength: 1,
+		delay: 100,
+		enable: true,
+		cacheLength: 1
+	});
 	}
 }

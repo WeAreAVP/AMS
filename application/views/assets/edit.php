@@ -116,7 +116,7 @@
 					foreach ($identifiers as $index => $identifier)
 					{
 						?>
-						<div id="remove_local_<?php echo $index; ?>" class="remove_local">
+						<div id="remove_local_<?php echo $index; ?>" class="remove_local_id">
 							<div class="edit_form_div">
 								<p>Local ID:</p>
 								<p>
@@ -133,14 +133,14 @@
 								</p>
 
 							</div>
-							<div class="remove_element" onclick="removeElement('#remove_local_<?php echo $index; ?>', 'local');"><img src="/images/remove-item.png" /></div>
+							<div class="remove_element" onclick="removeElement('#remove_local_<?php echo $index; ?>', 'local_id');"><img src="/images/remove-item.png" /></div>
 						</div>
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
 				}
 				?>
-				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><span id="add_local"><?php echo $add; ?></span></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><span id="add_local_id"><?php echo $add; ?></span></div>
 
 			</td>
 
@@ -1076,9 +1076,9 @@
 								}
 							});
 							if ($('#remove_' + type).length == 0) {
-								$('#add_' + type).html(' ADD');
+								$('#add_' + type).html(' ADD '+type.replace(/_/g," ")).toUpperCase();
 							}
 							else
-								$('#add_' + type).html(' ADD ANOTHER');
+								$('#add_' + type).html(' ADD ANOTHER '+type.replace(/_/g," ")).toUpperCase();
 						}
 </script>

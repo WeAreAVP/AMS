@@ -380,35 +380,39 @@
 					<label><i class="icon-question-sign"></i><b> Genre:</b></label>
 				</td>
 				<td>
-					<?php
-					if (count($genres) > 0 && isset($genres[0]) && ! empty($genres[0]))
-					{
-						$add = ' ADD ANOTHER GENRE';
-						foreach ($genres as $index => $genre)
+					<div id="main_genre">
+						<?php
+						if (count($genres) > 0 && isset($genres[0]) && ! empty($genres[0]))
 						{
-							?>
-							<div class="edit_form_div">
-								<div>
-									<p>Genre:</p>
-									<p><input id="asset_genre_<?php echo $index; ?>" name="asset_genre[]" value="<?php echo $genre; ?>" /></p>
-								</div>
-								<div>
-									<p>Genre Source:</p>
-									<p><input id="asset_genre_source_<?php echo $index; ?>" name="asset_genre_source[]" value="<?php echo (isset($genre_sources[$index])) ? $genre_sources[$index] : ''; ?>" /></p>
-								</div>
-								<div>
-									<p>Genre Ref:</p>
-									<p><input id="asset_genre_ref_<?php echo $index; ?>" name="asset_genre_ref[]" value="<?php echo (isset($genre_refs[$index])) ? $genre_refs[$index] : ''; ?>" /></p>
-								</div>
+							$add = ' ADD ANOTHER GENRE';
+							foreach ($genres as $index => $genre)
+							{
+								?>
+								<div id="remove_genre_<?php echo $index; ?>" class="remove_genre">
+									<div class="edit_form_div">
+										<div>
+											<p>Genre:</p>
+											<p><input id="asset_genre_<?php echo $index; ?>" name="asset_genre[]" value="<?php echo $genre; ?>" /></p>
+										</div>
+										<div>
+											<p>Genre Source:</p>
+											<p><input id="asset_genre_source_<?php echo $index; ?>" name="asset_genre_source[]" value="<?php echo (isset($genre_sources[$index])) ? $genre_sources[$index] : ''; ?>" /></p>
+										</div>
+										<div>
+											<p>Genre Ref:</p>
+											<p><input id="asset_genre_ref_<?php echo $index; ?>" name="asset_genre_ref[]" value="<?php echo (isset($genre_refs[$index])) ? $genre_refs[$index] : ''; ?>" /></p>
+										</div>
 
-							</div>
-							<div class="remove_element"><img src="/images/remove-item.png"/></div>
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
-							<?php
+									</div>
+									<div class="remove_element" onclick="removeElement('#remove_genre_<?php echo $index; ?>', 'genre');"><img src="/images/remove-item.png" /></div>
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
+								</div>
+								<?php
+							}
 						}
-					}
-					?>
-					<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+						?>
+					</div>
+					<div class="add-new-element" onclick="addElement('#main_genre');"><i class="icon-plus-sign icon-white"></i><span id="add_genre"><?php echo $add; ?></span></div>
 
 				</td>
 

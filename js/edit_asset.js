@@ -261,4 +261,20 @@ function addElement(elementID) {
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
 	}
+	else if (elementID == '#main_genre') {
+		html = '<div id="remove_genre_' + number + '" class="remove_genre"><div class="edit_form_div"><div>' +
+		'<p>Genre:</p><p><input id="asset_genre_' + number + '" name="asset_genre[]" value="" /></p></div>' +
+		'<div><p>Genre Source:</p><p><input id="asset_genre_source_' + number + '" name="asset_genre_source[]" value="" /></p>' +
+		'</div><div><p>Genre Ref:</p><p><input id="asset_genre_ref_' + number + '" name="asset_genre_ref[]" value="" /></p>' +
+		'</div></div><div class="remove_element" onclick="removeElement(\'#remove_genre_' + number + '\', \'genre\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+		$('input[name="asset_genre_source[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=genres&column=genre_source",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+	}
 }

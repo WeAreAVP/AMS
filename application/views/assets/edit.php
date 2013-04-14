@@ -49,7 +49,7 @@
 			<?php
 			$asset_dates = explode(' | ', trim(str_replace('(**)', '', $asset_detail->asset_date)));
 			$asset_date_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->date_type)));
-			$add='ADD ASSET DATE';
+			$add = ' ADD DATE';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Asset Date:</b></label>
@@ -58,7 +58,7 @@
 				<?php
 				if (count($asset_dates) > 0 && isset($asset_dates[0]) && ! empty($asset_dates[0]))
 				{
-$add='ADD ANOTHER ASSET DATE';
+					$add = ' ADD ANOTHER DATE';
 					foreach ($asset_dates as $index => $dates)
 					{
 						?>
@@ -91,7 +91,7 @@ $add='ADD ANOTHER ASSET DATE';
 					}
 				}
 				?>
-<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
 
 			</td>
 
@@ -101,7 +101,7 @@ $add='ADD ANOTHER ASSET DATE';
 			$identifiers = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier)));
 			$identifier_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier_source)));
 			$identifier_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier_ref)));
-			$add='ADD LOCAL ID';
+			$add = ' ADD LOCAL ID';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Local ID:</b></label>
@@ -110,7 +110,7 @@ $add='ADD ANOTHER ASSET DATE';
 				<?php
 				if (count($identifiers) > 0 && isset($identifiers[0]) && ! empty($identifiers[0]))
 				{
-					$add='ADD ANOTHER LOCAL ID';
+					$add = ' ADD ANOTHER LOCAL ID';
 					foreach ($identifiers as $index => $identifier)
 					{
 						?>
@@ -136,7 +136,7 @@ $add='ADD ANOTHER ASSET DATE';
 					}
 				}
 				?>
-<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i> <?php echo $add; ?></div>
 
 			</td>
 
@@ -147,7 +147,7 @@ $add='ADD ANOTHER ASSET DATE';
 			$title_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_source)));
 			$title_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_ref)));
 			$title_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->title_type)));
-			$add='ADD ASSET TITLE';
+			$add = ' ADD TITLE';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Title:</b></label>
@@ -156,7 +156,7 @@ $add='ADD ANOTHER ASSET DATE';
 				<?php
 				if (count($titles) > 0 && isset($titles[0]) && ! empty($titles[0]))
 				{
-					$add='ADD ANOTHER ASSET TITLE';
+					$add = ' ADD ANOTHER TITLE';
 					foreach ($titles as $index => $title)
 					{
 						?>
@@ -199,7 +199,7 @@ $add='ADD ANOTHER ASSET DATE';
 					}
 				}
 				?>
-<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
 
 			</td>
 
@@ -210,7 +210,7 @@ $add='ADD ANOTHER ASSET DATE';
 			$subject_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_source)));
 			$subject_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_ref)));
 			$subject_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_type)));
-			$add='ADD ASSET SUBJECT';
+			$add = ' ADD SUBJECT';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Subject:</b></label>
@@ -219,7 +219,7 @@ $add='ADD ANOTHER ASSET DATE';
 				<?php
 				if (count($subjects) > 0 && isset($subjects[0]) && ! empty($subjects[0]))
 				{
-					$add='ADD ANOTHER ASSET SUBJECT';
+					$add = ' ADD ANOTHER SUBJECT';
 					foreach ($subjects as $index => $subject)
 					{
 						?>
@@ -262,7 +262,7 @@ $add='ADD ANOTHER ASSET DATE';
 					}
 				}
 				?>
-<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
 
 			</td>
 
@@ -271,7 +271,7 @@ $add='ADD ANOTHER ASSET DATE';
 			<?php
 			$descriptions = explode(' | ', trim(str_replace('(**)', '', $asset_detail->description)));
 			$description_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->description_type)));
-			$add='ADD ASSET DESCRIPTION';
+			$add = ' ADD DESCRIPTION';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Description:</b></label>
@@ -280,7 +280,7 @@ $add='ADD ANOTHER ASSET DATE';
 				<?php
 				if (count($descriptions) > 0 && isset($descriptions[0]) && ! empty($descriptions[0]))
 				{
-					$add='ADD ANOTHER ASSET DESCRIPTION';
+					$add = ' ADD ANOTHER DESCRIPTION';
 					foreach ($descriptions as $index => $description)
 					{
 						?>
@@ -316,7 +316,7 @@ $add='ADD ANOTHER ASSET DATE';
 					}
 				}
 				?>
-<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
 
 			</td>
 
@@ -326,7 +326,7 @@ $add='ADD ANOTHER ASSET DATE';
 			$genres = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre)));
 			$genre_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre_source)));
 			$genre_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre_ref)));
-			$add='ADD ASSET GENRE';
+			$add = ' ADD GENRE';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Genre:</b></label>
@@ -335,7 +335,7 @@ $add='ADD ANOTHER ASSET DATE';
 				<?php
 				if (count($genres) > 0 && isset($genres[0]) && ! empty($genres[0]))
 				{
-					$add = 'ADD ANOTHER ASSET GENRE';
+					$add = ' ADD ANOTHER GENRE';
 					foreach ($genres as $index => $genre)
 					{
 						?>
@@ -365,7 +365,7 @@ $add='ADD ANOTHER ASSET DATE';
 					}
 				}
 				?>
-<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
 
 			</td>
 
@@ -374,7 +374,7 @@ $add='ADD ANOTHER ASSET DATE';
 			<?php
 			$coverages = explode(' | ', trim(str_replace('(**)', '', $asset_detail->coverage)));
 			$coverage_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->coverage_type)));
-			$add='ADD ASSET COVERAGE';
+			$add = ' ADD COVERAGE';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Coverage:</b></label>
@@ -383,7 +383,7 @@ $add='ADD ANOTHER ASSET DATE';
 				<?php
 				if (count($coverages) > 0 && isset($coverages[0]) && ! empty($coverages[0]))
 				{
-					$add='ADD ANOTHER ASSET COVERAGE';
+					$add = ' ADD ANOTHER COVERAGE';
 					foreach ($coverages as $index => $coverage)
 					{
 						?>
@@ -423,7 +423,7 @@ $add='ADD ANOTHER ASSET DATE';
 			$audience_levels = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level)));
 			$audience_level_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_source)));
 			$audience_level_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_ref)));
-			$add='ADD AUDIENCE LEVEL';
+			$add = ' ADD AUDIENCE LEVEL';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Audience Level:</b></label>
@@ -432,7 +432,7 @@ $add='ADD ANOTHER ASSET DATE';
 				<?php
 				if (count($audience_levels) > 0 && isset($audience_levels[0]) && ! empty($audience_levels[0]))
 				{
-					$add='ADD ANOTHER AUDIENCE LEVEL';
+					$add = ' ADD ANOTHER AUDIENCE LEVEL';
 					foreach ($audience_levels as $index => $audience_level)
 					{
 						?>
@@ -471,7 +471,7 @@ $add='ADD ANOTHER ASSET DATE';
 					}
 				}
 				?>
-			<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
 
 			</td>
 
@@ -481,7 +481,7 @@ $add='ADD ANOTHER ASSET DATE';
 			$audience_ratings = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level)));
 			$audience_rating_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_source)));
 			$audience_rating_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_ref)));
-			$add='ADD AUDIENCE RATING';
+			$add = ' ADD AUDIENCE RATING';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Audience Rating:</b></label>
@@ -490,7 +490,7 @@ $add='ADD ANOTHER ASSET DATE';
 				<?php
 				if (count($audience_ratings) > 0 && isset($audience_ratings[0]) && ! empty($audience_ratings[0]))
 				{
-					$add='ADD ANOTHER AUDIENCE RATING';
+					$add = ' ADD ANOTHER AUDIENCE RATING';
 					foreach ($audience_ratings as $index => $audience_rating)
 					{
 						?>
@@ -539,7 +539,7 @@ $add='ADD ANOTHER ASSET DATE';
 					}
 				}
 				?>
-						<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
 			</td>
 
 		</tr>
@@ -548,7 +548,7 @@ $add='ADD ANOTHER ASSET DATE';
 			$annotations = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation)));
 			$annotation_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation_type)));
 			$annotation_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation_ref)));
-			$add='ADD ANNOTATION';
+			$add = ' ADD ANNOTATION';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
@@ -557,7 +557,7 @@ $add='ADD ANOTHER ASSET DATE';
 				<?php
 				if (count($annotations) > 0 && isset($annotations[0]) && ! empty($annotations[0]))
 				{
-					$add='ADD ANOTHER ANNOTATION';
+					$add = ' ADD ANOTHER ANNOTATION';
 					foreach ($annotations as $index => $annotation)
 					{
 						?>
@@ -585,7 +585,7 @@ $add='ADD ANOTHER ASSET DATE';
 					}
 				}
 				?>
-						<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
 			</td>
 
 		</tr>
@@ -595,7 +595,7 @@ $add='ADD ANOTHER ASSET DATE';
 			$relation_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->relation_type)));
 			$relation_type_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->relation_type_source)));
 			$relation_type_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->relation_type_ref)));
-			$add='ADD RELATION';
+			$add = ' ADD RELATION';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Relation:</b></label>
@@ -604,7 +604,7 @@ $add='ADD ANOTHER ASSET DATE';
 				<?php
 				if (count($relation_identifiers) > 0 && isset($relation_identifiers[0]) && ! empty($relation_identifiers[0]))
 				{
-					$add='ADD ANOTHER RELATION';
+					$add = ' ADD ANOTHER RELATION';
 					foreach ($relation_identifiers as $index => $relation_identifier)
 					{
 						?>
@@ -648,7 +648,7 @@ $add='ADD ANOTHER ASSET DATE';
 					}
 				}
 				?>
-						<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
 			</td>
 
 		</tr>
@@ -660,7 +660,7 @@ $add='ADD ANOTHER ASSET DATE';
 			$creator_role = explode(' | ', trim(str_replace('(**)', '', $asset_detail->creator_role)));
 			$creator_role_source = explode(' | ', trim(str_replace('(**)', '', $asset_detail->creator_role_source)));
 			$creator_role_ref = explode(' | ', trim(str_replace('(**)', '', $asset_detail->creator_role_ref)));
-			$add='ADD CREATOR';
+			$add = ' ADD CREATOR';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Creator:</b></label>
@@ -669,7 +669,7 @@ $add='ADD ANOTHER ASSET DATE';
 				<?php
 				if (count($creator_names) > 0 && isset($creator_names[0]) && ! empty($creator_names[0]))
 				{
-					$add='ADD ANOTHER CREATOR';
+					$add = ' ADD ANOTHER CREATOR';
 					foreach ($creator_names as $index => $creator_name)
 					{
 						?>
@@ -725,7 +725,7 @@ $add='ADD ANOTHER ASSET DATE';
 					}
 				}
 				?>
-						<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
 			</td>
 
 		</tr>
@@ -737,7 +737,7 @@ $add='ADD ANOTHER ASSET DATE';
 			$contributor_role = explode(' | ', trim(str_replace('(**)', '', $asset_detail->contributor_role)));
 			$contributor_role_source = explode(' | ', trim(str_replace('(**)', '', $asset_detail->contributor_role_source)));
 			$contributor_role_ref = explode(' | ', trim(str_replace('(**)', '', $asset_detail->contributor_role_ref)));
-			$add='ADD CONTRIBUTOR';
+			$add = ' ADD CONTRIBUTOR';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Contributor:</b></label>
@@ -746,7 +746,7 @@ $add='ADD ANOTHER ASSET DATE';
 				<?php
 				if (count($contributor_names) > 0 && isset($contributor_names[0]) && ! empty($contributor_names[0]))
 				{
-					$add='ADD ANOTHER CONTRIBUTOR';
+					$add = ' ADD ANOTHER CONTRIBUTOR';
 					foreach ($contributor_names as $index => $contributor_name)
 					{
 						?>
@@ -802,7 +802,7 @@ $add='ADD ANOTHER ASSET DATE';
 					}
 				}
 				?>
-						<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
 			</td>
 
 		</tr>
@@ -814,7 +814,7 @@ $add='ADD ANOTHER ASSET DATE';
 			$publisher_role = explode(' | ', trim(str_replace('(**)', '', $asset_detail->publisher_role)));
 			$publisher_role_source = explode(' | ', trim(str_replace('(**)', '', $asset_detail->publisher_role_source)));
 			$publisher_role_ref = explode(' | ', trim(str_replace('(**)', '', $asset_detail->publisher_role_ref)));
-			$add='ADD PUBLISHER';
+			$add = ' ADD PUBLISHER';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Publisher:</b></label>
@@ -823,7 +823,7 @@ $add='ADD ANOTHER ASSET DATE';
 				<?php
 				if (count($publishers) > 0 && isset($publishers[0]) && ! empty($publishers[0]))
 				{
-					$add='ADD ANOTHER PUBLISHER';
+					$add = ' ADD ANOTHER PUBLISHER';
 					foreach ($publishers as $index => $publisher)
 					{
 						?>
@@ -879,7 +879,7 @@ $add='ADD ANOTHER ASSET DATE';
 					}
 				}
 				?>
-						<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
 			</td>
 
 		</tr>
@@ -887,7 +887,7 @@ $add='ADD ANOTHER ASSET DATE';
 			<?php
 			$rights = explode(' | ', trim(str_replace('(**)', '', $asset_detail->rights)));
 			$rights_link = explode(' | ', trim(str_replace('(**)', '', $asset_detail->rights_link)));
-			$add='ADD RIGHT';
+			$add = ' ADD RIGHT';
 			?>
 			<td class="record-detail-page">
 				<label><i class="icon-question-sign"></i><b> Right Summary:</b></label>
@@ -896,7 +896,7 @@ $add='ADD ANOTHER ASSET DATE';
 				<?php
 				if (count($rights) > 0 && isset($rights[0]) && ! empty($rights[0]))
 				{
-					$add='ADD ANOTHER RIGHT';
+					$add = ' ADD ANOTHER RIGHT';
 					foreach ($rights as $index => $right)
 					{
 						?>
@@ -919,7 +919,7 @@ $add='ADD ANOTHER ASSET DATE';
 					}
 				}
 				?>
-						<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
 			</td>
 
 		</tr>
@@ -1060,6 +1060,6 @@ $add='ADD ANOTHER ASSET DATE';
 			enable: true,
 			cacheLength: 1
 		});
-		
+
 	});
 </script>

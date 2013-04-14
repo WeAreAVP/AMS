@@ -744,4 +744,5 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     padding: 3px 10px;
     float: left;
     border-radius: 3px;
+    cursor: pointer;
 }

@@ -171,60 +171,65 @@
 					<label><i class="icon-question-sign"></i><b> Title:</b></label>
 				</td>
 				<td>
-					<?php
-					if (count($titles) > 0 && isset($titles[0]) && ! empty($titles[0]))
-					{
-						$add = ' ADD ANOTHER TITLE';
-						foreach ($titles as $index => $title)
+					<div id="main_title">
+
+						<?php
+						if (count($titles) > 0 && isset($titles[0]) && ! empty($titles[0]))
 						{
-							?>
-							<div class="edit_form_div">
-								<div>
-									<p>Title:</p>
-									<p>
-										<textarea id="asset_title_<?php echo $index; ?>" name="asset_title[]"><?php echo $title; ?></textarea>
-									</p>
-								</div>
-								<div>
-									<p>
-										Title Type:
-									</p>
-									<p>
-										<select id="asset_title_type_<?php echo $index; ?>" name="asset_title_type[]">
-											<option value="">Select Title Type</option>
-											<?php
-											foreach ($pbcore_asset_title_types as $row)
-											{
-												$selected = '';
-												if (isset($title_types[$index]) && $title_types[$index] == $row->value)
-													$selected = 'selected="selected"'
+							$add = ' ADD ANOTHER TITLE';
+							foreach ($titles as $index => $title)
+							{
+								?>
+								<div id="remove_title_<?php echo $index; ?>" class="remove_title">
+									<div class="edit_form_div">
+										<div>
+											<p>Title:</p>
+											<p>
+												<textarea id="asset_title_<?php echo $index; ?>" name="asset_title[]"><?php echo $title; ?></textarea>
+											</p>
+										</div>
+										<div>
+											<p>
+												Title Type:
+											</p>
+											<p>
+												<select id="asset_title_type_<?php echo $index; ?>" name="asset_title_type[]">
+													<option value="">Select Title Type</option>
+													<?php
+													foreach ($pbcore_asset_title_types as $row)
+													{
+														$selected = '';
+														if (isset($title_types[$index]) && $title_types[$index] == $row->value)
+															$selected = 'selected="selected"'
+															?>
+														<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+													<?php }
 													?>
-												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-											<?php }
-											?>
-										</select>
-									</p>
+												</select>
+											</p>
+										</div>
+										<div>
+											<p>Title Source:</p>
+											<p>
+												<input id="asset_title_source_<?php echo $index; ?>" name="asset_title_source[]" value="<?php echo (isset($title_sources[$index])) ? $title_sources[$index] : ''; ?>" />
+											</p>
+										</div>
+										<div>
+											<p>Title Ref:</p>
+											<p>
+												<input id="asset_title_ref_<?php echo $index; ?>" name="asset_title_ref[]" value="<?php echo (isset($title_refs[$index])) ? $title_refs[$index] : ''; ?>" />
+											</p>
+										</div>
+									</div>
+									<div class="remove_element" onclick="removeElement('#asset_title_<?php echo $index; ?>', 'title');"><img src="/images/remove-item.png" /></div>
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
 								</div>
-								<div>
-									<p>Title Source:</p>
-									<p>
-										<input id="asset_title_source_<?php echo $index; ?>" name="asset_title_source[]" value="<?php echo (isset($title_sources[$index])) ? $title_sources[$index] : ''; ?>" />
-									</p>
-								</div>
-								<div>
-									<p>Title Ref:</p>
-									<p>
-										<input id="asset_title_ref_<?php echo $index; ?>" name="asset_title_ref[]" value="<?php echo (isset($title_refs[$index])) ? $title_refs[$index] : ''; ?>" />
-									</p>
-								</div>
-							</div>
-							<div class="remove_element"><img src="/images/remove-item.png"/></div>
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
-							<?php
+								<?php
+							}
 						}
-					}
-					?>
-					<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+						?>
+					</div>
+					<div class="add-new-element" onclick="addElement('#main_title');"><i class="icon-plus-sign icon-white"></i><span id="add_local_id"><?php echo $add; ?></span></div>
 
 				</td>
 

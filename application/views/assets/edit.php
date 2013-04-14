@@ -1,4 +1,5 @@
 <div>
+	<form class="form-horizontal" method="POST" action="">
 	<table cellPadding="8" class="record-detail-table">
 		<tr>
 			<td class="record-detail-page">
@@ -941,6 +942,7 @@
 
 		</tr>
 	</table>
+		</form>
 </div>
 <script type="text/javascript">
 							var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;

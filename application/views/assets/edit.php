@@ -116,7 +116,7 @@
 					foreach ($identifiers as $index => $identifier)
 					{
 						?>
-						<div id="remove_local_<?php echo $index; ?>">
+						<div id="remove_local_<?php echo $index; ?>" class="remove_local">
 							<div class="edit_form_div">
 								<p>Local ID:</p>
 								<p>
@@ -133,14 +133,14 @@
 								</p>
 
 							</div>
-							<div class="remove_element" onclick="removeElement('#remove_local_<?php echo $index; ?>');"><img src="/images/remove-item.png" /></div>
+							<div class="remove_element" onclick="removeElement('#remove_local_<?php echo $index; ?>', 'local');"><img src="/images/remove-item.png" /></div>
 						</div>
 						<div class="clearfix" style="margin-bottom: 10px;"></div>
 						<?php
 					}
 				}
 				?>
-				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i> <?php echo $add; ?></div>
+				<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><span id="add_local"><?php echo $add; ?></span></div>
 
 			</td>
 
@@ -1066,8 +1066,7 @@
 							});
 
 						});
-						function removeElement(elementID) {
-//							$(elementID).remove();
+						function removeElement(elementID, type) {
 							$(elementID).delay(200).fadeOut(1000);
 							$(elementID).animate({
 								"opacity": "0",
@@ -1076,5 +1075,10 @@
 									$(elementID).remove();
 								}
 							});
+							if ($('#remove_' + type).length == 0) {
+								$('#add_' + type).html(' ADD');
+							}
+							else
+								$('#add_' + type).html(' ADD ANOTHER');
 						}
 </script>

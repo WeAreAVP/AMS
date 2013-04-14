@@ -1146,6 +1146,7 @@
 									'<div class="remove_element" onclick="removeElement(\'#remove_date_' + number + '\', \'date\');"><img src="/images/remove-item.png" /></div>' +
 									'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 									$(elementID).append(html);
+									$('input[name="asset_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
 								}
 							}
 </script>

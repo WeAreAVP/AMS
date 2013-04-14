@@ -139,8 +139,9 @@
 
 								</div>
 								<div class="remove_element" onclick="removeElement('#remove_local_<?php echo $index; ?>', 'local_id');"><img src="/images/remove-item.png" /></div>
+								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
+
 							<?php
 						}
 					}
@@ -300,7 +301,7 @@
 								<textarea id="asset_description_<?php echo $index; ?>" name="asset_description[]"><?php echo $description; ?></textarea>
 							</p>
 							<p>
-								Subject Type:
+								Description Type:
 							</p>
 							<p>
 								<select id="asset_description_type_<?php echo $index; ?>" name="asset_description_type[]">
@@ -936,7 +937,16 @@
 	</table>
 </div>
 <script type="text/javascript">
-							var pbcore_date_types =<?php echo json_encode($pbcore_asset_date_types); ?>;
+							var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
+							var pbcoreTitleTypes =<?php echo json_encode($pbcore_asset_title_types); ?>;
+							var pbcoreSubjectTypes =<?php echo json_encode($pbcore_asset_subject_types); ?>;
+							var pbcoreDescriptionTypes =<?php echo json_encode($pbcore_asset_description_types); ?>;
+							var pbcoreAudienceLevel =<?php echo json_encode($pbcore_asset_audience_level); ?>;
+							var pbcoreAudienceRating =<?php echo json_encode($pbcore_asset_audience_rating); ?>;
+							var pbcoreRelationTypes =<?php echo json_encode($pbcore_asset_relation_types); ?>;
+							var pbcoreCreatorRoles =<?php echo json_encode($pbcore_asset_creator_roles); ?>;
+							var pbcoreContributorRoles =<?php echo json_encode($pbcore_asset_contributor_roles); ?>;
+							var pbcorePublisherRoles =<?php echo json_encode($pbcore_asset_publisher_roles); ?>;
 							$(function() {
 								$("#asset_type").multiselect({
 									noneSelectedText: 'Select Asset Type',
@@ -1113,7 +1123,7 @@
 								else if (elementID == '#main_date') {
 									dateTypes = '';
 
-									for (cnt in pbcore_date_types)
+									for (cnt in pbcoreDateTypes)
 									{
 										dateTypes += '<option value= "' + pbcore_date_types[cnt]['value'] + '">' + pbcore_date_types[cnt]['value'] + '</option>';
 									}

@@ -1073,7 +1073,7 @@
 							}, {
 								"complete": function() {
 									$(elementID).remove();
-									if ($('#remove_' + type).length == 0) {
+									if ($('.remove_' + type).length == 0) {
 										$('#add_' + type).html(' ADD ' + type.replace(/_/g, " ").toUpperCase());
 									}
 									else

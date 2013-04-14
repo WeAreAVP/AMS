@@ -87,7 +87,7 @@
 								</p>
 
 							</div>
-							<div class="remove_element" onclick="removeElement('#remove_local_');"><img src="/images/remove-item.png"/></div>
+							<div class="remove_element" ><img src="/images/remove-item.png" onclick="removeElement('#remove_local_<?php echo $index; ?>');"/></div>
 						</div>
 						<?php
 					}

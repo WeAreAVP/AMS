@@ -40,21 +40,8 @@
 			</video>
 		</div>
 			<div class="clearfix" style="margin-bottom: 15px;"></div>
-			<!--<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>-->
-					<video controls  width="400" height="150">
-						<source src="<?php echo $media['url']; ?>" type="video/mp4">
-			
-						<object type="application/x-shockwave-flash" data="http://releases.flowplayer.org/swf/flowplayer.content-3.2.8.swf"
-								width="400" height="150">
-							<param name="allowfullscreen" value="true">
-							<param name="allowscriptaccess" value="always">
-							<param name="flashvars" value="<?php echo $media['url']; ?>">
-							<!--[if lt IE]><param name="movie" value="http://releases.flowplayer.org/swf/flowplayer.content-3.2.8.swf"><![endif]-->
-							
-							<p>Your browser can’t play HTML5 video. <a href="video.webm">
-									Download it</a> instead.</p>
-						</object>
-					</video>
+			<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
+					
 					<video id="my-video" controls height="320" width="700">
 						<source src="<?php echo $media['url']; ?>" type="video/mp4">
 					</video>

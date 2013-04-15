@@ -45,23 +45,23 @@
 						<source src="<?php echo $media['url']; ?>" type="video/mp4">
 			
 						<object type="application/x-shockwave-flash" data="http://releases.flowplayer.org/swf/flowplayer.content-3.2.8.swf"
-								width="700" height="320">
+								width="400" height="150">
 							<param name="allowfullscreen" value="true">
 							<param name="allowscriptaccess" value="always">
 							<param name="flashvars" value="<?php echo $media['url']; ?>">
 							<!-- [if IE]><param name="movie" value="http://releases.flowplayer.org/swf/flowplayer.content-3.2.8.swf"><![endif]-->
-							<img src="video.jpg" width="854" height="480" alt="Video">
+							
 							<p>Your browser can’t play HTML5 video. <a href="video.webm">
 									Download it</a> instead.</p>
 						</object>
 					</video>
-			<!--		<video id="my-video" controls height="320" width="700">
+					<video id="my-video" controls height="320" width="700">
 						<source src="<?php echo $media['url']; ?>" type="video/mp4">
 					</video>
 			
 					<script>
 						$(function() {
-							var video = document.createElement("video");
+							var video = $('#my-video');
 							if (typeof(video.canPlayType) == 'undefined' || // detect browsers with no <video> support
 							video.canPlayType('video/mp4') == '') { // detect the ability to play H.264/MP4
 			
@@ -85,14 +85,10 @@
 								video.detach();
 							}
 						});
-					</script>-->
+					</script>
 			<?php
 		}
 		?>
-		<!--	<div class="flowplayer">
-				<video>
-					<source type="video/mp4" src="http://url2.bollywoodmp3.se/%5BSongs.PK%5D%20Shootout%20At%20Wadala%20-%20Laila%20-%20128Kbps%20%5BFunmaza.com%5D.mp3"/>
-				</video>
-			</div>-->
+		</div>-->
 
 	</div>

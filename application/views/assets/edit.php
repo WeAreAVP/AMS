@@ -942,78 +942,82 @@
 					<label><i class="icon-question-sign"></i><b> Publisher:</b></label>
 				</td>
 				<td>
-					<?php
-					if (count($publishers) > 0 && isset($publishers[0]) && ! empty($publishers[0]))
-					{
-						$add = ' ADD ANOTHER PUBLISHER';
-						foreach ($publishers as $index => $publisher)
+					<div id="main_publisher">
+						<?php
+						if (count($publishers) > 0 && isset($publishers[0]) && ! empty($publishers[0]))
 						{
-							?>
-							<div class="edit_form_div">
-								<div>
-									<p>
-										Publisher:
-									</p>
-									<p>
-										<input id="asset_publisher_<?php echo $index; ?>" name="asset_publisher[]" value="<?php echo $publisher; ?>" />
-									</p>
-								</div>
-								<div>
-									<p>
-										Publisher Affiliation:
-									</p>
-									<p>
-										<input id="asset_publisher_affiliation_<?php echo $index; ?>" name="asset_publisher_affiliation[]" value="<?php echo (isset($publisher_affiliation[$index])) ? $publisher_affiliation[$index] : ''; ?>" />
-									</p>
-								</div>
-								<div>
-									<p>
-										Publisher Ref:
-									</p>
-									<p>
-										<input id="asset_publisher_ref_<?php echo $index; ?>" name="asset_publisher_ref[]" value="<?php echo (isset($publisher_ref[$index])) ? $publisher_ref[$index] : ''; ?>" />
-									</p>
-								</div>
-								<div>
-									<p> Publisher Role:</p>
-									<p>
-										<select id="asset_publisher_role_<?php echo $index; ?>" name="asset_publisher_role[]">
-											<option value="">Select Publisher Role</option>
-											<?php
-											foreach ($pbcore_asset_publisher_roles as $row)
-											{
-												$selected = '';
-												if (isset($publisher_role[$index]) && $publisher_role[$index] == $row->value)
-													$selected = 'selected="selected"'
+							$add = ' ADD ANOTHER PUBLISHER';
+							foreach ($publishers as $index => $publisher)
+							{
+								?>
+								<div id="remove_publisher_<?php echo $index; ?>" class="remove_publisher">
+									<div class="edit_form_div">
+										<div>
+											<p>
+												Publisher:
+											</p>
+											<p>
+												<input id="asset_publisher_<?php echo $index; ?>" name="asset_publisher[]" value="<?php echo $publisher; ?>" />
+											</p>
+										</div>
+										<div>
+											<p>
+												Publisher Affiliation:
+											</p>
+											<p>
+												<input id="asset_publisher_affiliation_<?php echo $index; ?>" name="asset_publisher_affiliation[]" value="<?php echo (isset($publisher_affiliation[$index])) ? $publisher_affiliation[$index] : ''; ?>" />
+											</p>
+										</div>
+										<div>
+											<p>
+												Publisher Ref:
+											</p>
+											<p>
+												<input id="asset_publisher_ref_<?php echo $index; ?>" name="asset_publisher_ref[]" value="<?php echo (isset($publisher_ref[$index])) ? $publisher_ref[$index] : ''; ?>" />
+											</p>
+										</div>
+										<div>
+											<p> Publisher Role:</p>
+											<p>
+												<select id="asset_publisher_role_<?php echo $index; ?>" name="asset_publisher_role[]">
+													<option value="">Select Publisher Role</option>
+													<?php
+													foreach ($pbcore_asset_publisher_roles as $row)
+													{
+														$selected = '';
+														if (isset($publisher_role[$index]) && $publisher_role[$index] == $row->value)
+															$selected = 'selected="selected"'
+															?>
+														<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+													<?php }
 													?>
-												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-											<?php }
-											?>
-										</select>
+												</select>
 
-									</p>
-								</div>
-								<div>
-									<p> Publisher Role Source:</p>
-									<p>
-										<input id="asset_publisher_role_source_<?php echo $index; ?>" name="asset_publisher_role_source[]" value="<?php echo (isset($publisher_role_source[$index])) ? $publisher_role_source[$index] : ''; ?>" />
-									</p>
-								</div>
-								<div>
-									<p> Publisher Role Ref:</p>
-									<p>
-										<input id="asset_publisher_role_ref_<?php echo $index; ?>" name="asset_publisher_role_ref[]" value="<?php echo (isset($publisher_role_ref[$index])) ? $publisher_role_ref[$index] : ''; ?>" />
-									</p>
-								</div>
+											</p>
+										</div>
+										<div>
+											<p> Publisher Role Source:</p>
+											<p>
+												<input id="asset_publisher_role_source_<?php echo $index; ?>" name="asset_publisher_role_source[]" value="<?php echo (isset($publisher_role_source[$index])) ? $publisher_role_source[$index] : ''; ?>" />
+											</p>
+										</div>
+										<div>
+											<p> Publisher Role Ref:</p>
+											<p>
+												<input id="asset_publisher_role_ref_<?php echo $index; ?>" name="asset_publisher_role_ref[]" value="<?php echo (isset($publisher_role_ref[$index])) ? $publisher_role_ref[$index] : ''; ?>" />
+											</p>
+										</div>
 
-							</div>
-							<div class="remove_element"><img src="/images/remove-item.png"/></div>
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
-							<?php
+									</div>
+									<div class="remove_element" onclick="removeElement('#remove_publisher_<?php echo $index; ?>', 'publisher');"><img src="/images/remove-item.png" /></div>
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
+								</div>
+								<?php
+							}
 						}
-					}
-					?>
-					<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+						?>
+					</div>
+					<div class="add-new-element" onclick="addElement('#main_publisher', 'publisher');"><i class="icon-plus-sign icon-white"></i><span id="add_publisher"><?php echo $add; ?></span></div>
 				</td>
 
 			</tr>

@@ -458,6 +458,50 @@ function addElement(elementID, type) {
 			cacheLength: 1
 		});
 	}
+	else if (elementID == '#main_publisher') {
+		publisherRoles = '';
+
+		for (cnt in pbcoreContributorRoles)
+		{
+			publisherRoles += '<option value= "' + pbcoreContributorRoles[cnt]['value'] + '">' + pbcoreContributorRoles[cnt]['value'] + '</option>';
+		}
+
+		html = '<div id="remove_publisher_' + number + '" class="remove_publisher"><div class="edit_form_div"><div><p>Publisher:</p>' +
+		'<p><input id="asset_publisher_' + number + '" name="asset_publisher[]" value="" /></p></div>' +
+		'<div><p>Publisher Affiliation:</p><p><input id="asset_publisher_affiliation_' + number + '" name="asset_publisher_affiliation[]" value="" /></p></div>' +
+		'<div><p>Publisher Ref:</p><p><input id="asset_publisher_ref_' + number + '" name="asset_publisher_ref[]" value="" /></p></div>' +
+		'<div><p> Publisher Role:</p><p><select id="asset_publisher_role_' + number + '" name="asset_publisher_role[]">' +
+		'<option value="">Select Publisher Role</option>' + publisherRoles + '</select></p></div><div><p> Publisher Role Source:</p>' +
+		'<p><input id="asset_publisher_role_source_' + number + '" name="asset_publisher_role_source[]" value="" /></p></div>' +
+		'<div><p> Publisher Role Ref:</p><p><input id="asset_publisher_role_ref_' + number + '" name="asset_publisher_role_ref[]" value="" />' +
+		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_publisher_' + number + '\', \'publisher\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+		$('input[name="asset_publisher[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=publishers&column=publisher",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_publisher_affiliation[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=publishers&column=publisher_affiliation",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_publisher_role_source[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=publisher_roles&column=publisher_role_source",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+	}
+	else if (elementID == '#main_contributor') {
+
+	}
 
 
 

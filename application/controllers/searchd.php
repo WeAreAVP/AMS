@@ -50,7 +50,7 @@ class Searchd extends MY_Controller
 	function index(){
 		
 		$data=$this->sphnixrt->select('station_sample',array('start'=>0,'limit'=>1000));
-		debug($data['records']);
+		debug($data);
 		$this->sphnixrt->insert('station_sample',array('cpb_id'=>'1234'),999);
 		$data=$this->sphnixrt->select('station_sample',array('start'=>0,'limit'=>1000));
 		echo count($data['records']);exit;

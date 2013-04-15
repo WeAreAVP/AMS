@@ -141,8 +141,10 @@ function removeElement(elementID, type) {
 			if ($('.remove_' + type).length == 0) {
 				$('#add_' + type).html(' ADD ' + type.replace(/_/g, " ").toUpperCase());
 			}
-			else
+			else {
+				alert(1);
 				$('#add_' + type).html(' ADD ANOTHER ' + type.replace(/_/g, " ").toUpperCase());
+			}
 		}
 	});
 }

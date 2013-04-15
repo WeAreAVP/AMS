@@ -1103,6 +1103,7 @@
 	</form>
 </div>
 <script type="text/javascript">
+								var pbcoreAssetTypes =<?php echo json_encode($pbcore_asset_types); ?>;
 								var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
 								var pbcoreTitleTypes =<?php echo json_encode($pbcore_asset_title_types); ?>;
 								var pbcoreSubjectTypes =<?php echo json_encode($pbcore_asset_subject_types); ?>;

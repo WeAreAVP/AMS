@@ -1,8 +1,8 @@
 $(function() {
-	$("#asset_type").multiselect({
-		noneSelectedText: 'Select Asset Type',
-		selectedList: 3
-	});
+//	$("#asset_type").multiselect({
+//		noneSelectedText: 'Select Asset Type',
+//		selectedList: 3
+//	});
 	$('input[name="asset_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
 	$('input[name="asset_identifier_source[]"]').autocomplete({
 		source: site_url + "autocomplete/values?table=identifiers&column=identifier_source",
@@ -504,6 +504,20 @@ function addElement(elementID, type) {
 		'<p>Right:</p><p><input id="asset_rights_' + number + '" name="asset_rights[]" value="" /></p></div>' +
 		'<div><p> Right Link:</p><p><input id="asset_right_link_' + number + '" name="asset_right_link[]" value="" />' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_right_' + number + '\', \'right\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+	}
+	else if (elementID == '#main_type') {
+		assetTypes = '';
+
+		for (cnt in pbcoreAssetTypes)
+		{
+			assetTypes += '<option value= "' + pbcoreAssetTypes[cnt]['value'] + '">' + pbcoreAssetTypes[cnt]['value'] + '</option>';
+		}
+		html = '<div id="remove_type_' + number + '" class="remove_type"><div class="edit_form_div"><p>' +
+		'<select id="asset_type_' + number + '" name="asset_type[]"><option value="">Select Type</option>' +
+		assetTypes + '</select></p></div>' +
+		'<div class="remove_element" onclick="removeElement(\'#remove_type_' + number + '\', \'type\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
 	}

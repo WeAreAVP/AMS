@@ -539,7 +539,7 @@ function validateForm() {
 		if ($(this).val() != '') {
 			if (!urlregex.test($(this).val())) {
 
-				$('body').scrollTop($(this).parent().parent().offset().top);
+				$('body').scrollTop($(this).parent().parent().offset().top-100);
 				$(this).parent().parent().addClass('error-div');
 				
 			}

@@ -27,6 +27,7 @@
 				<?php
 				$add = ' ADD TYPE';
 				$asset_type_separate = explode(' | ', trim(str_replace('(**)', '', $asset_detail->asset_type)));
+				echo count($asset_type_separate);exit;
 				?>
 				<td class="record-detail-page">
 					<label><i class="icon-question-sign"></i><b> Asset Type:</b></label>

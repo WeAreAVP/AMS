@@ -8,17 +8,17 @@
 	<script type="text/javascript">
     jwplayer("myElement").setup({
         file: "<?php echo $media['url']; ?>",
-        height: 150,
+        height: 320,
 //        image: "/uploads/example.jpg",
-        width: 200
+        width: 700
     });
 </script>
-		<div class="flowplayer">
+<!--		<div class="flowplayer">
 			<video>
 				<source type="video/mp4" src="<?php echo $media['url']; ?>"/>
 
 			</video>
-		</div>
+		</div>-->
 		<div class="clearfix"></div>
 		<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
 <!--		<video controls  width="700" height="320">

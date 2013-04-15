@@ -100,7 +100,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_date','date');"><i class="icon-plus-sign icon-white"></i><span id="add_date"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_date', 'date');"><i class="icon-plus-sign icon-white"></i><span id="add_date"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -154,7 +154,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_local_id','local_id');"><i class="icon-plus-sign icon-white"></i><span id="add_local_id"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_local_id', 'local_id');"><i class="icon-plus-sign icon-white"></i><span id="add_local_id"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -229,7 +229,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_title','title');"><i class="icon-plus-sign icon-white"></i><span id="add_title"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_title', 'title');"><i class="icon-plus-sign icon-white"></i><span id="add_title"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -303,7 +303,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_subject','subject');"><i class="icon-plus-sign icon-white"></i><span id="add_subject"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_subject', 'subject');"><i class="icon-plus-sign icon-white"></i><span id="add_subject"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -364,7 +364,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_description','description');"><i class="icon-plus-sign icon-white"></i><span id="add_description"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_description', 'description');"><i class="icon-plus-sign icon-white"></i><span id="add_description"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -412,7 +412,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_genre','genre');"><i class="icon-plus-sign icon-white"></i><span id="add_genre"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_genre', 'genre');"><i class="icon-plus-sign icon-white"></i><span id="add_genre"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -458,7 +458,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_coverage','coverage');"><i class="icon-plus-sign icon-white"></i><span id="add_coverage"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_coverage', 'coverage');"><i class="icon-plus-sign icon-white"></i><span id="add_coverage"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -527,7 +527,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_audience_level','audience_level');"><i class="icon-plus-sign icon-white"></i><span id="add_audience_level"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_audience_level', 'audience_level');"><i class="icon-plus-sign icon-white"></i><span id="add_audience_level"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -543,66 +543,71 @@
 					<label><i class="icon-question-sign"></i><b> Audience Rating:</b></label>
 				</td>
 				<td>
-					<?php
-					if (count($audience_ratings) > 0 && isset($audience_ratings[0]) && ! empty($audience_ratings[0]))
-					{
-						$add = ' ADD ANOTHER AUDIENCE RATING';
-						foreach ($audience_ratings as $index => $audience_rating)
+					<div id="main_audience_rating">
+						<?php
+						if (count($audience_ratings) > 0 && isset($audience_ratings[0]) && ! empty($audience_ratings[0]))
 						{
-							?>
-							<div class="edit_form_div">
-								<div>
-									<p>
-										Audience Rating:
-									</p>
-									<p>
-										<select id="asset_audience_rating_<?php echo $index; ?>" name="asset_audience_rating[]">
-											<option value="">Select Audience Rating</option>
-											<?php
-											foreach ($pbcore_asset_audience_rating as $row)
-											{
-												$selected = '';
-												if ($audience_rating == $row->value)
-													$selected = 'selected="selected"'
+							$add = ' ADD ANOTHER AUDIENCE RATING';
+							foreach ($audience_ratings as $index => $audience_rating)
+							{
+								?>
+								<div id="remove_audience_rating_<?php echo $index; ?>" class="remove_audience_rating">
+									<div class="edit_form_div">
+										<div>
+											<p>
+												Audience Rating:
+											</p>
+											<p>
+												<select id="asset_audience_rating_<?php echo $index; ?>" name="asset_audience_rating[]">
+													<option value="">Select Audience Rating</option>
+													<?php
+													foreach ($pbcore_asset_audience_rating as $row)
+													{
+														$selected = '';
+														if ($audience_rating == $row->value)
+															$selected = 'selected="selected"'
+															?>
+														<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+													<?php }
 													?>
-												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-											<?php }
-											?>
-										</select>
-									</p>
+												</select>
+											</p>
+										</div>
+										<div>
+											<p> Audience Rating Source:</p>
+											<p>
+												<select id="asset_audience_rating_source_<?php echo $index; ?>" name="asset_audience_rating_source[]">
+													<option value="">Select Audience Rating Source</option>
+													<option value="MPAA" <?php echo (isset($audience_rating_sources[$index]) && $audience_rating_sources[$index] == 'MPAA') ? 'selected="selected"' : ''; ?> >MPAA</option>
+													<option value="TV Parental Guidelines" <?php echo (isset($audience_rating_sources[$index]) && $audience_rating_sources[$index] == 'TV Parental Guidelines') ? 'selected="selected"' : ''; ?>>TV Parental Guidelines</option>
+												</select>
+
+											</p>
+										</div>
+										<div>
+											<p> Audience Rating Ref:</p>
+											<p>
+												<select id="asset_audience_rating_ref_<?php echo $index; ?>" name="asset_audience_rating_ref[]">
+													<option value="">Select Audience Rating Source</option>
+													<option value="http://www.filmratings.com" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.filmratings.com') ? 'selected="selected"' : ''; ?> >http://www.filmratings.com</option>
+													<option value="http://www.tvguidelines.org/ratings.htm" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.tvguidelines.org/ratings.htm') ? 'selected="selected"' : ''; ?>>http://www.tvguidelines.org/ratings.htm</option>
+												</select>
+
+											</p>
+										</div>
+
+
+									</div>
+
+									<div class="remove_element" onclick="removeElement('#remove_audience_rating_<?php echo $index; ?>', 'audience_rating');"><img src="/images/remove-item.png" /></div>
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
 								</div>
-								<div>
-									<p> Audience Rating Source:</p>
-									<p>
-										<select id="asset_audience_rating_source_<?php echo $index; ?>" name="asset_audience_rating_source[]">
-											<option value="">Select Audience Rating Source</option>
-											<option value="MPAA" <?php echo (isset($audience_rating_sources[$index]) && $audience_rating_sources[$index] == 'MPAA') ? 'selected="selected"' : ''; ?> >MPAA</option>
-											<option value="TV Parental Guidelines" <?php echo (isset($audience_rating_sources[$index]) && $audience_rating_sources[$index] == 'TV Parental Guidelines') ? 'selected="selected"' : ''; ?>>TV Parental Guidelines</option>
-										</select>
-
-									</p>
-								</div>
-								<div>
-									<p> Audience Rating Ref:</p>
-									<p>
-										<select id="asset_audience_rating_ref_<?php echo $index; ?>" name="asset_audience_rating_ref[]">
-											<option value="">Select Audience Rating Source</option>
-											<option value="http://www.filmratings.com" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.filmratings.com') ? 'selected="selected"' : ''; ?> >http://www.filmratings.com</option>
-											<option value="http://www.tvguidelines.org/ratings.htm" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.tvguidelines.org/ratings.htm') ? 'selected="selected"' : ''; ?>>http://www.tvguidelines.org/ratings.htm</option>
-										</select>
-
-									</p>
-								</div>
-
-
-							</div>
-							<div class="remove_element"><img src="/images/remove-item.png"/></div>
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
-							<?php
+								<?php
+							}
 						}
-					}
-					?>
-					<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+						?>
+					</div>
+					<div class="add-new-element" onclick="addElement('#main_audience_rating', 'audience_rating');"><i class="icon-plus-sign icon-white"></i><span id="add_audience_level"><?php echo $add; ?></span></div>
 				</td>
 
 			</tr>

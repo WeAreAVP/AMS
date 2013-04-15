@@ -11,13 +11,13 @@
 			<source src="<?php echo $media['url']; ?>" type='video/mp4'>
 
 		</video>
-		<div class="clearfix"></div>
+	<div class="clearfix" style="margin-bottom: 15px;"></div>
 		<object width="400" height="150"> <param name="movie" value="http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf"></param>
 			<param name="flashvars" value="src=<?php echo $media['url']; ?>"></param>
 			<param name="allowFullScreen" value="true"></param>
 			<param name="allowscriptaccess" value="always"></param>
 			<embed src="http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="400" height="150" flashvars="src=<?php echo $media['url']; ?>"></embed></object>
-		<div class="clearfix"></div>	
+		<div class="clearfix" style="margin-bottom: 15px;"></div>	
 		<div id="myElement">Loading the player ...</div>
 		<script type="text/javascript">
 			jwplayer("myElement").setup({
@@ -32,16 +32,16 @@
 				]
 			});
 		</script>
-		<div class="clearfix"></div>
+		<div class="clearfix" style="margin-bottom: 15px;"></div>
 		<div class="flowplayer">
 			<video>
 				<source type="video/mp4" src="<?php echo $media['url']; ?>"/>
 
 			</video><!--
 		</div>-->
-			<div class="clearfix"></div>
-			<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
-			<!--		<video controls  width="700" height="320">
+			<div class="clearfix" style="margin-bottom: 15px;"></div>
+			<!--<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>-->
+					<video controls  width="400" height="150">
 						<source src="<?php echo $media['url']; ?>" type="video/mp4">
 			
 						<object type="application/x-shockwave-flash" data="http://releases.flowplayer.org/swf/flowplayer.content-3.2.8.swf"
@@ -49,12 +49,12 @@
 							<param name="allowfullscreen" value="true">
 							<param name="allowscriptaccess" value="always">
 							<param name="flashvars" value="<?php echo $media['url']; ?>">
-							[if IE]><param name="movie" value="http://releases.flowplayer.org/swf/flowplayer.content-3.2.8.swf"><![endif]
+							<!-- [if IE]><param name="movie" value="http://releases.flowplayer.org/swf/flowplayer.content-3.2.8.swf"><![endif]-->
 							<img src="video.jpg" width="854" height="480" alt="Video">
 							<p>Your browser can’t play HTML5 video. <a href="video.webm">
 									Download it</a> instead.</p>
 						</object>
-					</video>-->
+					</video>
 			<!--		<video id="my-video" controls height="320" width="700">
 						<source src="<?php echo $media['url']; ?>" type="video/mp4">
 					</video>

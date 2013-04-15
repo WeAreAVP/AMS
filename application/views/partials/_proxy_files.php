@@ -4,6 +4,15 @@
 	if ($media)
 	{
 		?>
+	<div id="myElement">Loading the player ...</div>
+	<script type="text/javascript">
+    jwplayer("myElement").setup({
+        file: "<?php echo $media['url']; ?>",
+        height: 150,
+//        image: "/uploads/example.jpg",
+        width: 200
+    });
+</script>
 		<div class="flowplayer">
 			<video>
 				<source type="video/mp4" src="<?php echo $media['url']; ?>"/>

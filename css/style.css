@@ -729,10 +729,10 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     background: #DDD;
     
     float: left;
-    width: 550px;
+    width: 500px;
 }
 .edit_form_div div {
-	padding: 10px;
+	padding: 5px 20px;
 }
 .edit_form_div div p:first-of-type{
 	font-weight: bold;

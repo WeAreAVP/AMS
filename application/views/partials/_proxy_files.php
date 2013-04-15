@@ -6,23 +6,25 @@
 	{
 		?>
 		<video class="video-js vjs-default-skin" controls
-			   preload="auto" width="640" height="264"
+			   preload="auto" width="400" height="150"
 			   data-setup="{}">
 			<source src="<?php echo $media['url']; ?>" type='video/mp4'>
-			
+
 		</video>
-		<object width="600" height="409"> <param name="movie" value="http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf"></param>
+		<div class="clearfix"></div>
+		<object width="400" height="150"> <param name="movie" value="http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf"></param>
 			<param name="flashvars" value="src=<?php echo $media['url']; ?>"></param>
 			<param name="allowFullScreen" value="true"></param>
 			<param name="allowscriptaccess" value="always"></param>
-			<embed src="http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="409" flashvars="src=<?php echo $media['url']; ?>"></embed></object>
+			<embed src="http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="400" height="150" flashvars="src=<?php echo $media['url']; ?>"></embed></object>
+		<div class="clearfix"></div>	
 		<div id="myElement">Loading the player ...</div>
 		<script type="text/javascript">
 			jwplayer("myElement").setup({
 				file: "<?php echo $media['url']; ?>",
-				height: 320,
-	//        image: "/uploads/example.jpg",
-				width: 700,
+				height: 150,
+				//        image: "/uploads/example.jpg",
+				width: 400,
 				'modes': [
 					{type: 'html5'},
 					{type: 'flash', src: "/js/jwplayer/jwplayer.flash.swf"},
@@ -30,6 +32,7 @@
 				]
 			});
 		</script>
+		<div class="clearfix"></div>
 		<div class="flowplayer">
 			<video>
 				<source type="video/mp4" src="<?php echo $media['url']; ?>"/>

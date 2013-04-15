@@ -100,7 +100,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_date');"><i class="icon-plus-sign icon-white"></i><span id="add_date"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_date','date');"><i class="icon-plus-sign icon-white"></i><span id="add_date"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -154,7 +154,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_local_id');"><i class="icon-plus-sign icon-white"></i><span id="add_local_id"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_local_id','local_id');"><i class="icon-plus-sign icon-white"></i><span id="add_local_id"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -229,7 +229,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_title');"><i class="icon-plus-sign icon-white"></i><span id="add_title"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_title','title');"><i class="icon-plus-sign icon-white"></i><span id="add_title"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -303,7 +303,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_subject');"><i class="icon-plus-sign icon-white"></i><span id="add_subject"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_subject','subject');"><i class="icon-plus-sign icon-white"></i><span id="add_subject"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -364,7 +364,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_description');"><i class="icon-plus-sign icon-white"></i><span id="add_description"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_description','description');"><i class="icon-plus-sign icon-white"></i><span id="add_description"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -412,7 +412,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_genre');"><i class="icon-plus-sign icon-white"></i><span id="add_genre"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_genre','genre');"><i class="icon-plus-sign icon-white"></i><span id="add_genre"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -458,7 +458,7 @@
 						}
 						?>
 					</div>
-					<div class="add-new-element" onclick="addElement('#main_coverage');"><i class="icon-plus-sign icon-white"></i><span id="add_coverage"><?php echo $add; ?></span></div>
+					<div class="add-new-element" onclick="addElement('#main_coverage','coverage');"><i class="icon-plus-sign icon-white"></i><span id="add_coverage"><?php echo $add; ?></span></div>
 
 				</td>
 
@@ -474,56 +474,60 @@
 					<label><i class="icon-question-sign"></i><b> Audience Level:</b></label>
 				</td>
 				<td>
-					<?php
-					if (count($audience_levels) > 0 && isset($audience_levels[0]) && ! empty($audience_levels[0]))
-					{
-						$add = ' ADD ANOTHER AUDIENCE LEVEL';
-						foreach ($audience_levels as $index => $audience_level)
+					<div id="main_audience_level">
+						<?php
+						if (count($audience_levels) > 0 && isset($audience_levels[0]) && ! empty($audience_levels[0]))
 						{
-							?>
-							<div class="edit_form_div">
-								<div>
-									<p>
-										Audience Level:
-									</p>
-									<p>
-										<select id="asset_audience_level_<?php echo $index; ?>" name="asset_audience_level[]">
-											<option value="">Select Audience Level</option>
-											<?php
-											foreach ($pbcore_asset_audience_level as $row)
-											{
-												$selected = '';
-												if ($audience_level == $row->value)
-													$selected = 'selected="selected"'
+							$add = ' ADD ANOTHER AUDIENCE LEVEL';
+							foreach ($audience_levels as $index => $audience_level)
+							{
+								?>
+								<div id="remove_audience_level_<?php echo $index; ?>" class="remove_audience_level">
+									<div class="edit_form_div">
+										<div>
+											<p>
+												Audience Level:
+											</p>
+											<p>
+												<select id="asset_audience_level_<?php echo $index; ?>" name="asset_audience_level[]">
+													<option value="">Select Audience Level</option>
+													<?php
+													foreach ($pbcore_asset_audience_level as $row)
+													{
+														$selected = '';
+														if ($audience_level == $row->value)
+															$selected = 'selected="selected"'
+															?>
+														<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+													<?php }
 													?>
-												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-											<?php }
-											?>
-										</select>
-									</p>
-								</div>
-								<div>
-									<p> Audience Level Source:</p>
-									<p>
-										<input id="asset_audience_level_source_<?php echo $index; ?>" name="asset_audience_level_source[]" value="<?php echo (isset($audience_level_sources[$index])) ? $audience_level_sources[$index] : ''; ?>" />
-									</p>
-								</div>
-								<div>
-									<p> Audience Level Ref:</p>
-									<p>
-										<input id="asset_audience_level_ref_<?php echo $index; ?>" name="asset_audience_level_ref[]" value="<?php echo (isset($audience_level_refs[$index])) ? $audience_level_refs[$index] : ''; ?>" />
-									</p>
-								</div>
+												</select>
+											</p>
+										</div>
+										<div>
+											<p> Audience Level Source:</p>
+											<p>
+												<input id="asset_audience_level_source_<?php echo $index; ?>" name="asset_audience_level_source[]" value="<?php echo (isset($audience_level_sources[$index])) ? $audience_level_sources[$index] : ''; ?>" />
+											</p>
+										</div>
+										<div>
+											<p> Audience Level Ref:</p>
+											<p>
+												<input id="asset_audience_level_ref_<?php echo $index; ?>" name="asset_audience_level_ref[]" value="<?php echo (isset($audience_level_refs[$index])) ? $audience_level_refs[$index] : ''; ?>" />
+											</p>
+										</div>
 
 
-							</div>
-							<div class="remove_element"><img src="/images/remove-item.png"/></div>
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
-							<?php
+									</div>
+									<div class="remove_element" onclick="removeElement('#remove_audience_level_<?php echo $index; ?>', 'audience_level');"><img src="/images/remove-item.png" /></div>
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
+								</div>
+								<?php
+							}
 						}
-					}
-					?>
-					<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+						?>
+					</div>
+					<div class="add-new-element" onclick="addElement('#main_audience_level','audience_level');"><i class="icon-plus-sign icon-white"></i><span id="add_audience_level"><?php echo $add; ?></span></div>
 
 				</td>
 

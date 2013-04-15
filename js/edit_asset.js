@@ -138,18 +138,16 @@ function removeElement(elementID, type) {
 	}, {
 		"complete": function() {
 			$(elementID).remove();
-			alert('.remove_' + type);
 			if ($('.remove_' + type).length == 0) {
 				$('#add_' + type).html(' ADD ' + type.replace(/_/g, " ").toUpperCase());
 			}
 			else {
-				alert(1);
 				$('#add_' + type).html(' ADD ANOTHER ' + type.replace(/_/g, " ").toUpperCase());
 			}
 		}
 	});
 }
-function addElement(elementID) {
+function addElement(elementID, type) {
 	var number = 10 + Math.floor(Math.random() * 100);
 	if (elementID == '#main_local_id') {
 
@@ -288,5 +286,15 @@ function addElement(elementID) {
 		'</select></p></div></div><div class="remove_element" onclick="removeElement(\'#remove_coverage_' + number + '\', \'coverage\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
+	}
+
+
+
+
+	if ($('.remove_' + type).length == 0) {
+		$('#add_' + type).html(' ADD ' + type.replace(/_/g, " ").toUpperCase());
+	}
+	else {
+		$('#add_' + type).html(' ADD ANOTHER ' + type.replace(/_/g, " ").toUpperCase());
 	}
 }

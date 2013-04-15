@@ -37,8 +37,8 @@
 			<video>
 				<source type="video/mp4" src="<?php echo $media['url']; ?>"/>
 
-			</video><!--
-		</div>-->
+			</video>
+		</div>
 			<div class="clearfix" style="margin-bottom: 15px;"></div>
 			<!--<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>-->
 					<video controls  width="400" height="150">

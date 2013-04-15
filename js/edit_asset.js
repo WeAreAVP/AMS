@@ -310,7 +310,7 @@ function addElement(elementID, type) {
 			cacheLength: 1
 		});
 	}
-	else if (elementID = '#main_audience_rating') {
+	else if (elementID == '#main_audience_rating') {
 		alert(elementID);
 		audienceRating = '';
 

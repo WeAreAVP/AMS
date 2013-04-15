@@ -48,7 +48,7 @@
 			
 					<script>
 						$(function() {
-							var video = $('#my-video');
+							var video = document.getElementById('#my-video');
 							if (typeof(video.canPlayType) == 'undefined' || // detect browsers with no <video> support
 							video.canPlayType('video/mp4') == '') { // detect the ability to play H.264/MP4
 			

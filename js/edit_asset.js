@@ -538,8 +538,8 @@ function validateForm() {
 		"^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
 		if ($(this).val() != '') {
 			if (!urlregex.test($(this).val())) {
-//				/$(this).parent().parent().offset().top
-				$(this).parent().parent().scrollTop(100);
+
+				$('body').scrollTop($(this).parent().parent().offset().top);
 				$(this).parent().parent().addClass('error-div');
 				
 			}

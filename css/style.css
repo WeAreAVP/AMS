@@ -752,3 +752,10 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     border-radius: 3px;
     cursor: pointer;
 }
+.error-div{
+	background: #c65f5a;
+	color: white;
+}
+.error-div span{
+	color: white !important;
+}

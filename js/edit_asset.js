@@ -551,6 +551,9 @@ function validateForm() {
 					return false;
 
 				}
+				else{
+					$(this).parent().parent().removeClass('error-div');
+				}
 			}
 
 		});

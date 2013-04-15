@@ -426,14 +426,14 @@ function addElement(elementID, type) {
 			contributorRoles += '<option value= "' + pbcoreContributorRoles[cnt]['value'] + '">' + pbcoreContributorRoles[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_contributor_' + number + '" class="remove_contributor"><div class="edit_form_div"><div><p>Contributor:</p>' +
-		'<p><input id="asset_contributor_name_' + number + '" name="asset_contributor_name[]" value="<?php echo $contributor_name; ?>" /></p></div>' +
-		'<div><p>Contributor Affiliation:</p><p><input id="asset_contributor_affiliation_<?php echo $index; ?>" name="asset_contributor_affiliation[]" value="" /></p>' +
-		'</div><div><p>Contributor Ref:</p><p><input id="asset_contributor_ref_<?php echo $index; ?>" name="asset_contributor_ref[]" value="" /></p>' +
-		'</div><div><p> Contributor Role:</p><p><select id="asset_contributor_role_<?php echo $index; ?>" name="asset_contributor_role[]">' +
+		'<p><input id="asset_contributor_name_' + number + '" name="asset_contributor_name[]" value="" /></p></div>' +
+		'<div><p>Contributor Affiliation:</p><p><input id="asset_contributor_affiliation_' + number + '" name="asset_contributor_affiliation[]" value="" /></p>' +
+		'</div><div><p>Contributor Ref:</p><p><input id="asset_contributor_ref_' + number + '" name="asset_contributor_ref[]" value="" /></p>' +
+		'</div><div><p> Contributor Role:</p><p><select id="asset_contributor_role_' + number + '" name="asset_contributor_role[]">' +
 		'<option value="">Select Contributor Role</option>' + contributorRoles + '</select></p></div><div><p> Contributor Role Source:</p>' +
-		'<p><input id="asset_contributor_role_source_<?php echo $index; ?>" name="asset_contributor_role_source[]" value="" /></p>' +
-		'</div><div><p> Contributor Role Ref:</p><p><input id="asset_contributor_role_ref_<?php echo $index; ?>" name="asset_contributor_role_ref[]" value="" />' +
-		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_contributor_<?php echo $index; ?>\', \'contributor\');"><img src="/images/remove-item.png" /></div>' +
+		'<p><input id="asset_contributor_role_source_' + number + '" name="asset_contributor_role_source[]" value="" /></p>' +
+		'</div><div><p> Contributor Role Ref:</p><p><input id="asset_contributor_role_ref_' + number + '" name="asset_contributor_role_ref[]" value="" />' +
+		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_contributor_' + number + '\', \'contributor\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
 		$('input[name="asset_contributor_name[]"]').autocomplete({

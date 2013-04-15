@@ -533,20 +533,27 @@ function addElement(elementID, type) {
 	}
 }
 function validateForm() {
-	$('input[name="asset_identifier_ref[]"]').each(function() {
-		var urlregex = new RegExp(
-		"^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
-		if ($(this).val() != '') {
-			if (!urlregex.test($(this).val())) {
+	var name = new Array('asset_identifier_ref', 'asset_title_ref', 'asset_subject_ref', 'asset_genre_ref',
+	'asset_audience_level_ref', 'asset_annotation_ref', 'asset_relation_ref', 'asset_creator_ref', 'asset_creator_role_ref',
+	'asset_contributor_ref', 'asset_contributor_role_ref', 'asset_publisher_ref', 'asset_publisher_role_ref', 'asset_right_link');
+	for (cnt in name) {
+		$('input[name="' + name[cnt] + '[]"]').each(function() {
+			var urlregex = new RegExp(
+			"^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
+			if ($(this).val() != '') {
+				if (!urlregex.test($(this).val())) {
 
-				$('body').animate({
-					scrollTop: $(this).parent().parent().offset().top - 100
+					$('body').animate({
+						scrollTop: $(this).parent().parent().offset().top - 100
 
-				}, 'slow');
-				$(this).parent().parent().addClass('error-div');
+					}, 'slow');
+					$(this).parent().parent().addClass('error-div');
+					return false;
 
+				}
 			}
-		}
 
-	});
+		});
+	}
+
 }

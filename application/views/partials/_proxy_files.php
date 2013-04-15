@@ -5,7 +5,10 @@
 	{
 		?>
 	<object width="600" height="409"> <param name="movie" value="http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf"></param>
-		<param name="flashvars" value="src=<?php echo $media['url']; ?>&configuration=Reload+the+page+to+get+source+for%3A+<?php echo $media['url']; ?>"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="409" flashvars="src=<?php echo $media['url']; ?>&poster=http%3A%2F%2Fosmf.org%2Fimages%2Fposter_cathy_fmp.jpg&configuration=Reload+the+page+to+get+source+for%3A+<?php echo $media['url']; ?>"></embed></object>
+		<param name="flashvars" value="src=<?php echo $media['url']; ?>"></param>
+		<param name="allowFullScreen" value="true"></param>
+		<param name="allowscriptaccess" value="always"></param>
+		<embed src="http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="409" flashvars="src=<?php echo $media['url']; ?>"></embed></object>
 	<div id="myElement">Loading the player ...</div>
 	<script type="text/javascript">
     jwplayer("myElement").setup({
@@ -20,11 +23,11 @@
                 ]
     });
 </script>
-<!--		<div class="flowplayer">
+		<div class="flowplayer">
 			<video>
 				<source type="video/mp4" src="<?php echo $media['url']; ?>"/>
 
-			</video>
+			</video><!--
 		</div>-->
 		<div class="clearfix"></div>
 		<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>

@@ -499,8 +499,13 @@ function addElement(elementID, type) {
 			cacheLength: 1
 		});
 	}
-	else if (elementID == '#main_contributor') {
-
+	else if (elementID == '#main_right') {
+		html = '<div id="remove_right_' + number + '" class="remove_right"><div class="edit_form_div"><div>' +
+		'<p>Right:</p><p><input id="asset_rights_' + number + '" name="asset_rights[]" value="" /></p></div>' +
+		'<div><p> Right Link:</p><p><input id="asset_right_link_' + number + '" name="asset_right_link[]" value="" />' +
+		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_right_' + number + '\', \'right\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
 	}
 
 

@@ -1031,37 +1031,41 @@
 					<label><i class="icon-question-sign"></i><b> Right Summary:</b></label>
 				</td>
 				<td>
-					<?php
-					if (count($rights) > 0 && isset($rights[0]) && ! empty($rights[0]))
-					{
-						$add = ' ADD ANOTHER RIGHT';
-						foreach ($rights as $index => $right)
+					<div id="main_right">
+						<?php
+						if (count($rights) > 0 && isset($rights[0]) && ! empty($rights[0]))
 						{
-							?>
-							<div class="edit_form_div">
-								<div>
-									<p>
-										Right:
-									</p>
-									<p>
-										<input id="asset_rights_<?php echo $index; ?>" name="asset_rights[]" value="<?php echo $right; ?>" />
-									</p>
-								</div>
-								<div>
-									<p> Right Link:</p>
-									<p>
-										<input id="asset_right_link_<?php echo $index; ?>" name="asset_right_link[]" value="<?php echo (isset($rights_link[$index])) ? $rights_link[$index] : ''; ?>" />
+							$add = ' ADD ANOTHER RIGHT';
+							foreach ($rights as $index => $right)
+							{
+								?>
+								<div id="remove_right_<?php echo $index; ?>" class="remove_right">
+									<div class="edit_form_div">
+										<div>
+											<p>
+												Right:
+											</p>
+											<p>
+												<input id="asset_rights_<?php echo $index; ?>" name="asset_rights[]" value="<?php echo $right; ?>" />
+											</p>
+										</div>
+										<div>
+											<p> Right Link:</p>
+											<p>
+												<input id="asset_right_link_<?php echo $index; ?>" name="asset_right_link[]" value="<?php echo (isset($rights_link[$index])) ? $rights_link[$index] : ''; ?>" />
 
-									</p>
+											</p>
+										</div>
+									</div>
+									<div class="remove_element" onclick="removeElement('#remove_right_<?php echo $index; ?>', 'right');"><img src="/images/remove-item.png" /></div>
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
 								</div>
-							</div>
-							<div class="remove_element"><img src="/images/remove-item.png"/></div>
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
-							<?php
+								<?php
+							}
 						}
-					}
-					?>
-					<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+						?>
+					</div>
+					<div class="add-new-element" onclick="addElement('#main_right', 'right');"><i class="icon-plus-sign icon-white"></i><span id="add_right"><?php echo $add; ?></span></div>
 				</td>
 
 			</tr>

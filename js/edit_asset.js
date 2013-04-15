@@ -331,7 +331,7 @@ function addElement(elementID, type) {
 		$(elementID).append(html);
 	}
 	else if (elementID == '#main_annotation') {
-		
+
 		html = '<div id="remove_annotation_' + number + '" class="remove_annotation"><div class="edit_form_div"><div>' +
 		'<p>Annotation:</p><p><input id="asset_annotation_' + number + '" name="asset_annotation[]" value="" />' +
 		'</p></div><div><p> Annotation Type:</p><p><input id="asset_annotation_type_' + number + '" name="asset_annotation_type[]" value="" />' +
@@ -341,6 +341,37 @@ function addElement(elementID, type) {
 		$(elementID).append(html);
 		$('input[name="asset_annotation_type[]"]').autocomplete({
 			source: site_url + "autocomplete/values?table=annotations&column=annotation_type",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+	}
+	else if (elementID == '#main_relation') {
+		relationType = '';
+
+		for (cnt in pbcoreRelationType)
+		{
+			relationType += '<option value= "' + pbcoreRelationType[cnt]['value'] + '">' + pbcoreRelationType[cnt]['value'] + '</option>';
+		}
+		html = '<div id="remove_relation_<?php echo $index; ?>" class="remove_relation"><div class="edit_form_div"><div><p>Relation:</p>' +
+		'<p><input id="asset_relation_identifier_<?php echo $index; ?>" name="asset_relation_identifier[]" value="" /></p></div>' +
+		'<div><p> Relation Type:</p><p><select id="asset_relation_type_<?php echo $index; ?>" name="asset_relation_type[]">' +
+		'<option value="">Select Relation Type</option>' + relationType + '</select></p></div><div><p> Relation Source:</p><p>' +
+		'<input id="asset_relation_source_<?php echo $index; ?>" name="asset_relation_source[]" value="" /></p></div>' +
+		'<div><p> Relation Ref:</p><p><input id="asset_relation_ref_<?php echo $index; ?>" name="asset_relation_ref[]" value="" />' +
+		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_relation_<?php echo $index; ?>\', \'relation\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+		$('input[name="asset_relation_identifier[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=assets_relations&column=relation_identifier",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_relation_source[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=relation_types&column=relation_type_source",
 			minLength: 1,
 			delay: 100,
 			enable: true,

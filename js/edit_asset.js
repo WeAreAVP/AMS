@@ -536,6 +536,6 @@ function validateForm() {
 	$('input[name="asset_identifier_ref[]"]').each(function() {
 		var urlregex = new RegExp(
 		"^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
-		console.log($(this).val().test(textval));
+		return urlregex.test($(this).val());
 	});
 }

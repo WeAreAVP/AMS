@@ -532,3 +532,10 @@ function addElement(elementID, type) {
 		$('#add_' + type).html(' ADD ANOTHER ' + type.replace(/_/g, " ").toUpperCase());
 	}
 }
+function validateForm() {
+	$('input[name="asset_identifier_ref[]"]').each(function() {
+		var urlregex = new RegExp(
+		"^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
+		console.log($(this).val().test(textval));
+	});
+}

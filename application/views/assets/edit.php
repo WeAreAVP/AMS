@@ -1099,7 +1099,7 @@
 			<tr>
 				<td colspan="2">
 					<input type="button" value="Cancel" class="btn"/>
-					<input type="submit" value="Save Changes" class="btn btn-primary"/>
+					<input type="button" onclick="validateForm();" value="Save Changes" class="btn btn-primary"/>
 				</td>
 			</tr>
 		</table>

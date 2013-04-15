@@ -350,9 +350,9 @@ function addElement(elementID, type) {
 	else if (elementID == '#main_relation') {
 		relationType = '';
 
-		for (cnt in pbcoreRelationType)
+		for (cnt in pbcoreRelationTypes)
 		{
-			relationType += '<option value= "' + pbcoreRelationType[cnt]['value'] + '">' + pbcoreRelationType[cnt]['value'] + '</option>';
+			relationType += '<option value= "' + pbcoreRelationTypes[cnt]['value'] + '">' + pbcoreRelationTypes[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_relation_<?php echo $index; ?>" class="remove_relation"><div class="edit_form_div"><div><p>Relation:</p>' +
 		'<p><input id="asset_relation_identifier_<?php echo $index; ?>" name="asset_relation_identifier[]" value="" /></p></div>' +

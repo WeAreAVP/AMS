@@ -1,4 +1,5 @@
-<div>
+<div class="row">
+	
 	<form class="form-horizontal" method="POST" action="<?php echo $this->uri->uri_string(); ?>">
 		<table cellPadding="8" class="record-detail-table">
 			<tr>
@@ -44,20 +45,20 @@
 									<div class="edit_form_div">
 										<div><p>Asset Type:</p></div>
 										<div><p>
-											<select id="asset_type_<?php echo $index; ?>" name="asset_type[]">
-												<option value="">Select Type</option>
-												<?php
-												foreach ($pbcore_asset_types as $row)
-												{
-													$selected = '';
-													if ($type == $row->value)
-														$selected = 'selected="selected"'
-														?>
-													<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-												<?php }
-												?>
-											</select>
-										</p>
+												<select id="asset_type_<?php echo $index; ?>" name="asset_type[]">
+													<option value="">Select Type</option>
+													<?php
+													foreach ($pbcore_asset_types as $row)
+													{
+														$selected = '';
+														if ($type == $row->value)
+															$selected = 'selected="selected"'
+															?>
+														<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+													<?php }
+													?>
+												</select>
+											</p>
 										</div>
 									</div>
 									<div class="remove_element" onclick="removeElement('#remove_type_<?php echo $index; ?>', 'type');"><img src="/images/remove-item.png" /></div>

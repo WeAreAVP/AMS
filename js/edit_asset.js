@@ -310,25 +310,41 @@ function addElement(elementID, type) {
 			cacheLength: 1
 		});
 	}
-	else if(elementID='#main_audience_rating'){
+	else if (elementID = '#main_audience_rating') {
 		audienceRating = '';
 
 		for (cnt in pbcoreAudienceRating)
 		{
 			audienceRating += '<option value= "' + pbcoreAudienceRating[cnt]['value'] + '">' + pbcoreAudienceRating[cnt]['value'] + '</option>';
 		}
-		
-		html='<div id="remove_audience_rating_' + number + '" class="remove_audience_rating"><div class="edit_form_div"><div>'+
-			'<p>Audience Rating:</p><p><select id="asset_audience_rating_' + number + '" name="asset_audience_rating[]">'+
-			'<option value="">Select Audience Rating</option>'+audienceRating+'</select></p></div><div><p> Audience Rating Source:</p>'+
-			'<p><select id="asset_audience_rating_source_' + number + '" name="asset_audience_rating_source[]"><option value="">Select Audience Rating Source</option>'+
-			'<option value="MPAA" >MPAA</option><option value="TV Parental Guidelines" >TV Parental Guidelines</option></select></p></div>'+
-			'<div><p> Audience Rating Ref:</p><p><select id="asset_audience_rating_ref_' + number + '" name="asset_audience_rating_ref[]">'+
-			'<option value="">Select Audience Rating Source</option><option value="http://www.filmratings.com">http://www.filmratings.com</option>'+
-			'<option value="http://www.tvguidelines.org/ratings.htm">http://www.tvguidelines.org/ratings.htm</option></select></p></div></div>'+
-			'<div class="remove_element" onclick="removeElement(\'#remove_audience_rating_' + number + '\', \'audience_rating\');"><img src="/images/remove-item.png" /></div>'+
-			'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
-			$(elementID).append(html);
+
+		html = '<div id="remove_audience_rating_' + number + '" class="remove_audience_rating"><div class="edit_form_div"><div>' +
+		'<p>Audience Rating:</p><p><select id="asset_audience_rating_' + number + '" name="asset_audience_rating[]">' +
+		'<option value="">Select Audience Rating</option>' + audienceRating + '</select></p></div><div><p> Audience Rating Source:</p>' +
+		'<p><select id="asset_audience_rating_source_' + number + '" name="asset_audience_rating_source[]"><option value="">Select Audience Rating Source</option>' +
+		'<option value="MPAA" >MPAA</option><option value="TV Parental Guidelines" >TV Parental Guidelines</option></select></p></div>' +
+		'<div><p> Audience Rating Ref:</p><p><select id="asset_audience_rating_ref_' + number + '" name="asset_audience_rating_ref[]">' +
+		'<option value="">Select Audience Rating Ref</option><option value="http://www.filmratings.com">http://www.filmratings.com</option>' +
+		'<option value="http://www.tvguidelines.org/ratings.htm">http://www.tvguidelines.org/ratings.htm</option></select></p></div></div>' +
+		'<div class="remove_element" onclick="removeElement(\'#remove_audience_rating_' + number + '\', \'audience_rating\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+	}
+	else if (elementID == '#main_annotation') {
+		html = '<div id="remove_annotation_' + number + '" class="remove_annotation"><div class="edit_form_div"><div>' +
+		'<p>Annotation:</p><p><input id="asset_annotation_' + number + '" name="asset_annotation[]" value="" />' +
+		'</p></div><div><p> Annotation Type:</p><p><input id="asset_annotation_type_' + number + '" name="asset_annotation_type[]" value="" />' +
+		'</p></div><div><p> Annotation Ref:</p><p><input id="asset_annotation_ref_' + number + '" name="asset_annotation_ref[]" value="" />' +
+		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_annotation_' + number + '\', \'annotation\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+		$('input[name="asset_annotation_type[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=annotations&column=annotation_type",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
 	}
 
 

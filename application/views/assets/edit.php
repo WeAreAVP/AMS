@@ -588,7 +588,7 @@
 											<p> Audience Rating Ref:</p>
 											<p>
 												<select id="asset_audience_rating_ref_<?php echo $index; ?>" name="asset_audience_rating_ref[]">
-													<option value="">Select Audience Rating Source</option>
+													<option value="">Select Audience Rating Ref</option>
 													<option value="http://www.filmratings.com" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.filmratings.com') ? 'selected="selected"' : ''; ?> >http://www.filmratings.com</option>
 													<option value="http://www.tvguidelines.org/ratings.htm" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.tvguidelines.org/ratings.htm') ? 'selected="selected"' : ''; ?>>http://www.tvguidelines.org/ratings.htm</option>
 												</select>
@@ -622,45 +622,49 @@
 					<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
 				</td>
 				<td>
-					<?php
-					if (count($annotations) > 0 && isset($annotations[0]) && ! empty($annotations[0]))
-					{
-						$add = ' ADD ANOTHER ANNOTATION';
-						foreach ($annotations as $index => $annotation)
+					<div id="main_annotation">
+						<?php
+						if (count($annotations) > 0 && isset($annotations[0]) && ! empty($annotations[0]))
 						{
-							?>
-							<div class="edit_form_div">
-								<div>
-									<p>
-										Annotation:
-									</p>
-									<p>
-										<input id="asset_annotation_<?php echo $index; ?>" name="asset_annotation[]" value="<?php echo $annotation; ?>" />
-									</p>
-								</div>
-								<div>
-									<p> Annotation Type:</p>
-									<p>
-										<input id="asset_annotation_type_<?php echo $index; ?>" name="asset_annotation_type[]" value="<?php echo (isset($annotation_types[$index])) ? $annotation_types[$index] : ''; ?>" />
+							$add = ' ADD ANOTHER ANNOTATION';
+							foreach ($annotations as $index => $annotation)
+							{
+								?>
+								<div id="remove_annotation_<?php echo $index; ?>" class="remove_annotation">
+									<div class="edit_form_div">
+										<div>
+											<p>
+												Annotation:
+											</p>
+											<p>
+												<input id="asset_annotation_<?php echo $index; ?>" name="asset_annotation[]" value="<?php echo $annotation; ?>" />
+											</p>
+										</div>
+										<div>
+											<p> Annotation Type:</p>
+											<p>
+												<input id="asset_annotation_type_<?php echo $index; ?>" name="asset_annotation_type[]" value="<?php echo (isset($annotation_types[$index])) ? $annotation_types[$index] : ''; ?>" />
 
-									</p>
-								</div>
-								<div>
-									<p> Annotation Ref:</p>
-									<p>
-										<input id="asset_annotation_ref_<?php echo $index; ?>" name="asset_annotation_ref[]" value="<?php echo (isset($annotation_refs[$index])) ? $annotation_refs[$index] : ''; ?>" />
-									</p>
-								</div>
+											</p>
+										</div>
+										<div>
+											<p> Annotation Ref:</p>
+											<p>
+												<input id="asset_annotation_ref_<?php echo $index; ?>" name="asset_annotation_ref[]" value="<?php echo (isset($annotation_refs[$index])) ? $annotation_refs[$index] : ''; ?>" />
+											</p>
+										</div>
 
 
-							</div>
-							<div class="remove_element"><img src="/images/remove-item.png"/></div>
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
-							<?php
+									</div>
+									<div class="remove_element" onclick="removeElement('#remove_annotation_<?php echo $index; ?>', 'annotation');"><img src="/images/remove-item.png" /></div>
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
+								</div>
+								<?php
+							}
 						}
-					}
-					?>
-					<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+						?>
+					</div>
+					<div class="add-new-element" onclick="addElement('#main_annotation', 'annotation');"><i class="icon-plus-sign icon-white"></i><span id="add_annotation"><?php echo $add; ?></span></div>
 				</td>
 
 			</tr>

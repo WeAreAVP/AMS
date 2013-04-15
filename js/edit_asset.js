@@ -287,6 +287,29 @@ function addElement(elementID, type) {
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
 	}
+	else if (elementID == '#main_audience_level') {
+		audienceLevel = '';
+
+		for (cnt in pbcoreAudienceLevel)
+		{
+			audienceLevel += '<option value= "' + pbcoreAudienceLevel[cnt]['value'] + '">' + pbcoreAudienceLevel[cnt]['value'] + '</option>';
+		}
+		html = '<div id="remove_audience_level_' + number + '" class="remove_audience_level"><div class="edit_form_div">' +
+		'<div><p>Audience Level:</p><p><select id="asset_audience_level_' + number + '" name="asset_audience_level[]">' +
+		'<option value="">Select Audience Level</option>' + audienceLevel + '</select></p></div><div><p> Audience Level Source:</p>' +
+		'<p><input id="asset_audience_level_source_' + number + '" name="asset_audience_level_source[]" value="" />' +
+		'</p></div><div><p> Audience Level Ref:</p><p><input id="asset_audience_level_ref_' + number + '" name="asset_audience_level_ref[]" value="" />' +
+		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_audience_level_' + number + '\', \'audience_level\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+		$('input[name="asset_audience_level_source[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=audience_levels&column=audience_level_source",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+	}
 
 
 

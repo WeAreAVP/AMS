@@ -533,9 +533,11 @@ function addElement(elementID, type) {
 	}
 }
 function validateForm() {
+	console.log($('input[name="asset_identifier_ref[]"]').length);
 	$('input[name="asset_identifier_ref[]"]').each(function() {
 		var urlregex = new RegExp(
 		"^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
 		console.log(urlregex.test($(this).val()));
+		
 	});
 }

@@ -10,7 +10,12 @@
         file: "<?php echo $media['url']; ?>",
         height: 320,
 //        image: "/uploads/example.jpg",
-        width: 700
+        width: 700,
+		'modes': [
+                    {type: 'html5'},
+                    {type: 'flash', src: "/js/jwplayer/jwplayer.flash.swf"},
+                    {type: 'download'}
+                ]
     });
 </script>
 <!--		<div class="flowplayer">

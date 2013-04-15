@@ -42,7 +42,8 @@
 								?>
 								<div id="remove_type_<?php echo $index; ?>" class="remove_type">
 									<div class="edit_form_div">
-										<p>
+										<div><p>Asset Type:</p></div>
+										<div><p>
 											<select id="asset_type_<?php echo $index; ?>" name="asset_type[]">
 												<option value="">Select Type</option>
 												<?php
@@ -57,6 +58,7 @@
 												?>
 											</select>
 										</p>
+										</div>
 									</div>
 									<div class="remove_element" onclick="removeElement('#remove_type_<?php echo $index; ?>', 'type');"><img src="/images/remove-item.png" /></div>
 									<div class="clearfix" style="margin-bottom: 10px;"></div>

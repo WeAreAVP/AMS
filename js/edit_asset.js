@@ -514,9 +514,9 @@ function addElement(elementID, type) {
 		{
 			assetTypes += '<option value= "' + pbcoreAssetTypes[cnt]['value'] + '">' + pbcoreAssetTypes[cnt]['value'] + '</option>';
 		}
-		html = '<div id="remove_type_' + number + '" class="remove_type"><div class="edit_form_div"><p>' +
+		html = '<div id="remove_type_' + number + '" class="remove_type"><div class="edit_form_div"><div><p>Asset Type:</p></div><div><p>' +
 		'<select id="asset_type_' + number + '" name="asset_type[]"><option value="">Select Type</option>' +
-		assetTypes + '</select></p></div>' +
+		assetTypes + '</select></p></div></div>' +
 		'<div class="remove_element" onclick="removeElement(\'#remove_type_' + number + '\', \'type\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);

@@ -49,7 +49,7 @@ class Sphnixrt
 
 
 		// build first part of query
-		$query = 'SELECT @count, * FROM `' . $index_name . '`';
+		$query = 'SELECT * FROM `' . $index_name . '`';
 // add start/limits?
 		if (is_int($data_array['limit']) && is_int($data_array['start']))
 		{

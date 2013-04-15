@@ -1129,7 +1129,7 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="button" value="Cancel" class="btn"/>
+						<a class="btn" href="<?php echo site_url('records/details/'.$asset_id); ?>">Cancel</a>
 						<input type="button" onclick="validateForm();" value="Save Changes" class="btn btn-primary"/>
 					</td>
 				</tr>

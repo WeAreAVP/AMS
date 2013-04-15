@@ -848,78 +848,83 @@
 					<label><i class="icon-question-sign"></i><b> Contributor:</b></label>
 				</td>
 				<td>
-					<?php
-					if (count($contributor_names) > 0 && isset($contributor_names[0]) && ! empty($contributor_names[0]))
-					{
-						$add = ' ADD ANOTHER CONTRIBUTOR';
-						foreach ($contributor_names as $index => $contributor_name)
+					<div id="main_contributor">
+						<?php
+						if (count($contributor_names) > 0 && isset($contributor_names[0]) && ! empty($contributor_names[0]))
 						{
-							?>
-							<div class="edit_form_div">
-								<div>
-									<p>
-										Contributor:
-									</p>
-									<p>
-										<input id="asset_contributor_name_<?php echo $index; ?>" name="asset_contributor_name[]" value="<?php echo $contributor_name; ?>" />
-									</p>
-								</div>
-								<div>
-									<p>
-										Contributor Affiliation:
-									</p>
-									<p>
-										<input id="asset_contributor_affiliation_<?php echo $index; ?>" name="asset_contributor_affiliation[]" value="<?php echo (isset($contributor_affiliation[$index])) ? $contributor_affiliation[$index] : ''; ?>" />
-									</p>
-								</div>
-								<div>
-									<p>
-										Contributor Ref:
-									</p>
-									<p>
-										<input id="asset_contributor_ref_<?php echo $index; ?>" name="asset_contributor_ref[]" value="<?php echo (isset($contributor_ref[$index])) ? $contributor_ref[$index] : ''; ?>" />
-									</p>
-								</div>
-								<div>
-									<p> Contributor Role:</p>
-									<p>
-										<select id="asset_contributor_role_<?php echo $index; ?>" name="asset_contributor_role[]">
-											<option value="">Select Contributor Role</option>
-											<?php
-											foreach ($pbcore_asset_contributor_roles as $row)
-											{
-												$selected = '';
-												if (isset($contributor_role[$index]) && $contributor_role[$index] == $row->value)
-													$selected = 'selected="selected"'
+							$add = ' ADD ANOTHER CONTRIBUTOR';
+							foreach ($contributor_names as $index => $contributor_name)
+							{
+								?>
+								<div id="remove_contributor_<?php echo $index; ?>" class="remove_contributor">
+
+									<div class="edit_form_div">
+										<div>
+											<p>
+												Contributor:
+											</p>
+											<p>
+												<input id="asset_contributor_name_<?php echo $index; ?>" name="asset_contributor_name[]" value="<?php echo $contributor_name; ?>" />
+											</p>
+										</div>
+										<div>
+											<p>
+												Contributor Affiliation:
+											</p>
+											<p>
+												<input id="asset_contributor_affiliation_<?php echo $index; ?>" name="asset_contributor_affiliation[]" value="<?php echo (isset($contributor_affiliation[$index])) ? $contributor_affiliation[$index] : ''; ?>" />
+											</p>
+										</div>
+										<div>
+											<p>
+												Contributor Ref:
+											</p>
+											<p>
+												<input id="asset_contributor_ref_<?php echo $index; ?>" name="asset_contributor_ref[]" value="<?php echo (isset($contributor_ref[$index])) ? $contributor_ref[$index] : ''; ?>" />
+											</p>
+										</div>
+										<div>
+											<p> Contributor Role:</p>
+											<p>
+												<select id="asset_contributor_role_<?php echo $index; ?>" name="asset_contributor_role[]">
+													<option value="">Select Contributor Role</option>
+													<?php
+													foreach ($pbcore_asset_contributor_roles as $row)
+													{
+														$selected = '';
+														if (isset($contributor_role[$index]) && $contributor_role[$index] == $row->value)
+															$selected = 'selected="selected"'
+															?>
+														<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+													<?php }
 													?>
-												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-											<?php }
-											?>
-										</select>
+												</select>
 
-									</p>
-								</div>
-								<div>
-									<p> Contributor Role Source:</p>
-									<p>
-										<input id="asset_contributor_role_source_<?php echo $index; ?>" name="asset_contributor_role_source[]" value="<?php echo (isset($contributor_role_source[$index])) ? $contributor_role_source[$index] : ''; ?>" />
-									</p>
-								</div>
-								<div>
-									<p> Contributor Role Ref:</p>
-									<p>
-										<input id="asset_contributor_role_ref_<?php echo $index; ?>" name="asset_contributor_role_ref[]" value="<?php echo (isset($contributor_role_ref[$index])) ? $contributor_role_ref[$index] : ''; ?>" />
-									</p>
-								</div>
+											</p>
+										</div>
+										<div>
+											<p> Contributor Role Source:</p>
+											<p>
+												<input id="asset_contributor_role_source_<?php echo $index; ?>" name="asset_contributor_role_source[]" value="<?php echo (isset($contributor_role_source[$index])) ? $contributor_role_source[$index] : ''; ?>" />
+											</p>
+										</div>
+										<div>
+											<p> Contributor Role Ref:</p>
+											<p>
+												<input id="asset_contributor_role_ref_<?php echo $index; ?>" name="asset_contributor_role_ref[]" value="<?php echo (isset($contributor_role_ref[$index])) ? $contributor_role_ref[$index] : ''; ?>" />
+											</p>
+										</div>
 
-							</div>
-							<div class="remove_element"><img src="/images/remove-item.png"/></div>
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
-							<?php
+									</div>
+									<div class="remove_element" onclick="removeElement('#remove_contributor_<?php echo $index; ?>', 'contributor');"><img src="/images/remove-item.png" /></div>
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
+								</div>
+								<?php
+							}
 						}
-					}
-					?>
-					<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+						?>
+					</div>
+					<div class="add-new-element" onclick="addElement('#main_contributor', 'contributor');"><i class="icon-plus-sign icon-white"></i><span id="add_contributor"><?php echo $add; ?></span></div>
 				</td>
 
 			</tr>

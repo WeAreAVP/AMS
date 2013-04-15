@@ -138,6 +138,7 @@ function removeElement(elementID, type) {
 	}, {
 		"complete": function() {
 			$(elementID).remove();
+			alert('.remove_' + type);
 			if ($('.remove_' + type).length == 0) {
 				$('#add_' + type).html(' ADD ' + type.replace(/_/g, " ").toUpperCase());
 			}

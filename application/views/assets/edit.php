@@ -33,38 +33,7 @@
 				</td>
 				<td>
 					<div id="main_type">
-						<?php
-						if (count($asset_type_separate) > 0 && isset($asset_type_separate[0]) && ! empty($asset_type_separate[0]))
-						{
-							$add = ' ADD ANOTHER TYPE';
-							foreach ($asset_type_separate as $index => $type)
-							{
-								?>
-								<div id="remove_type_<?php echo $index; ?>" class="remove_type">
-									<div class="edit_form_div">
-										<p>
-											<select id="asset_type_<?php echo $index; ?>" name="asset_type[]">
-												<option value="">Select Type</option>
-												<?php
-												foreach ($pbcore_asset_types as $row)
-												{
-													$selected = '';
-													if ($type == $row->value)
-														$selected = 'selected="selected"'
-														?>
-													<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-												<?php }
-												?>
-											</select>
-										</p>
-									</div>
-									<div class="remove_element" onclick="removeElement('#remove_type_<?php echo $index; ?>', 'type');"><img src="/images/remove-item.png" /></div>
-									<div class="clearfix" style="margin-bottom: 10px;"></div>
-								</div>
-								<?php
-							}
-						}
-						?>
+						
 
 					</div>
 					<div class="add-new-element" onclick="addElement('#main_type', 'type');"><i class="icon-plus-sign icon-white"></i><span id="add_type"><?php echo $add; ?></span></div>

@@ -53,7 +53,6 @@ class Assets extends MY_Controller
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
 			if ($data['asset_detail'])
 			{
-//				debug($data['asset_detail'],FALSE);
 				$data['pbcore_asset_types'] = $this->manage_asset->get_picklist_values(1);
 				$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);
 				$data['pbcore_asset_title_types'] = $this->manage_asset->get_picklist_values(3);

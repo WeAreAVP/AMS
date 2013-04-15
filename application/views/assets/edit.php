@@ -756,77 +756,81 @@
 					<label><i class="icon-question-sign"></i><b> Creator:</b></label>
 				</td>
 				<td>
-					<?php
-					if (count($creator_names) > 0 && isset($creator_names[0]) && ! empty($creator_names[0]))
-					{
-						$add = ' ADD ANOTHER CREATOR';
-						foreach ($creator_names as $index => $creator_name)
+					<div id="main_creator">
+						<?php
+						if (count($creator_names) > 0 && isset($creator_names[0]) && ! empty($creator_names[0]))
 						{
-							?>
-							<div class="edit_form_div">
-								<div>
-									<p>
-										Creator:
-									</p>
-									<p>
-										<input id="asset_creator_name_<?php echo $index; ?>" name="asset_creator_name[]" value="<?php echo $creator_name; ?>" />
-									</p>
-								</div>
-								<div>
-									<p>
-										Creator Affiliation:
-									</p>
-									<p>
-										<input id="asset_creator_affiliation_<?php echo $index; ?>" name="asset_creator_affiliation[]" value="<?php echo (isset($creator_affiliation[$index])) ? $creator_affiliation[$index] : ''; ?>" />
-									</p>
-								</div>
-								<div>
-									<p>
-										Creator Ref:
-									</p>
-									<p>
-										<input id="asset_creator_ref_<?php echo $index; ?>" name="asset_creator_ref[]" value="<?php echo (isset($creator_ref[$index])) ? $creator_ref[$index] : ''; ?>" />
-									</p>
-								</div>
-								<div>
-									<p> Creator Role:</p>
-									<p>
-										<select id="asset_creator_role_<?php echo $index; ?>" name="asset_creator_role[]">
-											<option value="">Select Creator Role</option>
-											<?php
-											foreach ($pbcore_asset_creator_roles as $row)
-											{
-												$selected = '';
-												if (isset($creator_role[$index]) && $creator_role[$index] == $row->value)
-													$selected = 'selected="selected"'
+							$add = ' ADD ANOTHER CREATOR';
+							foreach ($creator_names as $index => $creator_name)
+							{
+								?>
+								<div id="remove_creator_<?php echo $index; ?>" class="remove_creator">
+									<div class="edit_form_div">
+										<div>
+											<p>
+												Creator:
+											</p>
+											<p>
+												<input id="asset_creator_name_<?php echo $index; ?>" name="asset_creator_name[]" value="<?php echo $creator_name; ?>" />
+											</p>
+										</div>
+										<div>
+											<p>
+												Creator Affiliation:
+											</p>
+											<p>
+												<input id="asset_creator_affiliation_<?php echo $index; ?>" name="asset_creator_affiliation[]" value="<?php echo (isset($creator_affiliation[$index])) ? $creator_affiliation[$index] : ''; ?>" />
+											</p>
+										</div>
+										<div>
+											<p>
+												Creator Ref:
+											</p>
+											<p>
+												<input id="asset_creator_ref_<?php echo $index; ?>" name="asset_creator_ref[]" value="<?php echo (isset($creator_ref[$index])) ? $creator_ref[$index] : ''; ?>" />
+											</p>
+										</div>
+										<div>
+											<p> Creator Role:</p>
+											<p>
+												<select id="asset_creator_role_<?php echo $index; ?>" name="asset_creator_role[]">
+													<option value="">Select Creator Role</option>
+													<?php
+													foreach ($pbcore_asset_creator_roles as $row)
+													{
+														$selected = '';
+														if (isset($creator_role[$index]) && $creator_role[$index] == $row->value)
+															$selected = 'selected="selected"'
+															?>
+														<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+													<?php }
 													?>
-												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-											<?php }
-											?>
-										</select>
+												</select>
 
-									</p>
+											</p>
+										</div>
+										<div>
+											<p> Creator Role Source:</p>
+											<p>
+												<input id="asset_creator_role_source_<?php echo $index; ?>" name="asset_creator_role_source[]" value="<?php echo (isset($creator_role_source[$index])) ? $creator_role_source[$index] : ''; ?>" />
+											</p>
+										</div>
+										<div>
+											<p> Creator Role Ref:</p>
+											<p>
+												<input id="asset_creator_role_ref_<?php echo $index; ?>" name="asset_creator_role_ref[]" value="<?php echo (isset($creator_role_ref[$index])) ? $creator_role_ref[$index] : ''; ?>" />
+											</p>
+										</div>
+									</div>
+									<div class="remove_element" onclick="removeElement('#remove_creator_<?php echo $index; ?>', 'creator');"><img src="/images/remove-item.png" /></div>
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
 								</div>
-								<div>
-									<p> Creator Role Source:</p>
-									<p>
-										<input id="asset_creator_role_source_<?php echo $index; ?>" name="asset_creator_role_source[]" value="<?php echo (isset($creator_role_source[$index])) ? $creator_role_source[$index] : ''; ?>" />
-									</p>
-								</div>
-								<div>
-									<p> Creator Role Ref:</p>
-									<p>
-										<input id="asset_creator_role_ref_<?php echo $index; ?>" name="asset_creator_role_ref[]" value="<?php echo (isset($creator_role_ref[$index])) ? $creator_role_ref[$index] : ''; ?>" />
-									</p>
-								</div>
-							</div>
-							<div class="remove_element"><img src="/images/remove-item.png"/></div>
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
-							<?php
+								<?php
+							}
 						}
-					}
-					?>
-					<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+						?>
+					</div>
+					<div class="add-new-element" onclick="addElement('#main_creator', 'creator');"><i class="icon-plus-sign icon-white"></i><span id="add_creator"><?php echo $add; ?></span></div>
 				</td>
 
 			</tr>

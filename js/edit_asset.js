@@ -354,13 +354,13 @@ function addElement(elementID, type) {
 		{
 			relationType += '<option value= "' + pbcoreRelationTypes[cnt]['value'] + '">' + pbcoreRelationTypes[cnt]['value'] + '</option>';
 		}
-		html = '<div id="remove_relation_<?php echo $index; ?>" class="remove_relation"><div class="edit_form_div"><div><p>Relation:</p>' +
-		'<p><input id="asset_relation_identifier_<?php echo $index; ?>" name="asset_relation_identifier[]" value="" /></p></div>' +
-		'<div><p> Relation Type:</p><p><select id="asset_relation_type_<?php echo $index; ?>" name="asset_relation_type[]">' +
+		html = '<div id="remove_relation_' + number + '" class="remove_relation"><div class="edit_form_div"><div><p>Relation:</p>' +
+		'<p><input id="asset_relation_identifier_' + number + '" name="asset_relation_identifier[]" value="" /></p></div>' +
+		'<div><p> Relation Type:</p><p><select id="asset_relation_type_' + number + '" name="asset_relation_type[]">' +
 		'<option value="">Select Relation Type</option>' + relationType + '</select></p></div><div><p> Relation Source:</p><p>' +
-		'<input id="asset_relation_source_<?php echo $index; ?>" name="asset_relation_source[]" value="" /></p></div>' +
-		'<div><p> Relation Ref:</p><p><input id="asset_relation_ref_<?php echo $index; ?>" name="asset_relation_ref[]" value="" />' +
-		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_relation_<?php echo $index; ?>\', \'relation\');"><img src="/images/remove-item.png" /></div>' +
+		'<input id="asset_relation_source_' + number + '" name="asset_relation_source[]" value="" /></p></div>' +
+		'<div><p> Relation Ref:</p><p><input id="asset_relation_ref_' + number + '" name="asset_relation_ref[]" value="" />' +
+		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_relation_' + number + '\', \'relation\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
 		$('input[name="asset_relation_identifier[]"]').autocomplete({
@@ -372,6 +372,46 @@ function addElement(elementID, type) {
 		});
 		$('input[name="asset_relation_source[]"]').autocomplete({
 			source: site_url + "autocomplete/values?table=relation_types&column=relation_type_source",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+	}
+	else if (elementID == '#main_creator') {
+		creatorRoles = '';
+
+		for (cnt in pbcoreCreatorRoles)
+		{
+			creatorRoles += '<option value= "' + pbcoreCreatorRoles[cnt]['value'] + '">' + pbcoreCreatorRoles[cnt]['value'] + '</option>';
+		}
+		html = '<div id="remove_creator_' + number + '" class="remove_creator"><div class="edit_form_div"><div>' +
+		'<p>Creator:</p><p><input id="asset_creator_name_' + number + '" name="asset_creator_name[]" value="" /></p></div>' +
+		'<div><p>Creator Affiliation:</p><p><input id="asset_creator_affiliation_' + number + '" name="asset_creator_affiliation[]" value="" /></p></div>' +
+		'<div><p>Creator Ref:</p><p><input id="asset_creator_ref_' + number + '" name="asset_creator_ref[]" value="" /></p></div>' +
+		'<div><p> Creator Role:</p><p><select id="asset_creator_role_' + number + '" name="asset_creator_role[]">' +
+		'<option value="">Select Creator Role</option>' + creatorRoles + '</select></p></div><div><p> Creator Role Source:</p><p>' +
+		'<input id="asset_creator_role_source_' + number + '" name="asset_creator_role_source[]" value="" /></p></div><div><p> Creator Role Ref:</p>' +
+		'<p><input id="asset_creator_role_ref_' + number + '" name="asset_creator_role_ref[]" value="" /></p></div></div>' +
+		'<div class="remove_element" onclick="removeElement(\'#remove_creator_' + number + '\', \'creator\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+		$('input[name="asset_creator_name[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=creators&column=creator_name",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_creator_affiliation[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=creators&column=creator_affiliation",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="asset_creator_role_source[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=creator_roles&column=creator_role_source",
 			minLength: 1,
 			delay: 100,
 			enable: true,

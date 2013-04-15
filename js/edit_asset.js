@@ -331,7 +331,7 @@ function addElement(elementID, type) {
 		$(elementID).append(html);
 	}
 	else if (elementID == '#main_annotation') {
-		alert(1);
+		
 		html = '<div id="remove_annotation_' + number + '" class="remove_annotation"><div class="edit_form_div"><div>' +
 		'<p>Annotation:</p><p><input id="asset_annotation_' + number + '" name="asset_annotation[]" value="" />' +
 		'</p></div><div><p> Annotation Type:</p><p><input id="asset_annotation_type_' + number + '" name="asset_annotation_type[]" value="" />' +

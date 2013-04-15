@@ -37,6 +37,7 @@ class Assets extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('manage_asset_model', 'manage_asset');
+		$this->load->model('instantiations_model', 'instantiation');
 	}
 
 	public function edit()

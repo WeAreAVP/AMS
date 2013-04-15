@@ -48,6 +48,7 @@ class Assets extends MY_Controller
 
 			if ($this->input->post())
 			{
+				$this->delete_asset_attributes($asset_id);
 				debug($this->input->post());
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
@@ -76,6 +77,26 @@ class Assets extends MY_Controller
 		{
 			show_error('Require asset id for editing');
 		}
+	}
+
+	private function delete_asset_attributes($asset_id)
+	{
+		$this->manage_asset->delete_asset_types($asset_id);
+		$this->manage_asset->delete_asset_dates($asset_id);
+		$this->manage_asset->delete_local_identifiers($asset_id);
+		$this->manage_asset->delete_asset_titles($asset_id);
+		$this->manage_asset->delete_asset_subjects($asset_id);
+		$this->manage_asset->delete_asset_descriptions($asset_id);
+		$this->manage_asset->delete_asset_genre($asset_id);
+		$this->manage_asset->delete_asset_coverage($asset_id);
+		$this->manage_asset->delete_audience_level($asset_id);
+		$this->manage_asset->delete_audience_rating($asset_id);
+		$this->manage_asset->delete_audience_annotations($asset_id);
+		$this->manage_asset->delete_audience_relations($asset_id);
+		$this->manage_asset->delete_creator($asset_id);
+		$this->manage_asset->delete_contributor($asset_id);
+		$this->manage_asset->delete_publisher($asset_id);
+		$this->manage_asset->delete_rights($asset_id);
 	}
 
 	public function insert_pbcore_values()

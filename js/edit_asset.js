@@ -158,7 +158,7 @@ function addElement(elementID, type) {
 		'<div><p>ID Source:</p>' +
 		'<p><input id="asset_identifier_source_' + number + '" name="asset_identifier_source[]" value="" /></p></div>' +
 		'<div><p>ID Ref:</p>' +
-		'<p><input id="asset_identifier_ref_' + number + '" name="asset_identifier_ref[]" value="" /></p></div>' +
+		'<p><input id="asset_identifier_ref_' + number + '" name="asset_identifier_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://example.com)</span></p></div>' +
 		'</div><div class="remove_element" onclick="removeElement(\'#remove_local_' + number + '\', \'local_id\');"><img src="/images/remove-item.png" /></div></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div>'
 

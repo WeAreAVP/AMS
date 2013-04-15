@@ -39,7 +39,7 @@ class Autocomplete_Model extends CI_Model
 	function get_autocomplete_value($table, $column, $term)
 	{
 		$this->db->select("DISTINCT $column AS value", FALSE);
-		$this->db->like("$column", $term);
+		$this->db->like("$column", $term,'before');
 		if ($table === 'identifiers')
 			$this->db->where("$column !=", "http://americanarchiveinventory.org");
 		$this->db->limit(50);

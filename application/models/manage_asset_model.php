@@ -163,6 +163,13 @@ class Manage_Asset_Model extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	function delete_asset_types($asset_id)
+	{
+		$this->db->where('assets_id', $asset_id);
+		$this->db->delete($this->table_instantiation_generations);
+		return $this->db->affected_rows() > 0;
+	}
+
 }
 
 ?>

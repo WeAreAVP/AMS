@@ -168,7 +168,7 @@
 											<p>ID Ref:</p>
 											<p>
 												<input id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($identifier_refs[$index])) ? $identifier_refs[$index] : ''; ?>" />
-												<span class="help-block">Please add valid Ref e.g; http://example.com</span>
+												<span class="help-block">Must be a valid URI/URL (e.g. http://example.com)</span>
 											</p>
 										</div>
 									</div>

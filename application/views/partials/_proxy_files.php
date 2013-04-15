@@ -49,7 +49,7 @@
 							<param name="allowfullscreen" value="true">
 							<param name="allowscriptaccess" value="always">
 							<param name="flashvars" value="<?php echo $media['url']; ?>">
-							<!-- [if IE]><param name="movie" value="http://releases.flowplayer.org/swf/flowplayer.content-3.2.8.swf"><![endif]-->
+							<!--[if lt IE]><param name="movie" value="http://releases.flowplayer.org/swf/flowplayer.content-3.2.8.swf"><![endif]-->
 							
 							<p>Your browser can’t play HTML5 video. <a href="video.webm">
 									Download it</a> instead.</p>

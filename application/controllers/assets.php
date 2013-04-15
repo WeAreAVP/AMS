@@ -46,7 +46,10 @@ class Assets extends MY_Controller
 		if ( ! empty($asset_id))
 		{
 
-			
+			if ($this->input->post())
+			{
+				debug($this->input->post());
+			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
 			if ($data['asset_detail'])
 			{
@@ -78,10 +81,8 @@ class Assets extends MY_Controller
 
 	public function insert_pbcore_values()
 	{
-		$asset_type = array('Copyright Holder','Distributor','Presenter','Publisher','Release Agent'
-			
-			
-			);
+		$asset_type = array('Copyright Holder', 'Distributor', 'Presenter', 'Publisher', 'Release Agent'
+		);
 		foreach ($asset_type as $value)
 		{
 //			$this->manage_asset->insert_picklist_value(array('element_type_id' => 10, 'value' => $value));

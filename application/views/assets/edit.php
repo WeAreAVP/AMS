@@ -1,5 +1,5 @@
 <div>
-	<form class="form-horizontal" method="POST" action="">
+	<form class="form-horizontal" method="POST" action="<?php echo $this->uri->uri_string(); ?>">
 		<table cellPadding="8" class="record-detail-table">
 			<tr>
 				<td class="record-detail-page">
@@ -1068,6 +1068,12 @@
 					<div class="add-new-element" onclick="addElement('#main_right', 'right');"><i class="icon-plus-sign icon-white"></i><span id="add_right"><?php echo $add; ?></span></div>
 				</td>
 
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="button" value="Cancel" class="btn"/>
+					<input type="submit" value="Save Changes" class="btn btn-primary"/>
+				</td>
 			</tr>
 		</table>
 	</form>

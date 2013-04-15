@@ -680,61 +680,65 @@
 					<label><i class="icon-question-sign"></i><b> Relation:</b></label>
 				</td>
 				<td>
-					<?php
-					if (count($relation_identifiers) > 0 && isset($relation_identifiers[0]) && ! empty($relation_identifiers[0]))
-					{
-						$add = ' ADD ANOTHER RELATION';
-						foreach ($relation_identifiers as $index => $relation_identifier)
+					<div id="main_relation">
+						<?php
+						if (count($relation_identifiers) > 0 && isset($relation_identifiers[0]) && ! empty($relation_identifiers[0]))
 						{
-							?>
-							<div class="edit_form_div">
-								<div>
-									<p>
-										Relation:
-									</p>
-									<p>
-										<input id="asset_relation_identifier_<?php echo $index; ?>" name="asset_relation_identifier[]" value="<?php echo $relation_identifier; ?>" />
-									</p>
-								</div>
-								<div>
-									<p> Relation Type:</p>
-									<p>
-										<select id="asset_relation_type_<?php echo $index; ?>" name="asset_relation_type[]">
-											<option value="">Select Relation Type</option>
-											<?php
-											foreach ($pbcore_asset_relation_types as $row)
-											{
-												$selected = '';
-												if (isset($relation_types[$index]) && $relation_types[$index] == $row->value)
-													$selected = 'selected="selected"'
+							$add = ' ADD ANOTHER RELATION';
+							foreach ($relation_identifiers as $index => $relation_identifier)
+							{
+								?>
+								<div id="remove_relation_<?php echo $index; ?>" class="remove_relation">
+									<div class="edit_form_div">
+										<div>
+											<p>
+												Relation:
+											</p>
+											<p>
+												<input id="asset_relation_identifier_<?php echo $index; ?>" name="asset_relation_identifier[]" value="<?php echo $relation_identifier; ?>" />
+											</p>
+										</div>
+										<div>
+											<p> Relation Type:</p>
+											<p>
+												<select id="asset_relation_type_<?php echo $index; ?>" name="asset_relation_type[]">
+													<option value="">Select Relation Type</option>
+													<?php
+													foreach ($pbcore_asset_relation_types as $row)
+													{
+														$selected = '';
+														if (isset($relation_types[$index]) && $relation_types[$index] == $row->value)
+															$selected = 'selected="selected"'
+															?>
+														<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+													<?php }
 													?>
-												<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-											<?php }
-											?>
-										</select>
+												</select>
 
-									</p>
+											</p>
+										</div>
+										<div>
+											<p> Relation Source:</p>
+											<p>
+												<input id="asset_relation_source_<?php echo $index; ?>" name="asset_relation_source[]" value="<?php echo (isset($relation_type_sources[$index])) ? $relation_type_sources[$index] : ''; ?>" />
+											</p>
+										</div>
+										<div>
+											<p> Relation Ref:</p>
+											<p>
+												<input id="asset_relation_ref_<?php echo $index; ?>" name="asset_relation_ref[]" value="<?php echo (isset($relation_type_refs[$index])) ? $relation_type_refs[$index] : ''; ?>" />
+											</p>
+										</div>
+									</div>
+									<div class="remove_element" onclick="removeElement('#remove_relation_<?php echo $index; ?>', 'relation');"><img src="/images/remove-item.png" /></div>
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
 								</div>
-								<div>
-									<p> Relation Source:</p>
-									<p>
-										<input id="asset_relation_source_<?php echo $index; ?>" name="asset_relation_source[]" value="<?php echo (isset($relation_type_sources[$index])) ? $relation_type_sources[$index] : ''; ?>" />
-									</p>
-								</div>
-								<div>
-									<p> Relation Ref:</p>
-									<p>
-										<input id="asset_relation_ref_<?php echo $index; ?>" name="asset_relation_ref[]" value="<?php echo (isset($relation_type_refs[$index])) ? $relation_type_refs[$index] : ''; ?>" />
-									</p>
-								</div>
-							</div>
-							<div class="remove_element"><img src="/images/remove-item.png"/></div>
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
-							<?php
+								<?php
+							}
 						}
-					}
-					?>
-					<div class="add-new-element"><i class="icon-plus-sign icon-white"></i><?php echo $add; ?></div>
+						?>
+					</div>
+					<div class="add-new-element" onclick="addElement('#main_relation', 'relation');"><i class="icon-plus-sign icon-white"></i><span id="add_relation"><?php echo $add; ?></span></div>
 				</td>
 
 			</tr>

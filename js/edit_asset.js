@@ -311,7 +311,6 @@ function addElement(elementID, type) {
 		});
 	}
 	else if (elementID == '#main_audience_rating') {
-		alert(elementID);
 		audienceRating = '';
 
 		for (cnt in pbcoreAudienceRating)

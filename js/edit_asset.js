@@ -539,9 +539,12 @@ function validateForm() {
 		if ($(this).val() != '') {
 			if (!urlregex.test($(this).val())) {
 
-				$('body').scrollTop($(this).parent().parent().offset().top-100,'slow');
+				$('body').animate({
+					scrollTop: $(this).parent().parent().offset().top - 100
+
+				}, 'slow');
 				$(this).parent().parent().addClass('error-div');
-				
+
 			}
 		}
 

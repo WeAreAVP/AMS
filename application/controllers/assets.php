@@ -500,7 +500,7 @@ class Assets extends MY_Controller
 						$this->assets_model->insert_rights_summaries($rights_summary_d);
 					}
 				}
-				redirect('records/detail/' . $asset_id,'location');
+				redirect('records/details/' . $asset_id,'location');
 			}
 			
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);

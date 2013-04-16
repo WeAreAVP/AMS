@@ -56,6 +56,7 @@ class Assets extends MY_Controller
 				{
 					foreach ($this->input->post('asset_type') as $value)
 					{
+						$asset_type_d['assets_id'] = $asset_id;
 						if ($asset_type = $this->assets_model->get_assets_type_by_type($value))
 						{
 							$asset_type_d['asset_types_id'] = $asset_type->id;
@@ -64,10 +65,10 @@ class Assets extends MY_Controller
 						{
 							$asset_type_d['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $value));
 						}
-						$asset_type_d['assets_id'] = $asset_id;
+						
 						debug($asset_type_d);
-						echo $this->assets_model->insert_assets_asset_types($asset_type_d);
-						echo '<br/>';
+//						echo $this->assets_model->insert_assets_asset_types($asset_type_d);
+//						echo '<br/>';
 					}
 				}
 				exit;

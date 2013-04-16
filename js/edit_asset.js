@@ -207,7 +207,7 @@ function addElement(elementID, type) {
 		'</div></div><div class="remove_element" onclick="removeElement(\'#remove_title_' + number + '\', \'title\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
-		$('input type="text"[name="asset_title_source[]"]').autocomplete({
+		$('input[name="asset_title_source[]"]').autocomplete({
 			source: site_url + "autocomplete/values?table=asset_titles&column=title_source",
 			minLength: 1,
 			delay: 100,
@@ -222,7 +222,7 @@ function addElement(elementID, type) {
 		{
 			subjectType += '<option value= "' + pbcoreSubjectTypes[cnt]['subject_type'] + '">' + pbcoreSubjectTypes[cnt]['subject_type'] + '</option>';
 		}
-		console.log(pbcoreSubjectTypes);
+		
 		html = '<div id="remove_subject_' + number + '" class="remove_subject"><div class="edit_form_div"><div>' +
 		'<p>Subject:</p><p><input type="text" id="asset_subject_' + number + '" name="asset_subject[]" value=""/></p></div>' +
 		'<div><p>Subject Type:</p><p><select id="asset_subject_type_' + number + '" name="asset_subject_type[]">' +
@@ -302,7 +302,7 @@ function addElement(elementID, type) {
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_audience_level_' + number + '\', \'audience_level\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
-		$('input type="text"[name="asset_audience_level_source[]"]').autocomplete({
+		$('input[name="asset_audience_level_source[]"]').autocomplete({
 			source: site_url + "autocomplete/values?table=audience_levels&column=audience_level_source",
 			minLength: 1,
 			delay: 100,

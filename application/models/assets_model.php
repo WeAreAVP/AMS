@@ -906,6 +906,20 @@ class Assets_Model extends CI_Model
 		return false;
 	}
 
+	function get_genre_type_all($genre)
+	{
+		$this->db->where("genre", $genre['genre']);
+		$this->db->where("genre_source", $genre['genre_source']);
+		$this->db->where("genre_ref", $genre['genre_ref']);
+
+		$result = $this->db->get($this->_table_genres);
+		if (isset($result) && ! empty($result))
+		{
+			return $result->row();
+		}
+		return false;
+	}
+
 	/**
 	 *  Insert the record in genre table
 	 *  @param array $data

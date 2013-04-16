@@ -211,8 +211,17 @@ class Assets extends MY_Controller
 							$asset_genre_d['genre'] = $value;
 							$asset_genre_d['genre_source'] = $genre_source[$index];
 							$asset_genre_d['genre_ref'] = $genre_ref[$index];
-							$asset_genre_id = $this->assets_model->insert_genre($asset_genre_d);
-							$asset_genre['genres_id'] = $asset_genre_id;
+							$asset_genre_type = $this->assets_model->get_genre_type_all($asset_genre_d);
+							if (isset($asset_genre_type) && isset($asset_genre_type->id))
+							{
+								$asset_genre['genres_id'] = $asset_genre_type->id;
+							}
+							else
+							{
+								$asset_genre['genres_id'] = $this->assets_model->insert_genre($asset_genre_d);
+							}
+
+
 							$asset_genre['assets_id'] = $asset_id;
 							$this->assets_model->insert_asset_genre($asset_genre);
 						}

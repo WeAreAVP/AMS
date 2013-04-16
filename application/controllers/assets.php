@@ -38,6 +38,7 @@ class Assets extends MY_Controller
 		parent::__construct();
 		$this->load->model('manage_asset_model', 'manage_asset');
 		$this->load->model('instantiations_model', 'instantiation');
+		$this->load->model('assets_model');
 	}
 
 	public function edit()
@@ -49,14 +50,28 @@ class Assets extends MY_Controller
 
 			if ($this->input->post())
 			{
-				debug($this->input->post());
-				$this->delete_asset_attributes($asset_id);
-				
+				debug($this->input->post(),FALSE);
+//				$this->delete_asset_attributes($asset_id);
+				foreach ($this->input->post('asset_type') as $value)
+				{
+					if ($asset_type = $this->assets_model->get_assets_type_by_type($value))
+					{
+						$asset_type_d['asset_types_id'] = $asset_type->id;
+						echo 'already';
+					}
+					else
+					{
+//						$asset_type_d['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $value));
+						echo 'not already';
+					}
+				}
+				exit;
+//				$this->assets_model->insert_assets_asset_types($asset_type_d);
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
 			if ($data['asset_detail'])
 			{
-				$data['asset_id']=$asset_id;
+				$data['asset_id'] = $asset_id;
 				$data['list_assets'] = $this->instantiation->get_instantiations_by_asset_id($asset_id);
 				$data['pbcore_asset_types'] = $this->manage_asset->get_picklist_values(1);
 				$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);
@@ -86,6 +101,7 @@ class Assets extends MY_Controller
 	private function delete_asset_attributes($asset_id)
 	{
 		$this->manage_asset->delete_asset_types($asset_id);
+		return TRUE;
 		$this->manage_asset->delete_asset_dates($asset_id);
 		$this->manage_asset->delete_local_identifiers($asset_id);
 		$this->manage_asset->delete_asset_titles($asset_id);

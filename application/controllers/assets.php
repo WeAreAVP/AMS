@@ -440,14 +440,14 @@ class Assets extends MY_Controller
 						}
 					}
 				}
-				if ($this->input->post('asset_contributor_name'))
+				if ($this->input->post('asset_publisher'))
 				{
-					$affiliation = $this->input->post('asset_contributor_affiliation');
-					$ref = $this->input->post('asset_contributor_ref');
-					$roles = $this->input->post('asset_contributor_role');
-					$role_src = $this->input->post('asset_contributor_role_source');
-					$role_ref = $this->input->post('asset_contributor_role_ref');
-					foreach ($this->input->post('asset_contributor_name') as $index => $value)
+					$affiliation = $this->input->post('asset_publisher_affiliation');
+					$ref = $this->input->post('asset_publisher_ref');
+					$roles = $this->input->post('asset_publisher_role');
+					$role_src = $this->input->post('asset_publisher_role_source');
+					$role_ref = $this->input->post('asset_publisher_role_ref');
+					foreach ($this->input->post('asset_publisher') as $index => $value)
 					{
 						if ( ! empty($value))
 						{

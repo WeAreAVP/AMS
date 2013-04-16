@@ -57,8 +57,8 @@
 		<?php $this->load->view('partials/_proxy_files'); ?>
 
 		<div style="float: left;">
-			<div>
-				<a href="<?php echo site_url('assets/edit/' . $asset_id); ?>" class="btn">Edit</a>
+			<div style="margin-left: 20px;">
+				<a href="<?php echo site_url('assets/edit/' . $asset_id); ?>" class="btn">Edit Asset</a>
 			</div>
 			<table  cellPadding="8" class="record-detail-table">
 				<!--				Organization Start		-->

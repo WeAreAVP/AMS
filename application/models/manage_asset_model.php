@@ -254,10 +254,18 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->delete('assets_creators_roles');
 		return $this->db->affected_rows() > 0;
 	}
+
 	function delete_contributor($asset_id)
 	{
 		$this->db->where('assets_id', $asset_id);
 		$this->db->delete('assets_contributors_roles');
+		return $this->db->affected_rows() > 0;
+	}
+
+	function delete_publisher($asset_id)
+	{
+		$this->db->where('assets_id', $asset_id);
+		$this->db->delete('assets_publishers_role');
 		return $this->db->affected_rows() > 0;
 	}
 

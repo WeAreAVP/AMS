@@ -542,6 +542,36 @@ class Assets_Model extends CI_Model
 		return false;
 	}
 
+	function get_publisher_info($publisher_role)
+	{
+		$this->db->where("publisher", $publisher_role['publisher']);
+		if (isset($publisher_role['publisher_affiliation']) && ! empty($publisher_role['publisher_affiliation']))
+			$this->db->where("publisher_affiliation", $publisher_role['publisher_affiliation']);
+		if (isset($publisher_role['publisher_ref']) && ! empty($publisher_role['publisher_ref']))
+			$this->db->where("publisher_ref", $publisher_role['publisher_ref']);
+		$res = $this->db->get($this->_table_publishers);
+		if (isset($res) && ! empty($res))
+		{
+			return $res->row();
+		}
+		return false;
+	}
+
+	function get_publisher_role_info($publisher_role)
+	{
+		$this->db->where("publisher_role", $publisher_role['publisher_role']);
+		if (isset($publisher_role['publisher_role_source']) && ! empty($publisher_role['publisher_role_source']))
+			$this->db->where("publisher_role_source", $publisher_role['publisher_role_source']);
+		if (isset($publisher_role['publisher_role_ref']) && ! empty($publisher_role['publisher_role_ref']))
+			$this->db->where("publisher_role_ref", $publisher_role['publisher_role_ref']);
+		$res = $this->db->get($this->_table_publisher_roles);
+		if (isset($res) && ! empty($res))
+		{
+			return $res->row();
+		}
+		return false;
+	}
+
 	/**
 	 * search publisher roles data by publisher_role
 	 * 

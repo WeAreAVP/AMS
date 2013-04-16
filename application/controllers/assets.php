@@ -435,8 +435,52 @@ class Assets extends MY_Controller
 							{
 								$assets_contributors_d['contributor_roles_id'] = $this->assets_model->insert_contributor_roles($contributorrole_info);
 							}
-							
-							 $this->assets_model->insert_assets_contributors_roles($assets_contributors_d);
+
+							$this->assets_model->insert_assets_contributors_roles($assets_contributors_d);
+						}
+					}
+				}
+				if ($this->input->post('asset_contributor_name'))
+				{
+					$affiliation = $this->input->post('asset_contributor_affiliation');
+					$ref = $this->input->post('asset_contributor_ref');
+					$roles = $this->input->post('asset_contributor_role');
+					$role_src = $this->input->post('asset_contributor_role_source');
+					$role_ref = $this->input->post('asset_contributor_role_ref');
+					foreach ($this->input->post('asset_contributor_name') as $index => $value)
+					{
+						if ( ! empty($value))
+						{
+							$assets_publisher_d['assets_id'] = $asset_id;
+							$publisher_info['publisher'] = $value;
+							if ( ! empty($affiliation[$index]))
+								$publisher_info['publisher_affiliation'] = $affiliation[$index];
+							if ( ! empty($ref[$index]))
+								$publisher_info['publisher_ref'] = $ref[$index];
+							$publisher_d = $this->assets_model->get_publisher_info($publisher_info);
+							if (isset($publisher_d) && isset($publisher_d->id))
+							{
+								$assets_publisher_d['publishers_id'] = $publisher_d->id;
+							}
+							else
+							{
+								$assets_publisher_d['publishers_id'] = $this->assets_model->insert_publishers($publisher_info);
+							}
+							$publisher_role_info['publisher_role'] = $roles[$index];
+							if ( ! empty($role_src[$index]))
+								$publisher_role_info['publisher_role_source'] = $role_src[$index];
+							if ( ! empty($role_ref[$index]))
+								$publisher_role_info['publisher_role_ref'] = $role_ref[$index];
+							$publisher_role = $this->assets_model->get_publisher_role_by_role($publisher_role_info);
+							if (isset($publisher_role) && isset($publisher_role->id))
+							{
+								$assets_publisher_d['publisher_roles_id'] = $publisher_role->id;
+							}
+							else
+							{
+								$assets_publisher_d['publisher_roles_id'] = $this->assets_model->insert_publisher_roles($publisher_role_info);
+							}
+							$assets_publishers_roles_id = $this->assets_model->insert_assets_publishers_role($assets_publisher_d);
 						}
 					}
 				}
@@ -489,6 +533,7 @@ class Assets extends MY_Controller
 		$this->manage_asset->delete_relations($asset_id);
 		$this->manage_asset->delete_creator($asset_id);
 		$this->manage_asset->delete_contributor($asset_id);
+		$this->manage_asset->delete_publisher($asset_id);
 		return TRUE;
 
 
@@ -500,8 +545,8 @@ class Assets extends MY_Controller
 
 
 
+
 		
-		$this->manage_asset->delete_publisher($asset_id);
 		$this->manage_asset->delete_rights($asset_id);
 	}
 

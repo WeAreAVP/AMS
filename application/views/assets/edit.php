@@ -130,7 +130,7 @@
 											<div>
 												<p>Asset Date:</p>
 												<p>
-													<input id="asset_date_<?php echo $index; ?>" name="asset_date[]" value="<?php echo trim($dates); ?>" />
+													<input type="text" id="asset_date_<?php echo $index; ?>" name="asset_date[]" value="<?php echo trim($dates); ?>" />
 												</p>
 											</div>
 											<div>
@@ -189,19 +189,19 @@
 											<div>
 												<p>Local ID:</p>
 												<p>
-													<input id="asset_identifier_<?php echo $index; ?>" name="asset_identifier[]" value="<?php echo trim($identifier); ?>" />
+													<input type="text" id="asset_identifier_<?php echo $index; ?>" name="asset_identifier[]" value="<?php echo trim($identifier); ?>" />
 												</p>
 											</div>
 											<div>
 												<p>ID Source:</p>
 												<p>
-													<input id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($identifier_sources[$index])) ? trim($identifier_sources[$index]) : ''; ?>" />
+													<input type="text" id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($identifier_sources[$index])) ? trim($identifier_sources[$index]) : ''; ?>" />
 												</p>
 											</div>
 											<div>
 												<p>ID Ref:</p>
 												<p>
-													<input id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($identifier_refs[$index])) ? trim($identifier_refs[$index]) : ''; ?>" />
+													<input type="text" id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($identifier_refs[$index])) ? trim($identifier_refs[$index]) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -271,13 +271,13 @@
 											<div>
 												<p>Title Source:</p>
 												<p>
-													<input id="asset_title_source_<?php echo $index; ?>" name="asset_title_source[]" value="<?php echo (isset($title_sources[$index])) ? trim($title_sources[$index]) : ''; ?>" />
+													<input type="text" id="asset_title_source_<?php echo $index; ?>" name="asset_title_source[]" value="<?php echo (isset($title_sources[$index])) ? trim($title_sources[$index]) : ''; ?>" />
 												</p>
 											</div>
 											<div>
 												<p>Title Ref:</p>
 												<p>
-													<input id="asset_title_ref_<?php echo $index; ?>" name="asset_title_ref[]" value="<?php echo (isset($title_refs[$index])) ? trim($title_refs[$index]) : ''; ?>" />
+													<input type="text" id="asset_title_ref_<?php echo $index; ?>" name="asset_title_ref[]" value="<?php echo (isset($title_refs[$index])) ? trim($title_refs[$index]) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -320,7 +320,7 @@
 											<div>
 												<p>Subject:</p>
 												<p>
-													<input id="asset_subject_<?php echo $index; ?>" name="asset_subject[]" value="<?php echo trim($subject); ?>"/>
+													<input type="text" id="asset_subject_<?php echo $index; ?>" name="asset_subject[]" value="<?php echo trim($subject); ?>"/>
 												</p>
 											</div>
 											<div>
@@ -345,13 +345,13 @@
 											<div>
 												<p>Subject Source:</p>
 												<p>
-													<input id="asset_subject_source_<?php echo $index; ?>" name="asset_subject_source[]" value="<?php echo (isset($subject_sources[$index])) ? trim($subject_sources[$index]) : ''; ?>" />
+													<input type="text" id="asset_subject_source_<?php echo $index; ?>" name="asset_subject_source[]" value="<?php echo (isset($subject_sources[$index])) ? trim($subject_sources[$index]) : ''; ?>" />
 												</p>
 											</div>
 											<div>
 												<p>Subject Ref:</p>
 												<p>
-													<input id="asset_subject_ref_<?php echo $index; ?>" name="asset_subject_ref[]" value="<?php echo (isset($subject_refs[$index])) ? trim($subject_refs[$index]) : ''; ?>" />
+													<input type="text" id="asset_subject_ref_<?php echo $index; ?>" name="asset_subject_ref[]" value="<?php echo (isset($subject_refs[$index])) ? trim($subject_refs[$index]) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -452,15 +452,15 @@
 										<div class="edit_form_div">
 											<div>
 												<p>Genre:</p>
-												<p><input id="asset_genre_<?php echo $index; ?>" name="asset_genre[]" value="<?php echo trim($genre); ?>" /></p>
+												<p><input type="text" id="asset_genre_<?php echo $index; ?>" name="asset_genre[]" value="<?php echo trim($genre); ?>" /></p>
 											</div>
 											<div>
 												<p>Genre Source:</p>
-												<p><input id="asset_genre_source_<?php echo $index; ?>" name="asset_genre_source[]" value="<?php echo (isset($genre_sources[$index])) ? trim($genre_sources[$index]) : ''; ?>" /></p>
+												<p><input type="text" id="asset_genre_source_<?php echo $index; ?>" name="asset_genre_source[]" value="<?php echo (isset($genre_sources[$index])) ? trim($genre_sources[$index]) : ''; ?>" /></p>
 											</div>
 											<div>
 												<p>Genre Ref:</p>
-												<p><input id="asset_genre_ref_<?php echo $index; ?>" name="asset_genre_ref[]" value="<?php echo (isset($genre_refs[$index])) ? trim($genre_refs[$index]) : ''; ?>" /></p>
+												<p><input type="text" id="asset_genre_ref_<?php echo $index; ?>" name="asset_genre_ref[]" value="<?php echo (isset($genre_refs[$index])) ? trim($genre_refs[$index]) : ''; ?>" /></p>
 												<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 											</div>
 
@@ -500,7 +500,7 @@
 										<div class="edit_form_div">
 											<div>
 												<p>Coverage:</p>
-												<p><input id="asset_coverage_<?php echo $index; ?>" name="asset_coverage[]" value="<?php echo trim($coverage); ?>" /></p>
+												<p><input type="text" id="asset_coverage_<?php echo $index; ?>" name="asset_coverage[]" value="<?php echo trim($coverage); ?>" /></p>
 											</div>
 											<div>
 												<p>Coverage Type:</p>
@@ -566,13 +566,13 @@
 											<div>
 												<p> Audience Level Source:</p>
 												<p>
-													<input id="asset_audience_level_source_<?php echo $index; ?>" name="asset_audience_level_source[]" value="<?php echo (isset($audience_level_sources[$index])) ? trim($audience_level_sources[$index]) : ''; ?>" />
+													<input type="text" id="asset_audience_level_source_<?php echo $index; ?>" name="asset_audience_level_source[]" value="<?php echo (isset($audience_level_sources[$index])) ? trim($audience_level_sources[$index]) : ''; ?>" />
 												</p>
 											</div>
 											<div>
 												<p> Audience Level Ref:</p>
 												<p>
-													<input id="asset_audience_level_ref_<?php echo $index; ?>" name="asset_audience_level_ref[]" value="<?php echo (isset($audience_level_refs[$index])) ? trim($audience_level_refs[$index]) : ''; ?>" />
+													<input type="text" id="asset_audience_level_ref_<?php echo $index; ?>" name="asset_audience_level_ref[]" value="<?php echo (isset($audience_level_refs[$index])) ? trim($audience_level_refs[$index]) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -695,20 +695,20 @@
 													Annotation:
 												</p>
 												<p>
-													<input id="asset_annotation_<?php echo $index; ?>" name="asset_annotation[]" value="<?php echo trim($annotation); ?>" />
+													<input type="text" id="asset_annotation_<?php echo $index; ?>" name="asset_annotation[]" value="<?php echo trim($annotation); ?>" />
 												</p>
 											</div>
 											<div>
 												<p> Annotation Type:</p>
 												<p>
-													<input id="asset_annotation_type_<?php echo $index; ?>" name="asset_annotation_type[]" value="<?php echo (isset($annotation_types[$index])) ? trim($annotation_types[$index]) : ''; ?>" />
+													<input type="text" id="asset_annotation_type_<?php echo $index; ?>" name="asset_annotation_type[]" value="<?php echo (isset($annotation_types[$index])) ? trim($annotation_types[$index]) : ''; ?>" />
 
 												</p>
 											</div>
 											<div>
 												<p> Annotation Ref:</p>
 												<p>
-													<input id="asset_annotation_ref_<?php echo $index; ?>" name="asset_annotation_ref[]" value="<?php echo (isset($annotation_refs[$index])) ? trim($annotation_refs[$index]) : ''; ?>" />
+													<input type="text" id="asset_annotation_ref_<?php echo $index; ?>" name="asset_annotation_ref[]" value="<?php echo (isset($annotation_refs[$index])) ? trim($annotation_refs[$index]) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -754,7 +754,7 @@
 													Relation:
 												</p>
 												<p>
-													<input id="asset_relation_identifier_<?php echo $index; ?>" name="asset_relation_identifier[]" value="<?php echo trim($relation_identifier); ?>" />
+													<input type="text" id="asset_relation_identifier_<?php echo $index; ?>" name="asset_relation_identifier[]" value="<?php echo trim($relation_identifier); ?>" />
 												</p>
 											</div>
 											<div>
@@ -778,13 +778,13 @@
 											<div>
 												<p> Relation Source:</p>
 												<p>
-													<input id="asset_relation_source_<?php echo $index; ?>" name="asset_relation_source[]" value="<?php echo (isset($relation_type_sources[$index])) ? trim($relation_type_sources[$index]) : ''; ?>" />
+													<input type="text" id="asset_relation_source_<?php echo $index; ?>" name="asset_relation_source[]" value="<?php echo (isset($relation_type_sources[$index])) ? trim($relation_type_sources[$index]) : ''; ?>" />
 												</p>
 											</div>
 											<div>
 												<p> Relation Ref:</p>
 												<p>
-													<input id="asset_relation_ref_<?php echo $index; ?>" name="asset_relation_ref[]" value="<?php echo (isset($relation_type_refs[$index])) ? trim($relation_type_refs[$index]) : ''; ?>" />
+													<input type="text" id="asset_relation_ref_<?php echo $index; ?>" name="asset_relation_ref[]" value="<?php echo (isset($relation_type_refs[$index])) ? trim($relation_type_refs[$index]) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -830,7 +830,7 @@
 													Creator:
 												</p>
 												<p>
-													<input id="asset_creator_name_<?php echo $index; ?>" name="asset_creator_name[]" value="<?php echo trim($creator_name); ?>" />
+													<input type="text" id="asset_creator_name_<?php echo $index; ?>" name="asset_creator_name[]" value="<?php echo trim($creator_name); ?>" />
 												</p>
 											</div>
 											<div>
@@ -838,7 +838,7 @@
 													Creator Affiliation:
 												</p>
 												<p>
-													<input id="asset_creator_affiliation_<?php echo $index; ?>" name="asset_creator_affiliation[]" value="<?php echo (isset($creator_affiliation[$index])) ? trim($creator_affiliation[$index]) : ''; ?>" />
+													<input type="text" id="asset_creator_affiliation_<?php echo $index; ?>" name="asset_creator_affiliation[]" value="<?php echo (isset($creator_affiliation[$index])) ? trim($creator_affiliation[$index]) : ''; ?>" />
 												</p>
 											</div>
 											<div>
@@ -846,7 +846,7 @@
 													Creator Ref:
 												</p>
 												<p>
-													<input id="asset_creator_ref_<?php echo $index; ?>" name="asset_creator_ref[]" value="<?php echo (isset($creator_ref[$index])) ? trim($creator_ref[$index]) : ''; ?>" />
+													<input type="text" id="asset_creator_ref_<?php echo $index; ?>" name="asset_creator_ref[]" value="<?php echo (isset($creator_ref[$index])) ? trim($creator_ref[$index]) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -872,13 +872,13 @@
 											<div>
 												<p> Creator Role Source:</p>
 												<p>
-													<input id="asset_creator_role_source_<?php echo $index; ?>" name="asset_creator_role_source[]" value="<?php echo (isset($creator_role_source[$index])) ? trim($creator_role_source[$index]) : ''; ?>" />
+													<input type="text" id="asset_creator_role_source_<?php echo $index; ?>" name="asset_creator_role_source[]" value="<?php echo (isset($creator_role_source[$index])) ? trim($creator_role_source[$index]) : ''; ?>" />
 												</p>
 											</div>
 											<div>
 												<p> Creator Role Ref:</p>
 												<p>
-													<input id="asset_creator_role_ref_<?php echo $index; ?>" name="asset_creator_role_ref[]" value="<?php echo (isset($creator_role_ref[$index])) ? trim($creator_role_ref[$index]) : ''; ?>" />
+													<input type="text" id="asset_creator_role_ref_<?php echo $index; ?>" name="asset_creator_role_ref[]" value="<?php echo (isset($creator_role_ref[$index])) ? trim($creator_role_ref[$index]) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -925,7 +925,7 @@
 													Contributor:
 												</p>
 												<p>
-													<input id="asset_contributor_name_<?php echo $index; ?>" name="asset_contributor_name[]" value="<?php echo trim($contributor_name); ?>" />
+													<input type="text" id="asset_contributor_name_<?php echo $index; ?>" name="asset_contributor_name[]" value="<?php echo trim($contributor_name); ?>" />
 												</p>
 											</div>
 											<div>
@@ -933,7 +933,7 @@
 													Contributor Affiliation:
 												</p>
 												<p>
-													<input id="asset_contributor_affiliation_<?php echo $index; ?>" name="asset_contributor_affiliation[]" value="<?php echo (isset($contributor_affiliation[$index])) ? trim($contributor_affiliation[$index]) : ''; ?>" />
+													<input type="text" id="asset_contributor_affiliation_<?php echo $index; ?>" name="asset_contributor_affiliation[]" value="<?php echo (isset($contributor_affiliation[$index])) ? trim($contributor_affiliation[$index]) : ''; ?>" />
 												</p>
 											</div>
 											<div>
@@ -941,7 +941,7 @@
 													Contributor Ref:
 												</p>
 												<p>
-													<input id="asset_contributor_ref_<?php echo $index; ?>" name="asset_contributor_ref[]" value="<?php echo (isset($contributor_ref[$index])) ? trim($contributor_ref[$index]) : ''; ?>" />
+													<input type="text" id="asset_contributor_ref_<?php echo $index; ?>" name="asset_contributor_ref[]" value="<?php echo (isset($contributor_ref[$index])) ? trim($contributor_ref[$index]) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -967,13 +967,13 @@
 											<div>
 												<p> Contributor Role Source:</p>
 												<p>
-													<input id="asset_contributor_role_source_<?php echo $index; ?>" name="asset_contributor_role_source[]" value="<?php echo (isset($contributor_role_source[$index])) ? trim($contributor_role_source[$index]) : ''; ?>" />
+													<input type="text" id="asset_contributor_role_source_<?php echo $index; ?>" name="asset_contributor_role_source[]" value="<?php echo (isset($contributor_role_source[$index])) ? trim($contributor_role_source[$index]) : ''; ?>" />
 												</p>
 											</div>
 											<div>
 												<p> Contributor Role Ref:</p>
 												<p>
-													<input id="asset_contributor_role_ref_<?php echo $index; ?>" name="asset_contributor_role_ref[]" value="<?php echo (isset($contributor_role_ref[$index])) ? trim($contributor_role_ref[$index]) : ''; ?>" />
+													<input type="text" id="asset_contributor_role_ref_<?php echo $index; ?>" name="asset_contributor_role_ref[]" value="<?php echo (isset($contributor_role_ref[$index])) ? trim($contributor_role_ref[$index]) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -1020,7 +1020,7 @@
 													Publisher:
 												</p>
 												<p>
-													<input id="asset_publisher_<?php echo $index; ?>" name="asset_publisher[]" value="<?php echo trim($publisher); ?>" />
+													<input type="text" id="asset_publisher_<?php echo $index; ?>" name="asset_publisher[]" value="<?php echo trim($publisher); ?>" />
 												</p>
 											</div>
 											<div>
@@ -1028,7 +1028,7 @@
 													Publisher Affiliation:
 												</p>
 												<p>
-													<input id="asset_publisher_affiliation_<?php echo $index; ?>" name="asset_publisher_affiliation[]" value="<?php echo (isset($publisher_affiliation[$index])) ? trim($publisher_affiliation[$index]) : ''; ?>" />
+													<input type="text" id="asset_publisher_affiliation_<?php echo $index; ?>" name="asset_publisher_affiliation[]" value="<?php echo (isset($publisher_affiliation[$index])) ? trim($publisher_affiliation[$index]) : ''; ?>" />
 												</p>
 											</div>
 											<div>
@@ -1036,7 +1036,7 @@
 													Publisher Ref:
 												</p>
 												<p>
-													<input id="asset_publisher_ref_<?php echo $index; ?>" name="asset_publisher_ref[]" value="<?php echo (isset($publisher_ref[$index])) ? trim($publisher_ref[$index]) : ''; ?>" />
+													<input type="text" id="asset_publisher_ref_<?php echo $index; ?>" name="asset_publisher_ref[]" value="<?php echo (isset($publisher_ref[$index])) ? trim($publisher_ref[$index]) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -1062,13 +1062,13 @@
 											<div>
 												<p> Publisher Role Source:</p>
 												<p>
-													<input id="asset_publisher_role_source_<?php echo $index; ?>" name="asset_publisher_role_source[]" value="<?php echo (isset($publisher_role_source[$index])) ? trim($publisher_role_source[$index]) : ''; ?>" />
+													<input type="text" id="asset_publisher_role_source_<?php echo $index; ?>" name="asset_publisher_role_source[]" value="<?php echo (isset($publisher_role_source[$index])) ? trim($publisher_role_source[$index]) : ''; ?>" />
 												</p>
 											</div>
 											<div>
 												<p> Publisher Role Ref:</p>
 												<p>
-													<input id="asset_publisher_role_ref_<?php echo $index; ?>" name="asset_publisher_role_ref[]" value="<?php echo (isset($publisher_role_ref[$index])) ? trim($publisher_role_ref[$index]) : ''; ?>" />
+													<input type="text" id="asset_publisher_role_ref_<?php echo $index; ?>" name="asset_publisher_role_ref[]" value="<?php echo (isset($publisher_role_ref[$index])) ? trim($publisher_role_ref[$index]) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -1111,13 +1111,13 @@
 													Right:
 												</p>
 												<p>
-													<input id="asset_rights_<?php echo $index; ?>" name="asset_rights[]" value="<?php echo trim($right); ?>" />
+													<input type="text" id="asset_rights_<?php echo $index; ?>" name="asset_rights[]" value="<?php echo trim($right); ?>" />
 												</p>
 											</div>
 											<div>
 												<p> Right Link:</p>
 												<p>
-													<input id="asset_right_link_<?php echo $index; ?>" name="asset_right_link[]" value="<?php echo (isset($rights_link[$index])) ? trim($rights_link[$index]) : ''; ?>" />
+													<input type="text" id="asset_right_link_<?php echo $index; ?>" name="asset_right_link[]" value="<?php echo (isset($rights_link[$index])) ? trim($rights_link[$index]) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>

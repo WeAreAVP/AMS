@@ -200,6 +200,24 @@ class Assets extends MY_Controller
 						}
 					}
 				}
+				if ($this->input->post('asset_genre'))
+				{
+					$genre_source = $this->input->post('asset_genre_source');
+					$genre_ref = $this->input->post('asset_genre_ref');
+					foreach ($this->input->post('asset_genre') as $index => $value)
+					{
+						if ( ! empty($value))
+						{
+							$asset_genre_d['genre'] = $value;
+							$asset_genre_d['genre_source'] = $genre_source[$index];
+							$asset_genre_d['genre_ref'] = $genre_ref[$index];
+							$asset_genre_id = $this->assets_model->insert_genre($asset_genre_d);
+							$asset_genre['genres_id'] = $asset_genre_id;
+							$asset_genre['assets_id'] = $asset_id;
+							$this->assets_model->insert_asset_genre($asset_genre);
+						}
+					}
+				}
 				exit;
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
@@ -244,7 +262,7 @@ class Assets extends MY_Controller
 		return TRUE;
 
 
-		
+
 		$this->manage_asset->delete_asset_genre($asset_id);
 		$this->manage_asset->delete_asset_coverage($asset_id);
 		$this->manage_asset->delete_audience_level($asset_id);

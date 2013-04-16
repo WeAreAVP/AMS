@@ -426,10 +426,10 @@ class Assets extends MY_Controller
 								$contributorrole_info['contributor_role_source'] = $role_src[$index];
 							if ( ! empty($role_ref[$index]))
 								$contributorrole_info['contributor_role_ref'] = $role_ref[$index];
-							$creator_role = $this->assets_model->get_contributor_role_info($role);
-							if (isset($creator_role) && isset($creator_role->id))
+							$contributor_role = $this->assets_model->get_contributor_role_info($contributorrole_info);
+							if (isset($contributor_role) && isset($contributor_role->id))
 							{
-								$assets_contributors_d['contributor_roles_id'] = $creator_role->id;
+								$assets_contributors_d['contributor_roles_id'] = $contributor_role->id;
 							}
 							else
 							{

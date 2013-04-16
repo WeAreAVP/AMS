@@ -54,20 +54,12 @@
 
 	<?php $this->load->view('partials/_list'); ?>
     <div class="span9" style="margin-left: 250px;">
-        <?php //$this->load->view('partials/_proxy_files'); ?>
-		<?php
-		if ($media)
-		{
-			?>
+		<?php $this->load->view('partials/_proxy_files'); ?>
 
-<!--			<div class="flowplayer">
-				<video>
-					<source type="video/mp4" src="<?php echo $media['url']; ?>"/>
-				</video>
-			</div>-->
-
-		<?php } ?>
 		<div style="float: left;">
+			<div>
+				<a href="<?php echo site_url('assets/edit/' . $asset_id); ?>" class="btn">Edit</a>
+			</div>
 			<table  cellPadding="8" class="record-detail-table">
 				<!--				Organization Start		-->
 				<tr>

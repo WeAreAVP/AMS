@@ -395,6 +395,50 @@ class Assets extends MY_Controller
 						}
 					}
 				}
+				if ($this->input->post('asset_contributor_name'))
+				{
+					$affiliation = $this->input->post('asset_contributor_affiliation');
+					$ref = $this->input->post('asset_contributor_ref');
+					$roles = $this->input->post('asset_contributor_role');
+					$role_src = $this->input->post('asset_contributor_role_source');
+					$role_ref = $this->input->post('asset_contributor_role_ref');
+					foreach ($this->input->post('asset_contributor_name') as $index => $value)
+					{
+						if ( ! empty($value))
+						{
+							$assets_contributors_d['assets_id'] = $asset_id;
+							$contributor_info['contributor_name'] = $value;
+							if ( ! empty($affiliation[$index]))
+								$contributor_info['contributor_affiliation'] = $affiliation[$index];
+							if ( ! empty($ref[$index]))
+								$contributor_info['contributor_ref'] = $ref[$index];
+							$creator_d = $this->assets_model->get_contributor_by_contributor_info($contributor_info);
+							if (isset($creator_d) && isset($creator_d->id))
+							{
+								$assets_contributors_d['contributors_id'] = $creator_d->id;
+							}
+							else
+							{
+								$assets_contributors_d['contributors_id'] = $this->assets_model->insert_contributors($creater);
+							}
+							$contributorrole_info['contributor_role'] = $roles[$index];
+							if ( ! empty($role_src[$index]))
+								$contributorrole_info['contributor_role_source'] = $role_src[$index];
+							if ( ! empty($role_ref[$index]))
+								$contributorrole_info['contributor_role_ref'] = $role_ref[$index];
+							$creator_role = $this->assets_model->get_contributor_role_info($role);
+							if (isset($creator_role) && isset($creator_role->id))
+							{
+								$assets_contributors_d['contributor_roles_id'] = $creator_role->id;
+							}
+							else
+							{
+								$assets_contributors_d['contributor_roles_id'] = $this->assets_model->insert_contributor_roles($role);
+							}
+							$assets_creators_roles_id = $this->assets_model->insert_assets_contributors_roles($assets_contributors_d);
+						}
+					}
+				}
 				exit;
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);

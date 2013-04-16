@@ -576,6 +576,21 @@ class Assets_Model extends CI_Model
 		return false;
 	}
 
+	function get_contributor_by_contributor_info($contributor_name)
+	{
+		$this->db->where("contributor_name", $contributor_name['contributor_name']);
+		if (isset($contributor_name['contributor_affiliation']) && ! empty($contributor_name['contributor_affiliation']))
+			$this->db->where("contributor_affiliation", $contributor_name['contributor_affiliation']);
+		if (isset($contributor_name['contributor_ref']) && ! empty($contributor_name['contributor_ref']))
+			$this->db->where("contributor_ref", $contributor_name['contributor_ref']);
+		$res = $this->db->get($this->_table_contributors);
+		if (isset($res) && ! empty($res))
+		{
+			return $res->row();
+		}
+		return false;
+	}
+
 	/**
 	 * search  contributor roles data by contributor_role
 	 * 
@@ -585,6 +600,21 @@ class Assets_Model extends CI_Model
 	function get_contributor_role_by_role($contributor_role)
 	{
 		$this->db->where("contributor_role", $contributor_role);
+		$res = $this->db->get($this->_table_contributor_roles);
+		if (isset($res) && ! empty($res))
+		{
+			return $res->row();
+		}
+		return false;
+	}
+
+	function get_contributor_role_info($contributor_role)
+	{
+		$this->db->where("contributor_role", $contributor_role['contributor_role']);
+		if (isset($contributor_role['contributor_role_source']) && ! empty($contributor_role['contributor_role_source']))
+			$this->db->where("contributor_role_source", $contributor_role['contributor_role_source']);
+		if (isset($contributor_role['contributor_role_ref']) && ! empty($contributor_role['contributor_role_ref']))
+			$this->db->where("contributor_role_ref", $contributor_role['contributor_role_ref']);
 		$res = $this->db->get($this->_table_contributor_roles);
 		if (isset($res) && ! empty($res))
 		{

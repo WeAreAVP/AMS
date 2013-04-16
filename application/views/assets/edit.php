@@ -588,9 +588,9 @@
 				</tr>
 				<tr>
 					<?php
-					$audience_ratings = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level)));
-					$audience_rating_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_source)));
-					$audience_rating_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->audience_level_ref)));
+					$audience_ratings = explode('|', trim(str_replace('(**)', '', $asset_detail->audience_level)));
+					$audience_rating_sources = explode('|', trim(str_replace('(**)', '', $asset_detail->audience_level_source)));
+					$audience_rating_refs = explode('|', trim(str_replace('(**)', '', $asset_detail->audience_level_ref)));
 					$add = ' ADD AUDIENCE RATING';
 					?>
 					<td class="record-detail-page">
@@ -617,7 +617,7 @@
 														foreach ($pbcore_asset_audience_rating as $row)
 														{
 															$selected = '';
-															if ($audience_rating == $row->value)
+															if (trim($audience_rating) == $row->value)
 																$selected = 'selected="selected"'
 																?>
 															<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
@@ -631,8 +631,8 @@
 												<p>
 													<select id="asset_audience_rating_source_<?php echo $index; ?>" name="asset_audience_rating_source[]">
 														<option value="">Select Audience Rating Source</option>
-														<option value="MPAA" <?php echo (isset($audience_rating_sources[$index]) && $audience_rating_sources[$index] == 'MPAA') ? 'selected="selected"' : ''; ?> >MPAA</option>
-														<option value="TV Parental Guidelines" <?php echo (isset($audience_rating_sources[$index]) && $audience_rating_sources[$index] == 'TV Parental Guidelines') ? 'selected="selected"' : ''; ?>>TV Parental Guidelines</option>
+														<option value="MPAA" <?php echo (isset($audience_rating_sources[$index]) && trim($audience_rating_sources[$index]) == 'MPAA') ? 'selected="selected"' : ''; ?> >MPAA</option>
+														<option value="TV Parental Guidelines" <?php echo (isset($audience_rating_sources[$index]) && trim($audience_rating_sources[$index]) == 'TV Parental Guidelines') ? 'selected="selected"' : ''; ?>>TV Parental Guidelines</option>
 													</select>
 
 												</p>
@@ -641,8 +641,8 @@
 												<p> Audience Rating Ref:</p>
 												<p>
 													<select id="asset_audience_rating_ref_<?php echo $index; ?>" name="asset_audience_rating_ref[]">
-														<option value="http://www.filmratings.com" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.filmratings.com') ? 'selected="selected"' : ''; ?> >http://www.filmratings.com</option>
-														<option value="http://www.tvguidelines.org/ratings.htm" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.tvguidelines.org/ratings.htm') ? 'selected="selected"' : ''; ?>>http://www.tvguidelines.org/ratings.htm</option>
+														<option value="http://www.filmratings.com" <?php echo (isset($audience_rating_refs[$index]) && trim($audience_rating_refs[$index]) == 'http://www.filmratings.com') ? 'selected="selected"' : ''; ?> >http://www.filmratings.com</option>
+														<option value="http://www.tvguidelines.org/ratings.htm" <?php echo (isset($audience_rating_refs[$index]) && trim($audience_rating_refs[$index]) == 'http://www.tvguidelines.org/ratings.htm') ? 'selected="selected"' : ''; ?>>http://www.tvguidelines.org/ratings.htm</option>
 													</select>
 
 												</p>

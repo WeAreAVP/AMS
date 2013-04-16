@@ -303,6 +303,25 @@ class Assets extends MY_Controller
 						}
 					}
 				}
+				if ($this->input->post('asset_annotation'))
+				{
+					$annotation_type = $this->input->post('asset_annotation_type');
+					$annotation_ref = $this->input->post('asset_annotation_ref');
+					foreach ($this->input->post('asset_annotation') as $index => $value)
+					{
+						if ( ! empty($value))
+						{
+							$annotation['assets_id'] = $asset_id;
+							$annotation['annotation'] = $value;
+							if ( ! empty($annotation_type[$index]))
+								$annotation['annotation_type'] = $annotation_type[$index];
+							if ( ! empty($annotation_ref[$index]))
+								$annotation['annotation_ref'] = $annotation_ref[$index];
+
+							$asset_annotation = $this->assets_model->insert_annotation($annotation);
+						}
+					}
+				}
 				exit;
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
@@ -348,15 +367,16 @@ class Assets extends MY_Controller
 		$this->manage_asset->delete_asset_coverage($asset_id);
 		$this->manage_asset->delete_audience_level($asset_id);
 		$this->manage_asset->delete_audience_rating($asset_id);
+		$this->manage_asset->delete_annotations($asset_id);
 		return TRUE;
 
 
 
 
 
+
+
 		
-		
-		$this->manage_asset->delete_audience_annotations($asset_id);
 		$this->manage_asset->delete_audience_relations($asset_id);
 		$this->manage_asset->delete_creator($asset_id);
 		$this->manage_asset->delete_contributor($asset_id);

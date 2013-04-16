@@ -234,6 +234,13 @@ class Manage_Asset_Model extends CI_Model
 		return $this->db->affected_rows() > 0;
 	}
 
+	function delete_annotations($asset_id)
+	{
+		$this->db->where('assets_id', $asset_id);
+		$this->db->delete('annotations');
+		return $this->db->affected_rows() > 0;
+	}
+
 }
 
 ?>

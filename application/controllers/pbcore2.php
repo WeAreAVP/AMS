@@ -514,7 +514,7 @@ class Pbcore2 extends CI_Controller
 						}
 						else
 						{
-							$asset_description_types_id = $this->assets_model->insert_asset_title_types(array("description_type" => $pbcoredescription['attributes']['descriptiontype']));
+							$asset_description_types_id = $this->assets_model->insert_description_types(array("description_type" => $pbcoredescription['attributes']['descriptiontype']));
 						}
 						$asset_descriptions_d['description_types_id'] = $asset_title_types_id;
 					}

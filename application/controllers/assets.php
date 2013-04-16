@@ -193,7 +193,7 @@ class Assets extends MY_Controller
 							}
 							else
 							{
-								$asset_description_types_id = $this->assets_model->insert_asset_title_types(array("description_type" => $desc_type[$index]));
+								$asset_description_types_id = $this->assets_model->insert_description_types(array("description_type" => $desc_type[$index]));
 							}
 							$asset_descriptions_d['description_types_id'] = $asset_title_types_id;
 							$this->assets_model->insert_asset_descriptions($asset_descriptions_d);

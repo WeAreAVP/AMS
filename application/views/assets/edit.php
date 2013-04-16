@@ -500,7 +500,6 @@
 											<div>
 												<p>Coverage Type:</p>
 												<p><select id="asset_coverage_type_<?php echo $index; ?>" name="asset_coverage_type[]">
-														<option value="">Select Coverage Type</option>
 														<option value="spatial" <?php echo (isset($coverage_types[$index]) && $coverage_types[$index] == 'spatial') ? 'selected="selected"' : ''; ?> >spatial</option>
 														<option value="temporal" <?php echo (isset($coverage_types[$index]) && $coverage_types[$index] == 'temporal') ? 'selected="selected"' : ''; ?>>temporal</option>
 													</select></p>

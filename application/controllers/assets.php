@@ -435,7 +435,8 @@ class Assets extends MY_Controller
 							{
 								$assets_contributors_d['contributor_roles_id'] = $this->assets_model->insert_contributor_roles($role);
 							}
-							$assets_creators_roles_id = $this->assets_model->insert_assets_contributors_roles($assets_contributors_d);
+//							debug($assets_contributors_d);
+							 $this->assets_model->insert_assets_contributors_roles($assets_contributors_d);
 						}
 					}
 				}
@@ -487,6 +488,7 @@ class Assets extends MY_Controller
 		$this->manage_asset->delete_annotations($asset_id);
 		$this->manage_asset->delete_relations($asset_id);
 		$this->manage_asset->delete_creator($asset_id);
+		$this->manage_asset->delete_contributor($asset_id);
 		return TRUE;
 
 
@@ -498,7 +500,7 @@ class Assets extends MY_Controller
 
 
 
-		$this->manage_asset->delete_contributor($asset_id);
+		
 		$this->manage_asset->delete_publisher($asset_id);
 		$this->manage_asset->delete_rights($asset_id);
 	}

@@ -54,7 +54,7 @@
 
 	<?php $this->load->view('partials/_list'); ?>
     <div class="span9" style="margin-left: 250px;">
-        <?php $this->load->view('partials/_proxy_files'); ?>
+        <?php //$this->load->view('partials/_proxy_files'); ?>
 		<?php
 		if ($media)
 		{

@@ -295,9 +295,9 @@
 				<tr>
 					<?php
 					$subjects = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject)));
-					$subject_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_source)));
-					$subject_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_ref)));
-					$subject_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->subject_type)));
+					$subject_sources = explode('|', trim(str_replace('(**)', '', $asset_detail->subject_source)));
+					$subject_refs = explode('|', trim(str_replace('(**)', '', $asset_detail->subject_ref)));
+					$subject_types = explode('|', trim(str_replace('(**)', '', $asset_detail->subject_type)));
 					$add = ' ADD SUBJECT';
 					?>
 					<td class="record-detail-page">
@@ -330,7 +330,7 @@
 														foreach ($pbcore_asset_subject_types as $row)
 														{
 															$selected = '';
-															if (isset($subject_types[$index]) && $subject_types[$index] == $row->subject_type)
+															if (isset($subject_types[$index]) && trim($subject_types[$index]) == $row->subject_type)
 																$selected = 'selected="selected"'
 																?>
 															<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->subject_type; ?></option>
@@ -342,13 +342,13 @@
 											<div>
 												<p>Subject Source:</p>
 												<p>
-													<input id="asset_subject_source_<?php echo $index; ?>" name="asset_subject_source[]" value="<?php echo (isset($subject_sources[$index])) ? $subject_sources[$index] : ''; ?>" />
+													<input id="asset_subject_source_<?php echo $index; ?>" name="asset_subject_source[]" value="<?php echo (isset($subject_sources[$index])) ? trim($subject_sources[$index]) : ''; ?>" />
 												</p>
 											</div>
 											<div>
 												<p>Subject Ref:</p>
 												<p>
-													<input id="asset_subject_ref_<?php echo $index; ?>" name="asset_subject_ref[]" value="<?php echo (isset($subject_refs[$index])) ? $subject_refs[$index] : ''; ?>" />
+													<input id="asset_subject_ref_<?php echo $index; ?>" name="asset_subject_ref[]" value="<?php echo (isset($subject_refs[$index])) ? trim($subject_refs[$index]) : ''; ?>" />
 												</p>
 											</div>
 										</div>

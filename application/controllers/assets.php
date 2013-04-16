@@ -107,6 +107,44 @@ class Assets extends MY_Controller
 						}
 					}
 				}
+				if ($this->input->post('asset_title'))
+				{
+					foreach ($this->input->post('asset_title') as $index => $value)
+					{
+						$title_type = $this->input->post('asset_title_type');
+						$title_source = $this->input->post('asset_title_source');
+						$title_ref = $this->input->post('asset_title_ref');
+						if ( ! empty($value))
+						{
+							$title_detail['assets_id'] = $asset_id;
+							$title_detail['title'] = $value;
+							if ($title_type[$index])
+							{
+								$asset_title_types = $this->assets_model->get_asset_title_types_by_title_type($title_type[$index]);
+								if (isset($asset_title_types) && isset($asset_title_types->id))
+								{
+									$asset_title_types_id = $asset_title_types->id;
+								}
+								else
+								{
+									$asset_title_types_id = $this->assets_model->insert_asset_title_types(array("title_type" => $title_type[$index]));
+								}
+								$title_detail['asset_title_types_id'] = $asset_title_types_id;
+							}
+							if ($title_ref[$index])
+							{
+								$title_detail['title_ref'] = $title_ref[$index];
+							}
+							if ($title_source[$index])
+							{
+								$title_detail['title_source'] = $title_source[$index];
+							}
+							$title_detail['created'] = date('Y-m-d H:i:s');
+							$title_detail['updated'] = date('Y-m-d H:i:s');
+							$this->assets_model->insert_asset_titles($title_detail);
+						}
+					}
+				}
 				exit;
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
@@ -145,8 +183,9 @@ class Assets extends MY_Controller
 		$this->manage_asset->delete_asset_types($asset_id);
 		$this->manage_asset->delete_asset_dates($asset_id);
 		$this->manage_asset->delete_local_identifiers($asset_id);
-		return TRUE;
 		$this->manage_asset->delete_asset_titles($asset_id);
+		return TRUE;
+
 		$this->manage_asset->delete_asset_subjects($asset_id);
 		$this->manage_asset->delete_asset_descriptions($asset_id);
 		$this->manage_asset->delete_asset_genre($asset_id);

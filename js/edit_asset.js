@@ -201,7 +201,7 @@ function addElement(elementID, type) {
 		html = '<div id="remove_title_' + number + '" class="remove_title"><div class="edit_form_div">' +
 		'<div><p>Title:</p><p><textarea id="asset_title_<?php echo $index; ?>" name="asset_title[]"></textarea>' +
 		'</p></div><div><p>Title Type:</p><p><select id="asset_title_type_<?php echo $index; ?>" name="asset_title_type[]">' +
-		'<option value="">Select Title Type</option>' + titleTypes + '</select></p></div><div><p>Title Source:</p>' +
+		 titleTypes + '</select></p></div><div><p>Title Source:</p>' +
 		'<p><input id="asset_title_source_' + number + '" name="asset_title_source[]" value="" /></p>' +
 		'</div><div><p>Title Ref:</p><p><input id="asset_title_ref_' + number + '" name="asset_title_ref[]" value="" /></p>' +
 		'</div></div><div class="remove_element" onclick="removeElement(\'#remove_title_' + number + '\', \'title\');"><img src="/images/remove-item.png" /></div>' +

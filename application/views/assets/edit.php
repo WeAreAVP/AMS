@@ -253,7 +253,6 @@
 												</p>
 												<p>
 													<select id="asset_title_type_<?php echo $index; ?>" name="asset_title_type[]">
-														<option value="">Select Title Type</option>
 														<?php
 														foreach ($pbcore_asset_title_types as $row)
 														{

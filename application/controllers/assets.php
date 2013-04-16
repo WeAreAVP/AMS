@@ -73,6 +73,7 @@ class Assets extends MY_Controller
 				{
 					foreach ($this->input->post('asset_date') as $index => $value)
 					{
+						$asset_date_info['assets_id'] = $asset_id;
 						$asset_date_info['asset_date'] = $value;
 						$date_type = $this->input->post('asset_date_type');
 

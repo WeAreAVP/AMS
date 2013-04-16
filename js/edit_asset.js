@@ -558,5 +558,6 @@ function validateForm() {
 
 		});
 	}
+	$('#edit_asset_form').submit();
 
 }

@@ -30,7 +30,7 @@
 	<div class="clearfix"></div>
 	<?php $this->load->view('partials/_list'); ?>
 	<div class="span9" style="margin-left: 250px;" id="ins_view_detail">
-		<form class="form-horizontal" method="POST" action="<?php echo $this->uri->uri_string(); ?>">
+		<form class="form-horizontal" method="POST" action="<?php echo $this->uri->uri_string(); ?>" id="edit_asset_form">
 			<table cellPadding="8" class="record-detail-table">
 				<?php if ( ! $this->is_station_user)
 				{ ?>
@@ -57,7 +57,7 @@
 						</td>
 					</tr>
 					<?php } ?>
-				<tr>
+				 <tr>
 					<?php
 					$add = ' ADD TYPE';
 					$asset_type_separate = explode(' | ', trim(str_replace('(**)', '', $asset_detail->asset_type)));

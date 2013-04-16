@@ -1062,11 +1062,11 @@ class Assets_Model extends CI_Model
 
 	function get_audience_rating_all($audience_rating)
 	{
-		$this->db->where('audience_rating', $audience_level['audience_rating']);
-		if (isset($audience_level['audience_rating_source']) && ! empty($audience_level['audience_rating_source']))
-			$this->db->where('audience_rating_source', $audience_level['audience_rating_source']);
-		if (isset($audience_level['audience_rating_ref']) && ! empty($audience_level['audience_rating_ref']))
-			$this->db->where('audience_rating_ref', $audience_level['audience_rating_ref']);
+		$this->db->where('audience_rating', $audience_rating['audience_rating']);
+		if (isset($audience_rating['audience_rating_source']) && ! empty($audience_rating['audience_rating_source']))
+			$this->db->where('audience_rating_source', $audience_rating['audience_rating_source']);
+		if (isset($audience_rating['audience_rating_ref']) && ! empty($audience_rating['audience_rating_ref']))
+			$this->db->where('audience_rating_ref', $audience_rating['audience_rating_ref']);
 		$result = $this->db->get($this->_table_audience_ratings);
 		if (isset($result) && ! empty($result))
 		{

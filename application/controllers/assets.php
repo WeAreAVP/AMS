@@ -67,8 +67,8 @@ class Assets extends MY_Controller
 						}
 						
 						debug($asset_type_d);
-//						echo $this->assets_model->insert_assets_asset_types($asset_type_d);
-//						echo '<br/>';
+						echo $this->assets_model->insert_assets_asset_types($asset_type_d);
+						echo '<br/>';
 					}
 				}
 				exit;

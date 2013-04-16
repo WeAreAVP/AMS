@@ -322,6 +322,35 @@ class Assets extends MY_Controller
 						}
 					}
 				}
+				if ($this->input->post('asset_relation_identifier'))
+				{
+					$relation_src = $this->input->post('asset_relation_source');
+					$relation_ref = $this->input->post('asset_relation_ref');
+					$relation_type = $this->input->post('asset_relation_type');
+					foreach ($this->input->post('asset_relation_identifier') as $index => $value)
+					{
+						if ( ! empty($value))
+						{
+							$assets_relation['assets_id'] = $asset_id;
+							$assets_relation['relation_identifier'] = $value;
+							$relation_types['relation_type'] = $relation_type[$index];
+							if ( ! empty($relation_src[$index]))
+								$relation_types['relation_type_source'] = $relation_src[$index];
+							if ( ! empty($relation_ref[$index]))
+								$relation_types['relation_type_ref'] = $relation_ref[$index];
+							$db_relations = $this->assets_model->get_relation_types_all($relation_types);
+							if (isset($db_relations) && isset($db_relations->id))
+							{
+								$assets_relation['relation_types_id'] = $db_relations->id;
+							}
+							else
+							{
+								$assets_relation['relation_types_id'] = $this->assets_model->insert_relation_types($relation_types);
+							}
+							$this->assets_model->insert_asset_relation($assets_relation);
+						}
+					}
+				}
 				exit;
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
@@ -376,7 +405,7 @@ class Assets extends MY_Controller
 
 
 
-		
+
 		$this->manage_asset->delete_audience_relations($asset_id);
 		$this->manage_asset->delete_creator($asset_id);
 		$this->manage_asset->delete_contributor($asset_id);

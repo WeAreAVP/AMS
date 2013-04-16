@@ -1108,6 +1108,21 @@ class Assets_Model extends CI_Model
 		return false;
 	}
 
+	function get_relation_types_all($relation_type)
+	{
+		$this->db->where('relation_type', $relation_type['relation_type']);
+		if (isset($relation_type['relation_type_source']) && ! empty($relation_type['relation_type_source']))
+			$this->db->where('relation_type_source', $relation_type['relation_type_source']);
+		if (isset($relation_type['relation_type_ref']) && ! empty($relation_type['relation_type_ref']))
+			$this->db->where('relation_type_ref', $relation_type['relation_type_ref']);
+		$result = $this->db->get($this->_table_relation_types);
+		if (isset($result) && ! empty($result))
+		{
+			return $result->row();
+		}
+		return false;
+	}
+
 	/**
 	 *  Insert the record in relation_types table
 	 *  @param array $data

@@ -145,6 +145,44 @@ class Assets extends MY_Controller
 						}
 					}
 				}
+				if ($this->input->post('asset_subject'))
+				{
+					foreach ($this->input->post('asset_subject') as $index => $value)
+					{
+						$subject_type = $this->input->post('asset_subject_type');
+						$subject_source = $this->input->post('asset_subject_source');
+						$subject_ref = $this->input->post('asset_subject_ref');
+						if ( ! empty($value))
+						{
+							$subject_detail['assets_id'] = $asset_id;
+							if ($subject_type[$index])
+							{
+								$subject_d = array();
+								$subject_d['subject'] = $subject_type[$index];
+								if ( ! empty($subject_ref[$index]))
+								{
+									$subject_d['subject_ref'] = $subject_ref[$index];
+								}
+								if ( ! empty($subject_source[$index]))
+								{
+									$subject_d['subject_source'] = $subject_source[$index];
+								}
+
+								$subjects = $this->assets_model->get_subjects_id_by_subject($subject_type[$index]);
+								if (isset($subjects) && isset($subjects->id))
+								{
+									$subject_id = $subjects->id;
+								}
+								else
+								{
+									$subject_id = $this->assets_model->insert_subjects($subject_d);
+								}
+								$subject_detail['subjects_id'] = $subject_id;
+								$assets_subject_id = $this->assets_model->insert_assets_subjects($pbcoreSubject_d);
+							}
+						}
+					}
+				}
 				exit;
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
@@ -184,9 +222,10 @@ class Assets extends MY_Controller
 		$this->manage_asset->delete_asset_dates($asset_id);
 		$this->manage_asset->delete_local_identifiers($asset_id);
 		$this->manage_asset->delete_asset_titles($asset_id);
+		$this->manage_asset->delete_asset_subjects($asset_id);
 		return TRUE;
 
-		$this->manage_asset->delete_asset_subjects($asset_id);
+		
 		$this->manage_asset->delete_asset_descriptions($asset_id);
 		$this->manage_asset->delete_asset_genre($asset_id);
 		$this->manage_asset->delete_asset_coverage($asset_id);

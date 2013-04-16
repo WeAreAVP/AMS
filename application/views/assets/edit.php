@@ -326,7 +326,6 @@
 												</p>
 												<p>
 													<select id="asset_subject_type_<?php echo $index; ?>" name="asset_subject_type[]">
-														<option value="">Select Subject Type</option>
 														<?php
 														foreach ($pbcore_asset_subject_types as $row)
 														{

@@ -1150,4 +1150,4 @@
 									var pbcorePublisherRoles =<?php echo json_encode($pbcore_asset_publisher_roles); ?>;
 
 </script>
-<script type="text/javascript" src="/js/edit_asset.js"></script>
+<script type="text/javascript" src="/js/edit_asset.js?<?php echo time();?>"></script>

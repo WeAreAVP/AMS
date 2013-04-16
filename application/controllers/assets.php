@@ -397,6 +397,7 @@ class Assets extends MY_Controller
 		$this->manage_asset->delete_audience_level($asset_id);
 		$this->manage_asset->delete_audience_rating($asset_id);
 		$this->manage_asset->delete_annotations($asset_id);
+		$this->manage_asset->delete_relations($asset_id);
 		return TRUE;
 
 
@@ -406,7 +407,7 @@ class Assets extends MY_Controller
 
 
 
-		$this->manage_asset->delete_audience_relations($asset_id);
+
 		$this->manage_asset->delete_creator($asset_id);
 		$this->manage_asset->delete_contributor($asset_id);
 		$this->manage_asset->delete_publisher($asset_id);

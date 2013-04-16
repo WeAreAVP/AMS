@@ -269,6 +269,13 @@ class Manage_Asset_Model extends CI_Model
 		return $this->db->affected_rows() > 0;
 	}
 
+	function delete_rights($asset_id)
+	{
+		$this->db->where('assets_id', $asset_id);
+		$this->db->delete('rights_summaries');
+		return $this->db->affected_rows() > 0;
+	}
+
 }
 
 ?>

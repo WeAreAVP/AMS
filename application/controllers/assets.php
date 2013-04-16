@@ -484,6 +484,18 @@ class Assets extends MY_Controller
 						}
 					}
 				}
+				if ($this->input->post('asset_rights'))
+				{
+					$right_link = $this->input->post('asset_right_link');
+					foreach ($this->input->post('asset_rights') as $index => $value)
+					{
+						$rights_summary_d['assets_id'] = $asset_id;
+						$rights_summary_d['rights'] = $value;
+						if ( ! empty($right_link[$index]))
+							$rights_summary_d['rights_link'] = $right_link[$index];
+						$this->assets_model->insert_rights_summaries($rights_summary_d);
+					}
+				}
 				exit;
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
@@ -534,30 +546,8 @@ class Assets extends MY_Controller
 		$this->manage_asset->delete_creator($asset_id);
 		$this->manage_asset->delete_contributor($asset_id);
 		$this->manage_asset->delete_publisher($asset_id);
-		return TRUE;
-
-
-
-
-
-
-
-
-
-
-
-		
 		$this->manage_asset->delete_rights($asset_id);
-	}
-
-	public function insert_pbcore_values()
-	{
-		$asset_type = array('Copyright Holder', 'Distributor', 'Presenter', 'Publisher', 'Release Agent'
-		);
-		foreach ($asset_type as $value)
-		{
-//			$this->manage_asset->insert_picklist_value(array('element_type_id' => 10, 'value' => $value));
-		}
+		return TRUE;
 	}
 
 }

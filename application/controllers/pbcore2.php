@@ -488,7 +488,7 @@ class Pbcore2 extends CI_Controller
 							$subject_id = $this->assets_model->insert_subjects($subject_d);
 						}
 						$subject_detail['subjects_id'] = $subject_id;
-						$assets_subject_id = $this->assets_model->insert_assets_subjects($pbcoreSubject_d);
+						$assets_subject_id = $this->assets_model->insert_assets_subjects($subject_detail);
 					}
 				}
 			}

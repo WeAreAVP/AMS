@@ -166,7 +166,7 @@ class Assets extends MY_Controller
 								{
 									$subject_d['subject_source'] = $subject_source[$index];
 								}
-
+								$subject_d['subjects_types_id'] = $subject_type[$index];
 								$subjects = $this->assets_model->get_subjects_id_by_subject($subject_type[$index]);
 								if (isset($subjects) && isset($subjects->id))
 								{
@@ -177,9 +177,9 @@ class Assets extends MY_Controller
 									$subject_id = $this->assets_model->insert_subjects($subject_d);
 								}
 								
-								$subject_detail['subjects_types_id'] = $subject_type[$index];
+								
 								$subject_detail['subjects_id'] = $subject_id;
-								$assets_subject_id = $this->assets_model->insert_assets_subjects($pbcoreSubject_d);
+								$assets_subject_id = $this->assets_model->insert_assets_subjects($subject_detail);
 							
 						}
 					}

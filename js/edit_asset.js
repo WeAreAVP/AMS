@@ -184,7 +184,6 @@ function addElement(elementID, type) {
 		html = '<div id="remove_date_' + number + '" class="remove_date"><div class="edit_form_div">' +
 		'<div><p>Asset Date:</p><p><input id="asset_date_' + number + '" name="asset_date[]" value="" /></p></div>' +
 		'<div><p>Asset Date Type:</p><p><select id="asset_date_type_' + number + '" name="asset_date_type[]">' +
-		'<option value="">Select Date Type</option>' +
 		dateTypes +
 		'</select></p></div></div>' +
 		'<div class="remove_element" onclick="removeElement(\'#remove_date_' + number + '\', \'date\');"><img src="/images/remove-item.png" /></div>' +
@@ -515,7 +514,7 @@ function addElement(elementID, type) {
 			assetTypes += '<option value= "' + pbcoreAssetTypes[cnt]['value'] + '">' + pbcoreAssetTypes[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_type_' + number + '" class="remove_type"><div class="edit_form_div"><div><p>Asset Type:</p></div><div><p>' +
-		'<select id="asset_type_' + number + '" name="asset_type[]"><option value="">Select Type</option>' +
+		'<select id="asset_type_' + number + '" name="asset_type[]">' +
 		assetTypes + '</select></p></div></div>' +
 		'<div class="remove_element" onclick="removeElement(\'#remove_type_' + number + '\', \'type\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';

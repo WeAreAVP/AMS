@@ -170,6 +170,13 @@ class Manage_Asset_Model extends CI_Model
 		return $this->db->affected_rows() > 0;
 	}
 
+	function delete_asset_dates($asset_id)
+	{
+		$this->db->where('assets_id', $asset_id);
+		$this->db->delete('asset_dates');
+		return $this->db->affected_rows() > 0;
+	}
+
 }
 
 ?>

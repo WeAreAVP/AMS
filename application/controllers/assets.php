@@ -65,14 +65,31 @@ class Assets extends MY_Controller
 						{
 							$asset_type_d['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $value));
 						}
-						
-//						debug($asset_type_d);
-						echo $this->assets_model->insert_assets_asset_types($asset_type_d);
-						echo '<br/>';
+
+						$this->assets_model->insert_assets_asset_types($asset_type_d);
+					}
+				}
+				if ($this->input->post('asset_date'))
+				{
+					foreach ($this->input->post('asset_date') as $index => $value)
+					{
+						$asset_date_info['asset_date'] = $value;
+						$date_type = $this->input->post('asset_date_type');
+
+						if ($asset_date_type = $this->instant->get_date_types_by_type($date_type[$index]))
+						{
+							$asset_date_info['date_types_id'] = $asset_date_type->id;
+						}
+						else
+						{
+							$asset_date_info['date_types_id'] = $this->instant->insert_date_types(array("date_type" => $date_type[$index]));
+						}
+
+						$this->assets_model->insert_asset_date($asset_date_info);
 					}
 				}
 				exit;
-//				
+	
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
 			if ($data['asset_detail'])
@@ -107,8 +124,8 @@ class Assets extends MY_Controller
 	private function delete_asset_attributes($asset_id)
 	{
 		$this->manage_asset->delete_asset_types($asset_id);
-		return TRUE;
 		$this->manage_asset->delete_asset_dates($asset_id);
+		return TRUE;
 		$this->manage_asset->delete_local_identifiers($asset_id);
 		$this->manage_asset->delete_asset_titles($asset_id);
 		$this->manage_asset->delete_asset_subjects($asset_id);

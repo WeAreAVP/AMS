@@ -79,7 +79,6 @@
 											<div><p>Asset Type:</p></div>
 											<div><p>
 													<select id="asset_type_<?php echo $index; ?>" name="asset_type[]">
-														<option value="">Select Type</option>
 														<?php
 														foreach ($pbcore_asset_types as $row)
 														{
@@ -136,7 +135,6 @@
 												<p>Asset Date Type:</p>
 												<p>
 													<select id="asset_date_type_<?php echo $index; ?>" name="asset_date_type[]">
-														<option value="">Select Date Type</option>
 														<?php
 														foreach ($pbcore_asset_date_types as $row)
 														{

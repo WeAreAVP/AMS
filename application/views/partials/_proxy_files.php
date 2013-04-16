@@ -24,6 +24,7 @@
 				file: "<?php echo $media['url']; ?>",
 				height: 150,
 				//        image: "/uploads/example.jpg",
+				startparam: "starttime",
 				width: 400,
 				'modes': [
 					{type: 'html5'},

@@ -51,7 +51,7 @@ class Assets extends MY_Controller
 			if ($this->input->post())
 			{
 				debug($this->input->post(), FALSE);
-//				$this->delete_asset_attributes($asset_id);
+				$this->delete_asset_attributes($asset_id);
 				if ($this->input->post('asset_type'))
 				{
 					foreach ($this->input->post('asset_type') as $value)
@@ -59,17 +59,17 @@ class Assets extends MY_Controller
 						if ($asset_type = $this->assets_model->get_assets_type_by_type($value))
 						{
 							$asset_type_d['asset_types_id'] = $asset_type->id;
-							echo 'already';
 						}
 						else
 						{
-//						$asset_type_d['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $value));
-							echo 'not already';
+							$asset_type_d['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $value));
 						}
+						$asset_type_d['assets_id'] = $asset_id;
+						$this->assets_model->insert_assets_asset_types($asset_type_d);
 					}
 				}
 				exit;
-//				$this->assets_model->insert_assets_asset_types($asset_type_d);
+//				
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
 			if ($data['asset_detail'])

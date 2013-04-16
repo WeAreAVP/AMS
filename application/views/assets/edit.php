@@ -58,7 +58,7 @@
 
 						</td>
 					</tr>
-					<?php } ?>
+				<?php } ?>
 				<tr>
 					<?php
 					$add = ' ADD TYPE';
@@ -278,6 +278,7 @@
 												<p>Title Ref:</p>
 												<p>
 													<input id="asset_title_ref_<?php echo $index; ?>" name="asset_title_ref[]" value="<?php echo (isset($title_refs[$index])) ? trim($title_refs[$index]) : ''; ?>" />
+													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
 										</div>
@@ -351,6 +352,7 @@
 												<p>Subject Ref:</p>
 												<p>
 													<input id="asset_subject_ref_<?php echo $index; ?>" name="asset_subject_ref[]" value="<?php echo (isset($subject_refs[$index])) ? trim($subject_refs[$index]) : ''; ?>" />
+													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
 										</div>
@@ -459,6 +461,7 @@
 											<div>
 												<p>Genre Ref:</p>
 												<p><input id="asset_genre_ref_<?php echo $index; ?>" name="asset_genre_ref[]" value="<?php echo (isset($genre_refs[$index])) ? trim($genre_refs[$index]) : ''; ?>" /></p>
+												<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 											</div>
 
 										</div>
@@ -570,6 +573,7 @@
 												<p> Audience Level Ref:</p>
 												<p>
 													<input id="asset_audience_level_ref_<?php echo $index; ?>" name="asset_audience_level_ref[]" value="<?php echo (isset($audience_level_refs[$index])) ? trim($audience_level_refs[$index]) : ''; ?>" />
+													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
 
@@ -705,6 +709,7 @@
 												<p> Annotation Ref:</p>
 												<p>
 													<input id="asset_annotation_ref_<?php echo $index; ?>" name="asset_annotation_ref[]" value="<?php echo (isset($annotation_refs[$index])) ? trim($annotation_refs[$index]) : ''; ?>" />
+													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
 
@@ -780,6 +785,7 @@
 												<p> Relation Ref:</p>
 												<p>
 													<input id="asset_relation_ref_<?php echo $index; ?>" name="asset_relation_ref[]" value="<?php echo (isset($relation_type_refs[$index])) ? trim($relation_type_refs[$index]) : ''; ?>" />
+													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
 										</div>
@@ -841,6 +847,7 @@
 												</p>
 												<p>
 													<input id="asset_creator_ref_<?php echo $index; ?>" name="asset_creator_ref[]" value="<?php echo (isset($creator_ref[$index])) ? trim($creator_ref[$index]) : ''; ?>" />
+													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
 											<div>
@@ -872,6 +879,7 @@
 												<p> Creator Role Ref:</p>
 												<p>
 													<input id="asset_creator_role_ref_<?php echo $index; ?>" name="asset_creator_role_ref[]" value="<?php echo (isset($creator_role_ref[$index])) ? trim($creator_role_ref[$index]) : ''; ?>" />
+													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
 										</div>
@@ -934,6 +942,7 @@
 												</p>
 												<p>
 													<input id="asset_contributor_ref_<?php echo $index; ?>" name="asset_contributor_ref[]" value="<?php echo (isset($contributor_ref[$index])) ? trim($contributor_ref[$index]) : ''; ?>" />
+													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
 											<div>
@@ -965,6 +974,7 @@
 												<p> Contributor Role Ref:</p>
 												<p>
 													<input id="asset_contributor_role_ref_<?php echo $index; ?>" name="asset_contributor_role_ref[]" value="<?php echo (isset($contributor_role_ref[$index])) ? trim($contributor_role_ref[$index]) : ''; ?>" />
+													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
 
@@ -1027,6 +1037,7 @@
 												</p>
 												<p>
 													<input id="asset_publisher_ref_<?php echo $index; ?>" name="asset_publisher_ref[]" value="<?php echo (isset($publisher_ref[$index])) ? trim($publisher_ref[$index]) : ''; ?>" />
+													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
 											<div>
@@ -1058,6 +1069,7 @@
 												<p> Publisher Role Ref:</p>
 												<p>
 													<input id="asset_publisher_role_ref_<?php echo $index; ?>" name="asset_publisher_role_ref[]" value="<?php echo (isset($publisher_role_ref[$index])) ? trim($publisher_role_ref[$index]) : ''; ?>" />
+													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
 
@@ -1106,7 +1118,7 @@
 												<p> Right Link:</p>
 												<p>
 													<input id="asset_right_link_<?php echo $index; ?>" name="asset_right_link[]" value="<?php echo (isset($rights_link[$index])) ? trim($rights_link[$index]) : ''; ?>" />
-
+													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
 										</div>

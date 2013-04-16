@@ -203,7 +203,7 @@ function addElement(elementID, type) {
 		'</p></div><div><p>Title Type:</p><p><select id="asset_title_type_<?php echo $index; ?>" name="asset_title_type[]">' +
 		 titleTypes + '</select></p></div><div><p>Title Source:</p>' +
 		'<p><input id="asset_title_source_' + number + '" name="asset_title_source[]" value="" /></p>' +
-		'</div><div><p>Title Ref:</p><p><input id="asset_title_ref_' + number + '" name="asset_title_ref[]" value="" /></p>' +
+		'</div><div><p>Title Ref:</p><p><input id="asset_title_ref_' + number + '" name="asset_title_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span></p>' +
 		'</div></div><div class="remove_element" onclick="removeElement(\'#remove_title_' + number + '\', \'title\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
@@ -228,7 +228,7 @@ function addElement(elementID, type) {
 		'<div><p>Subject Type:</p><p><select id="asset_subject_type_' + number + '" name="asset_subject_type[]">' +
 		subjectType + '</select></p></div><div><p>Subject Source:</p>' +
 		'<p><input id="asset_subject_source_' + number + '" name="asset_subject_source[]" value="" /></p></div>' +
-		'<div><p>Subject Ref:</p><p><input id="asset_subject_ref_' + number + '" name="asset_subject_ref[]" value="" /></p></div>' +
+		'<div><p>Subject Ref:</p><p><input id="asset_subject_ref_' + number + '" name="asset_subject_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span></p></div>' +
 		'</div><div class="remove_element" onclick="removeElement(\'#remove_subject_' + number + '\', \'subject\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
@@ -266,7 +266,7 @@ function addElement(elementID, type) {
 		html = '<div id="remove_genre_' + number + '" class="remove_genre"><div class="edit_form_div"><div>' +
 		'<p>Genre:</p><p><input id="asset_genre_' + number + '" name="asset_genre[]" value="" /></p></div>' +
 		'<div><p>Genre Source:</p><p><input id="asset_genre_source_' + number + '" name="asset_genre_source[]" value="" /></p>' +
-		'</div><div><p>Genre Ref:</p><p><input id="asset_genre_ref_' + number + '" name="asset_genre_ref[]" value="" /></p>' +
+		'</div><div><p>Genre Ref:</p><p><input id="asset_genre_ref_' + number + '" name="asset_genre_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span></p>' +
 		'</div></div><div class="remove_element" onclick="removeElement(\'#remove_genre_' + number + '\', \'genre\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
@@ -298,7 +298,7 @@ function addElement(elementID, type) {
 		'<div><p>Audience Level:</p><p><select id="asset_audience_level_' + number + '" name="asset_audience_level[]">' +
 		 audienceLevel + '</select></p></div><div><p> Audience Level Source:</p>' +
 		'<p><input id="asset_audience_level_source_' + number + '" name="asset_audience_level_source[]" value="" />' +
-		'</p></div><div><p> Audience Level Ref:</p><p><input id="asset_audience_level_ref_' + number + '" name="asset_audience_level_ref[]" value="" />' +
+		'</p></div><div><p> Audience Level Ref:</p><p><input id="asset_audience_level_ref_' + number + '" name="asset_audience_level_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_audience_level_' + number + '\', \'audience_level\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
@@ -335,7 +335,7 @@ function addElement(elementID, type) {
 		html = '<div id="remove_annotation_' + number + '" class="remove_annotation"><div class="edit_form_div"><div>' +
 		'<p>Annotation:</p><p><input id="asset_annotation_' + number + '" name="asset_annotation[]" value="" />' +
 		'</p></div><div><p> Annotation Type:</p><p><input id="asset_annotation_type_' + number + '" name="asset_annotation_type[]" value="" />' +
-		'</p></div><div><p> Annotation Ref:</p><p><input id="asset_annotation_ref_' + number + '" name="asset_annotation_ref[]" value="" />' +
+		'</p></div><div><p> Annotation Ref:</p><p><input id="asset_annotation_ref_' + number + '" name="asset_annotation_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_annotation_' + number + '\', \'annotation\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
@@ -359,7 +359,7 @@ function addElement(elementID, type) {
 		'<div><p> Relation Type:</p><p><select id="asset_relation_type_' + number + '" name="asset_relation_type[]">' +
 		 relationType + '</select></p></div><div><p> Relation Source:</p><p>' +
 		'<input id="asset_relation_source_' + number + '" name="asset_relation_source[]" value="" /></p></div>' +
-		'<div><p> Relation Ref:</p><p><input id="asset_relation_ref_' + number + '" name="asset_relation_ref[]" value="" />' +
+		'<div><p> Relation Ref:</p><p><input id="asset_relation_ref_' + number + '" name="asset_relation_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_relation_' + number + '\', \'relation\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
@@ -388,11 +388,11 @@ function addElement(elementID, type) {
 		html = '<div id="remove_creator_' + number + '" class="remove_creator"><div class="edit_form_div"><div>' +
 		'<p>Creator:</p><p><input id="asset_creator_name_' + number + '" name="asset_creator_name[]" value="" /></p></div>' +
 		'<div><p>Creator Affiliation:</p><p><input id="asset_creator_affiliation_' + number + '" name="asset_creator_affiliation[]" value="" /></p></div>' +
-		'<div><p>Creator Ref:</p><p><input id="asset_creator_ref_' + number + '" name="asset_creator_ref[]" value="" /></p></div>' +
+		'<div><p>Creator Ref:</p><p><input id="asset_creator_ref_' + number + '" name="asset_creator_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span></p></div>' +
 		'<div><p> Creator Role:</p><p><select id="asset_creator_role_' + number + '" name="asset_creator_role[]">' +
 		 creatorRoles + '</select></p></div><div><p> Creator Role Source:</p><p>' +
 		'<input id="asset_creator_role_source_' + number + '" name="asset_creator_role_source[]" value="" /></p></div><div><p> Creator Role Ref:</p>' +
-		'<p><input id="asset_creator_role_ref_' + number + '" name="asset_creator_role_ref[]" value="" /></p></div></div>' +
+		'<p><input id="asset_creator_role_ref_' + number + '" name="asset_creator_role_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span></p></div></div>' +
 		'<div class="remove_element" onclick="removeElement(\'#remove_creator_' + number + '\', \'creator\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
@@ -428,11 +428,11 @@ function addElement(elementID, type) {
 		html = '<div id="remove_contributor_' + number + '" class="remove_contributor"><div class="edit_form_div"><div><p>Contributor:</p>' +
 		'<p><input id="asset_contributor_name_' + number + '" name="asset_contributor_name[]" value="" /></p></div>' +
 		'<div><p>Contributor Affiliation:</p><p><input id="asset_contributor_affiliation_' + number + '" name="asset_contributor_affiliation[]" value="" /></p>' +
-		'</div><div><p>Contributor Ref:</p><p><input id="asset_contributor_ref_' + number + '" name="asset_contributor_ref[]" value="" /></p>' +
+		'</div><div><p>Contributor Ref:</p><p><input id="asset_contributor_ref_' + number + '" name="asset_contributor_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span></p>' +
 		'</div><div><p> Contributor Role:</p><p><select id="asset_contributor_role_' + number + '" name="asset_contributor_role[]">' +
 		 contributorRoles + '</select></p></div><div><p> Contributor Role Source:</p>' +
 		'<p><input id="asset_contributor_role_source_' + number + '" name="asset_contributor_role_source[]" value="" /></p>' +
-		'</div><div><p> Contributor Role Ref:</p><p><input id="asset_contributor_role_ref_' + number + '" name="asset_contributor_role_ref[]" value="" />' +
+		'</div><div><p> Contributor Role Ref:</p><p><input id="asset_contributor_role_ref_' + number + '" name="asset_contributor_role_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_contributor_' + number + '\', \'contributor\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
@@ -469,11 +469,11 @@ function addElement(elementID, type) {
 		html = '<div id="remove_publisher_' + number + '" class="remove_publisher"><div class="edit_form_div"><div><p>Publisher:</p>' +
 		'<p><input id="asset_publisher_' + number + '" name="asset_publisher[]" value="" /></p></div>' +
 		'<div><p>Publisher Affiliation:</p><p><input id="asset_publisher_affiliation_' + number + '" name="asset_publisher_affiliation[]" value="" /></p></div>' +
-		'<div><p>Publisher Ref:</p><p><input id="asset_publisher_ref_' + number + '" name="asset_publisher_ref[]" value="" /></p></div>' +
+		'<div><p>Publisher Ref:</p><p><input id="asset_publisher_ref_' + number + '" name="asset_publisher_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span></p></div>' +
 		'<div><p> Publisher Role:</p><p><select id="asset_publisher_role_' + number + '" name="asset_publisher_role[]">' +
 		 publisherRoles + '</select></p></div><div><p> Publisher Role Source:</p>' +
 		'<p><input id="asset_publisher_role_source_' + number + '" name="asset_publisher_role_source[]" value="" /></p></div>' +
-		'<div><p> Publisher Role Ref:</p><p><input id="asset_publisher_role_ref_' + number + '" name="asset_publisher_role_ref[]" value="" />' +
+		'<div><p> Publisher Role Ref:</p><p><input id="asset_publisher_role_ref_' + number + '" name="asset_publisher_role_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_publisher_' + number + '\', \'publisher\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
@@ -502,7 +502,7 @@ function addElement(elementID, type) {
 	else if (elementID == '#main_right') {
 		html = '<div id="remove_right_' + number + '" class="remove_right"><div class="edit_form_div"><div>' +
 		'<p>Right:</p><p><input id="asset_rights_' + number + '" name="asset_rights[]" value="" /></p></div>' +
-		'<div><p> Right Link:</p><p><input id="asset_right_link_' + number + '" name="asset_right_link[]" value="" />' +
+		'<div><p> Right Link:</p><p><input id="asset_right_link_' + number + '" name="asset_right_link[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_right_' + number + '\', \'right\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);

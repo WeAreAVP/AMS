@@ -155,32 +155,25 @@ class Assets extends MY_Controller
 						if ( ! empty($value))
 						{
 							$subject_detail['assets_id'] = $asset_id;
-							
-								$subject_d = array();
-								$subject_d['subject'] = $value;
-								if ( ! empty($subject_ref[$index]))
-								{
-									$subject_d['subject_ref'] = $subject_ref[$index];
-								}
-								if ( ! empty($subject_source[$index]))
-								{
-									$subject_d['subject_source'] = $subject_source[$index];
-								}
-								$subject_d['subjects_types_id'] = $subject_type[$index];
-								$subjects = $this->assets_model->get_subjects_id_by_subject($subject_type[$index]);
-								if (isset($subjects) && isset($subjects->id))
-								{
-									$subject_id = $subjects->id;
-								}
-								else
-								{
-									$subject_id = $this->assets_model->insert_subjects($subject_d);
-								}
-								
-								
-								$subject_detail['subjects_id'] = $subject_id;
-								$assets_subject_id = $this->assets_model->insert_assets_subjects($subject_detail);
-							
+
+							$subject_d = array();
+							$subject_d['subject'] = $value;
+							$subject_d['subjects_types_id'] = $subject_type[$index];
+							if ( ! empty($subject_ref[$index]))
+							{
+								$subject_d['subject_ref'] = $subject_ref[$index];
+							}
+							if ( ! empty($subject_source[$index]))
+							{
+								$subject_d['subject_source'] = $subject_source[$index];
+							}
+
+							$subject_id = $this->assets_model->insert_subjects($subject_d);
+
+
+
+							$subject_detail['subjects_id'] = $subject_id;
+							$assets_subject_id = $this->assets_model->insert_assets_subjects($subject_detail);
 						}
 					}
 				}
@@ -226,7 +219,7 @@ class Assets extends MY_Controller
 		$this->manage_asset->delete_asset_subjects($asset_id);
 		return TRUE;
 
-		
+
 		$this->manage_asset->delete_asset_descriptions($asset_id);
 		$this->manage_asset->delete_asset_genre($asset_id);
 		$this->manage_asset->delete_asset_coverage($asset_id);

@@ -268,11 +268,12 @@ class Assets extends MY_Controller
 		$this->manage_asset->delete_asset_titles($asset_id);
 		$this->manage_asset->delete_asset_subjects($asset_id);
 		$this->manage_asset->delete_asset_descriptions($asset_id);
+		$this->manage_asset->delete_asset_genre($asset_id);
 		return TRUE;
 
 
 
-		$this->manage_asset->delete_asset_genre($asset_id);
+		
 		$this->manage_asset->delete_asset_coverage($asset_id);
 		$this->manage_asset->delete_audience_level($asset_id);
 		$this->manage_asset->delete_audience_rating($asset_id);

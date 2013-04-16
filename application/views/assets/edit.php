@@ -427,9 +427,9 @@
 				</tr>
 				<tr>
 					<?php
-					$genres = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre)));
-					$genre_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre_source)));
-					$genre_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->genre_ref)));
+					$genres = explode('|', trim(str_replace('(**)', '', $asset_detail->genre)));
+					$genre_sources = explode('|', trim(str_replace('(**)', '', $asset_detail->genre_source)));
+					$genre_refs = explode('|', trim(str_replace('(**)', '', $asset_detail->genre_ref)));
 					$add = ' ADD GENRE';
 					?>
 					<td class="record-detail-page">
@@ -448,15 +448,15 @@
 										<div class="edit_form_div">
 											<div>
 												<p>Genre:</p>
-												<p><input id="asset_genre_<?php echo $index; ?>" name="asset_genre[]" value="<?php echo $genre; ?>" /></p>
+												<p><input id="asset_genre_<?php echo $index; ?>" name="asset_genre[]" value="<?php echo trim($genre); ?>" /></p>
 											</div>
 											<div>
 												<p>Genre Source:</p>
-												<p><input id="asset_genre_source_<?php echo $index; ?>" name="asset_genre_source[]" value="<?php echo (isset($genre_sources[$index])) ? $genre_sources[$index] : ''; ?>" /></p>
+												<p><input id="asset_genre_source_<?php echo $index; ?>" name="asset_genre_source[]" value="<?php echo (isset($genre_sources[$index])) ? trim($genre_sources[$index]) : ''; ?>" /></p>
 											</div>
 											<div>
 												<p>Genre Ref:</p>
-												<p><input id="asset_genre_ref_<?php echo $index; ?>" name="asset_genre_ref[]" value="<?php echo (isset($genre_refs[$index])) ? $genre_refs[$index] : ''; ?>" /></p>
+												<p><input id="asset_genre_ref_<?php echo $index; ?>" name="asset_genre_ref[]" value="<?php echo (isset($genre_refs[$index])) ? trim($genre_refs[$index]) : ''; ?>" /></p>
 											</div>
 
 										</div>

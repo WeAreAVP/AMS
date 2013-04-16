@@ -355,7 +355,7 @@ class Assets extends MY_Controller
 				{
 					$affiliation = $this->input->post('asset_creator_affiliation');
 					$ref = $this->input->post('asset_creator_ref');
-					$role = $this->input->post('asset_creator_role');
+					$roles = $this->input->post('asset_creator_role');
 					$role_src = $this->input->post('asset_creator_role_source');
 					$role_ref = $this->input->post('asset_creator_role_ref');
 					foreach ($this->input->post('asset_creator_name') as $index => $value)
@@ -377,7 +377,7 @@ class Assets extends MY_Controller
 							{
 								$assets_creators_roles_d['creators_id'] = $this->assets_model->insert_creators($creater);
 							}
-							$role['creator_role'] = $role[$index];
+							$role['creator_role'] = $roles[$index];
 							if ( ! empty($role_src[$index]))
 								$role['creator_role_source'] = $role_src[$index];
 							if ( ! empty($role_ref[$index]))

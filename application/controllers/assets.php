@@ -297,7 +297,7 @@ class Assets extends MY_Controller
 							}
 							else
 							{
-								$asset_audience_rating['audience_ratings_id'] = $this->assets_model->insert_audience_rating($audience_level);
+								$asset_audience_rating['audience_ratings_id'] = $this->assets_model->insert_audience_rating($audience_rating);
 							}
 							$asset_audience = $this->assets_model->insert_asset_audience_rating($asset_audience_rating);
 						}

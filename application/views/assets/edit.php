@@ -167,7 +167,7 @@
 					<?php
 					$identifiers = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier)));
 					$identifier_sources = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier_source)));
-					$identifier_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->identifier_ref)));
+					$identifier_refs = explode('| ', trim(str_replace('(**)', '', $asset_detail->identifier_ref)));
 					$add = ' ADD LOCAL ID';
 					?>
 					<td class="record-detail-page">

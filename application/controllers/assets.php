@@ -50,19 +50,22 @@ class Assets extends MY_Controller
 
 			if ($this->input->post())
 			{
-				debug($this->input->post(),FALSE);
+				debug($this->input->post(), FALSE);
 //				$this->delete_asset_attributes($asset_id);
-				foreach ($this->input->post('asset_type') as $value)
+				if ($this->input->post('asset_type'))
 				{
-					if ($asset_type = $this->assets_model->get_assets_type_by_type($value))
+					foreach ($this->input->post('asset_type') as $value)
 					{
-						$asset_type_d['asset_types_id'] = $asset_type->id;
-						echo 'already';
-					}
-					else
-					{
+						if ($asset_type = $this->assets_model->get_assets_type_by_type($value))
+						{
+							$asset_type_d['asset_types_id'] = $asset_type->id;
+							echo 'already';
+						}
+						else
+						{
 //						$asset_type_d['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $value));
-						echo 'not already';
+							echo 'not already';
+						}
 					}
 				}
 				exit;

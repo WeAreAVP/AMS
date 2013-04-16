@@ -204,6 +204,12 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->delete('asset_descriptions');
 		return $this->db->affected_rows() > 0;
 	}
+	function delete_asset_genre($asset_id)
+	{
+		$this->db->where('assets_id', $asset_id);
+		$this->db->delete('assets_genres');
+		return $this->db->affected_rows() > 0;
+	}
 
 }
 

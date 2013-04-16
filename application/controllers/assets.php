@@ -419,7 +419,7 @@ class Assets extends MY_Controller
 							}
 							else
 							{
-								$assets_contributors_d['contributors_id'] = $this->assets_model->insert_contributors($creater);
+								$assets_contributors_d['contributors_id'] = $this->assets_model->insert_contributors($contributor_info);
 							}
 							$contributorrole_info['contributor_role'] = $roles[$index];
 							if ( ! empty($role_src[$index]))
@@ -433,9 +433,9 @@ class Assets extends MY_Controller
 							}
 							else
 							{
-								$assets_contributors_d['contributor_roles_id'] = $this->assets_model->insert_contributor_roles($role);
+								$assets_contributors_d['contributor_roles_id'] = $this->assets_model->insert_contributor_roles($contributorrole_info);
 							}
-//							debug($assets_contributors_d);
+							
 							 $this->assets_model->insert_assets_contributors_roles($assets_contributors_d);
 						}
 					}

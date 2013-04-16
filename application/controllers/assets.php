@@ -52,6 +52,10 @@ class Assets extends MY_Controller
 			{
 				debug($this->input->post(), FALSE);
 				$this->delete_asset_attributes($asset_id);
+				if ( ! $this->is_station_user)
+				{
+					$this->assets_model->update_assets($asset_id, array('stations_id' => $this->input->post('organization')));
+				}
 				if ($this->input->post('asset_type'))
 				{
 					foreach ($this->input->post('asset_type') as $value)

@@ -155,10 +155,9 @@ class Assets extends MY_Controller
 						if ( ! empty($value))
 						{
 							$subject_detail['assets_id'] = $asset_id;
-							if ($subject_type[$index])
-							{
+							
 								$subject_d = array();
-								$subject_d['subject'] = $subject_type[$index];
+								$subject_d['subject'] = $value;
 								if ( ! empty($subject_ref[$index]))
 								{
 									$subject_d['subject_ref'] = $subject_ref[$index];
@@ -177,9 +176,11 @@ class Assets extends MY_Controller
 								{
 									$subject_id = $this->assets_model->insert_subjects($subject_d);
 								}
+								
+								$subject_detail['subjects_types_id'] = $subject_type[$index];
 								$subject_detail['subjects_id'] = $subject_id;
 								$assets_subject_id = $this->assets_model->insert_assets_subjects($pbcoreSubject_d);
-							}
+							
 						}
 					}
 				}

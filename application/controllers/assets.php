@@ -49,8 +49,9 @@ class Assets extends MY_Controller
 
 			if ($this->input->post())
 			{
-				$this->delete_asset_attributes($asset_id);
 				debug($this->input->post());
+				$this->delete_asset_attributes($asset_id);
+				
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
 			if ($data['asset_detail'])

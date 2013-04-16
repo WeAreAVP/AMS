@@ -610,6 +610,22 @@ class Assets_Model extends CI_Model
 		return false;
 	}
 
+	function get_creator_by_creator_info($creator_name)
+	{
+		$this->db->where("creator_name", $creator_name['creator_name']);
+		if (isset($creator_name['creator_affiliation']) && ! empty($creator_name['creator_affiliation']))
+			$this->db->where("creator_affiliation", $creator_name['creator_affiliation']);
+		if (isset($creator_name['creator_ref']) && ! empty($creator_name['creator_ref']))
+			$this->db->where("creator_ref", $creator_name['creator_ref']);
+
+		$res = $this->db->get($this->_table_creators);
+		if (isset($res) && ! empty($res))
+		{
+			return $res->row();
+		}
+		return false;
+	}
+
 	/**
 	 * search  creator roles data by role
 	 * 
@@ -619,6 +635,21 @@ class Assets_Model extends CI_Model
 	function get_creator_role_by_role($creator_role)
 	{
 		$this->db->where("creator_role", $creator_role);
+		$res = $this->db->get($this->_table_creator_roles);
+		if (isset($res) && ! empty($res))
+		{
+			return $res->row();
+		}
+		return false;
+	}
+
+	function get_creator_role_info($creator_role)
+	{
+		$this->db->where("creator_role", $creator_role['creator_role']);
+		if (isset($creator_role['creator_role_source']) && ! empty($creator_role['creator_role_source']))
+			$this->db->where("creator_role_source", $creator_role['creator_role_source']);
+		if (isset($creator_role['creator_role_ref']) && ! empty($creator_role['creator_role_ref']))
+			$this->db->where("creator_role_ref", $creator_role['creator_role_ref']);
 		$res = $this->db->get($this->_table_creator_roles);
 		if (isset($res) && ! empty($res))
 		{

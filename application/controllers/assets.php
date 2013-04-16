@@ -351,6 +351,50 @@ class Assets extends MY_Controller
 						}
 					}
 				}
+				if ($this->input->post('asset_creator_name'))
+				{
+					$affiliation = $this->input->post('asset_creator_affiliation');
+					$ref = $this->input->post('asset_creator_ref');
+					$role = $this->input->post('asset_creator_role');
+					$role_src = $this->input->post('asset_creator_role_source');
+					$role_ref = $this->input->post('asset_creator_role_ref');
+					foreach ($this->input->post('asset_creator_name') as $index => $value)
+					{
+						if ( ! empty($value))
+						{
+							$assets_creators_roles_d['assets_id'] = $asset_id;
+							$creater['creator_name'] = $value;
+							if ( ! empty($affiliation[$index]))
+								$creater['creator_affiliation'] = $affiliation[$index];
+							if ( ! empty($ref[$index]))
+								$creater['creator_ref'] = $ref[$index];
+							$creator_d = $this->assets_model->get_creator_by_creator_info($creater);
+							if (isset($creator_d) && isset($creator_d->id))
+							{
+								$assets_creators_roles_d['creators_id'] = $creator_d->id;
+							}
+							else
+							{
+								$assets_creators_roles_d['creators_id'] = $this->assets_model->insert_creators($creater);
+							}
+							$role['creator_role'] = $role[$index];
+							if ( ! empty($role_src[$index]))
+								$role['creator_role_source'] = $role_src[$index];
+							if ( ! empty($role_ref[$index]))
+								$role['creator_role_ref'] = $role_ref[$index];
+							$creator_role = $this->assets_model->get_creator_role_info($role);
+							if (isset($creator_role) && isset($creator_role->id))
+							{
+								$assets_creators_roles_d['creator_roles_id'] = $creator_role->id;
+							}
+							else
+							{
+								$assets_creators_roles_d['creator_roles_id'] = $this->assets_model->insert_creator_roles($role);
+							}
+							$assets_creators_roles_id = $this->assets_model->insert_assets_creators_roles($assets_creators_roles_d);
+						}
+					}
+				}
 				exit;
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
@@ -398,6 +442,7 @@ class Assets extends MY_Controller
 		$this->manage_asset->delete_audience_rating($asset_id);
 		$this->manage_asset->delete_annotations($asset_id);
 		$this->manage_asset->delete_relations($asset_id);
+		$this->manage_asset->delete_creator($asset_id);
 		return TRUE;
 
 
@@ -408,7 +453,7 @@ class Assets extends MY_Controller
 
 
 
-		$this->manage_asset->delete_creator($asset_id);
+
 		$this->manage_asset->delete_contributor($asset_id);
 		$this->manage_asset->delete_publisher($asset_id);
 		$this->manage_asset->delete_rights($asset_id);

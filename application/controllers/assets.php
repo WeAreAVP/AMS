@@ -105,6 +105,7 @@ class Assets extends MY_Controller
 				exit;
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
+			debug($data['asset_detail']);
 			if ($data['asset_detail'])
 			{
 				$data['asset_id'] = $asset_id;

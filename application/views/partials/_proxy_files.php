@@ -53,17 +53,7 @@
 			</EMBED>
 			</OBJECT>
 			
-			<object width="100%" height="100%"
-			type="video/x-ms-asf" url="<?php echo $media['url']; ?>" data="<?php echo $media['url']; ?>"
-			classid="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6">
-			<param name="url" value="<?php echo $media['url']; ?>">
-			<param name="filename" value="<?php echo $media['url']; ?>">
-			<param name="autostart" value="1">
-			<param name="uiMode" value="full">
-			<param name="autosize" value="1">
-			<param name="playcount" value="1"> 
-			<embed type="application/x-mplayer2" src="<?php echo $media['url']; ?>" width="100%" height="100%"       autostart="true" showcontrols="true"  pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"></embed>
-			</object>
+			
 			<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
 					
 					 

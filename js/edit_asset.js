@@ -222,10 +222,11 @@ function addElement(elementID, type) {
 		{
 			subjectType += '<option value= "' + pbcoreSubjectTypes[cnt]['value'] + '">' + pbcoreSubjectTypes[cnt]['value'] + '</option>';
 		}
+		console.log(pbcoreSubjectTypes);
 		html = '<div id="remove_subject_' + number + '" class="remove_subject"><div class="edit_form_div"><div>' +
 		'<p>Subject:</p><p><input id="asset_subject_' + number + '" name="asset_subject[]" value=""/></p></div>' +
 		'<div><p>Subject Type:</p><p><select id="asset_subject_type_' + number + '" name="asset_subject_type[]">' +
-		'<option value="">Select Subject Type</option>' + subjectType + '</select></p></div><div><p>Subject Source:</p>' +
+		subjectType + '</select></p></div><div><p>Subject Source:</p>' +
 		'<p><input id="asset_subject_source_' + number + '" name="asset_subject_source[]" value="" /></p></div>' +
 		'<div><p>Subject Ref:</p><p><input id="asset_subject_ref_' + number + '" name="asset_subject_ref[]" value="" /></p></div>' +
 		'</div><div class="remove_element" onclick="removeElement(\'#remove_subject_' + number + '\', \'subject\');"><img src="/images/remove-item.png" /></div>' +

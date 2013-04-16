@@ -32,28 +32,31 @@
 	<div class="span9" style="margin-left: 250px;" id="ins_view_detail">
 		<form class="form-horizontal" method="POST" action="<?php echo $this->uri->uri_string(); ?>">
 			<table cellPadding="8" class="record-detail-table">
-				<tr>
-					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Organization:</b></label>
-					</td>
-					<td>
-						<p>
-							<select id="organization" name="organization">
-								<?php
-								foreach ($organization as $row)
-								{
-									$selected = '';
-									if ($asset_detail->stations_id == $row->id)
-										$selected = 'selected="selected"'
-										?>
-									<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->station_name; ?></option>
-								<?php }
-								?>
-							</select>
-						</p>
+				<?php if ( ! $this->is_station_user)
+				{ ?>
+					<tr>
+						<td class="record-detail-page">
+							<label><i class="icon-question-sign"></i><b> Organization:</b></label>
+						</td>
+						<td>
+							<p>
+								<select id="organization" name="organization">
+									<?php
+									foreach ($organization as $row)
+									{
+										$selected = '';
+										if ($asset_detail->stations_id == $row->id)
+											$selected = 'selected="selected"'
+											?>
+										<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->station_name; ?></option>
+									<?php }
+									?>
+								</select>
+							</p>
 
-					</td>
-				</tr>
+						</td>
+					</tr>
+					<?php } ?>
 				<tr>
 					<?php
 					$add = ' ADD TYPE';
@@ -1129,7 +1132,7 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<a class="btn" href="<?php echo site_url('records/details/'.$asset_id); ?>">Cancel</a>
+						<a class="btn" href="<?php echo site_url('records/details/' . $asset_id); ?>">Cancel</a>
 						<input type="button" onclick="validateForm();" value="Save Changes" class="btn btn-primary"/>
 					</td>
 				</tr>
@@ -1138,17 +1141,17 @@
 	</div>
 </div>
 <script type="text/javascript">
-										var pbcoreAssetTypes =<?php echo json_encode($pbcore_asset_types); ?>;
-										var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
-										var pbcoreTitleTypes =<?php echo json_encode($pbcore_asset_title_types); ?>;
-										var pbcoreSubjectTypes =<?php echo json_encode($pbcore_asset_subject_types); ?>;
-										var pbcoreDescriptionTypes =<?php echo json_encode($pbcore_asset_description_types); ?>;
-										var pbcoreAudienceLevel =<?php echo json_encode($pbcore_asset_audience_level); ?>;
-										var pbcoreAudienceRating =<?php echo json_encode($pbcore_asset_audience_rating); ?>;
-										var pbcoreRelationTypes =<?php echo json_encode($pbcore_asset_relation_types); ?>;
-										var pbcoreCreatorRoles =<?php echo json_encode($pbcore_asset_creator_roles); ?>;
-										var pbcoreContributorRoles =<?php echo json_encode($pbcore_asset_contributor_roles); ?>;
-										var pbcorePublisherRoles =<?php echo json_encode($pbcore_asset_publisher_roles); ?>;
+									var pbcoreAssetTypes =<?php echo json_encode($pbcore_asset_types); ?>;
+									var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
+									var pbcoreTitleTypes =<?php echo json_encode($pbcore_asset_title_types); ?>;
+									var pbcoreSubjectTypes =<?php echo json_encode($pbcore_asset_subject_types); ?>;
+									var pbcoreDescriptionTypes =<?php echo json_encode($pbcore_asset_description_types); ?>;
+									var pbcoreAudienceLevel =<?php echo json_encode($pbcore_asset_audience_level); ?>;
+									var pbcoreAudienceRating =<?php echo json_encode($pbcore_asset_audience_rating); ?>;
+									var pbcoreRelationTypes =<?php echo json_encode($pbcore_asset_relation_types); ?>;
+									var pbcoreCreatorRoles =<?php echo json_encode($pbcore_asset_creator_roles); ?>;
+									var pbcoreContributorRoles =<?php echo json_encode($pbcore_asset_contributor_roles); ?>;
+									var pbcorePublisherRoles =<?php echo json_encode($pbcore_asset_publisher_roles); ?>;
 
 </script>
 <script type="text/javascript" src="/js/edit_asset.js"></script>

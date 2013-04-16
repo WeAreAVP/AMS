@@ -76,13 +76,13 @@ class Assets extends MY_Controller
 						$asset_date_info['asset_date'] = $value;
 						$date_type = $this->input->post('asset_date_type');
 
-						if ($asset_date_type = $this->instant->get_date_types_by_type($date_type[$index]))
+						if ($asset_date_type = $this->instantiation->get_date_types_by_type($date_type[$index]))
 						{
 							$asset_date_info['date_types_id'] = $asset_date_type->id;
 						}
 						else
 						{
-							$asset_date_info['date_types_id'] = $this->instant->insert_date_types(array("date_type" => $date_type[$index]));
+							$asset_date_info['date_types_id'] = $this->instantiation->insert_date_types(array("date_type" => $date_type[$index]));
 						}
 
 						$this->assets_model->insert_asset_date($asset_date_info);

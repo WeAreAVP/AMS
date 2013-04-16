@@ -30,7 +30,7 @@
 	<div class="clearfix"></div>
 	<?php $this->load->view('partials/_list'); ?>
 	<div class="span9" style="margin-left: 250px;" id="ins_view_detail">
-		<form class="form-horizontal" method="POST" action="<?php echo $this->uri->uri_string(); ?>" id="edit_asset_form">
+		<form class="form-horizontal" method="POST" action="<?php echo site_url('assets/edit/'.$asset_id); ?>" id="edit_asset_form">
 			<table cellPadding="8" class="record-detail-table">
 				<?php if ( ! $this->is_station_user)
 				{ ?>

@@ -180,7 +180,7 @@ class Assets extends MY_Controller
 				if ($this->input->post('asset_description'))
 				{
 					$desc_type = $this->input->post('asset_description_type');
-					foreach ($this->input->post('asset_subject') as $index => $value)
+					foreach ($this->input->post('asset_description') as $index => $value)
 					{
 						if ( ! empty($value))
 						{

@@ -220,7 +220,7 @@ function addElement(elementID, type) {
 
 		for (cnt in pbcoreSubjectTypes)
 		{
-			subjectType += '<option value= "' + pbcoreSubjectTypes[cnt]['value'] + '">' + pbcoreSubjectTypes[cnt]['value'] + '</option>';
+			subjectType += '<option value= "' + pbcoreSubjectTypes[cnt]['subject_type'] + '">' + pbcoreSubjectTypes[cnt]['subject_type'] + '</option>';
 		}
 		console.log(pbcoreSubjectTypes);
 		html = '<div id="remove_subject_' + number + '" class="remove_subject"><div class="edit_form_div"><div>' +

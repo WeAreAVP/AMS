@@ -330,10 +330,10 @@
 														foreach ($pbcore_asset_subject_types as $row)
 														{
 															$selected = '';
-															if (isset($subject_types[$index]) && $subject_types[$index] == $row->value)
+															if (isset($subject_types[$index]) && $subject_types[$index] == $row->subject_type)
 																$selected = 'selected="selected"'
 																?>
-															<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+															<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->subject_type; ?></option>
 														<?php }
 														?>
 													</select>

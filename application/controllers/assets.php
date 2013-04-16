@@ -227,6 +227,20 @@ class Assets extends MY_Controller
 						}
 					}
 				}
+				if ($this->input->post('asset_coverage'))
+				{
+					$coverage_type = $this->input->post('asset_coverage_type');
+					foreach ($this->input->post('asset_genre') as $index => $value)
+					{
+						if ( ! empty($value))
+						{
+							$coverage['assets_id'] = $asset_id;
+							$coverage['coverage'] = $value;
+							$coverage['coverage_type'] = $coverage_type[$index];
+							$this->assets_model->insert_coverage($coverage);
+						}
+					}
+				}
 				exit;
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
@@ -269,12 +283,13 @@ class Assets extends MY_Controller
 		$this->manage_asset->delete_asset_subjects($asset_id);
 		$this->manage_asset->delete_asset_descriptions($asset_id);
 		$this->manage_asset->delete_asset_genre($asset_id);
+		$this->manage_asset->delete_asset_coverage($asset_id);
 		return TRUE;
 
 
 
-		
-		$this->manage_asset->delete_asset_coverage($asset_id);
+
+
 		$this->manage_asset->delete_audience_level($asset_id);
 		$this->manage_asset->delete_audience_rating($asset_id);
 		$this->manage_asset->delete_audience_annotations($asset_id);

@@ -397,7 +397,6 @@
 												</p>
 												<p>
 													<select id="asset_description_type_<?php echo $index; ?>" name="asset_description_type[]">
-														<option value="">Select Description Type</option>
 														<?php
 														foreach ($pbcore_asset_description_types as $row)
 														{

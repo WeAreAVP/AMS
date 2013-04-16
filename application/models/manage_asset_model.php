@@ -220,6 +220,20 @@ class Manage_Asset_Model extends CI_Model
 		return $this->db->affected_rows() > 0;
 	}
 
+	function delete_audience_level($asset_id)
+	{
+		$this->db->where('assets_id', $asset_id);
+		$this->db->delete('assets_audience_levels');
+		return $this->db->affected_rows() > 0;
+	}
+
+	function delete_audience_rating($asset_id)
+	{
+		$this->db->where('assets_id', $asset_id);
+		$this->db->delete('assets_audience_ratings');
+		return $this->db->affected_rows() > 0;
+	}
+
 }
 
 ?>

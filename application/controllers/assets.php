@@ -272,6 +272,37 @@ class Assets extends MY_Controller
 						}
 					}
 				}
+				if ($this->input->post('asset_audience_rating'))
+				{
+					$audience_source = $this->input->post('asset_audience_rating_source');
+					$audience_ref = $this->input->post('asset_audience_rating_ref');
+					foreach ($this->input->post('asset_audience_rating') as $index => $value)
+					{
+						if ( ! empty($value))
+						{
+							$asset_audience_rating['assets_id'] = $asset_id;
+							$audience_rating['audience_rating'] = trim($value);
+							if ( ! empty($audience_source[$index]))
+							{
+								$audience_rating['audience_rating_source'] = $audience_source[$index];
+							}
+							if ( ! empty($audience_ref[$index]))
+							{
+								$audience_rating['audience_rating_ref'] = $audience_ref[$index];
+							}
+							$db_audience_rating = $this->assets_model->get_audience_rating_all($audience_rating);
+							if (isset($db_audience_rating) && isset($db_audience_rating->id))
+							{
+								$asset_audience_rating['audience_ratings_id'] = $db_audience_rating->id;
+							}
+							else
+							{
+								$asset_audience_rating['audience_ratings_id'] = $this->assets_model->insert_audience_rating($audience_level);
+							}
+							$asset_audience = $this->assets_model->insert_asset_audience_rating($asset_audience_rating);
+						}
+					}
+				}
 				exit;
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
@@ -315,14 +346,16 @@ class Assets extends MY_Controller
 		$this->manage_asset->delete_asset_descriptions($asset_id);
 		$this->manage_asset->delete_asset_genre($asset_id);
 		$this->manage_asset->delete_asset_coverage($asset_id);
+		$this->manage_asset->delete_audience_level($asset_id);
+		$this->manage_asset->delete_audience_rating($asset_id);
 		return TRUE;
 
 
 
 
 
-		$this->manage_asset->delete_audience_level($asset_id);
-		$this->manage_asset->delete_audience_rating($asset_id);
+		
+		
 		$this->manage_asset->delete_audience_annotations($asset_id);
 		$this->manage_asset->delete_audience_relations($asset_id);
 		$this->manage_asset->delete_creator($asset_id);

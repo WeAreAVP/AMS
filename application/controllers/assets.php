@@ -65,7 +65,8 @@ class Assets extends MY_Controller
 							$asset_type_d['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $value));
 						}
 						$asset_type_d['assets_id'] = $asset_id;
-						$this->assets_model->insert_assets_asset_types($asset_type_d);
+						echo $this->assets_model->insert_assets_asset_types($asset_type_d);
+						echo '<br/>';
 					}
 				}
 				exit;

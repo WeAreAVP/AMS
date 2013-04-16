@@ -177,6 +177,29 @@ class Assets extends MY_Controller
 						}
 					}
 				}
+				if ($this->input->post('asset_description'))
+				{
+					$desc_type = $this->input->post('asset_description_type');
+					foreach ($this->input->post('asset_subject') as $index => $value)
+					{
+						if ( ! empty($value))
+						{
+							$asset_descriptions_d['assets_id'] = $asset_id;
+							$asset_descriptions_d['description'] = $value;
+							$asset_description_type = $this->assets_model->get_description_by_type($desc_type[$index]);
+							if (isset($asset_description_type) && isset($asset_description_type->id))
+							{
+								$asset_description_types_id = $asset_description_type->id;
+							}
+							else
+							{
+								$asset_description_types_id = $this->assets_model->insert_asset_title_types(array("description_type" => $desc_type[$index]));
+							}
+							$asset_descriptions_d['description_types_id'] = $asset_title_types_id;
+							$this->assets_model->insert_asset_descriptions($asset_descriptions_d);
+						}
+					}
+				}
 				exit;
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);

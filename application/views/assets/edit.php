@@ -588,9 +588,9 @@
 				</tr>
 				<tr>
 					<?php
-					$audience_ratings = explode('|', trim(str_replace('(**)', '', $asset_detail->audience_level)));
-					$audience_rating_sources = explode('|', trim(str_replace('(**)', '', $asset_detail->audience_level_source)));
-					$audience_rating_refs = explode('|', trim(str_replace('(**)', '', $asset_detail->audience_level_ref)));
+					$audience_ratings = explode('|', trim(str_replace('(**)', '', $asset_detail->audience_rating)));
+					$audience_rating_sources = explode('|', trim(str_replace('(**)', '', $asset_detail->audience_rating_source)));
+					$audience_rating_refs = explode('|', trim(str_replace('(**)', '', $asset_detail->audience_rating_ref)));
 					$add = ' ADD AUDIENCE RATING';
 					?>
 					<td class="record-detail-page">

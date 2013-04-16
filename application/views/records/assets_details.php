@@ -219,7 +219,7 @@
 										{
 											if (isset($asset_creator_role_ref[$index]) && ! empty($asset_creator_role_ref[$index]))
 											{
-												$combine_creator.=",<a target='_blank' href='$asset_contributor_role_ref[$index]'>$asset_creator_role[$index]</a>";
+												$combine_creator.=",<a target='_blank' href='$asset_creator_role_ref[$index]'>$asset_creator_role[$index]</a>";
 											}
 											else
 												$combine_creator.=',' . $asset_creator_role[$index];

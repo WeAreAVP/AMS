@@ -30,10 +30,11 @@
 	<div class="clearfix"></div>
 	<?php $this->load->view('partials/_list'); ?>
 	<div class="span9" style="margin-left: 250px;" id="ins_view_detail">
-		<form class="form-horizontal" method="POST" action="<?php echo site_url('assets/edit/'.$asset_id); ?>" id="edit_asset_form">
+		<form class="form-horizontal" method="POST" action="<?php echo site_url('assets/edit/' . $asset_id); ?>" id="edit_asset_form">
 			<table cellPadding="8" class="record-detail-table">
 				<?php if ( ! $this->is_station_user)
-				{ ?>
+				{
+					?>
 					<tr>
 						<td class="record-detail-page">
 							<label><i class="icon-question-sign"></i><b> Organization:</b></label>
@@ -57,7 +58,7 @@
 						</td>
 					</tr>
 					<?php } ?>
-				 <tr>
+				<tr>
 					<?php
 					$add = ' ADD TYPE';
 					$asset_type_separate = explode(' | ', trim(str_replace('(**)', '', $asset_detail->asset_type)));
@@ -665,9 +666,9 @@
 				</tr>
 				<tr>
 					<?php
-					$annotations = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation)));
-					$annotation_types = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation_type)));
-					$annotation_refs = explode(' | ', trim(str_replace('(**)', '', $asset_detail->annotation_ref)));
+					$annotations = explode('|', trim(str_replace('(**)', '', $asset_detail->annotation)));
+					$annotation_types = explode('|', trim(str_replace('(**)', '', $asset_detail->annotation_type)));
+					$annotation_refs = explode('|', trim(str_replace('(**)', '', $asset_detail->annotation_ref)));
 					$add = ' ADD ANNOTATION';
 					?>
 					<td class="record-detail-page">
@@ -689,20 +690,20 @@
 													Annotation:
 												</p>
 												<p>
-													<input id="asset_annotation_<?php echo $index; ?>" name="asset_annotation[]" value="<?php echo $annotation; ?>" />
+													<input id="asset_annotation_<?php echo $index; ?>" name="asset_annotation[]" value="<?php echo trim($annotation); ?>" />
 												</p>
 											</div>
 											<div>
 												<p> Annotation Type:</p>
 												<p>
-													<input id="asset_annotation_type_<?php echo $index; ?>" name="asset_annotation_type[]" value="<?php echo (isset($annotation_types[$index])) ? $annotation_types[$index] : ''; ?>" />
+													<input id="asset_annotation_type_<?php echo $index; ?>" name="asset_annotation_type[]" value="<?php echo (isset($annotation_types[$index])) ? trim($annotation_types[$index]) : ''; ?>" />
 
 												</p>
 											</div>
 											<div>
 												<p> Annotation Ref:</p>
 												<p>
-													<input id="asset_annotation_ref_<?php echo $index; ?>" name="asset_annotation_ref[]" value="<?php echo (isset($annotation_refs[$index])) ? $annotation_refs[$index] : ''; ?>" />
+													<input id="asset_annotation_ref_<?php echo $index; ?>" name="asset_annotation_ref[]" value="<?php echo (isset($annotation_refs[$index])) ? trim($annotation_refs[$index]) : ''; ?>" />
 												</p>
 											</div>
 
@@ -845,7 +846,7 @@
 												<p> Creator Role:</p>
 												<p>
 													<select id="asset_creator_role_<?php echo $index; ?>" name="asset_creator_role[]">
-														
+
 														<?php
 														foreach ($pbcore_asset_creator_roles as $row)
 														{
@@ -938,7 +939,7 @@
 												<p> Contributor Role:</p>
 												<p>
 													<select id="asset_contributor_role_<?php echo $index; ?>" name="asset_contributor_role[]">
-														
+
 														<?php
 														foreach ($pbcore_asset_contributor_roles as $row)
 														{
@@ -1031,7 +1032,7 @@
 												<p> Publisher Role:</p>
 												<p>
 													<select id="asset_publisher_role_<?php echo $index; ?>" name="asset_publisher_role[]">
-														
+
 														<?php
 														foreach ($pbcore_asset_publisher_roles as $row)
 														{
@@ -1144,4 +1145,4 @@
 									var pbcorePublisherRoles =<?php echo json_encode($pbcore_asset_publisher_roles); ?>;
 
 </script>
-<script type="text/javascript" src="/js/edit_asset.js?<?php echo time();?>"></script>
+<script type="text/javascript" src="/js/edit_asset.js?<?php echo time(); ?>"></script>

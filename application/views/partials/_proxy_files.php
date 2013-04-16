@@ -41,6 +41,17 @@
 			</video>
 		</div>
 			<div class="clearfix" style="margin-bottom: 15px;"></div>
+			<OBJECT CLASSID="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"
+			CODEBASE="http://www.apple.com/qtactivex/qtplugin.cab" 
+			WIDTH="320" HEIGHT="256" >
+			<PARAM NAME="src" VALUE="<?php echo $media['url']; ?>">
+			<PARAM NAME="autoplay" VALUE="false">
+			<PARAM NAME="controller" value="true">
+			<EMBED SRC="QTMimeType.pntg" TYPE="image/x-macpaint"
+			PLUGINSPAGE="http://www.apple.com/quicktime/download" QTSRC="<?php echo $media['url']; ?>" 
+			WIDTH="320" HEIGHT="256" AUTOPLAY="true" CONTROLLER="true">
+			</EMBED>
+			</OBJECT>
 			<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
 					
 					 

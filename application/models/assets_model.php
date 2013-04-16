@@ -973,6 +973,21 @@ class Assets_Model extends CI_Model
 		return false;
 	}
 
+	function get_audience_level_all($audience_level)
+	{
+		$this->db->where('audience_level', $audience_level['audience_level']);
+		if (isset($audience_level['audience_level_source']) && ! empty($audience_level['audience_level_source']))
+			$this->db->where('audience_level_source', $audience_level['audience_level_source']);
+		if (isset($audience_level['audience_level_ref']) && ! empty($audience_level['audience_level_ref']))
+			$this->db->where('audience_level_ref', $audience_level['audience_level_ref']);
+		$result = $this->db->get($this->_table_audience_levels);
+		if (isset($result) && ! empty($result))
+		{
+			return $result->row();
+		}
+		return false;
+	}
+
 	/**
 	 *  Insert the record in _table_audience_levels table
 	 *  @param array $data

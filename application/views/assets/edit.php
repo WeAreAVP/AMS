@@ -545,7 +545,6 @@
 												</p>
 												<p>
 													<select id="asset_audience_level_<?php echo $index; ?>" name="asset_audience_level[]">
-														<option value="">Select Audience Level</option>
 														<?php
 														foreach ($pbcore_asset_audience_level as $row)
 														{
@@ -614,7 +613,6 @@
 												</p>
 												<p>
 													<select id="asset_audience_rating_<?php echo $index; ?>" name="asset_audience_rating[]">
-														<option value="">Select Audience Rating</option>
 														<?php
 														foreach ($pbcore_asset_audience_rating as $row)
 														{
@@ -643,7 +641,6 @@
 												<p> Audience Rating Ref:</p>
 												<p>
 													<select id="asset_audience_rating_ref_<?php echo $index; ?>" name="asset_audience_rating_ref[]">
-														<option value="">Select Audience Rating Ref</option>
 														<option value="http://www.filmratings.com" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.filmratings.com') ? 'selected="selected"' : ''; ?> >http://www.filmratings.com</option>
 														<option value="http://www.tvguidelines.org/ratings.htm" <?php echo (isset($audience_rating_refs[$index]) && $audience_rating_refs[$index] == 'http://www.tvguidelines.org/ratings.htm') ? 'selected="selected"' : ''; ?>>http://www.tvguidelines.org/ratings.htm</option>
 													</select>
@@ -757,7 +754,6 @@
 												<p> Relation Type:</p>
 												<p>
 													<select id="asset_relation_type_<?php echo $index; ?>" name="asset_relation_type[]">
-														<option value="">Select Relation Type</option>
 														<?php
 														foreach ($pbcore_asset_relation_types as $row)
 														{
@@ -849,7 +845,7 @@
 												<p> Creator Role:</p>
 												<p>
 													<select id="asset_creator_role_<?php echo $index; ?>" name="asset_creator_role[]">
-														<option value="">Select Creator Role</option>
+														
 														<?php
 														foreach ($pbcore_asset_creator_roles as $row)
 														{
@@ -942,7 +938,7 @@
 												<p> Contributor Role:</p>
 												<p>
 													<select id="asset_contributor_role_<?php echo $index; ?>" name="asset_contributor_role[]">
-														<option value="">Select Contributor Role</option>
+														
 														<?php
 														foreach ($pbcore_asset_contributor_roles as $row)
 														{
@@ -1035,7 +1031,7 @@
 												<p> Publisher Role:</p>
 												<p>
 													<select id="asset_publisher_role_<?php echo $index; ?>" name="asset_publisher_role[]">
-														<option value="">Select Publisher Role</option>
+														
 														<?php
 														foreach ($pbcore_asset_publisher_roles as $row)
 														{

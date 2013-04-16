@@ -230,7 +230,7 @@ class Assets extends MY_Controller
 				if ($this->input->post('asset_coverage'))
 				{
 					$coverage_type = $this->input->post('asset_coverage_type');
-					foreach ($this->input->post('asset_genre') as $index => $value)
+					foreach ($this->input->post('asset_coverage') as $index => $value)
 					{
 						if ( ! empty($value))
 						{
@@ -238,6 +238,37 @@ class Assets extends MY_Controller
 							$coverage['coverage'] = $value;
 							$coverage['coverage_type'] = $coverage_type[$index];
 							$this->assets_model->insert_coverage($coverage);
+						}
+					}
+				}
+				if ($this->input->post('asset_audience_level'))
+				{
+					$audience_source = $this->input->post('asset_audience_level_source');
+					$audience_ref = $this->input->post('asset_audience_level_ref');
+					foreach ($this->input->post('asset_audience_level') as $index => $value)
+					{
+						if ( ! empty($value))
+						{
+							$asset_audience_level['assets_id'] = $asset_id;
+							$audience_level['audience_level'] = trim($value);
+							if ( ! empty($audience_source[$index]))
+							{
+								$audience_level['audience_level_source'] = $audience_source[$index];
+							}
+							if ( ! empty($audience_ref[$index]))
+							{
+								$audience_level['audience_level_ref'] = $audience_ref[$index];
+							}
+							$db_audience_level = $this->assets_model->get_audience_level_all($audience_level);
+							if (isset($db_audience_level) && isset($db_audience_level->id))
+							{
+								$asset_audience_level['audience_levels_id'] = $db_audience_level->id;
+							}
+							else
+							{
+								$asset_audience_level['audience_levels_id'] = $this->assets_model->insert_audience_level($audience_level);
+							}
+							$asset_audience = $this->assets_model->insert_asset_audience($asset_audience_level);
 						}
 					}
 				}

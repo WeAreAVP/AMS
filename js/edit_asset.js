@@ -296,7 +296,7 @@ function addElement(elementID, type) {
 		}
 		html = '<div id="remove_audience_level_' + number + '" class="remove_audience_level"><div class="edit_form_div">' +
 		'<div><p>Audience Level:</p><p><select id="asset_audience_level_' + number + '" name="asset_audience_level[]">' +
-		'<option value="">Select Audience Level</option>' + audienceLevel + '</select></p></div><div><p> Audience Level Source:</p>' +
+		 audienceLevel + '</select></p></div><div><p> Audience Level Source:</p>' +
 		'<p><input id="asset_audience_level_source_' + number + '" name="asset_audience_level_source[]" value="" />' +
 		'</p></div><div><p> Audience Level Ref:</p><p><input id="asset_audience_level_ref_' + number + '" name="asset_audience_level_ref[]" value="" />' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_audience_level_' + number + '\', \'audience_level\');"><img src="/images/remove-item.png" /></div>' +
@@ -320,11 +320,11 @@ function addElement(elementID, type) {
 
 		html = '<div id="remove_audience_rating_' + number + '" class="remove_audience_rating"><div class="edit_form_div"><div>' +
 		'<p>Audience Rating:</p><p><select id="asset_audience_rating_' + number + '" name="asset_audience_rating[]">' +
-		'<option value="">Select Audience Rating</option>' + audienceRating + '</select></p></div><div><p> Audience Rating Source:</p>' +
+		 audienceRating + '</select></p></div><div><p> Audience Rating Source:</p>' +
 		'<p><select id="asset_audience_rating_source_' + number + '" name="asset_audience_rating_source[]"><option value="">Select Audience Rating Source</option>' +
 		'<option value="MPAA" >MPAA</option><option value="TV Parental Guidelines" >TV Parental Guidelines</option></select></p></div>' +
 		'<div><p> Audience Rating Ref:</p><p><select id="asset_audience_rating_ref_' + number + '" name="asset_audience_rating_ref[]">' +
-		'<option value="">Select Audience Rating Ref</option><option value="http://www.filmratings.com">http://www.filmratings.com</option>' +
+		'<option value="http://www.filmratings.com">http://www.filmratings.com</option>' +
 		'<option value="http://www.tvguidelines.org/ratings.htm">http://www.tvguidelines.org/ratings.htm</option></select></p></div></div>' +
 		'<div class="remove_element" onclick="removeElement(\'#remove_audience_rating_' + number + '\', \'audience_rating\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
@@ -357,7 +357,7 @@ function addElement(elementID, type) {
 		html = '<div id="remove_relation_' + number + '" class="remove_relation"><div class="edit_form_div"><div><p>Relation:</p>' +
 		'<p><input id="asset_relation_identifier_' + number + '" name="asset_relation_identifier[]" value="" /></p></div>' +
 		'<div><p> Relation Type:</p><p><select id="asset_relation_type_' + number + '" name="asset_relation_type[]">' +
-		'<option value="">Select Relation Type</option>' + relationType + '</select></p></div><div><p> Relation Source:</p><p>' +
+		 relationType + '</select></p></div><div><p> Relation Source:</p><p>' +
 		'<input id="asset_relation_source_' + number + '" name="asset_relation_source[]" value="" /></p></div>' +
 		'<div><p> Relation Ref:</p><p><input id="asset_relation_ref_' + number + '" name="asset_relation_ref[]" value="" />' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_relation_' + number + '\', \'relation\');"><img src="/images/remove-item.png" /></div>' +
@@ -390,7 +390,7 @@ function addElement(elementID, type) {
 		'<div><p>Creator Affiliation:</p><p><input id="asset_creator_affiliation_' + number + '" name="asset_creator_affiliation[]" value="" /></p></div>' +
 		'<div><p>Creator Ref:</p><p><input id="asset_creator_ref_' + number + '" name="asset_creator_ref[]" value="" /></p></div>' +
 		'<div><p> Creator Role:</p><p><select id="asset_creator_role_' + number + '" name="asset_creator_role[]">' +
-		'<option value="">Select Creator Role</option>' + creatorRoles + '</select></p></div><div><p> Creator Role Source:</p><p>' +
+		 creatorRoles + '</select></p></div><div><p> Creator Role Source:</p><p>' +
 		'<input id="asset_creator_role_source_' + number + '" name="asset_creator_role_source[]" value="" /></p></div><div><p> Creator Role Ref:</p>' +
 		'<p><input id="asset_creator_role_ref_' + number + '" name="asset_creator_role_ref[]" value="" /></p></div></div>' +
 		'<div class="remove_element" onclick="removeElement(\'#remove_creator_' + number + '\', \'creator\');"><img src="/images/remove-item.png" /></div>' +
@@ -430,7 +430,7 @@ function addElement(elementID, type) {
 		'<div><p>Contributor Affiliation:</p><p><input id="asset_contributor_affiliation_' + number + '" name="asset_contributor_affiliation[]" value="" /></p>' +
 		'</div><div><p>Contributor Ref:</p><p><input id="asset_contributor_ref_' + number + '" name="asset_contributor_ref[]" value="" /></p>' +
 		'</div><div><p> Contributor Role:</p><p><select id="asset_contributor_role_' + number + '" name="asset_contributor_role[]">' +
-		'<option value="">Select Contributor Role</option>' + contributorRoles + '</select></p></div><div><p> Contributor Role Source:</p>' +
+		 contributorRoles + '</select></p></div><div><p> Contributor Role Source:</p>' +
 		'<p><input id="asset_contributor_role_source_' + number + '" name="asset_contributor_role_source[]" value="" /></p>' +
 		'</div><div><p> Contributor Role Ref:</p><p><input id="asset_contributor_role_ref_' + number + '" name="asset_contributor_role_ref[]" value="" />' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_contributor_' + number + '\', \'contributor\');"><img src="/images/remove-item.png" /></div>' +
@@ -471,7 +471,7 @@ function addElement(elementID, type) {
 		'<div><p>Publisher Affiliation:</p><p><input id="asset_publisher_affiliation_' + number + '" name="asset_publisher_affiliation[]" value="" /></p></div>' +
 		'<div><p>Publisher Ref:</p><p><input id="asset_publisher_ref_' + number + '" name="asset_publisher_ref[]" value="" /></p></div>' +
 		'<div><p> Publisher Role:</p><p><select id="asset_publisher_role_' + number + '" name="asset_publisher_role[]">' +
-		'<option value="">Select Publisher Role</option>' + publisherRoles + '</select></p></div><div><p> Publisher Role Source:</p>' +
+		 publisherRoles + '</select></p></div><div><p> Publisher Role Source:</p>' +
 		'<p><input id="asset_publisher_role_source_' + number + '" name="asset_publisher_role_source[]" value="" /></p></div>' +
 		'<div><p> Publisher Role Ref:</p><p><input id="asset_publisher_role_ref_' + number + '" name="asset_publisher_role_ref[]" value="" />' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_publisher_' + number + '\', \'publisher\');"><img src="/images/remove-item.png" /></div>' +

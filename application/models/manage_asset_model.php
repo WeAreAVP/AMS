@@ -177,6 +177,14 @@ class Manage_Asset_Model extends CI_Model
 		return $this->db->affected_rows() > 0;
 	}
 
+	function delete_local_identifiers($asset_id)
+	{
+		$this->db->where('assets_id', $asset_id);
+		$this->db->where("identifier_source !=", "http://americanarchiveinventory.org");
+		$this->db->delete('identifiers');
+		return $this->db->affected_rows() > 0;
+	}
+
 }
 
 ?>

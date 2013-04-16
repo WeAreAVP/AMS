@@ -89,8 +89,20 @@ class Assets extends MY_Controller
 						$this->assets_model->insert_asset_date($asset_date_info);
 					}
 				}
+				if ($this->input->post('asset_identifier'))
+				{
+					foreach ($this->input->post('asset_identifier') as $index => $value)
+					{
+						$identifier_source = $this->input->post('asset_identifier_source');
+						$identifier_ref = $this->input->post('asset_identifier_ref');
+						$identifier_detail['assets_id'] = $asset_id;
+						$identifier_detail['identifier'] = $value;
+						$identifier_detail['identifier_source'] = $identifier_source[$index];
+						$identifier_detail['identifier_ref'] = $identifier_ref[$index];
+						$this->assets_model->insert_identifiers($identifier_detail);
+					}
+				}
 				exit;
-	
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
 			if ($data['asset_detail'])
@@ -126,8 +138,8 @@ class Assets extends MY_Controller
 	{
 		$this->manage_asset->delete_asset_types($asset_id);
 		$this->manage_asset->delete_asset_dates($asset_id);
-		return TRUE;
 		$this->manage_asset->delete_local_identifiers($asset_id);
+		return TRUE;
 		$this->manage_asset->delete_asset_titles($asset_id);
 		$this->manage_asset->delete_asset_subjects($asset_id);
 		$this->manage_asset->delete_asset_descriptions($asset_id);

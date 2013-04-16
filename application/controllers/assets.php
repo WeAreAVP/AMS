@@ -97,7 +97,9 @@ class Assets extends MY_Controller
 						$identifier_ref = $this->input->post('asset_identifier_ref');
 						$identifier_detail['assets_id'] = $asset_id;
 						$identifier_detail['identifier'] = $value;
-						$identifier_detail['identifier_source'] = $identifier_source[$index];
+						if ( ! empty($identifier_source[$index]))
+							$identifier_detail['identifier_source'] = $identifier_source[$index];
+						if ( ! empty($identifier_ref[$index]))
 						$identifier_detail['identifier_ref'] = $identifier_ref[$index];
 						$this->assets_model->insert_identifiers($identifier_detail);
 					}
@@ -105,7 +107,7 @@ class Assets extends MY_Controller
 				exit;
 			}
 			$data['asset_detail'] = $this->manage_asset->get_asset_detail_by_id($asset_id);
-			debug($data['asset_detail']);
+			
 			if ($data['asset_detail'])
 			{
 				$data['asset_id'] = $asset_id;

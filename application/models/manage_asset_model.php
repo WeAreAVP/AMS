@@ -282,7 +282,7 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select('instantiation_identifier.instantiation_identifier');
 		$this->db->where('instantiation_identifier.instantiations_id', $ins_id);
 
-		return $result = $this->db->get($this->table_instantiation_identifier)->result();
+		return $result = $this->db->get('instantiation_identifier')->result();
 	}
 
 	function get_dates_by_instantiation_id($ins_id)
@@ -291,7 +291,7 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select('date_types.date_type');
 		$this->db->where('instantiation_dates.instantiations_id', $ins_id);
 		$this->db->join('date_types', 'date_types.id = instantiation_dates.date_types_id', 'left');
-		return $result = $this->db->get($this->table_instantiation_dates)->result();
+		return $result = $this->db->get('instantiation_dates')->result();
 	}
 
 }

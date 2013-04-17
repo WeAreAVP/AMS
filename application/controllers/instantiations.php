@@ -345,6 +345,7 @@ class Instantiations extends MY_Controller
 				$data['inst_data_rate_unit'] = $this->instantiation->get_data_rate_unit_by_data_id($detail->data_rate_units_id);
 				$data['inst_color'] = $this->instantiation->get_color_by_instantiation_colors_id($detail->instantiation_colors_id);
 				$data['inst_annotation'] = $this->instantiation->get_annotation_by_instantiation_id($instantiation_id);
+				$data['asset_details'] = $this->assets_model->get_asset_by_asset_id($detail->assets_id);
 				$this->load->view('instantiations/edit',$data);
 			}
 			else

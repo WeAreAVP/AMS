@@ -104,15 +104,48 @@ function addElement(elementID, type) {
 		$(elementID).append(html);
 	}
 	else if (elementID == '#main_annotation') {
-		html = '<div id="remove_annotation_' + number + '" class="remove_annotation"><div class="edit_form_div"><div><p>Annotation:</p>'+
-				'<p><input type="text" id="annotation_' + number + '" name="annotation[]" value="" /></p></div>'+
-				'<div><p>Annotation Type:</p><p><input type="text" id="annotation_type_' + number + '" name="annotation_type[]" value="" />'+
-				'</p></div></div>'+
-				'<div class="remove_element" onclick="removeElement(\'#remove_annotation_' + number + '\', \'annotation\');"><img src="/images/remove-item.png" /></div>'+
-				'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		html = '<div id="remove_annotation_' + number + '" class="remove_annotation"><div class="edit_form_div"><div><p>Annotation:</p>' +
+		'<p><input type="text" id="annotation_' + number + '" name="annotation[]" value="" /></p></div>' +
+		'<div><p>Annotation Type:</p><p><input type="text" id="annotation_type_' + number + '" name="annotation_type[]" value="" />' +
+		'</p></div></div>' +
+		'<div class="remove_element" onclick="removeElement(\'#remove_annotation_' + number + '\', \'annotation\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
 		$('input[name="annotation_type[]"]').autocomplete({
 			source: site_url + "autocomplete/values?table=instantiation_annotations&column=annotation_type",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+	}
+	else if (elementID == '#main_relation') {
+		relationType = '';
+
+		for (cnt in pbcoreRelationTypes)
+		{
+			relationType += '<option value= "' + pbcoreRelationTypes[cnt]['value'] + '">' + pbcoreRelationTypes[cnt]['value'] + '</option>';
+		}
+		html = '<div id="remove_relation_' + number + '" class="remove_relation"><div class="edit_form_div"><div><p>Relation:</p>' +
+		'<p><input type="text" id="relation_' + number + '" name="relation[]" value="" /></p></div>' +
+		'<div><p> Relation Type:</p><p><select id="relation_type_' + number + '" name="relation_type[]">' + relationType + '</select>' +
+		'</p></div><div><p> Relation Source:</p><p>' +
+		'<input type="text" id="relation_source_' + number + '" name="relation_source[]" value="" />' +
+		'</p></div><div><p> Relation Ref:</p><p>' +
+		'<input type="text" id="relation_ref_' + number + '" name="relation_ref[]" value="" />' +
+		'<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span></p></div></div>' +
+		'<div class="remove_element" onclick="removeElement(\'#remove_relation_' + number + '\', \'relation\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+		$('input[name="relation_identifier[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=instantiation_relations&column=relation_identifier",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+		$('input[name="relation_source[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=relation_types&column=relation_type_source",
 			minLength: 1,
 			delay: 100,
 			enable: true,

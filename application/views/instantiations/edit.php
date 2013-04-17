@@ -204,6 +204,50 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Standard:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" id="standard" name="standard" value="<?php echo $instantiation_detail->standard; ?>" />
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Location:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" id="location" name="location" value="<?php echo $instantiation_detail->location; ?>" />
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> File Size:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" id="file_size" name="file_size" value="<?php echo $instantiation_detail->file_size; ?>" />
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> File Size Unit of measure:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" id="file_size_unit" name="file_size_unit" value="<?php echo $instantiation_detail->file_size_unit_of_measure; ?>" />
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
 						<label><i class="icon-question-sign"></i><b> Nomination Status:</b></label>
 					</td>
 					<td>

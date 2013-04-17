@@ -339,10 +339,10 @@ $this->load->model('manage_asset_model', 'manage_asset');
 				$data['inst_identifier'] = $this->manage_asset->get_identifier_by_instantiation_id($instantiation_id);
 				$data['inst_dates'] = $this->manage_asset->get_dates_by_instantiation_id($instantiation_id);
 				$data['inst_demension'] = $this->manage_asset->get_demension_by_instantiation_id($instantiation_id);
-				
+				$data['inst_format'] = $this->instantiation->get_format_by_instantiation_id($instantiation_id);
 				
 				$data['inst_media_type'] = $this->instantiation->get_media_type_by_instantiation_media_id($detail->instantiation_media_type_id);
-				$data['inst_format'] = $this->instantiation->get_format_by_instantiation_id($instantiation_id);
+				
 				$data['inst_generation'] = $this->instantiation->get_generation_by_instantiation_id($instantiation_id);
 				
 				$data['inst_data_rate_unit'] = $this->instantiation->get_data_rate_unit_by_data_id($detail->data_rate_units_id);

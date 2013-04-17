@@ -58,7 +58,8 @@
 			if ($this->role_id != '20')
 			{
 				?>
-				<div><input type="button" class="btn" value="Edit Instantiation" onclick="toggleViews();"/></div>
+				<!--<div><input type="button" class="btn" value="Edit Instantiation" onclick="toggleViews();"/></div>-->
+			<div><a href="<?php echo site_url('instantiations/edit/'.$inst_id); ?>" class="btn">Edit Instantiation</a></div>
 			<?php } ?>
 			<table  cellPadding="8" class="record-detail-table">
 				<!--				Instantiation ID	Start		-->

@@ -120,7 +120,7 @@
 												</p>
 											</div>
 										</div>
-										<div class="remove_element" onclick="removeElement('#remove_date_<?php echo $index; ?>', 'date');"><img src="/images/remove-item.png" /></div>
+
 										<div class="clearfix" style="margin-bottom: 10px;"></div>
 									</div>
 
@@ -129,7 +129,7 @@
 							}
 							?>
 						</div>
-						<div class="add-new-element" onclick="addElement('#main_date', 'date');"><i class="icon-plus-sign icon-white"></i><span id="add_date"><?php echo $add; ?></span></div>
+
 
 					</td>
 

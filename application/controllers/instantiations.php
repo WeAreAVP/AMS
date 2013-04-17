@@ -308,7 +308,7 @@ $this->load->model('manage_asset_model', 'manage_asset');
 				
 			}
 			$detail = $data['instantiation_detail'] = $this->instantiation->get_by_id($instantiation_id);
-			debug($detail);
+			
 			if (count($data['instantiation_detail']) > 0)
 			{
 				$data['asset_id'] = $detail->assets_id;

@@ -34,46 +34,37 @@
 			<table cellPadding="8" class="record-detail-table">
 				<tr>
 					<?php
-					$identifiers = explode('|', trim(str_replace('(**)', '', $asset_detail->identifier)));
-					$identifier_sources = explode('|', trim(str_replace('(**)', '', $asset_detail->identifier_source)));
-					$identifier_refs = explode('|', trim(str_replace('(**)', '', $asset_detail->identifier_ref)));
 					$add = ' ADD INSTANTIATION ID';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Local ID:</b></label>
+						<label><i class="icon-question-sign"></i><b> INSTANTIATION ID:</b></label>
 					</td>
 					<td>
-						<div id="main_local_id">
+						<div id="main_instantiation_id">
 							<?php
-							if (count($identifiers) > 0 && isset($identifiers[0]) && ! empty($identifiers[0]))
+							if (count($inst_identifier) > 0)
 							{
-								$add = ' ADD ANOTHER LOCAL ID';
-								foreach ($identifiers as $index => $identifier)
+								$add = ' ADD ANOTHER INSTANTIATION ID';
+								foreach ($inst_identifier as $index => $identifier)
 								{
 									?>
-									<div id="remove_local_<?php echo $index; ?>" class="remove_local_id">
+									<div id="remove_instantiation_id_<?php echo $index; ?>" class="remove_instantiation_id">
 										<div class="edit_form_div">
 											<div>
-												<p>Local ID:</p>
+												<p>INSTANTIATION ID:</p>
 												<p>
-													<input type="text" id="asset_identifier_<?php echo $index; ?>" name="asset_identifier[]" value="<?php echo trim($identifier); ?>" />
+													<input type="text" id="instantiation_id_identifier_<?php echo $index; ?>" name="instantiation_id_identifier[]" value="<?php echo trim($identifier->instantiation_identifier); ?>" />
 												</p>
 											</div>
 											<div>
-												<p>ID Source:</p>
+												<p>INSTANTIATION ID SOURCE:</p>
 												<p>
-													<input type="text" id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($identifier_sources[$index])) ? trim($identifier_sources[$index]) : ''; ?>" />
+													<input type="text" id="instantiation_id_source_<?php echo $index; ?>" name="instantiation_id_source[]" value="<?php echo trim($identifier->instantiation_source); ?>" />
 												</p>
 											</div>
-											<div>
-												<p>ID Ref:</p>
-												<p>
-													<input type="text" id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($identifier_refs[$index])) ? trim($identifier_refs[$index]) : ''; ?>" />
-													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
-												</p>
-											</div>
+
 										</div>
-										<div class="remove_element" onclick="removeElement('#remove_local_<?php echo $index; ?>', 'local_id');"><img src="/images/remove-item.png" /></div>
+										<div class="remove_element" onclick="removeElement('#remove_instantiation_id_<?php echo $index; ?>', 'instantiation_id');"><img src="/images/remove-item.png" /></div>
 										<div class="clearfix" style="margin-bottom: 10px;"></div>
 									</div>
 
@@ -82,7 +73,7 @@
 							}
 							?>
 						</div>
-						<div class="add-new-element" onclick="addElement('#main_local_id', 'local_id');"><i class="icon-plus-sign icon-white"></i><span id="add_local_id"><?php echo $add; ?></span></div>
+						<div class="add-new-element" onclick="addElement('#main_instantiation_id', 'instantiation_id');"><i class="icon-plus-sign icon-white"></i><span id="add_local_id"><?php echo $add; ?></span></div>
 
 					</td>
 

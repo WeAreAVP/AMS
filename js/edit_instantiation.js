@@ -164,6 +164,7 @@ function validateForm() {
 	var isValid = true;
 	if ($('#file_size').val() != '') {
 		if (isNaN($('#file_size').val())) {
+			isValid=false;
 			$('body').animate({
 				scrollTop: $('#file_size').offset().top - 100
 		}, 'slow');

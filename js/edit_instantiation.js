@@ -61,25 +61,13 @@ function addElement(elementID, type) {
 	if (elementID == '#main_instantiation_id') {
 
 
-		html = '<div id="remove_instantiation_id_' + number + '" class="remove_instantiation_id">'+
-										'<div class="edit_form_div">'+
-											'<div>'+
-												'<p>INSTANTIATION ID:</p>'+
-												'<p>'+
-													'<input type="text" id="instantiation_id_identifier_' + number + '" name="instantiation_id_identifier[]" value="" />'+
-												'</p>'+
-											'</div>'+
-											'<div>'+
-												'<p>INSTANTIATION ID SOURCE:</p>'+
-												'<p>'+
-													'<input type="text" id="instantiation_id_source_' + number + '" name="instantiation_id_source[]" value="" />'+
-												'</p>'+
-											'</div>'+
-
-										'</div>'+
-										'<div class="remove_element" onclick="removeElement(\'#remove_instantiation_id_' + number + '\', \'instantiation_id\');"><img src="/images/remove-item.png" /></div>'+
-										'<div class="clearfix" style="margin-bottom: 10px;"></div>'+
-									'</div>';
+		html = '<div id="remove_instantiation_id_' + number + '" class="remove_instantiation_id"><div class="edit_form_div"><div><p>INSTANTIATION ID:</p><p>' +
+		'<input type="text" id="instantiation_id_identifier_' + number + '" name="instantiation_id_identifier[]" value="" />' +
+		'</p></div><div><p>INSTANTIATION ID SOURCE:</p><p>' +
+		'<input type="text" id="instantiation_id_source_' + number + '" name="instantiation_id_source[]" value="" />' +
+		'</p></div></div>' +
+		'<div class="remove_element" onclick="removeElement(\'#remove_instantiation_id_' + number + '\', \'instantiation_id\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 
 
 		$(elementID).append(html);

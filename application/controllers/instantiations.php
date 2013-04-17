@@ -350,6 +350,7 @@ $this->load->model('manage_asset_model', 'manage_asset');
 				$data['inst_annotation'] = $this->instantiation->get_annotation_by_instantiation_id($instantiation_id);
 				$data['asset_details'] = $this->assets_model->get_asset_by_asset_id($detail->assets_id);
 				$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);
+				$data['pbcore_media_types'] = $this->manage_asset->get_picklist_values(11);
 				$this->load->view('instantiations/edit', $data);
 			}
 			else

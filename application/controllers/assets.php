@@ -534,6 +534,16 @@ class Assets extends MY_Controller
 		}
 	}
 
+	function insert_pbcore_values()
+	{
+		$static_types = array('Animation', 'Artifact', 'Collection', 'Dataset',
+			'Event', 'Interactive', 'Moving Image', 'Object', 'Presentation', 'Service', 'Software', 'Sound', 'Static Image', 'Text');
+		foreach ($static_types as $value)
+		{
+			$this->manage_asset->insert_picklist_value(array('value' => $value, 'element_type_id' => 11));
+		}
+	}
+
 	private function delete_asset_attributes($asset_id)
 	{
 		$this->manage_asset->delete_asset_types($asset_id);

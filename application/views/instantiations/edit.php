@@ -306,19 +306,16 @@
 					</td>
 					<td>
 						<p>
-							<?php
-							$media_type = explode(' | ', $inst_media_type->media_type);
-							$static_types = array('Animation', 'Artifact', 'Collection', 'Dataset', 'Event', 'Interactive', 'Moving Image', 'Object', 'Presentation', 'Service', 'Software', 'Sound', 'Static Image', 'Text');
-							?>
+
 							<select  id="media_type" name="media_type" style="width: 300px;">
 								<?php
-								foreach ($static_types as $row)
+								foreach ($pbcore_media_types as $row)
 								{
 									$selected = '';
-									if (in_array($row, $media_type))
+									if (in_array($row->value, $inst_media_type->media_type))
 										$selected = 'selected="selected"';
 									?>
-									<option value="<?php echo $row; ?>" <?php echo $selected; ?>><?php echo $row; ?></option>
+									<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
 								<?php }
 								?>
 

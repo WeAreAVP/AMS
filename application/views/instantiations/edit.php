@@ -209,6 +209,7 @@
 					<td>
 						<p>
 							<input type="text" id="time_start" name="time_start" value="<?php echo $instantiation_detail->time_start; ?>" />
+							<span id="time_start_error" class="help-block" style="color: #c65f5a;display: none;">Time Start should be hh:mm:ss.</span>
 						</p>
 
 					</td>
@@ -220,6 +221,7 @@
 					<td>
 						<p>
 							<input type="text" id="projected_duration" name="projected_duration" value="<?php echo $instantiation_detail->projected_duration; ?>" />
+							<span id="projected_duration_error" class="help-block" style="color: #c65f5a;display: none;">Projected Duration should be hh:mm:ss.</span>
 						</p>
 
 					</td>
@@ -231,6 +233,7 @@
 					<td>
 						<p>
 							<input type="text" id="actual_duration" name="actual_duration" value="<?php echo $instantiation_detail->actual_duration; ?>" />
+							<span id="actual_duration_error" class="help-block" style="color: #c65f5a;display: none;">Actual Duration should be hh:mm:ss.</span>
 						</p>
 
 					</td>

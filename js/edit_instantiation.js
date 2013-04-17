@@ -178,7 +178,13 @@ function validateForm() {
 	for (cnt in time) {
 		value = $('#' + time[cnt]).val();
 		if (value != '') {
-			duration= value.split(':');
+			duration = value.split(':');
+			if (duration.length != 3) {
+				$('#' + time[cnt] + '_error').show();
+			}
+			else {
+				$('#' + time[cnt] + '_error').hide();
+			}
 			console.log(duration);
 		}
 	}

@@ -213,7 +213,7 @@ function validateForm() {
 				break;
 
 			}
-			console.log(duration);
+
 		}
 	}
 	$('input[name="relation_ref[]"]').each(function() {

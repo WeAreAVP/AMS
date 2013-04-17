@@ -329,7 +329,7 @@ class Instantiations extends MY_Controller
 			{
 				
 			}
-			$data['instantiation_detail'] = $this->instantiation->get_by_id($instantiation_id);
+			$detail = $data['instantiation_detail'] = $this->instantiation->get_by_id($instantiation_id);
 			if (count($data['instantiation_detail']) > 0)
 			{
 				$data['asset_id'] = $detail->assets_id;

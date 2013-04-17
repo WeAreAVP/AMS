@@ -369,7 +369,57 @@
 
 					</td>
 				</tr>
+				<tr>
+					<?php
+					$add = ' ADD GENERATION';
+					if (isset($inst_generation) && $inst_generation->generation != '')
+					{
+						$generations = explode('|', $inst_generation->generation);
+					}
+					?>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Generation:</b></label>
+					</td>
+					<td>
+						<div id="main_generation">
+							<?php
+							if (isset($generations) && count($generations) > 0)
+							{
+								$add = ' ADD ANOTHER GENERATION';
+								foreach ($generations as $index => $gen)
+								{
+									?>
+									<div id="remove_generation_<?php echo $index; ?>" class="remove_generation">
+										<div class="edit_form_div">
+											<div><p>Generation:</p></div>
+											<div><p>
+													<select id="generation_<?php echo $index; ?>" name="generation[]">
+														<?php
+														foreach ($pbcore_generations as $row)
+														{
+															$selected = '';
+															if (trim($gen) == $row->value)
+																$selected = 'selected="selected"'
+																?>
+															<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+														<?php }
+														?>
+													</select>
+												</p>
+											</div>
+										</div>
+										<div class="remove_element" onclick="removeElement('#remove_generation_<?php echo $index; ?>', 'generation');"><img src="/images/remove-item.png" /></div>
+										<div class="clearfix" style="margin-bottom: 10px;"></div>
+									</div>
+									<?php
+								}
+							}
+							?>
 
+						</div>
+						<div class="add-new-element" onclick="addElement('#main_generation', 'generation');"><i class="icon-plus-sign icon-white"></i><span id="add_type"><?php echo $add; ?></span></div>
+					</td>
+				</tr>
 				<tr>
 					<td colspan="2">
 						<a class="btn" href="<?php echo site_url('instantiations/detail/' . $inst_id); ?>">Cancel</a>

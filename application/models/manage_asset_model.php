@@ -309,6 +309,17 @@ class Manage_Asset_Model extends CI_Model
 		return $result = $this->db->get('instantiation_annotations')->result();
 	}
 
+	function get_relation_by_instantiation_id($ins_id)
+	{
+		$this->db->select('instantiation_relations.relation_identifier');
+		$this->db->select('relation_types.relation_type');
+		$this->db->select('relation_types.relation_type_source');
+		$this->db->select('relation_types.relation_type_ref');
+		$this->db->join('relation_types', 'relation_types.id = instantiation_relations.relation_types_id', 'left');
+		$this->db->where('instantiation_relations.instantiations_id', $ins_id);
+		return $result = $this->db->get('instantiation_relations')->result();
+	}
+
 }
 
 ?>

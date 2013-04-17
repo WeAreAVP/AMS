@@ -326,10 +326,12 @@ $this->load->model('manage_asset_model', 'manage_asset');
 				$data['inst_data_rate_unit'] = $this->instantiation->get_data_rate_unit_by_data_id($detail->data_rate_units_id);
 				$data['inst_color'] = $this->instantiation->get_color_by_instantiation_colors_id($detail->instantiation_colors_id);
 				$data['inst_annotation'] = $this->manage_asset->get_annotation_by_instantiation_id($instantiation_id);
+				$data['inst_relation'] = $this->manage_asset->get_relation_by_instantiation_id($instantiation_id);
 				$data['asset_details'] = $this->assets_model->get_asset_by_asset_id($detail->assets_id);
 				$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);
 				$data['pbcore_media_types'] = $this->manage_asset->get_picklist_values(11);
 				$data['pbcore_generations'] = $this->manage_asset->get_picklist_values(12);
+				$data['pbcore_relation_types'] = $this->manage_asset->get_picklist_values(7);
 				$this->load->view('instantiations/edit', $data);
 			}
 			else

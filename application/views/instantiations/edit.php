@@ -433,7 +433,7 @@
 							if (count($inst_annotation) > 0)
 							{
 								$add = ' ADD ANOTHER INSTANTIATION ID';
-								foreach ($inst_identifier as $index => $identifier)
+								foreach ($inst_annotation as $index => $annotation)
 								{
 									?>
 									<div id="remove_annotation_<?php echo $index; ?>" class="remove_annotation">
@@ -441,13 +441,13 @@
 											<div>
 												<p>Annotation:</p>
 												<p>
-													<input type="text" id="annotation_<?php echo $index; ?>" name="annotation[]" value="<?php echo trim($identifier->instantiation_identifier); ?>" />
+													<input type="text" id="annotation_<?php echo $index; ?>" name="annotation[]" value="<?php echo trim($annotation->instantiation_identifier); ?>" />
 												</p>
 											</div>
 											<div>
 												<p>Annotation Type:</p>
 												<p>
-													<input type="text" id="annotation_type_<?php echo $index; ?>" name="annotation_type[]" value="<?php echo trim($identifier->instantiation_source); ?>" />
+													<input type="text" id="annotation_type_<?php echo $index; ?>" name="annotation_type[]" value="<?php echo trim($annotation->instantiation_source); ?>" />
 												</p>
 											</div>
 
@@ -462,6 +462,77 @@
 							?>
 						</div>
 						<div class="add-new-element" onclick="addElement('#main_annotation', 'annotation');"><i class="icon-plus-sign icon-white"></i><span id="add_annotation"><?php echo $add; ?></span></div>
+
+					</td>
+
+				</tr>
+				<tr>
+					<?php
+					$add = ' ADD RELATION';
+					?>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Relation:</b></label>
+					</td>
+					<td>
+						<div id="main_relation">
+							<?php
+							if (count($inst_relation) > 0)
+							{
+								$add = ' ADD ANOTHER RELATION';
+								foreach ($inst_relation as $index => $relation)
+								{
+									?>
+									<div id="remove_relation_<?php echo $index; ?>" class="remove_relation">
+										<div class="edit_form_div">
+											<div>
+												<p>Relation:</p>
+												<p>
+													<input type="text" id="relation_<?php echo $index; ?>" name="relation[]" value="<?php echo trim($relation->relation_identifier); ?>" />
+												</p>
+											</div>
+											<div>
+												<p> Relation Type:</p>
+												<p>
+													<select id="relation_type_<?php echo $index; ?>" name="relation_type[]">
+														<?php
+														foreach ($pbcore_relation_types as $row)
+														{
+															$selected = '';
+															if ($relation->relation_type == $row->value)
+																$selected = 'selected="selected"'
+																?>
+															<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+														<?php }
+														?>
+													</select>
+
+												</p>
+											</div>
+											<div>
+												<p> Relation Source:</p>
+												<p>
+													<input type="text" id="relation_source_<?php echo $index; ?>" name="relation_source[]" value="<?php echo $relation->relation_type_source; ?>" />
+												</p>
+											</div>
+											<div>
+												<p> Relation Ref:</p>
+												<p>
+													<input type="text" id="relation_ref_<?php echo $index; ?>" name="relation_ref[]" value="<?php echo $relation->relation_type_ref; ?>" />
+													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
+												</p>
+											</div>
+
+										</div>
+										<div class="remove_element" onclick="removeElement('#remove_relation_<?php echo $index; ?>', 'relation');"><img src="/images/remove-item.png" /></div>
+										<div class="clearfix" style="margin-bottom: 10px;"></div>
+									</div>
+
+									<?php
+								}
+							}
+							?>
+						</div>
+						<div class="add-new-element" onclick="addElement('#main_relation', 'relation');"><i class="icon-plus-sign icon-white"></i><span id="add_relation"><?php echo $add; ?></span></div>
 
 					</td>
 

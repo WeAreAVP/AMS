@@ -276,6 +276,24 @@ class Manage_Asset_Model extends CI_Model
 		return $this->db->affected_rows() > 0;
 	}
 
+	function get_identifier_by_instantiation_id($ins_id)
+	{
+		$this->db->select("$this->table_instantiation_identifier.instantiation_source");
+		$this->db->select("$this->table_instantiation_identifier.instantiation_identifier");
+		$this->db->where("$this->table_instantiation_identifier.instantiations_id", $ins_id);
+
+		return $result = $this->db->get($this->table_instantiation_identifier)->result();
+	}
+
+	function get_dates_by_instantiation_id($ins_id)
+	{
+		$this->db->select("$this->table_instantiation_dates.instantiation_date");
+		$this->db->select("$this->table_date_types.date_type");
+		$this->db->where("$this->table_instantiation_dates.instantiations_id", $ins_id);
+		$this->db->join($this->table_date_types, "$this->table_date_types.id = $this->table_instantiation_dates.date_types_id", 'left');
+		return $result = $this->db->get($this->table_instantiation_dates)->result();
+	}
+
 }
 
 ?>

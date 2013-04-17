@@ -79,6 +79,62 @@
 
 				</tr>
 				<tr>
+					<?php
+					$add = ' ADD DATE';
+					?>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Date:</b></label>
+					</td>
+					<td>
+						<div id="main_date">
+							<?php
+							if (count($inst_dates) > 0)
+							{
+								$add = ' ADD ANOTHER DATE';
+								foreach ($inst_dates as $index => $date)
+								{
+									?>
+									<div id="remove_date_<?php echo $index; ?>" class="remove_date">
+										<div class="edit_form_div">
+											<div>
+												<p>Instantiation Date:</p>
+												<p>
+													<input type="text" id="asset_date_<?php echo $index; ?>" name="asset_date[]" value="<?php echo $date->instantiation_date; ?>" />
+												</p>
+											</div>
+											<div>
+												<p>Instantiation Date Type:</p>
+												<p>
+													<select id="asset_date_type_<?php echo $index; ?>" name="asset_date_type[]">
+														<?php
+														foreach ($pbcore_asset_date_types as $row)
+														{
+															$selected = '';
+															if ($date->date_type == $row->value)
+																$selected = 'selected="selected"'
+																?>
+															<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+														<?php }
+														?>
+													</select>
+												</p>
+											</div>
+										</div>
+										<div class="remove_element" onclick="removeElement('#remove_date_<?php echo $index; ?>', 'date');"><img src="/images/remove-item.png" /></div>
+										<div class="clearfix" style="margin-bottom: 10px;"></div>
+									</div>
+
+									<?php
+								}
+							}
+							?>
+						</div>
+						<div class="add-new-element" onclick="addElement('#main_date', 'date');"><i class="icon-plus-sign icon-white"></i><span id="add_date"><?php echo $add; ?></span></div>
+
+					</td>
+
+				</tr>
+				<tr>
 					<td class="record-detail-page">
 						<label><i class="icon-question-sign"></i><b> Nomination Status:</b></label>
 					</td>

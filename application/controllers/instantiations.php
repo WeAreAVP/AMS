@@ -39,7 +39,7 @@ class Instantiations extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('instantiations_model', 'instantiation');
-
+$this->load->model('manage_asset_model', 'manage_asset');
 		$this->load->model('export_csv_job_model', 'csv_job');
 		$this->load->model('assets_model');
 		$this->load->model('essence_track_model', 'essence_track');
@@ -336,9 +336,9 @@ class Instantiations extends MY_Controller
 				$data['inst_id'] = $instantiation_id;
 				$data['list_assets'] = $this->instantiation->get_instantiations_by_asset_id($detail->assets_id);
 				$data['ins_nomination'] = $this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
-				$data['inst_identifier'] = $this->instantiation->get_identifier_by_instantiation_id($instantiation_id);
-				
-				$data['inst_dates'] = $this->instantiation->get_dates_by_instantiation_id($instantiation_id);
+				$data['inst_identifier'] = $this->manage_asset->get_identifier_by_instantiation_id($instantiation_id);
+
+				$data['inst_dates'] = $this->manage_asset->get_dates_by_instantiation_id($instantiation_id);
 				$data['inst_media_type'] = $this->instantiation->get_media_type_by_instantiation_media_id($detail->instantiation_media_type_id);
 				$data['inst_format'] = $this->instantiation->get_format_by_instantiation_id($instantiation_id);
 				$data['inst_generation'] = $this->instantiation->get_generation_by_instantiation_id($instantiation_id);
@@ -347,7 +347,8 @@ class Instantiations extends MY_Controller
 				$data['inst_color'] = $this->instantiation->get_color_by_instantiation_colors_id($detail->instantiation_colors_id);
 				$data['inst_annotation'] = $this->instantiation->get_annotation_by_instantiation_id($instantiation_id);
 				$data['asset_details'] = $this->assets_model->get_asset_by_asset_id($detail->assets_id);
-				$this->load->view('instantiations/edit',$data);
+				$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);
+				$this->load->view('instantiations/edit', $data);
 			}
 			else
 			{

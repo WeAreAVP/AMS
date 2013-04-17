@@ -887,13 +887,11 @@ class Instantiations_Model extends CI_Model
 
 	function get_identifier_by_instantiation_id($ins_id)
 	{
-//		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->table_instantiation_identifier.instantiation_identifier,'(**)')) SEPARATOR ' | ') AS instantiation_identifier", FALSE);
-//		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->table_instantiation_identifier.instantiation_source,'(**)')) SEPARATOR ' | ') AS instantiation_source", FALSE);
-		$this->db->select("$this->table_instantiation_identifier.instantiation_source");
-		$this->db->select("$this->table_instantiation_identifier.instantiation_identifier");
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->table_instantiation_identifier.instantiation_identifier,'(**)')) SEPARATOR ' | ') AS instantiation_identifier", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->table_instantiation_identifier.instantiation_source,'(**)')) SEPARATOR ' | ') AS instantiation_source", FALSE);
 		$this->db->where("$this->table_instantiation_identifier.instantiations_id", $ins_id);
 
-		return $result = $this->db->get($this->table_instantiation_identifier)->result();
+		return $result = $this->db->get($this->table_instantiation_identifier)->row();
 	}
 
 	function get_dates_by_instantiation_id($ins_id)

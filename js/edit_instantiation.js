@@ -181,6 +181,9 @@ function validateForm() {
 			duration = value.split(':');
 			if (duration.length != 3) {
 				$('#' + time[cnt] + '_error').show();
+				$('body').animate({
+					scrollTop: $('#' + time[cnt]).offset().top - 100
+				}, 'slow');
 			}
 			else {
 				$('#' + time[cnt] + '_error').hide();

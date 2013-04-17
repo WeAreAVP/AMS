@@ -292,18 +292,7 @@ $this->load->model('manage_asset_model', 'manage_asset');
 		show_404();
 	}
 
-	public function get_ins_source()
-	{
-		$source = $this->instantiation->get_unique_ins_source($this->input->get('term'));
-		$autoSource = array();
-
-		foreach ($source as $key => $value)
-		{
-			$autoSource[$key] = $value->instantiation_source;
-		}
-		echo json_encode($autoSource);
-		exit;
-	}
+	
 
 	
 

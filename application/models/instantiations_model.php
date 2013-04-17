@@ -860,13 +860,7 @@ class Instantiations_Model extends CI_Model
 		return false;
 	}
 
-	function get_unique_ins_source($term)
-	{
-		$this->db->select("DISTINCT instantiation_source", FALSE);
-		$this->db->like("instantiation_source", $term);
-		$result = $this->db->get('instantiation_identifier')->result();
-		return $result;
-	}
+	
 
 	
 

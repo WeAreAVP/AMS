@@ -190,7 +190,7 @@ function validateForm() {
 
 				}
 				else {
-					if (duration[1] > 59 || duration[1] > 59) {
+					if (duration[1] > 59 || duration[2] > 59) {
 						isValid = false;
 						$('#' + time[cnt] + '_error').show();
 						$('body').animate({

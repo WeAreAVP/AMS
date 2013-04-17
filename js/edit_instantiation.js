@@ -90,7 +90,7 @@ function addElement(elementID, type) {
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
 	}
-	else if (elementID = '#main_generation') {
+	else if (elementID == '#main_generation') {
 		generationTypes = '';
 
 		for (cnt in pbcoreGeneration)
@@ -103,7 +103,7 @@ function addElement(elementID, type) {
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
 	}
-	else if (elementID = '#main_annotation') {
+	else if (elementID == '#main_annotation') {
 		html = '<div id="remove_annotation_' + number + '" class="remove_annotation"><div class="edit_form_div"><div><p>Annotation:</p>'+
 				'<p><input type="text" id="annotation_' + number + '" name="annotation[]" value="" /></p></div>'+
 				'<div><p>Annotation Type:</p><p><input type="text" id="annotation_type_' + number + '" name="annotation_type[]" value=" />'+

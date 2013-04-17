@@ -568,6 +568,27 @@
 
 
 										});
+										$('input[name="annotation_type[]"]').autocomplete({
+											source: site_url + "autocomplete/values?table=instantiation_annotations&column=annotation_type",
+											minLength: 1,
+											delay: 100,
+											enable: true,
+											cacheLength: 1
+										});
+										$('input[name="relation_identifier[]"]').autocomplete({
+											source: site_url + "autocomplete/values?table=instantiation_relations&column=relation_identifier",
+											minLength: 1,
+											delay: 100,
+											enable: true,
+											cacheLength: 1
+										});
+										$('input[name="relation_source[]"]').autocomplete({
+											source: site_url + "autocomplete/values?table=relation_types&column=relation_type_source",
+											minLength: 1,
+											delay: 100,
+											enable: true,
+											cacheLength: 1
+										});
 									});
 
 </script>

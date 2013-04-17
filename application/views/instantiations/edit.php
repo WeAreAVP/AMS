@@ -73,7 +73,7 @@
 							}
 							?>
 						</div>
-						<div class="add-new-element" onclick="addElement('#main_instantiation_id', 'instantiation_id');"><i class="icon-plus-sign icon-white"></i><span id="add_local_id"><?php echo $add; ?></span></div>
+						<div class="add-new-element" onclick="addElement('#main_instantiation_id', 'instantiation_id');"><i class="icon-plus-sign icon-white"></i><span id="add_instantiation_id"><?php echo $add; ?></span></div>
 
 					</td>
 
@@ -152,7 +152,7 @@
 							}
 							?>
 						</div>
-						<div class="add-new-element" onclick="addElement('#main_dimension', 'dimension');"><i class="icon-plus-sign icon-white"></i><span id="add_date"><?php echo $add; ?></span></div>
+						<div class="add-new-element" onclick="addElement('#main_dimension', 'dimension');"><i class="icon-plus-sign icon-white"></i><span id="add_dimension"><?php echo $add; ?></span></div>
 
 					</td>
 
@@ -417,7 +417,7 @@
 							?>
 
 						</div>
-						<div class="add-new-element" onclick="addElement('#main_generation', 'generation');"><i class="icon-plus-sign icon-white"></i><span id="add_type"><?php echo $add; ?></span></div>
+						<div class="add-new-element" onclick="addElement('#main_generation', 'generation');"><i class="icon-plus-sign icon-white"></i><span id="add_generation"><?php echo $add; ?></span></div>
 					</td>
 				</tr>
 				<tr>
@@ -548,48 +548,10 @@
 	</div>
 </div>
 <script type="text/javascript">
-									$(function() {
-
-										$('input[name="instantiation_id_source[]"]').autocomplete({
-											source: site_url + "autocomplete/values?table=instantiation_identifier&column=instantiation_source",
-											minLength: 1,
-											delay: 300,
-											enable: true,
-											cacheLength: 1
-
-
-										});
-										$("#language").autocomplete({
-											source: site_url + "autocomplete/values?table=language_lookup&column=Print_Name",
-											minLength: 0,
-											delay: 100,
-											enable: true,
-											cacheLength: 3
-
-
-										});
-										$('input[name="annotation_type[]"]').autocomplete({
-											source: site_url + "autocomplete/values?table=instantiation_annotations&column=annotation_type",
-											minLength: 1,
-											delay: 100,
-											enable: true,
-											cacheLength: 1
-										});
-										$('input[name="relation_identifier[]"]').autocomplete({
-											source: site_url + "autocomplete/values?table=instantiation_relations&column=relation_identifier",
-											minLength: 1,
-											delay: 100,
-											enable: true,
-											cacheLength: 1
-										});
-										$('input[name="relation_source[]"]').autocomplete({
-											source: site_url + "autocomplete/values?table=relation_types&column=relation_type_source",
-											minLength: 1,
-											delay: 100,
-											enable: true,
-											cacheLength: 1
-										});
-									});
+									var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
+									var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
+									var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;
+									var pbcoreGeneration =<?php echo json_encode($pbcore_generations); ?>;
 
 </script>
-<!--<script type="text/javascript" src="/js/edit_asset.js"></script>-->
+<script type="text/javascript" src="/js/edit_instantiation.js?<?php echo time(); ?>"></script>

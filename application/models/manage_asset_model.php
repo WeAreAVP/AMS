@@ -294,6 +294,13 @@ class Manage_Asset_Model extends CI_Model
 		return $result = $this->db->get('instantiation_dates')->result();
 	}
 
+	function get_demension_by_instantiation_id($ins_id)
+	{
+		$this->db->select("$this->table_instantiation_dimensions.instantiation_dimension,$this->table_instantiation_dimensions.unit_of_measure", FALSE);
+		$this->db->where("$this->table_instantiation_dimensions.instantiations_id", $ins_id);
+		return $result = $this->db->get($this->table_instantiation_dimensions)->result();
+	}
+
 }
 
 ?>

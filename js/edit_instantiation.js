@@ -161,17 +161,25 @@ function addElement(elementID, type) {
 	}
 }
 function validateForm() {
-	var isValid = true;
+	var isValid = false;
 	if ($('#file_size').val() != '') {
 		if (isNaN($('#file_size').val())) {
-			isValid=false;
+			isValid = false;
 			$('#file_size_error').show();
 			$('body').animate({
 				scrollTop: $('#file_size').offset().top - 100
-		}, 'slow');
+			}, 'slow');
 		}
-		else{
+		else {
 			$('#file_size_error').hide();
+		}
+	}
+	var time = new Array('time_start', 'projected_duration', 'actual_duration');
+	for (cnt in time) {
+		value = $('#' + time[cnt]).val();
+		if (value != '') {
+			duration= value.split(':');
+			console.log(duration);
 		}
 	}
 	$('input[name="relation_ref[]"]').each(function() {

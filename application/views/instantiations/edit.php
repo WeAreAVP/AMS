@@ -441,13 +441,13 @@
 											<div>
 												<p>Annotation:</p>
 												<p>
-													<input type="text" id="annotation_<?php echo $index; ?>" name="annotation[]" value="<?php echo trim($annotation->instantiation_identifier); ?>" />
+													<input type="text" id="annotation_<?php echo $index; ?>" name="annotation[]" value="<?php echo trim($annotation->annotation); ?>" />
 												</p>
 											</div>
 											<div>
 												<p>Annotation Type:</p>
 												<p>
-													<input type="text" id="annotation_type_<?php echo $index; ?>" name="annotation_type[]" value="<?php echo trim($annotation->instantiation_source); ?>" />
+													<input type="text" id="annotation_type_<?php echo $index; ?>" name="annotation_type[]" value="<?php echo trim($annotation->annotation_type); ?>" />
 												</p>
 											</div>
 

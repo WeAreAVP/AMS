@@ -81,4 +81,21 @@ function addElement(elementID, type) {
 
 		});
 	}
+	else if (elementID == '#main_dimension') {
+		html = '<div id="remove_dimension_' + number + '" class="remove_dimension"><div class="edit_form_div"><div><p>Dimension:</p>' +
+		'<p><input type="text" id="dimension_' + number + '" name="asset_dimension[]" value="" /></p>' +
+		'</div><div><p>Unit of measure:</p><p>' +
+		'<input type="text" id="dimension_unit_' + number + '" name="dimension_unit[]" value="" /></p></div></div>' +
+		'<div class="remove_element" onclick="removeElement(\'#remove_dimension_' + number + '\', \'dimension\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+	}
+	
+	
+	if ($('.remove_' + type).length == 0) {
+		$('#add_' + type).html(' ADD ' + type.replace(/_/g, " ").toUpperCase());
+	}
+	else {
+		$('#add_' + type).html(' ADD ANOTHER ' + type.replace(/_/g, " ").toUpperCase());
+	}
 }

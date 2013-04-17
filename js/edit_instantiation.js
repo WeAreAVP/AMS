@@ -103,7 +103,22 @@ function addElement(elementID, type) {
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
 	}
-
+	else if (elementID = '#main_annotation') {
+		html = '<div id="remove_annotation_' + number + '" class="remove_annotation"><div class="edit_form_div"><div><p>Annotation:</p>'+
+				'<p><input type="text" id="annotation_' + number + '" name="annotation[]" value="" /></p></div>'+
+				'<div><p>Annotation Type:</p><p><input type="text" id="annotation_type_' + number + '" name="annotation_type[]" value=" />'+
+				'</p></div></div>'+
+				'<div class="remove_element" onclick="removeElement(\'#remove_annotation_' + number + '\', \'annotation\');"><img src="/images/remove-item.png" /></div>'+
+				'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+		$('input[name="annotation_type[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=instantiation_annotations&column=annotation_type",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
+	}
 
 	if ($('.remove_' + type).length == 0) {
 		$('#add_' + type).html(' ADD ' + type.replace(/_/g, " ").toUpperCase());

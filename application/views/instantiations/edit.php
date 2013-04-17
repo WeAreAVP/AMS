@@ -281,6 +281,28 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Data rate:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" id="data_rate" name="data_rate" value="<?php echo $instantiation_detail->data_rate; ?>" />
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Data rate unit of measure:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" id="data_rate" name="data_rate" value="<?php echo $inst_data_rate_unit->unit_of_measure; ?>" />
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
 						<label><i class="icon-question-sign"></i><b> Nomination Status:</b></label>
 					</td>
 					<td>

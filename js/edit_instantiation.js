@@ -179,14 +179,35 @@ function validateForm() {
 		value = $('#' + time[cnt]).val();
 		if (value != '') {
 			duration = value.split(':');
-			if (duration.length != 3) {
+			if (duration.length == 3) {
+				if (isNaN(duration[0]) || isNaN(duration[1]) || isNaN(duration[2])) {
+					isValid = false;
+					$('#' + time[cnt] + '_error').show();
+					$('body').animate({
+						scrollTop: $('#' + time[cnt]).offset().top - 100
+					}, 'slow');
+				}
+				else {
+					if (duration[1] > 59 || duration[1] > 59) {
+						isValid = false;
+						$('#' + time[cnt] + '_error').show();
+						$('body').animate({
+							scrollTop: $('#' + time[cnt]).offset().top - 100
+						}, 'slow');
+					}
+					else {
+						$('#' + time[cnt] + '_error').hide();
+					}
+				}
+
+			}
+			else {
+				isValid = false;
 				$('#' + time[cnt] + '_error').show();
 				$('body').animate({
 					scrollTop: $('#' + time[cnt]).offset().top - 100
 				}, 'slow');
-			}
-			else {
-				$('#' + time[cnt] + '_error').hide();
+
 			}
 			console.log(duration);
 		}

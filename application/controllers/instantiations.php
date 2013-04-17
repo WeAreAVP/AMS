@@ -305,18 +305,7 @@ $this->load->model('manage_asset_model', 'manage_asset');
 		exit;
 	}
 
-	public function get_ins_languages()
-	{
-		$source = $this->instantiation->get_all_languages($this->input->get('term'));
-		$autoLanguage = array();
-
-		foreach ($source as $key => $value)
-		{
-			$autoLanguage[$key] = $value->name;
-		}
-		echo json_encode($autoLanguage);
-		exit;
-	}
+	
 
 	public function edit()
 	{

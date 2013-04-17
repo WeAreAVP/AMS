@@ -383,8 +383,8 @@
 <script type="text/javascript">
 									$(function() {
 
-										$("#ins_id_source").autocomplete({
-											source: site_url + "instantiations/get_ins_source",
+										$('input[name="instantiation_id_source[]"]').autocomplete({
+											source: site_url + "autocomplete/values?table=instantiation_identifier&column=instantiation_source",
 											minLength: 1,
 											delay: 300,
 											enable: true,

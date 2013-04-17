@@ -165,9 +165,13 @@ function validateForm() {
 	if ($('#file_size').val() != '') {
 		if (isNaN($('#file_size').val())) {
 			isValid=false;
+			$('#file_size_error').show();
 			$('body').animate({
 				scrollTop: $('#file_size').offset().top - 100
 		}, 'slow');
+		}
+		else{
+			$('#file_size_error').hide();
 		}
 	}
 	$('input[name="relation_ref[]"]').each(function() {

@@ -186,6 +186,7 @@
 					<td>
 						<p>
 							<input type="text" id="file_size" name="file_size" value="<?php echo $instantiation_detail->file_size; ?>" />
+							<span id="file_size_error" class="help-block" style="color: #c65f5a;display: none;">File size should be numeric.</span>
 						</p>
 
 					</td>

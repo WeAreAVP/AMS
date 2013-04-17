@@ -79,7 +79,7 @@
 
 				</tr>
 				<?php
-				if (!($instantiation_detail->digitized == 0))
+				if ( ! empty($instantiation_detail->digitized) && $instantiation_detail->digitized != 1)
 				{
 					?>
 
@@ -335,7 +335,7 @@
 					</td>
 				</tr>
 				<?php
-				if (!($instantiation_detail->digitized == 0))
+				if ( ! empty($instantiation_detail->digitized) && $instantiation_detail->digitized != 1)
 				{
 					?>
 					<tr>
@@ -436,7 +436,7 @@
 					</td>
 				</tr>
 				<?php
-				if (!($instantiation_detail->digitized == 0))
+				if ( ! empty($instantiation_detail->digitized) && $instantiation_detail->digitized != 1)
 				{
 					?>
 					<tr>

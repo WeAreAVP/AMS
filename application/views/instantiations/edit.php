@@ -2,9 +2,9 @@
 	<div style="margin: 2px 0px 10px 0px;float:left;width: 570px;">
 
 		<?php
-		$asset_title_type = explode('|', trim(str_replace('(**)', '', $asset_detail->title_type)));
-		$asset_title = explode('|', trim(str_replace('(**)', '', $asset_detail->title)));
-		$asset_title_ref = explode('|', trim(str_replace('(**)', '', $asset_detail->title_ref)));
+		$asset_title_type = explode('|', trim(str_replace('(**)', '', $asset_details->title_type)));
+		$asset_title = explode('|', trim(str_replace('(**)', '', $asset_details->title)));
+		$asset_title_ref = explode('|', trim(str_replace('(**)', '', $asset_details->title_ref)));
 		$combine_title = '';
 		foreach ($asset_title as $index => $title)
 		{

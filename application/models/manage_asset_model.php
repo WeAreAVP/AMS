@@ -301,6 +301,14 @@ class Manage_Asset_Model extends CI_Model
 		return $result = $this->db->get('instantiation_dimensions')->row();
 	}
 
+	function get_annotation_by_instantiation_id($ins_id)
+	{
+		$this->db->select('instantiation_annotations.annotation');
+		$this->db->select('instantiation_annotations.annotation_type');
+		$this->db->where('instantiation_annotations.instantiations_id', $ins_id);
+		return $result = $this->db->get('instantiation_annotations')->result();
+	}
+
 }
 
 ?>

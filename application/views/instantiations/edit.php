@@ -421,6 +421,52 @@
 					</td>
 				</tr>
 				<tr>
+					<?php
+					$add = ' ADD ANNOTATION';
+					?>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> ANNOTATION:</b></label>
+					</td>
+					<td>
+						<div id="main_annotation">
+							<?php
+							if (count($inst_annotation) > 0)
+							{
+								$add = ' ADD ANOTHER INSTANTIATION ID';
+								foreach ($inst_identifier as $index => $identifier)
+								{
+									?>
+									<div id="remove_annotation_<?php echo $index; ?>" class="remove_annotation">
+										<div class="edit_form_div">
+											<div>
+												<p>Annotation:</p>
+												<p>
+													<input type="text" id="annotation_<?php echo $index; ?>" name="annotation[]" value="<?php echo trim($identifier->instantiation_identifier); ?>" />
+												</p>
+											</div>
+											<div>
+												<p>Annotation Type:</p>
+												<p>
+													<input type="text" id="annotation_type_<?php echo $index; ?>" name="annotation_type[]" value="<?php echo trim($identifier->instantiation_source); ?>" />
+												</p>
+											</div>
+
+										</div>
+										<div class="remove_element" onclick="removeElement('#remove_annotation_<?php echo $index; ?>', 'annotation');"><img src="/images/remove-item.png" /></div>
+										<div class="clearfix" style="margin-bottom: 10px;"></div>
+									</div>
+
+									<?php
+								}
+							}
+							?>
+						</div>
+						<div class="add-new-element" onclick="addElement('#main_annotation', 'annotation');"><i class="icon-plus-sign icon-white"></i><span id="add_annotation"><?php echo $add; ?></span></div>
+
+					</td>
+
+				</tr>
+				<tr>
 					<td colspan="2">
 						<a class="btn" href="<?php echo site_url('instantiations/detail/' . $inst_id); ?>">Cancel</a>
 						<input type="button" onclick="validateForm();" value="Save Changes" class="btn btn-primary"/>

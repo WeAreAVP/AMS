@@ -320,6 +320,45 @@ class Instantiations extends MY_Controller
 
 	public function edit()
 	{
+		$instantiation_id = $this->uri->segment(3);
+
+		if ( ! empty($instantiation_id))
+		{
+
+			if ($this->input->post())
+			{
+				
+			}
+			$data['instantiation_detail'] = $this->instantiation->get_by_id($instantiation_id);
+			if (count($data['instantiation_detail']) > 0)
+			{
+				$data['asset_id'] = $detail->assets_id;
+				$data['inst_id'] = $instantiation_id;
+				$data['list_assets'] = $this->instantiation->get_instantiations_by_asset_id($detail->assets_id);
+				$data['ins_nomination'] = $this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
+				$data['inst_identifier'] = $this->instantiation->get_identifier_by_instantiation_id($instantiation_id);
+				$data['inst_dates'] = $this->instantiation->get_dates_by_instantiation_id($instantiation_id);
+				$data['inst_media_type'] = $this->instantiation->get_media_type_by_instantiation_media_id($detail->instantiation_media_type_id);
+				$data['inst_format'] = $this->instantiation->get_format_by_instantiation_id($instantiation_id);
+				$data['inst_generation'] = $this->instantiation->get_generation_by_instantiation_id($instantiation_id);
+				$data['inst_demension'] = $this->instantiation->get_demension_by_instantiation_id($instantiation_id);
+				$data['inst_data_rate_unit'] = $this->instantiation->get_data_rate_unit_by_data_id($detail->data_rate_units_id);
+				$data['inst_color'] = $this->instantiation->get_color_by_instantiation_colors_id($detail->instantiation_colors_id);
+				$data['inst_annotation'] = $this->instantiation->get_annotation_by_instantiation_id($instantiation_id);
+			}
+			else
+			{
+				show_error('Not a valid instantiation id');
+			}
+		}
+		else
+		{
+			show_error('Instantiation ID is required for editing.');
+		}
+	}
+
+	public function edit_old()
+	{
 		$ins_id = $this->input->post('ins_id');
 		$nomination = $this->input->post('nomination');
 		$reason = $this->input->post('nomination_reason');

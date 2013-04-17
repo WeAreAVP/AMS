@@ -90,8 +90,21 @@ function addElement(elementID, type) {
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
 	}
-	
-	
+	else if (elementID = '#') {
+		generationTypes = '';
+
+		for (cnt in pbcoreGeneration)
+		{
+			generationTypes += '<option value= "' + pbcoreGeneration[cnt]['value'] + '">' + pbcoreGeneration[cnt]['value'] + '</option>';
+		}
+		html = '<div id="remove_generation_' + number + '" class="remove_generation"><div class="edit_form_div"><div><p>Generation:</p></div>' +
+		'<div><p><select id="generation_' + number + '" name="generation[]">' + generationTypes + '</select></p></div></div>' +
+		'<div class="remove_element" onclick="removeElement(\'#remove_generation_' + number + '\', \'generation\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+	}
+
+
 	if ($('.remove_' + type).length == 0) {
 		$('#add_' + type).html(' ADD ' + type.replace(/_/g, " ").toUpperCase());
 	}

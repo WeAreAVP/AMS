@@ -381,8 +381,27 @@
 	</div>
 </div>
 <script type="text/javascript">
+									$(function() {
+
+										$("#ins_id_source").autocomplete({
+											source: site_url + "instantiations/get_ins_source",
+											minLength: 1,
+											delay: 300,
+											enable: true,
+											cacheLength: 1
 
 
+										});
+										$("#language").autocomplete({
+											source: site_url + "autocomplete/values?table=language_lookup&column=Print_Name",
+											minLength: 0,
+											delay: 100,
+											enable: true,
+											cacheLength: 3
+
+
+										});
+									});
 
 </script>
 <!--<script type="text/javascript" src="/js/edit_asset.js"></script>-->

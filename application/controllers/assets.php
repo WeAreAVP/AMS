@@ -536,11 +536,13 @@ class Assets extends MY_Controller
 
 	function insert_pbcore_values()
 	{
-		$static_types = array('Animation', 'Artifact', 'Collection', 'Dataset',
-			'Event', 'Interactive', 'Moving Image', 'Object', 'Presentation', 'Service', 'Software', 'Sound', 'Static Image', 'Text');
-		foreach ($static_types as $value)
+		$static_gen = array('A&B rolls', 'Accounting statements', 'Air print', 'Air track', 'Answer print', 'Autochrome', 'Award',
+								'Backup', 'Budget', 'Caption file', 'Caricature', 'Clip reel', 'Color reversal intermediate (CRI)', 'Composite answer print',
+								'Composite duplicate negative', 'Composite masterpositive', 'Composite negative', 'Composite original negative',
+			'Composite original positive', 'Composite positive');
+		foreach ($static_gen as $value)
 		{
-			$this->manage_asset->insert_picklist_value(array('value' => $value, 'element_type_id' => 11));
+			$this->manage_asset->insert_picklist_value(array('value' => $value, 'element_type_id' => 12));
 		}
 	}
 

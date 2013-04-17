@@ -248,6 +248,39 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Time start:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" id="time_start" name="time_start" value="<?php echo $instantiation_detail->time_start; ?>" />
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Projected Duration:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" id="projected_duration" name="projected_duration" value="<?php echo $instantiation_detail->projected_duration; ?>" />
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Actual Duration:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" id="actual_duration" name="actual_duration" value="<?php echo $instantiation_detail->actual_duration; ?>" />
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
 						<label><i class="icon-question-sign"></i><b> Nomination Status:</b></label>
 					</td>
 					<td>

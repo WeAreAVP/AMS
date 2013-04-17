@@ -79,84 +79,39 @@
 
 				</tr>
 				<tr>
-					<?php
-					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Date:</b></label>
+						<label><i class="icon-question-sign"></i><b> Instantiation Date:</b></label>
 					</td>
 					<td>
-
-						<?php
-						if (count($inst_dates) > 0)
-						{
-							foreach ($inst_dates as $index => $date)
-							{
-								?>
-
-								<div class="edit_form_div">
-									<div>
-										<p>Instantiation Date:</p>
-										<p>
-											<input type="text" id="inst_date" name="inst_date" value="<?php echo $date->instantiation_date; ?>" />
-										</p>
-									</div>
-									<div>
-										<p>Instantiation Date Type:</p>
-										<p>
-											<select id="inst_date_type" name="inst_date_type">
-												<?php
-												foreach ($pbcore_asset_date_types as $row)
-												{
-													$selected = '';
-													if ($date->date_type == $row->value)
-														$selected = 'selected="selected"'
-														?>
-													<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-												<?php }
-												?>
-											</select>
-										</p>
-									</div>
-								</div>
-
-								<div class="clearfix" style="margin-bottom: 10px;"></div>
-
-
-								<?php
-							}
-						}
-						else
-						{
-							?>
-							<div class="edit_form_div">
-								<div>
-									<p>Instantiation Date:</p>
-									<p>
-										<input type="text" id="inst_date" name="inst_date" value="" />
-									</p>
-								</div>
-								<div>
-									<p>Instantiation Date Type:</p>
-									<p>
-										<select id="inst_date_type" name="inst_date_type">
-											<?php
-											foreach ($pbcore_asset_date_types as $row)
-											{
-												?>
-												<option value="<?php echo $row->value; ?>"><?php echo $row->value; ?></option>
-											<?php }
-											?>
-										</select>
-									</p>
-								</div>
-							</div>
-
-							<div class="clearfix" style="margin-bottom: 10px;"></div>
-						<?php } ?>
+						<p>
+							<input type="text" id="inst_date" name="inst_date" value="<?php echo (isset($date->instantiation_date) ? $date->instantiation_date : ''); ?>" />
+						</p>
 
 					</td>
-
 				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Instantiation Date Type:</b></label>
+					</td>
+					<td>
+						<p>
+							<select id="inst_date_type" name="inst_date_type">
+								<?php
+								foreach ($pbcore_asset_date_types as $row)
+								{
+									$selected = '';
+									if (isset($date->date_type) && $date->date_type == $row->value)
+										$selected = 'selected="selected"'
+										?>
+									<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+								<?php }
+								?>
+							</select>
+						</p>
+
+					</td>
+				</tr>
+
 				<tr>
 					<?php
 					$add = ' ADD DIMENSION';

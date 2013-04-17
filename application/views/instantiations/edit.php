@@ -329,6 +329,17 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b>Alternative Modes:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" value="<?php echo $instantiation_detail->alternative_modes; ?>"  id="alternative_modes" name="alternative_modes"/>
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
 						<label><i class="icon-question-sign"></i><b> Nomination Status:</b></label>
 					</td>
 					<td>

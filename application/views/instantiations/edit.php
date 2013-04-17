@@ -303,6 +303,17 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Color:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" id="color" name="color" value="<?php  echo (isset($inst_color->color) ? $inst_color->color : '') ; ?>" />
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
 						<label><i class="icon-question-sign"></i><b> Nomination Status:</b></label>
 					</td>
 					<td>

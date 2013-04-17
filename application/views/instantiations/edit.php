@@ -92,89 +92,103 @@
 							foreach ($inst_dates as $index => $date)
 							{
 								?>
-								
-									<div class="edit_form_div">
-										<div>
-											<p>Instantiation Date:</p>
-											<p>
-												<input type="text" id="asset_date_<?php echo $index; ?>" name="asset_date[]" value="<?php echo $date->instantiation_date; ?>" />
-											</p>
-										</div>
-										<div>
-											<p>Instantiation Date Type:</p>
-											<p>
-												<select id="asset_date_type_<?php echo $index; ?>" name="asset_date_type[]">
-													<?php
-													foreach ($pbcore_asset_date_types as $row)
-													{
-														$selected = '';
-														if ($date->date_type == $row->value)
-															$selected = 'selected="selected"'
-															?>
-														<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-													<?php }
-													?>
-												</select>
-											</p>
-										</div>
-									</div>
 
-									<div class="clearfix" style="margin-bottom: 10px;"></div>
-								
+								<div class="edit_form_div">
+									<div>
+										<p>Instantiation Date:</p>
+										<p>
+											<input type="text" id="inst_date" name="inst_date" value="<?php echo $date->instantiation_date; ?>" />
+										</p>
+									</div>
+									<div>
+										<p>Instantiation Date Type:</p>
+										<p>
+											<select id="inst_date_type" name="inst_date_type">
+												<?php
+												foreach ($pbcore_asset_date_types as $row)
+												{
+													$selected = '';
+													if ($date->date_type == $row->value)
+														$selected = 'selected="selected"'
+														?>
+													<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+												<?php }
+												?>
+											</select>
+										</p>
+									</div>
+								</div>
+
+								<div class="clearfix" style="margin-bottom: 10px;"></div>
+
 
 								<?php
 							}
 						}
-						?>
+						else
+						{
+							?>
+							<div class="edit_form_div">
+								<div>
+									<p>Instantiation Date:</p>
+									<p>
+										<input type="text" id="inst_date" name="inst_date" value="" />
+									</p>
+								</div>
+								<div>
+									<p>Instantiation Date Type:</p>
+									<p>
+										<select id="inst_date_type" name="inst_date_type">
+											<?php
+											foreach ($pbcore_asset_date_types as $row)
+											{
+												?>
+												<option value="<?php echo $row->value; ?>"><?php echo $row->value; ?></option>
+											<?php }
+											?>
+										</select>
+									</p>
+								</div>
+							</div>
 
-
+							<div class="clearfix" style="margin-bottom: 10px;"></div>
+						<?php } ?>
 
 					</td>
 
 				</tr>
 				<tr>
 					<?php
-					$add = ' ADD DATE';
+					$add = ' ADD DIMENSION';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Date:</b></label>
+						<label><i class="icon-question-sign"></i><b> DIMENSION:</b></label>
 					</td>
 					<td>
-						<div id="main_date">
+						<div id="main_dimension">
 							<?php
-							if (count($inst_dates) > 0)
+							if (count($inst_demension) > 0)
 							{
-								$add = ' ADD ANOTHER DATE';
-								foreach ($inst_dates as $index => $date)
+								$add = ' ADD ANOTHER DIMENSION';
+								foreach ($inst_demension as $index => $demension)
 								{
 									?>
-									<div id="remove_date_<?php echo $index; ?>" class="remove_date">
+									<div id="remove_dimension_<?php echo $index; ?>" class="remove_dimension">
 										<div class="edit_form_div">
 											<div>
-												<p>Instantiation Date:</p>
+												<p>Dimension:</p>
 												<p>
-													<input type="text" id="asset_date_<?php echo $index; ?>" name="asset_date[]" value="<?php echo $date->instantiation_date; ?>" />
+													<input type="text" id="dimension_<?php echo $index; ?>" name="asset_dimension[]" value="<?php echo $demension->instantiation_dimension; ?>" />
 												</p>
 											</div>
 											<div>
-												<p>Instantiation Date Type:</p>
+												<p>Unit of measure:</p>
 												<p>
-													<select id="asset_date_type_<?php echo $index; ?>" name="asset_date_type[]">
-														<?php
-														foreach ($pbcore_asset_date_types as $row)
-														{
-															$selected = '';
-															if ($date->date_type == $row->value)
-																$selected = 'selected="selected"'
-																?>
-															<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-														<?php }
-														?>
-													</select>
+													<input type="text" id="dimension_unit_<?php echo $index; ?>" name="dimension_unit[]" value="<?php echo $demension->unit_of_measure; ?>" />
 												</p>
 											</div>
 										</div>
-										<div class="remove_element" onclick="removeElement('#remove_date_<?php echo $index; ?>', 'date');"><img src="/images/remove-item.png" /></div>
+										<div class="remove_element" onclick="removeElement('#remove_dimension_<?php echo $index; ?>', 'dimension');"><img src="/images/remove-item.png" /></div>
 										<div class="clearfix" style="margin-bottom: 10px;"></div>
 									</div>
 
@@ -183,7 +197,7 @@
 							}
 							?>
 						</div>
-						<div class="add-new-element" onclick="addElement('#main_date', 'date');"><i class="icon-plus-sign icon-white"></i><span id="add_date"><?php echo $add; ?></span></div>
+						<div class="add-new-element" onclick="addElement('#main_dimension', 'dimension');"><i class="icon-plus-sign icon-white"></i><span id="add_date"><?php echo $add; ?></span></div>
 
 					</td>
 

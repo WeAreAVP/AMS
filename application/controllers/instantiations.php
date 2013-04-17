@@ -338,7 +338,7 @@ $this->load->model('manage_asset_model', 'manage_asset');
 				$data['ins_nomination'] = $this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
 				$data['inst_identifier'] = $this->manage_asset->get_identifier_by_instantiation_id($instantiation_id);
 				$data['inst_dates'] = $this->manage_asset->get_dates_by_instantiation_id($instantiation_id);
-				$data['inst_demension'] = $this->instantiation->get_demension_by_instantiation_id($instantiation_id);
+				$data['inst_demension'] = $this->manage_asset->get_demension_by_instantiation_id($instantiation_id);
 				
 				
 				$data['inst_media_type'] = $this->instantiation->get_media_type_by_instantiation_media_id($detail->instantiation_media_type_id);

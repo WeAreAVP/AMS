@@ -307,7 +307,67 @@
 					</td>
 					<td>
 						<p>
-							<input type="text" id="color" name="color" value="<?php  echo (isset($inst_color->color) ? $inst_color->color : '') ; ?>" />
+							<input type="text" id="color" name="color" value="<?php echo (isset($inst_color->color) ? $inst_color->color : ''); ?>" />
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Tracks:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" id="tracks" name="tracks" value="<?php echo $instantiation_detail->tracks; ?>" />
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Channel Configuration:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" id="channel_configuration" name="channel_configuration" value="<?php echo $instantiation_detail->channel_configuration; ?>" />
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Language:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" value="<?php echo $instantiation_detail->language; ?>"  id="language" name="language"/>
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Media Type:</b></label>
+					</td>
+					<td>
+						<p>
+							<?php
+							$media_type = explode(' | ', $inst_media_type->media_type);
+							$static_types = array('Animation', 'Artifact', 'Collection', 'Dataset', 'Event', 'Interactive', 'Moving Image', 'Object', 'Presentation', 'Service', 'Software', 'Sound', 'Static Image', 'Text');
+							?>
+							<select  id="media_type" name="media_type" style="width: 300px;">
+								<?php
+								foreach ($static_types as $row)
+								{
+									$selected = '';
+									if (in_array($row, $media_type))
+										$selected = 'selected="selected"';
+									?>
+									<option value="<?php echo $row; ?>" <?php echo $selected; ?>><?php echo $row; ?></option>
+								<?php }
+								?>
+
+							</select>
 						</p>
 
 					</td>

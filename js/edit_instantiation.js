@@ -160,3 +160,38 @@ function addElement(elementID, type) {
 		$('#add_' + type).html(' ADD ANOTHER ' + type.replace(/_/g, " ").toUpperCase());
 	}
 }
+function validateForm() {
+	var isValid = true;
+	if ($('#file_size').val() != '') {
+		if (isNaN($('#file_size').val())) {
+			$('body').animate({
+				scrollTop: $('#file_size').offset().top - 100
+		}, 'slow');
+		}
+	}
+	$('input[name="relation_ref[]"]').each(function() {
+		var urlregex = new RegExp(
+		"^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
+		if ($(this).val() != '') {
+			if (!urlregex.test($(this).val())) {
+
+				$('body').animate({
+					scrollTop: $(this).parent().parent().offset().top - 100
+
+				}, 'slow');
+				$(this).parent().parent().addClass('error-div');
+				isValid = false;
+				return false;
+
+			}
+			else {
+				$(this).parent().parent().removeClass('error-div');
+			}
+		}
+
+	});
+
+	if (isValid)
+		$('#edit_asset_form').submit();
+
+}

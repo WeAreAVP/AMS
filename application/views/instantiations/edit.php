@@ -296,7 +296,7 @@
 					</td>
 					<td>
 						<p>
-							<input type="text" id="data_rate_unit" name="data_rate_unit" value="<?php echo $inst_data_rate_unit->unit_of_measure; ?>" />
+							<input type="text" id="data_rate_unit" name="data_rate_unit" value="<?php echo (isset($inst_data_rate_unit->unit_of_measure) ? $inst_data_rate_unit->unit_of_measure : ''); ?>" />
 						</p>
 
 					</td>

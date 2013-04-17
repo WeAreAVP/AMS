@@ -106,7 +106,7 @@ function addElement(elementID, type) {
 	else if (elementID == '#main_annotation') {
 		html = '<div id="remove_annotation_' + number + '" class="remove_annotation"><div class="edit_form_div"><div><p>Annotation:</p>'+
 				'<p><input type="text" id="annotation_' + number + '" name="annotation[]" value="" /></p></div>'+
-				'<div><p>Annotation Type:</p><p><input type="text" id="annotation_type_' + number + '" name="annotation_type[]" value=" />'+
+				'<div><p>Annotation Type:</p><p><input type="text" id="annotation_type_' + number + '" name="annotation_type[]" value="" />'+
 				'</p></div></div>'+
 				'<div class="remove_element" onclick="removeElement(\'#remove_annotation_' + number + '\', \'annotation\');"><img src="/images/remove-item.png" /></div>'+
 				'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';

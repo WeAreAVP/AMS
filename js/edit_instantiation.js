@@ -90,7 +90,7 @@ function addElement(elementID, type) {
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
 	}
-	else if (elementID = '#') {
+	else if (elementID = '#main_generation') {
 		generationTypes = '';
 
 		for (cnt in pbcoreGeneration)

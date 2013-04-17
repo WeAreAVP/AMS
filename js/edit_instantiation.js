@@ -186,6 +186,8 @@ function validateForm() {
 					$('body').animate({
 						scrollTop: $('#' + time[cnt]).offset().top - 100
 					}, 'slow');
+					break;
+
 				}
 				else {
 					if (duration[1] > 59 || duration[1] > 59) {
@@ -194,6 +196,7 @@ function validateForm() {
 						$('body').animate({
 							scrollTop: $('#' + time[cnt]).offset().top - 100
 						}, 'slow');
+						break;
 					}
 					else {
 						$('#' + time[cnt] + '_error').hide();
@@ -207,6 +210,7 @@ function validateForm() {
 				$('body').animate({
 					scrollTop: $('#' + time[cnt]).offset().top - 100
 				}, 'slow');
+				break;
 
 			}
 			console.log(duration);

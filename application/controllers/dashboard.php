@@ -78,16 +78,16 @@ class Dashboard extends MY_Controller
 		$pie_total_scheduled = $this->dashboard_model->pie_total_radio_scheduled();
 		$pie_total = $pie_total_completed->total + $pie_total_scheduled->total;
 		$pie_total = ($pie_total == 0) ? 1 : $pie_total;
-		$data['pie_total_radio_completed'] = (int) ($pie_total_completed->total * 100) / $pie_total;
-		$data['pie_total_radio_scheduled'] = (int) ($pie_total_scheduled->total * 100) / $pie_total;
+		$data['pie_total_radio_completed'] = (int) round(($pie_total_completed->total * 100) / $pie_total);
+		$data['pie_total_radio_scheduled'] = (int) round(($pie_total_scheduled->total * 100) / $pie_total);
 		/* Pie Chart for Radio Formats End */
 		/* Pie Chart for Radio Formats Start */
 		$pie_total_completed = $this->dashboard_model->pie_total_tv_completed();
 		$pie_total_scheduled = $this->dashboard_model->pie_total_tv_scheduled();
 		$pie_total = $pie_total_completed->total + $pie_total_scheduled->total;
 		$pie_total = ($pie_total == 0) ? 1 : $pie_total;
-		$data['pie_total_tv_completed'] = (int) ($pie_total_completed->total * 100) / $pie_total;
-		$data['pie_total_tv_scheduled'] = (int) ($pie_total_scheduled->total * 100) / $pie_total;
+		$data['pie_total_tv_completed'] = round((int) ($pie_total_completed->total * 100) / $pie_total);
+		$data['pie_total_tv_scheduled'] = round((int) ($pie_total_scheduled->total * 100) / $pie_total);
 		/* Pie Chart for Radio Formats End */
 		$this->load->view('dashboard/index', $data);
 	}

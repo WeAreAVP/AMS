@@ -163,12 +163,11 @@ function addElement(elementID, type) {
 	}
 }
 function break_function() {
-	for (i = 0; i < 2; i++)
-		break;
+
 
 }
 function validateForm() {
-	var isValid = false;
+	var isValid = true;
 	var identifer = new Array('instantiation_id_identifier', 'instantiation_id_source');
 	var time = new Array('time_start', 'projected_duration');
 
@@ -177,24 +176,24 @@ function validateForm() {
 
 
 		$('input[name="' + identifer[cnt] + '[]"]').each(function() {
+			if (!isValid) {
+				if ($(this).val() == '') {
+					isValid = false;
+					$(this).nextAll('.help-block').show();
+					$(this).parent().parent().addClass('error-div');
+					$('body').animate({
+						scrollTop: $(this).parent().parent().offset().top - 100
+					}, 'slow');
+					break_function();
 
-			if ($(this).val() == '') {
-				isValid = false;
-				$(this).nextAll('.help-block').show();
-				$(this).parent().parent().addClass('error-div');
-				$('body').animate({
-					scrollTop: $(this).parent().parent().offset().top - 100
-				}, 'slow');
-				break_function();
+				}
+				else {
 
+					$(this).nextAll('.help-block').hide();
+					$(this).parent().parent().removeClass('error-div');
+
+				}
 			}
-			else {
-
-				$(this).nextAll('.help-block').hide();
-				$(this).parent().parent().removeClass('error-div');
-
-			}
-
 		});
 	}
 

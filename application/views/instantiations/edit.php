@@ -36,7 +36,7 @@
 					<?php
 					$add = ' ADD INSTANTIATION ID';
 					?>
-					<td class="record-detail-page">
+					<td class="record-detail-page ins_detail">
 						<label><i class="icon-question-sign"></i><b> INSTANTIATION ID:</b></label>
 					</td>
 					<td>
@@ -49,7 +49,7 @@
 								{
 									?>
 									<div id="remove_instantiation_id_<?php echo $index; ?>" class="remove_instantiation_id">
-										<div class="edit_form_div">
+										<div class="edit_form_div ins_edit_div">
 											<div>
 												<p>INSTANTIATION ID:</p>
 												<p>
@@ -82,7 +82,7 @@
 							{
 								?>
 								<div id="remove_instantiation_id_0" class="remove_instantiation_id">
-									<div class="edit_form_div">
+									<div class="edit_form_div ins_edit_div">
 										<div>
 											<p>INSTANTIATION ID:</p>
 											<p>
@@ -119,7 +119,7 @@
 						?>
 
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Instantiation Date:</b></label>
 							</td>
 							<td>
@@ -130,7 +130,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Instantiation Date Type:</b></label>
 							</td>
 							<td>
@@ -156,7 +156,7 @@
 							<?php
 							$add = ' ADD DIMENSION';
 							?>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Dimension:</b></label>
 							</td>
 							<td>
@@ -169,7 +169,7 @@
 										{
 											?>
 											<div id="remove_dimension_<?php echo $index; ?>" class="remove_dimension">
-												<div class="edit_form_div">
+												<div class="edit_form_div ins_edit_div">
 													<div>
 														<p>Dimension:</p>
 														<p>
@@ -199,7 +199,7 @@
 
 						</tr>
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Physical Format:</b></label>
 							</td>
 							<td>
@@ -221,7 +221,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Standard:</b></label>
 							</td>
 							<td>
@@ -243,7 +243,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Location:</b></label>
 							</td>
 							<td>
@@ -257,7 +257,7 @@
 
 
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Time start:</b></label>
 							</td>
 							<td>
@@ -269,7 +269,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Projected Duration:</b></label>
 							</td>
 							<td>
@@ -284,7 +284,7 @@
 
 
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Color:</b></label>
 							</td>
 							<td>
@@ -307,7 +307,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Tracks:</b></label>
 							</td>
 							<td>
@@ -318,7 +318,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Channel Configuration:</b></label>
 							</td>
 							<td>
@@ -333,7 +333,7 @@
 				}
 				?>
 				<tr>
-					<td class="record-detail-page">
+					<td class="record-detail-page ins_detail">
 						<label><i class="icon-question-sign"></i><b> Language:</b></label>
 					</td>
 					<td>
@@ -344,7 +344,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="record-detail-page">
+					<td class="record-detail-page ins_detail">
 						<label><i class="icon-question-sign"></i><b> Media Type:</b></label>
 					</td>
 					<td>
@@ -369,7 +369,7 @@
 				</tr>
 
 				<tr>
-					<td class="record-detail-page">
+					<td class="record-detail-page ins_detail">
 						<label><i class="icon-question-sign"></i><b> Nomination Status:</b></label>
 					</td>
 					<td>
@@ -392,12 +392,12 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="record-detail-page">
+					<td class="record-detail-page ins_detail">
 						<label><i class="icon-question-sign"></i><b> Nomination Reason:</b></label>
 					</td>
 					<td>
 						<p>
-							<textarea style="width: 490px;height: 90px;" id="nomination_reason" name="nomination_reason"><?php echo (isset($ins_nomination->nomination_reason)) ? $ins_nomination->nomination_reason : ''; ?></textarea>
+							<textarea style="width: 450px;height: 90px;" id="nomination_reason" name="nomination_reason"><?php echo (isset($ins_nomination->nomination_reason)) ? $ins_nomination->nomination_reason : ''; ?></textarea>
 						</p>
 
 					</td>
@@ -410,7 +410,7 @@
 					{
 						?>
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Frame Rate:</b></label>
 							</td>
 							<td>
@@ -422,7 +422,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Playback Speed:</b></label>
 							</td>
 							<td>
@@ -433,7 +433,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b>Sampling Rate:</b></label>
 							</td>
 							<td>
@@ -444,7 +444,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b>Frame Size:</b></label>
 							</td>
 							<td>
@@ -458,7 +458,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b>Aspect Ratio:</b></label>
 							</td>
 							<td>
@@ -480,7 +480,7 @@
 						$generations = explode('|', $inst_generation->generation);
 					}
 					?>
-					<td class="record-detail-page">
+					<td class="record-detail-page ins_detail">
 						<label><i class="icon-question-sign"></i><b> Generation:</b></label>
 					</td>
 					<td>
@@ -493,7 +493,7 @@
 								{
 									?>
 									<div id="remove_generation_<?php echo $index; ?>" class="remove_generation">
-										<div class="edit_form_div">
+										<div class="edit_form_div ins_edit_div">
 											<div><p>Generation:</p></div>
 											<div><p>
 													<select id="generation_<?php echo $index; ?>" name="generation[]">
@@ -531,7 +531,7 @@
 					{
 						?>
 						<tr>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b>Alternative Modes:</b></label>
 							</td>
 							<td>
@@ -545,7 +545,7 @@
 							<?php
 							$add = ' ADD ANNOTATION';
 							?>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
 							</td>
 							<td>
@@ -558,7 +558,7 @@
 										{
 											?>
 											<div id="remove_annotation_<?php echo $index; ?>" class="remove_annotation">
-												<div class="edit_form_div">
+												<div class="edit_form_div ins_edit_div">
 													<div>
 														<p>Annotation:</p>
 														<p>
@@ -591,7 +591,7 @@
 							<?php
 							$add = ' ADD RELATION';
 							?>
-							<td class="record-detail-page">
+							<td class="record-detail-page ins_detail">
 								<label><i class="icon-question-sign"></i><b> Relation:</b></label>
 							</td>
 							<td>
@@ -604,7 +604,7 @@
 										{
 											?>
 											<div id="remove_relation_<?php echo $index; ?>" class="remove_relation">
-												<div class="edit_form_div">
+												<div class="edit_form_div ins_edit_div">
 													<div>
 														<p>Relation:</p>
 														<p>

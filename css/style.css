@@ -532,6 +532,9 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     width: 130px;
     text-align: right;
 }
+.ins_detail{
+	width: 145px !important; 
+}
 .nomination-container{
     float: right;
     margin-right: 20px;
@@ -730,6 +733,9 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     
     float: left;
     width: 500px;
+}
+.ins_edit_div{
+	width: 485px !important;
 }
 .edit_form_div div {
 	padding: 5px 20px;

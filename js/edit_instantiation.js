@@ -269,6 +269,6 @@ function validateForm() {
 	});
 
 	if (isValid)
-		$('#edit_asset_form').submit();
+		$('#edit_instantiation_form').submit();
 
 }

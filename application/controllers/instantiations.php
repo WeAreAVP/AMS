@@ -311,7 +311,7 @@ class Instantiations extends MY_Controller
 					{
 						foreach ($this->input->post('instantiation_id_identifier') as $index => $ins_identifier)
 						{
-							$identifier['instantiation_id_identifier'] = $ins_identifier;
+							$identifier['instantiation_identifier'] = $ins_identifier;
 							$ins_identifer_id = $this->input->post('instantiation_id_identifier_id');
 							$ins_source = $this->input->post('instantiation_id_source');
 							if (isset($ins_source[$index]) && ! empty($ins_source[$index]))
@@ -326,7 +326,7 @@ class Instantiations extends MY_Controller
 							{
 								
 								$identifier['instantiations_id'] = $instantiation_id;
-								debug($identifier);
+								
 								$this->instantiation->insert_instantiation_identifier($identifier);
 							}
 						}

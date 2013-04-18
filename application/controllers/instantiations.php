@@ -307,6 +307,7 @@ class Instantiations extends MY_Controller
 
 				if ($this->input->post())
 				{
+					/* Instantiation Identifier Start */
 					if ($this->input->post('instantiation_id_identifier'))
 					{
 						foreach ($this->input->post('instantiation_id_identifier') as $index => $ins_identifier)
@@ -343,7 +344,8 @@ class Instantiations extends MY_Controller
 							}
 						}
 					}
-					exit;
+					
+					/* Instantiation Identifier End */
 					/* Nomination Start */
 
 					$nomination = $this->input->post('nomination');

@@ -494,8 +494,8 @@ class Instantiations extends MY_Controller
 					}
 					/* Language Configuration End */
 					
-					debug($this->instantiation->update_instantiations($instantiation_id, $update_instantiation));
-					exit;
+					$this->instantiation->update_instantiations($instantiation_id, $update_instantiation);
+					redirect('instantiations/detail/'.$instantiation_id);
 				}
 				$data['asset_id'] = $detail->assets_id;
 				$data['inst_id'] = $instantiation_id;

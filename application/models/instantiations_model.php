@@ -422,6 +422,13 @@ class Instantiations_Model extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	function update_instantiation_formats($p_id, $data)
+	{
+		$this->db->where('id', $p_id);
+		$this->db->update($this->table_instantiation_formats, $data);
+		return $this->db->insert_id();
+	}
+
 	/*
 	 *
 	 *  Insert the record in instantiation_dimensions table
@@ -504,9 +511,10 @@ class Instantiations_Model extends CI_Model
 		$this->db->insert($this->table_instantiation_dates, $data);
 		return $this->db->insert_id();
 	}
-	function update_instantiation_date($inst_id,$data)
+
+	function update_instantiation_date($inst_id, $data)
 	{
-		$this->db->where('instantiations_id',instantiation);
+		$this->db->where('id', $inst_id);
 		$this->db->update($this->table_instantiation_dates, $data);
 		return $this->db->insert_id();
 	}
@@ -908,6 +916,7 @@ class Instantiations_Model extends CI_Model
 
 	function get_format_by_instantiation_id($ins_id)
 	{
+		$this->db->select("$this->table_instantiation_formats.id", FALSE);
 		$this->db->select("$this->table_instantiation_formats.format_name,$this->table_instantiation_formats.format_type", FALSE);
 		$this->db->where("$this->table_instantiation_formats.instantiations_id", $ins_id);
 		return $result = $this->db->get($this->table_instantiation_formats)->row();

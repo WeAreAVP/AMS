@@ -275,6 +275,12 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->delete('rights_summaries');
 		return $this->db->affected_rows() > 0;
 	}
+	function delete_dimensions($instantiation_id)
+	{
+		$this->db->where('instantiations_id', $instantiation_id);
+		$this->db->delete('instantiation_dimensions');
+		return $this->db->affected_rows() > 0;
+	}
 
 	function get_identifier_by_instantiation_id($ins_id)
 	{

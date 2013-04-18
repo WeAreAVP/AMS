@@ -304,7 +304,7 @@ class Instantiations extends MY_Controller
 
 			if (count($data['instantiation_detail']) > 0)
 			{
-				$data['date'] = $this->manage_asset->get_dates_by_instantiation_id($instantiation_id);
+
 				if ($this->input->post())
 				{
 //				debug($this->input->post(),FALSE);
@@ -367,11 +367,11 @@ class Instantiations extends MY_Controller
 					$db_media_type = $this->instantiation->get_instantiation_media_types_by_media_type($media_type);
 					if ($db_media_type)
 					{
-						$media_type_id = $db_media_type->id;
+						$update_instantiation['instantiation_media_type_id'] = $db_media_type->id;
 					}
 					else
 					{
-						$media_type_id = $this->instantiation->insert_instantiation_media_types(array('media_type' => $media_type));
+						$update_instantiation['instantiation_media_type_id'] = $this->instantiation->insert_instantiation_media_types(array('media_type' => $media_type));
 					}
 					/* Media Type End */
 					/* Generation Start */
@@ -402,9 +402,10 @@ class Instantiations extends MY_Controller
 						else
 							$instantiation_dates_d['date_types_id'] = $this->instantiation->insert_date_types(array('date_type' => $this->input->post('inst_date_type')));
 						$instantiation_dates_d['instantiation_date'] = $this->input->post('inst_date');
-						if ($data['date'])
+						$db_date = $this->manage_asset->get_dates_by_instantiation_id($instantiation_id);
+						if ($db_date)
 						{
-							$this->instantiation->update_instantiation_date($instantiation_dates_d);
+							$this->instantiation->update_instantiation_date($db_date->id, $instantiation_dates_d);
 						}
 						else
 						{
@@ -414,6 +415,84 @@ class Instantiations extends MY_Controller
 						}
 					}
 					/* Date End */
+					/* Demension Start */
+					if ($this->input->post('asset_dimension'))
+					{
+						$this->manage_asset->delete_dimensions($instantiation_id);
+						foreach ($this->input->post('asset_dimension') as $index => $value)
+						{
+							$instantiation_dimension_d['instantiation_dimension'] = $value;
+							$instantiation_dimension_d['unit_of_measure'] = $this->input->post('dimension_unit');
+							$this->instantiation->insert_instantiation_dimensions($instantiation_dimension_d);
+						}
+					}
+					/* Demension End */
+					/* Physical Format Start */
+					$physical_format = $this->instantiation->get_format_by_instantiation_id($instantiation_id);
+
+					$instantiation_format_physical_d['format_name'] = $this->input->post('physical_format');
+					$instantiation_format_physical_d['format_type'] = 'physical';
+
+					if (count($physical_format) > 0)
+					{
+						$instantiation_format_physical_id = $this->instantiation->update_instantiation_formats($physical_format->id, $instantiation_format_physical_d);
+					}
+					else
+					{
+						$instantiation_format_physical_d['instantiations_id'] = $instantiations_id;
+						$instantiation_format_physical_id = $this->instantiation->insert_instantiation_formats($instantiation_format_physical_d);
+					}
+					/* Physical Format End */
+					/* Standard Start */
+					if ($this->input->post('standard'))
+					{
+						$update_instantiation['standard'] = $this->input->post('standard');
+					}
+					/* Standard End */
+					/* Location Start */
+					if ($this->input->post('location'))
+					{
+						$update_instantiation['location'] = $this->input->post('location');
+					}
+					/* Location End */
+					/* Time Start Start */
+					if ($this->input->post('time_start'))
+					{
+						$update_instantiation['time_start'] = $this->input->post('time_start');
+					}
+					/* Time Start End */
+					/* Porjected Duration Start */
+					if ($this->input->post('projected_duration'))
+					{
+						$update_instantiation['projected_duration'] = $this->input->post('projected_duration');
+					}
+					/* Porjected Duration End */
+					/* Color Start */
+					if ($this->input->post('color'))
+					{
+						$update_instantiation['color'] = $this->input->post('color');
+					}
+					/* Color End */
+					/* Tracks Start */
+					if ($this->input->post('tracks'))
+					{
+						$update_instantiation['tracks'] = $this->input->post('tracks');
+					}
+					/* Tracks End */
+					/* Channel Configuration Start */
+					if ($this->input->post('channel_configuration'))
+					{
+						$update_instantiation['channel_configuration'] = $this->input->post('channel_configuration');
+					}
+					/* Channel Configuration End */
+					/* Language Configuration Start */
+					if ($this->input->post('language'))
+					{
+						$update_instantiation['language'] = $this->input->post('language');
+					}
+					/* Language Configuration End */
+
+
 					exit;
 				}
 				$data['asset_id'] = $detail->assets_id;
@@ -421,7 +500,7 @@ class Instantiations extends MY_Controller
 				$data['list_assets'] = $this->instantiation->get_instantiations_by_asset_id($detail->assets_id);
 				$data['ins_nomination'] = $this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
 				$data['inst_identifier'] = $this->manage_asset->get_identifier_by_instantiation_id($instantiation_id);
-
+				$data['date'] = $this->manage_asset->get_dates_by_instantiation_id($instantiation_id);
 				$data['inst_demension'] = $this->manage_asset->get_demension_by_instantiation_id($instantiation_id);
 				$data['inst_format'] = $this->instantiation->get_format_by_instantiation_id($instantiation_id);
 				$data['inst_media_type'] = $this->instantiation->get_media_type_by_instantiation_media_id($detail->instantiation_media_type_id);

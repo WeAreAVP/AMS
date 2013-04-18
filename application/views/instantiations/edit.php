@@ -39,7 +39,7 @@
 	<div class="clearfix"></div>
 	<?php $this->load->view('partials/_list'); ?>
 	<div class="span9" style="margin-left: 250px;" id="ins_view_detail">
-		<form class="form-horizontal" method="POST" action="<?php echo site_url('instantiations/edit/' . $asset_id); ?>" id="edit_instantiation_form">
+		<form class="form-horizontal" method="POST" action="<?php echo site_url('instantiations/edit/' . $inst_id); ?>" id="edit_instantiation_form">
 			<table cellPadding="8" class="record-detail-table">
 				<tr>
 					<?php

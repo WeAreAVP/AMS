@@ -63,10 +63,10 @@ function addElement(elementID, type) {
 
 		html = '<div id="remove_instantiation_id_' + number + '" class="remove_instantiation_id"><div class="edit_form_div"><div><p>INSTANTIATION ID:</p><p>' +
 		'<input type="text" id="instantiation_id_identifier_' + number + '" name="instantiation_id_identifier[]" value="" />' +
-		'<span class="help-block" style="display:none;">Instantiation ID is required.</span>' +
+		'<span id="instantiation_id_identifier_error" class="help-block" style="display:none;">Instantiation ID is required.</span>' +
 		'</p></div><div><p>INSTANTIATION ID SOURCE:</p><p>' +
 		'<input type="text" id="instantiation_id_source_' + number + '" name="instantiation_id_source[]" value="" />' +
-		'<span class="help-block" style="display:none;">Instantiation ID Source is required.</span>' +
+		'<span id="instantiation_id_source_error" class="help-block" style="display:none;">Instantiation ID Source is required.</span>' +
 		'</p></div></div>' +
 		'<div class="remove_element" onclick="removeElement(\'#remove_instantiation_id_' + number + '\', \'instantiation_id\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
@@ -169,7 +169,7 @@ function validateForm() {
 		$('input[name="' + identifer[cnt] + '[]"]').each(function() {
 			if ($(this).val() == '') {
 				isValid = false;
-				$(this).next().show();
+				$('#'+identifer[cnt]+'_error').show();
 				$(this).parent().parent().addClass('error-div');
 				$('body').animate({
 					scrollTop: $(this).parent().parent().offset().top - 100

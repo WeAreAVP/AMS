@@ -319,10 +319,12 @@ class Instantiations extends MY_Controller
 
 							if (isset($ins_identifer_id[$index]) && ! empty($ins_identifer_id[$index]))
 							{
+								echo 'updated';
 								$this->instantiation->update_instantiation_identifier_by_id($ins_identifer_id[$index], $identifier);
 							}
 							else
 							{
+								echo 'inserted';
 								$identifier['instantiations_id'] = $instantiation_id;
 								$this->instantiation->insert_instantiation_identifier($identifier);
 							}
@@ -340,7 +342,7 @@ class Instantiations extends MY_Controller
 							}
 						}
 					}
-
+					exit;
 					/* Nomination Start */
 
 					$nomination = $this->input->post('nomination');

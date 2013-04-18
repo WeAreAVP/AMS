@@ -333,6 +333,7 @@ $this->load->model('manage_asset_model', 'manage_asset');
 				$data['pbcore_standards'] = $this->manage_asset->get_picklist_values(14);
 				$data['pbcore_colors'] = $this->manage_asset->get_picklist_values(15);
 				$this->load->view('instantiations/edit', $data);
+				
 			}
 			else
 			{

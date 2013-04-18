@@ -154,7 +154,7 @@
 						$add = ' ADD DIMENSION';
 						?>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> DIMENSION:</b></label>
+							<label><i class="icon-question-sign"></i><b> Dimension:</b></label>
 						</td>
 						<td>
 							<div id="main_dimension">
@@ -224,6 +224,7 @@
 						<td>
 							<p>
 								<input type="text" id="location" name="location" value="<?php echo $instantiation_detail->location; ?>" />
+								<span id="location_error" class="help-block" style="color: #c65f5a;display: none;">Location is required.</span>
 							</p>
 
 						</td>

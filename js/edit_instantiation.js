@@ -162,10 +162,7 @@ function addElement(elementID, type) {
 		$('#add_' + type).html(' ADD ANOTHER ' + type.replace(/_/g, " ").toUpperCase());
 	}
 }
-function break_function() {
 
-
-}
 function validateForm() {
 	var isValid = true;
 	var identifer = new Array('instantiation_id_identifier', 'instantiation_id_source');
@@ -184,8 +181,6 @@ function validateForm() {
 					$('body').animate({
 						scrollTop: $(this).parent().parent().offset().top - 100
 					}, 'slow');
-					break_function();
-
 				}
 				else {
 
@@ -196,7 +191,19 @@ function validateForm() {
 			}
 		});
 	}
-
+	var location = new Array('location');
+	for (cnt in location)
+		if ($('#' + location[cnt]).val() == '') {
+			isValid = false;
+			$('#' + location[cnt] + '_error').show();
+			$('body').animate({
+				scrollTop: $('#' + location[cnt]).offset().top - 100
+			}, 'slow');
+			break;
+		}
+		else {
+			$('#' + location[cnt] + '_error').hide();
+		}
 
 	for (cnt in time) {
 		value = $('#' + time[cnt]).val();

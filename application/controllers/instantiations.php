@@ -418,16 +418,16 @@ class Instantiations extends MY_Controller
 					}
 					/* Date End */
 					/* Demension Start */
-					if ($this->input->post('asset_dimension'))
-					{
-						$this->manage_asset->delete_dimensions($instantiation_id);
-						foreach ($this->input->post('asset_dimension') as $index => $value)
-						{
-							$instantiation_dimension_d['instantiation_dimension'] = $value;
-							$instantiation_dimension_d['unit_of_measure'] = $this->input->post('dimension_unit');
-							$this->instantiation->insert_instantiation_dimensions($instantiation_dimension_d);
-						}
-					}
+//					if ($this->input->post('asset_dimension'))
+//					{
+//						$this->manage_asset->delete_dimensions($instantiation_id);
+//						foreach ($this->input->post('asset_dimension') as $index => $value)
+//						{
+//							$instantiation_dimension_d['instantiation_dimension'] = $value;
+//							$instantiation_dimension_d['unit_of_measure'] = $this->input->post('dimension_unit');
+//							$this->instantiation->insert_instantiation_dimensions($instantiation_dimension_d);
+//						}
+//					}
 					/* Demension End */
 					/* Physical Format Start */
 					$physical_format = $this->instantiation->get_format_by_instantiation_id($instantiation_id);

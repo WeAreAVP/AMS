@@ -307,20 +307,19 @@ class Instantiations extends MY_Controller
 
 				if ($this->input->post())
 				{
-					debug($this->input->post());
 					if ($this->input->post('instantiation_id_identifier'))
 					{
-						foreach ($this->input->post('instantiation_id_identifier') as $index => $identifier)
+						foreach ($this->input->post('instantiation_id_identifier') as $index => $ins_identifier)
 						{
-							$identifier['instantiation_source'] = $identifier;
-							$ins_identifer_id = $this->input->post('instantiation_id_identifier');
+							$identifier['instantiation_id_identifier'] = $ins_identifier;
+							$ins_identifer_id = $this->input->post('instantiation_id_identifier_id');
 							$ins_source = $this->input->post('instantiation_id_source');
 							if (isset($ins_source[$index]) && ! empty($ins_source[$index]))
 								$identifier['instantiation_source'] = $ins_source[$index];
 
 							if (isset($ins_identifer_id[$index]) && ! empty($ins_identifer_id[$index]))
 							{
-								$this->instantiation->update_instantiation_identifier_by_id($identifier_id, $identifier);
+								$this->instantiation->update_instantiation_identifier_by_id($ins_identifer_id[$index], $identifier);
 							}
 							else
 							{
@@ -329,9 +328,17 @@ class Instantiations extends MY_Controller
 							}
 						}
 					}
-					else
+					else if ($this->input->post('instantiation_id_source'))
 					{
-						
+						foreach ($this->input->post('instantiation_id_source') as $index => $identifier_src)
+						{
+							$ins_identifer_id = $this->input->post('instantiation_id_identifier_id');
+							if ( ! empty($identifier_src))
+							{
+								$identifier['instantiation_source'] = $identifier_src;
+								$this->instantiation->update_instantiation_identifier_by_id($ins_identifer_id[$index], $identifier);
+							}
+						}
 					}
 
 					/* Nomination Start */

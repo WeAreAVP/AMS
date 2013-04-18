@@ -546,13 +546,14 @@ class Assets extends MY_Controller
 
 	private function delete_asset_attributes($asset_id)
 	{
-		$table_names = array('assets_asset_types', 'asset_dates', 'identifiers', 'asset_titles', 'assets_subjects', 'asset_descriptions',
+		$table_names = array('assets_asset_types', 'asset_dates', 'asset_titles', 'assets_subjects', 'asset_descriptions',
 			'assets_genres', 'coverages', 'assets_audience_levels', 'assets_audience_ratings', 'annotations', 'assets_relations',
 			'assets_creators_roles', 'assets_contributors_roles', 'assets_publishers_role', 'rights_summaries');
 		foreach ($table_names as $value)
 		{
 			$this->manage_asset->delete_row($asset_id, $table_names, 'assets_id');
 		}
+		$this->manage_asset->delete_local_identifiers($asset_id);
 		return TRUE;
 	}
 

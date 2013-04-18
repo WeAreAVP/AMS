@@ -169,15 +169,15 @@ function validateForm() {
 		$('input[name="' + identifer[cnt] + '[]"]').each(function() {
 			if ($(this).val() == '') {
 				isValid = false;
-				$('#'+identifer[cnt]+'_error').show();
+				$('#'+identifer[cnt]+'_error').show(); 
 				$(this).parent().parent().addClass('error-div');
 				$('body').animate({
 					scrollTop: $(this).parent().parent().offset().top - 100
 				}, 'slow');
 				return false;
-
 			}
 			else {
+				
 				$(this).next().hide();
 				$(this).parent().parent().removeClass('error-div');
 

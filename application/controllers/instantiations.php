@@ -360,7 +360,8 @@ class Instantiations extends MY_Controller
 						if ($nomination_exist)
 						{
 
-							$this->instantiation->delete_nominations_by_instantiation_id($instantiation_id);
+//							$this->instantiation->delete_nominations_by_instantiation_id($instantiation_id);
+							$this->instantiation->delete_row($instantiation_id, 'nominations', 'instantiations_id');
 						}
 					}
 					/* Nomination End */
@@ -379,7 +380,8 @@ class Instantiations extends MY_Controller
 					/* Generation Start */
 					if ($this->input->post('generation'))
 					{
-						$this->instantiation->delete_generation_by_instantiation_id($instantiation_id);
+//						$this->instantiation->delete_generation_by_instantiation_id($instantiation_id);
+						$this->instantiation->delete_row($instantiation_id, 'instantiation_generations', 'instantiations_id');
 						foreach ($this->input->post('generation') as $row)
 						{
 							$db_generation = $this->instantiation->get_generations_by_generation($row);
@@ -420,7 +422,8 @@ class Instantiations extends MY_Controller
 					/* Demension Start */
 					if ($this->input->post('asset_dimension'))
 					{
-						$this->manage_asset->delete_dimensions($instantiation_id);
+//						$this->manage_asset->delete_dimensions($instantiation_id);
+						$this->instantiation->delete_row($instantiation_id, 'instantiation_dimensions', 'instantiations_id');
 						foreach ($this->input->post('asset_dimension') as $index => $value)
 						{
 							$unit_measure = $this->input->post('dimension_unit');
@@ -503,8 +506,58 @@ class Instantiations extends MY_Controller
 						$update_instantiation['language'] = $this->input->post('language');
 					}
 					/* Language Configuration End */
-
+					/* Update Instantiation */
 					$this->instantiation->update_instantiations($instantiation_id, $update_instantiation);
+					/* Annotation Start */
+					if ($this->input->post('annotation'))
+					{
+//						$this->manage_asset->delete_instantiation_annotation($instantiation_id);
+						$this->instantiation->delete_row($instantiation_id, 'instantiation_annotations', 'instantiations_id');
+						foreach ($this->input->post('annotation') as $index => $value)
+						{
+							if ( ! empty($value))
+							{
+								$annotation_type = $this->input->post('annotation_type');
+								$instantiation_annotation_d['instantiations_id'] = $instantiation_id;
+								$instantiation_annotation_d['annotation'] = $value;
+								$instantiation_annotation_d['annotation_type'] = $annotation_type[$index];
+								$this->instantiation->insert_instantiation_annotations($instantiation_annotation_d);
+							}
+						}
+					}
+					/* Annotation End */
+					/* Relation Start */
+					if ($this->input->post('relation'))
+					{
+						$this->instantiation->delete_row($instantiation_id, 'instantiation_relations', 'instantiations_id');
+						$relation_src = $this->input->post('relation_source');
+						$relation_ref = $this->input->post('relation_ref');
+						$relation_type = $this->input->post('relation_type');
+						foreach ($this->input->post('relation') as $index => $value)
+						{
+							if ( ! empty($value))
+							{
+								$relation['instantiations_id'] = $instantiation_id;
+								$relation['relation_identifier'] = $value;
+								$relation_types['relation_type'] = $relation_type[$index];
+								if ( ! empty($relation_src[$index]))
+									$relation_types['relation_type_source'] = $relation_src[$index];
+								if ( ! empty($relation_ref[$index]))
+									$relation_types['relation_type_ref'] = $relation_ref[$index];
+								$db_relations = $this->assets_model->get_relation_types_all($relation_types);
+								if (isset($db_relations) && isset($db_relations->id))
+								{
+									$assets_relation['relation_types_id'] = $db_relations->id;
+								}
+								else
+								{
+									$assets_relation['relation_types_id'] = $this->assets_model->insert_relation_types($relation_types);
+								}
+								$this->instantiation->insert_instantiation_relation($relation);
+							}
+						}
+					}
+					/* Relation End */
 					redirect('instantiations/detail/' . $instantiation_id);
 				}
 				$data['asset_id'] = $detail->assets_id;

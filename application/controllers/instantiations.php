@@ -332,7 +332,9 @@ class Instantiations extends MY_Controller
 //						}
 //					}
 //				}
+					
 					/* Nomination Start */
+					
 					$nomination = $this->input->post('nomination');
 					$reason = $this->input->post('nomination_reason');
 					$nomination_exist = $this->assets_model->get_nominations($instantiation_id);
@@ -491,8 +493,8 @@ class Instantiations extends MY_Controller
 						$update_instantiation['language'] = $this->input->post('language');
 					}
 					/* Language Configuration End */
-					echo $instantiations_id;exit;
-					$this->instantiation->update_instantiations($instantiations_id, $update_instantiation);
+					
+					$this->instantiation->update_instantiations($instantiation_id, $update_instantiation);
 					exit;
 				}
 				$data['asset_id'] = $detail->assets_id;

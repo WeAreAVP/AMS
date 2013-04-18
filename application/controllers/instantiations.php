@@ -301,7 +301,7 @@ class Instantiations extends MY_Controller
 
 			if ($this->input->post())
 			{
-				
+				debug($this->input->post());
 			}
 			$detail = $data['instantiation_detail'] = $this->instantiation->get_by_id($instantiation_id);
 

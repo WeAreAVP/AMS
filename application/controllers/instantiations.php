@@ -337,7 +337,7 @@ class Instantiations extends MY_Controller
 					if ($nomination_exist)
 					{
 						$nomination_record['updated'] = date('Y-m-d H:i:s');
-						$this->assets_model->update_nominations($ins_id, $nomination_record);
+						$this->assets_model->update_nominations($instantiation_id, $nomination_record);
 					}
 					else
 					{
@@ -351,7 +351,7 @@ class Instantiations extends MY_Controller
 					if ($nomination_exist)
 					{
 
-						$this->instantiation->delete_nominations_by_instantiation_id($ins_id);
+						$this->instantiation->delete_nominations_by_instantiation_id($instantiation_id);
 					}
 				}
 				$media_type = $this->input->post('media_type');
@@ -366,7 +366,7 @@ class Instantiations extends MY_Controller
 				}
 				if ($this->input->post('generation'))
 				{
-					$this->instantiation->delete_generation_by_instantiation_id($ins_id);
+					$this->instantiation->delete_generation_by_instantiation_id($instantiation_id);
 					foreach ($this->input->post('generation') as $row)
 					{
 						$db_generation = $this->instantiation->get_generations_by_generation($row);
@@ -378,7 +378,7 @@ class Instantiations extends MY_Controller
 						{
 							$db_gen_id = $this->instantiation->insert_generations(array('generation' => $row));
 						}
-						$this->instantiation->insert_instantiation_generations(array('instantiations_id' => $ins_id, 'generations_id' => $db_gen_id));
+						$this->instantiation->insert_instantiation_generations(array('instantiations_id' => $instantiation_id, 'generations_id' => $db_gen_id));
 					}
 				}
 				exit;

@@ -491,7 +491,7 @@ class Instantiations extends MY_Controller
 						$update_instantiation['language'] = $this->input->post('language');
 					}
 					/* Language Configuration End */
-
+					echo $instantiations_id;exit;
 					$this->instantiation->update_instantiations($instantiations_id, $update_instantiation);
 					exit;
 				}

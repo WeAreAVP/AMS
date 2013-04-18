@@ -61,7 +61,7 @@ function addElement(elementID, type) {
 	if (elementID == '#main_instantiation_id') {
 
 
-		html = '<div id="remove_instantiation_id_' + number + '" class="remove_instantiation_id"><div class="edit_form_div"><div><p>INSTANTIATION ID:</p><p>' +
+		html = '<div id="remove_instantiation_id_' + number + '" class="remove_instantiation_id"><div class="edit_form_div ins_edit_div"><div><p>INSTANTIATION ID:</p><p>' +
 		'<input type="text" id="instantiation_id_identifier_' + number + '" name="instantiation_id_identifier[]" value="" />' +
 		'<span class="help-block" style="display:none;">Instantiation ID is required.</span>' +
 		'</p></div><div><p>INSTANTIATION ID SOURCE:</p><p>' +
@@ -84,7 +84,7 @@ function addElement(elementID, type) {
 		});
 	}
 	else if (elementID == '#main_dimension') {
-		html = '<div id="remove_dimension_' + number + '" class="remove_dimension"><div class="edit_form_div"><div><p>Dimension:</p>' +
+		html = '<div id="remove_dimension_' + number + '" class="remove_dimension"><div class="edit_form_div ins_edit_div"><div><p>Dimension:</p>' +
 		'<p><input type="text" id="dimension_' + number + '" name="asset_dimension[]" value="" /></p>' +
 		'</div><div><p>Unit of measure:</p><p>' +
 		'<input type="text" id="dimension_unit_' + number + '" name="dimension_unit[]" value="" /></p></div></div>' +
@@ -99,14 +99,14 @@ function addElement(elementID, type) {
 		{
 			generationTypes += '<option value= "' + pbcoreGeneration[cnt]['value'] + '">' + pbcoreGeneration[cnt]['value'] + '</option>';
 		}
-		html = '<div id="remove_generation_' + number + '" class="remove_generation"><div class="edit_form_div"><div><p>Generation:</p></div>' +
+		html = '<div id="remove_generation_' + number + '" class="remove_generation"><div class="edit_form_div ins_edit_div"><div><p>Generation:</p></div>' +
 		'<div><p><select id="generation_' + number + '" name="generation[]">' + generationTypes + '</select></p></div></div>' +
 		'<div class="remove_element" onclick="removeElement(\'#remove_generation_' + number + '\', \'generation\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
 	}
 	else if (elementID == '#main_annotation') {
-		html = '<div id="remove_annotation_' + number + '" class="remove_annotation"><div class="edit_form_div"><div><p>Annotation:</p>' +
+		html = '<div id="remove_annotation_' + number + '" class="remove_annotation"><div class="edit_form_div ins_edit_div"><div><p>Annotation:</p>' +
 		'<p><input type="text" id="annotation_' + number + '" name="annotation[]" value="" /></p></div>' +
 		'<div><p>Annotation Type:</p><p><input type="text" id="annotation_type_' + number + '" name="annotation_type[]" value="" />' +
 		'</p></div></div>' +
@@ -128,7 +128,7 @@ function addElement(elementID, type) {
 		{
 			relationType += '<option value= "' + pbcoreRelationTypes[cnt]['value'] + '">' + pbcoreRelationTypes[cnt]['value'] + '</option>';
 		}
-		html = '<div id="remove_relation_' + number + '" class="remove_relation"><div class="edit_form_div"><div><p>Relation:</p>' +
+		html = '<div id="remove_relation_' + number + '" class="remove_relation"><div class="edit_form_div ins_edit_div"><div><p>Relation:</p>' +
 		'<p><input type="text" id="relation_' + number + '" name="relation[]" value="" /></p></div>' +
 		'<div><p> Relation Type:</p><p><select id="relation_type_' + number + '" name="relation_type[]">' + relationType + '</select>' +
 		'</p></div><div><p> Relation Source:</p><p>' +

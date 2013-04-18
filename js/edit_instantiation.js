@@ -1,5 +1,5 @@
 $(function() {
-$('#inst_date').datepicker({"dateFormat": 'yy-mm-dd'});
+	$('#inst_date').datepicker({"dateFormat": 'yy-mm-dd'});
 	$('input[name="instantiation_id_source[]"]').autocomplete({
 		source: site_url + "autocomplete/values?table=instantiation_identifier&column=instantiation_source",
 		minLength: 1,
@@ -63,10 +63,10 @@ function addElement(elementID, type) {
 
 		html = '<div id="remove_instantiation_id_' + number + '" class="remove_instantiation_id"><div class="edit_form_div"><div><p>INSTANTIATION ID:</p><p>' +
 		'<input type="text" id="instantiation_id_identifier_' + number + '" name="instantiation_id_identifier[]" value="" />' +
-		'<span class="help-block" style="display:none;">Instantiation ID is required.</span>'+
+		'<span class="help-block" style="display:none;">Instantiation ID is required.</span>' +
 		'</p></div><div><p>INSTANTIATION ID SOURCE:</p><p>' +
 		'<input type="text" id="instantiation_id_source_' + number + '" name="instantiation_id_source[]" value="" />' +
-		'<span class="help-block" style="display:none;">Instantiation ID Source is required.</span>'+
+		'<span class="help-block" style="display:none;">Instantiation ID Source is required.</span>' +
 		'</p></div></div>' +
 		'<div class="remove_element" onclick="removeElement(\'#remove_instantiation_id_' + number + '\', \'instantiation_id\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
@@ -164,13 +164,22 @@ function addElement(elementID, type) {
 }
 function validateForm() {
 	var isValid = false;
-	
+
 	$('input[name="instantiation_id_identifier[]"]').each(function() {
-		if($(this).val()==''){
+		if ($(this).val() == '') {
+			isValid=false;	
+			$(this).next().show();
+			$(this).parent().parent().addClass('error-div');
+			$('body').animate({
+				scrollTop: $(this).parent().parent().offset().top - 100
+			}, 'slow');
+			break;
 			
 		}
-		else{
-			
+		else {
+			$(this).next().hide();
+			$(this).parent().parent().removeClass('error-div');
+
 		}
 	});
 	var time = new Array('time_start', 'projected_duration');

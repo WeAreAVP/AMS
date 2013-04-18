@@ -54,12 +54,14 @@
 												<p>INSTANTIATION ID:</p>
 												<p>
 													<input type="text" id="instantiation_id_identifier_<?php echo $index; ?>" name="instantiation_id_identifier[]" value="<?php echo trim($identifier->instantiation_identifier); ?>" />
+													<span class="help-block" style="display:none;">Instantiation ID is required.</span>
 												</p>
 											</div>
 											<div>
 												<p>INSTANTIATION ID SOURCE:</p>
 												<p>
 													<input type="text" id="instantiation_id_source_<?php echo $index; ?>" name="instantiation_id_source[]" value="<?php echo trim($identifier->instantiation_source); ?>" />
+													<span class="help-block" style="display:none;">Instantiation ID Source is required.</span>
 												</p>
 											</div>
 
@@ -85,12 +87,14 @@
 											<p>INSTANTIATION ID:</p>
 											<p>
 												<input type="text" id="instantiation_id_identifier_0" name="instantiation_id_identifier[]" value="" />
+												<span class="help-block" style="display:none;">Instantiation ID is required.</span>
 											</p>
 										</div>
 										<div>
 											<p>INSTANTIATION ID SOURCE:</p>
 											<p>
 												<input type="text" id="instantiation_id_source_0" name="instantiation_id_source[]" value="" />
+												<span class="help-block" style="display:none;">Instantiation ID Source is required.</span>
 											</p>
 										</div>
 
@@ -167,6 +171,7 @@
 													<p>Dimension:</p>
 													<p>
 														<input type="text" id="dimension_<?php echo $index; ?>" name="asset_dimension[]" value="<?php echo $demension->instantiation_dimension; ?>" />
+														
 													</p>
 												</div>
 												<div>

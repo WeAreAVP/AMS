@@ -547,11 +547,11 @@ class Instantiations extends MY_Controller
 								$db_relations = $this->assets_model->get_relation_types_all($relation_types);
 								if (isset($db_relations) && isset($db_relations->id))
 								{
-									$assets_relation['relation_types_id'] = $db_relations->id;
+									$relation['relation_types_id'] = $db_relations->id;
 								}
 								else
 								{
-									$assets_relation['relation_types_id'] = $this->assets_model->insert_relation_types($relation_types);
+									$relation['relation_types_id'] = $this->assets_model->insert_relation_types($relation_types);
 								}
 								$this->instantiation->insert_instantiation_relation($relation);
 							}

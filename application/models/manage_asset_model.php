@@ -338,6 +338,7 @@ class Manage_Asset_Model extends CI_Model
 	function get_single_essence_tracks_by_instantiations_id($ins_id)
 	{
 
+		$this->db->select('essence_tracks.id');
 		$this->db->select('essence_tracks.frame_rate');
 		$this->db->select('essence_tracks.playback_speed,essence_tracks.sampling_rate');
 		$this->db->select('essence_tracks.aspect_ratio');

@@ -474,6 +474,12 @@ class Instantiations extends MY_Controller
 						$update_instantiation['projected_duration'] = $this->input->post('projected_duration');
 					}
 					/* Porjected Duration End */
+					/* Porjected Alernative Modes Start */
+					if ($this->input->post('alternative_modes'))
+					{
+						$update_instantiation['alternative_modes'] = $this->input->post('alternative_modes');
+					}
+					/* Porjected Alernative Modes End */
 					/* Color Start */
 					if ($this->input->post('color'))
 					{
@@ -559,29 +565,57 @@ class Instantiations extends MY_Controller
 						}
 					}
 					/* Relation End */
-					/* Essence Track Start */
-					/* Essence Track  Frame Size Start */
-					if ($this->input->post('relation') && $this->input->post('relation'))
+
+					/* Essence Track Frame Size Start */
+					if ($this->input->post('width') && $this->input->post('height'))
 					{
-						$track_frame_size_d = $this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame_sizes[0]), trim($frame_sizes[1]));
+						$track_frame_size_d = $this->essence_track->get_essence_track_frame_sizes_by_width_height(trim($this->input->post('width')), trim($this->input->post('height')));
 						if ($track_frame_size_d)
 						{
 							$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;
 						}
 						else
 						{
-							$essence_tracks_d['essence_track_frame_sizes_id'] = $this->essence->insert_essence_track_frame_sizes(array("width" => $frame_sizes[0], "height" => $frame_sizes[1]));
+							$essence_tracks_d['essence_track_frame_sizes_id'] = $this->essence_track->insert_essence_track_frame_sizes(array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
 						}
 					}
-					/* Essence Track  Frame Size End */
+					/* Essence Track Frame Size End */
+					/* Essence Track Frame Rate Start */
+					if ($this->input->post('frame_rate'))
+					{
+						$essence_tracks_d['frame_rate'] = $this->input->post('frame_rate');
+					}
+					/* Essence Track Frame Rate End */
+					/* Essence Track Playback Speed Start */
+					if ($this->input->post('playback_speed'))
+					{
+						$essence_tracks_d['playback_speed'] = $this->input->post('playback_speed');
+					}
+					/* Essence Track Playback Speed End */
+					/* Essence Track Sampling Rate Start */
+					if ($this->input->post('sampling_rate'))
+					{
+						$essence_tracks_d['sampling_rate'] = $this->input->post('sampling_rate');
+					}
+					/* Essence Track Sampling Rate End */
+					/* Essence Track Aspect Ratio Start */
+					if ($this->input->post('aspect_ratio'))
+					{
+						$essence_tracks_d['aspect_ratio'] = $this->input->post('aspect_ratio');
+					}
+					/* Essence Track Aspect Ratio End */
+
+
+					/* Essence Track Start */
 					$essence_track = $this->manage_asset->get_single_essence_tracks_by_instantiations_id($instantiation_id);
 					if ($essence_track)
 					{
-						// update
+						$this->essence_track->update_essence_track($essence_track->id, $essence_tracks_d);
 					}
 					else
 					{
-						//insert
+						$essence_tracks_d['instantiations_id'] = $instantiation_id;
+						$this->essence_track->insert_essence_tracks($essence_tracks_d);
 					}
 					/* Essence Track End */
 

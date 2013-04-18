@@ -350,7 +350,7 @@ class Instantiations extends MY_Controller
 						}
 						else
 						{
-							$nomination_record['instantiations_id'] = $ins_id;
+							$nomination_record['instantiations_id'] = $instantiation_id;
 							$nomination_record['created'] = date('Y-m-d H:i:s');
 							$this->assets_model->insert_nominations($nomination_record);
 						}
@@ -474,14 +474,14 @@ class Instantiations extends MY_Controller
 					if ($this->input->post('color'))
 					{
 
-						$inst_color_d = $this->instant->get_instantiation_colors_by_color($this->input->post('color'));
+						$inst_color_d = $this->instantiation->get_instantiation_colors_by_color($this->input->post('color'));
 						if (isset($inst_color_d) && ! is_empty($inst_color_d))
 						{
 							$update_instantiation['instantiation_colors_id'] = $inst_color_d->id;
 						}
 						else
 						{
-							$update_instantiation['instantiation_colors_id'] = $this->instant->insert_instantiation_colors(array('color' => $this->input->post('color')));
+							$update_instantiation['instantiation_colors_id'] = $this->instantiation->insert_instantiation_colors(array('color' => $this->input->post('color')));
 						}
 					}
 					/* Color End */

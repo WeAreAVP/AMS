@@ -410,6 +410,7 @@ class Instantiations extends MY_Controller
 				$data['pbcore_standards'] = $this->manage_asset->get_picklist_values(14);
 				$data['pbcore_colors'] = $this->manage_asset->get_picklist_values(15);
 				$data['pbcore_physical_formats'] = $this->manage_asset->get_picklist_values(13);
+				$data['nominations'] = $this->instantiation->get_nomination_status();
 				$this->load->view('instantiations/edit', $data);
 			}
 			else

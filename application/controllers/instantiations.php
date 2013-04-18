@@ -361,7 +361,7 @@ class Instantiations extends MY_Controller
 						{
 
 //							$this->instantiation->delete_nominations_by_instantiation_id($instantiation_id);
-							$this->instantiation->delete_row($instantiation_id, 'nominations', 'instantiations_id');
+							$this->manage_asset->delete_row($instantiation_id, 'nominations', 'instantiations_id');
 						}
 					}
 					/* Nomination End */
@@ -381,7 +381,7 @@ class Instantiations extends MY_Controller
 					if ($this->input->post('generation'))
 					{
 //						$this->instantiation->delete_generation_by_instantiation_id($instantiation_id);
-						$this->instantiation->delete_row($instantiation_id, 'instantiation_generations', 'instantiations_id');
+						$this->manage_asset->delete_row($instantiation_id, 'instantiation_generations', 'instantiations_id');
 						foreach ($this->input->post('generation') as $row)
 						{
 							$db_generation = $this->instantiation->get_generations_by_generation($row);
@@ -423,7 +423,7 @@ class Instantiations extends MY_Controller
 					if ($this->input->post('asset_dimension'))
 					{
 //						$this->manage_asset->delete_dimensions($instantiation_id);
-						$this->instantiation->delete_row($instantiation_id, 'instantiation_dimensions', 'instantiations_id');
+						$this->manage_asset->delete_row($instantiation_id, 'instantiation_dimensions', 'instantiations_id');
 						foreach ($this->input->post('asset_dimension') as $index => $value)
 						{
 							$unit_measure = $this->input->post('dimension_unit');
@@ -512,7 +512,7 @@ class Instantiations extends MY_Controller
 					if ($this->input->post('annotation'))
 					{
 //						$this->manage_asset->delete_instantiation_annotation($instantiation_id);
-						$this->instantiation->delete_row($instantiation_id, 'instantiation_annotations', 'instantiations_id');
+						$this->manage_asset->delete_row($instantiation_id, 'instantiation_annotations', 'instantiations_id');
 						foreach ($this->input->post('annotation') as $index => $value)
 						{
 							if ( ! empty($value))
@@ -529,7 +529,7 @@ class Instantiations extends MY_Controller
 					/* Relation Start */
 					if ($this->input->post('relation'))
 					{
-						$this->instantiation->delete_row($instantiation_id, 'instantiation_relations', 'instantiations_id');
+						$this->manage_asset->delete_row($instantiation_id, 'instantiation_relations', 'instantiations_id');
 						$relation_src = $this->input->post('relation_source');
 						$relation_ref = $this->input->post('relation_ref');
 						$relation_type = $this->input->post('relation_type');

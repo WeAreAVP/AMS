@@ -492,7 +492,7 @@ class Instantiations extends MY_Controller
 					}
 					/* Language Configuration End */
 
-
+					$this->instantiation->update_instantiations($instantiations_id, $update_instantiation);
 					exit;
 				}
 				$data['asset_id'] = $detail->assets_id;
@@ -565,7 +565,7 @@ class Instantiations extends MY_Controller
 			}
 			$gen_array = implode('|', $generation);
 		}
-		$this->instantiation->update_instantiations($ins_id, array('instantiation_media_type_id' => $media_type_id, 'language' => $language));
+
 		$this->cron_model->update_rotate_indexes(2, array('status' => 0));
 		$this->cron_model->update_rotate_indexes(1, array('status' => 0));
 		redirect('instantiations/detail/' . $ins_id);

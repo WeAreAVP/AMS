@@ -307,31 +307,32 @@ class Instantiations extends MY_Controller
 
 				if ($this->input->post())
 				{
-//					debug($this->input->post(), FALSE);
-//				if ($this->input->post('instantiation_id_identifier'))
-//				{
-//					foreach ($this->input->post('instantiation_id_identifier_id') as $index => $identifier_id)
-//					{
-//						$ins_identifer = $this->input->post('instantiation_id_identifier');
-//						$ins_source = $this->input->post('instantiation_id_source');
-//						if (isset($ins_identifer[$index]) &&  ! empty($ins_identifer[$index]))
-//							$identifier['instantiation_identifier'] = $ins_identifer[$index];
-//						if (isset($ins_source[$index]) &&  ! empty($ins_source[$index]))
-//							$identifier['instantiation_source'] = $ins_source[$index];
-//						
-//						if ( ! empty($identifier_id))
-//						{
-//							debug($identifier);
-//							$this->instantiation->update_instantiation_identifier_by_id($identifier_id, $identifier);
-//						}
-//						else
-//						{
-//							$identifier['instantiations_id'] = $instantiation_id;
-//							debug($identifier);
-//							$this->instantiation->insert_instantiation_identifier($identifier);
-//						}
-//					}
-//				}
+					debug($this->input->post());
+					if ($this->input->post('instantiation_id_identifier'))
+					{
+						foreach ($this->input->post('instantiation_id_identifier') as $index => $identifier)
+						{
+							$identifier['instantiation_source'] = $identifier;
+							$ins_identifer_id = $this->input->post('instantiation_id_identifier');
+							$ins_source = $this->input->post('instantiation_id_source');
+							if (isset($ins_source[$index]) && ! empty($ins_source[$index]))
+								$identifier['instantiation_source'] = $ins_source[$index];
+
+							if (isset($ins_identifer_id[$index]) && ! empty($ins_identifer_id[$index]))
+							{
+								$this->instantiation->update_instantiation_identifier_by_id($identifier_id, $identifier);
+							}
+							else
+							{
+								$identifier['instantiations_id'] = $instantiation_id;
+								$this->instantiation->insert_instantiation_identifier($identifier);
+							}
+						}
+					}
+					else
+					{
+						
+					}
 
 					/* Nomination Start */
 
@@ -648,7 +649,7 @@ class Instantiations extends MY_Controller
 				$data['inst_relation'] = $this->manage_asset->get_relation_by_instantiation_id($instantiation_id);
 				$data['asset_details'] = $this->assets_model->get_asset_by_asset_id($detail->assets_id);
 				$data['essence_track'] = $this->manage_asset->get_single_essence_tracks_by_instantiations_id($instantiation_id);
-				
+
 				$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);
 				$data['pbcore_media_types'] = $this->manage_asset->get_picklist_values(11);
 				$data['pbcore_generations'] = $this->manage_asset->get_picklist_values(12);

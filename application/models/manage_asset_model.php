@@ -276,19 +276,8 @@ class Manage_Asset_Model extends CI_Model
 		return $this->db->affected_rows() > 0;
 	}
 
-	function delete_dimensions($instantiation_id)
-	{
-		$this->db->where('instantiations_id', $instantiation_id);
-		$this->db->delete('instantiation_dimensions');
-		return $this->db->affected_rows() > 0;
-	}
-
-	function delete_instantiation_annotation($instantiation_id)
-	{
-		$this->db->where('instantiations_id', $instantiation_id);
-		$this->db->delete('instantiation_annotations');
-		return $this->db->affected_rows() > 0;
-	}
+	
+	
 
 	function delete_row($delete_id, $table, $match_column)
 	{

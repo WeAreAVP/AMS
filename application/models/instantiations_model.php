@@ -976,20 +976,9 @@ class Instantiations_Model extends CI_Model
 		return $result = $this->db->get($this->table_instantiations)->result();
 	}
 
-	function delete_generation_by_instantiation_id($ins_id)
-	{
-		$this->db->where('instantiations_id', $ins_id);
-		$this->db->delete($this->table_instantiation_generations);
-		return $this->db->affected_rows() > 0;
-	}
+	
 
-	function delete_nominations_by_instantiation_id($ins_id)
-	{
-		$this->db->where('instantiations_id', $ins_id);
-		$this->db->delete($this->table_nominations);
-		return $this->db->affected_rows() > 0;
-	}
-
+	
 	function get_instantiation_by_asset_id($asset_id)
 	{
 		$this->db->where('assets_id', $asset_id);

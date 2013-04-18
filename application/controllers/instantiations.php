@@ -360,7 +360,7 @@ class Instantiations extends MY_Controller
 						if ($nomination_exist)
 						{
 
-//							$this->instantiation->delete_nominations_by_instantiation_id($instantiation_id);
+							
 							$this->manage_asset->delete_row($instantiation_id, 'nominations', 'instantiations_id');
 						}
 					}
@@ -380,7 +380,7 @@ class Instantiations extends MY_Controller
 					/* Generation Start */
 					if ($this->input->post('generation'))
 					{
-//						$this->instantiation->delete_generation_by_instantiation_id($instantiation_id);
+						
 						$this->manage_asset->delete_row($instantiation_id, 'instantiation_generations', 'instantiations_id');
 						foreach ($this->input->post('generation') as $row)
 						{
@@ -422,11 +422,12 @@ class Instantiations extends MY_Controller
 					/* Demension Start */
 					if ($this->input->post('asset_dimension'))
 					{
-//						$this->manage_asset->delete_dimensions($instantiation_id);
+
 						$this->manage_asset->delete_row($instantiation_id, 'instantiation_dimensions', 'instantiations_id');
 						foreach ($this->input->post('asset_dimension') as $index => $value)
 						{
 							$unit_measure = $this->input->post('dimension_unit');
+							$instantiation_dimension_d['instantiations_id'] = $instantiation_id;
 							$instantiation_dimension_d['instantiation_dimension'] = $value;
 							$instantiation_dimension_d['unit_of_measure'] = $unit_measure[$index];
 							$this->instantiation->insert_instantiation_dimensions($instantiation_dimension_d);
@@ -511,7 +512,7 @@ class Instantiations extends MY_Controller
 					/* Annotation Start */
 					if ($this->input->post('annotation'))
 					{
-//						$this->manage_asset->delete_instantiation_annotation($instantiation_id);
+
 						$this->manage_asset->delete_row($instantiation_id, 'instantiation_annotations', 'instantiations_id');
 						foreach ($this->input->post('annotation') as $index => $value)
 						{

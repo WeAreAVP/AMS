@@ -121,7 +121,7 @@
 						</td>
 						<td>
 							<p>
-								<input type="text" id="inst_date" name="inst_date" value="<?php echo (isset($date->instantiation_date) ? $date->instantiation_date : ''); ?>" />
+								<input readonly="readonly" type="text" id="inst_date" name="inst_date" value="<?php echo (isset($date->instantiation_date) ? $date->instantiation_date : ''); ?>" />
 							</p>
 
 						</td>

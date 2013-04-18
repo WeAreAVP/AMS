@@ -164,24 +164,26 @@ function addElement(elementID, type) {
 }
 function validateForm() {
 	var isValid = false;
+	var identifer = new Array('instantiation_id_identifier', 'instantiation_id_source');
+	for (cnt in identifer) {
+		$('input[name="' + identifer[cnt] + '[]"]').each(function() {
+			if ($(this).val() == '') {
+				isValid = false;
+				$(this).next().show();
+				$(this).parent().parent().addClass('error-div');
+				$('body').animate({
+					scrollTop: $(this).parent().parent().offset().top - 100
+				}, 'slow');
+				return false;
 
-	$('input[name="instantiation_id_identifier[]"]').each(function() {
-		if ($(this).val() == '') {
-			isValid=false;	
-			$(this).next().show();
-			$(this).parent().parent().addClass('error-div');
-			$('body').animate({
-				scrollTop: $(this).parent().parent().offset().top - 100
-			}, 'slow');
-			return false;
-			
-		}
-		else {
-			$(this).next().hide();
-			$(this).parent().parent().removeClass('error-div');
+			}
+			else {
+				$(this).next().hide();
+				$(this).parent().parent().removeClass('error-div');
 
-		}
-	});
+			}
+		});
+	}
 	var time = new Array('time_start', 'projected_duration');
 	for (cnt in time) {
 		value = $('#' + time[cnt]).val();

@@ -680,7 +680,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-												var disable ='<?php echo $disable; ?>';
+												var disable = '<?php echo ($disable ? 1 : 0); ?>';
 												console.log(disable);
 												var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
 												var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;

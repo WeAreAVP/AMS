@@ -470,10 +470,10 @@ class Instantiations extends MY_Controller
 					}
 					/* Porjected Duration End */
 					/* Color Start */
-					if ($this->input->post('color'))
-					{
-						$update_instantiation['color'] = $this->input->post('color');
-					}
+//					if ($this->input->post('color'))
+//					{
+//						$update_instantiation['color'] = $this->input->post('color');
+//					}
 					/* Color End */
 					/* Tracks Start */
 					if ($this->input->post('tracks'))
@@ -493,7 +493,7 @@ class Instantiations extends MY_Controller
 						$update_instantiation['language'] = $this->input->post('language');
 					}
 					/* Language Configuration End */
-					debug($update_instantiation);
+					
 					$this->instantiation->update_instantiations($instantiation_id, $update_instantiation);
 					redirect('instantiations/detail/'.$instantiation_id);
 				}

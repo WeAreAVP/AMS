@@ -173,7 +173,7 @@ function validateForm() {
 
 
 		$('input[name="' + identifer[cnt] + '[]"]').each(function() {
-			if (isValid) {
+			if (isValid && $(this).length > 0) {
 				if ($(this).val() == '') {
 					isValid = false;
 					$(this).nextAll('.help-block').show();
@@ -193,41 +193,69 @@ function validateForm() {
 	}
 	var location = new Array('location');
 	for (cnt in location) {
-		if ($('#' + location[cnt]).val() == '') {
-			isValid = false;
-			$('#' + location[cnt] + '_error').show();
-			$('body').animate({
-				scrollTop: $('#' + location[cnt]).offset().top - 100
-			}, 'slow');
-			break;
-		}
-		else {
-			$('#' + location[cnt] + '_error').hide();
-		}
-	}
-	var is_numeric = new Array('frame_rate', 'width', 'height');
-	for (cnt in is_numeric) {
-		if ($('#' + is_numeric[cnt]).val() != '') {
-			if (isNaN($('#' + is_numeric[cnt]).val())) {
+		if ($('#' + location[cnt]).length > 0) {
+			if ($('#' + location[cnt]).val() == '') {
 				isValid = false;
-				$('#' + is_numeric[cnt] + '_error').show();
+				$('#' + location[cnt] + '_error').show();
 				$('body').animate({
-					scrollTop: $('#' + is_numeric[cnt]).offset().top - 100
+					scrollTop: $('#' + location[cnt]).offset().top - 100
 				}, 'slow');
 				break;
 			}
 			else {
-				$('#' + is_numeric[cnt] + '_error').hide();
+				$('#' + location[cnt] + '_error').hide();
 			}
 		}
-
+	}
+	var is_numeric = new Array('frame_rate', 'width', 'height');
+	for (cnt in is_numeric) {
+		if ($('#' + is_numeric[cnt]).length > 0) {
+			if ($('#' + is_numeric[cnt]).val() != '') {
+				if (isNaN($('#' + is_numeric[cnt]).val())) {
+					isValid = false;
+					$('#' + is_numeric[cnt] + '_error').show();
+					$('body').animate({
+						scrollTop: $('#' + is_numeric[cnt]).offset().top - 100
+					}, 'slow');
+					break;
+				}
+				else {
+					$('#' + is_numeric[cnt] + '_error').hide();
+				}
+			}
+		}
 	}
 	for (cnt in time) {
-		value = $('#' + time[cnt]).val();
-		if (value != '') {
-			duration = value.split(':');
-			if (duration.length == 3) {
-				if (isNaN(duration[0]) || isNaN(duration[1]) || isNaN(duration[2])) {
+		if ($('#' + time[cnt]).length > 0) {
+			value = $('#' + time[cnt]).val();
+			if (value != '') {
+				duration = value.split(':');
+				if (duration.length == 3) {
+					if (isNaN(duration[0]) || isNaN(duration[1]) || isNaN(duration[2])) {
+						isValid = false;
+						$('#' + time[cnt] + '_error').show();
+						$('body').animate({
+							scrollTop: $('#' + time[cnt]).offset().top - 100
+						}, 'slow');
+						break;
+
+					}
+					else {
+						if (duration[1] > 59 || duration[2] > 59) {
+							isValid = false;
+							$('#' + time[cnt] + '_error').show();
+							$('body').animate({
+								scrollTop: $('#' + time[cnt]).offset().top - 100
+							}, 'slow');
+							break;
+						}
+						else {
+							$('#' + time[cnt] + '_error').hide();
+						}
+					}
+
+				}
+				else {
 					isValid = false;
 					$('#' + time[cnt] + '_error').show();
 					$('body').animate({
@@ -236,31 +264,8 @@ function validateForm() {
 					break;
 
 				}
-				else {
-					if (duration[1] > 59 || duration[2] > 59) {
-						isValid = false;
-						$('#' + time[cnt] + '_error').show();
-						$('body').animate({
-							scrollTop: $('#' + time[cnt]).offset().top - 100
-						}, 'slow');
-						break;
-					}
-					else {
-						$('#' + time[cnt] + '_error').hide();
-					}
-				}
 
 			}
-			else {
-				isValid = false;
-				$('#' + time[cnt] + '_error').show();
-				$('body').animate({
-					scrollTop: $('#' + time[cnt]).offset().top - 100
-				}, 'slow');
-				break;
-
-			}
-
 		}
 	}
 	$('input[name="relation_ref[]"]').each(function() {

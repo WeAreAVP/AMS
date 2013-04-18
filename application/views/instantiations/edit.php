@@ -407,8 +407,8 @@
 					</td>
 					<td>
 						<p>
-							<input type="text" value=""  id="width" name="width" class="input-mini"/> x
-							<input type="text" value=""  id="height" name="height" class="input-mini"/>
+							<input type="text" value=""  id="width" name="width" class="input-mini" placeholder="Width" /> x
+							<input type="text" value=""  id="height" name="height" class="input-mini" placeholder="Height" />
 						</p>
 
 					</td>

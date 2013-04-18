@@ -173,7 +173,7 @@ function validateForm() {
 			$('body').animate({
 				scrollTop: $(this).parent().parent().offset().top - 100
 			}, 'slow');
-			break;
+			return false;
 			
 		}
 		else {

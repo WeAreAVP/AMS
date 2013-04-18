@@ -278,6 +278,7 @@ class Manage_Asset_Model extends CI_Model
 
 	function get_identifier_by_instantiation_id($ins_id)
 	{
+		$this->db->select('instantiation_identifier.id');
 		$this->db->select('instantiation_identifier.instantiation_source');
 		$this->db->select('instantiation_identifier.instantiation_identifier');
 		$this->db->where('instantiation_identifier.instantiations_id', $ins_id);

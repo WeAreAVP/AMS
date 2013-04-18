@@ -329,7 +329,10 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select('essence_track_frame_sizes.width,essence_track_frame_sizes.height');
 		$this->db->join('essence_track_frame_sizes', 'essence_track_frame_sizes.id=essence_tracks.essence_track_frame_sizes_id', 'LEFT');
 		$this->db->where('essence_tracks.instantiations_id', $ins_id);
-		return $this->db->get('table_essence_tracks')->row();
+		$result=$this->db->get('table_essence_tracks');
+		if(isset($result) && ! empty($result))
+			return $result->row();
+		return FALSE;
 	}
 
 }

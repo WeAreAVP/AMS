@@ -60,7 +60,7 @@ function addElement(elementID, type) {
 	var number = 10 + Math.floor(Math.random() * 100);
 	if (elementID == '#main_instantiation_id') {
 		append = '';
-		if (disable==1) {
+		if (disable == 1) {
 			append = '<div><p>Instantiation ID:</p><p><input type="text" id="instantiation_id_identifier_' + number + '" name="instantiation_id_identifier[]" value="" />' +
 			'<span class="help-block" style="display:none;">Instantiation ID is required.</span></p></div>';
 		}

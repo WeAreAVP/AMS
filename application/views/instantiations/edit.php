@@ -124,8 +124,12 @@
 							<?php }
 							?>
 						</div>
-						<div class="add-new-element" onclick="addElement('#main_instantiation_id', 'instantiation_id');"><i class="icon-plus-sign icon-white"></i><span id="add_instantiation_id"><?php echo $add; ?></span></div>
-
+						<?php
+						if ($disable)
+						{
+							?>
+							<div class="add-new-element" onclick="addElement('#main_instantiation_id', 'instantiation_id');"><i class="icon-plus-sign icon-white"></i><span id="add_instantiation_id"><?php echo $add; ?></span></div>
+						<?php } ?>
 					</td>
 
 				</tr>

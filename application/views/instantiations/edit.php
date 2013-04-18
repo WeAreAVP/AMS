@@ -76,6 +76,29 @@
 									<?php
 								}
 							}
+							else
+							{
+								?>
+								<div id="remove_instantiation_id_0" class="remove_instantiation_id">
+									<div class="edit_form_div">
+										<div>
+											<p>INSTANTIATION ID:</p>
+											<p>
+												<input type="text" id="instantiation_id_identifier_0" name="instantiation_id_identifier[]" value="" />
+											</p>
+										</div>
+										<div>
+											<p>INSTANTIATION ID SOURCE:</p>
+											<p>
+												<input type="text" id="instantiation_id_source_0" name="instantiation_id_source[]" value="" />
+											</p>
+										</div>
+
+									</div>
+
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
+								</div>
+							<?php }
 							?>
 						</div>
 						<div class="add-new-element" onclick="addElement('#main_instantiation_id', 'instantiation_id');"><i class="icon-plus-sign icon-white"></i><span id="add_instantiation_id"><?php echo $add; ?></span></div>

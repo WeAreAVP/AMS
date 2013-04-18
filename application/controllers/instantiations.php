@@ -307,7 +307,7 @@ class Instantiations extends MY_Controller
 
 				if ($this->input->post())
 				{
-				debug($this->input->post(),FALSE);
+					debug($this->input->post(), FALSE);
 //				if ($this->input->post('instantiation_id_identifier'))
 //				{
 //					foreach ($this->input->post('instantiation_id_identifier_id') as $index => $identifier_id)
@@ -332,9 +332,9 @@ class Instantiations extends MY_Controller
 //						}
 //					}
 //				}
-					
+
 					/* Nomination Start */
-					
+
 					$nomination = $this->input->post('nomination');
 					$reason = $this->input->post('nomination_reason');
 					$nomination_exist = $this->assets_model->get_nominations($instantiation_id);
@@ -423,9 +423,10 @@ class Instantiations extends MY_Controller
 						$this->manage_asset->delete_dimensions($instantiation_id);
 						foreach ($this->input->post('asset_dimension') as $index => $value)
 						{
+							$unit_measure = $this->input->post('dimension_unit');
 							$instantiation_dimension_d['instantiation_dimension'] = $value;
-							$instantiation_dimension_d['unit_of_measure'] = $this->input->post('dimension_unit');
-							echo $this->instantiation->insert_instantiation_dimensions($instantiation_dimension_d);
+							$instantiation_dimension_d['unit_of_measure'] = $unit_measure[$index];
+							$this->instantiation->insert_instantiation_dimensions($instantiation_dimension_d);
 						}
 					}
 					/* Demension End */
@@ -470,10 +471,19 @@ class Instantiations extends MY_Controller
 					}
 					/* Porjected Duration End */
 					/* Color Start */
-//					if ($this->input->post('color'))
-//					{
-//						$update_instantiation['color'] = $this->input->post('color');
-//					}
+					if ($this->input->post('color'))
+					{
+
+						$inst_color_d = $this->instant->get_instantiation_colors_by_color($this->input->post('color'));
+						if (isset($inst_color_d) && ! is_empty($inst_color_d))
+						{
+							$update_instantiation['instantiation_colors_id'] = $inst_color_d->id;
+						}
+						else
+						{
+							$update_instantiation['instantiation_colors_id'] = $this->instant->insert_instantiation_colors(array('color' => $this->input->post('color')));
+						}
+					}
 					/* Color End */
 					/* Tracks Start */
 					if ($this->input->post('tracks'))
@@ -493,10 +503,10 @@ class Instantiations extends MY_Controller
 						$update_instantiation['language'] = $this->input->post('language');
 					}
 					/* Language Configuration End */
-					
+
 					$this->instantiation->update_instantiations($instantiation_id, $update_instantiation);
 					exit;
-					redirect('instantiations/detail/'.$instantiation_id);
+					redirect('instantiations/detail/' . $instantiation_id);
 				}
 				$data['asset_id'] = $detail->assets_id;
 				$data['inst_id'] = $instantiation_id;

@@ -39,7 +39,7 @@ class Instantiations extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('instantiations_model', 'instantiation');
-$this->load->model('manage_asset_model', 'manage_asset');
+		$this->load->model('manage_asset_model', 'manage_asset');
 		$this->load->model('export_csv_job_model', 'csv_job');
 		$this->load->model('assets_model');
 		$this->load->model('essence_track_model', 'essence_track');
@@ -292,10 +292,6 @@ $this->load->model('manage_asset_model', 'manage_asset');
 		show_404();
 	}
 
-	
-
-	
-
 	public function edit()
 	{
 		$instantiation_id = $this->uri->segment(3);
@@ -308,7 +304,7 @@ $this->load->model('manage_asset_model', 'manage_asset');
 				
 			}
 			$detail = $data['instantiation_detail'] = $this->instantiation->get_by_id($instantiation_id);
-			
+
 			if (count($data['instantiation_detail']) > 0)
 			{
 				$data['asset_id'] = $detail->assets_id;
@@ -326,6 +322,7 @@ $this->load->model('manage_asset_model', 'manage_asset');
 				$data['inst_annotation'] = $this->manage_asset->get_annotation_by_instantiation_id($instantiation_id);
 				$data['inst_relation'] = $this->manage_asset->get_relation_by_instantiation_id($instantiation_id);
 				$data['asset_details'] = $this->assets_model->get_asset_by_asset_id($detail->assets_id);
+				$data['essence_track'] = $this->manage_asset->get_single_essence_tracks_by_instantiations_id($instantiation_id);
 				$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);
 				$data['pbcore_media_types'] = $this->manage_asset->get_picklist_values(11);
 				$data['pbcore_generations'] = $this->manage_asset->get_picklist_values(12);
@@ -333,7 +330,6 @@ $this->load->model('manage_asset_model', 'manage_asset');
 				$data['pbcore_standards'] = $this->manage_asset->get_picklist_values(14);
 				$data['pbcore_colors'] = $this->manage_asset->get_picklist_values(15);
 				$this->load->view('instantiations/edit', $data);
-				
 			}
 			else
 			{

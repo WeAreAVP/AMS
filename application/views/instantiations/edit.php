@@ -171,7 +171,7 @@
 													<p>Dimension:</p>
 													<p>
 														<input type="text" id="dimension_<?php echo $index; ?>" name="asset_dimension[]" value="<?php echo $demension->instantiation_dimension; ?>" />
-														
+
 													</p>
 												</div>
 												<div>
@@ -380,7 +380,7 @@
 					</td>
 					<td>
 						<p>
-							<input type="text" value=""  id="frame_rate" name="frame_rate"/>
+							<input type="text" value="<?php echo (isset($essence_track->frame_rate) ? $essence_track->frame_rate : ''); ?>"  id="frame_rate" name="frame_rate"/>
 						</p>
 
 					</td>
@@ -391,7 +391,7 @@
 					</td>
 					<td>
 						<p>
-							<input type="text" value=""  id="playback_speed" name="playback_speed"/>
+							<input type="text" value="<?php echo (isset($essence_track->playback_speed) ? $essence_track->playback_speed : ''); ?>"  id="playback_speed" name="playback_speed"/>
 						</p>
 
 					</td>
@@ -402,7 +402,7 @@
 					</td>
 					<td>
 						<p>
-							<input type="text" value=""  id="sampling_rate" name="sampling_rate"/>
+							<input type="text" value="<?php echo (isset($essence_track->sampling_rate) ? $essence_track->sampling_rate : ''); ?>"  id="sampling_rate" name="sampling_rate"/>
 						</p>
 
 					</td>
@@ -413,8 +413,8 @@
 					</td>
 					<td>
 						<p>
-							<input type="text" value=""  id="width" name="width" class="input-mini" placeholder="Width" /> x
-							<input type="text" value=""  id="height" name="height" class="input-mini" placeholder="Height" />
+							<input type="text" value="<?php echo (isset($essence_track->width) ? $essence_track->width : ''); ?>"  id="width" name="width" class="input-mini" placeholder="Width" /> x
+							<input type="text" value="<?php echo (isset($essence_track->height) ? $essence_track->height : ''); ?>"  id="height" name="height" class="input-mini" placeholder="Height" />
 						</p>
 
 					</td>
@@ -425,7 +425,7 @@
 					</td>
 					<td>
 						<p>
-							<input type="text" value=""  id="aspect_ratio" name="aspect_ratio" />
+							<input type="text" value="<?php echo (isset($essence_track->aspect_ratio) ? $essence_track->aspect_ratio : ''); ?>"  id="aspect_ratio" name="aspect_ratio" />
 						</p>
 
 					</td>

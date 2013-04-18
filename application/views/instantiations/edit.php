@@ -59,13 +59,18 @@
 									?>
 									<div id="remove_instantiation_id_<?php echo $index; ?>" class="remove_instantiation_id">
 										<div class="edit_form_div ins_edit_div">
-											<div>
-												<p>Instantiation ID:</p>
-												<p>
-													<input type="text" id="instantiation_id_identifier_<?php echo $index; ?>" name="instantiation_id_identifier[]" value="<?php echo trim($identifier->instantiation_identifier); ?>" />
-													<span  class="help-block" style="display:none;">Instantiation ID is required.</span>
-												</p>
-											</div>
+											<?php
+											if ($disable)
+											{
+												?>
+												<div>
+													<p>Instantiation ID:</p>
+													<p>
+														<input type="text" id="instantiation_id_identifier_<?php echo $index; ?>" name="instantiation_id_identifier[]" value="<?php echo trim($identifier->instantiation_identifier); ?>" />
+														<span  class="help-block" style="display:none;">Instantiation ID is required.</span>
+													</p>
+												</div>
+											<?php } ?>
 											<div>
 												<p>Instantiation ID Source:</p>
 												<p>
@@ -92,13 +97,18 @@
 								?>
 								<div id="remove_instantiation_id_0" class="remove_instantiation_id">
 									<div class="edit_form_div ins_edit_div">
-										<div>
-											<p>INSTANTIATION ID:</p>
-											<p>
-												<input type="text" id="instantiation_id_identifier_0" name="instantiation_id_identifier[]" value="" />
-												<span  class="help-block" style="display:none;">Instantiation ID is required.</span>
-											</p>
-										</div>
+										<?php
+										if ($disable)
+										{
+											?>
+											<div>
+												<p>INSTANTIATION ID:</p>
+												<p>
+													<input type="text" id="instantiation_id_identifier_0" name="instantiation_id_identifier[]" value="" />
+													<span  class="help-block" style="display:none;">Instantiation ID is required.</span>
+												</p>
+											</div>
+										<?php } ?>
 										<div>
 											<p>INSTANTIATION ID SOURCE:</p>
 											<p>
@@ -670,6 +680,8 @@
 	</div>
 </div>
 <script type="text/javascript">
+												var disable =<?php echo $disable; ?>;
+
 												var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
 												var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
 												var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;

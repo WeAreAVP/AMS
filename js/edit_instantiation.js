@@ -59,12 +59,14 @@ function removeElement(elementID, type) {
 function addElement(elementID, type) {
 	var number = 10 + Math.floor(Math.random() * 100);
 	if (elementID == '#main_instantiation_id') {
+		append = '';
+		if (disable) {
+			append = '<div><p>INSTANTIATION ID:</p><p><input type="text" id="instantiation_id_identifier_' + number + '" name="instantiation_id_identifier[]" value="" />' +
+			'<span class="help-block" style="display:none;">Instantiation ID is required.</span></p></div>';
+		}
 
-
-		html = '<div id="remove_instantiation_id_' + number + '" class="remove_instantiation_id"><div class="edit_form_div ins_edit_div"><div><p>INSTANTIATION ID:</p><p>' +
-		'<input type="text" id="instantiation_id_identifier_' + number + '" name="instantiation_id_identifier[]" value="" />' +
-		'<span class="help-block" style="display:none;">Instantiation ID is required.</span>' +
-		'</p></div><div><p>INSTANTIATION ID SOURCE:</p><p>' +
+		html = '<div id="remove_instantiation_id_' + number + '" class="remove_instantiation_id"><div class="edit_form_div ins_edit_div">' + append +
+		'<div><p>INSTANTIATION ID SOURCE:</p><p>' +
 		'<input type="text" id="instantiation_id_source_' + number + '" name="instantiation_id_source[]" value="" />' +
 		'<span class="help-block" style="display:none;">Instantiation ID Source is required.</span>' +
 		'</p></div></div>' +

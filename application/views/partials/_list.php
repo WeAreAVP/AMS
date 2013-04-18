@@ -75,9 +75,8 @@
 							<div><b>Actual Duration: </b><?php echo date('H:i:s', strtotime($asset_instantiation->actual_duration)); ?></div>
 							<?php
 						}
-						if (!empty($asset_instantiation->projected_duration))
+						if ( ! empty($asset_instantiation->projected_duration))
 						{
-							
 							?>
 							<div><b>Projected Duration: </b><?php echo $asset_instantiation->projected_duration; ?></div>
 						<?php } ?>
@@ -92,5 +91,12 @@
 
 </div>
 
-
+<script type="text/javascript">
+	if ($('.detail-menu').offset().top < 160) {
+		$('.detail-menu').css('position','fixed');
+	}
+	else{
+		$('.detail-menu').css('position','absolute');
+	}
+</script>
 

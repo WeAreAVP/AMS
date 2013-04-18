@@ -319,15 +319,17 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->where('instantiation_relations.instantiations_id', $ins_id);
 		return $result = $this->db->get('instantiation_relations')->result();
 	}
-	function get_single_essence_tracks_by_instantiations_id($ins_d){
-		
-		$this->db->select("$this->_table_essence_tracks.frame_rate");
-		$this->db->select("$this->_table_essence_tracks.playback_speed,$this->_table_essence_tracks.sampling_rate");
-		$this->db->select("$this->_table_essence_tracks.aspect_ratio");
-		$this->db->select("$this->_table_essence_track_frame_sizes.width,$this->_table_essence_track_frame_sizes.height");
-		$this->db->join($this->_table_essence_track_frame_sizes, "$this->_table_essence_track_frame_sizes.id=$this->_table_essence_tracks.essence_track_frame_sizes_id", 'LEFT');
-		$this->db->where("$this->_table_essence_tracks.instantiations_id", $ins_id);
-		return $this->db->get($this->_table_essence_tracks)->row();
+
+	function get_single_essence_tracks_by_instantiations_id($ins_d)
+	{
+
+		$this->db->select('essence_tracks.frame_rate');
+		$this->db->select('essence_tracks.playback_speed,essence_tracks.sampling_rate');
+		$this->db->select('essence_tracks.aspect_ratio');
+		$this->db->select('essence_track_frame_sizes.width,essence_track_frame_sizes.height');
+		$this->db->join('essence_track_frame_sizes', 'essence_track_frame_sizes.id=essence_tracks.essence_track_frame_sizes_id', 'LEFT');
+		$this->db->where('essence_tracks.instantiations_id', $ins_id);
+		return $this->db->get('table_essence_tracks')->row();
 	}
 
 }

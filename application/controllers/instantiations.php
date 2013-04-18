@@ -360,7 +360,7 @@ class Instantiations extends MY_Controller
 						if ($nomination_exist)
 						{
 
-							
+
 							$this->manage_asset->delete_row($instantiation_id, 'nominations', 'instantiations_id');
 						}
 					}
@@ -380,7 +380,7 @@ class Instantiations extends MY_Controller
 					/* Generation Start */
 					if ($this->input->post('generation'))
 					{
-						
+
 						$this->manage_asset->delete_row($instantiation_id, 'instantiation_generations', 'instantiations_id');
 						foreach ($this->input->post('generation') as $row)
 						{
@@ -559,6 +559,32 @@ class Instantiations extends MY_Controller
 						}
 					}
 					/* Relation End */
+					/* Essence Track Start */
+					/* Essence Track  Frame Size Start */
+					if ($this->input->post('relation') && $this->input->post('relation'))
+					{
+						$track_frame_size_d = $this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame_sizes[0]), trim($frame_sizes[1]));
+						if ($track_frame_size_d)
+						{
+							$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;
+						}
+						else
+						{
+							$essence_tracks_d['essence_track_frame_sizes_id'] = $this->essence->insert_essence_track_frame_sizes(array("width" => $frame_sizes[0], "height" => $frame_sizes[1]));
+						}
+					}
+					/* Essence Track  Frame Size End */
+					$essence_track = $this->manage_asset->get_single_essence_tracks_by_instantiations_id($instantiation_id);
+					if ($essence_track)
+					{
+						// update
+					}
+					else
+					{
+						//insert
+					}
+					/* Essence Track End */
+
 					redirect('instantiations/detail/' . $instantiation_id);
 				}
 				$data['asset_id'] = $detail->assets_id;

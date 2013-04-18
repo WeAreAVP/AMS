@@ -313,7 +313,7 @@ class Manage_Asset_Model extends CI_Model
 	{
 		$this->db->select('instantiation_dimensions.instantiation_dimension,instantiation_dimensions.unit_of_measure');
 		$this->db->where('instantiation_dimensions.instantiations_id', $ins_id);
-		return $result = $this->db->get('instantiation_dimensions')->row();
+		return $result = $this->db->get('instantiation_dimensions')->result();
 	}
 
 	function get_annotation_by_instantiation_id($ins_id)

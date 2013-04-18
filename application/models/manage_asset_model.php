@@ -288,11 +288,15 @@ class Manage_Asset_Model extends CI_Model
 
 	function get_dates_by_instantiation_id($ins_id)
 	{
+		$this->db->select('instantiation_dates.id');
 		$this->db->select('instantiation_dates.instantiation_date');
 		$this->db->select('date_types.date_type');
 		$this->db->where('instantiation_dates.instantiations_id', $ins_id);
 		$this->db->join('date_types', 'date_types.id = instantiation_dates.date_types_id', 'left');
-		return $result = $this->db->get('instantiation_dates')->result();
+		$result = $this->db->get('instantiation_dates');
+		if (isset($result) && ! empty($result))
+			return $result->row();
+		return FALSE;
 	}
 
 	function get_demension_by_instantiation_id($ins_id)
@@ -330,8 +334,8 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select('essence_track_frame_sizes.width,essence_track_frame_sizes.height');
 		$this->db->join('essence_track_frame_sizes', 'essence_track_frame_sizes.id=essence_tracks.essence_track_frame_sizes_id', 'LEFT');
 		$this->db->where('essence_tracks.instantiations_id', $ins_id);
-		$result=$this->db->get('table_essence_tracks');
-		if(isset($result) && ! empty($result))
+		$result = $this->db->get('table_essence_tracks');
+		if (isset($result) && ! empty($result))
 			return $result->row();
 		return FALSE;
 	}

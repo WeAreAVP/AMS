@@ -504,6 +504,12 @@ class Instantiations_Model extends CI_Model
 		$this->db->insert($this->table_instantiation_dates, $data);
 		return $this->db->insert_id();
 	}
+	function update_instantiation_date($inst_id,$data)
+	{
+		$this->db->where('instantiations_id',instantiation);
+		$this->db->update($this->table_instantiation_dates, $data);
+		return $this->db->insert_id();
+	}
 
 	/*
 	 *

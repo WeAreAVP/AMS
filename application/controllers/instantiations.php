@@ -299,8 +299,14 @@ class Instantiations extends MY_Controller
 		if ( ! empty($instantiation_id))
 		{
 
-			if ($this->input->post())
+
+			$detail = $data['instantiation_detail'] = $this->instantiation->get_by_id($instantiation_id);
+
+			if (count($data['instantiation_detail']) > 0)
 			{
+				$data['date'] = $this->manage_asset->get_dates_by_instantiation_id($instantiation_id);
+				if ($this->input->post())
+				{
 //				debug($this->input->post(),FALSE);
 //				if ($this->input->post('instantiation_id_identifier'))
 //				{
@@ -326,73 +332,96 @@ class Instantiations extends MY_Controller
 //						}
 //					}
 //				}
-				$nomination = $this->input->post('nomination');
-				$reason = $this->input->post('nomination_reason');
-				$nomination_exist = $this->assets_model->get_nominations($instantiation_id);
-				if ( ! empty($nomination))
-				{
-					$nomination_id = $this->assets_model->get_nomination_status_by_status($nomination)->id;
+					/* Nomination Start */
+					$nomination = $this->input->post('nomination');
+					$reason = $this->input->post('nomination_reason');
+					$nomination_exist = $this->assets_model->get_nominations($instantiation_id);
+					if ( ! empty($nomination))
+					{
+						$nomination_id = $this->assets_model->get_nomination_status_by_status($nomination)->id;
 
-					$nomination_record = array('nomination_status_id' => $nomination_id, 'nomination_reason' => $reason, 'nominated_by' => $this->user_id, 'nominated_at' => date('Y-m-d H:i:s'));
-					if ($nomination_exist)
-					{
-						$nomination_record['updated'] = date('Y-m-d H:i:s');
-						$this->assets_model->update_nominations($instantiation_id, $nomination_record);
-					}
-					else
-					{
-						$nomination_record['instantiations_id'] = $ins_id;
-						$nomination_record['created'] = date('Y-m-d H:i:s');
-						$this->assets_model->insert_nominations($nomination_record);
-					}
-				}
-				else
-				{
-					if ($nomination_exist)
-					{
-
-						$this->instantiation->delete_nominations_by_instantiation_id($instantiation_id);
-					}
-				}
-				$media_type = $this->input->post('media_type');
-				$db_media_type = $this->instantiation->get_instantiation_media_types_by_media_type($media_type);
-				if ($db_media_type)
-				{
-					$media_type_id = $db_media_type->id;
-				}
-				else
-				{
-					$media_type_id = $this->instantiation->insert_instantiation_media_types(array('media_type' => $media_type));
-				}
-				if ($this->input->post('generation'))
-				{
-					$this->instantiation->delete_generation_by_instantiation_id($instantiation_id);
-					foreach ($this->input->post('generation') as $row)
-					{
-						$db_generation = $this->instantiation->get_generations_by_generation($row);
-						if ($db_generation)
+						$nomination_record = array('nomination_status_id' => $nomination_id, 'nomination_reason' => $reason, 'nominated_by' => $this->user_id, 'nominated_at' => date('Y-m-d H:i:s'));
+						if ($nomination_exist)
 						{
-							$db_gen_id = $db_generation->id;
+							$nomination_record['updated'] = date('Y-m-d H:i:s');
+							$this->assets_model->update_nominations($instantiation_id, $nomination_record);
 						}
 						else
 						{
-							$db_gen_id = $this->instantiation->insert_generations(array('generation' => $row));
+							$nomination_record['instantiations_id'] = $ins_id;
+							$nomination_record['created'] = date('Y-m-d H:i:s');
+							$this->assets_model->insert_nominations($nomination_record);
 						}
-						$this->instantiation->insert_instantiation_generations(array('instantiations_id' => $instantiation_id, 'generations_id' => $db_gen_id));
 					}
-				}
-				exit;
-			}
-			$detail = $data['instantiation_detail'] = $this->instantiation->get_by_id($instantiation_id);
+					else
+					{
+						if ($nomination_exist)
+						{
 
-			if (count($data['instantiation_detail']) > 0)
-			{
+							$this->instantiation->delete_nominations_by_instantiation_id($instantiation_id);
+						}
+					}
+					/* Nomination End */
+					/* Media Type Start */
+					$media_type = $this->input->post('media_type');
+					$db_media_type = $this->instantiation->get_instantiation_media_types_by_media_type($media_type);
+					if ($db_media_type)
+					{
+						$media_type_id = $db_media_type->id;
+					}
+					else
+					{
+						$media_type_id = $this->instantiation->insert_instantiation_media_types(array('media_type' => $media_type));
+					}
+					/* Media Type End */
+					/* Generation Start */
+					if ($this->input->post('generation'))
+					{
+						$this->instantiation->delete_generation_by_instantiation_id($instantiation_id);
+						foreach ($this->input->post('generation') as $row)
+						{
+							$db_generation = $this->instantiation->get_generations_by_generation($row);
+							if ($db_generation)
+							{
+								$db_gen_id = $db_generation->id;
+							}
+							else
+							{
+								$db_gen_id = $this->instantiation->insert_generations(array('generation' => $row));
+							}
+							$this->instantiation->insert_instantiation_generations(array('instantiations_id' => $instantiation_id, 'generations_id' => $db_gen_id));
+						}
+					}
+					/* Generation End */
+					/* Date Start */
+					if ($this->input->post('inst_date'))
+					{
+						$date_type = $this->instantiation->get_date_types_by_type($this->input->post('inst_date_type'));
+						if (isset($date_type) && isset($date_type->id))
+							$instantiation_dates_d['date_types_id'] = $date_type->id;
+						else
+							$instantiation_dates_d['date_types_id'] = $this->instantiation->insert_date_types(array('date_type' => $this->input->post('inst_date_type')));
+						$instantiation_dates_d['instantiation_date'] = $this->input->post('inst_date');
+						if ($data['date'])
+						{
+							$this->instantiation->update_instantiation_date($instantiation_dates_d);
+						}
+						else
+						{
+							$instantiation_dates_d['instantiations_id'] = $instantiation_id;
+							$this->instantiation->insert_instantiation_dates($instantiation_dates_d);
+							//insert
+						}
+					}
+					/* Date End */
+					exit;
+				}
 				$data['asset_id'] = $detail->assets_id;
 				$data['inst_id'] = $instantiation_id;
 				$data['list_assets'] = $this->instantiation->get_instantiations_by_asset_id($detail->assets_id);
 				$data['ins_nomination'] = $this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
 				$data['inst_identifier'] = $this->manage_asset->get_identifier_by_instantiation_id($instantiation_id);
-				$data['inst_dates'] = $this->manage_asset->get_dates_by_instantiation_id($instantiation_id);
+
 				$data['inst_demension'] = $this->manage_asset->get_demension_by_instantiation_id($instantiation_id);
 				$data['inst_format'] = $this->instantiation->get_format_by_instantiation_id($instantiation_id);
 				$data['inst_media_type'] = $this->instantiation->get_media_type_by_instantiation_media_id($detail->instantiation_media_type_id);

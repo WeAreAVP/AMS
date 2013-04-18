@@ -65,7 +65,7 @@
 
 										</div>
 										<?php
-										if ($key != 0)
+										if ($index != 0)
 										{
 											?>
 											<div class="remove_element" onclick="removeElement('#remove_instantiation_id_<?php echo $index; ?>', 'instantiation_id');"><img src="/images/remove-item.png" /></div>

@@ -64,7 +64,12 @@
 											</div>
 
 										</div>
-										<div class="remove_element" onclick="removeElement('#remove_instantiation_id_<?php echo $index; ?>', 'instantiation_id');"><img src="/images/remove-item.png" /></div>
+										<?php
+										if ($key != 0)
+										{
+											?>
+											<div class="remove_element" onclick="removeElement('#remove_instantiation_id_<?php echo $index; ?>', 'instantiation_id');"><img src="/images/remove-item.png" /></div>
+										<?php } ?>
 										<div class="clearfix" style="margin-bottom: 10px;"></div>
 									</div>
 
@@ -591,10 +596,10 @@
 	</div>
 </div>
 <script type="text/javascript">
-											var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
-											var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
-											var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;
-											var pbcoreGeneration =<?php echo json_encode($pbcore_generations); ?>;
+												var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
+												var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
+												var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;
+												var pbcoreGeneration =<?php echo json_encode($pbcore_generations); ?>;
 
 </script>
 <script type="text/javascript" src="/js/edit_instantiation.js?<?php echo time(); ?>"></script>

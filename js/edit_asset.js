@@ -534,6 +534,7 @@ function addElement(elementID, type) {
 }
 function validateForm() {
 	var isValid = true;
+	
 	var name = new Array('asset_identifier_ref', 'asset_title_ref', 'asset_subject_ref', 'asset_genre_ref',
 	'asset_audience_level_ref', 'asset_annotation_ref', 'asset_relation_ref', 'asset_creator_ref', 'asset_creator_role_ref',
 	'asset_contributor_ref', 'asset_contributor_role_ref', 'asset_publisher_ref', 'asset_publisher_role_ref', 'asset_right_link');

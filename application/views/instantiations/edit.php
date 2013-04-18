@@ -184,29 +184,8 @@
 
 						</td>
 					</tr>
-					<tr>
-						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> File Size:</b></label>
-						</td>
-						<td>
-							<p>
-								<input type="text" id="file_size" name="file_size" value="<?php echo $instantiation_detail->file_size; ?>" />
-								<span id="file_size_error" class="help-block" style="color: #c65f5a;display: none;">File size should be numeric.</span>
-							</p>
-
-						</td>
-					</tr>
-					<tr>
-						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> File Size Unit of measure:</b></label>
-						</td>
-						<td>
-							<p>
-								<input type="text" id="file_size_unit" name="file_size_unit" value="<?php echo $instantiation_detail->file_size_unit_of_measure; ?>" />
-							</p>
-
-						</td>
-					</tr>
+					
+					
 					<tr>
 						<td class="record-detail-page">
 							<label><i class="icon-question-sign"></i><b> Time start:</b></label>
@@ -231,40 +210,9 @@
 
 						</td>
 					</tr>
-					<tr>
-						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Actual Duration:</b></label>
-						</td>
-						<td>
-							<p>
-								<input type="text" id="actual_duration" name="actual_duration" value="<?php echo $instantiation_detail->actual_duration; ?>" />
-								<span id="actual_duration_error" class="help-block" style="color: #c65f5a;display: none;">Actual Duration should be hh:mm:ss.</span>
-							</p>
-
-						</td>
-					</tr>
-					<tr>
-						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Data rate:</b></label>
-						</td>
-						<td>
-							<p>
-								<input type="text" id="data_rate" name="data_rate" value="<?php echo $instantiation_detail->data_rate; ?>" />
-							</p>
-
-						</td>
-					</tr>
-					<tr>
-						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Data rate unit of measure:</b></label>
-						</td>
-						<td>
-							<p>
-								<input type="text" id="data_rate_unit" name="data_rate_unit" value="<?php echo (isset($inst_data_rate_unit->unit_of_measure) ? $inst_data_rate_unit->unit_of_measure : ''); ?>" />
-							</p>
-
-						</td>
-					</tr>
+					
+					
+					
 					<tr>
 						<td class="record-detail-page">
 							<label><i class="icon-question-sign"></i><b> Color:</b></label>

@@ -305,22 +305,7 @@
 
 					</td>
 				</tr>
-				<?php
-				if (( empty($instantiation_detail->digitized) && $instantiation_detail->digitized == NULL) || $instantiation_detail->digitized == 1)
-				{
-					?>
-					<tr>
-						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b>Alternative Modes:</b></label>
-						</td>
-						<td>
-							<p>
-								<input type="text" value="<?php echo $instantiation_detail->alternative_modes; ?>"  id="alternative_modes" name="alternative_modes"/>
-							</p>
 
-						</td>
-					</tr>
-				<?php } ?>
 				<tr>
 					<td class="record-detail-page">
 						<label><i class="icon-question-sign"></i><b> Nomination Status:</b></label>
@@ -351,6 +336,62 @@
 					<td>
 						<p>
 							<textarea style="width: 540px;height: 90px;" id="nomination_reason" name="nomination_reason"><?php echo (isset($ins_nomination->nomination_reason)) ? $ins_nomination->nomination_reason : ''; ?></textarea>
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Frame Rate:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" value=""  id="frame_rate" name="frame_rate"/>
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b> Playback Speed:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" value=""  id="playback_speed" name="playback_speed"/>
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b>Sampling Rate:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" value=""  id="sampling_rate" name="sampling_rate"/>
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b>Frame Size:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" value=""  id="width" name="width" class="input-mini"/> x
+							<input type="text" value=""  id="height" name="height" class="input-mini"/>
+						</p>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="record-detail-page">
+						<label><i class="icon-question-sign"></i><b>Aspect Ratio:</b></label>
+					</td>
+					<td>
+						<p>
+							<input type="text" value=""  id="aspect_ratio" name="aspect_ratio" />
 						</p>
 
 					</td>
@@ -411,11 +452,22 @@
 				{
 					?>
 					<tr>
+						<td class="record-detail-page">
+							<label><i class="icon-question-sign"></i><b>Alternative Modes:</b></label>
+						</td>
+						<td>
+							<p>
+								<input type="text" value="<?php echo $instantiation_detail->alternative_modes; ?>"  id="alternative_modes" name="alternative_modes"/>
+							</p>
+
+						</td>
+					</tr>
+					<tr>
 						<?php
 						$add = ' ADD ANNOTATION';
 						?>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> ANNOTATION:</b></label>
+							<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
 						</td>
 						<td>
 							<div id="main_annotation">

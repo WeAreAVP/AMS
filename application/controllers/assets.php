@@ -540,7 +540,7 @@ class Assets extends MY_Controller
 			);
 		foreach ($static_gen as $value)
 		{
-			$this->manage_asset->insert_picklist_value(array('value' => $value, 'element_type_id' => 15));
+//			$this->manage_asset->insert_picklist_value(array('value' => $value, 'element_type_id' => 15));
 		}
 	}
 

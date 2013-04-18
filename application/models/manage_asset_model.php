@@ -320,7 +320,7 @@ class Manage_Asset_Model extends CI_Model
 		return $result = $this->db->get('instantiation_relations')->result();
 	}
 
-	function get_single_essence_tracks_by_instantiations_id($ins_d)
+	function get_single_essence_tracks_by_instantiations_id($ins_id)
 	{
 
 		$this->db->select('essence_tracks.frame_rate');

@@ -604,6 +604,17 @@ class Instantiations extends MY_Controller
 						$essence_tracks_d['aspect_ratio'] = $this->input->post('aspect_ratio');
 					}
 					/* Essence Track Aspect Ratio End */
+					/* Essence Track Type Start */
+					$essence_track_type_d = $this->essence->get_essence_track_by_type('General');
+					if (isset($essence_track_type_d) && isset($essence_track_type_d->id))
+					{
+						$essence_tracks_d['essence_track_types_id'] = $essence_track_type_d->id;
+					}
+					else
+					{
+						$essence_tracks_d['essence_track_types_id'] = $this->essence->insert_essence_track_types(array('essence_track_type' => 'General'));
+					}
+					/* Essence Track Type End */
 
 
 					/* Essence Track Start */

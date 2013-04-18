@@ -537,7 +537,7 @@ class Assets extends MY_Controller
 	function insert_pbcore_values()
 	{
 		$static_gen = array('B&W', 'Color', 'Grayscale', 'Tinted, Toned', 'YUV', 'RGB', 'CMYK'
-			);
+		);
 		foreach ($static_gen as $value)
 		{
 //			$this->manage_asset->insert_picklist_value(array('value' => $value, 'element_type_id' => 15));
@@ -546,23 +546,13 @@ class Assets extends MY_Controller
 
 	private function delete_asset_attributes($asset_id)
 	{
-		$this->manage_asset->delete_row($instantiation_id, 'nominations', 'assets_id');
-		$this->manage_asset->delete_asset_types($asset_id);
-		$this->manage_asset->delete_asset_dates($asset_id);
-		$this->manage_asset->delete_local_identifiers($asset_id);
-		$this->manage_asset->delete_asset_titles($asset_id);
-		$this->manage_asset->delete_asset_subjects($asset_id);
-		$this->manage_asset->delete_asset_descriptions($asset_id);
-		$this->manage_asset->delete_asset_genre($asset_id);
-		$this->manage_asset->delete_asset_coverage($asset_id);
-		$this->manage_asset->delete_audience_level($asset_id);
-		$this->manage_asset->delete_audience_rating($asset_id);
-		$this->manage_asset->delete_annotations($asset_id);
-		$this->manage_asset->delete_relations($asset_id);
-		$this->manage_asset->delete_creator($asset_id);
-		$this->manage_asset->delete_contributor($asset_id);
-		$this->manage_asset->delete_publisher($asset_id);
-		$this->manage_asset->delete_rights($asset_id);
+		$table_names = array('assets_asset_types', 'asset_dates', 'identifiers', 'asset_titles', 'assets_subjects', 'asset_descriptions',
+			'assets_genres', 'coverages', 'assets_audience_levels', 'assets_audience_ratings', 'annotations', 'assets_relations',
+			'assets_creators_roles', 'assets_contributors_roles', 'assets_publishers_role', 'rights_summaries');
+		foreach ($table_names as $value)
+		{
+			$this->manage_asset->delete_row($asset_id, $table_names, 'assets_id');
+		}
 		return TRUE;
 	}
 

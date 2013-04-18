@@ -330,6 +330,8 @@ $this->load->model('manage_asset_model', 'manage_asset');
 				$data['pbcore_media_types'] = $this->manage_asset->get_picklist_values(11);
 				$data['pbcore_generations'] = $this->manage_asset->get_picklist_values(12);
 				$data['pbcore_relation_types'] = $this->manage_asset->get_picklist_values(7);
+				$data['pbcore_standards'] = $this->manage_asset->get_picklist_values(14);
+				$data['pbcore_colors'] = $this->manage_asset->get_picklist_values(15);
 				$this->load->view('instantiations/edit', $data);
 			}
 			else

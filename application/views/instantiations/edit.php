@@ -168,7 +168,18 @@
 						</td>
 						<td>
 							<p>
-								<input type="text" id="standard" name="standard" value="<?php echo $instantiation_detail->standard; ?>" />
+								<select id="standard" name="standard">
+									<?php
+									foreach ($pbcore_standards as $row)
+									{
+										$selected = '';
+										if ($instantiation_detail->standard == $row->value)
+											$selected = 'selected="selected"'
+											?>
+										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+									<?php }
+									?>
+								</select>
 							</p>
 
 						</td>
@@ -184,8 +195,8 @@
 
 						</td>
 					</tr>
-					
-					
+
+
 					<tr>
 						<td class="record-detail-page">
 							<label><i class="icon-question-sign"></i><b> Time start:</b></label>
@@ -210,16 +221,28 @@
 
 						</td>
 					</tr>
-					
-					
-					
+
+
+
 					<tr>
 						<td class="record-detail-page">
 							<label><i class="icon-question-sign"></i><b> Color:</b></label>
 						</td>
 						<td>
 							<p>
-								<input type="text" id="color" name="color" value="<?php echo (isset($inst_color->color) ? $inst_color->color : ''); ?>" />
+
+								<select id="color" name="color">
+									<?php
+									foreach ($pbcore_colors as $row)
+									{
+										$selected = '';
+										if (isset($inst_color->color) && $inst_color->color == $row->value)
+											$selected = 'selected="selected"'
+											?>
+										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+									<?php }
+									?>
+								</select>
 							</p>
 
 						</td>
@@ -516,10 +539,10 @@
 	</div>
 </div>
 <script type="text/javascript">
-									var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
-									var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
-									var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;
-									var pbcoreGeneration =<?php echo json_encode($pbcore_generations); ?>;
+											var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
+											var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
+											var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;
+											var pbcoreGeneration =<?php echo json_encode($pbcore_generations); ?>;
 
 </script>
 <script type="text/javascript" src="/js/edit_instantiation.js?<?php echo time(); ?>"></script>

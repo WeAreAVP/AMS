@@ -320,14 +320,14 @@ class Instantiations extends MY_Controller
 
 							if (isset($ins_identifer_id[$index]) && ! empty($ins_identifer_id[$index]))
 							{
-								
+
 								$this->instantiation->update_instantiation_identifier_by_id($ins_identifer_id[$index], $identifier);
 							}
 							else
 							{
-								
+
 								$identifier['instantiations_id'] = $instantiation_id;
-								
+
 								$this->instantiation->insert_instantiation_identifier($identifier);
 							}
 						}
@@ -344,7 +344,7 @@ class Instantiations extends MY_Controller
 							}
 						}
 					}
-					
+
 					/* Instantiation Identifier End */
 					/* Nomination Start */
 
@@ -410,116 +410,121 @@ class Instantiations extends MY_Controller
 						}
 					}
 					/* Generation End */
-					/* Date Start */
-					if ($this->input->post('inst_date'))
+					if ($this->input->post('instantiation_id_identifier'))
 					{
-						$date_type = $this->instantiation->get_date_types_by_type($this->input->post('inst_date_type'));
-						if (isset($date_type) && isset($date_type->id))
-							$instantiation_dates_d['date_types_id'] = $date_type->id;
-						else
-							$instantiation_dates_d['date_types_id'] = $this->instantiation->insert_date_types(array('date_type' => $this->input->post('inst_date_type')));
-						$instantiation_dates_d['instantiation_date'] = $this->input->post('inst_date');
-						$db_date = $this->manage_asset->get_dates_by_instantiation_id($instantiation_id);
-						if ($db_date)
+						/* Date Start */
+						if ($this->input->post('inst_date'))
 						{
-							$this->instantiation->update_instantiation_date($db_date->id, $instantiation_dates_d);
+							$date_type = $this->instantiation->get_date_types_by_type($this->input->post('inst_date_type'));
+							if (isset($date_type) && isset($date_type->id))
+								$instantiation_dates_d['date_types_id'] = $date_type->id;
+							else
+								$instantiation_dates_d['date_types_id'] = $this->instantiation->insert_date_types(array('date_type' => $this->input->post('inst_date_type')));
+							$instantiation_dates_d['instantiation_date'] = $this->input->post('inst_date');
+							$db_date = $this->manage_asset->get_dates_by_instantiation_id($instantiation_id);
+							if ($db_date)
+							{
+								$this->instantiation->update_instantiation_date($db_date->id, $instantiation_dates_d);
+							}
+							else
+							{
+								$instantiation_dates_d['instantiations_id'] = $instantiation_id;
+								$this->instantiation->insert_instantiation_dates($instantiation_dates_d);
+								//insert
+							}
 						}
-						else
+						/* Date End */
+						/* Demension Start */
+						if ($this->input->post('asset_dimension'))
 						{
-							$instantiation_dates_d['instantiations_id'] = $instantiation_id;
-							$this->instantiation->insert_instantiation_dates($instantiation_dates_d);
-							//insert
+
+							$this->manage_asset->delete_row($instantiation_id, 'instantiation_dimensions', 'instantiations_id');
+							foreach ($this->input->post('asset_dimension') as $index => $value)
+							{
+								$unit_measure = $this->input->post('dimension_unit');
+								$instantiation_dimension_d['instantiations_id'] = $instantiation_id;
+								$instantiation_dimension_d['instantiation_dimension'] = $value;
+								$instantiation_dimension_d['unit_of_measure'] = $unit_measure[$index];
+								$this->instantiation->insert_instantiation_dimensions($instantiation_dimension_d);
+							}
 						}
-					}
-					/* Date End */
-					/* Demension Start */
-					if ($this->input->post('asset_dimension'))
-					{
+						/* Demension End */
+						/* Physical Format Start */
 
-						$this->manage_asset->delete_row($instantiation_id, 'instantiation_dimensions', 'instantiations_id');
-						foreach ($this->input->post('asset_dimension') as $index => $value)
+						$physical_format = $this->instantiation->get_format_by_instantiation_id($instantiation_id);
+
+						$instantiation_format_physical_d['format_name'] = $this->input->post('physical_format');
+						$instantiation_format_physical_d['format_type'] = 'physical';
+
+						if (count($physical_format) > 0)
 						{
-							$unit_measure = $this->input->post('dimension_unit');
-							$instantiation_dimension_d['instantiations_id'] = $instantiation_id;
-							$instantiation_dimension_d['instantiation_dimension'] = $value;
-							$instantiation_dimension_d['unit_of_measure'] = $unit_measure[$index];
-							$this->instantiation->insert_instantiation_dimensions($instantiation_dimension_d);
-						}
-					}
-					/* Demension End */
-					/* Physical Format Start */
-					$physical_format = $this->instantiation->get_format_by_instantiation_id($instantiation_id);
-
-					$instantiation_format_physical_d['format_name'] = $this->input->post('physical_format');
-					$instantiation_format_physical_d['format_type'] = 'physical';
-
-					if (count($physical_format) > 0)
-					{
-						$instantiation_format_physical_id = $this->instantiation->update_instantiation_formats($physical_format->id, $instantiation_format_physical_d);
-					}
-					else
-					{
-						$instantiation_format_physical_d['instantiations_id'] = $instantiations_id;
-						$instantiation_format_physical_id = $this->instantiation->insert_instantiation_formats($instantiation_format_physical_d);
-					}
-					/* Physical Format End */
-					/* Standard Start */
-					if ($this->input->post('standard'))
-					{
-						$update_instantiation['standard'] = $this->input->post('standard');
-					}
-					/* Standard End */
-					/* Location Start */
-					if ($this->input->post('location'))
-					{
-						$update_instantiation['location'] = $this->input->post('location');
-					}
-					/* Location End */
-					/* Time Start Start */
-					if ($this->input->post('time_start'))
-					{
-						$update_instantiation['time_start'] = $this->input->post('time_start');
-					}
-					/* Time Start End */
-					/* Porjected Duration Start */
-					if ($this->input->post('projected_duration'))
-					{
-						$update_instantiation['projected_duration'] = $this->input->post('projected_duration');
-					}
-					/* Porjected Duration End */
-					/* Porjected Alernative Modes Start */
-					if ($this->input->post('alternative_modes'))
-					{
-						$update_instantiation['alternative_modes'] = $this->input->post('alternative_modes');
-					}
-					/* Porjected Alernative Modes End */
-					/* Color Start */
-					if ($this->input->post('color'))
-					{
-
-						$inst_color_d = $this->instantiation->get_instantiation_colors_by_color($this->input->post('color'));
-						if (isset($inst_color_d) && ! is_empty($inst_color_d))
-						{
-							$update_instantiation['instantiation_colors_id'] = $inst_color_d->id;
+							$instantiation_format_physical_id = $this->instantiation->update_instantiation_formats($physical_format->id, $instantiation_format_physical_d);
 						}
 						else
 						{
-							$update_instantiation['instantiation_colors_id'] = $this->instantiation->insert_instantiation_colors(array('color' => $this->input->post('color')));
+							$instantiation_format_physical_d['instantiations_id'] = $instantiations_id;
+							$instantiation_format_physical_id = $this->instantiation->insert_instantiation_formats($instantiation_format_physical_d);
 						}
+
+						/* Physical Format End */
+						/* Standard Start */
+						if ($this->input->post('standard'))
+						{
+							$update_instantiation['standard'] = $this->input->post('standard');
+						}
+						/* Standard End */
+						/* Location Start */
+						if ($this->input->post('location'))
+						{
+							$update_instantiation['location'] = $this->input->post('location');
+						}
+						/* Location End */
+						/* Time Start Start */
+						if ($this->input->post('time_start'))
+						{
+							$update_instantiation['time_start'] = $this->input->post('time_start');
+						}
+						/* Time Start End */
+						/* Porjected Duration Start */
+						if ($this->input->post('projected_duration'))
+						{
+							$update_instantiation['projected_duration'] = $this->input->post('projected_duration');
+						}
+						/* Porjected Duration End */
+						/* Porjected Alernative Modes Start */
+						if ($this->input->post('alternative_modes'))
+						{
+							$update_instantiation['alternative_modes'] = $this->input->post('alternative_modes');
+						}
+						/* Porjected Alernative Modes End */
+						/* Color Start */
+						if ($this->input->post('color'))
+						{
+
+							$inst_color_d = $this->instantiation->get_instantiation_colors_by_color($this->input->post('color'));
+							if (isset($inst_color_d) && ! is_empty($inst_color_d))
+							{
+								$update_instantiation['instantiation_colors_id'] = $inst_color_d->id;
+							}
+							else
+							{
+								$update_instantiation['instantiation_colors_id'] = $this->instantiation->insert_instantiation_colors(array('color' => $this->input->post('color')));
+							}
+						}
+						/* Color End */
+						/* Tracks Start */
+						if ($this->input->post('tracks'))
+						{
+							$update_instantiation['tracks'] = $this->input->post('tracks');
+						}
+						/* Tracks End */
+						/* Channel Configuration Start */
+						if ($this->input->post('channel_configuration'))
+						{
+							$update_instantiation['channel_configuration'] = $this->input->post('channel_configuration');
+						}
+						/* Channel Configuration End */
 					}
-					/* Color End */
-					/* Tracks Start */
-					if ($this->input->post('tracks'))
-					{
-						$update_instantiation['tracks'] = $this->input->post('tracks');
-					}
-					/* Tracks End */
-					/* Channel Configuration Start */
-					if ($this->input->post('channel_configuration'))
-					{
-						$update_instantiation['channel_configuration'] = $this->input->post('channel_configuration');
-					}
-					/* Channel Configuration End */
 					/* Language Configuration Start */
 					if ($this->input->post('language'))
 					{
@@ -528,121 +533,123 @@ class Instantiations extends MY_Controller
 					/* Language Configuration End */
 					/* Update Instantiation */
 					$this->instantiation->update_instantiations($instantiation_id, $update_instantiation);
-					/* Annotation Start */
-					if ($this->input->post('annotation'))
+					if ($this->input->post('instantiation_id_identifier'))
 					{
-
-						$this->manage_asset->delete_row($instantiation_id, 'instantiation_annotations', 'instantiations_id');
-						foreach ($this->input->post('annotation') as $index => $value)
+						/* Annotation Start */
+						if ($this->input->post('annotation'))
 						{
-							if ( ! empty($value))
+
+							$this->manage_asset->delete_row($instantiation_id, 'instantiation_annotations', 'instantiations_id');
+							foreach ($this->input->post('annotation') as $index => $value)
 							{
-								$annotation_type = $this->input->post('annotation_type');
-								$instantiation_annotation_d['instantiations_id'] = $instantiation_id;
-								$instantiation_annotation_d['annotation'] = $value;
-								$instantiation_annotation_d['annotation_type'] = $annotation_type[$index];
-								$this->instantiation->insert_instantiation_annotations($instantiation_annotation_d);
+								if ( ! empty($value))
+								{
+									$annotation_type = $this->input->post('annotation_type');
+									$instantiation_annotation_d['instantiations_id'] = $instantiation_id;
+									$instantiation_annotation_d['annotation'] = $value;
+									$instantiation_annotation_d['annotation_type'] = $annotation_type[$index];
+									$this->instantiation->insert_instantiation_annotations($instantiation_annotation_d);
+								}
 							}
 						}
-					}
-					/* Annotation End */
-					/* Relation Start */
-					if ($this->input->post('relation'))
-					{
-						$this->manage_asset->delete_row($instantiation_id, 'instantiation_relations', 'instantiations_id');
-						$relation_src = $this->input->post('relation_source');
-						$relation_ref = $this->input->post('relation_ref');
-						$relation_type = $this->input->post('relation_type');
-						foreach ($this->input->post('relation') as $index => $value)
+						/* Annotation End */
+						/* Relation Start */
+						if ($this->input->post('relation'))
 						{
-							if ( ! empty($value))
+							$this->manage_asset->delete_row($instantiation_id, 'instantiation_relations', 'instantiations_id');
+							$relation_src = $this->input->post('relation_source');
+							$relation_ref = $this->input->post('relation_ref');
+							$relation_type = $this->input->post('relation_type');
+							foreach ($this->input->post('relation') as $index => $value)
 							{
-								$relation['instantiations_id'] = $instantiation_id;
-								$relation['relation_identifier'] = $value;
-								$relation_types['relation_type'] = $relation_type[$index];
-								if ( ! empty($relation_src[$index]))
-									$relation_types['relation_type_source'] = $relation_src[$index];
-								if ( ! empty($relation_ref[$index]))
-									$relation_types['relation_type_ref'] = $relation_ref[$index];
-								$db_relations = $this->assets_model->get_relation_types_all($relation_types);
-								if (isset($db_relations) && isset($db_relations->id))
+								if ( ! empty($value))
 								{
-									$relation['relation_types_id'] = $db_relations->id;
+									$relation['instantiations_id'] = $instantiation_id;
+									$relation['relation_identifier'] = $value;
+									$relation_types['relation_type'] = $relation_type[$index];
+									if ( ! empty($relation_src[$index]))
+										$relation_types['relation_type_source'] = $relation_src[$index];
+									if ( ! empty($relation_ref[$index]))
+										$relation_types['relation_type_ref'] = $relation_ref[$index];
+									$db_relations = $this->assets_model->get_relation_types_all($relation_types);
+									if (isset($db_relations) && isset($db_relations->id))
+									{
+										$relation['relation_types_id'] = $db_relations->id;
+									}
+									else
+									{
+										$relation['relation_types_id'] = $this->assets_model->insert_relation_types($relation_types);
+									}
+									$this->instantiation->insert_instantiation_relation($relation);
 								}
-								else
-								{
-									$relation['relation_types_id'] = $this->assets_model->insert_relation_types($relation_types);
-								}
-								$this->instantiation->insert_instantiation_relation($relation);
 							}
 						}
-					}
-					/* Relation End */
+						/* Relation End */
 
-					/* Essence Track Frame Size Start */
-					if ($this->input->post('width') && $this->input->post('height'))
-					{
-						$track_frame_size_d = $this->essence_track->get_essence_track_frame_sizes_by_width_height(trim($this->input->post('width')), trim($this->input->post('height')));
-						if ($track_frame_size_d)
+						/* Essence Track Frame Size Start */
+						if ($this->input->post('width') && $this->input->post('height'))
 						{
-							$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;
+							$track_frame_size_d = $this->essence_track->get_essence_track_frame_sizes_by_width_height(trim($this->input->post('width')), trim($this->input->post('height')));
+							if ($track_frame_size_d)
+							{
+								$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;
+							}
+							else
+							{
+								$essence_tracks_d['essence_track_frame_sizes_id'] = $this->essence_track->insert_essence_track_frame_sizes(array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
+							}
+						}
+						/* Essence Track Frame Size End */
+						/* Essence Track Frame Rate Start */
+						if ($this->input->post('frame_rate'))
+						{
+							$essence_tracks_d['frame_rate'] = $this->input->post('frame_rate');
+						}
+						/* Essence Track Frame Rate End */
+						/* Essence Track Playback Speed Start */
+						if ($this->input->post('playback_speed'))
+						{
+							$essence_tracks_d['playback_speed'] = $this->input->post('playback_speed');
+						}
+						/* Essence Track Playback Speed End */
+						/* Essence Track Sampling Rate Start */
+						if ($this->input->post('sampling_rate'))
+						{
+							$essence_tracks_d['sampling_rate'] = $this->input->post('sampling_rate');
+						}
+						/* Essence Track Sampling Rate End */
+						/* Essence Track Aspect Ratio Start */
+						if ($this->input->post('aspect_ratio'))
+						{
+							$essence_tracks_d['aspect_ratio'] = $this->input->post('aspect_ratio');
+						}
+						/* Essence Track Aspect Ratio End */
+						/* Essence Track Type Start */
+						$essence_track_type_d = $this->essence_track->get_essence_track_by_type('General');
+						if (isset($essence_track_type_d) && isset($essence_track_type_d->id))
+						{
+							$essence_tracks_d['essence_track_types_id'] = $essence_track_type_d->id;
 						}
 						else
 						{
-							$essence_tracks_d['essence_track_frame_sizes_id'] = $this->essence_track->insert_essence_track_frame_sizes(array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
+							$essence_tracks_d['essence_track_types_id'] = $this->essence_track->insert_essence_track_types(array('essence_track_type' => 'General'));
 						}
-					}
-					/* Essence Track Frame Size End */
-					/* Essence Track Frame Rate Start */
-					if ($this->input->post('frame_rate'))
-					{
-						$essence_tracks_d['frame_rate'] = $this->input->post('frame_rate');
-					}
-					/* Essence Track Frame Rate End */
-					/* Essence Track Playback Speed Start */
-					if ($this->input->post('playback_speed'))
-					{
-						$essence_tracks_d['playback_speed'] = $this->input->post('playback_speed');
-					}
-					/* Essence Track Playback Speed End */
-					/* Essence Track Sampling Rate Start */
-					if ($this->input->post('sampling_rate'))
-					{
-						$essence_tracks_d['sampling_rate'] = $this->input->post('sampling_rate');
-					}
-					/* Essence Track Sampling Rate End */
-					/* Essence Track Aspect Ratio Start */
-					if ($this->input->post('aspect_ratio'))
-					{
-						$essence_tracks_d['aspect_ratio'] = $this->input->post('aspect_ratio');
-					}
-					/* Essence Track Aspect Ratio End */
-					/* Essence Track Type Start */
-					$essence_track_type_d = $this->essence_track->get_essence_track_by_type('General');
-					if (isset($essence_track_type_d) && isset($essence_track_type_d->id))
-					{
-						$essence_tracks_d['essence_track_types_id'] = $essence_track_type_d->id;
-					}
-					else
-					{
-						$essence_tracks_d['essence_track_types_id'] = $this->essence_track->insert_essence_track_types(array('essence_track_type' => 'General'));
-					}
-					/* Essence Track Type End */
+						/* Essence Track Type End */
 
 
-					/* Essence Track Start */
-					$essence_track = $this->manage_asset->get_single_essence_tracks_by_instantiations_id($instantiation_id);
-					if ($essence_track)
-					{
-						$this->essence_track->update_essence_track($essence_track->id, $essence_tracks_d);
+						/* Essence Track Start */
+						$essence_track = $this->manage_asset->get_single_essence_tracks_by_instantiations_id($instantiation_id);
+						if ($essence_track)
+						{
+							$this->essence_track->update_essence_track($essence_track->id, $essence_tracks_d);
+						}
+						else
+						{
+							$essence_tracks_d['instantiations_id'] = $instantiation_id;
+							$this->essence_track->insert_essence_tracks($essence_tracks_d);
+						}
+						/* Essence Track End */
 					}
-					else
-					{
-						$essence_tracks_d['instantiations_id'] = $instantiation_id;
-						$this->essence_track->insert_essence_tracks($essence_tracks_d);
-					}
-					/* Essence Track End */
-
 					redirect('instantiations/detail/' . $instantiation_id);
 				}
 				$data['asset_id'] = $detail->assets_id;

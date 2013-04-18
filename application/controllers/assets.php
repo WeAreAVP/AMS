@@ -546,6 +546,7 @@ class Assets extends MY_Controller
 
 	private function delete_asset_attributes($asset_id)
 	{
+		$this->manage_asset->delete_row($instantiation_id, 'nominations', 'assets_id');
 		$this->manage_asset->delete_asset_types($asset_id);
 		$this->manage_asset->delete_asset_dates($asset_id);
 		$this->manage_asset->delete_local_identifiers($asset_id);

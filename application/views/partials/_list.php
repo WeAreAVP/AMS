@@ -92,7 +92,7 @@
 </div>
 
 <script type="text/javascript">
-	if ($('.detail-menu').offset().top < 160) {
+	if ($('.detail-menu').offset().top < 60) {
 		$('.detail-menu').css('position','fixed');
 	}
 	else{

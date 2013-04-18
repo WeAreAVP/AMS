@@ -381,6 +381,7 @@
 					<td>
 						<p>
 							<input type="text" value="<?php echo (isset($essence_track->frame_rate) ? $essence_track->frame_rate : ''); ?>"  id="frame_rate" name="frame_rate"/>
+							<span id="frame_rate_error" class="help-block" style="color: #c65f5a;display: none;">Frame rate must be numeric.</span>
 						</p>
 
 					</td>
@@ -415,6 +416,8 @@
 						<p>
 							<input type="text" value="<?php echo (isset($essence_track->width) ? $essence_track->width : ''); ?>"  id="width" name="width" class="input-mini" placeholder="Width" /> x
 							<input type="text" value="<?php echo (isset($essence_track->height) ? $essence_track->height : ''); ?>"  id="height" name="height" class="input-mini" placeholder="Height" />
+							<span id="width_error" class="help-block" style="color: #c65f5a;display: none;">Width must be numeric.</span>
+							<span id="height_error" class="help-block" style="color: #c65f5a;display: none;">Heigth rate must be numeric.</span>
 						</p>
 
 					</td>

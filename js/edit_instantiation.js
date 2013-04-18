@@ -192,7 +192,7 @@ function validateForm() {
 		});
 	}
 	var location = new Array('location');
-	for (cnt in location)
+	for (cnt in location) {
 		if ($('#' + location[cnt]).val() == '') {
 			isValid = false;
 			$('#' + location[cnt] + '_error').show();
@@ -204,7 +204,24 @@ function validateForm() {
 		else {
 			$('#' + location[cnt] + '_error').hide();
 		}
+	}
+	var is_numeric = new Array('frame_rate', 'width', 'height');
+	for (cnt in is_numeric) {
+		if ($('#' + is_numeric[cnt]).val() != '') {
+			if (isNaN($('#' + is_numeric[cnt]).val())) {
+				isValid = false;
+				$('#' + is_numeric[cnt] + '_error').show();
+				$('body').animate({
+					scrollTop: $('#' + is_numeric[cnt]).offset().top - 100
+				}, 'slow');
+				break;
+			}
+			else {
+				$('#' + is_numeric[cnt] + '_error').hide();
+			}
+		}
 
+	}
 	for (cnt in time) {
 		value = $('#' + time[cnt]).val();
 		if (value != '') {

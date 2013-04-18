@@ -307,7 +307,7 @@ class Instantiations extends MY_Controller
 
 				if ($this->input->post())
 				{
-					debug($this->input->post(), FALSE);
+//					debug($this->input->post(), FALSE);
 //				if ($this->input->post('instantiation_id_identifier'))
 //				{
 //					foreach ($this->input->post('instantiation_id_identifier_id') as $index => $identifier_id)
@@ -505,7 +505,6 @@ class Instantiations extends MY_Controller
 					/* Language Configuration End */
 
 					$this->instantiation->update_instantiations($instantiation_id, $update_instantiation);
-					exit;
 					redirect('instantiations/detail/' . $instantiation_id);
 				}
 				$data['asset_id'] = $detail->assets_id;

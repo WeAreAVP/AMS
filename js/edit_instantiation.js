@@ -176,7 +176,7 @@ function validateForm() {
 
 
 		$('input[name="' + identifer[cnt] + '[]"]').each(function() {
-			if (!isValid) {
+			if (isValid) {
 				if ($(this).val() == '') {
 					isValid = false;
 					$(this).nextAll('.help-block').show();

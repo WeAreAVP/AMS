@@ -301,13 +301,30 @@ class Instantiations extends MY_Controller
 
 			if ($this->input->post())
 			{
-				debug($this->input->post());
-				if ($this->input->post('instantiation_id_identifier'))
+				debug($this->input->post(),FALSE);
+				if ($this->input->post('instantiation_id_identifier_id'))
 				{
-					foreach($this->input->post('instantiation_id_identifier') as $identifier){
-						
+					foreach ($this->input->post('instantiation_id_identifier_id') as $index => $identifier_id)
+					{
+						$ins_identifer = $this->input->post('instantiation_id_identifier');
+						if (isset($ins_identifer[$index]) && ! ! empty($ins_identifer[$index]))
+							$identifier['instantiation_identifier'] = $ins_identifer[$index];
+						if (isset($ins_source[$index]) && ! ! empty($ins_source[$index]))
+							$identifier['instantiation_source'] = $ins_source;
+						$ins_source = $this->input->post('instantiation_id_source');
+						if ( ! empty($identifier_id))
+						{
+
+							$this->instantiation->update_instantiation_identifier_by_id($identifier_id, $identifier);
+						}
+						else
+						{
+							$identifier['instantiations_id'] = $instantiation_id;
+							$this->instantiation->insert_instantiation_identifier($identifier);
+						}
 					}
 				}
+				exit;
 			}
 			$detail = $data['instantiation_detail'] = $this->instantiation->get_by_id($instantiation_id);
 

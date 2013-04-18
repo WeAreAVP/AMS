@@ -485,6 +485,12 @@ class Instantiations_Model extends CI_Model
 		return $this->db->update($this->table_instantiation_identifier, $data);
 	}
 
+	function update_instantiation_identifier_by_id($identifier_id, $data)
+	{
+		$this->db->where('id', $identifier_id);
+		return $this->db->update($this->table_instantiation_identifier, $data);
+	}
+
 	/*
 	 *
 	 *  Insert the record in instantiation_dates table
@@ -859,10 +865,6 @@ class Instantiations_Model extends CI_Model
 		}
 		return false;
 	}
-
-	
-
-	
 
 	function get_nomination_by_instantiation_id($ins_id)
 	{

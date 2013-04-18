@@ -536,36 +536,16 @@ class Assets extends MY_Controller
 
 	function insert_pbcore_values()
 	{
-		$static_gen = array('1 inch audio tape', '1 inch videotape', '1 inch videotape: EL3400', '1 inch videotape: EV-200', '1 inch videotape: Helical BVH-1000', 
-			'1 inch videotape: IVC-700/800/900', '1 inch videotape: PI-3V','1 inch videotape: SMPTE Type A', '1 inch videotape: SMPTE Type B', 
-			'1 inch videotape: SMPTE Type C', '1/2 inch audio tape', '1/2 inch digital audio tape', '1/2 inch videotape', '1/2 inch videotape: CV',
-			'1/2 inch videotape: EIAJ Type 1', '1/2 inch videotape: Hawkeye/Recam/M', '1/2 inch videotape: reel-to-reel', '1/2 inch videotape: V2000',
-			'1/2 inch videotape: VCR', '1/4 inch audio cassette','1/4 inch audio tape','1/4 inch videotape','1/4 inch videotape: Akai','1/8 inch audio cassette',
-			'2 inch audio tape','2 inch videotape','2 inch videotape: Helical Ampex VR-1500','2 inch videotape: Helical IVC-9000','2 inch videotape: Quad',
-			'2 inch videotape: Sony Helical SV-201','3/4 inch videotape','3/4 inch videotape: U-matic','3/4 inch videotape: U-matic SP','8 mm Digital-8','8 mm Hi8 Video',
-			'8 mm video','8-Track cassette','8mm data','8mm digital audio','Aluminum Record','Artifact','Audio cart','Audio cassette','Award','BD-Videodisc','Beta',
-			'Betacam','Betacam Digital (Digi Beta)','Betacam SP','Betacam SX','Betamax','Betamax: HB','Betamax: Super','Binder','Book','Box','Carte de visite','Cartivision',
-			'CD','CD-R','CD-ROM','CD-RW','Collage','CompactFlash card','Contact sheet','Costume','CVC','D1','D16','D2','D3','D5','D5 HD','D6','D7','D9','D9 HD','Daguerreotype',
-			'DARS','DARS: DA-88','DAT','Data cartridge','Data8','DBX 700 VHS tape','DCT','DDS cassette','Digital Linear Tape','Digital8','Display board','Document','Drawing',
-			'DV','DVC','DVCAM','DVCAM: Sony','DVCPRO','DVCPRO 25','DVCPRO 50','DVCPRO 50/P','DVCPRO HD','DVCPRO P','DVD','DVD+R','DVD+R DL','DVD+RW','DVD-R','DVD-RW',
-			'ED-Beta','EIAJ','EIAJ Cartridge','Engraving','Envelope','EP Record','EVD-Videodisc: China','Exabyte drive','F1 Beta tape','Film','Film cartridge','Film cassette',
-			'Film loop','Film reel','Film roll','Film: 16mm','Film: 16mm magnetic track','Film: 16mm negative','Film: 16mm optical track','Film: 16mm print','Film: 16mm reversal',
-			'Film: 35mm','Film: 35mm magnetic track','Film: 35mm negative','Film: 35mm optical track','Film: 35mm print','Film: 70mm','Film: 70mm negative','Film: 8mm',
-			'Film: 8mm negative','Film: 8mm print','Film: 8mm reversal','Film: Super 16mm','Film: Super 16mm negative','Film: Super 16mm print','Film: Super 8mm',
-			'Film: Super 8mm negative','Film: Super 8mm print','Flash Memory','Flash Memory: USB','Flexidisc','Flip chart','Floppy disk','Floppy disk: 3 1/2 inch',
-			'Floppy disk: 5 1/4 inch','Floppy disk: 8 inch','Folder','Hard Drive','Hard Drive: eSATA','Hard Drive: Firewire','Hard Drive: Firewire 400','Hard Drive: Firewire 800',
-			'Hard Drive: PATA','Hard Drive: SCSI','Hard Drive: USB','HD','HD-Videodisc','HD: D5','HD: D9','HD: DVC PRO HD','HDCAM','HDCAM SR','HDD1000','HDV','HDV-1000','Hi8',
-			'Hi8: DA-78','Hi8: DA-88','Jaz disk','Lacquer discs/acetates','Laser Videodisc','Laser Videodisc CAV: 12-inch','Laser Videodisc CLV: 12-inch','Line art',
-			'Lithograph','LP Record','LP Record (45)','LTO','LTO-1','LTO-2','LTO-3','LTO-4','LTO-5','LTO-6','LTO-7','LTO-8','M-II','Macthronics MVC-10','Magazine','Magnet',
-			'Manuscript','Map','Memory Card','Merchandise','Microfiche','Microfilm','Mini-cassette','Minidisc','MiniDV','MPEG IMX','Mural','Newspaper','Notebook','Optical disk',
-			'Optical disk cartridge','Oversized','P2 Card','Painting','Paper','Periodical','Photocopy','Photographic negative','Photographic print','Piano roll','Postcard',
-			'Poster','Press Kit','Print','Quad','Radiograph','Roland DM 80','S-VHS','SACD','Script','SD card','SDHC card','SDXC card','Shellac disc','SIM card','Slide',
-			'Stereograph','Sticker','Super DLT','SVCD','SxS Pro card','Sy-Quest diskette','Sy-Quest drive','Technical drawing','Technical drawing: Blueprint','Transparency',
-			'Triptych','UMD-Videodisc','UMD-Videodisc: Sony','UniHi','V-Cord','V-Cord II','VHS','Video8','videocartridge','videocassette','videodisc','videoreel','VinylDisc',
-			'VTR150','VTR600','VX','W-VHS','Wire','Woodcut','XDCAM cassette','XDCAM Disk','Zip disk');
+		$static_gen = array('1seg', 'AC-3', 'ATSC', 'ATSC-M/H', 'AVS','CEA-708','CMMB','DMB-T','DMB-T/H','DVB-C','DVB-C2','DVB-H','DVB-S','DVB-S2','DVB-SH','DVB-T','Film',
+			'H.264/MPEG-4 AVC','ISDB','ISDB-C','ISDB-S','IISDB-S','MediaFLO','MPEG','MPEG-2','NTSC','NTSC-C','NTSC-J','PAL','PAL-M','PAL-N','S-DMB','SECAM','T-DMB',
+			'AAC','AES equalization','AES3','CCIR equalization','Columbia equalization','Columbia LP','Columbia-78 equalization','DAB','DAB+','DAB-IP','Decca equalization',
+			'Decca ffrr','delta-sigma modulated','Dolby Digital AC3 Audio','Dolby E','DTA Audio','ETSI SDR','FFRR-78','HD Radio','HE-AAC','lateral cut','Linear PCM Audio',
+			'Microgroove','MMDS','MP2','MP3','NAB equalization','Orthacoustic equalization','RCA','RIAA equalization','SDDS Audio','Variable-area optical',
+			'Variable-density optical','vertical cut','Victor-78 equalization'
+			);
 		foreach ($static_gen as $value)
 		{
-			$this->manage_asset->insert_picklist_value(array('value' => $value, 'element_type_id' => 13));
+			$this->manage_asset->insert_picklist_value(array('value' => $value, 'element_type_id' => 14));
 		}
 	}
 

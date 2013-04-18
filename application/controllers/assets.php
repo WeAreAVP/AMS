@@ -536,16 +536,11 @@ class Assets extends MY_Controller
 
 	function insert_pbcore_values()
 	{
-		$static_gen = array('1seg', 'AC-3', 'ATSC', 'ATSC-M/H', 'AVS','CEA-708','CMMB','DMB-T','DMB-T/H','DVB-C','DVB-C2','DVB-H','DVB-S','DVB-S2','DVB-SH','DVB-T','Film',
-			'H.264/MPEG-4 AVC','ISDB','ISDB-C','ISDB-S','IISDB-S','MediaFLO','MPEG','MPEG-2','NTSC','NTSC-C','NTSC-J','PAL','PAL-M','PAL-N','S-DMB','SECAM','T-DMB',
-			'AAC','AES equalization','AES3','CCIR equalization','Columbia equalization','Columbia LP','Columbia-78 equalization','DAB','DAB+','DAB-IP','Decca equalization',
-			'Decca ffrr','delta-sigma modulated','Dolby Digital AC3 Audio','Dolby E','DTA Audio','ETSI SDR','FFRR-78','HD Radio','HE-AAC','lateral cut','Linear PCM Audio',
-			'Microgroove','MMDS','MP2','MP3','NAB equalization','Orthacoustic equalization','RCA','RIAA equalization','SDDS Audio','Variable-area optical',
-			'Variable-density optical','vertical cut','Victor-78 equalization'
+		$static_gen = array('B&W', 'Color', 'Grayscale', 'Tinted, Toned', 'YUV', 'RGB', 'CMYK'
 			);
 		foreach ($static_gen as $value)
 		{
-			$this->manage_asset->insert_picklist_value(array('value' => $value, 'element_type_id' => 14));
+			$this->manage_asset->insert_picklist_value(array('value' => $value, 'element_type_id' => 15));
 		}
 	}
 

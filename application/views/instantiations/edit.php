@@ -2,6 +2,15 @@
 	<div style="margin: 2px 0px 10px 0px;float:left;width: 570px;">
 
 		<?php
+		$disable = FALSE;
+		if (isset($inst_format->format_type) && $inst_format->format_type == 'physical')
+		{
+			$disable = TRUE;
+			if (( empty($instantiation_detail->digitized) && $instantiation_detail->digitized == NULL) || $instantiation_detail->digitized == 1)
+			{
+				$disable = TRUE;
+			}
+		}
 		$asset_title_type = explode('|', trim(str_replace('(**)', '', $asset_details->title_type)));
 		$asset_title = explode('|', trim(str_replace('(**)', '', $asset_details->title)));
 		$asset_title_ref = explode('|', trim(str_replace('(**)', '', $asset_details->title_ref)));
@@ -111,225 +120,221 @@
 
 				</tr>
 				<?php
-				if (isset($inst_format->format_type) && $inst_format->format_type == 'physical')
+				if ($disable)
 				{
+					?>
 
-					if (( empty($instantiation_detail->digitized) && $instantiation_detail->digitized == NULL) || $instantiation_detail->digitized == 1)
-					{
-						?>
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Instantiation Date:</b></label>
+						</td>
+						<td>
+							<p>
+								<input readonly="readonly" type="text" id="inst_date" name="inst_date" value="<?php echo (isset($date->instantiation_date) ? $date->instantiation_date : ''); ?>" />
+							</p>
 
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Instantiation Date:</b></label>
-							</td>
-							<td>
-								<p>
-									<input readonly="readonly" type="text" id="inst_date" name="inst_date" value="<?php echo (isset($date->instantiation_date) ? $date->instantiation_date : ''); ?>" />
-								</p>
-
-							</td>
-						</tr>
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Instantiation Date Type:</b></label>
-							</td>
-							<td>
-								<p>
-									<select id="inst_date_type" name="inst_date_type">
-										<?php
-										foreach ($pbcore_asset_date_types as $row)
-										{
-											$selected = '';
-											if (isset($date->date_type) && $date->date_type == $row->value)
-												$selected = 'selected="selected"'
-												?>
-											<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-										<?php }
-										?>
-									</select>
-								</p>
-
-							</td>
-						</tr>
-
-						<tr>
-							<?php
-							$add = ' ADD DIMENSION';
-							?>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Dimension:</b></label>
-							</td>
-							<td>
-								<div id="main_dimension">
+						</td>
+					</tr>
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Instantiation Date Type:</b></label>
+						</td>
+						<td>
+							<p>
+								<select id="inst_date_type" name="inst_date_type">
 									<?php
-									if (count($inst_demension) > 0)
+									foreach ($pbcore_asset_date_types as $row)
 									{
-										$add = ' ADD ANOTHER DIMENSION';
-										foreach ($inst_demension as $index => $demension)
-										{
+										$selected = '';
+										if (isset($date->date_type) && $date->date_type == $row->value)
+											$selected = 'selected="selected"'
 											?>
-											<div id="remove_dimension_<?php echo $index; ?>" class="remove_dimension">
-												<div class="edit_form_div ins_edit_div">
-													<div>
-														<p>Dimension:</p>
-														<p>
-															<input type="text" id="dimension_<?php echo $index; ?>" name="asset_dimension[]" value="<?php echo $demension->instantiation_dimension; ?>" />
-
-														</p>
-													</div>
-													<div>
-														<p>Unit of measure:</p>
-														<p>
-															<input type="text" id="dimension_unit_<?php echo $index; ?>" name="dimension_unit[]" value="<?php echo $demension->unit_of_measure; ?>" />
-														</p>
-													</div>
-												</div>
-												<div class="remove_element" onclick="removeElement('#remove_dimension_<?php echo $index; ?>', 'dimension');"><img src="/images/remove-item.png" /></div>
-												<div class="clearfix" style="margin-bottom: 10px;"></div>
-											</div>
-
-											<?php
-										}
-									}
+										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+									<?php }
 									?>
-								</div>
-								<div class="add-new-element" onclick="addElement('#main_dimension', 'dimension');"><i class="icon-plus-sign icon-white"></i><span id="add_dimension"><?php echo $add; ?></span></div>
+								</select>
+							</p>
 
-							</td>
+						</td>
+					</tr>
 
-						</tr>
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Physical Format:</b></label>
-							</td>
-							<td>
-								<p>
-									<select id="physical_format" name="physical_format">
-										<?php
-										foreach ($pbcore_physical_formats as $row)
-										{
-											$selected = '';
-											if (isset($inst_format->format_name) && $inst_format->format_name == $row->value)
-												$selected = 'selected="selected"'
-												?>
-											<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-										<?php }
-										?>
-									</select>
-								</p>
-
-							</td>
-						</tr>
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Standard:</b></label>
-							</td>
-							<td>
-								<p>
-									<select id="standard" name="standard">
-										<?php
-										foreach ($pbcore_standards as $row)
-										{
-											$selected = '';
-											if ($instantiation_detail->standard == $row->value)
-												$selected = 'selected="selected"'
-												?>
-											<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-										<?php }
-										?>
-									</select>
-								</p>
-
-							</td>
-						</tr>
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Location:</b></label>
-							</td>
-							<td>
-								<p>
-									<input type="text" id="location" name="location" value="<?php echo $instantiation_detail->location; ?>" />
-									<span id="location_error" class="help-block" style="color: #c65f5a;display: none;">Location is required.</span>
-								</p>
-
-							</td>
-						</tr>
-
-
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Time start:</b></label>
-							</td>
-							<td>
-								<p>
-									<input type="text" id="time_start" name="time_start" value="<?php echo $instantiation_detail->time_start; ?>" />
-									<span id="time_start_error" class="help-block" style="color: #c65f5a;display: none;">Time Start should be hh:mm:ss.</span>
-								</p>
-
-							</td>
-						</tr>
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Projected Duration:</b></label>
-							</td>
-							<td>
-								<p>
-									<input type="text" id="projected_duration" name="projected_duration" value="<?php echo $instantiation_detail->projected_duration; ?>" />
-									<span id="projected_duration_error" class="help-block" style="color: #c65f5a;display: none;">Projected Duration should be hh:mm:ss.</span>
-								</p>
-
-							</td>
-						</tr>
-
-
-
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Color:</b></label>
-							</td>
-							<td>
-								<p>
-
-									<select id="color" name="color">
-										<?php
-										foreach ($pbcore_colors as $row)
-										{
-											$selected = '';
-											if (isset($inst_color->color) && $inst_color->color == $row->value)
-												$selected = 'selected="selected"'
-												?>
-											<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-										<?php }
-										?>
-									</select>
-								</p>
-
-							</td>
-						</tr>
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Tracks:</b></label>
-							</td>
-							<td>
-								<p>
-									<input type="text" id="tracks" name="tracks" value="<?php echo $instantiation_detail->tracks; ?>" />
-								</p>
-
-							</td>
-						</tr>
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Channel Configuration:</b></label>
-							</td>
-							<td>
-								<p>
-									<input type="text" id="channel_configuration" name="channel_configuration" value="<?php echo $instantiation_detail->channel_configuration; ?>" />
-								</p>
-
-							</td>
-						</tr>
+					<tr>
 						<?php
-					}
+						$add = ' ADD DIMENSION';
+						?>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Dimension:</b></label>
+						</td>
+						<td>
+							<div id="main_dimension">
+								<?php
+								if (count($inst_demension) > 0)
+								{
+									$add = ' ADD ANOTHER DIMENSION';
+									foreach ($inst_demension as $index => $demension)
+									{
+										?>
+										<div id="remove_dimension_<?php echo $index; ?>" class="remove_dimension">
+											<div class="edit_form_div ins_edit_div">
+												<div>
+													<p>Dimension:</p>
+													<p>
+														<input type="text" id="dimension_<?php echo $index; ?>" name="asset_dimension[]" value="<?php echo $demension->instantiation_dimension; ?>" />
+
+													</p>
+												</div>
+												<div>
+													<p>Unit of measure:</p>
+													<p>
+														<input type="text" id="dimension_unit_<?php echo $index; ?>" name="dimension_unit[]" value="<?php echo $demension->unit_of_measure; ?>" />
+													</p>
+												</div>
+											</div>
+											<div class="remove_element" onclick="removeElement('#remove_dimension_<?php echo $index; ?>', 'dimension');"><img src="/images/remove-item.png" /></div>
+											<div class="clearfix" style="margin-bottom: 10px;"></div>
+										</div>
+
+										<?php
+									}
+								}
+								?>
+							</div>
+							<div class="add-new-element" onclick="addElement('#main_dimension', 'dimension');"><i class="icon-plus-sign icon-white"></i><span id="add_dimension"><?php echo $add; ?></span></div>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Physical Format:</b></label>
+						</td>
+						<td>
+							<p>
+								<select id="physical_format" name="physical_format">
+									<?php
+									foreach ($pbcore_physical_formats as $row)
+									{
+										$selected = '';
+										if (isset($inst_format->format_name) && $inst_format->format_name == $row->value)
+											$selected = 'selected="selected"'
+											?>
+										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+									<?php }
+									?>
+								</select>
+							</p>
+
+						</td>
+					</tr>
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Standard:</b></label>
+						</td>
+						<td>
+							<p>
+								<select id="standard" name="standard">
+									<?php
+									foreach ($pbcore_standards as $row)
+									{
+										$selected = '';
+										if ($instantiation_detail->standard == $row->value)
+											$selected = 'selected="selected"'
+											?>
+										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+									<?php }
+									?>
+								</select>
+							</p>
+
+						</td>
+					</tr>
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Location:</b></label>
+						</td>
+						<td>
+							<p>
+								<input type="text" id="location" name="location" value="<?php echo $instantiation_detail->location; ?>" />
+								<span id="location_error" class="help-block" style="color: #c65f5a;display: none;">Location is required.</span>
+							</p>
+
+						</td>
+					</tr>
+
+
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Time start:</b></label>
+						</td>
+						<td>
+							<p>
+								<input type="text" id="time_start" name="time_start" value="<?php echo $instantiation_detail->time_start; ?>" />
+								<span id="time_start_error" class="help-block" style="color: #c65f5a;display: none;">Time Start should be hh:mm:ss.</span>
+							</p>
+
+						</td>
+					</tr>
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Projected Duration:</b></label>
+						</td>
+						<td>
+							<p>
+								<input type="text" id="projected_duration" name="projected_duration" value="<?php echo $instantiation_detail->projected_duration; ?>" />
+								<span id="projected_duration_error" class="help-block" style="color: #c65f5a;display: none;">Projected Duration should be hh:mm:ss.</span>
+							</p>
+
+						</td>
+					</tr>
+
+
+
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Color:</b></label>
+						</td>
+						<td>
+							<p>
+
+								<select id="color" name="color">
+									<?php
+									foreach ($pbcore_colors as $row)
+									{
+										$selected = '';
+										if (isset($inst_color->color) && $inst_color->color == $row->value)
+											$selected = 'selected="selected"'
+											?>
+										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+									<?php }
+									?>
+								</select>
+							</p>
+
+						</td>
+					</tr>
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Tracks:</b></label>
+						</td>
+						<td>
+							<p>
+								<input type="text" id="tracks" name="tracks" value="<?php echo $instantiation_detail->tracks; ?>" />
+							</p>
+
+						</td>
+					</tr>
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Channel Configuration:</b></label>
+						</td>
+						<td>
+							<p>
+								<input type="text" id="channel_configuration" name="channel_configuration" value="<?php echo $instantiation_detail->channel_configuration; ?>" />
+							</p>
+
+						</td>
+					</tr>
+					<?php
 				}
 				?>
 				<tr>
@@ -403,73 +408,69 @@
 					</td>
 				</tr>
 				<?php
-				if (isset($inst_format->format_type) && $inst_format->format_type == 'physical')
+				if ($disable)
 				{
+					?>
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Frame Rate:</b></label>
+						</td>
+						<td>
+							<p>
+								<input type="text" value="<?php echo (isset($essence_track->frame_rate) ? $essence_track->frame_rate : ''); ?>"  id="frame_rate" name="frame_rate"/>
+								<span id="frame_rate_error" class="help-block" style="color: #c65f5a;display: none;">Frame rate must be numeric.</span>
+							</p>
 
-					if (( empty($instantiation_detail->digitized) && $instantiation_detail->digitized == NULL) || $instantiation_detail->digitized == 1)
-					{
-						?>
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Frame Rate:</b></label>
-							</td>
-							<td>
-								<p>
-									<input type="text" value="<?php echo (isset($essence_track->frame_rate) ? $essence_track->frame_rate : ''); ?>"  id="frame_rate" name="frame_rate"/>
-									<span id="frame_rate_error" class="help-block" style="color: #c65f5a;display: none;">Frame rate must be numeric.</span>
-								</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Playback Speed:</b></label>
+						</td>
+						<td>
+							<p>
+								<input type="text" value="<?php echo (isset($essence_track->playback_speed) ? $essence_track->playback_speed : ''); ?>"  id="playback_speed" name="playback_speed"/>
+							</p>
 
-							</td>
-						</tr>
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Playback Speed:</b></label>
-							</td>
-							<td>
-								<p>
-									<input type="text" value="<?php echo (isset($essence_track->playback_speed) ? $essence_track->playback_speed : ''); ?>"  id="playback_speed" name="playback_speed"/>
-								</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b>Sampling Rate:</b></label>
+						</td>
+						<td>
+							<p>
+								<input type="text" value="<?php echo (isset($essence_track->sampling_rate) ? $essence_track->sampling_rate : ''); ?>"  id="sampling_rate" name="sampling_rate"/>
+							</p>
 
-							</td>
-						</tr>
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b>Sampling Rate:</b></label>
-							</td>
-							<td>
-								<p>
-									<input type="text" value="<?php echo (isset($essence_track->sampling_rate) ? $essence_track->sampling_rate : ''); ?>"  id="sampling_rate" name="sampling_rate"/>
-								</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b>Frame Size:</b></label>
+						</td>
+						<td>
+							<p>
+								<input type="text" value="<?php echo (isset($essence_track->width) ? $essence_track->width : ''); ?>"  id="width" name="width" class="input-mini" placeholder="Width" /> x
+								<input type="text" value="<?php echo (isset($essence_track->height) ? $essence_track->height : ''); ?>"  id="height" name="height" class="input-mini" placeholder="Height" />
+								<span id="width_error" class="help-block" style="color: #c65f5a;display: none;">Width must be numeric.</span>
+								<span id="height_error" class="help-block" style="color: #c65f5a;display: none;">Heigth rate must be numeric.</span>
+							</p>
 
-							</td>
-						</tr>
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b>Frame Size:</b></label>
-							</td>
-							<td>
-								<p>
-									<input type="text" value="<?php echo (isset($essence_track->width) ? $essence_track->width : ''); ?>"  id="width" name="width" class="input-mini" placeholder="Width" /> x
-									<input type="text" value="<?php echo (isset($essence_track->height) ? $essence_track->height : ''); ?>"  id="height" name="height" class="input-mini" placeholder="Height" />
-									<span id="width_error" class="help-block" style="color: #c65f5a;display: none;">Width must be numeric.</span>
-									<span id="height_error" class="help-block" style="color: #c65f5a;display: none;">Heigth rate must be numeric.</span>
-								</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b>Aspect Ratio:</b></label>
+						</td>
+						<td>
+							<p>
+								<input type="text" value="<?php echo (isset($essence_track->aspect_ratio) ? $essence_track->aspect_ratio : ''); ?>"  id="aspect_ratio" name="aspect_ratio" />
+							</p>
 
-							</td>
-						</tr>
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b>Aspect Ratio:</b></label>
-							</td>
-							<td>
-								<p>
-									<input type="text" value="<?php echo (isset($essence_track->aspect_ratio) ? $essence_track->aspect_ratio : ''); ?>"  id="aspect_ratio" name="aspect_ratio" />
-								</p>
-
-							</td>
-						</tr>
+						</td>
+					</tr>
 					<?php
-					}
 				}
 				?>
 				<tr>
@@ -524,142 +525,138 @@
 					</td>
 				</tr>
 				<?php
-				if (isset($inst_format->format_type) && $inst_format->format_type == 'physical')
+				if ($disable)
 				{
+					?>
+					<tr>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b>Alternative Modes:</b></label>
+						</td>
+						<td>
+							<p>
+								<input type="text" value="<?php echo $instantiation_detail->alternative_modes; ?>"  id="alternative_modes" name="alternative_modes"/>
+							</p>
 
-					if (( empty($instantiation_detail->digitized) && $instantiation_detail->digitized == NULL) || $instantiation_detail->digitized == 1)
-					{
+						</td>
+					</tr>
+					<tr>
+						<?php
+						$add = ' ADD ANNOTATION';
 						?>
-						<tr>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b>Alternative Modes:</b></label>
-							</td>
-							<td>
-								<p>
-									<input type="text" value="<?php echo $instantiation_detail->alternative_modes; ?>"  id="alternative_modes" name="alternative_modes"/>
-								</p>
-
-							</td>
-						</tr>
-						<tr>
-							<?php
-							$add = ' ADD ANNOTATION';
-							?>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
-							</td>
-							<td>
-								<div id="main_annotation">
-									<?php
-									if (count($inst_annotation) > 0)
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
+						</td>
+						<td>
+							<div id="main_annotation">
+								<?php
+								if (count($inst_annotation) > 0)
+								{
+									$add = ' ADD ANOTHER INSTANTIATION ID';
+									foreach ($inst_annotation as $index => $annotation)
 									{
-										$add = ' ADD ANOTHER INSTANTIATION ID';
-										foreach ($inst_annotation as $index => $annotation)
-										{
-											?>
-											<div id="remove_annotation_<?php echo $index; ?>" class="remove_annotation">
-												<div class="edit_form_div ins_edit_div">
-													<div>
-														<p>Annotation:</p>
-														<p>
-															<input type="text" id="annotation_<?php echo $index; ?>" name="annotation[]" value="<?php echo trim($annotation->annotation); ?>" />
-														</p>
-													</div>
-													<div>
-														<p>Annotation Type:</p>
-														<p>
-															<input type="text" id="annotation_type_<?php echo $index; ?>" name="annotation_type[]" value="<?php echo trim($annotation->annotation_type); ?>" />
-														</p>
-													</div>
-
+										?>
+										<div id="remove_annotation_<?php echo $index; ?>" class="remove_annotation">
+											<div class="edit_form_div ins_edit_div">
+												<div>
+													<p>Annotation:</p>
+													<p>
+														<input type="text" id="annotation_<?php echo $index; ?>" name="annotation[]" value="<?php echo trim($annotation->annotation); ?>" />
+													</p>
 												</div>
-												<div class="remove_element" onclick="removeElement('#remove_annotation_<?php echo $index; ?>', 'annotation');"><img src="/images/remove-item.png" /></div>
-												<div class="clearfix" style="margin-bottom: 10px;"></div>
+												<div>
+													<p>Annotation Type:</p>
+													<p>
+														<input type="text" id="annotation_type_<?php echo $index; ?>" name="annotation_type[]" value="<?php echo trim($annotation->annotation_type); ?>" />
+													</p>
+												</div>
+
 											</div>
+											<div class="remove_element" onclick="removeElement('#remove_annotation_<?php echo $index; ?>', 'annotation');"><img src="/images/remove-item.png" /></div>
+											<div class="clearfix" style="margin-bottom: 10px;"></div>
+										</div>
 
-											<?php
-										}
+										<?php
 									}
-									?>
-								</div>
-								<div class="add-new-element" onclick="addElement('#main_annotation', 'annotation');"><i class="icon-plus-sign icon-white"></i><span id="add_annotation"><?php echo $add; ?></span></div>
+								}
+								?>
+							</div>
+							<div class="add-new-element" onclick="addElement('#main_annotation', 'annotation');"><i class="icon-plus-sign icon-white"></i><span id="add_annotation"><?php echo $add; ?></span></div>
 
-							</td>
+						</td>
 
-						</tr>
-						<tr>
-							<?php
-							$add = ' ADD RELATION';
-							?>
-							<td class="record-detail-page ins_detail">
-								<label><i class="icon-question-sign"></i><b> Relation:</b></label>
-							</td>
-							<td>
-								<div id="main_relation">
-									<?php
-									if (count($inst_relation) > 0)
+					</tr>
+					<tr>
+						<?php
+						$add = ' ADD RELATION';
+						?>
+						<td class="record-detail-page ins_detail">
+							<label><i class="icon-question-sign"></i><b> Relation:</b></label>
+						</td>
+						<td>
+							<div id="main_relation">
+								<?php
+								if (count($inst_relation) > 0)
+								{
+									$add = ' ADD ANOTHER RELATION';
+									foreach ($inst_relation as $index => $relation)
 									{
-										$add = ' ADD ANOTHER RELATION';
-										foreach ($inst_relation as $index => $relation)
-										{
-											?>
-											<div id="remove_relation_<?php echo $index; ?>" class="remove_relation">
-												<div class="edit_form_div ins_edit_div">
-													<div>
-														<p>Relation:</p>
-														<p>
-															<input type="text" id="relation_<?php echo $index; ?>" name="relation[]" value="<?php echo trim($relation->relation_identifier); ?>" />
-														</p>
-													</div>
-													<div>
-														<p> Relation Type:</p>
-														<p>
-															<select id="relation_type_<?php echo $index; ?>" name="relation_type[]">
-																<?php
-																foreach ($pbcore_relation_types as $row)
-																{
-																	$selected = '';
-																	if ($relation->relation_type == $row->value)
-																		$selected = 'selected="selected"'
-																		?>
-																	<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-																<?php }
-																?>
-															</select>
-
-														</p>
-													</div>
-													<div>
-														<p> Relation Source:</p>
-														<p>
-															<input type="text" id="relation_source_<?php echo $index; ?>" name="relation_source[]" value="<?php echo $relation->relation_type_source; ?>" />
-														</p>
-													</div>
-													<div>
-														<p> Relation Ref:</p>
-														<p>
-															<input type="text" id="relation_ref_<?php echo $index; ?>" name="relation_ref[]" value="<?php echo $relation->relation_type_ref; ?>" />
-															<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
-														</p>
-													</div>
-
+										?>
+										<div id="remove_relation_<?php echo $index; ?>" class="remove_relation">
+											<div class="edit_form_div ins_edit_div">
+												<div>
+													<p>Relation:</p>
+													<p>
+														<input type="text" id="relation_<?php echo $index; ?>" name="relation[]" value="<?php echo trim($relation->relation_identifier); ?>" />
+													</p>
 												</div>
-												<div class="remove_element" onclick="removeElement('#remove_relation_<?php echo $index; ?>', 'relation');"><img src="/images/remove-item.png" /></div>
-												<div class="clearfix" style="margin-bottom: 10px;"></div>
+												<div>
+													<p> Relation Type:</p>
+													<p>
+														<select id="relation_type_<?php echo $index; ?>" name="relation_type[]">
+															<?php
+															foreach ($pbcore_relation_types as $row)
+															{
+																$selected = '';
+																if ($relation->relation_type == $row->value)
+																	$selected = 'selected="selected"'
+																	?>
+																<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+															<?php }
+															?>
+														</select>
+
+													</p>
+												</div>
+												<div>
+													<p> Relation Source:</p>
+													<p>
+														<input type="text" id="relation_source_<?php echo $index; ?>" name="relation_source[]" value="<?php echo $relation->relation_type_source; ?>" />
+													</p>
+												</div>
+												<div>
+													<p> Relation Ref:</p>
+													<p>
+														<input type="text" id="relation_ref_<?php echo $index; ?>" name="relation_ref[]" value="<?php echo $relation->relation_type_ref; ?>" />
+														<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
+													</p>
+												</div>
+
 											</div>
+											<div class="remove_element" onclick="removeElement('#remove_relation_<?php echo $index; ?>', 'relation');"><img src="/images/remove-item.png" /></div>
+											<div class="clearfix" style="margin-bottom: 10px;"></div>
+										</div>
 
-											<?php
-										}
+										<?php
 									}
-									?>
-								</div>
-								<div class="add-new-element" onclick="addElement('#main_relation', 'relation');"><i class="icon-plus-sign icon-white"></i><span id="add_relation"><?php echo $add; ?></span></div>
+								}
+								?>
+							</div>
+							<div class="add-new-element" onclick="addElement('#main_relation', 'relation');"><i class="icon-plus-sign icon-white"></i><span id="add_relation"><?php echo $add; ?></span></div>
 
-							</td>
+						</td>
 
-						</tr>
+					</tr>
 					<?php
-					}
 				}
 				?>
 				<tr>

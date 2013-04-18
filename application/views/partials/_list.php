@@ -91,12 +91,5 @@
 
 </div>
 
-<script type="text/javascript">
-	if ($('.detail-menu').offset().top < 60) {
-		$('.detail-menu').css('position','fixed');
-	}
-	else{
-		$('.detail-menu').css('position','absolute');
-	}
-</script>
+
 

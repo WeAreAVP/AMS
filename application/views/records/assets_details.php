@@ -57,9 +57,16 @@
 		<?php $this->load->view('partials/_proxy_files'); ?>
 
 		<div style="float: left;">
-			<div style="margin-left: 20px;">
+			<?php
+			if ($this->role_id != '20')
+			{
+				?>
+						
+<!--				<div style="margin-left: 20px;">
 				<a href="<?php echo site_url('assets/edit/' . $asset_id); ?>" class="btn">Edit Asset</a>
-			</div>
+			</div>-->
+			<?php } ?>
+			
 			<table  cellPadding="8" class="record-detail-table">
 				<!--				Organization Start		-->
 				<tr>

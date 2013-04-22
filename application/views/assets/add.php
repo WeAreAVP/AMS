@@ -8,7 +8,7 @@
 					?>
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Organization:</b></label>
+							<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Organization:</b></label>
 						</td>
 						<td>
 							<p>
@@ -101,7 +101,7 @@
 				<tr>
 
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Local ID:</b></label>
+						<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Local ID:</b></label>
 					</td>
 					<td>
 						<div id="main_local_id">
@@ -142,7 +142,7 @@
 				<tr>
 
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Title:</b></label>
+						<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Title:</b></label>
 					</td>
 					<td>
 						<div id="main_title">
@@ -254,7 +254,7 @@
 				<tr>
 
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Description:</b></label>
+						<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Description:</b></label>
 					</td>
 					<td>
 						<div id="main_description">

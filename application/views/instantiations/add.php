@@ -104,7 +104,7 @@
 										</p>
 									</div>
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_dimension_0', 'dimension');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -386,7 +386,7 @@
 										</p>
 									</div>
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_generation_0', 'generation');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -431,7 +431,7 @@
 									</div>
 
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_annotation_0', 'annotation');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -488,7 +488,7 @@
 									</div>
 
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_relation_0', 'relation');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 

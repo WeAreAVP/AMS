@@ -548,7 +548,7 @@ class Assets extends MY_Controller
 	{
 		if ($this->input->post())
 		{
-			exec('noid mint 1', $output);
+			exec('/usr/local/bin/noid mint 1', $output);
 			debug($output);exit;
 			redirect('instantiations/add/1');
 		}

@@ -546,11 +546,14 @@ function validateForm() {
 						}, 'slow');
 						$(this).parent().parent().addClass('error-div');
 						isValid = false;
-						return false;
+
 					}
 					else {
 						$(this).parent().parent().removeClass('error-div');
 					}
+				}
+				else {
+					isValid = false;
 				}
 			}
 		});
@@ -583,7 +586,8 @@ function validateForm() {
 			});
 		}
 	}
-	if (isValid)
-		$('#edit_asset_form').submit();
+	console.log(isValid);
+//	if (isValid)
+//		$('#edit_asset_form').submit();
 
 }

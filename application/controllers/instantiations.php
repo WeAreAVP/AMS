@@ -690,43 +690,17 @@ class Instantiations extends MY_Controller
 		}
 	}
 
-	public function edit_old()
+	public function add()
 	{
-		$ins_id = $this->input->post('ins_id');
-
-		$source = $this->input->post('ins_id_source');
-		$media_type = $this->input->post('media_type');
-		$generation = $this->input->post('generation');
-		$language = $this->input->post('language');
-		$gen_array = '';
-		if ($source != '')
-		{
-			$this->instantiation->update_instantiation_identifier($ins_id, array('instantiation_source' => $source));
-		}
-
-
-		if ($generation)
-		{
-			$this->instantiation->delete_generation_by_instantiation_id($ins_id);
-			foreach ($generation as $row)
-			{
-				$db_generation = $this->instantiation->get_generations_by_generation($row);
-				if ($db_generation)
-				{
-					$db_gen_id = $db_generation->id;
-				}
-				else
-				{
-					$db_gen_id = $this->instantiation->insert_generations(array('generation' => $row));
-				}
-				$this->instantiation->insert_instantiation_generations(array('instantiations_id' => $ins_id, 'generations_id' => $db_gen_id));
-			}
-			$gen_array = implode('|', $generation);
-		}
-
-		$this->cron_model->update_rotate_indexes(2, array('status' => 0));
-		$this->cron_model->update_rotate_indexes(1, array('status' => 0));
-		redirect('instantiations/detail/' . $ins_id);
+		$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);
+		$data['pbcore_media_types'] = $this->manage_asset->get_picklist_values(11);
+		$data['pbcore_generations'] = $this->manage_asset->get_picklist_values(12);
+		$data['pbcore_relation_types'] = $this->manage_asset->get_picklist_values(7);
+		$data['pbcore_standards'] = $this->manage_asset->get_picklist_values(14);
+		$data['pbcore_colors'] = $this->manage_asset->get_picklist_values(15);
+		$data['pbcore_physical_formats'] = $this->manage_asset->get_picklist_values(13);
+		$data['nominations'] = $this->instantiation->get_nomination_status();
+		$this->load->view('instantiations/add', $data);
 	}
 
 	public function export_csv()

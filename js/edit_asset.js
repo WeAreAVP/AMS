@@ -553,6 +553,11 @@ function validateForm() {
 					}
 				}
 				else {
+					$('body').animate({
+						scrollTop: $(this).parent().parent().offset().top - 100
+
+					}, 'slow');
+					$(this).parent().parent().addClass('error-div');
 					isValid = false;
 				}
 			}

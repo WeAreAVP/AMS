@@ -558,6 +558,7 @@ class Assets extends MY_Controller
 		$data['pbcore_asset_contributor_roles'] = $this->manage_asset->get_picklist_values(9);
 		$data['pbcore_asset_publisher_roles'] = $this->manage_asset->get_picklist_values(10);
 		$data['organization'] = $this->station_model->get_all();
+		$this->load->view('assets/add', $data);
 	}
 
 	private function delete_asset_attributes($asset_id)

@@ -537,7 +537,7 @@ function validateForm() {
 	var field = new Array('asset_identifier', 'asset_identifier_source', 'asset_title', 'asset_description');
 	for (cnt in field) {
 		type = 'input';
-		if (cnt > 2)
+		if (cnt > 1)
 			type = 'textarea';
 		$('' + type + '[name="' + field[cnt] + '[]"]').each(function() {
 			console.log($(this));

@@ -66,7 +66,7 @@ function addElement(elementID, type) {
 		}
 
 		html = '<div id="remove_instantiation_id_' + number + '" class="remove_instantiation_id"><div class="edit_form_div ins_edit_div">' +
-		'<input type="hidden" id="instantiation_id_identifier_' + number + '" name="instantiation_id_identifier_id[]" value="" />'+append +
+		'<input type="hidden" id="instantiation_id_identifier_' + number + '" name="instantiation_id_identifier_id[]" value="" />' + append +
 		'<div><p>Instantiation ID Source:</p><p>' +
 		'<input type="text" id="instantiation_id_source_' + number + '" name="instantiation_id_source[]" value="" />' +
 		'<span class="help-block" style="display:none;">Instantiation ID Source is required.</span>' +
@@ -194,47 +194,76 @@ function validateForm() {
 			}
 		});
 	}
-	var location = new Array('location');
-	for (cnt in location) {
-		if ($('#' + location[cnt]).length > 0) {
-			if ($('#' + location[cnt]).val() == '') {
-				isValid = false;
-				$('#' + location[cnt] + '_error').show();
-				$('body').animate({
-					scrollTop: $('#' + location[cnt]).offset().top - 100
-				}, 'slow');
-				break;
-			}
-			else {
-				$('#' + location[cnt] + '_error').hide();
-			}
-		}
-	}
-	var is_numeric = new Array('frame_rate', 'width', 'height');
-	for (cnt in is_numeric) {
-		if ($('#' + is_numeric[cnt]).length > 0) {
-			if ($('#' + is_numeric[cnt]).val() != '') {
-				if (isNaN($('#' + is_numeric[cnt]).val())) {
+	if (isValid) {
+		var location = new Array('location');
+		for (cnt in location) {
+			if ($('#' + location[cnt]).length > 0) {
+				if ($('#' + location[cnt]).val() == '') {
 					isValid = false;
-					$('#' + is_numeric[cnt] + '_error').show();
+					$('#' + location[cnt] + '_error').show();
 					$('body').animate({
-						scrollTop: $('#' + is_numeric[cnt]).offset().top - 100
+						scrollTop: $('#' + location[cnt]).offset().top - 100
 					}, 'slow');
 					break;
 				}
 				else {
-					$('#' + is_numeric[cnt] + '_error').hide();
+					$('#' + location[cnt] + '_error').hide();
 				}
 			}
 		}
 	}
-	for (cnt in time) {
-		if ($('#' + time[cnt]).length > 0) {
-			value = $('#' + time[cnt]).val();
-			if (value != '') {
-				duration = value.split(':');
-				if (duration.length == 3) {
-					if (isNaN(duration[0]) || isNaN(duration[1]) || isNaN(duration[2])) {
+	if (isValid) {
+		var is_numeric = new Array('frame_rate', 'width', 'height');
+		for (cnt in is_numeric) {
+			if ($('#' + is_numeric[cnt]).length > 0) {
+				if ($('#' + is_numeric[cnt]).val() != '') {
+					if (isNaN($('#' + is_numeric[cnt]).val())) {
+						isValid = false;
+						$('#' + is_numeric[cnt] + '_error').show();
+						$('body').animate({
+							scrollTop: $('#' + is_numeric[cnt]).offset().top - 100
+						}, 'slow');
+						break;
+					}
+					else {
+						$('#' + is_numeric[cnt] + '_error').hide();
+					}
+				}
+			}
+		}
+	}
+	if (isValid) {
+		for (cnt in time) {
+			if ($('#' + time[cnt]).length > 0) {
+				value = $('#' + time[cnt]).val();
+				if (value != '') {
+					duration = value.split(':');
+					if (duration.length == 3) {
+						if (isNaN(duration[0]) || isNaN(duration[1]) || isNaN(duration[2])) {
+							isValid = false;
+							$('#' + time[cnt] + '_error').show();
+							$('body').animate({
+								scrollTop: $('#' + time[cnt]).offset().top - 100
+							}, 'slow');
+							break;
+
+						}
+						else {
+							if (duration[1] > 59 || duration[2] > 59) {
+								isValid = false;
+								$('#' + time[cnt] + '_error').show();
+								$('body').animate({
+									scrollTop: $('#' + time[cnt]).offset().top - 100
+								}, 'slow');
+								break;
+							}
+							else {
+								$('#' + time[cnt] + '_error').hide();
+							}
+						}
+
+					}
+					else {
 						isValid = false;
 						$('#' + time[cnt] + '_error').show();
 						$('body').animate({
@@ -243,56 +272,34 @@ function validateForm() {
 						break;
 
 					}
-					else {
-						if (duration[1] > 59 || duration[2] > 59) {
-							isValid = false;
-							$('#' + time[cnt] + '_error').show();
-							$('body').animate({
-								scrollTop: $('#' + time[cnt]).offset().top - 100
-							}, 'slow');
-							break;
-						}
-						else {
-							$('#' + time[cnt] + '_error').hide();
-						}
-					}
 
 				}
-				else {
-					isValid = false;
-					$('#' + time[cnt] + '_error').show();
-					$('body').animate({
-						scrollTop: $('#' + time[cnt]).offset().top - 100
-					}, 'slow');
-					break;
-
-				}
-
 			}
 		}
 	}
-	$('input[name="relation_ref[]"]').each(function() {
-		var urlregex = new RegExp(
-		"^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
-		if ($(this).val() != '') {
-			if (!urlregex.test($(this).val())) {
+	if (isValid) {
+		$('input[name="relation_ref[]"]').each(function() {
+			var urlregex = new RegExp(
+			"^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
+			if ($(this).val() != '') {
+				if (!urlregex.test($(this).val())) {
 
-				$('body').animate({
-					scrollTop: $(this).parent().parent().offset().top - 100
+					$('body').animate({
+						scrollTop: $(this).parent().parent().offset().top - 100
 
-				}, 'slow');
-				$(this).parent().parent().addClass('error-div');
-				isValid = false;
-				return false;
+					}, 'slow');
+					$(this).parent().parent().addClass('error-div');
+					isValid = false;
+					return false;
 
+				}
+				else {
+					$(this).parent().parent().removeClass('error-div');
+				}
 			}
-			else {
-				$(this).parent().parent().removeClass('error-div');
-			}
-		}
 
-	});
-
+		});
+	}
 	if (isValid)
 		$('#edit_instantiation_form').submit();
 

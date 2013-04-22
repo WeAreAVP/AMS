@@ -548,8 +548,8 @@ class Assets extends MY_Controller
 	{
 		if ($this->input->post())
 		{
-			exec('sudo /usr/local/bin/noid mint 1', $output);
-			debug($output);exit;
+			echo shell_exec('/usr/local/bin/noid mint 1');
+			exit;
 			redirect('instantiations/add/1');
 		}
 		$data['pbcore_asset_types'] = $this->manage_asset->get_picklist_values(1);

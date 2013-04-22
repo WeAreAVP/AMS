@@ -537,9 +537,10 @@ function validateForm() {
 	var field = new Array('asset_identifier', 'asset_identifier_source', 'asset_title', 'asset_description');
 	for (cnt in field) {
 		$('input[name="' + field[cnt] + '[]"]').each(function() {
+			console.log($(this));
 			if (isValid) {
 				if ($(this).length > 0) {
-					console.log($(this));
+					
 					if ($.trim($(this).val()) == "") {
 						$('body').animate({
 							scrollTop: $(this).parent().parent().offset().top - 100

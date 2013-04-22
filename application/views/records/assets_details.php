@@ -62,9 +62,9 @@
 			{
 				?>
 						
-<!--				<div style="margin-left: 20px;">
+				<div style="margin-left: 20px;">
 				<a href="<?php echo site_url('assets/edit/' . $asset_id); ?>" class="btn">Edit Asset</a>
-			</div>-->
+			</div>
 			<?php } ?>
 			
 			<table  cellPadding="8" class="record-detail-table">

@@ -201,7 +201,7 @@ function addElement(elementID, type) {
 		html = '<div id="remove_title_' + number + '" class="remove_title"><div class="edit_form_div">' +
 		'<div><p>Title:</p><p><textarea id="asset_title_<?php echo $index; ?>" name="asset_title[]"></textarea>' +
 		'</p></div><div><p>Title Type:</p><p><select id="asset_title_type_<?php echo $index; ?>" name="asset_title_type[]">' +
-		 titleTypes + '</select></p></div><div><p>Title Source:</p>' +
+		titleTypes + '</select></p></div><div><p>Title Source:</p>' +
 		'<p><input type="text" id="asset_title_source_' + number + '" name="asset_title_source[]" value="" /></p>' +
 		'</div><div><p>Title Ref:</p><p><input type="text" id="asset_title_ref_' + number + '" name="asset_title_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span></p>' +
 		'</div></div><div class="remove_element" onclick="removeElement(\'#remove_title_' + number + '\', \'title\');"><img src="/images/remove-item.png" /></div>' +
@@ -222,7 +222,7 @@ function addElement(elementID, type) {
 		{
 			subjectType += '<option value= "' + pbcoreSubjectTypes[cnt]['subject_type'] + '">' + pbcoreSubjectTypes[cnt]['subject_type'] + '</option>';
 		}
-		
+
 		html = '<div id="remove_subject_' + number + '" class="remove_subject"><div class="edit_form_div"><div>' +
 		'<p>Subject:</p><p><input type="text" id="asset_subject_' + number + '" name="asset_subject[]" value=""/></p></div>' +
 		'<div><p>Subject Type:</p><p><select id="asset_subject_type_' + number + '" name="asset_subject_type[]">' +
@@ -257,7 +257,7 @@ function addElement(elementID, type) {
 		html = '<div id="remove_description_' + number + '" class="remove_description"><div class="edit_form_div">' +
 		'<div><p>Description:</p><p><textarea id="asset_description_' + number + '" name="asset_description[]"></textarea>' +
 		'</p></div><div><p>Description Type:</p><p><select id="asset_description_type_' + number + '" name="asset_description_type[]">' +
-		 descriptionType + '</select></p></div></div>' +
+		descriptionType + '</select></p></div></div>' +
 		'<div class="remove_element" onclick="removeElement(\'#remove_description_' + number + '\', \'description\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
@@ -296,7 +296,7 @@ function addElement(elementID, type) {
 		}
 		html = '<div id="remove_audience_level_' + number + '" class="remove_audience_level"><div class="edit_form_div">' +
 		'<div><p>Audience Level:</p><p><select id="asset_audience_level_' + number + '" name="asset_audience_level[]">' +
-		 audienceLevel + '</select></p></div><div><p> Audience Level Source:</p>' +
+		audienceLevel + '</select></p></div><div><p> Audience Level Source:</p>' +
 		'<p><input type="text" id="asset_audience_level_source_' + number + '" name="asset_audience_level_source[]" value="" />' +
 		'</p></div><div><p> Audience Level Ref:</p><p><input type="text" id="asset_audience_level_ref_' + number + '" name="asset_audience_level_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_audience_level_' + number + '\', \'audience_level\');"><img src="/images/remove-item.png" /></div>' +
@@ -320,7 +320,7 @@ function addElement(elementID, type) {
 
 		html = '<div id="remove_audience_rating_' + number + '" class="remove_audience_rating"><div class="edit_form_div"><div>' +
 		'<p>Audience Rating:</p><p><select id="asset_audience_rating_' + number + '" name="asset_audience_rating[]">' +
-		 audienceRating + '</select></p></div><div><p> Audience Rating Source:</p>' +
+		audienceRating + '</select></p></div><div><p> Audience Rating Source:</p>' +
 		'<p><select id="asset_audience_rating_source_' + number + '" name="asset_audience_rating_source[]"><option value="">Select Audience Rating Source</option>' +
 		'<option value="MPAA" >MPAA</option><option value="TV Parental Guidelines" >TV Parental Guidelines</option></select></p></div>' +
 		'<div><p> Audience Rating Ref:</p><p><select id="asset_audience_rating_ref_' + number + '" name="asset_audience_rating_ref[]">' +
@@ -357,7 +357,7 @@ function addElement(elementID, type) {
 		html = '<div id="remove_relation_' + number + '" class="remove_relation"><div class="edit_form_div"><div><p>Relation:</p>' +
 		'<p><input type="text" id="asset_relation_identifier_' + number + '" name="asset_relation_identifier[]" value="" /></p></div>' +
 		'<div><p> Relation Type:</p><p><select id="asset_relation_type_' + number + '" name="asset_relation_type[]">' +
-		 relationType + '</select></p></div><div><p> Relation Source:</p><p>' +
+		relationType + '</select></p></div><div><p> Relation Source:</p><p>' +
 		'<input type="text" id="asset_relation_source_' + number + '" name="asset_relation_source[]" value="" /></p></div>' +
 		'<div><p> Relation Ref:</p><p><input type="text" id="asset_relation_ref_' + number + '" name="asset_relation_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_relation_' + number + '\', \'relation\');"><img src="/images/remove-item.png" /></div>' +
@@ -390,7 +390,7 @@ function addElement(elementID, type) {
 		'<div><p>Creator Affiliation:</p><p><input type="text" id="asset_creator_affiliation_' + number + '" name="asset_creator_affiliation[]" value="" /></p></div>' +
 		'<div><p>Creator Ref:</p><p><input type="text" id="asset_creator_ref_' + number + '" name="asset_creator_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span></p></div>' +
 		'<div><p> Creator Role:</p><p><select id="asset_creator_role_' + number + '" name="asset_creator_role[]">' +
-		 creatorRoles + '</select></p></div><div><p> Creator Role Source:</p><p>' +
+		creatorRoles + '</select></p></div><div><p> Creator Role Source:</p><p>' +
 		'<input type="text" id="asset_creator_role_source_' + number + '" name="asset_creator_role_source[]" value="" /></p></div><div><p> Creator Role Ref:</p>' +
 		'<p><input type="text" id="asset_creator_role_ref_' + number + '" name="asset_creator_role_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span></p></div></div>' +
 		'<div class="remove_element" onclick="removeElement(\'#remove_creator_' + number + '\', \'creator\');"><img src="/images/remove-item.png" /></div>' +
@@ -430,7 +430,7 @@ function addElement(elementID, type) {
 		'<div><p>Contributor Affiliation:</p><p><input type="text" id="asset_contributor_affiliation_' + number + '" name="asset_contributor_affiliation[]" value="" /></p>' +
 		'</div><div><p>Contributor Ref:</p><p><input type="text" id="asset_contributor_ref_' + number + '" name="asset_contributor_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span></p>' +
 		'</div><div><p> Contributor Role:</p><p><select id="asset_contributor_role_' + number + '" name="asset_contributor_role[]">' +
-		 contributorRoles + '</select></p></div><div><p> Contributor Role Source:</p>' +
+		contributorRoles + '</select></p></div><div><p> Contributor Role Source:</p>' +
 		'<p><input type="text" id="asset_contributor_role_source_' + number + '" name="asset_contributor_role_source[]" value="" /></p>' +
 		'</div><div><p> Contributor Role Ref:</p><p><input type="text" id="asset_contributor_role_ref_' + number + '" name="asset_contributor_role_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_contributor_' + number + '\', \'contributor\');"><img src="/images/remove-item.png" /></div>' +
@@ -471,7 +471,7 @@ function addElement(elementID, type) {
 		'<div><p>Publisher Affiliation:</p><p><input type="text" id="asset_publisher_affiliation_' + number + '" name="asset_publisher_affiliation[]" value="" /></p></div>' +
 		'<div><p>Publisher Ref:</p><p><input type="text" id="asset_publisher_ref_' + number + '" name="asset_publisher_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span></p></div>' +
 		'<div><p> Publisher Role:</p><p><select id="asset_publisher_role_' + number + '" name="asset_publisher_role[]">' +
-		 publisherRoles + '</select></p></div><div><p> Publisher Role Source:</p>' +
+		publisherRoles + '</select></p></div><div><p> Publisher Role Source:</p>' +
 		'<p><input type="text" id="asset_publisher_role_source_' + number + '" name="asset_publisher_role_source[]" value="" /></p></div>' +
 		'<div><p> Publisher Role Ref:</p><p><input type="text" id="asset_publisher_role_ref_' + number + '" name="asset_publisher_role_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>' +
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_publisher_' + number + '\', \'publisher\');"><img src="/images/remove-item.png" /></div>' +
@@ -534,32 +534,54 @@ function addElement(elementID, type) {
 }
 function validateForm() {
 	var isValid = true;
-	
-	var name = new Array('asset_identifier_ref', 'asset_title_ref', 'asset_subject_ref', 'asset_genre_ref',
-	'asset_audience_level_ref', 'asset_annotation_ref', 'asset_relation_ref', 'asset_creator_ref', 'asset_creator_role_ref',
-	'asset_contributor_ref', 'asset_contributor_role_ref', 'asset_publisher_ref', 'asset_publisher_role_ref', 'asset_right_link');
-	for (cnt in name) {
-		$('input[name="' + name[cnt] + '[]"]').each(function() {
-			var urlregex = new RegExp(
-			"^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
-			if ($(this).val() != '') {
-				if (!urlregex.test($(this).val())) {
+	var field = new Array('asset_identifier', 'asset_identifier_source', 'asset_title', 'asset_description');
+	for (cnt in field) {
+		$('input[name="' + field[cnt] + '[]"]').each(function() {
+			if (isValid) {
+				if ($(this).lenth > 0) {
+					if ($(this).val() == '') {
+						$('body').animate({
+							scrollTop: $(this).parent().parent().offset().top - 100
 
-					$('body').animate({
-						scrollTop: $(this).parent().parent().offset().top - 100
-
-					}, 'slow');
-					$(this).parent().parent().addClass('error-div');
-					isValid = false;
-					return false;
-
-				}
-				else {
-					$(this).parent().parent().removeClass('error-div');
+						}, 'slow');
+						$(this).parent().parent().addClass('error-div');
+						isValid = false;
+						return false;
+					}
+					else {
+						$(this).parent().parent().removeClass('error-div');
+					}
 				}
 			}
-
 		});
+	}
+	if (isValid) {
+		var name = new Array('asset_identifier_ref', 'asset_title_ref', 'asset_subject_ref', 'asset_genre_ref',
+		'asset_audience_level_ref', 'asset_annotation_ref', 'asset_relation_ref', 'asset_creator_ref', 'asset_creator_role_ref',
+		'asset_contributor_ref', 'asset_contributor_role_ref', 'asset_publisher_ref', 'asset_publisher_role_ref', 'asset_right_link');
+		for (cnt in name) {
+			$('input[name="' + name[cnt] + '[]"]').each(function() {
+				var urlregex = new RegExp(
+				"^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
+				if ($(this).val() != '') {
+					if (!urlregex.test($(this).val())) {
+
+						$('body').animate({
+							scrollTop: $(this).parent().parent().offset().top - 100
+
+						}, 'slow');
+						$(this).parent().parent().addClass('error-div');
+						isValid = false;
+						return false;
+
+					}
+					else {
+						$(this).parent().parent().removeClass('error-div');
+					}
+				}
+
+			});
+		}
 	}
 	if (isValid)
 		$('#edit_asset_form').submit();

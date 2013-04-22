@@ -512,7 +512,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-							var disable = '<?php echo ($disable ? 1 : 0); ?>';
+							var disable = '0';
 							var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
 							var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
 							var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;

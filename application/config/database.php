@@ -61,10 +61,10 @@ if (ENVIRONMENT == 'testing')
 }
 else if (ENVIRONMENT == 'development')
 {
-	$db['default']['hostname'] = 'amsdb.cnltxk49gtb0.us-east-1.rds.amazonaws.com';
-	$db['default']['username'] = 'root';
-	$db['default']['password'] = 'AVPSQL098';
-	$db['default']['database'] = 'ams_dev';
+	$db['default']['hostname'] = 'localhost';
+	$db['default']['username'] = 'ams';
+	$db['default']['password'] = 'xoho@123';
+	$db['default']['database'] = 'ams';
 	$db['default']['dbdriver'] = 'mysql';
 	$db['default']['db_debug'] = TRUE;
 }

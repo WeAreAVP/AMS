@@ -5,7 +5,7 @@
 	if ($media)
 	{
 		?>
-		<video class="video-js vjs-default-skin" controls
+<!--		<video class="video-js vjs-default-skin" controls
 			   preload="auto" width="400" height="150"
 			   data-setup="{}">
 			<source src="<?php echo $media['url']; ?>" type='video/mp4'>
@@ -32,7 +32,7 @@
 					{type: 'download'}
 				]
 			});
-		</script>
+		</script>-->
 		<div class="clearfix" style="margin-bottom: 15px;"></div>
 		<div class="flowplayer">
 			<video>

@@ -536,11 +536,14 @@ function validateForm() {
 	var isValid = true;
 	var field = new Array('asset_identifier', 'asset_identifier_source', 'asset_title', 'asset_description');
 	for (cnt in field) {
-		$('input[name="' + field[cnt] + '[]"]').each(function() {
+		type = 'input';
+		if (cnt > 2)
+			type = 'textarea';
+		$('' + type + '[name="' + field[cnt] + '[]"]').each(function() {
 			console.log($(this));
 			if (isValid) {
 				if ($(this).length > 0) {
-					
+
 					if ($.trim($(this).val()) == "") {
 						$('body').animate({
 							scrollTop: $(this).parent().parent().offset().top - 100

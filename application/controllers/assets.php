@@ -544,6 +544,22 @@ class Assets extends MY_Controller
 		}
 	}
 
+	public function add()
+	{
+		$data['pbcore_asset_types'] = $this->manage_asset->get_picklist_values(1);
+		$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);
+		$data['pbcore_asset_title_types'] = $this->manage_asset->get_picklist_values(3);
+		$data['pbcore_asset_subject_types'] = $this->manage_asset->get_subject_types();
+		$data['pbcore_asset_description_types'] = $this->manage_asset->get_picklist_values(4);
+		$data['pbcore_asset_audience_level'] = $this->manage_asset->get_picklist_values(5);
+		$data['pbcore_asset_audience_rating'] = $this->manage_asset->get_picklist_values(6);
+		$data['pbcore_asset_relation_types'] = $this->manage_asset->get_picklist_values(7);
+		$data['pbcore_asset_creator_roles'] = $this->manage_asset->get_picklist_values(8);
+		$data['pbcore_asset_contributor_roles'] = $this->manage_asset->get_picklist_values(9);
+		$data['pbcore_asset_publisher_roles'] = $this->manage_asset->get_picklist_values(10);
+		$data['organization'] = $this->station_model->get_all();
+	}
+
 	private function delete_asset_attributes($asset_id)
 	{
 		$table_names = array('assets_asset_types', 'asset_dates', 'asset_titles', 'assets_subjects', 'asset_descriptions',

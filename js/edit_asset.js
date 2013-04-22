@@ -540,7 +540,7 @@ function validateForm() {
 			if (isValid) {
 				if ($(this).length > 0) {
 					console.log($(this));
-					if ($(this).val() == '') {
+					if ($.trim($(this).val()) == "") {
 						$('body').animate({
 							scrollTop: $(this).parent().parent().offset().top - 100
 

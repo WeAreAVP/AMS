@@ -538,7 +538,7 @@ function validateForm() {
 	for (cnt in field) {
 		$('input[name="' + field[cnt] + '[]"]').each(function() {
 			if (isValid) {
-				if ($(this).lenth > 0) {
+				if ($(this).length > 0) {
 					console.log('hre');
 					if ($(this).val() == '') {
 						$('body').animate({

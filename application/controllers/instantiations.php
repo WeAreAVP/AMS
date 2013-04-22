@@ -695,9 +695,16 @@ class Instantiations extends MY_Controller
 		$asset_id = $this->uri->segment(3);
 		if ($this->input->post())
 		{
-			
+			if ($this->input->post('add_another'))
+			{
+				redirect('instantiations/add/' . $asset_id);
+			}
+			else
+			{
+				redirect('assets/index');
+			}
 		}
-		
+
 		$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);
 		$data['pbcore_media_types'] = $this->manage_asset->get_picklist_values(11);
 		$data['pbcore_generations'] = $this->manage_asset->get_picklist_values(12);

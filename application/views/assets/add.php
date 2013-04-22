@@ -48,7 +48,7 @@
 										</p>
 									</div>
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_type_0', 'type');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 
 
@@ -87,7 +87,7 @@
 										</p>
 									</div>
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_date_0', 'date');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -128,7 +128,7 @@
 										</p>
 									</div>
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_local_0', 'local_id');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -241,7 +241,7 @@
 										</p>
 									</div>
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_subject_0', 'subject');"><img src="/images/remove-item.png" /></div>
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -319,7 +319,7 @@
 									</div>
 
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_genre_0', 'genre');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -351,7 +351,7 @@
 											</select></p>
 									</div>
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_coverage_0', 'coverage');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -403,7 +403,7 @@
 
 
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_audience_level_0', 'audience_level');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -464,7 +464,7 @@
 
 								</div>
 
-								<div class="remove_element" onclick="removeElement('#remove_audience_rating_0', 'audience_rating');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -508,7 +508,7 @@
 
 
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_annotation_0', 'annotation');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -564,7 +564,7 @@
 										</p>
 									</div>
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_relation_0', 'relation');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -638,7 +638,7 @@
 										</p>
 									</div>
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_creator_0', 'creator');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -714,7 +714,7 @@
 									</div>
 
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_contributor_0', 'contributor');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -789,7 +789,7 @@
 									</div>
 
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_publisher_0', 'publisher');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -824,7 +824,7 @@
 										</p>
 									</div>
 								</div>
-								<div class="remove_element" onclick="removeElement('#remove_right_0', 'right');"><img src="/images/remove-item.png" /></div>
+								
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 

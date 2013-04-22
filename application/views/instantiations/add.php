@@ -104,7 +104,7 @@
 										</p>
 									</div>
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -386,7 +386,7 @@
 										</p>
 									</div>
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -431,7 +431,7 @@
 									</div>
 
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -488,7 +488,7 @@
 									</div>
 
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -502,8 +502,9 @@
 
 				<tr>
 					<td colspan="2">
-						<a class="btn" href="">Cancel</a>
-						<input type="button" onclick="validateForm();" value="Save Changes" class="btn btn-primary"/>
+
+						<input type="button" onclick="validateForm();" value="Create" class="btn btn-primary"/>
+						<input type="button" onclick="validateForm();" value="Create Another" class="btn btn-primary"/>
 					</td>
 				</tr>
 			</table>

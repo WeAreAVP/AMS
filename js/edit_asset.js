@@ -558,14 +558,12 @@ function validateForm() {
 					}
 				}
 				else {
-					alert('here');
 					splitName = field[cnt].split('_');
 					mainElementName = '#main_' + splitName[1];
 					$('body').animate({
 						scrollTop: $(mainElementName).top - 100
 
 					}, 'slow');
-//					$(this).parent().parent().addClass('error-div');
 					isValid = false;
 				}
 			}

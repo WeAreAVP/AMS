@@ -546,6 +546,10 @@ class Assets extends MY_Controller
 
 	public function add()
 	{
+		if ($this->input->post())
+		{
+			redirect('instantiations/add/1');
+		}
 		$data['pbcore_asset_types'] = $this->manage_asset->get_picklist_values(1);
 		$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);
 		$data['pbcore_asset_title_types'] = $this->manage_asset->get_picklist_values(3);

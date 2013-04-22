@@ -48,7 +48,7 @@
 										</p>
 									</div>
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 
 
@@ -87,7 +87,7 @@
 										</p>
 									</div>
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -128,7 +128,7 @@
 										</p>
 									</div>
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -319,7 +319,7 @@
 									</div>
 
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -351,7 +351,7 @@
 											</select></p>
 									</div>
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -403,7 +403,7 @@
 
 
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -464,7 +464,7 @@
 
 								</div>
 
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -508,7 +508,7 @@
 
 
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -564,7 +564,7 @@
 										</p>
 									</div>
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -638,7 +638,7 @@
 										</p>
 									</div>
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -714,7 +714,7 @@
 									</div>
 
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -789,7 +789,7 @@
 									</div>
 
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -824,7 +824,7 @@
 										</p>
 									</div>
 								</div>
-								
+
 								<div class="clearfix" style="margin-bottom: 10px;"></div>
 							</div>
 
@@ -836,7 +836,7 @@
 				<tr>
 					<td colspan="2">
 						<a class="btn" href="<?php echo site_url('records/index'); ?>">Cancel</a>
-						<input type="button" onclick="validateForm();" value="Save Changes" class="btn btn-primary"/>
+						<input type="button" onclick="validateForm();" value="Create" class="btn btn-primary"/>
 					</td>
 				</tr>
 			</table>
@@ -844,17 +844,17 @@
 	</div>
 </div>
 <script type="text/javascript">
-									var pbcoreAssetTypes =<?php echo json_encode($pbcore_asset_types); ?>;
-									var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
-									var pbcoreTitleTypes =<?php echo json_encode($pbcore_asset_title_types); ?>;
-									var pbcoreSubjectTypes =<?php echo json_encode($pbcore_asset_subject_types); ?>;
-									var pbcoreDescriptionTypes =<?php echo json_encode($pbcore_asset_description_types); ?>;
-									var pbcoreAudienceLevel =<?php echo json_encode($pbcore_asset_audience_level); ?>;
-									var pbcoreAudienceRating =<?php echo json_encode($pbcore_asset_audience_rating); ?>;
-									var pbcoreRelationTypes =<?php echo json_encode($pbcore_asset_relation_types); ?>;
-									var pbcoreCreatorRoles =<?php echo json_encode($pbcore_asset_creator_roles); ?>;
-									var pbcoreContributorRoles =<?php echo json_encode($pbcore_asset_contributor_roles); ?>;
-									var pbcorePublisherRoles =<?php echo json_encode($pbcore_asset_publisher_roles); ?>;
+								var pbcoreAssetTypes =<?php echo json_encode($pbcore_asset_types); ?>;
+								var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
+								var pbcoreTitleTypes =<?php echo json_encode($pbcore_asset_title_types); ?>;
+								var pbcoreSubjectTypes =<?php echo json_encode($pbcore_asset_subject_types); ?>;
+								var pbcoreDescriptionTypes =<?php echo json_encode($pbcore_asset_description_types); ?>;
+								var pbcoreAudienceLevel =<?php echo json_encode($pbcore_asset_audience_level); ?>;
+								var pbcoreAudienceRating =<?php echo json_encode($pbcore_asset_audience_rating); ?>;
+								var pbcoreRelationTypes =<?php echo json_encode($pbcore_asset_relation_types); ?>;
+								var pbcoreCreatorRoles =<?php echo json_encode($pbcore_asset_creator_roles); ?>;
+								var pbcoreContributorRoles =<?php echo json_encode($pbcore_asset_contributor_roles); ?>;
+								var pbcorePublisherRoles =<?php echo json_encode($pbcore_asset_publisher_roles); ?>;
 
 </script>
 <script type="text/javascript" src="/js/edit_asset.js?<?php echo time(); ?>"></script>

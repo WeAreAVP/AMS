@@ -3,7 +3,7 @@
 
 
 	<div class="span9" style="margin-left: 250px;" id="ins_view_detail">
-		<form class="form-horizontal" method="POST" action="<?php echo site_url('instantiations/add/'); ?>" id="edit_instantiation_form">
+		<form class="form-horizontal" method="POST" action="<?php echo site_url('instantiations/add/'.$asset_id); ?>" id="edit_instantiation_form">
 			<table cellPadding="8" class="record-detail-table">
 				<tr>
 

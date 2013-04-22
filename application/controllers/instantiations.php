@@ -692,7 +692,7 @@ class Instantiations extends MY_Controller
 
 	public function add()
 	{
-		$asset_id = $this->uri->segment(3);
+		$asset_id = $data['asset_id'] = $this->uri->segment(3);
 		if ($this->input->post())
 		{
 			if ($this->input->post('add_another'))

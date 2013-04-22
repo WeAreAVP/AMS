@@ -503,7 +503,7 @@
 				<tr>
 					<td colspan="2">
 
-						<input type="button" onclick="validateForm();" value="Create" class="btn btn-primary"/>
+						<input type="checkbox"  value="1"/> Add Another 
 						<input type="button" onclick="validateForm();" value="Create Another" class="btn btn-primary"/>
 					</td>
 				</tr>

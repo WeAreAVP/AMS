@@ -540,7 +540,7 @@ function validateForm() {
 		if (cnt > 1)
 			type = 'textarea';
 		$('' + type + '[name="' + field[cnt] + '[]"]').each(function() {
-			console.log($(this));
+
 			if (isValid) {
 				if ($(this).length > 0) {
 
@@ -558,12 +558,13 @@ function validateForm() {
 					}
 				}
 				else {
-					console.log('ehre');
+					splitName = field[cnt].split('_');
+					mainElementName = '#main_' + splitName[1];
 					$('body').animate({
-						scrollTop: $(this).parent().parent().offset().top - 100
+						scrollTop: $(mainElementName).top - 100
 
 					}, 'slow');
-					$(this).parent().parent().addClass('error-div');
+//					$(this).parent().parent().addClass('error-div');
 					isValid = false;
 				}
 			}
@@ -597,8 +598,8 @@ function validateForm() {
 			});
 		}
 	}
-	console.log(isValid);
-//	if (isValid)
-//		$('#edit_asset_form').submit();
+
+	if (isValid)
+		$('#edit_asset_form').submit();
 
 }

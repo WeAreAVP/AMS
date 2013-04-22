@@ -539,7 +539,7 @@ function validateForm() {
 		$('input[name="' + field[cnt] + '[]"]').each(function() {
 			if (isValid) {
 				if ($(this).length > 0) {
-					console.log($(this).val());
+					console.log($(this));
 					if ($(this).val() == '') {
 						$('body').animate({
 							scrollTop: $(this).parent().parent().offset().top - 100

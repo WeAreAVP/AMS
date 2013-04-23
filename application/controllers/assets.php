@@ -565,7 +565,8 @@ class Assets extends MY_Controller
 				if (isset($explode_ids[1]) && $explode_ids[1] == $station_info->cpb_id)
 					$aacip_id = $explode_ids[0];
 			}
-
+			echo 'ab'.$aacip_id;
+			exit;
 			$guid_string = file_get_contents('http://amsqa.avpreserve.com/nd/noidu_kt5?mint+1');
 			if ( ! empty($guid_string))
 			{

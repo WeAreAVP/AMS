@@ -549,25 +549,24 @@ class Assets extends MY_Controller
 		if ($this->input->post())
 		{
 
+
+			if ($this->input->post('organization'))
+				$station_id = $this->input->post('organization');
+			else
+				$station_id = $this->station_id;
+
+			$station_info = $this->station_model->get_station_by_id($station_id);
+			$records = file('aacip_cpb_stationid.csv');
+			foreach ($records as $index => $line)
+			{
+				list($accp_id, $cpb_id) = explode(',', $line);
+				echo $accp_id . '<br/>' . $cpb_id . '<br/>';
+			}
+			exit;
+			$guid_string = file_get_contents('http://amsqa.avpreserve.com/nd/noidu_kt5?mint+1');
 			if ( ! empty($guid_string))
 			{
-				if ($this->input->post('organization'))
-					$station_id = $this->input->post('organization');
-				else
-					$station_id = $this->station_id;
-
-				$station_info = $this->station_model->get_station_by_id($station_id);
-				$records = file('aacip_cpb_stationid.csv');
-				foreach ($records as $index => $line)
-				{
-					list($accp_id, $cpb_id) = explode(',', $line);
-					echo $accp_id.'<br/>'.$cpb_id.'<br/>';
-					exit;
-				}
-				$guid_string = file_get_contents('http://amsqa.avpreserve.com/nd/noidu_kt5?mint+1');
 				$explode_guid = explode('id:', $guid_string);
-
-				debug($records);
 				if (count($explode_guid) > 1)
 				{
 					$guid = 'cpb-aacip/' . $accp_id . '-' . $explode_guid[1];
@@ -575,8 +574,10 @@ class Assets extends MY_Controller
 					exit;
 				}
 			}
-			redirect('instantiations/add/1');
 		}
+
+		redirect('instantiations/add/1');
+
 		$data['pbcore_asset_types'] = $this->manage_asset->get_picklist_values(1);
 		$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);
 		$data['pbcore_asset_title_types'] = $this->manage_asset->get_picklist_values(3);

@@ -561,12 +561,14 @@ class Assets extends MY_Controller
 			$records = file('aacip_cpb_stationid.csv');
 			foreach ($records as $index => $line)
 			{
-				$explode_ids= explode(',', $line);
+				$explode_ids = explode(',', $line);
 				if (isset($explode_ids[1]) && trim($explode_ids[1]) == trim($station_info->cpb_id))
 					$aacip_id = $explode_ids[0];
 			}
-			echo 'ab'.$aacip_id;
-			exit;
+			if (empty($aacip_id))
+			{
+				$aacip_id = rand(100, 300);
+			}
 			$guid_string = file_get_contents('http://amsqa.avpreserve.com/nd/noidu_kt5?mint+1');
 			if ( ! empty($guid_string))
 			{
@@ -578,6 +580,7 @@ class Assets extends MY_Controller
 					exit;
 				}
 			}
+
 			redirect('instantiations/add/1');
 		}
 

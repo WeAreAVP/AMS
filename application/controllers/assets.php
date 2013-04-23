@@ -551,7 +551,7 @@ class Assets extends MY_Controller
 			$guid_string = file_get_contents('http://amsqa.avpreserve.com/nd/noidu_kt5?mint+1');
 			if ( ! empty($guid_string))
 			{
-				$explode_guid = explode('id', $guid_string);
+				$explode_guid = explode('id:', $guid_string);
 				if (count($explode_guid) > 1)
 				{
 					$guid = $explode_guid[1];

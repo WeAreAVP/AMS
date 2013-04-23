@@ -548,8 +548,8 @@ class Assets extends MY_Controller
 	{
 		if ($this->input->post())
 		{
-			echo `/usr/local/bin/noid mint 1`;
-			exit;
+			$guid_string=file_get_contents('http://amsqa.avpreserve.com/nd/noidu_kt5?mint+1');
+			echo $guid_string;exit;
 			redirect('instantiations/add/1');
 		}
 		$data['pbcore_asset_types'] = $this->manage_asset->get_picklist_values(1);

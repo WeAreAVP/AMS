@@ -49,7 +49,7 @@ if ( ! $isAjax)
 					$this->load->view('instantiations/_gear_dropdown');
 				}
 				?>
-				<div style="float: left"><a href="<?php echo site_url('assets/add');?>">Add Asset</a></div>
+				<div style="float: left"><a href="<?php echo site_url('assets/add');?>" class="btn">Add Asset</a></div>
 				<div style="float: right;">
 					<strong><?php echo number_format($start); ?> - <?php echo number_format($end); ?></strong> of <strong style="margin-right: 10px;" id="total_list_count"><?php echo number_format($total); ?></strong>
 					<?php echo $this->ajax_pagination->create_links(); ?>

@@ -561,7 +561,7 @@ class Assets extends MY_Controller
 			foreach ($records as $index => $line)
 			{
 				list($accp_id, $cpb_id) = explode(',', $line);
-				if ($cpb_id == $station_info->cpb_id)
+				if (isset($cpb_id) && $cpb_id == $station_info->cpb_id)
 					$aacip_id = $accp_id;
 			}
 

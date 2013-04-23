@@ -460,7 +460,7 @@
 						if (isset($relation->relation_type_source) && ! empty($relation->relation_type_source))
 							$relation_type_src = $relation->relation_type_source;
 						if (isset($relation->relation_type_ref) && ! empty($relation->relation_type_ref))
-							$combine_relation .= " (<a href='$relation->relation_type_ref' target='_blank'> $relation_type_src</a>)";
+							$combine_relation .= " (<a href='$relation->relation_type_ref' target='_blank'>$relation_type_src</a>)";
 						else
 							$combine_relation .=' (' . $relation_type_src.')';
 						if ( ! empty($combine_relation) && trim($combine_relation) != ':')

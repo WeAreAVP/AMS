@@ -556,20 +556,22 @@ class Assets extends MY_Controller
 				$station_id = $this->station_id;
 
 			$station_info = $this->station_model->get_station_by_id($station_id);
+			$aacip_id = '';
 			$records = file('aacip_cpb_stationid.csv');
 			foreach ($records as $index => $line)
 			{
 				list($accp_id, $cpb_id) = explode(',', $line);
-				echo $accp_id . '<br/>' . $cpb_id . '<br/>';
+				if ($cpb_id == $station_info->cpb_id)
+					$aacip_id = $accp_id;
 			}
-			exit;
+
 			$guid_string = file_get_contents('http://amsqa.avpreserve.com/nd/noidu_kt5?mint+1');
 			if ( ! empty($guid_string))
 			{
 				$explode_guid = explode('id:', $guid_string);
 				if (count($explode_guid) > 1)
 				{
-					$guid = 'cpb-aacip/' . $accp_id . '-' . $explode_guid[1];
+					$guid = 'cpb-aacip/' . $aacip_id . '-' . $explode_guid[1];
 					echo $guid;
 					exit;
 				}

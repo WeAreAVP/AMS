@@ -554,8 +554,9 @@ class Assets extends MY_Controller
 				$explode_guid = explode('id:', $guid_string);
 				if (count($explode_guid) > 1)
 				{
-					$guid = $explode_guid[1];
-					echo $guid;exit;
+					$guid = 'cpb-aacip/' . $accp_id . '-' . $explode_guid[1];
+					echo $guid;
+					exit;
 				}
 			}
 			redirect('instantiations/add/1');

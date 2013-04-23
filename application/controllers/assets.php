@@ -561,9 +561,9 @@ class Assets extends MY_Controller
 			$records = file('aacip_cpb_stationid.csv');
 			foreach ($records as $index => $line)
 			{
-				list($accp_id, $cpb_id) = explode(',', $line);
-				if (isset($cpb_id) && $cpb_id == $station_info->cpb_id)
-					$aacip_id = $accp_id;
+				$explode_ids= explode(',', $line);
+				if (isset($explode_ids[1]) && $explode_ids[1] == $station_info->cpb_id)
+					$aacip_id = $explode_ids[0];
 			}
 
 			$guid_string = file_get_contents('http://amsqa.avpreserve.com/nd/noidu_kt5?mint+1');

@@ -59,7 +59,7 @@
 			{
 				?>
 						
-				<div><a href="<?php echo site_url('instantiations/edit/' . $inst_id); ?>" class="btn">Edit Instantiation</a></div>
+				<!--<div><a href="<?php echo site_url('instantiations/edit/' . $inst_id); ?>" class="btn">Edit Instantiation</a></div>-->
 			<?php } ?>
 			<table  cellPadding="8" class="record-detail-table">
 				<!--				Instantiation ID	Start		-->

@@ -296,6 +296,37 @@ class Crons extends CI_Controller
 		$this->memcached_library->set('total_region_digitized', json_encode($total_region_digitized), 3600);
 		$this->memcached_library->set('total_hours_region_digitized', json_encode($total_hours_region_digitized), 3600);
 		/* End Total digitized assets by Region */
+
+		/* Pie Chart for All Formats Start */
+		$pie_total_completed = $this->dashboard_model->pie_total_completed();
+		$pie_total_scheduled = $this->dashboard_model->pie_total_scheduled();
+		$pie_total = $pie_total_completed->total + $pie_total_scheduled->total;
+		$pie_total = ($pie_total == 0) ? 1 : $pie_total;
+		$data['pie_total_completed'] = (int) round(($pie_total_completed->total * 100) / $pie_total);
+		$data['pie_total_scheduled'] = (int) round(($pie_total_scheduled->total * 100) / $pie_total);
+		$this->memcached_library->set('pie_total_completed', json_encode($data['pie_total_completed']), 3600);
+		$this->memcached_library->set('pie_total_scheduled', json_encode($data['pie_total_scheduled']), 3600);
+		/* Pie Chart for All Formats End */
+		/* Pie Chart for Radio Formats Start */
+		$pie_total_completed = $this->dashboard_model->pie_total_radio_completed();
+		$pie_total_scheduled = $this->dashboard_model->pie_total_radio_scheduled();
+		$pie_total = $pie_total_completed->total + $pie_total_scheduled->total;
+		$pie_total = ($pie_total == 0) ? 1 : $pie_total;
+		$data['pie_total_radio_completed'] = (int) round(($pie_total_completed->total * 100) / $pie_total);
+		$data['pie_total_radio_scheduled'] = (int) round(($pie_total_scheduled->total * 100) / $pie_total);
+		$this->memcached_library->set('pie_total_radio_completed', json_encode($data['pie_total_radio_completed']), 3600);
+		$this->memcached_library->set('pie_total_radio_scheduled', json_encode($data['pie_total_radio_scheduled']), 3600);
+		/* Pie Chart for Radio Formats End */
+		/* Pie Chart for Radio Formats Start */
+		$pie_total_completed = $this->dashboard_model->pie_total_tv_completed();
+		$pie_total_scheduled = $this->dashboard_model->pie_total_tv_scheduled();
+		$pie_total = $pie_total_completed->total + $pie_total_scheduled->total;
+		$pie_total = ($pie_total == 0) ? 1 : $pie_total;
+		$data['pie_total_tv_completed'] = (int) round(($pie_total_completed->total * 100) / $pie_total);
+		$data['pie_total_tv_scheduled'] = (int) round(($pie_total_scheduled->total * 100) / $pie_total);
+		$this->memcached_library->set('pie_total_tv_completed', json_encode($data['pie_total_tv_completed']), 3600);
+		$this->memcached_library->set('pie_total_tv_scheduled', json_encode($data['pie_total_tv_scheduled']), 3600);
+		/* Pie Chart for Radio Formats End */
 	}
 
 	function abbr_number($size)

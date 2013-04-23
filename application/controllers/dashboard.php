@@ -65,30 +65,13 @@ class Dashboard extends MY_Controller
 		$data['percentage_hours'] = json_decode($this->memcached_library->get('percentage_hours'), TRUE);
 		$data['total_region_digitized'] = json_decode($this->memcached_library->get('total_region_digitized'), TRUE);
 		$data['total_hours_region_digitized'] = json_decode($this->memcached_library->get('total_hours_region_digitized'), TRUE);
-		/* Pie Chart for All Formats Start */
-		$pie_total_completed = $this->dashboard_model->pie_total_completed();
-		$pie_total_scheduled = $this->dashboard_model->pie_total_scheduled();
-		$pie_total = $pie_total_completed->total + $pie_total_scheduled->total;
-		$pie_total = ($pie_total == 0) ? 1 : $pie_total;
-		$data['pie_total_completed'] = (int) round(($pie_total_completed->total * 100) / $pie_total);
-		$data['pie_total_scheduled'] = (int) round(($pie_total_scheduled->total * 100) / $pie_total);
-		/* Pie Chart for All Formats End */
-		/* Pie Chart for Radio Formats Start */
-		$pie_total_completed = $this->dashboard_model->pie_total_radio_completed();
-		$pie_total_scheduled = $this->dashboard_model->pie_total_radio_scheduled();
-		$pie_total = $pie_total_completed->total + $pie_total_scheduled->total;
-		$pie_total = ($pie_total == 0) ? 1 : $pie_total;
-		$data['pie_total_radio_completed'] = (int) round(($pie_total_completed->total * 100) / $pie_total);
-		$data['pie_total_radio_scheduled'] = (int) round(($pie_total_scheduled->total * 100) / $pie_total);
-		/* Pie Chart for Radio Formats End */
-		/* Pie Chart for Radio Formats Start */
-		$pie_total_completed = $this->dashboard_model->pie_total_tv_completed();
-		$pie_total_scheduled = $this->dashboard_model->pie_total_tv_scheduled();
-		$pie_total = $pie_total_completed->total + $pie_total_scheduled->total;
-		$pie_total = ($pie_total == 0) ? 1 : $pie_total;
-		$data['pie_total_tv_completed'] = (int) round(($pie_total_completed->total * 100) / $pie_total);
-		$data['pie_total_tv_scheduled'] = (int) round(($pie_total_scheduled->total * 100) / $pie_total);
-		/* Pie Chart for Radio Formats End */
+		$data['pie_total_completed'] = json_decode($this->memcached_library->get('pie_total_completed'), TRUE);
+		$data['pie_total_scheduled'] = json_decode($this->memcached_library->get('pie_total_scheduled'), TRUE);
+		$data['pie_total_radio_completed'] = json_decode($this->memcached_library->get('pie_total_radio_completed'), TRUE);
+		$data['pie_total_radio_scheduled'] = json_decode($this->memcached_library->get('pie_total_radio_scheduled'), TRUE);
+		$data['pie_total_tv_completed'] = json_decode($this->memcached_library->get('pie_total_tv_completed'), TRUE);
+		$data['pie_total_tv_scheduled'] = json_decode($this->memcached_library->get('pie_total_tv_scheduled'), TRUE);
+
 		$this->load->view('dashboard/index', $data);
 	}
 

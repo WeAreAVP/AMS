@@ -14,8 +14,6 @@
 
 							<div id="remove_instantiation_id_0" class="remove_instantiation_id">
 								<div class="edit_form_div ins_edit_div">
-									<input type="hidden" id="instantiation_id_identifier_0" name="instantiation_id_identifier_id[]" value="" />
-
 									<div>
 										<p>Instantiation ID:</p>
 										<p>

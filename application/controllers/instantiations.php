@@ -462,7 +462,7 @@ class Instantiations extends MY_Controller
 						}
 						else
 						{
-							$instantiation_format_physical_d['instantiations_id'] = $instantiations_id;
+							$instantiation_format_physical_d['instantiations_id'] = $instantiation_id;
 							$instantiation_format_physical_id = $this->instantiation->insert_instantiation_formats($instantiation_format_physical_d);
 						}
 
@@ -858,7 +858,7 @@ class Instantiations extends MY_Controller
 			{
 				$instantiation_format_physical_d['format_name'] = $this->input->post('physical_format');
 				$instantiation_format_physical_d['format_type'] = 'physical';
-				$instantiation_format_physical_d['instantiations_id'] = $instantiations_id;
+				$instantiation_format_physical_d['instantiations_id'] = $instantiation_id;
 				$instantiation_format_physical_id = $this->instantiation->insert_instantiation_formats($instantiation_format_physical_d);
 			}
 

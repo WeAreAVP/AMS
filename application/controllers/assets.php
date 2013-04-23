@@ -558,9 +558,10 @@ class Assets extends MY_Controller
 
 				$station_info = $this->station_model->get_station_by_id($station_id);
 				$records = file('aacip_cpb_stationid.csv');
-				foreach ($records as $index => $row)
+				foreach ($records as $index => $line)
 				{
-					list($accp_id,$station_name,$cpb_id)=preg_split("/\t/", $line);
+					list($accp_id, $cpb_id) = explode(',', $line);
+					echo $accp_id.'<br/>'.$cpb_id.'<br/>';
 				}
 				$guid_string = file_get_contents('http://amsqa.avpreserve.com/nd/noidu_kt5?mint+1');
 				$explode_guid = explode('id:', $guid_string);

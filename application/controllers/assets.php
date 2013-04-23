@@ -556,7 +556,7 @@ class Assets extends MY_Controller
 				$station_id = $this->station_id;
 			echo $station_id;
 			$station_info = $this->station_model->get_station_by_id($station_id);
-			debug($station_info,FALSE);
+			debug($station_info, FALSE);
 			$aacip_id = '';
 			$records = file('aacip_cpb_stationid.csv');
 			foreach ($records as $index => $line)
@@ -577,9 +577,10 @@ class Assets extends MY_Controller
 					exit;
 				}
 			}
+			redirect('instantiations/add/1');
 		}
 
-		redirect('instantiations/add/1');
+
 
 		$data['pbcore_asset_types'] = $this->manage_asset->get_picklist_values(1);
 		$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);

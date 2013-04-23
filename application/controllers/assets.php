@@ -574,7 +574,7 @@ class Assets extends MY_Controller
 				$explode_guid = explode('id:', $guid_string);
 				if (count($explode_guid) > 1)
 				{
-					$guid = 'cpb-aacip/' . $aacip_id . '-' . $explode_guid[1];
+					$guid = 'cpb-aacip/' . $aacip_id . '-' . trim($explode_guid[1]);
 				}
 			}
 			if ( ! empty($guid))

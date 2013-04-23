@@ -548,11 +548,23 @@ class Assets extends MY_Controller
 	{
 		if ($this->input->post())
 		{
-			$guid_string = file_get_contents('http://amsqa.avpreserve.com/nd/noidu_kt5?mint+1');
+
 			if ( ! empty($guid_string))
 			{
-				$explode_guid = explode('id:', $guid_string);
+				if ($this->input->post('organization'))
+					$station_id = $this->input->post('organization');
+				else
+					$station_id = $this->station_id;
+
+				$station_info = $this->station_model->get_station_by_id($station_id);
 				$records = file('aacip_cpb_stationid.csv');
+				foreach ($records as $index => $row)
+				{
+					list($accp_id,$station_name,$cpb_id)=preg_split("/\t/", $line);
+				}
+				$guid_string = file_get_contents('http://amsqa.avpreserve.com/nd/noidu_kt5?mint+1');
+				$explode_guid = explode('id:', $guid_string);
+
 				debug($records);
 				if (count($explode_guid) > 1)
 				{

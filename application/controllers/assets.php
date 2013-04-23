@@ -562,6 +562,7 @@ class Assets extends MY_Controller
 				{
 					list($accp_id, $cpb_id) = explode(',', $line);
 					echo $accp_id.'<br/>'.$cpb_id.'<br/>';
+					exit;
 				}
 				$guid_string = file_get_contents('http://amsqa.avpreserve.com/nd/noidu_kt5?mint+1');
 				$explode_guid = explode('id:', $guid_string);

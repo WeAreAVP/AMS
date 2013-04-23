@@ -554,8 +554,9 @@ class Assets extends MY_Controller
 				$station_id = $this->input->post('organization');
 			else
 				$station_id = $this->station_id;
-
+			echo $station_id;
 			$station_info = $this->station_model->get_station_by_id($station_id);
+			debug($station_info,FALSE);
 			$aacip_id = '';
 			$records = file('aacip_cpb_stationid.csv');
 			foreach ($records as $index => $line)

@@ -552,6 +552,8 @@ class Assets extends MY_Controller
 			if ( ! empty($guid_string))
 			{
 				$explode_guid = explode('id:', $guid_string);
+				$records = file('aacip_cpb_stationid.csv');
+				debug($records);
 				if (count($explode_guid) > 1)
 				{
 					$guid = 'cpb-aacip/' . $accp_id . '-' . $explode_guid[1];

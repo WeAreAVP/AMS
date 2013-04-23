@@ -975,7 +975,7 @@ class Instantiations extends MY_Controller
 				redirect('records/details/' . $asset_id);
 			}
 		}
-
+		$data['asset_id']=$asset_id;
 		$data['pbcore_asset_date_types'] = $this->manage_asset->get_picklist_values(2);
 		$data['pbcore_media_types'] = $this->manage_asset->get_picklist_values(11);
 		$data['pbcore_generations'] = $this->manage_asset->get_picklist_values(12);

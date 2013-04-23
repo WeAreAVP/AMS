@@ -562,7 +562,7 @@ class Assets extends MY_Controller
 			foreach ($records as $index => $line)
 			{
 				$explode_ids= explode(',', $line);
-				if (isset($explode_ids[1]) && $explode_ids[1] == $station_info->cpb_id)
+				if (isset($explode_ids[1]) && trim($explode_ids[1]) == trim($station_info->cpb_id))
 					$aacip_id = $explode_ids[0];
 			}
 			echo 'ab'.$aacip_id;

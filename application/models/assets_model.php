@@ -79,6 +79,17 @@ class Assets_Model extends CI_Model
 		$this->_table_asset_titles = 'asset_titles';
 	}
 
+	function get_relation_by_asset_id($asset_id)
+	{
+		$this->db->select('assets_relations.relation_identifier');
+		$this->db->select('relation_types.relation_type');
+		$this->db->select('relation_types.relation_type_source');
+		$this->db->select('relation_types.relation_type_ref');
+		$this->db->join('relation_types', 'relation_types.id = assets_relations.relation_types_id', 'left');
+		$this->db->where('assets_relations.assets_id', $asset_id);
+		return $result = $this->db->get('assets_relations')->result();
+	}
+
 	/**
 	 * Get Annotations by Asset ID
 	 * 

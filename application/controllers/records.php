@@ -155,9 +155,9 @@ class Records extends MY_Controller
 			$data['list_assets'] = $this->instantiation->get_instantiations_by_asset_id($asset_id);
 			$data['asset_details'] = $this->assets_model->get_asset_by_asset_id($asset_id);
 			$data['asset_guid'] = $this->assets_model->get_guid_by_asset_id($asset_id);
-			
+
 			$data['asset_localid'] = $this->assets_model->get_localid_by_asset_id($asset_id);
-			
+
 			$data['asset_subjects'] = $this->assets_model->get_subjects_by_assets_id($asset_id);
 			$data['asset_dates'] = $this->assets_model->get_assets_dates_by_assets_id($asset_id);
 			$data['asset_genres'] = $this->assets_model->get_assets_genres_by_assets_id($asset_id);
@@ -169,10 +169,11 @@ class Records extends MY_Controller
 			$data['asset_audience_levels'] = $this->assets_model->get_audience_level_by_asset_id($asset_id);
 			$data['asset_audience_ratings'] = $this->assets_model->get_audience_rating_by_asset_id($asset_id);
 			$data['annotations'] = $this->assets_model->get_annotations_by_asset_id($asset_id);
+			$data['relation'] = $this->assets_model->get_relation_by_asset_id($asset_id);
 			$search_results_data = $this->sphinx->assets_listing(array('index' => 'assets_list'), 0, 1000);
 			$data['next_result_id'] = FALSE;
 			$data['prev_result_id'] = FALSE;
-			$data['media']=$this->proxy_files($data['asset_guid']->guid_identifier);
+			$data['media'] = $this->proxy_files($data['asset_guid']->guid_identifier);
 			if (isset($search_results_data['records']) && ! is_empty($search_results_data['records']))
 			{
 				$search_results = $search_results_data['records'];
@@ -231,9 +232,9 @@ class Records extends MY_Controller
 		$proxy_response = file_get_contents("http://cpbproxy.crawfordmedia.com/xml.php?GUID=$proxy_guid");
 		$x = @simplexml_load_string($proxy_response);
 		$data = xmlObjToArr($x);
-		
+
 		$child = $data['children'];
-		if (isset($data['name']) && $data['name']=='error')
+		if (isset($data['name']) && $data['name'] == 'error')
 		{
 			return FALSE;
 		}

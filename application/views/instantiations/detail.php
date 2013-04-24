@@ -99,22 +99,24 @@
 					{
 						if (isset($date->date_type) && ! empty($date->date_type))
 							$combine_dates .=$date->date_type . ' : ';
-						$combine_dates .=$date->instantiation_date;
+						$combine_dates .=$date->instantiation_date . '<br/>';
+						?>
 
-						if ( ! empty($combine_dates) && trim($combine_dates) != ':')
-						{
-							?>
-							<tr>
-								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b> Date:</b></label>
-								</td>
-								<td>
-									<p>	<?php echo $combine_dates; ?></p>
+						<?php
+					}
+					if ( ! empty($combine_dates) && trim($combine_dates) != ':')
+					{
+						?>
+						<tr>
+							<td class="record-detail-page">
+								<label><i class="icon-question-sign"></i><b> Date:</b></label>
+							</td>
+							<td>
+								<p>	<?php echo $combine_dates; ?></p>
 
-								</td>
-							</tr>
-							<?php
-						}
+							</td>
+						</tr>
+					<?php
 					}
 				}
 				?>
@@ -137,11 +139,11 @@
 							{
 								?>
 								<p><?php echo $value; ?></p>
-							<?php }
-							?>
+	<?php }
+	?>
 						</td>
 					</tr>
-<?php } ?>
+				<?php } ?>
 				<!--				Media Type	End		-->
 				<!--				Format 	Start		-->
 				<?php
@@ -165,7 +167,7 @@
 							<span>	<?php echo $inst_format->format_name; ?></span>
 						</td>
 					</tr>
-<?php } ?>
+				<?php } ?>
 				<!--				Format	End		-->
 				<!--				Generation 	Start		-->
 				<?php
@@ -188,7 +190,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Generation	End		-->
 				<!--				Location 	Start		-->
 				<?php
@@ -205,7 +207,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Location	End		-->
 				<!--				Duration 	Start		-->
 				<?php
@@ -238,7 +240,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Duration	End		-->
 				<!--				Time Start 	Start		-->
 				<?php
@@ -255,7 +257,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Time Start	End		-->
 				<!--				File Size 	Start		-->
 				<?php
@@ -272,7 +274,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				File Size	End		-->
 				<!--				Standard 	Start		-->
 				<?php
@@ -289,7 +291,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Standard	End		-->
 				<!--				Dimensions: 	Start		-->
 				<?php
@@ -306,7 +308,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Dimensions	End		-->
 				<!--				Data Rate 	Start		-->
 				<?php
@@ -324,7 +326,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Data Rate	End		-->
 				<!--			 Color 	Start		-->
 				<?php
@@ -341,7 +343,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Color	End		-->
 				<!--			 Tracks 	Start		-->
 				<?php
@@ -358,7 +360,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Tracks	End		-->
 				<!--			 Channel Configuration 	Start		-->
 				<?php
@@ -375,7 +377,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Channel Configuration	End		-->
 				<!--			 Language 	Start		-->
 				<?php
@@ -392,7 +394,7 @@
 						</td>
 					</tr>
 
-<?php } ?>
+				<?php } ?>
 				<!--				Language	End		-->
 				<!--			 Annotation 	Start		-->
 				<?php
@@ -447,7 +449,7 @@
 					?>	
 
 
-<?php } ?>
+				<?php } ?>
 				<!--				Annotation	End		-->
 				<!--  Relation Start  -->
 				<?php
@@ -507,8 +509,8 @@
 					?>
 					<p><?php echo ' at ' . $ins_nomination->nominated_at; ?></p>
 
-				<?php }
-				?>
+			<?php }
+			?>
 			</div>
 			<?php
 		}
@@ -537,8 +539,8 @@
 						</tr>
 			<?php } ?>
 				</tbody></table>
-		<?php }
-		?>
+<?php }
+?>
 	</div>
 	<div class="clearfix"></div>
 

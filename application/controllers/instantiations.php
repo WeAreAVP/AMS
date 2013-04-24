@@ -609,10 +609,13 @@ class Instantiations extends MY_Controller
 						}
 						/* Essence Track Frame Size End */
 						/* Essence Track Frame Rate Start */
-						if ($this->input->post('frame_rate') && ! empty($this->input->post('frame_rate')))
+						if ($frame_rate = $this->input->post('frame_rate'))
 						{
-							$db_essence_track = TRUE;
-							$essence_tracks_d['frame_rate'] = $this->input->post('frame_rate');
+							if ( ! empty($frame_rate))
+							{
+								$db_essence_track = TRUE;
+								$essence_tracks_d['frame_rate'] = $this->input->post('frame_rate');
+							}
 						}
 						/* Essence Track Frame Rate End */
 						/* Essence Track Playback Speed Start */

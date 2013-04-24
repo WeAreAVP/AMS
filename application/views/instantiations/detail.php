@@ -92,32 +92,34 @@
 				<!--				Instantiation ID	End		-->
 				<!--				Date 	Start		-->
 				<?php
-				if ($inst_dates->dates != '' || $inst_dates->date_type != '')
+				if (count($inst_dates))
 				{
-					?>
-					<tr>
-						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Date:</b></label>
-						</td>
-						<td>
+					$combine_dates = '';
+					foreach ($inst_dates as $index => $date)
+					{
+						if (isset($date->date_type) && ! empty($date->date_type))
+							$combine_dates .=$date->date_type . ' : ';
+						$combine_dates .=$date->instantiation_date;
+
+						if ( ! empty($combine_dates) && trim($combine_dates) != ':')
+						{
+							?>
+							<tr>
+								<td class="record-detail-page">
+									<label><i class="icon-question-sign"></i><b> Date:</b></label>
+								</td>
+								<td>
+									<p>	<?php echo $combine_dates; ?></p>
+
+								</td>
+							</tr>
 							<?php
-							if ($inst_dates->date_type != '')
-							{
-								?>
-								<span><?php echo $inst_dates->date_type . ':'; ?></span>
-								<?php
-							}
-							if ($inst_dates->dates != '')
-							{
-								?>
-								<span><?php echo date("Y-m-d", strtotime($inst_dates->dates)); ?></span>
-
-							<?php } ?>
+						}
+					}
+				}
+				?>
 
 
-						</td>
-					</tr>
-				<?php } ?>
 				<!--				Date 	End		-->
 				<!--				Media Type 	Start		-->
 				<?php
@@ -139,7 +141,7 @@
 							?>
 						</td>
 					</tr>
-				<?php } ?>
+<?php } ?>
 				<!--				Media Type	End		-->
 				<!--				Format 	Start		-->
 				<?php
@@ -163,7 +165,7 @@
 							<span>	<?php echo $inst_format->format_name; ?></span>
 						</td>
 					</tr>
-				<?php } ?>
+<?php } ?>
 				<!--				Format	End		-->
 				<!--				Generation 	Start		-->
 				<?php
@@ -182,11 +184,11 @@
 							{
 								?>
 								<p>	<?php echo $generation; ?></p>
-							<?php } ?>
+	<?php } ?>
 						</td>
 					</tr>
 
-				<?php } ?>
+<?php } ?>
 				<!--				Generation	End		-->
 				<!--				Location 	Start		-->
 				<?php
@@ -203,7 +205,7 @@
 						</td>
 					</tr>
 
-				<?php } ?>
+<?php } ?>
 				<!--				Location	End		-->
 				<!--				Duration 	Start		-->
 				<?php
@@ -236,7 +238,7 @@
 						</td>
 					</tr>
 
-				<?php } ?>
+<?php } ?>
 				<!--				Duration	End		-->
 				<!--				Time Start 	Start		-->
 				<?php
@@ -253,7 +255,7 @@
 						</td>
 					</tr>
 
-				<?php } ?>
+<?php } ?>
 				<!--				Time Start	End		-->
 				<!--				File Size 	Start		-->
 				<?php
@@ -270,7 +272,7 @@
 						</td>
 					</tr>
 
-				<?php } ?>
+<?php } ?>
 				<!--				File Size	End		-->
 				<!--				Standard 	Start		-->
 				<?php
@@ -287,7 +289,7 @@
 						</td>
 					</tr>
 
-				<?php } ?>
+<?php } ?>
 				<!--				Standard	End		-->
 				<!--				Dimensions: 	Start		-->
 				<?php
@@ -304,7 +306,7 @@
 						</td>
 					</tr>
 
-				<?php } ?>
+<?php } ?>
 				<!--				Dimensions	End		-->
 				<!--				Data Rate 	Start		-->
 				<?php
@@ -316,13 +318,13 @@
 							<label><i class="icon-question-sign"></i><b> Data Rate:</b></label>
 						</td>
 						<td>
-							<?php $data_rate_unit = (isset($inst_data_rate_unit->unit_of_measure)) ? $inst_data_rate_unit->unit_of_measure : ''; ?>
+	<?php $data_rate_unit = (isset($inst_data_rate_unit->unit_of_measure)) ? $inst_data_rate_unit->unit_of_measure : ''; ?>
 							<p>	<?php echo $detail_instantiation->data_rate . ' ' . $data_rate_unit; ?></p>
 
 						</td>
 					</tr>
 
-				<?php } ?>
+<?php } ?>
 				<!--				Data Rate	End		-->
 				<!--			 Color 	Start		-->
 				<?php
@@ -339,7 +341,7 @@
 						</td>
 					</tr>
 
-				<?php } ?>
+<?php } ?>
 				<!--				Color	End		-->
 				<!--			 Tracks 	Start		-->
 				<?php
@@ -356,7 +358,7 @@
 						</td>
 					</tr>
 
-				<?php } ?>
+<?php } ?>
 				<!--				Tracks	End		-->
 				<!--			 Channel Configuration 	Start		-->
 				<?php
@@ -373,7 +375,7 @@
 						</td>
 					</tr>
 
-				<?php } ?>
+<?php } ?>
 				<!--				Channel Configuration	End		-->
 				<!--			 Language 	Start		-->
 				<?php
@@ -390,7 +392,7 @@
 						</td>
 					</tr>
 
-				<?php } ?>
+<?php } ?>
 				<!--				Language	End		-->
 				<!--			 Annotation 	Start		-->
 				<?php
@@ -445,7 +447,7 @@
 					?>	
 
 
-				<?php } ?>
+<?php } ?>
 				<!--				Annotation	End		-->
 				<!--  Relation Start  -->
 				<?php
@@ -462,7 +464,7 @@
 						if (isset($relation->relation_type_ref) && ! empty($relation->relation_type_ref))
 							$combine_relation .= " (<a href='$relation->relation_type_ref' target='_blank'>$relation_type_src</a>)";
 						else
-							$combine_relation .=' (' . $relation_type_src.')';
+							$combine_relation .=' (' . $relation_type_src . ')';
 						if ( ! empty($combine_relation) && trim($combine_relation) != ':')
 						{
 							?>
@@ -533,7 +535,7 @@
 							<td><?php echo (isset($events->event_note) && ! is_empty($events->event_note)) ? $events->event_note : ''; ?></td>
 							<td><?php echo (isset($events->event_outcome) && ! is_empty($events->event_outcome)) ? $events->event_outcome : ''; ?></td>
 						</tr>
-					<?php } ?>
+			<?php } ?>
 				</tbody></table>
 		<?php }
 		?>
@@ -541,5 +543,5 @@
 	<div class="clearfix"></div>
 
 
-	<?php $this->load->view('essence_track/list'); ?>
+<?php $this->load->view('essence_track/list'); ?>
 </div>

@@ -588,40 +588,49 @@ class Instantiations extends MY_Controller
 						/* Relation End */
 
 						/* Essence Track Frame Size Start */
+						$db_essence_track = FALSE;
 						if ($this->input->post('width') && $this->input->post('height'))
 						{
-							$track_frame_size_d = $this->essence_track->get_essence_track_frame_sizes_by_width_height(trim($this->input->post('width')), trim($this->input->post('height')));
-							if ($track_frame_size_d)
+							if ( ! empty($this->input->post('width')) && ! empty($this->input->post('height')))
 							{
-								$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;
-							}
-							else
-							{
-								$essence_tracks_d['essence_track_frame_sizes_id'] = $this->essence_track->insert_essence_track_frame_sizes(array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
+								$db_essence_track = TRUE;
+								$track_frame_size_d = $this->essence_track->get_essence_track_frame_sizes_by_width_height(trim($this->input->post('width')), trim($this->input->post('height')));
+								if ($track_frame_size_d)
+								{
+									$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;
+								}
+								else
+								{
+									$essence_tracks_d['essence_track_frame_sizes_id'] = $this->essence_track->insert_essence_track_frame_sizes(array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
+								}
 							}
 						}
 						/* Essence Track Frame Size End */
 						/* Essence Track Frame Rate Start */
-						if ($this->input->post('frame_rate'))
+						if ($this->input->post('frame_rate') && ! empty($this->input->post('frame_rate')))
 						{
+							$db_essence_track = TRUE;
 							$essence_tracks_d['frame_rate'] = $this->input->post('frame_rate');
 						}
 						/* Essence Track Frame Rate End */
 						/* Essence Track Playback Speed Start */
-						if ($this->input->post('playback_speed'))
+						if ($this->input->post('playback_speed') && ! empty($this->input->post('playback_speed')))
 						{
+							$db_essence_track = TRUE;
 							$essence_tracks_d['playback_speed'] = $this->input->post('playback_speed');
 						}
 						/* Essence Track Playback Speed End */
 						/* Essence Track Sampling Rate Start */
-						if ($this->input->post('sampling_rate'))
+						if ($this->input->post('sampling_rate') && ! empty($this->input->post('sampling_rate')))
 						{
+							$db_essence_track = TRUE;
 							$essence_tracks_d['sampling_rate'] = $this->input->post('sampling_rate');
 						}
 						/* Essence Track Sampling Rate End */
 						/* Essence Track Aspect Ratio Start */
-						if ($this->input->post('aspect_ratio'))
+						if ($this->input->post('aspect_ratio') && ! empty($this->input->post('aspect_ratio')))
 						{
+							$db_essence_track = TRUE;
 							$essence_tracks_d['aspect_ratio'] = $this->input->post('aspect_ratio');
 						}
 						/* Essence Track Aspect Ratio End */
@@ -639,15 +648,18 @@ class Instantiations extends MY_Controller
 
 
 						/* Essence Track Start */
-						$essence_track = $this->manage_asset->get_single_essence_tracks_by_instantiations_id($instantiation_id);
-						if ($essence_track)
+						if ($db_essence_track)
 						{
-							$this->essence_track->update_essence_track($essence_track->id, $essence_tracks_d);
-						}
-						else
-						{
-							$essence_tracks_d['instantiations_id'] = $instantiation_id;
-							$this->essence_track->insert_essence_tracks($essence_tracks_d);
+							$essence_track = $this->manage_asset->get_single_essence_tracks_by_instantiations_id($instantiation_id);
+							if ($essence_track)
+							{
+								$this->essence_track->update_essence_track($essence_track->id, $essence_tracks_d);
+							}
+							else
+							{
+								$essence_tracks_d['instantiations_id'] = $instantiation_id;
+								$this->essence_track->insert_essence_tracks($essence_tracks_d);
+							}
 						}
 						/* Essence Track End */
 					}

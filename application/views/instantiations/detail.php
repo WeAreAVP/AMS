@@ -64,17 +64,15 @@
 			<table  cellPadding="8" class="record-detail-table">
 				<!--				Instantiation ID	Start		-->
 				<?php
-				if ($inst_identifier->instantiation_identifier || $inst_identifier->instantiation_source)
+				if (count($inst_identifier) > 0)
 				{
-					$ins_identifier = explode(' | ', trim(str_replace('(**)', '', $inst_identifier->instantiation_identifier)));
-					$ins_identifier_src = explode(' | ', trim(str_replace('(**)', '', $inst_identifier->instantiation_source)));
 					$combine_identifier = '';
 					foreach ($ins_identifier as $index => $identifier)
 					{
 						$combine_identifier.= '<p>';
-						$combine_identifier.= $identifier;
-						if (isset($ins_identifier_src[$index]) && ! empty($ins_identifier_src[$index]))
-							$combine_identifier.=' (' . $ins_identifier_src[$index] . ')';
+						$combine_identifier.= $identifier->instantiation_identifier;
+						if ( ! empty($identifier->instantiation_source))
+							$combine_identifier.=' (' . $identifier->instantiation_source . ')';
 						$combine_identifier.= '</p>';
 					}
 					?>
@@ -92,7 +90,7 @@
 				<!--				Instantiation ID	End		-->
 				<!--				Date 	Start		-->
 				<?php
-				if (count($inst_dates))
+				if (count($inst_dates) > 0)
 				{
 					$combine_dates = '';
 					foreach ($inst_dates as $index => $date)
@@ -295,7 +293,7 @@
 				<!--				Standard	End		-->
 				<!--				Dimensions: 	Start		-->
 				<?php
-				if (count($inst_demension))
+				if (count($inst_demension) > 0)
 				{
 					$combine_demension = '';
 					foreach ($inst_demension as $index => $demension)
@@ -407,7 +405,7 @@
 				<!--				Language	End		-->
 				<!--			 Annotation 	Start		-->
 				<?php
-				if (count($inst_annotation))
+				if (count($inst_annotation) > 0)
 				{
 					$combine_annotation = '';
 					foreach ($inst_annotation as $index => $annotation)

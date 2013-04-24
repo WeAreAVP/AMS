@@ -67,7 +67,7 @@
 				if (count($inst_identifier) > 0)
 				{
 					$combine_identifier = '';
-					foreach ($ins_identifier as $index => $identifier)
+					foreach ($inst_identifier as $index => $identifier)
 					{
 						$combine_identifier.= '<p>';
 						$combine_identifier.= $identifier->instantiation_identifier;

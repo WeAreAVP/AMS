@@ -891,8 +891,8 @@ class Instantiations_Model extends CI_Model
 
 	function get_identifier_by_instantiation_id($ins_id)
 	{
-		$this->db->select("$this->table_instantiation_identifier.instantiation_identifier", FALSE);
-		$this->db->select("$this->table_instantiation_identifier.instantiation_source", FALSE);
+		$this->db->select("$this->table_instantiation_identifier.instantiation_identifier");
+		$this->db->select("$this->table_instantiation_identifier.instantiation_source");
 		$this->db->where("$this->table_instantiation_identifier.instantiations_id", $ins_id);
 
 		return $this->db->get($this->table_instantiation_identifier)->result();

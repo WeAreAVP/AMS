@@ -166,6 +166,7 @@ class Instantiations extends MY_Controller
 				$data['asset_guid'] = $this->assets_model->get_guid_by_asset_id($data['asset_id']);
 				$data['ins_nomination'] = $this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
 				$data['inst_identifier'] = $this->instantiation->get_identifier_by_instantiation_id($instantiation_id);
+				debug($data['inst_identifier']);
 				$data['inst_dates'] = $this->instantiation->get_dates_by_instantiation_id($instantiation_id);
 				$data['inst_media_type'] = $this->instantiation->get_media_type_by_instantiation_media_id($detail->instantiation_media_type_id);
 				$data['inst_format'] = $this->instantiation->get_format_by_instantiation_id($instantiation_id);

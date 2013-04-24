@@ -157,6 +157,20 @@ function addElement(elementID, type) {
 			cacheLength: 1
 		});
 	}
+	else if (elementID == 'main_instantiation_date') {
+		dateTypes = '';
+
+		for (cnt in pbcoreDateTypes)
+		{
+			dateTypes += '<option value= "' + pbcoreDateTypes[cnt]['value'] + '">' + pbcoreDateTypes[cnt]['value'] + '</option>';
+		}
+		html = '<div id="remove_instantiation_date_' + number + '" class="remove_instantiation_date"><div class="edit_form_div ins_edit_div">' +
+		'<div><p>Instantiation ID:</p><p><input readonly="readonly" type="text" id="inst_date_' + number + '" name="inst_date[]" value="" /></p>' +
+		'</div><div><p>Instantiation ID Source:</p><p><select id="inst_date_type_' + number + '" name="inst_date_type[]">' + dateTypes + '</select>' +
+		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_instantiation_date_' + number + '\', \'instantiation_date\');"><img src="/images/remove-item.png" /></div>' +
+		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
+		$(elementID).append(html);
+	}
 
 	if ($('.remove_' + type).length == 0) {
 		$('#add_' + type).html(' ADD ' + type.replace(/_/g, " ").toUpperCase());

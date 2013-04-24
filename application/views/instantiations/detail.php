@@ -474,8 +474,9 @@
 							$relation_type_src = $relation->relation_type_source;
 						if (isset($relation->relation_type_ref) && ! empty($relation->relation_type_ref))
 							$combine_relation .= " (<a href='$relation->relation_type_ref' target='_blank'>$relation_type_src</a>)";
-						else
+						else if (isset($relation_type_src) && ! empty($relation_type_src))
 							$combine_relation .=' (' . $relation_type_src . ')';
+						$combine_relation .='<br/>';
 					}
 					if ( ! empty($combine_relation) && trim($combine_relation) != ':')
 					{

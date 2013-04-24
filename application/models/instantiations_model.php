@@ -954,10 +954,10 @@ class Instantiations_Model extends CI_Model
 
 	function get_annotation_by_instantiation_id($ins_id)
 	{
-		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->table_instantiation_annotations.annotation,'(**)')) SEPARATOR ' | ') AS ins_annotation", FALSE);
-		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL($this->table_instantiation_annotations.annotation_type,'(**)')) SEPARATOR ' | ') AS ins_annotation_type", FALSE);
+		$this->db->select("$this->table_instantiation_annotations.annotation", FALSE);
+		$this->db->select("$this->table_instantiation_annotations.annotation_type", FALSE);
 		$this->db->where("$this->table_instantiation_annotations.instantiations_id", $ins_id);
-		return $result = $this->db->get($this->table_instantiation_annotations)->row();
+		return $this->db->get($this->table_instantiation_annotations)->result();
 	}
 
 	function get_instantiations_by_asset_id($asset_id)

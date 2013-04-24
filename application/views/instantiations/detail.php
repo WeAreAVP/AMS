@@ -407,58 +407,35 @@
 				<!--				Language	End		-->
 				<!--			 Annotation 	Start		-->
 				<?php
-				if ($inst_annotation->ins_annotation != '' || $inst_annotation->ins_annotation_type != '')
+				if (count($inst_annotation))
 				{
-					$ins_annotation = explode(' | ', trim(str_replace('(**)', '', $inst_annotation->ins_annotation)));
-					$ins_annotation_type = explode(' | ', trim(str_replace('(**)', '', $inst_annotation->ins_annotation_type)));
 					$combine_annotation = '';
-					if ((count($ins_annotation) > 0 && $ins_annotation[0] != '') || (count($ins_annotation_type) > 0 && $ins_annotation_type[0] != ''))
+					foreach ($inst_annotation as $index => $annotation)
 					{
-						if (count($ins_annotation) > count($ins_annotation_type))
-						{
-							foreach ($ins_annotation as $index => $row)
-							{
-								if (isset($ins_annotation_type[$index]) && $ins_annotation_type[$index] != '')
-								{
-									$combine_annotation.=$ins_annotation_type[$index] . ': ';
-								}
-								$combine_annotation.=$row;
-								$combine_annotation.='<div class="clearfix"></div>';
-							}
-						}
-						else
-						{
-							foreach ($ins_annotation_type as $index => $row)
-							{
-								$combine_annotation.=$row . ': ';
-								if (isset($ins_annotation[$index]) && $ins_annotation[$index] != '')
-								{
-									$combine_annotation.=$ins_annotation[$index];
-								}
+						if (isset($annotation->annotation_type) && ! empty($annotation->annotation_type))
+							$combine_annotation .=$annotation->annotation_type . ' : ';
+						$combine_annotation .=$annotation->annotation . '<br/>';
+						?>
 
-								$combine_annotation.='<div class="clearfix"></div>';
-							}
-						}
-
-						if ( ! empty($combine_annotation) && trim($combine_annotation) != ':')
-						{
-							?>
-							<tr>
-								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
-								</td>
-								<td>
-									<p>	<?php echo $combine_annotation; ?></p>
-
-								</td>
-							</tr>
-							<?php
-						}
+						<?php
 					}
-					?>	
+					if ( ! empty($combine_annotation) && trim($combine_annotation) != ':')
+					{
+						?>
+						<tr>
+							<td class="record-detail-page">
+								<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
+							</td>
+							<td>
+								<p>	<?php echo $combine_annotation; ?></p>
 
+							</td>
+						</tr>
+						<?php
+					}
+				}
+				?>
 
-				<?php } ?>
 				<!--				Annotation	End		-->
 				<!--  Relation Start  -->
 				<?php

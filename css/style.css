@@ -411,6 +411,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     position:relative;
     border-radius:0px;
     width:230px;
+	border-bottom:1px solid #DDD;
 }
 .detail-sidebar:hover:after{ 
     content:'';

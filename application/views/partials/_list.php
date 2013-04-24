@@ -27,7 +27,7 @@
 
 
 			<div class="detail-sidebar-ins<?php echo $class; ?>" >
-				<a  class="menu-anchor" href="<?php echo site_url('instantiations/detail/' . $asset_instantiation->id) ?> "><div style="font-size: 11px;"><i class=" icon-th menu-img"></i>INSTANTIATION</div>
+				<a  class="menu-anchor" href="<?php echo site_url('instantiations/detail/' . $asset_instantiation->id) ?> "><div style="font-size: 11px;"><i class=" icon-th-large menu-img"></i>INSTANTIATION</div>
 					<div style="margin-left: 18px;font-size: 11px;">
 						<?php
 						if (isset($asset_instantiation->generation) && ($asset_instantiation->generation != NULL))

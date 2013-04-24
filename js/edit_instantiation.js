@@ -1,5 +1,5 @@
 $(function() {
-	$('#inst_date').datepicker({"dateFormat": 'yy-mm-dd'});
+	$('input[name="inst_date[]').datepicker({"dateFormat": 'yy-mm-dd'});
 	$('input[name="instantiation_id_source[]"]').autocomplete({
 		source: site_url + "autocomplete/values?table=instantiation_identifier&column=instantiation_source",
 		minLength: 1,

@@ -591,7 +591,9 @@ class Instantiations extends MY_Controller
 						$db_essence_track = FALSE;
 						if ($this->input->post('width') && $this->input->post('height'))
 						{
-							if ( ! empty($this->input->post('width')) && ! empty($this->input->post('height')))
+							$width = $this->input->post('width');
+							$height = $this->input->post('height');
+							if ( ! empty($width) && ! empty($height))
 							{
 								$db_essence_track = TRUE;
 								$track_frame_size_d = $this->essence_track->get_essence_track_frame_sizes_by_width_height(trim($this->input->post('width')), trim($this->input->post('height')));

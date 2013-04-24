@@ -401,7 +401,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 
 .detail-menu{
     margin-left: 0px;
-    background-color: whiteSmoke;
+    background-color: #ebebeb;
     width: 240px;
     float:left;
     position: absolute;

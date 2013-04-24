@@ -75,18 +75,21 @@
 							$combine_identifier.=' (' . $identifier->instantiation_source . ')';
 						$combine_identifier.= '</p>';
 					}
-					?>
-					<tr>
-						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Instantiation ID:</b></label>
-						</td>
-						<td>
+					if ( ! empty($combine_identifier) && trim($combine_identifier) != ':')
+					{
+						?>
+						<tr>
+							<td class="record-detail-page">
+								<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Instantiation ID:</b></label>
+							</td>
+							<td>
 
-							<p><?php echo $combine_identifier; ?></p>
+								<p><?php echo $combine_identifier; ?></p>
 
-						</td>
-					</tr>
-				<?php } ?>
+							</td>
+						</tr>
+					<?php }
+				} ?>
 				<!--				Instantiation ID	End		-->
 				<!--				Date 	Start		-->
 				<?php
@@ -98,9 +101,6 @@
 						if (isset($date->date_type) && ! empty($date->date_type))
 							$combine_dates .=$date->date_type . ' : ';
 						$combine_dates .=$date->instantiation_date . '<br/>';
-						?>
-
-						<?php
 					}
 					if ( ! empty($combine_dates) && trim($combine_dates) != ':')
 					{

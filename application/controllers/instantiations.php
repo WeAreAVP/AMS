@@ -175,7 +175,7 @@ class Instantiations extends MY_Controller
 				$data['inst_color'] = $this->instantiation->get_color_by_instantiation_colors_id($detail->instantiation_colors_id);
 				$data['inst_annotation'] = $this->instantiation->get_annotation_by_instantiation_id($instantiation_id);
 				$data['inst_relation'] = $this->manage_asset->get_relation_by_instantiation_id($instantiation_id);
-				
+
 				$data['essence_track'] = $this->essence_track->get_essence_tracks_by_instantiations_id($instantiation_id);
 //				debug($data['essence_track']);
 
@@ -417,22 +417,21 @@ class Instantiations extends MY_Controller
 						/* Date Start */
 						if ($this->input->post('inst_date'))
 						{
-							$date_type = $this->instantiation->get_date_types_by_type($this->input->post('inst_date_type'));
-							if (isset($date_type) && isset($date_type->id))
-								$instantiation_dates_d['date_types_id'] = $date_type->id;
-							else
-								$instantiation_dates_d['date_types_id'] = $this->instantiation->insert_date_types(array('date_type' => $this->input->post('inst_date_type')));
-							$instantiation_dates_d['instantiation_date'] = $this->input->post('inst_date');
-							$db_date = $this->manage_asset->get_dates_by_instantiation_id($instantiation_id);
-							if ($db_date)
+							$this->manage_asset->delete_row($instantiation_id, 'instantiation_dates', 'instantiations_id');
+							foreach ($this->input->post('inst_date') as $index => $value)
 							{
-								$this->instantiation->update_instantiation_date($db_date->id, $instantiation_dates_d);
-							}
-							else
-							{
-								$instantiation_dates_d['instantiations_id'] = $instantiation_id;
-								$this->instantiation->insert_instantiation_dates($instantiation_dates_d);
-								//insert
+								$inst_date_types = $this->input->post('inst_date_type');
+								if ( ! empty($value))
+								{
+									$date_type = $this->instantiation->get_date_types_by_type($inst_date_types[$index]);
+									if (isset($date_type) && isset($date_type->id))
+										$instantiation_dates_d['date_types_id'] = $date_type->id;
+									else
+										$instantiation_dates_d['date_types_id'] = $this->instantiation->insert_date_types(array('date_type' => $inst_date_types[$index]));
+									$instantiation_dates_d['instantiation_date'] = $value;
+									$instantiation_dates_d['instantiations_id'] = $instantiation_id;
+									$this->instantiation->insert_instantiation_dates($instantiation_dates_d);
+								}
 							}
 						}
 						/* Date End */

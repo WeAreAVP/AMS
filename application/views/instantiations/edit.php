@@ -139,40 +139,64 @@
 				if ($disable)
 				{
 					?>
-
 					<tr>
+						<?php
+						$add = ' ADD INSTANTIATION DATE';
+						?>
 						<td class="record-detail-page ins_detail">
 							<label><i class="icon-question-sign"></i><b> Instantiation Date:</b></label>
 						</td>
 						<td>
-							<p>
-								<input readonly="readonly" type="text" id="inst_date" name="inst_date" value="<?php echo (isset($date->instantiation_date) ? $date->instantiation_date : ''); ?>" />
-							</p>
-
-						</td>
-					</tr>
-					<tr>
-						<td class="record-detail-page ins_detail">
-							<label><i class="icon-question-sign"></i><b> Instantiation Date Type:</b></label>
-						</td>
-						<td>
-							<p>
-								<select id="inst_date_type" name="inst_date_type">
-									<?php
-									foreach ($pbcore_asset_date_types as $row)
+							<div id="main_instantiation_date">
+								<?php
+								if (count($inst_identifier) > 0)
+								{
+									$add = ' ADD ANOTHER INSTANTIATION DATE';
+									foreach ($inst_identifier as $index => $identifier)
 									{
-										$selected = '';
-										if (isset($date->date_type) && $date->date_type == $row->value)
-											$selected = 'selected="selected"'
-											?>
-										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
-									<?php }
-									?>
-								</select>
-							</p>
+										?>
+										<div id="remove_instantiation_date_<?php echo $index; ?>" class="remove_instantiation_date">
+											<div class="edit_form_div ins_edit_div">
+												<div>
+													<p>Instantiation ID:</p>
+													<p><input readonly="readonly" type="text" id="inst_date_<?php echo $index; ?>" name="inst_date[]" value="<?php echo (isset($date->instantiation_date) ? $date->instantiation_date : ''); ?>" /></p>
+												</div>
 
+												<div>
+													<p>Instantiation ID Source:</p>
+													<p>
+														<select id="inst_date_type_<?php echo $index; ?>" name="inst_date_type[]">
+															<?php
+															foreach ($pbcore_asset_date_types as $row)
+															{
+																$selected = '';
+																if (isset($date->date_type) && $date->date_type == $row->value)
+																	$selected = 'selected="selected"'
+																	?>
+																<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
+															<?php }
+															?>
+														</select>
+													</p>
+												</div>
+
+											</div>
+
+											<div class="remove_element" onclick="removeElement('#remove_instantiation_date_<?php echo $index; ?>', 'instantiation_date');"><img src="/images/remove-item.png" /></div>
+
+											<div class="clearfix" style="margin-bottom: 10px;"></div>
+										</div>
+										<?php
+									}
+								}
+								?>
+							</div>
+
+							<div class="add-new-element" onclick="addElement('#main_instantiation_date', 'instantiation_date');"><i class="icon-plus-sign icon-white"></i><span id="add_instantiation_date"><?php echo $add; ?></span></div>
 						</td>
 					</tr>
+
+
 
 					<tr>
 						<?php
@@ -686,11 +710,11 @@
 	</div>
 </div>
 <script type="text/javascript">
-									var disable = '<?php echo ($disable ? 1 : 0); ?>';
-									var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
-									var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
-									var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;
-									var pbcoreGeneration =<?php echo json_encode($pbcore_generations); ?>;
+												var disable = '<?php echo ($disable ? 1 : 0); ?>';
+												var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
+												var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
+												var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;
+												var pbcoreGeneration =<?php echo json_encode($pbcore_generations); ?>;
 
 </script>
 <script type="text/javascript" src="/js/edit_instantiation.js?<?php echo time(); ?>"></script>

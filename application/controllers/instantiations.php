@@ -166,7 +166,7 @@ class Instantiations extends MY_Controller
 				$data['asset_guid'] = $this->assets_model->get_guid_by_asset_id($data['asset_id']);
 				$data['ins_nomination'] = $this->instantiation->get_nomination_by_instantiation_id($instantiation_id);
 				$data['inst_identifier'] = $this->instantiation->get_identifier_by_instantiation_id($instantiation_id);
-				
+
 				$data['inst_dates'] = $this->instantiation->get_dates_by_instantiation_id($instantiation_id);
 				$data['inst_media_type'] = $this->instantiation->get_media_type_by_instantiation_media_id($detail->instantiation_media_type_id);
 				$data['inst_format'] = $this->instantiation->get_format_by_instantiation_id($instantiation_id);
@@ -854,18 +854,25 @@ class Instantiations extends MY_Controller
 				}
 			}
 			/* Generation End */
+
 			/* Date Start */
 			if ($this->input->post('inst_date'))
 			{
-				$date_type = $this->instantiation->get_date_types_by_type($this->input->post('inst_date_type'));
-				if (isset($date_type) && isset($date_type->id))
-					$instantiation_dates_d['date_types_id'] = $date_type->id;
-				else
-					$instantiation_dates_d['date_types_id'] = $this->instantiation->insert_date_types(array('date_type' => $this->input->post('inst_date_type')));
-				$instantiation_dates_d['instantiation_date'] = $this->input->post('inst_date');
-
-				$instantiation_dates_d['instantiations_id'] = $instantiation_id;
-				$this->instantiation->insert_instantiation_dates($instantiation_dates_d);
+				foreach ($this->input->post('inst_date') as $index => $value)
+				{
+					$inst_date_types = $this->input->post('inst_date_type');
+					if ( ! empty($value))
+					{
+						$date_type = $this->instantiation->get_date_types_by_type($inst_date_types[$index]);
+						if (isset($date_type) && isset($date_type->id))
+							$instantiation_dates_d['date_types_id'] = $date_type->id;
+						else
+							$instantiation_dates_d['date_types_id'] = $this->instantiation->insert_date_types(array('date_type' => $inst_date_types[$index]));
+						$instantiation_dates_d['instantiation_date'] = $value;
+						$instantiation_dates_d['instantiations_id'] = $instantiation_id;
+						$this->instantiation->insert_instantiation_dates($instantiation_dates_d);
+					}
+				}
 			}
 			/* Date End */
 			/* Demension Start */
@@ -939,41 +946,64 @@ class Instantiations extends MY_Controller
 			}
 			/* Relation End */
 			/* Essence Track Frame Size Start */
+			$db_essence_track = FALSE;
 			if ($this->input->post('width') && $this->input->post('height'))
 			{
-				$track_frame_size_d = $this->essence_track->get_essence_track_frame_sizes_by_width_height(trim($this->input->post('width')), trim($this->input->post('height')));
-				if ($track_frame_size_d)
+				$width = $this->input->post('width');
+				$height = $this->input->post('height');
+				if ( ! empty($width) && ! empty($height))
 				{
-					$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;
-				}
-				else
-				{
-					$essence_tracks_d['essence_track_frame_sizes_id'] = $this->essence_track->insert_essence_track_frame_sizes(array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
+					$db_essence_track = TRUE;
+					$track_frame_size_d = $this->essence_track->get_essence_track_frame_sizes_by_width_height(trim($this->input->post('width')), trim($this->input->post('height')));
+					if ($track_frame_size_d)
+					{
+						$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;
+					}
+					else
+					{
+						$essence_tracks_d['essence_track_frame_sizes_id'] = $this->essence_track->insert_essence_track_frame_sizes(array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
+					}
 				}
 			}
 			/* Essence Track Frame Size End */
 			/* Essence Track Frame Rate Start */
-			if ($this->input->post('frame_rate'))
+			if ($frame_rate = $this->input->post('frame_rate'))
 			{
-				$essence_tracks_d['frame_rate'] = $this->input->post('frame_rate');
+				if ( ! empty($frame_rate))
+				{
+					$db_essence_track = TRUE;
+					$essence_tracks_d['frame_rate'] = $this->input->post('frame_rate');
+				}
 			}
 			/* Essence Track Frame Rate End */
 			/* Essence Track Playback Speed Start */
-			if ($this->input->post('playback_speed'))
+			if ($playback_speed = $this->input->post('playback_speed'))
 			{
-				$essence_tracks_d['playback_speed'] = $this->input->post('playback_speed');
+				if ( ! empty($playback_speed))
+				{
+					$db_essence_track = TRUE;
+					$essence_tracks_d['playback_speed'] = $this->input->post('playback_speed');
+				}
 			}
 			/* Essence Track Playback Speed End */
 			/* Essence Track Sampling Rate Start */
-			if ($this->input->post('sampling_rate'))
+			if ($sampling_rate = $this->input->post('sampling_rate'))
 			{
-				$essence_tracks_d['sampling_rate'] = $this->input->post('sampling_rate');
+				if ( ! empty($sampling_rate))
+				{
+					$db_essence_track = TRUE;
+					$essence_tracks_d['sampling_rate'] = $this->input->post('sampling_rate');
+				}
 			}
 			/* Essence Track Sampling Rate End */
 			/* Essence Track Aspect Ratio Start */
-			if ($this->input->post('aspect_ratio'))
+			if ($aspect_ratio = $this->input->post('aspect_ratio'))
 			{
-				$essence_tracks_d['aspect_ratio'] = $this->input->post('aspect_ratio');
+				if ( ! empty($aspect_ratio))
+				{
+					$db_essence_track = TRUE;
+					$essence_tracks_d['aspect_ratio'] = $this->input->post('aspect_ratio');
+				}
 			}
 			/* Essence Track Aspect Ratio End */
 			/* Essence Track Type Start */
@@ -990,9 +1020,11 @@ class Instantiations extends MY_Controller
 
 
 			/* Essence Track Start */
-			$essence_tracks_d['instantiations_id'] = $instantiation_id;
-			$this->essence_track->insert_essence_tracks($essence_tracks_d);
-
+			if ($db_essence_track)
+			{
+				$essence_tracks_d['instantiations_id'] = $instantiation_id;
+				$this->essence_track->insert_essence_tracks($essence_tracks_d);
+			}
 			/* Essence Track End */
 			if ($this->input->post('add_another'))
 			{

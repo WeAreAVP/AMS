@@ -51,29 +51,39 @@
 						<label><i class="icon-question-sign"></i><b> Instantiation Date:</b></label>
 					</td>
 					<td>
-						<p>
-							<input readonly="readonly" type="text" id="inst_date" name="inst_date" value="" />
-						</p>
+						<div id="main_instantiation_date">
+							<div id="remove_instantiation_date_0" class="remove_instantiation_date">
+								<div class="edit_form_div ins_edit_div">
+									<div>
+										<p>Instantiation ID:</p>
+										<p><input readonly="readonly" type="text" id="inst_date_0" name="inst_date[]" value="" /></p>
+									</div>
 
-					</td>
-				</tr>
-				<tr>
-					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Instantiation Date Type:</b></label>
-					</td>
-					<td>
-						<p>
-							<select id="inst_date_type" name="inst_date_type">
-								<?php
-								foreach ($pbcore_asset_date_types as $row)
-								{
-									?>
-									<option value="<?php echo $row->value; ?>" ><?php echo $row->value; ?></option>
-								<?php }
-								?>
-							</select>
-						</p>
+									<div>
+										<p>Instantiation ID Source:</p>
+										<p>
+											<select id="inst_date_type_0" name="inst_date_type[]">
+												<?php
+												foreach ($pbcore_asset_date_types as $row)
+												{
+													?>
+													<option value="<?php echo $row->value; ?>"><?php echo $row->value; ?></option>
+												<?php }
+												?>
+											</select>
+										</p>
+									</div>
 
+								</div>
+
+								<div class="remove_element" onclick="removeElement('#remove_instantiation_date_0', 'instantiation_date');"><img src="/images/remove-item.png" /></div>
+
+								<div class="clearfix" style="margin-bottom: 10px;"></div>
+							</div>
+
+						</div>
+
+						<div class="add-new-element" onclick="addElement('#main_instantiation_date', 'instantiation_date');"><i class="icon-plus-sign icon-white"></i><span id="add_instantiation_date"> ADD ANOTHER INSTANTIATION DATE</span></div>
 					</td>
 				</tr>
 

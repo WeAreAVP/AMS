@@ -116,7 +116,7 @@
 
 							</td>
 						</tr>
-					<?php
+						<?php
 					}
 				}
 				?>
@@ -139,8 +139,8 @@
 							{
 								?>
 								<p><?php echo $value; ?></p>
-	<?php }
-	?>
+							<?php }
+							?>
 						</td>
 					</tr>
 				<?php } ?>
@@ -186,7 +186,7 @@
 							{
 								?>
 								<p>	<?php echo $generation; ?></p>
-	<?php } ?>
+							<?php } ?>
 						</td>
 					</tr>
 
@@ -295,20 +295,29 @@
 				<!--				Standard	End		-->
 				<!--				Dimensions: 	Start		-->
 				<?php
-				if (isset($inst_demension->instantiation_dimension) && $inst_demension->instantiation_dimension != '')
+				if (count($inst_demension))
 				{
-					?>	
-					<tr>
-						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Dimensions:</b></label>
-						</td>
-						<td>
-							<p>	<?php echo $inst_demension->instantiation_dimension . ' ' . $inst_demension->unit_of_measure; ?></p>
+					$combine_demension = '';
+					foreach ($inst_demension as $index => $demension)
+					{
+						$combine_demension .=$demension->instantiation_dimension . ' ' . $demension->unit_of_measure . '<br/>';
+					}
+					if ( ! empty($combine_demension))
+					{
+						?>
+						<tr>
+							<td class="record-detail-page">
+								<label><i class="icon-question-sign"></i><b> Dimensions:</b></label>
+							</td>
+							<td>
+								<p>	<?php echo $combine_demension; ?></p>
 
-						</td>
-					</tr>
-
-				<?php } ?>
+							</td>
+						</tr>
+						<?php
+					}
+				}
+				?>
 				<!--				Dimensions	End		-->
 				<!--				Data Rate 	Start		-->
 				<?php
@@ -320,7 +329,7 @@
 							<label><i class="icon-question-sign"></i><b> Data Rate:</b></label>
 						</td>
 						<td>
-	<?php $data_rate_unit = (isset($inst_data_rate_unit->unit_of_measure)) ? $inst_data_rate_unit->unit_of_measure : ''; ?>
+							<?php $data_rate_unit = (isset($inst_data_rate_unit->unit_of_measure)) ? $inst_data_rate_unit->unit_of_measure : ''; ?>
 							<p>	<?php echo $detail_instantiation->data_rate . ' ' . $data_rate_unit; ?></p>
 
 						</td>
@@ -509,8 +518,8 @@
 					?>
 					<p><?php echo ' at ' . $ins_nomination->nominated_at; ?></p>
 
-			<?php }
-			?>
+				<?php }
+				?>
 			</div>
 			<?php
 		}
@@ -537,13 +546,13 @@
 							<td><?php echo (isset($events->event_note) && ! is_empty($events->event_note)) ? $events->event_note : ''; ?></td>
 							<td><?php echo (isset($events->event_outcome) && ! is_empty($events->event_outcome)) ? $events->event_outcome : ''; ?></td>
 						</tr>
-			<?php } ?>
+					<?php } ?>
 				</tbody></table>
-<?php }
-?>
+		<?php }
+		?>
 	</div>
 	<div class="clearfix"></div>
 
 
-<?php $this->load->view('essence_track/list'); ?>
+	<?php $this->load->view('essence_track/list'); ?>
 </div>

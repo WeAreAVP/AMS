@@ -619,24 +619,33 @@ class Instantiations extends MY_Controller
 						}
 						/* Essence Track Frame Rate End */
 						/* Essence Track Playback Speed Start */
-						if ($this->input->post('playback_speed') && ! empty($this->input->post('playback_speed')))
+						if ($playback_speed = $this->input->post('playback_speed'))
 						{
-							$db_essence_track = TRUE;
-							$essence_tracks_d['playback_speed'] = $this->input->post('playback_speed');
+							if ( ! empty($playback_speed))
+							{
+								$db_essence_track = TRUE;
+								$essence_tracks_d['playback_speed'] = $this->input->post('playback_speed');
+							}
 						}
 						/* Essence Track Playback Speed End */
 						/* Essence Track Sampling Rate Start */
-						if ($this->input->post('sampling_rate') && ! empty($this->input->post('sampling_rate')))
+						if ($sampling_rate = $this->input->post('sampling_rate'))
 						{
-							$db_essence_track = TRUE;
-							$essence_tracks_d['sampling_rate'] = $this->input->post('sampling_rate');
+							if ( ! empty($sampling_rate))
+							{
+								$db_essence_track = TRUE;
+								$essence_tracks_d['sampling_rate'] = $this->input->post('sampling_rate');
+							}
 						}
 						/* Essence Track Sampling Rate End */
 						/* Essence Track Aspect Ratio Start */
-						if ($this->input->post('aspect_ratio') && ! empty($this->input->post('aspect_ratio')))
+						if ($aspect_ratio = $this->input->post('aspect_ratio'))
 						{
-							$db_essence_track = TRUE;
-							$essence_tracks_d['aspect_ratio'] = $this->input->post('aspect_ratio');
+							if ( ! empty($aspect_ratio))
+							{
+								$db_essence_track = TRUE;
+								$essence_tracks_d['aspect_ratio'] = $this->input->post('aspect_ratio');
+							}
 						}
 						/* Essence Track Aspect Ratio End */
 						/* Essence Track Type Start */

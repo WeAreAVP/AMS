@@ -170,6 +170,7 @@ function addElement(elementID, type) {
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_instantiation_date_' + number + '\', \'instantiation_date\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
+		$('input[name="inst_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
 	}
 
 	if ($('.remove_' + type).length == 0) {

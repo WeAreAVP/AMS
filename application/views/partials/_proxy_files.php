@@ -2,6 +2,10 @@
 <script src="http://vjs.zencdn.net/c/video.js"></script>
 <div style="margin-bottom: 10px;">
 	<?php
+	echo $_SERVER['HTTP_USER_AGENT'] . "\n\n";
+
+$browser = get_browser(null, true);
+debug($browser);
 	if ($media)
 	{
 		?>

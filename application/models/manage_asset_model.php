@@ -199,7 +199,7 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->join('date_types', 'date_types.id = instantiation_dates.date_types_id', 'left');
 		$result = $this->db->get('instantiation_dates');
 		if (isset($result) && ! empty($result))
-			return $result->row();
+			return $result->result();
 		return FALSE;
 	}
 

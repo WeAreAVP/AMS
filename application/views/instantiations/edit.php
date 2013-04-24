@@ -149,17 +149,17 @@
 						<td>
 							<div id="main_instantiation_date">
 								<?php
-								if (count($inst_identifier) > 0)
+								if (count($date) > 0)
 								{
 									$add = ' ADD ANOTHER INSTANTIATION DATE';
-									foreach ($inst_identifier as $index => $identifier)
+									foreach ($date as $index => $row)
 									{
 										?>
 										<div id="remove_instantiation_date_<?php echo $index; ?>" class="remove_instantiation_date">
 											<div class="edit_form_div ins_edit_div">
 												<div>
 													<p>Instantiation ID:</p>
-													<p><input readonly="readonly" type="text" id="inst_date_<?php echo $index; ?>" name="inst_date[]" value="<?php echo (isset($date->instantiation_date) ? $date->instantiation_date : ''); ?>" /></p>
+													<p><input readonly="readonly" type="text" id="inst_date_<?php echo $index; ?>" name="inst_date[]" value="<?php echo $row->instantiation_date; ?>" /></p>
 												</div>
 
 												<div>
@@ -170,7 +170,7 @@
 															foreach ($pbcore_asset_date_types as $row)
 															{
 																$selected = '';
-																if (isset($date->date_type) && $date->date_type == $row->value)
+																if ($row->date_type == $row->value)
 																	$selected = 'selected="selected"'
 																	?>
 																<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>

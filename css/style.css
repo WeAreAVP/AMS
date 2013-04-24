@@ -465,7 +465,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     position:relative;
     border-radius:0px;
     width:230px;
-    height: 125px;
+    
 }
 .detail-sidebar-ins:hover:after{ 
     content:'';
@@ -496,13 +496,13 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     content:'';
     display:block;
     position:absolute;
-    top:0px;
+    top:45%;
     left:100%; 
     width:0;
     height:0;
     border-color: transparent transparent transparent #1797D2;
     border-style: solid; 
-    border-width:  68px 0px 68px 13px;
+    border-width:  10px 0px 10px 8px;
 }
 .detail-sidebar-ins.active{
     background: #1797D2;

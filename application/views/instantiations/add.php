@@ -511,7 +511,7 @@
 					<td colspan="2">
 
 						<input type="checkbox"  value="1" name="add_another" /> <span>Create Another </span>
-						<input type="button" onclick="validateForm();" value="Create Another" class="btn btn-primary"/>
+						<input type="button" onclick="validateForm();" value="Create" class="btn btn-primary"/>
 						<a href="<?php echo site_url('records/details/' . $asset_id); ?>" class="btn">Cancel</a>
 					</td>
 				</tr>

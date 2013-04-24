@@ -476,20 +476,20 @@
 							$combine_relation .= " (<a href='$relation->relation_type_ref' target='_blank'>$relation_type_src</a>)";
 						else
 							$combine_relation .=' (' . $relation_type_src . ')';
-						if ( ! empty($combine_relation) && trim($combine_relation) != ':')
-						{
-							?>
-							<tr>
-								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b> Relation:</b></label>
-								</td>
-								<td>
-									<p>	<?php echo $combine_relation; ?></p>
+					}
+					if ( ! empty($combine_relation) && trim($combine_relation) != ':')
+					{
+						?>
+						<tr>
+							<td class="record-detail-page">
+								<label><i class="icon-question-sign"></i><b> Relation:</b></label>
+							</td>
+							<td>
+								<p>	<?php echo $combine_relation; ?></p>
 
-								</td>
-							</tr>
-							<?php
-						}
+							</td>
+						</tr>
+						<?php
 					}
 				}
 				?>

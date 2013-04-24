@@ -157,7 +157,7 @@ function addElement(elementID, type) {
 			cacheLength: 1
 		});
 	}
-	else if (elementID == 'main_instantiation_date') {
+	else if (elementID == '#main_instantiation_date') {
 		dateTypes = '';
 
 		for (cnt in pbcoreDateTypes)

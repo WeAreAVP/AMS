@@ -44,6 +44,11 @@ class Dashboard extends MY_Controller
 		}
 	}
 
+	function mint_login()
+	{
+		$this->load->view('test_view');
+	}
+
 	/**
 	 * Dashboard Functionality
 	 * 

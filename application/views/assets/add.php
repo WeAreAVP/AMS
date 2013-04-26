@@ -101,7 +101,7 @@
 				<tr>
 
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Local ID:</b></label>
+						<label><i class="icon-question-sign"></i><b>Local ID:</b></label>
 					</td>
 					<td>
 						<div id="main_local_id">
@@ -150,7 +150,7 @@
 							<div id="remove_title_0" class="remove_title">
 								<div class="edit_form_div">
 									<div>
-										<p>Title: <span class="label_star"> *</span><span class="label_star"> *</span> </p>
+										<p>Title: <span class="label_star"> *</span> </p>
 										<p>
 											<textarea id="asset_title_0" name="asset_title[]"></textarea>
 										</p>

@@ -1,77 +1,14 @@
-<div style="float: left;margin-bottom:10px;margin-top: 10px;<?php
+<?php
+$display = 'style="display:block;"';
 if ($table_type == 'assets' && $current_tab == 'simple')
-{
-	?> display:none;<?php } ?>" id="gear_box">
-    <div class="btn-group">
+	$display = 'style="display:none;"';
+?>
+<div style="float: left;margin-bottom:10px;margin-top: 10px;" id="gear_box">
+    <div class="btn-group" <?php echo $display; ?>>
         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
             <span><i class="icon-cog"></i></span>
         </a>
-		<?php
-		if ($current_tab == '')
-		{
-			?>
-			<a class="btn"  href="#export_csv_confirm_modal" role="button"  data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
-				EXPORT LIMITED CSV
-			</a>
-			<?php
-			if ($this->role_id == 1 || $this->role_id == 2 || $this->role_id == 5)
-			{
-				?>
-				<a id="standalone_btn" class="btn" href="javascript://" onclick="openPopup();" style="margin-left: 10px;height: 14px;">
-					Standalone Report
-				</a>
-
-				<?php
-			}
-		}
-		?>
-		<?php
-		if ($this->role_id == 1 || $this->role_id == 2)
-		{
-			$message = 'Are you sure you want to refine data.';
-			$type = 0;
-			$is_current_user = FALSE;
-			$updating = FALSE;
-			$record_type = ($current_tab == '') ? 'instantiation' : 'asset';
-
-			if (count($is_refine) > 0)
-			{
-				$message = $is_refine->name . ' is already editing the records.';
-				$type = 1;
-				if ($is_refine->is_active == 2)
-					$updating = TRUE;
-				if ($is_refine->user_id == $this->user_id)
-					$is_current_user = TRUE;
-			}
-			?>
-			<?php
-			if ( ! $is_current_user && ! $updating)
-			{
-				?>
-				<a id="refine_data" class="btn"  href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
-					Refine Data
-				</a>
-				<?php
-			}
-			else if ( ! $updating)
-			{
-				?>
-				<a id="cancel_refine_data" class="btn"  href="#refine_cancel" role="button" data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
-					Cancel Refining
-				</a>
-				<?php
-			}
-			else if ($updating)
-			{
-				?>
-				<a id="cancel_refine_data" class="btn"  href="javascript://" role="button" style="margin-left: 10px;height: 14px;">
-					Updating Records
-				</a>
-				<?php
-			}
-		}
-		?>
-        <ul class="dropdown-menu">
+		<ul class="dropdown-menu">
             <li class="dropdown"><a href="#" style="white-space: normal;">Show/Hide Fields <span class="caret custom-caret" style="float: right;"></span></a>
                 <ul class="sub-menu dropdown-menu" id="show_hide_li">
 					<?php
@@ -101,24 +38,108 @@ if ($table_type == 'assets' && $current_tab == 'simple')
             </li>
         </ul>
     </div>
+	<div class="btn-group">
+		<button class="btn">Action</button>
+		<button class="btn dropdown-toggle" data-toggle="dropdown">
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+			<?php
+			if ($current_tab == '')
+			{
+				?>
+				<li>
+					<a href="#export_csv_confirm_modal" role="button"  data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
+						EXPORT LIMITED CSV
+					</a>
+				</li>
+				<?php
+				if ($this->role_id == 1 || $this->role_id == 2 || $this->role_id == 5)
+				{
+					?>
+					<li>
+						<a id="standalone_btn" class="btn" href="javascript://" onclick="openPopup();" style="margin-left: 10px;height: 14px;">
+							Standalone Report
+						</a>
+					</li>
+
+					<?php
+				}
+			}
+			?>
+			<?php
+			if ($this->role_id == 1 || $this->role_id == 2)
+			{
+				$message = 'Are you sure you want to refine data.';
+				$type = 0;
+				$is_current_user = FALSE;
+				$updating = FALSE;
+				$record_type = ($current_tab == '') ? 'instantiation' : 'asset';
+
+				if (count($is_refine) > 0)
+				{
+					$message = $is_refine->name . ' is already editing the records.';
+					$type = 1;
+					if ($is_refine->is_active == 2)
+						$updating = TRUE;
+					if ($is_refine->user_id == $this->user_id)
+						$is_current_user = TRUE;
+				}
+				?>
+				<?php
+				if ( ! $is_current_user && ! $updating)
+				{
+					?>
+					<li>
+						<a id="refine_data"   href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
+							Refine Data
+						</a>
+					</li>
+					<?php
+				}
+				else if ( ! $updating)
+				{
+					?>
+					<li>
+						<a id="cancel_refine_data"   href="#refine_cancel" role="button" data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
+							Cancel Refining
+						</a>
+					</li>
+					<?php
+				}
+				else if ($updating)
+				{
+					?>
+					<li>
+						<a id="cancel_refine_data"   href="javascript://" role="button" style="margin-left: 10px;height: 14px;">
+							Updating Records
+						</a>
+					</li>
+					<?php
+				}
+			}
+			?>
+		</ul>
+	</div>
+
 
 </div>
 <script type="text/javascript">
-			var hiden_column =<?php echo json_encode($hidden_fields); ?>;
+						var hiden_column =<?php echo json_encode($hidden_fields); ?>;
 <?php
 if ($isAjax)
 {
 	?>
-				is_destroy = true;
+							is_destroy = true;
 <?php } ?>
 <?php
 if ($total > 0)
 {
 	?>
-				$(function()
-				{
-					updateDataTable();
-				});
+							$(function()
+							{
+								updateDataTable();
+							});
 <?php } ?>
 </script>
 

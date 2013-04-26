@@ -1,10 +1,10 @@
 <?php
-$display = 'style="display:block;"';
+$display = 'display:block;';
 if ($table_type == 'assets' && $current_tab == 'simple')
-	$display = 'style="display:none;"';
+	$display = 'display:none;';
 ?>
 <div style="float: left;margin-bottom:10px;margin-top: 10px;" id="gear_box">
-    <div class="btn-group" <?php echo $display; ?>>
+    <div class="btn-group" style="float: left;<?php echo $display; ?>">
         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
             <span><i class="icon-cog"></i></span>
         </a>

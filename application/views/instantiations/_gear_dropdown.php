@@ -58,7 +58,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 				{
 					?>
 					<li>
-						<a id="standalone_btn" class="btn" href="javascript://" onclick="openPopup();" style="margin-left: 10px;height: 14px;">
+						<a id="standalone_btn" href="javascript://" onclick="openPopup();" style="margin-left: 10px;height: 14px;">
 							Standalone Report
 						</a>
 					</li>

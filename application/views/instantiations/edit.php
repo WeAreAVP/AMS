@@ -65,7 +65,7 @@
 											{
 												?>
 												<div>
-													<p>Instantiation ID:</p>
+													<p>Instantiation ID: <span class="label_star"> *</span> </p>
 													<p>
 														<input type="text" id="instantiation_id_identifier_<?php echo $index; ?>" name="instantiation_id_identifier[]" value="<?php echo trim($identifier->instantiation_identifier); ?>" />
 														<span  class="help-block" style="display:none;">Instantiation ID is required.</span>
@@ -73,7 +73,7 @@
 												</div>
 											<?php } ?>
 											<div>
-												<p>Instantiation ID Source:</p>
+												<p>Instantiation ID Source: <span class="label_star"> *</span> </p>
 												<p>
 													<input type="text" id="instantiation_id_source_<?php echo $index; ?>" name="instantiation_id_source[]" value="<?php echo trim($identifier->instantiation_source); ?>" />
 													<span  class="help-block" style="display:none;">Instantiation ID Source is required.</span>
@@ -104,7 +104,7 @@
 										{
 											?>
 											<div>
-												<p>INSTANTIATION ID:</p>
+												<p>INSTANTIATION ID: <span class="label_star"> *</span> </p>
 												<p>
 													<input type="text" id="instantiation_id_identifier_0" name="instantiation_id_identifier[]" value="" />
 													<span  class="help-block" style="display:none;">Instantiation ID is required.</span>
@@ -112,7 +112,7 @@
 											</div>
 										<?php } ?>
 										<div>
-											<p>INSTANTIATION ID SOURCE:</p>
+											<p>INSTANTIATION ID SOURCE: <span class="label_star"> *</span> </p>
 											<p>
 												<input type="text" id="instantiation_id_source_0" name="instantiation_id_source[]" value="" />
 												<span  class="help-block" style="display:none;">Instantiation ID Source is required.</span>
@@ -246,7 +246,7 @@
 					</tr>
 					<tr>
 						<td class="record-detail-page ins_detail">
-							<label><i class="icon-question-sign"></i><b> Physical Format:</b></label>
+							<label><i class="icon-question-sign"></i><b> Physical Format: <span class="label_star"> *</span> </b></label>
 						</td>
 						<td>
 							<p>
@@ -290,7 +290,7 @@
 					</tr>
 					<tr>
 						<td class="record-detail-page ins_detail">
-							<label><i class="icon-question-sign"></i><b> Location:</b></label>
+							<label><i class="icon-question-sign"></i><b> Location: <span class="label_star"> *</span> </b></label>
 						</td>
 						<td>
 							<p>
@@ -390,7 +390,7 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Media Type:</b></label>
+						<label><i class="icon-question-sign"></i><b> Media Type: <span class="label_star"> *</span> </b></label>
 					</td>
 					<td>
 						<p>

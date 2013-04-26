@@ -61,13 +61,13 @@ function addElement(elementID, type) {
 	if (elementID == '#main_instantiation_id') {
 		append = '';
 		if (disable == 1) {
-			append = '<div><p>Instantiation ID:</p><p><input type="text" id="instantiation_id_identifier_' + number + '" name="instantiation_id_identifier[]" value="" />' +
+			append = '<div><p>Instantiation ID: <span class="label_star"> *</span> </p><p><input type="text" id="instantiation_id_identifier_' + number + '" name="instantiation_id_identifier[]" value="" />' +
 			'<span class="help-block" style="display:none;">Instantiation ID is required.</span></p></div>';
 		}
 
 		html = '<div id="remove_instantiation_id_' + number + '" class="remove_instantiation_id"><div class="edit_form_div ins_edit_div">' +
 		'<input type="hidden" id="instantiation_id_identifier_' + number + '" name="instantiation_id_identifier_id[]" value="" />' + append +
-		'<div><p>Instantiation ID Source:</p><p>' +
+		'<div><p>Instantiation ID Source: <span class="label_star"> *</span> </p><p>' +
 		'<input type="text" id="instantiation_id_source_' + number + '" name="instantiation_id_source[]" value="" />' +
 		'<span class="help-block" style="display:none;">Instantiation ID Source is required.</span>' +
 		'</p></div></div>' +

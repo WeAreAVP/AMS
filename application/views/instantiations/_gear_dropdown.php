@@ -112,28 +112,32 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			}
 			?>
 			<li><a href="<?php echo site_url('assets/add'); ?>" >Add Asset</a></li>
-			<li><a href="" >MINT Import</a></li>
+			<li><a href="javascript://" onclick="$('#Login').submit();">MINT Import</a></li>
 		</ul>
 	</div>
 
-
+<form id="Login" name="login" action="http://mint.avpreserve.com:8080/mint-ams/Login.action" method="post">
+<input type="text" name="username" value="cpb.admin" id="Login_username" onkeypress="return submitenter(this, event)">
+<input type="password" name="password" value="cpbadmin" id="Login_password" onkeypress="return submitenter(this, event)">
+<input type="submit" value="mint login"/>  
+</form>
 </div>
 <script type="text/javascript">
-	var hiden_column =<?php echo json_encode($hidden_fields); ?>;
+						var hiden_column =<?php echo json_encode($hidden_fields); ?>;
 <?php
 if ($isAjax)
 {
 	?>
-	is_destroy = true;
+							is_destroy = true;
 <?php } ?>
 <?php
 if ($total > 0)
 {
 	?>
-	$(function()
-	{
-		updateDataTable();
-	});
+							$(function()
+							{
+								updateDataTable();
+							});
 <?php } ?>
 </script>
 

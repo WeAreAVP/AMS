@@ -153,9 +153,9 @@ function addElement(elementID, type) {
 
 
 		html = '<div id="remove_local_' + number + '" class="remove_local_id">' +
-		'<div class="edit_form_div"><div><p>Local ID:</p>' +
+		'<div class="edit_form_div"><div><p>Local ID: <span class="label_star"> *</span> </p>' +
 		'<p><input type="text" id="asset_identifier_' + number + '" name="asset_identifier[]" value="" /></p></div>' +
-		'<div><p>ID Source:</p>' +
+		'<div><p>ID Source: <span class="label_star"> *</span> </p>' +
 		'<p><input type="text" id="asset_identifier_source_' + number + '" name="asset_identifier_source[]" value="" /></p></div>' +
 		'<div><p>ID Ref:</p>' +
 		'<p><input type="text" id="asset_identifier_ref_' + number + '" name="asset_identifier_ref[]" value="" /><span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span></p></div>' +
@@ -199,7 +199,7 @@ function addElement(elementID, type) {
 			titleTypes += '<option value= "' + pbcoreTitleTypes[cnt]['value'] + '">' + pbcoreTitleTypes[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_title_' + number + '" class="remove_title"><div class="edit_form_div">' +
-		'<div><p>Title:</p><p><textarea id="asset_title_<?php echo $index; ?>" name="asset_title[]"></textarea>' +
+		'<div><p>Title: <span class="label_star"> *</span> </p><p><textarea id="asset_title_<?php echo $index; ?>" name="asset_title[]"></textarea>' +
 		'</p></div><div><p>Title Type:</p><p><select id="asset_title_type_<?php echo $index; ?>" name="asset_title_type[]">' +
 		titleTypes + '</select></p></div><div><p>Title Source:</p>' +
 		'<p><input type="text" id="asset_title_source_' + number + '" name="asset_title_source[]" value="" /></p>' +
@@ -255,7 +255,7 @@ function addElement(elementID, type) {
 			descriptionType += '<option value= "' + pbcoreDescriptionTypes[cnt]['value'] + '">' + pbcoreDescriptionTypes[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_description_' + number + '" class="remove_description"><div class="edit_form_div">' +
-		'<div><p>Description:</p><p><textarea id="asset_description_' + number + '" name="asset_description[]"></textarea>' +
+		'<div><p>Description: <span class="label_star"> *</span> </p><p><textarea id="asset_description_' + number + '" name="asset_description[]"></textarea>' +
 		'</p></div><div><p>Description Type:</p><p><select id="asset_description_type_' + number + '" name="asset_description_type[]">' +
 		descriptionType + '</select></p></div></div>' +
 		'<div class="remove_element" onclick="removeElement(\'#remove_description_' + number + '\', \'description\');"><img src="/images/remove-item.png" /></div>' +

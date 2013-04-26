@@ -38,7 +38,7 @@
 					?>
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Organization:</b></label>
+							<label><i class="icon-question-sign"></i><b> Organization: <span class="label_star"> *</span> </b></label>
 						</td>
 						<td>
 							<p>
@@ -187,13 +187,13 @@
 									<div id="remove_local_<?php echo $index; ?>" class="remove_local_id">
 										<div class="edit_form_div">
 											<div>
-												<p>Local ID:</p>
+												<p>Local ID: <span class="label_star"> *</span> </p>
 												<p>
 													<input type="text" id="asset_identifier_<?php echo $index; ?>" name="asset_identifier[]" value="<?php echo trim($identifier); ?>" />
 												</p>
 											</div>
 											<div>
-												<p>ID Source:</p>
+												<p>ID Source: <span class="label_star"> *</span> </p>
 												<p>
 													<input type="text" id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($identifier_sources[$index])) ? trim($identifier_sources[$index]) : ''; ?>" />
 												</p>
@@ -229,7 +229,7 @@
 					$add = ' ADD TITLE';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Title:</b></label>
+						<label><i class="icon-question-sign"></i><b> Title: <span class="label_star"> *</span> </b></label>
 					</td>
 					<td>
 						<div id="main_title">
@@ -376,7 +376,7 @@
 					$add = ' ADD DESCRIPTION';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Description:</b></label>
+						<label><i class="icon-question-sign"></i><b> Description: <span class="label_star"> *</span> </b></label>
 					</td>
 					<td>
 						<div id="main_description">

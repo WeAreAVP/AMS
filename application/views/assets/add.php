@@ -8,7 +8,7 @@
 					?>
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Organization:</b></label>
+							<label><i class="icon-question-sign"></i><b>Organization: <span class="label_star"> *</span> </b></label>
 						</td>
 						<td>
 							<p>
@@ -109,13 +109,13 @@
 							<div id="remove_local_0" class="remove_local_id">
 								<div class="edit_form_div">
 									<div>
-										<p>Local ID:</p>
+										<p>Local ID: <span class="label_star"> *</span> </p>
 										<p>
 											<input type="text" id="asset_identifier_0" name="asset_identifier[]" value="" />
 										</p>
 									</div>
 									<div>
-										<p>ID Source:</p>
+										<p>ID Source: <span class="label_star"> *</span> </p>
 										<p>
 											<input type="text" id="asset_identifier_source_0" name="asset_identifier_source[]" value="" />
 										</p>
@@ -150,7 +150,7 @@
 							<div id="remove_title_0" class="remove_title">
 								<div class="edit_form_div">
 									<div>
-										<p>Title:</p>
+										<p>Title: <span class="label_star"> *</span> </p>
 										<p>
 											<textarea id="asset_title_0" name="asset_title[]"></textarea>
 										</p>
@@ -262,7 +262,7 @@
 							<div id="remove_description_0" class="remove_description">
 								<div class="edit_form_div">
 									<div>
-										<p>Description:</p>
+										<p>Description: <span class="label_star"> *</span> </p>
 										<p>
 											<textarea id="asset_description_0" name="asset_description[]"></textarea>
 										</p>

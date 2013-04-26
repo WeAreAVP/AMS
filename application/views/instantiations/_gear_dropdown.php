@@ -5,9 +5,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 ?>
 <div style="float: left;margin-bottom:10px;margin-top: 10px;" id="gear_box">
     <div class="btn-group" style="float: left;<?php echo $display; ?>">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-            <span><i class="icon-cog"></i></span>
-        </a>
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span><i class="icon-cog"></i></span></a>
 		<ul class="dropdown-menu">
             <li class="dropdown"><a href="#" style="white-space: normal;">Show/Hide Fields <span class="caret custom-caret" style="float: right;"></span></a>
                 <ul class="sub-menu dropdown-menu" id="show_hide_li">
@@ -39,26 +37,18 @@ if ($table_type == 'assets' && $current_tab == 'simple')
         </ul>
     </div>
 	<div class="btn-group" style="float: left;">
-		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="height: 14px;">
-			Operation
-			<span class="caret"></span>
-		</a>
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="height: 14px;">Operation<span class="caret"></span></a>
 		<ul class="dropdown-menu">
 			<?php
 			if ($current_tab == '')
 			{
 				?>
-				<li>
-					<a href="#export_csv_confirm_modal" role="button"  data-toggle="modal" data-backdrop="static">Limited CSV</a>
-				</li>
+				<li><a href="#export_csv_confirm_modal" role="button"  data-toggle="modal" data-backdrop="static">Limited CSV</a></li>
 				<?php
 				if ($this->role_id == 1 || $this->role_id == 2 || $this->role_id == 5)
 				{
 					?>
-					<li>
-						<a id="standalone_btn" href="javascript://" onclick="openPopup();">Standalone Report</a>
-					</li>
-
+					<li><a id="standalone_btn" href="javascript://" onclick="openPopup();">Standalone Report</a></li>
 					<?php
 				}
 			}
@@ -86,27 +76,20 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 				if ( ! $is_current_user && ! $updating)
 				{
 					?>
-					<li>
-						<a id="refine_data" href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');">
-							Refine Data
-						</a>
-					</li>
+					<li><a id="refine_data" href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');">
+							Refine Data</a></li>
 					<?php
 				}
 				else if ( ! $updating)
 				{
 					?>
-					<li>
-						<a id="cancel_refine_data" href="#refine_cancel" role="button" data-toggle="modal" data-backdrop="static">Cancel Refining</a>
-					</li>
+					<li><a id="cancel_refine_data" href="#refine_cancel" role="button" data-toggle="modal" data-backdrop="static">Cancel Refining</a></li>
 					<?php
 				}
 				else if ($updating)
 				{
 					?>
-					<li>
-						<a id="cancel_refine_data"   href="javascript://" role="button">Updating Records</a>
-					</li>
+					<li><a id="cancel_refine_data"   href="javascript://" role="button">Updating Records</a></li>
 					<?php
 				}
 			}
@@ -117,27 +100,27 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 	</div>
 
 	<form id="Login" name="login" action="http://mint.avpreserve.com:8080/mint-ams/Login.action" method="post" style="display: none;">
-<input type="text" name="username" value="admin" id="Login_username" onkeypress="return submitenter(this, event)">
-<input type="password" name="password" value="admin" id="Login_password" onkeypress="return submitenter(this, event)">
-<input type="submit" value="mint login"/>  
-</form>
+		<input type="text" name="username" value="admin" id="Login_username" onkeypress="return submitenter(this, event)">
+		<input type="password" name="password" value="admin" id="Login_password" onkeypress="return submitenter(this, event)">
+		<input type="submit" value="mint login"/>  
+	</form>
 </div>
 <script type="text/javascript">
-						var hiden_column =<?php echo json_encode($hidden_fields); ?>;
+	var hiden_column =<?php echo json_encode($hidden_fields); ?>;
 <?php
 if ($isAjax)
 {
 	?>
-							is_destroy = true;
+	is_destroy = true;
 <?php } ?>
 <?php
 if ($total > 0)
 {
 	?>
-							$(function()
-							{
-								updateDataTable();
-							});
+	$(function()
+	{
+		updateDataTable();
+	});
 <?php } ?>
 </script>
 

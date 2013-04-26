@@ -1,53 +1,37 @@
 <?php
+$simple_class = $full_class = $thumb_class = $flagged_class = '';
+if ($current_tab == 'simple')
+	$simple_class = 'active';
+else if ($current_tab == 'full_table')
+	$full_class = 'active';
+else if ($current_tab == 'thumbnails')
+	$thumb_class = 'active';
+else if ($current_tab == 'flagged')
+	$flagged_class = 'active';
+
 if ( ! $isAjax)
 {
 	?>
 	<div class="row-fluid">
 	<?php } ?>
 	<div class="span3" style="width: 240px;overflow-y: scroll;overflow-x: hidden;">
-
 		<?php $this->load->view('instantiations/_facet_search'); ?>
 	</div>
-
-	<div  class="span9" id="data_container" style="margin-left: 10px;">
-
-
+	<div class="span9" id="data_container" style="margin-left: 10px;">
 		<?php $this->load->view('layouts/_records_nav'); ?>
 		<ul class="nav nav-tabs records-nav-sub">
-
-			<li id="simple_li" <?php
-			if ($current_tab == 'simple')
-			{
-				?>class="active" <?php } ?>><a href="javascript:;" <?php
-				if ($current_tab != 'simple')
-				{
-					?>onClick="change_view('simple')" <?php } ?> >Simple Table</a></li>
-			<li id="full_table_li" <?php
-			if ($current_tab == 'full_table')
-			{
-				?>class="active" <?php } ?>><a href="javascript:;" <?php
-				if ($current_tab != 'full_table')
-				{
-					?>onClick="change_view('full_table')" <?php } ?> >Full Table</a></li>
-			<li id="thumbnails_li" <?php
-			if ($current_tab == 'thumbnails')
-			{
-				?>class="active" <?php } ?>><a href="javascript:;" >Thumbnails</a></li>
-			<li id="flagged_li" <?php
-			if ($current_tab == 'flagged')
-			{
-				?>class="active" <?php } ?>><a href="javascript:;" >Flagged</a></li>
+			<li id="simple_li" class="<?php echo $simple_class; ?>"><a href="javascript:;" onclick="change_view('simple');">Simple Table</a></li>
+			<li id="full_table_li" class="<?php echo $full_class; ?>"><a href="javascript:;" onclick="change_view('full_table');">Full Table</a></li>
+			<li id="thumbnails_li" class="<?php echo $thumb_class; ?>"><a href="javascript:;" >Thumbnails</a></li>
+			<li id="flagged_li" class="<?php echo $flagged_class; ?>"><a href="javascript:;" >Flagged</a></li>
 		</ul>
 		<?php
 		if (isset($records) && ($total > 0))
 		{
 			?>
 			<div id="link_pagination">
-				<?php
-					$this->load->view('instantiations/_gear_dropdown');
-				
-				?>
-				
+				<?php $this->load->view('instantiations/_gear_dropdown'); ?>
+
 				<div style="float: right;">
 					<strong><?php echo number_format($start); ?> - <?php echo number_format($end); ?></strong> of <strong style="margin-right: 10px;" id="total_list_count"><?php echo number_format($total); ?></strong>
 					<?php echo $this->ajax_pagination->create_links(); ?>
@@ -70,16 +54,11 @@ if ( ! $isAjax)
 								<th><span style="float:left;min-width:300px;max-width:300px;">Description</span></th>
 							</tr>
 						</thead>
-						<tbody>
-
-						</tbody>
-
-
+						<tbody></tbody>
 					</table>
 				</div><?php
 			}
-
-			if (isset($current_tab) && $current_tab == 'full_table')
+			else if (isset($current_tab) && $current_tab == 'full_table')
 			{
 				?>
 				<div class="clearfix"></div>
@@ -87,11 +66,9 @@ if ( ! $isAjax)
 					<table class="table table-bordered" id="listing_table" style="margin-top:0px;margin-left: 1px;margin-bottom: 0px;border-collapse:collapse;"  >
 						<thead>
 							<tr style="background: rgb(235, 235, 235);">
-
 								<?php
 								if ( ! empty($this->column_order))
 								{
-
 									foreach ($this->column_order as $key => $value)
 									{
 										$class = '';
@@ -128,40 +105,34 @@ if ( ! $isAjax)
 								?>
 							</tr>
 						</thead>
-						<tbody>
-
-						</tbody>
+						<tbody></tbody>
 					</table>
 				</div><?php
 			}
-			if (isset($current_tab) && $current_tab == 'thumbnails')
+			else if (isset($current_tab) && $current_tab == 'thumbnails')
 			{
 				?>
 
 			<?php } ?>
-																																									<!--												<div style="text-align: right;width: 710px;"> <strong><?php echo number_format($start); ?> - <?php echo number_format($end); ?></strong> of <strong style="margin-right: 10px;"><?php echo number_format($total); ?></strong> <?php echo $this->ajax_pagination->create_links(); ?> </div>-->
+																																																			<!--												<div style="text-align: right;width: 710px;"> <strong><?php echo number_format($start); ?> - <?php echo number_format($end); ?></strong> of <strong style="margin-right: 10px;"><?php echo number_format($total); ?></strong> <?php echo $this->ajax_pagination->create_links(); ?> </div>-->
 			<?php
 		}
 		else if ($start >= 1000)
 		{
 			?>
-			<div  style="text-align: center;width: 710px;margin-top: 50px;font-size: 20px;">Please refine your search</div><?php
+			<div  style="text-align: center;width: 710px;margin-top: 50px;font-size: 20px;">Please refine your search</div>
+			<?php
 		}
 		else
 		{
 			?>
-			
-				<div  style="text-align: center;width: 710px;margin-top: 50px;font-size: 20px;">
-				<div>
-					<img src="/images/no_result.png" />
-				</div>
-				<div style="color: #cccccc;font-size: 11pt;">No result found. Refine your search.
-				</div>
 
+			<div  style="text-align: center;width: 710px;margin-top: 50px;font-size: 20px;">
+				<div><img src="/images/no_result.png" /></div>
+				<div style="color: #cccccc;font-size: 11pt;">No result found. Refine your search.</div>
 			</div>
-				<?php }
+		<?php }
 		?>
-
 	</div>
 	<?php
 	if ( ! $isAjax)
@@ -169,9 +140,9 @@ if ( ! $isAjax)
 		?>
 	</div>
 	<script type="text/javascript">
-										$(document).ready(function() {
-											load_facet_columns('assets_list', $('.search_keys').length);
-										});
+				$(document).ready(function() {
+					load_facet_columns('assets_list', $('.search_keys').length);
+				});
 	</script>
 
 	<?php

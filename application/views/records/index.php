@@ -39,7 +39,7 @@ if ( ! $isAjax)
 			</div>
 			<div class="clearfix"></div>
 			<?php
-			if (isset($current_tab) || $current_tab == 'simple')
+			if (isset($current_tab) && $current_tab == 'simple')
 			{
 				?>
 				<div style="" id="simple_view">

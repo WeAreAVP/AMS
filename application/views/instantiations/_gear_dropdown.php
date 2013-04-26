@@ -38,11 +38,11 @@ if ($table_type == 'assets' && $current_tab == 'simple')
             </li>
         </ul>
     </div>
-	<div class="btn-group">
-		<button class="btn">Action</button>
-		<button class="btn dropdown-toggle" data-toggle="dropdown">
+	<div class="btn-group" style="float: left;">
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+			Action
 			<span class="caret"></span>
-		</button>
+		</a>
 		<ul class="dropdown-menu">
 			<?php
 			if ($current_tab == '')

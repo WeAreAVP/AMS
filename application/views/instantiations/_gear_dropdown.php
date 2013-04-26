@@ -112,7 +112,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			}
 			?>
 			<li><a href="<?php echo site_url('assets/add'); ?>" >Add Asset</a></li>
-			<li><a href="javascript://" >MINT Import</a></li>
+			<li><a href="" >MINT Import</a></li>
 		</ul>
 	</div>
 

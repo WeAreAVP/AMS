@@ -39,7 +39,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
         </ul>
     </div>
 	<div class="btn-group" style="float: left;">
-		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript://" style="height: 14px;">
 			Action
 			<span class="caret"></span>
 		</a>
@@ -112,6 +112,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			}
 			?>
 			<li><a href="<?php echo site_url('assets/add'); ?>" >Add Asset</a></li>
+			<li><a href="javascript://" >MINT Import</a></li>
 		</ul>
 	</div>
 

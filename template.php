@@ -271,7 +271,7 @@ $display = "<table width='950px' border='0' cellspacing='0' cellpadding='5' bgco
             </tr> 
             <tr>
               <td>&nbsp&nbsp&nbsp</td>
-              <td width='60%'><img src='{$_imgsDir}Spaces-Logo-Final.png' width='358' height='81' /></td>
+              <td width='60%'><img src='$account_logo_url' width='358' height='81' /></td>
               <td width='40%' align='right' height='50px'>
                 <font face='Arial, Verdana, Trebuchet MS' size='2' color='#00ACEC' valign='top' height='70'>
                 <strong style='line-height:30px'>" . strtoupper($property_neighborhood) . "</strong><br>

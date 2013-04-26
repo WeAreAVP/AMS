@@ -50,7 +50,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 				?>
 				<li>
 					<a href="#export_csv_confirm_modal" role="button"  data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
-						EXPORT LIMITED CSV
+						Limited CSV
 					</a>
 				</li>
 				<?php

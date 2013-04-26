@@ -44,10 +44,8 @@ if ( ! $isAjax)
 			?>
 			<div id="link_pagination">
 				<?php
-				if (isset($current_tab) && $current_tab == 'full_table')
-				{
 					$this->load->view('instantiations/_gear_dropdown');
-				}
+				
 				?>
 				
 				<div style="float: right;">

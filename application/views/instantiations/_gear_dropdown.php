@@ -118,21 +118,21 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 
 </div>
 <script type="text/javascript">
-						var hiden_column =<?php echo json_encode($hidden_fields); ?>;
+	var hiden_column =<?php echo json_encode($hidden_fields); ?>;
 <?php
 if ($isAjax)
 {
 	?>
-							is_destroy = true;
+	is_destroy = true;
 <?php } ?>
 <?php
 if ($total > 0)
 {
 	?>
-							$(function()
-							{
-								updateDataTable();
-							});
+	$(function()
+	{
+		updateDataTable();
+	});
 <?php } ?>
 </script>
 

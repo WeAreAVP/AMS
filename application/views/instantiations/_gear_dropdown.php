@@ -37,7 +37,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
         </ul>
     </div>
 	<div class="btn-group" style="float: left;">
-		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="height: 14px;">Operation<span class="caret"></span></a>
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="height: 14px;">Operation&nbsp;<span class="caret"></span></a>
 		<ul class="dropdown-menu">
 			<?php
 			if ($current_tab == '')

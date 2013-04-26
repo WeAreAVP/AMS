@@ -49,18 +49,14 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			{
 				?>
 				<li>
-					<a href="#export_csv_confirm_modal" role="button"  data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
-						Limited CSV
-					</a>
+					<a href="#export_csv_confirm_modal" role="button"  data-toggle="modal" data-backdrop="static">Limited CSV</a>
 				</li>
 				<?php
 				if ($this->role_id == 1 || $this->role_id == 2 || $this->role_id == 5)
 				{
 					?>
 					<li>
-						<a id="standalone_btn" href="javascript://" onclick="openPopup();" style="margin-left: 10px;height: 14px;">
-							Standalone Report
-						</a>
+						<a id="standalone_btn" href="javascript://" onclick="openPopup();">Standalone Report</a>
 					</li>
 
 					<?php
@@ -91,7 +87,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 				{
 					?>
 					<li>
-						<a id="refine_data"   href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');" style="margin-left: 10px;height: 14px;">
+						<a id="refine_data" href="#refine_confirm" role="button" data-toggle="modal" data-backdrop="static" onclick="refineConfirm('<?php echo $message; ?>', '<?php echo $type; ?>', '<?php echo $record_type; ?>');">
 							Refine Data
 						</a>
 					</li>
@@ -101,9 +97,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 				{
 					?>
 					<li>
-						<a id="cancel_refine_data"   href="#refine_cancel" role="button" data-toggle="modal" data-backdrop="static" style="margin-left: 10px;height: 14px;">
-							Cancel Refining
-						</a>
+						<a id="cancel_refine_data" href="#refine_cancel" role="button" data-toggle="modal" data-backdrop="static">Cancel Refining</a>
 					</li>
 					<?php
 				}
@@ -111,14 +105,13 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 				{
 					?>
 					<li>
-						<a id="cancel_refine_data"   href="javascript://" role="button" style="margin-left: 10px;height: 14px;">
-							Updating Records
-						</a>
+						<a id="cancel_refine_data"   href="javascript://" role="button">Updating Records</a>
 					</li>
 					<?php
 				}
 			}
 			?>
+			<li><a href="<?php echo site_url('assets/add'); ?>" >Add Asset</a></li>
 		</ul>
 	</div>
 

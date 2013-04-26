@@ -229,7 +229,7 @@
 					$add = ' ADD TITLE';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Title: <span class="label_star"> *</span> </b></label>
+						<label><i class="icon-question-sign"></i><b> Title:</label>
 					</td>
 					<td>
 						<div id="main_title">
@@ -244,7 +244,7 @@
 									<div id="remove_title_<?php echo $index; ?>" class="remove_title">
 										<div class="edit_form_div">
 											<div>
-												<p>Title:</p>
+												<p>Title: <span class="label_star"> *</span></p>
 												<p>
 													<textarea id="asset_title_<?php echo $index; ?>" name="asset_title[]"><?php echo trim($title); ?></textarea>
 												</p>
@@ -376,7 +376,7 @@
 					$add = ' ADD DESCRIPTION';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Description: <span class="label_star"> *</span> </b></label>
+						<label><i class="icon-question-sign"></i><b> Description: </b></label>
 					</td>
 					<td>
 						<div id="main_description">
@@ -390,7 +390,7 @@
 									<div id="remove_description_<?php echo $index; ?>" class="remove_description">
 										<div class="edit_form_div">
 											<div>
-												<p>Description:</p>
+												<p>Description: <span class="label_star"> *</span></p>
 												<p>
 													<textarea id="asset_description_<?php echo $index; ?>" name="asset_description[]"><?php echo trim($description); ?></textarea>
 												</p>

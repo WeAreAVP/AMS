@@ -142,7 +142,7 @@
 				<tr>
 
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Title:</b></label>
+						<label><i class="icon-question-sign"></i><b>Title:</b></label>
 					</td>
 					<td>
 						<div id="main_title">
@@ -150,7 +150,7 @@
 							<div id="remove_title_0" class="remove_title">
 								<div class="edit_form_div">
 									<div>
-										<p>Title: <span class="label_star"> *</span> </p>
+										<p>Title: <span class="label_star"> *</span><span class="label_star"> *</span> </p>
 										<p>
 											<textarea id="asset_title_0" name="asset_title[]"></textarea>
 										</p>
@@ -254,7 +254,7 @@
 				<tr>
 
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Description:</b></label>
+						<label><i class="icon-question-sign"></i><b> Description:</b></label>
 					</td>
 					<td>
 						<div id="main_description">

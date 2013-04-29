@@ -24,7 +24,7 @@
  * @license    AMS http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */
-class Assets extends MY_Controller
+class Asset extends MY_Controller
 {
 
 	/**

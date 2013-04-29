@@ -164,7 +164,7 @@ class Refine_modal extends CI_Model
 		$this->db->join($this->table_generations, "$this->table_generations.id = $this->table_instantiation_generations.generations_id", 'left');
 		$this->db->join($this->table_events, "$this->table_events.instantiations_id	 = $this->table_instantiations.id", 'left');
 		$this->db->join($this->table_event_types, "$this->table_event_types.id	 = $this->table_events.event_types_id", 'left');
-
+		$this->db->where_in("$this->table_instantiation_formats.format_type", 'physical');
 		$session = $this->session->userdata;
 		if (isset($session['organization']) && $session['organization'] != '')
 		{

@@ -65,7 +65,6 @@ class Refinecrons extends CI_Controller
 			$data['project_name'] = $filename;
 			$data['project_id'] = $data['project_id'];
 			$data['project_url'] = $data['project_url'];
-			debug($data, FALSE);
 			myLog('Successfully Created AMS Refine Project');
 
 			$this->refine_modal->update_job($job_id, $data);
@@ -130,7 +129,7 @@ class Refinecrons extends CI_Controller
 				}
 
 				$path = $this->config->item('path') . "uploads/google_refine/$filename";
-				echo $path . '<br/>';
+				
 				myLog('CSV file Successfully Created.');
 				$data = array('export_csv_path' => $path);
 				$this->refine_modal->update_job($record->id, $data);
@@ -196,7 +195,6 @@ class Refinecrons extends CI_Controller
 				$project_url = $this->create($path, $filename, $record->id);
 				$user = $this->users->get_user_by_id($record->user_id)->row();
 				myLog('Sending Email to ' . $user->email);
-				debug($project_url);
 				if ($project_url)
 					send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
 			}

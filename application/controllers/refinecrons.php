@@ -137,8 +137,8 @@ class Refinecrons extends CI_Controller
 				myLog('Successfully Created AMS Refine Project');
 				$user = $this->users->get_user_by_id($record->user_id)->row();
 				myLog('Sending Email to ' . $user->email);
-
-				send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
+				if ( ! empty(trim($project_url)))
+					send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
 			}
 			else
 			{
@@ -193,7 +193,8 @@ class Refinecrons extends CI_Controller
 				$project_url = $this->create($path, $filename, $record->id);
 				$user = $this->users->get_user_by_id($record->user_id)->row();
 				myLog('Sending Email to ' . $user->email);
-				send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
+				if ( ! empty(trim($project_url)))
+					send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
 			}
 		}
 		else

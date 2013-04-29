@@ -106,19 +106,19 @@ class Refinecrons extends CI_Controller
 					$line = '';
 					foreach ($records as $value)
 					{
-						$line.='"' . str_replace('"', '""', $value->organization) . '",';
-						$line.='"' . str_replace('"', '""', $value->asset_title) . '",';
-						$line.='"' . str_replace('"', '""', $value->description) . '",';
-						$line.='"' . str_replace('"', '""', $value->instantiation_identifier) . '",';
-						$line.='"' . str_replace('"', '""', $value->instantiation_source) . '",';
-						$line.='"' . str_replace('"', '""', $value->generation) . '",';
-						$line.='"' . str_replace('"', '""', $value->status) . '",';
-						$line.='"' . str_replace('"', '""', $value->nomination_reason) . '",';
-						$line.='"' . str_replace('"', '""', $value->media_type) . '",';
-						$line.='"' . str_replace('"', '""', $value->language) . '",';
-						$line.='"' . str_replace('"', '""', $value->ins_id) . '",';
-						$line.='"' . str_replace('"', '""', $value->identifier_id) . '",';
-						$line.='"' . str_replace('"', '""', $value->gen_id) . '"';
+						$line.='"' . str_replace('"', '', $value->organization) . '",';
+						$line.='"' . str_replace('"', '', $value->asset_title) . '",';
+						$line.='"' . str_replace('"', '', $value->description) . '",';
+						$line.='"' . str_replace('"', '', $value->instantiation_identifier) . '",';
+						$line.='"' . str_replace('"', '', $value->instantiation_source) . '",';
+						$line.='"' . str_replace('"', '', $value->generation) . '",';
+						$line.='"' . str_replace('"', '', $value->status) . '",';
+						$line.='"' . str_replace('"', '', $value->nomination_reason) . '",';
+						$line.='"' . str_replace('"', '', $value->media_type) . '",';
+						$line.='"' . str_replace('"', '', $value->language) . '",';
+						$line.="$value->ins_id,";
+						$line.="$value->identifier_id,";
+						$line.="$value->gen_id";
 						$line .= "\n";
 					}
 					fputs($fp, $line);

@@ -41,6 +41,9 @@ class Refinecrons extends CI_Controller
 		$this->load->model('instantiations_model', 'instantiation');
 		$this->load->model('assets_model');
 		$this->load->model('dx_auth/users', 'users');
+		set_time_limit(0);
+		@ini_set("memory_limit", "1000M"); # 1GB
+		@ini_set("max_execution_time", 999999999999); # 1GB
 	}
 
 	/**
@@ -53,9 +56,6 @@ class Refinecrons extends CI_Controller
 	 */
 	function create($path, $filename, $job_id)
 	{
-		set_time_limit(0);
-		@ini_set("memory_limit", "1000M"); # 1GB
-		@ini_set("max_execution_time", 999999999999); # 1GB
 		$project_name = $filename;
 		$file_path = $path;
 		$data = $this->googlerefine->create_project($project_name, $file_path);
@@ -65,7 +65,7 @@ class Refinecrons extends CI_Controller
 			$data['project_name'] = $filename;
 			$data['project_id'] = $data['project_id'];
 			$data['project_url'] = $data['project_url'];
-			debug($data,FALSE);
+			debug($data, FALSE);
 			myLog('Successfully Created AMS Refine Project');
 
 			$this->refine_modal->update_job($job_id, $data);
@@ -81,12 +81,7 @@ class Refinecrons extends CI_Controller
 	 */
 	public function make_refine_csv()
 	{
-		error_reporting(E_ALL);
-		ini_set('display_errors', 1);
-		
-		set_time_limit(0);
-		@ini_set("memory_limit", "1000M"); # 1GB
-		@ini_set("max_execution_time", 999999999999); # 1GB
+
 		$record = $this->refine_modal->get_job_for_refine();
 		if (count($record) > 0)
 		{
@@ -135,17 +130,18 @@ class Refinecrons extends CI_Controller
 				}
 
 				$path = $this->config->item('path') . "uploads/google_refine/$filename";
-				myLog('CSV file successfully created');
+				echo $path . '<br/>';
+				myLog('CSV file Successfully Created.');
 				$data = array('export_csv_path' => $path);
 				$this->refine_modal->update_job($record->id, $data);
-				myLog('Creating AMS Refine Project');
+				myLog('Creating AMS Refine Project.');
 				$project_url = $this->create($path, $filename, $record->id);
-				
-				myLog('Successfully Created AMS Refine Project');
+
+				myLog('Successfully Created AMS Refine Project.');
 				$user = $this->users->get_user_by_id($record->user_id)->row();
 				myLog('Sending Email to ' . $user->email);
-debug($project_url);
-				send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
+				if ($project_url)
+					send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
 			}
 			else
 			{
@@ -201,8 +197,8 @@ debug($project_url);
 				$user = $this->users->get_user_by_id($record->user_id)->row();
 				myLog('Sending Email to ' . $user->email);
 				debug($project_url);
-				send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
-				
+				if ($project_url)
+					send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
 			}
 		}
 		else

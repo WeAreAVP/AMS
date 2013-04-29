@@ -1,16 +1,18 @@
 <?php
 
+/**
+ * 
+ * Google Refine Library
+ */
 class Googlerefine
 {
 
-	var $server = 'http://amsqa.avpreserve.com:3333';
+	var $server = '';
 	var $project_id = FALSE;
 
 	function __construct()
 	{
 		$this->server = rtrim(site_url(), "/") . ':3333';
-		echo $this->server;
-		exit;
 	}
 
 	function create_project($project_name, $file_path)
@@ -18,9 +20,9 @@ class Googlerefine
 		$data = NULL;
 		$uri = $this->server . '/command/core/create-project-from-upload';
 		$post_field = array('project-file' => "@$file_path", 'project-name' => $project_name);
-
 		$response = $this->send_curl_request($uri, $post_field);
 
+		/* Checking the google refine url */
 		$pattern = '`.*?((http)://[\w#$&+,\/:;=?@.-]+)[^\w#$&+,\/:;=?@.-]*?`i'; //this regexp finds your url
 		if (preg_match_all($pattern, $response, $matches))
 			$project_url = $matches[1][0]; //project ID URL

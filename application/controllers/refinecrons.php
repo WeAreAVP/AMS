@@ -37,11 +37,11 @@ class Refinecrons extends CI_Controller
 		parent::__construct();
 //		$this->load->library('googlerefine');
 		echo 'Nouman Tayyab';exit;
-		$this->load->model('refine_modal');
-		$this->load->model('sphinx_model', 'sphinx');
-		$this->load->model('instantiations_model', 'instantiation');
-		$this->load->model('assets_model');
-		$this->load->model('dx_auth/users', 'users');
+//		$this->load->model('refine_modal');
+//		$this->load->model('sphinx_model', 'sphinx');
+//		$this->load->model('instantiations_model', 'instantiation');
+//		$this->load->model('assets_model');
+//		$this->load->model('dx_auth/users', 'users');
 	}
 
 	/**

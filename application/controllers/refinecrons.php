@@ -65,7 +65,7 @@ class Refinecrons extends CI_Controller
 			$data['project_name'] = $filename;
 			$data['project_id'] = $data['project_id'];
 			$data['project_url'] = $data['project_url'];
-			debug($data);
+			debug($data,FALSE);
 			myLog('Successfully Created AMS Refine Project');
 
 			$this->refine_modal->update_job($job_id, $data);

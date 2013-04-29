@@ -87,7 +87,7 @@ class Refinecrons extends CI_Controller
 		{
 			if ($record->refine_type == 'instantiation')
 			{
-				$filename = 'google_refine_' . time() . '.csv';
+				$filename = 'ams_refine_' . time() . '.csv';
 				$fp = fopen("uploads/google_refine/$filename", 'a');
 
 				$line = "Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,__Ins_id,__identifier_id,__gen_id\n";
@@ -145,7 +145,7 @@ class Refinecrons extends CI_Controller
 			}
 			else
 			{
-				$filename = 'google_refine_' . time() . '.csv';
+				$filename = 'ams_refine_' . time() . '.csv';
 				$fp = fopen("uploads/google_refine/$filename", 'a');
 				$line = "Organization,Asset Title,Description,Subject,Subject Source,Subject Ref,Genre,Genre Source,Genre Ref,Creator Name,Creator Affiliation,Creator Source,Creator Ref,";
 				$line .="Contributors Name,Contributors Affiliation,Contributors Source,Contributors Ref,Publisher,Publisher Affiliation,Publisher Ref,Coverage,Coverage Type,";
@@ -174,9 +174,9 @@ class Refinecrons extends CI_Controller
 						foreach ($value as $index => $column)
 						{
 							if ($index == 'asset_id')
-								$line.='"' . str_replace('"', '""', $column) . '"';
+								$line.='"' . str_replace('"', '""', str_replace("\r", "", str_replace("\n", "", str_replace("\"", "\"\"", $column)))) . '"';
 							else
-								$line.='"' . str_replace('"', '""', $column) . '",';
+								$line.='"' . str_replace('"', '""', str_replace("\r", "", str_replace("\n", "", str_replace("\"", "\"\"", $column)))) . '",';
 						}
 
 						$line .= "\n";

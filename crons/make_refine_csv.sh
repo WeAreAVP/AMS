@@ -33,14 +33,14 @@ if [ -n "$PID" ]  && [ -d $PIDD ]
 then
 echo "Already running ...."
 else
-CMD="$PHP_PATH ${BASEDIR}index.php refinecrons make_refine_csv > $OUTPUT_FILE 2>&1 & echo $! > $PID_FULLPATH"
+CMD="$PHP_PATH ${BASEDIR}index.php refinecrons make_refine_csv >> $OUTPUT_FILE 2>&1 & echo $! > $PID_FULLPATH"
 MSG="ENV [$ENVIRONMENT]"
 echo $MSG >> $OUTPUT_FILE
 MSG="Starting cron at $DATE"
 echo $MSG >> $OUTPUT_FILE
 echo $CMD >> $OUTPUT_FILE
 
-$PHP_PATH ${BASEDIR}index.php refinecrons make_refine_csv > $OUTPUT_FILE 2>&1 & echo $! > $PID_FULLPATH
+$PHP_PATH ${BASEDIR}index.php refinecrons make_refine_csv >> $OUTPUT_FILE 2>&1 & echo $! > $PID_FULLPATH
 PID=`cat $PID_FULLPATH`
 echo "Started Cron [$PID]"
 echo "To view logs Use tail -f $OUTPUT_FILE"

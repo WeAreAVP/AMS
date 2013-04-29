@@ -35,7 +35,8 @@ class Refinecrons extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		echo 'Nouman';exit;
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
 		$this->load->library('googlerefine');
 		$this->load->model('refine_modal');
 		$this->load->model('sphinx_model', 'sphinx');

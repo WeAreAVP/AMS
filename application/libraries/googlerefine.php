@@ -8,8 +8,8 @@ class Googlerefine
 
 	function __construct()
 	{
-		$this->server = base_url() . ':3333';
-		echo base_url().':3333';exit;
+		$this->server = site_url() . ':3333';
+		echo site_url().':3333';exit;
 	}
 
 	function create_project($project_name, $file_path)

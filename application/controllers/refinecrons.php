@@ -36,7 +36,6 @@ class Refinecrons extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('googlerefine');
-		echo 'Nouman Tayyab';exit;
 		$this->load->model('refine_modal');
 		$this->load->model('sphinx_model', 'sphinx');
 		$this->load->model('instantiations_model', 'instantiation');
@@ -84,7 +83,7 @@ class Refinecrons extends CI_Controller
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-
+		echo 'Nouman Tayyab';exit;
 		set_time_limit(0);
 		@ini_set("memory_limit", "1000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999); # 1GB
@@ -144,8 +143,10 @@ class Refinecrons extends CI_Controller
 				myLog('Successfully Created AMS Refine Project');
 				$user = $this->users->get_user_by_id($record->user_id)->row();
 				myLog('Sending Email to ' . $user->email);
-//				if ( ! empty(trim($project_url)))
-//					send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
+				if ( ! empty(trim($project_url)))
+				{
+					send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
+				}
 			}
 			else
 			{
@@ -200,8 +201,10 @@ class Refinecrons extends CI_Controller
 				$project_url = $this->create($path, $filename, $record->id);
 				$user = $this->users->get_user_by_id($record->user_id)->row();
 				myLog('Sending Email to ' . $user->email);
-//				if ( ! empty(trim($project_url)))
-//					send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
+				if ( ! empty(trim($project_url)))
+				{
+					send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
+				}
 			}
 		}
 		else

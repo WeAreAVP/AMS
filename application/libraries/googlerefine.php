@@ -20,7 +20,6 @@ class Googlerefine
 		$response = $this->send_curl_request($uri, $post_field);
 
 		$pattern = '`.*?((http)://[\w#$&+,\/:;=?@.-]+)[^\w#$&+,\/:;=?@.-]*?`i'; //this regexp finds your url
-		debug($response);
 		if (preg_match_all($pattern, $response, $matches))
 			$project_url = $matches[1][0]; //project ID URL
 		$data['project_url'] = $project_url;

@@ -67,7 +67,7 @@ class Refinecrons extends CI_Controller
 			$data['project_url'] = $data['project_url'];
 			debug($data);
 			myLog('Successfully Created AMS Refine Project');
-			
+
 			$this->refine_modal->update_job($job_id, $data);
 			return $data['project_url'];
 		}
@@ -81,6 +81,8 @@ class Refinecrons extends CI_Controller
 	 */
 	public function make_refine_csv()
 	{
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
 		echo 'Nouman Tayyab';
 		set_time_limit(0);
 		@ini_set("memory_limit", "1000M"); # 1GB

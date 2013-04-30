@@ -14,11 +14,12 @@
 				dataType: 'jsonp',
 				success: function(result) {
 					console.log(result);
-					if(result.success=='true'){
-						console.log(result.result[1]);
-
+					if (result.success == 'true') {
+						$('#Login_username').val(result.result[1]);
+						$('#Login_password').val('x0h0@123');
+						saveMintIDToDB(result.result);
 					}
-					else{
+					else {
 						alert('Something went wrong. Please Refresh the page.');
 					}
 
@@ -26,6 +27,19 @@
 			});
 
 		});
+		function saveMintIDToDB(result) {
+			$.ajax({
+				type: 'GET',
+				url: site_url + 'autocomplete/update_user',
+				data: {mint_id: result[0]},
+				dataType: 'json',
+				success: function(result) {
+					if (result.success == 'true') {
+						$('#Login').submit();
+					}
 
+				}
+			});
+		}
 
 </script>

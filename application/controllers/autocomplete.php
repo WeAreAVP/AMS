@@ -81,6 +81,18 @@ class Autocomplete extends MY_Controller
 		}
 	}
 
+	public function update_user()
+	{
+		if (isAjax())
+		{
+			$mint_id = $this->input->get('mint_id');
+			$this->user_profile->set_profile($this->user_id, array('mint_user_id	' => $mint_id));
+			echo json_encode(array('success' => 'true'));
+			exit_function();
+		}
+		show_404();
+	}
+
 }
 
 // END Dashboard Controller

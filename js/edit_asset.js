@@ -130,6 +130,13 @@ $(function() {
 		enable: true,
 		cacheLength: 1
 	});
+	$('input[name="asset_genre[]"]').autocomplete({
+		source: site_url + "autocomplete/values?table=pbcore_picklist_value_by_type&column=16",
+		minLength: 1,
+		delay: 100,
+		enable: true,
+		cacheLength: 1
+	});
 });
 function removeElement(elementID, type) {
 	$(elementID).delay(200).fadeOut(1000);

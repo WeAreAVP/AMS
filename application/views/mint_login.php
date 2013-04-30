@@ -8,7 +8,7 @@
 			$.ajax({
 				type: 'GET',
 				url: 'http://mint.avpreserve.com/pgconnect.php',
-				data: data,
+//				data: data,
 				dataType: 'jsonp',
 				success: function(result) {
 					console.log(result);

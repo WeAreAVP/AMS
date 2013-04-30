@@ -57,6 +57,7 @@ class Autocomplete extends MY_Controller
 
 	public function mint_login()
 	{
+		$data=NULL;
 		if ($this->user_detail)
 		{
 			/* Already we have mint user */

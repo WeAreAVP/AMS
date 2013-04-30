@@ -536,10 +536,14 @@ class Asset extends MY_Controller
 
 	function insert_pbcore_values()
 	{
-		$static_gen = array("Clip reel","Dub","Essence","Fine cut",
-			
-		);
-		foreach ($static_gen as $index => $value)
+		$records = file('genre.csv');
+			foreach ($records as $index => $line)
+			{
+				$explode_ids = explode(',', $line);
+				$result[]=array('display_value'=>$explode_ids[0],'value'=>$explode_ids[1]);
+			}
+			debug($result);
+		foreach ($static_genre as $index => $value)
 		{
 			
 //			$this->manage_asset->insert_picklist_value(array('value' => $value, 'element_type_id' => 12, 'display_value' => $count));

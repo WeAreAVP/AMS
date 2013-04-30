@@ -9,7 +9,8 @@ Redirecting to AMS Mint Please wait ...
 			$.ajax({
 				type: 'GET',
 				url: 'http://mint.avpreserve.com/pgconnect.php',
-				data: {mint_id: '<?php echo $mint_id; ?>'},
+				data: {mint_id: '<?php echo $mint_id; ?>', username: '<?php echo $email; ?>',
+					first_name: '<?php echo $first_name; ?>', last_name: '<?php echo $last_name; ?>'},
 				dataType: 'jsonp',
 				success: function(result) {
 					console.log(result);

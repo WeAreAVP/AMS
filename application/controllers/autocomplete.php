@@ -59,6 +59,10 @@ class Autocomplete extends MY_Controller
 	{
 		if ($this->user_detail)
 		{
+			$username = explode('@', $this->user_detail->email);
+			$data['email'] = $this->user_detail->email;
+			$data['first_name'] = $this->user_detail->first_name;
+			$data['last_name'] = $this->user_detail->last_name;
 			/* Already we have mint user */
 			if ( ! empty($this->user_detail->mint_user_id) && $this->user_detail->mint_user_id != NULL)
 			{

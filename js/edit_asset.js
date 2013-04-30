@@ -284,6 +284,13 @@ function addElement(elementID, type) {
 			enable: true,
 			cacheLength: 1
 		});
+		$('input[name="asset_genre[]"]').autocomplete({
+			source: site_url + "autocomplete/values?table=pbcore_picklist_value_by_type&column=16",
+			minLength: 1,
+			delay: 100,
+			enable: true,
+			cacheLength: 1
+		});
 	}
 	else if (elementID == '#main_coverage') {
 		html = '<div id="remove_coverage_' + number + '" class="remove_coverage"><div class="edit_form_div"><div>' +

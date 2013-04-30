@@ -57,6 +57,7 @@ class Autocomplete extends MY_Controller
 
 	public function mint_login()
 	{
+		$this->layout = 'default.php';
 		if ($this->user_detail)
 		{
 			$username = explode('@', $this->user_detail->email);

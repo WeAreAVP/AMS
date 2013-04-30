@@ -41,10 +41,10 @@ class Autocomplete extends MY_Controller
 
 	public function values()
 	{
-		$term=$this->input->get('term');
-		$table=$this->input->get('table');
-		$column=$this->input->get('column');
-		$source = $this->autocomplete->get_autocomplete_value($table,$column,$term);
+		$term = $this->input->get('term');
+		$table = $this->input->get('table');
+		$column = $this->input->get('column');
+		$source = $this->autocomplete->get_autocomplete_value($table, $column, $term);
 		$autoSource = array();
 
 		foreach ($source as $key => $value)
@@ -54,7 +54,11 @@ class Autocomplete extends MY_Controller
 		echo json_encode($autoSource);
 		exit_function();
 	}
-	
+
+	public function mint_login()
+	{
+		debug($this->user_detail);exit;
+	}
 
 }
 

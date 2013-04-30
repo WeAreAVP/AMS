@@ -541,7 +541,7 @@ class Asset extends MY_Controller
 			{
 				$explode_ids = explode(',', $line);
 				
-				$this->manage_asset->insert_picklist_value(array('value' => $explode_ids[1], 'element_type_id' => 16, 'display_value' => $explode_ids[0]));
+//				$this->manage_asset->insert_picklist_value(array('value' => $explode_ids[1], 'element_type_id' => 16, 'display_value' => $explode_ids[0]));
 			}
 			
 	}

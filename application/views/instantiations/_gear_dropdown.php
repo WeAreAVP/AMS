@@ -96,7 +96,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			?>
 			<li><a href="<?php echo site_url('asset/add'); ?>" >Add Asset</a></li>
 			<li><a href="javascript://" onclick="$('#Login').submit();">MINT Import</a></li>
-			<li><a href="<?php echo site_url('autocomplete/mint_login'); ?>">Import Collection</a></li>
+			<li><a href="<?php echo site_url('autocomplete/mint_login'); ?>" target="_blank">Import Collection</a></li>
 		</ul>
 	</div>
 

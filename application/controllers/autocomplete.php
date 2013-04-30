@@ -57,7 +57,23 @@ class Autocomplete extends MY_Controller
 
 	public function mint_login()
 	{
-		debug($this->user_detail);exit;
+		if ($this->user_detail)
+		{
+			/* Already we have mint user */
+			if ( ! empty($this->user_detail->mint_user_id) && $this->user_detail->mint_user_id != NULL)
+			{
+				// send api call
+			}
+			else /* Need to Create a new mint user */
+			{
+				// send api call
+			}
+			$this->load->view('mint_login', $data);
+		}
+		else
+		{
+			show_error('Something went wrong please try again.');
+		}
 	}
 
 }

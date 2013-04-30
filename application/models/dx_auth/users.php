@@ -101,7 +101,7 @@ class	Users	extends	CI_Model
 								$profile_table	=	$this->_profile_table;
 								$this->db->select("$users_table.*",	FALSE);
 
-								$this->db->select("$profile_table.id as profile_id,first_name,last_name,phone_no,fax,title,address",	FALSE);
+								$this->db->select("$profile_table.id as profile_id,first_name,last_name,phone_no,fax,title,address,mint_user_id",	FALSE);
 
 								$this->db->join($profile_table,	"$profile_table.user_id = $users_table.id");
 								$this->db->where("$users_table.id",	$user_id);

@@ -14,6 +14,13 @@
 				dataType: 'jsonp',
 				success: function(result) {
 					console.log(result);
+					if(result.success=='true'){
+						console.log(result.result[1]);
+
+					}
+					else{
+						alert('Something went wrong. Please Refresh the page.');
+					}
 
 				}
 			});

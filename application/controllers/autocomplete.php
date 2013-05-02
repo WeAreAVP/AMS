@@ -57,9 +57,15 @@ class Autocomplete extends MY_Controller
 
 	public function mint_login()
 	{
-//		$this->layout = 'default.php';
+
 		if ($this->user_detail)
 		{
+			if ($this->is_station_user)
+				$station_id = $this->station_id;
+			else
+				$station_id = $this->uri->segment(3);
+			$this->load->model('mint_model', 'mint');
+			$this->mint->insert_record(array('user_id' => $this->user_id, 'station_id' => $station_id));
 			$username = explode('@', $this->user_detail->email);
 			$data['email'] = $this->user_detail->email;
 			$data['first_name'] = $this->user_detail->first_name;

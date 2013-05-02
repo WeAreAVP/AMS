@@ -100,30 +100,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			{
 				?>
 				<li><a href="#mint_modal" role="button" data-toggle="modal" data-backdrop="static">Import Collection</a></li>
-				<div id="mint_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						<h3 id="myModalLabel">Import Collection</h3>
-					</div>
-					<div class="modal-body">
-						<div  class="report-popup">
-							<select name="station" id="station" onchange="changeURL();">
-								<?php
-								foreach ($station_records as $value)
-								{
-									?>
-									<option value="<?php echo $value->id; ?>"><?php echo $value->station_name; ?></option>
-									<?php
-								}
-								?>
-							</select>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-						<a href="<?php echo site_url('autocomplete/mint_login/' . $station_records[0]->id); ?>" target="_blank" id="mint_login_url" class="btn" data-dismiss="modal" aria-hidden="true">Import Collection</a>
-					</div>
-				</div>
+
 				<?php
 			}
 			else
@@ -133,8 +110,35 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			<?php } ?>
 		</ul>
 	</div>
-
-
+	<?php
+	if ($this->role_id == 1 || $this->role_id == 2)
+	{
+		?>
+		<div id="mint_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel">Import Collection</h3>
+			</div>
+			<div class="modal-body">
+				<div  class="report-popup">
+					<select name="station" id="station" onchange="changeURL();">
+						<?php
+						foreach ($station_records as $value)
+						{
+							?>
+							<option value="<?php echo $value->id; ?>"><?php echo $value->station_name; ?></option>
+							<?php
+						}
+						?>
+					</select>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<a href="<?php echo site_url('autocomplete/mint_login/' . $station_records[0]->id); ?>" target="_blank" id="mint_login_url" class="btn" data-dismiss="modal" aria-hidden="true">Import Collection</a>
+			</div>
+		</div>
+	<?php } ?>
 </div>
 <script type="text/javascript">
 						var hiden_column =<?php echo json_encode($hidden_fields); ?>;

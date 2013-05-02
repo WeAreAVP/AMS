@@ -120,6 +120,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 				<h3 id="myModalLabel">Import Collection</h3>
 			</div>
 			<div class="modal-body">
+				<div>Select Station</div>
 				<div  class="report-popup">
 					<select name="station" id="station" onchange="changeURL();">
 						<?php

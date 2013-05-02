@@ -143,7 +143,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 <script type="text/javascript">
 						var hiden_column =<?php echo json_encode($hidden_fields); ?>;
 						function changeURL() {
-							$('#mint_login_url').attr('href', site_url + 'autocomplete/mint_login/'.$('#station').val());
+							$('#mint_login_url').attr('href', site_url + 'autocomplete/mint_login/'+$('#station').val());
 						}
 <?php
 if ($isAjax)

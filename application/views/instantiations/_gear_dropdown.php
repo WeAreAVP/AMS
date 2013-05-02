@@ -136,7 +136,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-				<a href="<?php echo site_url('autocomplete/mint_login/' . $station_records[0]->id); ?>" target="_blank" id="mint_login_url" class="btn">Import Collection</a>
+				<a href="<?php echo site_url('autocomplete/mint_login/' . $station_records[0]->id); ?>" target="_blank" id="mint_login_url" class="btn btn-primary">Import Collection</a>
 			</div>
 		</div>
 	<?php } ?>

@@ -99,6 +99,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			if ($this->role_id == 1 || $this->role_id == 2)
 			{
 				?>
+				<li><a href="#mint_modal" role="button" data-toggle="modal" data-backdrop="static">Import Collection</a></li>
 				<div id="mint_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -120,7 +121,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 					</div>
 					<div class="modal-footer">
 						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-						<a href="<?php echo site_url('autocomplete/mint_login/'); ?>" target="_blank" id="mint_login_url" class="btn" data-dismiss="modal" aria-hidden="true">Import Collection</a>
+						<a href="<?php echo site_url('autocomplete/mint_login/' . $station_records[0]->id); ?>" target="_blank" id="mint_login_url" class="btn" data-dismiss="modal" aria-hidden="true">Import Collection</a>
 					</div>
 				</div>
 				<?php

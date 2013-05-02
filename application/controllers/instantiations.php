@@ -63,7 +63,7 @@ class Instantiations extends MY_Controller
 		$this->session->set_userdata('offset', $offset);
 		$params = array('search' => '');
 		$data['station_records'] = $this->station_model->get_all();
-		debug($data['station_records']);
+		
 		if (isAjax())
 		{
 			$this->unset_facet_search();

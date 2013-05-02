@@ -95,19 +95,51 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			}
 			?>
 			<li><a href="<?php echo site_url('asset/add'); ?>" >Add Asset</a></li>
-			<li><a href="javascript://" onclick="$('#Login').submit();">MINT Import</a></li>
-			<li><a href="<?php echo site_url('autocomplete/mint_login'); ?>" target="_blank">Import Collection</a></li>
+			<?php
+			if ($this->role_id == 1 || $this->role_id == 2)
+			{
+				?>
+				<div id="mint_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h3 id="myModalLabel">Import Collection</h3>
+					</div>
+					<div class="modal-body">
+						<div  class="report-popup">
+							<select name="station" id="station" onchange="changeURL();">
+								<?php
+								foreach ($station_records as $value)
+								{
+									?>
+									<option value="<?php echo $value->id; ?>"><?php echo $value->station_name; ?></option>
+									<?php
+								}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+						<a href="<?php echo site_url('autocomplete/mint_login/'); ?>" target="_blank" id="mint_login_url" class="btn" data-dismiss="modal" aria-hidden="true">Import Collection</a>
+					</div>
+				</div>
+				<?php
+			}
+			else
+			{
+				?>
+				<li><a href="<?php echo site_url('autocomplete/mint_login'); ?>" target="_blank">Import Collection</a></li>
+			<?php } ?>
 		</ul>
 	</div>
 
-	<form id="Login" name="login" action="http://mint.avpreserve.com:8080/mint-ams/Login.action" method="post" style="display: none;">
-		<input type="text" name="username" value="cpb.ams" id="Login_username" onkeypress="return submitenter(this, event)">
-		<input type="password" name="password" value="cpbams" id="Login_password" onkeypress="return submitenter(this, event)">
-		<input type="submit" value="mint login"/>  
-	</form>
+
 </div>
 <script type="text/javascript">
 						var hiden_column =<?php echo json_encode($hidden_fields); ?>;
+						function changeURL() {
+							$('#mint_login_url').attr('href', site_url + 'autocomplete/mint_login/'.$('#station').val());
+						}
 <?php
 if ($isAjax)
 {

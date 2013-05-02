@@ -37,7 +37,7 @@ class Records extends MY_Controller
 	{
 		$offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$this->session->set_userdata('offset', $offset);
-
+$data['station_records'] = $this->station_model->get_all();
 		if (isAjax())
 		{
 			$this->unset_facet_search();

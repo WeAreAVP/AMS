@@ -15,6 +15,7 @@
 				success: function(result) {
 					console.log(result);
 					if (result.success == 'true') {
+						console.log(result);
 						$('#Login_username').val(result.result[1]);
 						$('#Login_password').val('x0h0@123');
 						saveMintIDToDB(result.result);
@@ -35,7 +36,7 @@
 				dataType: 'json',
 				success: function(result) {
 					if (result.success == 'true') {
-						$('#Login').submit();
+//						$('#Login').submit();
 					}
 
 				}

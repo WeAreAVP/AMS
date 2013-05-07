@@ -7,7 +7,7 @@
 		?>
 		<div id="jPalayer_div" style="display: none;">
 			<video class="video-js vjs-default-skin" controls
-				   preload="auto" width="400" height="150"
+				   preload="auto" width="700" height="320"
 				   data-setup="{}">
 				<source src="<?php echo $media['url']; ?>" type='video/mp4'>
 

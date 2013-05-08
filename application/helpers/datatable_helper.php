@@ -482,7 +482,7 @@ function instantiations_datatable_view($records, $column_order)
 				if ($value->nomination_status_id == 0)
 					$status = '';
 				else
-					$status = $CI->sphnix->get_nomination_status($value->nomination_status_id)->status;
+					$status = $CI->sphinx->get_nomination_status($value->nomination_status_id)->status;
 //				$status = ($value->status) ? $value->status : '';
 				$table_view[$main_index][] = '<span style="float:left;min-width:150px;max-width:150px;">' . $status . '</span>';
 			}

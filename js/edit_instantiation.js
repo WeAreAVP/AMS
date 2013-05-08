@@ -58,6 +58,7 @@ function removeElement(elementID, type) {
 }
 function addElement(elementID, type) {
 	var number = 10 + Math.floor(Math.random() * 100);
+	common = less = false;
 	if (elementID == '#main_instantiation_id') {
 		append = '';
 		if (disable == 1) {
@@ -100,6 +101,14 @@ function addElement(elementID, type) {
 
 		for (cnt in pbcoreGeneration)
 		{
+			if (pbcoreGeneration[cnt]['display_value'] == 1 && common == false) {
+				common = true;
+				generationTypes += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
+			}
+			else if (pbcoreGeneration[cnt]['display_value'] == 2 && less == false) {
+				less = true;
+				generationTypes += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
+			}
 			generationTypes += '<option value= "' + pbcoreGeneration[cnt]['value'] + '">' + pbcoreGeneration[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_generation_' + number + '" class="remove_generation"><div class="edit_form_div ins_edit_div"><div><p>Generation:</p></div>' +
@@ -129,6 +138,14 @@ function addElement(elementID, type) {
 
 		for (cnt in pbcoreRelationTypes)
 		{
+			if (pbcoreRelationTypes[cnt]['display_value'] == 1 && common == false) {
+				common = true;
+				relationType += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
+			}
+			else if (pbcoreRelationTypes[cnt]['display_value'] == 2 && less == false) {
+				less = true;
+				relationType += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
+			}
 			relationType += '<option value= "' + pbcoreRelationTypes[cnt]['value'] + '">' + pbcoreRelationTypes[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_relation_' + number + '" class="remove_relation"><div class="edit_form_div ins_edit_div"><div><p>Relation:</p>' +
@@ -162,6 +179,14 @@ function addElement(elementID, type) {
 
 		for (cnt in pbcoreDateTypes)
 		{
+			if (pbcoreDateTypes[cnt]['display_value'] == 1 && common == false) {
+				common = true;
+				dateTypes += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
+			}
+			else if (pbcoreDateTypes[cnt]['display_value'] == 2 && less == false) {
+				less = true;
+				dateTypes += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
+			}
 			dateTypes += '<option value= "' + pbcoreDateTypes[cnt]['value'] + '">' + pbcoreDateTypes[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_instantiation_date_' + number + '" class="remove_instantiation_date"><div class="edit_form_div ins_edit_div">' +

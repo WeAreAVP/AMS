@@ -166,7 +166,7 @@ class Sphinx_Model extends CI_Model
 		}
 	}
 
-	function standalone_report($offset = 0, $limit = 1000)
+	function standalone_report($offset = 0, $limit = 100)
 	{
 		$instantiations = array();
 		$total_record = 0;

@@ -1181,6 +1181,7 @@ class Instantiations extends MY_Controller
 				$nomination = $this->sphinx->facet_index('nomination_status_id', $index);
 				
 				$data['nomination_status'] = sortByOneKey($nomination['records'], 'status');
+				debug($data['nomination_status'] );
 				unset($nomination);
 				$media_type = $this->sphinx->facet_index('media_type', $index);
 

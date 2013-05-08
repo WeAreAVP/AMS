@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="span9" style="margin-left: 250px;" id="ins_view_detail">
-		<form class="form-horizontal" method="POST" action="<?php echo site_url('assets/add/'); ?>" id="edit_asset_form">
+		<form class="form-horizontal" method="POST" action="<?php echo site_url('asset/add/'); ?>" id="edit_asset_form">
 			<table cellPadding="8" class="record-detail-table">
 				<?php
 				if ( ! $this->is_station_user)

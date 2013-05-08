@@ -1229,8 +1229,11 @@ class Instantiations extends MY_Controller
 				$nomination_status = json_decode($this->memcached_library->get($key_name . '_status'), TRUE);
 				foreach ($nomination_status as $key => $status)
 				{
-					$data['nomination_status'][$key]['status'] = $this->sphinx->get_nomination_status($status['nomination_status_id'])->status;
-					$data['nomination_status'][$key]['@count'] = $status['@count'];
+					if ($status['nomination_status_id'] != 0)
+					{
+						$data['nomination_status'][$key]['status'] = $this->sphinx->get_nomination_status($status['nomination_status_id'])->status;
+						$data['nomination_status'][$key]['@count'] = $status['@count'];
+					}
 				}
 				$data['media_types'] = json_decode($this->memcached_library->get($key_name . '_media_type'), TRUE);
 				$data['physical_formats'] = json_decode($this->memcached_library->get($key_name . '_physical'), TRUE);

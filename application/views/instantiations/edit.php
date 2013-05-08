@@ -167,12 +167,27 @@
 													<p>
 														<select id="inst_date_type_<?php echo $index; ?>" name="inst_date_type[]">
 															<?php
+															$commonly = $less = FALSE;
 															foreach ($pbcore_asset_date_types as $row)
 															{
 																$selected = '';
 																if ($row->date_type == $row->value)
-																	$selected = 'selected="selected"'
+																	$selected = 'selected="selected"';
+																if ($row->display_value == 1 && ! $commonly)
+																{
+																	$commonly = TRUE;
 																	?>
+																	<optgroup label="Commonly Used">Commonly Used</optgroup>
+																	<?php
+																}
+																else if ($row->display_value == 2 && ! $less)
+																{
+																	$less = TRUE;
+																	?>
+																	<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+																<?php } ?>
+
+
 																<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
 															<?php }
 															?>
@@ -252,12 +267,25 @@
 							<p>
 								<select id="physical_format" name="physical_format">
 									<?php
+									$commonly = $less = FALSE;
 									foreach ($pbcore_physical_formats as $row)
 									{
 										$selected = '';
 										if (isset($inst_format->format_name) && $inst_format->format_name == $row->value)
-											$selected = 'selected="selected"'
+											$selected = 'selected="selected"';
+										if ($row->display_value == 1 && ! $commonly)
+										{
+											$commonly = TRUE;
 											?>
+											<optgroup label="Commonly Used">Commonly Used</optgroup>
+											<?php
+										}
+										else if ($row->display_value == 2 && ! $less)
+										{
+											$less = TRUE;
+											?>
+											<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+										<?php } ?>
 										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
 									<?php }
 									?>
@@ -539,12 +567,25 @@
 											<div><p>
 													<select id="generation_<?php echo $index; ?>" name="generation[]">
 														<?php
+														$commonly = $less = FALSE;
 														foreach ($pbcore_generations as $row)
 														{
 															$selected = '';
 															if (trim($gen) == $row->value)
-																$selected = 'selected="selected"'
+																$selected = 'selected="selected"';
+															if ($row->display_value == 1 && ! $commonly)
+															{
+																$commonly = TRUE;
 																?>
+																<optgroup label="Commonly Used">Commonly Used</optgroup>
+																<?php
+															}
+															else if ($row->display_value == 2 && ! $less)
+															{
+																$less = TRUE;
+																?>
+																<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+															<?php } ?>
 															<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
 														<?php }
 														?>
@@ -654,12 +695,25 @@
 													<p>
 														<select id="relation_type_<?php echo $index; ?>" name="relation_type[]">
 															<?php
+															$commonly = $less = FALSE;
 															foreach ($pbcore_relation_types as $row)
 															{
 																$selected = '';
 																if ($relation->relation_type == $row->value)
-																	$selected = 'selected="selected"'
+																	$selected = 'selected="selected"';
+																if ($row->display_value == 1 && ! $commonly)
+																{
+																	$commonly = TRUE;
 																	?>
+																	<optgroup label="Commonly Used">Commonly Used</optgroup>
+																	<?php
+																}
+																else if ($row->display_value == 2 && ! $less)
+																{
+																	$less = TRUE;
+																	?>
+																	<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+																<?php } ?>
 																<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
 															<?php }
 															?>
@@ -710,11 +764,11 @@
 	</div>
 </div>
 <script type="text/javascript">
-												var disable = '<?php echo ($disable ? 1 : 0); ?>';
-												var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
-												var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
-												var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;
-												var pbcoreGeneration =<?php echo json_encode($pbcore_generations); ?>;
+									var disable = '<?php echo ($disable ? 1 : 0); ?>';
+									var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
+									var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
+									var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;
+									var pbcoreGeneration =<?php echo json_encode($pbcore_generations); ?>;
 
 </script>
 <script type="text/javascript" src="/js/edit_instantiation.js?<?php echo time(); ?>"></script>

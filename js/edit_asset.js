@@ -156,6 +156,7 @@ function removeElement(elementID, type) {
 }
 function addElement(elementID, type) {
 	var number = 10 + Math.floor(Math.random() * 100);
+	common = less = false;
 	if (elementID == '#main_local_id') {
 
 
@@ -184,6 +185,14 @@ function addElement(elementID, type) {
 
 		for (cnt in pbcoreDateTypes)
 		{
+			if (pbcoreDateTypes[cnt]['display_value'] == 1 && common == false) {
+				common = true;
+				dateTypes += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
+			}
+			else if (pbcoreDateTypes[cnt]['display_value'] == 2 && less == false) {
+				less = true;
+				dateTypes += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
+			}
 			dateTypes += '<option value= "' + pbcoreDateTypes[cnt]['value'] + '">' + pbcoreDateTypes[cnt]['value'] + '</option>';
 		}
 
@@ -203,6 +212,14 @@ function addElement(elementID, type) {
 
 		for (cnt in pbcoreTitleTypes)
 		{
+			if (pbcoreTitleTypes[cnt]['display_value'] == 1 && common == false) {
+				common = true;
+				titleTypes += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
+			}
+			else if (pbcoreTitleTypes[cnt]['display_value'] == 2 && less == false) {
+				less = true;
+				titleTypes += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
+			}
 			titleTypes += '<option value= "' + pbcoreTitleTypes[cnt]['value'] + '">' + pbcoreTitleTypes[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_title_' + number + '" class="remove_title"><div class="edit_form_div">' +
@@ -227,6 +244,14 @@ function addElement(elementID, type) {
 
 		for (cnt in pbcoreSubjectTypes)
 		{
+			if (pbcoreSubjectTypes[cnt]['display_value'] == 1 && common == false) {
+				common = true;
+				subjectType += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
+			}
+			else if (pbcoreSubjectTypes[cnt]['display_value'] == 2 && less == false) {
+				less = true;
+				subjectType += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
+			}
 			subjectType += '<option value= "' + pbcoreSubjectTypes[cnt]['subject_type'] + '">' + pbcoreSubjectTypes[cnt]['subject_type'] + '</option>';
 		}
 
@@ -259,6 +284,14 @@ function addElement(elementID, type) {
 
 		for (cnt in pbcoreDescriptionTypes)
 		{
+			if (pbcoreDescriptionTypes[cnt]['display_value'] == 1 && common == false) {
+				common = true;
+				descriptionType += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
+			}
+			else if (pbcoreDescriptionTypes[cnt]['display_value'] == 2 && less == false) {
+				less = true;
+				descriptionType += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
+			}
 			descriptionType += '<option value= "' + pbcoreDescriptionTypes[cnt]['value'] + '">' + pbcoreDescriptionTypes[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_description_' + number + '" class="remove_description"><div class="edit_form_div">' +
@@ -306,6 +339,14 @@ function addElement(elementID, type) {
 
 		for (cnt in pbcoreAudienceLevel)
 		{
+			if (pbcoreAudienceLevel[cnt]['display_value'] == 1 && common == false) {
+				common = true;
+				audienceLevel += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
+			}
+			else if (pbcoreAudienceLevel[cnt]['display_value'] == 2 && less == false) {
+				less = true;
+				audienceLevel += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
+			}
 			audienceLevel += '<option value= "' + pbcoreAudienceLevel[cnt]['value'] + '">' + pbcoreAudienceLevel[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_audience_level_' + number + '" class="remove_audience_level"><div class="edit_form_div">' +
@@ -329,6 +370,14 @@ function addElement(elementID, type) {
 
 		for (cnt in pbcoreAudienceRating)
 		{
+			if (pbcoreAudienceRating[cnt]['display_value'] == 1 && common == false) {
+				common = true;
+				audienceRating += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
+			}
+			else if (pbcoreAudienceRating[cnt]['display_value'] == 2 && less == false) {
+				less = true;
+				audienceRating += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
+			}
 			audienceRating += '<option value= "' + pbcoreAudienceRating[cnt]['value'] + '">' + pbcoreAudienceRating[cnt]['value'] + '</option>';
 		}
 
@@ -366,6 +415,14 @@ function addElement(elementID, type) {
 
 		for (cnt in pbcoreRelationTypes)
 		{
+			if (pbcoreRelationTypes[cnt]['display_value'] == 1 && common == false) {
+				common = true;
+				relationType += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
+			}
+			else if (pbcoreRelationTypes[cnt]['display_value'] == 2 && less == false) {
+				less = true;
+				relationType += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
+			}
 			relationType += '<option value= "' + pbcoreRelationTypes[cnt]['value'] + '">' + pbcoreRelationTypes[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_relation_' + number + '" class="remove_relation"><div class="edit_form_div"><div><p>Relation:</p>' +
@@ -397,6 +454,14 @@ function addElement(elementID, type) {
 
 		for (cnt in pbcoreCreatorRoles)
 		{
+			if (pbcoreCreatorRoles[cnt]['display_value'] == 1 && common == false) {
+				common = true;
+				creatorRoles += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
+			}
+			else if (pbcoreCreatorRoles[cnt]['display_value'] == 2 && less == false) {
+				less = true;
+				creatorRoles += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
+			}
 			creatorRoles += '<option value= "' + pbcoreCreatorRoles[cnt]['value'] + '">' + pbcoreCreatorRoles[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_creator_' + number + '" class="remove_creator"><div class="edit_form_div"><div>' +
@@ -437,6 +502,14 @@ function addElement(elementID, type) {
 
 		for (cnt in pbcoreContributorRoles)
 		{
+			if (pbcoreContributorRoles[cnt]['display_value'] == 1 && common == false) {
+				common = true;
+				contributorRoles += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
+			}
+			else if (pbcoreContributorRoles[cnt]['display_value'] == 2 && less == false) {
+				less = true;
+				contributorRoles += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
+			}
 			contributorRoles += '<option value= "' + pbcoreContributorRoles[cnt]['value'] + '">' + pbcoreContributorRoles[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_contributor_' + number + '" class="remove_contributor"><div class="edit_form_div"><div><p>Contributor:</p>' +
@@ -475,9 +548,17 @@ function addElement(elementID, type) {
 	else if (elementID == '#main_publisher') {
 		publisherRoles = '';
 
-		for (cnt in pbcoreContributorRoles)
+		for (cnt in pbcorePublisherRoles)
 		{
-			publisherRoles += '<option value= "' + pbcoreContributorRoles[cnt]['value'] + '">' + pbcoreContributorRoles[cnt]['value'] + '</option>';
+			if (pbcorePublisherRoles[cnt]['display_value'] == 1 && common == false) {
+				common = true;
+				publisherRoles += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
+			}
+			else if (pbcorePublisherRoles[cnt]['display_value'] == 2 && less == false) {
+				less = true;
+				publisherRoles += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
+			}
+			publisherRoles += '<option value= "' + pbcorePublisherRoles[cnt]['value'] + '">' + pbcorePublisherRoles[cnt]['value'] + '</option>';
 		}
 
 		html = '<div id="remove_publisher_' + number + '" class="remove_publisher"><div class="edit_form_div"><div><p>Publisher:</p>' +
@@ -523,7 +604,6 @@ function addElement(elementID, type) {
 	}
 	else if (elementID == '#main_type') {
 		assetTypes = '';
-		common = less = false;
 		for (cnt in pbcoreAssetTypes)
 		{
 			if (pbcoreAssetTypes[cnt]['display_value'] == 1 && common == false) {

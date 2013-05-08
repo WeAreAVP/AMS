@@ -63,7 +63,7 @@ class Instantiations extends MY_Controller
 		$this->session->set_userdata('offset', $offset);
 		$params = array('search' => '');
 		$data['station_records'] = $this->station_model->get_all();
-		
+
 		if (isAjax())
 		{
 			$this->unset_facet_search();
@@ -371,14 +371,14 @@ class Instantiations extends MY_Controller
 							$nomination_record['created'] = date('Y-m-d H:i:s');
 							$this->assets_model->insert_nominations($nomination_record);
 						}
+						$this->sphinx->update_indexes('instantiations_list', array('nomination_status_id'), array($instantiation_id => array((int) $nomination_id)));
 					}
 					else
 					{
 						if ($nomination_exist)
 						{
-
-
 							$this->manage_asset->delete_row($instantiation_id, 'nominations', 'instantiations_id');
+							$this->sphinx->update_indexes('instantiations_list', array('nomination_status_id'), array($instantiation_id => array((int) 0)));
 						}
 					}
 					/* Nomination End */

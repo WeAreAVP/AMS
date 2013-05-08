@@ -1183,8 +1183,11 @@ class Instantiations extends MY_Controller
 				$nomination_status = sortByOneKey($nomination['records'], 'nomination_status_id');
 				foreach ($nomination_status as $key => $status)
 				{
-					$data['nomination_status'][$key]['status'] = $this->sphinx->get_nomination_status($status['nomination_status_id'])->status;
-					$data['nomination_status'][$key]['@count'] = $status['@count'];
+					if ($status['nomination_status_id'] != 0)
+					{
+						$data['nomination_status'][$key]['status'] = $this->sphinx->get_nomination_status($status['nomination_status_id'])->status;
+						$data['nomination_status'][$key]['@count'] = $status['@count'];
+					}
 				}
 
 				unset($nomination);

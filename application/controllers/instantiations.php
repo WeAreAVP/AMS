@@ -372,6 +372,7 @@ class Instantiations extends MY_Controller
 							$this->assets_model->insert_nominations($nomination_record);
 						}
 						$this->sphinx->update_indexes('instantiations_list', array('nomination_status_id'), array($instantiation_id => array((int) $nomination_id)));
+						$this->sphinx->update_indexes('assets_list', array('nomination_status_id'), array($detail->assets_id => array((int) $nomination_id)));
 					}
 					else
 					{
@@ -379,6 +380,7 @@ class Instantiations extends MY_Controller
 						{
 							$this->manage_asset->delete_row($instantiation_id, 'nominations', 'instantiations_id');
 							$this->sphinx->update_indexes('instantiations_list', array('nomination_status_id'), array($instantiation_id => array((int) 0)));
+							$this->sphinx->update_indexes('assets_list', array('nomination_status_id'), array($detail->assets_id => array((int) 0)));
 						}
 					}
 					/* Nomination End */
@@ -1124,7 +1126,7 @@ class Instantiations extends MY_Controller
 		$column = array(
 			'Organization' => 'organization',
 			'Instantiation_ID' => 'instantiation_identifier',
-			'Nomination' => 'status',
+			'Nomination' => 'nomination_status_id',
 			'Instantiation\'s_Asset_Title' => 'asset_title',
 			'Media_Type' => 'media_type',
 			'Generation' => 'generation',

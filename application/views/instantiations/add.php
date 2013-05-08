@@ -509,9 +509,22 @@
 										<p>
 											<select id="relation_type_0" name="relation_type[]">
 												<?php
+												$commonly = $less = FALSE;
 												foreach ($pbcore_relation_types as $row)
 												{
-													?>
+													if ($row->display_value == 1 && ! $commonly)
+													{
+														$commonly = TRUE;
+														?>
+														<optgroup label="Commonly Used">Commonly Used</optgroup>
+														<?php
+													}
+													else if ($row->display_value == 2 && ! $less)
+													{
+														$less = TRUE;
+														?>
+														<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+													<?php } ?>
 													<option value="<?php echo $row->value; ?>" ><?php echo $row->value; ?></option>
 												<?php }
 												?>

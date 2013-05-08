@@ -43,14 +43,14 @@
 												{
 													if ($row->display_value == 1 && ! $commonly)
 													{
-														$commonly=TRUE;
+														$commonly = TRUE;
 														?>
 														<optgroup label="Commonly Used">Commonly Used</optgroup>
 														<?php
 													}
 													else if ($row->display_value == 2 && ! $less)
 													{
-														$less=TRUE;
+														$less = TRUE;
 														?>
 														<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
 													<?php } ?>
@@ -90,9 +90,22 @@
 										<p>
 											<select id="asset_date_type_0" name="asset_date_type[]">
 												<?php
+												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_date_types as $row)
 												{
-													?>
+													if ($row->display_value == 1 && ! $commonly)
+													{
+														$commonly = TRUE;
+														?>
+														<optgroup label="Commonly Used">Commonly Used</optgroup>
+														<?php
+													}
+													else if ($row->display_value == 2 && ! $less)
+													{
+														$less = TRUE;
+														?>
+														<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+													<?php } ?>
 													<option value="<?php echo $row->value; ?>"><?php echo $row->value; ?></option>
 												<?php }
 												?>
@@ -175,9 +188,22 @@
 										<p>
 											<select id="asset_title_type_0" name="asset_title_type[]">
 												<?php
+												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_title_types as $row)
 												{
-													?>
+													if ($row->display_value == 1 && ! $commonly)
+													{
+														$commonly = TRUE;
+														?>
+														<optgroup label="Commonly Used">Commonly Used</optgroup>
+														<?php
+													}
+													else if ($row->display_value == 2 && ! $less)
+													{
+														$less = TRUE;
+														?>
+														<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+													<?php } ?>
 													<option value="<?php echo $row->value; ?>"><?php echo $row->value; ?></option>
 												<?php }
 												?>
@@ -287,9 +313,22 @@
 										<p>
 											<select id="asset_description_type_0" name="asset_description_type[]">
 												<?php
+												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_description_types as $row)
 												{
-													?>
+													if ($row->display_value == 1 && ! $commonly)
+													{
+														$commonly = TRUE;
+														?>
+														<optgroup label="Commonly Used">Commonly Used</optgroup>
+														<?php
+													}
+													else if ($row->display_value == 2 && ! $less)
+													{
+														$less = TRUE;
+														?>
+														<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+													<?php } ?>
 													<option value="<?php echo $row->value; ?>" ><?php echo $row->value; ?></option>
 												<?php }
 												?>
@@ -391,9 +430,22 @@
 										<p>
 											<select id="asset_audience_level_0" name="asset_audience_level[]">
 												<?php
+												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_audience_level as $row)
 												{
-													?>
+													if ($row->display_value == 1 && ! $commonly)
+													{
+														$commonly = TRUE;
+														?>
+														<optgroup label="Commonly Used">Commonly Used</optgroup>
+														<?php
+													}
+													else if ($row->display_value == 2 && ! $less)
+													{
+														$less = TRUE;
+														?>
+														<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+													<?php } ?>
 													<option value="<?php echo $row->value; ?>" ><?php echo $row->value; ?></option>
 												<?php }
 												?>
@@ -443,9 +495,22 @@
 										<p>
 											<select id="asset_audience_rating_0" name="asset_audience_rating[]">
 												<?php
+												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_audience_rating as $row)
 												{
-													?>
+													if ($row->display_value == 1 && ! $commonly)
+													{
+														$commonly = TRUE;
+														?>
+														<optgroup label="Commonly Used">Commonly Used</optgroup>
+														<?php
+													}
+													else if ($row->display_value == 2 && ! $less)
+													{
+														$less = TRUE;
+														?>
+														<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+													<?php } ?>
 													<option value="<?php echo $row->value; ?>" ><?php echo $row->value; ?></option>
 												<?php }
 												?>
@@ -553,9 +618,22 @@
 										<p>
 											<select id="asset_relation_type_0" name="asset_relation_type[]">
 												<?php
+												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_relation_types as $row)
 												{
-													?>
+													if ($row->display_value == 1 && ! $commonly)
+													{
+														$commonly = TRUE;
+														?>
+														<optgroup label="Commonly Used">Commonly Used</optgroup>
+														<?php
+													}
+													else if ($row->display_value == 2 && ! $less)
+													{
+														$less = TRUE;
+														?>
+														<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+													<?php } ?>
 													<option value="<?php echo $row->value; ?>" ><?php echo $row->value; ?></option>
 												<?php }
 												?>
@@ -627,9 +705,22 @@
 											<select id="asset_creator_role_0" name="asset_creator_role[]">
 
 												<?php
+												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_creator_roles as $row)
 												{
-													?>
+													if ($row->display_value == 1 && ! $commonly)
+													{
+														$commonly = TRUE;
+														?>
+														<optgroup label="Commonly Used">Commonly Used</optgroup>
+														<?php
+													}
+													else if ($row->display_value == 2 && ! $less)
+													{
+														$less = TRUE;
+														?>
+														<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+													<?php } ?>
 													<option value="<?php echo $row->value; ?>" ><?php echo $row->value; ?></option>
 												<?php }
 												?>
@@ -702,9 +793,22 @@
 											<select id="asset_contributor_role_0" name="asset_contributor_role[]">
 
 												<?php
+												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_contributor_roles as $row)
 												{
-													?>
+													if ($row->display_value == 1 && ! $commonly)
+													{
+														$commonly = TRUE;
+														?>
+														<optgroup label="Commonly Used">Commonly Used</optgroup>
+														<?php
+													}
+													else if ($row->display_value == 2 && ! $less)
+													{
+														$less = TRUE;
+														?>
+														<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+													<?php } ?>
 													<option value="<?php echo $row->value; ?>" ><?php echo $row->value; ?></option>
 												<?php }
 												?>
@@ -777,9 +881,22 @@
 											<select id="asset_publisher_role_0" name="asset_publisher_role[]">
 
 												<?php
+												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_publisher_roles as $row)
 												{
-													?>
+													if ($row->display_value == 1 && ! $commonly)
+													{
+														$commonly = TRUE;
+														?>
+														<optgroup label="Commonly Used">Commonly Used</optgroup>
+														<?php
+													}
+													else if ($row->display_value == 2 && ! $less)
+													{
+														$less = TRUE;
+														?>
+														<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+													<?php } ?>
 													<option value="<?php echo $row->value; ?>" ><?php echo $row->value; ?></option>
 												<?php }
 												?>

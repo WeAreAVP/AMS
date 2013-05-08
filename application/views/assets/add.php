@@ -45,14 +45,14 @@
 													{
 														$commonly=TRUE;
 														?>
-														<optgroup>Commonly Used</optgroup>
+														<optgroup label="Commonly Used">Commonly Used</optgroup>
 														<?php
 													}
 													else if ($row->display_value == 2 && ! $less)
 													{
 														$less=TRUE;
 														?>
-														<optgroup>Less Commonly Used</optgroup>
+														<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
 													<?php } ?>
 													<option value="<?php echo $row->value; ?>"><?php echo $row->value; ?></option>
 												<?php }

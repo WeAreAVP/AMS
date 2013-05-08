@@ -64,9 +64,22 @@
 										<p>
 											<select id="inst_date_type_0" name="inst_date_type[]">
 												<?php
+												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_date_types as $row)
 												{
-													?>
+													if ($row->display_value == 1 && ! $commonly)
+													{
+														$commonly = TRUE;
+														?>
+														<optgroup label="Commonly Used">Commonly Used</optgroup>
+														<?php
+													}
+													else if ($row->display_value == 2 && ! $less)
+													{
+														$less = TRUE;
+														?>
+														<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+													<?php } ?>
 													<option value="<?php echo $row->value; ?>"><?php echo $row->value; ?></option>
 												<?php }
 												?>
@@ -130,9 +143,22 @@
 						<p>
 							<select id="physical_format" name="physical_format">
 								<?php
+								$commonly = $less = FALSE;
 								foreach ($pbcore_physical_formats as $row)
 								{
-									?>
+									if ($row->display_value == 1 && ! $commonly)
+									{
+										$commonly = TRUE;
+										?>
+										<optgroup label="Commonly Used">Commonly Used</optgroup>
+										<?php
+									}
+									else if ($row->display_value == 2 && ! $less)
+									{
+										$less = TRUE;
+										?>
+										<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+									<?php } ?>
 									<option value="<?php echo $row->value; ?>"><?php echo $row->value; ?></option>
 								<?php }
 								?>
@@ -383,9 +409,22 @@
 									<div><p>
 											<select id="generation_0" name="generation[]">
 												<?php
+												$commonly = $less = FALSE;
 												foreach ($pbcore_generations as $row)
 												{
-													?>
+													if ($row->display_value == 1 && ! $commonly)
+													{
+														$commonly = TRUE;
+														?>
+														<optgroup label="Commonly Used">Commonly Used</optgroup>
+														<?php
+													}
+													else if ($row->display_value == 2 && ! $less)
+													{
+														$less = TRUE;
+														?>
+														<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+													<?php } ?>
 													<option value="<?php echo $row->value; ?>" ><?php echo $row->value; ?></option>
 												<?php }
 												?>

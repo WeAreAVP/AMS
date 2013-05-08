@@ -1181,7 +1181,7 @@ class Instantiations extends MY_Controller
 				$nomination = $this->sphinx->facet_index('nomination_status_id', $index);
 
 				$nomination_status = sortByOneKey($nomination['records'], 'nomination_status_id');
-				foreach ($nomination_status as $key=>$status)
+				foreach ($nomination_status as $key => $status)
 				{
 					$data['nomination_status'][$key]['status'] = $this->sphinx->get_nomination_status($status['nomination_status_id'])->status;
 					$data['nomination_status'][$key]['@count'] = $status['@count'];
@@ -1226,7 +1226,12 @@ class Instantiations extends MY_Controller
 
 				$data['stations'] = json_decode($this->memcached_library->get($key_name . '_stations'), TRUE);
 
-				$data['nomination_status'] = json_decode($this->memcached_library->get($key_name . '_status'), TRUE);
+				$nomination_status = json_decode($this->memcached_library->get($key_name . '_status'), TRUE);
+				foreach ($nomination_status as $key => $status)
+				{
+					$data['nomination_status'][$key]['status'] = $this->sphinx->get_nomination_status($status['nomination_status_id'])->status;
+					$data['nomination_status'][$key]['@count'] = $status['@count'];
+				}
 				$data['media_types'] = json_decode($this->memcached_library->get($key_name . '_media_type'), TRUE);
 				$data['physical_formats'] = json_decode($this->memcached_library->get($key_name . '_physical'), TRUE);
 				$data['digital_formats'] = json_decode($this->memcached_library->get($key_name . '_digital'), TRUE);

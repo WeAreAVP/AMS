@@ -167,7 +167,7 @@ class Crons extends CI_Controller
 		$search_facet = new stdClass;
 		$search_facet->state = 'state';
 		$search_facet->stations = 'organization';
-		$search_facet->status = 'status';
+		$search_facet->status = 'nomination_status_id';
 		$search_facet->media_type = 'media_type';
 		$search_facet->physical = 'format_name';
 		$search_facet->digital = 'format_name';

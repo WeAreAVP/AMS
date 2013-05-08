@@ -306,7 +306,7 @@
 									{
 										$selected = '';
 										if ($instantiation_detail->standard == $row->value)
-											$selected = 'selected="selected"'
+											$selected = 'selected="selected"';
 											?>
 										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
 									<?php }
@@ -370,7 +370,7 @@
 									{
 										$selected = '';
 										if (isset($inst_color->color) && $inst_color->color == $row->value)
-											$selected = 'selected="selected"'
+											$selected = 'selected="selected"';
 											?>
 										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
 									<?php }
@@ -454,7 +454,7 @@
 								{
 									$selected = '';
 									if (isset($ins_nomination->status) && $ins_nomination->status == $row->status)
-										$selected = 'selected="selected"'
+										$selected = 'selected="selected"';
 										?>
 									<option value="<?php echo $row->status; ?>" <?php echo $selected; ?>><?php echo $row->status; ?></option>
 								<?php }

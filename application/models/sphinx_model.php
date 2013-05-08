@@ -214,8 +214,8 @@ class Sphinx_Model extends CI_Model
 
 	function where_filter()
 	{
-		 $where = '@digitized "1"';
-		
+		$where = '@digitized "1"';
+
 		if (isset($this->session->userdata['stand_date_filter']) && $this->session->userdata['stand_date_filter'] != '')
 		{
 			$date_range = explode("to", str_replace('-', '/', $this->session->userdata['stand_date_filter']));
@@ -237,8 +237,6 @@ class Sphinx_Model extends CI_Model
 			{
 				$where .=' @event_type "migration"';
 				$this->sphinxsearch->set_filter_range("event_date", $start_date, $end_date);
-
-				
 			}
 		}
 		return $where;
@@ -296,6 +294,13 @@ class Sphinx_Model extends CI_Model
 		}
 
 		return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
+	}
+
+	function get_nomination_status_id($nomination_status)
+	{
+		$this->db->select('id');
+		$this->db->where('status', $nomination_status);
+		return $this->db->get('nomination_status')->row();
 	}
 
 	function make_where_clause($type = NULL)
@@ -396,7 +401,9 @@ class Sphinx_Model extends CI_Model
 		if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
 		{
 			$nomination = str_replace('|||', '" | "', trim($this->session->userdata['nomination']));
-			$where .=" @status \"^$nomination$\"";
+			$nomination_id = $this->get_nomination_status_id($nomination);
+			$this->sphinxsearch->set_filter("nomination_status_id", array($nomination_id->id));
+//			$where .=" @status \"^$nomination$\"";
 		}
 		if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
 		{

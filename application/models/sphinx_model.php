@@ -303,6 +303,13 @@ class Sphinx_Model extends CI_Model
 		return $this->db->get('nomination_status')->row();
 	}
 
+	function get_nomination_status($nomination_id)
+	{
+		$this->db->select('status');
+		$this->db->where('id', $nomination_id);
+		return $this->db->get('nomination_status')->row();
+	}
+
 	function make_where_clause($type = NULL)
 	{
 

@@ -1179,9 +1179,14 @@ class Instantiations extends MY_Controller
 				$data['stations'] = sortByOneKey($stations['records'], 'organization');
 				unset($stations);
 				$nomination = $this->sphinx->facet_index('nomination_status_id', $index);
-				
-				$data['nomination_status'] = sortByOneKey($nomination['records'], 'nomination_status_id');
-				debug($data['nomination_status'] );
+
+				$nomination_status = sortByOneKey($nomination['records'], 'nomination_status_id');
+				foreach ($nomination_status as $status)
+				{
+					$data['nomination_status'][]['status'] = $this->sphnix->get_nomination_status($status['nomination_status_id'])->status;
+					$data['nomination_status'][]['@count'] = $status['@count'];
+				}
+
 				unset($nomination);
 				$media_type = $this->sphinx->facet_index('media_type', $index);
 

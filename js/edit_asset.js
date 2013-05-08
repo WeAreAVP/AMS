@@ -244,14 +244,6 @@ function addElement(elementID, type) {
 
 		for (cnt in pbcoreSubjectTypes)
 		{
-			if (pbcoreSubjectTypes[cnt]['display_value'] == 1 && common == false) {
-				common = true;
-				subjectType += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
-			}
-			else if (pbcoreSubjectTypes[cnt]['display_value'] == 2 && less == false) {
-				less = true;
-				subjectType += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
-			}
 			subjectType += '<option value= "' + pbcoreSubjectTypes[cnt]['subject_type'] + '">' + pbcoreSubjectTypes[cnt]['subject_type'] + '</option>';
 		}
 

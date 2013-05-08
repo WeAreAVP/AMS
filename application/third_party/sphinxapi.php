@@ -865,7 +865,7 @@ class SphinxClient
 	}
 
 	/// set grouping attribute and function
-	function SetGroupBy ( $attribute, $func, $groupsort="@group desc" )
+	function SetGroupBy ( $attribute, $func, $groupsort="@group asc" )
 	{
 		assert ( is_string($attribute) );
 		assert ( is_string($groupsort) );

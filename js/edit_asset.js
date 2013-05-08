@@ -523,9 +523,17 @@ function addElement(elementID, type) {
 	}
 	else if (elementID == '#main_type') {
 		assetTypes = '';
-
+		common = less = false;
 		for (cnt in pbcoreAssetTypes)
 		{
+			if (pbcoreAssetTypes[cnt]['display_value'] == 1 && common == false) {
+				common = true;
+				assetTypes += '<optgroup label="Commonly Used">Commonly Used</optgroup>';
+			}
+			else if (pbcoreAssetTypes[cnt]['display_value'] == 2 && less == false) {
+				less = true;
+				assetTypes += '<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>';
+			}
 			assetTypes += '<option value= "' + pbcoreAssetTypes[cnt]['value'] + '">' + pbcoreAssetTypes[cnt]['value'] + '</option>';
 		}
 		html = '<div id="remove_type_' + number + '" class="remove_type"><div class="edit_form_div"><div><p>Asset Type:</p></div><div><p>' +

@@ -43,12 +43,14 @@
 												{
 													if ($row->display_value == 1 && ! $commonly)
 													{
+														$commonly=TRUE;
 														?>
 														<optgroup>Commonly Used</optgroup>
 														<?php
 													}
-													else if ($row->display_value == 1 && ! $commonly)
+													else if ($row->display_value == 2 && ! $less)
 													{
+														$less=TRUE;
 														?>
 														<optgroup>Less Commonly Used</optgroup>
 													<?php } ?>

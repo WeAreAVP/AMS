@@ -38,9 +38,20 @@
 									<div><p>
 											<select id="asset_type_0" name="asset_type[]">
 												<?php
+												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_types as $row)
 												{
-													?>
+													if ($row->display_value == 1 && ! $commonly)
+													{
+														?>
+														<optgroup>Commonly Used</optgroup>
+														<?php
+													}
+													else if ($row->display_value == 1 && ! $commonly)
+													{
+														?>
+														<optgroup>Less Commonly Used</optgroup>
+													<?php } ?>
 													<option value="<?php echo $row->value; ?>"><?php echo $row->value; ?></option>
 												<?php }
 												?>

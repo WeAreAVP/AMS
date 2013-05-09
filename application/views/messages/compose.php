@@ -110,7 +110,7 @@
 							{
 								$('#message_station_error').hide();
 								$('#message_type_error').hide();
-//									$('#compose_anchor').trigger('click');
+									$('#compose_anchor').trigger('click');
 
 									for (i in to)
 									{

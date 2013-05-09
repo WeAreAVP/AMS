@@ -67,6 +67,7 @@
 							if (to == '' || to == null)
 							{
 								$('#message_station_error').show();
+								$('#msg_type').val('');
 								return;
 							}
 							else if (type == '')

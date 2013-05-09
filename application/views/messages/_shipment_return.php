@@ -97,7 +97,9 @@
 				}
 				$('#message_edit_title').html('Manage Shipment Date');
 				$('#compose_to_type').modal('toggle');
-				$('#edit_media_window').modal('toggle');
+				$('#edit_media_window').modal({
+					backdrop: 'static',
+				});
 				$("#station_name_list input").datepicker({dateFormat: 'yy-mm-dd'});
 
 

@@ -29,8 +29,8 @@ if ( ! $is_ajax)
 			{
 				?><div class="alert" style="margin-bottom: 0px; margin-top: 0px;"><strong><?php echo $this->session->userdata['sent']; ?></strong></div><br/><?php } $this->session->unset_userdata('sent'); ?>
 			<div class="span3" style="margin-bottom: 15px;">
-				<a href="#compose_to_type" class="btn btn-large" data-toggle="modal" id="compose_anchor">Compose Message</a>
-				<a href="#compose_confirm"  data-toggle="modal" id="confirm_anchor" style="display: none;"></a>
+				<a href="#compose_to_type" class="btn btn-large" data-toggle="modal" data-backdrop="static" id="compose_anchor">Compose Message</a>
+				<a href="#compose_confirm"  data-toggle="modal" id="confirm_anchor"  data-backdrop="static" style="display: none;"></a>
 			</div>
 		<?php } ?>
 	</div>

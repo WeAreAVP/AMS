@@ -9,7 +9,7 @@
                 <label class="control-label" for="receiver_id">To:</label>
                 <div class="controls">
                     <select id="receiver_id" name="receiver_id" multiple="multiple" >
-						<!--																								<option value="157">Crawford Project Manager</option>-->
+						<!-- <option value="157">Crawford Project Manager</option> -->
 						<?php
 						foreach ($station_records as $value)
 						{
@@ -113,7 +113,7 @@
 
 								validateFields = checkFields();
 								if (validateFields) {
-									$('#compose_anchor').trigger('click');
+//									$('#compose_anchor').trigger('click');
 
 									for (i in to)
 									{
@@ -122,8 +122,10 @@
 									to_name = implode(", ", temp_to_name);
 									subject = $("#msg_type option[value='" + type + "']").text();
 									confirmBody();
-
-									$('#confirm_anchor').trigger('click');
+									$('#compose_confirm').modal({
+										backdrop: 'static',
+									});
+//									$('#confirm_anchor').trigger('click');
 								}
 
 

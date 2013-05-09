@@ -1183,6 +1183,7 @@ class Instantiations extends MY_Controller
 				$nomination = $this->sphinx->facet_index('nomination_status_id', $index);
 
 				$nomination_status = sortByOneKey($nomination['records'], 'nomination_status_id');
+				$data['nomination_status'] = array();
 				foreach ($nomination_status as $key => $status)
 				{
 					if ($status['nomination_status_id'] != 0)
@@ -1232,6 +1233,7 @@ class Instantiations extends MY_Controller
 				$data['stations'] = json_decode($this->memcached_library->get($key_name . '_stations'), TRUE);
 
 				$nomination_status = json_decode($this->memcached_library->get($key_name . '_status'), TRUE);
+				$data['nomination_status'] = array();
 				foreach ($nomination_status as $key => $status)
 				{
 					if ($status['nomination_status_id'] != 0)

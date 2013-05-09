@@ -110,9 +110,6 @@
 							{
 								$('#message_station_error').hide();
 								$('#message_type_error').hide();
-
-								validateFields = checkFields();
-								if (validateFields) {
 //									$('#compose_anchor').trigger('click');
 
 									for (i in to)
@@ -126,7 +123,7 @@
 										backdrop: 'static',
 									});
 //									$('#confirm_anchor').trigger('click');
-								}
+								
 
 
 							}

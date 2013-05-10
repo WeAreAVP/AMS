@@ -1,26 +1,31 @@
 <?php
 
-if ( ! defined('BASEPATH'))
-	exit('No direct script access allowed');
+/**
+ * Messages Controller
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage Controller
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AVPS http://ams.avpreserve.com
+ * @version    GIT: <$Id>
+ * @link       http://ams.avpreserve.com
+ */
 
 /**
- * Messages
+ * Messages Class
  *
- * @package    AMS
- * @subpackage Messeges
- * @author     Ali Raza, Nouman Tayyab
+ * @category   Class
+ * @package    CI
+ * @subpackage Controller
+ * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @license    AVPS http://ams.avpreserve.com
+ * @link       http://ams.avpreserve.com
  */
 class Messages extends MY_Controller
 {
-
-	/**
-	 * constructor. Load layout,Model,Library and helpers
-	 * 
-	 */
-	function __construct()
-	{
-		parent::__construct();
-	}
 
 	/**
 	 * Redirect to inbox
@@ -33,7 +38,8 @@ class Messages extends MY_Controller
 
 	/**
 	 * List Received Message 
-	 *  
+	 * 
+	 * @return view 
 	 */
 	public function inbox()
 	{
@@ -244,21 +250,17 @@ class Messages extends MY_Controller
 
 				$replacebale['station_name'] = isset($station_details->station_name) ? $station_details->station_name : '';
 
-
+				$replacebale['inform_to'] = 'cstephenson@mail.crawford.com';
+				$replacebale['user_name'] = 'The American Archive';
 				if ($this->config->item('demo') == TRUE)
 				{
 					$to_email = $this->config->item('to_email');
-					$from_email = $this->config->item('from_email');
-					$replacebale['user_name'] = 'The American Archive';
-//																				$this->emailtemplates->sent_now	=	TRUE;
 				}
 				else
 				{
 					$to_email = $station_details->contact_email;
-					$from_email = $this->user_detail->email;
-					$replacebale['user_name'] = 'The American Archive';
 				}
-				$replacebale['inform_to'] = 'cstephenson@mail.crawford.com';
+
 				$email_queue_id = $this->emailtemplates->queue_email($template, $to_email, $replacebale);
 
 				$data = array('sender_id' => $this->user_id, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => json_encode($extra), 'created_at' => date('Y-m-d h:m:i'));

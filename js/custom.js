@@ -354,13 +354,11 @@ function updateDataTable()
 				aoData.push({"name": "frozen_column", "value": frozen});
 				aoData.push({"name": "settings", "value": userSettings});
 				aoData.push({"name": "table_type", "value": current_table_type});
-				$.ajax({
-					"dataType": 'json',
-					"type": "POST",
-					"url": sSource,
-					"data": aoData,
-					"success": fnCallback
-				});
+				$.post(sSource, aoData, function(json) {
+
+					/* Do whatever additional processing you want on the callback, then tell DataTables */
+					fnCallback(json);
+				},'json');
 			},
 			"fnInitComplete": function() {
 				oFC = new FixedColumns(oTable, {

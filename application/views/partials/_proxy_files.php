@@ -44,13 +44,14 @@
 		<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				if ($.browser.chrome || $.browser.safari) {
-					$('.fp-embed').hide();
-					$('#flowPlayer_div').show();
-				}
-				else {
-					$('#jPalayer_div').show();
-				}
+				$('#flowPlayer_div').show();
+//				if ($.browser.chrome || $.browser.safari) {
+//					$('.fp-embed').hide();
+//					$('#flowPlayer_div').show();
+//				}
+//				else {
+//					$('#jPalayer_div').show();
+//				}
 
 			});
 		</script>

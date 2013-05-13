@@ -1142,9 +1142,9 @@ class Instantiations extends MY_Controller
 		$this->session->unset_userdata('column');
 		$this->session->unset_userdata('jscolumn');
 		$this->session->unset_userdata('column_order');
-		$this->session->set_userdata('jscolumn', $this->input->get('iSortCol_0'));
-		$this->session->set_userdata('column', $column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
-		$this->session->set_userdata('column_order', $this->input->get('sSortDir_0'));
+		$this->session->set_userdata('jscolumn', $this->input->post('iSortCol_0'));
+		$this->session->set_userdata('column', $column[$this->column_order[$this->input->post('iSortCol_0')]['title']]);
+		$this->session->set_userdata('column_order', $this->input->post('sSortDir_0'));
 
 
 		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;

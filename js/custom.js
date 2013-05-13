@@ -328,6 +328,7 @@ function updateDataTable()
 			"bProcessing": true,
 			"bServerSide": true,
 			"sAjaxSource": site_url + url_tab_type,
+			"sServerMethod": "POST",
 			"fnServerData": function(sSource, aoData, fnCallback) {
 				columnArray = getColumnOrder();
 				reOrderDropDown(columnArray);

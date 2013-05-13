@@ -113,7 +113,7 @@ if ( ! $is_ajax)
 							<td><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
 						<?php } ?>
 						<th>CPB ID</th>
-						<th style="width:230px;">Station Name</th>
+						<th>Station Name</th>
 						<th>Total Allocated Hours</th>
 						<th>Certified</th>
 						<th>Agreed</th>

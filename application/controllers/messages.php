@@ -343,7 +343,9 @@ class Messages extends MY_Controller
 	{
 		$this->unset_facet_search();
 		$record_type = $this->uri->segment(3);
-		debug($this->input->post());
+		$station_ids = explode(',', $this->input->post('station_ids'));
+		$stations=$this->station_model->get_stations_by_id($station_ids);
+		debug($stations);
 		if ($record_type === '1')
 		{
 			$this->session->set_userdata('digitized', '1');

@@ -354,10 +354,12 @@ function updateDataTable()
 				aoData.push({"name": "frozen_column", "value": frozen});
 				aoData.push({"name": "settings", "value": userSettings});
 				aoData.push({"name": "table_type", "value": current_table_type});
-				jQuery.postJSON(sSource, aoData, function(json) {
-
-					/* Do whatever additional processing you want on the callback, then tell DataTables */
-					fnCallback(json);
+				$.ajax({
+					"dataType": 'json',
+					"type": "POST",
+					"url": sSource,
+					"data": aoData,
+					"success": fnCallback
 				});
 			},
 			"fnInitComplete": function() {

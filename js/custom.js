@@ -331,7 +331,28 @@ function updateDataTable()
 			"fnServerData": function(sSource, aoData, fnCallback) {
 				columnArray = getColumnOrder();
 				reOrderDropDown(columnArray);
-				updateDatabase(0);
+				userSettings = new Array();
+				$('#show_hide_li a').each(function(index, id)
+				{
+					columnAnchorID = this.id;
+					if ($('#' + columnAnchorID + ' i').css('display') == "none")
+					{
+						userSettings[index] = {
+							title: str_replace(' ', '_', $(this).text()),
+							hidden: 1
+						};
+					}
+					else
+					{
+						userSettings[index] = {
+							title: str_replace(' ', '_', $(this).text()),
+							hidden: 0
+						};
+					}
+				});
+				aoData.push({"name": "frozen_column", "value": frozen});
+				aoData.push({"name": "settings", "value": userSettings});
+				aoData.push({"name": "table_type", "value": current_table_type});
 				jQuery.getJSON(sSource, aoData, function(json) {
 
 					/* Do whatever additional processing you want on the callback, then tell DataTables */

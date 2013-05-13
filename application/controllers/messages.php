@@ -359,7 +359,6 @@ class Messages extends MY_Controller
 		if ($record_type === '1')
 		{
 			$this->session->set_userdata('digitized', '1');
-			$this->session->set_userdata('organization', 'Appalshop, Inc. (WMMT and Appalshop Films)|||Arkansas Educational TV Network (AETN)');
 			redirect('records/index');
 		}
 		else if ($record_type === '2')

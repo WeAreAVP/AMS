@@ -20,7 +20,7 @@ if (isset($sent) && $sent)
 					<a class="menu-anchor" href="<?php echo site_url('messages/sent') ?>" ><h5>Sent</h5></a>
 				</div>
 			<?php } ?>
-			
+
 		</div>
 		<div class="clearfix div-separater"></div>
 		<h6 class="filter_title" id="filter_criteria" style="font-weight: bold;">FILTER</h6>

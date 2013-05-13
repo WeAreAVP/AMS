@@ -97,7 +97,9 @@
 									confirmBody();
 
 									$('#compose_to_type').modal("toggle");
-									$('#compose_confirm').modal("toggle");
+									$('#compose_confirm').modal({
+										backdrop: 'static'
+									});
 								}
 
 							}

@@ -89,47 +89,47 @@ if ( ! $is_ajax)
 		</div>
 	</div>
 	<script type="text/javascript">
-										function filter_inbox() {
-											var stations = $('#stations').val();
-											var message_type = $('#message_type').val();
-											$.ajax({
-												type: 'POST',
-												url: site_url + 'messages/inbox',
-												data: {stations: stations, message_type: message_type},
-												cache: false,
-												success: function(result) {
-													$('#append_record').html(result);
-													$("#station_table").trigger("update");
-													$("[rel=tooltip]").tooltip();
+									function filter_inbox() {
+										var stations = $('#stations').val();
+										var message_type = $('#message_type').val();
+										$.ajax({
+											type: 'POST',
+											url: site_url + 'messages/inbox',
+											data: {stations: stations, message_type: message_type},
+											cache: false,
+											success: function(result) {
+												$('#append_record').html(result);
+												$("#station_table").trigger("update");
+												$("[rel=tooltip]").tooltip();
 
-												}
-											});
-										}
-										function read_inbox_msg(id)
-										{
-											$('#row_' + id).css('font-weight', 'normal');
-											$.ajax({
-												type: 'POST',
-												url: site_url + 'messages/readmessage/' + id,
-												cache: false,
-												datatype: 'json',
-												success: function(r)
+											}
+										});
+									}
+									function read_inbox_msg(id)
+									{
+										$('#row_' + id).css('font-weight', 'normal');
+										$.ajax({
+											type: 'POST',
+											url: site_url + 'messages/readmessage/' + id,
+											cache: false,
+											datatype: 'json',
+											success: function(r)
+											{
+												$('#row_' + id).css('font-weight', 'normal');
+												result = eval('(' + r + ')');
+												if (result.error == false)
 												{
-													$('#row_' + id).css('font-weight', 'normal');
-													result = eval('(' + r + ')');
-													if (result.error == false)
+													if (result.reset_row)
 													{
-														if (result.reset_row)
-														{
-															$("#row_" + id).css('font-weight', 'normal');
-														}
-														$('#myGeneral_body').html(result.msg_data);
-														$('#msg_text_link').html(result.total_unread_text);
-														$('#myGeneral').modal('show');
+														$("#row_" + id).css('font-weight', 'normal');
 													}
+													$('#myGeneral_body').html(result.msg_data);
+													$('#msg_text_link').html(result.total_unread_text);
+													$('#myGeneral').modal('show');
 												}
-											});
-										}
+											}
+										});
+									}
 
 	</script>
 

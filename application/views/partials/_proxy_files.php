@@ -14,14 +14,14 @@
 	if ($media)
 	{
 		?>
-<!--		<div id="jPalayer_div" style="display: none;">
+		<div id="jPalayer_div" style="display: none;">
 			<video class="video-js vjs-default-skin" controls
 				   preload="auto" width="700" height="320"
 				   data-setup="{}">
 				<source src="<?php echo $media['url']; ?>" type='video/mp4'>
 
 			</video>
-		</div>-->
+		</div>
 		<div id="flowPlayer_div" style="display: none;">
 			<div data-swf="<?php echo site_url('js/flowplayer/flowplayer.swf'); ?>"
 				 class="flowplayer no-toggle play-button color-light"
@@ -44,16 +44,15 @@
 		<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$('.fp-help').next().hide();
-				$('.fp-embed').hide();
-				$('#flowPlayer_div').show();
-//				if ($.browser.chrome || $.browser.safari) {
-//					$('.fp-embed').hide();
-//					$('#flowPlayer_div').show();
-//				}
-//				else {
-//					$('#jPalayer_div').show();
-//				}
+
+				if ($.browser.chrome || $.browser.safari) {
+					$('.fp-help').next().hide();
+					$('.fp-embed').hide();
+					$('#flowPlayer_div').show();
+				}
+				else {
+					$('#jPalayer_div').show();
+				}
 
 			});
 		</script>

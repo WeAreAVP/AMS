@@ -25,7 +25,7 @@
 		<div id="flowPlayer_div" style="display: none;">
 			<div data-swf="<?php echo site_url('js/flowplayer/flowplayer.swf'); ?>"
 				 class="flowplayer no-toggle play-button color-light"
-				 data-ratio="0.416">
+				 data-ratio="0.416" style="width: 720px;">
 				<video>
 					<source type="video/mp4" src="<?php echo $media['url']; ?>">
 
@@ -33,7 +33,7 @@
 
 			</div>
 
-			
+
 		</div>
 
 
@@ -45,6 +45,7 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 				if ($.browser.chrome || $.browser.safari) {
+					$('.fp-embed').hide();
 					$('#flowPlayer_div').show();
 				}
 				else {

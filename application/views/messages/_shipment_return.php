@@ -19,10 +19,14 @@
     <div class="control-group">
         <label class="control-label" for="assets_list">Asset List:</label>
         <div class="controls" style="margin-left: 180px;">
+            <div><a href="javascript://;" onclick="showRecords()" target="_blank">Assets awaiting digitization to Buffer Materials</a></div>
             <div><a href="<?php echo site_url('messages/assets_list/1'); ?>" target="_blank">Assets awaiting digitization to Buffer Materials</a></div>
 			<div><a href="<?php echo site_url('messages/assets_list/2'); ?>" target="_blank">Assets Failed Digitization</a></div>
 			<div><a href="<?php echo site_url('messages/assets_list/3'); ?>" target="_blank">Assets Waiting Digitization</a></div>
 		</div>
+		<form method="POST" action="" id="show_record_form">
+			
+		</form>
 	</div>
 </div>
 <script type="text/javascript">
@@ -49,6 +53,9 @@
 //        }
 		return true;
 
+	}
+	function showRecords() {
+		console.log(to);
 	}
 	function confirmBody() {
 		comments = $('#comments').val();

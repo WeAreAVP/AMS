@@ -387,6 +387,7 @@ function updateDatabase(refresh)
 	$.ajax({
 		type: 'POST',
 		url: site_url + 'instantiations/update_user_settings',
+		async: false,
 		data: {
 			settings: userSettings,
 			frozen_column: frozen,

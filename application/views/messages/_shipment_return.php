@@ -25,7 +25,7 @@
 
 		</div>
 		<form method="POST" action="" id="show_record_form" action="">
-			<input name="station_ids" value=""/>
+			<input name="station_ids" id="show_record_stations" value=""/>
 		</form>
 	</div>
 </div>
@@ -57,7 +57,7 @@
 				function showRecords(type) {
 
 					url = 'messages/assets_list/' + type;
-					$('#station_ids').val(to);
+					$('#show_record_stations').val(to);
 					$('#show_record_form').attr('action', site_url + url);
 					$('#show_record_form').submit();
 

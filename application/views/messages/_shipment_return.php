@@ -25,7 +25,7 @@
 
 		</div>
 		<form method="POST" action="" id="show_record_form" action="" target="_blank">
-			<input name="station_ids" id="show_record_stations" value=""/>
+			<input name="station_ids" id="show_record_stations" value="" type="hidden" />
 		</form>
 	</div>
 </div>

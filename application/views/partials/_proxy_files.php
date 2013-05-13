@@ -44,6 +44,8 @@
 		<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
 		<script type="text/javascript">
 			$(document).ready(function() {
+				$('.fp-help').next().hide();
+				$('.fp-embed').hide();
 				$('#flowPlayer_div').show();
 //				if ($.browser.chrome || $.browser.safari) {
 //					$('.fp-embed').hide();

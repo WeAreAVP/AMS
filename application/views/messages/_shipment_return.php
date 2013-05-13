@@ -24,7 +24,7 @@
             <div><a href="javascript://;" onclick="showRecords(3)" target="_blank">Assets Waiting Digitization</a></div>
 
 		</div>
-		<form method="POST" action="" id="show_record_form" action="">
+		<form method="POST" action="" id="show_record_form" action="" target="_blank">
 			<input name="station_ids" id="show_record_stations" value=""/>
 		</form>
 	</div>

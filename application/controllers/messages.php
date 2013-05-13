@@ -344,8 +344,17 @@ class Messages extends MY_Controller
 		$this->unset_facet_search();
 		$record_type = $this->uri->segment(3);
 		$station_ids = explode(',', $this->input->post('station_ids'));
-		$stations=$this->station_model->get_stations_by_id($station_ids);
-		debug($stations);
+		$stations = $this->station_model->get_stations_by_id($station_ids);
+		$station_name = '';
+		foreach ($stations as $index => $station)
+		{
+
+			if ($index === 0)
+				$station_name .=$station->station_name;
+			else
+				$station_name .='|||' . $station->station_name;
+		}
+		$this->session->set_userdata('organization', $station_name);
 		if ($record_type === '1')
 		{
 			$this->session->set_userdata('digitized', '1');

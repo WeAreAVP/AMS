@@ -343,6 +343,7 @@ class Messages extends MY_Controller
 	{
 		$this->unset_facet_search();
 		$record_type = $this->uri->segment(3);
+		debug($this->input->post());
 		if ($record_type === '1')
 		{
 			$this->session->set_userdata('digitized', '1');

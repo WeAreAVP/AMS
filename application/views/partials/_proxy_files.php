@@ -27,7 +27,7 @@
 				 class="flowplayer no-toggle play-button color-light"
 				 data-ratio="0.416" style="width: 720px;">
 				<video>
-					<source type="audio/mp3" src="<?php echo $media['url']; ?>">
+					<source type="video/mp4" src="<?php echo $media['url']; ?>">
 
 				</video>
 

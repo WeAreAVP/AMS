@@ -86,7 +86,7 @@ html, body {
     border-radius:5px;
     margin-bottom:10px;
     float:left;
-    width: 200px;
+    width: 190px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
     margin: 2px 5px;
@@ -311,7 +311,7 @@ html, body {
 
 .search_keys{
     float: left;
-    width: 180px;
+    width: 170px;
 
 }
 ul.dropdown-menu .sub-menu {

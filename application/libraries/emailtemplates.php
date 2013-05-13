@@ -92,7 +92,7 @@ class Emailtemplates
 					{
 						$now_queue_data .='<img src="' . site_url('emailtracking/' . $last_inserted_id . 'png') . '" height="1" width="1" />';
 					}
-					if ($this->config->item('demo') == FALSE)
+					if ($this->CI->config->item('demo') == FALSE)
 						send_email($queue_data['email_to'], $queue_data['email_from'], $queue_data['email_subject'], $queue_data['email_body'], $queue_data['email_reply_to']);
 					$this->CI->email_templates->update_email_queue_by_id($last_inserted_id, array("is_sent" => 2, "sent_at" => date('Y-m-d H:i:s')));
 				}

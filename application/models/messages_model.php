@@ -36,6 +36,7 @@ class Messages_Model extends CI_Model
 		parent::__construct();
 		$this->_prefix = '';
 		$this->_table = 'messages';
+		$this->_table_users = 'users';
 	}
 
 	/**
@@ -100,32 +101,26 @@ class Messages_Model extends CI_Model
 	 */
 	function get_inbox_msgs($receiver_id, $where = '')
 	{
-		$this->db->select(" {$this->_table}.*, CONCAT(user_profile.first_name,\" \",user_profile.last_name) AS full_name", false);
-		$this->db->from($this->_table);
-		$this->db->join("user_profile", "user_profile.user_id=" . $this->_table . ".sender_id");
-		if ( ! $this->can_compose_alert)
-		{
-			$this->db->where("receiver_id", $receiver_id);
-		}
-		else if ($this->session->userdata['DX_email'] === $this->config->item('crawford_email'))
-		{
-			$this->db->where("receiver_id", $receiver_id);
-		}
-		$this->db->where("receiver_folder", "inbox");
+		$this->db->select("{$this->_table}.*,stations.station_name, CONCAT(user_profile.first_name,' ',user_profile.last_name) AS from_name", FALSE);
+		$this->db->select('CONCAT(usr.first_name," ",usr.last_name) AS to_name', FALSE);
+		$this->db->join('user_profile', 'user_profile.user_id=' . $this->_table . '.sender_id');
+		$this->db->join('user_profile as usr', 'usr.user_id=' . $this->_table . '.receiver_id');
+		$this->db->join("stations", "stations.id=" . $this->_table . ".station_id");
+		if ((int) $this->role_id !== 1)
+			$this->db->where('receiver_id', $receiver_id);
+		$this->db->where('receiver_folder', 'inbox');
 		if ( ! empty($where))
 		{
 			foreach ($where as $key => $value)
 			{
-				$this->db->where($this->_table . "." . $key, $value);
+				$this->db->where($this->_table . '.' . $key, $value);
 			}
 		}
 		$this->db->order_by('created_at', 'DESC');
-		$res = $this->db->get();
-//								echo $this->db->last_query();
-
-		if (isset($res) && ! empty($res))
-			return $res->result();
-		return false;
+		$result = $this->db->get($this->_table);
+		if (isset($result) && ! empty($result))
+			return $result->result();
+		return TRUE;
 	}
 
 	/**
@@ -135,9 +130,13 @@ class Messages_Model extends CI_Model
 	 */
 	function get_sent_msgs($sender_id, $where = '')
 	{
-		$this->db->select("{$this->_table}.*,stations.station_name AS full_name,email_queue.is_email_read,email_queue.read_at AS email_read_at", false);
+		$this->db->select("{$this->_table}.*,stations.station_name,email_queue.is_email_read,email_queue.read_at AS email_read_at", FALSE);
+		$this->db->select("CONCAT(user_profile.first_name,' ',user_profile.last_name) AS from_name", FALSE);
+		$this->db->select('CONCAT(usr.first_name," ",usr.last_name) AS to_name', FALSE);
 		$this->db->from($this->_table);
-		$this->db->join("stations", "stations.id=" . $this->_table . ".receiver_id");
+		$this->db->join("stations", "stations.id=" . $this->_table . ".station_id");
+		$this->db->join('user_profile', 'user_profile.user_id=' . $this->_table . '.sender_id');
+		$this->db->join('user_profile as usr', 'usr.user_id=' . $this->_table . '.receiver_id');
 		$this->db->join("email_queue", "email_queue.id=" . $this->_table . ".email_queue_id");
 		$this->db->where("sender_id", $sender_id);
 		$this->db->where("sender_folder", "sent");
@@ -162,18 +161,17 @@ class Messages_Model extends CI_Model
 	 */
 	function get_unread_msgs_count($receiver_id)
 	{
-		$this->db->select("COUNT(id) as total");
-		$this->db->from($this->_table);
-		$this->db->where("receiver_id", $receiver_id);
-		$this->db->where("receiver_folder", "inbox");
-		$this->db->where("msg_status", "unread");
-		$this->db->group_by("receiver_id");
-		$res = $this->db->get();
-		if (isset($res) && ! empty($res))
+		$this->db->select('COUNT(id) as total');
+		$this->db->where('receiver_id', $receiver_id);
+		$this->db->where('receiver_folder', 'inbox');
+		$this->db->where('msg_status', 'unread');
+		$this->db->group_by('receiver_id');
+		$result = $this->db->get($this->_table);
+		if (isset($result) && ! empty($result))
 		{
-			$cnt = $res->row();
-			if (isset($cnt) && isset($cnt->total) && $cnt->total > 0)
-				return $cnt->total;
+			$count = $result->row();
+			if (isset($count) && isset($count->total) && $count->total > 0)
+				return $count->total;
 		}
 		return 0;
 	}
@@ -193,6 +191,14 @@ class Messages_Model extends CI_Model
 		if (isset($res) && ! empty($res))
 			return $res->result();
 		return false;
+	}
+
+	function get_station_admin($station_id)
+	{
+		$this->db->select('id,email');
+		$this->db->where("station_id", $station_id);
+		$this->db->where("role_id", 3); // role id 3 is station admin
+		return $this->db->get($this->_table_users)->result();
 	}
 
 }

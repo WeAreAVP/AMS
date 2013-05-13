@@ -49,6 +49,7 @@ if ( ! $is_ajax)
 						<thead>
 							<tr style="background: #ebebeb;">
 								<th>From</th>
+								<th>To</th>
 								<th>Subject</th>
 								<th>Date</th>
 							</tr>
@@ -64,10 +65,11 @@ if ( ! $is_ajax)
 							<tr id="row_<?php echo $row->id ?>" style="cursor: pointer;<?php
 							if ($row->msg_status == 'unread')
 							{
-								?> font-weight:bold;<?php } ?>" onclick="read_inbox_msg('<?php echo $row->id ?>')">
-								<td><?php echo $row->full_name; ?></td>
+								?> font-weight:bold;<?php } ?>" onclick="read_inbox_msg('<?php echo $row->id ?>');">
+								<td><?php echo $row->from_name; ?></td>
+								<td><?php echo $row->to_name . '<br/>' . $row->station_name; ?></td>
 								<td><?php echo $row->subject; ?></td>
-								<td><?php echo date("m/d/Y", strtotime($row->created_at)); ?></td>
+								<td><?php echo date("F d, Y", strtotime($row->created_at)); ?></td>
 							</tr>
 							<?php
 						}
@@ -75,7 +77,7 @@ if ( ! $is_ajax)
 					else
 					{
 						?>
-						<tr><td colspan="11" style="text-align: center;"><b>No Message Found.</b></td></tr>
+						<tr><td colspan="4" style="text-align: center;"><b>No Message Found.</b></td></tr>
 					<?php } ?>
 					<?php
 					if ( ! $is_ajax)
@@ -87,47 +89,47 @@ if ( ! $is_ajax)
 		</div>
 	</div>
 	<script type="text/javascript">
-									function filter_inbox() {
-										var stations = $('#stations').val();
-										var message_type = $('#message_type').val();
-										$.ajax({
-											type: 'POST',
-											url: site_url + 'messages/inbox',
-											data: {stations: stations, message_type: message_type},
-											cache: false,
-											success: function(result) {
-												$('#append_record').html(result);
-												$("#station_table").trigger("update");
-												$("[rel=tooltip]").tooltip();
+										function filter_inbox() {
+											var stations = $('#stations').val();
+											var message_type = $('#message_type').val();
+											$.ajax({
+												type: 'POST',
+												url: site_url + 'messages/inbox',
+												data: {stations: stations, message_type: message_type},
+												cache: false,
+												success: function(result) {
+													$('#append_record').html(result);
+													$("#station_table").trigger("update");
+													$("[rel=tooltip]").tooltip();
 
-											}
-										});
-									}
-									function read_inbox_msg(id)
-									{
-										$('#row_' + id).css('font-weight', 'normal');
-										$.ajax({
-											type: 'POST',
-											url: site_url + 'messages/readmessage/' + id,
-											cache: false,
-											datatype: 'json',
-											success: function(r)
-											{
-												$('#row_' + id).css('font-weight', 'normal');
-												result = eval('(' + r + ')');
-												if (result.error == false)
-												{
-													if (result.reset_row)
-													{
-														$("#row_" + id).css('font-weight', 'normal');
-													}
-													$('#myGeneral_body').html(result.msg_data);
-													$('#msg_text_link').html(result.total_unread_text);
-													$('#myGeneral').modal('show');
 												}
-											}
-										});
-									}
+											});
+										}
+										function read_inbox_msg(id)
+										{
+											$('#row_' + id).css('font-weight', 'normal');
+											$.ajax({
+												type: 'POST',
+												url: site_url + 'messages/readmessage/' + id,
+												cache: false,
+												datatype: 'json',
+												success: function(r)
+												{
+													$('#row_' + id).css('font-weight', 'normal');
+													result = eval('(' + r + ')');
+													if (result.error == false)
+													{
+														if (result.reset_row)
+														{
+															$("#row_" + id).css('font-weight', 'normal');
+														}
+														$('#myGeneral_body').html(result.msg_data);
+														$('#msg_text_link').html(result.total_unread_text);
+														$('#myGeneral').modal('show');
+													}
+												}
+											});
+										}
 
 	</script>
 

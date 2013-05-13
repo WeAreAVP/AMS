@@ -146,18 +146,14 @@ class MY_Controller extends CI_Controller
 		$this->is_station_user = $this->dx_auth->is_station_user();
 		if ($this->is_station_user)
 		{
-			$this->station_id = $this->dx_auth->get_station_id();
-			$this->total_unread = $this->msgs->get_unread_msgs_count($this->station_id);
-		}
-		else if ($this->session->userdata['DX_email'] === $this->config->item('crawford_email'))
-		{
-			$this->total_unread = $this->msgs->get_unread_msgs_count($this->session->userdata['DX_user_id']);
+//			$this->station_id = $this->dx_auth->get_station_id();
+			$this->total_unread = $this->msgs->get_unread_msgs_count($this->user_id);
 		}
 		$this->user_detail = $this->users->get_user_detail($this->user_id)->row();
-		$this->can_compose_alert = false;
+		$this->can_compose_alert = FALSE;
 		if (in_array($this->role_id, array(1, 2, 5)))
 		{
-			$this->can_compose_alert = true;
+			$this->can_compose_alert = TRUE;
 		}
 	}
 

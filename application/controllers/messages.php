@@ -52,14 +52,10 @@ class Messages extends MY_Controller
 			}
 			if ($this->input->post('stations') != '')
 			{
-				$where['receiver_id'] = $this->input->post('stations');
+				$where['station_id'] = $this->input->post('stations');
 			}
 		}
-		$receiver_id = $this->station_id;
-		if ($this->session->userdata['DX_email'] === $this->config->item('crawford_email'))
-		{
-			$receiver_id = $this->session->userdata['DX_user_id'];
-		}
+		$receiver_id = $this->user_id;
 		$data['results'] = $this->msgs->get_inbox_msgs($receiver_id, $where);
 		$data['station_records'] = $this->station_model->get_all();
 		if (isAjax())
@@ -92,7 +88,7 @@ class Messages extends MY_Controller
 				}
 				if ($this->input->post('stations') != '')
 				{
-					$where['receiver_id'] = $this->input->post('stations');
+					$where['station_id'] = $this->input->post('stations');
 				}
 			}
 			$data['station_records'] = $this->station_model->get_all();
@@ -213,7 +209,7 @@ class Messages extends MY_Controller
 				$tracking_info = $this->tracking->get_last_tracking_info($to);
 				if (count($tracking_info) > 0)
 				{
-					if (empty($tracking_info->media_received_date) || $tracking_info->media_received_date == null)
+					if (empty($tracking_info->media_received_date) || $tracking_info->media_received_date == NULL)
 					{
 						$message_type_check = 1;
 					}
@@ -249,27 +245,19 @@ class Messages extends MY_Controller
 				}
 
 				$replacebale['station_name'] = isset($station_details->station_name) ? $station_details->station_name : '';
-
 				$replacebale['inform_to'] = 'cstephenson@mail.crawford.com';
 				$replacebale['user_name'] = 'The American Archive';
-				if ($this->config->item('demo') == TRUE)
+				$station_admin_users = $this->msgs->get_station_admin($to);
+				foreach ($station_admin_users as $row)
 				{
-					$to_email = $this->config->item('to_email');
+					$to_email = $row->email;
+					$email_queue_id = $this->emailtemplates->queue_email($template, $to_email, $replacebale);
+					$data = array('sender_id' => $this->user_id, 'station_id' => $to, 'receiver_id' => $row->id, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => json_encode($extra), 'created_at' => date('Y-m-d h:m:i'));
+					if (isset($email_queue_id) && $email_queue_id)
+						$data['email_queue_id'] = $email_queue_id;
+					$this->msgs->add_msg($data);
+					$this->session->set_userdata('sent', 'Message Sent');
 				}
-				else
-				{
-					$to_email = $station_details->contact_email;
-				}
-
-				$email_queue_id = $this->emailtemplates->queue_email($template, $to_email, $replacebale);
-
-				$data = array('sender_id' => $this->user_id, 'receiver_id' => $to, 'msg_type' => $type, 'subject' => $subject, 'msg_extras' => json_encode($extra), 'created_at' => date('Y-m-d h:m:i'));
-				if (isset($email_queue_id) && $email_queue_id)
-				{
-					$data['email_queue_id'] = $email_queue_id;
-				}
-				$this->msgs->add_msg($data);
-				$this->session->set_userdata('sent', 'Message Sent');
 			}
 		}
 	}
@@ -285,27 +273,23 @@ class Messages extends MY_Controller
 		if (isAjax())
 		{
 			$rslt["total_unread_text"] = '<a class="message_box" href="' . site_url('messages/inbox') . '"><i class="icon-envelope icon-white"></i></a>';
-			$rslt["error"] = true;
-			$rslt["reset_row"] = false;
+			$rslt["error"] = TRUE;
+			$rslt["reset_row"] = FALSE;
 			if ($message_id != '')
 			{
-				$receiver_id = $this->station_id;
-				if ($this->session->userdata['DX_email'] === $this->config->item('crawford_email'))
-				{
-					$receiver_id = $this->session->userdata['DX_user_id'];
-				}
+				$receiver_id = $this->user_id;
 				$data['result'] = $this->msgs->get_inbox_msgs($receiver_id, array("id" => $message_id));
-				if (isset($data['result']) && ! empty($data['result']) && $data['result'][0]->msg_status == 'unread' && ( ! $this->can_compose_alert || $this->session->userdata['DX_email'] === $this->config->item('crawford_email')))
+				if (isset($data['result']) && ! empty($data['result']) && $data['result'][0]->msg_status == 'unread' && ( ! $this->can_compose_alert))
 				{
 					$this->msgs->update_msg_by_id($message_id, array("msg_status" => 'read', "read_at" => date('Y-m-d H:i:s')));
 					$this->total_unread = $this->msgs->get_unread_msgs_count($this->user_id);
 					if (isset($this->total_unread) && $this->total_unread > 0 && $this->is_station_user)
 					{
 						$rslt["total_unread_text"] = '<a class="message_box" href="' . site_url('messages/inbox') . '"><i class="icon-envelope icon-white"></i><span class="badge label-important message-alert">' . $this->total_unread . '</span></a>';
-						$rslt["reset_row"] = true;
+						$rslt["reset_row"] = TRUE;
 					}
 				}
-				$rslt["error"] = false;
+				$rslt["error"] = FALSE;
 				$rslt["msg_data"] = $this->load->view('messages/read_msg', $data, true);
 				echo json_encode($rslt);
 				exit;
@@ -332,8 +316,8 @@ class Messages extends MY_Controller
 				if ($message_id != '')
 				{
 					$data['result'] = $this->msgs->get_sent_msgs($this->user_id, array("id" => $message_id));
-					$rslt["error"] = false;
-					$rslt["msg_data"] = $this->load->view('messages/read_msg', $data, true);
+					$rslt["error"] = FALSE;
+					$rslt["msg_data"] = $this->load->view('messages/read_msg', $data, TRUE);
 					echo json_encode($rslt);
 					exit;
 				}

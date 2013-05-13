@@ -42,12 +42,10 @@ if ( ! $is_ajax)
 						?>
 						<thead>
 							<tr style="background: #ebebeb;">
-								<th width="150">To</span></th>
-								<th width="110">Subject</span></th>
-								<th width="110">Message Type</span></th>
-								<th width="90">Alert Status</span></th>
-								<th width="90">Email Status</span></th>
-								<th width="90">Send Date</span></th>
+								<th>To</th>
+								<th>Message Type</th>
+								<th>Read Status</th>
+								<th>Send Date</th>
 							</tr>
 						</thead>
 					<?php } ?>
@@ -59,38 +57,40 @@ if ( ! $is_ajax)
 						{
 							?>
 							<tr style="cursor: pointer;" onclick="read_msg('<?php echo $row->id ?>')">
-								<td><?php echo $row->full_name; ?></td>
-								<td><?php echo $row->subject; ?></td>
+								<td><?php echo $row->to_name . '<br/>' . $row->station_name; ?></td>
+
 								<td><?php echo $select[$row->msg_type]; ?></td>
 								<td><?php
 									if ($row->msg_status == 'read')
 									{
 										?>
-										<a data-placement="top" rel="tooltip" href="#" data-original-title="<?php echo "Message last read on " . date("m/d/Y", strtotime($row->read_at)); ?>"><?php echo ucfirst($row->msg_status); ?>
-										</a><?php
+										<a data-placement="top" rel="tooltip" href="#" data-original-title="<?php echo "Message last read on " . date("m/d/Y", strtotime($row->read_at)); ?>">
+											<?php echo 'AMS:  ' . ucfirst($row->msg_status); ?>
+										</a>
+										<?php
 									}
 									else
 									{
-										echo ucfirst($row->msg_status);
+										echo 'AMS:  ' . ucfirst($row->msg_status);
 									}
 									?>
-								</td>
-								<td><?php
+									<br/>
+									<?php
 									if ($row->is_email_read == 2)
 									{
 										?>
 										<a data-placement="top" rel="tooltip" href="#" data-original-title="<?php echo "Email read on " . date("m/d/Y", strtotime($row->email_read_at)); ?>">
-											Email Read
+											Email: Read
 										</a><?php
 									}
 									else
 									{
-										echo 'Un-read';
+										echo 'Email: Unread';
 									}
 									?>
 								</td>
 
-								<td><?php echo date("m/d/Y", strtotime($row->created_at)); ?></td>
+								<td><?php echo date("F d, Y", strtotime($row->created_at)); ?></td>
 							</tr>
 							<?php
 						}
@@ -98,7 +98,7 @@ if ( ! $is_ajax)
 					else
 					{
 						?>
-						<tr><td colspan="11" style="text-align: center;"><b>No Message Found.</b></td></tr>
+						<tr><td colspan="4" style="text-align: center;"><b>No Message Found.</b></td></tr>
 					<?php } ?>
 					<?php
 					if ( ! $is_ajax)
@@ -110,43 +110,43 @@ if ( ! $is_ajax)
 		</div>
 	</div>
 	<script type="text/javascript">
-								function read_sent_msg(id)
-								{
-									$.ajax({
-										type: 'POST',
-										url: site_url + 'messages/readsentmessage/' + id,
-										cache: false,
-										datatype: 'json',
-										success: function(r)
+							function read_sent_msg(id)
+							{
+								$.ajax({
+									type: 'POST',
+									url: site_url + 'messages/readsentmessage/' + id,
+									cache: false,
+									datatype: 'json',
+									success: function(r)
+									{
+										result = eval('(' + r + ')');
+										if (result.error == false)
 										{
-											result = eval('(' + r + ')');
-											if (result.error == false)
-											{
-												$('#myGeneral_body').html(result.msg_data);
-												$('#myGeneral').modal('show');
-											}
+											$('#myGeneral_body').html(result.msg_data);
+											$('#myGeneral').modal('show');
 										}
-									});
-								}
-								function read_msg(id)
-								{
-									read_sent_msg(id);
-								}
-								function filter_inbox() {
-									var stations = $('#stations').val();
-									var message_type = $('#message_type').val();
-									$.ajax({
-										type: 'POST',
-										url: site_url + 'messages/sent',
-										data: {stations: stations, message_type: message_type},
-										cache: false,
-										success: function(result) {
-											$('#append_record').html(result);
-											$("#station_table").trigger("update");
-											$("[rel=tooltip]").tooltip();
-										}
-									});
-								}
+									}
+								});
+							}
+							function read_msg(id)
+							{
+								read_sent_msg(id);
+							}
+							function filter_inbox() {
+								var stations = $('#stations').val();
+								var message_type = $('#message_type').val();
+								$.ajax({
+									type: 'POST',
+									url: site_url + 'messages/sent',
+									data: {stations: stations, message_type: message_type},
+									cache: false,
+									success: function(result) {
+										$('#append_record').html(result);
+										$("#station_table").trigger("update");
+										$("[rel=tooltip]").tooltip();
+									}
+								});
+							}
 	</script>
 
 	<?php

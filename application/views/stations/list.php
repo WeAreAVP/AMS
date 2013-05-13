@@ -105,7 +105,7 @@ if ( ! $is_ajax)
 
 			<table class="tablesorter table table-bordered" id="station_table">
 				<thead>
-					<tr>
+					<tr style="background: #ebebeb;">
 						<?php
 						if ( ! $this->is_station_user && $this->role_id != '20')
 						{

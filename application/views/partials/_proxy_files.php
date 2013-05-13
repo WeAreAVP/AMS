@@ -24,7 +24,7 @@
 		</div>
 		<div id="flowPlayer_div" style="display: none;">
 			<div data-swf="<?php echo site_url('js/flowplayer/flowplayer.swf'); ?>"
-				 class="flowplayer no-toggle aside-time play-button color-light"
+				 class="flowplayer no-toggle play-button color-light"
 				 data-ratio="0.416">
 				<video>
 					<source type="video/mp4" src="<?php echo $media['url']; ?>">

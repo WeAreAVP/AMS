@@ -225,15 +225,16 @@ function showHideColumns(column)
 	{
 //		$('#listing_table').dataTable().fnSetColumnVis(column, true);
 		$('#' + column + '_column i').toggle();
-	console.log($('#' + column + '_column i').css('display'));
-//		if ($('#' + column + '_column i').css('display') == "none")
-//		{
-//			$('#listing_table').dataTable().fnSetColumnVis(column, false);
-//		}
-//		else
-//		{
-//			$('#listing_table').dataTable().fnSetColumnVis(column, true);
-//		}
+		if ($('#' + column + '_column i').css('display') == "none")
+		{
+			$('#listing_table').dataTable().fnSetColumnVis(column, false);
+			console.log('hiding the columns');
+		}
+		else
+		{
+			$('#listing_table').dataTable().fnSetColumnVis(column, true);
+			console.log('showing the columns');
+		}
 //		updateDatabase(0);
 	}
 	else

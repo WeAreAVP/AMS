@@ -224,7 +224,7 @@ function showHideColumns(column)
 	if (frozen < column + 1)
 	{
 		$('#' + column + '_column i').toggle();
-		oTable.fnReloadAjax();
+		$('#listing_table').dataTable().fnReloadAjax();
 //		if ($('#' + column + '_column i').css('display') == "none")
 //		{
 //			$('#' + column + '_column i').show();

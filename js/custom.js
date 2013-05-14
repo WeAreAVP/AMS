@@ -223,16 +223,18 @@ function showHideColumns(column)
 {
 	if (frozen < column + 1)
 	{
-		if ($('#' + column + '_column i').css('display') == "none")
-		{
-			$('#' + column + '_column i').show();
-			$('#listing_table').dataTable().fnSetColumnVis(column, true);
-		}
-		else
-		{
-			$('#' + column + '_column i').hide();
-			$('#listing_table').dataTable().fnSetColumnVis(column, false);
-		}
+		$('#' + column + '_column i').toggle();
+		oTable.fnReloadAjax();
+//		if ($('#' + column + '_column i').css('display') == "none")
+//		{
+//			$('#' + column + '_column i').show();
+//			$('#listing_table').dataTable().fnSetColumnVis(column, true);
+//		}
+//		else
+//		{
+//			$('#' + column + '_column i').hide();
+//			$('#listing_table').dataTable().fnSetColumnVis(column, false);
+//		}
 
 	}
 	else
@@ -363,9 +365,9 @@ function updateDatabase(refresh)
 	$('#show_hide_li a').each(function(index, id)
 	{
 		columnAnchorID = this.id;
+		console.log(columnAnchorID);
 		if ($('#' + columnAnchorID + ' i').css('display') == "none")
 		{
-			console.log(columnAnchorID);
 			userSettings[index] = {
 				title: str_replace(' ', '_', $(this).text()),
 				hidden: 1

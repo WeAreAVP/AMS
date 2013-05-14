@@ -228,14 +228,12 @@ function showHideColumns(column)
 		if ($('#' + column + '_column i').css('display') == "none")
 		{
 			$('#listing_table').dataTable().fnSetColumnVis(column, false);
-			console.log('hiding the columns');
 		}
 		else
 		{
 			$('#listing_table').dataTable().fnSetColumnVis(column, true);
-			console.log('showing the columns');
 		}
-//		updateDatabase(0);
+
 	}
 	else
 	{
@@ -367,6 +365,7 @@ function updateDatabase(refresh)
 		columnAnchorID = this.id;
 		if ($('#' + columnAnchorID + ' i').css('display') == "none")
 		{
+			console.log(columnAnchorID);
 			userSettings[index] = {
 				title: str_replace(' ', '_', $(this).text()),
 				hidden: 1

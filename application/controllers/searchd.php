@@ -36,10 +36,8 @@ class Searchd extends MY_Controller
 	function __construct()
 	{
 		parent::__construct();
-		
+
 		$this->load->library('sphnixrt');
-		
-		
 	}
 
 	/**
@@ -47,16 +45,45 @@ class Searchd extends MY_Controller
 	 * 
 	 * @return view dashboard/index
 	 */
-	function index(){
-		
-		$data=$this->sphnixrt->select('stations',array('start'=>0,'limit'=>1000));
-		debug($data,FALSE);
-		$this->sphnixrt->insert('stations',array('cpb_id'=>'1234'),999);
-		$data=$this->sphnixrt->select('stations',array('start'=>0,'limit'=>1000));
-		debug($data,FALSE);
-		echo count($data['records']);exit;
+	function index()
+	{
+
+
+		$stations = $this->station_model->get_all();
+		foreach ($stations as $key => $row)
+		{
+			if ($row->type == 0)
+				$type = 'Radio';
+			else if ($row->type == 1)
+				$type = 'TV';
+			else if ($row->type == 2)
+				$type = 'JOINT';
+
+			$record = array(
+				'id' => $row->id,
+				'cpb_id' => $row->cpb_id,
+				'station_name' => $row->station_name,
+				'my_type' => $type,
+				'address_primary' => $row->address_primary,
+				'address_secondary' => $row->address_secondary,
+				'city' => $row->city,
+				'state' => $row->state,
+				'zip' => $row->zip,
+				'allocated_hours' => $row->allocated_hours,
+				'allocated_buffer' => $row->allocated_buffer,
+				'total_allocated' => $row->total_allocated,
+				'is_certified' => $row->is_certified,
+				'is_agreed' => $row->is_agreed,
+				'start_date' => strtotime($row->start_date),
+				'end_date' => strtotime($row->end_date)
+			);
+			$this->sphnixrt->insert('stations', $record, $row->id);
+		}
+		$data = $this->sphnixrt->select('stations', array('start' => 0, 'limit' => 1000));
+		debug($data, FALSE);
+		echo count($data['records']);
+		exit;
 	}
-	
 
 }
 

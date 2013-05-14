@@ -285,7 +285,6 @@ function reOrderDropDown(columnArray)
 		display = '';
 		if (in_array(columnArray[cnt], columnShowHide, true))
 		{
-			console.log('yep');
 			display = 'style="display:none;"';
 		}
 		name = columnArray[cnt].split('_').join(' ');

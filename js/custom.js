@@ -223,19 +223,20 @@ function showHideColumns(column)
 {
 	if (frozen < column + 1)
 	{
+//		$('#listing_table').dataTable().fnSetColumnVis(column, true);
 		$('#' + column + '_column i').toggle();
-		$('#listing_table').dataTable().fnReloadAjax();
-//		if ($('#' + column + '_column i').css('display') == "none")
-//		{
-//			$('#' + column + '_column i').show();
-//			$('#listing_table').dataTable().fnSetColumnVis(column, true);
-//		}
-//		else
-//		{
-//			$('#' + column + '_column i').hide();
-//			$('#listing_table').dataTable().fnSetColumnVis(column, false);
-//		}
-
+		updateDatabase(0);
+		if ($('#' + column + '_column i').css('display') == "none")
+		{
+			$('#listing_table').dataTable().fnSetColumnVis(column, false);
+			
+		}
+		else
+		{
+			$('#listing_table').dataTable().fnSetColumnVis(column, true);
+			
+		}
+		
 	}
 	else
 	{
@@ -365,7 +366,6 @@ function updateDatabase(refresh)
 	$('#show_hide_li a').each(function(index, id)
 	{
 		columnAnchorID = this.id;
-		console.log(columnAnchorID);
 		if ($('#' + columnAnchorID + ' i').css('display') == "none")
 		{
 			userSettings[index] = {

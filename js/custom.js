@@ -225,7 +225,7 @@ function showHideColumns(column)
 	{
 //		$('#listing_table').dataTable().fnSetColumnVis(column, true);
 		$('#' + column + '_column i').toggle();
-		updateDatabase(0);
+//		updateDatabase(0);
 		if ($('#' + column + '_column i').css('display') == "none")
 		{
 			$('#listing_table').dataTable().fnSetColumnVis(column, false);

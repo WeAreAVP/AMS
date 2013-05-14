@@ -229,14 +229,14 @@ function showHideColumns(column)
 		if ($('#' + column + '_column i').css('display') == "none")
 		{
 			$('#listing_table').dataTable().fnSetColumnVis(column, false);
-			
+
 		}
 		else
 		{
 			$('#listing_table').dataTable().fnSetColumnVis(column, true);
-			
+
 		}
-		
+
 	}
 	else
 	{
@@ -248,7 +248,6 @@ function getColumnOrder()
 	var orderString = new Array;
 	$('#listing_table_wrapper table th').each(function(index)
 	{
-		console.log(this);
 		if (index == 0)
 		{
 			orderString[index] = this.id;
@@ -265,11 +264,28 @@ function getColumnOrder()
 }
 function reOrderDropDown(columnArray)
 {
+	var columnShowHide = new Array();
+	$('#show_hide_li a').each(function(index, id)
+	{
+		if ($('#' + this.id + ' i').css('display') == "none")
+		{
+			columnShowHide[index] = {
+				title: str_replace(' ', '_', $(this).text()),
+				hidden: 1
+			};
+		}
+
+	});
 	$('#show_hide_li').html('');
 	for (cnt in columnArray)
 	{
+		display = '';
+		if (in_array(columnArray[cnt], columnShowHide, true))
+		{
+			display = 'style="display:none;"';
+		}
 		name = columnArray[cnt].split('_').join(' ');
-		$('#show_hide_li').append('<li><a href="javascript://;" onclick="showHideColumns(' + cnt + ');" id="' + cnt + '_column"><i class="icon-ok"></i>' + name + '</a></li>');
+		$('#show_hide_li').append('<li><a href="javascript://;" onclick="showHideColumns(' + cnt + ');" id="' + cnt + '_column"><i class="icon-ok" ' + display + '></i>' + name + '</a></li>');
 	}
 }
 function freezeColumns(count)

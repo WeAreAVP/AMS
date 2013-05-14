@@ -60,7 +60,6 @@ class Searchd extends MY_Controller
 				$type = 'JOINT';
 
 			$record = array(
-				'id' => $row->id,
 				'cpb_id' => $row->cpb_id,
 				'station_name' => $row->station_name,
 				'my_type' => $type,
@@ -69,16 +68,18 @@ class Searchd extends MY_Controller
 				'city' => $row->city,
 				'state' => $row->state,
 				'zip' => $row->zip,
-				'allocated_hours' => $row->allocated_hours,
-				'allocated_buffer' => $row->allocated_buffer,
-				'total_allocated' => $row->total_allocated,
-				'is_certified' => $row->is_certified,
-				'is_agreed' => $row->is_agreed,
-				'start_date' => strtotime($row->start_date),
-				'end_date' => strtotime($row->end_date)
+				'allocated_hours' => (int) $row->allocated_hours,
+				'allocated_buffer' => (int) $row->allocated_buffer,
+				'total_allocated' => (int) $row->total_allocated,
+				'is_certified' => (int) $row->is_certified,
+				'is_agreed' => (int) $row->is_agreed,
+				'start_date' => (int) strtotime($row->start_date),
+				'end_date' => (int) strtotime($row->end_date)
 			);
 			$this->sphnixrt->insert('stations', $record, $row->id);
 		}
+		debug($data, FALSE);
+
 		$data = $this->sphnixrt->select('stations', array('start' => 0, 'limit' => 1000));
 		debug($data, FALSE);
 		echo count($data['records']);

@@ -225,11 +225,11 @@ function showHideColumns(column)
 	{
 //		$('#listing_table').dataTable().fnSetColumnVis(column, true);
 		$('#' + column + '_column i').toggle();
-//		updateDatabase(1);
-		if ($('#' + column + '_column i').css('display') == "none")
-			$('#listing_table').dataTable().fnSetColumnVis(column, false);
-		else
-			$('#listing_table').dataTable().fnSetColumnVis(column, true);
+		updateDatabase(1);
+//		if ($('#' + column + '_column i').css('display') == "none")
+//			$('#listing_table').dataTable().fnSetColumnVis(column, false);
+//		else
+//			$('#listing_table').dataTable().fnSetColumnVis(column, true);
 
 
 	}

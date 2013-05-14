@@ -223,15 +223,15 @@ function showHideColumns(column)
 {
 	if (frozen < column + 1)
 	{
-//		$('#listing_table').dataTable().fnSetColumnVis(column, true);
-		$('#' + column + '_column i').toggle();
 		if ($('#' + column + '_column i').css('display') == "none")
 		{
-			$('#listing_table').dataTable().fnSetColumnVis(column, false);
+			$('#' + column + '_column i').show();
+			$('#listing_table').dataTable().fnSetColumnVis(column, true);
 		}
 		else
 		{
-			$('#listing_table').dataTable().fnSetColumnVis(column, true);
+			$('#' + column + '_column i').hide();
+			$('#listing_table').dataTable().fnSetColumnVis(column, false);
 		}
 
 	}

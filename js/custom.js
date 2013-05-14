@@ -223,7 +223,7 @@ function showHideColumns(column)
 {
 	if (frozen < column + 1)
 	{
-		$('#listing_table').dataTable().fnSetColumnVis(column, true);
+//		$('#listing_table').dataTable().fnSetColumnVis(column, true);
 		$('#' + column + '_column i').toggle();
 		if ($('#' + column + '_column i').css('display') == "none")
 		{
@@ -233,7 +233,7 @@ function showHideColumns(column)
 		{
 			$('#listing_table').dataTable().fnSetColumnVis(column, true);
 		}
-		updateDatabase(0);
+//		updateDatabase(0);
 	}
 	else
 	{
@@ -308,12 +308,12 @@ function updateDataTable()
 			],
 			"aaSorting": [[index_column, order_column]],
 			"oColReorder": {
-				"iFixedColumns": frozen
-//				"fnReorderCallback": function() {
-//					columnArray = getColumnOrder();
-//					reOrderDropDown(columnArray);
-//					updateDatabase(0);
-//				}
+				"iFixedColumns": frozen,
+				"fnReorderCallback": function() {
+					columnArray = getColumnOrder();
+					reOrderDropDown(columnArray);
+					updateDatabase(0);
+				}
 			},
 			'bPaginate': false,
 			'bInfo': false,
@@ -345,12 +345,6 @@ function updateDataTable()
 			}
 
 		});
-		//								if(frozen>0)
-		//								{
-		//												new FixedColumns( oTable, {
-		//																"iLeftColumns": frozen
-		//												} );
-		//								}
 		$('#freeze_col_' + frozen).show();
 		$.extend($.fn.dataTableExt.oStdClasses, {
 			"sWrapper": "dataTables_wrapper form-inline"

@@ -260,6 +260,16 @@ function getColumnOrder()
 			}
 		}
 	});
+//	$('#show_hide_li a').each(function(index, id)
+//	{
+//		if (!in_array(this.id, orderString, true))
+//		{
+//			count = orderString.length;
+//			orderString[count] = count;
+//		}
+//
+//	});
+console.log(orderString);
 	return orderString;
 }
 function reOrderDropDown(columnArray)
@@ -273,7 +283,7 @@ function reOrderDropDown(columnArray)
 		}
 
 	});
-	
+
 	$('#show_hide_li').html('');
 	for (cnt in columnArray)
 	{

@@ -262,11 +262,12 @@ function getColumnOrder()
 	});
 	$('#show_hide_li a').each(function(index, id)
 	{
-		if (!in_array(str_replace(' ', '_', $(this).text(), orderString, true))
+		textName=str_replace(' ', '_', $(this).text());
+		if (!in_array(textName, orderString, true))
 		{
 			console.log('not in array');
 			count = orderString.length;
-			orderString[count] = str_replace(' ', '_', $(this).text());
+			orderString[count] = textName;
 		}
 
 	});

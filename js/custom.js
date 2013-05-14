@@ -262,7 +262,7 @@ function getColumnOrder()
 	});
 	$('#show_hide_li a').each(function(index, id)
 	{
-		if (!in_array(this.id, orderString, true))
+		if (!in_array(str_replace(' ', '_', $(this).text(), orderString, true))
 		{
 			console.log('not in array');
 			count = orderString.length;

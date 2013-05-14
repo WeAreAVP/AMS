@@ -225,17 +225,12 @@ function showHideColumns(column)
 	{
 //		$('#listing_table').dataTable().fnSetColumnVis(column, true);
 		$('#' + column + '_column i').toggle();
-		updateDatabase(1);
-//		if ($('#' + column + '_column i').css('display') == "none")
-//		{
-//			$('#listing_table').dataTable().fnSetColumnVis(column, false);
-//
-//		}
-//		else
-//		{
-//			$('#listing_table').dataTable().fnSetColumnVis(column, true);
-//
-//		}
+//		updateDatabase(1);
+		if ($('#' + column + '_column i').css('display') == "none")
+			$('#listing_table').dataTable().fnSetColumnVis(column, false);
+		else
+			$('#listing_table').dataTable().fnSetColumnVis(column, true);
+
 
 	}
 	else
@@ -262,16 +257,14 @@ function getColumnOrder()
 	});
 	$('#show_hide_li a').each(function(index, id)
 	{
-		textName=str_replace(' ', '_', $(this).text());
+		textName = str_replace(' ', '_', $(this).text());
 		if (!in_array(textName, orderString, true))
 		{
-			console.log('not in array');
 			count = orderString.length;
 			orderString[count] = textName;
 		}
 
 	});
-	console.log(orderString);
 	return orderString;
 }
 function reOrderDropDown(columnArray)
@@ -360,8 +353,8 @@ function updateDataTable()
 			"bServerSide": true,
 			"sAjaxSource": site_url + url_tab_type,
 			"fnServerData": function(sSource, aoData, fnCallback) {
-//				columnArray = getColumnOrder();
-//				reOrderDropDown(columnArray);
+				columnArray = getColumnOrder();
+				reOrderDropDown(columnArray);
 				updateDatabase(0);
 				jQuery.getJSON(sSource, aoData, function(json) {
 

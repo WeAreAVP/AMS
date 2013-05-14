@@ -276,6 +276,7 @@ function reOrderDropDown(columnArray)
 		}
 
 	});
+	console.log(columnShowHide);
 	$('#show_hide_li').html('');
 	for (cnt in columnArray)
 	{

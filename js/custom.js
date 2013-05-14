@@ -248,6 +248,7 @@ function getColumnOrder()
 	var orderString = new Array;
 	$('#listing_table_wrapper table th').each(function(index)
 	{
+		console.log(this);
 		if (index == 0)
 		{
 			orderString[index] = this.id;

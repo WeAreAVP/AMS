@@ -260,16 +260,17 @@ function getColumnOrder()
 			}
 		}
 	});
-//	$('#show_hide_li a').each(function(index, id)
-//	{
-//		if (!in_array(this.id, orderString, true))
-//		{
-//			count = orderString.length;
-//			orderString[count] = count;
-//		}
-//
-//	});
-console.log(orderString);
+	$('#show_hide_li a').each(function(index, id)
+	{
+		if (!in_array(this.id, orderString, true))
+		{
+			console.log('not in array');
+			count = orderString.length;
+			orderString[count] = str_replace(' ', '_', $(this).text());
+		}
+
+	});
+	console.log(orderString);
 	return orderString;
 }
 function reOrderDropDown(columnArray)

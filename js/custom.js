@@ -311,12 +311,12 @@ function updateDataTable()
 			],
 			"aaSorting": [[index_column, order_column]],
 			"oColReorder": {
-				"iFixedColumns": frozen,
-				"fnReorderCallback": function() {
-					columnArray = getColumnOrder();
-					reOrderDropDown(columnArray);
-					updateDatabase(0);
-				}
+				"iFixedColumns": frozen
+//				"fnReorderCallback": function() {
+//					columnArray = getColumnOrder();
+//					reOrderDropDown(columnArray);
+//					updateDatabase(0);
+//				}
 			},
 			'bPaginate': false,
 			'bInfo': false,

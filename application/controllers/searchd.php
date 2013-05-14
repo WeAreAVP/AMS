@@ -48,7 +48,10 @@ class Searchd extends MY_Controller
 	function index()
 	{
 
-
+		$data = $this->sphnixrt->select('stations', array('start' => 0, 'limit' => 1000));
+		debug($data, FALSE);
+		echo count($data['records']);
+		exit;
 		$stations = $this->station_model->get_all();
 		foreach ($stations as $key => $row)
 		{
@@ -80,10 +83,7 @@ class Searchd extends MY_Controller
 		}
 		debug($data, FALSE);
 
-		$data = $this->sphnixrt->select('stations', array('start' => 0, 'limit' => 1000));
-		debug($data, FALSE);
-		echo count($data['records']);
-		exit;
+		
 	}
 
 }

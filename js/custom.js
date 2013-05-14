@@ -269,20 +269,18 @@ function reOrderDropDown(columnArray)
 	{
 		if ($('#' + this.id + ' i').css('display') == "none")
 		{
-			columnShowHide[index] = {
-				title: str_replace(' ', '_', $(this).text()),
-				hidden: 1
-			};
+			columnShowHide[index] = str_replace(' ', '_', $(this).text());
 		}
 
 	});
-	console.log(columnShowHide);
+	
 	$('#show_hide_li').html('');
 	for (cnt in columnArray)
 	{
 		display = '';
 		if (in_array(columnArray[cnt], columnShowHide, true))
 		{
+			console.log('yep');
 			display = 'style="display:none;"';
 		}
 		name = columnArray[cnt].split('_').join(' ');

@@ -30,14 +30,14 @@ class Stations extends MY_Controller
 	/**
 	 * Constructor.
 	 * 
-	 * Load the layout. Sphinx and Cron model
+	 * Load Model and Library.
 	 *  
 	 */
 	function __construct()
 	{
 		parent::__construct();
 		$this->load->model('sphinx_model', 'sphinx');
-		$this->load->model('cron_model');
+		$this->load->library('sphnixrt');
 	}
 
 	/**
@@ -47,30 +47,20 @@ class Stations extends MY_Controller
 	 */
 	public function index()
 	{
-
 		$param = array('search_keywords' => '', 'certified' => '', 'agreed' => '');
 		$value = $this->form_validation;
 		$value->set_rules('search_keyword', 'Search Keyword', 'trim|xss_clean');
 		$value->set_rules('certified', 'Certified', 'trim|xss_clean');
 		$value->set_rules('agreed', 'Agreed', 'trim|xss_clean');
-		$value->set_rules('start_date_range', 'Start Date', 'trim|xss_clean');
-		$value->set_rules('end_date_range', 'End Date', 'trim|xss_clean');
 		if ($this->input->post())
 		{
 			$param['certified'] = $this->input->post('certified');
 			$param['agreed'] = $this->input->post('agreed');
-//            $param['start_date'] = $this->input->post('start_date');
-//            $param['end_date'] = $this->input->post('end_date');
-
 			$param['search_keywords'] = str_replace(',', ' | ', trim($this->input->post('search_words')));
-			$records = $this->sphinx->search_stations($param);
-			$data['stations'] = $records['records'];
 		}
-		else
-		{
-			$records = $this->sphinx->search_stations($param);
-			$data['stations'] = $records['records'];
-		}
+		$records = $this->sphinx->search_stations($param);
+		$data['stations'] = $records['records'];
+
 		if (isAjax())
 		{
 			$data['is_ajax'] = TRUE;
@@ -80,7 +70,6 @@ class Stations extends MY_Controller
 		else
 		{
 			$data['is_ajax'] = FALSE;
-
 			$this->load->view('stations/list', $data);
 		}
 	}
@@ -109,8 +98,7 @@ class Stations extends MY_Controller
 	{
 		if (isAjax())
 		{
-			$station_ids = $this->input->post('id');
-			$station_ids = explode(',', $station_ids);
+			$station_ids = explode(',', $this->input->post('id'));
 			$start_date = $this->input->post('start_date');
 			$end_date = $this->input->post('end_date');
 			$is_certified = $this->input->post('is_certified');
@@ -121,13 +109,8 @@ class Stations extends MY_Controller
 			foreach ($station_ids as $value)
 			{
 				$station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date, 'is_certified' => $is_certified, 'is_agreed' => $is_agreed));
-
 				$this->sphinx->update_indexes('stations', array('start_date', 'end_date', 'is_certified', 'is_agreed'), array($value => array((int) strtotime($start_date), (int) strtotime($end_date), (int) $is_certified, (int) $is_agreed)));
 			}
-
-//            print exec("/usr/bin/indexer --all --rotate");
-
-
 			echo json_encode(array('success' => TRUE, 'station' => $station, 'total' => count($station_ids)));
 			exit_function();
 		}
@@ -206,7 +189,6 @@ class Stations extends MY_Controller
 			$list = array();
 			foreach ($stations as $station_id)
 			{
-
 				$station_info = $this->station_model->get_station_by_id($station_id);
 				if (count($station_info) > 0)
 				{
@@ -256,7 +238,7 @@ class Stations extends MY_Controller
 	 */
 	public function import_station_contacts()
 	{
-		$config['upload_path'] = "./uploads/";
+		$config['upload_path'] = "./uploads/stations/";
 		$config['allowed_types'] = 'csv';
 		$this->load->library('upload', $config);
 
@@ -283,7 +265,7 @@ class Stations extends MY_Controller
 		}
 		$file_name = $upload['file_name'];
 
-		$file = file_get_contents("uploads/$file_name");
+		$file = file_get_contents("uploads/stations/$file_name");
 		$records = array_map("str_getcsv", preg_split('/\r*\n+|\r+/', $file));
 		$count = count($records);
 		$type = array('Radio' => 0, 'TV' => 1, 'Joint' => 2);
@@ -311,26 +293,19 @@ class Stations extends MY_Controller
 						}
 					}
 					$station_detail = array(
-						'type' => $type[$row[4]],
-						'address_primary' => $row[5],
-						'address_secondary' => $row[6],
-						'city' => $row[7],
-						'state' => $row[8],
-						'zip' => $row[9],
-						'allocated_hours' => $row[13],
-						'allocated_buffer' => $row[4],
-						'total_allocated' => $row[15],
-						'nominated_hours_final' => $row[18],
-						'nominated_buffer_final' => $row[19],
-						'is_certified' => ($row[16] == 'TRUE') ? 1 : 0,
-						'is_agreed' => ($row[17] == 'TRUE') ? 1 : 0
+						'type' => $type[$row[4]], 'address_primary' => $row[5], 'address_secondary' => $row[6], 'city' => $row[7],
+						'state' => $row[8], 'zip' => $row[9], 'allocated_hours' => $row[13], 'allocated_buffer' => $row[4],
+						'total_allocated' => $row[15], 'nominated_hours_final' => $row[18], 'nominated_buffer_final' => $row[19],
+						'is_certified' => ($row[16] == 'TRUE') ? 1 : 0, 'is_agreed' => ($row[17] == 'TRUE') ? 1 : 0
 					);
+
 					$station = $this->station_model->get_station_by_cpb_id("$row[0]");
 
 					if ($station)
 					{
 						$station_id = $station->id;
 						$this->station_model->update_station($station_id, $station_detail);
+						$this->update_sphnix_index($row, $station_id);
 						if ( ! isset($station_update_count['station'][$row[0]]))
 							$station_update_count['station'][$row[0]] = 'updated';
 					}
@@ -339,6 +314,7 @@ class Stations extends MY_Controller
 						$station_detail['cpb_id'] = $row[0];
 						$station_detail['station_name'] = $row[1];
 						$station_id = $this->station_model->insert_station($station_detail);
+						$this->update_sphnix_index($row, $station_id);
 						if ( ! isset($station_update_count['station'][$row[0]]))
 							$station_update_count['station'][$row[0]] = 'inserted';
 					}
@@ -389,7 +365,7 @@ class Stations extends MY_Controller
 				}
 			}
 		}
-		$this->cron_model->update_rotate_indexes(3, array('status' => 0));
+//		$this->cron_model->update_rotate_indexes(3, array('status' => 0));
 		$inserted_user = 0;
 		$updated_user = 0;
 		$inserted_station = 0;
@@ -436,6 +412,46 @@ class Stations extends MY_Controller
 		redirect('stations/index');
 	}
 
+	function update_sphnix_index($row, $station_id, $new = FALSE)
+	{
+		$sphnix_station = array();
+		if ( ! $new)
+			$sphnix_station['id'] = $station_id;
+		else
+		{
+			$sphnix_station['s_station_name'] = ! empty($row[1]) ? $row[1] : '';
+			$sphnix_station['station_name'] = ! empty($row[1]) ? $row[1] : '';
+		}
+		$sphnix_station['s_type'] = $row[4];
+		$sphnix_station['type'] = $row[4];
+		$sphnix_station['s_address_primary'] = ! empty($row[5]) ? $row[5] : '';
+		$sphnix_station['address_primary'] = ! empty($row[5]) ? $row[5] : '';
+		$sphnix_station['s_address_secondary'] = ! empty($row[6]) ? $row[6] : '';
+		$sphnix_station['address_secondary'] = ! empty($row[6]) ? $row[6] : '';
+		$sphnix_station['s_city'] = ! empty($row[7]) ? $row[7] : '';
+		$sphnix_station['city'] = ! empty($row[7]) ? $row[7] : '';
+		$sphnix_station['s_state'] = ! empty($row[8]) ? $row[8] : '';
+		$sphnix_station['state'] = ! empty($row[8]) ? $row[8] : '';
+		$sphnix_station['s_zip'] = ! empty($row[9]) ? $row[9] : '';
+		$sphnix_station['zip'] = ! empty($row[9]) ? $row[9] : '';
+		if ($new)
+		{
+			$sphnix_station['s_cpb_id'] = ! empty($row[0]) ? $row[0] : '';
+			$sphnix_station['cpb_id'] = ! empty($row[0]) ? $row[0] : '';
+		}
+		$sphnix_station['allocated_hours'] = ! empty($row[13]) ? (int) $row[13] : (int) 0;
+		$sphnix_station['allocated_buffer'] = ! empty($row[14]) ? (int) $row[14] : (int) 0;
+		$sphnix_station['total_allocated'] = ! empty($row[15]) ? (int) $row[15] : (int) 0;
+		$sphnix_station['is_certified'] = ! empty($row[0]) ? $row[0] : '';
+		$sphnix_station['is_agreed'] = ($row[16] == 'TRUE') ? 1 : 0;
+		$sphnix_station['cpb_id'] = ($row[17] == 'TRUE') ? 1 : 0;
+		if ($new)
+			$this->sphnixrt->insert('stations', $sphnix_station, $station_id);
+		else
+			$this->sphnixrt->update('stations', $sphnix_station);
+	}
+
+	/* End of Station Class */
 }
 
 // END Stations Controller

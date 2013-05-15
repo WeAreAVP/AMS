@@ -318,7 +318,7 @@ class Stations extends MY_Controller
 						$station_detail['cpb_id'] = $row[0];
 						$station_detail['station_name'] = $row[1];
 						$station_id = $this->station_model->insert_station($station_detail);
-						$this->update_sphnix_index($row, $station_id);
+						$this->update_sphnix_index($row, $station_id,TRUE);
 						if ( ! isset($station_update_count['station'][$row[0]]))
 							$station_update_count['station'][$row[0]] = 'inserted';
 					}

@@ -181,6 +181,7 @@ class Sphnixrt
 					VALUES
 						(' . implode(', ', $this->data['insert']['column_data']) . ')';
 
+		debug($query,FALSE);
 		// let's perform the query
 		$result = $this->sphinxql_link->query($query) or die(mysqli_error($this->sphinxql_link));
 

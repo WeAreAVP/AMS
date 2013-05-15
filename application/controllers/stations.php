@@ -246,7 +246,8 @@ class Stations extends MY_Controller
 		if ( ! $this->upload->do_upload('csv_file'))
 		{
 			$this->session->set_userdata('upload_csv_error', $this->upload->display_errors());
-			redirect('stations/index');
+			echo '1';
+//			redirect('stations/index');
 		}
 		else
 		{
@@ -254,19 +255,22 @@ class Stations extends MY_Controller
 			if ( ! isset($upload['file_name']) || ! $upload['file_name'])
 			{
 				$this->session->set_userdata('upload_csv_error', 'Not a valid file name.');
-				redirect('stations/index');
+				echo '2';
+//				redirect('stations/index');
 			}
 
 			if ($upload['file_ext'] !== '.csv')
 			{
 				$this->session->set_userdata('upload_csv_error', 'Not a valid csv format.');
-				redirect('stations/index');
+				echo '3';
+//				redirect('stations/index');
 			}
 		}
 		$file_name = $upload['file_name'];
 
 		$file = file_get_contents("uploads/stations/$file_name");
 		$records = array_map("str_getcsv", preg_split('/\r*\n+|\r+/', $file));
+		debug($records);
 		$count = count($records);
 		$type = array('Radio' => 0, 'TV' => 1, 'Joint' => 2);
 		$station_id = NULL;

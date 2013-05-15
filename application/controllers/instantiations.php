@@ -115,6 +115,7 @@ class Instantiations extends MY_Controller
 		$config['total_rows'] = $data['total'];
 		$config['per_page'] = 100;
 		$data['records'] = $records['records'];
+		$data['records']=array_map(array($this, 'make_array'), $records['records']);
 		debug($data['records']);
 		$data['count'] = count($data['records']);
 		if ($data['count'] > 0 && $offset === 0)
@@ -146,7 +147,17 @@ class Instantiations extends MY_Controller
 		}
 		$this->load->view('instantiations/index', $data);
 	}
+	/**
+	 * 
+	 * @param int $value id
+	 * 
+	 * @return int user id
+	 */
+	function make_array($value)
+	{
 
+		return $value->id;
+	}
 	/**
 	 * Show the detail of an instantiation
 	 *  

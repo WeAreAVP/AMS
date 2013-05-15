@@ -270,8 +270,10 @@ class Stations extends MY_Controller
 
 		$file = file_get_contents("uploads/stations/$file_name");
 		$records = array_map("str_getcsv", preg_split('/\r*\n+|\r+/', $file));
-		debug($records);
+		
 		$count = count($records);
+		echo $count;
+		debug($records);
 		$type = array('Radio' => 0, 'TV' => 1, 'Joint' => 2);
 		$station_id = NULL;
 		$station_update_count = array('station' => '', 'user' => '');

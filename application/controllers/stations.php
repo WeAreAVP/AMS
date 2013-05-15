@@ -269,7 +269,7 @@ class Stations extends MY_Controller
 
 		$file = file_get_contents("uploads/stations/$file_name");
 		$records = array_map("str_getcsv", preg_split('/\r*\n+|\r+/', $file));
-
+		
 		$count = count($records);
 		
 		$type = array('Radio' => 0, 'TV' => 1, 'Joint' => 2);
@@ -369,7 +369,6 @@ class Stations extends MY_Controller
 				}
 			}
 		}
-//		$this->cron_model->update_rotate_indexes(3, array('status' => 0));
 		$inserted_user = 0;
 		$updated_user = 0;
 		$inserted_station = 0;
@@ -448,7 +447,6 @@ class Stations extends MY_Controller
 		$sphnix_station['total_allocated'] = ! empty($row[15]) ? (int) $row[15] : (int) 0;
 		$sphnix_station['is_certified'] = ! empty($row[0]) ? $row[0] : '';
 		$sphnix_station['is_agreed'] = ($row[16] == 'TRUE') ? 1 : 0;
-		$sphnix_station['cpb_id'] = ($row[17] == 'TRUE') ? 1 : 0;
 		if ($new)
 			$this->sphnixrt->insert('stations', $sphnix_station, $station_id);
 		else

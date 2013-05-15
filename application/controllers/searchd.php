@@ -48,7 +48,7 @@ class Searchd extends MY_Controller
 	function index()
 	{
 
-		
+
 		$stations = $this->station_model->get_all();
 		foreach ($stations as $key => $row)
 		{
@@ -60,14 +60,22 @@ class Searchd extends MY_Controller
 				$type = 'JOINT';
 
 			$record = array(
-				'cpb_id' => $row->cpb_id,
+				's_station_name' => $row->station_name,
 				'station_name' => $row->station_name,
-				'my_type' => $type,
+				's_type' => $type,
+				'type' => $type,
+				's_address_primary' => $row->address_primary,
 				'address_primary' => $row->address_primary,
+				's_address_secondary' => $row->address_secondary,
 				'address_secondary' => $row->address_secondary,
+				's_city' => $row->city,
 				'city' => $row->city,
+				's_state' => $row->state,
 				'state' => $row->state,
+				's_zip' => $row->zip,
 				'zip' => $row->zip,
+				's_cpb_id' => $row->cpb_id,
+				'cpb_id' => $row->cpb_id,
 				'allocated_hours' => (int) $row->allocated_hours,
 				'allocated_buffer' => (int) $row->allocated_buffer,
 				'total_allocated' => (int) $row->total_allocated,
@@ -82,8 +90,6 @@ class Searchd extends MY_Controller
 		debug($data, FALSE);
 		echo count($data['records']);
 		exit;
-
-		
 	}
 
 }

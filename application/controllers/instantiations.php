@@ -147,17 +147,7 @@ class Instantiations extends MY_Controller
 		}
 		$this->load->view('instantiations/index', $data);
 	}
-	/**
-	 * 
-	 * @param int $value id
-	 * 
-	 * @return int user id
-	 */
-	function make_map_array($value)
-	{
-
-		return $value->id;
-	}
+	
 	/**
 	 * Show the detail of an instantiation
 	 *  

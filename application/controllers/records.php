@@ -37,7 +37,7 @@ class Records extends MY_Controller
 	{
 		$offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$this->session->set_userdata('offset', $offset);
-$data['station_records'] = $this->station_model->get_all();
+		$data['station_records'] = $this->station_model->get_all();
 		if (isAjax())
 		{
 			$this->unset_facet_search();
@@ -267,9 +267,13 @@ $data['station_records'] = $this->station_model->get_all();
 
 		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
 		$param = array('index' => 'assets_list');
-		$records = $this->sphinx->assets_listing($param, $offset);
+		$records = $this->sphinx->assets_listing($param, $offset,100,TRUE);
 		$data['total'] = $records['total_count'];
-		$records = $records['records'];
+		$record_ids=array_map(array($this, 'make_map_array'), $records['records']);
+		$this->load->model('searchd_model','searchd');
+		$records=$this->searchd->get_assets($record_ids);
+//		
+//		$records = $records['records'];
 		$data['count'] = count($records);
 		$table_view = simple_simple_datatable_view($records);
 
@@ -313,9 +317,13 @@ $data['station_records'] = $this->station_model->get_all();
 		$this->session->set_userdata('column_order', $this->input->get('sSortDir_0'));
 		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
 		$param = array('index' => 'assets_list');
-		$records = $this->sphinx->assets_listing($param, $offset);
+		$records = $this->sphinx->assets_listing($param, $offset,100,TRUE);
 		$data['total'] = $records['total_count'];
-		$records = $records['records'];
+		$record_ids=array_map(array($this, 'make_map_array'), $records['records']);
+		$this->load->model('searchd_model','searchd');
+		$records=$this->searchd->get_assets($record_ids);
+//		
+//		$records = $records['records'];
 		$data['count'] = count($records);
 		$table_view = full_assets_datatable_view($records, $this->column_order);
 

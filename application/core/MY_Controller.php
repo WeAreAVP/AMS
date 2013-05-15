@@ -31,10 +31,9 @@ class MY_Controller extends CI_Controller
 
 		if ( ! $this->dx_auth->is_logged_in())
 		{
-			
-			if ( ! is_route_method(array('reports' => array('standalone','standalone_datatable'))))
+
+			if ( ! is_route_method(array('reports' => array('standalone', 'standalone_datatable'))))
 				redirect('auth/login');
-			
 		}
 		$this->is_station_user = FALSE;
 		$this->load->library('Form_validation');
@@ -230,6 +229,18 @@ class MY_Controller extends CI_Controller
 		{
 			$this->session->set_userdata($key, $value);
 		}
+	}
+
+	/**
+	 * 
+	 * @param int $value id
+	 * 
+	 * @return int user id
+	 */
+	function make_map_array($value)
+	{
+
+		return $value->id;
 	}
 
 }

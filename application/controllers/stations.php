@@ -270,7 +270,7 @@ class Stations extends MY_Controller
 
 		$file = file_get_contents("uploads/stations/$file_name");
 		$records = array_map("str_getcsv", preg_split('/\r*\n+|\r+/', $file));
-		
+
 		$count = count($records);
 		echo $count;
 		debug($records);
@@ -281,11 +281,11 @@ class Stations extends MY_Controller
 		{
 			foreach ($records as $index => $row)
 			{
-				if ($index !== 0 && $index != $count - 1)
+				if ($index !== 0)
 				{
-					if (count($row) !== 22 && count($row) !== 21)
+					if (count($row) > 21)
 					{
-						$this->session->set_userdata('upload_csv_error', 'csv is not in a right format.');
+						$this->session->set_userdata('upload_csv_error', 'Column count is not correct.');
 						redirect('stations/index');
 					}
 					else
@@ -294,7 +294,7 @@ class Stations extends MY_Controller
 
 						if (strtolower($valid[0]) != 'cpb id' || strtolower($valid[1]) != 'station (brand) name' || strtolower($valid[2]) != 'contact name')
 						{
-							$this->session->set_userdata('upload_csv_error', 'csv is not in a right format.');
+							$this->session->set_userdata('upload_csv_error', 'Column names are not correct');
 							redirect('stations/index');
 						}
 					}

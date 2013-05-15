@@ -269,9 +269,9 @@ class Stations extends MY_Controller
 
 		$file = file_get_contents("uploads/stations/$file_name");
 		$records = array_map("str_getcsv", preg_split('/\r*\n+|\r+/', $file));
-		
+
 		$count = count($records);
-		
+
 		$type = array('Radio' => 0, 'TV' => 1, 'Joint' => 2);
 		$station_id = NULL;
 		$station_update_count = array('station' => '', 'user' => '');
@@ -309,7 +309,7 @@ class Stations extends MY_Controller
 					{
 						$station_id = $station->id;
 						$this->station_model->update_station($station_id, $station_detail);
-						$this->update_sphnix_index($row, $station_id);
+						$this->update_sphnix_index($row, $station_id, FALSE, $station);
 						if ( ! isset($station_update_count['station'][$row[0]]))
 							$station_update_count['station'][$row[0]] = 'updated';
 					}
@@ -318,7 +318,7 @@ class Stations extends MY_Controller
 						$station_detail['cpb_id'] = $row[0];
 						$station_detail['station_name'] = $row[1];
 						$station_id = $this->station_model->insert_station($station_detail);
-						$this->update_sphnix_index($row, $station_id,TRUE);
+						$this->update_sphnix_index($row, $station_id, TRUE);
 						if ( ! isset($station_update_count['station'][$row[0]]))
 							$station_update_count['station'][$row[0]] = 'inserted';
 					}
@@ -415,11 +415,15 @@ class Stations extends MY_Controller
 		redirect('stations/index');
 	}
 
-	function update_sphnix_index($row, $station_id, $new = FALSE)
+	function update_sphnix_index($row, $station_id, $new = FALSE, $station)
 	{
 		$sphnix_station = array();
 		if ( ! $new)
+		{
 			$sphnix_station['id'] = $station_id;
+			$sphnix_station['s_station_name'] = $station->station_name;
+			$sphnix_station['station_name'] = $station->station_name;
+		}
 		else
 		{
 			$sphnix_station['s_station_name'] = ! empty($row[1]) ? $row[1] : '';
@@ -441,6 +445,11 @@ class Stations extends MY_Controller
 		{
 			$sphnix_station['s_cpb_id'] = ! empty($row[0]) ? $row[0] : '';
 			$sphnix_station['cpb_id'] = ! empty($row[0]) ? $row[0] : '';
+		}
+		else
+		{
+			$sphnix_station['s_cpb_id'] = $station->cpb_id;
+			$sphnix_station['cpb_id'] = $station->cpb_id;
 		}
 		$sphnix_station['allocated_hours'] = ! empty($row[13]) ? (int) $row[13] : (int) 0;
 		$sphnix_station['allocated_buffer'] = ! empty($row[14]) ? (int) $row[14] : (int) 0;

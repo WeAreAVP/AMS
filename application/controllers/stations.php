@@ -246,8 +246,7 @@ class Stations extends MY_Controller
 		if ( ! $this->upload->do_upload('csv_file'))
 		{
 			$this->session->set_userdata('upload_csv_error', $this->upload->display_errors());
-			echo '1';
-//			redirect('stations/index');
+			redirect('stations/index');
 		}
 		else
 		{
@@ -255,15 +254,15 @@ class Stations extends MY_Controller
 			if ( ! isset($upload['file_name']) || ! $upload['file_name'])
 			{
 				$this->session->set_userdata('upload_csv_error', 'Not a valid file name.');
-				echo '2';
-//				redirect('stations/index');
+
+				redirect('stations/index');
 			}
 
 			if ($upload['file_ext'] !== '.csv')
 			{
 				$this->session->set_userdata('upload_csv_error', 'Not a valid csv format.');
-				echo '3';
-//				redirect('stations/index');
+
+				redirect('stations/index');
 			}
 		}
 		$file_name = $upload['file_name'];
@@ -272,8 +271,7 @@ class Stations extends MY_Controller
 		$records = array_map("str_getcsv", preg_split('/\r*\n+|\r+/', $file));
 
 		$count = count($records);
-		echo $count;
-		debug($records);
+		
 		$type = array('Radio' => 0, 'TV' => 1, 'Joint' => 2);
 		$station_id = NULL;
 		$station_update_count = array('station' => '', 'user' => '');
@@ -294,7 +292,7 @@ class Stations extends MY_Controller
 
 						if (strtolower($valid[0]) != 'cpb id' || strtolower($valid[1]) != 'station (brand) name' || strtolower($valid[2]) != 'contact name')
 						{
-							$this->session->set_userdata('upload_csv_error', 'Column names are not correct');
+							$this->session->set_userdata('upload_csv_error', 'Column names are not correct.');
 							redirect('stations/index');
 						}
 					}

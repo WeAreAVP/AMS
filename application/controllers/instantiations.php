@@ -1159,9 +1159,12 @@ class Instantiations extends MY_Controller
 
 
 		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
-		$records = $this->sphinx->instantiations_list($params, $offset);
+		$records = $this->sphinx->instantiations_list($params, $offset,100,TRUE);
 		$data['total'] = $records['total_count'];
-		$records = $records['records'];
+		$record_ids=array_map(array($this, 'make_map_array'), $records['records']);
+		$this->load->model('searchd_model','searchd');
+		$records=$this->searchd->get_instantiation($record_ids);
+//		$records = $records['records'];
 		$data['count'] = count($records);
 		$table_view = instantiations_datatable_view($records, $this->column_order);
 

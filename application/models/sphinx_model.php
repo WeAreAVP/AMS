@@ -242,7 +242,7 @@ class Sphinx_Model extends CI_Model
 		return $where;
 	}
 
-	function instantiations_list($params, $offset = 0, $limit = 100)
+	function instantiations_list($params, $offset = 0, $limit = 100, $select = FALSE)
 	{
 //        /usr/bin/indexer --all --rotate
 		$instantiations = array();
@@ -259,7 +259,8 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->set_array_result(true);
 		$this->sphinxsearch->set_match_mode($mode);
 		$this->sphinxsearch->set_connect_timeout(120);
-//		$this->sphinxsearch->set_select('id');
+		if ($select)
+			$this->sphinxsearch->set_select('id');
 		if ($limit)
 			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 

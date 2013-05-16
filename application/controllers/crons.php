@@ -343,6 +343,12 @@ class Crons extends CI_Controller
 		}
 	}
 
+	function make_map_array($value)
+	{
+
+		return $value->id;
+	}
+
 	function test()
 	{
 		$this->load->model('searchd_model');
@@ -350,7 +356,9 @@ class Crons extends CI_Controller
 		$offset = 0;
 		while ($db_count == 0)
 		{
-			$records = $this->searchd_model->get_ins_index($offset, 15000);
+			$inst = $this->searchd_model->get_ins($offset, 1000);
+			$ids=array_map(array($this, 'make_map_array'), $inst);
+			$records = $this->searchd_model->get_ins_index($ids);
 			foreach ($records as $row)
 			{
 				$data = array(
@@ -419,9 +427,9 @@ class Crons extends CI_Controller
 				$this->sphnixrt->insert('instantiations_list', $data, $row->id);
 			}
 			log($offset);
-			$offset = $offset + 15000;
+			$offset = $offset + 1000;
 
-			if (count($records) < 15000)
+			if (count($records) < 1000)
 				$db_count ++;
 		}
 	}

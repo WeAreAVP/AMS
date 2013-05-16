@@ -176,8 +176,9 @@ GROUP_CONCAT(DISTINCT(instantiations.language) SEPARATOR ' | ') AS language,
  GROUP BY `assets`.`id` ")->result();
 	}
 
-	function get_ins_index($offset, $limit)
+	function get_ins_index($record_ids)
 	{
+		$search_ids = implode(',', $record_ids);
 		return $this->db->query("SELECT  instantiations.id, 
 		instantiations.assets_id,
 		stations.station_name AS organization, 
@@ -285,8 +286,9 @@ LEFT JOIN `instantiation_generations` ON `instantiation_generations`.`instantiat
   LEFT JOIN `essence_track_encodings` ON `essence_track_encodings`.`essence_tracks_id`=`essence_tracks`.`id` 
   LEFT JOIN `essence_track_annotations` ON `essence_track_annotations`.`essence_tracks_id`=`essence_tracks`.`id` 
   LEFT JOIN `instantiation_annotations` ON `instantiation_annotations`.`instantiations_id`=`instantiations`.`id` 
+  WHERE instantiations.id in ($search_ids)
 GROUP BY `instantiations`.`id`
-LIMIT $offset,$limit 
+ 
 ")->result();
 	}
 
@@ -402,6 +404,9 @@ LEFT JOIN `instantiation_generations` ON `instantiation_generations`.`instantiat
 
  GROUP BY `instantiations`.`id`
 )");
+	}
+	function get_ins($offset,$limit){
+	return $this->db->query("SELECT id FROM instantiations LIMIT $offset,$limit")->result();
 	}
 
 }

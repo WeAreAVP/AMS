@@ -99,7 +99,8 @@ class Searchd extends MY_Controller
 		$offset = 0;
 		while ($db_count == 0)
 		{
-			$records = $this->searchd_model->get_ins_index($offset, 15000);
+
+			$records = $this->searchd_model->get_ins_index($ids);
 			foreach ($records as $row)
 			{
 				$data = array(

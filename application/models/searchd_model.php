@@ -275,9 +275,7 @@ LEFT JOIN `instantiation_generations` ON `instantiation_generations`.`instantiat
   LEFT JOIN `nominations` ON `nominations`.`instantiations_id` = `instantiations`.`id`
   LEFT JOIN `nomination_status` ON `nomination_status`.`id` = `nominations`.`nomination_status_id`
   LEFT JOIN `events` ON `events`.`instantiations_id` = `instantiations`.`id` AND  `events`.`event_types_id`='3'
-  LEFT JOIN `event_types` ONme_sizes` ON `essence_track_frame_sizes`.`id`=`essence_tracks`.`essence_track_frame_sizes_id` 
-  LEFT JOIN `essence_track_encodings` ON `essence_track_encodings`.`essence_tracks_id`=`essence_tracks`.`id` 
-  LEFT JOIN `essence_track_anno `event_types`.`id` = `events`.`event_types_id` AND event_types.event_type='migration'
+  LEFT JOIN `event_types` ON `event_types`.`id` = `events`.`event_types_id` AND event_types.event_type='migration'
   LEFT JOIN `instantiation_dimensions` ON `instantiation_dimensions`.`instantiations_id`=`instantiations`.`id` 
   LEFT JOIN `essence_tracks` ON `essence_tracks`.`instantiations_id`=`instantiations`.`id` 
   LEFT JOIN `data_rate_units` AS `ins_data_rate_units` ON `ins_data_rate_units`.`id`=`instantiations`.`data_rate_units_id` 

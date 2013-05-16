@@ -232,14 +232,46 @@
 												</p>
 											</div>
 										</div>
-										<div class="remove_element" onclick="removeElement('#remove_local_<?php echo $index; ?>', 'local_id');"><img src="/images/remove-item.png" /></div>
+										<?php
+										if ($index != 0)
+										{
+											?>
+											<div class="remove_element" onclick="removeElement('#remove_local_<?php echo $index; ?>', 'local_id');"><img src="/images/remove-item.png" /></div>
+										<?php } ?>
 										<div class="clearfix" style="margin-bottom: 10px;"></div>
 									</div>
 
 									<?php
 								}
 							}
-							?>
+							else
+							{
+								?>
+								<div id="remove_local_0" class="remove_local_id">
+									<div class="edit_form_div">
+										<div>
+											<p>Local ID: <span class="label_star"> *</span> </p>
+											<p>
+												<input type="text" id="asset_identifier_0" name="asset_identifier[]" value="" />
+											</p>
+										</div>
+										<div>
+											<p>ID Source: <span class="label_star"> *</span> </p>
+											<p>
+												<input type="text" id="asset_identifier_source_0" name="asset_identifier_source[]" value="" />
+											</p>
+										</div>
+										<div>
+											<p>ID Ref:</p>
+											<p>
+												<input type="text" id="asset_identifier_ref_0" name="asset_identifier_ref[]" value="" />
+												<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
+											</p>
+										</div>
+									</div>
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
+								</div>
+							<?php } ?>
 						</div>
 						<div class="add-new-element" onclick="addElement('#main_local_id', 'local_id');"><i class="icon-plus-sign icon-white"></i><span id="add_local_id"><?php echo $add; ?></span></div>
 
@@ -321,13 +353,75 @@
 												</p>
 											</div>
 										</div>
-										<div class="remove_element" onclick="removeElement('#remove_title_<?php echo $index; ?>', 'title');"><img src="/images/remove-item.png" /></div>
+										<?php
+										if ($index != 0)
+										{
+											?>
+											<div class="remove_element" onclick="removeElement('#remove_title_<?php echo $index; ?>', 'title');"><img src="/images/remove-item.png" /></div>
+										<?php } ?>
 										<div class="clearfix" style="margin-bottom: 10px;"></div>
 									</div>
 									<?php
 								}
 							}
-							?>
+							else
+							{
+								?>
+								<div id="remove_title_0" class="remove_title">
+									<div class="edit_form_div">
+										<div>
+											<p>Title: <span class="label_star"> *</span></p>
+											<p>
+												<textarea id="asset_title_0" name="asset_title[]"></textarea>
+											</p>
+										</div>
+										<div>
+											<p>
+												Title Type:
+											</p>
+											<p>
+												<select id="asset_title_type_0" name="asset_title_type[]">
+													<?php
+													$commonly = $less = FALSE;
+													foreach ($pbcore_asset_title_types as $row)
+													{
+														if ($row->display_value == 1 && ! $commonly)
+														{
+															$commonly = TRUE;
+															?>
+															<optgroup label="Commonly Used">Commonly Used</optgroup>
+															<?php
+														}
+														else if ($row->display_value == 2 && ! $less)
+														{
+															$less = TRUE;
+															?>
+															<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+														<?php } ?>
+														<option value="<?php echo $row->value; ?>"><?php echo $row->value; ?></option>
+													<?php }
+													?>
+												</select>
+											</p>
+										</div>
+										<div>
+											<p>Title Source:</p>
+											<p>
+												<input type="text" id="asset_title_source_0" name="asset_title_source[]" value="" />
+											</p>
+										</div>
+										<div>
+											<p>Title Ref:</p>
+											<p>
+												<input type="text" id="asset_title_ref_0" name="asset_title_ref[]" value="" />
+												<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
+											</p>
+										</div>
+									</div>
+
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
+								</div>
+							<?php } ?>
 						</div>
 						<div class="add-new-element" onclick="addElement('#main_title', 'title');"><i class="icon-plus-sign icon-white"></i><span id="add_title"><?php echo $add; ?></span></div>
 
@@ -468,13 +562,64 @@
 											</div>
 
 										</div>
-										<div class="remove_element" onclick="removeElement('#remove_description_<?php echo $index; ?>', 'description');"><img src="/images/remove-item.png" /></div>
+										<?php
+										if ($index != 0)
+										{
+											?>
+											<div class="remove_element" onclick="removeElement('#remove_description_<?php echo $index; ?>', 'description');"><img src="/images/remove-item.png" /></div>
+										<?php } ?>
 										<div class="clearfix" style="margin-bottom: 10px;"></div>
 									</div>
 									<?php
 								}
 							}
-							?>
+							else
+							{
+								?>
+								<div id="remove_description_0" class="remove_description">
+									<div class="edit_form_div">
+										<div>
+											<p>Description: <span class="label_star"> *</span></p>
+											<p>
+												<textarea id="asset_description_0" name="asset_description[]"></textarea>
+											</p>
+										</div>
+										<div>
+											<p>
+												Description Type:
+											</p>
+											<p>
+												<select id="asset_description_type_0" name="asset_description_type[]">
+													<?php
+													$commonly = $less = FALSE;
+													foreach ($pbcore_asset_description_types as $row)
+													{
+
+														if ($row->display_value == 1 && ! $commonly)
+														{
+															$commonly = TRUE;
+															?>
+															<optgroup label="Commonly Used">Commonly Used</optgroup>
+															<?php
+														}
+														else if ($row->display_value == 2 && ! $less)
+														{
+															$less = TRUE;
+															?>
+															<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
+														<?php } ?>
+														<option value="<?php echo $row->value; ?>"><?php echo $row->value; ?></option>
+													<?php }
+													?>
+												</select>
+											</p>
+										</div>
+
+									</div>
+
+									<div class="clearfix" style="margin-bottom: 10px;"></div>
+								</div>
+							<?php } ?>
 						</div>
 						<div class="add-new-element" onclick="addElement('#main_description', 'description');"><i class="icon-plus-sign icon-white"></i><span id="add_description"><?php echo $add; ?></span></div>
 
@@ -1275,17 +1420,17 @@
 	</div>
 </div>
 <script type="text/javascript">
-									var pbcoreAssetTypes =<?php echo json_encode($pbcore_asset_types); ?>;
-									var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
-									var pbcoreTitleTypes =<?php echo json_encode($pbcore_asset_title_types); ?>;
-									var pbcoreSubjectTypes =<?php echo json_encode($pbcore_asset_subject_types); ?>;
-									var pbcoreDescriptionTypes =<?php echo json_encode($pbcore_asset_description_types); ?>;
-									var pbcoreAudienceLevel =<?php echo json_encode($pbcore_asset_audience_level); ?>;
-									var pbcoreAudienceRating =<?php echo json_encode($pbcore_asset_audience_rating); ?>;
-									var pbcoreRelationTypes =<?php echo json_encode($pbcore_asset_relation_types); ?>;
-									var pbcoreCreatorRoles =<?php echo json_encode($pbcore_asset_creator_roles); ?>;
-									var pbcoreContributorRoles =<?php echo json_encode($pbcore_asset_contributor_roles); ?>;
-									var pbcorePublisherRoles =<?php echo json_encode($pbcore_asset_publisher_roles); ?>;
+											var pbcoreAssetTypes =<?php echo json_encode($pbcore_asset_types); ?>;
+											var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
+											var pbcoreTitleTypes =<?php echo json_encode($pbcore_asset_title_types); ?>;
+											var pbcoreSubjectTypes =<?php echo json_encode($pbcore_asset_subject_types); ?>;
+											var pbcoreDescriptionTypes =<?php echo json_encode($pbcore_asset_description_types); ?>;
+											var pbcoreAudienceLevel =<?php echo json_encode($pbcore_asset_audience_level); ?>;
+											var pbcoreAudienceRating =<?php echo json_encode($pbcore_asset_audience_rating); ?>;
+											var pbcoreRelationTypes =<?php echo json_encode($pbcore_asset_relation_types); ?>;
+											var pbcoreCreatorRoles =<?php echo json_encode($pbcore_asset_creator_roles); ?>;
+											var pbcoreContributorRoles =<?php echo json_encode($pbcore_asset_contributor_roles); ?>;
+											var pbcorePublisherRoles =<?php echo json_encode($pbcore_asset_publisher_roles); ?>;
 
 </script>
 <script type="text/javascript" src="/js/edit_asset.js?<?php echo time(); ?>"></script>

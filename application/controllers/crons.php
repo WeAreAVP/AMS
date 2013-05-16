@@ -363,7 +363,7 @@ class Crons extends CI_Controller
 			foreach ($records as $row)
 			{
 				$data = array(
-					'assets_id' => (int) $row->asset_id,
+					'assets_id' => (int) $row->assets_id,
 					'organization' => ! empty($row->organization) ? $row->organization : '',
 					'state' => ! empty($row->state) ? $row->state : '',
 					'standard' => ! empty($row->standard) ? $row->standard : '',

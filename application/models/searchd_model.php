@@ -285,8 +285,8 @@ LEFT JOIN `instantiation_generations` ON `instantiation_generations`.`instantiat
   LEFT JOIN `essence_track_encodings` ON `essence_track_encodings`.`essence_tracks_id`=`essence_tracks`.`id` 
   LEFT JOIN `essence_track_annotations` ON `essence_track_annotations`.`essence_tracks_id`=`essence_tracks`.`id` 
   LEFT JOIN `instantiation_annotations` ON `instantiation_annotations`.`instantiations_id`=`instantiations`.`id` 
-LIMIT $offset,$limit 
 GROUP BY `instantiations`.`id`
+LIMIT $offset,$limit 
 ")->result();
 	}
 

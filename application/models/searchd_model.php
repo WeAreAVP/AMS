@@ -289,7 +289,121 @@ LEFT JOIN `instantiation_generations` ON `instantiation_generations`.`instantiat
   LEFT JOIN `instantiation_annotations` ON `instantiation_annotations`.`instantiations_id`=`instantiations`.`id` 
 LIMIT $offset,$limit 
 GROUP BY `instantiations`.`id`
-")->result();	
+")->result();
+	}
+
+	function abc()
+	{
+		$this->db->query("INSERT INTO `instanciation_temporary` (SELECT  instantiations.id, 
+		instantiations.assets_id,
+		stations.station_name AS organization, 
+		stations.state,
+		instantiations.standard,
+		instantiations.data_rate,
+		instantiations.location, 
+  	  	instantiations.tracks, 
+		IFNULL(instantiations.digitized,'0') AS digitized, 
+		instantiations.language, 
+		IFNULL(TIME_TO_SEC(instantiations.actual_duration),0) AS actual_duration, 
+		IFNULL(instantiations.projected_duration,'0') AS projected_duration, 
+		instantiations.file_size_unit_of_measure, 
+		instantiations.file_size, 
+		instantiations.channel_configuration, 
+		instantiations.alternative_modes, 
+		ins_data_rate_units.unit_of_measure AS data_rate_unit_of_measure, 
+		IFNULL(UNIX_TIMESTAMP(instantiation_dates.instantiation_date ),0) AS dates, 
+		date_types.date_type AS date_type, 
+		instantiation_media_types.media_type, 
+		instantiation_formats.format_type, 
+		instantiation_formats.format_name, 
+		instantiation_colors.color, 
+		GROUP_CONCAT(DISTINCT(`generations`.`generation`) SEPARATOR ' | ') AS generation, 
+		`generations`.`generation` AS facet_generation, 
+		nomination_status.status, 
+		CASE WHEN events.event_outcome=0 THEN 'FAIL' WHEN events.event_outcome=1 THEN 'PASS' END AS outcome_event, 
+		event_types.event_type, 
+		IFNULL(UNIX_TIMESTAMP(events.event_date ),0) AS event_date, 
+		GROUP_CONCAT(DISTINCT(IFNULL(instantiation_identifier.instantiation_identifier,'(**)')) SEPARATOR ' | ') AS instantiation_identifier, 
+		GROUP_CONCAT(DISTINCT(IFNULL(instantiation_identifier.instantiation_source,'(**)')) SEPARATOR ' | ') AS instantiation_source, 
+		instantiation_dimensions.instantiation_dimension, 
+		instantiation_dimensions.unit_of_measure, 
+		essence_tracks.standard AS track_standard, 
+		essence_tracks.duration AS track_duration, 
+		essence_tracks.language AS track_language, 
+		essence_tracks.frame_rate AS track_frame_rate, 
+		essence_tracks.playback_speed AS track_playback_speed, 
+		essence_tracks.sampling_rate AS track_sampling_rate, 
+		essence_tracks.bit_depth AS track_bit_depth, 
+		essence_tracks.aspect_ratio AS track_aspect_ratio, 
+		essence_tracks.data_rate AS track_data_rate, 
+		data_rate_units.unit_of_measure AS track_unit_of_measure, 
+		essence_track_types.essence_track_type AS track_essence_track_type, 
+		essence_track_frame_sizes.width AS track_width, 
+		essence_track_frame_sizes.height AS track_height, 
+		essence_track_encodings.encoding AS track_encoding, 
+		essence_track_annotations.annotation AS track_annotation, 
+		essence_track_annotations.annotation_type AS track_annotation_type, 
+		GROUP_CONCAT(DISTINCT(IFNULL(instantiation_annotations.annotation,'(**)')) SEPARATOR ' | ') AS ins_annotation,
+		GROUP_CONCAT(DISTINCT(IFNULL(instantiation_annotations.annotation_type,'(**)')) SEPARATOR ' | ') AS ins_annotation_type,
+		identifiers.identifier AS guid_identifier, 
+		GROUP_CONCAT(DISTINCT(asset_titles.title) SEPARATOR ' | ') AS asset_title, 
+		GROUP_CONCAT(DISTINCT(IFNULL(`subjects`.`subject`,'(**)')) SEPARATOR ' | ') AS asset_subject, 
+		GROUP_CONCAT(DISTINCT(IFNULL(`coverages`.`coverage`,'(**)')) SEPARATOR ' | ') AS asset_coverage, 
+		GROUP_CONCAT(DISTINCT(IFNULL(`genres`.`genre`,'(**)')) SEPARATOR ' | ') AS asset_genre, 
+		GROUP_CONCAT(DISTINCT(IFNULL(`publishers`.`publisher`,'(**)')) SEPARATOR ' | ') AS asset_publisher_name, 
+		asset_descriptions.description AS asset_description, 
+		GROUP_CONCAT(DISTINCT(IFNULL(`creators`.`creator_name`,'(**)')) SEPARATOR ' | ') AS asset_creator_name, 
+		GROUP_CONCAT(DISTINCT(IFNULL(`creators`.`creator_affiliation`,'(**)')) SEPARATOR ' | ') AS asset_creator_affiliation, 
+		GROUP_CONCAT(DISTINCT(IFNULL(`contributors`.`contributor_name`,'(**)')) SEPARATOR ' | ') AS asset_contributor_name, 
+		GROUP_CONCAT(DISTINCT(IFNULL(`contributors`.`contributor_affiliation`,'(**)')) SEPARATOR ' | ') AS asset_contributor_affiliation, 
+		GROUP_CONCAT(DISTINCT(IFNULL(`rights_summaries`.`rights`,'(**)')) SEPARATOR ' | ') AS asset_rights 
+FROM (`instantiations`) 
+  LEFT JOIN `assets` ON `assets`.`id` = `instantiations`.`assets_id` 
+  LEFT JOIN `identifiers` ON `identifiers`.`assets_id` = `assets`.`id`  AND `identifiers`.`identifier_source` = 'http://americanarchiveinventory.org'  
+  LEFT JOIN `asset_titles` ON `asset_titles`.`assets_id` = `instantiations`.`assets_id` 
+  INNER JOIN `stations` ON `stations`.`id` = `assets`.`stations_id` 
+  LEFT JOIN `assets_subjects` ON `assets_subjects`.`assets_id` = `assets`.`id`
+  LEFT JOIN `subjects` ON `subjects`.`id` = `assets_subjects`.`subjects_id`
+  LEFT JOIN `coverages` ON `coverages`.`assets_id`=`assets`.`id` 
+  LEFT JOIN `assets_genres` ON `assets_genres`.`assets_id` = `assets`.`id`
+  LEFT JOIN `genres` ON `genres`.`id` = `assets_genres`.`genres_id` 
+  LEFT JOIN `assets_publishers_role` ON `assets_publishers_role`.`assets_id`=`assets`.`id` 
+  LEFT JOIN `publisher_roles` ON `assets_publishers_role`.`publisher_roles_id`=`publisher_roles`.`id` 
+  LEFT JOIN `publishers` ON `assets_publishers_role`.`publishers_id`=`publishers`.`id` 
+  LEFT JOIN `asset_descriptions` ON `asset_descriptions`.`assets_id` = `assets`.`id` 
+  LEFT JOIN `description_types` ON `description_types`.`id` = `asset_descriptions`.`description_types_id` 
+  LEFT JOIN `assets_creators_roles` ON `assets_creators_roles`.`assets_id`=`assets`.`id` 
+  LEFT JOIN `creator_roles` ON `assets_creators_roles`.`creator_roles_id`=`creator_roles`.`id` 
+  LEFT JOIN `creators` ON `assets_creators_roles`.`creators_id`=`creators`.`id` 
+  LEFT JOIN `assets_contributors_roles` ON `assets_contributors_roles`.`assets_id`=`assets`.`id` 
+  LEFT JOIN `contributor_roles` ON `assets_contributors_roles`.`contributor_roles_id`=`contributor_roles`.`id` 
+  LEFT JOIN `contributors` ON `assets_contributors_roles`.`contributors_id`=`contributors`.`id` 
+  LEFT JOIN `rights_summaries` ON `rights_summaries`.`assets_id`=`assets`.`id` 
+  LEFT JOIN `annotations` ON `annotations`.`assets_id`=`assets`.`id` 
+  LEFT JOIN `instantiation_dates` ON `instantiation_dates`.`instantiations_id` = `instantiations`.`id` 
+  LEFT JOIN `date_types` ON `date_types`.`id` = `instantiation_dates`.`date_types_id` 
+  LEFT JOIN `instantiation_media_types` ON `instantiation_media_types`.`id` = `instantiations`.`instantiation_media_type_id` 
+  LEFT JOIN `instantiation_formats` ON `instantiation_formats`.`instantiations_id` = `instantiations`.`id` 
+LEFT JOIN `instantiation_generations` ON `instantiation_generations`.`instantiations_id` = `instantiations`.`id`
+  LEFT JOIN `generations` ON `generations`.`id` = `instantiation_generations`.`generations_id`
+  LEFT JOIN `instantiation_colors` ON `instantiation_colors`.`id` = `instantiations`.`instantiation_colors_id` 
+  LEFT JOIN `instantiation_identifier` ON `instantiations`.`id` = `instantiation_identifier`.`instantiations_id` 
+  LEFT JOIN `nominations` ON `nominations`.`instantiations_id` = `instantiations`.`id`
+  LEFT JOIN `nomination_status` ON `nomination_status`.`id` = `nominations`.`nomination_status_id`
+  LEFT JOIN `events` ON `events`.`instantiations_id` = `instantiations`.`id` AND  `events`.`event_types_id`='3'
+  LEFT JOIN `event_types` ON `event_types`.`id` = `events`.`event_types_id` AND event_types.event_type='migration'
+  LEFT JOIN `instantiation_dimensions` ON `instantiation_dimensions`.`instantiations_id`=`instantiations`.`id` 
+  LEFT JOIN `essence_tracks` ON `essence_tracks`.`instantiations_id`=`instantiations`.`id` 
+  LEFT JOIN `data_rate_units` AS `ins_data_rate_units` ON `ins_data_rate_units`.`id`=`instantiations`.`data_rate_units_id` 
+  LEFT JOIN `data_rate_units` ON `data_rate_units`.`id`=`essence_tracks`.`data_rate_units_id` 
+  LEFT JOIN `essence_track_types` ON `essence_track_types`.`id`=`essence_tracks`.`essence_track_types_id` 
+  LEFT JOIN `essence_track_frame_sizes` ON `essence_track_frame_sizes`.`id`=`essence_tracks`.`essence_track_frame_sizes_id` 
+  LEFT JOIN `essence_track_encodings` ON `essence_track_encodings`.`essence_tracks_id`=`essence_tracks`.`id` 
+  LEFT JOIN `essence_track_annotations` ON `essence_track_annotations`.`essence_tracks_id`=`essence_tracks`.`id` 
+  LEFT JOIN `instantiation_annotations` ON `instantiation_annotations`.`instantiations_id`=`instantiations`.`id` 
+
+ GROUP BY `instantiations`.`id`
+)");
 	}
 
 }

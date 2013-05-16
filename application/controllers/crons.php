@@ -342,5 +342,8 @@ class Crons extends CI_Controller
 			return (round($size / pow(1000, ($i = floor(log($size, 1000)))), 0) . $sizes[$i]);
 		}
 	}
-
+	function test(){
+		$this->load->model('searchd_model');
+		$this->searchd_model->abc();
+	}
 }

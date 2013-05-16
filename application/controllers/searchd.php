@@ -92,7 +92,7 @@ class Searchd extends MY_Controller
 		echo count($data['records']);
 		exit;
 	}
-
+	
 	function index()
 	{
 		$db_count = 0;

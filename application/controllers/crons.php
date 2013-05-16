@@ -352,6 +352,7 @@ class Crons extends CI_Controller
 	function test()
 	{
 		$this->load->model('searchd_model');
+		$this->load->library('sphnixrt');
 		$db_count = 0;
 		$offset = 0;
 		while ($db_count == 0)

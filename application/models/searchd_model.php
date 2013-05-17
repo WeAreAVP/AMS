@@ -55,6 +55,7 @@ class Searchd_Model extends CI_Model
 	function get_instantiation($record_ids)
 	{
 		$search_ids = implode(',', $record_ids);
+		debug($search_ids);
 		return $this->db->query("SELECT  instantiations.id,
 			GROUP_CONCAT(DISTINCT(instantiations.language) SEPARATOR ' | ') AS language, 
 			IFNULL(TIME_TO_SEC(instantiations.actual_duration),0) AS actual_duration, 

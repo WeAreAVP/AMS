@@ -351,6 +351,9 @@ class Crons extends CI_Controller
 
 	function test()
 	{
+		set_time_limit(0);
+		@ini_set("memory_limit", "1000M"); # 1GB
+		@ini_set("max_execution_time", 999999999999); # 1GB
 		$this->load->model('searchd_model');
 		$this->load->library('sphnixrt');
 		$db_count = 0;

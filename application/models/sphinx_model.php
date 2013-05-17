@@ -400,40 +400,40 @@ class Sphinx_Model extends CI_Model
 		if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
 		{
 			$station_name = str_replace('|||', '" | "', trim($this->session->userdata['organization']));
-			$where .=" @organization \"^$station_name$\"";
+			$where .=" @s_organization \"^$station_name$\"";
 		}
 		if (isset($this->session->userdata['states']) && $this->session->userdata['states'] != '')
 		{
 			$station_state = str_replace('|||', '" | "', trim($this->session->userdata['states']));
-			$where .=" @state \"^$station_state$\"";
+			$where .=" @s_state \"^$station_state$\"";
 		}
 		if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
 		{
 			$nomination = str_replace('|||', '" | "', trim($this->session->userdata['nomination']));
-			$nomination_id = $this->get_nomination_status_id($nomination);
-			$this->sphinxsearch->set_filter("nomination_status_id", array($nomination_id->id));
-//			$where .=" @status \"^$nomination$\"";
+//			$nomination_id = $this->get_nomination_status_id($nomination);
+//			$this->sphinxsearch->set_filter("nomination_status_id", array($nomination_id->id));
+			$where .=" @s_status \"^$nomination$\"";
 		}
 		if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
 		{
 			$media_type = str_replace('|||', '" | "', trim($this->session->userdata['media_type']));
-			$where .=" @media_type \"^$media_type$\"";
+			$where .=" @s_media_type \"^$media_type$\"";
 		}
 		if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
 		{
 
 			$physical_format = str_replace('|||', '" | "', trim($this->session->userdata['physical_format']));
-			$where .=" @format_name \"^$physical_format$\" @format_type \"physical\"";
+			$where .=" @s_format_name \"^$physical_format$\" @format_type \"physical\"";
 		}
 		if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
 		{
 			$digital_format = str_replace('|||', '" | "', trim($this->session->userdata['digital_format']));
-			$where .=" @format_name \"^$digital_format$\" @format_type \"digital\"";
+			$where .=" @s_format_name \"^$digital_format$\" @format_type \"digital\"";
 		}
 		if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
 		{
 			$generation = str_replace('|||', '" | "', trim($this->session->userdata['generation']));
-			$where .=" @generation \"^$generation$\"";
+			$where .=" @s_generation \"^$generation$\"";
 		}
 		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
 		{
@@ -447,7 +447,7 @@ class Sphinx_Model extends CI_Model
 		if ($this->is_station_user)
 		{
 
-			$where .=" @organization \"	^$this->station_name$\"";
+			$where .=" @s_organization \"	^$this->station_name$\"";
 		}
 
 		return $where;

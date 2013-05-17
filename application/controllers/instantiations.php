@@ -146,7 +146,7 @@ class Instantiations extends MY_Controller
 		}
 		$this->load->view('instantiations/index', $data);
 	}
-	
+
 	/**
 	 * Show the detail of an instantiation
 	 *  
@@ -681,6 +681,15 @@ class Instantiations extends MY_Controller
 						}
 						/* Essence Track End */
 					}
+					// Update Sphnix Indexes
+					$this->load->library('sphnixrt');
+					$this->load->model('searchd_model');
+					$this->load->helper('sphnixdata');
+					$records = $this->searchd_model->get_ins_index(array($instantiation_id));
+					$data = make_instantiation_sphnix_array($records[0], FALSE);
+					$this->sphnixrt->update('instantiations_list', $data);
+
+					// End Update Sphnix Indexes
 					redirect('instantiations/detail/' . $instantiation_id);
 				}
 				$data['asset_id'] = $detail->assets_id;
@@ -1124,18 +1133,18 @@ class Instantiations extends MY_Controller
 	{
 		$params = array('search' => '');
 		$column = array(
-			'Organization' => 'organization',
-			'Instantiation_ID' => 'instantiation_identifier',
-			'Nomination' => 'nomination_status_id',
-			'Instantiation\'s_Asset_Title' => 'asset_title',
-			'Media_Type' => 'media_type',
-			'Generation' => 'generation',
-			'Format' => 'format_name',
-			'Duration' => 'projected_duration',
-			'Date' => 'dates',
-			'File_size' => 'file_size',
-			'Colors' => 'color',
-			'Language' => 'language',
+			'Organization' => 's_organization',
+			'Instantiation_ID' => 's_instantiation_identifier',
+			'Nomination' => 's_status',
+			'Instantiation\'s_Asset_Title' => 's_asset_title',
+			'Media_Type' => 's_media_type',
+			'Generation' => 's_generation',
+			'Format' => 's_format_name',
+			'Duration' => 's_projected_duration',
+			'Date' => 's_dates',
+			'File_size' => 's_file_size',
+			'Colors' => 's_color',
+			'Language' => 's_language',
 		);
 
 
@@ -1148,11 +1157,11 @@ class Instantiations extends MY_Controller
 
 
 		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
-		$records = $this->sphinx->instantiations_list($params, $offset,100,TRUE);
+		$records = $this->sphinx->instantiations_list($params, $offset, 100, TRUE);
 		$data['total'] = $records['total_count'];
-		$record_ids=array_map(array($this, 'make_map_array'), $records['records']);
-		$this->load->model('searchd_model','searchd');
-		$records=$this->searchd->get_instantiation($record_ids);
+		$record_ids = array_map(array($this, 'make_map_array'), $records['records']);
+		$this->load->model('searchd_model', 'searchd');
+		$records = $this->searchd->get_instantiation($record_ids);
 //		$records = $records['records'];
 		$data['count'] = count($records);
 		$table_view = instantiations_datatable_view($records, $this->column_order);
@@ -1185,7 +1194,7 @@ class Instantiations extends MY_Controller
 				unset($stations);
 				$nomination = $this->sphinx->facet_index('nomination_status_id', $index);
 
-				$data['nomination_status']= sortByOneKey($nomination['records'], 'status');
+				$data['nomination_status'] = sortByOneKey($nomination['records'], 'status');
 //				$data['nomination_status'] = array();
 //				foreach ($nomination_status as $key => $status)
 //				{

@@ -264,14 +264,14 @@ class Sphinx_Model extends CI_Model
 		if ($limit)
 			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
-//		if (isset($this->session->userdata['column']) && $this->session->userdata['column'] != '' && $this->session->userdata['column'] != 'flag')
-//		{
-//			if ($this->session->userdata['column_order'] == 'asc')
-//				$sort_mode = SPH_SORT_ATTR_ASC;
-//			else
-//				$sort_mode = SPH_SORT_ATTR_DESC;
-//			$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['column']);
-//		}
+		if (isset($this->session->userdata['column']) && $this->session->userdata['column'] != '' && $this->session->userdata['column'] != 'flag')
+		{
+			if ($this->session->userdata['column_order'] == 'asc')
+				$sort_mode = SPH_SORT_ATTR_ASC;
+			else
+				$sort_mode = SPH_SORT_ATTR_DESC;
+			$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['column']);
+		}
 		$query = $this->make_where_clause();
 
 
@@ -318,11 +318,11 @@ class Sphinx_Model extends CI_Model
 		$where = '';
 		if ($type == 'physical')
 		{
-			$where = " @format_type \"physical\"";
+			$where = " @s_format_type \"physical\"";
 		}
 		if ($type == 'digital')
 		{
-			$where = " @format_type \"digital\"";
+			$where = " @s_format_type \"digital\"";
 		}
 
 		if (isset($this->session->userdata['custom_search']) && $this->session->userdata['custom_search'] != '')
@@ -423,12 +423,12 @@ class Sphinx_Model extends CI_Model
 		{
 
 			$physical_format = str_replace('|||', '" | "', trim($this->session->userdata['physical_format']));
-			$where .=" @s_format_name \"^$physical_format$\" @format_type \"physical\"";
+			$where .=" @s_format_name \"^$physical_format$\" @s_format_type \"physical\"";
 		}
 		if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
 		{
 			$digital_format = str_replace('|||', '" | "', trim($this->session->userdata['digital_format']));
-			$where .=" @s_format_name \"^$digital_format$\" @format_type \"digital\"";
+			$where .=" @s_format_name \"^$digital_format$\" @s_format_type \"digital\"";
 		}
 		if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
 		{

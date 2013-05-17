@@ -1216,6 +1216,7 @@ class Instantiations extends MY_Controller
 				unset($generation);
 
 				$digitized = $this->sphinx->facet_index('digitized', $index, 'digitized');
+				debug($digitized );
 				$data['digitized'] = $digitized['records'];
 
 				$migration = $this->sphinx->facet_index('migration', $index, 'migration');

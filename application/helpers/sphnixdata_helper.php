@@ -66,7 +66,7 @@ function make_assets_sphnix_array($row)
 		'location' => ! empty($row->location) ? $row->location : '',
 		'tracks' => ! empty($row->tracks) ? $row->tracks : '',
 		'language' => ! empty($row->language) ? $row->language : '',
-		'digitized' => ! empty($row->digitized) ? $row->digitized : '',
+		'digitized' => ! empty($row->digitized) ? $row->digitized : '0',
 		'file_size_unit_of_measure' => ! empty($row->file_size_unit_of_measure) ? $row->file_size_unit_of_measure : '',
 		'file_size' => ! empty($row->file_size) ? $row->file_size : '',
 		'channel_configuration' => ! empty($row->channel_configuration) ? $row->channel_configuration : '',

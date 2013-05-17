@@ -191,8 +191,8 @@ if ( ! $is_ajax)
 											if ($('#search_keyword').val() != '')
 											{
 												var random_id = rand(0, 1000365);
-												name = make_slug_name($('#search_keyword').val());
-												var search_id = name + random_id;
+//												name = make_slug_name($('#search_keyword').val());
+												var search_id = 'search_'+ random_id;
 												$('#tokens').append('<div class="btn-img" id="' + search_id + '" ><span class="search_keys">' + $('#search_keyword').val() + '</span><span class="btn-close-img" onclick="remove_keword(\'' + search_id + '\')"></span></div>');
 											}
 											$('#search_keyword').val('');

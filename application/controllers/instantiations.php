@@ -1184,16 +1184,16 @@ class Instantiations extends MY_Controller
 				unset($stations);
 				$nomination = $this->sphinx->facet_index('nomination_status_id', $index);
 
-				$nomination_status = sortByOneKey($nomination['records'], 'nomination_status_id');
-				$data['nomination_status'] = array();
-				foreach ($nomination_status as $key => $status)
-				{
-					if ($status['nomination_status_id'] != 0)
-					{
-						$data['nomination_status'][$key]['status'] = $this->sphinx->get_nomination_status($status['nomination_status_id'])->status;
-						$data['nomination_status'][$key]['@count'] = $status['@count'];
-					}
-				}
+				$data['nomination_status']= sortByOneKey($nomination['records'], 'status');
+//				$data['nomination_status'] = array();
+//				foreach ($nomination_status as $key => $status)
+//				{
+//					if ($status['nomination_status_id'] != 0)
+//					{
+//						$data['nomination_status'][$key]['status'] = $this->sphinx->get_nomination_status($status['nomination_status_id'])->status;
+//						$data['nomination_status'][$key]['@count'] = $status['@count'];
+//					}
+//				}
 
 				unset($nomination);
 				$media_type = $this->sphinx->facet_index('media_type', $index);
@@ -1234,16 +1234,16 @@ class Instantiations extends MY_Controller
 
 				$data['stations'] = json_decode($this->memcached_library->get($key_name . '_stations'), TRUE);
 
-				$nomination_status = json_decode($this->memcached_library->get($key_name . '_status'), TRUE);
-				$data['nomination_status'] = array();
-				foreach ($nomination_status as $key => $status)
-				{
-					if ($status['nomination_status_id'] != 0)
-					{
-						$data['nomination_status'][$key]['status'] = $this->sphinx->get_nomination_status($status['nomination_status_id'])->status;
-						$data['nomination_status'][$key]['@count'] = $status['@count'];
-					}
-				}
+				$data['nomination_status'] = json_decode($this->memcached_library->get($key_name . '_status'), TRUE);
+//				$data['nomination_status'] = array();
+//				foreach ($nomination_status as $key => $status)
+//				{
+//					if ($status['nomination_status_id'] != 0)
+//					{
+//						$data['nomination_status'][$key]['status'] = $this->sphinx->get_nomination_status($status['nomination_status_id'])->status;
+//						$data['nomination_status'][$key]['@count'] = $status['@count'];
+//					}
+//				}
 				$data['media_types'] = json_decode($this->memcached_library->get($key_name . '_media_type'), TRUE);
 				$data['physical_formats'] = json_decode($this->memcached_library->get($key_name . '_physical'), TRUE);
 				$data['digital_formats'] = json_decode($this->memcached_library->get($key_name . '_digital'), TRUE);

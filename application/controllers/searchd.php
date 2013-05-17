@@ -63,7 +63,7 @@ class Searchd extends CI_Controller
 			$this->sphnixrt->insert('stations', $record, $row->id);
 		}
 		$data = $this->sphnixrt->select('stations', array('start' => 0, 'limit' => 1000));
-		log('Total Station Inserted: ' . count($data['records']));
+		
 		exit_function();
 	}
 
@@ -99,7 +99,7 @@ class Searchd extends CI_Controller
 			if (count($records) < 1000)
 				$db_count ++;
 		}
-		log('Successfully Inserted all the instantiations.');
+		
 		exit_function();
 	}
 
@@ -125,7 +125,7 @@ class Searchd extends CI_Controller
 			if (count($records) < 1000)
 				$db_count ++;
 		}
-		log('Successfully Inserted all the assets.');
+		
 		exit_function();
 	}
 

@@ -116,7 +116,7 @@ class Instantiations extends MY_Controller
 		$config['per_page'] = 100;
 		$data['records'] = $records['records'];
 
-		debug($data['records']);
+		debug($records);
 		$data['count'] = count($data['records']);
 		if ($data['count'] > 0 && $offset === 0)
 		{

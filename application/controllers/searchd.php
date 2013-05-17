@@ -45,8 +45,8 @@ class Searchd extends CI_Controller
 
 	function test()
 	{
-		$data = $this->sphnixrt->select('instantiations_list', array('start' => 0, 'limit' => 1000));
-		debug($data);
+//		$data = $this->sphnixrt->select('instantiations_list', array('start' => 0, 'limit' => 1000));
+//		debug($data);
 	}
 
 	/**

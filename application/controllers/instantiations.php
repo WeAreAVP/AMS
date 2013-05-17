@@ -1133,18 +1133,18 @@ class Instantiations extends MY_Controller
 	{
 		$params = array('search' => '');
 		$column = array(
-			'Organization' => 's_organization',
-			'Instantiation_ID' => 's_instantiation_identifier',
-			'Nomination' => 's_status',
-			'Instantiation\'s_Asset_Title' => 's_asset_title',
-			'Media_Type' => 's_media_type',
-			'Generation' => 's_generation',
-			'Format' => 's_format_name',
-			'Duration' => 's_projected_duration',
-			'Date' => 's_dates',
-			'File_size' => 's_file_size',
-			'Colors' => 's_color',
-			'Language' => 's_language',
+			'Organization' => 'organization',
+			'Instantiation_ID' => 'instantiation_identifier',
+			'Nomination' => 'status',
+			'Instantiation\'s_Asset_Title' => 'asset_title',
+			'Media_Type' => 'media_type',
+			'Generation' => 'generation',
+			'Format' => 'format_name',
+			'Duration' => 'projected_duration',
+			'Date' => 'dates',
+			'File_size' => 'file_size',
+			'Colors' => 'color',
+			'Language' => 'language',
 		);
 
 
@@ -1158,7 +1158,7 @@ class Instantiations extends MY_Controller
 
 		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
 		$records = $this->sphinx->instantiations_list($params, $offset, 100, TRUE);
-		
+
 		$data['total'] = $records['total_count'];
 		$record_ids = array_map(array($this, 'make_map_array'), $records['records']);
 		$this->load->model('searchd_model', 'searchd');
@@ -1196,16 +1196,6 @@ class Instantiations extends MY_Controller
 				$nomination = $this->sphinx->facet_index('status', $index);
 
 				$data['nomination_status'] = sortByOneKey($nomination['records'], 'status');
-//				$data['nomination_status'] = array();
-//				foreach ($nomination_status as $key => $status)
-//				{
-//					if ($status['nomination_status_id'] != 0)
-//					{
-//						$data['nomination_status'][$key]['status'] = $this->sphinx->get_nomination_status($status['nomination_status_id'])->status;
-//						$data['nomination_status'][$key]['@count'] = $status['@count'];
-//					}
-//				}
-
 				unset($nomination);
 				$media_type = $this->sphinx->facet_index('media_type', $index);
 
@@ -1246,15 +1236,6 @@ class Instantiations extends MY_Controller
 				$data['stations'] = json_decode($this->memcached_library->get($key_name . '_stations'), TRUE);
 
 				$data['nomination_status'] = json_decode($this->memcached_library->get($key_name . '_status'), TRUE);
-//				$data['nomination_status'] = array();
-//				foreach ($nomination_status as $key => $status)
-//				{
-//					if ($status['nomination_status_id'] != 0)
-//					{
-//						$data['nomination_status'][$key]['status'] = $this->sphinx->get_nomination_status($status['nomination_status_id'])->status;
-//						$data['nomination_status'][$key]['@count'] = $status['@count'];
-//					}
-//				}
 				$data['media_types'] = json_decode($this->memcached_library->get($key_name . '_media_type'), TRUE);
 				$data['physical_formats'] = json_decode($this->memcached_library->get($key_name . '_physical'), TRUE);
 				$data['digital_formats'] = json_decode($this->memcached_library->get($key_name . '_digital'), TRUE);

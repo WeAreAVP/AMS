@@ -144,7 +144,7 @@ function make_instantiation_sphnix_array($row)
 		'format_type' => ! empty($row->format_type) ? $row->format_type : '',
 		's_format_name' => ! empty($row->format_name) ? $row->format_name : '',
 		'format_name' => ! empty($row->format_name) ? $row->format_name : '',
-		's_scolor' => ! empty($row->color) ? $row->color : '',
+		's_color' => ! empty($row->color) ? $row->color : '',
 		'color' => ! empty($row->color) ? $row->color : '',
 		's_generation' => ! empty($row->generation) ? $row->generation : '',
 		'generation' => ! empty($row->generation) ? $row->generation : '',

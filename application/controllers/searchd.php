@@ -43,6 +43,12 @@ class Searchd extends CI_Controller
 		$this->load->helper('sphnixdata');
 	}
 
+	function test()
+	{
+		$data = $this->sphnixrt->select('instantiations_list', array('start' => 0, 'limit' => 1000));
+		debug($data);
+	}
+
 	/**
 	 * Insert Stations in Sphnix Realtime Index.
 	 * 

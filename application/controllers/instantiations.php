@@ -111,7 +111,7 @@ class Instantiations extends MY_Controller
 		$data['isAjax'] = FALSE;
 
 		$records = $this->sphinx->instantiations_list($params, $offset);
-		debug($records );
+//		debug($records );
 		$data['total'] = $records['total_count'];
 		$config['total_rows'] = $data['total'];
 		$config['per_page'] = 100;

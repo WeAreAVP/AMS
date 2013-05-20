@@ -30,7 +30,12 @@ if ( ! $is_ajax)
 			}
 			?>
 			<div>
-				<a href="#compose_to_type" class="btn" data-toggle="modal" data-backdrop="static" id="compose_anchor">Compose Message</a>
+				<?php
+				if ($this->can_compose_alert)
+				{
+					?>
+					<a href="#compose_to_type" class="btn" data-toggle="modal" data-backdrop="static" id="compose_anchor">Compose Message</a>
+				<?php } ?>
 				<a href="#compose_confirm"  data-toggle="modal" id="confirm_anchor"  data-backdrop="static" style="display: none;"></a>
 			</div>
 			<div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
@@ -110,43 +115,43 @@ if ( ! $is_ajax)
 		</div>
 	</div>
 	<script type="text/javascript">
-							function read_sent_msg(id)
-							{
-								$.ajax({
-									type: 'POST',
-									url: site_url + 'messages/readsentmessage/' + id,
-									cache: false,
-									datatype: 'json',
-									success: function(r)
-									{
-										result = eval('(' + r + ')');
-										if (result.error == false)
+								function read_sent_msg(id)
+								{
+									$.ajax({
+										type: 'POST',
+										url: site_url + 'messages/readsentmessage/' + id,
+										cache: false,
+										datatype: 'json',
+										success: function(r)
 										{
-											$('#myGeneral_body').html(result.msg_data);
-											$('#myGeneral').modal('show');
+											result = eval('(' + r + ')');
+											if (result.error == false)
+											{
+												$('#myGeneral_body').html(result.msg_data);
+												$('#myGeneral').modal('show');
+											}
 										}
-									}
-								});
-							}
-							function read_msg(id)
-							{
-								read_sent_msg(id);
-							}
-							function filter_inbox() {
-								var stations = $('#stations').val();
-								var message_type = $('#message_type').val();
-								$.ajax({
-									type: 'POST',
-									url: site_url + 'messages/sent',
-									data: {stations: stations, message_type: message_type},
-									cache: false,
-									success: function(result) {
-										$('#append_record').html(result);
-										$("#station_table").trigger("update");
-										$("[rel=tooltip]").tooltip();
-									}
-								});
-							}
+									});
+								}
+								function read_msg(id)
+								{
+									read_sent_msg(id);
+								}
+								function filter_inbox() {
+									var stations = $('#stations').val();
+									var message_type = $('#message_type').val();
+									$.ajax({
+										type: 'POST',
+										url: site_url + 'messages/sent',
+										data: {stations: stations, message_type: message_type},
+										cache: false,
+										success: function(result) {
+											$('#append_record').html(result);
+											$("#station_table").trigger("update");
+											$("[rel=tooltip]").tooltip();
+										}
+									});
+								}
 	</script>
 
 	<?php

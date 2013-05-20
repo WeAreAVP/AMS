@@ -35,7 +35,12 @@ if ( ! $is_ajax)
 			}
 			?>
 			<div>
-				<a href="#compose_to_type" class="btn" data-toggle="modal" data-backdrop="static" id="compose_anchor">Compose Message</a>
+				<?php
+				if ($this->can_compose_alert)
+				{
+					?>
+					<a href="#compose_to_type" class="btn" data-toggle="modal" data-backdrop="static" id="compose_anchor">Compose Message</a>
+				<?php } ?>
 				<a href="#compose_confirm"  data-toggle="modal" id="confirm_anchor"  data-backdrop="static" style="display: none;"></a>
 			</div>
 			<div class="alert" style="margin-bottom: 0px; margin-top: 0px;display: none;" id="success_message"></div>
@@ -89,43 +94,42 @@ if ( ! $is_ajax)
 		</div>
 	</div>
 	<script type="text/javascript">
-									function filter_inbox() {
-										var stations = $('#stations').val();
-										var message_type = $('#message_type').val();
-										$.ajax({
-											type: 'POST',
-											url: site_url + 'messages/inbox',
-											data: {stations: stations, message_type: message_type},
+	function filter_inbox() {
+	var stations = $('#stations').val();
+		var message_type = $('#message_type').val();
+								$.ajax({
+		type: 'POST',
+		url: site_url + 'messages/inbox',
+			data: {stations: stations, message_type: message_type},
 											cache: false,
-											success: function(result) {
-												$('#append_record').html(result);
-												$("#station_table").trigger("update");
-												$("[rel=tooltip]").tooltip();
+			success: function(result) {
+			$('#append_record').html(result);
+	$("#station_table").trigger("update");
+	$("[rel=tooltip]").tooltip();
 
-											}
-										});
-									}
-									function read_inbox_msg(id)
+	}
+	});
+	} 	 							function read_inbox_msg(id)
 									{
-										$('#row_' + id).css('font-weight', 'normal');
-										$.ajax({
-											type: 'POST',
-											url: site_url + 'messages/readmessage/' + id,
-											cache: false,
-											datatype: 'json',
-											success: function(r)
-											{
-												$('#row_' + id).css('font-weight', 'normal');
-												result = eval('(' + r + ')');
-												if (result.error == false)
+		$('#row_' + id).css('font-weight', 'normal');
+								$.ajax({
+		type: 'POST',
+		url: site_url + 'messages/readmessage/' + id,
+		cache: false,
+			datatype: 'json',
+										success: function(r)
+			{
+			$('#row_' + id).css('font-weight', 'normal');
+				result = eval('(' + r + ')');
+					if (result.error == false)
 												{
-													if (result.reset_row)
-													{
-														$("#row_" + id).css('font-weight', 'normal');
-													}
-													$('#myGeneral_body').html(result.msg_data);
-													$('#msg_text_link').html(result.total_unread_text);
-													$('#myGeneral').modal('show');
+											if (result.reset_row)
+				{
+				$("#row_" + id).css('font-weight', 'normal');
+				}
+				$('#myGeneral_body').html(result.msg_data);
+		$('#msg_text_link').html(result.total_unread_text);
+	$('#myGeneral').modal('show');
 												}
 											}
 										});

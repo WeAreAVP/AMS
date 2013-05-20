@@ -214,7 +214,8 @@ class Sphinx_Model extends CI_Model
 
 	function where_filter()
 	{
-		$where = '@s_digitized "1"';
+		$this->sphinxsearch->set_filter("digitized", array(1));
+		$where = '';
 
 		if (isset($this->session->userdata['stand_date_filter']) && $this->session->userdata['stand_date_filter'] != '')
 		{
@@ -438,7 +439,8 @@ class Sphinx_Model extends CI_Model
 		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
 		{
 //			$where .=' @digitized "1" @!actual_duration "0"';
-			$where .=' @s_digitized "1"';
+//			$where .=' @s_digitized "1"';
+			$this->sphinxsearch->set_filter("digitized", array(1));
 		}
 		if ((isset($this->session->userdata['migration_failed']) && $this->session->userdata['migration_failed'] === '1' ) || $type == 'migration')
 		{

@@ -686,6 +686,7 @@ class Instantiations extends MY_Controller
 					$this->load->model('searchd_model');
 					$this->load->helper('sphnixdata');
 					$records = $this->searchd_model->get_ins_index(array($instantiation_id));
+					debug($records);
 					$data = make_instantiation_sphnix_array($records[0], FALSE);
 					$this->sphnixrt->update('instantiations_list', $data);
 

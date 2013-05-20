@@ -475,6 +475,7 @@ class Mediainfo extends CI_Controller
 							if (count($parent_instantiations) == 1)
 							{
 								$this->instant->update_instantiations($parent_instantiations[0]->id, array('digitized' => 1));
+								$this->update_ins_asset_index($parent_instantiations[0]->id);
 							}
 							else
 							{
@@ -482,6 +483,7 @@ class Mediainfo extends CI_Controller
 								if (count($parent_instantiations) > 0)
 								{
 									$this->instant->update_instantiations($parent_instantiations->id, array('digitized' => 1));
+									$this->update_ins_asset_index($parent_instantiations->id);
 								}
 							}
 
@@ -661,7 +663,6 @@ class Mediainfo extends CI_Controller
 					/* Essence Track type Start */
 //					if (isset($track['children']['format']) && isset($track['children']['format'][0]))
 //					{
-					
 //						if ((isset($track['attributes']['type']) && $track['attributes']['type'] !== 'Audio') || (isset($track['attributes']['type']) && $track['attributes']['type'] !== 'Video'))
 //						{
 //							if ( ! empty($track['children']['format'][0]['text']))
@@ -896,13 +897,31 @@ class Mediainfo extends CI_Controller
 					}
 					$dessence_track_counter ++;
 				}
+				$this->update_ins_asset_index($db_instantiation_id, $new = TRUE);
 			}
 		}
+
 		unset($instantiation);
 		unset($essence_track);
 //		echo '<br/><br/>Essence Tracks';
 //		debug($dessence_track, FALSE);
 //		echo '<br/>These values will be saved in the respective tables';
+	}
+
+	function update_ins_asset_index($db_instantiation_id, $new = FALSE)
+	{
+		$this->load->library('sphnixrt');
+		$this->load->model('searchd_model');
+		$this->load->helper('sphnixdata');
+		$instantiation_list = $this->searchd_model->get_ins_index(array($db_instantiation_id));
+		$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], $new);
+		if ($new)
+			$this->sphnixrt->insert('instantiations_list', $new_list_info, $instantiation_id);
+		else
+			$this->sphnixrt->update('instantiations_list', $new_list_info);
+		$asset_list = $this->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
+		$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
+		$this->sphnixrt->update('assets_list', $new_asset_info);
 	}
 
 	function get_asset_id_for_media_import($guid)

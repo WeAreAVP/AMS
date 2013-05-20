@@ -685,12 +685,12 @@ class Instantiations extends MY_Controller
 					$this->load->library('sphnixrt');
 					$this->load->model('searchd_model');
 					$this->load->helper('sphnixdata');
-					$records = $this->searchd_model->get_ins_index(array($instantiation_id));
-					debug($records[0]->assets_id,FALSE);
-					debug($records[0]);
-					$data = make_instantiation_sphnix_array($records[0], FALSE);
-					$this->sphnixrt->update('instantiations_list', $data);
-
+					$instantiation_list = $this->searchd_model->get_ins_index(array($instantiation_id));
+					$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], FALSE);
+					$this->sphnixrt->update('instantiations_list', $new_list_info);
+					$asset_list = $this->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
+					$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
+					$this->sphnixrt->update('assets_list', $new_asset_info);
 					// End Update Sphnix Indexes
 					redirect('instantiations/detail/' . $instantiation_id);
 				}
@@ -1040,6 +1040,18 @@ class Instantiations extends MY_Controller
 				$this->essence_track->insert_essence_tracks($essence_tracks_d);
 			}
 			/* Essence Track End */
+
+			// Update Sphnix Indexes
+			$this->load->library('sphnixrt');
+			$this->load->model('searchd_model');
+			$this->load->helper('sphnixdata');
+			$instantiation_list = $this->searchd_model->get_ins_index(array($instantiation_id));
+			$new_list_info = make_instantiation_sphnix_array($instantiation_list[0]);
+			$this->sphnixrt->insert('instantiations_list', $new_list_info,$instantiation_id);
+			$asset_list = $this->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
+			$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
+			$this->sphnixrt->update('assets_list', $new_asset_info);
+			// End Update Sphnix Indexes
 			if ($this->input->post('add_another'))
 			{
 				redirect('instantiations/add/' . $asset_id);
@@ -1218,7 +1230,7 @@ class Instantiations extends MY_Controller
 				unset($generation);
 
 				$digitized = $this->sphinx->facet_index('digitized', $index, 'digitized');
-				debug($digitized );
+				debug($digitized);
 				$data['digitized'] = $digitized['records'];
 
 				$migration = $this->sphinx->facet_index('migration', $index, 'migration');

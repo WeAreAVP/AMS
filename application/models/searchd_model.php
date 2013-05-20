@@ -46,6 +46,13 @@ class Searchd_Model extends CI_Model
 		debug($query->result());
 	}
 
+	function get_ins_by_asset_id($asset_id)
+	{
+		$this->db->select('id');
+		$this->db->where('assets_id', $asset_id);
+		return $this->db->get('instantiations')->result();
+	}
+
 	/**
 	 * Get Instantiations Detail for single or multiple id(s).
 	 * 

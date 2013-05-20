@@ -39,6 +39,9 @@ class Asset extends MY_Controller
 		$this->load->model('manage_asset_model', 'manage_asset');
 		$this->load->model('instantiations_model', 'instantiation');
 		$this->load->model('assets_model');
+		$this->load->library('sphnixrt');
+		$this->load->model('searchd_model');
+		$this->load->helper('sphnixdata');
 	}
 
 	public function edit()
@@ -500,6 +503,22 @@ class Asset extends MY_Controller
 						$this->assets_model->insert_rights_summaries($rights_summary_d);
 					}
 				}
+				// Update Sphnix Indexes
+				$asset_list = $this->searchd_model->get_asset_index(array($asset_id));
+				$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
+				$this->sphnixrt->update('assets_list', $new_asset_info);
+
+				$instantiations_of_asset = $this->searchd_model->get_ins_by_asset_id($asset_id);
+				if (count($instantiations_of_asset) > 0)
+				{
+					foreach ($instantiations_of_asset as $ins_asset)
+					{
+						$instantiation_list = $this->searchd_model->get_ins_index(array($ins_asset->id));
+						$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], FALSE);
+						$this->sphnixrt->update('instantiations_list', $new_list_info);
+					}
+				}
+				// End Update Sphnix Indexes
 				redirect('records/details/' . $asset_id, 'location');
 			}
 
@@ -537,13 +556,12 @@ class Asset extends MY_Controller
 	function insert_pbcore_values()
 	{
 		$records = file('genre.csv');
-			foreach ($records as $index => $line)
-			{
-				$explode_ids = explode(',', $line);
-				
+		foreach ($records as $index => $line)
+		{
+			$explode_ids = explode(',', $line);
+
 //				$this->manage_asset->insert_picklist_value(array('value' => $explode_ids[1], 'element_type_id' => 16, 'display_value' => $explode_ids[0]));
-			}
-			
+		}
 	}
 
 	public function add()
@@ -1066,6 +1084,9 @@ class Asset extends MY_Controller
 				}
 				/* Insert Asset Right End */
 			}
+			$asset_list = $this->searchd_model->get_asset_index(array($asset_id));
+			$new_asset_info = make_assets_sphnix_array($asset_list[0]);
+			$this->sphnixrt->insert('assets_list', $new_asset_info, $asset_id);
 			redirect('instantiations/add/' . $asset_id);
 		}
 

@@ -155,9 +155,12 @@ class Reports extends MY_Controller
 
 
 		$offset = isset($this->session->userdata['stand_offset']) ? $this->session->userdata['stand_offset'] : 0;
-		$records = $this->sphinx->standalone_report($offset);
+		$records = $this->sphinx->standalone_report($offset, 100, TRUE);
 		$data['total'] = $records['total_count'];
-		$records = $records['records'];
+		$record_ids = array_map(array($this, 'make_map_array'), $records['records']);
+		$this->load->model('searchd_model', 'searchd');
+		$records = $this->searchd->get_instantiation($record_ids);
+//		$records = $records['records'];
 		$data['count'] = count($records);
 		$table_view = standalone_datatable_view($records);
 

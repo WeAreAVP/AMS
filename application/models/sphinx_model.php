@@ -166,7 +166,7 @@ class Sphinx_Model extends CI_Model
 		}
 	}
 
-	function standalone_report($offset = 0, $limit = 100)
+	function standalone_report($offset = 0, $limit = 100, $select = FALSE)
 	{
 		$instantiations = array();
 		$total_record = 0;
@@ -176,6 +176,8 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->set_array_result(true);
 		$this->sphinxsearch->set_match_mode($mode);
 		$this->sphinxsearch->set_connect_timeout(120);
+		if ($select)
+			$this->sphinxsearch->set_select('id');
 		if ($limit)
 			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 		if (isset($this->session->userdata['standalone_column_order']))
@@ -411,8 +413,6 @@ class Sphinx_Model extends CI_Model
 		if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
 		{
 			$nomination = str_replace('|||', '" | "', trim($this->session->userdata['nomination']));
-//			$nomination_id = $this->get_nomination_status_id($nomination);
-//			$this->sphinxsearch->set_filter("nomination_status_id", array($nomination_id->id));
 			$where .=" @s_status \"^$nomination$\"";
 		}
 		if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
@@ -438,8 +438,6 @@ class Sphinx_Model extends CI_Model
 		}
 		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
 		{
-//			$where .=' @digitized "1" @!actual_duration "0"';
-//			$where .=' @s_digitized "1"';
 			$this->sphinxsearch->set_filter("digitized", array(1));
 		}
 		if ((isset($this->session->userdata['migration_failed']) && $this->session->userdata['migration_failed'] === '1' ) || $type == 'migration')

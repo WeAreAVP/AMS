@@ -51,8 +51,9 @@ class Mintimport extends CI_Controller
 		{
 			$zip->extractTo('temp/');
 			$zip->close();
-			$this->cron_model->scan_mint_directory('temp/', $dir_files);
-			echo $count = count($dir_files);
+			$this->load->helper('directory');
+			$map = directory_map('temp/', 2);
+			debug($map);
 			
 		}
 		else

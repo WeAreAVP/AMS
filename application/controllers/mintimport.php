@@ -53,12 +53,19 @@ class Mintimport extends CI_Controller
 			$zip->close();
 			$this->load->helper('directory');
 			$map = directory_map('temp/', 2);
-			debug($map);
-			
+			$xml_files = array();
+			foreach ($map as $directory)
+			{
+				foreach ($directory as $file)
+				{
+					$xml_files[] = $file;
+				}
+			}
+			debug($xml_files);
 		}
 		else
 		{
-			echo 'doh!';
+			log('Something went wrong  while extracting zip file.');
 		}
 	}
 

@@ -24,7 +24,7 @@
  * @license    AMS http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */
-class MintImport extends MY_Controller
+class Mintimport extends CI_Controller
 {
 
 	/**
@@ -48,7 +48,7 @@ class MintImport extends MY_Controller
 		$res = $zip->open($this->assets_path . 'pbcore.zip');
 		if ($res === TRUE)
 		{
-			$zip->extractTo('/temp/');
+			$zip->extractTo('temp/');
 			$zip->close();
 			echo 'woot!';
 		}

@@ -70,9 +70,11 @@ class Mintimport extends CI_Controller
 	function parse_xml_file($index, $file)
 	{
 		$file_content = file_get_contents('temp/' . $index . '/' . $file);
-		$xml_string = @simplexml_load_string($file_content);
-		unset($file_content);
-		$xmlArray = xmlObjToArr($xml_string);
+		
+		$xmlArray= json_decode(json_encode((array) simplexml_load_string($file_content)),1);
+//		$xml_string = @simplexml_load_string($file_content);
+//		unset($file_content);
+//		$xmlArray = xmlObjToArr($xml_string);
 		debug($xmlArray);
 	}
 

@@ -361,4 +361,33 @@ class Cron_Model extends CI_Model
 		return $this->db->update($this->_table_rotate_indexes, $data);
 	}
 
+	function scan_mint_directory($dir, &$my_data_array)
+	{
+		$dir = rtrim(trim($dir, '\\'), '/') . '/';
+		$d = @opendir($dir);
+
+		if ( ! $d)
+		{
+			die('The directory ' . $dir . ' does not exists or PHP have no access to it<br>');
+		}
+		while (false !== ($file = @readdir($d)))
+		{
+			if ($file != '.' && $file != '..')
+			{
+
+				if (is_file($dir . $file))
+				{
+					$my_data_array[] = $dir;
+				}
+				else
+				{
+
+					$this->scan_directory($dir . $file, $my_data_array);
+				}
+			}
+		}
+
+		@closedir($d);
+	}
+
 }

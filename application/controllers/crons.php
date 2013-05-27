@@ -184,12 +184,12 @@ class Crons extends CI_Controller
 				if (in_array($columns, array('physical', 'digital', 'digitized', 'migration')))
 				{
 					$result = $this->sphinx->facet_index($facet, $index_name, $columns);
-					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 3600);
+					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 864000);
 				}
 				else
 				{
 					$result = $this->sphinx->facet_index($facet, $index_name);
-					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 3600);
+					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 864000);
 				}
 			}
 			myLog("Succussfully Updated $index_name Facet Search");

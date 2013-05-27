@@ -39,6 +39,7 @@ class Mintimport extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('assets_model');
+		$this->load->model('cron_model');
 		$this->assets_path = 'assets/mint_import/';
 	}
 
@@ -50,7 +51,9 @@ class Mintimport extends CI_Controller
 		{
 			$zip->extractTo('temp/');
 			$zip->close();
-			echo 'woot!';
+			$this->cron_model->scan_mint_directory('temp/', $dir_files);
+			$count = count($dir_files);
+			
 		}
 		else
 		{

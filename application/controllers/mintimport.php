@@ -57,27 +57,28 @@ class Mintimport extends CI_Controller
 			{
 				$zip->extractTo($this->mint_path . 'unzipped/');
 				$zip->close();
-				$this->load->helper('directory');
-				$map = directory_map($this->mint_path . 'unzipped/', 2);
-				foreach ($map as $index => $directory)
-				{
-					foreach ($directory as $file)
-					{
-						$path = $index . '/' . $file;
-						$db_info = $this->mint->get_import_info_by_path($path);
-						if ( ! $db_info)
-						{
-							$mint_info = array('folder' => $index, 'path' => $path, 'is_processed' => 0, 'status_reason' => 'Not processed');
-							$this->mint->insert_import_info($mint_info);
-						}
-						else
-							myLog('Already in db.');
-					}
-				}
 			}
 			else
 			{
 				myLog('Something went wrong  while extracting zip file.');
+			}
+		}
+		myLog('Succesfully unzipped all files.');
+		$this->load->helper('directory');
+		$map = directory_map($this->mint_path . 'unzipped/', 2);
+		foreach ($map as $index => $directory)
+		{
+			foreach ($directory as $file)
+			{
+				$path = $index . '/' . $file;
+				$db_info = $this->mint->get_import_info_by_path($path);
+				if ( ! $db_info)
+				{
+					$mint_info = array('folder' => $index, 'path' => $path, 'is_processed' => 0, 'status_reason' => 'Not processed');
+					$this->mint->insert_import_info($mint_info);
+				}
+				else
+					myLog('Already in db.');
 			}
 		}
 		myLog('All mint files info stored. Folder Path:' . $this->mint_path);

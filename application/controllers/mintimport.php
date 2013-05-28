@@ -27,15 +27,15 @@
 class Mintimport extends CI_Controller
 {
 
-	/**
-	 * Constructor
-	 * 
-	 * Load Models, define global variables
-	 * 
-	 */
 	public $mint_path;
 	public $temp_path;
 
+	/**
+	 * Constructor
+	 * 
+	 * Load Models, Set values for global variables.
+	 * 
+	 */
 	function __construct()
 	{
 		parent::__construct();
@@ -46,6 +46,10 @@ class Mintimport extends CI_Controller
 		$this->temp_path = 'temp/';
 	}
 
+	/**
+	 * Unzip and store all the mint info imported files.
+	 * 
+	 */
 	function process_mint_dir()
 	{
 		$files = glob($this->mint_path . '*.zip');
@@ -85,28 +89,20 @@ class Mintimport extends CI_Controller
 		exit;
 	}
 
-	function get_mint_import_zip()
+	function import_mint_files()
 	{
-
-		$zip = new ZipArchive;
-		$res = $zip->open($this->mint_path . 'pbcore.zip');
-		if ($res === TRUE)
+		$result = $this->mint->get_files_to_import();
+		debug($result);
+		if ($result)
 		{
-			$zip->extractTo('temp/');
-			$zip->close();
-			$this->load->helper('directory');
-			$map = directory_map('temp/', 2);
-			foreach ($map as $index => $directory)
+			foreach ($result as $row)
 			{
-				foreach ($directory as $file)
-				{
-					$this->parse_xml_file($index, $file);
-				}
+				
 			}
 		}
 		else
 		{
-			log('Something went wrong  while extracting zip file.');
+			myLog('No file available for importing.');
 		}
 	}
 

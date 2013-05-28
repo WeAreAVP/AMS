@@ -173,6 +173,7 @@ class Mintimport extends CI_Controller
 				{
 					$identifier_detail['assets_id'] = $asset_id;
 					$identifier_detail['identifier'] = trim($row['text']);
+					$identifier_detail['identifier_source'] = '';
 					$identifier_detail['identifier_ref'] = '';
 					if (isset($xmlArray['pbc:pbcoreidentifier'][0]['children']['pbc:identifiersource'][$index]))
 						$identifier_detail['identifier_source'] = $xmlArray['pbc:pbcoreidentifier'][0]['children']['pbc:identifiersource'][$index]['text'];

@@ -50,7 +50,30 @@ class Mintimport extends CI_Controller
 		$files = glob($this->mint_path . '*.zip');
 		foreach ($files as $file)
 		{
-			echo $file;
+			$zip = new ZipArchive;
+			$res = $zip->open($file);
+			if ($res === TRUE)
+			{
+				$zip->extractTo($this->mint_path . 'unzipped/');
+				$zip->close();
+				$this->load->helper('directory');
+				$map = directory_map($this->mint_path . 'unzipped/', 2);
+				$path = array();
+				foreach ($map as $index => $directory)
+				{
+					foreach ($directory as $file)
+					{
+						$path[$index][] = $file;
+
+//						$this->parse_xml_file($index, $file);
+					}
+				}
+				debug($path);
+			}
+			else
+			{
+				log('Something went wrong  while extracting zip file.');
+			}
 		}
 		exit;
 	}

@@ -135,7 +135,7 @@ class Mintimport extends CI_Controller
 
 	function import_asset_info($station_id, $xmlArray)
 	{
-		debug($xmlArray, FALSE);
+		debug($xmlArray);
 		// Insert Asset
 		$asset_id = 1;
 		// Insert Asset Type Start //
@@ -164,38 +164,61 @@ class Mintimport extends CI_Controller
 		// Insert Asset Date Start //
 		// Insert Asset Date End //
 		// Insert Identifier Start //
-		$identifier_detail = array();
 		if (isset($xmlArray['pbc:pbcoreidentifier']) && ! empty($xmlArray['pbc:pbcoreidentifier']))
 		{
 			foreach ($xmlArray['pbc:pbcoreidentifier'][0]['children']['pbc:identifier'] as $index => $row)
 			{
 				if (isset($row['text']) && ! empty($row['text']))
 				{
+					$identifier_detail = array();
 					$identifier_detail['assets_id'] = $asset_id;
 					$identifier_detail['identifier'] = trim($row['text']);
 					$identifier_detail['identifier_source'] = '';
 					$identifier_detail['identifier_ref'] = '';
 					if (isset($xmlArray['pbc:pbcoreidentifier'][0]['children']['pbc:identifiersource'][$index]))
 						$identifier_detail['identifier_source'] = $xmlArray['pbc:pbcoreidentifier'][0]['children']['pbc:identifiersource'][$index]['text'];
+
+//					$this->assets_model->insert_identifiers($identifier_detail);
+					unset($identifier_detail);
 				}
 			}
 		}
-		debug($identifier_detail);
+
 		// Insert Identifier End //
+		// Insert Asset Title Start //
+		$title_detail = array();
+		if (isset($xmlArray['pbc:pbcoretitle']) && ! empty($xmlArray['pbc:pbcoretitle']))
+		{
+			foreach ($xmlArray['pbc:pbcoretitle'][0]['children']['pbc:title'] as $index => $row)
+			{
+				if (isset($row['text']) && ! empty($row['text']))
+				{
+					$title_detail['assets_id'] = $asset_id;
+					$title_detail['title'] = trim($row['text']);
+					$temp_title_type = $xmlArray['pbc:pbcoretitle'][0]['children']['pbc:titletype'][$index];
+					if (isset($temp_title_type))
+					{
+						$asset_title_types = $this->assets_model->get_asset_title_types_by_title_type(trim($temp_title_type));
+						if (isset($asset_title_types) && isset($asset_title_types->id))
+						{
+							$asset_title_types_id = $asset_title_types->id;
+						}
+						else
+						{
+							$asset_title_types_id = $this->assets_model->insert_asset_title_types(array("title_type" => trim($temp_title_type)));
+						}
+						$title_detail['asset_title_types_id'] = $asset_title_types_id;
+					}
+				}
+			}
+		}
+		debug($title_detail);
+		// Insert Asset Title End //
 	}
 
 	function import_instantiation_info($asset_id, $xmlArray)
 	{
 		
-	}
-
-	function delete_temp_files()
-	{
-		$files = glob($this->temp_path . '*');
-		foreach ($files as $file)
-		{
-			unlink($file);
-		}
 	}
 
 }

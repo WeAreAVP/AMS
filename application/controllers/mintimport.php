@@ -136,6 +136,12 @@ class Mintimport extends CI_Controller
 	function import_asset_info($station_id, $xmlArray)
 	{
 		debug($xmlArray);
+		// Insert Asset
+		// Insert Asset Type
+		foreach ($xmlArray['pbc:pbcoreassettype'] as $row)
+		{
+			debug($row);
+		}
 	}
 
 	function import_instantiation_info($asset_id, $xmlArray)

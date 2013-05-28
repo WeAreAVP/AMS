@@ -121,7 +121,7 @@ class Mintimport extends CI_Controller
 	 */
 	function parse_xml_file($path)
 	{
-		$file_content = file_get_contents($path);
+		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
 		$xml_string = @simplexml_load_string($file_content);
 		unset($file_content);
 		$xmlArray = xmlObjToArr($xml_string);

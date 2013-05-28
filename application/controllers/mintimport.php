@@ -41,6 +41,7 @@ class Mintimport extends CI_Controller
 		parent::__construct();
 		$this->load->model('assets_model');
 		$this->load->model('cron_model');
+		$this->load->model('mint_model', 'mint');
 		$this->mint_path = 'assets/mint_import/';
 		$this->temp_path = 'temp/';
 	}
@@ -58,23 +59,28 @@ class Mintimport extends CI_Controller
 				$zip->close();
 				$this->load->helper('directory');
 				$map = directory_map($this->mint_path . 'unzipped/', 2);
-				$path = array();
 				foreach ($map as $index => $directory)
 				{
 					foreach ($directory as $file)
 					{
-						$path[$index][] = $file;
-
-//						$this->parse_xml_file($index, $file);
+						$path = $index . '/' . $file;
+						$db_info = $this->mint->get_import_info_by_path($path);
+						if ( ! $db_info)
+						{
+							$mint_info = array('folder' => $index, 'path' => $path, 'is_processed' => 0, 'status_reason' => 'Not processed');
+							$this->mint->insert_import_info($mint_info);
+						}
+						else
+							myLog('Already in db.');
 					}
 				}
-				debug($path);
 			}
 			else
 			{
-				log('Something went wrong  while extracting zip file.');
+				myLog('Something went wrong  while extracting zip file.');
 			}
 		}
+		myLog('All mint files info stored. Folder Path:' . $this->mint_path);
 		exit;
 	}
 

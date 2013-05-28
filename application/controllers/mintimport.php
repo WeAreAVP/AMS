@@ -135,13 +135,52 @@ class Mintimport extends CI_Controller
 
 	function import_asset_info($station_id, $xmlArray)
 	{
-		debug($xmlArray,FALSE);
+		debug($xmlArray, FALSE);
 		// Insert Asset
-		// Insert Asset Type
-		foreach ($xmlArray['pbc:pbcoreassettype'] as $row)
+		$asset_id = 1;
+		// Insert Asset Type Start //
+		if (isset($xmlArray['pbc:pbcoreassettype']) && ! empty($xmlArray['pbc:pbcoreassettype']))
 		{
-			debug($row);
+			foreach ($xmlArray['pbc:pbcoreassettype'] as $row)
+			{
+				if (isset($row['text']) && ! empty($row['text']))
+				{
+					$asset_type_detail = array();
+					$asset_type_detail['assets_id'] = $asset_id;
+					if ($asset_type = $this->assets_model->get_assets_type_by_type($row['text']))
+					{
+						$asset_type_detail['asset_types_id'] = $asset_type->id;
+					}
+					else
+					{
+//						$asset_type_detail['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $row['text']));
+					}
+//					$this->assets_model->insert_assets_asset_types($asset_type_detail);
+					unset($asset_type_detail);
+				}
+			}
 		}
+		// Insert Asset Type End //
+		// Insert Asset Date Start //
+		// Insert Asset Date End //
+		// Insert Identifier Start //
+		$identifier_detail = array();
+		if (isset($xmlArray['pbc:pbcoreidentifier']) && ! empty($xmlArray['pbc:pbcoreidentifier']))
+		{
+			foreach ($xmlArray['pbc:pbcoreidentifier'][0]['children']['pbc:identifier'] as $index => $row)
+			{
+				if (isset($row['text']) && ! empty($row['text']))
+				{
+					$identifier_detail['assets_id'] = $asset_id;
+					$identifier_detail['identifier'] = trim($row['text']);
+					$identifier_detail['identifier_ref'] = '';
+					if (isset($xmlArray['pbc:pbcoreidentifier'][0]['children']['pbc:identifiersource'][$index]))
+						$identifier_detail['identifier_source'] = $xmlArray['pbc:pbcoreidentifier'][0]['children']['pbc:identifiersource'][$index]['text'];
+				}
+			}
+		}
+		debug($identifier_detail);
+		// Insert Identifier End //
 	}
 
 	function import_instantiation_info($asset_id, $xmlArray)

@@ -30,10 +30,11 @@ class Mintimport extends CI_Controller
 	/**
 	 * Constructor
 	 * 
-	 * Load Models
+	 * Load Models, define global variables
 	 * 
 	 */
 	public $mint_path;
+	public $temp_path;
 
 	function __construct()
 	{
@@ -41,10 +42,22 @@ class Mintimport extends CI_Controller
 		$this->load->model('assets_model');
 		$this->load->model('cron_model');
 		$this->mint_path = 'assets/mint_import/';
+		$this->temp_path = 'temp/';
+	}
+
+	function process_mint_dir()
+	{
+		$files = glob($this->mint_path . '*.zip');
+		foreach ($files as $file)
+		{
+			echo $file;
+		}
+		exit;
 	}
 
 	function get_mint_import_zip()
 	{
+
 		$zip = new ZipArchive;
 		$res = $zip->open($this->mint_path . 'pbcore.zip');
 		if ($res === TRUE)
@@ -73,7 +86,30 @@ class Mintimport extends CI_Controller
 		$xml_string = @simplexml_load_string($file_content);
 		unset($file_content);
 		$xmlArray = xmlObjToArr($xml_string);
+		$asset_id = $this->import_asset_info($station_id, $xmlArray['children']);
+		if ($asset_id)
+			$this->import_instantiation_info($asset_id, $xmlArray);
+		log('Successfully imported all the information to AMS');
 		debug($xmlArray);
+	}
+
+	function import_asset_info($station_id, $xmlArray)
+	{
+		
+	}
+
+	function import_instantiation_info($asset_id, $xmlArray)
+	{
+		
+	}
+
+	function delete_temp_files()
+	{
+		$files = glob($this->temp_path . '*');
+		foreach ($files as $file)
+		{
+			unlink($file);
+		}
 	}
 
 }

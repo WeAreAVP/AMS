@@ -53,6 +53,19 @@ class Mint_Model extends CI_Model
 	}
 
 	/**
+	 * Update the status of mint import file by id.
+	 * 
+	 * @param array $data 
+	 * @return integer inserted it
+	 */
+	function update_mint_import_file($import_id, $data)
+	{
+		$this->db->where('id', $import_id);
+		$this->db->update($this->_table, $data);
+		return $this->db->insert_id();
+	}
+
+	/**
 	 * Insert files info of mint import.
 	 *  
 	 * @param array $data

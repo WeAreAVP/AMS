@@ -52,6 +52,9 @@ class Mintimport extends CI_Controller
 	 */
 	function process_mint_dir()
 	{
+		set_time_limit(0);
+		@ini_set("memory_limit", "2000M"); # 2GB
+		@ini_set("max_execution_time", 999999999999);
 		$files = glob($this->mint_path . '*.zip');
 		foreach ($files as $file)
 		{
@@ -86,18 +89,23 @@ class Mintimport extends CI_Controller
 			}
 		}
 		myLog('All mint files info stored. Folder Path:' . $this->mint_path);
-		exit;
+		$this->import_mint_files();
 	}
 
+	/**
+	 * Import mint transformed files.
+	 * 
+	 */
 	function import_mint_files()
 	{
 		$result = $this->mint->get_files_to_import();
-		debug($result);
 		if ($result)
 		{
 			foreach ($result as $row)
 			{
-				
+				$this->mint->update_mint_import_file($row->id, array('processed_at' => date('Y-m-d H:m:i'), 'status_reason' => 'Processing'));
+				$this->parse_xml_file($row->path);
+				$this->mint->update_mint_import_file($row->id, array('is_processed' => 1, 'status_reason' => 'Complete'));
 			}
 		}
 		else
@@ -106,12 +114,18 @@ class Mintimport extends CI_Controller
 		}
 	}
 
-	function parse_xml_file($index, $file)
+	/**
+	 * Parse XML file for importing.
+	 * 
+	 * @param string $path file path
+	 */
+	function parse_xml_file($path)
 	{
-		$file_content = file_get_contents('temp/' . $index . '/' . $file);
+		$file_content = file_get_contents($path);
 		$xml_string = @simplexml_load_string($file_content);
 		unset($file_content);
 		$xmlArray = xmlObjToArr($xml_string);
+		$station_id = 1;
 		$asset_id = $this->import_asset_info($station_id, $xmlArray['children']);
 		if ($asset_id)
 			$this->import_instantiation_info($asset_id, $xmlArray);
@@ -121,7 +135,7 @@ class Mintimport extends CI_Controller
 
 	function import_asset_info($station_id, $xmlArray)
 	{
-		
+		debug($xmlArray);
 	}
 
 	function import_instantiation_info($asset_id, $xmlArray)

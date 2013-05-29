@@ -203,7 +203,7 @@ class Mintimport extends CI_Controller
 						$identifier_detail['identifier_source'] = $row['attributes']['source'];
 					if (isset($row['attributes']['ref']) && ! empty($row['attributes']['ref']))
 						$identifier_detail['identifier_ref'] = $row['attributes']['ref'];
-					$test = $identifier_detail;
+					$test[] = $identifier_detail;
 //					$this->assets_model->insert_identifiers($identifier_detail);
 					unset($identifier_detail);
 				}

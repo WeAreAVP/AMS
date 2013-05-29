@@ -28,7 +28,6 @@ class Mintimport extends CI_Controller
 {
 
 	public $mint_path;
-	public $temp_path;
 
 	/**
 	 * Constructor
@@ -43,7 +42,6 @@ class Mintimport extends CI_Controller
 		$this->load->model('cron_model');
 		$this->load->model('mint_model', 'mint');
 		$this->mint_path = 'assets/mint_import/';
-		$this->temp_path = 'temp/';
 	}
 
 	/**
@@ -103,9 +101,9 @@ class Mintimport extends CI_Controller
 		{
 			foreach ($result as $row)
 			{
-				$this->mint->update_mint_import_file($row->id, array('processed_at' => date('Y-m-d H:m:i'), 'status_reason' => 'Processing'));
+//				$this->mint->update_mint_import_file($row->id, array('processed_at' => date('Y-m-d H:m:i'), 'status_reason' => 'Processing'));
 				$this->parse_xml_file($row->path);
-				$this->mint->update_mint_import_file($row->id, array('is_processed' => 1, 'status_reason' => 'Complete'));
+//				$this->mint->update_mint_import_file($row->id, array('is_processed' => 1, 'status_reason' => 'Complete'));
 			}
 		}
 		else
@@ -139,34 +137,34 @@ class Mintimport extends CI_Controller
 		// Insert Asset
 		$asset_id = 1;
 		// Insert Asset Type Start //
-		if (isset($xmlArray['pbc:pbcoreassettype']) && ! empty($xmlArray['pbc:pbcoreassettype']))
-		{
-			foreach ($xmlArray['pbc:pbcoreassettype'] as $row)
-			{
-				if (isset($row['text']) && ! empty($row['text']))
-				{
-					$asset_type_detail = array();
-					$asset_type_detail['assets_id'] = $asset_id;
-					if ($asset_type = $this->assets_model->get_assets_type_by_type($row['text']))
-					{
-						$asset_type_detail['asset_types_id'] = $asset_type->id;
-					}
-					else
-					{
-//						$asset_type_detail['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $row['text']));
-					}
-//					$this->assets_model->insert_assets_asset_types($asset_type_detail);
-					unset($asset_type_detail);
-				}
-			}
-		}
+//		if (isset($xmlArray['pbc:pbcoreassettype']) && ! empty($xmlArray['pbc:pbcoreassettype']))
+//		{
+//			foreach ($xmlArray['pbc:pbcoreassettype'] as $row)
+//			{
+//				if (isset($row['text']) && ! empty($row['text']))
+//				{
+//					$asset_type_detail = array();
+//					$asset_type_detail['assets_id'] = $asset_id;
+//					if ($asset_type = $this->assets_model->get_assets_type_by_type($row['text']))
+//					{
+//						$asset_type_detail['asset_types_id'] = $asset_type->id;
+//					}
+//					else
+//					{
+////						$asset_type_detail['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $row['text']));
+//					}
+////					$this->assets_model->insert_assets_asset_types($asset_type_detail);
+//					unset($asset_type_detail);
+//				}
+//			}
+//		}
 		// Insert Asset Type End //
 		// Insert Asset Date Start //
 		// Insert Asset Date End //
 		// Insert Identifier Start //
-		if (isset($xmlArray['pbc:pbcoreidentifier']) && ! empty($xmlArray['pbc:pbcoreidentifier']))
+		if (isset($xmlArray['ams:pbcoreidentifier']) && ! empty($xmlArray['ams:pbcoreidentifier']))
 		{
-			foreach ($xmlArray['pbc:pbcoreidentifier'][0]['children']['pbc:identifier'] as $index => $row)
+			foreach ($xmlArray['ams:pbcoreidentifier'] as $row)
 			{
 				if (isset($row['text']) && ! empty($row['text']))
 				{
@@ -175,8 +173,8 @@ class Mintimport extends CI_Controller
 					$identifier_detail['identifier'] = trim($row['text']);
 					$identifier_detail['identifier_source'] = '';
 					$identifier_detail['identifier_ref'] = '';
-					if (isset($xmlArray['pbc:pbcoreidentifier'][0]['children']['pbc:identifiersource'][$index]))
-						$identifier_detail['identifier_source'] = $xmlArray['pbc:pbcoreidentifier'][0]['children']['pbc:identifiersource'][$index]['text'];
+					if (isset($row['attributes']['source']) && ! empty($row['attributes']['source']))
+						$identifier_detail['identifier_source'] = $row['attributes']['source'];
 
 //					$this->assets_model->insert_identifiers($identifier_detail);
 					unset($identifier_detail);
@@ -186,34 +184,258 @@ class Mintimport extends CI_Controller
 
 		// Insert Identifier End //
 		// Insert Asset Title Start //
-		$title_detail = array();
-		if (isset($xmlArray['pbc:pbcoretitle']) && ! empty($xmlArray['pbc:pbcoretitle']))
+
+		if (isset($xmlArray['ams:pbcoretitle']) && ! empty($xmlArray['ams:pbcoretitle']))
 		{
-			foreach ($xmlArray['pbc:pbcoretitle'][0]['children']['pbc:title'] as $index => $row)
+			foreach ($xmlArray['ams:pbcoretitle'] as $row)
 			{
 				if (isset($row['text']) && ! empty($row['text']))
 				{
+					$title_detail = array();
 					$title_detail['assets_id'] = $asset_id;
 					$title_detail['title'] = trim($row['text']);
-					$temp_title_type = $xmlArray['pbc:pbcoretitle'][0]['children']['pbc:titletype'][$index];
-					if (isset($temp_title_type))
+
+					if (isset($row['attributes']['titletype']) && ! empty($row['attributes']['titletype']))
 					{
-						$asset_title_types = $this->assets_model->get_asset_title_types_by_title_type(trim($temp_title_type));
+						$asset_title_types = $this->assets_model->get_asset_title_types_by_title_type(trim($row['attributes']['titletype']));
 						if (isset($asset_title_types) && isset($asset_title_types->id))
 						{
 							$asset_title_types_id = $asset_title_types->id;
 						}
 						else
 						{
-							$asset_title_types_id = $this->assets_model->insert_asset_title_types(array("title_type" => trim($temp_title_type)));
+							$asset_title_types_id = $this->assets_model->insert_asset_title_types(array("title_type" => trim($row['attributes']['titletype'])));
 						}
 						$title_detail['asset_title_types_id'] = $asset_title_types_id;
+					}
+					if (isset($row['attributes']['ref']) && ! is_empty($row['attributes']['ref']))
+					{
+						$title_detail['title_ref'] = $row['attributes']['ref'];
+					}
+					if (isset($row['attributes']['source']) && ! is_empty($row['attributes']['source']))
+					{
+						$title_detail['title_source'] = $row['attributes']['source'];
+					}
+					$title_detail['created'] = date('Y-m-d H:i:s');
+//					$this->assets_model->insert_asset_titles($title_detail);
+					unset($title_detail);
+				}
+			}
+		}
+		// Insert Asset Title End //
+		// Asset Subject Start //
+
+		if (isset($xmlArray['ams:pbcoresubject']))
+		{
+			foreach ($xmlArray['ams:pbcoresubject'] as $pbcoresubject)
+			{
+				$subject_detail = array();
+				if (isset($pbcoresubject['text']) && ! is_empty($pbcoresubject['text']))
+				{
+					$subject_detail['assets_id'] = $asset_id;
+					if (isset($pbcoresubject['attributes']['subjecttype']) && ! is_empty($pbcoresubject['attributes']['subjecttype']))
+					{
+						$subject_d = array();
+						$subject_d['subject'] = $pbcoresubject['attributes']['subjecttype'];
+						if (isset($pbcoresubject['attributes']['ref']) && ! is_empty($pbcoresubject['attributes']['ref']))
+						{
+							$subject_d['subject_ref'] = $pbcoresubject['attributes']['ref'];
+						}
+						if (isset($pbcoresubject['attributes']['source']) && ! is_empty($pbcoresubject['attributes']['source']))
+						{
+							$subject_d['subject_source'] = $pbcoresubject['attributes']['source'];
+						}
+
+						$subjects = $this->assets_model->get_subjects_id_by_subject($pbcoresubject['attributes']['subjecttype']);
+						if (isset($subjects) && isset($subjects->id))
+						{
+							$subject_id = $subjects->id;
+						}
+						else
+						{
+							$subject_id = $this->assets_model->insert_subjects($subject_d);
+						}
+						$subject_detail['subjects_id'] = $subject_id;
+						$assets_subject_id = $this->assets_model->insert_assets_subjects($subject_detail);
 					}
 				}
 			}
 		}
-		debug($title_detail);
-		// Insert Asset Title End //
+		// Asset Subject End  //
+		// Asset Description Start //
+
+		if (isset($xmlArray['ams:pbcoredescription']))
+		{
+			foreach ($xmlArray['ams:pbcoredescription'] as $pbcoredescription)
+			{
+				$asset_descriptions_d = array();
+				if (isset($pbcoredescription['text']) && ! is_empty($pbcoredescription['text']))
+				{
+					$asset_descriptions_d['assets_id'] = $asset_id;
+					$asset_descriptions_d['description'] = $pbcoredescription['text'];
+					if (isset($pbcoredescription['attributes']['descriptiontype']) && ! is_empty($pbcoredescription['attributes']['descriptiontype']))
+					{
+						$asset_description_type = $this->assets_model->get_description_by_type($pbcoredescription['attributes']['descriptiontype']);
+						if (isset($asset_description_type) && isset($asset_description_type->id))
+						{
+							$asset_description_types_id = $asset_description_type->id;
+						}
+						else
+						{
+							$asset_description_types_id = $this->assets_model->insert_description_types(array("description_type" => $pbcoredescription['attributes']['descriptiontype']));
+						}
+						$asset_descriptions_d['description_types_id'] = $asset_description_types_id;
+					}
+					$this->assets_model->insert_asset_descriptions($asset_descriptions_d);
+				}
+			}
+		}
+		// Asset Description End  //
+		// Asset Genre Start //
+
+		if (isset($xmlArray['ams:pbcoregenre']))
+		{
+			foreach ($xmlArray['ams:pbcoregenre'] as $pbcoregenre)
+			{
+				$asset_genre_d = array();
+				$asset_genre = array();
+				$asset_genre['assets_id'] = $asset_id;
+				if (isset($pbcoregenre['text']) && ! is_empty($pbcoregenre['text']))
+				{
+					$asset_genre_d['genre'] = $pbcoregenre['text'];
+					$asset_genre_type = $this->assets_model->get_genre_type($pbcoregenre['text']);
+					if (isset($asset_genre_type) && isset($asset_genre_type->id))
+					{
+						$asset_genre['genres_id'] = $asset_genre_type->id;
+					}
+					else
+					{
+						if (isset($pbcoregenre['attributes']['source']) && ! is_empty($pbcoregenre['attributes']['source']))
+						{
+							$asset_genre_d['genre_source'] = $pbcoregenre['attributes']['source'];
+						}
+						if (isset($pbcoregenre['attributes']['ref']) && ! is_empty($pbcoregenre['attributes']['ref']))
+						{
+							$asset_genre_d['genre_ref'] = $pbcoregenre['attributes']['ref'];
+						}
+						$asset_genre_id = $this->assets_model->insert_genre($asset_genre_d);
+						$asset_genre['genres_id'] = $asset_genre_id;
+					}
+					$this->assets_model->insert_asset_genre($asset_genre);
+				}
+			}
+		}
+		// Asset Genre End  //
+		// Asset Coverage Start  //
+		if (isset($xmlArray['ams:pbcorecoverage']))
+		{
+			foreach ($xmlArray['ams:pbcorecoverage'] as $pbcore_coverage)
+			{
+				$coverage = array();
+				$coverage['assets_id'] = $asset_id;
+				if (isset($pbcore_coverage['children']['coverage'][0]['text']) && ! is_empty($pbcore_coverage['children']['coverage'][0]['text']))
+				{
+					$coverage['coverage'] = $pbcore_coverage['children']['coverage'][0]['text'];
+					if (isset($pbcore_coverage['children']['coveragetype'][0]['text']) && ! is_empty($pbcore_coverage['children']['coveragetype'][0]['text']))
+					{
+						$coverage['coverage_type'] = $pbcore_coverage['children']['coveragetype'][0]['text'];
+					}
+					$asset_coverage = $this->assets_model->insert_coverage($coverage);
+				}
+			}
+		}
+		// Asset Coverage End  //
+		// Asset Audience Level Start //
+
+		if (isset($xmlArray['ams:pbcoreaudiencelevel']))
+		{
+			foreach ($xmlArray['ams:pbcoreaudiencelevel'] as $pbcoreaudiencelevel)
+			{
+				$audience_level = array();
+				$asset_audience_level = array();
+				$asset_audience_level['assets_id'] = $asset_id;
+				if (isset($pbcoreaudiencelevel['text']) && ! is_empty($pbcoreaudiencelevel['text']))
+				{
+					$audience_level['audience_level'] = trim($pbcoreaudiencelevel['text']);
+					if (isset($pbcoreaudiencelevel['attributes']['source']) && ! is_empty($pbcoreaudiencelevel['attributes']['source']))
+					{
+						$audience_level['audience_level_source'] = $pbcoreaudiencelevel['attributes']['source'];
+					}
+					if (isset($pbcoreaudiencelevel['attributes']['ref']) && ! is_empty($pbcoreaudiencelevel['attributes']['ref']))
+					{
+						$audience_level['audience_level_ref'] = $pbcoreaudiencelevel['attributes']['ref'];
+					}
+					$db_audience_level = $this->assets_model->get_audience_level($pbcoreaudiencelevel['text']);
+					if (isset($db_audience_level) && isset($db_audience_level->id))
+					{
+						$asset_audience_level['audience_levels_id'] = $db_audience_level->id;
+					}
+					else
+					{
+						$asset_audience_level['audience_levels_id'] = $this->assets_model->insert_audience_level($audience_level);
+					}
+					$asset_audience = $this->assets_model->insert_asset_audience($asset_audience_level);
+				}
+			}
+		}
+		// Asset Audience Level End  //
+		if (isset($xmlArray['ams:pbcoreaudiencerating']))
+		{
+			foreach ($xmlArray['ams:pbcoreaudiencerating'] as $pbcoreaudiencerating)
+			{
+				$audience_rating = array();
+				$asset_audience_rating = array();
+				$asset_audience_rating['assets_id'] = $asset_id;
+				if (isset($pbcoreaudiencerating['text']) && ! is_empty($pbcoreaudiencerating['text']))
+				{
+					$db_audience_rating = $this->assets_model->get_audience_rating($pbcoreaudiencerating['text']);
+					if (isset($db_audience_rating) && isset($db_audience_rating->id))
+					{
+						$asset_audience_rating['audience_ratings_id'] = $db_audience_rating->id;
+					}
+					else
+					{
+						$audience_rating['audience_rating'] = $pbcoreaudiencerating['text'];
+						if (isset($pbcoreaudiencerating['attributes']['source']) && ! is_empty($pbcoreaudiencerating['attributes']['source']))
+						{
+							$audience_rating['audience_rating_source'] = $pbcoreaudiencerating['attributes']['source'];
+						}
+						if (isset($pbcoreaudiencerating['attributes']['ref']) && ! is_empty($pbcoreaudiencerating['attributes']['ref']))
+						{
+							$audience_rating['audience_rating_ref'] = $pbcoreaudiencerating['attributes']['ref'];
+						}
+						$asset_audience_rating['audience_ratings_id'] = $this->assets_model->insert_audience_rating($audience_rating);
+					}
+					$asset_audience_rate = $this->assets_model->insert_asset_audience_rating($asset_audience_rating);
+				}
+			}
+		}
+		// Asset Audience Rating End  //
+		// Asset Annotation Start //
+
+		if (isset($xmlArray['ams:pbcoreannotation']))
+		{
+			foreach ($xmlArray['ams:pbcoreannotation'] as $pbcoreannotation)
+			{
+				$annotation = array();
+				$annotation['assets_id'] = $asset_id;
+				if (isset($pbcoreannotation['text']) && ! is_empty($pbcoreannotation['text']))
+				{
+					$annotation['annotation'] = $pbcoreannotation['text'];
+					if (isset($pbcoreannotation['attributes']['annotationtype']) && ! is_empty($pbcoreannotation['attributes']['annotationtype']))
+					{
+						$annotation['annotation_type'] = $pbcoreannotation['attributes']['annotationtype'];
+					}
+					if (isset($pbcoreannotation['attributes']['ref']) && ! is_empty($pbcoreannotation['attributes']['ref']))
+					{
+						$annotation['annotation_ref'] = $pbcoreannotation['attributes']['ref'];
+					}
+
+					$asset_annotation = $this->assets_model->insert_annotation($annotation);
+				}
+			}
+		}
+		// Asset Annotation End  //
 	}
 
 	function import_instantiation_info($asset_id, $xmlArray)

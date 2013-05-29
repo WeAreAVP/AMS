@@ -134,6 +134,7 @@ class Mintimport extends CI_Controller
 	function import_asset_info($station_id, $xmlArray)
 	{
 		debug($xmlArray,FALSE);
+		$test = array();
 		// Insert Asset
 		$asset_id = 1;
 		// Asset Type Start //
@@ -187,7 +188,7 @@ class Mintimport extends CI_Controller
 		}
 		// Asset Date and Type End //
 		// Insert Identifier Start //
-		$test = array();
+		
 		if (isset($xmlArray['ams:pbcoreidentifier']) && ! empty($xmlArray['ams:pbcoreidentifier']))
 		{
 			foreach ($xmlArray['ams:pbcoreidentifier'] as $row)
@@ -203,13 +204,13 @@ class Mintimport extends CI_Controller
 						$identifier_detail['identifier_source'] = $row['attributes']['source'];
 					if (isset($row['attributes']['ref']) && ! empty($row['attributes']['ref']))
 						$identifier_detail['identifier_ref'] = $row['attributes']['ref'];
-					$test[] = $identifier_detail;
+					
 //					$this->assets_model->insert_identifiers($identifier_detail);
 					unset($identifier_detail);
 				}
 			}
 		}
-		debug($test);
+		
 		// Insert Identifier End //
 		// Insert Asset Title Start //
 
@@ -246,10 +247,12 @@ class Mintimport extends CI_Controller
 					}
 					$title_detail['created'] = date('Y-m-d H:i:s');
 //					$this->assets_model->insert_asset_titles($title_detail);
+					$test[]=$title_detail;
 					unset($title_detail);
 				}
 			}
 		}
+		debug($test);
 		// Insert Asset Title End //
 		// Asset Subject Start //
 

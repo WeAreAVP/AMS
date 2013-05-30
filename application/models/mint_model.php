@@ -38,6 +38,7 @@ class Mint_Model extends CI_Model
 
 		$this->_table = 'mint_import';
 		$this->_table_mint_import_info = 'mint_import_info';
+		$this->_table_mint_transformation = 'mint_transformation';
 	}
 
 	/**
@@ -61,8 +62,7 @@ class Mint_Model extends CI_Model
 	function update_mint_import_file($import_id, $data)
 	{
 		$this->db->where('id', $import_id);
-		$this->db->update($this->_table, $data);
-		return $this->db->insert_id();
+		return $this->db->update($this->_table, $data);
 	}
 
 	/**
@@ -111,6 +111,54 @@ class Mint_Model extends CI_Model
 			return $result->result();
 		}
 		return $result;
+	}
+
+	/**
+	 * 
+	 * @param integer $user_id
+	 * @param integer $mint_user_id
+	 * @param integer $transformed_id
+	 * @return stdObject / boolean
+	 */
+	function get_transformation($user_id, $mint_user_id, $transformed_id)
+	{
+		$this->db->where('user_id', $user_id);
+		$this->db->where('mint_user_id', $mint_user_id);
+		$this->db->where('transformed_id', $transformed_id);
+		$result = $this->db->get($this->_table_mint_transformation);
+		if (isset($result) && ! empty($result))
+		{
+			return $result->row();
+		}
+		return FALSE;
+	}
+
+	/**
+	 * Update the mint_transformation table info.
+	 * 
+	 * @param integer $dbID
+	 * @param array $data
+	 * @return Integer
+	 */
+	function update_transformation($dbID, $data)
+	{
+		$data['updated_at'] = date('Y-m-d H:i:s');
+		$this->db->where('id', $dbID);
+		return $this->db->update($this->_table_mint_transformation, $data);
+	}
+
+	/**
+	 * Insert the transformation info in mint_transformation.
+	 * 
+	 * @param array $data
+	 * @return integer
+	 */
+	function insert_transformation($data)
+	{
+		$data['created_at'] = date('Y-m-d H:i:s');
+		$data['updated_at'] = date('Y-m-d H:i:s');
+		$this->db->insert($this->_table_mint_transformation, $data);
+		return $this->db->insert_id();
 	}
 
 }

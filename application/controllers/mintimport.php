@@ -61,12 +61,34 @@ class Mintimport extends CI_Controller
 			$already_exist = $this->mint->get_transformation($record['user_id'], $record['mint_user_id'], $record['transformed_id']);
 			if ($already_exist)
 			{
-				$record['approved_by'] = NULL;
+				$record['mint_id_approved_by'] = NULL;
+				$record['user_id_approved_by'] = NULL;
 				$this->mint->update_transformation($already_exist->id, $record);
 			}
 			else
 			{
 				$this->mint->insert_transformation($record);
+			}
+		}
+	}
+
+	/**
+	 * Update the transformation info.
+	 * 
+	 */
+	public function update_transformed_info()
+	{
+		$transformed_id = $this->uri->segment(3);
+		$record['is_approved'] = $this->uri->segment(4);
+		$record['mint_id_approved_by'] = $this->uri->segment(5);
+		$user_info = $this->user_profile->get_profile_by_mint_id($record['mint_id_approved_by']);
+		if ($user_info)
+		{
+			$record['user_id_approved_by'] = $user_info->user_id;
+			$record_exist = $this->mint->get_transformation_by_tID($record['transformed_id']);
+			if ($record_exist)
+			{
+				$this->mint->update_transformation($record_exist->id, $record);
 			}
 		}
 	}

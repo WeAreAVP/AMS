@@ -134,6 +134,23 @@ class Mint_Model extends CI_Model
 	}
 
 	/**
+	 * Get Transformation info by transformed id.
+	 * 
+	 * @param integer $transformed_id
+	 * @return boolean / stdObject
+	 */
+	function get_transformation_by_tID($transformed_id)
+	{
+		$this->db->where('transformed_id', $transformed_id);
+		$result = $this->db->get($this->_table_mint_transformation);
+		if (isset($result) && ! empty($result))
+		{
+			return $result->row();
+		}
+		return FALSE;
+	}
+
+	/**
 	 * Update the mint_transformation table info.
 	 * 
 	 * @param integer $dbID

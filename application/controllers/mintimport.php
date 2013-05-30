@@ -85,7 +85,7 @@ class Mintimport extends CI_Controller
 		if ($user_info)
 		{
 			$record['user_id_approved_by'] = $user_info->user_id;
-			$record_exist = $this->mint->get_transformation_by_tID($record['transformed_id']);
+			$record_exist = $this->mint->get_transformation_by_tID($transformed_id);
 			if ($record_exist)
 			{
 				$this->mint->update_transformation($record_exist->id, $record);

@@ -151,6 +151,23 @@ class Mint_Model extends CI_Model
 	}
 
 	/**
+	 * Get Transformation info by download status.
+	 * 
+	 * @param integer $is_download
+	 * @return boolean / stdObject
+	 */
+	function get_transformation_by_download_status($is_download)
+	{
+		$this->db->where('is_downloaded', $is_download);
+		$result = $this->db->get($this->_table_mint_transformation);
+		if (isset($result) && ! empty($result))
+		{
+			return $result->row();
+		}
+		return FALSE;
+	}
+
+	/**
 	 * Update the mint_transformation table info.
 	 * 
 	 * @param integer $dbID

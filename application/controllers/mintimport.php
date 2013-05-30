@@ -93,6 +93,28 @@ class Mintimport extends CI_Controller
 		}
 	}
 
+	public function download_transformed_zip()
+	{
+
+
+		$not_downloaded = $this->mint->get_transformation_by_download_status(0);
+		if ($not_downloaded)
+		{
+			$url = 'http://localhost:8080/mint/download?dbId=' . $not_downloaded->transformed_id . '&transformed=true';
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+			$data = curl_exec($ch);
+			curl_close($ch);
+			@file_put_contents($this->mint_path, $data);
+			$this->mint->update_transformation($not_downloaded->id, array('is_downloaded' => 1));
+		}
+		else
+		{
+			myLog('All transformation files are already downloaded.');
+		}
+	}
+
 	/**
 	 * Unzip and store all the mint info imported files.
 	 * 

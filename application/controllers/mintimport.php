@@ -108,7 +108,7 @@ class Mintimport extends CI_Controller
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 			$data = curl_exec($ch);
 			curl_close($ch);
-			file_put_contents($this->mint_path, $data);
+			file_put_contents($this->mint_path.'Transformation_'.$not_downloaded->transformed_id.'.zip', $data);
 //			$this->mint->update_transformation($not_downloaded->id, array('is_downloaded' => 1));
 		}
 		else

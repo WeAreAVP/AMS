@@ -101,7 +101,7 @@ class Mintimport extends CI_Controller
 		$not_downloaded = $this->mint->get_transformation_by_download_status(0);
 		if ($not_downloaded)
 		{
-			$url = 'http://localhost:8080/mint/download?dbId=' . $not_downloaded->transformed_id . '&transformed=true';
+			$url = 'http://mint.avpreserve.com:8080/mint-ams/download?dbId=' . $not_downloaded->transformed_id . '&transformed=true';
 //			echo $url.'<br/>';
 //			$ch = curl_init($url);
 //			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -110,7 +110,7 @@ class Mintimport extends CI_Controller
 //			curl_close($ch);
 //			file_put_contents($this->mint_path.'Transformation_'.$not_downloaded->transformed_id.'.zip', $data);
 //			$this->mint->update_transformation($not_downloaded->id, array('is_downloaded' => 1));
-			$fp = fopen($this->mint_path.'Transformation_'.$not_downloaded->transformed_id.'.zip', 'w');
+			$fp = fopen($this->mint_path . 'Transformation_' . $not_downloaded->transformed_id . '.zip', 'w');
 
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_FILE, $fp);

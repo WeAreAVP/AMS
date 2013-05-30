@@ -114,6 +114,7 @@ class Mintimport extends CI_Controller
 
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_FILE, $fp);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 			$data = curl_exec($ch);
 

@@ -48,6 +48,7 @@ class Mintimport extends CI_Controller
 
 	public function visit()
 	{
+		$this->layout = 'main_layout.php';
 		$user_id = $this->uri->segment(3);
 		$user_info = $this->users->get_user_detail($user_id)->row();
 		$username = explode('@', $user_info->email);

@@ -34,11 +34,7 @@ class MY_Controller extends CI_Controller
 
 			if ( ! is_route_method(array('reports' => array('standalone', 'standalone_datatable'), 'autocomplete' => array('update_user'))))
 				redirect('auth/login');
-			else
-			{
-				echo 'Nouman Tayyab';
-				exit;
-			}
+			
 		}
 		$this->is_station_user = FALSE;
 		$this->load->library('Form_validation');

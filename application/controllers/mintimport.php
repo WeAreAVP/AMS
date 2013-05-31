@@ -52,6 +52,7 @@ class Mintimport extends CI_Controller
 		$user_id = $this->uri->segment(3);
 		$user_info = $this->users->get_user_detail($user_id)->row();
 		$username = explode('@', $user_info->email);
+		$data['user_id'] = $user_id;
 		$data['email'] = $user_info->email;
 		$data['first_name'] = $user_info->first_name;
 		$data['last_name'] = $user_info->last_name;

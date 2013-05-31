@@ -24,7 +24,7 @@
  * @license    AVPS http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */
-class Autocomplete extends CI_Controller
+class Autocomplete extends MY_Controller
 {
 
 	/**
@@ -70,6 +70,7 @@ class Autocomplete extends CI_Controller
 			$this->load->model('mint_model', 'mint');
 			$this->mint->insert_record(array('user_id' => $this->user_id, 'station_id' => $station_id));
 			$username = explode('@', $this->user_detail->email);
+			$data['user_id'] = $this->user_id;
 			$data['email'] = $this->user_detail->email;
 			$data['first_name'] = $this->user_detail->first_name;
 			$data['last_name'] = $this->user_detail->last_name;
@@ -99,7 +100,8 @@ class Autocomplete extends CI_Controller
 		if (isAjax())
 		{
 			$mint_id = $this->input->get('mint_id');
-			$this->user_profile->set_profile($this->user_id, array('mint_user_id	' => $mint_id));
+			$user_id = $this->input->get('user_id');
+			$this->user_profile->set_profile($user_id, array('mint_user_id	' => $mint_id));
 			echo json_encode(array('success' => 'true'));
 			exit_function();
 		}

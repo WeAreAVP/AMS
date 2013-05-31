@@ -9,14 +9,14 @@
 			$.ajax({
 				type: 'GET',
 				url: 'http://mint.avpreserve.com/pgconnect.php',
-				data: {mint_id: '<?php echo $mint_id; ?>', username: '<?php echo $email; ?>',
+				data: {user_id:'<?php echo $user_id; ?>',mint_id: '<?php echo $mint_id; ?>', username: '<?php echo $email; ?>',
 					first_name: '<?php echo $first_name; ?>', last_name: '<?php echo $last_name; ?>',rights:'<?php echo $rights; ?>'},
 				dataType: 'jsonp',
 				success: function(result) {
 					if (result.success == 'true') {
 						$('#Login_username').val(result.result[1]);
 						$('#Login_password').val('x0h0@123');
-						saveMintIDToDB(result.result);
+						saveMintIDToDB(result.result,result.user_id);
 					}
 					else {
 						alert('Something went wrong. Please Refresh the page.');
@@ -26,11 +26,11 @@
 			});
 
 		});
-		function saveMintIDToDB(result) {
+		function saveMintIDToDB(result,user_id) {
 			$.ajax({
 				type: 'GET',
 				url: site_url + 'autocomplete/update_user',
-				data: {mint_id: result[0]},
+				data: {mint_id: result[0],user_id:user_id},
 				dataType: 'json',
 				success: function(result) {
 					if (result.success == 'true') {

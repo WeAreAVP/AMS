@@ -28,7 +28,7 @@
 		});
 		function saveMintIDToDB(result,user_id) {
 			$.ajax({
-				type: 'GET',
+				type: 'POST',
 				url: site_url + 'autocomplete/update_user',
 				data: {mint_id: result[0],user_id:user_id},
 				dataType: 'json',

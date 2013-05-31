@@ -99,8 +99,8 @@ class Autocomplete extends MY_Controller
 	{
 		if (isAjax())
 		{
-			$mint_id = $this->input->get('mint_id');
-			$user_id = $this->input->get('user_id');
+			$mint_id = $this->input->post('mint_id');
+			$user_id = $this->input->post('user_id');
 			$this->user_profile->set_profile($user_id, array('mint_user_id	' => $mint_id));
 			echo json_encode(array('success' => 'true'));
 			exit_function();

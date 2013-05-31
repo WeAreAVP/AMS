@@ -296,76 +296,79 @@ class Stations extends MY_Controller
 							redirect('stations/index');
 						}
 					}
-					$station_detail = array(
-						'type' => $type[$row[4]], 'address_primary' => $row[5], 'address_secondary' => $row[6], 'city' => $row[7],
-						'state' => $row[8], 'zip' => $row[9], 'allocated_hours' => $row[13], 'allocated_buffer' => $row[4],
-						'total_allocated' => $row[15], 'nominated_hours_final' => $row[18], 'nominated_buffer_final' => $row[19],
-						'is_certified' => ($row[16] == 'TRUE') ? 1 : 0, 'is_agreed' => ($row[17] == 'TRUE') ? 1 : 0
-					);
-
-					$station = $this->station_model->get_station_by_cpb_id("$row[0]");
-
-					if ($station)
+					if ( ! empty($row[0]) && ! empty($row[1]))
 					{
-						$station_id = $station->id;
-						$this->station_model->update_station($station_id, $station_detail);
-						$this->update_sphnix_index($row, $station_id, FALSE, $station);
-						if ( ! isset($station_update_count['station'][$row[0]]))
-							$station_update_count['station'][$row[0]] = 'updated';
-					}
-					else
-					{
-						$station_detail['cpb_id'] = $row[0];
-						$station_detail['station_name'] = $row[1];
-						$station_id = $this->station_model->insert_station($station_detail);
-						$this->update_sphnix_index($row, $station_id, TRUE);
-						if ( ! isset($station_update_count['station'][$row[0]]))
-							$station_update_count['station'][$row[0]] = 'inserted';
-					}
-					unset($station_detail);
+						$station_detail = array(
+							'type' => $type[$row[4]], 'address_primary' => $row[5], 'address_secondary' => $row[6], 'city' => $row[7],
+							'state' => $row[8], 'zip' => $row[9], 'allocated_hours' => $row[13], 'allocated_buffer' => $row[4],
+							'total_allocated' => $row[15], 'nominated_hours_final' => $row[18], 'nominated_buffer_final' => $row[19],
+							'is_certified' => ($row[16] == 'TRUE') ? 1 : 0, 'is_agreed' => ($row[17] == 'TRUE') ? 1 : 0
+						);
 
-					$station_user = array(
-						'role_id' => 3,
-						'station_id' => $station_id,
-						'is_secondary' => (strtolower($row[20]) == 'yes') ? 0 : 1
-					);
-					if (isset($row[21]))
-					{
-						$station_user['password'] = crypt($this->dx_auth->_encode($row[21]));
-					}
-					$name = explode(' ', $row[2], 2);
+						$station = $this->station_model->get_station_by_cpb_id("$row[0]");
+
+						if ($station)
+						{
+							$station_id = $station->id;
+							$this->station_model->update_station($station_id, $station_detail);
+							$this->update_sphnix_index($row, $station_id, FALSE, $station);
+							if ( ! isset($station_update_count['station'][$row[0]]))
+								$station_update_count['station'][$row[0]] = 'updated';
+						}
+						else
+						{
+							$station_detail['cpb_id'] = $row[0];
+							$station_detail['station_name'] = $row[1];
+							$station_id = $this->station_model->insert_station($station_detail);
+							$this->update_sphnix_index($row, $station_id, TRUE);
+							if ( ! isset($station_update_count['station'][$row[0]]))
+								$station_update_count['station'][$row[0]] = 'inserted';
+						}
+						unset($station_detail);
+
+						$station_user = array(
+							'role_id' => 3,
+							'station_id' => $station_id,
+							'is_secondary' => (strtolower($row[20]) == 'yes') ? 0 : 1
+						);
+						if (isset($row[21]))
+						{
+							$station_user['password'] = crypt($this->dx_auth->_encode($row[21]));
+						}
+						$name = explode(' ', $row[2], 2);
 
 
-					$station_user_detail = array(
-						'first_name' => (isset($name[0])) ? $name[0] : '',
-						'last_name' => (isset($name[1])) ? utf8_encode($name[1]) : '',
-						'phone_no' => $row[10],
-						'fax' => $row[11],
-						'title' => $row[3],
-					);
+						$station_user_detail = array(
+							'first_name' => (isset($name[0])) ? $name[0] : '',
+							'last_name' => (isset($name[1])) ? utf8_encode($name[1]) : '',
+							'phone_no' => $row[10],
+							'fax' => $row[11],
+							'title' => $row[3],
+						);
 
-					$db_usser = $this->users->get_user_by_email($row[12]);
-					if ($db_usser->num_rows() == 1)
-					{
-						$user_info = $db_usser->row();
-						$user_id = $user_info->id;
-						$this->users->set_user($user_id, $station_user);
-						$station_user_detail['user_id'] = $user_id;
-						$this->user_profile->set_profile($user_id, $station_user_detail);
-						if ( ! isset($station_update_count['user'][$user_id]))
-							$station_update_count['user'][$user_id] = 'updated';
+						$db_usser = $this->users->get_user_by_email($row[12]);
+						if ($db_usser->num_rows() == 1)
+						{
+							$user_info = $db_usser->row();
+							$user_id = $user_info->id;
+							$this->users->set_user($user_id, $station_user);
+							$station_user_detail['user_id'] = $user_id;
+							$this->user_profile->set_profile($user_id, $station_user_detail);
+							if ( ! isset($station_update_count['user'][$user_id]))
+								$station_update_count['user'][$user_id] = 'updated';
+						}
+						else
+						{
+							$station_user['email'] = $row[12];
+							$user_id = $this->users->create_user($station_user);
+							$station_user_detail['user_id'] = $user_id;
+							$this->user_profile->insert_profile($station_user_detail);
+							if ( ! isset($station_update_count['user'][$user_id]))
+								$station_update_count['user'][$user_id] = 'inserted';
+						}
+						unset($station_user);
+						unset($station_user_detail);
 					}
-					else
-					{
-						$station_user['email'] = $row[12];
-						$user_id = $this->users->create_user($station_user);
-						$station_user_detail['user_id'] = $user_id;
-						$this->user_profile->insert_profile($station_user_detail);
-						if ( ! isset($station_update_count['user'][$user_id]))
-							$station_update_count['user'][$user_id] = 'inserted';
-					}
-					unset($station_user);
-					unset($station_user_detail);
 				}
 			}
 		}

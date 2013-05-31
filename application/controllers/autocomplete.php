@@ -24,7 +24,7 @@
  * @license    AVPS http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */
-class Autocomplete extends MY_Controller
+class Autocomplete extends CI_Controller
 {
 
 	/**
@@ -37,6 +37,9 @@ class Autocomplete extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('autocomplete_model', 'autocomplete');
+		$this->layout = 'main_layout.php';
+		$this->load->model('dx_auth/user_profile', 'user_profile');
+		$this->load->model('dx_auth/users', 'users');
 	}
 
 	public function values()

@@ -42,7 +42,32 @@ class Mintimport extends CI_Controller
 		$this->load->model('cron_model');
 		$this->load->model('mint_model', 'mint');
 		$this->load->model('dx_auth/user_profile', 'user_profile');
+		$this->load->model('dx_auth/users', 'users');
 		$this->mint_path = 'assets/mint_import/';
+	}
+
+	public function visit()
+	{
+		$user_id = $this->uri->segment(3);
+		$user_info = $this->users->get_user_detail($user_id);
+		$username = explode('@', $user_info->email);
+		$data['email'] = $user_info->email;
+		$data['first_name'] = $user_info->first_name;
+		$data['last_name'] = $user_info->last_name;
+		if ($user_info->role_id == 1 || $user_info->role_id == 2)
+			$data['rights'] = 7;
+		else
+			$data['rights'] = 4;
+		/* Already we have mint user */
+		if ( ! empty($user_info->mint_user_id) && $user_info->mint_user_id != NULL)
+		{
+			$data['mint_id'] = $user_info->mint_user_id;
+		}
+		else /* Need to Create a new mint user */
+		{
+			$data['mint_id'] = NULL;
+		}
+		$this->load->view('mint_login', $data);
 	}
 
 	/**
@@ -69,6 +94,11 @@ class Mintimport extends CI_Controller
 			{
 				$this->mint->insert_transformation($record);
 			}
+			$message = 'Hi<br/>';
+			$message .=$user_info->first_name . ' ' . $user_info->last_name . ' completed importing and transformation. But need your approval to ingest data to AMS.</br>';
+			$message .='<a href="' . base_url() . 'mintimport/visit/1' . '">Click here</a> to go to MINT.';
+
+			send_email('nouman@avpreserve.com', 'noreply@amsqa.avpreserve.com', 'Mint Transformation', $message);
 		}
 	}
 
@@ -98,7 +128,7 @@ class Mintimport extends CI_Controller
 
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-		$not_downloaded = $this->mint->get_transformation_by_download_status(0);
+		$not_downloaded = $this->mint->get_transformation_download(0);
 		if ($not_downloaded)
 		{
 			$url = 'http://mint.avpreserve.com:8080/mint-ams/download?dbId=' . $not_downloaded->transformed_id . '&transformed=true';

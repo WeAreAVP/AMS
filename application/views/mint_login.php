@@ -10,7 +10,7 @@
 				type: 'GET',
 				url: 'http://mint.avpreserve.com/pgconnect.php',
 				data: {mint_id: '<?php echo $mint_id; ?>', username: '<?php echo $email; ?>',
-					first_name: '<?php echo $first_name; ?>', last_name: '<?php echo $last_name; ?>','rights':'<?php echo $rights; ?>'},
+					first_name: '<?php echo $first_name; ?>', last_name: '<?php echo $last_name; ?>',rights:'<?php echo $rights; ?>'},
 				dataType: 'jsonp',
 				success: function(result) {
 					if (result.success == 'true') {

@@ -32,11 +32,12 @@ class MY_Controller extends CI_Controller
 		if ( ! $this->dx_auth->is_logged_in())
 		{
 
-			if ( ! is_route_method(array('reports' => array('standalone', 'standalone_datatable'))) || ! is_route_method(array('autocomplete' => array('update_user'))))
+			if ( ! is_route_method(array('reports' => array('standalone', 'standalone_datatable'), 'autocomplete' => array('update_user'))))
 				redirect('auth/login');
 			else
 			{
-				echo 'Nouman Tayyab';exit;
+				echo 'Nouman Tayyab';
+				exit;
 			}
 		}
 		$this->is_station_user = FALSE;

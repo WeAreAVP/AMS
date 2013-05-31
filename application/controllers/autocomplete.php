@@ -70,6 +70,10 @@ class Autocomplete extends MY_Controller
 			$data['email'] = $this->user_detail->email;
 			$data['first_name'] = $this->user_detail->first_name;
 			$data['last_name'] = $this->user_detail->last_name;
+			if ($this->user_detail->role_id == 1 || $this->user_detail->role_id == 2)
+				$data['rights'] = 7;
+			else
+				$data['rights'] = 4;
 			/* Already we have mint user */
 			if ( ! empty($this->user_detail->mint_user_id) && $this->user_detail->mint_user_id != NULL)
 			{
@@ -98,7 +102,6 @@ class Autocomplete extends MY_Controller
 		}
 		show_404();
 	}
-	
 
 }
 

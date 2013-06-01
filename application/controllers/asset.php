@@ -555,7 +555,30 @@ class Asset extends MY_Controller
 
 	function insert_pbcore_values()
 	{
-		$records = file('genre.csv');
+		$records = array('audio/ac3',
+			'audio/aiff',
+			'audio/mp4',
+			'audio/mpeg',
+			'audio/mpeg3',
+			'audio/vorbis',
+			'audio/wav',
+			'audio/x-aiff',
+			'audio/x-pn-realaudio',
+			'audio/x-realaudio',
+			'audio/x-wav',
+			'video/avi',
+			'video/DV',
+			'video/H261',
+			'video/H263',
+			'video/H263',
+			'video/H264',
+			'video/JPEG',
+			'video/jpeg2000',
+			'video/MJ2',
+			'video/mpeg',
+			'video/mp4',
+			'video/quicktime',
+			'video/x-flv');
 		foreach ($records as $index => $line)
 		{
 			$explode_ids = explode(',', $line);

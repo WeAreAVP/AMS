@@ -50,16 +50,7 @@ if ( ! defined('BASEPATH'))
 
 $active_group = 'default';
 $active_record = TRUE;
-if (ENVIRONMENT == 'testing')
-{
-	$db['default']['hostname'] = 'localhost';
-	$db['default']['username'] = 'ams';
-	$db['default']['password'] = 'pl@123';
-	$db['default']['database'] = 'ams';
-	$db['default']['dbdriver'] = 'mysql';
-	$db['default']['db_debug'] = TRUE;
-}
-else if (ENVIRONMENT == 'development')
+if (ENVIRONMENT == 'development')
 {
 	$db['default']['hostname'] = 'localhost';
 	$db['default']['username'] = 'ams';

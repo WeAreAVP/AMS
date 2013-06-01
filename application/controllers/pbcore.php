@@ -53,8 +53,8 @@ class Pbcore extends CI_Controller
 	function process_dir()
 	{
 		set_time_limit(0);
-		@ini_set("memory_limit", "4000M"); # 1GB
-		@ini_set("max_execution_time", 999999999999); # 1GB
+		@ini_set("memory_limit", "2000M"); # 2GB
+		@ini_set("max_execution_time", 999999999999);
 		$this->cron_model->scan_directory($this->assets_path, $dir_files);
 		$count = count($dir_files);
 
@@ -372,6 +372,8 @@ class Pbcore extends CI_Controller
 					//Instantiation formatMediaType
 					if (isset($pbcoreinstantiation_child['formatmediatype'][0]['text']) && ! is_empty($pbcoreinstantiation_child['formatmediatype'][0]['text']))
 					{
+//						if ($this->instant->get_picklist_media_type($pbcoreinstantiation_child['formatmediatype'][0]['text']))
+//						{
 						$inst_media_type = $this->instant->get_instantiation_media_types_by_media_type($pbcoreinstantiation_child['formatmediatype'][0]['text']);
 						if ( ! is_empty($inst_media_type))
 						{
@@ -381,6 +383,7 @@ class Pbcore extends CI_Controller
 						{
 							$instantiations_d['instantiation_media_type_id'] = $this->instant->insert_instantiation_media_types(array("media_type" => $pbcoreinstantiation_child['formatmediatype'][0]['text']));
 						}
+//						}
 					}
 
 					//Instantiation formatFileSize Start
@@ -904,44 +907,42 @@ class Pbcore extends CI_Controller
 								{
 									$essence_tracks_d['language'] = $pbcore_essence_child['essencetracklanguage'][0]['text'];
 								}
-
-								$essence_tracks_id = $this->essence->insert_essence_tracks($essence_tracks_d);
-
-
-
-								//essenceTrackIdentifier Start 
-								if (isset($pbcore_essence_child['essencetrackidentifier'][0]['text']) && ! is_empty($pbcore_essence_child['essencetrackidentifier'][0]['text']) && isset($pbcore_essence_child['essencetrackidentifiersource'][0]['text']) && ! is_empty($pbcore_essence_child['essencetrackidentifiersource'][0]['text']))
+								if (isset($essence_tracks_d['essence_track_types_id']) && ! empty($essence_tracks_d['essence_track_types_id']) && $essence_tracks_d['essence_track_types_id'] != NULL)
 								{
-									$essence_track_identifiers_d = array();
-									$essence_track_identifiers_d['essence_tracks_id'] = $essence_tracks_id;
-									$essence_track_identifiers_d['essence_track_identifiers'] = $pbcore_essence_child['essencetrackidentifier'][0]['text'];
-									$essence_track_identifiers_d['essence_track_identifier_source'] = $pbcore_essence_child['essencetrackidentifiersource'][0]['text'];
-									$this->essence->insert_essence_track_identifiers($essence_track_identifiers_d);
-								}
-								//essencetrackstandard Start 
-								if (isset($pbcore_essence_child['essencetrackencoding'][0]['text']) && ! is_empty($pbcore_essence_child['essencetrackencoding'][0]['text']))
-								{
-									$essence_track_standard_d = array();
-									$essence_track_standard_d['essence_tracks_id'] = $essence_tracks_id;
-									$essence_track_standard_d['encoding'] = $pbcore_essence_child['essencetrackencoding'][0]['text'];
-									if (isset($pbcore_essence_child['essencetrackencoding'][0]['text']))
+									$essence_tracks_id = $this->essence->insert_essence_tracks($essence_tracks_d);
+									//essenceTrackIdentifier Start 
+									if (isset($pbcore_essence_child['essencetrackidentifier'][0]['text']) && ! is_empty($pbcore_essence_child['essencetrackidentifier'][0]['text']) && isset($pbcore_essence_child['essencetrackidentifiersource'][0]['text']) && ! is_empty($pbcore_essence_child['essencetrackidentifiersource'][0]['text']))
 									{
-										$essence_track_standard_d['encoding_source'] = $pbcore_essence_child['essencetrackencoding'][0]['text'];
+										$essence_track_identifiers_d = array();
+										$essence_track_identifiers_d['essence_tracks_id'] = $essence_tracks_id;
+										$essence_track_identifiers_d['essence_track_identifiers'] = $pbcore_essence_child['essencetrackidentifier'][0]['text'];
+										$essence_track_identifiers_d['essence_track_identifier_source'] = $pbcore_essence_child['essencetrackidentifiersource'][0]['text'];
+										$this->essence->insert_essence_track_identifiers($essence_track_identifiers_d);
 									}
-									$this->essence->insert_essence_track_encodings($essence_track_identifiers_d);
-								}
-
-								//essenceTrackAnnotation Start
-								if (isset($pbcore_essence_child['essencetrackannotation']) && ! is_empty($pbcore_essence_child['essencetrackannotation']))
-								{
-									foreach ($pbcore_essence_child['essencetrackannotation'] as $trackannotation)
+									//essencetrackstandard Start 
+									if (isset($pbcore_essence_child['essencetrackencoding'][0]['text']) && ! is_empty($pbcore_essence_child['essencetrackencoding'][0]['text']))
 									{
-										if (isset($trackannotation['text']) && ! is_empty($trackannotation['text']))
+										$essence_track_standard_d = array();
+										$essence_track_standard_d['essence_tracks_id'] = $essence_tracks_id;
+										$essence_track_standard_d['encoding'] = $pbcore_essence_child['essencetrackencoding'][0]['text'];
+										if (isset($pbcore_essence_child['essencetrackencoding'][0]['text']))
 										{
-											$essencetrackannotation = array();
-											$essencetrackannotation['essence_tracks_id'] = $essence_tracks_id;
-											$essencetrackannotation['annotation'] = $trackannotation['text'];
-											$this->essence->insert_essence_track_annotations($essencetrackannotation);
+											$essence_track_standard_d['encoding_source'] = $pbcore_essence_child['essencetrackencoding'][0]['text'];
+										}
+										$this->essence->insert_essence_track_encodings($essence_track_identifiers_d);
+									}
+									//essenceTrackAnnotation Start
+									if (isset($pbcore_essence_child['essencetrackannotation']) && ! is_empty($pbcore_essence_child['essencetrackannotation']))
+									{
+										foreach ($pbcore_essence_child['essencetrackannotation'] as $trackannotation)
+										{
+											if (isset($trackannotation['text']) && ! is_empty($trackannotation['text']))
+											{
+												$essencetrackannotation = array();
+												$essencetrackannotation['essence_tracks_id'] = $essence_tracks_id;
+												$essencetrackannotation['annotation'] = $trackannotation['text'];
+												$this->essence->insert_essence_track_annotations($essencetrackannotation);
+											}
 										}
 									}
 								}

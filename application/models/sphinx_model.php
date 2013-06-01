@@ -266,14 +266,17 @@ class Sphinx_Model extends CI_Model
 			$this->sphinxsearch->set_select('id');
 		if ($limit)
 			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
-
-		if (isset($this->session->userdata['column']) && $this->session->userdata['column'] != '' && $this->session->userdata['column'] != 'flag')
+		if ($select)
 		{
-			if ($this->session->userdata['column_order'] == 'asc')
-				$sort_mode = SPH_SORT_ATTR_ASC;
-			else
-				$sort_mode = SPH_SORT_ATTR_DESC;
-			$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['column']);
+			if (isset($this->session->userdata['column']) && $this->session->userdata['column'] != '' && $this->session->userdata['column'] != 'flag')
+			{
+
+				if ($this->session->userdata['column_order'] == 'asc')
+					$sort_mode = SPH_SORT_ATTR_ASC;
+				else
+					$sort_mode = SPH_SORT_ATTR_DESC;
+				$this->sphinxsearch->set_sort_mode($sort_mode, trim($this->session->userdata['column']));
+			}
 		}
 		$query = $this->make_where_clause();
 
@@ -453,7 +456,7 @@ class Sphinx_Model extends CI_Model
 		return $where;
 	}
 
-	function assets_listing($params, $offset = 0, $limit = 100)
+	function assets_listing($params, $offset = 0, $limit = 100, $select = FALSE)
 	{
 		$instantiations = array();
 		$total_record = 0;
@@ -463,16 +466,20 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->set_array_result(true);
 		$this->sphinxsearch->set_match_mode($mode);
 		$this->sphinxsearch->set_connect_timeout(120);
+		if ($select)
+			$this->sphinxsearch->set_select('id');
 		if ($limit)
 			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
-
-		if (isset($this->session->userdata['column']) && $this->session->userdata['column'] != '' && $this->session->userdata['column'] != 'flag')
+		if ($select)
 		{
-			if ($this->session->userdata['column_order'] == 'asc')
-				$sort_mode = SPH_SORT_ATTR_ASC;
-			else
-				$sort_mode = SPH_SORT_ATTR_DESC;
-			$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['column']);
+			if (isset($this->session->userdata['column']) && $this->session->userdata['column'] != '' && $this->session->userdata['column'] != 'flag')
+			{
+				if ($this->session->userdata['column_order'] == 'asc')
+					$sort_mode = SPH_SORT_ATTR_ASC;
+				else
+					$sort_mode = SPH_SORT_ATTR_DESC;
+				$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['column']);
+			}
 		}
 		$query = $this->make_where_clause();
 
@@ -499,5 +506,4 @@ class Sphinx_Model extends CI_Model
 	}
 
 }
-
 ?>

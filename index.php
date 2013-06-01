@@ -18,8 +18,15 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+if ( ! getenv('ENVIRONMENT'))
+{
+	define('ENVIRONMENT', 'development');
+}
+else
+{
+	define('ENVIRONMENT', getenv('ENVIRONMENT'));
+}
 
-define('ENVIRONMENT', getenv('ENVIRONMENT')); //getenv('ENVIRONMENT'));
 
 /**
  * Setting the default timezone
@@ -41,12 +48,11 @@ if (defined('ENVIRONMENT'))
 	switch (ENVIRONMENT)
 	{
 		case 'development':
-		case 'testing':
-			case 'qatesting':
+		case 'qatesting':
 			error_reporting(E_ALL);
 			ini_set('display_errors', 1);
 			break;
-		
+
 		case 'production':
 			error_reporting(0);
 			ini_set('display_errors', 0);

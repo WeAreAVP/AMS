@@ -26,15 +26,7 @@ else
 	define("HTTP_PREFIX_STR", "http://");
 }
 $config['index_page'] = '';
-if (ENVIRONMENT == 'testing')
-{
-	$config['base_url'] = HTTP_PREFIX_STR . "ams.dev.xohotech.com/";
-	$config['to_email'] = 'nouman@geekschicago.com';
-	$config['from_email'] = 'noreply@dev.xohotech.com';
-	$config['path'] = '/home/ams/public_html/';
-	$config['cookie_domain'] = ".ams.dev.xohotech.com";
-}
-else if (ENVIRONMENT == 'development')
+if (ENVIRONMENT == 'development')
 {
 	$config['base_url'] = HTTP_PREFIX_STR . "ams.live.geekschicago.com/";
 	$config['to_email'] = 'noumantayyab@avpreserve.com';

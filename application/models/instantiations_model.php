@@ -217,9 +217,8 @@ class Instantiations_Model extends CI_Model
 	 */
 	function get_generations_by_generation($generation)
 	{
-		$sql = 'SELECT * FROM `' . $this->table_generations . '` WHERE `generation` LIKE CONVERT( _utf8 "' . $generation . '" USING latin1 )
-																COLLATE latin1_swedish_ci';
-		$res = $this->db->query($sql);
+		$this->db->where('generation LIKE',$generation);
+		$res = $this->db->get( $this->table_generations);
 		if (isset($res) && ! empty($res))
 		{
 			return $res->row();
@@ -328,6 +327,24 @@ class Instantiations_Model extends CI_Model
 	{
 		$this->db->where('media_type LIKE', $media_type);
 		$res = $this->db->get($this->table_instantiation_media_types);
+		if (isset($res) && ! empty($res))
+		{
+			return $res->row();
+		}
+		return false;
+	}
+
+	/**
+	 * search instantiation_media_types by @media_type
+	 * 
+	 * @param type $status
+	 * @return object 
+	 */
+	function get_picklist_media_type($media_type)
+	{
+		$this->db->where('value LIKE', $media_type);
+		$this->db->where('element_type_id ', 11);
+		$res = $this->db->get('pbcore_picklist_value_by_type');
 		if (isset($res) && ! empty($res))
 		{
 			return $res->row();

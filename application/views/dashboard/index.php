@@ -79,7 +79,7 @@
 		</div>
 		<div class="span4" style="width: 31%;">
 			<div class="assets-sum"><?php echo number_format($at_crawford); ?></div>
-			<div class="assets-subdetail">hrs at Crawford</div>
+			<div class="assets-subdetail" style="padding-top: 40px;">hrs at Crawford</div>
 
 		</div>
 	</div>

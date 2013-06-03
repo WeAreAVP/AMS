@@ -196,6 +196,19 @@ class Mint_Model extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	function get_station_by_transformed($folder_name)
+	{
+		$this->db->select('users.station_id');
+		$this->db->where("$this->_table_mint_transformation.folder_name", $folder_name);
+		$this->db->join('users', "users.id=$this->_table_mint_transformation.user_id", "left");
+		$result = $this->db->get($this->_table_mint_transformation);
+		if (isset($result) && ! empty($result))
+		{
+			return $result->row();
+		}
+		return FALSE;
+	}
+
 }
 
 ?>

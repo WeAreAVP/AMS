@@ -175,24 +175,27 @@ class Mintimport extends CI_Controller
 		@ini_set("max_execution_time", 999999999999);
 		$this->load->helper('directory');
 		$map = directory_map($this->mint_path . 'unzipped/' . $folder_name, 2);
-		debug($map);
-		foreach ($map as $index => $directory)
+		$count_files = 0;
+		foreach ($map as $index => $file)
 		{
-			foreach ($directory as $file)
+			$station = $this->mint->get_station_by_transformed(rtrim($folder_name, '/'));
+			if ($station)
+				echo $station_id = $station->station_id;
+			else
+				myLog ('Sorry issue here');
+			exit;
+			$path = $folder_name . '/' . $file;
+			$db_info = $this->mint->get_import_info_by_path($path);
+			if ( ! $db_info)
 			{
-				$path = $index . '/' . $file;
-				$db_info = $this->mint->get_import_info_by_path($path);
-				if ( ! $db_info)
-				{
-					$mint_info = array('folder' => $index, 'path' => $path, 'is_processed' => 0, 'status_reason' => 'Not processed');
-					$this->mint->insert_import_info($mint_info);
-				}
-				else
-					myLog('Already in db.');
+				$mint_info = array('folder' => $index, 'path' => $path, 'is_processed' => 0, 'status_reason' => 'Not processed', 'station_id' => $station_id);
+				$this->mint->insert_import_info($mint_info);
+				$count_files ++;
 			}
+			else
+				myLog('Already in db.');
 		}
 		myLog('All mint files info stored. Folder Path:' . $this->mint_path);
-		$this->import_mint_files();
 	}
 
 	/**

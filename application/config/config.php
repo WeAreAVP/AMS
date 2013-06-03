@@ -43,6 +43,7 @@ else if (ENVIRONMENT == 'qatesting')
 	$config['crawford_email'] = 'cstephenson@mail.crawford.com';
 	$config['path'] = '/var/www/html/';
 	$config['cookie_domain'] = ".amsqa.avpreserve.com";
+	$config['mint_url'] = "http://mint.avpreserve.com:8080/mint-ams";
 } if (ENVIRONMENT == 'production')
 {
 	$config['base_url'] = HTTP_PREFIX_STR . "ams.avpreserve.com/";
@@ -51,6 +52,7 @@ else if (ENVIRONMENT == 'qatesting')
 	$config['crawford_email'] = 'cstephenson@mail.crawford.com';
 	$config['path'] = '/var/www/html/';
 	$config['cookie_domain'] = ".ams.avpreserve.com";
+	$config['mint_url'] = "http://mint.avpreserve.com:8080/mint-ams";
 }
 
 

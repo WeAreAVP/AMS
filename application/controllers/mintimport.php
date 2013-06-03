@@ -127,14 +127,13 @@ class Mintimport extends CI_Controller
 
 	public function download_transformed_zip()
 	{
-
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 		$not_downloaded = $this->mint->get_transformation_download(0);
 		if ($not_downloaded)
 		{
 			$file_path = $this->mint_path . 'Transformation_' . $not_downloaded->transformed_id . '.zip';
-			$url = 'http://mint.avpreserve.com:8080/mint-ams/download?dbId=' . $not_downloaded->transformed_id . '&transformed=true';
+			$url = $this->config->item('mint_url') . '/download?dbId=' . $not_downloaded->transformed_id . '&transformed=true';
 
 			$fp = fopen($file_path, 'w');
 			$ch = curl_init($url);
@@ -241,7 +240,7 @@ class Mintimport extends CI_Controller
 		$xmlArray = xmlObjToArr($xml_string);
 
 		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
-		
+
 		$this->import_asset_info($asset_id, $xmlArray['children']);
 
 		$this->import_instantiation_info($asset_id, $xmlArray['children']);

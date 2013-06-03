@@ -69,10 +69,11 @@ class Googledoc extends CI_Controller
 					$station_info = $this->station->get_station_by_cpb_id($explode_name[0]);
 					if ($station_info)
 					{
-						$work_sheets[] = $this->google_spreadsheet->getAllWorksSheetsDetails($spreed_sheet['spreedSheetId']);
+						debug($this->google_spreadsheet->getAllWorksSheetsDetails($spreed_sheet['spreedSheetId']));
 					}
 				}
 			}
+			exit;
 			foreach ($work_sheets as $work_sheet)
 			{
 				if ($work_sheet[0]['name'] === 'Template')

@@ -69,18 +69,14 @@ class Googledoc extends CI_Controller
 					$station_info = $this->station->get_station_by_cpb_id($explode_name[0]);
 					if ($station_info)
 					{
-						debug($this->google_spreadsheet->getAllWorksSheetsDetails($spreed_sheet['spreedSheetId']));
-					}
-				}
-			}
-			exit;
-			foreach ($work_sheets as $work_sheet)
-			{
-				if ($work_sheet[0]['name'] === 'Template')
-				{
-					$data = $this->google_spreadsheet->displayWorksheetData($work_sheet[0]['spreedSheetId'], $work_sheet[0]['workSheetId']);
-					myLog('Start importing Spreadsheet ' . $work_sheet[0]['spreedSheetId']);
-					$instantiation_id = $this->_store_event_data($data);
+						$work_sheets[] = $this->google_spreadsheet->getAllWorksSheetsDetails($spreed_sheet['spreedSheetId']);
+						foreach ($work_sheets as $work_sheet)
+						{
+							if ($work_sheet[0]['name'] === 'Template')
+							{
+								$data = $this->google_spreadsheet->displayWorksheetData($work_sheet[0]['spreedSheetId'], $work_sheet[0]['workSheetId']);
+								myLog('Start importing Spreadsheet ' . $work_sheet[0]['spreedSheetId']);
+								$instantiation_id = $this->_store_event_data($data);
 //					if ($instantiation_id)
 //					{
 //						$this->load->library('sphnixrt');
@@ -93,9 +89,13 @@ class Googledoc extends CI_Controller
 //						$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
 //						$this->sphnixrt->update('assets_list', $new_asset_info);
 //					}
+								myLog('Sleeping for 2 seconds');
+								sleep(2);
+							}
+						}
+					}
 				}
 			}
-
 		}
 	}
 

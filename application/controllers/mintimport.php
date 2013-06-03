@@ -133,25 +133,27 @@ class Mintimport extends CI_Controller
 		$not_downloaded = $this->mint->get_transformation_download(0);
 		if ($not_downloaded)
 		{
+			$file_path = $this->mint_path . 'Transformation_' . $not_downloaded->transformed_id . '.zip';
 			$url = 'http://mint.avpreserve.com:8080/mint-ams/download?dbId=' . $not_downloaded->transformed_id . '&transformed=true';
-//			echo $url.'<br/>';
-//			$ch = curl_init($url);
-//			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-//			$data = curl_exec($ch);
-//			curl_close($ch);
-//			file_put_contents($this->mint_path.'Transformation_'.$not_downloaded->transformed_id.'.zip', $data);
-//			$this->mint->update_transformation($not_downloaded->id, array('is_downloaded' => 1));
-			$fp = fopen($this->mint_path . 'Transformation_' . $not_downloaded->transformed_id . '.zip', 'w');
-
+			$this->mint->update_transformation($not_downloaded->id, array('is_downloaded' => 1));
+			$fp = fopen($file_path, 'w');
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_FILE, $fp);
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
 			$data = curl_exec($ch);
-
 			curl_close($ch);
 			fclose($fp);
+			$zip = new ZipArchive;
+			$res = $zip->open($file_path);
+			if ($res === TRUE)
+			{
+				$zip->extractTo($this->mint_path . 'unzipped/');
+				$zip->close();
+			}
+			else
+			{
+				myLog('Something went wrong  while extracting zip file.');
+			}
 		}
 		else
 		{

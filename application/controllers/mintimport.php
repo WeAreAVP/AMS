@@ -150,7 +150,8 @@ class Mintimport extends CI_Controller
 			{
 				$zip->extractTo($this->mint_path . 'unzipped/');
 				$zip->close();
-				$this->mint->update_transformation($not_downloaded->id, array('is_downloaded' => 1, 'folder_path' => rtrim($stat['name'], '/')));
+				$this->mint->update_transformation($not_downloaded->id, array('is_downloaded' => 1, 'folder_name' => rtrim($stat['name'], '/')));
+				$this->process_mint_dir($stat['name']);
 			}
 			else
 			{
@@ -167,13 +168,14 @@ class Mintimport extends CI_Controller
 	 * Unzip and store all the mint info imported files.
 	 * 
 	 */
-	function process_mint_dir()
+	function process_mint_dir($folder_name)
 	{
 		set_time_limit(0);
 		@ini_set("memory_limit", "2000M"); # 2GB
 		@ini_set("max_execution_time", 999999999999);
 		$this->load->helper('directory');
-		$map = directory_map($this->mint_path . 'unzipped/', 2);
+		$map = directory_map($this->mint_path . 'unzipped/' . $folder_name, 2);
+		debug($map);
 		foreach ($map as $index => $directory)
 		{
 			foreach ($directory as $file)

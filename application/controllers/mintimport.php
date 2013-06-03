@@ -135,7 +135,7 @@ class Mintimport extends CI_Controller
 		{
 			$file_path = $this->mint_path . 'Transformation_' . $not_downloaded->transformed_id . '.zip';
 			$url = 'http://mint.avpreserve.com:8080/mint-ams/download?dbId=' . $not_downloaded->transformed_id . '&transformed=true';
-			$this->mint->update_transformation($not_downloaded->id, array('is_downloaded' => 1));
+
 			$fp = fopen($file_path, 'w');
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_FILE, $fp);
@@ -145,13 +145,12 @@ class Mintimport extends CI_Controller
 			fclose($fp);
 			$zip = new ZipArchive;
 			$res = $zip->open($file_path);
-			$stat = $zip->statIndex( 0 ); 
-			debug($stat);
+			$stat = $zip->statIndex(0);
 			if ($res === TRUE)
 			{
 				$zip->extractTo($this->mint_path . 'unzipped/');
 				$zip->close();
-				$this->mint->update_transformation($not_downloaded->id, array('is_downloaded' => 1));
+				$this->mint->update_transformation($not_downloaded->id, array('is_downloaded' => 1, 'folder_path' => rtrim($stat['name'], '/')));
 			}
 			else
 			{

@@ -176,29 +176,32 @@ class Mintimport extends CI_Controller
 		$this->load->helper('directory');
 		$map = directory_map($this->mint_path . 'unzipped/' . $folder_name, 2);
 		$count_files = 0;
+		$station_id = 0;
 		foreach ($map as $index => $file)
 		{
 			$station = $this->mint->get_station_by_transformed(rtrim($folder_name, '/'));
-			if (!$station)
+			if ($station)
 				$station_id = $station->station_id;
 			else
 			{
 				$station = $this->mint->get_last_import_by_user(rtrim($folder_name, '/'));
 				if ($station)
-					echo $station_id = $station->station_id;
+					$station_id = $station->station_id;
 			}
 
-			exit;
-			$path = $folder_name . '/' . $file;
-			$db_info = $this->mint->get_import_info_by_path($path);
-			if ( ! $db_info)
+			if ($station_id !== 0)
 			{
-				$mint_info = array('folder' => $index, 'path' => $path, 'is_processed' => 0, 'status_reason' => 'Not processed', 'station_id' => $station_id);
-				$this->mint->insert_import_info($mint_info);
-				$count_files ++;
+				$path = $folder_name . '/' . $file;
+				$db_info = $this->mint->get_import_info_by_path($path);
+				if ( ! $db_info)
+				{
+					$mint_info = array('folder' => $index, 'path' => $path, 'is_processed' => 0, 'status_reason' => 'Not processed', 'station_id' => $station_id);
+					$this->mint->insert_import_info($mint_info);
+					$count_files ++;
+				}
+				else
+					myLog('Already in db.');
 			}
-			else
-				myLog('Already in db.');
 		}
 		myLog('All mint files info stored. Folder Path:' . $this->mint_path);
 	}
@@ -215,7 +218,7 @@ class Mintimport extends CI_Controller
 			foreach ($result as $row)
 			{
 //				$this->mint->update_mint_import_file($row->id, array('processed_at' => date('Y-m-d H:m:i'), 'status_reason' => 'Processing'));
-				$this->parse_xml_file($row->path);
+				$this->parse_xml_file($row->path, $row->station_id);
 //				$this->mint->update_mint_import_file($row->id, array('is_processed' => 1, 'status_reason' => 'Complete'));
 			}
 		}
@@ -230,15 +233,15 @@ class Mintimport extends CI_Controller
 	 * 
 	 * @param string $path file path
 	 */
-	function parse_xml_file($path)
+	function parse_xml_file($path, $station_id)
 	{
 		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
 		$xml_string = @simplexml_load_string($file_content);
 		unset($file_content);
 		$xmlArray = xmlObjToArr($xml_string);
-		$station_id = 1;
-		// insert asset here
-		$asset_id = 1;
+
+		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
+		
 		$this->import_asset_info($asset_id, $xmlArray['children']);
 
 		$this->import_instantiation_info($asset_id, $xmlArray['children']);

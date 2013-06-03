@@ -179,10 +179,15 @@ class Mintimport extends CI_Controller
 		foreach ($map as $index => $file)
 		{
 			$station = $this->mint->get_station_by_transformed(rtrim($folder_name, '/'));
-			if ($station)
-				echo $station_id = $station->station_id;
+			if (!$station)
+				$station_id = $station->station_id;
 			else
-				myLog ('Sorry issue here');
+			{
+				$station = $this->mint->get_last_import_by_user(rtrim($folder_name, '/'));
+				if ($station)
+					echo $station_id = $station->station_id;
+			}
+
 			exit;
 			$path = $folder_name . '/' . $file;
 			$db_info = $this->mint->get_import_info_by_path($path);

@@ -200,7 +200,19 @@ class Mint_Model extends CI_Model
 	{
 		$this->db->select('users.station_id');
 		$this->db->where("$this->_table_mint_transformation.folder_name", $folder_name);
-		$this->db->join('users', "users.id=$this->_table_mint_transformation.user_id", "left");
+		$this->db->join('users', "users.id=$this->_table_mint_transformation.user_id");
+		$result = $this->db->get($this->_table_mint_transformation);
+		if (isset($result) && ! empty($result))
+		{
+			return $result->row();
+		}
+		return FALSE;
+	}
+	function get_last_import_by_user($folder_name)
+	{
+		$this->db->select("$this->_table.station_id");
+		$this->db->where("$this->_table_mint_transformation.folder_name", $folder_name);
+		$this->db->join("$this->_table", "$this->_table.user_id=$this->_table_mint_transformation.user_id");
 		$result = $this->db->get($this->_table_mint_transformation);
 		if (isset($result) && ! empty($result))
 		{

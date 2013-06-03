@@ -93,9 +93,9 @@ class Googledoc extends CI_Controller
 						}
 					}
 				}
+				myLog('Sleeping for 2 seconds');
+				sleep(2);
 			}
-			myLog('Sleeping for 2 seconds');
-			sleep(2);
 		}
 	}
 

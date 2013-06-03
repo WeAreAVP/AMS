@@ -322,14 +322,6 @@ class Sphinx_Model extends CI_Model
 	{
 
 		$where = '';
-		if ($type == 'physical')
-		{
-			$where = " @s_format_type \"physical\"";
-		}
-		if ($type == 'digital')
-		{
-			$where = " @s_format_type \"digital\"";
-		}
 
 		if (isset($this->session->userdata['custom_search']) && $this->session->userdata['custom_search'] != '')
 		{
@@ -403,6 +395,19 @@ class Sphinx_Model extends CI_Model
 				}
 			}
 		}
+		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
+		{
+			$this->sphinxsearch->set_filter("digitized", array(1));
+		}
+		if ($type == 'physical')
+		{
+			$where = " @s_format_type \"physical\"";
+		}
+		if ($type == 'digital')
+		{
+			$where = " @s_format_type \"digital\"";
+		}
+
 		if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
 		{
 			$station_name = str_replace('|||', '" | "', trim($this->session->userdata['organization']));
@@ -439,10 +444,7 @@ class Sphinx_Model extends CI_Model
 			$generation = str_replace('|||', '" | "', trim($this->session->userdata['generation']));
 			$where .=" @s_generation \"^$generation$\"";
 		}
-		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
-		{
-			$this->sphinxsearch->set_filter("digitized", array(1));
-		}
+
 		if ((isset($this->session->userdata['migration_failed']) && $this->session->userdata['migration_failed'] === '1' ) || $type == 'migration')
 		{
 			$where .=' @event_type "migration" @event_outcome "FAIL"';
@@ -506,4 +508,5 @@ class Sphinx_Model extends CI_Model
 	}
 
 }
+
 ?>

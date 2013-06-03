@@ -284,7 +284,10 @@ class Googledoc extends CI_Controller
 			}
 			if (isset($event_row[34]) && ! empty($event_row[34]))
 			{
-				$event_data['event_outcome'] = (($event_row[34] === 'N') ? (0) : (1));
+				if ($event_row[34] === 'N' || strtolower($event_row[34]) === 'no')
+					$event_data['event_outcome'] = 0;
+				else
+					$event_data['event_outcome'] = 1;
 			}
 			if (isset($event_row[35]) && ! empty($event_row[35]))
 			{

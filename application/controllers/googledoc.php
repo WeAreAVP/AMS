@@ -89,13 +89,13 @@ class Googledoc extends CI_Controller
 //						$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
 //						$this->sphnixrt->update('assets_list', $new_asset_info);
 //					}
-								myLog('Sleeping for 2 seconds');
-								sleep(2);
 							}
 						}
 					}
 				}
 			}
+			myLog('Sleeping for 2 seconds');
+			sleep(2);
 		}
 	}
 

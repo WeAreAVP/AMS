@@ -63,7 +63,7 @@ class Googledoc extends CI_Controller
 		{
 			foreach ($spreed_sheets as $spreed_sheet)
 			{
-				$this->google_spreadsheet->login('nouman@avpreserve.com', 'bm91bWFuQGF2cHM=');
+				$this->google_spreadsheet->autologin('nouman@avpreserve.com', 'bm91bWFuQGF2cHM=');
 				myLog('Spreadsheet Name: ' . $spreed_sheet['name']);
 				$explode_name = explode('_', $spreed_sheet['name']);
 				if (isset($explode_name[0]))

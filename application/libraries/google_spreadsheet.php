@@ -331,7 +331,12 @@ class Google_Spreadsheet
 		return $data;
 	}
 
-	public function login($user, $pass)
+	public function autologin($user, $pass)
+	{
+		$this->login($user, base64_decode($pass));
+	}
+
+	private function login($user, $pass)
 	{
 		// Zend Gdata package required
 		// http://framework.zend.com/download/gdata

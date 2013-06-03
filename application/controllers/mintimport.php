@@ -145,10 +145,13 @@ class Mintimport extends CI_Controller
 			fclose($fp);
 			$zip = new ZipArchive;
 			$res = $zip->open($file_path);
+			$stat = $zip->statIndex( 0 ); 
+			debug($stat);
 			if ($res === TRUE)
 			{
 				$zip->extractTo($this->mint_path . 'unzipped/');
 				$zip->close();
+				$this->mint->update_transformation($not_downloaded->id, array('is_downloaded' => 1));
 			}
 			else
 			{
@@ -170,22 +173,6 @@ class Mintimport extends CI_Controller
 		set_time_limit(0);
 		@ini_set("memory_limit", "2000M"); # 2GB
 		@ini_set("max_execution_time", 999999999999);
-		$files = glob($this->mint_path . '*.zip');
-		foreach ($files as $file)
-		{
-			$zip = new ZipArchive;
-			$res = $zip->open($file);
-			if ($res === TRUE)
-			{
-				$zip->extractTo($this->mint_path . 'unzipped/');
-				$zip->close();
-			}
-			else
-			{
-				myLog('Something went wrong  while extracting zip file.');
-			}
-		}
-		myLog('Succesfully unzipped all files.');
 		$this->load->helper('directory');
 		$map = directory_map($this->mint_path . 'unzipped/', 2);
 		foreach ($map as $index => $directory)

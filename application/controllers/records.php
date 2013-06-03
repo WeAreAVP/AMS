@@ -158,6 +158,7 @@ class Records extends MY_Controller
 
 			$data['asset_localid'] = $this->assets_model->get_localid_by_asset_id($asset_id);
 
+			$data['asset_description'] = $this->assets_model->get_description_by_asset_id($asset_id);
 			$data['asset_subjects'] = $this->assets_model->get_subjects_by_assets_id($asset_id);
 			$data['asset_dates'] = $this->assets_model->get_assets_dates_by_assets_id($asset_id);
 			$data['asset_genres'] = $this->assets_model->get_assets_genres_by_assets_id($asset_id);

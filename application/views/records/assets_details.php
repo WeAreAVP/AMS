@@ -119,7 +119,7 @@
 				<!--				Asset Title End		-->
 				<!--				Asset Description Start		-->
 				<?php
-				if (isset($asset_details->description) && ! empty($asset_details->description))
+				if (isset($asset_description) && ! empty($asset_description))
 				{
 					?>
 					<tr>
@@ -127,7 +127,15 @@
 							<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Description:</b></label>
 						</td>
 						<td>
-							<p><?php echo $asset_details->description; ?></p>
+							<?php
+							$combine_description = '';
+							foreach ($asset_description as $value)
+							{
+								$combine_description .=$value->description_type . ':';
+								$combine_description .=$value->description . '<br/>';
+							}
+							?>
+							<p><?php echo $combine_description; ?></p>
 						</td>
 					</tr>
 				<?php } ?>

@@ -243,6 +243,25 @@ class Assets_Model extends CI_Model
 	}
 
 	/**
+	 * Get aa descriptions by assets_id
+	 * @param type $assets_id
+	 * @return array 
+	 */
+	function get_description_by_asset_id($asset_id)
+	{
+		$this->db->select("$this->_table_asset_descriptions.description");
+		$this->db->select("$this->_table_description_types.description_type");
+		$this->db->where("$this->_table_asset_descriptions.assets_id", $asset_id);
+		$this->db->join($this->_table_description_types, "$this->_table_description_types.id = $this->_table_asset_descriptions.description_types_id", 'left');
+		$query = $this->db->get($this->_table_asset_descriptions);
+		if (isset($query) && ! empty($query))
+		{
+			return $query->result();
+		}
+		return false;
+	}
+
+	/**
 	 * Get aa guid by assets_id
 	 * @param type $assets_id
 	 * @return array 

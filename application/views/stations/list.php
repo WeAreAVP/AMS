@@ -112,12 +112,12 @@ if ( ! $is_ajax)
 							?>
 							<td><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
 						<?php } ?>
-						<th>CPB ID</th>
-						<th style="width:220px;">Station Name</th>
-						<th>Total Allocated Hours</th>
-						<th>Certified</th>
-						<th>Agreed</th>
-						<th>DSD</th>
+						<th style="width:65px;">CPB ID</th>
+						<th>Station Name</th>
+						<th style="width:160px;">Total Allocated Hours</th>
+						<th style="width:75px;">Certified</th>
+						<th style="width:70px;">Agreed</th>
+						<th style="width:70px;">DSD</th>
 
 					</tr>
 				</thead>
@@ -191,8 +191,8 @@ if ( ! $is_ajax)
 											if ($('#search_keyword').val() != '')
 											{
 												var random_id = rand(0, 1000365);
-//												name = make_slug_name($('#search_keyword').val());
-												var search_id = 'search_'+ random_id;
+	//												name = make_slug_name($('#search_keyword').val());
+												var search_id = 'search_' + random_id;
 												$('#tokens').append('<div class="btn-img" id="' + search_id + '" ><span class="search_keys">' + $('#search_keyword').val() + '</span><span class="btn-close-img" onclick="remove_keword(\'' + search_id + '\')"></span></div>');
 											}
 											$('#search_keyword').val('');

@@ -41,7 +41,7 @@ class Googledoc extends CI_Controller
 		$this->load->model('instantiations_model', 'instantiation');
 		$this->load->model('station_model', 'station');
 		$this->load->model('cron_model');
-		$this->load->model('spreadsheet_model');
+		
 	}
 
 	function import_gsheets()

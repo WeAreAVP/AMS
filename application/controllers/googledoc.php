@@ -73,10 +73,11 @@ class Googledoc extends CI_Controller
 						
 						foreach ($work_sheets as $work_sheet)
 						{
-							$key++;
+							
 							
 							if ($work_sheet['name'] === 'Template')
 							{
+								$key++;
 								myLog($work_sheet['name']);
 								myLog($key);
 //								$record['worksheet_id'] = $work_sheet['workSheetId'];

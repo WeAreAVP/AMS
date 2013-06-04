@@ -46,6 +46,11 @@ class Googledoc extends CI_Controller
 
 	function import_gsheets()
 	{
+		set_time_limit(0);
+		@ini_set("memory_limit", "4000M"); # 1GB
+		@ini_set("max_execution_time", 999999999999); # 1GB
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
 		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM='));
 		myLog('Getting Spreadsheet Info');
 		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('');
@@ -68,6 +73,7 @@ class Googledoc extends CI_Controller
 						{
 							if ($work_sheet['name'] === 'Template')
 							{
+								myLog('Worksheet Name: ' . $spreed_sheet['name']);
 								$data = $this->google_spreadsheet->displayWorksheetData($work_sheet['spreedSheetId'], $work_sheet['workSheetId']);
 
 								myLog('Start importing Spreadsheet ' . $work_sheet['spreedSheetId']);

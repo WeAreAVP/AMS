@@ -269,7 +269,6 @@ class Google_Spreadsheet
 		$feed = $this->client->getSpreadsheetFeed();
 		foreach ($feed->entries as $key => $entry)
 		{
-			debug($entry);
 			if ( ! empty($spreedSheet))
 			{
 				

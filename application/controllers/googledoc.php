@@ -58,12 +58,13 @@ class Googledoc extends CI_Controller
 		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM=', 'ss' => 'test_archive', 'ws' => 'Template'));
 		myLog('Getting Spreadsheet Info');
 		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('');
+		debug($spreed_sheets);
 		myLog('Total Spreadsheet Count ' . count($spreed_sheets));
 		if ($spreed_sheets)
 		{
 			foreach ($spreed_sheets as $spreed_sheet)
 			{
-				$this->google_spreadsheet->autologin('nouman@avpreserve.com', 'bm91bWFuQGF2cHM=');
+//				$this->google_spreadsheet->autologin('nouman@avpreserve.com', 'bm91bWFuQGF2cHM=');
 				myLog('Spreadsheet Name: ' . $spreed_sheet['name']);
 				$explode_name = explode('_', $spreed_sheet['name']);
 				if (isset($explode_name[0]))
@@ -96,8 +97,7 @@ class Googledoc extends CI_Controller
 						}
 					}
 				}
-//				myLog('Sleeping for 2 seconds');
-//				sleep(2);
+
 			}
 		}
 	}

@@ -267,9 +267,9 @@ class Google_Spreadsheet
 	function getAllSpreedSheetsDetails($spreedSheet = '')
 	{
 		$feed = $this->client->getSpreadsheetFeed();
-		debug($feed->entries);
 		foreach ($feed->entries as $key => $entry)
 		{
+			debug($entry);
 			if ( ! empty($spreedSheet))
 			{
 				

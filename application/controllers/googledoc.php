@@ -77,6 +77,7 @@ class Googledoc extends CI_Controller
 							if ($work_sheet[0]['name'] === 'Template')
 							{
 								$data = $this->google_spreadsheet->displayWorksheetData($work_sheet[0]['spreedSheetId'], $work_sheet[0]['workSheetId']);
+								debug($data);
 								myLog('Start importing Spreadsheet ' . $work_sheet[0]['spreedSheetId']);
 								$instantiation_id = $this->_store_event_data($data);
 //					if ($instantiation_id)

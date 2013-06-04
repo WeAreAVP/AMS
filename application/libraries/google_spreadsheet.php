@@ -271,6 +271,7 @@ class Google_Spreadsheet
 		{
 			if ( ! empty($spreedSheet))
 			{
+				debug($spreadSheets);
 				if ($spreedSheet == $entry->title->text)
 				{
 					$spreadSheets[$key]['name'] = $entry->title->text;

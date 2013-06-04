@@ -54,7 +54,6 @@ class Googledoc extends CI_Controller
 		{
 			foreach ($spreed_sheets as $spreed_sheet)
 			{
-
 				myLog('Spreadsheet Name: ' . $spreed_sheet['name']);
 				$explode_name = explode('_', $spreed_sheet['name']);
 				if (isset($explode_name[0]))

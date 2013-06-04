@@ -131,7 +131,8 @@
 							$combine_description = '';
 							foreach ($asset_description as $value)
 							{
-								$combine_description .=$value->description_type . ':';
+								if ( ! empty($value->description_type))
+									$combine_description .=$value->description_type . ':';
 								$combine_description .=$value->description . '<br/>';
 							}
 							?>

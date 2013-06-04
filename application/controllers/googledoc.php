@@ -73,14 +73,16 @@ class Googledoc extends CI_Controller
 						foreach ($work_sheets as $work_sheet)
 						{
 							$key++;
-							var_dump($work_sheet['name']);
-//							if ($work_sheet['name'] === 'Template')
-//							{
+							
+							if ($work_sheet['name'] === 'Template')
+							{
+								myLog($work_sheet['name']);
+								myLog($key);
 //								$record['worksheet_id'] = $work_sheet['workSheetId'];
 //								$this->spreadsheet_model->insert_record($record);
-//							}
+							}
 						}
-						exit;
+						
 					}
 				}
 			}

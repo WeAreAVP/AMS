@@ -53,15 +53,16 @@ class Googledoc extends CI_Controller
 		myLog('Total Spreadsheet Count ' . count($spreed_sheets));
 		if ($spreed_sheets)
 		{
-			foreach ($spreed_sheets as $spreed_sheet)
+			foreach ($spreed_sheets as $key=>$spreed_sheet)
 			{
 				myLog('Spreadsheet Name: ' . $spreed_sheet['name']);
-//				$explode_name = explode('_', $spreed_sheet['name']);
-//				if (isset($explode_name[0]))
-//				{
-//					$station_info = $this->station->get_station_by_cpb_id($explode_name[0]);
-//					if ($station_info)
-//					{
+				$explode_name = explode('_', $spreed_sheet['name']);
+				if (isset($explode_name[0]))
+				{
+					$station_info = $this->station->get_station_by_cpb_id($explode_name[0]);
+					if ($station_info)
+					{
+						myLog($key);
 //						$record['sheet_name'] = $spreed_sheet['name'];
 //						$record['sheet_url'] = $spreed_sheet['URL'];
 //						$record['sheet_id'] = $spreed_sheet['spreedSheetId'];
@@ -74,8 +75,8 @@ class Googledoc extends CI_Controller
 //								$this->spreadsheet_model->insert_record($record);
 //							}
 //						}
-//					}
-//				}
+					}
+				}
 			}
 		}
 	}

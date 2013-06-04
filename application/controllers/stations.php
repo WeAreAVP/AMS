@@ -272,7 +272,7 @@ class Stations extends MY_Controller
 
 		$count = count($records);
 
-		$type = array('Radio' => 0, 'TV' => 1, 'Joint' => 2);
+		$type = array('Radio' => 0, 'TV' => 1, 'Joint' => 2,'Television'=>1);
 		$station_id = NULL;
 		$station_update_count = array('station' => '', 'user' => '');
 		if ($count > 0)
@@ -300,7 +300,7 @@ class Stations extends MY_Controller
 					{
 						$station_detail = array(
 							'type' => $type[$row[4]], 'address_primary' => $row[5], 'address_secondary' => $row[6], 'city' => $row[7],
-							'state' => $row[8], 'zip' => $row[9], 'allocated_hours' => $row[13], 'allocated_buffer' => $row[4],
+							'state' => $row[8], 'zip' => $row[9], 'allocated_hours' => $row[13], 'allocated_buffer' => $row[14],
 							'total_allocated' => $row[15], 'nominated_hours_final' => $row[18], 'nominated_buffer_final' => $row[19],
 							'is_certified' => ($row[16] == 'TRUE') ? 1 : 0, 'is_agreed' => ($row[17] == 'TRUE') ? 1 : 0
 						);

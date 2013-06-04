@@ -8,7 +8,6 @@
  * @category   Controllers
  * @package    AMS
  * @subpackage Google_Documents_Controller
- * @author     Ali Raza <ali@geekschicago.com>
  * @author     Nouman Tayyab <nouman@avpreserve.com>
  * @license    AMS http://ams.appreserve.com
  * @link       http://ams.appreserve.com
@@ -20,7 +19,6 @@
  * @category   Controllers
  * @package    AMS
  * @subpackage Google_Documents_Controller
- * @author     Ali Raza <ali@geekschicago.com>
  * @author     Nouman Tayyab <nouman@avpreserve.com>
  * @license    AMS http://ams.appreserve.com
  * @link       http://ams.appreserve.com
@@ -41,9 +39,13 @@ class Googledoc extends CI_Controller
 		$this->load->model('instantiations_model', 'instantiation');
 		$this->load->model('station_model', 'station');
 		$this->load->model('cron_model');
-		
 	}
 
+	/**
+	 * Map Correct Spreadsheets and their worksheets.
+	 * 
+	 * @return none
+	 */
 	function import_gsheets()
 	{
 		set_time_limit(0);
@@ -79,54 +81,6 @@ class Googledoc extends CI_Controller
 
 								myLog('Start importing Spreadsheet ' . $work_sheet['spreedSheetId']);
 								$instantiation_id = $this->_store_event_data($data);
-							}
-						}
-						unset($work_sheets);
-						unset($station_info);
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	 * Map Correct Spreadsheets and their worksheets.
-	 * 
-	 * @return view
-	 */
-	function oldimport_gsheets()
-	{
-		set_time_limit(0);
-		@ini_set("memory_limit", "4000M"); # 1GB
-		@ini_set("max_execution_time", 999999999999); # 1GB
-		error_reporting(E_ALL);
-		ini_set('display_errors', 1);
-		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM=', 'ss' => 'test_archive', 'ws' => 'Template'));
-		myLog('Getting Spreadsheet Info');
-		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('');
-		debug($spreed_sheets);
-		myLog('Total Spreadsheet Count ' . count($spreed_sheets));
-		if ($spreed_sheets)
-		{
-			foreach ($spreed_sheets as $spreed_sheet)
-			{
-//				$this->google_spreadsheet->autologin('nouman@avpreserve.com', 'bm91bWFuQGF2cHM=');
-				myLog('Spreadsheet Name: ' . $spreed_sheet['name']);
-				$explode_name = explode('_', $spreed_sheet['name']);
-				if (isset($explode_name[0]))
-				{
-					$station_info = $this->station->get_station_by_cpb_id($explode_name[0]);
-					if ($station_info)
-					{
-						$work_sheets[] = $this->google_spreadsheet->getAllWorksSheetsDetails($spreed_sheet['spreedSheetId']);
-						foreach ($work_sheets as $work_sheet)
-						{
-							if ($work_sheet[0]['name'] === 'Template')
-							{
-								$data = $this->google_spreadsheet->displayWorksheetData($work_sheet[0]['spreedSheetId'], $work_sheet[0]['workSheetId']);
-								debug($data);
-								myLog('Start importing Spreadsheet ' . $work_sheet[0]['spreedSheetId']);
-								$instantiation_id = $this->_store_event_data($data);
 //					if ($instantiation_id)
 //					{
 //						$this->load->library('sphnixrt');
@@ -141,6 +95,8 @@ class Googledoc extends CI_Controller
 //					}
 							}
 						}
+						unset($work_sheets);
+						unset($station_info);
 					}
 				}
 			}

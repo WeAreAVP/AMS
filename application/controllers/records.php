@@ -1,10 +1,28 @@
 <?php
 
 /**
- * Records controller.
+ * AMS Archive Management System
+ * 
+ * PHP version 5
+ * 
+ * @category AMS
+ * @package  CI
+ * @author   Nouman Tayyab <nouman@avpreserve.com>
+ * @license  CPB http://nouman.com
+ * @version  GIT: <$Id>
+ * @link     http://ams.avpreserve.com
+
+ */
+
+/**
+ * Records Class
  *
- * @package    AMS
- * @author     Ali Raza
+ * @category   AMS
+ * @package    CI
+ * @subpackage Controller
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @license    http://ams.avpreserve.com CPB
+ * @link       http://ams.avpreserve.com
  */
 class Records extends MY_Controller
 {
@@ -159,7 +177,7 @@ class Records extends MY_Controller
 			$data['asset_localid'] = $this->assets_model->get_localid_by_asset_id($asset_id);
 
 			$data['asset_description'] = $this->assets_model->get_description_by_asset_id($asset_id);
-			
+
 			$data['asset_subjects'] = $this->assets_model->get_subjects_by_assets_id($asset_id);
 			$data['asset_dates'] = $this->assets_model->get_assets_dates_by_assets_id($asset_id);
 			$data['asset_genres'] = $this->assets_model->get_assets_genres_by_assets_id($asset_id);
@@ -269,11 +287,11 @@ class Records extends MY_Controller
 
 		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
 		$param = array('index' => 'assets_list');
-		$records = $this->sphinx->assets_listing($param, $offset,100,TRUE);
+		$records = $this->sphinx->assets_listing($param, $offset, 100, TRUE);
 		$data['total'] = $records['total_count'];
-		$record_ids=array_map(array($this, 'make_map_array'), $records['records']);
-		$this->load->model('searchd_model','searchd');
-		$records=$this->searchd->get_assets($record_ids);
+		$record_ids = array_map(array($this, 'make_map_array'), $records['records']);
+		$this->load->model('searchd_model', 'searchd');
+		$records = $this->searchd->get_assets($record_ids);
 //		
 //		$records = $records['records'];
 		$data['count'] = count($records);
@@ -319,11 +337,11 @@ class Records extends MY_Controller
 		$this->session->set_userdata('column_order', $this->input->get('sSortDir_0'));
 		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
 		$param = array('index' => 'assets_list');
-		$records = $this->sphinx->assets_listing($param, $offset,100,TRUE);
+		$records = $this->sphinx->assets_listing($param, $offset, 100, TRUE);
 		$data['total'] = $records['total_count'];
-		$record_ids=array_map(array($this, 'make_map_array'), $records['records']);
-		$this->load->model('searchd_model','searchd');
-		$records=$this->searchd->get_assets($record_ids);
+		$record_ids = array_map(array($this, 'make_map_array'), $records['records']);
+		$this->load->model('searchd_model', 'searchd');
+		$records = $this->searchd->get_assets($record_ids);
 //		
 //		$records = $records['records'];
 		$data['count'] = count($records);

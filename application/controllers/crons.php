@@ -8,7 +8,7 @@
  * 
  * @category AMS
  * @package  CI
- * @author   Nouman Tayyab <nouman@geekschicago.com>
+ * @author   Nouman Tayyab <nouman@avpreserve.com>
  * @license  CPB http://ams.avpreserve.com
  * @version  GIT: <$Id>
  * @link     http://ams.avpreserve.com
@@ -21,7 +21,7 @@
  * @category   AMS
  * @package    CI
  * @subpackage Controller
- * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
  * @license    CPB http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */
@@ -95,12 +95,12 @@ class Crons extends CI_Controller
 				$line = '';
 				foreach ($records as $value)
 				{
-					$line.='"' . str_replace('"', '""', $value->GUID) . '",';
-					$line.='="' . str_replace('"', '""', $value->unique_id) . '",';
-					$line.='"' . str_replace('"', '""', $value->titles) . '",';
-					$line.='"' . str_replace('"', '""', $value->format_name) . '",';
-					$line.='="' . str_replace('"', '""', $value->projected_duration) . '",';
-					$line.='"' . str_replace('"', '""', $value->status) . '"';
+					$line.='"' . str_replace('"', '""', str_replace("\r", "", str_replace("\n", "", str_replace("\"", "\"\"", $value->GUID)))) . '",';
+					$line.='="' . str_replace('"', '""', str_replace("\r", "", str_replace("\n", "", str_replace("\"", "\"\"", $value->unique_id)))) . '",';
+					$line.='"' . str_replace('"', '""', str_replace("\r", "", str_replace("\n", "", str_replace("\"", "\"\"", $value->titles)))) . '",';
+					$line.='"' . str_replace('"', '""', str_replace("\r", "", str_replace("\n", "", str_replace("\"", "\"\"", $value->format_name)))) . '",';
+					$line.='="' . str_replace('"', '""', str_replace("\r", "", str_replace("\n", "", str_replace("\"", "\"\"", $value->projected_duration)))) . '",';
+					$line.='"' . str_replace('"', '""', str_replace("\r", "", str_replace("\n", "", str_replace("\"", "\"\"", $value->projstatusected_duration)))) . '"';
 					$line .= "\n";
 				}
 				fputs($fp, $line);
@@ -110,7 +110,7 @@ class Crons extends CI_Controller
 				$mem = $mem / 1024;
 				myLog($mem . ' GB');
 				myLog('Sleeping for 5 seconds');
-				sleep(5);
+				sleep(3);
 			}
 			$url = site_url() . "uploads/$filename";
 			$this->csv_job->update_job($job->id, array('status' => '1'));
@@ -329,6 +329,11 @@ class Crons extends CI_Controller
 		/* Pie Chart for Radio Formats End */
 	}
 
+	/**
+	 * Convert numbers into K and M.
+	 * @param integer $size
+	 * @return string
+	 */
 	function abbr_number($size)
 	{
 		$size = preg_replace('/[^0-9]/', '', $size);
@@ -343,5 +348,4 @@ class Crons extends CI_Controller
 		}
 	}
 
-	
 }

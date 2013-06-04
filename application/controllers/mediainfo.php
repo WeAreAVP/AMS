@@ -8,7 +8,7 @@
  * 
  * @category AMS
  * @package  CI
- * @author   Nouman Tayyab <nouman@geekschicago.com>
+ * @author   Nouman Tayyab <nouman@avpreserve.com>
  * @license  CPB http://ams.avpreserve.com
  * @version  GIT: <$Id>
  * @link     http://ams.avpreserve.com
@@ -21,7 +21,7 @@
  * @category   AMS
  * @package    CI
  * @subpackage Controller
- * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
  * @license    CPB http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */

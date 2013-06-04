@@ -8,7 +8,7 @@
  * @category   AMS
  * @package    CI
  * @subpackage Controller
- * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
  * @license    AVPS http://ams.avpreserve.com
  * @version    GIT: <$Id>
  * @link       http://ams.avpreserve.com
@@ -20,7 +20,7 @@
  * @category   Class
  * @package    CI
  * @subpackage Controller
- * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
  * @license    AVPS http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */
@@ -42,6 +42,11 @@ class Autocomplete extends MY_Controller
 		$this->load->model('dx_auth/users', 'users');
 	}
 
+	/**
+	 * Received search term,table and column for autocomplete.
+	 * 
+	 * @return json encode array.
+	 */
 	public function values()
 	{
 		$term = $this->input->get('term');
@@ -58,6 +63,11 @@ class Autocomplete extends MY_Controller
 		exit_function();
 	}
 
+	/**
+	 * Save information of user and autologged in into MINT.
+	 * 
+	 * @return view. 
+	 */
 	public function mint_login()
 	{
 
@@ -95,6 +105,11 @@ class Autocomplete extends MY_Controller
 		}
 	}
 
+	/**
+	 * Update the user information that received from MINT.
+	 * 
+	 * @return json array.
+	 */
 	public function update_user()
 	{
 		if (isAjax())

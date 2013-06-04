@@ -11,7 +11,7 @@ if ( ! defined('BASEPATH'))
  * @package		AMS
  * @subpackage	Migrate Controller
  * @category	Controllers
- * @author		Nouman Tayyab <nouman@geekschicago.com>
+ * @author		Nouman Tayyab <nouman@avpreserve.com>
  */
 class Migrate extends MY_Controller
 {

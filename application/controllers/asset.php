@@ -8,7 +8,7 @@
  * @category   AMS
  * @package    CI
  * @subpackage Controller
- * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
  * @license    AMS http://ams.avpreserve.com
  * @version    GIT: <$Id>
  * @link       http://ams.avpreserve.com
@@ -20,7 +20,7 @@
  * @category   Class
  * @package    CI
  * @subpackage Controller
- * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
  * @license    AMS http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */
@@ -30,7 +30,7 @@ class Asset extends MY_Controller
 	/**
 	 * Constructor
 	 * 
-	 * Load the layout.
+	 * Load Model,Library and Helpers.
 	 * 
 	 */
 	function __construct()
@@ -44,6 +44,11 @@ class Asset extends MY_Controller
 		$this->load->helper('sphnixdata');
 	}
 
+	/**
+	 * Edit Asset Information. Receives asset_id in 3rd URI segment.
+	 * 
+	 * @return view
+	 */
 	public function edit()
 	{
 		$asset_id = $this->uri->segment(3);
@@ -586,7 +591,11 @@ class Asset extends MY_Controller
 //				$this->manage_asset->insert_picklist_value(array('value' => $explode_ids[1], 'element_type_id' => 16, 'display_value' => $explode_ids[0]));
 		}
 	}
-
+	/**
+	 * Add New Asset and redirect to add new instantiations.
+	 * 
+	 * @return mixed.
+	 */
 	public function add()
 	{
 		if ($this->input->post())
@@ -1129,7 +1138,13 @@ class Asset extends MY_Controller
 		$data['organization'] = $this->station_model->get_all();
 		$this->load->view('assets/add', $data);
 	}
-
+	/**
+	 * Delete Assets related values when edited record.
+	 * 
+	 * @param integer $asset_id
+	 * @return boolean
+	 * 
+	 */
 	private function delete_asset_attributes($asset_id)
 	{
 		$table_names = array('assets_asset_types', 'asset_dates', 'asset_titles', 'assets_subjects', 'asset_descriptions',

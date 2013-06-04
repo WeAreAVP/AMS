@@ -8,7 +8,7 @@
  * @category   AMS
  * @package    CI
  * @subpackage Controller
- * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
  * @license    AVPS http://ams.avpreserve.com
  * @version    GIT: <$Id>
  * @link       http://ams.avpreserve.com
@@ -20,7 +20,7 @@
  * @category   Class
  * @package    CI
  * @subpackage Controller
- * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
  * @license    AVPS http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */
@@ -42,11 +42,6 @@ class Dashboard extends MY_Controller
 		{
 			redirect('records/index');
 		}
-	}
-
-	function mint_login()
-	{
-		$this->load->view('test_view');
 	}
 
 	/**

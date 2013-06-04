@@ -53,9 +53,10 @@ class Googledoc extends CI_Controller
 		myLog('Total Spreadsheet Count ' . count($spreed_sheets));
 		if ($spreed_sheets)
 		{
+			$key=0;
 			foreach ($spreed_sheets as $spreed_sheet)
 			{
-				myLog('Spreadsheet Name: ' . $spreed_sheet['name']);
+//				myLog('Spreadsheet Name: ' . $spreed_sheet['name']);
 				$explode_name = explode('_', $spreed_sheet['name']);
 				if (isset($explode_name[0]))
 				{
@@ -69,7 +70,7 @@ class Googledoc extends CI_Controller
 //						$record['sheet_id'] = $spreed_sheet['spreedSheetId'];
 						$work_sheets = $this->google_spreadsheet->getAllWorksSheetsDetails($spreed_sheet['spreedSheetId']);
 						
-						$key=0;
+						
 						foreach ($work_sheets as $work_sheet)
 						{
 							$key++;

@@ -110,10 +110,10 @@ if ( ! $is_ajax)
 						if ( ! $this->is_station_user && $this->role_id != '20')
 						{
 							?>
-							<td><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
+						<td style="width: 40px;"><input type='checkbox' name='all' value='' id='check_all'  class="check-all" onclick='javascript:checkAll();' /></td>
 						<?php } ?>
 						<th style="width:65px;">CPB ID</th>
-						<th>Station Name</th>
+						<th style="width: 227px;">Station Name</th>
 						<th style="width:160px;">Total Allocated Hours</th>
 						<th style="width:75px;">Certified</th>
 						<th style="width:70px;">Agreed</th>

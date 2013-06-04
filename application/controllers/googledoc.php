@@ -56,26 +56,26 @@ class Googledoc extends CI_Controller
 			foreach ($spreed_sheets as $spreed_sheet)
 			{
 				myLog('Spreadsheet Name: ' . $spreed_sheet['name']);
-				$explode_name = explode('_', $spreed_sheet['name']);
-				if (isset($explode_name[0]))
-				{
-					$station_info = $this->station->get_station_by_cpb_id($explode_name[0]);
-					if ($station_info)
-					{
-						$record['sheet_name'] = $spreed_sheet['name'];
-						$record['sheet_url'] = $spreed_sheet['URL'];
-						$record['sheet_id'] = $spreed_sheet['spreedSheetId'];
-						$work_sheets[] = $this->google_spreadsheet->getAllWorksSheetsDetails($spreed_sheet['spreedSheetId']);
-						foreach ($work_sheets as $work_sheet)
-						{
-							if ($work_sheet[0]['name'] === 'Template')
-							{
-								$record['worksheet_id'] = $work_sheet[0]['workSheetId'];
-								$this->spreadsheet_model->insert_record($record);
-							}
-						}
-					}
-				}
+//				$explode_name = explode('_', $spreed_sheet['name']);
+//				if (isset($explode_name[0]))
+//				{
+//					$station_info = $this->station->get_station_by_cpb_id($explode_name[0]);
+//					if ($station_info)
+//					{
+//						$record['sheet_name'] = $spreed_sheet['name'];
+//						$record['sheet_url'] = $spreed_sheet['URL'];
+//						$record['sheet_id'] = $spreed_sheet['spreedSheetId'];
+//						$work_sheets[] = $this->google_spreadsheet->getAllWorksSheetsDetails($spreed_sheet['spreedSheetId']);
+//						foreach ($work_sheets as $work_sheet)
+//						{
+//							if ($work_sheet[0]['name'] === 'Template')
+//							{
+//								$record['worksheet_id'] = $work_sheet[0]['workSheetId'];
+//								$this->spreadsheet_model->insert_record($record);
+//							}
+//						}
+//					}
+//				}
 			}
 		}
 	}

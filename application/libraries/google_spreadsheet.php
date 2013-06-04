@@ -267,11 +267,12 @@ class Google_Spreadsheet
 	function getAllSpreedSheetsDetails($spreedSheet = '')
 	{
 		$feed = $this->client->getSpreadsheetFeed();
+		debug($feed->entries);
 		foreach ($feed->entries as $key => $entry)
 		{
 			if ( ! empty($spreedSheet))
 			{
-				debug($spreedSheet);
+				
 				if ($spreedSheet == $entry->title->text)
 				{
 					$spreadSheets[$key]['name'] = $entry->title->text;

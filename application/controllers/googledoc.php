@@ -58,9 +58,10 @@ class Googledoc extends CI_Controller
 		myLog('Total Spreadsheet Count ' . count($spreed_sheets));
 		if ($spreed_sheets)
 		{
-			foreach ($spreed_sheets as $spreed_sheet)
+			foreach ($spreed_sheets as $index => $spreed_sheet)
 			{
 				myLog('Spreadsheet Name: ' . $spreed_sheet['name']);
+				myLog('Spreadsheet #: ' . $index);
 				$explode_name = explode('_', $spreed_sheet['name']);
 				if (isset($explode_name[0]))
 				{
@@ -73,7 +74,7 @@ class Googledoc extends CI_Controller
 						{
 							if ($work_sheet['name'] === 'Template')
 							{
-								myLog('Worksheet Name: ' . $spreed_sheet['name']);
+								myLog('Worksheet Name: ' . $work_sheet['name']);
 								$data = $this->google_spreadsheet->displayWorksheetData($work_sheet['spreedSheetId'], $work_sheet['workSheetId']);
 
 								myLog('Start importing Spreadsheet ' . $work_sheet['spreedSheetId']);
@@ -189,7 +190,7 @@ class Googledoc extends CI_Controller
 								}
 							}
 						}
-						myLog('nstantiation Table Changes According to american_archive spreadsheet template v1 Description <br/>Instantiation Id :' . $instantiation->id);
+						myLog('Instantiation Table Changes According to american_archive spreadsheet template v1 Description <br/>Instantiation Id :' . $instantiation->id);
 //						print_r($instantiation_data);
 						$this->instantiation->update_instantiations($instantiation->id, $instantiation_data);
 						myLog('Events Table changes');

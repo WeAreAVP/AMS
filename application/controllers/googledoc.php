@@ -68,15 +68,15 @@ class Googledoc extends CI_Controller
 //						$record['sheet_url'] = $spreed_sheet['URL'];
 //						$record['sheet_id'] = $spreed_sheet['spreedSheetId'];
 						$work_sheets = $this->google_spreadsheet->getAllWorksSheetsDetails($spreed_sheet['spreedSheetId']);
-						debug($work_sheets);
+						
 						$key=0;
 						foreach ($work_sheets as $work_sheet)
 						{
 							$key++;
-							myLog($key);
-//							if ($work_sheet[0]['name'] === 'Template')
+							var_dump($work_sheet['name']);
+//							if ($work_sheet['name'] === 'Template')
 //							{
-//								$record['worksheet_id'] = $work_sheet[0]['workSheetId'];
+//								$record['worksheet_id'] = $work_sheet['workSheetId'];
 //								$this->spreadsheet_model->insert_record($record);
 //							}
 						}

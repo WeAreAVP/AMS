@@ -34,7 +34,7 @@
 		</div>
 		
 	</div>
-	<div class="span9">
+	<div class="span9" style="width: 699px;">
 		<div id="success_message" style="margin-bottom: 0px; margin-top: 0px;display: none;" class="alert"></div>
 		<div style="height: 600px;">
 			<table class="tablesorter table table-bordered">

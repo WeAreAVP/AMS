@@ -131,7 +131,7 @@
 				)
 				{
 					?>
-					<ul class="nav nav-tabs">
+					<ul class="records-nav">
 						<?php
 						if ($this->can_compose_alert || $this->role_id == 20)
 						{

@@ -1,5 +1,5 @@
 <div class="row-fluid">
-	<div class="span3">
+	<div class="span3" style="width: 240px;">
 
 		<div>
 			<h6 class="filter_title" id="filter_criteria" style="font-weight: bold;">EMAIL TEMPLATE</h6>

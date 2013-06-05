@@ -51,8 +51,11 @@ if (count($station_detail) > 0)
 			</tbody> 
 		</table>
 		<h6 class="filter_title" style="font-weight: bold;">STATION ADDRESS</h6>
-		<div class="span3">
-			<?php echo $station_detail->address_primary . ' ' . $station_detail->city . ', ' . $station_detail->state . ' ' . $station_detail->zip; ?>
+		<br/>
+		<div class="row">
+			<div class="span3">
+				<?php echo $station_detail->address_primary . ' ' . $station_detail->city . ', ' . $station_detail->state . ' ' . $station_detail->zip; ?>
+			</div>
 		</div>
 		<h6 class="filter_title" style="font-weight: bold;">STATION CONTACTS</h6>
 

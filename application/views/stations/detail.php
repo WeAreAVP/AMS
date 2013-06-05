@@ -143,7 +143,7 @@ if (count($station_detail) > 0)
 		<?php } ?>
 		<?php if ($this->role_id != '20')
 		{ ?>
-			<div><a href="#trackingModel" class="btn btn-large" data-toggle="modal" onclick="manageTracking('get', 'add', '<?php echo $station_detail->id; ?>');">Add Shipment</a></div>
+			<div><a href="#trackingModel" class="btn" data-toggle="modal" onclick="manageTracking('get', 'add', '<?php echo $station_detail->id; ?>');">ADD SHIPMENT</a></div>
 	<?php } ?>
 	<?php $this->load->view('stations/_edit_station'); ?>
 

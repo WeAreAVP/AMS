@@ -81,18 +81,18 @@ class Googledoc extends CI_Controller
 
 								myLog('Start importing Spreadsheet ' . $work_sheet['spreedSheetId']);
 								$instantiation_id = $this->_store_event_data($data);
-//					if ($instantiation_id)
-//					{
-//						$this->load->library('sphnixrt');
-//						$this->load->model('searchd_model');
-//						$this->load->helper('sphnixdata');
-//						$instantiation_list = $this->searchd_model->get_ins_index(array($instantiation_id));
-//						$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], FALSE);
-//						$this->sphnixrt->update('instantiations_list', $new_list_info);
-//						$asset_list = $this->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
-//						$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
-//						$this->sphnixrt->update('assets_list', $new_asset_info);
-//					}
+								if ($instantiation_id)
+								{
+									$this->load->library('sphnixrt');
+									$this->load->model('searchd_model');
+									$this->load->helper('sphnixdata');
+									$instantiation_list = $this->searchd_model->get_ins_index(array($instantiation_id));
+									$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], FALSE);
+									$this->sphnixrt->update('instantiations_list', $new_list_info);
+									$asset_list = $this->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
+									$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
+									$this->sphnixrt->update('assets_list', $new_asset_info);
+								}
 							}
 						}
 						unset($work_sheets);

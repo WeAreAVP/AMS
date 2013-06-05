@@ -63,12 +63,12 @@ if ( ! $is_ajax)
 			<?php } ?>
 			<table class="tablesorter table table-bordered" id="user_table_list">
 				<thead>
-					<tr>
+					<tr style="background: #ebebeb;">
 						<th style="width:160px;">Email</th>
 						<th style="width:100px">Name</th>
 						<th style="width: 110px;">Title</th>
 						<th style="width: 200px;">Station</th>
-						<th style="width:80px;">Role</th>
+						<td style="width:80px;">Role</td>
 						<?php
 						if ($current_role == 1 || $current_role == 2 || $current_role == 3)
 						{

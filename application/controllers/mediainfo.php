@@ -279,9 +279,7 @@ class Mediainfo extends CI_Controller
 //		$file_path = $this->media_info_path . 'cpb-aacip-27-00ns1rzm.mp3.mediainfo.xml';
 //		echo '<br/>File: ' . $file_path . '<br/>';
 		$data = file_get_contents($file_path);
-		echo $file_path;
 		$x = @simplexml_load_string($data);
-		debug($x);
 		$data = xmlObjToArr($x);
 		
 		$tracks_data = $data['children']['file'][0]['children']['track'];
@@ -477,7 +475,7 @@ class Mediainfo extends CI_Controller
 							if (count($parent_instantiations) == 1)
 							{
 								$this->instant->update_instantiations($parent_instantiations[0]->id, array('digitized' => 1));
-//								$this->update_ins_asset_index($parent_instantiations[0]->id);
+								$this->update_ins_asset_index($parent_instantiations[0]->id);
 							}
 							else
 							{
@@ -485,7 +483,7 @@ class Mediainfo extends CI_Controller
 								if (count($parent_instantiations) > 0)
 								{
 									$this->instant->update_instantiations($parent_instantiations->id, array('digitized' => 1));
-//									$this->update_ins_asset_index($parent_instantiations->id);
+									$this->update_ins_asset_index($parent_instantiations->id);
 								}
 							}
 
@@ -899,7 +897,7 @@ class Mediainfo extends CI_Controller
 					}
 					$dessence_track_counter ++;
 				}
-//				$this->update_ins_asset_index($db_instantiation_id, $new = TRUE);
+				$this->update_ins_asset_index($db_instantiation_id, $new = TRUE);
 			}
 		}
 

@@ -7,7 +7,8 @@ if (count($station_detail) > 0)
 			<li><a href="<?php echo site_url('stations/index'); ?>">Stations</a> <span class="divider">/</span></li>
 			<li class="active"><?php echo $station_detail->station_name; ?></li>
 		</ul> 
-		<h2 class="my-navbar station-detail">Station Information</h2>
+		
+		<h6 class="filter_title" style="font-weight: bold;">STATION INFORMATION</h6>
 		<br/>
 		<table class="table table-bordered">
 			<thead>
@@ -50,7 +51,7 @@ if (count($station_detail) > 0)
 			</tbody> 
 		</table>
 		<h6 class="filter_title" style="font-weight: bold;">STATION CONTACTS</h6>
-		<h2 class="my-navbar station-detail">Station Contacts</h2>
+		
 		<br/>
 		<div class="row">
 			<?php
@@ -86,7 +87,7 @@ if (count($station_detail) > 0)
 				<div style="text-align: center;">No Station Contact Available.</div>
 			<?php } ?>
 		</div>
-		<h2 class="my-navbar station-detail">Tracking</h2>
+		<h6 class="filter_title" style="font-weight: bold;">TRACKING</h6>
 		<br/>
 		<?php
 		if (count($station_tracking) > 0)

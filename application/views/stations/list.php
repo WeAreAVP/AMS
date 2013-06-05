@@ -114,10 +114,10 @@ if ( ! $is_ajax)
 						<?php } ?>
 						<th style="width:65px;">CPB ID</th>
 						<th style="width: 227px;">Station Name</th>
-						<th style="width:160px;">Total Allocated Hours</th>
-						<th style="width:75px;">Certified</th>
-						<th style="width:70px;">Agreed</th>
-						<th style="width:70px;">DSD</th>
+						<th style="width:155px;">Total Allocated Hours</th>
+						<th style="width:73px;">Certified</th>
+						<th style="width:68px;">Agreed</th>
+						<th style="width:80px;">DSD</th>
 
 					</tr>
 				</thead>

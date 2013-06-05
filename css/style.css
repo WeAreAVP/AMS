@@ -629,6 +629,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 .records-nav li{
     float: left;
+	border-right: 1px solid #34383e;
 
 }
 .records-nav li a{

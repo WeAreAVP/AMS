@@ -5,7 +5,7 @@
 		?><div class="alert alert-success notification" style="margin-bottom: 0px; margin-top: 0px;">Template <?php echo ucfirst($message) ?> Successfully</div><br/><?php } ?>
 	<table class="table table-bordered tablesorter">
 		<thead>
-			<tr>
+			<tr style="background: #ebebeb;">
 				<th>Name</th>
 				<th>Subject</th>
 				<th>Reply To</th>

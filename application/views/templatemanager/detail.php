@@ -1,21 +1,39 @@
 <div class="row-fluid">
 	<div class="span3">
-		<div id="search_bar" style="background:#EDEDED;color:#000"> <b>
-				<h4>EMAIL TEMPLATE</h4>
-			</b><?php
+
+		<div>
+			<h6 class="filter_title" id="filter_criteria" style="font-weight: bold;">EMAIL TEMPLATE</h6>
+
+			<?php
 			foreach ($templates as $data)
 			{
 				?>
-				<?php if ($data->id == $template_id)
-				{ ?>
-					<div style="padding: 8px;color: white;background: none repeat scroll 0% 0% rgb(0, 152, 214);" ><?php echo str_replace("_", " ", $data->system_id); ?></div>
-				<?php }
+				<?php
+				if ($data->id == $template_id)
+				{
+					?>
+					<div style="background: #ebebeb;">
+						<div class="detail-sidebar active">
+							<a class="menu-anchor" href="<?php echo site_url('templatemanager/details/' . $data->id) ?>" ><h5><?php echo str_replace("_", " ", $data->system_id); ?></h5></a>
+						</div>
+					</div>
+					<
+					<?php
+				}
 				else
-				{ ?>
-					<div style="padding: 8px;" ><a href="<?php echo site_url('templatemanager/details/' . $data->id) ?>"><?php echo str_replace("_", " ", $data->system_id); ?></a></div>
-	<?php }
-} ?>
+				{
+					?>
+					<div style="background: #ebebeb;">
+						<div class="detail-sidebar">
+							<a class="menu-anchor" href="<?php echo site_url('templatemanager/details/' . $data->id) ?>" ><h5><?php echo str_replace("_", " ", $data->system_id); ?></h5></a>
+						</div>
+					</div>
+					<?php
+				}
+			}
+			?>
 		</div>
+		
 	</div>
 	<div class="span9">
 		<div id="success_message" style="margin-bottom: 0px; margin-top: 0px;display: none;" class="alert"></div>
@@ -39,13 +57,17 @@
 					  </tr>
 					  <tr>
 					  <td> Html Body </td><?php */ ?>
-					<?php if ($template_detail->body_html)
-					{ ?>
+					<?php
+					if ($template_detail->body_html)
+					{
+						?>
 						<tr>
 							<td><div style="padding:10px"><?php echo $template_detail->body_html; ?></div></td></tr>
-							<?php } ?>
-							<?php if ($template_detail->body_plain)
-							{ ?>
+					<?php } ?>
+					<?php
+					if ($template_detail->body_plain)
+					{
+						?>
 						<tr>
 							<td><div style="padding:10px"><?php echo $template_detail->body_plain; ?></div></td></tr>
 							<?php } ?>
@@ -66,14 +88,14 @@
 							  <td> Replaceables </td>
 							  <td><?php echo $template_detail->replaceables; ?>
 							  </tr><?php */ ?>
-					<?php
-				}
-				else
-				{
-					?>
+							<?php
+						}
+						else
+						{
+							?>
 					<td><h1>The requested template not found</h1></td>
 					</tr><?php }
-				?>
+						?>
 			</table>
 		</div>
 	</div>

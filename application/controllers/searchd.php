@@ -96,7 +96,7 @@ class Searchd extends CI_Controller
 				$this->sphnixrt->insert('instantiations_list', $data, $row->id);
 			}
 			$offset = $offset + 1000;
-			if (count($records) < 1000)
+			if (count($inst) < 1000)
 				$db_count ++;
 		}
 		
@@ -122,7 +122,7 @@ class Searchd extends CI_Controller
 				$this->sphnixrt->insert('assets_list', $data, $row->id);
 			}
 			$offset = $offset + 1000;
-			if (count($records) < 1000)
+			if (count($inst) < 1000)
 				$db_count ++;
 		}
 		

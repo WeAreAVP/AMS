@@ -49,7 +49,7 @@ if (count($station_detail) > 0)
 				</tr>
 			</tbody> 
 		</table>
-		<div class="records-nav">STATION CONTACTS</div>
+		<h6 class="filter_title" style="font-weight: bold;">STATION CONTACTS</h6>
 		<h2 class="my-navbar station-detail">Station Contacts</h2>
 		<br/>
 		<div class="row">

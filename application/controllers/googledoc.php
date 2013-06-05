@@ -114,6 +114,8 @@ class Googledoc extends CI_Controller
 	{
 		if (isset($data) && ! empty($data))
 		{
+
+			myLog('Total Rows: ' . count($data));
 			myLog('Start storing Event info from Spreadsheet');
 			foreach ($data as $event_row)
 			{

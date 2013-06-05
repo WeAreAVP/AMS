@@ -12,22 +12,32 @@ if ( ! $is_ajax)
 			?>
 			<div class="span3">
 				<div id="search_bar">
-					<b><h4>Filter Users</h4></b>
-					<div class="filter-fileds">
-						<div>Role:</div>
-						<div><?php echo form_dropdown('role_id', $roles, array(), 'id="role_id" onchange="filterUser();"'); ?></div>
-					</div>
-					<?php
-					if ( ! $this->is_station_user)
-					{
-						?>
-						<div class="filter-fileds">
-							<div>Station:</div>
-							<div><?php echo form_dropdown('station_id', $stations, array(), 'id="station_id" onchange="filterUser();"'); ?></div>
-						</div>
-					<?php } ?>
-					<div class="filter-fileds"><a class="btn" onclick="resetFilter();">Reset</a></div>
+					<h6 class="filter_title" id="filter_criteria" style="font-weight: bold;">FILTER</h6>
+					<div style="background: #ebebeb;">
 
+
+						<div class="sidebar-fields" style="border-bottom: 1px solid #DDD;">
+							<div>Role:</div>
+							<div>
+								<div>
+									<?php echo form_dropdown('role_id', $roles, array(), 'id="role_id" onchange="filterUser();"'); ?>
+								</div>
+							</div>
+						</div>
+						<div class="sidebar-fields" style="border-bottom: 1px solid #DDD;">
+							<div>Station:</div>
+							<div>
+								<div>
+									<?php echo form_dropdown('station_id', $stations, array(), 'id="station_id" onchange="filterUser();"'); ?>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="sidebar-fields">
+							<div class="filter-fileds"><a class="btn" onclick="resetFilter();">Reset</a></div>
+						</div>
+					</div>
 				</div>
 			</div>
 		<?php } ?>
@@ -145,76 +155,76 @@ if ( ! $is_ajax)
 		</div>
 	</div>
 	<script type="text/javascript">
-					setTimeout(function() {
-						$('.notification').hide();
-					}, 5000);
+								setTimeout(function() {
+									$('.notification').hide();
+								}, 5000);
 
 
-					function manageUser(type, uType) {
-						data = null;
-						method = 'GET';
-						if (uType == 'add_user')
-							$('#userLabel').html('Add User');
-						else
-							$('#userLabel').html('Edit User');
-						if (type == 'post') {
-							if (uType == 'add_user')
-								data = $('#new_user').serialize();
-							else
-								data = $('#edit_from').serialize();
-							method = 'POST';
-						}
-						$.ajax({
-							type: method,
-							url: site_url + 'settings/' + uType,
-							data: data,
-							dataType: 'html',
-							success: function(result) {
-								if (result == 'done') {
-									window.location.reload();
+								function manageUser(type, uType) {
+									data = null;
+									method = 'GET';
+									if (uType == 'add_user')
+										$('#userLabel').html('Add User');
+									else
+										$('#userLabel').html('Edit User');
+									if (type == 'post') {
+										if (uType == 'add_user')
+											data = $('#new_user').serialize();
+										else
+											data = $('#edit_from').serialize();
+										method = 'POST';
+									}
+									$.ajax({
+										type: method,
+										url: site_url + 'settings/' + uType,
+										data: data,
+										dataType: 'html',
+										success: function(result) {
+											if (result == 'done') {
+												window.location.reload();
+											}
+											else {
+												$('#manage_user').html(result);
+												checkRole();
+											}
+
+										}
+									});
 								}
-								else {
-									$('#manage_user').html(result);
-									checkRole();
+								function deleteUser(userID, name) {
+									$('#userDelete').html('Are you sure you want to delete "' + name + '"?');
+									$('#delete_user_btn').attr('href', site_url + '/settings/delete_user/' + userID);
 								}
+								function filterUser() {
 
-							}
-						});
-					}
-					function deleteUser(userID, name) {
-						$('#userDelete').html('Are you sure you want to delete "' + name + '"?');
-						$('#delete_user_btn').attr('href', site_url + '/settings/delete_user/' + userID);
-					}
-					function filterUser() {
+									role = $('#role_id').val();
+									station = $('#station_id').val();
+									$.ajax({
+										type: 'POST',
+										url: site_url + 'settings/users',
+										data: {role_id: role, station_id: station},
+										//                dataType: 'html',
+										success: function(result) {
+											$('#user_list').html(result);
+											$("#user_table_list").trigger("update");
 
-						role = $('#role_id').val();
-						station = $('#station_id').val();
-						$.ajax({
-							type: 'POST',
-							url: site_url + 'settings/users',
-							data: {role_id: role, station_id: station},
-							//                dataType: 'html',
-							success: function(result) {
-								$('#user_list').html(result);
-								$("#user_table_list").trigger("update");
+										}
+									});
+								}
+								function resetFilter() {
+									$('#station_id').prop('selectedIndex', 0);
+									$('#role_id').prop('selectedIndex', 0);
+									filterUser();
+								}
+								function checkRole() {
+									role = $('#role').val();
 
-							}
-						});
-					}
-					function resetFilter() {
-						$('#station_id').prop('selectedIndex', 0);
-						$('#role_id').prop('selectedIndex', 0);
-						filterUser();
-					}
-					function checkRole() {
-						role = $('#role').val();
-
-						if (role == 3 || role == 4) {
-							$('#station_row').show();
-						}
-						else
-							$('#station_row').hide();
-					}
+									if (role == 3 || role == 4) {
+										$('#station_row').show();
+									}
+									else
+										$('#station_row').hide();
+								}
 	</script>
 <?php }
 ?>

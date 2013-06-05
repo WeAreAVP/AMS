@@ -277,7 +277,7 @@ class Crons extends CI_Controller
 		$data['total_goal'] = $this->dashboard_model->get_material_goal();
 		$digitized_hours = $this->dashboard_model->get_digitized_hours();
 		$data['total_hours'] = $this->abbr_number((isset($data['total_goal']->total)) ? $data['total_goal']->total : 0);
-		echo $data['total_hours'].'<br/>';
+		echo $data['total_goal']->total.'<br/>';
 		$total_digitized_hours = (isset($digitized_hours->total)) ? $digitized_hours->total : 0;
 		echo $total_digitized_hours.'<br/>';exit;
 		$data['percentage_hours'] = round(($total_digitized_hours * 100) / $data['total_hours']);

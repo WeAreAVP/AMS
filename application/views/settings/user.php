@@ -17,7 +17,7 @@ if ( ! $is_ajax)
 
 
 						<div class="sidebar-fields" style="border-bottom: 1px solid #DDD;">
-							<div>Role</div>
+							<div><label for="role_id">Role</label></div>
 							<div>
 								<div>
 									<?php echo form_dropdown('role_id', $roles, array(), 'id="role_id" onchange="filterUser();"'); ?>
@@ -25,7 +25,7 @@ if ( ! $is_ajax)
 							</div>
 						</div>
 						<div class="sidebar-fields" style="border-bottom: 1px solid #DDD;">
-							<div>Station</div>
+							<div><label for="station_id">Station</label></div>
 							<div>
 								<div>
 									<?php echo form_dropdown('station_id', $stations, array(), 'id="station_id" onchange="filterUser();"'); ?>
@@ -59,7 +59,7 @@ if ( ! $is_ajax)
 			if ($current_role == 1 || $current_role == 2 || $current_role == 3)
 			{
 				?>
-				<div><a href="#myModal" data-toggle="modal" onclick="manageUser('get', 'add_user');" class="btn">Add User</a></div>
+				<div><a href="#myModal" data-toggle="modal" onclick="manageUser('get', 'add_user');" class="btn">ADD USER</a></div>
 			<?php } ?>
 			<table class="tablesorter table table-bordered" id="user_table_list">
 				<thead>
@@ -116,7 +116,7 @@ if ( ! $is_ajax)
 				else
 				{
 					?>
-					<tr><td colspan="6">No User Found.</td></tr>
+						<tr><td colspan="6" style="text-align: center;">No User Found.</td></tr>
 					<?php
 				} if ( ! $is_ajax)
 				{

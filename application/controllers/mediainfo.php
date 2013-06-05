@@ -280,8 +280,9 @@ class Mediainfo extends CI_Controller
 //		echo '<br/>File: ' . $file_path . '<br/>';
 		$data = file_get_contents($file_path);
 		$x = @simplexml_load_string($data);
+		debug($x);
 		$data = xmlObjToArr($x);
-		debug($data);
+		
 		$tracks_data = $data['children']['file'][0]['children']['track'];
 		$db_asset_id = NULL;
 		$db_instantiation_id = NULL;

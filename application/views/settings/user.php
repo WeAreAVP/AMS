@@ -68,12 +68,12 @@ if ( ! $is_ajax)
 						<th style="width:100px">Name</th>
 						<th style="width: 110px;">Title</th>
 						<th style="width: 200px;">Station</th>
-						<td style="width:80px;">Role</td>
+						<th style="width:80px;">Role</th>
 						<?php
 						if ($current_role == 1 || $current_role == 2 || $current_role == 3)
 						{
 							?>
-							<th style="width: 33px;"></th>
+							<td style="width: 33px;"></td>
 						<?php } ?>
 					</tr>
 				</thead>

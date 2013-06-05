@@ -320,8 +320,7 @@ class Sphinx_Model extends CI_Model
 
 	function make_where_clause($type = NULL)
 	{
-		$this->sphinxsearch->set_filter("digitized", array(1));
-		
+
 		$where = '';
 
 		if (isset($this->session->userdata['custom_search']) && $this->session->userdata['custom_search'] != '')

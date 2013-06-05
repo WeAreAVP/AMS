@@ -59,7 +59,7 @@ if ( ! $is_ajax)
 			if ($current_role == 1 || $current_role == 2 || $current_role == 3)
 			{
 				?>
-				<div><a href="#myModal" data-toggle="modal" onclick="manageUser('get', 'add_user');" class="btn btn-primary btn-large">Add User</a></div>
+				<div><a href="#myModal" data-toggle="modal" onclick="manageUser('get', 'add_user');" class="btn">Add User</a></div>
 			<?php } ?>
 			<table class="tablesorter table table-bordered" id="user_table_list">
 				<thead>

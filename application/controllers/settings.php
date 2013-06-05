@@ -82,7 +82,7 @@ class Settings extends MY_Controller
 		if (isAjax())
 		{
 			echo $this->load->view('settings/user', $data, TRUE);
-			return TRUE;
+			exit_function();
 		}
 		$this->load->view('settings/user', $data);
 	}

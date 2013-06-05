@@ -17,7 +17,7 @@ if ( ! $is_ajax)
 
 
 						<div class="sidebar-fields" style="border-bottom: 1px solid #DDD;">
-							<div>Role:</div>
+							<div>Role</div>
 							<div>
 								<div>
 									<?php echo form_dropdown('role_id', $roles, array(), 'id="role_id" onchange="filterUser();"'); ?>
@@ -25,7 +25,7 @@ if ( ! $is_ajax)
 							</div>
 						</div>
 						<div class="sidebar-fields" style="border-bottom: 1px solid #DDD;">
-							<div>Station:</div>
+							<div>Station</div>
 							<div>
 								<div>
 									<?php echo form_dropdown('station_id', $stations, array(), 'id="station_id" onchange="filterUser();"'); ?>

@@ -3,7 +3,7 @@
 <div style="width: 50%;float: right;">
 	<div class="dashboard-nav">
 		<div>
-			SCHEDULED VS. COMPLETED
+			SCHEDULED VS. DIGITIZED
 		</div>
 
 	</div>
@@ -69,7 +69,7 @@
 						name: 'Radio',
 						data: [
 							['Scheduled', <?php echo $pie_total_radio_scheduled; ?>],
-							['Completed', <?php echo $pie_total_radio_completed; ?>]
+							['Digitized', <?php echo $pie_total_radio_completed; ?>]
 
 						]
 					}]
@@ -113,7 +113,7 @@
 						name: 'TV',
 						data: [
 							['Scheduled', <?php echo $pie_total_tv_scheduled; ?>],
-							['Completed', <?php echo $pie_total_tv_completed; ?>]
+							['Digitized', <?php echo $pie_total_tv_completed; ?>]
 
 						]
 					}]
@@ -157,7 +157,7 @@
 						name: 'All Formats',
 						data: [
 							['Scheduled', <?php echo $pie_total_scheduled; ?>],
-							['Completed', <?php echo $pie_total_completed; ?>]
+							['Digitized', <?php echo $pie_total_completed; ?>]
 
 						]
 					}]

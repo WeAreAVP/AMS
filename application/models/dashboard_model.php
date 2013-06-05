@@ -78,7 +78,7 @@ class Dashboard_Model extends CI_Model
 		$this->db->join($this->table_nomination_status, "$this->table_nomination_status.id = $this->table_nominations.nomination_status_id");
 		$this->db->where("$this->table_nomination_status.status", 'Nominated/1st Priority');
 		$result = $this->db->get($this->table_instantiations);
-
+		echo $this->db->last_query();
 		return $result->row();
 	}
 

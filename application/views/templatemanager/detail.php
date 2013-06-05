@@ -17,7 +17,6 @@
 							<a class="menu-anchor" href="<?php echo site_url('templatemanager/details/' . $data->id) ?>" ><h5><?php echo str_replace("_", " ", $data->system_id); ?></h5></a>
 						</div>
 					</div>
-					<
 					<?php
 				}
 				else

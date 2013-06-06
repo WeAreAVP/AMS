@@ -88,8 +88,10 @@
 
 							</td>
 						</tr>
-					<?php }
-				} ?>
+						<?php
+					}
+				}
+				?>
 				<!--				Instantiation ID	End		-->
 				<!--				Date 	Start		-->
 				<?php
@@ -479,8 +481,15 @@
 		{
 			?>
 			<div class="nomination-container">
+				<?php
+				if ($ins_nomination->status == 'Nominated/1st Priority')
+				{
+					?>
+				<p><b class="nomination_status">NOMINATION PRIORITY</b></p>
+					<hr/>
+				<?php }
+				?>
 
-				<p><b><?php echo $ins_nomination->status; ?></b></p>
 				<p><?php echo $ins_nomination->nomination_reason; ?></p>
 				<?php
 				if ($ins_nomination->nominated_by != '')

@@ -486,7 +486,7 @@
 				{
 					?>
 					<div>
-						<div><b class="nomination_status">NOMINATION PRIORITY</b></div>
+						<div style="padding: 10px;"><b class="nomination_status">NOMINATION PRIORITY</b></div>
 						
 					</div>
 					<hr/>

@@ -543,7 +543,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 .nomination-container{
     float: right;
     margin-right: 20px;
-    width: 170px;
+    width: 150px;
     background-color: #ebebeb;
 }
 .nomination_status{
@@ -559,6 +559,8 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 	padding: 5px 8px;
 	width: 12px;
 	border-radius: 4px;
+	float: right;
+	margin: 12px 12px 0px 0px;
 }
 .asset-menu{
     background-color: whiteSmoke;

@@ -486,9 +486,10 @@
 				{
 					?>
 					<div style="border-bottom: 2px solid #DDD;">
-						<div style="padding: 10px;width: 90px;"><b class="nomination_status">NOMINATION PRIORITY</b></div>
-						<div><div class="priority">1</div></div>
+						<div style="padding: 10px; width: 90px;float: left;"><div class="nomination_status">NOMINATION PRIORITY</div></div>
+						<div class="priority">1</div>
 					</div>
+					
 
 				<?php }
 				?>

@@ -63,31 +63,38 @@
 
 </script>
 
-	
 
-	<!--<div><button onclick="takeScreenShot();" class="btn">Take Screen Shot</button></div>-->
-	<div class="asset-stats">
-		<div class="span4" style="width: 31%;">
-			<div class="assets-sum"><?php echo number_format($material_goal['total']); ?></div>
-			<div class="assets-subdetail" style="padding-top: 40px;">hrs digitized</div>
 
-		</div>
-		<div class="span4" style="width: 31%;">
-			<div class="assets-sum"><?php echo $percentage_hours . '%'; ?></div>
-			<div class="assets-subdetail"> <?php echo 'of ' . $total_hours . ' hrs'; ?> </div>
+<!--<div><button onclick="takeScreenShot();" class="btn">Take Screen Shot</button></div>-->
+<div class="asset-stats">
+	<div class="span4" style="width: 31%;">
+		<div class="assets-sum"><?php echo number_format($material_goal['total']); ?></div>
+		<div class="assets-subdetail" style="padding-top: 40px;">hrs digitized</div>
 
-		</div>
-		<div class="span4" style="width: 31%;">
-			<div class="assets-sum"><?php echo number_format($at_crawford); ?></div>
-			<div class="assets-subdetail" style="padding-top: 40px;">hrs at Crawford</div>
-
-		</div>
 	</div>
-	<div style="clear: both;"></div>
-	<?php $this->load->view('dashboard/_region'); ?>
+	<div class="span4" style="width: 31%;">
+		<div class="assets-sum"><?php echo $percentage_hours . '%'; ?></div>
+		<div class="assets-subdetail"> <?php echo 'of ' . $total_hours . ' hrs'; ?> </div>
 
-	<?php $this->load->view('dashboard/_tv_radio'); ?>
-	<div class="clearfix"></div>
-	<?php $this->load->view('dashboard/_formats'); ?>
+	</div>
+	<?php 
+	$crawford_width='';
+	if (intval($at_crawford) > 999)
+	{
+		$crawford_width='width: 31%;';
+	}
+	?>
+	<div class="span4" style="<?php echo $crawford_width; ?>">
+		<div class="assets-sum"><?php echo number_format($at_crawford); ?></div>
+		<div class="assets-subdetail" style="padding-top: 40px;">hrs at Crawford</div>
+
+	</div>
+</div>
+<div style="clear: both;"></div>
+<?php $this->load->view('dashboard/_region'); ?>
+
+<?php $this->load->view('dashboard/_tv_radio'); ?>
+<div class="clearfix"></div>
+<?php $this->load->view('dashboard/_formats'); ?>
 
 

@@ -487,7 +487,7 @@
 					?>
 					<div>
 						<div><b class="nomination_status">NOMINATION PRIORITY</b></div>
-						<div><b class="nomination_status">PRIORITY</b></div>
+						
 					</div>
 					<hr/>
 				<?php }

@@ -101,7 +101,7 @@ class Dashboard_Model extends CI_Model
 		$this->db->select("($this->_table.nominated_hours_final+$this->_table.nominated_buffer_final) AS total", FALSE);
 		$this->db->join($this->_table_messages, "$this->_table_messages.station_id = $this->_table.id");
 		$this->db->where("$this->_table_messages.msg_type", $msg_type);
-//		$this->db->group_by("$this->_table_messages.station_id");
+		$this->db->group_by("$this->_table_messages.station_id");
 		$result = $this->db->get($this->_table);
 
 		return $result->result();

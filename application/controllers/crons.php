@@ -264,7 +264,6 @@ class Crons extends CI_Controller
 		}
 
 		$hours_at_craword = $this->dashboard_model->get_hours_at_crawford($data['msg_type']);
-		debug($hours_at_craword);
 		$data['at_crawford'] = 0;
 		foreach ($hours_at_craword as $hours)
 		{

@@ -486,7 +486,7 @@
 				{
 					?>
 					<div style="border-bottom: 2px solid #DDD;">
-						<div style="padding: 10px;float:left;"><b class="nomination_status">NOMINATION PRIORITY</b></div>
+						<div style="padding: 10px;width: 90px;"><b class="nomination_status">NOMINATION PRIORITY</b></div>
 						<div><span>1</span></div>
 					</div>
 

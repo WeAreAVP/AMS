@@ -250,7 +250,7 @@ html, body {
     font-size: 13pt;
     font-weight: bold;
     padding-top: 55px;
-	
+
 }
 .report-tab{
     font-size: 17px;
@@ -548,7 +548,16 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 .nomination_status{
 	color:#008cf8;
-	
+
+}
+.priority{
+	background: #008cf8;
+	color: #FFFFFF;
+	font-size: 20px;
+	font-weight: bold;
+	padding: 5px 8px;
+	width: 12px;
+	border-radius: 4px;
 }
 .asset-menu{
     background-color: whiteSmoke;

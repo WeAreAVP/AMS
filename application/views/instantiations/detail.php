@@ -485,11 +485,11 @@
 				if ($ins_nomination->status == 'Nominated/1st Priority')
 				{
 					?>
-					<div>
-						<div style="padding: 10px;"><b class="nomination_status">NOMINATION PRIORITY</b></div>
-						
+					<div style="border-bottom: 2px solid #DDD;">
+						<div style="padding: 10px;float:left;"><b class="nomination_status">NOMINATION PRIORITY</b></div>
+						<div><span>1</span></div>
 					</div>
-					<hr/>
+
 				<?php }
 				?>
 

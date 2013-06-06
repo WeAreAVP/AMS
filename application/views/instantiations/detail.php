@@ -501,7 +501,14 @@
 
 
 				<?php }
-				?>
+				else
+				{
+					?>
+				<div style="border-bottom: 1px solid #DDD;float: left;width: 100%;">
+						<div style="padding: 10px; float: left;"><div class="nomination_status">WAITING LIST</div></div>
+						
+					</div>
+				<?php } ?>
 
 				<p><?php echo $ins_nomination->nomination_reason; ?></p>
 				<?php
@@ -516,8 +523,8 @@
 					?>
 					<p><?php echo ' at ' . $ins_nomination->nominated_at; ?></p>
 
-				<?php }
-				?>
+			<?php }
+			?>
 			</div>
 			<?php
 		}
@@ -544,13 +551,13 @@
 							<td><?php echo (isset($events->event_note) && ! is_empty($events->event_note)) ? $events->event_note : ''; ?></td>
 							<td><?php echo (isset($events->event_outcome) && ! is_empty($events->event_outcome)) ? $events->event_outcome : ''; ?></td>
 						</tr>
-					<?php } ?>
+			<?php } ?>
 				</tbody></table>
-		<?php }
-		?>
+<?php }
+?>
 	</div>
 	<div class="clearfix"></div>
 
 
-	<?php $this->load->view('essence_track/list'); ?>
+<?php $this->load->view('essence_track/list'); ?>
 </div>

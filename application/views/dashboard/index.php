@@ -81,12 +81,12 @@
 	$crawford_width='';
 	if (intval($at_crawford) > 999)
 	{
-		$crawford_width='width: 31%;';
+		$crawford_width='padding-top: 40px;';
 	}
 	?>
-	<div class="span4" style="<?php echo $crawford_width; ?>">
+	<div class="span4" style="width: 31%;">
 		<div class="assets-sum"><?php echo number_format($at_crawford); ?></div>
-		<div class="assets-subdetail" style="padding-top: 40px;">hrs at Crawford</div>
+		<div class="assets-subdetail" style="<?php echo $crawford_width;?>">hrs at Crawford</div>
 
 	</div>
 </div>

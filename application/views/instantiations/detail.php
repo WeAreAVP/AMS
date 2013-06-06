@@ -500,17 +500,21 @@
 					</div>
 
 
-				<?php }
+				<?php
+				}
 				else
 				{
 					?>
-				<div style="border-bottom: 1px solid #DDD;float: left;width: 100%;">
+					<div style="border-bottom: 1px solid #DDD;float: left;width: 100%;">
 						<div style="padding: 10px; float: left;"><div class="nomination_status">WAITING LIST</div></div>
-						
+
 					</div>
 				<?php } ?>
-
-				<p><?php echo $ins_nomination->nomination_reason; ?></p>
+				<div class="clearfix"></div>
+				<?php if ( ! empty($ins_nomination->nomination_reason))
+				{ ?>
+				<div>Nomination reason: <?php echo $ins_nomination->nomination_reason; ?></div>
+				<?php } ?>
 				<?php
 				if ($ins_nomination->nominated_by != '')
 				{

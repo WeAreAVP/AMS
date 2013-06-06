@@ -485,12 +485,20 @@
 				if ($ins_nomination->status == 'Nominated/1st Priority')
 				{
 					?>
-					<div style="float: left;width: 100%;">
+					<div style="border-bottom: 1px solid #DDD;float: left;width: 100%;">
 						<div style="padding: 10px; width: 90px;float: left;"><div class="nomination_status">NOMINATION PRIORITY</div></div>
 						<div class="priority">1</div>
 					</div>
-					<hr/>
-					
+					<?php
+				}
+				else if ($ins_nomination->status == 'Nominated/2nd Priority')
+				{
+					?>
+					<div style="border-bottom: 1px solid #DDD;float: left;width: 100%;">
+						<div style="padding: 10px; width: 90px;float: left;"><div class="nomination_status">NOMINATION PRIORITY</div></div>
+						<div class="priority">2</div>
+					</div>
+
 
 				<?php }
 				?>

@@ -86,7 +86,7 @@ class Dashboard extends MY_Controller
 		{
 			if($value > $max)
 				$max=$value;
-			else if($value < $min)
+			if($value < $min)
 				$min=$value;
 			else
 				$min=$value;

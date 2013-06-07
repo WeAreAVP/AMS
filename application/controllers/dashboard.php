@@ -82,11 +82,11 @@ class Dashboard extends MY_Controller
 		$array=array(5,7,10,13,2,1,5,76);
 		$min=0;
 		$max=0;
-		foreach ($array as $key => $value)
+		foreach ($array as  $value)
 		{
 			if($value>$max)
 				$max=$value;
-			else if($value<$mix)
+			if($value<$mix)
 				$min=$value;
 		}
 		echo 'Max Value: '.$max.'<br/>';

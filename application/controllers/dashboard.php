@@ -78,6 +78,21 @@ class Dashboard extends MY_Controller
 		debug($reverse);
 		
 	}
+	function min_max(){
+		$array=array(5,7,10,13,2,1,5,76);
+		$min=NULL;
+		$max=NULL;
+		foreach ($array as $key => $value)
+		{
+			if($value>$max)
+				$max=$value;
+			else if($value<$mix)
+				$min=$value;
+		}
+		echo 'Max Value: '.$max.'<br/>';
+		echo 'Min Value: '.$min.'<br/>';
+		exit;
+	}
 	/**
 	 * Dashboard Functionality
 	 * 

@@ -173,7 +173,7 @@ class Stations extends MY_Controller
 			{
 				$this->station_model->update_station($value->station_id, array('start_date' => $value->start_date, 'end_date' => $value->end_date));
 				$this->sphinx->update_indexes('stations', array('start_date', 'end_date'), array($value->station_id => array(strtotime($value->start_date), strtotime($value->end_date))));
-				$log = array('user_id' => $this->user_id, 'record_id' => $value, 'record' => 'station', 'type' => 'undo', 'comments' => 'Undo the last update');
+				$log = array('user_id' => $this->user_id, 'record_id' => $value->station_id, 'record' => 'station', 'type' => 'undo', 'comments' => 'Undo the last update');
 				$this->audit_trail($log);
 			}
 		}
@@ -331,7 +331,7 @@ class Stations extends MY_Controller
 							$this->update_sphnix_index($row, $station_id, TRUE);
 							if ( ! isset($station_update_count['station'][$row[0]]))
 								$station_update_count['station'][$row[0]] = 'inserted';
-							$log = array('user_id' => $this->user_id, 'record_id' => $station_id, 'record' => 'station', 'type' => 'edit', 'comments' => 'csv insert');
+							$log = array('user_id' => $this->user_id, 'record_id' => $station_id, 'record' => 'station', 'type' => 'add', 'comments' => 'csv insert');
 							$this->audit_trail($log);
 						}
 						unset($station_detail);

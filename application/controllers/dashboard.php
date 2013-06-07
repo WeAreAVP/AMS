@@ -80,8 +80,8 @@ class Dashboard extends MY_Controller
 	}
 	function min_max(){
 		$array=array(5,7,10,13,2,1,5,76);
-		$min=NULL;
-		$max=NULL;
+		$min=0;
+		$max=0;
 		foreach ($array as $key => $value)
 		{
 			if($value>$max)

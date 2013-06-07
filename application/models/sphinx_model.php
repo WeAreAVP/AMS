@@ -114,7 +114,7 @@ class Sphinx_Model extends CI_Model
 		if ($limit)
 			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
-		$query = $this->make_where_clause($type);
+		$query = $this->make_where_clause($type,$index_name);
 		$res = $this->sphinxsearch->query($query, $index_name);
 
 
@@ -461,7 +461,7 @@ class Sphinx_Model extends CI_Model
 
 			$where .=" @s_organization \"	^$this->station_name$\"";
 		}
-		echo $where;
+		
 		return $where;
 	}
 

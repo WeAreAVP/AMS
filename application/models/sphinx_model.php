@@ -322,15 +322,7 @@ class Sphinx_Model extends CI_Model
 	{
 
 		$where = '';
-//		if ($type == 'physical')
-//		{
-//			
-//			$where .= " @s_format_type \"physical\"";
-//		}
-//		if ($type == 'digital')
-//		{
-//			$where .= " @s_format_type \"digital\"";
-//		}
+
 		if (isset($this->session->userdata['custom_search']) && $this->session->userdata['custom_search'] != '')
 		{
 			$keyword_json = $this->session->userdata['custom_search'];
@@ -407,7 +399,7 @@ class Sphinx_Model extends CI_Model
 		{
 			$this->sphinxsearch->set_filter("digitized", array(1));
 		}
-		
+
 
 		if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
 		{
@@ -435,10 +427,20 @@ class Sphinx_Model extends CI_Model
 			$physical_format = str_replace('|||', '" | "', trim($this->session->userdata['physical_format']));
 			$where .=" @s_format_name \"^$physical_format$\" @s_format_type \"physical\"";
 		}
+		else if ($type == 'physical')
+		{
+
+			$where .= " @s_format_type \"physical\"";
+		}
+
 		if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
 		{
 			$digital_format = str_replace('|||', '" | "', trim($this->session->userdata['digital_format']));
 			$where .=" @s_format_name \"^$digital_format$\" @s_format_type \"digital\"";
+		}
+		else if ($type == 'digital')
+		{
+			$where .= " @s_format_type \"digital\"";
 		}
 		if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
 		{

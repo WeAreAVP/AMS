@@ -318,7 +318,7 @@ class Sphinx_Model extends CI_Model
 		return $this->db->get('nomination_status')->row();
 	}
 
-	function make_where_clause($type = NULL)
+	function make_where_clause($type = NULL,$sphnix_index=NULL)
 	{
 
 		$where = '';
@@ -353,6 +353,8 @@ class Sphinx_Model extends CI_Model
 					}
 					else
 					{
+						if($sphnix_index=='assets_list')
+							$index="s_{$index}";
 						if ($count == 0)
 							$where .="@$index \"$keyword\"";
 						else
@@ -486,7 +488,7 @@ class Sphinx_Model extends CI_Model
 				$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['column']);
 			}
 		}
-		$query = $this->make_where_clause();
+		$query = $this->make_where_clause(NULL,$params['index']);
 
 		$res = $this->sphinxsearch->query($query, $params['index']);
 

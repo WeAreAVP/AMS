@@ -69,7 +69,7 @@ class Dashboard extends MY_Controller
 	function reverse(){
 		$array=array(1,2,3,4,5,6,7,8,9,10);
 		$count=  count($array);
-		$reverse=array();
+		$reverse=array_fill(0, $count-1, '');
 		for($i=0;$i<$count/2;$i++){
 			$reverse[$i]=$array[$count-1-$i];
 			$reverse[$count-1-$i]=$array[$i];

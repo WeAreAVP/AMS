@@ -356,7 +356,7 @@ class Sphinx_Model extends CI_Model
 						if($sphnix_index=='assets_list')
 							$index="s_{$index}";
 						if ($count == 0)
-							$where .="@$index \"$keyword\"";
+							$where .=" @$index \"$keyword\"";
 						else
 							$where .=" | \"$keyword\"";
 					}

@@ -99,14 +99,14 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			if ($this->role_id == 1 || $this->role_id == 2)
 			{
 				?>
-				<!--<li><a href="#mint_modal" role="button" data-toggle="modal" data-backdrop="static">Import Collection</a></li>-->
+				<li><a href="#mint_modal" role="button" data-toggle="modal" data-backdrop="static">Import Collection</a></li>
 
 				<?php
 			}
 			else
 			{
 				?>
-				<!--<li><a href="<?php echo site_url('autocomplete/mint_login'); ?>" target="_blank">Import Collection</a></li>-->
+				<li><a href="<?php echo site_url('autocomplete/mint_login'); ?>" target="_blank">Import Collection</a></li>
 			<?php } ?>
 		</ul>
 	</div>

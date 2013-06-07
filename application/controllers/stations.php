@@ -110,7 +110,7 @@ class Stations extends MY_Controller
 			{
 				$station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date, 'is_certified' => $is_certified, 'is_agreed' => $is_agreed));
 				$this->sphinx->update_indexes('stations', array('start_date', 'end_date', 'is_certified', 'is_agreed'), array($value => array((int) strtotime($start_date), (int) strtotime($end_date), (int) $is_certified, (int) $is_agreed)));
-				$log = array('user_id' => $this->user_id, 'record_id' => $value, 'record' => 'station', 'type' => 'edit', 'comments' => 'Update from stations list.');
+				$log = array('user_id' => $this->user_id, 'record_id' => $value, 'record' => 'station', 'type' => 'edit', 'comments' => 'Update from stations tab.');
 				$this->audit_trail($log);
 			}
 			echo json_encode(array('success' => TRUE, 'station' => $station, 'total' => count($station_ids)));
@@ -229,7 +229,7 @@ class Stations extends MY_Controller
 				$start_date = date('Y-m-d', strtotime($value));
 				$this->station_model->update_station($station_id, array('start_date' => $start_date));
 				$this->sphinx->update_indexes('stations', array('start_date'), array($station_id => array((int) strtotime($start_date))));
-				$log = array('user_id' => $this->user_id, 'record_id' => $station_id, 'record' => 'station', 'type' => 'edit', 'comments' => 'station updated');
+				$log = array('user_id' => $this->user_id, 'record_id' => $station_id, 'record' => 'station', 'type' => 'edit', 'comments' => 'update from digitization start date message.');
 				$this->audit_trail($log);
 			}
 			echo json_encode(array('success' => TRUE));

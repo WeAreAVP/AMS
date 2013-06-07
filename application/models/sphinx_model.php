@@ -324,11 +324,12 @@ class Sphinx_Model extends CI_Model
 		$where = '';
 		if ($type == 'physical')
 		{
-			$where = " @s_format_type \"physical\"";
+			
+			$where .= " @s_format_type \"physical\"";
 		}
 		if ($type == 'digital')
 		{
-			$where = " @s_format_type \"digital\"";
+			$where .= " @s_format_type \"digital\"";
 		}
 		if (isset($this->session->userdata['custom_search']) && $this->session->userdata['custom_search'] != '')
 		{

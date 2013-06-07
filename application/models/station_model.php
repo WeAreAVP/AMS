@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Station Model
  * 
@@ -41,6 +40,7 @@ class Station_Model extends CI_Model
 		$this->_table_messages = 'messages';
 		$this->_assets_table = 'assets';
 		$this->_instantiations_table = 'instantiations';
+		$this->_table_audit_trail = 'audit_trail';
 	}
 
 	/**
@@ -214,11 +214,11 @@ class Station_Model extends CI_Model
 		return $query = $this->db->get($this->_table_backup)->result();
 	}
 
-	
-
-	
-
-	
+	function insert_log($data)
+	{
+		$this->db->insert($this->_table_audit_trail, $data);
+		return $this->db->insert_id();
+	}
 
 }
 

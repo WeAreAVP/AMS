@@ -110,6 +110,8 @@ class Stations extends MY_Controller
 			{
 				$station[] = $this->station_model->update_station($value, array('start_date' => $start_date, 'end_date' => $end_date, 'is_certified' => $is_certified, 'is_agreed' => $is_agreed));
 				$this->sphinx->update_indexes('stations', array('start_date', 'end_date', 'is_certified', 'is_agreed'), array($value => array((int) strtotime($start_date), (int) strtotime($end_date), (int) $is_certified, (int) $is_agreed)));
+				$log = array('user_id' => $this->user_id, 'record_id' => $value, 'record' => 'station', 'type' => 'edit', 'comments' => 'Update from stations list.');
+				$this->audit_trail($log);
 			}
 			echo json_encode(array('success' => TRUE, 'station' => $station, 'total' => count($station_ids)));
 			exit_function();
@@ -171,6 +173,8 @@ class Stations extends MY_Controller
 			{
 				$this->station_model->update_station($value->station_id, array('start_date' => $value->start_date, 'end_date' => $value->end_date));
 				$this->sphinx->update_indexes('stations', array('start_date', 'end_date'), array($value->station_id => array(strtotime($value->start_date), strtotime($value->end_date))));
+				$log = array('user_id' => $this->user_id, 'record_id' => $value, 'record' => 'station', 'type' => 'undo', 'comments' => 'Undo the last update');
+				$this->audit_trail($log);
 			}
 		}
 		redirect('stations/index', 'location');
@@ -225,6 +229,8 @@ class Stations extends MY_Controller
 				$start_date = date('Y-m-d', strtotime($value));
 				$this->station_model->update_station($station_id, array('start_date' => $start_date));
 				$this->sphinx->update_indexes('stations', array('start_date'), array($station_id => array((int) strtotime($start_date))));
+				$log = array('user_id' => $this->user_id, 'record_id' => $station_id, 'record' => 'station', 'type' => 'edit', 'comments' => 'station updated');
+				$this->audit_trail($log);
 			}
 			echo json_encode(array('success' => TRUE));
 			exit_function();
@@ -272,7 +278,7 @@ class Stations extends MY_Controller
 
 		$count = count($records);
 
-		$type = array('Radio' => 0, 'TV' => 1, 'Joint' => 2,'Television'=>1);
+		$type = array('Radio' => 0, 'TV' => 1, 'Joint' => 2, 'Television' => 1);
 		$station_id = NULL;
 		$station_update_count = array('station' => '', 'user' => '');
 		if ($count > 0)
@@ -314,6 +320,8 @@ class Stations extends MY_Controller
 							$this->update_sphnix_index($row, $station_id, FALSE, $station);
 							if ( ! isset($station_update_count['station'][$row[0]]))
 								$station_update_count['station'][$row[0]] = 'updated';
+							$log = array('user_id' => $this->user_id, 'record_id' => $station_id, 'record' => 'station', 'type' => 'edit', 'comments' => 'csv update');
+							$this->audit_trail($log);
 						}
 						else
 						{
@@ -323,6 +331,8 @@ class Stations extends MY_Controller
 							$this->update_sphnix_index($row, $station_id, TRUE);
 							if ( ! isset($station_update_count['station'][$row[0]]))
 								$station_update_count['station'][$row[0]] = 'inserted';
+							$log = array('user_id' => $this->user_id, 'record_id' => $station_id, 'record' => 'station', 'type' => 'edit', 'comments' => 'csv insert');
+							$this->audit_trail($log);
 						}
 						unset($station_detail);
 

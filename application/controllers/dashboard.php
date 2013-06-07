@@ -44,6 +44,29 @@ class Dashboard extends MY_Controller
 		}
 	}
 
+	function mode()
+	{
+		$random = array(5, 7, 10, 3, 1, 7, 5, 6, 5);
+		$mode_array = array();
+		foreach ($random as $value)
+		{
+			if (isset($mode_array[$value]))
+				$mode_array[$value] ++;
+			else
+				$mode_array[$value] = 1;
+		}
+		$mode_count=0;
+		$mode_no=0;
+		foreach ($mode_array as $key => $value)
+		{
+			if($mode_count < $value){
+				$mode_count=$value;
+				$mode_no=$key;
+			}
+		}
+		echo $mode_no.'<br/>'.$mode_count;exit;
+	}
+
 	/**
 	 * Dashboard Functionality
 	 * 
@@ -51,15 +74,11 @@ class Dashboard extends MY_Controller
 	 */
 	public function index()
 	{
-
-
-
 		$data['digitized_format_name'] = json_decode($this->memcached_library->get('graph_digitized_format_name'), TRUE);
 		$data['digitized_total'] = json_decode($this->memcached_library->get('graph_digitized_total'), TRUE);
 		$data['scheduled_format_name'] = json_decode($this->memcached_library->get('graph_scheduled_format_name'), TRUE);
 		$data['scheduled_total'] = json_decode($this->memcached_library->get('graph_scheduled_total'), TRUE);
 		$data['material_goal'] = json_decode($this->memcached_library->get('material_goal'), TRUE);
-
 		$data['at_crawford'] = json_decode($this->memcached_library->get('at_crawford'), TRUE);
 		$data['total_hours'] = json_decode($this->memcached_library->get('total_hours'), TRUE);
 		$data['percentage_hours'] = json_decode($this->memcached_library->get('percentage_hours'), TRUE);

@@ -17,7 +17,7 @@ class MY_Controller extends CI_Controller
 	public $role_id;
 	public $is_station_user;
 	public $station_id;
-	public $user_details;
+	public $user_detail;
 	public $can_compose_alert;
 	public $views_settings;
 	public $frozen_column;

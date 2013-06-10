@@ -70,7 +70,7 @@ class Autocomplete extends MY_Controller
 	 */
 	public function mint_login()
 	{
-		debug($this->user_detail);
+
 		if ($this->user_detail)
 		{
 			if ($this->is_station_user)

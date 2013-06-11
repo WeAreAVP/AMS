@@ -286,6 +286,7 @@ class Refine_modal extends CI_Model
 				}
 			}
 			$where .=' )';
+			$this->db->where($where,NULL,FALSE);
 		}
 		if (isset($session['date_range']) && $session['date_range'] != '')
 		{

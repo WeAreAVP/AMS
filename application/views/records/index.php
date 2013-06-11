@@ -127,10 +127,10 @@ if ( ! $isAjax)
 		else
 		{
 			?>
-			<div><a href="<?php echo site_url('asset/add'); ?>" class="btn">Add Asset</a></div>
+			<div style="margin: 8px;"><a href="<?php echo site_url('asset/add'); ?>" class="btn">Add Asset</a></div>
 			<div  style="text-align: center;width: 710px;margin-top: 50px;font-size: 20px;">
 				<div><img src="/images/no_result.png" /></div>
-				<div style="color: #cccccc;font-size: 11pt;">No result found.</div>
+				<div style="color: #cccccc;font-size: 11pt;">No record found.</div>
 			</div>
 		<?php }
 		?>

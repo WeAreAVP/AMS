@@ -1197,6 +1197,9 @@ class Instantiations extends MY_Controller
 		{
 			$is_all_facet = $this->input->post('issearch');
 			$index = $this->input->post('index');
+			$this->load->library('sphnixrt');
+			$data = $this->sphnixrt->select('instantiations_list', array('start' => 0, 'limit' => 1000,'group_by'=>'organization'));
+		debug($data);
 //			if ($is_all_facet > 0)
 //			{
 				$states = $this->sphinx->facet_index('state', $index);

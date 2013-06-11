@@ -47,9 +47,15 @@ class Sphnixrt
 
 
 
-
+		
 		// build first part of query
 		$query = 'SELECT * FROM `' . $index_name . '`';
+		
+		if (is_int($data_array['group_by']))
+		{
+			// have some values, push these
+			$query .= ' GROUP BY `' . $data_array['group_by']. '`';
+		}
 // add start/limits?
 		if (is_int($data_array['limit']) && is_int($data_array['start']))
 		{

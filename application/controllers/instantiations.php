@@ -1219,16 +1219,16 @@ class Instantiations extends MY_Controller
 			$p_format = $this->sphinx->facet_index('format_name', $index, 'physical');
 			$data['physical_formats'] = sortByOneKey($p_format['records'], 'format_name', TRUE);
 			unset($p_format);
-			$d_format = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'format_name', 'column_name' => 'format_name', 'where' => 's_format_name=`digital`'));
+			$d_format =$this->sphinx->facet_index('format_name', $index, 'digital_formats');
 			$data['digital_formats'] = sortByOneKey($d_format['records'], 'format_name', TRUE);
 			unset($d_format);
-			$generation = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'facet_generation', 'column_name' => 'facet_generation'));
+			$generation =$this->sphinx->facet_index('facet_generation', $index);
 			$data['generations'] = sortByOneKey($generation['records'], 'facet_generation', TRUE);
 			unset($generation);
-			$digitized = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'digitized', 'column_name' => 'digitized', 'where' => 'digitized=1'));
+			$digitized = $this->sphinx->facet_index('digitized', $index,'digitized');
 			$data['digitized'] = $digitized['records'];
 
-			$migration = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'migration', 'column_name' => 'migration', 'where' => 'event_type= `migration` AND event_outcome `FAIL`'));
+			$migration =$this->sphinx->facet_index('migration', $index,'migration');
 			$data['migration'] = $migration['records'];
 		}
 			else

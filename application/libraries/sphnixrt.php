@@ -49,7 +49,7 @@ class Sphnixrt
 
 		
 		// build first part of query
-		$query = 'SELECT * FROM `' . $index_name . '`';
+		$query = 'SELECT organization,@count FROM `' . $index_name . '`';
 		
 		if (isset($data_array['group_by']) && !  empty($data_array['group_by']))
 		{

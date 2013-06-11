@@ -98,13 +98,6 @@ class Sphinx_Model extends CI_Model
 
 	public function facet_index($column_name, $index_name, $type = NULL, $offset = 0, $limit = 1000)
 	{
-		$this->sphnix_db = $this->load->database('sphnix', TRUE);
-//		$this->sphnix_db->reconnect();
-//		$query = $this->sphnix_db->query("SELECT {$column_name},@count FROM {$index_name} limit {$limit}");
-		$this->sphnix_db->reconnect();
-		$query = $this->sphnix_db->query('SELECT * FROM stations limit 10');
-
-		debug($query->result());
 		$list = array();
 		$total_record = 0;
 		$query = '';

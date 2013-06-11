@@ -1199,17 +1199,13 @@ class Instantiations extends MY_Controller
 			$index = $this->input->post('index');
 			$this->load->library('sphnixrt');
 
-//			if ($is_all_facet > 0)
-//			{
+			if ($is_all_facet > 0)
+			{
 			$states = $this->sphinx->facet_index('state', $index);
-			debug($states);
-//			$states = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'state', 'column_name' => 'state'));
 			$data['org_states'] = sortByOneKey($states['records'], 'state');
 			unset($states);
 
 //			$stations = $this->sphinx->facet_index('organization', $index);
-
-
 			$stations = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
 			$data['stations'] = sortByOneKey($stations['records'], 'organization');
 			unset($stations);
@@ -1234,32 +1230,32 @@ class Instantiations extends MY_Controller
 
 			$migration = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'migration', 'column_name' => 'migration', 'where' => 'event_type= `migration` AND event_outcome `FAIL`'));
 			$data['migration'] = $migration['records'];
-//			}
-//			else
-//			{
-//				if ($index == 'assets_list')
-//				{
-//					$key_name = 'asset';
-//				}
-//				else
-//				{
-//					$key_name = 'ins';
-//				}
-//				$data['org_states'] = json_decode($this->memcached_library->get($key_name . '_state'), TRUE);
-//
-//				$data['stations'] = json_decode($this->memcached_library->get($key_name . '_stations'), TRUE);
-//
-//				$data['nomination_status'] = json_decode($this->memcached_library->get($key_name . '_status'), TRUE);
-//				$data['media_types'] = json_decode($this->memcached_library->get($key_name . '_media_type'), TRUE);
-//				$data['physical_formats'] = json_decode($this->memcached_library->get($key_name . '_physical'), TRUE);
-//				$data['digital_formats'] = json_decode($this->memcached_library->get($key_name . '_digital'), TRUE);
-//				$data['generations'] = json_decode($this->memcached_library->get($key_name . '_generations'), TRUE);
-//
-//
-//				$data['digitized'] = json_decode($this->memcached_library->get($key_name . '_digitized'), TRUE);
-//
-//				$data['migration'] = json_decode($this->memcached_library->get($key_name . '_migration'), TRUE);
-//			}
+		}
+			else
+			{
+				if ($index == 'assets_list')
+				{
+					$key_name = 'asset';
+				}
+				else
+				{
+					$key_name = 'ins';
+				}
+				$data['org_states'] = json_decode($this->memcached_library->get($key_name . '_state'), TRUE);
+
+				$data['stations'] = json_decode($this->memcached_library->get($key_name . '_stations'), TRUE);
+
+				$data['nomination_status'] = json_decode($this->memcached_library->get($key_name . '_status'), TRUE);
+				$data['media_types'] = json_decode($this->memcached_library->get($key_name . '_media_type'), TRUE);
+				$data['physical_formats'] = json_decode($this->memcached_library->get($key_name . '_physical'), TRUE);
+				$data['digital_formats'] = json_decode($this->memcached_library->get($key_name . '_digital'), TRUE);
+				$data['generations'] = json_decode($this->memcached_library->get($key_name . '_generations'), TRUE);
+
+
+				$data['digitized'] = json_decode($this->memcached_library->get($key_name . '_digitized'), TRUE);
+
+				$data['migration'] = json_decode($this->memcached_library->get($key_name . '_migration'), TRUE);
+			}
 
 			echo $this->load->view('instantiations/_facet_columns', $data, TRUE);
 			exit_function();

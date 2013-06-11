@@ -186,6 +186,12 @@ class Crons extends CI_Controller
 					$result = $this->sphinx->facet_index($facet, $index_name, $columns);
 					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
 				}
+				else if ($columns == 'stations')
+				{
+//					$result = $this->sphinx->facet_index($facet, $index_name, $columns);
+					$result =  $this->sphnixrt->select($index_name, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
+					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
+				}
 				else
 				{
 					$result = $this->sphinx->facet_index($facet, $index_name);
@@ -276,9 +282,9 @@ class Crons extends CI_Controller
 		$data['total_goal'] = $this->dashboard_model->get_material_goal();
 		$digitized_hours = $this->dashboard_model->get_digitized_hours();
 		$data['total_hours'] = $this->abbr_number((isset($data['total_goal']->total)) ? $data['total_goal']->total : 0);
-		
+
 		$total_digitized_hours = (isset($digitized_hours->total)) ? $digitized_hours->total : 0;
-		
+
 		$data['percentage_hours'] = round(($total_digitized_hours * 100) / $data['total_goal']->total);
 		$this->memcached_library->set('total_hours', json_encode($data['total_hours']), 3600);
 		$this->memcached_library->set('percentage_hours', json_encode($data['percentage_hours']), 3600);

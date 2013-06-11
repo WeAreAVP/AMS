@@ -1207,6 +1207,8 @@ class Instantiations extends MY_Controller
 				unset($states);
 				
 //			$stations = $this->sphinx->facet_index('organization', $index);
+				
+				echo 'Nouman';
 				$stations = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
 				debug($stations );
 				$data['stations'] = sortByOneKey($stations['records'], 'organization');

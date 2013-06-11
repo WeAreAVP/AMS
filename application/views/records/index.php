@@ -120,16 +120,17 @@ if ( ! $isAjax)
 		else if ($start >= 1000)
 		{
 			?>
+				
 			<div  style="text-align: center;width: 710px;margin-top: 50px;font-size: 20px;">Please refine your search</div>
 			<?php
 		}
 		else
 		{
 			?>
-
+			<div><a href="<?php echo site_url('asset/add'); ?>" >Add Asset</a></div>
 			<div  style="text-align: center;width: 710px;margin-top: 50px;font-size: 20px;">
 				<div><img src="/images/no_result.png" /></div>
-				<div style="color: #cccccc;font-size: 11pt;">No result found. Refine your search.</div>
+				<div style="color: #cccccc;font-size: 11pt;">No result found.</div>
 			</div>
 		<?php }
 		?>

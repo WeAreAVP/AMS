@@ -1202,7 +1202,7 @@ class Instantiations extends MY_Controller
 //			if ($is_all_facet > 0)
 //			{
 //			$states = $this->sphinx->facet_index('state', $index);
-				$states = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'state'));
+				$states = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'state', 'column_name' => 'state'));
 				$data['org_states'] = sortByOneKey($states['records'], 'state');
 				unset($states);
 
@@ -1211,39 +1211,39 @@ class Instantiations extends MY_Controller
 				$data['stations'] = sortByOneKey($stations['records'], 'organization');
 				unset($stations);
 //				$nomination = $this->sphinx->facet_index('status', $index);
-				$nomination = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'status'));
+				$nomination = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'status', 'column_name' => 'status'));
 
 				$data['nomination_status'] = sortByOneKey($nomination['records'], 'status');
 				unset($nomination);
 //				$media_type = $this->sphinx->facet_index('media_type', $index);
-				$media_type =$this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'media_type'));
+				$media_type =$this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'media_type', 'column_name' => 'media_type'));
 
 				$data['media_types'] = sortByOneKey($media_type['records'], 'media_type', TRUE);
 
 				unset($media_type);
 //				$p_format = $this->sphinx->facet_index('format_name', $index, 'physical');
-				$p_format = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'format_name','where'=>'s_format_name=`physical`'));
+				$p_format = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'format_name', 'column_name' => 'format_name','where'=>'s_format_name=`physical`'));
 
 				$data['physical_formats'] = sortByOneKey($p_format['records'], 'format_name', TRUE);
 				unset($p_format);
 //				$d_format = $this->sphinx->facet_index('format_name', $index, 'digital');
-				$d_format = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'format_name','where'=>'s_format_name=`digital`'));
+				$d_format = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'format_name', 'column_name' => 'format_name','where'=>'s_format_name=`digital`'));
 
 				$data['digital_formats'] = sortByOneKey($d_format['records'], 'format_name', TRUE);
 				unset($d_format);
 //				$generation = $this->sphinx->facet_index('facet_generation', $index);
-				$generation = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'facet_generation'));
+				$generation = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'facet_generation', 'column_name' => 'facet_generation'));
 
 				$data['generations'] = sortByOneKey($generation['records'], 'facet_generation', TRUE);
 				unset($generation);
 
 //				$digitized = $this->sphinx->facet_index('digitized', $index, 'digitized');
-				$digitized = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'digitized','where'=>'digitized=1'));
+				$digitized = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'digitized', 'column_name' => 'digitized','where'=>'digitized=1'));
 
 				$data['digitized'] = $digitized['records'];
 
 //				$migration = $this->sphinx->facet_index('migration', $index, 'migration');
-				$migration = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'migration','where'=>'event_type= `migration` AND event_outcome `FAIL`'));
+				$migration = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'migration', 'column_name' => 'migration','where'=>'event_type= `migration` AND event_outcome `FAIL`'));
 				$data['migration'] = $migration['records'];
 //			}
 //			else

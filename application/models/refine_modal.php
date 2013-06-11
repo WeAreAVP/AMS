@@ -199,7 +199,7 @@ class Refine_modal extends CI_Model
 		if (isset($session['digitized']) && $session['digitized'] === '1')
 		{
 			$this->db->where("$this->table_instantiations.digitized", '1');
-			$this->db->where("$this->table_instantiations.actual_duration IS NULL");
+//			$this->db->where("$this->table_instantiations.actual_duration IS NULL");
 		}
 		if (isset($session['migration_failed']) && $session['migration_failed'] === '1')
 		{
@@ -252,8 +252,9 @@ class Refine_modal extends CI_Model
 				'track_height' => 'essence_track_frame_sizes.height',
 				'track_aspect_ratio' => 'essence_tracks.aspect_ratio',
 			);
-
+			
 			$keyword_json = $session['custom_search'];
+			$where='1=1 AND ( 1=1';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
@@ -265,23 +266,26 @@ class Refine_modal extends CI_Model
 
 						foreach ($facet_columns as $column)
 						{
-							if ($count == 0)
-								$this->db->like($column, $keyword);
-							else
-								$this->db->or_like($column, $keyword);
-							$count ++;
+//							if ($count == 0)
+//								$this->db->like($column, $keyword);
+//							else
+//								$this->db->or_like($column, $keyword);
+//							$count ++;
+							$where .=" OR $column LIKE '%$keyword%'";
 						}
 					}
 					else
 					{
-						if ($count == 0)
-							$this->db->like($index, $keyword);
-						else
-							$this->db->or_like($index, $keyword);
+//						if ($count == 0)
+//							$this->db->like($index, $keyword);
+//						else
+//							$this->db->or_like($index, $keyword);
+						$where .=" OR $index LIKE '%$keyword%'";
 					}
 					$count ++;
 				}
 			}
+			$where .=' )';
 		}
 		if (isset($session['date_range']) && $session['date_range'] != '')
 		{

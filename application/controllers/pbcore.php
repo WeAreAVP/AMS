@@ -50,16 +50,12 @@ class Pbcore extends CI_Controller
 	 * Store all PBCore 1.x directories and data files in the database.
 	 *  
 	 */
-	function process_dir($type = 'assets')
+	function process_dir()
 	{
-
 		set_time_limit(0);
 		@ini_set("memory_limit", "2000M"); # 2GB
 		@ini_set("max_execution_time", 999999999999);
-		if ($type != 'assets')
-			$this->cron_model->scan_directory($this->assets_path . 'mixed_stations/', $dir_files);
-		else
-			$this->cron_model->scan_directory($this->assets_path, $dir_files);
+		$this->cron_model->scan_directory($this->assets_path, $dir_files);
 		$count = count($dir_files);
 
 		if (isset($count) && $count > 0)
@@ -69,7 +65,7 @@ class Pbcore extends CI_Controller
 			$maxProcess = 10;
 			foreach ($dir_files as $dir)
 			{
-				$cmd = escapeshellcmd('/usr/bin/php ' . $this->config->item('path') . 'index.php pbcore process_dir_child ' . base64_encode($dir) . ' ' . $type);
+				$cmd = escapeshellcmd('/usr/bin/php ' . $this->config->item('path') . 'index.php pbcore process_dir_child ' . base64_encode($dir));
 				$this->config->item('path') . "cronlog/process_dir_child.log";
 				$pidFile = $this->config->item('path') . "PIDs/process_dir_child/" . $loop_counter . ".txt";
 				@exec('touch ' . $pidFile);
@@ -106,14 +102,14 @@ class Pbcore extends CI_Controller
 	 * 
 	 * @param type $path 
 	 */
-	function process_dir_child($path, $type)
+	function process_dir_child($path)
 	{
 		set_time_limit(0);
 		@ini_set("memory_limit", "4000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999); # 1GB
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-//		$type = 'assets';
+		$type = 'assets';
 		$file = 'manifest-md5.txt';
 		$directory = base64_decode($path);
 		$folder_status = 'complete';

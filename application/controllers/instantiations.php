@@ -1203,7 +1203,7 @@ class Instantiations extends MY_Controller
 				$data['org_states'] = sortByOneKey($states['records'], 'state');
 				unset($states);
 
-				$stations = $this->sphinx->facet_index('organization', $index);
+				$stations = $this->sphinx->facet_index('s_organization', $index);
 				echo count($stations['records']);
 				$data['stations'] = sortByOneKey($stations['records'], 'organization');
 				echo  '<br/>'.count($data['stations']);

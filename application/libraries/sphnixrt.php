@@ -22,9 +22,9 @@ class Sphnixrt
 
 		// load the config
 		$this->CI->config->load('sphnixrt');
-
+		echo $this->CI->config->config['hostname'];
 		// attempt to connect to Sphinx
-		$this->sphinxql_link = new mysqli($this->CI->config->config['hostname'], 'sphinx', '', '', $this->CI->config->config['port']);
+		$this->sphinxql_link = new mysqli($this->CI->config->config['hostname'], '', '', '', $this->CI->config->config['port']);
 
 		// did the link work?
 		if ( ! $this->sphinxql_link)

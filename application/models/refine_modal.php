@@ -252,9 +252,9 @@ class Refine_modal extends CI_Model
 				'track_height' => 'essence_track_frame_sizes.height',
 				'track_aspect_ratio' => 'essence_tracks.aspect_ratio',
 			);
-			
+
 			$keyword_json = $session['custom_search'];
-			$where='1=1 AND ( 1=1';
+			$where = '( 1=1';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
@@ -286,14 +286,15 @@ class Refine_modal extends CI_Model
 				}
 			}
 			$where .=' )';
-			$this->db->where($where,NULL,FALSE);
+			$this->db->where($where, NULL, FALSE);
 		}
 		if (isset($session['date_range']) && $session['date_range'] != '')
 		{
 			$keyword_json = $this->session->userdata['date_range'];
+			$where = ' (1=1';
 			foreach ($keyword_json as $index => $key_columns)
 			{
-				$count = 0;
+//				$count = 0;
 				foreach ($key_columns as $keys => $keywords)
 				{
 
@@ -308,26 +309,29 @@ class Refine_modal extends CI_Model
 					}
 					if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
 					{
-						if ($count == 0)
-						{
-							$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates >=", $start_date);
-							$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates <=", $end_date);
-						}
-						else
-						{
-							$this->db->or_where("$this->table_instantiation_dates.$this->table_instantiation_dates >=", $start_date);
-							$this->db->or_where("$this->table_instantiation_dates.$this->table_instantiation_dates <=", $end_date);
-						}
+//						if ($count == 0)
+//						{
+//							$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates >=", $start_date);
+//							$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates <=", $end_date);
+//						}
+//						else
+//						{
+//							$this->db->or_where("$this->table_instantiation_dates.$this->table_instantiation_dates >=", $start_date);
+//							$this->db->or_where("$this->table_instantiation_dates.$this->table_instantiation_dates <=", $end_date);
+//						}
 
+						$where .="OR ($this->table_instantiation_dates.instantiation_date >= $start_date AND $this->table_instantiation_dates.instantiation_date<= $end_date )";
 
 						if ($index != 'All')
 						{
-							$this->db->where_in("$this->table_date_types.date_type", $index);
+							$where .=" AND $this->table_date_types.date_type LIKE '$index'";
+//							$this->db->where_in("$this->table_date_types.date_type", $index);
 						}
 					}
-					$count ++;
+//					$count ++;
 				}
 			}
+			$where .=' )';
 		}
 
 		if ($this->is_station_user)
@@ -335,7 +339,6 @@ class Refine_modal extends CI_Model
 			$this->db->where_in("$this->stations.station_name", $this->station_name);
 		}
 
-//								$query	=	$this->db->group_by("$this->table_instantiations.id");
 		$this->db->from($this->table_instantiations);
 		if ($real_time)
 		{
@@ -523,6 +526,7 @@ class Refine_modal extends CI_Model
 			);
 
 			$keyword_json = $session['custom_search'];
+			$where = '( 1=1';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
@@ -534,27 +538,31 @@ class Refine_modal extends CI_Model
 
 						foreach ($facet_columns as $column)
 						{
-							if ($count == 0)
-								$this->db->like($column, $keyword);
-							else
-								$this->db->or_like($column, $keyword);
-							$count ++;
+//							if ($count == 0)
+//								$this->db->like($column, $keyword);
+//							else
+//								$this->db->or_like($column, $keyword);
+//							$count ++;
+							$where .=" OR $column LIKE '%$keyword%'";
 						}
 					}
 					else
 					{
-						if ($count == 0)
-							$this->db->like($index, $keyword);
-						else
-							$this->db->or_like($index, $keyword);
+//						if ($count == 0)
+//							$this->db->like($index, $keyword);
+//						else
+//							$this->db->or_like($index, $keyword);
+						$where .=" OR $index LIKE '%$keyword%'";
 					}
-					$count ++;
+//					$count ++;
 				}
 			}
+			$where .=' )';
 		}
 		if (isset($session['date_range']) && $session['date_range'] != '')
 		{
 			$keyword_json = $this->session->userdata['date_range'];
+			$where = ' (1=1';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
@@ -572,26 +580,29 @@ class Refine_modal extends CI_Model
 					}
 					if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
 					{
-						if ($count == 0)
-						{
-							$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates >=", $start_date);
-							$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates <=", $end_date);
-						}
-						else
-						{
-							$this->db->or_where("$this->table_instantiation_dates.$this->table_instantiation_dates >=", $start_date);
-							$this->db->or_where("$this->table_instantiation_dates.$this->table_instantiation_dates <=", $end_date);
-						}
-
+//						if ($count == 0)
+//						{
+//							$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates >=", $start_date);
+//							$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates <=", $end_date);
+//							
+//						}
+//						else
+//						{
+//							$this->db->or_where("$this->table_instantiation_dates.$this->table_instantiation_dates >=", $start_date);
+//							$this->db->or_where("$this->table_instantiation_dates.$this->table_instantiation_dates <=", $end_date);
+//						}
+						$where .="OR ($this->table_instantiation_dates.instantiation_date >= $start_date AND $this->table_instantiation_dates.instantiation_date<= $end_date )";
 
 						if ($index != 'All')
 						{
-							$this->db->where_in("$this->table_date_types.date_type", $index);
+							$where .=" AND $this->table_date_types.date_type LIKE '$index'";
+//							$this->db->where_in("$this->table_date_types.date_type", $index);
 						}
 					}
-					$count ++;
+//					$count ++;
 				}
 			}
+			$where .=' )';
 		}
 
 		if ($this->is_station_user)

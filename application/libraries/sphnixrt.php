@@ -25,7 +25,7 @@ class Sphnixrt
 		
 		// attempt to connect to Sphinx
 		$this->sphinxql_link = new mysqli($this->CI->config->config['hostname'], 'sphinx', '', '', $this->CI->config->config['port']);
-
+		var_dump($this->sphinxql_link );
 		// did the link work?
 		if ( ! $this->sphinxql_link)
 		{

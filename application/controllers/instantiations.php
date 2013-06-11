@@ -1208,9 +1208,10 @@ class Instantiations extends MY_Controller
 				
 //			$stations = $this->sphinx->facet_index('organization', $index);
 				$stations = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
+				debug($stations );
 				$data['stations'] = sortByOneKey($stations['records'], 'organization');
 				unset($stations);
-				debug($data['stations'] );
+				
 //				$nomination = $this->sphinx->facet_index('status', $index);
 				$nomination = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'status', 'column_name' => 'status'));
 

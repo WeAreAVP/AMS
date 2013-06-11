@@ -620,7 +620,7 @@ class Asset extends MY_Controller
 			{
 				$aacip_id = rand(100, 300);
 			}
-			$guid_string = file_get_contents('http://amsqa.avpreserve.com/nd/noidu_kt5?mint+1');
+			$guid_string = file_get_contents($this->config->item('base_url').'nd/noidu_kt5?mint+1');
 			if ( ! empty($guid_string))
 			{
 				$explode_guid = explode('id:', $guid_string);

@@ -241,7 +241,7 @@ class Mintimport extends CI_Controller
 
 		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
 
-		$this->import_asset_info($asset_id, $xmlArray['children']);
+		$this->import_asset_info($asset_id, $station_id, $xmlArray['children']);
 
 		$this->import_instantiation_info($asset_id, $xmlArray['children']);
 		log('Successfully imported all the information to AMS');
@@ -254,7 +254,7 @@ class Mintimport extends CI_Controller
 	 * @param integer $asset_id
 	 * @param array $xmlArray
 	 */
-	function import_asset_info($asset_id, $xmlArray)
+	function import_asset_info($asset_id, $station_id, $xmlArray)
 	{
 		// Asset Type Start //
 		if (isset($xmlArray['ams:pbcoreassettype']))
@@ -310,6 +310,7 @@ class Mintimport extends CI_Controller
 
 		if (isset($xmlArray['ams:pbcoreidentifier']) && ! empty($xmlArray['ams:pbcoreidentifier']))
 		{
+			$is_minted = TRUE;
 			foreach ($xmlArray['ams:pbcoreidentifier'] as $row)
 			{
 				if (isset($row['text']) && ! empty($row['text']))
@@ -320,12 +321,49 @@ class Mintimport extends CI_Controller
 					$identifier_detail['identifier_source'] = '';
 					$identifier_detail['identifier_ref'] = '';
 					if (isset($row['attributes']['source']) && ! empty($row['attributes']['source']))
+					{
 						$identifier_detail['identifier_source'] = $row['attributes']['source'];
+						if ($identifier_detail['identifier_source'] == 'http://americanarchiveinventory.org')
+							$is_minted = FALSE;
+					}
+
 					if (isset($row['attributes']['ref']) && ! empty($row['attributes']['ref']))
 						$identifier_detail['identifier_ref'] = $row['attributes']['ref'];
 
 					$this->assets_model->insert_identifiers($identifier_detail);
 					unset($identifier_detail);
+				}
+			}
+			if ( ! $is_minted)
+			{
+				$station_info = $this->station_model->get_station_by_id($station_id);
+				$aacip_id = '';
+				$records = file('aacip_cpb_stationid.csv');
+				foreach ($records as $index => $line)
+				{
+					$explode_ids = explode(',', $line);
+					if (isset($explode_ids[1]) && trim($explode_ids[1]) == trim($station_info->cpb_id))
+						$aacip_id = $explode_ids[0];
+				}
+				if (empty($aacip_id))
+				{
+					$aacip_id = rand(100, 300);
+				}
+				$guid_string = file_get_contents($this->config->item('base_url').'nd/noidu_kt5?mint+1');
+				if ( ! empty($guid_string))
+				{
+					$explode_guid = explode('id:', $guid_string);
+					if (count($explode_guid) > 1)
+					{
+						$guid = 'cpb-aacip/' . $aacip_id . '-' . trim($explode_guid[1]);
+					}
+				}
+				if ( ! empty($guid))
+				{
+					$identifier_detail['assets_id'] = $asset_id;
+					$identifier_detail['identifier'] = $guid;
+					$identifier_detail['identifier_source'] = 'http://americanarchiveinventory.org';
+					$this->assets_model->insert_identifiers($identifier_detail);
 				}
 			}
 		}

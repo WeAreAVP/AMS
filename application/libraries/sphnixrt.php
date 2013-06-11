@@ -51,7 +51,7 @@ class Sphnixrt
 		// build first part of query
 		$query = 'SELECT * FROM `' . $index_name . '`';
 		
-		if (is_int($data_array['group_by']))
+		if (isset($data_array['group_by']) && !  empty($data_array['group_by']))
 		{
 			// have some values, push these
 			$query .= ' GROUP BY `' . $data_array['group_by']. '`';

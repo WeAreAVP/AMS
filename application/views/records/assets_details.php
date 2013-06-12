@@ -47,9 +47,9 @@
 		?>
 		<div style="float: right;margin-left:5px;"><a href="<?php echo site_url($last_page); ?>" class="btn">Return</a></div>
 	<?php } ?>
-	<div style="float: right;">
+<!--	<div style="float: right;">
 		<button class="btn"><span class="icon-download-alt"></span>Export Asset</button>
-	</div>
+	</div>-->
 	<div class="clearfix"></div>
 
 	<?php $this->load->view('partials/_list'); ?>

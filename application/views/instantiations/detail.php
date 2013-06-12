@@ -44,9 +44,9 @@
 		?>
 		<div style="float: right;margin-left:5px;"><a href="<?php echo site_url($last_page); ?>" class="btn">Return</a></div>
 	<?php } ?>
-	<div style="float: right;">
+<!--	<div style="float: right;">
 		<button class="btn "><span class="icon-download-alt"></span>Export Instantiation</button>
-	</div>
+	</div>-->
 	<div class="clearfix"></div>
 	<?php $this->load->view('partials/_list'); ?>
 
@@ -59,7 +59,10 @@
 			{
 				?>
 
-				<div><a href="<?php echo site_url('instantiations/edit/' . $inst_id); ?>" class="btn">Edit Instantiation</a></div>
+				<div>
+					<a href="<?php echo site_url('instantiations/edit/' . $inst_id); ?>" class="btn">Edit Instantiation</a>
+					<a href="<?php echo site_url('instantiations/add/' . $asset_id); ?>" class="btn">Add Instantiation</a>
+				</div>
 			<?php } ?>
 			<table  cellPadding="8" class="record-detail-table">
 				<!--				Instantiation ID	Start		-->

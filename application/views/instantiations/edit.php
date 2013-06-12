@@ -292,6 +292,7 @@
 									<?php }
 									?>
 								</select>
+								<span id="physical_format_error" class="help-block" style="color: #c65f5a;display: none;">Physical Format is required.</span>
 							</p>
 
 						</td>
@@ -441,6 +442,7 @@
 								?>
 
 							</select>
+							<span id="media_type_error" class="help-block" style="color: #c65f5a;display: none;">Media Type is required.</span>
 						</p>
 
 					</td>

@@ -64,6 +64,8 @@
 
 				<div style="margin-left: 20px;">
 					<a href="<?php echo site_url('asset/edit/' . $asset_id); ?>" class="btn">Edit Asset</a>
+					<a href="<?php echo site_url('instantiations/add/' . $asset_id); ?>" class="btn">Add Instantiation</a>
+					
 				</div>
 			<?php } ?>
 

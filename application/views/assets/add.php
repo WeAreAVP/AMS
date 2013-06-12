@@ -529,7 +529,7 @@
 										<p> Audience Rating Source:</p>
 										<p>
 											<select id="asset_audience_rating_source_0" name="asset_audience_rating_source[]">
-												<option value="">Select Audience Rating Source</option>
+												<option value="">Select</option>
 												<option value="MPAA"  >MPAA</option>
 												<option value="TV Parental Guidelines" >TV Parental Guidelines</option>
 											</select>

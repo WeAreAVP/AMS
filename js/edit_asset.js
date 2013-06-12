@@ -181,7 +181,7 @@ function addElement(elementID, type) {
 		});
 	}
 	else if (elementID == '#main_date') {
-		dateTypes = '';
+		dateTypes = '<option value="">Select</option>';
 
 		for (cnt in pbcoreDateTypes)
 		{
@@ -208,7 +208,7 @@ function addElement(elementID, type) {
 		$('input[name="asset_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
 	}
 	else if (elementID == '#main_title') {
-		titleTypes = '';
+		titleTypes = '<option value="">Select</option>';
 
 		for (cnt in pbcoreTitleTypes)
 		{
@@ -240,7 +240,7 @@ function addElement(elementID, type) {
 		});
 	}
 	else if (elementID == '#main_subject') {
-		subjectType = '';
+		subjectType = '<option value="">Select</option>';
 
 		for (cnt in pbcoreSubjectTypes)
 		{
@@ -272,7 +272,7 @@ function addElement(elementID, type) {
 		});
 	}
 	else if (elementID == '#main_description') {
-		descriptionType = '';
+		descriptionType = '<option value="">Select</option>';
 
 		for (cnt in pbcoreDescriptionTypes)
 		{
@@ -327,7 +327,7 @@ function addElement(elementID, type) {
 		$(elementID).append(html);
 	}
 	else if (elementID == '#main_audience_level') {
-		audienceLevel = '';
+		audienceLevel = '<option value="">Select</option>';
 
 		for (cnt in pbcoreAudienceLevel)
 		{
@@ -358,7 +358,7 @@ function addElement(elementID, type) {
 		});
 	}
 	else if (elementID == '#main_audience_rating') {
-		audienceRating = '';
+		audienceRating = '<option value="">Select</option>';
 
 		for (cnt in pbcoreAudienceRating)
 		{
@@ -376,10 +376,10 @@ function addElement(elementID, type) {
 		html = '<div id="remove_audience_rating_' + number + '" class="remove_audience_rating"><div class="edit_form_div"><div>' +
 		'<p>Audience Rating:</p><p><select id="asset_audience_rating_' + number + '" name="asset_audience_rating[]">' +
 		audienceRating + '</select></p></div><div><p> Audience Rating Source:</p>' +
-		'<p><select id="asset_audience_rating_source_' + number + '" name="asset_audience_rating_source[]"><option value="">Select Audience Rating Source</option>' +
+		'<p><select id="asset_audience_rating_source_' + number + '" name="asset_audience_rating_source[]"><option value="">Select</option>' +
 		'<option value="MPAA" >MPAA</option><option value="TV Parental Guidelines" >TV Parental Guidelines</option></select></p></div>' +
 		'<div><p> Audience Rating Ref:</p><p><select id="asset_audience_rating_ref_' + number + '" name="asset_audience_rating_ref[]">' +
-		'<option value="http://www.filmratings.com">http://www.filmratings.com</option>' +
+		'<option value="">Select</option><option value="http://www.filmratings.com">http://www.filmratings.com</option>' +
 		'<option value="http://www.tvguidelines.org/ratings.htm">http://www.tvguidelines.org/ratings.htm</option></select></p></div></div>' +
 		'<div class="remove_element" onclick="removeElement(\'#remove_audience_rating_' + number + '\', \'audience_rating\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
@@ -403,7 +403,7 @@ function addElement(elementID, type) {
 		});
 	}
 	else if (elementID == '#main_relation') {
-		relationType = '';
+		relationType = '<option value="">Select</option>';
 
 		for (cnt in pbcoreRelationTypes)
 		{
@@ -442,7 +442,7 @@ function addElement(elementID, type) {
 		});
 	}
 	else if (elementID == '#main_creator') {
-		creatorRoles = '';
+		creatorRoles = '<option value="">Select</option>';
 
 		for (cnt in pbcoreCreatorRoles)
 		{
@@ -490,7 +490,7 @@ function addElement(elementID, type) {
 		});
 	}
 	else if (elementID == '#main_contributor') {
-		contributorRoles = '';
+		contributorRoles = '<option value="">Select</option>';
 
 		for (cnt in pbcoreContributorRoles)
 		{
@@ -538,7 +538,7 @@ function addElement(elementID, type) {
 		});
 	}
 	else if (elementID == '#main_publisher') {
-		publisherRoles = '';
+		publisherRoles = '<option value="">Select</option>';
 
 		for (cnt in pbcorePublisherRoles)
 		{
@@ -595,7 +595,7 @@ function addElement(elementID, type) {
 		$(elementID).append(html);
 	}
 	else if (elementID == '#main_type') {
-		assetTypes = '';
+		assetTypes = '<option value="">Select</option>';
 		for (cnt in pbcoreAssetTypes)
 		{
 			if (pbcoreAssetTypes[cnt]['display_value'] == 1 && common == false) {

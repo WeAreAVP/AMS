@@ -527,6 +527,8 @@ class Asset extends MY_Controller
 					}
 				}
 				// End Update Sphnix Indexes
+				$log = array('user_id' => $this->user_id, 'record_id' => $asset_id, 'record' => 'asset', 'type' => 'edit', 'comments' => 'update from asset detail page.');
+				$this->audit_trail($log);
 				redirect('records/details/' . $asset_id, 'location');
 			}
 
@@ -1126,6 +1128,10 @@ class Asset extends MY_Controller
 			$asset_list = $this->searchd_model->get_asset_index(array($asset_id));
 			$new_asset_info = make_assets_sphnix_array($asset_list[0]);
 			$this->sphnixrt->insert('assets_list', $new_asset_info, $asset_id);
+
+
+			$log = array('user_id' => $this->user_id, 'record_id' => $asset_id, 'record' => 'asset', 'type' => 'add', 'comments' => 'assets added.');
+			$this->audit_trail($log);
 			redirect('instantiations/add/' . $asset_id);
 		}
 

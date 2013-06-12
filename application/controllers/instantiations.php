@@ -692,6 +692,9 @@ class Instantiations extends MY_Controller
 					$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
 					$this->sphnixrt->update('assets_list', $new_asset_info);
 					// End Update Sphnix Indexes
+
+					$log = array('user_id' => $this->user_id, 'record_id' => $instantiation_id, 'record' => 'instantiation', 'type' => 'edit', 'comments' => 'update from instantiations detail view.');
+					$this->audit_trail($log);
 					redirect('instantiations/detail/' . $instantiation_id);
 				}
 				$data['asset_id'] = $detail->assets_id;
@@ -1052,6 +1055,9 @@ class Instantiations extends MY_Controller
 			$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
 			$this->sphnixrt->update('assets_list', $new_asset_info);
 			// End Update Sphnix Indexes
+
+			$log = array('user_id' => $this->user_id, 'record_id' => $instantiation_id, 'record' => 'instantiation', 'type' => 'add', 'comments' => 'new instantiation created.');
+			$this->audit_trail($log);
 			if ($this->input->post('add_another'))
 			{
 				redirect('instantiations/add/' . $asset_id);
@@ -1201,36 +1207,36 @@ class Instantiations extends MY_Controller
 
 			if ($is_all_facet > 0)
 			{
-			$states = $this->sphinx->facet_index('state', $index);
-			$data['org_states'] = sortByOneKey($states['records'], 'state');
-			unset($states);
+				$states = $this->sphinx->facet_index('state', $index);
+				$data['org_states'] = sortByOneKey($states['records'], 'state');
+				unset($states);
 
-			$stations = $this->sphinx->facet_index('organization', $index);
+				$stations = $this->sphinx->facet_index('organization', $index);
 //			$stations = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
-			$data['stations'] = sortByOneKey($stations['records'], 'organization');
-			unset($stations);
+				$data['stations'] = sortByOneKey($stations['records'], 'organization');
+				unset($stations);
 
-			$nomination = $this->sphinx->facet_index('status', $index);
-			$data['nomination_status'] = sortByOneKey($nomination['records'], 'status');
-			unset($nomination);
-			$media_type = $this->sphinx->facet_index('media_type', $index);
-			$data['media_types'] = sortByOneKey($media_type['records'], 'media_type', TRUE);
-			unset($media_type);
-			$p_format = $this->sphinx->facet_index('format_name', $index, 'physical');
-			$data['physical_formats'] = sortByOneKey($p_format['records'], 'format_name', TRUE);
-			unset($p_format);
-			$d_format =$this->sphinx->facet_index('format_name', $index, 'digital_formats');
-			$data['digital_formats'] = sortByOneKey($d_format['records'], 'format_name', TRUE);
-			unset($d_format);
-			$generation =$this->sphinx->facet_index('facet_generation', $index);
-			$data['generations'] = sortByOneKey($generation['records'], 'facet_generation', TRUE);
-			unset($generation);
-			$digitized = $this->sphinx->facet_index('digitized', $index,'digitized');
-			$data['digitized'] = $digitized['records'];
+				$nomination = $this->sphinx->facet_index('status', $index);
+				$data['nomination_status'] = sortByOneKey($nomination['records'], 'status');
+				unset($nomination);
+				$media_type = $this->sphinx->facet_index('media_type', $index);
+				$data['media_types'] = sortByOneKey($media_type['records'], 'media_type', TRUE);
+				unset($media_type);
+				$p_format = $this->sphinx->facet_index('format_name', $index, 'physical');
+				$data['physical_formats'] = sortByOneKey($p_format['records'], 'format_name', TRUE);
+				unset($p_format);
+				$d_format = $this->sphinx->facet_index('format_name', $index, 'digital');
+				$data['digital_formats'] = sortByOneKey($d_format['records'], 'format_name', TRUE);
+				unset($d_format);
+				$generation = $this->sphinx->facet_index('facet_generation', $index);
+				$data['generations'] = sortByOneKey($generation['records'], 'facet_generation', TRUE);
+				unset($generation);
+				$digitized = $this->sphinx->facet_index('digitized', $index, 'digitized');
+				$data['digitized'] = $digitized['records'];
 
-			$migration =$this->sphinx->facet_index('migration', $index,'migration');
-			$data['migration'] = $migration['records'];
-		}
+				$migration = $this->sphinx->facet_index('migration', $index, 'migration');
+				$data['migration'] = $migration['records'];
+			}
 			else
 			{
 				if ($index == 'assets_list')

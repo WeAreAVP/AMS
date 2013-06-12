@@ -311,7 +311,7 @@
 										$selected = '';
 										if ($instantiation_detail->standard == $row->value)
 											$selected = 'selected="selected"';
-											?>
+										?>
 										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
 									<?php }
 									?>
@@ -376,7 +376,7 @@
 										$selected = '';
 										if (isset($inst_color->color) && $inst_color->color == $row->value)
 											$selected = 'selected="selected"';
-											?>
+										?>
 										<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
 									<?php }
 									?>
@@ -462,7 +462,7 @@
 									$selected = '';
 									if (isset($ins_nomination->status) && $ins_nomination->status == $row->status)
 										$selected = 'selected="selected"';
-										?>
+									?>
 									<option value="<?php echo $row->status; ?>" <?php echo $selected; ?>><?php echo $row->status; ?></option>
 								<?php }
 								?>
@@ -773,11 +773,11 @@
 	</div>
 </div>
 <script type="text/javascript">
-									var disable = '<?php echo ($disable ? 1 : 0); ?>';
-									var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
-									var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
-									var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;
-									var pbcoreGeneration =<?php echo json_encode($pbcore_generations); ?>;
+												var disable = '<?php echo ($disable ? 1 : 0); ?>';
+												var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
+												var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
+												var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;
+												var pbcoreGeneration =<?php echo json_encode($pbcore_generations); ?>;
 
 </script>
 <script type="text/javascript" src="/js/edit_instantiation.js?<?php echo time(); ?>"></script>

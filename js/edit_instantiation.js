@@ -97,7 +97,7 @@ function addElement(elementID, type) {
 		$(elementID).append(html);
 	}
 	else if (elementID == '#main_generation') {
-		generationTypes = '';
+		generationTypes = '<option value="">Select</option>';
 
 		for (cnt in pbcoreGeneration)
 		{
@@ -134,7 +134,7 @@ function addElement(elementID, type) {
 		});
 	}
 	else if (elementID == '#main_relation') {
-		relationType = '';
+		relationType = '<option value="">Select</option>';
 
 		for (cnt in pbcoreRelationTypes)
 		{
@@ -175,7 +175,7 @@ function addElement(elementID, type) {
 		});
 	}
 	else if (elementID == '#main_instantiation_date') {
-		dateTypes = '';
+		dateTypes = '<option value="">Select</option>';
 
 		for (cnt in pbcoreDateTypes)
 		{

@@ -334,7 +334,7 @@ class Mintimport extends CI_Controller
 					unset($identifier_detail);
 				}
 			}
-			if ( ! $is_minted)
+			if ($is_minted)
 			{
 				$station_info = $this->station_model->get_station_by_id($station_id);
 				$aacip_id = '';

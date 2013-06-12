@@ -68,17 +68,20 @@ class Asset extends MY_Controller
 				{
 					foreach ($this->input->post('asset_type') as $value)
 					{
-						$asset_type_d['assets_id'] = $asset_id;
-						if ($asset_type = $this->assets_model->get_assets_type_by_type($value))
+						if ( ! empty($value))
 						{
-							$asset_type_d['asset_types_id'] = $asset_type->id;
-						}
-						else
-						{
-							$asset_type_d['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $value));
-						}
+							$asset_type_d['assets_id'] = $asset_id;
+							if ($asset_type = $this->assets_model->get_assets_type_by_type($value))
+							{
+								$asset_type_d['asset_types_id'] = $asset_type->id;
+							}
+							else
+							{
+								$asset_type_d['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $value));
+							}
 
-						$this->assets_model->insert_assets_asset_types($asset_type_d);
+							$this->assets_model->insert_assets_asset_types($asset_type_d);
+						}
 					}
 				}
 				if ($this->input->post('asset_date'))
@@ -130,7 +133,7 @@ class Asset extends MY_Controller
 						{
 							$title_detail['assets_id'] = $asset_id;
 							$title_detail['title'] = $value;
-							if ($title_type[$index])
+							if ($title_type[$index] && ! empty($title_type[$index]))
 							{
 								$asset_title_types = $this->assets_model->get_asset_title_types_by_title_type($title_type[$index]);
 								if (isset($asset_title_types) && isset($asset_title_types->id))
@@ -591,6 +594,7 @@ class Asset extends MY_Controller
 //				$this->manage_asset->insert_picklist_value(array('value' => $explode_ids[1], 'element_type_id' => 16, 'display_value' => $explode_ids[0]));
 		}
 	}
+
 	/**
 	 * Add New Asset and redirect to add new instantiations.
 	 * 
@@ -620,7 +624,7 @@ class Asset extends MY_Controller
 			{
 				$aacip_id = rand(100, 300);
 			}
-			$guid_string = file_get_contents($this->config->item('base_url').'nd/noidu_kt5?mint+1');
+			$guid_string = file_get_contents($this->config->item('base_url') . 'nd/noidu_kt5?mint+1');
 			if ( ! empty($guid_string))
 			{
 				$explode_guid = explode('id:', $guid_string);
@@ -639,17 +643,20 @@ class Asset extends MY_Controller
 				{
 					foreach ($this->input->post('asset_type') as $value)
 					{
-						$asset_type_d['assets_id'] = $asset_id;
-						if ($asset_type = $this->assets_model->get_assets_type_by_type($value))
+						if ( ! empty($value))
 						{
-							$asset_type_d['asset_types_id'] = $asset_type->id;
-						}
-						else
-						{
-							$asset_type_d['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $value));
-						}
+							$asset_type_d['assets_id'] = $asset_id;
+							if ($asset_type = $this->assets_model->get_assets_type_by_type($value))
+							{
+								$asset_type_d['asset_types_id'] = $asset_type->id;
+							}
+							else
+							{
+								$asset_type_d['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $value));
+							}
 
-						$this->assets_model->insert_assets_asset_types($asset_type_d);
+							$this->assets_model->insert_assets_asset_types($asset_type_d);
+						}
 					}
 				}
 				/* Insert Asset Type End */
@@ -712,7 +719,7 @@ class Asset extends MY_Controller
 						{
 							$title_detail['assets_id'] = $asset_id;
 							$title_detail['title'] = $value;
-							if ($title_type[$index])
+							if ($title_type[$index] && ! empty($title_type[$index]))
 							{
 								$asset_title_types = $this->assets_model->get_asset_title_types_by_title_type($title_type[$index]);
 								if (isset($asset_title_types) && isset($asset_title_types->id))
@@ -1138,6 +1145,7 @@ class Asset extends MY_Controller
 		$data['organization'] = $this->station_model->get_all();
 		$this->load->view('assets/add', $data);
 	}
+
 	/**
 	 * Delete Assets related values when edited record.
 	 * 

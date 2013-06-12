@@ -37,6 +37,7 @@
 									<div><p>Asset Type:</p></div>
 									<div><p>
 											<select id="asset_type_0" name="asset_type[]">
+												<option value="">Select</option>
 												<?php
 												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_types as $row)
@@ -89,6 +90,7 @@
 										<p>Asset Date Type:</p>
 										<p>
 											<select id="asset_date_type_0" name="asset_date_type[]">
+												<option value="">Select</option>
 												<?php
 												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_date_types as $row)
@@ -187,6 +189,7 @@
 										</p>
 										<p>
 											<select id="asset_title_type_0" name="asset_title_type[]">
+												<option value="">Select</option>
 												<?php
 												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_title_types as $row)
@@ -256,6 +259,7 @@
 										</p>
 										<p>
 											<select id="asset_subject_type_0" name="asset_subject_type[]">
+												<option value="">Select</option>
 												<?php
 												foreach ($pbcore_asset_subject_types as $row)
 												{
@@ -312,6 +316,7 @@
 										</p>
 										<p>
 											<select id="asset_description_type_0" name="asset_description_type[]">
+												<option value="">Select</option>
 												<?php
 												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_description_types as $row)
@@ -398,6 +403,7 @@
 									<div>
 										<p>Coverage Type:</p>
 										<p><select id="asset_coverage_type_0" name="asset_coverage_type[]">
+												<option value="">Select</option>
 												<option value="spatial"  >spatial</option>
 												<option value="temporal" >temporal</option>
 											</select></p>
@@ -429,6 +435,7 @@
 										</p>
 										<p>
 											<select id="asset_audience_level_0" name="asset_audience_level[]">
+												<option value="">Select</option>
 												<?php
 												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_audience_level as $row)
@@ -494,6 +501,7 @@
 										</p>
 										<p>
 											<select id="asset_audience_rating_0" name="asset_audience_rating[]">
+												<option value="">Select</option>
 												<?php
 												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_audience_rating as $row)
@@ -617,6 +625,7 @@
 										<p> Relation Type:</p>
 										<p>
 											<select id="asset_relation_type_0" name="asset_relation_type[]">
+												<option value="">Select</option>
 												<?php
 												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_relation_types as $row)
@@ -703,7 +712,7 @@
 										<p> Creator Role:</p>
 										<p>
 											<select id="asset_creator_role_0" name="asset_creator_role[]">
-
+												<option value="">Select</option>
 												<?php
 												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_creator_roles as $row)
@@ -791,7 +800,7 @@
 										<p> Contributor Role:</p>
 										<p>
 											<select id="asset_contributor_role_0" name="asset_contributor_role[]">
-
+												<option value="">Select</option>
 												<?php
 												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_contributor_roles as $row)
@@ -879,7 +888,7 @@
 										<p> Publisher Role:</p>
 										<p>
 											<select id="asset_publisher_role_0" name="asset_publisher_role[]">
-
+												<option value="">Select</option>
 												<?php
 												$commonly = $less = FALSE;
 												foreach ($pbcore_asset_publisher_roles as $row)

@@ -540,6 +540,7 @@
 										<p> Audience Rating Ref:</p>
 										<p>
 											<select id="asset_audience_rating_ref_0" name="asset_audience_rating_ref[]">
+												<option value="">Select</option>
 												<option value="http://www.filmratings.com"  >http://www.filmratings.com</option>
 												<option value="http://www.tvguidelines.org/ratings.htm">http://www.tvguidelines.org/ratings.htm</option>
 											</select>

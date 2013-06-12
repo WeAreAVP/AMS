@@ -81,6 +81,7 @@
 											<div><p>Asset Type:</p></div>
 											<div><p>
 													<select id="asset_type_<?php echo $index; ?>" name="asset_type[]">
+														<option value="">Select</option>
 														<?php
 														$commonly = $less = FALSE;
 														foreach ($pbcore_asset_types as $row)
@@ -150,6 +151,7 @@
 												<p>Asset Date Type:</p>
 												<p>
 													<select id="asset_date_type_<?php echo $index; ?>" name="asset_date_type[]">
+														<option value="">Select</option>
 														<?php
 														$commonly = $less = FALSE;
 														foreach ($pbcore_asset_date_types as $row)
@@ -313,6 +315,7 @@
 												</p>
 												<p>
 													<select id="asset_title_type_<?php echo $index; ?>" name="asset_title_type[]">
+														<option value="">Select</option>
 														<?php
 														$commonly = $less = FALSE;
 														foreach ($pbcore_asset_title_types as $row)
@@ -381,6 +384,7 @@
 											</p>
 											<p>
 												<select id="asset_title_type_0" name="asset_title_type[]">
+													<option value="">Select</option>
 													<?php
 													$commonly = $less = FALSE;
 													foreach ($pbcore_asset_title_types as $row)
@@ -462,6 +466,7 @@
 												</p>
 												<p>
 													<select id="asset_subject_type_<?php echo $index; ?>" name="asset_subject_type[]">
+														<option value="">Select</option>
 														<?php
 														foreach ($pbcore_asset_subject_types as $row)
 														{
@@ -534,6 +539,7 @@
 												</p>
 												<p>
 													<select id="asset_description_type_<?php echo $index; ?>" name="asset_description_type[]">
+														<option value="">Select</option>
 														<?php
 														$commonly = $less = FALSE;
 														foreach ($pbcore_asset_description_types as $row)
@@ -590,6 +596,7 @@
 											</p>
 											<p>
 												<select id="asset_description_type_0" name="asset_description_type[]">
+													<option value="">Select</option>
 													<?php
 													$commonly = $less = FALSE;
 													foreach ($pbcore_asset_description_types as $row)
@@ -702,6 +709,7 @@
 											<div>
 												<p>Coverage Type:</p>
 												<p><select id="asset_coverage_type_<?php echo $index; ?>" name="asset_coverage_type[]">
+														<option value="">Select</option>
 														<option value="spatial" <?php echo (isset($coverage_types[$index]) && trim($coverage_types[$index]) == 'spatial') ? 'selected="selected"' : ''; ?> >spatial</option>
 														<option value="temporal" <?php echo (isset($coverage_types[$index]) && trim($coverage_types[$index]) == 'temporal') ? 'selected="selected"' : ''; ?>>temporal</option>
 													</select></p>
@@ -747,6 +755,7 @@
 												</p>
 												<p>
 													<select id="asset_audience_level_<?php echo $index; ?>" name="asset_audience_level[]">
+														<option value="">Select</option>
 														<?php
 														$commonly = $less = FALSE;
 														foreach ($pbcore_asset_audience_level as $row)
@@ -829,6 +838,7 @@
 												</p>
 												<p>
 													<select id="asset_audience_rating_<?php echo $index; ?>" name="asset_audience_rating[]">
+														<option value="">Select</option>
 														<?php
 														$commonly = $less = FALSE;
 														foreach ($pbcore_asset_audience_rating as $row)
@@ -859,7 +869,7 @@
 												<p> Audience Rating Source:</p>
 												<p>
 													<select id="asset_audience_rating_source_<?php echo $index; ?>" name="asset_audience_rating_source[]">
-														<option value="">Select Audience Rating Source</option>
+														<option value="">Select</option>
 														<option value="MPAA" <?php echo (isset($audience_rating_sources[$index]) && trim($audience_rating_sources[$index]) == 'MPAA') ? 'selected="selected"' : ''; ?> >MPAA</option>
 														<option value="TV Parental Guidelines" <?php echo (isset($audience_rating_sources[$index]) && trim($audience_rating_sources[$index]) == 'TV Parental Guidelines') ? 'selected="selected"' : ''; ?>>TV Parental Guidelines</option>
 													</select>
@@ -870,6 +880,7 @@
 												<p> Audience Rating Ref:</p>
 												<p>
 													<select id="asset_audience_rating_ref_<?php echo $index; ?>" name="asset_audience_rating_ref[]">
+														<option value="">Select</option>
 														<option value="http://www.filmratings.com" <?php echo (isset($audience_rating_refs[$index]) && trim($audience_rating_refs[$index]) == 'http://www.filmratings.com') ? 'selected="selected"' : ''; ?> >http://www.filmratings.com</option>
 														<option value="http://www.tvguidelines.org/ratings.htm" <?php echo (isset($audience_rating_refs[$index]) && trim($audience_rating_refs[$index]) == 'http://www.tvguidelines.org/ratings.htm') ? 'selected="selected"' : ''; ?>>http://www.tvguidelines.org/ratings.htm</option>
 													</select>
@@ -984,6 +995,7 @@
 												<p> Relation Type:</p>
 												<p>
 													<select id="asset_relation_type_<?php echo $index; ?>" name="asset_relation_type[]">
+														<option value="">Select</option>
 														<?php
 														$commonly = $less = FALSE;
 														foreach ($pbcore_asset_relation_types as $row)
@@ -1090,7 +1102,7 @@
 												<p> Creator Role:</p>
 												<p>
 													<select id="asset_creator_role_<?php echo $index; ?>" name="asset_creator_role[]">
-
+														<option value="">Select</option>
 														<?php
 														$commonly = $less = FALSE;
 														foreach ($pbcore_asset_creator_roles as $row)
@@ -1198,7 +1210,7 @@
 												<p> Contributor Role:</p>
 												<p>
 													<select id="asset_contributor_role_<?php echo $index; ?>" name="asset_contributor_role[]">
-
+														<option value="">Select</option>
 														<?php
 														$commonly = $less = FALSE;
 														foreach ($pbcore_asset_contributor_roles as $row)
@@ -1306,7 +1318,7 @@
 												<p> Publisher Role:</p>
 												<p>
 													<select id="asset_publisher_role_<?php echo $index; ?>" name="asset_publisher_role[]">
-
+														<option value="">Select</option>
 														<?php
 														$commonly = $less = FALSE;
 														foreach ($pbcore_asset_publisher_roles as $row)

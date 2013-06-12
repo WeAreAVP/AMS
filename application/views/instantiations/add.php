@@ -143,6 +143,7 @@
 					<td>
 						<p>
 							<select id="physical_format" name="physical_format">
+								<option value="">Select</option>
 								<?php
 								$commonly = $less = FALSE;
 								foreach ($pbcore_physical_formats as $row)
@@ -164,6 +165,7 @@
 								<?php }
 								?>
 							</select>
+							<span id="physical_format_error" class="help-block" style="color: #c65f5a;display: none;">Physical Format is required.</span>
 						</p>
 
 					</td>
@@ -292,6 +294,7 @@
 						<p>
 
 							<select  id="media_type" name="media_type" style="width: 300px;">
+								<option value="">Select</option>
 								<?php
 								foreach ($pbcore_media_types as $row)
 								{
@@ -301,6 +304,7 @@
 								?>
 
 							</select>
+							<span id="media_type_error" class="help-block" style="color: #c65f5a;display: none;">Media Type is required.</span>
 						</p>
 
 					</td>

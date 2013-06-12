@@ -166,6 +166,7 @@
 													<p>Instantiation ID Source:</p>
 													<p>
 														<select id="inst_date_type_<?php echo $index; ?>" name="inst_date_type[]">
+															<option value="">Select</option>
 															<?php
 															$commonly = $less = FALSE;
 															foreach ($pbcore_asset_date_types as $row)
@@ -266,6 +267,7 @@
 						<td>
 							<p>
 								<select id="physical_format" name="physical_format">
+									<option value="">Select</option>
 									<?php
 									$commonly = $less = FALSE;
 									foreach ($pbcore_physical_formats as $row)
@@ -301,6 +303,7 @@
 						<td>
 							<p>
 								<select id="standard" name="standard">
+									<option value="">Select</option>
 									<?php
 									foreach ($pbcore_standards as $row)
 									{
@@ -365,6 +368,7 @@
 							<p>
 
 								<select id="color" name="color">
+									<option value="">Select</option>
 									<?php
 									foreach ($pbcore_colors as $row)
 									{
@@ -424,6 +428,7 @@
 						<p>
 
 							<select  id="media_type" name="media_type" style="width: 300px;">
+								<option value="">Select</option>
 								<?php
 								foreach ($pbcore_media_types as $row)
 								{
@@ -566,6 +571,7 @@
 											<div><p>Generation:</p></div>
 											<div><p>
 													<select id="generation_<?php echo $index; ?>" name="generation[]">
+														<option value="">Select</option>
 														<?php
 														$commonly = $less = FALSE;
 														foreach ($pbcore_generations as $row)
@@ -694,6 +700,7 @@
 													<p> Relation Type:</p>
 													<p>
 														<select id="relation_type_<?php echo $index; ?>" name="relation_type[]">
+															<option value="">Select</option>
 															<?php
 															$commonly = $less = FALSE;
 															foreach ($pbcore_relation_types as $row)

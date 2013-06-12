@@ -235,6 +235,33 @@ function validateForm() {
 		});
 	}
 	if (isValid) {
+		if ($('#physical_format').val() == '') {
+			isValid = false;
+			$('#physical_format_error').show();
+			$('body').animate({
+				scrollTop: $('#physical_format_error').offset().top - 100
+			}, 'slow');
+		}
+		else {
+			$('#physical_format_error').hide();
+		}
+
+	}
+	if (isValid) {
+		if ($('#media_type').val() == '') {
+			$('#media_type_error').show();
+			isValid = false;
+			$('body').animate({
+				scrollTop: $('#media_type_error').offset().top - 100
+			}, 'slow');
+		}
+		else {
+			$('#media_type_error').hide();
+		}
+
+	}
+
+	if (isValid) {
 		var location = new Array('location');
 		for (cnt in location) {
 			if ($('#' + location[cnt]).length > 0) {

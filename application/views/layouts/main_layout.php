@@ -103,7 +103,7 @@
 								<?php }
 								?>
 
-								<li class="<?php echo (is_route_method(array('records' => array('index', 'flagged', 'details'), 'instantiations' => array('index', 'detail')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('records/index') ?>">Records</a></li>
+								<li class="<?php echo (is_route_method(array('records' => array('index', 'flagged', 'details'), 'instantiations' => array('index', 'detail','edit','add'),'asset'=>array('edit','add')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('records/index') ?>">Records</a></li>
 								<li class="<?php echo active_anchor('stations', array('index', 'detail')); ?>"><a href="<?php echo site_url('stations/index') ?>"><?php echo $station_tab_name; ?></a></li>
 								<?php
 								if ( ! $this->is_station_user)

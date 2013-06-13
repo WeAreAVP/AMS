@@ -182,9 +182,13 @@ class Mintimport extends CI_Controller
 		{
 			$station = $this->mint->get_station_by_transformed(rtrim($folder_name, '/'));
 			if ($station)
+			{
+				myLog("Station User/Admin import");
 				$station_id = $station->station_id;
+			}
 			else
 			{
+				myLog("Admin/Crawford import");
 				$station = $this->mint->get_last_import_by_user(rtrim($folder_name, '/'));
 				if ($station)
 					$station_id = $station->station_id;

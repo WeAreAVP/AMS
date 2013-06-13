@@ -224,6 +224,8 @@ class Mintimport extends CI_Controller
 	 */
 	function import_mint_files()
 	{
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
 		$result = $this->mint->get_files_to_import();
 		if ($result)
 		{
@@ -247,6 +249,8 @@ class Mintimport extends CI_Controller
 	 */
 	function parse_xml_file($path, $station_id)
 	{
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
 		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
 		$xml_string = @simplexml_load_string($file_content);
 		unset($file_content);
@@ -257,8 +261,7 @@ class Mintimport extends CI_Controller
 		$this->import_asset_info($asset_id, $station_id, $xmlArray['children']);
 
 		$this->import_instantiation_info($asset_id, $xmlArray['children']);
-		log('Successfully imported all the information to AMS');
-		
+		myLog('Successfully imported all the information to AMS');
 	}
 
 	/**
@@ -269,6 +272,8 @@ class Mintimport extends CI_Controller
 	 */
 	function import_asset_info($asset_id, $station_id, $xmlArray)
 	{
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
 		// Asset Type Start //
 		if (isset($xmlArray['ams:pbcoreassettype']))
 		{
@@ -930,6 +935,8 @@ class Mintimport extends CI_Controller
 	 */
 	function import_instantiation_info($asset_id, $asset_children)
 	{
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
 		if (isset($asset_children['ams:pbcoreinstantiation']))
 		{
 			foreach ($asset_children['ams:pbcoreinstantiation'] as $pbcoreinstantiation)

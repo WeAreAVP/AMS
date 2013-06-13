@@ -150,6 +150,7 @@ class Mintimport extends CI_Controller
 				$zip->extractTo($this->mint_path . 'unzipped/');
 				$zip->close();
 				$this->mint->update_transformation($not_downloaded->id, array('is_downloaded' => 1, 'folder_name' => rtrim($stat['name'], '/')));
+				myLog($stat['name']);
 				$this->process_mint_dir($stat['name']);
 			}
 			else
@@ -173,6 +174,7 @@ class Mintimport extends CI_Controller
 		@ini_set("memory_limit", "2000M"); # 2GB
 		@ini_set("max_execution_time", 999999999999);
 		$this->load->helper('directory');
+		myLog('Start Importing files for ' . $folder_name);
 		$map = directory_map($this->mint_path . 'unzipped/' . $folder_name, 2);
 		$count_files = 0;
 		$station_id = 0;
@@ -200,6 +202,10 @@ class Mintimport extends CI_Controller
 				}
 				else
 					myLog('Already in db.');
+			}
+			else
+			{
+				myLog('Station Info is missing');
 			}
 		}
 		myLog('All mint files info stored. Folder Path:' . $this->mint_path);
@@ -240,7 +246,7 @@ class Mintimport extends CI_Controller
 		$xmlArray = xmlObjToArr($xml_string);
 
 		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
-		
+
 		$this->import_asset_info($asset_id, $station_id, $xmlArray['children']);
 
 		$this->import_instantiation_info($asset_id, $xmlArray['children']);
@@ -1494,8 +1500,6 @@ class Mintimport extends CI_Controller
 			}
 			return FALSE;
 		}
-
-		
 
 	}
 

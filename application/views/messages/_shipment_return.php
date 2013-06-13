@@ -19,9 +19,9 @@
     <div class="control-group">
         <label class="control-label" for="assets_list">Asset List:</label>
         <div class="controls" style="margin-left: 180px;">
-            <div><a href="javascript://;" onclick="showRecords(1)" target="_blank">Assets awaiting digitization to Buffer Materials</a></div>
+            <div><a href="javascript://;" onclick="showRecords(1)" target="_blank">Assets Digitized</a></div>
             <div><a href="javascript://;" onclick="showRecords(2)" target="_blank">Assets Failed Digitization</a></div>
-            <div><a href="javascript://;" onclick="showRecords(3)" target="_blank">Assets Waiting Digitization</a></div>
+            <div><a href="javascript://;" onclick="showRecords(3)" target="_blank">Assets waiting digitization</a></div>
 
 		</div>
 		<form method="POST" action="" id="show_record_form" action="" target="_blank">

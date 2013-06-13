@@ -43,7 +43,16 @@ class Dashboard extends MY_Controller
 			redirect('records/index');
 		}
 	}
-
+	function new_reverse(){
+		$array=array(1,2,3,4,5);
+		$reverse=  array_reverse($array);
+		$new=array();
+		foreach ($reverse as $value)
+		{
+			array_push($new, $value);
+		}
+		debug($new);
+	}
 	function mode()
 	{
 		$random = array(5, 7, 10, 3, 1, 7, 5, 6, 5);

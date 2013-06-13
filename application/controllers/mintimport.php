@@ -216,9 +216,9 @@ class Mintimport extends CI_Controller
 		{
 			foreach ($result as $row)
 			{
-//				$this->mint->update_mint_import_file($row->id, array('processed_at' => date('Y-m-d H:m:i'), 'status_reason' => 'Processing'));
+				$this->mint->update_mint_import_file($row->id, array('processed_at' => date('Y-m-d H:m:i'), 'status_reason' => 'Processing'));
 				$this->parse_xml_file($row->path, $row->station_id);
-//				$this->mint->update_mint_import_file($row->id, array('is_processed' => 1, 'status_reason' => 'Complete'));
+				$this->mint->update_mint_import_file($row->id, array('is_processed' => 1, 'status_reason' => 'Complete'));
 			}
 		}
 		else
@@ -240,7 +240,7 @@ class Mintimport extends CI_Controller
 		$xmlArray = xmlObjToArr($xml_string);
 
 		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
-
+		
 		$this->import_asset_info($asset_id, $station_id, $xmlArray['children']);
 
 		$this->import_instantiation_info($asset_id, $xmlArray['children']);
@@ -349,7 +349,7 @@ class Mintimport extends CI_Controller
 				{
 					$aacip_id = rand(100, 300);
 				}
-				$guid_string = file_get_contents($this->config->item('base_url').'nd/noidu_kt5?mint+1');
+				$guid_string = file_get_contents($this->config->item('base_url') . 'nd/noidu_kt5?mint+1');
 				if ( ! empty($guid_string))
 				{
 					$explode_guid = explode('id:', $guid_string);
@@ -1494,6 +1494,8 @@ class Mintimport extends CI_Controller
 			}
 			return FALSE;
 		}
+
+		
 
 	}
 

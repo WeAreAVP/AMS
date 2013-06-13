@@ -224,9 +224,9 @@ class Refinecrons extends CI_Controller
 		if (count($record) > 0)
 		{
 			if ($record->refine_type === 'instantiation')
-				$this->update_instantiations($record->import_csv_path);
+				$this->update_instantiations($record->import_csv_path, $record->user_id);
 			else
-				$this->update_assets($record->import_csv_path);
+				$this->update_assets($record->import_csv_path, $record->user_id);
 
 //			@exec("/usr/bin/indexer --all --rotate", $output);
 //			$email_output = implode('<br/>', $output);
@@ -255,7 +255,7 @@ class Refinecrons extends CI_Controller
 	 * 
 	 * @return
 	 */
-	function update_instantiations($csv_path)
+	function update_instantiations($csv_path, $user_id)
 	{
 		$records = file($csv_path);
 
@@ -371,6 +371,8 @@ class Refinecrons extends CI_Controller
 					}
 				}
 				/* Check and update Nomination End */
+				$log = array('user_id' => $user_id, 'record_id' => $instantiation_id, 'record' => 'instantiation', 'type' => 'refine', 'comments' => 'record updated using refine.');
+				$this->audit_trail($log);
 				$instantiation_list = $this->searchd_model->get_ins_index(array($instantiation_id));
 				$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], FALSE);
 				$this->sphnixrt->update('instantiations_list', $new_list_info);
@@ -388,7 +390,7 @@ class Refinecrons extends CI_Controller
 	 * 
 	 * @return
 	 */
-	function update_assets($csv_path)
+	function update_assets($csv_path, $user_id)
 	{
 		$records = file($csv_path);
 		foreach ($records as $index => $line)
@@ -710,7 +712,8 @@ class Refinecrons extends CI_Controller
 					}
 				}
 				/* Check and update Asset Date Start */
-
+				$log = array('user_id' => $user_id, 'record_id' => $asset_id, 'record' => 'asset', 'type' => 'refine', 'comments' => 'record updated using refine.');
+				$this->audit_trail($log);
 				// Update Sphnix Indexes
 				$asset_list = $this->searchd_model->get_asset_index(array($asset_id));
 				$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
@@ -729,6 +732,12 @@ class Refinecrons extends CI_Controller
 				// End Update Sphnix Indexes
 			}
 		}
+	}
+
+	function audit_trail($data)
+	{
+		$this->load->model('station_model');
+		$this->station_model->insert_log($data);
 	}
 
 }

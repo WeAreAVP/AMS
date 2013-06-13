@@ -46,9 +46,9 @@ class Dashboard extends MY_Controller
 	function new_reverse(){
 		$array=array(1,2,3,4,5);
 		$new=array();
-		foreach ($array as $value)
+		for ($i=0;$i<count($array);$i++)
 		{
-			$val=array_pop($value);
+			$val=array_pop($array);
 			array_push($new, $val);
 		}
 		debug($new);

@@ -40,6 +40,7 @@ class Mintimport extends CI_Controller
 		parent::__construct();
 		$this->load->model('assets_model');
 		$this->load->model('cron_model');
+		$this->load->model('station_model');
 		$this->load->model('mint_model', 'mint');
 		$this->load->model('dx_auth/user_profile', 'user_profile');
 		$this->load->model('dx_auth/users', 'users');
@@ -181,7 +182,7 @@ class Mintimport extends CI_Controller
 		foreach ($map as $index => $file)
 		{
 			$station = $this->mint->get_station_by_transformed(rtrim($folder_name, '/'));
-			
+
 			if ($station && ! empty($station->station_id))
 			{
 				myLog("Station User/Admin import");
@@ -202,7 +203,7 @@ class Mintimport extends CI_Controller
 				if ( ! $db_info)
 				{
 					$mint_info = array('folder' => $index, 'path' => $path, 'is_processed' => 0, 'status_reason' => 'Not processed', 'station_id' => $station_id);
-					
+
 					$this->mint->insert_import_info($mint_info);
 					$count_files ++;
 				}

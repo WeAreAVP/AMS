@@ -181,6 +181,7 @@ class Mintimport extends CI_Controller
 		foreach ($map as $index => $file)
 		{
 			$station = $this->mint->get_station_by_transformed(rtrim($folder_name, '/'));
+			debug($station);
 			if ($station)
 			{
 				myLog("Station User/Admin import");

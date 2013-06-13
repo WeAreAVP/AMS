@@ -258,7 +258,7 @@ class Mintimport extends CI_Controller
 
 		$this->import_instantiation_info($asset_id, $xmlArray['children']);
 		log('Successfully imported all the information to AMS');
-		debug($xmlArray);
+		
 	}
 
 	/**

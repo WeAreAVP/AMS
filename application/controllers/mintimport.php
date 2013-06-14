@@ -202,7 +202,7 @@ class Mintimport extends CI_Controller
 				$db_info = $this->mint->get_import_info_by_path($path);
 				if ( ! $db_info)
 				{
-					$mint_info = array('folder' => $index, 'path' => $path, 'is_processed' => 0, 'status_reason' => 'Not processed', 'station_id' => $station_id);
+					$mint_info = array('folder' => $folder_name, 'path' => $path, 'is_processed' => 0, 'status_reason' => 'Not processed', 'station_id' => $station_id);
 
 					$this->mint->insert_import_info($mint_info);
 					$count_files ++;

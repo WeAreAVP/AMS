@@ -236,6 +236,7 @@ class Mintimport extends CI_Controller
 				$this->parse_xml_file($row->path, $row->station_id);
 				myLog('End importing data.');
 				$this->mint->update_mint_import_file($row->id, array('is_processed' => 1, 'status_reason' => 'Complete'));
+				myLog('Successfully finished.');
 			}
 		}
 		else

@@ -231,8 +231,10 @@ class Mintimport extends CI_Controller
 		{
 			foreach ($result as $row)
 			{
+				myLog('Start importing data.');
 				$this->mint->update_mint_import_file($row->id, array('processed_at' => date('Y-m-d H:m:i'), 'status_reason' => 'Processing'));
 				$this->parse_xml_file($row->path, $row->station_id);
+				myLog('End importing data.');
 				$this->mint->update_mint_import_file($row->id, array('is_processed' => 1, 'status_reason' => 'Complete'));
 			}
 		}
@@ -257,7 +259,7 @@ class Mintimport extends CI_Controller
 		$xmlArray = xmlObjToArr($xml_string);
 
 		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
-		myLog('Created Asset ID '.$asset_id);
+		myLog('Created Asset ID ' . $asset_id);
 		$this->import_asset_info($asset_id, $station_id, $xmlArray['children']);
 
 		$this->import_instantiation_info($asset_id, $xmlArray['children']);
@@ -925,6 +927,12 @@ class Mintimport extends CI_Controller
 			}
 		}
 		// Asset Extension End //
+		$this->load->library('sphnixrt');
+		$this->load->model('searchd_model');
+		$this->load->helper('sphnixdata');
+		$asset_list = $this->searchd_model->get_asset_index(array($asset_id));
+		$new_asset_info = make_assets_sphnix_array($asset_list[0]);
+		$this->sphnixrt->insert('assets_list', $new_asset_info, $asset_id);
 	}
 
 	/**
@@ -1495,6 +1503,15 @@ class Mintimport extends CI_Controller
 						}
 					}
 					// Asset Extension End //
+					$this->load->library('sphnixrt');
+					$this->load->model('searchd_model');
+					$this->load->helper('sphnixdata');
+					$instantiation_list = $this->searchd_model->get_ins_index(array($instantiations_id));
+					$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], $new);
+					$this->sphnixrt->insert('instantiations_list', $new_list_info, $instantiation_id);
+					$asset_list = $this->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
+					$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
+					$this->sphnixrt->update('assets_list', $new_asset_info);
 				}
 			}
 		}

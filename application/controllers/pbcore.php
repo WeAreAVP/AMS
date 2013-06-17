@@ -57,7 +57,7 @@ class Pbcore extends CI_Controller
 		{
 			if (isset($pbcoreinstantiation['children']) && ! is_empty($pbcoreinstantiation['children']))
 			{
-				$pbcoreinstantiation_child=$pbcoreinstantiation['children'];
+				$pbcoreinstantiation_child = $pbcoreinstantiation['children'];
 				if (isset($pbcoreinstantiation_child['pbcoreessencetrack']))
 				{
 					foreach ($pbcoreinstantiation_child['pbcoreessencetrack'] as $pbcore_essence_track)
@@ -65,12 +65,17 @@ class Pbcore extends CI_Controller
 						if (isset($pbcore_essence_track['children']) && ! is_empty($pbcore_essence_track['children']))
 						{
 							$pbcore_essence_child = $pbcore_essence_track['children'];
-							
+
 							if (isset($pbcore_essence_child['essencetrackencoding'][0]['text']) && ! is_empty($pbcore_essence_child['essencetrackencoding'][0]['text']))
 							{
 								$essence_track_standard_d = array();
-								$essence_track_standard_d['essence_tracks_id'] = $essence_tracks_id;
+								$essence_track_standard_d['essence_tracks_id'] = 1;
 								$essence_track_standard_d['encoding'] = $pbcore_essence_child['essencetrackencoding'][0]['text'];
+								if (isset($pbcore_essence_child['essencetrackencoding'][0]['text']))
+								{
+									$essence_track_standard_d['encoding_source'] = $pbcore_essence_child['essencetrackencoding'][0]['text'];
+								}
+//								$this->essence->insert_essence_track_encodings($essence_track_identifiers_d);
 								debug($essence_track_standard_d);
 							}
 						}
@@ -78,7 +83,8 @@ class Pbcore extends CI_Controller
 				}
 			}
 		}
-		echo 'here';exit;
+		echo 'here';
+		exit;
 //		debug($asset_d);
 	}
 

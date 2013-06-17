@@ -203,7 +203,7 @@ class Pbcore extends CI_Controller
 	 */
 	function process_xml_file()
 	{
-		$folders = $this->cron_model->get_all_data_folder();
+		$folders = $this->cron_model->get_all_data_folder(); 
 		if (isset($folders) && ! empty($folders))
 		{
 			foreach ($folders as $folder)

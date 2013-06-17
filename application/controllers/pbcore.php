@@ -52,6 +52,31 @@ class Pbcore extends CI_Controller
 		$asset_data = file_get_contents($file);
 		$asset_xml_data = @simplexml_load_string($asset_data);
 		$asset_d = xmlObjToArr($asset_xml_data);
+		$asset_children = $asset_d['children'];
+		foreach ($asset_children['pbcoreinstantiation'] as $pbcoreinstantiation)
+		{
+			if (isset($pbcoreinstantiation['children']) && ! is_empty($pbcoreinstantiation['children']))
+			{
+				if (isset($pbcoreinstantiation_child['pbcoreessencetrack']))
+				{
+					foreach ($pbcoreinstantiation_child['pbcoreessencetrack'] as $pbcore_essence_track)
+					{
+						if (isset($pbcore_essence_track['children']) && ! is_empty($pbcore_essence_track['children']))
+						{
+							$pbcore_essence_child = $pbcore_essence_track['children'];
+							if (isset($pbcore_essence_child['essencetrackencoding'][0]['text']) && ! is_empty($pbcore_essence_child['essencetrackencoding'][0]['text']))
+							{
+								$essence_track_standard_d = array();
+								$essence_track_standard_d['essence_tracks_id'] = $essence_tracks_id;
+								$essence_track_standard_d['encoding'] = $pbcore_essence_child['essencetrackencoding'][0]['text'];
+								debug($essence_track_standard_d);
+							}
+						}
+					}
+				}
+			}
+		}
+
 		debug($asset_d);
 	}
 

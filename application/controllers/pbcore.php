@@ -155,6 +155,7 @@ class Pbcore extends CI_Controller
 							if ($directory == 'assets/export_pbcore/1787_WKAR_20131502/')
 							{
 								$bag_check = file('wkar-guid.txt');
+								debug($bag_check);
 								$bag_files = explode("\n", $bag_check);
 								foreach ($bag_files as $row)
 								{

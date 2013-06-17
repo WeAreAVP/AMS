@@ -75,7 +75,7 @@ class Pbcore extends CI_Controller
 								{
 									$essence_track_standard_d['encoding_source'] = $pbcore_essence_child['essencetrackencoding'][0]['text'];
 								}
-//								$this->essence->insert_essence_track_encodings($essence_track_identifiers_d);
+								echo $this->essence->insert_essence_track_encodings($essence_track_identifiers_d);
 								debug($essence_track_standard_d);
 							}
 						}

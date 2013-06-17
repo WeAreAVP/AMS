@@ -46,47 +46,7 @@ class Pbcore extends CI_Controller
 		$this->assets_path = 'assets/export_pbcore/';
 	}
 
-	function testimport()
-	{
-		$file = '/var/www/html/assets/export_pbcore/1441_WUMB_PBCoreXMLBag_20121105/data/cpb-aacip-345-3331zgn1/pbcore';
-		$asset_data = file_get_contents($file);
-		$asset_xml_data = @simplexml_load_string($asset_data);
-		$asset_d = xmlObjToArr($asset_xml_data);
-		$asset_children = $asset_d['children'];
-		foreach ($asset_children['pbcoreinstantiation'] as $pbcoreinstantiation)
-		{
-			if (isset($pbcoreinstantiation['children']) && ! is_empty($pbcoreinstantiation['children']))
-			{
-				$pbcoreinstantiation_child = $pbcoreinstantiation['children'];
-				if (isset($pbcoreinstantiation_child['pbcoreessencetrack']))
-				{
-					foreach ($pbcoreinstantiation_child['pbcoreessencetrack'] as $pbcore_essence_track)
-					{
-						if (isset($pbcore_essence_track['children']) && ! is_empty($pbcore_essence_track['children']))
-						{
-							$pbcore_essence_child = $pbcore_essence_track['children'];
-
-							if (isset($pbcore_essence_child['essencetrackencoding'][0]['text']) && ! is_empty($pbcore_essence_child['essencetrackencoding'][0]['text']))
-							{
-								$essence_track_standard_d = array();
-								$essence_track_standard_d['essence_tracks_id'] = 1;
-								$essence_track_standard_d['encoding'] = $pbcore_essence_child['essencetrackencoding'][0]['text'];
-								if (isset($pbcore_essence_child['essencetrackencoding'][0]['text']))
-								{
-									$essence_track_standard_d['encoding_source'] = $pbcore_essence_child['essencetrackencoding'][0]['text'];
-								}
-								echo $this->essence->insert_essence_track_encodings($essence_track_identifiers_d);
-								debug($essence_track_standard_d);
-							}
-						}
-					}
-				}
-			}
-		}
-		echo 'here';
-		exit;
-//		debug($asset_d);
-	}
+	
 
 	/**
 	 * Store all PBCore 1.x directories and data files in the database.
@@ -1013,7 +973,7 @@ class Pbcore extends CI_Controller
 									{
 										$essence_track_standard_d['encoding_source'] = $pbcore_essence_child['essencetrackencoding'][0]['text'];
 									}
-									$this->essence->insert_essence_track_encodings($essence_track_identifiers_d);
+									$this->essence->insert_essence_track_encodings($essence_track_standard_d);
 								}
 								//essenceTrackAnnotation Start
 								if (isset($pbcore_essence_child['essencetrackannotation']) && ! is_empty($pbcore_essence_child['essencetrackannotation']))

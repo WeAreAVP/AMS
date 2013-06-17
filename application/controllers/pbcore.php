@@ -135,6 +135,7 @@ class Pbcore extends CI_Controller
 			if (isset($data_result) && ! is_empty($data_result))
 			{
 				$db_error_counter = 0;
+				$countt=0;
 				foreach ($data_result as $value)
 				{
 					$data_file = (explode(" ", $value));
@@ -155,11 +156,10 @@ class Pbcore extends CI_Controller
 							if ($directory == 'assets/export_pbcore/1787_WKAR_20131502/')
 							{
 								$bag_check = file('wkar-guid.txt');
-								debug($bag_check);
-								$bag_files = explode("\n", $bag_check);
-								foreach ($bag_files as $row)
+								echo $bag_check.'<br/>';
+								foreach ($bag_check as $row)
 								{
-									if (strpos($data_file_path, $row) !== false)
+									if (strpos($data_file_path, trim($row)) !== false)
 									{
 										$ignore_file = TRUE;
 										break;
@@ -183,6 +183,7 @@ class Pbcore extends CI_Controller
 							{
 								if ( ! $this->cron_model->is_pbcore_file_by_path($data_file_path, $data_folder_id))
 								{
+									$countt++;
 									echo $$data_file_path.'<br/>';
 //									$this->cron_model->insert_prcoess_data(array('file_type' => $type, 'file_path' => ($data_file_path), 'is_processed' => 0, 'created_at' => date('Y-m-d H:i:s'), "data_folder_id" => $data_folder_id));
 								}
@@ -191,6 +192,7 @@ class Pbcore extends CI_Controller
 							{
 								if ( ! $this->cron_model->is_pbcore_file_by_path($data_file_path, $data_folder_id))
 								{
+									$countt++;
 									echo $$data_file_path.'<br/>';
 //									$this->cron_model->insert_prcoess_data(array('file_type' => $type, 'file_path' => ($data_file_path), 'is_processed' => 0, 'created_at' => date('Y-m-d H:i:s'), "data_folder_id" => $data_folder_id, 'status_reason' => 'file_not_found'));
 								}
@@ -206,6 +208,7 @@ class Pbcore extends CI_Controller
 					$db_error_counter ++;
 				}
 			}
+			echo $countt.'<br/>';
 			$this->myLog('folder Id ' . $data_folder_id . ' => folder_status ' . $folder_status);
 //			$this->cron_model->update_data_folder(array('updated_at' => date('Y-m-d H:i:s'), 'folder_status' => $folder_status), $data_folder_id);
 			exit;

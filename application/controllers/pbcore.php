@@ -49,7 +49,8 @@ class Pbcore extends CI_Controller
 	function testimport()
 	{
 		$file = '/var/www/html/assets/export_pbcore/1441_WUMB_PBCoreXMLBag_20121105/data/cpb-aacip-345-3331zgn1/pbcore';
-		$asset_xml_data = @simplexml_load_string($file);
+		$asset_data = file_get_contents($file);
+		$asset_xml_data = @simplexml_load_string($asset_data);
 		$asset_d = xmlObjToArr($asset_xml_data);
 		debug($asset_d);
 	}

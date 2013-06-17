@@ -61,7 +61,7 @@ class Pbcore extends CI_Controller
 				{
 					foreach ($pbcoreinstantiation_child['pbcoreessencetrack'] as $pbcore_essence_track)
 					{
-						if (isset($pbcore_essence_track['children']) && ! is_empty($pbcore_essence_track['children']))
+						if (isset($pbcore_essence_track['children']) && ! empty($pbcore_essence_track['children']))
 						{
 							$pbcore_essence_child = $pbcore_essence_track['children'];
 							if (isset($pbcore_essence_child['essencetrackencoding'][0]['text']) && ! is_empty($pbcore_essence_child['essencetrackencoding'][0]['text']))
@@ -77,7 +77,7 @@ class Pbcore extends CI_Controller
 			}
 		}
 
-		debug($asset_d);
+//		debug($asset_d);
 	}
 
 	/**

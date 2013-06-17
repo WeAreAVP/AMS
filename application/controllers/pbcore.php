@@ -57,11 +57,12 @@ class Pbcore extends CI_Controller
 		{
 			if (isset($pbcoreinstantiation['children']) && ! is_empty($pbcoreinstantiation['children']))
 			{
+				$pbcoreinstantiation_child=$pbcoreinstantiation['children'];
 				if (isset($pbcoreinstantiation_child['pbcoreessencetrack']))
 				{
 					foreach ($pbcoreinstantiation_child['pbcoreessencetrack'] as $pbcore_essence_track)
 					{
-						if (isset($pbcore_essence_track['children']) && ! empty($pbcore_essence_track['children']))
+						if (isset($pbcore_essence_track['children']) && ! is_empty($pbcore_essence_track['children']))
 						{
 							$pbcore_essence_child = $pbcore_essence_track['children'];
 							debug($pbcore_essence_child);
@@ -77,7 +78,7 @@ class Pbcore extends CI_Controller
 				}
 			}
 		}
-
+		echo 'here';exit;
 //		debug($asset_d);
 	}
 

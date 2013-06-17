@@ -46,6 +46,14 @@ class Pbcore extends CI_Controller
 		$this->assets_path = 'assets/export_pbcore/';
 	}
 
+	function testimport()
+	{
+		$file = '/var/www/html/assets/export_pbcore/1441_WUMB_PBCoreXMLBag_20121105/data/cpb-aacip-345-3331zgn1/pbcore';
+		$asset_xml_data = @simplexml_load_string($file);
+		$asset_d = xmlObjToArr($asset_xml_data);
+		debug($asset_d);
+	}
+
 	/**
 	 * Store all PBCore 1.x directories and data files in the database.
 	 *  

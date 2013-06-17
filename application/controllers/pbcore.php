@@ -46,17 +46,6 @@ class Pbcore extends CI_Controller
 		$this->assets_path = 'assets/export_pbcore/';
 	}
 
-	function test()
-	{
-		$folder[0] = 'assets/export_pbcore/1787_WKAR_20131502/';
-		$folder[1] = 'assets/export_pbcore/1595_WXPN_PBCoreXMLBag_20130128/';
-		$file = 'manifest-md5.txt';
-		foreach ($folder as $path)
-		{
-			
-		}
-	}
-
 	/**
 	 * Store all PBCore 1.x directories and data files in the database.
 	 *  
@@ -124,18 +113,16 @@ class Pbcore extends CI_Controller
 		$file = 'manifest-md5.txt';
 		$directory = base64_decode($path);
 		$folder_status = 'complete';
-//		if ( ! $data_folder_id = $this->cron_model->get_data_folder_id_by_path($directory))
-//		{
-//			$data_folder_id = $this->cron_model->insert_data_folder(array("folder_path" => $directory, "created_at" => date('Y-m-d H:i:s'), "data_type" => $type));
-//		}
-		$data_folder_id=1;
+		if ( ! $data_folder_id = $this->cron_model->get_data_folder_id_by_path($directory))
+		{
+			$data_folder_id = $this->cron_model->insert_data_folder(array("folder_path" => $directory, "created_at" => date('Y-m-d H:i:s'), "data_type" => $type));
+		}
 		if (isset($data_folder_id) && $data_folder_id > 0)
 		{
 			$data_result = file($directory . $file);
 			if (isset($data_result) && ! is_empty($data_result))
 			{
 				$db_error_counter = 0;
-				$countt=0;
 				foreach ($data_result as $value)
 				{
 					$data_file = (explode(" ", $value));
@@ -147,8 +134,6 @@ class Pbcore extends CI_Controller
 					{
 
 						$file_path = trim($directory . $data_file_path);
-
-
 						if (strpos($data_file_path, 'organization.xml') === false)
 						{
 							$bag_check = FALSE;
@@ -156,7 +141,6 @@ class Pbcore extends CI_Controller
 							if ($directory == 'assets/export_pbcore/1787_WKAR_20131502/')
 							{
 								$bag_check = file('wkar-guid.txt');
-								echo count($bag_check).'<br/>';
 								foreach ($bag_check as $row)
 								{
 									if (strpos($data_file_path, trim($row)) !== false)
@@ -169,10 +153,9 @@ class Pbcore extends CI_Controller
 							else if ($directory == 'assets/export_pbcore/1595_WXPN_PBCoreXMLBag_20130128/')
 							{
 								$bag_check = file('wxpn-guid.txt');
-								$bag_files = explode("\n", $bag_check);
-								foreach ($bag_files as $row)
+								foreach ($bag_check as $row)
 								{
-									if (strpos($data_file_path, $row) !== false)
+									if (strpos($data_file_path, trim($row)) !== false)
 									{
 										$ignore_file = TRUE;
 										break;
@@ -183,18 +166,14 @@ class Pbcore extends CI_Controller
 							{
 								if ( ! $this->cron_model->is_pbcore_file_by_path($data_file_path, $data_folder_id))
 								{
-									$countt++;
-									echo $data_file_path.'<br/>';
-//									$this->cron_model->insert_prcoess_data(array('file_type' => $type, 'file_path' => ($data_file_path), 'is_processed' => 0, 'created_at' => date('Y-m-d H:i:s'), "data_folder_id" => $data_folder_id));
+									$this->cron_model->insert_prcoess_data(array('file_type' => $type, 'file_path' => ($data_file_path), 'is_processed' => 0, 'created_at' => date('Y-m-d H:i:s'), "data_folder_id" => $data_folder_id));
 								}
 							}
 							else if ( ! $ignore_file)
 							{
 								if ( ! $this->cron_model->is_pbcore_file_by_path($data_file_path, $data_folder_id))
 								{
-									$countt++;
-									echo $data_file_path.'<br/>';
-//									$this->cron_model->insert_prcoess_data(array('file_type' => $type, 'file_path' => ($data_file_path), 'is_processed' => 0, 'created_at' => date('Y-m-d H:i:s'), "data_folder_id" => $data_folder_id, 'status_reason' => 'file_not_found'));
+									$this->cron_model->insert_prcoess_data(array('file_type' => $type, 'file_path' => ($data_file_path), 'is_processed' => 0, 'created_at' => date('Y-m-d H:i:s'), "data_folder_id" => $data_folder_id, 'status_reason' => 'file_not_found'));
 								}
 								$folder_status = 'incomplete';
 							}
@@ -203,14 +182,14 @@ class Pbcore extends CI_Controller
 					if ($db_error_counter == 20000)
 					{
 						$db_error_counter = 0;
-						sleep(3);
+						sleep(2);
 					}
 					$db_error_counter ++;
 				}
 			}
-			echo $countt.'<br/>';
+
 			$this->myLog('folder Id ' . $data_folder_id . ' => folder_status ' . $folder_status);
-//			$this->cron_model->update_data_folder(array('updated_at' => date('Y-m-d H:i:s'), 'folder_status' => $folder_status), $data_folder_id);
+			$this->cron_model->update_data_folder(array('updated_at' => date('Y-m-d H:i:s'), 'folder_status' => $folder_status), $data_folder_id);
 			exit;
 		}
 	}

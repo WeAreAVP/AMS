@@ -227,13 +227,13 @@ class Mintimport extends CI_Controller
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 		$result = $this->mint->get_files_to_import();
-		debug($result);
 		if ($result)
 		{
 			foreach ($result as $row)
 			{
 				myLog('Start importing data.');
 				$this->mint->update_mint_import_file($row->id, array('processed_at' => date('Y-m-d H:m:i'), 'status_reason' => 'Processing'));
+				echo 'Updated';exit;
 				$this->parse_xml_file($row->path, $row->station_id);
 				myLog('End importing data.');
 				$this->mint->update_mint_import_file($row->id, array('is_processed' => 1, 'status_reason' => 'Complete'));

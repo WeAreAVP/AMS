@@ -62,7 +62,7 @@ class Mint_Model extends CI_Model
 	function update_mint_import_file($import_id, $data)
 	{
 		$this->db->where('id', $import_id);
-		return $this->db->update($this->mint_import_info, $data);
+		return $this->db->update($this->_table_mint_import_info, $data);
 	}
 
 	/**

@@ -260,6 +260,7 @@ class Mintimport extends CI_Controller
 		$xmlArray = xmlObjToArr($xml_string);
 
 		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
+		debug($asset_id);
 		myLog('Created Asset ID ' . $asset_id);
 		$this->import_asset_info($asset_id, $station_id, $xmlArray['children']);
 

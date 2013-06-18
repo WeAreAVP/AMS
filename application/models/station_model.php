@@ -216,6 +216,7 @@ class Station_Model extends CI_Model
 
 	function insert_log($data)
 	{
+		$data['changed_at'] = date('Y-m-d H:i:s');
 		$this->db->insert($this->_table_audit_trail, $data);
 		return $this->db->insert_id();
 	}

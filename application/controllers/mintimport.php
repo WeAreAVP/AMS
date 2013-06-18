@@ -227,7 +227,7 @@ class Mintimport extends CI_Controller
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 		$result = $this->mint->get_files_to_import();
-		echo 'here';exit;
+		debug($result);
 		if ($result)
 		{
 			foreach ($result as $row)

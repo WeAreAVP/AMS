@@ -227,6 +227,7 @@ class Mintimport extends CI_Controller
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 		$result = $this->mint->get_files_to_import();
+		echo 'here';exit;
 		if ($result)
 		{
 			foreach ($result as $row)
@@ -258,7 +259,7 @@ class Mintimport extends CI_Controller
 		$xml_string = @simplexml_load_string($file_content);
 		unset($file_content);
 		$xmlArray = xmlObjToArr($xml_string);
-		echo 'here';exit;
+		
 		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
 		
 		myLog('Created Asset ID ' . $asset_id);

@@ -43,7 +43,7 @@ class Pbcore extends CI_Controller
 		$this->load->model('instantiations_model', 'instant');
 		$this->load->model('essence_track_model', 'essence');
 		$this->load->model('station_model');
-		$this->assets_path = 'assets/export_pbcore/';
+		$this->assets_path = 'assets/export_pbcore/17842_WGBH_20131502/';
 	}
 
 	

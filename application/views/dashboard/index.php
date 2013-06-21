@@ -73,20 +73,20 @@
 
 	</div>
 	<div class="span4" style="width: 31%;">
-		<div class="assets-sum"><?php echo $percentage_hours . '%'; ?></div>
+		<div class="assets-sum"><?php echo ( ! empty($percentage_hours) ? $percentage_hours.'%' : '0%'); ?></div>
 		<div class="assets-subdetail"> <?php echo 'of ' . $total_hours . ' hrs'; ?> </div>
 
 	</div>
-	<?php 
-	$crawford_width='';
+	<?php
+	$crawford_width = '';
 	if (intval($at_crawford) > 999)
 	{
-		$crawford_width='padding-top: 40px;';
+		$crawford_width = 'padding-top: 40px;';
 	}
 	?>
 	<div class="span4" style="width: 31%;">
 		<div class="assets-sum"><?php echo number_format($at_crawford); ?></div>
-		<div class="assets-subdetail" style="<?php echo $crawford_width;?>">hrs at Crawford</div>
+		<div class="assets-subdetail" style="<?php echo $crawford_width; ?>">hrs at Crawford</div>
 
 	</div>
 </div>

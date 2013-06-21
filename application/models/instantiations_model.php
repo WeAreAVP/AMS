@@ -23,7 +23,7 @@
  * @author     Nouman Tayyab <nouman@geekschicago.com>
  * @license    AMS http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
- */
+ */ 
 class Instantiations_Model extends CI_Model
 {
 

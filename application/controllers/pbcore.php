@@ -43,10 +43,54 @@ class Pbcore extends CI_Controller
 		$this->load->model('instantiations_model', 'instant');
 		$this->load->model('essence_track_model', 'essence');
 		$this->load->model('station_model');
-		$this->assets_path = 'assets/export_pbcore/17842_WGBH_20131502/';
+		$this->assets_path = 'assets/export_pbcore/';
 	}
 
-	
+	function test()
+	{
+		$asset_data = file_get_contents($this->assets_path . '17842_WGBH/data/cpb-aacip-15-34fn454f/pbcore');
+		if (isset($asset_data) && ! empty($asset_data))
+		{
+			$asset_xml_data = @simplexml_load_string($asset_data);
+			$asset_d = xmlObjToArr($asset_xml_data);
+			debug($asset_d);
+			$asset_children = $asset_d['children'];
+			$asset_id = 1;
+			if (isset($asset_children['pbcoreidentifier']))
+			{
+				foreach ($asset_children['pbcoreidentifier'] as $pbcoreidentifier)
+				{
+					$identifier_d = array();
+					//As Identfier is Required and based on identifiersource so apply following checks 
+					if (isset($pbcoreidentifier['children']['identifier'][0]['text']) && ! is_empty($pbcoreidentifier['children']['identifier'][0]['text']))
+					{
+						$identifier_d['assets_id'] = $asset_id;
+						$identifier_d['identifier'] = trim($pbcoreidentifier['children']['identifier'][0]['text']);
+						$identifier_d['identifier_source'] = '';
+						if (isset($pbcoreidentifier['children']['identifiersource'][0]['text']) && ! is_empty($pbcoreidentifier['children']['identifiersource'][0]['text']))
+						{
+							$identifier_d['identifier_source'] = trim($pbcoreidentifier['children']['identifiersource'][0]['text']);
+						}
+
+						if ((isset($identifier_d['identifier']) && ! is_empty($identifier_d['identifier'])))
+						{
+							$this->assets_model->insert_identifiers($identifier_d);
+						}
+						//print_r($identifier_d);	
+					}
+					if (isset($pbcoreidentifier['text']) && ! is_empty($pbcoreidentifier['text']))
+					{
+						$identifier_d['assets_id'] = $asset_id;
+						$identifier_d['identifier'] = trim($pbcoreidentifier['text']);
+						if (isset($pbcoreidentifier['attributes']['source']) && ! is_empty($pbcoreidentifier['attributes']['source']))
+							$identifier_d['identifier_source'] = trim($pbcoreidentifier['attributes']['source']);
+
+						$this->assets_model->insert_identifiers($identifier_d);
+					}
+				}
+			}
+		}
+	}
 
 	/**
 	 * Store all PBCore 1.x directories and data files in the database.
@@ -203,7 +247,9 @@ class Pbcore extends CI_Controller
 	 */
 	function process_xml_file()
 	{
-		$folders = $this->cron_model->get_all_data_folder(); 
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
+		$folders = $this->cron_model->get_all_data_folder();
 		if (isset($folders) && ! empty($folders))
 		{
 			foreach ($folders as $folder)
@@ -860,7 +906,7 @@ class Pbcore extends CI_Controller
 									}
 									else
 									{
-										$essence_tracks_d['essence_track_types_id'] = $this->essence->insert_essence_track_types(array('essence_track_type' => $pbcore_essence_child['essencetracktype'][0]['text']));
+										$essence_tracks_d['essence_track_types_id'] = $this->essence->insert_essence_track_types(array('essence_track_type' => 'General'));
 									}
 								}
 
@@ -1004,6 +1050,8 @@ class Pbcore extends CI_Controller
 	 */
 	function process_assets($asset_children, $asset_id)
 	{
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
 		// pbcoreAssetType Start here
 		if (isset($asset_children['pbcoreassettype']))
 		{
@@ -1044,11 +1092,21 @@ class Pbcore extends CI_Controller
 					{
 						$identifier_d['identifier_source'] = trim($pbcoreidentifier['children']['identifiersource'][0]['text']);
 					}
+
 					if ((isset($identifier_d['identifier']) && ! is_empty($identifier_d['identifier'])))
 					{
 						$this->assets_model->insert_identifiers($identifier_d);
 					}
 					//print_r($identifier_d);	
+				}
+				if (isset($pbcoreidentifier['text']) && ! is_empty($pbcoreidentifier['text']))
+				{
+					$identifier_d['assets_id'] = $asset_id;
+					$identifier_d['identifier'] = trim($pbcoreidentifier['text']);
+					if (isset($pbcoreidentifier['attributes']['source']) && ! is_empty($pbcoreidentifier['attributes']['source']))
+						$identifier_d['identifier_source'] = trim($pbcoreidentifier['attributes']['source']);
+
+					$this->assets_model->insert_identifiers($identifier_d);
 				}
 			}
 		}

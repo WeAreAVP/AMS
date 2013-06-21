@@ -25,7 +25,7 @@
  * @link       http://ams.avpreserve.com
  */
 class Searchd extends CI_Controller
-{
+{ 
 
 	/**
 	 * Constructor.

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row"> 
 	<div style="margin: 2px 0px 10px 0px;float:left;width: 570px;">
 
 		<?php

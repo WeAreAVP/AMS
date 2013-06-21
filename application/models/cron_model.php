@@ -25,7 +25,7 @@
  * @link       http://ams.avpreserve.com
  */
 class Cron_Model extends CI_Model
-{
+{  
 
 	/**
 	 * constructor. set table name amd prefix

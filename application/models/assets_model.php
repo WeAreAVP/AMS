@@ -16,7 +16,7 @@
  */
 
 /**
- * AMS Asset_model Class
+ * AMS Asset_model Class 
  *
  * @category   Class
  * @package    CI

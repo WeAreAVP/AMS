@@ -25,7 +25,7 @@
  * @link       http://ams.avpreserve.com
  */
 class Searchd_Model extends CI_Model
-{
+{ 
 	/*
 	 *
 	 * constructor. Load Sphinx Search Library

@@ -897,7 +897,7 @@ class Mediainfo extends CI_Controller
 					}
 					$dessence_track_counter ++;
 				}
-				$this->update_ins_asset_index($db_instantiation_id, $new = TRUE);
+				$this->update_ins_asset_index($db_instantiation_id, TRUE);
 			}
 		}
 

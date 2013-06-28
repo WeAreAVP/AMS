@@ -144,7 +144,7 @@ class Auth extends CI_Controller
 	{
 		$this->dx_auth->logout();
 		// Edited By Nouman Tayyab
-		redirect('auth', 'location');
+		redirect('login', 'location');
 //		$data['auth_message'] = 'You have been logged out.';	// Default DX_Auth Message.	
 //		$this->load->view($this->dx_auth->logout_view, $data);  // Default view DX_Auth 
 		// End Edited By Nouman Tayyab

@@ -132,6 +132,7 @@ class Station_Model extends CI_Model
 	 */
 	function insert_station($data)
 	{
+		$data['created_at'] = date('Y-m-d H:i:s');
 		$this->db->insert($this->_table, $data);
 		return $this->db->insert_id();
 	}

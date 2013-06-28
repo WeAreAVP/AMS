@@ -41,6 +41,8 @@
 $route['default_controller'] = "dashboard"; 
 $route['404_override'] = '';
 $route['emailtracking/(:any).png'] = "emailtracking/index/$1";
+$route['login'] = "auth/login";
+$route['logout'] = "auth/logout";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

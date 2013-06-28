@@ -469,6 +469,9 @@ class Stations extends MY_Controller
 		$sphnix_station['total_allocated'] = ! empty($row[15]) ? (int) $row[15] : (int) 0;
 		$sphnix_station['is_certified'] = ! empty($row[0]) ? $row[0] : '';
 		$sphnix_station['is_agreed'] = ($row[16] == 'TRUE') ? 1 : 0;
+		$sphnix_station['start_date'] = ! empty($station->start_date) ? (int) strtotime($station->start_date) : (int) 0;
+		$sphnix_station['end_date'] = ! empty($station->end_date) ? (int) strtotime($station->end_date) : (int) 0;
+		
 		if ($new)
 			$this->sphnixrt->insert('stations', $sphnix_station, $station_id);
 		else

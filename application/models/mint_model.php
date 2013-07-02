@@ -104,7 +104,7 @@ class Mint_Model extends CI_Model
 	{
 		$this->db->where('is_processed', 0);
 		$this->db->like("status_reason", 'Not processed');
-		$this->db->limit(20000);
+//		$this->db->limit(20000);
 		$result = $this->db->get($this->_table_mint_import_info);
 		if (isset($result) && ! empty($result))
 		{

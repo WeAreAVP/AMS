@@ -32,7 +32,7 @@ function simple_simple_datatable_view($records)
 
 		$tablesort[$index][] = str_replace("(**)", '', '<span style="float:left;min-width:200px;max-width:200px;">' . $value->organization . '</span>');
 		$tablesort[$index][] = str_replace("(**)", '', '<span style="float:left;min-width:250px;max-width:250px;"><a href="' . site_url('records/details/' . $value->id) . '">' . $value->guid_identifier . '</a></span>');
-		$tablesort[$index][] = str_replace("(**)", '', '<span style="float:left;min-width:250px;max-width:250px;">' . $value->local_identifier . '</span>');
+		$tablesort[$index][] = str_replace('|','<br/>',str_replace("(**)", '', '<span style="float:left;min-width:250px;max-width:250px;">' . $value->local_identifier . '</span>'));
 		$tablesort[$index][] = str_replace("(**)", '', '<span style="float:left;min-width:300px;max-width:300px;">' . $asset_combine . '</span>');
 		if (strlen($value->description) > 200)
 			$description = substr($value->description, 0, strpos($value->description, ' ', 200)) . '...';

@@ -95,7 +95,7 @@ function full_assets_datatable_view($records, $column_order)
 			}
 			else if ($type == 'Local_ID')
 			{
-				$tablesort[$main_index][] = '<span style="float:left;min-width:200px;max-width:200px;">' . str_replace('(**)', '', $asset->local_identifier) . '</span>';
+				$tablesort[$main_index][] = '<span style="float:left;min-width:200px;max-width:200px;">' . str_replace('|','<br/>',str_replace('(**)', '', $asset->local_identifier)) . '</span>';
 			}
 			else if ($type == 'Description')
 			{

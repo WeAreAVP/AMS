@@ -39,6 +39,7 @@ class Mintimport extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('assets_model');
+		$this->load->model('instantiations_model','instant');
 		$this->load->model('cron_model');
 		$this->load->model('station_model');
 		$this->load->model('mint_model', 'mint');
@@ -241,6 +242,7 @@ class Mintimport extends CI_Controller
 				myLog('End importing data.');
 				$this->mint->update_mint_import_file($row->id, array('is_processed' => 1, 'status_reason' => 'Complete'));
 				myLog('Successfully finished.');
+				exit;
 			}
 		}
 		else
@@ -300,11 +302,13 @@ class Mintimport extends CI_Controller
 					{
 						$asset_type_detail['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $pbcoreassettype['text']));
 					}
+					
 					$this->assets_model->insert_assets_asset_types($asset_type_detail);
 					unset($asset_type_detail);
 				}
 			}
 		}
+		
 		// Asset Type End //
 		// Asset Date and Type Start //
 		if (isset($xmlArray['ams:pbcoreassetdate']))
@@ -360,38 +364,38 @@ class Mintimport extends CI_Controller
 					unset($identifier_detail);
 				}
 			}
-			if ($is_minted)
-			{
-				$station_info = $this->station_model->get_station_by_id($station_id);
-				$aacip_id = '';
-				$records = file('aacip_cpb_stationid.csv');
-				foreach ($records as $index => $line)
-				{
-					$explode_ids = explode(',', $line);
-					if (isset($explode_ids[1]) && trim($explode_ids[1]) == trim($station_info->cpb_id))
-						$aacip_id = $explode_ids[0];
-				}
-				if (empty($aacip_id))
-				{
-					$aacip_id = rand(100, 300);
-				}
-				$guid_string = file_get_contents($this->config->item('base_url') . 'nd/noidu_kt5?mint+1');
-				if ( ! empty($guid_string))
-				{
-					$explode_guid = explode('id:', $guid_string);
-					if (count($explode_guid) > 1)
-					{
-						$guid = 'cpb-aacip/' . $aacip_id . '-' . trim($explode_guid[1]);
-					}
-				}
-				if ( ! empty($guid))
-				{
-					$identifier_detail['assets_id'] = $asset_id;
-					$identifier_detail['identifier'] = $guid;
-					$identifier_detail['identifier_source'] = 'http://americanarchiveinventory.org';
-					$this->assets_model->insert_identifiers($identifier_detail);
-				}
-			}
+//			if ($is_minted)
+//			{
+//				$station_info = $this->station_model->get_station_by_id($station_id);
+//				$aacip_id = '';
+//				$records = file('aacip_cpb_stationid.csv');
+//				foreach ($records as $index => $line)
+//				{
+//					$explode_ids = explode(',', $line);
+//					if (isset($explode_ids[1]) && trim($explode_ids[1]) == trim($station_info->cpb_id))
+//						$aacip_id = $explode_ids[0];
+//				}
+//				if (empty($aacip_id))
+//				{
+//					$aacip_id = rand(100, 300);
+//				}
+//				$guid_string = file_get_contents($this->config->item('base_url') . 'nd/noidu_kt5?mint+1');
+//				if ( ! empty($guid_string))
+//				{
+//					$explode_guid = explode('id:', $guid_string);
+//					if (count($explode_guid) > 1)
+//					{
+//						$guid = 'cpb-aacip/' . $aacip_id . '-' . trim($explode_guid[1]);
+//					}
+//				}
+//				if ( ! empty($guid))
+//				{
+//					$identifier_detail['assets_id'] = $asset_id;
+//					$identifier_detail['identifier'] = $guid;
+//					$identifier_detail['identifier_source'] = 'http://americanarchiveinventory.org';
+//					$this->assets_model->insert_identifiers($identifier_detail);
+//				}
+//			}
 		}
 
 		// Insert Identifier End //
@@ -1513,8 +1517,8 @@ class Mintimport extends CI_Controller
 					$this->load->model('searchd_model');
 					$this->load->helper('sphnixdata');
 					$instantiation_list = $this->searchd_model->get_ins_index(array($instantiations_id));
-					$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], $new);
-					$this->sphnixrt->insert('instantiations_list', $new_list_info, $instantiation_id);
+					$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], TRUE);
+					$this->sphnixrt->insert('instantiations_list', $new_list_info, $instantiations_id);
 					$asset_list = $this->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
 					$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
 					$this->sphnixrt->update('assets_list', $new_asset_info);

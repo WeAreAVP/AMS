@@ -63,7 +63,7 @@ class Mint_Model extends CI_Model
 	{
 		$this->db->where('id', $import_id);
 		return $this->db->update($this->_table_mint_import_info, $data);
-	}
+	} 
 
 	/**
 	 * Insert files info of mint import.

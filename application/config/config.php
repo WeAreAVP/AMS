@@ -34,6 +34,7 @@ if (ENVIRONMENT == 'development')
 	$config['crawford_email'] = 'nouman@geekschicago.com';
 	$config['path'] = '/home/ams/public_html/';
 	$config['cookie_domain'] = ".ams.live.geekschicago.com";
+	$config['mint_url'] = "http://mint.avpreserve.com:8080/mint-ams";
 }
 else if (ENVIRONMENT == 'qatesting')
 {

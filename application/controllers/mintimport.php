@@ -231,6 +231,9 @@ class Mintimport extends CI_Controller
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
+		@ini_set("memory_limit", "2000M"); # 2GB
+		@ini_set("max_execution_time", 999999999999);
+		
 		$result = $this->mint->get_files_to_import();
 		if ($result)
 		{

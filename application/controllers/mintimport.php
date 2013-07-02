@@ -39,7 +39,7 @@ class Mintimport extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('assets_model');
-		$this->load->model('instantiations_model','instant');
+		$this->load->model('instantiations_model', 'instant');
 		$this->load->model('cron_model');
 		$this->load->model('station_model');
 		$this->load->model('mint_model', 'mint');
@@ -134,7 +134,7 @@ class Mintimport extends CI_Controller
 		@set_time_limit(0);
 		@ini_set("memory_limit", "1000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999); # 1GB
-		
+
 		$not_downloaded = $this->mint->get_transformation_download(0);
 		if ($not_downloaded)
 		{
@@ -242,7 +242,6 @@ class Mintimport extends CI_Controller
 				myLog('End importing data.');
 				$this->mint->update_mint_import_file($row->id, array('is_processed' => 1, 'status_reason' => 'Complete'));
 				myLog('Successfully finished.');
-				
 			}
 		}
 		else
@@ -265,9 +264,9 @@ class Mintimport extends CI_Controller
 		$xml_string = @simplexml_load_string($file_content);
 		unset($file_content);
 		$xmlArray = xmlObjToArr($xml_string);
-		
+
 		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
-		
+
 		myLog('Created Asset ID ' . $asset_id);
 		$this->import_asset_info($asset_id, $station_id, $xmlArray['children']);
 
@@ -303,13 +302,13 @@ class Mintimport extends CI_Controller
 					{
 						$asset_type_detail['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $pbcoreassettype['text']));
 					}
-					
+
 					$this->assets_model->insert_assets_asset_types($asset_type_detail);
 					unset($asset_type_detail);
 				}
 			}
 		}
-		
+
 		// Asset Type End //
 		// Asset Date and Type Start //
 		if (isset($xmlArray['ams:pbcoreassetdate']))
@@ -336,7 +335,7 @@ class Mintimport extends CI_Controller
 				}
 			}
 		}
-		
+
 		// Asset Date and Type End //
 		// Insert Identifier Start //
 
@@ -1527,23 +1526,22 @@ class Mintimport extends CI_Controller
 				}
 			}
 		}
+	}
 
-		/**
-		 * Check the date format
-		 * 
-		 * @param type $value
-		 * @return boolean 
-		 */
-		function is_valid_date($value)
+	/**
+	 * Check the date format
+	 * 
+	 * @param type $value
+	 * @return boolean 
+	 */
+	function is_valid_date($value)
+	{
+		$date = date_parse($value);
+		if ($date['error_count'] == 0 && $date['warning_count'] == 0)
 		{
-			$date = date_parse($value);
-			if ($date['error_count'] == 0 && $date['warning_count'] == 0)
-			{
-				return date("Y-m-d", strtotime($value));
-			}
-			return FALSE;
+			return date("Y-m-d", strtotime($value));
 		}
-
+		return FALSE;
 	}
 
 }

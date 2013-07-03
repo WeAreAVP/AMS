@@ -437,7 +437,7 @@ class Mintimport extends CI_Controller
 						$title_detail['title_source'] = $row['attributes']['source'];
 					}
 					$title_detail['created'] = date('Y-m-d H:i:s');
-//					$this->assets_model->insert_asset_titles($title_detail);
+					$this->assets_model->insert_asset_titles($title_detail);
 					unset($title_detail);
 				}
 			}

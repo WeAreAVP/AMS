@@ -203,7 +203,7 @@ class Mintimport extends CI_Controller
 			myLog($station_id);
 			if ($station_id !== 0)
 			{
-				$path = $folder_name . '/' . $file;
+				$path = $folder_name . $file;
 				$db_info = $this->mint->get_import_info_by_path($path);
 				if ( ! $db_info)
 				{

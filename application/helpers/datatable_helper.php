@@ -7,9 +7,9 @@ function simple_simple_datatable_view($records)
 	{
 
 		$tablesort[$index][] = '<span style="float:left;min-width:20px;max-width:20px;"><i style="margin:0px" class="unflag"></i></span>';
-		$asset_title_type = explode(' | ', trim(str_replace('(**)', '', $value->asset_title_type)));
-		$asset_title = explode(' | ', trim(str_replace('(**)', '', $value->asset_title)));
-		$asset_title_ref = explode(' | ', trim(str_replace('(**)', '', $value->asset_title_ref)));
+		$asset_title_type = explode('|', trim(str_replace('(**)', '', $value->asset_title_type)));
+		$asset_title = explode('|', trim(str_replace('(**)', '', $value->asset_title)));
+		$asset_title_ref = explode('|', trim(str_replace('(**)', '', $value->asset_title_ref)));
 		$asset_combine = '';
 		foreach ($asset_title as $aindex => $title)
 		{
@@ -58,9 +58,9 @@ function full_assets_datatable_view($records, $column_order)
 			}
 			else if ($type == 'Titles')
 			{
-				$asset_title_type = explode(' | ', trim(str_replace('(**)', '', $asset->asset_title_type)));
-				$asset_title = explode(' | ', trim(str_replace('(**)', '', $asset->asset_title)));
-				$asset_title_ref = explode(' | ', trim(str_replace('(**)', '', $asset->asset_title_ref)));
+				$asset_title_type = explode('|', trim(str_replace('(**)', '', $asset->asset_title_type)));
+				$asset_title = explode('|', trim(str_replace('(**)', '', $asset->asset_title)));
+				$asset_title_ref = explode('|', trim(str_replace('(**)', '', $asset->asset_title_ref)));
 				$column = '';
 				foreach ($asset_title as $index => $title)
 				{

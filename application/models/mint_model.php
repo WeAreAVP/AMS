@@ -213,7 +213,7 @@ class Mint_Model extends CI_Model
 		$this->db->select("$this->_table.station_id");
 		$this->db->where("$this->_table_mint_transformation.folder_name", $folder_name);
 		$this->db->join("$this->_table", "$this->_table.user_id=$this->_table_mint_transformation.user_id");
-		$this->db->order_by("$this->_table_mint_transformation.id", "desc"); 
+		$this->db->order_by("$this->_table.id", "desc"); 
 		$result = $this->db->get($this->_table_mint_transformation);
 		if (isset($result) && ! empty($result))
 		{

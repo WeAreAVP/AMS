@@ -201,8 +201,9 @@ class Mintimport extends CI_Controller
 				if ($station)
 					$station_id = $station->station_id;
 			}
-			exit;
+			
 			myLog($station_id);
+			exit;
 			if ($station_id !== 0)
 			{
 				$path = $folder_name . $file;

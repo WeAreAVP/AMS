@@ -201,6 +201,7 @@ class Mintimport extends CI_Controller
 				if ($station)
 					$station_id = $station->station_id;
 			}
+			exit;
 			myLog($station_id);
 			if ($station_id !== 0)
 			{

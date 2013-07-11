@@ -83,6 +83,7 @@ class Mintimport extends CI_Controller
 		$record['mint_user_id'] = $this->uri->segment(3);
 		$record['transformed_id'] = $this->uri->segment(4);
 		$record['is_approved'] = 0;
+		$record['is_downloaded '] = 0;
 		$user_info = $this->user_profile->get_profile_by_mint_id($record['mint_user_id']);
 		if ($user_info)
 		{

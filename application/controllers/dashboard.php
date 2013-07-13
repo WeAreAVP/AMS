@@ -46,7 +46,7 @@ class Dashboard extends MY_Controller
 	function convert(){
 		$bag_check = file('asset-ids-to-remove.txt');
 		
-		echo $string='('.implode(',', $bag_check).')';
+		echo $string='('.implode(',', $bag_check).')';exit;
 								
 								
 	}

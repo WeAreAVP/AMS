@@ -43,6 +43,17 @@ class Dashboard extends MY_Controller
 			redirect('records/index');
 		}
 	}
+	function convert(){
+		$bag_check = file('asset-ids-to-remove.txt');
+		debug($bag_check);
+		$string='(';
+								foreach ($bag_check as $row)
+								{
+									
+								}
+								$string .=')';
+								
+	}
 	function new_reverse(){
 		$reverse=  array_reverse($array);
 		

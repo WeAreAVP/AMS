@@ -45,13 +45,9 @@ class Dashboard extends MY_Controller
 	}
 	function convert(){
 		$bag_check = file('asset-ids-to-remove.txt');
-		debug($bag_check);
-		$string='(';
-								foreach ($bag_check as $row)
-								{
-									
-								}
-								$string .=')';
+		
+		echo $string='('.implode(',', $bag_check).')';
+								
 								
 	}
 	function new_reverse(){

@@ -38,7 +38,7 @@ class Searchd_Model extends CI_Model
 		$this->sphnix_db = $this->load->database('sphnix', TRUE);
 	}
 	function run_query($query){
-		$this->db->query($query)->result();
+		$this->db->query($query);
 	}
 	function check_sphnix()
 	{

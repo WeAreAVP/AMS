@@ -364,7 +364,7 @@ class Crons extends CI_Controller
 		ini_set('display_errors', 1);
 		$this->load->model('searchd_model');
 		$bag_check = file('asset-ids-to-remove.txt');
-		count($bag_check);exit;
+		echo count($bag_check);exit;
 		$string='('.implode(',', $bag_check).')';
 		$query="DELETE essence_track_identifiers FROM `essence_track_identifiers` 
 INNER JOIN essence_tracks ON essence_tracks.id=essence_track_identifiers.`essence_tracks_id`

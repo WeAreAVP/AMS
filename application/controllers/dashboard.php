@@ -24,7 +24,7 @@
  * @license    AVPS http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */
-class Dashboard extends MY_Controller
+class Dashboard extends CI_Controller
 {
 
 	/**

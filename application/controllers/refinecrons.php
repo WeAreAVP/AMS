@@ -108,9 +108,7 @@ class Refinecrons extends CI_Controller
 				{
 					$custom_query = $record->export_query;
 					$custom_query.=' LIMIT ' . ($offset * 15000) . ', 15000';
-
 					$records = $this->refine_modal->get_csv_records($custom_query);
-
 					$fp = fopen($file_path, 'a');
 					$line = '';
 					foreach ($records as $value)
@@ -132,7 +130,6 @@ class Refinecrons extends CI_Controller
 					}
 					fputs($fp, $line);
 					fclose($fp);
-					myLog('Total Records on CSV ' . ($offset * 15000));
 					$offset ++;
 					if (count($records) < 15000)
 						$db_count ++;
@@ -140,7 +137,7 @@ class Refinecrons extends CI_Controller
 
 				$path = $this->config->item('path') . $file_path;
 
-				myLog('CSV file Successfully Created.');
+				myLog('CSV file successfully created.');
 				$data = array('export_csv_path' => $path);
 				$this->refine_modal->update_job($record->id, $data);
 				myLog('Creating AMS Refine Project.');
@@ -176,12 +173,9 @@ class Refinecrons extends CI_Controller
 				$offset = 0;
 				while ($db_count == 0)
 				{
-
 					$custom_query = $record->export_query;
 					$custom_query.=' LIMIT ' . ($offset * 15000) . ', 15000';
-
 					$records = $this->refine_modal->get_csv_records($custom_query);
-
 					$fp = fopen($file_path, 'a');
 					$line = '';
 					foreach ($records as $value)
@@ -220,7 +214,7 @@ class Refinecrons extends CI_Controller
 		}
 		else
 		{
-			myLog('No job available for refinement.');
+			myLog('No job available for google refine.');
 		}
 		exit_function();
 	}

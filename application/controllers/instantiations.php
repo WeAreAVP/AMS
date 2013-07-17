@@ -1124,7 +1124,7 @@ class Instantiations extends MY_Controller
 					$row ++;
 				}
 				$filename = 'CSV_Export_' . time() . '.csv';
-				$folder_path = 'assets/csv_exports/' . date('Y') . '/' . date('M') . '/';
+				$folder_path = 'uploads/csv_exports/' . date('Y') . '/' . date('M') . '/';
 				$file_path = $folder_path . $filename;
 				if ( ! is_dir($folder_path))
 					mkdir($folder_path, 0777, TRUE);

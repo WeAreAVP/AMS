@@ -77,8 +77,14 @@ class Crons extends CI_Controller
 		if (count($job) > 0)
 		{
 			myLog('CSV Job Started.');
-			$filename = 'csv_export_' . time() . '.csv';
-			$fp = fopen("uploads/$filename", 'a');
+			$filename = 'CSV_Export_' . time() . '.csv';
+			$folder_path = 'assets/csv_exports/' . date('Y') . '/' . date('M') . '/';
+			$file_path = $folder_path . $filename;
+			if ( ! is_dir($folder_path))
+				mkdir($folder_path, 0777, TRUE);
+			$file_path = $folder_path . $filename;
+			
+			$fp = fopen($file_path, 'a');
 			$line = "GUID,Unique ID,Title,Format,Duration,Priority\n";
 			fputs($fp, $line);
 			fclose($fp);
@@ -91,7 +97,7 @@ class Crons extends CI_Controller
 
 				$records = $this->csv_job->get_csv_records($query);
 
-				$fp = fopen("uploads/$filename", 'a');
+				$fp = fopen($file_path, 'a');
 				$line = '';
 				foreach ($records as $value)
 				{
@@ -112,7 +118,7 @@ class Crons extends CI_Controller
 				myLog('Sleeping for 5 seconds');
 				sleep(3);
 			}
-			$url = site_url() . "uploads/$filename";
+			$url = site_url() . $file_path;
 			$this->csv_job->update_job($job->id, array('status' => '1'));
 			$user = $this->users->get_user_by_id($job->user_id)->row();
 			myLog('Sending Email to ' . $user->email);
@@ -190,7 +196,7 @@ class Crons extends CI_Controller
 				{
 					$this->load->library('sphnixrt');
 //					$result = $this->sphinx->facet_index($facet, $index_name, $columns);
-					$result =  $this->sphnixrt->select($index_name, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
+					$result = $this->sphnixrt->select($index_name, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
 					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
 				}
 				else
@@ -356,6 +362,5 @@ class Crons extends CI_Controller
 			return (round($size / pow(1000, ($i = floor(log($size, 1000)))), 0) . $sizes[$i]);
 		}
 	}
-
 
 }

@@ -1123,9 +1123,14 @@ class Instantiations extends MY_Controller
 
 					$row ++;
 				}
-				$filename = 'csv_export_' . time() . '.csv';
+				$filename = 'CSV_Export_' . time() . '.csv';
+				$folder_path = 'assets/csv_exports/' . date('Y') . '/' . date('M') . '/';
+				$file_path = $folder_path . $filename;
+				if ( ! is_dir($folder_path))
+					mkdir($folder_path, 0777, TRUE);
+				$file_path = $folder_path . $filename;
 				$objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');
-				$objWriter->save("uploads/$filename");
+				$objWriter->save($file_path);
 				$this->excel->disconnectWorksheets();
 				unset($this->excel);
 				echo json_encode(array('link' => 'true', 'msg' => site_url() . "uploads/$filename"));

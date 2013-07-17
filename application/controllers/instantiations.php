@@ -1133,7 +1133,7 @@ class Instantiations extends MY_Controller
 				$objWriter->save($file_path);
 				$this->excel->disconnectWorksheets();
 				unset($this->excel);
-				echo json_encode(array('link' => 'true', 'msg' => site_url() . "uploads/$filename"));
+				echo json_encode(array('link' => 'true', 'msg' => site_url() . $file_path));
 				exit_function();
 			}
 			else

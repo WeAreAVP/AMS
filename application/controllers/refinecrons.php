@@ -88,10 +88,16 @@ class Refinecrons extends CI_Controller
 		$record = $this->refine_modal->get_job_for_refine();
 		if (count($record) > 0)
 		{
+
 			if ($record->refine_type == 'instantiation')
 			{
-				$filename = 'ams_refine_' . time() . '.csv';
-				$fp = fopen("uploads/google_refine/$filename", 'a');
+				$filename = 'AMS_Refine_Instantiations_' . time() . '.csv';
+				$folder_path = 'assets/google_refine/' . date('Y') . '/' . date('M') . '/export/instantiations/';
+				$file_path = $folder_path . $filename;
+				if ( ! is_dir($folder_path))
+					mkdir($folder_path, 0777, TRUE);
+
+				$fp = fopen($file_path, 'a');
 
 				$line = "Organization,Asset Title,Description,Instantiation ID,Instantiation ID Source,Generation,Nomination,Nomination Reason,Media Type,Language,__Ins_id,__identifier_id,__gen_id\n";
 				fputs($fp, $line);
@@ -105,7 +111,7 @@ class Refinecrons extends CI_Controller
 
 					$records = $this->refine_modal->get_csv_records($custom_query);
 
-					$fp = fopen("uploads/google_refine/$filename", 'a');
+					$fp = fopen($file_path, 'a');
 					$line = '';
 					foreach ($records as $value)
 					{
@@ -132,7 +138,7 @@ class Refinecrons extends CI_Controller
 						$db_count ++;
 				}
 
-				$path = $this->config->item('path') . "uploads/google_refine/$filename";
+				$path = $this->config->item('path') . $file_path;
 
 				myLog('CSV file Successfully Created.');
 				$data = array('export_csv_path' => $path);
@@ -145,11 +151,18 @@ class Refinecrons extends CI_Controller
 				myLog('Sending Email to ' . $user->email);
 				if ($project_url)
 					send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
+				else
+					send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Refine Instantiations', $project_url);
 			}
 			else
 			{
-				$filename = 'ams_refine_' . time() . '.csv';
-				$fp = fopen("uploads/google_refine/$filename", 'a');
+				$filename = 'AMS_Refine_Assets_' . time() . '.csv';
+				$folder_path = 'assets/google_refine/' . date('Y') . '/' . date('M') . '/export/assets/';
+				$file_path = $folder_path . $filename;
+				if ( ! is_dir($folder_path))
+					mkdir($folder_path, 0777, TRUE);
+
+				$fp = fopen($file_path, 'a');
 				$line = "Organization,Asset Title,Description,Subject,Subject Source,Subject Ref,Genre,Genre Source,Genre Ref,Creator Name,Creator Affiliation,Creator Source,Creator Ref,";
 				$line .="Contributors Name,Contributors Affiliation,Contributors Source,Contributors Ref,Publisher,Publisher Affiliation,Publisher Ref,Coverage,Coverage Type,";
 				$line .="Audience Level,Audience Level Source,Audience Level Ref,";
@@ -169,7 +182,7 @@ class Refinecrons extends CI_Controller
 
 					$records = $this->refine_modal->get_csv_records($custom_query);
 
-					$fp = fopen("uploads/google_refine/$filename", 'a');
+					$fp = fopen($file_path, 'a');
 					$line = '';
 					foreach ($records as $value)
 					{
@@ -193,7 +206,7 @@ class Refinecrons extends CI_Controller
 						$db_count ++;
 				}
 
-				$path = $this->config->item('path') . "uploads/google_refine/$filename";
+				$path = $this->config->item('path') . $file_path;
 				$data = array('export_csv_path' => $path);
 				$this->refine_modal->update_job($record->id, $data);
 				$project_url = $this->create($path, $filename, $record->id);
@@ -201,6 +214,8 @@ class Refinecrons extends CI_Controller
 				myLog('Sending Email to ' . $user->email);
 				if ($project_url)
 					send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
+				else
+					send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Refine Instantiations', $project_url);
 			}
 		}
 		else
@@ -228,23 +243,14 @@ class Refinecrons extends CI_Controller
 			else
 				$this->update_assets($record->import_csv_path, $record->user_id);
 
-//			@exec("/usr/bin/indexer --all --rotate", $output);
-//			$email_output = implode('<br/>', $output);
 			$this->refine_modal->update_job($record->id, array('is_active' => 0));
-//			send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Refine Index Rotation', $email_output);
+
 			myLog("All Indexes Rotated Successfully.");
 		}
 		else
 		{
 			myLog('No AMS Refine update available.');
 		}
-		exit_function();
-	}
-
-	function rotate_all_indexes()
-	{
-		$output = `/usr/bin/indexer --all --rotate --config /etc/sphinx/sphinx.conf`;
-		send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Refine Index Rotation', $output);
 		exit_function();
 	}
 

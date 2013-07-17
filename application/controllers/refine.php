@@ -105,21 +105,21 @@ class Refine extends MY_Controller
 		if ($project_detail)
 		{
 			$response = $this->googlerefine->export_rows($project_detail->project_name, $project_id);
-			$filename = 'google_refined_data_' . time() . '.txt';
-			$path = $this->config->item('path') . "uploads/google_refine/$filename";
+			$filename = 'AMS_Refined_Data_' . time() . '.txt';
+			$folder_path = $this->config->item('path') . 'assets/google_refine/' . date('Y') . '/' . date('M') . '/imports/';
+			$file_path = $folder_path . $filename;
+			if ( ! is_dir($folder_path))
+				mkdir($folder_path, 0777, TRUE);
+
+			$fp = fopen($file_path, 'a');
 			file_put_contents($path, $response);
 			$this->googlerefine->delete_project($project_id);
 			$data = array('is_active' => 2, 'import_csv_path' => $path);
 			$this->refine_modal->update_job($project_detail->id, $data);
 			if ($project_detail->refine_type == 'instantiation')
-			{
-
 				redirect('instantiations');
-			}
 			else
-			{
 				redirect('records');
-			}
 		}
 	}
 

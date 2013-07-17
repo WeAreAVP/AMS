@@ -106,7 +106,7 @@ class Crons extends CI_Controller
 					$line.='"' . str_replace('"', '""', str_replace("\r", "", str_replace("\n", "", str_replace("\"", "\"\"", $value->titles)))) . '",';
 					$line.='"' . str_replace('"', '""', str_replace("\r", "", str_replace("\n", "", str_replace("\"", "\"\"", $value->format_name)))) . '",';
 					$line.='="' . str_replace('"', '""', str_replace("\r", "", str_replace("\n", "", str_replace("\"", "\"\"", $value->projected_duration)))) . '",';
-					$line.='"' . str_replace('"', '""', str_replace("\r", "", str_replace("\n", "", str_replace("\"", "\"\"", $value->projstatusected_duration)))) . '"';
+					$line.='"' . str_replace('"', '""', str_replace("\r", "", str_replace("\n", "", str_replace("\"", "\"\"", $value->status)))) . '"';
 					$line .= "\n";
 				}
 				fputs($fp, $line);

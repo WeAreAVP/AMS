@@ -49,9 +49,10 @@ class Dashboard extends MY_Controller
 	 */
 	public function index()
 	{
-		$data = $this->top_bar_detail();
-		$data .= $this->get_digitized_formats();
-		exit;
+		$top_bar = $this->top_bar_detail();
+		$digitized = $this->get_digitized_formats();
+		$data=array_merge($array1, array($digitized));
+		debug($data);
 		$this->load->view('dashboard/index', $data);
 	}
 

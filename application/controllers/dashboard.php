@@ -41,7 +41,10 @@ class Dashboard extends MY_Controller
 		if ($this->is_station_user)
 			redirect('records/index');
 	}
-
+	function remove(){
+		$ids=file('asset-ids-to-remove.txt');
+		echo implode(',', $ids);exit;
+	}
 	/**
 	 * Dashboard Functionality
 	 * 

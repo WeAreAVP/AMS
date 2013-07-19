@@ -50,8 +50,8 @@ class Dashboard extends MY_Controller
 	public function index()
 	{
 		$data = $this->top_bar_detail();
-		$data = $this->get_digitized_formats();
-		debug($data);
+		$data .= $this->get_digitized_formats();
+		
 		$this->load->view('dashboard/index', $data);
 	}
 

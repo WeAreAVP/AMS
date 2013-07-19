@@ -51,7 +51,7 @@ class Dashboard extends MY_Controller
 	{
 		$top_bar = $this->top_bar_detail();
 		$digitized = $this->get_digitized_formats();
-		$data=array_merge($array1, array($digitized));
+		$data=array_merge($top_bar, array($digitized));
 		debug($data);
 		$this->load->view('dashboard/index', $data);
 	}

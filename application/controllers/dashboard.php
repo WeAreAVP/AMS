@@ -49,7 +49,9 @@ class Dashboard extends MY_Controller
 	 */
 	public function index()
 	{
-
+		$data = $this->top_bar_detail();
+		$data = $this->get_digitized_formats();
+		debug($data);
 		$this->load->view('dashboard/index', $data);
 	}
 
@@ -59,6 +61,7 @@ class Dashboard extends MY_Controller
 		$data['at_crawford'] = json_decode($this->memcached_library->get('at_crawford'), TRUE);
 		$data['total_hours'] = json_decode($this->memcached_library->get('total_hours'), TRUE);
 		$data['percentage_hours'] = json_decode($this->memcached_library->get('percentage_hours'), TRUE);
+		return $data;
 	}
 
 	private function get_digitized_formats()

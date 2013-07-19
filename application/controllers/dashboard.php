@@ -39,70 +39,9 @@ class Dashboard extends MY_Controller
 		$this->load->model('dashboard_model');
 		$this->load->library('memcached_library');
 		if ($this->is_station_user)
-		{
 			redirect('records/index');
-		}
 	}
-	
-	function new_reverse(){
-		$reverse=  array_reverse($array);
-		
-		foreach ($reverse as $value)
-		{
-			array_push($new, $value);
-		}
-		debug($new);
-	}
-	function mode()
-	{
-		$random = array(5, 7, 10, 3, 1, 7, 5, 6, 5);
-		$mode_array = array();
-		foreach ($random as $value)
-		{
-			if (isset($mode_array[$value]))
-				$mode_array[$value] ++;
-			else
-				$mode_array[$value] = 1;
-		}
-		$mode_count=0;
-		$mode_no=0;
-		foreach ($mode_array as $key => $value)
-		{
-			if($mode_count < $value){
-				$mode_count=$value;
-				$mode_no=$key;
-			}
-		}
-		echo $mode_no.'<br/>'.$mode_count;exit;
-	}
-	function reverse(){
-		$array=array(1,2,3,4,5,6,7,8,9,10);
-		$count=  count($array);
-		$reverse=array_fill(0, $count-1, '');
-		for($i=0;$i<$count/2;$i++){
-			$reverse[$i]=$array[$count-1-$i];
-			$reverse[$count-1-$i]=$array[$i];
-		}
-		debug($array,FALSE);
-		debug($reverse);
-		
-	}
-	function min_max(){
-		$array=array(5,7,10,13,2,1,5,76);
-		$min=0;
-		$max=0;
-		foreach ($array as  $value)
-		{
-			if($value > $max)
-				$max=$value;
-			if($value < $min)
-				$min=$value;
-			
-		}
-		echo 'Max Value: '.$max.'<br/>';
-		echo 'Min Value: '.$min.'<br/>';
-		exit;
-	}
+
 	/**
 	 * Dashboard Functionality
 	 * 

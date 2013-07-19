@@ -66,10 +66,9 @@
   <exec executable="phpmd">
    <arg line="${filesProcess.processed.comma}
               xml
-              codesize,design,naming,unusedcode
-			 --minimumpriority 1000
-			 --npath 30000
-              --reportfile ${basedir}/build/logs/pmd.xml" />
+              design,naming,unusedcode
+			 --minimumpriority 400
+			 --reportfile ${basedir}/build/logs/pmd.xml" />
   </exec>
  </target>
 

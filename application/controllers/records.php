@@ -171,6 +171,7 @@ class Records extends MY_Controller
 		{
 			$data['asset_id'] = $asset_id;
 			$data['asset_details'] = $this->assets_model->get_asset_by_asset_id($asset_id);
+						debug($data['asset_details']);
 			if (count($data['asset_details']) <= 0)
 			{
 				show_error('Invalid record id: ' . $asset_id);

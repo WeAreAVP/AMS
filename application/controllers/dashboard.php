@@ -49,24 +49,48 @@ class Dashboard extends MY_Controller
 	 */
 	public function index()
 	{
-		$data['digitized_format_name'] = json_decode($this->memcached_library->get('graph_digitized_format_name'), TRUE);
-		$data['digitized_total'] = json_decode($this->memcached_library->get('graph_digitized_total'), TRUE);
-		$data['scheduled_format_name'] = json_decode($this->memcached_library->get('graph_scheduled_format_name'), TRUE);
-		$data['scheduled_total'] = json_decode($this->memcached_library->get('graph_scheduled_total'), TRUE);
+
+		$this->load->view('dashboard/index', $data);
+	}
+
+	private function top_bar_detail()
+	{
 		$data['material_goal'] = json_decode($this->memcached_library->get('material_goal'), TRUE);
 		$data['at_crawford'] = json_decode($this->memcached_library->get('at_crawford'), TRUE);
 		$data['total_hours'] = json_decode($this->memcached_library->get('total_hours'), TRUE);
 		$data['percentage_hours'] = json_decode($this->memcached_library->get('percentage_hours'), TRUE);
-		$data['total_region_digitized'] = json_decode($this->memcached_library->get('total_region_digitized'), TRUE);
-		$data['total_hours_region_digitized'] = json_decode($this->memcached_library->get('total_hours_region_digitized'), TRUE);
+	}
+
+	private function get_digitized_formats()
+	{
+		$data['digitized_format_name'] = json_decode($this->memcached_library->get('graph_digitized_format_name'), TRUE);
+		$data['digitized_total'] = json_decode($this->memcached_library->get('graph_digitized_total'), TRUE);
+		return $data;
+	}
+
+	private function get_scheduled_formats()
+	{
+		$data['scheduled_format_name'] = json_decode($this->memcached_library->get('graph_scheduled_format_name'), TRUE);
+		$data['scheduled_total'] = json_decode($this->memcached_library->get('graph_scheduled_total'), TRUE);
+		return $data;
+	}
+
+	private function pie_charts_detail()
+	{
 		$data['pie_total_completed'] = json_decode($this->memcached_library->get('pie_total_completed'), TRUE);
 		$data['pie_total_scheduled'] = json_decode($this->memcached_library->get('pie_total_scheduled'), TRUE);
 		$data['pie_total_radio_completed'] = json_decode($this->memcached_library->get('pie_total_radio_completed'), TRUE);
 		$data['pie_total_radio_scheduled'] = json_decode($this->memcached_library->get('pie_total_radio_scheduled'), TRUE);
 		$data['pie_total_tv_completed'] = json_decode($this->memcached_library->get('pie_total_tv_completed'), TRUE);
 		$data['pie_total_tv_scheduled'] = json_decode($this->memcached_library->get('pie_total_tv_scheduled'), TRUE);
+		return $data;
+	}
 
-		$this->load->view('dashboard/index', $data);
+	private function get_records_by_region()
+	{
+		$data['total_region_digitized'] = json_decode($this->memcached_library->get('total_region_digitized'), TRUE);
+		$data['total_hours_region_digitized'] = json_decode($this->memcached_library->get('total_hours_region_digitized'), TRUE);
+		return $data;
 	}
 
 }

@@ -51,7 +51,7 @@ class Dashboard extends MY_Controller
 	{
 		$data = $this->top_bar_detail();
 		$data .= $this->get_digitized_formats();
-		
+		exit;
 		$this->load->view('dashboard/index', $data);
 	}
 

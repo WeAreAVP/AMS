@@ -67,7 +67,8 @@
    <arg line="${filesProcess.processed.comma}
               xml
               design,naming,unusedcode
-			 --minimumpriority 400
+			 --minimumpriority = 400
+			 --ignore=pbcore.php
 			 --reportfile ${basedir}/build/logs/pmd.xml" />
   </exec>
  </target>

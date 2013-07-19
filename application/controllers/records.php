@@ -171,8 +171,11 @@ class Records extends MY_Controller
 		{
 			$data['asset_id'] = $asset_id;
 			$data['asset_details'] = $this->assets_model->get_asset_by_asset_id($asset_id);
-			if(count($data['asset_details'])<=0)
-				show_error ('Invalid record id: '.$asset_id);
+			if (count($data['asset_details']) <= 0)
+			{
+				show_error('Invalid record id: ' . $asset_id);
+				exit;
+			}
 			$data['list_assets'] = $this->instantiation->get_instantiations_by_asset_id($asset_id);
 
 			$data['asset_guid'] = $this->assets_model->get_guid_by_asset_id($asset_id);

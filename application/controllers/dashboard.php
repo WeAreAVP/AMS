@@ -49,14 +49,11 @@ class Dashboard extends MY_Controller
 	 */
 	public function index()
 	{
-		$data = $this->top_bar_detail();
-		
-
-		debug($data);
+		$data = $this->get_dashboard();
 		$this->load->view('dashboard/index', $data);
 	}
-
-	private function top_bar_detail()
+	
+	private function get_dashboard()
 	{
 		$data=$this->get_digitized_formats();
 		$data['material_goal'] = json_decode($this->memcached_library->get('material_goal'), TRUE);

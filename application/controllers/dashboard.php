@@ -52,10 +52,15 @@ class Dashboard extends MY_Controller
 		$data = $this->get_dashboard();
 		$this->load->view('dashboard/index', $data);
 	}
-	
+
+	/**
+	 * Get complete dashboard detail.
+	 * 
+	 * @return array
+	 */
 	private function get_dashboard()
 	{
-		$data=$this->get_digitized_formats();
+		$data = $this->get_digitized_formats();
 		$data['material_goal'] = json_decode($this->memcached_library->get('material_goal'), TRUE);
 		$data['at_crawford'] = json_decode($this->memcached_library->get('at_crawford'), TRUE);
 		$data['total_hours'] = json_decode($this->memcached_library->get('total_hours'), TRUE);
@@ -63,25 +68,40 @@ class Dashboard extends MY_Controller
 		return $data;
 	}
 
+	/**
+	 * Get Digitized format information and sub function details.
+	 * 
+	 * @return array
+	 */
 	private function get_digitized_formats()
 	{
-		$data=$this->get_scheduled_formats();
+		$data = $this->get_scheduled_formats();
 		$data['digitized_format_name'] = json_decode($this->memcached_library->get('graph_digitized_format_name'), TRUE);
 		$data['digitized_total'] = json_decode($this->memcached_library->get('graph_digitized_total'), TRUE);
 		return $data;
 	}
 
+	/**
+	 * Get Schedulted format information and sub function details.
+	 * 
+	 * @return array
+	 */
 	private function get_scheduled_formats()
 	{
-		$data=$this->pie_charts_detail();
+		$data = $this->pie_charts_detail();
 		$data['scheduled_format_name'] = json_decode($this->memcached_library->get('graph_scheduled_format_name'), TRUE);
 		$data['scheduled_total'] = json_decode($this->memcached_library->get('graph_scheduled_total'), TRUE);
 		return $data;
 	}
 
+	/**
+	 * Get detail of complete vs scheduled records information and sub function details.
+	 * 
+	 * @return array
+	 */
 	private function pie_charts_detail()
 	{
-		$data=$this->get_records_by_region();
+		$data = $this->get_records_by_region();
 		$data['pie_total_completed'] = json_decode($this->memcached_library->get('pie_total_completed'), TRUE);
 		$data['pie_total_scheduled'] = json_decode($this->memcached_library->get('pie_total_scheduled'), TRUE);
 		$data['pie_total_radio_completed'] = json_decode($this->memcached_library->get('pie_total_radio_completed'), TRUE);
@@ -91,6 +111,11 @@ class Dashboard extends MY_Controller
 		return $data;
 	}
 
+	/**
+	 * Get region detail.
+	 * 
+	 * @return array
+	 */
 	private function get_records_by_region()
 	{
 		$data['total_region_digitized'] = json_decode($this->memcached_library->get('total_region_digitized'), TRUE);

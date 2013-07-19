@@ -49,9 +49,12 @@ class Dashboard extends MY_Controller
 	 */
 	public function index()
 	{
-		$top_bar = $this->top_bar_detail();
-		$digitized = $this->get_digitized_formats();
-		$data=array_merge($top_bar, array($digitized));
+		$data[] = $this->top_bar_detail();
+		$data[] = $this->get_digitized_formats();
+		$data[] = $this->get_scheduled_formats();
+		$data[] = $this->pie_charts_detail();
+		$data[] = $this->get_records_by_region();
+
 		debug($data);
 		$this->load->view('dashboard/index', $data);
 	}

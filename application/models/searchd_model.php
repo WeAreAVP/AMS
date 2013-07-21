@@ -40,7 +40,7 @@ class Searchd_Model extends CI_Model
 
 	function run_query($query)
 	{
-		echo $this->db->query($query);
+		$this->db->query($query);
 	}
 
 	function check_sphnix()

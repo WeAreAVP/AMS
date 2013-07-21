@@ -354,13 +354,14 @@ class Crons extends CI_Controller
 		$this->load->model('searchd_model','sed');
 		$bag = file('asset-ids-to-remove.txt');
 		$ids = implode(',', $bag);
-		$query = " essence_track_identifiers FROM `essence_track_identifiers` 
+		echo $ids;
+		$query = "essence_track_identifiers FROM `essence_track_identifiers` 
 INNER JOIN essence_tracks ON essence_tracks.id=essence_track_identifiers.`essence_tracks_id`
 INNER JOIN instantiations ON instantiations.id=essence_tracks.`instantiations_id`
 INNER JOIN assets ON assets.id=instantiations.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " essence_track_encodings FROM `essence_track_encodings` 
+		$query = "essence_track_encodings FROM `essence_track_encodings` 
 INNER JOIN essence_tracks ON essence_tracks.id=essence_track_encodings.`essence_tracks_id`
 INNER JOIN instantiations ON instantiations.id=essence_tracks.`instantiations_id`
 INNER JOIN assets ON assets.id=instantiations.`assets_id`

@@ -346,6 +346,11 @@ class Crons extends CI_Controller
 
 	function remove()
 	{
+		set_time_limit(0);
+		@ini_set("memory_limit", "4000M"); # 1GB
+		@ini_set("max_execution_time", 999999999999); # 1GB
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
 		$this->load->model('searchd_model','sed');
 		$bag = file('asset-ids-to-remove.txt');
 		$ids = implode(',', $bag);

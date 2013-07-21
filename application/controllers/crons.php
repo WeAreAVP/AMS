@@ -423,6 +423,7 @@ $this->sed->run_query($query);
 		$query = "DELETE  instantiations FROM `instantiations` 
 INNER JOIN assets ON assets.id=instantiations.`assets_id`
 WHERE assets.stations_id IN ($ids);";
+		echo $query;exit;
 $this->sed->run_query($query);
 		$query = "DELETE  rights_summaries FROM `rights_summaries` 
 INNER JOIN assets ON assets.id=rights_summaries.`assets_id`

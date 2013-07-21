@@ -356,80 +356,143 @@ class Crons extends CI_Controller
 		$ids = implode(',', $bag);
 		
 		
-		$query = "instantiations FROM `instantiations` 
+		$query = "DELETE essence_track_encodings FROM `essence_track_encodings` 
+INNER JOIN essence_tracks ON essence_tracks.id=essence_track_encodings.`essence_tracks_id`
+INNER JOIN instantiations ON instantiations.id=essence_tracks.`instantiations_id`
 INNER JOIN assets ON assets.id=instantiations.`assets_id`
 WHERE assets.stations_id IN ($ids);";
-		echo $query;exit;
 $this->sed->run_query($query);
-		$query = " rights_summaries FROM `rights_summaries` 
+		$query = "DELETE  essence_track_annotations FROM `essence_track_annotations` 
+INNER JOIN essence_tracks ON essence_tracks.id=essence_track_annotations.`essence_tracks_id`
+INNER JOIN instantiations ON instantiations.id=essence_tracks.`instantiations_id`
+INNER JOIN assets ON assets.id=instantiations.`assets_id`
+WHERE assets.stations_id IN ($ids);";
+$this->sed->run_query($query);
+		$query = "DELETE  essence_tracks FROM `essence_tracks` 
+INNER JOIN instantiations ON instantiations.id=essence_tracks.`instantiations_id`
+INNER JOIN assets ON assets.id=instantiations.`assets_id`
+WHERE assets.stations_id IN ($ids);";
+$this->sed->run_query($query);
+		$query = "DELETE  nominations FROM `nominations` 
+INNER JOIN instantiations ON instantiations.id=nominations.`instantiations_id`
+INNER JOIN assets ON assets.id=instantiations.`assets_id`
+WHERE assets.stations_id IN ($ids);";
+$this->sed->run_query($query);
+
+		$query = "DELETE  instantiation_relations FROM `instantiation_relations` 
+INNER JOIN instantiations ON instantiations.id=instantiation_relations.`instantiations_id`
+INNER JOIN assets ON assets.id=instantiations.`assets_id`
+WHERE assets.stations_id IN ($ids);";
+$this->sed->run_query($query);
+		$query = "DELETE  instantiation_identifier FROM `instantiation_identifier` 
+INNER JOIN instantiations ON instantiations.id=instantiation_identifier.`instantiations_id`
+INNER JOIN assets ON assets.id=instantiations.`assets_id`
+WHERE assets.stations_id IN ($ids);";
+$this->sed->run_query($query);
+		$query = "DELETE  instantiation_generations FROM `instantiation_generations` 
+INNER JOIN instantiations ON instantiations.id=instantiation_generations.`instantiations_id`
+INNER JOIN assets ON assets.id=instantiations.`assets_id`
+WHERE assets.stations_id IN ($ids);";
+$this->sed->run_query($query);
+		$query = "DELETE  instantiation_formats FROM `instantiation_formats` 
+INNER JOIN instantiations ON instantiations.id=instantiation_formats.`instantiations_id`
+INNER JOIN assets ON assets.id=instantiations.`assets_id`
+WHERE assets.stations_id IN ($ids);";
+$this->sed->run_query($query);
+		$query = "DELETE  instantiation_dimensions FROM `instantiation_dimensions` 
+INNER JOIN instantiations ON instantiations.id=instantiation_dimensions.`instantiations_id`
+INNER JOIN assets ON assets.id=instantiations.`assets_id`
+WHERE assets.stations_id IN ($ids);";
+$this->sed->run_query($query);
+		$query = "DELETE  instantiation_dates FROM `instantiation_dates` 
+INNER JOIN instantiations ON instantiations.id=instantiation_dates.`instantiations_id`
+INNER JOIN assets ON assets.id=instantiations.`assets_id`
+WHERE assets.stations_id IN ($ids);";
+$this->sed->run_query($query);
+		$query = "DELETE  instantiation_annotations FROM `instantiation_annotations` 
+INNER JOIN instantiations ON instantiations.id=instantiation_annotations.`instantiations_id`
+INNER JOIN assets ON assets.id=instantiations.`assets_id`
+WHERE assets.stations_id IN ($ids);";
+$this->sed->run_query($query);
+		$query = "DELETE  events FROM `events` 
+INNER JOIN instantiations ON instantiations.id=events.`instantiations_id`
+INNER JOIN assets ON assets.id=instantiations.`assets_id`
+WHERE assets.stations_id IN ($ids);";
+$this->sed->run_query($query);
+
+		$query = "DELETE  instantiations FROM `instantiations` 
+INNER JOIN assets ON assets.id=instantiations.`assets_id`
+WHERE assets.stations_id IN ($ids);";
+$this->sed->run_query($query);
+		$query = "DELETE  rights_summaries FROM `rights_summaries` 
 INNER JOIN assets ON assets.id=rights_summaries.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " identifiers FROM `identifiers` 
+		$query = "DELETE  identifiers FROM `identifiers` 
 INNER JOIN assets ON assets.id=identifiers.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " extensions FROM `extensions` 
+		$query = "DELETE  extensions FROM `extensions` 
 INNER JOIN assets ON assets.id=extensions.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " coverages FROM `coverages` 
+		$query = "DELETE  coverages FROM `coverages` 
 INNER JOIN assets ON assets.id=coverages.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " asset_titles FROM `asset_titles` 
+		$query = "DELETE  asset_titles FROM `asset_titles` 
 INNER JOIN assets ON assets.id=asset_titles.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " asset_descriptions FROM `asset_descriptions` 
+		$query = "DELETE  asset_descriptions FROM `asset_descriptions` 
 INNER JOIN assets ON assets.id=asset_descriptions.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " asset_dates FROM `asset_dates` 
+		$query = "DELETE  asset_dates FROM `asset_dates` 
 INNER JOIN assets ON assets.id=asset_dates.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " assets_subjects FROM `assets_subjects` 
+		$query = "DELETE  assets_subjects FROM `assets_subjects` 
 INNER JOIN assets ON assets.id=assets_subjects.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " assets_relations FROM `assets_relations` 
+		$query = "DELETE  assets_relations FROM `assets_relations` 
 INNER JOIN assets ON assets.id=assets_relations.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " assets_publishers_role FROM `assets_publishers_role` 
+		$query = "DELETE  assets_publishers_role FROM `assets_publishers_role` 
 INNER JOIN assets ON assets.id=assets_publishers_role.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " assets_genres FROM `assets_genres` 
+		$query = "DELETE  assets_genres FROM `assets_genres` 
 INNER JOIN assets ON assets.id=assets_genres.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " assets_creators_roles FROM `assets_creators_roles` 
+		$query = "DELETE  assets_creators_roles FROM `assets_creators_roles` 
 INNER JOIN assets ON assets.id=assets_creators_roles.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " assets_contributors_roles FROM `assets_contributors_roles` 
+		$query = "DELETE  assets_contributors_roles FROM `assets_contributors_roles` 
 INNER JOIN assets ON assets.id=assets_contributors_roles.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " assets_audience_ratings FROM `assets_audience_ratings` 
+		$query = "DELETE  assets_audience_ratings FROM `assets_audience_ratings` 
 INNER JOIN assets ON assets.id=assets_audience_ratings.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " assets_audience_levels FROM `assets_audience_levels` 
+		$query = "DELETE  assets_audience_levels FROM `assets_audience_levels` 
 INNER JOIN assets ON assets.id=assets_audience_levels.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " assets_asset_types FROM `assets_asset_types` 
+		$query = "DELETE  assets_asset_types FROM `assets_asset_types` 
 INNER JOIN assets ON assets.id=assets_asset_types.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " annotations FROM `annotations` 
+		$query = "DELETE  annotations FROM `annotations` 
 INNER JOIN assets ON assets.id=annotations.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);
-		$query = " assets FROM `assets` 
+		$query = "DELETE  assets FROM `assets` 
 WHERE assets.stations_id IN ($ids);";
 		$this->sed->run_query($query);
 	}

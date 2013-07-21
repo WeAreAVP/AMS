@@ -355,77 +355,8 @@ class Crons extends CI_Controller
 		$bag = file('asset-ids-to-remove.txt');
 		$ids = implode(',', $bag);
 		
-		$query = "essence_track_identifiers FROM `essence_track_identifiers` 
-INNER JOIN essence_tracks ON essence_tracks.id=essence_track_identifiers.`essence_tracks_id`
-INNER JOIN instantiations ON instantiations.id=essence_tracks.`instantiations_id`
-INNER JOIN assets ON assets.id=instantiations.`assets_id`
-WHERE assets.stations_id IN ($ids);";
-$this->sed->run_query($query);
-		$query = "essence_track_encodings FROM `essence_track_encodings` 
-INNER JOIN essence_tracks ON essence_tracks.id=essence_track_encodings.`essence_tracks_id`
-INNER JOIN instantiations ON instantiations.id=essence_tracks.`instantiations_id`
-INNER JOIN assets ON assets.id=instantiations.`assets_id`
-WHERE assets.stations_id IN ($ids);";
-$this->sed->run_query($query);
-		$query = " essence_track_annotations FROM `essence_track_annotations` 
-INNER JOIN essence_tracks ON essence_tracks.id=essence_track_annotations.`essence_tracks_id`
-INNER JOIN instantiations ON instantiations.id=essence_tracks.`instantiations_id`
-INNER JOIN assets ON assets.id=instantiations.`assets_id`
-WHERE assets.stations_id IN ($ids);";
-$this->sed->run_query($query);
-		$query = " essence_tracks FROM `essence_tracks` 
-INNER JOIN instantiations ON instantiations.id=essence_tracks.`instantiations_id`
-INNER JOIN assets ON assets.id=instantiations.`assets_id`
-WHERE assets.stations_id IN ($ids);";
-$this->sed->run_query($query);
-		$query = " nominations FROM `nominations` 
-INNER JOIN instantiations ON instantiations.id=nominations.`instantiations_id`
-INNER JOIN assets ON assets.id=instantiations.`assets_id`
-WHERE assets.stations_id IN ($ids);";
-$this->sed->run_query($query);
-
-		$query = " instantiation_relations FROM `instantiation_relations` 
-INNER JOIN instantiations ON instantiations.id=instantiation_relations.`instantiations_id`
-INNER JOIN assets ON assets.id=instantiations.`assets_id`
-WHERE assets.stations_id IN ($ids);";
-$this->sed->run_query($query);
-		$query = " instantiation_identifier FROM `instantiation_identifier` 
-INNER JOIN instantiations ON instantiations.id=instantiation_identifier.`instantiations_id`
-INNER JOIN assets ON assets.id=instantiations.`assets_id`
-WHERE assets.stations_id IN ($ids);";
-$this->sed->run_query($query);
-		$query = " instantiation_generations FROM `instantiation_generations` 
-INNER JOIN instantiations ON instantiations.id=instantiation_generations.`instantiations_id`
-INNER JOIN assets ON assets.id=instantiations.`assets_id`
-WHERE assets.stations_id IN ($ids);";
-$this->sed->run_query($query);
-		$query = " instantiation_formats FROM `instantiation_formats` 
-INNER JOIN instantiations ON instantiations.id=instantiation_formats.`instantiations_id`
-INNER JOIN assets ON assets.id=instantiations.`assets_id`
-WHERE assets.stations_id IN ($ids);";
-$this->sed->run_query($query);
-		$query = " instantiation_dimensions FROM `instantiation_dimensions` 
-INNER JOIN instantiations ON instantiations.id=instantiation_dimensions.`instantiations_id`
-INNER JOIN assets ON assets.id=instantiations.`assets_id`
-WHERE assets.stations_id IN ($ids);";
-$this->sed->run_query($query);
-		$query = " instantiation_dates FROM `instantiation_dates` 
-INNER JOIN instantiations ON instantiations.id=instantiation_dates.`instantiations_id`
-INNER JOIN assets ON assets.id=instantiations.`assets_id`
-WHERE assets.stations_id IN ($ids);";
-$this->sed->run_query($query);
-		$query = " instantiation_annotations FROM `instantiation_annotations` 
-INNER JOIN instantiations ON instantiations.id=instantiation_annotations.`instantiations_id`
-INNER JOIN assets ON assets.id=instantiations.`assets_id`
-WHERE assets.stations_id IN ($ids);";
-$this->sed->run_query($query);
-		$query = " events FROM `events` 
-INNER JOIN instantiations ON instantiations.id=events.`instantiations_id`
-INNER JOIN assets ON assets.id=instantiations.`assets_id`
-WHERE assets.stations_id IN ($ids);";
-$this->sed->run_query($query);
-
-		$query = " instantiations FROM `instantiations` 
+		
+		$query = "instantiations FROM `instantiations` 
 INNER JOIN assets ON assets.id=instantiations.`assets_id`
 WHERE assets.stations_id IN ($ids);";
 $this->sed->run_query($query);

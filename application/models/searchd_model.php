@@ -25,7 +25,7 @@
  * @link       http://ams.avpreserve.com
  */
 class Searchd_Model extends CI_Model
-{ 
+{
 	/*
 	 *
 	 * constructor. Load Sphinx Search Library
@@ -37,9 +37,12 @@ class Searchd_Model extends CI_Model
 		parent::__construct();
 		$this->sphnix_db = $this->load->database('sphnix', TRUE);
 	}
-	function run_query($query){
+
+	function run_query($query)
+	{
 		$this->db->query($query);
 	}
+
 	function check_sphnix()
 	{
 

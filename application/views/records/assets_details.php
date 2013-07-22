@@ -533,10 +533,10 @@
 				<!--				Rights End		-->
 				<!--				Audience Level Start		-->
 				<?php
-				if ((isset($asset_audience_level) && ! empty($asset_audience_level)))
+				if ((isset($asset_audience_levels) && ! empty($asset_audience_levels)))
 				{
 					$combine_audience = '';
-					foreach ($asset_audience_level as $aa_level)
+					foreach ($asset_audience_levels as $aa_level)
 					{
 						$a_level = explode(' | ', trim(str_replace('(**)', '', $right_summary->audience_level)));
 						$a_level_source = explode(' | ', trim(str_replace('(**)', '', $right_summary->audience_level_source)));
@@ -575,10 +575,10 @@
 				<!--				Audience Level End		-->
 				<!--				Audience Rating Start		-->
 				<?php
-				if (isset($asset_audience_rating) && ! empty($asset_audience_rating))
+				if (isset($asset_audience_ratings) && ! empty($asset_audience_ratings))
 				{
 					$combine_audience_rating = '';
-					foreach ($asset_audience_rating as $aa_rating)
+					foreach ($asset_audience_ratings as $aa_rating)
 					{
 						$a_rating = explode(' | ', trim(str_replace('(**)', '', $aa_rating->audience_rating)));
 						$a_rating_source = explode(' | ', trim(str_replace('(**)', '', $aa_rating->audience_rating_source)));

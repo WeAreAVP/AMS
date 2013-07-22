@@ -1,5 +1,6 @@
 <?php
 
+// @codingStandardsIgnoreFile
 /**
  * Mint Import Controller
  * 
@@ -202,7 +203,7 @@ class Mintimport extends CI_Controller
 				if ($station)
 					$station_id = $station->station_id;
 			}
-			
+
 			myLog($station_id);
 			if ($station_id !== 0)
 			{
@@ -236,7 +237,7 @@ class Mintimport extends CI_Controller
 		ini_set('display_errors', 1);
 		@ini_set("memory_limit", "2000M"); # 2GB
 		@ini_set("max_execution_time", 999999999999);
-		
+
 		$result = $this->mint->get_files_to_import();
 		if ($result)
 		{

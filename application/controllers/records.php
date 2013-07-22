@@ -194,9 +194,7 @@ class Records extends MY_Controller
 			$data['asset_coverages'] = $this->assets_model->get_coverages_by_asset_id($asset_id);
 			$data['rights_summaries'] = $this->assets_model->get_rights_summaries_by_asset_id($asset_id);
 			$data['asset_audience_levels'] = $this->assets_model->get_audience_level_by_asset_id($asset_id);
-			
 			$data['asset_audience_ratings'] = $this->assets_model->get_audience_rating_by_asset_id($asset_id);
-			
 			$data['annotations'] = $this->assets_model->get_annotations_by_asset_id($asset_id);
 			$data['relation'] = $this->assets_model->get_relation_by_asset_id($asset_id);
 			$search_results_data = $this->sphinx->assets_listing(array('index' => 'assets_list'), 0, 1000);

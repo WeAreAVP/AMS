@@ -8,7 +8,7 @@
 					?>
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b>Organization: <span class="label_star"> *</span> </b></label>
+							<label><b>Organization: <span class="label_star"> *</span> </b></label>
 						</td>
 						<td>
 							<p>

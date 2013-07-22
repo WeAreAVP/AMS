@@ -781,3 +781,8 @@
 
 </script>
 <script type="text/javascript" src="/js/edit_instantiation.js?<?php echo time(); ?>"></script>
+<style type="text/css">
+	.ui-datepicker,.ui-datepicker-group{
+         width: 22em !important;
+}
+</style>

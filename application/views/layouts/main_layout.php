@@ -38,16 +38,16 @@
 
 		echo link_tag("css/ui.daterangepicker.css");
 		echo link_tag("css/tableSorter.css");
-		
-		
-		
+
+
+
 		echo link_tag("css/smoothness/jquery-ui-1.9.0.custom.css");
 		echo link_tag("css/smoothness.datepick.css");
-				echo link_tag("css/ui-smoothness.datepick.css");
-		
+		echo link_tag("css/ui-smoothness.datepick.css");
 
-		
-		
+
+
+
 		echo link_tag("css/ColReorder.css");
 		echo link_tag("css/ColVis.css");
 		echo link_tag("css/dataTables.scroller.css");

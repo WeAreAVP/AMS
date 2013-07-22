@@ -25,7 +25,7 @@
  * @link       http://ams.avpreserve.com
  */
 class Searchd extends CI_Controller
-{ 
+{
 
 	/**
 	 * Constructor.
@@ -63,7 +63,7 @@ class Searchd extends CI_Controller
 			$this->sphnixrt->insert('stations', $record, $row->id);
 		}
 //		$data = $this->sphnixrt->select('stations', array('start' => 0, 'limit' => 1000));
-		
+
 		exit_function();
 	}
 
@@ -99,7 +99,7 @@ class Searchd extends CI_Controller
 			if (count($inst) < 1000)
 				$db_count ++;
 		}
-		
+
 		exit_function();
 	}
 
@@ -125,7 +125,7 @@ class Searchd extends CI_Controller
 			if (count($inst) < 1000)
 				$db_count ++;
 		}
-		
+
 		exit_function();
 	}
 

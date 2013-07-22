@@ -41,7 +41,12 @@ class Dashboard extends MY_Controller
 		if ($this->is_station_user)
 			redirect('records/index');
 	}
-	
+
+	public function help()
+	{
+		$this->load->view('dashboard/help');
+	}
+
 	/**
 	 * Dashboard Functionality
 	 * 

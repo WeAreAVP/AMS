@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="author" content="Nouman Tayyab"/>
-		
+
         <title>AMS</title>
         <script type="text/javascript">
 			var site_url = '<?php echo site_url() ?>';
@@ -65,6 +65,7 @@
 								<li><a href="<?php echo site_url('auth/logout') ?>">Logout</a> </li>
 							</ul>
 						</div>
+
 						<div  class="pull-right" id="msg_text_link">
 							<?php
 							if (isset($this->total_unread) && $this->total_unread > 0 && ($this->is_station_user || $this->session->userdata['DX_email'] === $this->config->item('crawford_email')))
@@ -78,6 +79,10 @@
 								?>
 								<a class="message_box" href="<?php echo site_url('messages/inbox') ?>"><i class="icon-envelope icon-white"></i></a>
 							<?php } ?>
+						</div>
+						<div class="dropdown pull-right" style="margin-right:5px;">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo site_url('help') ?>" title="Inventory Help"><i class="icon-question-sign icon-white"></i></a>
+
 						</div>
 
 
@@ -103,7 +108,7 @@
 								<?php }
 								?>
 
-								<li class="<?php echo (is_route_method(array('records' => array('index', 'flagged', 'details'), 'instantiations' => array('index', 'detail','edit','add'),'asset'=>array('edit','add')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('records/index') ?>">Records</a></li>
+								<li class="<?php echo (is_route_method(array('records' => array('index', 'flagged', 'details'), 'instantiations' => array('index', 'detail', 'edit', 'add'), 'asset' => array('edit', 'add')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('records/index') ?>">Records</a></li>
 								<li class="<?php echo active_anchor('stations', array('index', 'detail')); ?>"><a href="<?php echo site_url('stations/index') ?>"><?php echo $station_tab_name; ?></a></li>
 								<?php
 								if ( ! $this->is_station_user)

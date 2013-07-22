@@ -1,5 +1,8 @@
 $(function() {
-	$('input[name="inst_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
+//	$('input[name="inst_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
+	$('input[name="inst_date[]"]').datepick({dateFormat: 'yyyy-mm-dd', yearRange: 'c-500:c+20',
+		renderer: $.datepick.themeRollerRenderer, pickerClass: 'ui-datepicker'});
+	
 	$('input[name="instantiation_id_source[]"]').autocomplete({
 		source: site_url + "autocomplete/values?table=instantiation_identifier&column=instantiation_source",
 		minLength: 1,
@@ -195,7 +198,9 @@ function addElement(elementID, type) {
 		'</p></div></div><div class="remove_element" onclick="removeElement(\'#remove_instantiation_date_' + number + '\', \'instantiation_date\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
-		$('input[name="inst_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
+//		$('input[name="inst_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
+$('input[name="inst_date[]"]').datepick({dateFormat: 'yyyy-mm-dd', yearRange: 'c-500:c+20',
+		renderer: $.datepick.themeRollerRenderer, pickerClass: 'ui-datepicker'});
 	}
 
 	if ($('.remove_' + type).length == 0) {

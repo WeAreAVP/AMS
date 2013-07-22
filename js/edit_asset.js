@@ -3,7 +3,12 @@ $(function() {
 //		noneSelectedText: 'Select Asset Type',
 //		selectedList: 3
 //	});
-	$('input[name="asset_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
+//	$('input[name="asset_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
+
+
+	$('input[name="asset_date[]"]').datepick({dateFormat: 'yyyy-mm-dd', yearRange: 'c-500:c+20',
+		renderer: $.datepick.themeRollerRenderer, pickerClass: 'ui-datepicker'});
+	
 	$('input[name="asset_identifier_source[]"]').autocomplete({
 		source: site_url + "autocomplete/values?table=identifiers&column=identifier_source",
 		minLength: 1,
@@ -205,7 +210,8 @@ function addElement(elementID, type) {
 		'<div class="remove_element" onclick="removeElement(\'#remove_date_' + number + '\', \'date\');"><img src="/images/remove-item.png" /></div>' +
 		'<div class="clearfix" style="margin-bottom: 10px;"></div></div>';
 		$(elementID).append(html);
-		$('input[name="asset_date[]"]').datepicker({"dateFormat": 'yy-mm-dd'});
+		$('input[name="asset_date[]"]').datepick({dateFormat: 'yyyy-mm-dd', yearRange: 'c-500:c+20',
+		renderer: $.datepick.themeRollerRenderer, pickerClass: 'ui-datepicker'});
 	}
 	else if (elementID == '#main_title') {
 		titleTypes = '<option value="">Select</option>';

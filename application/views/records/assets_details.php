@@ -538,9 +538,9 @@
 					$combine_audience = '';
 					foreach ($asset_audience_levels as $aa_level)
 					{
-						$a_level = explode(' | ', trim(str_replace('(**)', '', $right_summary->audience_level)));
-						$a_level_source = explode(' | ', trim(str_replace('(**)', '', $right_summary->audience_level_source)));
-						$a_level_ref = explode(' | ', trim(str_replace('(**)', '', $right_summary->audience_level_ref)));
+						$a_level = explode(' | ', trim(str_replace('(**)', '', $aa_level->audience_level)));
+						$a_level_source = explode(' | ', trim(str_replace('(**)', '', $aa_level->audience_level_source)));
+						$a_level_ref = explode(' | ', trim(str_replace('(**)', '', $aa_level->audience_level_ref)));
 						if (count($a_level) > 0)
 						{
 							foreach ($a_level as $index => $row)

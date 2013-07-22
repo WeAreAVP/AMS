@@ -62,7 +62,7 @@ class Searchd extends CI_Controller
 			$record = make_station_sphnix_array($row);
 			$this->sphnixrt->insert('stations', $record, $row->id);
 		}
-		$data = $this->sphnixrt->select('stations', array('start' => 0, 'limit' => 1000));
+//		$data = $this->sphnixrt->select('stations', array('start' => 0, 'limit' => 1000));
 		
 		exit_function();
 	}

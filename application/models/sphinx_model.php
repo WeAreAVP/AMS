@@ -26,12 +26,12 @@
  */
 class Sphinx_Model extends CI_Model
 {
-	/*
+
+	/**
 	 *
 	 * constructor. Load Sphinx Search Library
 	 * 
 	 */
-
 	function __construct()
 	{
 		parent::__construct();
@@ -96,6 +96,16 @@ class Sphinx_Model extends CI_Model
 		return array("total_count" => $total_record, "records" => $stations_list, "query_time" => $execution_time);
 	}
 
+	/**
+	 * Get a list of facet.
+	 * 
+	 * @param string  $column_name
+	 * @param string  $index_name
+	 * @param string  $type
+	 * @param integer $offset
+	 * @param integer $limit
+	 * @return array
+	 */
 	public function facet_index($column_name, $index_name, $type = NULL, $offset = 0, $limit = 1000)
 	{
 		$list = array();
@@ -114,7 +124,7 @@ class Sphinx_Model extends CI_Model
 		if ($limit)
 			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
-		$query = $this->make_where_clause($type,$index_name);
+		$query = $this->make_where_clause($type, $index_name);
 		$res = $this->sphinxsearch->query($query, $index_name);
 
 
@@ -153,10 +163,10 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->update_attributes($index, $attr, $values);
 	}
 
-	/*
-	 * Get All Stations
+	/**
+	 * Get All stations
+	 * @return array
 	 */
-
 	public function get_all_stations()
 	{
 		$res = $this->search_stations('', 0, 400);
@@ -166,6 +176,13 @@ class Sphinx_Model extends CI_Model
 		}
 	}
 
+	/**
+	 * Get list of instantiations for standalone report
+	 * @param integer $offset
+	 * @param integer $limit
+	 * @param string $select
+	 * @return arrat
+	 */
 	function standalone_report($offset = 0, $limit = 100, $select = FALSE)
 	{
 		$instantiations = array();
@@ -214,6 +231,11 @@ class Sphinx_Model extends CI_Model
 		return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
 	}
 
+	/**
+	 * Make where for standalone report.
+	 * 
+	 * @return string
+	 */
 	function where_filter()
 	{
 		$this->sphinxsearch->set_filter("digitized", array(1));
@@ -245,6 +267,15 @@ class Sphinx_Model extends CI_Model
 		return $where;
 	}
 
+	/**
+	 * List down instantations.
+	 * 
+	 * @param array $params
+	 * @param integer $offset
+	 * @param integer $limit
+	 * @param string $select
+	 * @return array
+	 */
 	function instantiations_list($params, $offset = 0, $limit = 100, $select = FALSE)
 	{
 
@@ -304,20 +335,12 @@ class Sphinx_Model extends CI_Model
 		return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
 	}
 
-	function get_nomination_status_id($nomination_status)
-	{
-		$this->db->select('id');
-		$this->db->where('status', $nomination_status);
-		return $this->db->get('nomination_status')->row();
-	}
-
-	function get_nomination_status($nomination_id)
-	{
-		$this->db->select('status');
-		$this->db->where('id', $nomination_id);
-		return $this->db->get('nomination_status')->row();
-	}
-
+	/**
+	 * Make where for sphnix result
+	 * @param string $type
+	 * @param string $sphnix_index
+	 * @return string
+	 */
 	function make_where_clause($type = NULL, $sphnix_index = NULL)
 	{
 
@@ -461,10 +484,20 @@ class Sphinx_Model extends CI_Model
 
 			$where .=" @s_organization \"	^$this->station_name$\"";
 		}
-		
+
 		return $where;
 	}
 
+	/**
+	 * Get all assets info.
+	 * 
+	 * @param array $params
+	 * @param integer $offset
+	 * @param integer $limit
+	 * @param boolean $select
+	 * @return array 
+	 * 
+	 */
 	function assets_listing($params, $offset = 0, $limit = 100, $select = FALSE)
 	{
 		$instantiations = array();
@@ -516,4 +549,3 @@ class Sphinx_Model extends CI_Model
 
 }
 
-?>

@@ -26,7 +26,7 @@
  */
 class Station_Model extends CI_Model
 {
- 
+
 	/**
 	 * constructor. set table name amd prefix
 	 * 
@@ -224,4 +224,3 @@ class Station_Model extends CI_Model
 
 }
 
-?>

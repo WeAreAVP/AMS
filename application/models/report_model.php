@@ -68,6 +68,11 @@ class Report_Model extends CI_Model
 		return false;
 	}
 
+	/**
+	 * Get records of scheduled assets.
+	 * 
+	 * @return stdObject
+	 */
 	function scheduled_for_digitization_report()
 	{
 		$this->db->select("COUNT($this->_assets_table.id) as total,$this->_stations_table.station_name,$this->_stations_table.city,$this->_stations_table.state", FALSE);
@@ -81,6 +86,11 @@ class Report_Model extends CI_Model
 		return $result->result();
 	}
 
+	/**
+	 * Get Count of material at crawford.
+	 * 
+	 * @return stdObject
+	 */
 	function materials_at_crawford_report()
 	{
 		$this->db->select("COUNT($this->_assets_table.id) as total,$this->_stations_table.station_name,$this->_stations_table.city,$this->_stations_table.state", FALSE);
@@ -93,6 +103,11 @@ class Report_Model extends CI_Model
 		return $result->result();
 	}
 
+	/**
+	 * Get shipment return info.
+	 * 
+	 * @return stdObject
+	 */
 	function shipment_return_report()
 	{
 		$this->db->select("COUNT($this->_assets_table.id) as total,$this->_stations_table.station_name,$this->_stations_table.city,$this->_stations_table.state", FALSE);
@@ -106,6 +121,11 @@ class Report_Model extends CI_Model
 		return $result->result();
 	}
 
+	/**
+	 * Get station that have hard disk return.
+	 * 
+	 * @return stdObject
+	 */
 	function hard_disk_return_report()
 	{
 		$this->db->select("COUNT($this->_assets_table.id) as total,$this->_stations_table.station_name,$this->_stations_table.city,$this->_stations_table.state", FALSE);
@@ -118,12 +138,24 @@ class Report_Model extends CI_Model
 		return $result->result();
 	}
 
+	/**
+	 * Get report by ID.
+	 * 
+	 * @param type $report_id
+	 * @return stdObject
+	 */
 	function get_report_by_id($report_id)
 	{
 		$this->db->where('id', $report_id);
 		return $result = $this->db->get($this->_table)->row();
 	}
 
+	/**
+	 * Insert new report.
+	 * 
+	 * @param type $data
+	 * @return type
+	 */
 	function insert_report($data)
 	{
 		$this->db->insert($this->_table, $data);

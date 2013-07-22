@@ -38,11 +38,20 @@ class Searchd_Model extends CI_Model
 		$this->sphnix_db = $this->load->database('sphnix', TRUE);
 	}
 
+	/**
+	 * Execute any query.
+	 * 
+	 * @param none
+	 */
 	function run_query($query)
 	{
 		$this->db->query($query);
 	}
 
+	/**
+	 * List down stations.
+	 * 
+	 */
 	function check_sphnix()
 	{
 
@@ -51,6 +60,12 @@ class Searchd_Model extends CI_Model
 		debug($query->result());
 	}
 
+	/**
+	 * Get instantiations info by asset id.
+	 * 
+	 * @param integer $asset_id
+	 * @return stdObject
+	 */
 	function get_ins_by_asset_id($asset_id)
 	{
 		$this->db->select('id');
@@ -317,6 +332,11 @@ class Searchd_Model extends CI_Model
 			GROUP BY `instantiations`.`id`")->result();
 	}
 
+	/**
+	 * Get Records of assets for inserting into Sphnix Index.
+	 * @param array $record_ids
+	 * @return stdObject
+	 */
 	function get_asset_index($record_ids)
 	{
 		$search_ids = implode(',', $record_ids);
@@ -463,11 +483,25 @@ WHERE assets.id IN ($search_ids)
  GROUP BY `assets`.`id` ")->result();
 	}
 
+	/**
+	 * Get Instantiations.
+	 * 
+	 * @param integer $offset
+	 * @param integer $limit
+	 * @return stdObject
+	 */
 	function get_ins($offset, $limit)
 	{
 		return $this->db->query("SELECT id FROM instantiations LIMIT $offset,$limit")->result();
 	}
 
+	/**
+	 * Get Assets.
+	 * 
+	 * @param integer $offset
+	 * @param integer $limit
+	 * @return stdObject
+	 */
 	function get_asset($offset, $limit)
 	{
 		return $this->db->query("SELECT id FROM assets LIMIT $offset,$limit")->result();

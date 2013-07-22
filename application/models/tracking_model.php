@@ -41,9 +41,10 @@ class Tracking_Model extends CI_Model
 	}
 
 	/**
-	 * Get list of all the stations
+	 * Get tracking info of a station.
 	 * 
-	 * @return array 
+	 * @param type $station_id station id
+	 * @return stdObject
 	 */
 	function get_all($station_id)
 	{
@@ -54,7 +55,7 @@ class Tracking_Model extends CI_Model
 	/**
 	 * insert the records in tracing_info
 	 * 
-	 * @param array $data
+	 * @param array $data record info
 	 * @return boolean 
 	 */
 	function insert_record($data)
@@ -66,8 +67,8 @@ class Tracking_Model extends CI_Model
 	/**
 	 * Update the tracking info
 	 * 
-	 * @param integer $tracking_id
-	 * @param array $data
+	 * @param integer $tracking_id tracking db id
+	 * @param array   $data        record info
 	 * @return boolean 
 	 */
 	function update_record($tracking_id, $data)
@@ -79,7 +80,7 @@ class Tracking_Model extends CI_Model
 	/**
 	 * Get Tracking info by ID
 	 * 
-	 * @param integer $traking_id
+	 * @param integer $traking_id  tracking db id
 	 * @return array 
 	 */
 	function get_by_id($traking_id)
@@ -91,7 +92,7 @@ class Tracking_Model extends CI_Model
 	/**
 	 * Delete the tracking info
 	 * 
-	 * @param integer $tracking_id
+	 * @param integer $tracking_id tracking db id
 	 * @return interger 
 	 */
 	function delete_record($tracking_id)
@@ -104,7 +105,7 @@ class Tracking_Model extends CI_Model
 	/**
 	 * Get the last inserted tracking info of specified station
 	 * 
-	 * @param integer $station_id
+	 * @param integer $station_id station db id
 	 * @return Object 
 	 */
 	function get_last_tracking_info($station_id)
@@ -116,4 +117,3 @@ class Tracking_Model extends CI_Model
 
 }
 
-?>

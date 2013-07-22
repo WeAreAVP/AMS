@@ -589,13 +589,13 @@
 							{
 								if (isset($a_rating_ref[$index]) && $a_rating_ref[$index] != '')
 								{
-									$combine_audience_rating.="<a href='$a_rating_ref[$index]'>$row</a>";
+									$combine_audience_rating .="<a href='$a_rating_ref[$index]'>$row</a>";
 								}
 								else
-									$combine_audience_rating.=$row;
+									$combine_audience_rating .=$row;
 								if (isset($a_rating_source[$index]) && $a_rating_source[$index] != '')
 								{
-									$combine_audience_rating.=" ($a_rating_source[$index])";
+									$combine_audience_rating .=" ($a_rating_source[$index])";
 								}
 								$combine_audience_rating.='<div class="clearfix"></div>';
 							}

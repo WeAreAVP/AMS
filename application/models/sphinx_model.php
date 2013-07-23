@@ -367,9 +367,18 @@ class Sphinx_Model extends CI_Model
 					else
 					{
 						if ($sphnix_index == 'assets_list')
+						{
 							$col_name = "s_{$index}";
+							if ($index == 'asset_description')
+								$col_name = 's_description';
+						}
 						else
+						{
 							$col_name = $index;
+							if ($index == 'asset_title')
+								$col_name = "s_{$index}";
+						}
+
 						if ($count == 0)
 							$where .=" @{$col_name} \"$keyword\"";
 						else
@@ -379,7 +388,7 @@ class Sphinx_Model extends CI_Model
 				}
 			}
 		}
-		echo $where;
+
 		if (isset($this->session->userdata['date_range']) && $this->session->userdata['date_range'] != '')
 		{
 			$keyword_json = $this->session->userdata['date_range'];

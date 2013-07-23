@@ -343,9 +343,7 @@ class Sphinx_Model extends CI_Model
 	 */
 	function make_where_clause($type = NULL, $sphnix_index = NULL)
 	{
-
 		$where = '';
-
 		if (isset($this->session->userdata['custom_search']) && $this->session->userdata['custom_search'] != '')
 		{
 			$keyword_json = $this->session->userdata['custom_search'];
@@ -357,14 +355,6 @@ class Sphinx_Model extends CI_Model
 					$keyword = trim($keywords->value);
 					if ($index == 'all')
 					{
-						$colums = array(
-							'asset_title', 'guid_identifier', 'asset_subject', 'asset_coverage', 'asset_genre', 'asset_publisher_name', 'asset_description', 'asset_creator_name',
-							'asset_creator_affiliation', 'asset_contributor_name', 'asset_contributor_affiliation', 'asset_rights', 'asset_annotation',
-							'instantiation_identifier', 'instantiation_source', 'unit_of_measure',
-							'standard', 'location', 'file_size', 'actual_duration', 'track_data_rate', 'tracks', 'channel_configuration', 'track_language', 'alternative_modes',
-							'ins_annotation', 'ins_annotation_type', 'track_essence_track_type', 'track_encoding', 'track_standard', 'track_frame_rate',
-							'track_playback_speed', 'track_sampling_rate', 'track_bit_depth', 'track_width', 'track_aspect_ratio',
-						);
 						if ($count == 0)
 						{
 							$where .=" \"$keyword\"";
@@ -377,7 +367,7 @@ class Sphinx_Model extends CI_Model
 					else
 					{
 						if ($sphnix_index == 'assets_list')
-							$col_name = "{$index}";
+							$col_name = "s_{$index}";
 						else
 							$col_name = $index;
 						if ($count == 0)
@@ -389,6 +379,7 @@ class Sphinx_Model extends CI_Model
 				}
 			}
 		}
+		echo $where;
 		if (isset($this->session->userdata['date_range']) && $this->session->userdata['date_range'] != '')
 		{
 			$keyword_json = $this->session->userdata['date_range'];

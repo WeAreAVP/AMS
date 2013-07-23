@@ -413,7 +413,10 @@ class Sphinx_Model extends CI_Model
 					}
 					if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
 					{
-						$this->sphinxsearch->set_filter_range("dates", $start_date, $end_date);
+						$column_sphinx = 'dates';
+						if ($sphnix_index == 'assets_list')
+							$column_sphinx = 'instantiation_date';
+						$this->sphinxsearch->set_filter_range($column_sphinx, $start_date, $end_date);
 						if ($index != 'All')
 						{
 							$where .=" @date_type \"$index\"";

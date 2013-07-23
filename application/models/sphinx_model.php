@@ -377,7 +377,7 @@ class Sphinx_Model extends CI_Model
 					else
 					{
 						if ($sphnix_index == 'assets_list')
-							$col_name = "s_{$index}";
+							$col_name = "{$index}";
 						else
 							$col_name = $index;
 						if ($count == 0)

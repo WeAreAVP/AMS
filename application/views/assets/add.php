@@ -29,7 +29,7 @@
 				<tr>
 					<td class="record-detail-page">
 						<label>
-							<a rel="tooltip" href="#" data-original-title="Indicates the broad editorial format of the assets contents. AssetType describes the PBCore record as a whole and at its highest level. Though a record may contain many instantiations of different formats and generations, for example, assetType may be used to indicate that they all represent a “program” or a “clip.”"><i class="icon-question-sign"></i></a>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Indicates the broad editorial format of the assets contents. AssetType describes the PBCore record as a whole and at its highest level. Though a record may contain many instantiations of different formats and generations, for example, assetType may be used to indicate that they all represent a “program” or a “clip.”"><i class="icon-question-sign"></i></a>
 							<b> Asset Type:</b></label>
 					</td>
 					<td>

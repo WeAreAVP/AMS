@@ -46,7 +46,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Track Identifier:</b></label>
+									<label><b><span class="label_star"> *</span> Track Identifier:</b></label>
 								</td>
 								<td>
 
@@ -74,7 +74,9 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Encoding:</b></label>
+									<label>
+										<a data-placement="left" rel="tooltip" href="#" data-original-title="Identifies how the actual information in a media item is compressed, interpreted, or formulated using a particular scheme."><i class="icon-question-sign"></i></a>
+										<b><span class="label_star"> *</span> Encoding:</b></label>
 								</td>
 								<td>
 
@@ -95,7 +97,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Track Standard:</b></label>
+									<label><b><span class="label_star"> *</span> Track Standard:</b></label>
 								</td>
 								<td>
 
@@ -116,7 +118,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b> Track Data Rate:</b></label>
+									<label><b> Track Data Rate:</b></label>
 								</td>
 								<td>
 
@@ -137,7 +139,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Frame Rate:</b></label>
+									<label><b>Frame Rate:</b></label>
 								</td>
 								<td>
 
@@ -158,7 +160,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Playback Speed:</b></label>
+									<label><b>Playback Speed:</b></label>
 								</td>
 								<td>
 
@@ -179,7 +181,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Sampling Rate:</b></label>
+									<label><b>Sampling Rate:</b></label>
 								</td>
 								<td>
 
@@ -200,7 +202,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Bit Depth:</b></label>
+									<label><b>Bit Depth:</b></label>
 								</td>
 								<td>
 
@@ -221,7 +223,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Frame Size:</b></label>
+									<label><b>Frame Size:</b></label>
 								</td>
 								<td>
 
@@ -242,7 +244,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Aspect Ratio:</b></label>
+									<label><b>Aspect Ratio:</b></label>
 								</td>
 								<td>
 
@@ -263,7 +265,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Time Start:</b></label>
+									<label><b>Time Start:</b></label>
 								</td>
 								<td>
 
@@ -284,7 +286,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Duration:</b></label>
+									<label><b>Duration:</b></label>
 								</td>
 								<td>
 
@@ -305,7 +307,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Track Language:</b></label>
+									<label><b>Track Language:</b></label>
 								</td>
 								<td>
 
@@ -334,7 +336,7 @@ if ($essence_track)
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Track Annotation:</b></label>
+									<label><b>Track Annotation:</b></label>
 								</td>
 								<td>
 

@@ -44,9 +44,9 @@
 		?>
 		<div style="float: right;margin-left:5px;"><a href="<?php echo site_url($last_page); ?>" class="btn">Return</a></div>
 	<?php } ?>
-<!--	<div style="float: right;">
-		<button class="btn "><span class="icon-download-alt"></span>Export Instantiation</button>
-	</div>-->
+	<!--	<div style="float: right;">
+			<button class="btn "><span class="icon-download-alt"></span>Export Instantiation</button>
+		</div>-->
 	<div class="clearfix"></div>
 	<?php $this->load->view('partials/_list'); ?>
 
@@ -83,7 +83,9 @@
 						?>
 						<tr>
 							<td class="record-detail-page">
-								<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Instantiation ID:</b></label>
+								<label>
+									<a data-placement="left" rel="tooltip" href="#" data-original-title="Unique Identifier: A unique identifier string for a particular instantiation of a media item. Best practice is to use an identification method that is in use within your agency, station, production company, office, or institution.<br/><br/>Identifier Source: Used in conjunction with Unique Identifer. Provides not only a locator number, but also indicates an agency or institution who assigned it. Therefore, if your station or organization created this ID, enter in your station/organization name in this field. If the ID came from an outside entity or standards organization, enter the name of that entity here."><i class="icon-question-sign"></i></a>
+									<b><span class="label_star"> *</span> Instantiation ID:</b></label>
 							</td>
 							<td>
 
@@ -112,7 +114,9 @@
 						?>
 						<tr>
 							<td class="record-detail-page">
-								<label><i class="icon-question-sign"></i><b> Date:</b></label>
+								<label>
+									<a data-placement="left" rel="tooltip" href="#" data-original-title="Date Created: Specifies the creation date for a particular version or rendition of a media item across its life cycle. It is the moment in time that the media item was finalized during its production process and is forwarded to other divisions or agencies to make it ready for publication or distribution. The recommended format consists of a text string for the representation of dates YYYY-MM-DD (1998–01-24). If you don’t have a full YYYY-MM-DD then use this format to the extent of the information you do have.<br/><br/>Date Broadcast/Issued: Specifies the formal date for a particular version or rendition of a media item has been made ready or officially released for distribution, publication or consumption. The recommended format consists of a text string for the representation of dates YYYY-MM-DD (1998–01-24). If you don’t have a full YYYY-MM-DD then use this format to the extent of the information you do have."><i class="icon-question-sign"></i></a>
+									<b> Date:</b></label>
 							</td>
 							<td>
 								<p>	<?php echo $combine_dates; ?></p>
@@ -134,7 +138,9 @@
 					?>
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b><span class="label_star"> *</span> Media Type:</b></label>
+							<label>
+								<a data-placement="left" rel="tooltip" href="#" data-original-title="Identifies the general, high level nature of the content of a media item. It uses categories that show how content is presented to an observer, e.g., as a sound, text or moving image."><i class="icon-question-sign"></i></a>
+								<b><span class="label_star"> *</span> Media Type:</b></label>
 						</td>
 						<td>
 							<?php
@@ -157,14 +163,24 @@
 					if (isset($inst_format->format_type) && ($inst_format->format_type != NULL))
 					{
 						if ($inst_format->format_type === 'physical')
+						{
 							$format = 'Physical Format: ';
+							$format_tooltip = 'The format of a particular version or rendition of a media item as it exists in an actual physical form.';
+						}
 						if ($inst_format->format_type === 'digital')
+						{
 							$format = 'Digital Format: ';
+							$format_tooltip = 'Identifies the format of a particular rendition of a media item in its digital form. Digital media formats may be expressed with formal Internet MIME types.MIME types available at IANA:
+video:http://www.iana.org/assignments/media-types/video/index.html
+audio:http://www.iana.org/assignments/media-types/audio/index.html';
+						}
 					}
 					?>	
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b>  <?php echo $format; ?></b></label>
+							<label>
+								<a data-placement="left" rel="tooltip" href="#" data-original-title="<?php echo $format_tooltip; ?>"><i class="icon-question-sign"></i></a>
+								<b>  <?php echo $format; ?></b></label>
 						</td>
 						<td>
 							<span>	<?php echo $inst_format->format_name; ?></span>
@@ -181,7 +197,9 @@
 					?>	
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Generation:</b></label>
+							<label>
+								<a data-placement="left" rel="tooltip" href="#" data-original-title="Identifies the particular use or manner in which an instantiation of a media item is used. See also explanations of generation terms."><i class="icon-question-sign"></i></a>
+								<b> Generation:</b></label>
 						</td>
 						<td>
 							<?php
@@ -202,7 +220,9 @@
 					?>	
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Location:</b></label>
+							<label>
+								<a data-placement="left" rel="tooltip" href="#" data-original-title="May contain information about an organization or building, a specific vault location for an asset, including an organization’s name, departmental name, shelf ID and contact information. For a data file or web page, this location may be virtual and include domain, path, file name or html page. The data may be a name (person or organization),URL, URI, physical location ID, barcode, etc."><i class="icon-question-sign"></i></a>
+								<span class="label_star"> *</span><b> Location:</b></label>
 						</td>
 						<td>
 							<p>	<?php echo $detail_instantiation->location; ?></p>
@@ -219,7 +239,9 @@
 					?>	
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Duration:</b></label>
+							<label>
+								<a data-placement="left" rel="tooltip" href="#" data-original-title="Provides a timestamp for the overall length or duration of a time-based media item. It represents the playback time. NOTE— In many instances you may not know the ACTUAL recorded time of the item you are inventorying. If this is the case, please check YES in the column to the right marked “Approximate?” This will help us differentiate from actual vs. estimated durations."><i class="icon-question-sign"></i></a>
+								<span class="label_star"> *</span><b> Duration:</b></label>
 						</td>
 						<td>
 
@@ -235,7 +257,9 @@
 					?>	
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Duration:</b></label>
+							<label>
+								<a data-placement="left" rel="tooltip" href="#" data-original-title="Provides a timestamp for the overall length or duration of a time-based media item. It represents the playback time. NOTE— In many instances you may not know the ACTUAL recorded time of the item you are inventorying. If this is the case, please check YES in the column to the right marked “Approximate?” This will help us differentiate from actual vs. estimated durations."><i class="icon-question-sign"></i></a>
+								<span class="label_star"> *</span><b> Duration:</b></label>
 						</td>
 						<td>
 							<p>	<?php echo date('H:i:s', strtotime($detail_instantiation->actual_duration)); ?></p>
@@ -252,7 +276,7 @@
 					?>	
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Time Start:</b></label>
+							<label><b> Time Start:</b></label>
 						</td>
 						<td>
 							<p>	<?php echo $detail_instantiation->time_start; ?></p>
@@ -269,7 +293,9 @@
 					?>	
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> File Size:</b></label>
+							<label>
+								<a data-placement="left" rel="tooltip" href="#" data-original-title="Indicates the storage requirements or file size of a digital media item. Include your unit of measure (kB, MB, GB)."><i class="icon-question-sign"></i></a>
+								<b> File Size:</b></label>
 						</td>
 						<td>
 							<p>	<?php echo $detail_instantiation->file_size . ' ' . $detail_instantiation->file_size_unit_of_measure; ?></p>
@@ -286,7 +312,7 @@
 					?>	
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Standard:</b></label>
+							<label><b> Standard:</b></label>
 						</td>
 						<td>
 							<p>	<?php echo $detail_instantiation->standard; ?></p>
@@ -310,7 +336,7 @@
 						?>
 						<tr>
 							<td class="record-detail-page">
-								<label><i class="icon-question-sign"></i><b> Dimensions:</b></label>
+								<label><b> Dimensions:</b></label>
 							</td>
 							<td>
 								<p>	<?php echo $combine_demension; ?></p>
@@ -329,7 +355,7 @@
 					?>	
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Data Rate:</b></label>
+							<label><b> Data Rate:</b></label>
 						</td>
 						<td>
 							<?php $data_rate_unit = (isset($inst_data_rate_unit->unit_of_measure)) ? $inst_data_rate_unit->unit_of_measure : ''; ?>
@@ -347,7 +373,7 @@
 					?>	
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Color:</b></label>
+							<label><b> Color:</b></label>
 						</td>
 						<td>
 							<p>	<?php echo $inst_color->color; ?></p>
@@ -364,7 +390,7 @@
 					?>	
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Tracks:</b></label>
+							<label><b> Tracks:</b></label>
 						</td>
 						<td>
 							<p>	<?php echo $detail_instantiation->tracks; ?></p>
@@ -381,7 +407,7 @@
 					?>	
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Channel Configuration:</b></label>
+							<label><b> Channel Configuration:</b></label>
 						</td>
 						<td>
 							<p>	<?php echo $detail_instantiation->channel_configuration; ?></p>
@@ -398,7 +424,9 @@
 					?>	
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Language:</b></label>
+							<label>
+								<a data-placement="left" rel="tooltip" href="#" data-original-title="Identifies the primary language of a media item’s audio or text. Best practice is to use the 3 letter ISO 639.2 or 639.3 code for languages. If the media item has more than one language that is considered part of the same primary audio or text, then a combination statement can be crafted, e.g., eng;fre for the presence of both English and French in the primary audio. Separating three-letter language codes with a semi-colon (no additional spaces) is preferred."><i class="icon-question-sign"></i></a>
+								<b> Language:</b></label>
 						</td>
 						<td>
 							<p>	<?php echo $detail_instantiation->language; ?></p>
@@ -427,7 +455,7 @@
 						?>
 						<tr>
 							<td class="record-detail-page">
-								<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
+								<label><b> Annotation:</b></label>
 							</td>
 							<td>
 								<p>	<?php echo $combine_annotation; ?></p>
@@ -463,7 +491,7 @@
 						?>
 						<tr>
 							<td class="record-detail-page">
-								<label><i class="icon-question-sign"></i><b> Relation:</b></label>
+								<label><b> Relation:</b></label>
 							</td>
 							<td>
 								<p>	<?php echo $combine_relation; ?></p>
@@ -503,7 +531,7 @@
 					</div>
 
 
-				<?php
+					<?php
 				}
 				else
 				{
@@ -514,9 +542,11 @@
 					</div>
 				<?php } ?>
 				<div class="clearfix"></div>
-				<?php if ( ! empty($ins_nomination->nomination_reason))
-				{ ?>
-				<div>Nomination reason: <?php echo $ins_nomination->nomination_reason; ?></div>
+				<?php
+				if ( ! empty($ins_nomination->nomination_reason))
+				{
+					?>
+					<div>Nomination reason: <?php echo $ins_nomination->nomination_reason; ?></div>
 				<?php } ?>
 				<?php
 				if ($ins_nomination->nominated_by != '')
@@ -530,8 +560,8 @@
 					?>
 					<p><?php echo ' at ' . $ins_nomination->nominated_at; ?></p>
 
-			<?php }
-			?>
+				<?php }
+				?>
 			</div>
 			<?php
 		}
@@ -560,8 +590,8 @@
 						</tr>
 			<?php } ?>
 				</tbody></table>
-<?php }
-?>
+		<?php }
+		?>
 	</div>
 	<div class="clearfix"></div>
 

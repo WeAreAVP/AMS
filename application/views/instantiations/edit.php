@@ -649,7 +649,7 @@
 						$add = ' ADD ANNOTATION';
 						?>
 						<td class="record-detail-page ins_detail">
-							<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
+							<label><b> Annotation:</b></label>
 						</td>
 						<td>
 							<div id="main_annotation">

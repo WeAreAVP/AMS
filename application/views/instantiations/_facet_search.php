@@ -556,7 +556,7 @@
 
 	$(window).load(function() {
 		$('#data_container').width($(window).width() - 300);
-
+		$('#ui-datepicker-div').remove();
 		if ('<?php echo $current_tab; ?>' == 'simple') {
 			updateSimpleDataTable();
 		}

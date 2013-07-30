@@ -116,18 +116,18 @@
 								{
 									$station_tab_name = 'Stations';
 									?>
-									<li class="<?php echo active_anchor('dashboard', 'index'); ?>"><a href="<?php echo site_url('dashboard/index') ?>">Dashboard</a></li>
+									<li class="<?php echo active_anchor('dashboard', 'index'); ?>"><a href="<?php echo site_url('dashboard') ?>">Dashboard</a></li>
 								<?php }
 								?>
 
 								<li class="<?php echo (is_route_method(array('records' => array('index', 'flagged', 'details'), 'instantiations' => array('index', 'detail', 'edit', 'add'), 'asset' => array('edit', 'add')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('records/index') ?>">Records</a></li>
-								<li class="<?php echo active_anchor('stations', array('index', 'detail')); ?>"><a href="<?php echo site_url('stations/index') ?>"><?php echo $station_tab_name; ?></a></li>
+								<li class="<?php echo active_anchor('stations', array('index', 'detail')); ?>"><a href="<?php echo site_url('stations') ?>"><?php echo $station_tab_name; ?></a></li>
 								<?php
 								if ( ! $this->is_station_user)
 								{
 									?>
 
-									<li class="<?php echo active_anchor('reports', 'index'); ?>"><a href="<?php echo site_url('reports/index') ?>">Reports</a></li>
+									<li class="<?php echo active_anchor('reports', 'index'); ?>"><a href="<?php echo site_url('reports') ?>">Reports</a></li>
 								<?php }
 								?>
 	<!--																												<li class="<?php echo (is_route_method(array('settings' => array('index', 'users', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage', 'manage_crawford')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('settings/index') ?>">Settings</a></li> -->

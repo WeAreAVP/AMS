@@ -38,7 +38,7 @@
 					?>
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><b> Organization: <span class="label_star"> *</span> </b></label>
+							<label><b> Organization: <span class="label_star"> *</span> </b></label>
 						</td>
 						<td>
 							<p>
@@ -65,7 +65,9 @@
 					$asset_type_separate = explode('|', trim(str_replace('(**)', '', $asset_detail->asset_type)));
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Asset Type:</b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Indicates the broad editorial format of the assets contents. AssetType describes the PBCore record as a whole and at its highest level. Though a record may contain many instantiations of different formats and generations, for example, assetType may be used to indicate that they all represent a “program” or a “clip.”"><i class="icon-question-sign"></i></a>
+							<b> Asset Type:</b></label>
 					</td>
 					<td>
 						<div id="main_type">
@@ -128,7 +130,7 @@
 					$add = ' ADD DATE';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Asset Date:</b></label>
+						<label><b> Asset Date:</b></label>
 					</td>
 					<td>
 						<div id="main_date">
@@ -201,7 +203,9 @@
 					$add = ' ADD LOCAL ID';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Local ID:</b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Identifier: Used to reference or identify the entire record of metadata descriptions for a media item. In contrast to the Unique Identifier, this identifier is used to identify the CONTENT of the asset. So it links together all copies of a particular episode of NOVA or This American Life by assigning them all the same code.<br/><br/>Identifier Source: Used in combination with the identifier for a media item. Provides the name of the agency or institution who assigned it, or system used."><i class="icon-question-sign"></i></a>
+							<b> Local ID:</b></label>
 					</td>
 					<td>
 						<div id="main_local_id">
@@ -289,7 +293,9 @@
 					$add = ' ADD TITLE';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Title:</label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Title: The descriptor title is a name given to the media item you are cataloging.<br/><br/>Title Type: a companion metadata field associated with the descriptor title. For a title you give to a media item, this allows you to inform end users what type of title it is."><i class="icon-question-sign"></i></a>
+							<b> Title:</label>
 					</td>
 					<td>
 						<div id="main_title">
@@ -441,7 +447,9 @@
 					$add = ' ADD SUBJECT';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Subject:</b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Subject: Used to assign topical headings or keywords that portray the intellectual content of the media item. Controlled vocabularies, authorities, or formal classification schemes may be employed when assigning descriptive subject terms (rather than using random or ad hoc terminology).<br/><br/>Subject Authority Used: If subjects are assigned to a media item using the descriptor subject and the terms used are derived from a specific authority or classification scheme, use this field to identify whose vocabularies and terms were used."><i class="icon-question-sign"></i></a>
+							<b> Subject:</b></label>
 					</td>
 					<td>
 						<div id="main_subject">
@@ -514,7 +522,9 @@
 					$add = ' ADD DESCRIPTION';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Description: </b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Description: Uses free-form text or a narrative to report general notes, abstracts, or summaries about the intellectual content of a media item. May also consist of outlines, lists, bullet points, rundowns, edit decision lists, indexes, or tables of content.<br/><br/>Description Type: A companion metadata field to the description. The purpose of descriptionType is to identify the nature of the actual description and flag the form of presentation for the information."><i class="icon-question-sign"></i></a>
+							<b> Description: </b></label>
 					</td>
 					<td>
 						<div id="main_description">
@@ -641,7 +651,9 @@
 					$add = ' ADD GENRE';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Genre:</b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Genre: Describes the manner in which the intellectual content of a media item is presented, viewed or heard by a user. It indicates the structure of the presentation, as well as the topical nature of the content in a generalized form.<br/><br/>Genre Authority Used: If genre keywords are assigned to a media item using the descriptor genre and the terms used are derived from a specific authority or classification scheme, use genreAuthorityUsed to identify whose vocabularies and terms were used. PBcore supplies its own picklist of terms, but others may be employed as long as the authority for a picklist is identified. (If selecting from the drop down in “genre” — you are using the PBCore pbcoreGenre authority)."><i class="icon-question-sign"></i></a>
+							<b> Genre:</b></label>
 					</td>
 					<td>
 						<div id="main_genre">
@@ -689,7 +701,9 @@
 					$add = ' ADD COVERAGE';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Coverage:</b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Coverage: Uses keywords to identify a span of space or time that is expressed by the intellectual content of a media item. Coverage in intellectual content may be expressed spatially by geographic location. Actual place names may be used. Numeric coordinates and geo-spatial data are also allowable, if useful or supplied. Coverage in intellectual content may also be expressed temporally by a date, period, era, or time-based event. The PBCore metadata element coverage houses the actual spatial or temporal keywords. The companion descriptor coverageType is used to identify the type of keywords that are being used.<br/><br/>Coverage Type: Used to identify the actual type of keywords that are being used by its companion metadata element coverage. coverageType provides a picklist of types, namely spatial or temporal, because coverage in intellectual content may be expressed spatially by geographic location or it may also be expressed temporally by a date, period, era, or time-based event."><i class="icon-question-sign"></i></a>
+							<b> Coverage:</b></label>
 					</td>
 					<td>
 						<div id="main_coverage">
@@ -736,7 +750,7 @@
 					$add = ' ADD AUDIENCE LEVEL';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Audience Level:</b></label>
+						<label><b> Audience Level:</b></label>
 					</td>
 					<td>
 						<div id="main_audience_level">
@@ -819,7 +833,7 @@
 					$add = ' ADD AUDIENCE RATING';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Audience Rating:</b></label>
+						<label><b> Audience Rating:</b></label>
 					</td>
 					<td>
 						<div id="main_audience_rating">
@@ -911,7 +925,7 @@
 					$add = ' ADD ANNOTATION';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
+						<label><b> Annotation:</b></label>
 					</td>
 					<td>
 						<div id="main_annotation">
@@ -970,7 +984,7 @@
 					$add = ' ADD RELATION';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Relation:</b></label>
+						<label><b> Relation:</b></label>
 					</td>
 					<td>
 						<div id="main_relation">
@@ -1060,7 +1074,9 @@
 					$add = ' ADD CREATOR';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Creator:</b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Creator: Identifies a person or organization primarily responsible for creating a media item. The creator may be considered an author and could be one or more people, a business, organization, group, project or service.<br/><br/>Creator Role: Identifies the role played by the person or group identified in the companion descriptor Creator."><i class="icon-question-sign"></i></a>
+							<b> Creator:</b></label>
 					</td>
 					<td>
 						<div id="main_creator">
@@ -1167,7 +1183,9 @@
 					$add = ' ADD CONTRIBUTOR';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Contributor:</b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Contributor: Identifies a person or organization that has made substantial creative contributions to the intellectual content within a media item. This contribution is considered to be secondary to the primary author(s) (person or organization) identified in the descriptor Creator.<br/><br/>Contributor Role: Identifies the role played by the person or group identified in the companion descriptor Contributor."><i class="icon-question-sign"></i></a>
+							<b> Contributor:</b></label>
 					</td>
 					<td>
 						<div id="main_contributor">
@@ -1276,7 +1294,9 @@
 					$add = ' ADD PUBLISHER';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Publisher:</b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Publisher: Identifies a person or organization primarily responsible for distributing or making a media item available to others. The publisher may be a person, a business, organization, group, project or service.<br/><br/>Publisher Role: Identifies the role played by the specific publisher or publishing entity identified in the companion descriptor Publisher."><i class="icon-question-sign"></i></a>
+							<b> Publisher:</b></label>
 					</td>
 					<td>
 						<div id="main_publisher">
@@ -1380,7 +1400,9 @@
 					$add = ' ADD RIGHT';
 					?>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Right Summary:</b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="An all-purpose container field to identify information about copyrights and property rights held in and over a media item, whether they are open access or restricted in some way. If dates, times and availability periods are associated with a right, include them. End user permissions, constraints and obligations may also be identified, as needed."><i class="icon-question-sign"></i></a>
+							<b> Right Summary:</b></label>
 					</td>
 					<td>
 						<div id="main_right">
@@ -1432,22 +1454,22 @@
 	</div>
 </div>
 <script type="text/javascript">
-											var pbcoreAssetTypes =<?php echo json_encode($pbcore_asset_types); ?>;
-											var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
-											var pbcoreTitleTypes =<?php echo json_encode($pbcore_asset_title_types); ?>;
-											var pbcoreSubjectTypes =<?php echo json_encode($pbcore_asset_subject_types); ?>;
-											var pbcoreDescriptionTypes =<?php echo json_encode($pbcore_asset_description_types); ?>;
-											var pbcoreAudienceLevel =<?php echo json_encode($pbcore_asset_audience_level); ?>;
-											var pbcoreAudienceRating =<?php echo json_encode($pbcore_asset_audience_rating); ?>;
-											var pbcoreRelationTypes =<?php echo json_encode($pbcore_asset_relation_types); ?>;
-											var pbcoreCreatorRoles =<?php echo json_encode($pbcore_asset_creator_roles); ?>;
-											var pbcoreContributorRoles =<?php echo json_encode($pbcore_asset_contributor_roles); ?>;
-											var pbcorePublisherRoles =<?php echo json_encode($pbcore_asset_publisher_roles); ?>;
+									var pbcoreAssetTypes =<?php echo json_encode($pbcore_asset_types); ?>;
+									var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
+									var pbcoreTitleTypes =<?php echo json_encode($pbcore_asset_title_types); ?>;
+									var pbcoreSubjectTypes =<?php echo json_encode($pbcore_asset_subject_types); ?>;
+									var pbcoreDescriptionTypes =<?php echo json_encode($pbcore_asset_description_types); ?>;
+									var pbcoreAudienceLevel =<?php echo json_encode($pbcore_asset_audience_level); ?>;
+									var pbcoreAudienceRating =<?php echo json_encode($pbcore_asset_audience_rating); ?>;
+									var pbcoreRelationTypes =<?php echo json_encode($pbcore_asset_relation_types); ?>;
+									var pbcoreCreatorRoles =<?php echo json_encode($pbcore_asset_creator_roles); ?>;
+									var pbcoreContributorRoles =<?php echo json_encode($pbcore_asset_contributor_roles); ?>;
+									var pbcorePublisherRoles =<?php echo json_encode($pbcore_asset_publisher_roles); ?>;
 
 </script>
 <script type="text/javascript" src="/js/edit_asset.js?<?php echo time(); ?>"></script>
 <style type="text/css">
 	.ui-datepicker,.ui-datepicker-group{
-         width: 22em !important;
-}
+		width: 22em !important;
+	}
 </style>

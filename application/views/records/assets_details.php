@@ -56,7 +56,7 @@
     <div class="span9" style="margin-left: 250px;">
 		<?php $this->load->view('partials/_proxy_files'); ?>
 
-		<div style="float: left;">
+		<div style="float: left;margin-bottom: 100px;">
 			<?php
 			if ($this->role_id != '20')
 			{

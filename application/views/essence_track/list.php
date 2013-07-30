@@ -229,7 +229,7 @@ if ($essence_track)
 
 									<p>
 										<?php
-										echo $value->width . ' X ' . $value->height;
+										echo $value->width . ' x ' . $value->height;
 										?>
 									</p>
 

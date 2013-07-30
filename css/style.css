@@ -545,6 +545,8 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
     margin-right: 20px;
     width: 150px;
     background-color: #ebebeb;
+	margin-left: 575px;
+	position: absolute;
 }
 .nomination_status{
 	color:#008cf8;

@@ -7,7 +7,9 @@
 			<table cellPadding="8" class="record-detail-table">
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Instantiation ID:</b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Unique Identifier: A unique identifier string for a particular instantiation of a media item. Best practice is to use an identification method that is in use within your agency, station, production company, office, or institution.<br/><br/>Identifier Source: Used in conjunction with Unique Identifer. Provides not only a locator number, but also indicates an agency or institution who assigned it. Therefore, if your station or organization created this ID, enter in your station/organization name in this field. If the ID came from an outside entity or standards organization, enter the name of that entity here."><i class="icon-question-sign"></i></a>
+							<b> Instantiation ID:</b></label>
 					</td>
 					<td>
 						<div id="main_instantiation_id">
@@ -48,7 +50,9 @@
 
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Instantiation Date:</b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Date Created: Specifies the creation date for a particular version or rendition of a media item across its life cycle. It is the moment in time that the media item was finalized during its production process and is forwarded to other divisions or agencies to make it ready for publication or distribution. The recommended format consists of a text string for the representation of dates YYYY-MM-DD (1998–01-24). If you don’t have a full YYYY-MM-DD then use this format to the extent of the information you do have.<br/><br/>Date Broadcast/Issued: Specifies the formal date for a particular version or rendition of a media item has been made ready or officially released for distribution, publication or consumption. The recommended format consists of a text string for the representation of dates YYYY-MM-DD (1998–01-24). If you don’t have a full YYYY-MM-DD then use this format to the extent of the information you do have."><i class="icon-question-sign"></i></a>
+							<b> Instantiation Date:</b></label>
 					</td>
 					<td>
 						<div id="main_instantiation_date">
@@ -104,7 +108,7 @@
 				<tr>
 
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Dimension:</b></label>
+						<label><b> Dimension:</b></label>
 					</td>
 					<td>
 						<div id="main_dimension">
@@ -138,7 +142,9 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Physical Format: <span class="label_star"> *</span> </b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="The format of a particular version or rendition of a media item as it exists in an actual physical form."><i class="icon-question-sign"></i></a>
+							<b> Physical Format: <span class="label_star"> *</span> </b></label>
 					</td>
 					<td>
 						<p>
@@ -172,7 +178,7 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Standard:</b></label>
+						<label><b> Standard:</b></label>
 					</td>
 					<td>
 						<p>
@@ -192,7 +198,9 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Location: <span class="label_star"> *</span> </b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="May contain information about an organization or building, a specific vault location for an asset, including an organization’s name, departmental name, shelf ID and contact information. For a data file or web page, this location may be virtual and include domain, path, file name or html page. The data may be a name (person or organization),URL, URI, physical location ID, barcode, etc."><i class="icon-question-sign"></i></a>
+							<b> Location: <span class="label_star"> *</span> </b></label>
 					</td>
 					<td>
 						<p>
@@ -206,7 +214,7 @@
 
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Time start:</b></label>
+						<label><b> Time start:</b></label>
 					</td>
 					<td>
 						<p>
@@ -218,7 +226,9 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Projected Duration:</b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Provides a timestamp for the overall length or duration of a time-based media item. It represents the playback time. NOTE— In many instances you may not know the ACTUAL recorded time of the item you are inventorying. If this is the case, please check YES in the column to the right marked “Approximate?” This will help us differentiate from actual vs. estimated durations."><i class="icon-question-sign"></i></a>
+							<b> Projected Duration:</b></label>
 					</td>
 					<td>
 						<p>
@@ -233,7 +243,7 @@
 
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Color:</b></label>
+						<label><b> Color:</b></label>
 					</td>
 					<td>
 						<p>
@@ -254,7 +264,7 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Tracks:</b></label>
+						<label><b> Tracks:</b></label>
 					</td>
 					<td>
 						<p>
@@ -265,7 +275,7 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Channel Configuration:</b></label>
+						<label><b> Channel Configuration:</b></label>
 					</td>
 					<td>
 						<p>
@@ -277,7 +287,9 @@
 
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Language:</b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Identifies the primary language of a media item’s audio or text. Best practice is to use the 3 letter ISO 639.2 or 639.3 code for languages. If the media item has more than one language that is considered part of the same primary audio or text, then a combination statement can be crafted, e.g., eng;fre for the presence of both English and French in the primary audio. Separating three-letter language codes with a semi-colon (no additional spaces) is preferred."><i class="icon-question-sign"></i></a>
+							<b> Language:</b></label>
 					</td>
 					<td>
 						<p>
@@ -288,7 +300,9 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Media Type: <span class="label_star"> *</span> </b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Identifies the general, high level nature of the content of a media item. It uses categories that show how content is presented to an observer, e.g., as a sound, text or moving image."><i class="icon-question-sign"></i></a>
+							<b> Media Type: <span class="label_star"> *</span> </b></label>
 					</td>
 					<td>
 						<p>
@@ -312,7 +326,7 @@
 
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Nomination Status:</b></label>
+						<label><b> Nomination Status:</b></label>
 					</td>
 					<td>
 						<p>
@@ -332,7 +346,7 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Nomination Reason:</b></label>
+						<label><b> Nomination Reason:</b></label>
 					</td>
 					<td>
 						<p>
@@ -356,7 +370,7 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Playback Speed:</b></label>
+						<label><b> Playback Speed:</b></label>
 					</td>
 					<td>
 						<p>
@@ -367,7 +381,7 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b>Sampling Rate:</b></label>
+						<label><b>Sampling Rate:</b></label>
 					</td>
 					<td>
 						<p>
@@ -378,7 +392,7 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b>Frame Size:</b></label>
+						<label><b>Frame Size:</b></label>
 					</td>
 					<td>
 						<p>
@@ -392,7 +406,7 @@
 				</tr>
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b>Aspect Ratio:</b></label>
+						<label><b>Aspect Ratio:</b></label>
 					</td>
 					<td>
 						<p>
@@ -405,7 +419,9 @@
 				<tr>
 
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Generation:</b></label>
+						<label>
+							<a data-placement="left" rel="tooltip" href="#" data-original-title="Identifies the particular use or manner in which an instantiation of a media item is used. See also explanations of generation terms."><i class="icon-question-sign"></i></a>
+							<b> Generation:</b></label>
 					</td>
 					<td>
 						<div id="main_generation">
@@ -452,7 +468,7 @@
 
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b>Alternative Modes:</b></label>
+						<label><b>Alternative Modes:</b></label>
 					</td>
 					<td>
 						<p>
@@ -464,7 +480,7 @@
 				<tr>
 
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Annotation:</b></label>
+						<label><b> Annotation:</b></label>
 					</td>
 					<td>
 						<div id="main_annotation">
@@ -499,7 +515,7 @@
 				<tr>
 
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Relation:</b></label>
+						<label><b> Relation:</b></label>
 					</td>
 					<td>
 						<div id="main_relation">

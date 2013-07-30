@@ -73,7 +73,7 @@
 				<!--				Organization Start		-->
 				<tr>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><span class="label_star"> *</span> <b>Organization:</b></label>
+						<label><span class="label_star"> *</span> <b>Organization:</b></label>
 					</td>
 					<td>
 
@@ -719,7 +719,9 @@
 						?>
 						<tr>
 							<td class="record-detail-page">
-								<label><i class="icon-question-sign"></i><span class="label_star"> *</span> <b>Local ID:</b></label>
+								<label>
+									<a data-placement="top" rel="tooltip" href="#" data-original-title="<b>Unique Identifier:</b> A unique identifier string for a particular instantiation of a media item. Best practice is to use an identification method that is in use within your agency, station, production company, office, or institution."><i class="icon-question-sign"></i></a>
+									<span class="label_star"> *</span> <b>Local ID:</b></label>
 							</td>
 							<td>
 								<?php echo $combine_local_identifier; ?>

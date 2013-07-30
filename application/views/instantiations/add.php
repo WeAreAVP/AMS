@@ -358,7 +358,7 @@
 
 				<tr>
 					<td class="record-detail-page ins_detail">
-						<label><i class="icon-question-sign"></i><b> Frame Rate:</b></label>
+						<label><b> Frame Rate:</b></label>
 					</td>
 					<td>
 						<p>

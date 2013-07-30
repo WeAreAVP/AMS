@@ -130,7 +130,7 @@
 									<li class="<?php echo active_anchor('reports', 'index'); ?>"><a href="<?php echo site_url('reports') ?>">Reports</a></li>
 								<?php }
 								?>
-	<!--																												<li class="<?php echo (is_route_method(array('settings' => array('index', 'users', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage', 'manage_crawford')))) ? 'active' : ''; ?>"><a href="<?php echo site_url('settings/index') ?>">Settings</a></li> -->
+
 
 							</ul>
 						</div><!--/.nav-collapse -->

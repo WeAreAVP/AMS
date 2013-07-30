@@ -28,7 +28,9 @@
 				<?php } ?>
 				<tr>
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b> Asset Type:</b></label>
+						<label>
+							<a rel="tooltip" href="#" data-original-title=""><i class="icon-question-sign"></i></a>
+							<b> Asset Type:</b></label>
 					</td>
 					<td>
 						<div id="main_type">
@@ -170,7 +172,9 @@
 				<tr>
 
 					<td class="record-detail-page">
-						<label><i class="icon-question-sign"></i><b>Title:</b></label>
+						<label>
+							<a rel="tooltip" href="#" data-original-title="Title: The descriptor title is a name given to the media item you are cataloging.Title Type: a companion metadata field associated with the descriptor title. For a title you give to a media item, this allows you to inform end users what type of title it is."><i class="icon-question-sign"></i></a>
+							<b>Title:</b></label>
 					</td>
 					<td>
 						<div id="main_title">
@@ -1000,6 +1004,6 @@
 <script type="text/javascript" src="/js/edit_asset.js?<?php echo time(); ?>"></script>
 <style type="text/css">
 	.ui-datepicker,.ui-datepicker-group{
-         width: 22em !important;
-}
+		width: 22em !important;
+	}
 </style>

@@ -2,7 +2,7 @@
 	<div class="span9" style="margin-left: 250px;" id="ins_view_detail">
 		<form class="form-horizontal" method="POST" action="<?php echo site_url('asset/add/'); ?>" id="edit_asset_form">
 			<table cellPadding="8" class="record-detail-table">
-				<tr><td colspan="2" style="text-align: center;"><h2>Add Asset</h2></td></tr>
+				<tr><td colspan="2"><h2>Add Asset</h2></td></tr>
 				<?php
 				if ( ! $this->is_station_user)
 				{

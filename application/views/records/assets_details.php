@@ -47,9 +47,9 @@
 		?>
 		<div style="float: right;margin-left:5px;"><a href="<?php echo site_url($last_page); ?>" class="btn">Return</a></div>
 	<?php } ?>
-<!--	<div style="float: right;">
-		<button class="btn"><span class="icon-download-alt"></span>Export Asset</button>
-	</div>-->
+	<!--	<div style="float: right;">
+			<button class="btn"><span class="icon-download-alt"></span>Export Asset</button>
+		</div>-->
 	<div class="clearfix"></div>
 
 	<?php $this->load->view('partials/_list'); ?>
@@ -65,7 +65,7 @@
 				<div style="margin-left: 20px;">
 					<a href="<?php echo site_url('asset/edit/' . $asset_id); ?>" class="btn">Edit Asset</a>
 					<a href="<?php echo site_url('instantiations/add/' . $asset_id); ?>" class="btn">Add Instantiation</a>
-					
+
 				</div>
 			<?php } ?>
 
@@ -89,7 +89,9 @@
 					?>
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i> <b>Asset Type:</b></label>
+							<label>
+								<a data-placement="top" rel="tooltip" href="#" data-original-title=" Indicates the broad editorial format of the assets contents. AssetType describes the PBCore record as a whole and at its highest level. Though a record may contain many instantiations of different formats and generations, for example, assetType may be used to indicate that they all represent a “program” or a “clip.”"><i class="icon-question-sign"></i></a>
+								<b>Asset Type:</b></label>
 						</td>
 						<td>
 							<?php
@@ -111,7 +113,9 @@
 					?>
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><span class="label_star"> *</span> <b>Title(s):</b></label>
+							<label>
+								<a data-placement="top" rel="tooltip" href="#" data-original-title="The descriptor title is a name given to the media item you are cataloging."><i class="icon-question-sign"></i></a>
+								<span class="label_star"> *</span> <b>Title(s):</b></label>
 						</td>
 						<td>
 							<?php echo $combine_title; ?>
@@ -126,7 +130,9 @@
 					?>
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><span class="label_star"> *</span><b> Description:</b></label>
+							<label>
+								<a data-placement="top" rel="tooltip" href="#" data-original-title="Uses free-form text or a narrative to report general notes, abstracts, or summaries about the intellectual content of a media item. May also consist of outlines, lists, bullet points, rundowns, edit decision lists, indexes, or tables of content."><i class="icon-question-sign"></i></a>
+								<span class="label_star"> *</span><b> Description:</b></label>
 						</td>
 						<td>
 							<?php
@@ -162,7 +168,9 @@
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i> <b>Genres:</b></label>
+									<label>
+										<a data-placement="top" rel="tooltip" href="#" data-original-title="Describes the manner in which the intellectual content of a media item is presented, viewed or heard by a user. It indicates the structure of the presentation, as well as the topical nature of the content in a generalized form."><i class="icon-question-sign"></i></a>
+										<b>Genres:</b></label>
 								</td>
 								<td>
 									<?php
@@ -217,7 +225,9 @@
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Creator:</b></label>
+									<label>
+										<a data-placement="top" rel="tooltip" href="#" data-original-title="Identifies a person or organization primarily responsible for creating a media item. The creator may be considered an author and could be one or more people, a business, organization, group, project or service."><i class="icon-question-sign"></i></a>
+										<b>Creator:</b></label>
 								</td>
 								<td>
 									<?php
@@ -280,7 +290,9 @@
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Contributor:</b></label>
+									<label>
+										<a data-placement="top" rel="tooltip" href="#" data-original-title="Identifies a person or organization that has made substantial creative contributions to the intellectual content within a media item. This contribution is considered to be secondary to the primary author(s) (person or organization) identified in the descriptor Creator."><i class="icon-question-sign"></i></a>
+										<b>Contributor:</b></label>
 								</td>
 								<td>
 									<?php
@@ -343,7 +355,9 @@
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Publisher:</b></label>
+									<label>
+										<a data-placement="top" rel="tooltip" href="#" data-original-title="Identifies a person or organization primarily responsible for distributing or making a media item available to others. The publisher may be a person, a business, organization, group, project or service."><i class="icon-question-sign"></i></a>
+										<b>Publisher:</b></label>
 								</td>
 								<td>
 									<?php
@@ -418,7 +432,9 @@
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Subject:</b></label>
+									<label>
+										<a data-placement="top" rel="tooltip" href="#" data-original-title="Used to assign topical headings or keywords that portray the intellectual content of the media item. Controlled vocabularies, authorities, or formal classification schemes may be employed when assigning descriptive subject terms (rather than using random or ad hoc terminology)."><i class="icon-question-sign"></i></a>
+										<b>Subject:</b></label>
 								</td>
 								<td>
 									<?php
@@ -476,7 +492,9 @@
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b>Coverage:</b></label>
+									<label>
+										<a data-placement="top" rel="tooltip" href="#" data-original-title="Uses keywords to identify a span of space or time that is expressed by the intellectual content of a media item. Coverage in intellectual content may be expressed spatially by geographic location. Actual place names may be used. Numeric coordinates and geo-spatial data are also allowable, if useful or supplied. Coverage in intellectual content may also be expressed temporally by a date, period, era, or time-based event. The PBCore metadata element coverage houses the actual spatial or temporal keywords. The companion descriptor coverageType is used to identify the type of keywords that are being used."><i class="icon-question-sign"></i></a>
+										<b>Coverage:</b></label>
 								</td>
 								<td>
 									<?php echo $combine_coverage; ?>
@@ -517,7 +535,9 @@
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i> <b>Rights:</b></label>
+									<label>
+										<a data-placement="top" rel="tooltip" href="#" data-original-title="An all-purpose container field to identify information about copyrights and property rights held in and over a media item, whether they are open access or restricted in some way. If dates, times and availability periods are associated with a right, include them. End user permissions, constraints and obligations may also be identified, as needed."><i class="icon-question-sign"></i></a>
+										<b>Rights:</b></label>
 								</td>
 								<td>
 									<?php echo $combine_right; ?>
@@ -560,7 +580,7 @@
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i> <b>Audience Level:</b></label>
+									<label><b>Audience Level:</b></label>
 								</td>
 								<td>
 									<?php echo $combine_audience; ?>
@@ -602,7 +622,7 @@
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i> <b>Audience Rating:</b></label>
+									<label><b>Audience Rating:</b></label>
 								</td>
 								<td>
 									<?php echo $combine_audience_rating; ?>
@@ -645,7 +665,7 @@
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i> <b>Annotation:</b></label>
+									<label><b>Annotation:</b></label>
 								</td>
 								<td>
 									<?php echo $combine_annotations; ?>
@@ -679,7 +699,7 @@
 							?>
 							<tr>
 								<td class="record-detail-page">
-									<label><i class="icon-question-sign"></i><b> Relation:</b></label>
+									<label><b> Relation:</b></label>
 								</td>
 								<td>
 									<p>	<?php echo $combine_relation; ?></p>
@@ -720,7 +740,7 @@
 						<tr>
 							<td class="record-detail-page">
 								<label>
-									<a data-placement="top" rel="tooltip" href="#" data-original-title="<b>Unique Identifier:</b> A unique identifier string for a particular instantiation of a media item. Best practice is to use an identification method that is in use within your agency, station, production company, office, or institution."><i class="icon-question-sign"></i></a>
+									<a data-placement="top" rel="tooltip" href="#" data-original-title="Used to reference or identify the entire record of metadata descriptions for a media item. In contrast to the Unique Identifier, this identifier is used to identify the CONTENT of the asset. So it links together all copies of a particular episode of NOVA or This American Life by assigning them all the same code."><i class="icon-question-sign"></i></a>
 									<span class="label_star"> *</span> <b>Local ID:</b></label>
 							</td>
 							<td>
@@ -747,7 +767,7 @@
 					?>
 					<tr>
 						<td class="record-detail-page">
-							<label><i class="icon-question-sign"></i><span class="label_star"> *</span> <b>American Archive GUID:</b></label>
+							<label><span class="label_star"> *</span> <b>American Archive GUID:</b></label>
 						</td>
 						<td>
 							<?php echo $combine_guid; ?>

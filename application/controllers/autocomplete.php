@@ -80,6 +80,7 @@ class Autocomplete extends MY_Controller
 			$this->load->model('mint_model', 'mint');
 			$this->mint->insert_record(array('user_id' => $this->user_id, 'station_id' => $station_id));
 			$username = explode('@', $this->user_detail->email);
+			$data['instance'] = $this->config->item('instance_name');
 			$data['user_id'] = $this->user_id;
 			$data['email'] = $this->user_detail->email;
 			$data['first_name'] = $this->user_detail->first_name;

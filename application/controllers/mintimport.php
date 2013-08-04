@@ -104,8 +104,9 @@ class Mintimport extends CI_Controller
 			$message .=$user_info->first_name . ' ' . $user_info->last_name . ' completed importing and transformation. But need your approval to ingest data to AMS.</br>';
 			$message .='<a href="' . base_url() . 'mintimport/visit/1' . '">Click here</a> to go to MINT.';
 
-			send_email('nick.com', 'noreply@amsqa.avpreserve.com', 'Mint Transformation', $message);
-			send_email('nouman@avpreserve.com', 'noreply@amsqa.avpreserve.com', 'Mint Transformation', $message);
+			send_email($this->config->item('to_email'), $this->config->item('from_email'), 'Mint Transformation', $message);
+			send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'Mint Transformation', $message);
+			
 		}
 	}
 

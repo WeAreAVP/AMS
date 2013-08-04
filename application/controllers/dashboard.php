@@ -42,6 +42,26 @@ class Dashboard extends MY_Controller
 			redirect('records/index');
 	}
 
+	function lastmanstanding()
+	{
+
+
+		if ( ! isset($_GET['n']) || empty($_GET['n']))
+		{
+			echo 'invalid';
+			exit;
+		}
+		
+		$n = $_GET['n'];
+		$binary = decbin($n);
+		$shift = $binary[0];
+		$new_binary = substr($binary, 1) . $shift;
+
+
+
+		echo bindec($new_binary);exit;
+	}
+
 	public function help()
 	{
 		$this->load->view('dashboard/help');

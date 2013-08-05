@@ -1088,6 +1088,7 @@ class DX_Auth {
     /* Captcha related function */
 
     function captcha() {
+		return TRUE;
         $this->ci->load->helper('url');
 
         $this->ci->load->plugin('dx_captcha');

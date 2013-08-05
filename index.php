@@ -54,7 +54,7 @@ if (defined('ENVIRONMENT'))
 			break;
 
 		case 'production':
-			error_reporting(0);
+			error_reporting(E_ALL);
 			ini_set('display_errors', 0);
 			break;
 		default:

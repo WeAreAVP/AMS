@@ -19,7 +19,7 @@ if (!defined('BASEPATH'))
  */
 
 $config['DX_website_name'] = 'AMS';
-$config['DX_webmaster_email'] = 'nouman@geekschicago';
+$config['DX_webmaster_email'] = 'nouman@avpreserve.com';
 
 /*
   |--------------------------------------------------------------------------

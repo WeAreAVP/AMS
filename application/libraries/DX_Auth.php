@@ -926,7 +926,7 @@ class DX_Auth {
                     $this->ci->users->newpass($row->id, $encode, $data['key']);
 
                     // Create reset password link to be included in email
-                    $data['reset_password_uri'] = site_url($this->ci->config->item('DX_reset_password_uri') . "{$row->username}/{$data['key']}");
+                    $data['reset_password_uri'] = site_url($this->ci->config->item('DX_reset_password_uri') . "{$row->id}/{$data['key']}");
 
                     // Create email
                     $data['email_to'] = $row->email;
@@ -964,7 +964,7 @@ class DX_Auth {
         $user_id = 0;
 
         // Get user id
-        if ($query = $this->ci->users->get_user_by_username($username) AND $query->num_rows() == 1) {
+        if ($query = $this->ci->users->get_user_by_id($username) AND $query->num_rows() == 1) {
             $user_id = $query->row()->id;
 
             // Try to activate new password

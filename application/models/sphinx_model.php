@@ -343,7 +343,12 @@ class Sphinx_Model extends CI_Model
 	 */
 	function make_where_clause($type = NULL, $sphnix_index = NULL)
 	{
+		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] == '1') || $type == 'digitized')
+		{
+			$this->sphinxsearch->set_filter("digitized", array(1));
+		}
 		$where = '';
+		return $where;
 		if (isset($this->session->userdata['custom_search']) && $this->session->userdata['custom_search'] != '')
 		{
 			$keyword_json = $this->session->userdata['custom_search'];
@@ -487,7 +492,7 @@ class Sphinx_Model extends CI_Model
 
 			$where .=" @s_organization \"	^$this->station_name$\"";
 		}
-		echo $where;
+		
 		return $where;
 	}
 

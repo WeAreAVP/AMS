@@ -76,6 +76,7 @@ if (count($org_states) > 0)
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['state']); ?>', 'states_main');"><?php echo $value['state'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
@@ -123,6 +124,7 @@ if (count($nomination_status) > 0)
 							<b class="caret"></b>
 						</a> 
 						<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['status']); ?>', 'nomination_status_main');"><?php echo $value['status'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else

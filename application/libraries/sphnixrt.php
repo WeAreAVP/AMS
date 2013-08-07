@@ -22,10 +22,10 @@ class Sphnixrt
 
 		// load the config
 		$this->CI->config->load('sphnixrt');
-		
+
 		// attempt to connect to Sphinx
 		$this->sphinxql_link = new mysqli($this->CI->config->config['hostname'], 'sphinx', '', '', $this->CI->config->config['port']);
-		
+
 		// did the link work?
 		if ( ! $this->sphinxql_link)
 		{
@@ -42,7 +42,163 @@ class Sphnixrt
 		}
 	}
 
-	public function select($index_name,$data_array)
+	/**
+	 * Make where for sphnix result
+	 * @param string $type
+	 * @param string $sphnix_index
+	 * @return string
+	 */
+	function make_where_clause($type = NULL, $sphnix_index = NULL)
+	{
+		$where = '';
+		if (isset($this->session->userdata['custom_search']) && $this->session->userdata['custom_search'] != '')
+		{
+			$keyword_json = $this->session->userdata['custom_search'];
+			foreach ($keyword_json as $index => $key_columns)
+			{
+				$count = 0;
+				foreach ($key_columns as $keys => $keywords)
+				{
+					$keyword = trim($keywords->value);
+					if ($index == 'all')
+					{
+						if ($count == 0)
+						{
+							$where .=" \"$keyword\"";
+						}
+						else
+						{
+							$where .=" | \"$keyword\"";
+						}
+					}
+					else
+					{
+						if ($sphnix_index == 'assets_list')
+						{
+							$col_name = "s_{$index}";
+							if ($index == 'asset_description')
+								$col_name = 's_description';
+						}
+						else
+						{
+							$col_name = $index;
+							if ($index == 'asset_title')
+								$col_name = "s_{$index}";
+						}
+
+						if ($count == 0)
+							$where .=" @{$col_name} \"$keyword\"";
+						else
+							$where .=" | \"$keyword\"";
+					}
+					$count ++;
+				}
+			}
+		}
+
+		if (isset($this->session->userdata['date_range']) && $this->session->userdata['date_range'] != '')
+		{
+			$keyword_json = $this->session->userdata['date_range'];
+			foreach ($keyword_json as $index => $key_columns)
+			{
+
+				foreach ($key_columns as $keys => $keywords)
+				{
+
+					$date_range = explode("to", $keywords->value);
+					if (isset($date_range[0]) && trim($date_range[0]) != '')
+					{
+						$start_date = strtotime(trim($date_range[0]));
+					}
+					if (isset($date_range[1]) && trim($date_range[1]) != '')
+					{
+						$end_date = strtotime(trim($date_range[1]));
+					}
+					else
+					{
+						$end_date = strtotime(trim($date_range[0]));
+					}
+					if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
+					{
+						$column_sphinx = 'dates';
+						if ($sphnix_index == 'assets_list')
+							$column_sphinx = 'instantiation_date';
+						$this->sphinxsearch->set_filter_range($column_sphinx, $start_date, $end_date);
+						if ($index != 'All')
+						{
+							$where .=" @date_type \"$index\"";
+						}
+					}
+				}
+			}
+		}
+		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
+		{
+			$this->sphinxsearch->set_filter("digitized", array(1));
+		}
+
+
+		if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
+		{
+			$station_name = str_replace('|||', '" | "', trim($this->session->userdata['organization']));
+			$where .=" @s_organization \"^$station_name$\"";
+		}
+		if (isset($this->session->userdata['states']) && $this->session->userdata['states'] != '')
+		{
+			$station_state = str_replace('|||', '" | "', trim($this->session->userdata['states']));
+			$where .=" @s_state \"^$station_state$\"";
+		}
+		if (isset($this->session->userdata['nomination']) && $this->session->userdata['nomination'] != '')
+		{
+			$nomination = str_replace('|||', '" | "', trim($this->session->userdata['nomination']));
+			$where .=" @s_status \"^$nomination$\"";
+		}
+		if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
+		{
+			$media_type = str_replace('|||', '" | "', trim($this->session->userdata['media_type']));
+			$where .=" @s_media_type \"^$media_type$\"";
+		}
+		if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
+		{
+
+			$physical_format = str_replace('|||', '" | "', trim($this->session->userdata['physical_format']));
+			$where .=" @s_format_name \"^$physical_format$\" @s_format_type \"physical\"";
+		}
+		else if ($type == 'physical')
+		{
+
+			$where .= " @s_format_type \"physical\"";
+		}
+
+		if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
+		{
+			$digital_format = str_replace('|||', '" | "', trim($this->session->userdata['digital_format']));
+			$where .=" @s_format_name \"^$digital_format$\" @s_format_type \"digital\"";
+		}
+		else if ($type == 'digital')
+		{
+			$where .= " @s_format_type \"digital\"";
+		}
+		if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
+		{
+			$generation = str_replace('|||', '" | "', trim($this->session->userdata['generation']));
+			$where .=" @s_generation \"^$generation$\"";
+		}
+
+		if ((isset($this->session->userdata['migration_failed']) && $this->session->userdata['migration_failed'] === '1' ) || $type == 'migration')
+		{
+			$where .=' @event_type "migration" @event_outcome "FAIL"';
+		}
+		if ($this->is_station_user)
+		{
+
+			$where .=" @s_organization \"	^$this->station_name$\"";
+		}
+
+		return $where;
+	}
+
+	public function select($index_name, $data_array)
 	{
 
 
@@ -50,12 +206,12 @@ class Sphnixrt
 		$this->_clear();
 		// build first part of query
 		$query = "SELECT {$data_array['column_name']},@count FROM `{$index_name}`";
-		if(isset($data_array['where']) && !empty($data_array['where']))
-			$query .= ' WHERE ' . $data_array['where']. '';
-		if (isset($data_array['group_by']) && !  empty($data_array['group_by']))
+		if (isset($data_array['where']) && ! empty($data_array['where']))
+			$query .= ' WHERE ' . $data_array['where'] . '';
+		if (isset($data_array['group_by']) && ! empty($data_array['group_by']))
 		{
 			// have some values, push these
-			$query .= ' GROUP BY `' . $data_array['group_by']. '`';
+			$query .= ' GROUP BY `' . $data_array['group_by'] . '`';
 		}
 // add start/limits?
 		if (is_int($data_array['limit']) && is_int($data_array['start']))
@@ -188,7 +344,7 @@ class Sphnixrt
 					VALUES
 						(' . implode(', ', $this->data['insert']['column_data']) . ')';
 
-		
+
 		// let's perform the query
 		$result = $this->sphinxql_link->query($query) or die(mysqli_error($this->sphinxql_link));
 

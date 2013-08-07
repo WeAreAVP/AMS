@@ -1219,7 +1219,7 @@ class Instantiations extends MY_Controller
 
 
 
-				$stations = $this->sphnixrt->select($index_name, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
+				$stations = $this->sphnixrt->select($index, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
 
 				$data['stations'] = sortByOneKey($stations['records'], 'organization');
 				unset($stations);

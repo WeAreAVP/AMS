@@ -28,6 +28,7 @@ if (count($stations) > 0 && ! $this->is_station_user)
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['organization']); ?>', 'organization_main');"><?php echo $value['organization'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>
 							<?php
 						}
 						else

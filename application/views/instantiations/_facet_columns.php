@@ -188,6 +188,7 @@ if (count($media_types) > 0)
 								$less_common = TRUE;
 							}
 							?>
+								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['media_type']); ?>', 'media_type_main');"><?php echo $value['media_type'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
@@ -258,6 +259,7 @@ if (count($physical_formats) > 0)
 								$less_common = TRUE;
 							}
 							?>
+								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['format_name']); ?>', 'physical_format_main');"><?php echo $value['format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
@@ -328,6 +330,7 @@ if (count($digital_formats) > 0)
 								$less_common = TRUE;
 							}
 							?>
+								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['format_name']); ?>', 'digital_format_main');"><?php echo $value['format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
@@ -398,6 +401,7 @@ if (count($generations) > 0)
 								$less_common = TRUE;
 							}
 							?>
+								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['facet_generation']); ?>', 'generation_main');"><?php echo $value['facet_generation'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else

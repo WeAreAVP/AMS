@@ -434,7 +434,7 @@ class Sphinx_Model extends CI_Model
 		if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
 		{
 			$station_name = str_replace('|||', '" | "', trim($this->session->userdata['organization']));
-			$where .=" @organization \"^$station_name$\"";
+			$where .=" @s_organization \"^$station_name$\"";
 		}
 		if (isset($this->session->userdata['states']) && $this->session->userdata['states'] != '')
 		{

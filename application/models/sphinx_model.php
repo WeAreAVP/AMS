@@ -425,7 +425,10 @@ class Sphinx_Model extends CI_Model
 				}
 			}
 		}
-		
+		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] == '1') || $type == 'digitized')
+		{
+			$this->sphinxsearch->set_filter("digitized", array(1));
+		}
 
 
 		if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
@@ -484,10 +487,7 @@ class Sphinx_Model extends CI_Model
 
 			$where .=" @s_organization \"	^$this->station_name$\"";
 		}
-		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
-		{
-			$this->sphinxsearch->set_filter("digitized", array(1));
-		}
+
 		return $where;
 	}
 

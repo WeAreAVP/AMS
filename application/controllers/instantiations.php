@@ -1204,7 +1204,7 @@ class Instantiations extends MY_Controller
 
 	function load_facet_columns()
 	{
-		if (isAjax())
+		if (!isAjax())
 		{
 			$is_all_facet = $this->input->post('issearch');
 			$index = $this->input->post('index');

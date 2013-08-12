@@ -13,9 +13,9 @@
 #####################################
 
 for zip in  /home/crawford/audio_metadata_bag/*.zip ; do
-     unzip -u  "$zip" -d -o /var/www/html/assets/mediainfo/
+     unzip -u  "$zip" -do /var/www/html/assets/mediainfo/
 done
 
 for zip in  /home/crawford/video_metadata_bag/*.zip ; do
-     unzip -u  "$zip" -d -o /var/www/html/assets/mediainfo/
+     unzip -u  "$zip" -do /var/www/html/assets/mediainfo/
 done

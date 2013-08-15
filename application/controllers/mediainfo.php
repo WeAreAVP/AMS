@@ -285,9 +285,9 @@ class Mediainfo extends CI_Controller
 		
 //		$file_path = 'assets/mediainfo/cpb-aacip-83-12z3560p-sparse/data/cpb-aacip-83-12z3560p.j2k.mxf.mediainfo.xml';
 		$data = file_get_contents($file_path);
-		debug($data);
-		$x = @simplexml_load_string($data);
 		
+		$x = @simplexml_load_string($data);
+		debug($x);
 		$data = xmlObjToArr($x);
 		
 		$tracks_data = $data['children']['file'][0]['children']['track'];

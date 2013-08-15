@@ -278,6 +278,7 @@ class Mediainfo extends CI_Controller
 	{
 //		$file_path = $this->media_info_path . 'cpb-aacip-27-00ns1rzm.mp3.mediainfo.xml';
 //		echo '<br/>File: ' . $file_path . '<br/>';
+		myLog($file_path);exit;
 		$data = file_get_contents($file_path);
 		$x = @simplexml_load_string($data);
 		$data = xmlObjToArr($x);

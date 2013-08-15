@@ -1,4 +1,12 @@
-<p><h2>Inventory Form Help</h2></p>
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#pbcorehelp">Home</a></li>
+  <li><a href="#minthelp">Profile</a></li>
+  
+</ul>
+ 
+<div class="tab-content">
+  <div class="tab-pane active" id="pbcorehelp">
+	  <p><h2>Inventory Form Help</h2></p>
 
 <p><b>Unique Identifier:</b> A unique identifier string for a particular instantiation of a media item. Best practice is to use an identification method that is in use within your agency, station, production company, office, or institution.</p>
 
@@ -466,3 +474,101 @@ On May 13, 1607, three English sailing vessels drop anchor beside a small island
 <p><b>•</b> CC 3.0</p>
 
 <hr/>
+	  
+  </div>
+  <div class="tab-pane" id="minthelp">
+	  
+
+<p>Mapping Records into the American Archive Archival Management System using the MINT Mapping Tool</p>
+
+<p>This tutorial is to give all future content contributors to the American Archive an overview of how to use some of the advanced features of our Archival Management System or AMS, specifically the mapping tool which allows contributors to take existing catalog records and map them into the AMS so that they become part of the American Archive.</p>
+
+<p>The ability to use the mapping tool is not going to appear to all users automatically. Use will be cleared by the American Archive staff on a case by case basis once a user has demonstrated that they have an understanding of how to use the tool. Once the staff has determined this, they can upgrade your permissions level so that you can use the tool. </p>
+
+<p>The mapping tool is based on software called MINT which stands for Metadata Interoperability Services. There is a user manual online for the MINT tool which can be accessed here:</p>
+
+<p><a href="http://mint.image.ece.ntua.gr/redmine/projects/mint/wiki/User_manual">http://mint.image.ece.ntua.gr/redmine/projects/mint/wiki/User_manual</a></p>
+
+<p>MINT supports several different formats for mapping and ingest, including the two most common formats - XML and Comma Separated Values (or CSV). For this tutorial we are going to cover the most common format – the CSV file.</p>
+
+<p>I’m going to construct this tutorial in three parts –1) prepping your CSV column headings to align with PBCore, 2) formatting your CSV, and 3) importing the CSV to MINT and assigning mapping.</p>
+
+<p>I. Prepping CSV column headings</p>
+
+<p>Online Screencast Tutorial: <a href="https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14453287&amp;rKey=5dc01b8cc686f77f">https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14453287&amp;rKey=5dc01b8cc686f77f</a> </p>
+
+<p>For this step, you will need to have an understanding of the metadata schema that the Archive uses within the AMS – PBCore 2.0. If you aren’t already familiar with this schema, please take some time to visit the PBCore website and familiarize yourself with the various fields, or ‘elements’ as we call them. You will need to conform your CSV column headings to these elements prior to importing your CSV document and mapping your records:</p>
+
+<p><a href="http://www.pbcore.org/elements/">http://www.pbcore.org/elements/</a></p>
+
+<p>Many of you will have been using Microsoft Excel to work with your existing records, or will have exported data from another system into Excel or CSV form. Open up your document and create a new row underneath the current header row where you will track how your current columns will map to PBCore elements. Please note that eventually you will need to delete all Excel formatting and delete the old header row prior to saving the final CSV file.</p>
+
+<p>In this example you can see that the data that came in from University of Maryland had header rows labeled ‘Series Title’ and ‘Program Title.’ But if you look at the PBCore schema, you’ll see that the way this is represented in PBCore is to have a Title and a Title Type, both of which are repeatable. So you’ll want to create two new columns to the right of each Title column, and relabel the columns to align with PBCore elements. So the column ‘Series Title’ should be transformed to two columns and relabeled to read ‘pbcoreTitle’ and ‘pbcoreTitle titleType,’ with the entire titleType column reading ‘Series.’ For the ‘Program Title’ column, the two new/relabeled columns should read ‘pbcoreTitle2’ and ‘pbcoreTitle titleType2,’ with the entire titleType2 column reading ‘Program.’ </p>
+
+<p>The same rules should apply to other elements such as Unique ID, which should also have a Unique ID Source defined. In this example, there are TWO Unique IDs with two distinct sources. In this case, one ID was assigned by the University of Maryland and another ID was originally assigned by the National Association of Educational Broadcasters. Similarly to the above Title example, you will relabel the ID columns to ‘pbcoreIdentifier’ and ‘pbcoreIdentifier2,’ then create two new columns to the right of each ID column, labeling them ‘pbcoreIdentifier source’ and ‘pbcoreIdentifier source2.’</p>
+
+<p>Here is another more tricky example of the PBCore mapping preparation. In one instance for the University of Maryland records, one column contained information about what PBCore would called ‘pbcoreCreator’ metadata. The column contained some records with a Reporter’s name, and other records with the name of the Producer. In this case, you would relabel this column ‘pbcoreCreator,’ and you would still have to create a new column to the right of that column and label it ‘pbcoreCreator role.’ But instead of pasting in one Creator Role term to all records, you would assign the value ‘Reporter’ to some records and ‘Producer’ to others. In this example, many records in this column actually had no value assigned.</p>
+
+<p>Here is one final mapping preparation example in the category of ‘Extra Tricky.’ University of Maryland’s original data contained a column labeled ‘Format,’ with terms such as ‘5" RL-7 1/2 IPS’ in it. What this short hand actually translates to is that these are 1/4" audio tapes on 5” reels which run at a speed of 7 ½ inches per second (or ips). These values need to be split among several new columns. First, you would create columns for the unit’s Dimensions (in this case, 5 inches), and the Frame Rate as well as the units of measure FOR the frame rate (in this case, ‘7 ½’ and ‘ips,’ respectively). Once you have parsed that data out, you can relabel the ‘Format’ column with instantiationPhysical, and replace the values in that column with ‘1/4" audio tape.’</p>
+
+<p>You may want to contact the staff of the American Archive to review your final CSV preparation before trying to import the CSV file, just to ensure that they were transformed correctly. After this step has been accomplished, you will need to reformat your CSV document so that all Excel formatting is stripped out. This step is detailed in Part 2 of this tutorial.</p>
+
+<p>II. Formatting your CSV</p>
+
+<p>Online Screencast Tutorial:</p>
+
+<p><a href="https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14453297&amp;rKey=b7e262787bada36f">https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14453297&amp;rKey=b7e262787bada36f</a> </p>
+
+<p>At this point you’ll want to save your work and then prepare to save a new version of your CSV document that strips out all of the automatic formatting that occurs when you use Excel. The most important two fields that need careful attention during this step are columns that contain numbers, most importantly Duration (expressed in time code) and Dates.</p>
+
+<p>In the Univeristy of Maryland example, you can see here that when I click on one of the values in the Date column, Excel has formatted it AS a Date. Unfortunately you cannot simply reformat this directly to Text format, or else it transforms the date into some unknown integer that cannot be turned back into a date format.</p>
+
+<p>There are likely a few ways to do this, but I’m going to show you a workaround. First, create a new column to the right of your Date (or Duration) column. Select the entire column and format it as Text. Next, select the entire column containing your dates, and copy that entire column to the clipboard. Then open a text editor, either Notepad on the PC or TextEdit on the Mac, and paste that data into it. Once the data has been pasted it, it is now officially stripped of formatting. Select all, and copy the stripped data back onto the clipboard. Back in the CSV document, paste the textual data into the text-formatted column. As you can see, the data in the two columns is identical, but the data in the new column is formatted as text.</p>
+
+<p>The same principal can be applied to the Duration column, which may be formatted in Excel as a Time type. You can walk through the same steps outlined above to transform this data into text.</p>
+
+<p>After you have clicked through each column to ensure that they are all formatted as text, it is good practice to take precautions and select all the records in the document and format them all as text before saving. Then click on ‘Save As’ and select ‘CSV’ from the drop down menu.</p>
+
+<p>III. Using MINT to import and map your CSV records</p>
+
+<p>Online Screencast Tutorial:</p>
+
+<p><a href="https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14480192&amp;rKey=23a71c954685ab05">https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14480192&amp;rKey=23a71c954685ab05</a> </p>
+
+<p>In this tutorial we’re going to talk about mapping your data into the MINT tool. To perform these steps, you must start by logging into the AMS and clicking on the ‘Records’ tab. Click on the Operations pulldown list, and select your organization from the list (which should in most cases only display one option). </p>
+
+<p>This should direct you to MINT interface, in the ‘Import’ tab. Check ‘This is a CSV Upload’ and in the ‘Define the Escape Character box,’ select the backslash. Click on Choose File, select the pre-formatted CSV with your mapped column headings, and click Submit.</p>
+
+<p>Now you will see the screen titled ‘Overview’ with a list of Imports that you have uploaded. The CSV you just imported will take a few moments to upload. Once it is completed, click on the file name of the uploaded document. You should see three icons – (left to right) Root, Mapping, and Transform. Click on Mapping to launch the mapping editor. </p>
+
+<p>Select ‘Add New Mapping’ and name the mapping you are creating. In the ‘Create New Schema’ box, leave the select as ‘AMS PBCore.’</p>
+
+<p>Now you should see the mapping editor interface, with three sections. One the left should be ‘Source Schema,’ in the center should be ‘Mappings,’ and on the right should be ‘Target Schema.’ </p>
+
+<p>On the Source Schema section, click on the plus signs to expand the structure of your imported CSV document. Now you should see each of your column headings displayed on the left.</p>
+
+<p>On the Target Schema section, click on ‘pbcoreDescriptionDocument,’ which should display all of the PBCore elements in the center Mappings section.</p>
+
+<p>At this point, the task is to pull each of your Source Schema elements into the appropriate PBCore element in the Mappings section. Please note the following:</p>
+
+<p>- Most elements have an attribute (i.e. a title has a title type, a unique ID has a source, a creator has a creator role) associated with them. For most of these, to access the attribute, click on the @ sign to expand the element and display the attribute. However, for certain elements such as Creator and others, the Creator Role attribute is actually its own element within a ‘structural’ container. This is why the Creator element in the Mapping section does not have a place to drag the source schema element. To access both of those elements (Creator and Creator Source), click on the plus sign on the far left to expand the Creator structural element.</p>
+
+<p>- Similarly, please note that all elements related to the physical object, or instantiation, are elements within the structural container for Instantiation (pbcoreInstantiation). So if you don’t immediately see these fields (i.e. physical format, duration, etc), click on the plus sign on the far left next to pbcoreInstantiation, which will display all of those elements.</p>
+
+<p>- You can hard code any value into all records at once. So for example, if you forgot to create a column in your CSV for Title Type, but know all titles are a ‘Series’ title type, you can hard code ‘Series’ into the entire data set. So after you map the Title source element to Title, click on the @ sign and then double click on the ‘unmapped’ text. You will get a dialogue box prompt where you can manually type a value. In this case, you would type ‘Series’ and click OK.</p>
+
+<p>- If there are repeating fields of the same element (i.e. two titles, or two unique IDs), you will need to duplicate that element in the Mappings section by clicking on the small green plus sign. This will create a duplicate at the BOTTOM of the page.</p>
+
+<p>- Mostly when you drag one source element into a target element, it turns blue on the left to inform you that it has been successfully mapped. HOWEVER, when there are repeating fields of the same element (i.e. two titles, or two unique IDs), the second element will NOT turn blue, so you will have to keep track of the fact that you successfully mapped that second repeating element.</p>
+
+<p>Once you have mapped each source element into the Mapping section, click on Preview at the top of the screen to see how your data looks and whether it is fully valid. Click on the Validation tab to see if there were any issues with how your data was mapped. It is entirely possible that one or two things will prevent your mapping from being 100% valid, but usually they are small fixes that can be easily remedied. Even in this mapping demonstration/screencast, there were two elements that needed correction before this was considered a valid mapping. This need not prevent you from saving your mapping – do this by clicking Finished at the top of the screen. Contact the American Archive staff to help you make any final fixes and ensure that your mapping is valid.</p>
+
+<p>Once the Validation tab reads Valid, and you’ve selected Finished to save your work, return to the Overview screen and click again on the name of the CSV file that you just mapped. Click on the ‘Transform’ button to commit this mapping to the AMS. Please note that the American Archive staff must approve your transformed and mapped data before it can be fully integrated into the AMS.</p>
+
+	  
+  </div>
+  
+</div>
+
+
+

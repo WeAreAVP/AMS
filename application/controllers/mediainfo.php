@@ -276,10 +276,12 @@ class Mediainfo extends CI_Controller
 	 */
 	function import_media_files($file_path)
 	{
+//		assets/mediainfo/cpb-aacip-83-12z3560p-sparse/data/cpb-aacip-83-12z3560p.j2k.mxf.mediainfo.xml
 //		$file_path = $this->media_info_path . 'cpb-aacip-27-00ns1rzm.mp3.mediainfo.xml';
 //		echo '<br/>File: ' . $file_path . '<br/>';
-		myLog($file_path);exit;
+		
 		$data = file_get_contents($file_path);
+		debug($data);exit;
 		$x = @simplexml_load_string($data);
 		$data = xmlObjToArr($x);
 		

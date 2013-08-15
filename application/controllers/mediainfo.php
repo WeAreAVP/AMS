@@ -276,20 +276,12 @@ class Mediainfo extends CI_Controller
 	 */
 	function import_media_files($file_path)
 	{
-//		assets/mediainfo/cpb-aacip-83-12z3560p-sparse/data/cpb-aacip-83-12z3560p.j2k.mxf.mediainfo.xml
-//		$file_path = $this->media_info_path . 'cpb-aacip-27-00ns1rzm.mp3.mediainfo.xml';
-//		echo '<br/>File: ' . $file_path . '<br/>';
-//		echo phpinfo();exit;
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-		
-//		$file_path = 'assets/mediainfo/cpb-aacip-83-12z3560p-sparse/data/cpb-aacip-83-12z3560p.j2k.mxf.mediainfo.xml';
 		$data = file_get_contents($file_path);
-		
 		$x = @simplexml_load_string($data);
-		
 		$data = xmlObjToArr($x);
-		debug($data);
+
 		$tracks_data = $data['children']['file'][0]['children']['track'];
 		$db_asset_id = NULL;
 		$db_instantiation_id = NULL;
@@ -483,7 +475,7 @@ class Mediainfo extends CI_Controller
 							if (count($parent_instantiations) == 1)
 							{
 								$this->instant->update_instantiations($parent_instantiations[0]->id, array('digitized' => 1));
-								$this->update_ins_asset_index($parent_instantiations[0]->id);
+//								$this->update_ins_asset_index($parent_instantiations[0]->id);
 							}
 							else
 							{
@@ -491,7 +483,7 @@ class Mediainfo extends CI_Controller
 								if (count($parent_instantiations) > 0)
 								{
 									$this->instant->update_instantiations($parent_instantiations->id, array('digitized' => 1));
-									$this->update_ins_asset_index($parent_instantiations->id);
+//									$this->update_ins_asset_index($parent_instantiations->id);
 								}
 							}
 
@@ -905,11 +897,12 @@ class Mediainfo extends CI_Controller
 					}
 					$dessence_track_counter ++;
 				}
-				$this->update_ins_asset_index($db_instantiation_id, TRUE);
+//				$this->update_ins_asset_index($db_instantiation_id, TRUE);
 			}
 		}
-		else{
-			$this->myLog('Error while importing the mediainfo file: '.$file_path);
+		else
+		{
+			$this->myLog('Error while importing the mediainfo file: ' . $file_path);
 		}
 		unset($instantiation);
 		unset($essence_track);

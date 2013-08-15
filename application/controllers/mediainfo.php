@@ -282,9 +282,8 @@ class Mediainfo extends CI_Controller
 //		echo phpinfo();exit;
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-		echo $file_path."\n";
-		echo "assets/mediainfo/cpb-aacip-83-12z3560p-sparse/data/cpb-aacip-83-12z3560p.j2k.mxf.mediainfo.xml\n";
-		$file_path = 'assets/mediainfo/cpb-aacip-83-12z3560p-sparse/data/cpb-aacip-83-12z3560p.j2k.mxf.mediainfo.xml';
+		
+//		$file_path = 'assets/mediainfo/cpb-aacip-83-12z3560p-sparse/data/cpb-aacip-83-12z3560p.j2k.mxf.mediainfo.xml';
 		$data = file_get_contents($file_path);
 		debug($data);
 		$x = @simplexml_load_string($data);

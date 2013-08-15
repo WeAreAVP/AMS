@@ -282,7 +282,8 @@ class Mediainfo extends CI_Controller
 //		echo phpinfo();exit;
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-		$data = file_get_contents($file_path) or die(print_r(error_get_last()));
+		echo $file_path."\n";
+		$data = file_get_contents($file_path);
 		debug($data);
 		$x = @simplexml_load_string($data);
 		

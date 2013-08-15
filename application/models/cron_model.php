@@ -194,6 +194,7 @@ class Cron_Model extends CI_Model
 		$this->db->where('folder_status', 'complete');
 		$this->db->where('data_type', 'mediainfo');
 		$this->db->order_by('id', 'ASC');
+		$this->db->limit(1);
 		$res = $this->db->get();
 		if (isset($res) && ! empty($res))
 		{

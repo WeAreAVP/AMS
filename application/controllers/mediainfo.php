@@ -281,7 +281,7 @@ class Mediainfo extends CI_Controller
 //		echo '<br/>File: ' . $file_path . '<br/>';
 		
 		$data = file_get_contents($file_path);
-		debug($data);exit;
+		echo $data;exit;
 		$x = @simplexml_load_string($data);
 		$data = xmlObjToArr($x);
 		

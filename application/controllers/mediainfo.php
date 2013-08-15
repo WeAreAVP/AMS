@@ -900,7 +900,9 @@ class Mediainfo extends CI_Controller
 				$this->update_ins_asset_index($db_instantiation_id, TRUE);
 			}
 		}
-
+		else{
+			$this->myLog('Error while importing the mediainfo file: '.$file_path);
+		}
 		unset($instantiation);
 		unset($essence_track);
 //		echo '<br/><br/>Essence Tracks';

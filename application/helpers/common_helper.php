@@ -81,12 +81,11 @@ function send_email($to, $from, $subject, $message, $reply_to = '')
 
 function xmlObjToArr($obj)
 {
-	$namespace = array();
-	$name = '';
+	$namespace = $obj->getDocNamespaces(true);
 	$namespace[NULL] = NULL;
 	$children = array();
 	$attributes = array();
-
+	$name = strtolower((string) $obj->getName());
 	$text = trim((string) $obj);
 	if (strlen($text) <= 0)
 	{
@@ -95,8 +94,7 @@ function xmlObjToArr($obj)
 	// get info for all namespaces
 	if (is_object($obj))
 	{
-		$namespace = $obj->getDocNamespaces(true);
-		$name = strtolower((string) $obj->getName());
+
 		foreach ($namespace as $ns => $nsUrl)
 		{
 			// atributes

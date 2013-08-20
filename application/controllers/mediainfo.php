@@ -178,8 +178,8 @@ class Mediainfo extends CI_Controller
 				$count = $this->cron_model->get_pbcore_file_count_by_folder_id($folder->id);
 				if (isset($count) && $count > 0)
 				{
-					$maxProcess = 50;
-					$limit = 500;
+					$maxProcess = 1;
+					$limit = 1;
 					$loop_end = ceil($count / $limit);
 					$this->myLog("Run $loop_end times  $maxProcess at a time");
 					for ($loop_counter = 0; $loop_end > $loop_counter; $loop_counter ++ )
@@ -196,7 +196,7 @@ class Mediainfo extends CI_Controller
 						while ($proc_cnt == $maxProcess)
 						{
 							$this->myLog("Sleeping ...");
-							sleep(30);
+							sleep(5);
 							$proc_cnt = $this->procCounter();
 							echo "Number of Processes running : $proc_cnt/$maxProcess\n";
 						}
@@ -206,7 +206,7 @@ class Mediainfo extends CI_Controller
 					while ($proc_cnt > 0)
 					{
 						echo "Sleeping....\n";
-						sleep(10);
+						sleep(5);
 						echo "\010\010\010\010\010\010\010\010\010\010\010\010";
 						echo "\n";
 						$proc_cnt = $this->procCounter();
@@ -475,7 +475,7 @@ class Mediainfo extends CI_Controller
 							if (count($parent_instantiations) == 1)
 							{
 								$this->instant->update_instantiations($parent_instantiations[0]->id, array('digitized' => 1));
-								$this->update_ins_asset_index($parent_instantiations[0]->id);
+								$this->update_ins_asset_index($parent_instantiations[0]->id,FALSE);
 							}
 							else
 							{
@@ -483,7 +483,7 @@ class Mediainfo extends CI_Controller
 								if (count($parent_instantiations) > 0)
 								{
 									$this->instant->update_instantiations($parent_instantiations->id, array('digitized' => 1));
-									$this->update_ins_asset_index($parent_instantiations->id);
+									$this->update_ins_asset_index($parent_instantiations->id,FALSE);
 								}
 							}
 

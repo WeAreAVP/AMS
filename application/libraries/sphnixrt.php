@@ -350,7 +350,8 @@ class Sphnixrt
 
 		// reset insert data
 		unset($this->data['insert'], $query);
-
+		// added By Nouman Tayyab 
+		return TRUE;
 		// did it work?
 		if ( ! $result)
 		{
@@ -533,7 +534,10 @@ class Sphnixrt
 		// reset insert data
 		unset($this->data['update'], $query);
 
+		// added By Nouman Tayyab 
+		return TRUE;
 		// did it work?
+		
 		return $result !== false;
 	}
 

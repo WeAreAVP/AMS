@@ -475,7 +475,7 @@ class Mediainfo extends CI_Controller
 							if (count($parent_instantiations) == 1)
 							{
 								$this->instant->update_instantiations($parent_instantiations[0]->id, array('digitized' => 1));
-								$this->update_ins_asset_index($parent_instantiations[0]->id,FALSE);
+								$this->update_ins_asset_index($parent_instantiations[0]->id, FALSE);
 							}
 							else
 							{
@@ -483,7 +483,7 @@ class Mediainfo extends CI_Controller
 								if (count($parent_instantiations) > 0)
 								{
 									$this->instant->update_instantiations($parent_instantiations->id, array('digitized' => 1));
-									$this->update_ins_asset_index($parent_instantiations->id,FALSE);
+									$this->update_ins_asset_index($parent_instantiations->id, FALSE);
 								}
 							}
 
@@ -919,9 +919,15 @@ class Mediainfo extends CI_Controller
 		$instantiation_list = $this->searchd_model->get_ins_index(array($db_instantiation_id));
 		$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], $new);
 		if ($new)
+		{
+			myLog('New Instantiation Inserted');
 			$this->sphnixrt->insert('instantiations_list', $new_list_info, $db_instantiation_id);
+		}
 		else
+		{
+			myLog('New Instantiation Updated');
 			$this->sphnixrt->update('instantiations_list', $new_list_info);
+		}
 		$asset_list = $this->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
 		$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
 		$this->sphnixrt->update('assets_list', $new_asset_info);

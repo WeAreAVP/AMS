@@ -911,7 +911,7 @@ class Mediainfo extends CI_Controller
 //		echo '<br/>These values will be saved in the respective tables';
 	}
 
-	function update_ins_asset_index($db_instantiation_id, $new = FALSE)
+	function update_ins_asset_index($db_instantiation_id, $new)
 	{
 		$this->load->library('sphnixrt');
 		$this->load->model('searchd_model');

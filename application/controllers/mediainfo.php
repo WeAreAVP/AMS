@@ -918,15 +918,15 @@ class Mediainfo extends CI_Controller
 		$this->load->helper('sphnixdata');
 		$instantiation_list = $this->searchd_model->get_ins_index(array($db_instantiation_id));
 		$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], $new);
-		if ($new)
-		{
-			myLog('New Instantiation Inserted');
-			$this->sphnixrt->insert('instantiations_list', $new_list_info, $db_instantiation_id);
-		}
-		else
+		if ( ! $new)
 		{
 			myLog('New Instantiation Updated');
 			$this->sphnixrt->update('instantiations_list', $new_list_info);
+		}
+		else
+		{
+			myLog('New Instantiation Inserted');
+			$this->sphnixrt->insert('instantiations_list', $new_list_info, $db_instantiation_id);
 		}
 		$asset_list = $this->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
 		$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);

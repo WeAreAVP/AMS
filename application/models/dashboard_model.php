@@ -77,7 +77,7 @@ class Dashboard_Model extends CI_Model
 		$this->db->join($this->table_nominations, "$this->table_nominations.instantiations_id = $this->table_instantiations.id");
 		$this->db->join($this->table_nomination_status, "$this->table_nomination_status.id = $this->table_nominations.nomination_status_id");
 		$this->db->where("$this->table_nomination_status.status", 'Nominated/1st Priority');
-		$this->db->where_not_in("$this->table_nomination_status.digitized", array(0,1));
+		$this->db->where_not_in("$this->table_instantiations.digitized", array(0,1));
 		$result = $this->db->get($this->table_instantiations);
 		return $result->row();
 	}

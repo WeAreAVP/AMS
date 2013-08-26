@@ -207,7 +207,7 @@ class Records extends MY_Controller
 				$search_results = $search_results_data['records'];
 				foreach ($search_results as $key => $value)
 					{
-						if($value->id==$instantiation_id)
+						if($value->id==$asset_id)
 							$cur_key=$key;
 					}
 					if(isset($search_results[$cur_key-1]))

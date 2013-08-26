@@ -132,10 +132,10 @@ class Dashboard_Model extends CI_Model
 
 	function digitized_hours_by_region($region)
 	{
-		$this->db->select("HOUR(SEC_TO_TIME(SUM(TIME_TO_SEC($this->table_instantiations.projected_duration)))) AS time", FALSE);
+		$this->db->select("HOUR(SEC_TO_TIME(SUM(TIME_TO_SEC($this->table_instantiations.actual_duration)))) AS time", FALSE);
 		$this->db->join($this->_table, "$this->_table.id=$this->_table_assets.stations_id");
 		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id=$this->_table_assets.id");
-		$this->db->where("$this->table_instantiations.digitized", 1);
+		$this->db->where("$this->table_instantiations.digitized", 0);
 
 		if ($region == 'other')
 			$this->db->where_in("$this->_table.state", array('AK', 'GU', 'HI',)); //other

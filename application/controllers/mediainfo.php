@@ -475,7 +475,7 @@ class Mediainfo extends CI_Controller
 							if (count($parent_instantiations) == 1)
 							{
 								$this->instant->update_instantiations($parent_instantiations[0]->id, array('digitized' => 1));
-								$this->update_ins_asset_index($parent_instantiations[0]->id, FALSE);
+								$this->update_ins_asset_index($parent_instantiations[0]->id);
 							}
 							else
 							{
@@ -483,7 +483,7 @@ class Mediainfo extends CI_Controller
 								if (count($parent_instantiations) > 0)
 								{
 									$this->instant->update_instantiations($parent_instantiations->id, array('digitized' => 1));
-									$this->update_ins_asset_index($parent_instantiations->id, FALSE);
+									$this->update_ins_asset_index($parent_instantiations->id);
 								}
 							}
 
@@ -897,7 +897,7 @@ class Mediainfo extends CI_Controller
 					}
 					$dessence_track_counter ++;
 				}
-				$this->update_ins_asset_index($db_instantiation_id, TRUE);
+				$this->insert_ins_asset_index($db_instantiation_id);
 			}
 		}
 		else
@@ -911,23 +911,30 @@ class Mediainfo extends CI_Controller
 //		echo '<br/>These values will be saved in the respective tables';
 	}
 
-	function update_ins_asset_index($db_instantiation_id, $new)
+	function insert_ins_asset_index($db_instantiation_id)
 	{
 		$this->load->library('sphnixrt');
 		$this->load->model('searchd_model');
 		$this->load->helper('sphnixdata');
 		$instantiation_list = $this->searchd_model->get_ins_index(array($db_instantiation_id));
-		$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], $new);
-		if ( ! $new)
-		{
-			myLog('New Instantiation Updated');
-			$this->sphnixrt->update('instantiations_list', $new_list_info);
-		}
-		else
-		{
-			myLog('New Instantiation Inserted');
-			$this->sphnixrt->insert('instantiations_list', $new_list_info, $db_instantiation_id);
-		}
+		$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], TRUE);
+		myLog('New Instantiation Inserted');
+		$this->sphnixrt->insert('instantiations_list', $new_list_info, $db_instantiation_id);
+		$asset_list = $this->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
+		$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
+		$this->sphnixrt->update('assets_list', $new_asset_info);
+	}
+
+	function update_ins_asset_index($db_instantiation_id)
+	{
+		$this->load->library('sphnixrt');
+		$this->load->model('searchd_model');
+		$this->load->helper('sphnixdata');
+		$instantiation_list = $this->searchd_model->get_ins_index(array($db_instantiation_id));
+		$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], FALSE);
+		myLog('New Instantiation Updated');
+		$this->sphnixrt->update('instantiations_list', $new_list_info);
+
 		$asset_list = $this->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
 		$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
 		$this->sphnixrt->update('assets_list', $new_asset_info);

@@ -288,7 +288,7 @@ class Crons extends CI_Controller
 		/* Start goal hours  */
 		
 //		$data['total_goal'] = $this->dashboard_model->get_material_goal()->total;
-		$data['total_goal'] = 40000;
+		$data['total_goal'] = 400000;
 		
 		
 		

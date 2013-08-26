@@ -286,14 +286,18 @@ class Crons extends CI_Controller
 		/* End Hours at crawford  */
 
 		/* Start goal hours  */
-		$data['total_goal'] = $this->dashboard_model->get_material_goal();
-		debug($data['total_goal']);
+		
+//		$data['total_goal'] = $this->dashboard_model->get_material_goal()->total;
+		$data['total_goal'] = 40000;
+		
+		
+		
 		$digitized_hours = $this->dashboard_model->get_digitized_hours();
-		$data['total_hours'] = $this->abbr_number((isset($data['total_goal']->total)) ? $data['total_goal']->total : 0);
+		$data['total_hours'] = $this->abbr_number((isset($data['total_goal'])) ? $data['total_goal'] : 0);
 
 		$total_digitized_hours = (isset($digitized_hours->total)) ? $digitized_hours->total : 0;
 
-		$data['percentage_hours'] = round(($total_digitized_hours * 100) / $data['total_goal']->total);
+		$data['percentage_hours'] = round(($total_digitized_hours * 100) / $data['total_goal']);
 		$this->memcached_library->set('total_hours', json_encode($data['total_hours']), 3600);
 		$this->memcached_library->set('percentage_hours', json_encode($data['percentage_hours']), 3600);
 		/* End goal hours  */

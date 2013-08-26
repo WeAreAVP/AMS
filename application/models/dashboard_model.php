@@ -73,7 +73,7 @@ class Dashboard_Model extends CI_Model
 
 	function get_material_goal()
 	{
-		$this->db->select("count(DISTINCT $this->table_instantiations.id) AS total", FALSE);
+		$this->db->select("HOUR(SEC_TO_TIME(SUM(TIME_TO_SEC($this->table_instantiations.actual_duration)))) AS total", FALSE);
 		$this->db->join($this->table_nominations, "$this->table_nominations.instantiations_id = $this->table_instantiations.id");
 		$this->db->join($this->table_nomination_status, "$this->table_nomination_status.id = $this->table_nominations.nomination_status_id");
 		$this->db->where("$this->table_nomination_status.status", 'Nominated/1st Priority');

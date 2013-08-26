@@ -74,6 +74,7 @@ class Dashboard_Model extends CI_Model
 	function get_material_goal()
 	{
 		$this->db->select("count(DISTINCT $this->table_instantiations.id) AS total", FALSE);
+		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id=$this->_table_assets.id");
 		$this->db->join($this->table_nominations, "$this->table_nominations.instantiations_id = $this->table_instantiations.id");
 		$this->db->join($this->table_nomination_status, "$this->table_nomination_status.id = $this->table_nominations.nomination_status_id");
 		$this->db->where("$this->table_nomination_status.status", 'Nominated/1st Priority');
@@ -150,7 +151,7 @@ class Dashboard_Model extends CI_Model
 			$this->db->where_in("$this->_table.state", array('AZ', 'CA', 'CO', 'ID', 'MT', 'NM', 'NV', 'OR', 'UT', 'WA', 'WY')); //west
 
 		$result = $this->db->get($this->_table_assets);
-		echo $this->db->last_query().'<br/>';
+		
 		return $result->row();
 	}
 

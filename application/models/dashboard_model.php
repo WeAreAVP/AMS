@@ -135,6 +135,7 @@ class Dashboard_Model extends CI_Model
 		$this->db->select("HOUR(SEC_TO_TIME(SUM(TIME_TO_SEC($this->table_instantiations.actual_duration)))) AS time", FALSE);
 		$this->db->join($this->_table, "$this->_table.id=$this->_table_assets.stations_id");
 		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id=$this->_table_assets.id");
+		
 		$this->db->where("$this->table_instantiations.digitized", 0);
 
 		if ($region == 'other')
@@ -148,7 +149,7 @@ class Dashboard_Model extends CI_Model
 		else if ($region == 'west')
 			$this->db->where_in("$this->_table.state", array('AZ', 'CA', 'CO', 'ID', 'MT', 'NM', 'NV', 'OR', 'UT', 'WA', 'WY')); //west
 
-		$result = $this->db->get($this->_table_assets);
+		$result = $this->db->get($this->table_instantiations);
 		echo $this->db->last_query().'<br/>';
 		return $result->row();
 	}

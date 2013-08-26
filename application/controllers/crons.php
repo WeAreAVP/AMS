@@ -308,6 +308,8 @@ class Crons extends CI_Controller
 				$time = $this->dashboard_model->digitized_hours_by_region($region)->time;
 			$total_hours_region_digitized[$region] = $time;
 		}
+		debug($total_region_digitized,FALSE);
+		debug($total_hours_region_digitized);
 		$this->memcached_library->set('total_region_digitized', json_encode($total_region_digitized), 3600);
 		$this->memcached_library->set('total_hours_region_digitized', json_encode($total_hours_region_digitized), 3600);
 		/* End Total digitized assets by Region */

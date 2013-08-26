@@ -201,9 +201,9 @@ class Instantiations extends MY_Controller
 							$cur_key=$key;
 					}
 					if(isset($search_results[$cur_key-1]))
-												$data['prev_result_id']=$search_results[$cur_key-1]['id'];
+												$data['prev_result_id']=$search_results[$cur_key-1]->id;
 					if(isset($search_results[$cur_key+1]))
-												$data['next_result_id']=$search_results[$cur_key+1]['id'];
+												$data['next_result_id']=$search_results[$cur_key+1]->id;
 //					debug($search_results);
 //					$search_results_array = array();
 //					$num_search_results = 0;

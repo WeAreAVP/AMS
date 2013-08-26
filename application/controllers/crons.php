@@ -287,7 +287,7 @@ class Crons extends CI_Controller
 
 		/* Start goal hours  */
 		$data['total_goal'] = $this->dashboard_model->get_material_goal();
-		
+
 		$digitized_hours = $this->dashboard_model->get_digitized_hours();
 		$data['total_hours'] = $this->abbr_number((isset($data['total_goal']->total)) ? $data['total_goal']->total : 0);
 
@@ -304,14 +304,10 @@ class Crons extends CI_Controller
 		{
 			$total_region_digitized[$region] = $this->dashboard_model->digitized_total_by_region($region)->total;
 			$time = 0;
-//			if (empty($this->dashboard_model->digitized_hours_by_region($region)->time))
-//				$time = 0;
-//			else
-				$time = $this->dashboard_model->digitized_hours_by_region($region)->time;
+			$time = $this->dashboard_model->digitized_hours_by_region($region)->time;
 			$total_hours_region_digitized[$region] = $time;
 		}
-		debug($total_region_digitized,FALSE);
-		debug($total_hours_region_digitized);
+
 		$this->memcached_library->set('total_region_digitized', json_encode($total_region_digitized), 3600);
 		$this->memcached_library->set('total_hours_region_digitized', json_encode($total_hours_region_digitized), 3600);
 		/* End Total digitized assets by Region */
@@ -347,8 +343,6 @@ class Crons extends CI_Controller
 		$this->memcached_library->set('pie_total_tv_scheduled', json_encode($data['pie_total_tv_scheduled']), 3600);
 		/* Pie Chart for Radio Formats End */
 	}
-
-	
 
 	/**
 	 * Convert numbers into K and M.

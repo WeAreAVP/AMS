@@ -77,7 +77,6 @@ class Dashboard_Model extends CI_Model
 		$this->db->join($this->table_nominations, "$this->table_nominations.instantiations_id = $this->table_instantiations.id");
 		$this->db->join($this->table_nomination_status, "$this->table_nomination_status.id = $this->table_nominations.nomination_status_id");
 		$this->db->where("$this->table_nomination_status.status", 'Nominated/1st Priority');
-		$this->db->where_not_in("$this->table_instantiations.digitized", array(0,1));
 		$result = $this->db->get($this->table_instantiations);
 		return $result->row();
 	}
@@ -134,12 +133,8 @@ class Dashboard_Model extends CI_Model
 	function digitized_hours_by_region($region)
 	{
 		$this->db->select("HOUR(SEC_TO_TIME(SUM(TIME_TO_SEC($this->table_instantiations.actual_duration)))) AS time", FALSE);
-		$this->db->join($this->_table_assets, "$this->_table_assets.id=$this->table_instantiations.assets_id");
 		$this->db->join($this->_table, "$this->_table.id=$this->_table_assets.stations_id");
-//		$this->db->select("HOUR(SEC_TO_TIME(SUM(TIME_TO_SEC($this->table_instantiations.actual_duration)))) AS time", FALSE);
-//		$this->db->join($this->_table, "$this->_table.id=$this->_table_assets.stations_id");
-//		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id=$this->_table_assets.id");
-		
+		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id=$this->_table_assets.id");
 		$this->db->where("$this->table_instantiations.digitized", 0);
 
 		if ($region == 'other')
@@ -153,9 +148,8 @@ class Dashboard_Model extends CI_Model
 		else if ($region == 'west')
 			$this->db->where_in("$this->_table.state", array('AZ', 'CA', 'CO', 'ID', 'MT', 'NM', 'NV', 'OR', 'UT', 'WA', 'WY')); //west
 
-//		$result = $this->db->get($this->_table_assets);
-		$result = $this->db->get($this->table_instantiations);
-		echo $this->db->last_query().'<br/>';
+		$result = $this->db->get($this->_table_assets);
+
 		return $result->row();
 	}
 

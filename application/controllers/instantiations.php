@@ -184,7 +184,7 @@ class Instantiations extends MY_Controller
 				$data['instantiation_events'] = $this->instantiation->get_events_by_instantiation_id($instantiation_id);
 
 				$data['asset_details'] = $this->assets_model->get_asset_by_asset_id($detail->assets_id);
-				$search_results_data = $this->sphinx->instantiations_list(array('index' => 'assets_list'), 0, 1000,TRUE);
+				$search_results_data = $this->sphinx->instantiations_list(array('index' => 'assets_list'), 0, 100,TRUE);
 				$data['nominations'] = $this->instantiation->get_nomination_status();
 
 				$data['media'] = $this->proxy_files($data['asset_guid']->guid_identifier);
@@ -193,6 +193,7 @@ class Instantiations extends MY_Controller
 				if (isset($search_results_data['records']) && ! is_empty($search_results_data['records']))
 				{
 					$search_results = $search_results_data['records'];
+					debug($search_results);
 					$search_results_array = array();
 					$num_search_results = 0;
 					if ($search_results)

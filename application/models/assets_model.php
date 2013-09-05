@@ -388,6 +388,17 @@ class Assets_Model extends CI_Model
 		}
 		return false;
 	}
+	function get_guid_identifier_by_asset_id($asset_id)
+	{
+		$this->db->where("assets_id", $asset_id);
+		$this->db->where("identifier_source", 'http://americanarchiveinventory.org');
+		$res = $this->db->get($this->_table_identifiers);
+		if (isset($res) && ! empty($res))
+		{
+			return $res->row();
+		}
+		return false;
+	}
 
 	function get_localid_by_asset_id($asset_id)
 	{

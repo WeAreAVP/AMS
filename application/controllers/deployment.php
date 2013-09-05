@@ -137,10 +137,10 @@ class Deployment extends CI_Controller
 
 		if (ENVIRONMENT === 'production')
 		{
-			if ($this->db->database === 'ams_live')
-				$display['db_name'] = deployment_display('Database name (ams_live)', 'OK');
+			if ($this->db->database === 'ams_production')
+				$display['db_name'] = deployment_display('Database name (ams_production)', 'OK');
 			else
-				$display['db_name'] = deployment_display('Database name (ams_live).');
+				$display['db_name'] = deployment_display('Database name (ams_production).');
 			if ($this->config->item('base_url') === 'http://ams.avpreserve.com/')
 				$display['url'] = deployment_display('Base URL (http://ams.avpreserve.com/)', 'OK');
 			else

@@ -1194,7 +1194,7 @@ class Asset extends MY_Controller
 		foreach ($assets as $key => $value)
 		{
 			$guids = $this->assets_model->get_aa_guid_by_asset_id($value->id);
-			$guid = $guids->guid_identifier;
+			$guid = $guids->identifier;
 			$explode = explode('cpb-aacip/', $guid);
 			$guid_start = 'cpb-aacip/500-';
 			$explode = explode('-', $explode[1]);

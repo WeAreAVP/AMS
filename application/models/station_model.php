@@ -222,5 +222,17 @@ class Station_Model extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	function assign_aacip_id()
+	{
+		$this->db->order_by("id", "desc");
+		return $this->db->get('stations_aacip_id')->row();
+	}
+
+	function increment_aacip_id()
+	{
+		$data['created_at'] = date('Y-m-d H:i:s');
+		$this->db->insert('stations_aacip_id', $data);
+	}
+
 }
 

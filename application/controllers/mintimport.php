@@ -106,7 +106,6 @@ class Mintimport extends CI_Controller
 
 //			send_email($this->config->item('to_email'), $this->config->item('from_email'), 'Mint Transformation', $message);
 			send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'Mint Transformation', $message);
-			
 		}
 	}
 
@@ -375,19 +374,33 @@ class Mintimport extends CI_Controller
 			}
 			if ($is_minted)
 			{
-				$station_info = $this->station_model->get_station_by_id($station_id);
 				$aacip_id = '';
-				$records = file('aacip_cpb_stationid.csv');
-				foreach ($records as $index => $line)
+				$station_info = $this->station_model->get_station_by_id($station_id);
+				if ( ! empty($station_info->aacip_id))
 				{
-					$explode_ids = explode(',', $line);
-					if (isset($explode_ids[1]) && trim($explode_ids[1]) == trim($station_info->cpb_id))
-						$aacip_id = $explode_ids[0];
+					$aacip_id = $station_info->aacip_id;
 				}
-				if (empty($aacip_id))
+				else
 				{
-					$aacip_id = rand(100, 300);
+					$records = file('aacip_cpb_stationid.csv');
+					foreach ($records as $index => $line)
+					{
+						$explode_ids = explode(',', $line);
+						if (isset($explode_ids[1]) && trim($explode_ids[1]) == trim($station_info->cpb_id))
+							$aacip_id = $explode_ids[0];
+					}
+					if (empty($aacip_id))
+					{
+						// permanantly assign aacip_id  to station.
+						$aacip_id = $this->station_model->assign_aacip_id()->id;
+						// make increment in aacip_id for new station.
+						$this->station_model->increment_aacip_id();
+					}
+					$this->station_model->update_station($station_id, array('aacip_id' => $aacip_id));
 				}
+
+
+
 				$guid_string = file_get_contents($this->config->item('base_url') . 'nd/noidu_kt5?mint+1');
 				if ( ! empty($guid_string))
 				{

@@ -1184,6 +1184,10 @@ class Asset extends MY_Controller
 		return TRUE;
 	}
 
+	/**
+	 * Update guid for University of Maryland.
+	 * 
+	 */
 	function update_guid_for_umd()
 	{
 		$assets = $this->assets_model->get_assets_by_station_id(125);
@@ -1195,7 +1199,7 @@ class Asset extends MY_Controller
 			$guid_start = 'cpb-aacip/500-';
 			$explode = explode('-', $explode[1]);
 			$new_guid = $guid_start . $explode[1];
-			echo $new_guid.'<br/>';
+			$this->assets_model->update_identifier_by_id($guids->id, array('identifier' => $new_guid));
 		}
 	}
 

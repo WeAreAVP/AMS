@@ -1512,6 +1512,19 @@ class Assets_Model extends CI_Model
 		$result = $this->db->get($assets)->result();
 	}
 
+	/**
+	 * update identifier information by id.
+	 * 
+	 * @param type $identifier_id
+	 * @param array $data
+	 * @return boolean 
+	 */
+	function update_identifier_by_id($identifier_id, $data)
+	{
+		$this->db->where("id", $identifier_id);
+		return $this->db->update($this->_table_identifiers, $data);
+	}
+
 }
 
 ?>

@@ -847,7 +847,7 @@ class Assets_Model extends CI_Model
 	 */
 	function get_asset_by_id($assets_id)
 	{
-		$this->db->where("id", $station_id);
+		$this->db->where("id", $assets_id);
 		$res = $this->db->get($this->_assets_table);
 		if (isset($res) && ! empty($res))
 		{

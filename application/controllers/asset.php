@@ -1184,4 +1184,14 @@ class Asset extends MY_Controller
 		return TRUE;
 	}
 
+	function update_guid_for_umd()
+	{
+		$assets = $this->assets_model->get_assets_by_station_id(125);
+		foreach ($assets as $key => $value)
+		{
+			$guids = $this->assets_model->get_guid_by_asset_id($value->id);
+			echo $guids->guid_identifier.'<br/>';
+		}
+	}
+
 }

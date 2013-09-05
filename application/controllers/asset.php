@@ -1201,6 +1201,7 @@ class Asset extends MY_Controller
 			$new_guid = $guid_start . $explode[1];
 			$this->assets_model->update_identifier_by_id($guids->id, array('identifier' => $new_guid));
 		}
+		exit_function();
 	}
 
 }

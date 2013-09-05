@@ -67,8 +67,8 @@
 		<p><b>•</b> DVD-Video Disc</p>
 
 		<hr /><p><b>Digital Format: </b>Identifies the format of a particular rendition of a media item in its digital form. Digital media formats may be expressed with formal Internet MIME types.MIME types available at IANA:<br />
-			video:<a href="http://www.iana.org/assignments/media-types/video/index.html">http://www.iana.org/assignments/media-types/video/index.html</a><br />
-			audio:<a href="http://www.iana.org/assignments/media-types/audio/index.html">http://www.iana.org/assignments/media-types/audio/index.html</a></p>
+			video:<a target="_blank" href="http://www.iana.org/assignments/media-types/video/index.html">http://www.iana.org/assignments/media-types/video/index.html</a><br />
+			audio:<a target="_blank" href="http://www.iana.org/assignments/media-types/audio/index.html">http://www.iana.org/assignments/media-types/audio/index.html</a></p>
 
 		<p><b>PBCore</b><br />
 			1.3 — formatDigital<br />
@@ -343,7 +343,7 @@
 
 		<p><b>•</b> temporal</p>
 
-		<hr /><p><b>Language: </b>Identifies the primary language of a media item’s audio or text. Best practice is to use the 3 letter ISO <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php">639.2</a> or <a href="http://www.sil.org/iso639-3/codes.asp">639.3</a> code for languages. If the media item has more than one language that is considered part of the same primary audio or text, then a combination statement can be crafted, e.g., eng;fre for the presence of both English and French in the primary audio. Separating three-letter language codes with a semi-colon (no additional spaces) is preferred.</p>
+		<hr /><p><b>Language: </b>Identifies the primary language of a media item’s audio or text. Best practice is to use the 3 letter ISO <a target="_blank" href="http://www.loc.gov/standards/iso639-2/php/code_list.php">639.2</a> or <a href="http://www.sil.org/iso639-3/codes.asp">639.3</a> code for languages. If the media item has more than one language that is considered part of the same primary audio or text, then a combination statement can be crafted, e.g., eng;fre for the presence of both English and French in the primary audio. Separating three-letter language codes with a semi-colon (no additional spaces) is preferred.</p>
 
 		<p><b>PBCore</b><br />
 			1.3 — language<br />
@@ -487,7 +487,7 @@
 
 		<p>The mapping tool is based on software called MINT which stands for Metadata Interoperability Services. There is a user manual online for the MINT tool which can be accessed here:</p>
 
-		<p><a href="http://mint.image.ece.ntua.gr/redmine/projects/mint/wiki/User_manual">http://mint.image.ece.ntua.gr/redmine/projects/mint/wiki/User_manual</a></p>
+		<p><a target="_blank" href="http://mint.image.ece.ntua.gr/redmine/projects/mint/wiki/User_manual">http://mint.image.ece.ntua.gr/redmine/projects/mint/wiki/User_manual</a></p>
 
 		<p>MINT supports several different formats for mapping and ingest, including the two most common formats - XML and Comma Separated Values (or CSV). For this tutorial we are going to cover the most common format – the CSV file.</p>
 
@@ -495,11 +495,11 @@
 
 		<p>I. Prepping CSV column headings</p>
 
-		<p>Online Screencast Tutorial: <a href="https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14453287&amp;rKey=5dc01b8cc686f77f">https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14453287&amp;rKey=5dc01b8cc686f77f</a> </p>
+		<p>Online Screencast Tutorial: <a target="_blank" href="https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14453287&amp;rKey=5dc01b8cc686f77f">https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14453287&amp;rKey=5dc01b8cc686f77f</a> </p>
 
 		<p>For this step, you will need to have an understanding of the metadata schema that the Archive uses within the AMS – PBCore 2.0. If you aren’t already familiar with this schema, please take some time to visit the PBCore website and familiarize yourself with the various fields, or ‘elements’ as we call them. You will need to conform your CSV column headings to these elements prior to importing your CSV document and mapping your records:</p>
 
-		<p><a href="http://www.pbcore.org/elements/">http://www.pbcore.org/elements/</a></p>
+		<p><a target="_blank"  href="http://www.pbcore.org/elements/">http://www.pbcore.org/elements/</a></p>
 
 		<p>Many of you will have been using Microsoft Excel to work with your existing records, or will have exported data from another system into Excel or CSV form. Open up your document and create a new row underneath the current header row where you will track how your current columns will map to PBCore elements. Please note that eventually you will need to delete all Excel formatting and delete the old header row prior to saving the final CSV file.</p>
 
@@ -517,7 +517,7 @@
 
 		<p>Online Screencast Tutorial:</p>
 
-		<p><a href="https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14453297&amp;rKey=b7e262787bada36f">https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14453297&amp;rKey=b7e262787bada36f</a> </p>
+		<p><a target="_blank"  href="https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14453297&amp;rKey=b7e262787bada36f">https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14453297&amp;rKey=b7e262787bada36f</a> </p>
 
 		<p>At this point you’ll want to save your work and then prepare to save a new version of your CSV document that strips out all of the automatic formatting that occurs when you use Excel. The most important two fields that need careful attention during this step are columns that contain numbers, most importantly Duration (expressed in time code) and Dates.</p>
 
@@ -533,7 +533,7 @@
 
 		<p>Online Screencast Tutorial:</p>
 
-		<p><a href="https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14480192&amp;rKey=23a71c954685ab05">https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14480192&amp;rKey=23a71c954685ab05</a> </p>
+		<p><a target="_blank"  href="https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14480192&amp;rKey=23a71c954685ab05">https://cpbnet.webex.com/cpbnet/ldr.php?AT=pb&amp;SP=MC&amp;rID=14480192&amp;rKey=23a71c954685ab05</a> </p>
 
 		<p>In this tutorial we’re going to talk about mapping your data into the MINT tool. To perform these steps, you must start by logging into the AMS and clicking on the ‘Records’ tab. Click on the Operations pulldown list, and select your organization from the list (which should in most cases only display one option). </p>
 

@@ -343,7 +343,7 @@
 
 		<p><b>•</b> temporal</p>
 
-		<hr /><p><b>Language: </b>Identifies the primary language of a media item’s audio or text. Best practice is to use the 3 letter ISO <a target="_blank" href="http://www.loc.gov/standards/iso639-2/php/code_list.php">639.2</a> or <a href="http://www.sil.org/iso639-3/codes.asp">639.3</a> code for languages. If the media item has more than one language that is considered part of the same primary audio or text, then a combination statement can be crafted, e.g., eng;fre for the presence of both English and French in the primary audio. Separating three-letter language codes with a semi-colon (no additional spaces) is preferred.</p>
+		<hr /><p><b>Language: </b>Identifies the primary language of a media item’s audio or text. Best practice is to use the 3 letter ISO <a target="_blank" href="http://www.loc.gov/standards/iso639-2/php/code_list.php">639.2</a> or <a target="_blank" href="http://www.sil.org/iso639-3/codes.asp">639.3</a> code for languages. If the media item has more than one language that is considered part of the same primary audio or text, then a combination statement can be crafted, e.g., eng;fre for the presence of both English and French in the primary audio. Separating three-letter language codes with a semi-colon (no additional spaces) is preferred.</p>
 
 		<p><b>PBCore</b><br />
 			1.3 — language<br />

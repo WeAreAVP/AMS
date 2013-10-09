@@ -171,7 +171,7 @@ class Records extends MY_Controller
 		{
 			$data['asset_id'] = $asset_id;
 			$data['asset_details'] = $this->assets_model->get_asset_by_asset_id($asset_id);
-			
+
 			if (empty($data['asset_details']->asset_id))
 			{
 				show_error('Invalid record id: ' . $asset_id);
@@ -197,23 +197,23 @@ class Records extends MY_Controller
 			$data['asset_audience_ratings'] = $this->assets_model->get_audience_rating_by_asset_id($asset_id);
 			$data['annotations'] = $this->assets_model->get_annotations_by_asset_id($asset_id);
 			$data['relation'] = $this->assets_model->get_relation_by_asset_id($asset_id);
-			$search_results_data = $this->sphinx->assets_listing(array('index' => 'assets_list'), 0, 1000,TRUE);
+			$search_results_data = $this->sphinx->assets_listing(array('index' => 'assets_list'), 0, 1000, TRUE);
 			$data['next_result_id'] = FALSE;
 			$data['prev_result_id'] = FALSE;
-			$cur_key=NULL;
+			$cur_key = NULL;
 			$data['media'] = $this->proxy_files($data['asset_guid']->guid_identifier);
 			if (isset($search_results_data['records']) && ! is_empty($search_results_data['records']))
 			{
 				$search_results = $search_results_data['records'];
 				foreach ($search_results as $key => $value)
-					{
-						if($value->id==$asset_id)
-							$cur_key=$key;
-					}
-					if(isset($search_results[$cur_key-1]))
-												$data['prev_result_id']=$search_results[$cur_key-1]->id;
-					if(isset($search_results[$cur_key+1]))
-												$data['next_result_id']=$search_results[$cur_key+1]->id;
+				{
+					if ($value->id == $asset_id)
+						$cur_key = $key;
+				}
+				if (isset($search_results[$cur_key - 1]))
+					$data['prev_result_id'] = $search_results[$cur_key - 1]->id;
+				if (isset($search_results[$cur_key + 1]))
+					$data['next_result_id'] = $search_results[$cur_key + 1]->id;
 //				$search_results_array = array();
 //				$num_search_results = 0;
 //				if ($search_results)
@@ -268,24 +268,27 @@ class Records extends MY_Controller
 		$proxy_guid = str_replace('/', '-', $guid);
 		$proxy_response = file_get_contents("http://cpbproxy.crawfordmedia.com/xml.php?GUID=$proxy_guid");
 		$x = @simplexml_load_string($proxy_response);
-		$data = xmlObjToArr($x);
+		if (is_object($x))
+		{
+			$data = xmlObjToArr($x);
 
-		$child = $data['children'];
-		if (isset($data['name']) && $data['name'] == 'error')
-		{
-			return FALSE;
-		}
-		else
-		{
-			if (isset($child['mediaurl'][0]))
+			$child = $data['children'];
+			if (isset($data['name']) && $data['name'] == 'error')
 			{
-				$media['url'] = $child['mediaurl'][0]['text'];
+				return FALSE;
 			}
-			if (isset($child['format'][0]))
+			else
 			{
-				$media['format'] = $child['format'][0]['text'];
+				if (isset($child['mediaurl'][0]))
+				{
+					$media['url'] = $child['mediaurl'][0]['text'];
+				}
+				if (isset($child['format'][0]))
+				{
+					$media['format'] = $child['format'][0]['text'];
+				}
+				return $media;
 			}
-			return $media;
 		}
 		return FALSE;
 	}

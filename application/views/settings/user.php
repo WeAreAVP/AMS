@@ -116,7 +116,7 @@ if ( ! $is_ajax)
 				else
 				{
 					?>
-						<tr><td colspan="6" style="text-align: center;">No User Found.</td></tr>
+					<tr><td colspan="6" style="text-align: center;">No User Found.</td></tr>
 					<?php
 				} if ( ! $is_ajax)
 				{
@@ -155,76 +155,76 @@ if ( ! $is_ajax)
 		</div>
 	</div>
 	<script type="text/javascript">
-								setTimeout(function() {
-									$('.notification').hide();
-								}, 5000);
+							setTimeout(function() {
+								$('.notification').hide();
+							}, 5000);
 
 
-								function manageUser(type, uType) {
-									data = null;
-									method = 'GET';
+							function manageUser(type, uType) {
+								data = null;
+								method = 'GET';
+								if (uType == 'add_user')
+									$('#userLabel').html('Add User');
+								else
+									$('#userLabel').html('Edit User');
+								if (type == 'post') {
 									if (uType == 'add_user')
-										$('#userLabel').html('Add User');
+										data = $('#new_user').serialize();
 									else
-										$('#userLabel').html('Edit User');
-									if (type == 'post') {
-										if (uType == 'add_user')
-											data = $('#new_user').serialize();
-										else
-											data = $('#edit_from').serialize();
-										method = 'POST';
-									}
-									$.ajax({
-										type: method,
-										url: site_url + 'settings/' + uType,
-										data: data,
-										dataType: 'html',
-										success: function(result) {
-											if (result == 'done') {
-												window.location.reload();
-											}
-											else {
-												$('#manage_user').html(result);
-												checkRole();
-											}
-
+										data = $('#edit_from').serialize();
+									method = 'POST';
+								}
+								$.ajax({
+									type: method,
+									url: site_url + 'settings/' + uType, 
+									data: data,
+									dataType: 'html',
+									success: function(result) {
+										if (result == 'done') {
+											window.location.reload();
 										}
-									});
-								}
-								function deleteUser(userID, name) {
-									$('#userDelete').html('Are you sure you want to delete "' + name + '"?');
-									$('#delete_user_btn').attr('href', site_url + '/settings/delete_user/' + userID);
-								}
-								function filterUser() {
-
-									role = $('#role_id').val();
-									station = $('#station_id').val();
-									$.ajax({
-										type: 'POST',
-										url: site_url + 'settings/users',
-										data: {role_id: role, station_id: station},
-										//                dataType: 'html',
-										success: function(result) {
-											$('#user_list').html(result);
-											$("#user_table_list").trigger("update");
-
+										else {
+											$('#manage_user').html(result);
+											checkRole();
 										}
-									});
-								}
-								function resetFilter() {
-									$('#station_id').prop('selectedIndex', 0);
-									$('#role_id').prop('selectedIndex', 0);
-									filterUser();
-								}
-								function checkRole() {
-									role = $('#role').val();
 
-									if (role == 3 || role == 4) {
-										$('#station_row').show();
 									}
-									else
-										$('#station_row').hide();
+								});
+							}
+							function deleteUser(userID, name) {
+								$('#userDelete').html('Are you sure you want to delete "' + name + '"?');
+								$('#delete_user_btn').attr('href', site_url + '/settings/delete_user/' + userID);
+							}
+							function filterUser() {
+
+								role = $('#role_id').val();
+								station = $('#station_id').val();
+								$.ajax({
+									type: 'POST',
+									url: site_url + 'settings/users',
+									data: {role_id: role, station_id: station},
+									//                dataType: 'html',
+									success: function(result) {
+										$('#user_list').html(result);
+										$("#user_table_list").trigger("update");
+
+									}
+								});
+							}
+							function resetFilter() {
+								$('#station_id').prop('selectedIndex', 0);
+								$('#role_id').prop('selectedIndex', 0);
+								filterUser();
+							}
+							function checkRole() {
+								role = $('#role').val();
+
+								if (role == 3 || role == 4) {
+									$('#station_row').show();
 								}
+								else
+									$('#station_row').hide();
+							}
 	</script>
 <?php }
 ?>

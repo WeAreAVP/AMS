@@ -67,12 +67,12 @@
 
 <!--<div><button onclick="takeScreenShot();" class="btn">Take Screen Shot</button></div>-->
 <div class="asset-stats">
-	<div class="span4" style="width: 31%;">
+	<div class="span4" style="width: 34%;margin-left: 2px;">
 		<div class="assets-sum"><?php echo number_format($material_goal['total']); ?></div>
 		<div class="assets-subdetail" style="padding-top: 40px;">hrs digitized</div>
 
 	</div>
-	<div class="span4" style="width: 31%;">
+	<div class="span4" style="width: 31%;margin-left: 10px;">
 		<div class="assets-sum"><?php echo ( ! empty($percentage_hours) ? $percentage_hours.'%' : '0%'); ?></div>
 		<div class="assets-subdetail"> <?php echo 'of ' . $total_hours . ' hrs'; ?> </div>
 
@@ -84,7 +84,7 @@
 		$crawford_width = 'padding-top: 40px;';
 	}
 	?>
-	<div class="span4" style="width: 31%;">
+	<div class="span4" style="width: 31%;margin-left: 5px;">
 		<div class="assets-sum"><?php echo number_format($at_crawford); ?></div>
 		<div class="assets-subdetail" style="<?php echo $crawford_width; ?>">hrs at Crawford</div>
 

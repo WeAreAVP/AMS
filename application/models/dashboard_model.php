@@ -84,7 +84,7 @@ class Dashboard_Model extends CI_Model
 
 	function get_digitized_hours()
 	{
-		$this->db->select("count($this->table_instantiations.actual_duration) AS total", FALSE);
+		$this->db->select("SUM($this->table_instantiations.actual_duration) AS total", FALSE);
 		$this->db->where("$this->table_instantiations.digitized", '1');
 		$result = $this->db->get($this->table_instantiations);
 		echo $this->db->last_query();

@@ -879,7 +879,7 @@
 		facet_search('0');
 	}
 	function manageLayout() {
-		$('.container').width($(window).width());
+		$('.container').width($(window).width()-10);
 		$('.navbar-inner').width($(window).width() - 50);
 		$('#top_setting_nav').width($(window).width() - 50);
 		$('body').css('overflow', 'hidden');

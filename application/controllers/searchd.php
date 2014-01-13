@@ -51,22 +51,17 @@ class Searchd extends CI_Controller
 	function test()
 	{
 		error_reporting(E_ALL);
-			ini_set('display_errors', 1);
-		$count=4894315;
-		for ($_id = 4894315; $_id <= 4895090; $_id ++ )
-		{
-			
-			$count .=$_id.',';
-//			$this->sphnixrt->delete('instantiations_list', $_id);
-		}
-		echo $count;exit;
-		$count=1;
+		ini_set('display_errors', 1);
+		$count = '';
 		for ($_id = 4847882; $_id <= 4848659; $_id ++ )
 		{
-			echo $count.'<br/>';
-			$count++;
-			$this->sphnixrt->delete('assets_list', $_id);
+
+			$count .=$_id . ',';
+//			$this->sphnixrt->delete('instantiations_list', $_id);
 		}
+		echo rtrim($count, ',');
+		exit;
+
 //		$data = $this->sphnixrt->select('instantiations_list', array('start' => 0, 'limit' => 1000));
 //		debug($data);
 	}

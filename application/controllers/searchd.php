@@ -50,12 +50,16 @@ class Searchd extends CI_Controller
 
 	function test()
 	{
+		$count=1;
 		for ($_id = 4894313; $_id <= 4895090; $_id ++ )
 		{
+			echo $count.'<br/>';
 			$this->sphnixrt->delete('instantiations_list', $_id);
 		}
+		$count=1;
 		for ($_id = 4847882; $_id <= 4848659; $_id ++ )
 		{
+			echo $count.'<br/>';
 			$this->sphnixrt->delete('assets_list', $_id);
 		}
 //		$data = $this->sphnixrt->select('instantiations_list', array('start' => 0, 'limit' => 1000));

@@ -266,7 +266,7 @@ class Mintimport extends CI_Controller
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-		myLog($path);
+//		myLog($path);
 		$file_content = file_get_contents('/var/www/html/assets/mint_import/Output_77.xml');
 //		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
 		$xml_string = @simplexml_load_string($file_content);
@@ -487,7 +487,7 @@ class Mintimport extends CI_Controller
 							$subject_d['subjects_types_id'] = $db_subject_type->id;
 						else
 							echo $subject_d['subjects_types_id'] = $this->assets_model->insert_subject_type(array('subject_type' => $subject_type));
-						myLog ($subject_d);
+						debug($subject_d,FALSE);
 					}
 					$subjects = $this->assets_model->get_subjects_id_by_subject($subject_d['subject']);
 					if (isset($subjects) && isset($subjects->id))
@@ -499,7 +499,7 @@ class Mintimport extends CI_Controller
 						echo $subject_id = $this->assets_model->insert_subjects($subject_d);
 					}
 					$subject_detail['subjects_id'] = $subject_id;
-					myLog ($subject_detail);
+					debug($subject_detail,FALSE);
 					$assets_subject_id = $this->assets_model->insert_assets_subjects($subject_detail);
 					myLog ($assets_subject_id);
 				}

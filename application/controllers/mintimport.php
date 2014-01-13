@@ -266,19 +266,17 @@ class Mintimport extends CI_Controller
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-//		myLog($path);
-		$file_content = file_get_contents('/var/www/html/assets/mint_import/Output_77.xml');
-//		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
+		myLog($path);
+		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
 		$xml_string = @simplexml_load_string($file_content);
 		unset($file_content);
 		$xmlArray = xmlObjToArr($xml_string);
 
-//		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
-		$station_id = 1;
-		$asset_id = 1;
+		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
+
 		myLog('Created Asset ID ' . $asset_id);
 		$this->import_asset_info($asset_id, $station_id, $xmlArray['children']);
-		exit;
+
 		$this->import_instantiation_info($asset_id, $xmlArray['children']);
 		myLog('Successfully imported all the information to AMS');
 	}
@@ -294,169 +292,175 @@ class Mintimport extends CI_Controller
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 		// Asset Type Start //
-//		if (isset($xmlArray['ams:pbcoreassettype']))
-//		{
-//			foreach ($xmlArray['ams:pbcoreassettype'] as $pbcoreassettype)
-//			{
-//
-//				if (isset($pbcoreassettype['text']) && ! is_empty($pbcoreassettype['text']))
-//				{
-//					$asset_type_detail = array();
-//					$asset_type_detail['assets_id'] = $asset_id;
-//					if ($asset_type = $this->assets_model->get_assets_type_by_type($pbcoreassettype['text']))
-//					{
-//						$asset_type_detail['asset_types_id'] = $asset_type->id;
-//					}
-//					else
-//					{
-//						$asset_type_detail['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $pbcoreassettype['text']));
-//					}
-//
-//					$this->assets_model->insert_assets_asset_types($asset_type_detail);
-//					unset($asset_type_detail);
-//				}
-//			}
-//		}
+		if (isset($xmlArray['ams:pbcoreassettype']))
+		{
+			foreach ($xmlArray['ams:pbcoreassettype'] as $pbcoreassettype)
+			{
+
+				if (isset($pbcoreassettype['text']) && ! is_empty($pbcoreassettype['text']))
+				{
+					$asset_type_detail = array();
+					$asset_type_detail['assets_id'] = $asset_id;
+					if ($asset_type = $this->assets_model->get_assets_type_by_type($pbcoreassettype['text']))
+					{
+						$asset_type_detail['asset_types_id'] = $asset_type->id;
+					}
+					else
+					{
+						$asset_type_detail['asset_types_id'] = $this->assets_model->insert_asset_types(array("asset_type" => $pbcoreassettype['text']));
+					}
+
+					$this->assets_model->insert_assets_asset_types($asset_type_detail);
+					unset($asset_type_detail);
+				}
+			}
+		}
+
 		// Asset Type End //
 		// Asset Date and Type Start //
-//		if (isset($xmlArray['ams:pbcoreassetdate']))
-//		{
-//			foreach ($xmlArray['ams:pbcoreassetdate'] as $pbcoreassetdate)
-//			{
-//				$asset_date_info = array();
-//				$asset_date_info['assets_id'] = $asset_id;
-//				if (isset($pbcoreassetdate['text']) && ! is_empty($pbcoreassetdate['text']))
-//				{
-//					$asset_date_info['asset_date'] = $pbcoreassetdate['text'];
-//					if (isset($pbcoreassetdate['attributes']['datetype']) && ! is_empty($pbcoreassetdate['attributes']['datetype']))
-//					{
-//						if ($asset_date_type = $this->instant->get_date_types_by_type($pbcoreassetdate['attributes']['datetype']))
-//						{
-//							$asset_date_info['date_types_id'] = $asset_date_type->id;
-//						}
-//						else
-//						{
-//							$asset_date_info['date_types_id'] = $this->instant->insert_date_types(array("date_type" => $pbcoreassetdate['attributes']['datetype']));
-//						}
-//					}
-//					$this->assets_model->insert_asset_date($asset_date_info);
-//				}
-//			}
-//		}
+		if (isset($xmlArray['ams:pbcoreassetdate']))
+		{
+			foreach ($xmlArray['ams:pbcoreassetdate'] as $pbcoreassetdate)
+			{
+				$asset_date_info = array();
+				$asset_date_info['assets_id'] = $asset_id;
+				if (isset($pbcoreassetdate['text']) && ! is_empty($pbcoreassetdate['text']))
+				{
+					$asset_date_info['asset_date'] = $pbcoreassetdate['text'];
+					if (isset($pbcoreassetdate['attributes']['datetype']) && ! is_empty($pbcoreassetdate['attributes']['datetype']))
+					{
+						if ($asset_date_type = $this->instant->get_date_types_by_type($pbcoreassetdate['attributes']['datetype']))
+						{
+							$asset_date_info['date_types_id'] = $asset_date_type->id;
+						}
+						else
+						{
+							$asset_date_info['date_types_id'] = $this->instant->insert_date_types(array("date_type" => $pbcoreassetdate['attributes']['datetype']));
+						}
+					}
+					$this->assets_model->insert_asset_date($asset_date_info);
+				}
+			}
+		}
+
 		// Asset Date and Type End //
 		// Insert Identifier Start //
-//		if (isset($xmlArray['ams:pbcoreidentifier']) && ! empty($xmlArray['ams:pbcoreidentifier']))
-//		{
-//			$is_minted = TRUE;
-//			foreach ($xmlArray['ams:pbcoreidentifier'] as $row)
-//			{
-//				if (isset($row['text']) && ! empty($row['text']))
-//				{
-//					$identifier_detail = array();
-//					$identifier_detail['assets_id'] = $asset_id;
-//					$identifier_detail['identifier'] = trim($row['text']);
-//					$identifier_detail['identifier_source'] = '';
-//					$identifier_detail['identifier_ref'] = '';
-//					if (isset($row['attributes']['source']) && ! empty($row['attributes']['source']))
-//					{
-//						$identifier_detail['identifier_source'] = $row['attributes']['source'];
-//						if ($identifier_detail['identifier_source'] == 'http://americanarchiveinventory.org')
-//							$is_minted = FALSE;
-//					}
-//
-//					if (isset($row['attributes']['ref']) && ! empty($row['attributes']['ref']))
-//						$identifier_detail['identifier_ref'] = $row['attributes']['ref'];
-//
-//					$this->assets_model->insert_identifiers($identifier_detail);
-//					unset($identifier_detail);
-//				}
-//			}
-//			if ($is_minted)
-//			{
-//				$aacip_id = '';
-//				$station_info = $this->station_model->get_station_by_id($station_id);
-//				if ( ! empty($station_info->aacip_id))
-//				{
-//					$aacip_id = $station_info->aacip_id;
-//				}
-//				else
-//				{
-//					$records = file('aacip_cpb_stationid.csv');
-//					foreach ($records as $index => $line)
-//					{
-//						$explode_ids = explode(',', $line);
-//						if (isset($explode_ids[1]) && trim($explode_ids[1]) == trim($station_info->cpb_id))
-//							$aacip_id = $explode_ids[0];
-//					}
-//					if (empty($aacip_id))
-//					{
-//						// permanantly assign aacip_id  to station.
-//						$aacip_id = $this->station_model->assign_aacip_id()->id;
-//						// make increment in aacip_id for new station.
-//						$this->station_model->increment_aacip_id();
-//					}
-//					$this->station_model->update_station($station_id, array('aacip_id' => $aacip_id));
-//				}
-//
-//
-//
-//				$guid_string = file_get_contents($this->config->item('base_url') . 'nd/noidu_kt5?mint+1');
-//				if ( ! empty($guid_string))
-//				{
-//					$explode_guid = explode('id:', $guid_string);
-//					if (count($explode_guid) > 1)
-//					{
-//						$guid = 'cpb-aacip/' . $aacip_id . '-' . trim($explode_guid[1]);
-//					}
-//				}
-//				if ( ! empty($guid))
-//				{
-//					$identifier_detail['assets_id'] = $asset_id;
-//					$identifier_detail['identifier'] = $guid;
-//					$identifier_detail['identifier_source'] = 'http://americanarchiveinventory.org';
-//					$this->assets_model->insert_identifiers($identifier_detail);
-//				}
-//			}
-//		}
+
+		if (isset($xmlArray['ams:pbcoreidentifier']) && ! empty($xmlArray['ams:pbcoreidentifier']))
+		{
+			$is_minted = TRUE;
+			foreach ($xmlArray['ams:pbcoreidentifier'] as $row)
+			{
+				if (isset($row['text']) && ! empty($row['text']))
+				{
+					$identifier_detail = array();
+					$identifier_detail['assets_id'] = $asset_id;
+					$identifier_detail['identifier'] = trim($row['text']);
+					$identifier_detail['identifier_source'] = '';
+					$identifier_detail['identifier_ref'] = '';
+					if (isset($row['attributes']['source']) && ! empty($row['attributes']['source']))
+					{
+						$identifier_detail['identifier_source'] = $row['attributes']['source'];
+						if ($identifier_detail['identifier_source'] == 'http://americanarchiveinventory.org')
+							$is_minted = FALSE;
+					}
+
+					if (isset($row['attributes']['ref']) && ! empty($row['attributes']['ref']))
+						$identifier_detail['identifier_ref'] = $row['attributes']['ref'];
+
+					$this->assets_model->insert_identifiers($identifier_detail);
+					unset($identifier_detail);
+				}
+			}
+			if ($is_minted)
+			{
+				$aacip_id = '';
+				$station_info = $this->station_model->get_station_by_id($station_id);
+				if ( ! empty($station_info->aacip_id))
+				{
+					$aacip_id = $station_info->aacip_id;
+				}
+				else
+				{
+					$records = file('aacip_cpb_stationid.csv');
+					foreach ($records as $index => $line)
+					{
+						$explode_ids = explode(',', $line);
+						if (isset($explode_ids[1]) && trim($explode_ids[1]) == trim($station_info->cpb_id))
+							$aacip_id = $explode_ids[0];
+					}
+					if (empty($aacip_id))
+					{
+						// permanantly assign aacip_id  to station.
+						$aacip_id = $this->station_model->assign_aacip_id()->id;
+						// make increment in aacip_id for new station.
+						$this->station_model->increment_aacip_id();
+					}
+					$this->station_model->update_station($station_id, array('aacip_id' => $aacip_id));
+				}
+
+
+
+				$guid_string = file_get_contents($this->config->item('base_url') . 'nd/noidu_kt5?mint+1');
+				if ( ! empty($guid_string))
+				{
+					$explode_guid = explode('id:', $guid_string);
+					if (count($explode_guid) > 1)
+					{
+						$guid = 'cpb-aacip/' . $aacip_id . '-' . trim($explode_guid[1]);
+					}
+				}
+				if ( ! empty($guid))
+				{
+					$identifier_detail['assets_id'] = $asset_id;
+					$identifier_detail['identifier'] = $guid;
+					$identifier_detail['identifier_source'] = 'http://americanarchiveinventory.org';
+					$this->assets_model->insert_identifiers($identifier_detail);
+				}
+			}
+		}
+
 		// Insert Identifier End //
 		// Insert Asset Title Start //
-//		if (isset($xmlArray['ams:pbcoretitle']) && ! empty($xmlArray['ams:pbcoretitle']))
-//		{
-//			foreach ($xmlArray['ams:pbcoretitle'] as $row)
-//			{
-//				if (isset($row['text']) && ! empty($row['text']))
-//				{
-//					$title_detail = array();
-//					$title_detail['assets_id'] = $asset_id;
-//					$title_detail['title'] = trim($row['text']);
-//
-//					if (isset($row['attributes']['titletype']) && ! empty($row['attributes']['titletype']))
-//					{
-//						$asset_title_types = $this->assets_model->get_asset_title_types_by_title_type(trim($row['attributes']['titletype']));
-//						if (isset($asset_title_types) && isset($asset_title_types->id))
-//						{
-//							$asset_title_types_id = $asset_title_types->id;
-//						}
-//						else
-//						{
-//							$asset_title_types_id = $this->assets_model->insert_asset_title_types(array("title_type" => trim($row['attributes']['titletype'])));
-//						}
-//						$title_detail['asset_title_types_id'] = $asset_title_types_id;
-//					}
-//					if (isset($row['attributes']['ref']) && ! is_empty($row['attributes']['ref']))
-//					{
-//						$title_detail['title_ref'] = $row['attributes']['ref'];
-//					}
-//					if (isset($row['attributes']['source']) && ! is_empty($row['attributes']['source']))
-//					{
-//						$title_detail['title_source'] = $row['attributes']['source'];
-//					}
-//					$title_detail['created'] = date('Y-m-d H:i:s');
-//					$this->assets_model->insert_asset_titles($title_detail);
-//					unset($title_detail);
-//				}
-//			}
-//		}
+
+		if (isset($xmlArray['ams:pbcoretitle']) && ! empty($xmlArray['ams:pbcoretitle']))
+		{
+			foreach ($xmlArray['ams:pbcoretitle'] as $row)
+			{
+				if (isset($row['text']) && ! empty($row['text']))
+				{
+					$title_detail = array();
+					$title_detail['assets_id'] = $asset_id;
+					$title_detail['title'] = trim($row['text']);
+
+					if (isset($row['attributes']['titletype']) && ! empty($row['attributes']['titletype']))
+					{
+						$asset_title_types = $this->assets_model->get_asset_title_types_by_title_type(trim($row['attributes']['titletype']));
+						if (isset($asset_title_types) && isset($asset_title_types->id))
+						{
+							$asset_title_types_id = $asset_title_types->id;
+						}
+						else
+						{
+							$asset_title_types_id = $this->assets_model->insert_asset_title_types(array("title_type" => trim($row['attributes']['titletype'])));
+						}
+						$title_detail['asset_title_types_id'] = $asset_title_types_id;
+					}
+					if (isset($row['attributes']['ref']) && ! is_empty($row['attributes']['ref']))
+					{
+						$title_detail['title_ref'] = $row['attributes']['ref'];
+					}
+					if (isset($row['attributes']['source']) && ! is_empty($row['attributes']['source']))
+					{
+						$title_detail['title_source'] = $row['attributes']['source'];
+					}
+					$title_detail['created'] = date('Y-m-d H:i:s');
+					$this->assets_model->insert_asset_titles($title_detail);
+					unset($title_detail);
+				}
+			}
+		}
+
 		// Insert Asset Title End //
 		// Asset Subject Start //
 
@@ -486,26 +490,22 @@ class Mintimport extends CI_Controller
 						if ($db_subject_type)
 							$subject_d['subjects_types_id'] = $db_subject_type->id;
 						else
-							echo $subject_d['subjects_types_id'] = $this->assets_model->insert_subject_type(array('subject_type' => $subject_type));
-						debug($subject_d,FALSE);
+							$subject_d['subjects_types_id'] = $this->assets_model->insert_subject_type(array('subject_type' => $subject_type));
 					}
 					$subjects = $this->assets_model->get_subjects_id_by_subject($subject_d['subject']);
 					if (isset($subjects) && isset($subjects->id))
 					{
-						echo $subject_id = $subjects->id;
+						$subject_id = $subjects->id;
 					}
 					else
 					{
-						echo $subject_id = $this->assets_model->insert_subjects($subject_d);
+						$subject_id = $this->assets_model->insert_subjects($subject_d);
 					}
 					$subject_detail['subjects_id'] = $subject_id;
-					debug($subject_detail,FALSE);
 					$assets_subject_id = $this->assets_model->insert_assets_subjects($subject_detail);
-					myLog ($assets_subject_id);
 				}
 			}
 		}
-		exit;
 		// Asset Subject End  //
 		// Asset Description Start //
 

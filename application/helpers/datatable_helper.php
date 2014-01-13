@@ -540,8 +540,9 @@ function instantiations_datatable_view($records, $column_order)
 				if ( ! empty($value->actual_duration))
 					$duration = date('H:i:s', strtotime($value->actual_duration));
 				else if ( ! empty($value->projected_duration))
-					$duration = date ('H:i:s', strtotime ($value->projected_duration));
+					$duration = date('H:i:s', strtotime($value->projected_duration));
 				$table_view[$main_index][] = '<span style="float:left;min-width:150px;max-width:150px;">' . $duration . '</span>';
+				$duration = NULL;
 			}
 			else if ($type == 'Date')
 			{

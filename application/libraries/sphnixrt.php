@@ -573,7 +573,7 @@ class Sphnixrt
 			return array('error' => $this->errors[1]);
 
 			// end
-			break;
+//			break;
 		}
 
 		// build query
@@ -584,12 +584,12 @@ class Sphnixrt
 		{
 			// process
 			// this should be a list of id's
-			$query .= ' WHERE IN (' . implode(',', $data_array) . ')';
+			$query .= ' WHERE id IN (' . implode(',', $data_array) . ')';
 		}
 		else
 		{
 			// give it a raw query
-			$query .= ' WHERE ' . $data_array;
+			$query .= ' WHERE id ' . $data_array;
 		}
 
 		// perform query

@@ -262,7 +262,7 @@ class Crons extends CI_Controller
 		/* End Graph Get Scheduled Formats  */
 		/* Start Meterial Goal  */
 		$data['material_goal'] = $this->dashboard_model->get_digitized_hours();
-		debug($data['material_goal']);
+		debug($data);
 		$this->memcached_library->set('material_goal', json_encode($data['material_goal']), 3600);
 		/* End Meterial Goal  */
 

@@ -879,10 +879,11 @@
 		facet_search('0');
 	}
 	function manageLayout() {
-		$('.container').width($(window).width() - 50);
+		$('.container').width($(window).width());
 		$('.navbar-inner').width($(window).width() - 50);
 		$('#top_setting_nav').width($(window).width() - 50);
 		$('body').css('overflow', 'hidden');
+		$('.span3').css('min-height', $(window).height() - 90);
 		$('.span3').css('max-height', $(window).height() - 90);
 		$('#data_container').width($(window).width() - 300);
 	}

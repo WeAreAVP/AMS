@@ -32,7 +32,7 @@ function simple_simple_datatable_view($records)
 
 		$tablesort[$index][] = str_replace("(**)", '', '<span style="float:left;min-width:200px;max-width:200px;">' . $value->organization . '</span>');
 		$tablesort[$index][] = str_replace("(**)", '', '<span style="float:left;min-width:250px;max-width:250px;"><a href="' . site_url('records/details/' . $value->id) . '">' . $value->guid_identifier . '</a></span>');
-		$tablesort[$index][] = str_replace('|','<br/>',str_replace("(**)", '', '<span style="float:left;min-width:250px;max-width:250px;">' . $value->local_identifier . '</span>'));
+		$tablesort[$index][] = str_replace('|', '<br/>', str_replace("(**)", '', '<span style="float:left;min-width:250px;max-width:250px;">' . $value->local_identifier . '</span>'));
 		$tablesort[$index][] = str_replace("(**)", '', '<span style="float:left;min-width:300px;max-width:300px;">' . $asset_combine . '</span>');
 		if (strlen($value->description) > 200)
 			$description = substr($value->description, 0, strpos($value->description, ' ', 200)) . '...';
@@ -95,7 +95,7 @@ function full_assets_datatable_view($records, $column_order)
 			}
 			else if ($type == 'Local_ID')
 			{
-				$tablesort[$main_index][] = '<span style="float:left;min-width:200px;max-width:200px;">' . str_replace('|','<br/>',str_replace('(**)', '', $asset->local_identifier)) . '</span>';
+				$tablesort[$main_index][] = '<span style="float:left;min-width:200px;max-width:200px;">' . str_replace('|', '<br/>', str_replace('(**)', '', $asset->local_identifier)) . '</span>';
 			}
 			else if ($type == 'Description')
 			{
@@ -537,7 +537,10 @@ function instantiations_datatable_view($records, $column_order)
 			}
 			else if ($type == 'Duration')
 			{
-				$duration = ($value->actual_duration) ? date('H:i:s', strtotime($value->actual_duration)) : date('H:i:s', strtotime($value->projected_duration));
+				if ( ! empty($value->actual_duration))
+					$duration = date('H:i:s', strtotime($value->actual_duration));
+				else if ( ! empty($value->projected_duration))
+					$duration = date ('H:i:s', strtotime ($value->projected_duration));
 				$table_view[$main_index][] = '<span style="float:left;min-width:150px;max-width:150px;">' . $duration . '</span>';
 			}
 			else if ($type == 'Date')

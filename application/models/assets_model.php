@@ -49,6 +49,7 @@ class Assets_Model extends CI_Model
 		$this->_table_backup = 'stations_backup';
 		$this->_table_asset_title_types = 'asset_title_types';
 		$this->_table_subjects = 'subjects';
+		$this->_table_subject_types = 'subject_types';
 		$this->_table_assets_subjects = 'assets_subjects';
 		$this->_table_asset_descriptions = 'asset_descriptions';
 		$this->_table_description_types = 'description_types';
@@ -388,6 +389,7 @@ class Assets_Model extends CI_Model
 		}
 		return false;
 	}
+
 	function get_guid_identifier_by_asset_id($asset_id)
 	{
 		$this->db->where("assets_id", $asset_id);
@@ -811,6 +813,23 @@ class Assets_Model extends CI_Model
 	}
 
 	/**
+	 * search subject type by type
+	 * 
+	 * @param type $subject_type
+	 * @return object 
+	 */
+	function get_subject_type_by_type($subject_type)
+	{
+		$this->db->where("subject_type", $subject_type);
+		$res = $this->db->get($this->_table_subject_types);
+		if (isset($res) && ! empty($res))
+		{
+			return $res->row();
+		}
+		return false;
+	}
+
+	/**
 	 * search subject by assets_id
 	 * 
 	 * @param type $title_type
@@ -933,6 +952,20 @@ class Assets_Model extends CI_Model
 	function insert_subjects($data)
 	{
 		$this->db->insert($this->_table_subjects, $data);
+		return $this->db->insert_id();
+	}
+
+	/*
+	 *
+	 * insert the records in subjects type table
+	 * 
+	 * @param array $data
+	 * @return last inserted id 
+	 */
+
+	function insert_subject_type($data)
+	{
+		$this->db->insert($this->_table_subject_types, $data);
 		return $this->db->insert_id();
 	}
 

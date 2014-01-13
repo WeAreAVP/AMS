@@ -885,7 +885,7 @@
 		$('body').css('overflow', 'hidden');
 		$('.span3').css('min-height', $(window).height() - 90);
 		$('.span3').css('max-height', $(window).height() - 90);
-		$('#search_bar').css('max-height', $(window).height() - 95);
+		$('#search_bar').css('height', $(window).height() - 95);
 		$('#data_container').width($(window).width() - 279);
 	}
 	function load_facet_columns(index, isSearch) {

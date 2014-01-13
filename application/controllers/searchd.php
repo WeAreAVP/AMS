@@ -50,6 +50,8 @@ class Searchd extends CI_Controller
 
 	function test()
 	{
+		error_reporting(E_ALL);
+			ini_set('display_errors', 1);
 		$count=1;
 		for ($_id = 4894313; $_id <= 4895090; $_id ++ )
 		{

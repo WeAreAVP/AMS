@@ -52,13 +52,14 @@ class Searchd extends CI_Controller
 	{
 		error_reporting(E_ALL);
 			ini_set('display_errors', 1);
-		$count=1;
-		for ($_id = 4894313; $_id <= 4895090; $_id ++ )
+		$count=4894315;
+		for ($_id = 4894315; $_id <= 4895090; $_id ++ )
 		{
-			echo $count.'<br/>';
-			$count++;
-			$this->sphnixrt->delete('instantiations_list', $_id);
+			
+			$count .=$_id.',';
+//			$this->sphnixrt->delete('instantiations_list', $_id);
 		}
+		echo $count;exit;
 		$count=1;
 		for ($_id = 4847882; $_id <= 4848659; $_id ++ )
 		{

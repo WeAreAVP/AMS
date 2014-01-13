@@ -534,6 +534,7 @@ function instantiations_datatable_view($records, $column_order)
 				if ($value->format_name != '')
 					$column.=': ' . $value->format_name;
 				$table_view[$main_index][] = '<span style="float:left;min-width:150px;max-width:150px;">' . $column . '</span>';
+				$column=NULL;
 			}
 			else if ($type == 'Duration')
 			{
@@ -548,12 +549,14 @@ function instantiations_datatable_view($records, $column_order)
 			{
 				$date = ($value->dates == 0) ? '' : date('Y-m-d', $value->dates) . ' ' . $value->date_type;
 				$table_view[$main_index][] = '<span style="float:left;min-width:150px;max-width:150px;">' . $date . '</span>';
+				$date=NULL;
 			}
 			else if ($type == 'File_size')
 			{
 				$file_size_unit = ($value->file_size_unit_of_measure) ? $value->file_size_unit_of_measure : '';
 				$file_size = $value->file_size . ' ' . $file_size_unit;
 				$table_view[$main_index][] = '<span style="float:left;min-width:150px;max-width:150px;">' . $file_size . '</span>';
+				$file_size=NULL;
 			}
 			else if ($type == 'Colors')
 			{

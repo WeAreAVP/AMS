@@ -48,7 +48,7 @@ else if (ENVIRONMENT == 'qatesting')
 	$config['instance_name'] = 'amsqa';
 } if (ENVIRONMENT == 'production')
 {
-	$config['base_url'] = HTTP_PREFIX_STR . "ams.avpreserve.com/";
+	$config['base_url'] =   "https://ams.avpreserve.com/";
 	$config['to_email'] = 'ssapienza@cpb.org';
 	$config['from_email'] = 'noreply@ams.avpreserve.com';
 	$config['crawford_email'] = 'cstephenson@mail.crawford.com';

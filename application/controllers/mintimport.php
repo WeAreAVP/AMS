@@ -266,7 +266,7 @@ class Mintimport extends CI_Controller
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-		myLog($path);
+//		myLog($path);
 //		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
 		$file_content = file_get_contents($this->mint_path.'Output_329.xml');
 		$xml_string = @simplexml_load_string($file_content);
@@ -1537,7 +1537,8 @@ class Mintimport extends CI_Controller
 								debug($nomination_d,FALSE);
 								if (isset($nomination_d['nomination_status_id']))
 								{
-//									$nomination_d['created'] = date("Y-m-d H:i:s");
+									$nomination_d['created'] = date("Y-m-d H:i:s");
+									break;
 //									$this->assets_model->insert_nominations($nomination_d);
 								}
 							}

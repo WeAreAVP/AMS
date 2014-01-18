@@ -267,15 +267,17 @@ class Mintimport extends CI_Controller
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 		myLog($path);
-		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
+//		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
+		$file_content = file_get_contents('');
 		$xml_string = @simplexml_load_string($file_content);
 		unset($file_content);
 		$xmlArray = xmlObjToArr($xml_string);
 
-		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
-
+//		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
+		$asset_id=1;
+		$station_id=1;
 		myLog('Created Asset ID ' . $asset_id);
-		$this->import_asset_info($asset_id, $station_id, $xmlArray['children']);
+//		$this->import_asset_info($asset_id, $station_id, $xmlArray['children']);
 
 		$this->import_instantiation_info($asset_id, $xmlArray['children']);
 		myLog('Successfully imported all the information to AMS');
@@ -993,491 +995,491 @@ class Mintimport extends CI_Controller
 					$instantiations_d = array();
 					$instantiations_d['assets_id'] = $asset_id;
 					// Instantiation Location Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationlocation'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationlocation'][0]['text']))
-					{
-						$instantiations_d['location'] = $pbcoreinstantiation_child['ams:instantiationlocation'][0]['text'];
-					}
-					// Instantiation Location End //
-					// Instantiation Standard Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationstandard'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationstandard'][0]['text']))
-					{
-						$instantiations_d['standard'] = $pbcoreinstantiation_child['ams:instantiationstandard'][0]['text'];
-					}
-					// Instantiation Standard End //
-					// Instantiation Media Type Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationmediatype'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationmediatype'][0]['text']))
-					{
-						$inst_media_type = $this->instant->get_instantiation_media_types_by_media_type($pbcoreinstantiation_child['ams:instantiationmediatype'][0]['text']);
-						if ( ! is_empty($inst_media_type))
-						{
-							$instantiations_d['instantiation_media_type_id'] = $inst_media_type->id;
-						}
-						else
-						{
-							$instantiations_d['instantiation_media_type_id'] = $this->instant->insert_instantiation_media_types(array("media_type" => $pbcoreinstantiation_child['ams:instantiationmediatype'][0]['text']));
-						}
-					}
-					// Instantiation Media Type End //
-					// Instantiation File Size Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationfilesize'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationfilesize'][0]['text']))
-					{
-						$instantiations_d['file_size'] = $pbcoreinstantiation_child['ams:instantiationfilesize'][0]['text'];
-						if (isset($pbcoreinstantiation_child['ams:instantiationfilesize'][0]['attributes']['unitsofmeasure']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationfilesize'][0]['attributes']['unitsofmeasure']))
-						{
-							$instantiations_d['file_size_unit_of_measure'] = $pbcoreinstantiation_child['ams:instantiationfilesize'][0]['attributes']['unitsofmeasure'];
-						}
-					}
-					// Instantiation File Size End //
-					// Instantiation Time Start Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationtimestart'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationtimestart'][0]['text']))
-					{
-						$instantiations_d['time_start'] = trim($pbcoreinstantiation_child['ams:instantiationtimestart'][0]['text']);
-					}
-					// Instantiation Time Start End //
-					// Instantiation Projected Duration Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationduration'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationduration'][0]['text']))
-					{
-						$instantiations_d['projected_duration'] = trim($pbcoreinstantiation_child['ams:instantiationduration'][0]['text']);
-					}
-					// Instantiation Projected Duration End //
-					// Instantiation Data Rate Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationdatarate'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationdatarate'][0]['text']))
-					{
-						$instantiations_d['data_rate'] = trim($pbcoreinstantiation_child['ams:instantiationdatarate'][0]['text']);
-						if (isset($pbcoreinstantiation_child['ams:instantiationdatarate'][0]['attributes']['unitsofmeasure']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationdatarate'][0]['attributes']['unitsofmeasure']))
-						{
-							$data_rate_unit_d = $this->instant->get_data_rate_units_by_unit($pbcoreinstantiation_child['ams:instantiationdatarate'][0]['attributes']['unitsofmeasure']);
-							if (isset($data_rate_unit_d) && isset($data_rate_unit_d->id))
-							{
-								$instantiations_d['data_rate_units_id'] = $data_rate_unit_d->id;
-							}
-							else
-							{
-								$instantiations_d['data_rate_units_id'] = $this->instant->insert_data_rate_units(array("unit_of_measure" => $pbcoreinstantiation_child['ams:instantiationdatarate'][0]['attributes']['unitsofmeasure']));
-							}
-						}
-					}
-					// Instantiation Data Rate End //
-					// Instantiation Color Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationcolors'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationcolors'][0]['text']))
-					{
-
-						$inst_color_d = $this->instant->get_instantiation_colors_by_color($pbcoreinstantiation_child['ams:instantiationcolors'][0]['text']);
-						if (isset($inst_color_d) && ! is_empty($inst_color_d))
-						{
-							$instantiations_d['instantiation_colors_id'] = $inst_color_d->id;
-						}
-						else
-						{
-							$instantiations_d['instantiation_colors_id'] = $this->instant->insert_instantiation_colors(array('color' => $pbcoreinstantiation_child['ams:instantiationcolors'][0]['text']));
-						}
-					}
-					// Instantiation Color End //
-					// Instantiation Tracks Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationtracks'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationtracks'][0]['text']))
-					{
-						$instantiations_d['tracks'] = $pbcoreinstantiation_child['ams:instantiationtracks'][0]['text'];
-					}
-					// Instantiation Tracks End //
-					//Instantiation Channel Configuration Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationchannelconfiguration'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationchannelconfiguration'][0]['text']))
-					{
-						$instantiations_d['channel_configuration'] = $pbcoreinstantiation_child['ams:instantiationchannelconfiguration'][0]['text'];
-					}
-					//Instantiation Channel Configuration End //
-					//Instantiation Language Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationlanguage'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationlanguage'][0]['text']))
-					{
-						$instantiations_d['language'] = $pbcoreinstantiation_child['ams:instantiationlanguage'][0]['text'];
-					}
-					//Instantiation Language End //
-					//Instantiation Alternative Mode Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationalternativemodes'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationalternativemodes'][0]['text']))
-					{
-						$instantiations_d['alternative_modes'] = $pbcoreinstantiation_child['ams:instantiationalternativemodes'][0]['text'];
-					}
-					//Instantiation Alternative Mode End //
-
-					$insert_instantiation = TRUE;
-					$instantiations_d['created'] = date("Y-m-d H:i:s");
-					$instantiations_id = $this->instant->insert_instantiations($instantiations_d);
-					// Instantiations Identifier Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationidentifier']))
-					{
-
-						foreach ($pbcoreinstantiation_child['ams:instantiationidentifier'] as $pbcore_identifier)
-						{
-							$instantiation_identifier_d = array();
-							$instantiation_identifier_d['instantiations_id'] = $instantiations_id;
-							if (isset($pbcore_identifier['text']) && ! is_empty($pbcore_identifier['text']))
-							{
-								$instantiation_identifier_d['instantiation_identifier'] = $pbcore_identifier['text'];
-								if (isset($pbcore_identifier['attributes']['source']) && ! is_empty($pbcore_identifier['attributes']['source']))
-								{
-									$instantiation_identifier_d['instantiation_source'] = $pbcore_identifier['attributes']['source'];
-								}
-								$instantiation_identifier_id = $this->instant->insert_instantiation_identifier($instantiation_identifier_d);
-							}
-						}
-					}
-					// Instantiations Identifier End //
-					// Instantiations Date Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationdate']))
-					{
-
-						foreach ($pbcoreinstantiation_child['ams:instantiationdate'] as $pbcore_date)
-						{
-							$instantiation_dates_d = array();
-							$instantiation_dates_d['instantiations_id'] = $instantiations_id;
-							if (isset($pbcore_date['text']) && ! is_empty($pbcore_date['text']))
-							{
-								$instantiation_dates_d['instantiation_date'] = str_replace(array('?', 'Unknown', 'unknown', '`', '[' . ']', 'N/A', 'N/A?', 'Jim Cooper', 'various', '.00', '.0', 'John Kelling', 'Roll in', 'interview'), '', $pbcore_date['text']);
-								if (isset($instantiation_dates_d['instantiation_date']) && ! is_empty($instantiation_dates_d['instantiation_date']))
-								{
-									$date_check = $this->is_valid_date($instantiation_dates_d['instantiation_date']);
-									if ($date_check === FALSE)
-									{
-										$instantiation_annotation_d = array();
-										$instantiation_annotation_d['instantiations_id'] = $instantiations_id;
-										$instantiation_annotation_d['annotation'] = $instantiation_dates_d['instantiation_date'];
-										if (isset($pbcore_date['attributes']['datetype']) && ! is_empty($pbcore_date['attributes']['datetype']))
-										{
-											$instantiation_annotation_d['annotation_type'] = $pbcore_date['attributes']['datetype'];
-										}
-
-										$this->instant->insert_instantiation_annotations($instantiation_annotation_d);
-									}
-									else
-									{
-										if (isset($pbcore_date['attributes']['datetype']) && ! is_empty($pbcore_date['attributes']['datetype']))
-										{
-											$date_type = $this->instant->get_date_types_by_type($pbcore_date['attributes']['datetype']);
-											if (isset($date_type) && isset($date_type->id))
-											{
-												$instantiation_dates_d['date_types_id'] = $date_type->id;
-											}
-											else
-											{
-												$instantiation_dates_d['date_types_id'] = $this->instant->insert_date_types(array('date_type' => $pbcore_date['attributes']['datetype']));
-											}
-										}
-										$this->instant->insert_instantiation_dates($instantiation_dates_d);
-									}
-								}
-							}
-						}
-					}
-					// Instantiations Date End //
-					// Instantiations Dimension Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationdimensions']))
-					{
-
-						foreach ($pbcoreinstantiation_child['ams:instantiationdimensions'] as $pbcore_dimension)
-						{
-							$instantiation_dimension_d = array();
-							$instantiation_dimension_d['instantiations_id'] = $instantiations_id;
-							if (isset($pbcore_dimension['text']) && ! is_empty($pbcore_dimension['text']))
-							{
-								$instantiation_dimension_d['instantiation_dimension'] = $pbcore_dimension['text'];
-								$instantiation_dimension_d['unit_of_measure'] = '';
-								if (isset($pbcore_dimension['attributes']['unitofmeasure']) && ! is_empty($pbcore_dimension['attributes']['unitofmeasure']))
-								{
-									$instantiation_dimension_d['unit_of_measure'] = $pbcore_dimension['attributes']['unitofmeasure'];
-								}
-								$this->instant->insert_instantiation_dimensions($instantiation_dimension_d);
-							}
-						}
-					}
-					// Instantiations Dimension End //
-					// Instantiations Format Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationphysical']))
-					{
-
-						foreach ($pbcoreinstantiation_child['ams:instantiationphysical'] as $pbcore_physical)
-						{
-							if (isset($pbcore_physical['text']) && ! is_empty($pbcore_physical['text']))
-							{
-								$instantiation_format_physical_d = array();
-								$instantiation_format_physical_d['instantiations_id'] = $instantiations_id;
-								$instantiation_format_physical_d['format_name'] = $pbcore_physical['text'];
-								$instantiation_format_physical_d['format_type'] = 'physical';
-								$instantiation_format_physical_id = $this->instant->insert_instantiation_formats($instantiation_format_physical_d);
-							}
-						}
-					}
-					else if (isset($pbcoreinstantiation_child['ams:instantiationdigital']))
-					{
-
-						foreach ($pbcoreinstantiation_child['ams:instantiationdigital'] as $pbcore_digital)
-						{
-							if (isset($pbcore_digital['text']) && ! is_empty($pbcore_digital['text']))
-							{
-								$instantiation_format_digital_d = array();
-								$instantiation_format_digital_d['instantiations_id'] = $instantiations_id;
-								$instantiation_format_digital_d['format_name'] = $pbcore_digital['text'];
-								$instantiation_format_digital_d['format_type'] = 'digital';
-								$instantiation_format_digital_id = $this->instant->insert_instantiation_formats($instantiation_format_digital_d);
-							}
-						}
-					}
-					// Instantiations  Format End //
-					// Instantiations  Generation Start //
-
-					if (isset($pbcoreinstantiation_child['ams:instantiationgenerations']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationgenerations']))
-					{
-						foreach ($pbcoreinstantiation_child['ams:instantiationgenerations'] as $instantiation_generations)
-						{
-							if (isset($instantiation_generations['text']) && ! is_empty($instantiation_generations['text']))
-							{
-								$instantiation_format_generations_d = array();
-								$instantiation_format_generations_d['instantiations_id'] = $instantiations_id;
-								$generations_d = $this->instant->get_generations_by_generation($instantiation_generations['text']);
-								if (isset($generations_d) && isset($generations_d->id))
-								{
-									$instantiation_format_generations_d['generations_id'] = $generations_d->id;
-								}
-								else
-								{
-									$instantiation_format_generations_d['generations_id'] = $this->instant->insert_generations(array("generation" => $instantiation_generations['text']));
-								}
-								$this->instant->insert_instantiation_generations($instantiation_format_generations_d);
-							}
-						}
-					}
-					// Instantiations  Generation End //
-					// Instantiations  Annotation Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationannotation']))
-					{
-						foreach ($pbcoreinstantiation_child['ams:instantiationannotation'] as $pbcore_annotation)
-						{
-							if (isset($pbcore_annotation['text']) && ! is_empty($pbcore_annotation['text']))
-							{
-								$instantiation_annotation_d = array();
-								$instantiation_annotation_d['instantiations_id'] = $instantiations_id;
-								$instantiation_annotation_d['annotation'] = $pbcore_annotation['text'];
-
-								if (isset($pbcore_annotation['attributes']['annotationtype']) && ! is_empty($pbcore_annotation['attributes']['annotationtype']))
-								{
-									$instantiation_annotation_d['annotation_type'] = $pbcore_annotation['attributes']['annotationtype'];
-								}
-								$this->instant->insert_instantiation_annotations($instantiation_annotation_d);
-							}
-						}
-					}
-					// Instantiations  Annotation End //
-					// Instantiations Relation Start  //
-					if (isset($pbcoreinstantiation_child['ams:pbcorerelation']))
-					{
-						foreach ($pbcoreinstantiation_child['ams:pbcorerelation'] as $pbcorerelation)
-						{
-
-							if (isset($pbcorerelation['children']['ams:pbcorerelationidentifier'][0]['text']) && ! is_empty($pbcore_creator['children']['ams:pbcorerelationidentifier'][0]['text']))
-							{
-								$instantiation_relation_d = array();
-								$instantiation_relation_d['instantiations_id'] = $instantiations_id;
-								$instantiation_relation_d = $pbcorerelation['children']['ams:pbcorerelationidentifier'][0]['text'];
-								if (isset($pbcorerelation['children']['pbcorerelationtype'][0]['text']) && ! is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['text']))
-								{
-									$relation_type_info['relation_type'] = $pbcorerelation['children']['pbcorerelationtype'][0]['text'];
-									if (isset($pbcorerelation['children']['ams:pbcorerelationtype'][0]['attributes']['source']) && ! is_empty($pbcore_creator['children']['ams:pbcorerelationtype'][0]['attributes']['source']))
-									{
-										$relation_type_info['relation_type_source'] = $pbcorerelation['children']['ams:pbcorerelationtype'][0]['attributes']['source'];
-									}
-									if (isset($pbcorerelation['children']['ams:pbcorerelationtype'][0]['attributes']['ref']) && ! is_empty($pbcore_creator['children']['ams:pbcorerelationtype'][0]['attributes']['ref']))
-									{
-										$relation_type_info['relation_type_ref'] = $pbcorerelation['children']['ams:pbcorerelationtype'][0]['attributes']['ref'];
-									}
-									$db_relations = $this->assets_model->get_relation_types($relation_type_info['relation_type']);
-									if (isset($db_relations) && isset($db_relations->id))
-									{
-										$instantiation_relation_d['relation_types_id'] = $db_relations->id;
-									}
-									else
-									{
-										$instantiation_relation_d['relation_types_id'] = $this->assets_model->insert_relation_types($relation_type_info);
-									}
-									$this->instant->insert_instantiation_relation($instantiation_relation_d);
-								}
-							}
-						}
-					}
-					// Instantiations Relation End  //
-					// Instantiations Essence Tracks Start //
-					if (isset($pbcoreinstantiation_child['ams:instantiationessencetrack']))
-					{
-						foreach ($pbcoreinstantiation_child['ams:instantiationessencetrack'] as $pbcore_essence_track)
-						{
-							if (isset($pbcore_essence_track['children']) && ! is_empty($pbcore_essence_track['children']))
-							{
-								$pbcore_essence_child = $pbcore_essence_track['children'];
-								$essence_tracks_d = array();
-								$essence_tracks_d['instantiations_id'] = $instantiations_id;
-								// Essence Track Standard Start //
-								if (isset($pbcore_essence_child['ams:essencetrackstandard'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackstandard'][0]['text']))
-								{
-									$essence_tracks_d['standard'] = $pbcore_essence_child['ams:essencetrackstandard'][0]['text'];
-								}
-								// Essence Track Standard End //
-								// Essence Track Data Rate Start //
-
-								if (isset($pbcore_essence_child['ams:essencetrackdatarate'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackdatarate'][0]['text']))
-								{
-									$essence_tracks_d['data_rate'] = $pbcore_essence_child['essencetrackdatarate'][0]['text'];
-									if (isset($pbcore_essence_child['ams:essencetrackdatarate'][0]['attributes']['unitsofmeasure']) && ! is_empty($pbcore_essence_child['ams:essencetrackdatarate'][0]['attributes']['unitsofmeasure']))
-									{
-
-										$data_rate_unit_d = $this->instant->get_data_rate_units_by_unit($pbcore_essence_child['ams:essencetrackdatarate'][0]['attributes']['unitsofmeasure']);
-										if (isset($data_rate_unit_d) && isset($data_rate_unit_d->id))
-										{
-											$essence_tracks_d['data_rate_units_id'] = $data_rate_unit_d->id;
-										}
-										else
-										{
-											$essence_tracks_d['data_rate_units_id'] = $this->instant->insert_data_rate_units(array("unit_of_measure" => $pbcore_essence_child['ams:essencetrackdatarate'][0]['attributes']['unitsofmeasure']));
-										}
-									}
-								}
-
-								// Essence Track Data Rate End //
-								// Essence Track Frame Rate Start //
-								if (isset($pbcore_essence_child['ams:essencetrackframerate'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackframerate'][0]['text']))
-								{
-									$frame_rate = explode(" ", $pbcore_essence_child['ams:essencetrackframerate'][0]['text']);
-									$essence_tracks_d['frame_rate'] = trim($frame_rate[0]);
-								}
-								// Essence Track Frame Rate End //
-								// Essence Track Play Back Speed Start //
-								if (isset($pbcore_essence_child['ams:essencetrackplaybackspeed'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackplaybackspeed'][0]['text']))
-								{
-									$essence_tracks_d['playback_speed'] = $pbcore_essence_child['ams:essencetrackplaybackspeed'][0]['text'];
-								}
-								// Essence Track Play Back Speed End //
-								// Essence Track Sampling Rate Start //
-								if (isset($pbcore_essence_child['ams:essencetracksamplingrate'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetracksamplingrate'][0]['text']))
-								{
-									$essence_tracks_d['sampling_rate'] = $pbcore_essence_child['ams:essencetracksamplingrate'][0]['text'];
-								}
-								// Essence Track Sampling Rate End //
-								// Essence Track bit depth Start //
-								if (isset($pbcore_essence_child['ams:essencetrackbitdepth'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackbitdepth'][0]['text']))
-								{
-									$essence_tracks_d['bit_depth'] = $pbcore_essence_child['essencetrackbitdepth'][0]['text'];
-								}
-								// Essence Track bit depth End //
-								// Essence Track Aspect Ratio Start //
-								if (isset($pbcore_essence_child['ams:essencetrackaspectratio'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackaspectratio'][0]['text']))
-								{
-									$essence_tracks_d['aspect_ratio'] = $pbcore_essence_child['ams:essencetrackaspectratio'][0]['text'];
-								}
-								// Essence Track Aspect Ratio End //
-								// Essence Track Time Start //
-								if (isset($pbcore_essence_child['ams:essencetracktimestart'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetracktimestart'][0]['text']))
-								{
-									$essence_tracks_d['time_start'] = $pbcore_essence_child['ams:essencetracktimestart'][0]['text'];
-								}
-								// Essence Track Time End //
-								// Essence Track Duration Start //
-
-								if (isset($pbcore_essence_child['ams:essencetrackduration'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackduration'][0]['text']))
-								{
-									$essence_tracks_d['duration'] = $pbcore_essence_child['essencetrackduration'][0]['text'];
-								}
-								// Essence Track Duration End //
-								// Essence Track Language Start //
-
-								if (isset($pbcore_essence_child['ams:essencetracklanguage'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetracklanguage'][0]['text']))
-								{
-									$essence_tracks_d['language'] = $pbcore_essence_child['ams:essencetracklanguage'][0]['text'];
-								}
-								// Essence Track Language Start //
-								// Essence Track Type Start //
-								if (isset($pbcore_essence_child['ams:essencetracktype'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetracktype'][0]['text']))
-								{
-									$essence_track_type_d = $this->essence->get_essence_track_by_type($pbcore_essence_child['ams:essencetracktype'][0]['text']);
-									if (isset($essence_track_type_d) && isset($essence_track_type_d->id))
-									{
-										$essence_tracks_d['essence_track_types_id'] = $essence_track_type_d->id;
-									}
-									else
-									{
-										$essence_tracks_d['essence_track_types_id'] = $this->essence->insert_essence_track_types(array('essence_track_type' => $pbcore_essence_child['ams:essencetracktype'][0]['text']));
-									}
-								}
-								// Essence Track Type End //
-								// Essence Track Frame Size Start //
-								if (isset($pbcore_essence_child['ams:essencetrackframesize'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackframesize'][0]['text']))
-								{
-									$frame_sizes = explode("x", strtolower($pbcore_essence_child['ams:essencetrackframesize'][0]['text']));
-									if (isset($frame_sizes[0]) && isset($frame_sizes[1]))
-									{
-										$track_frame_size_d = $this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame_sizes[0]), trim($frame_sizes[1]));
-										if ($track_frame_size_d)
-										{
-											$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;
-										}
-										else
-										{
-											$essence_tracks_d['essence_track_frame_sizes_id'] = $this->essence->insert_essence_track_frame_sizes(array("width" => $frame_sizes[0], "height" => $frame_sizes[1]));
-										}
-									}
-								}
-								// Essence Track Frame Size End //
-								if (isset($essence_tracks_d['essence_track_types_id']) && ! empty($essence_tracks_d['essence_track_types_id']) && $essence_tracks_d['essence_track_types_id'] != NULL)
-								{
-									$essence_tracks_id = $this->essence->insert_essence_tracks($essence_tracks_d);
-									$insert_essence_track = TRUE;
-									// Essence Track Identifier Start //
-									if (isset($pbcore_essence_child['ams:essencetrackidentifier'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackidentifier'][0]['text']))
-									{
-
-										$essence_track_identifiers_d = array();
-										$essence_track_identifiers_d['essence_tracks_id'] = $essence_tracks_id;
-										$essence_track_identifiers_d['essence_track_identifiers'] = $pbcore_essence_child['ams:essencetrackidentifier'][0]['text'];
-										if (isset($pbcore_essence_child['ams:essencetrackidentifier'][0]['attributes']['source']) && ! is_empty($pbcore_essence_child['ams:essencetrackidentifier'][0]['attributes']['source']))
-										{
-											$essence_track_identifiers_d['ams:essence_track_identifier_source'] = $pbcore_essence_child['ams:essencetrackidentifier'][0]['attributes']['source'];
-										}
-										$this->essence->insert_essence_track_identifiers($essence_track_identifiers_d);
-									}
-									// Essence Track Identifier End //
-									// Essence Track Encoding Start //
-									if (isset($pbcore_essence_child['ams:essencetrackencoding'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackencoding'][0]['text']))
-									{
-
-										$essence_track_standard_d = array();
-										$essence_track_standard_d['essence_tracks_id'] = $essence_tracks_id;
-										$essence_track_standard_d['encoding'] = $pbcore_essence_child['ams:essencetrackencoding'][0]['text'];
-										if (isset($pbcore_essence_child['ams:essencetrackencoding'][0]['attributes']['ref']) && ! is_empty($pbcore_essence_child['ams:essencetrackencoding'][0]['attributes']['ref']))
-										{
-											$essence_track_standard_d['encoding_source'] = $pbcore_essence_child['ams:essencetrackencoding'][0]['attributes']['ref'];
-										}
-										$this->essence->insert_essence_track_encodings($essence_track_standard_d);
-									}
-									// Essence Track Encoding End //
-									// Essence Track Annotation Start //
-									if (isset($pbcore_essence_child['ams:essencetrackannotation']) && ! is_empty($pbcore_essence_child['ams:essencetrackannotation']))
-									{
-										foreach ($pbcore_essence_child['ams:essencetrackannotation'] as $trackannotation)
-										{
-											if (isset($trackannotation['text']) && ! is_empty($trackannotation['text']))
-											{
-												$essencetrackannotation = array();
-												$essencetrackannotation['essence_tracks_id'] = $essence_tracks_id;
-												$essencetrackannotation['annotation'] = $trackannotation['text'];
-
-												if (isset($trackannotation['attributes']['type']) && ! is_empty($trackannotation['attributes']['type']))
-												{
-													$essencetrackannotation['annotation_type'] = $trackannotation['attributes']['type'];
-												}
-												$this->essence->insert_essence_track_annotations($essencetrackannotation);
-											}
-										}
-									}
-									// Essence Track Annotation End //
-								}
-							}
-						}
-					}
+//					if (isset($pbcoreinstantiation_child['ams:instantiationlocation'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationlocation'][0]['text']))
+//					{
+//						$instantiations_d['location'] = $pbcoreinstantiation_child['ams:instantiationlocation'][0]['text'];
+//					}
+//					// Instantiation Location End //
+//					// Instantiation Standard Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationstandard'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationstandard'][0]['text']))
+//					{
+//						$instantiations_d['standard'] = $pbcoreinstantiation_child['ams:instantiationstandard'][0]['text'];
+//					}
+//					// Instantiation Standard End //
+//					// Instantiation Media Type Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationmediatype'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationmediatype'][0]['text']))
+//					{
+//						$inst_media_type = $this->instant->get_instantiation_media_types_by_media_type($pbcoreinstantiation_child['ams:instantiationmediatype'][0]['text']);
+//						if ( ! is_empty($inst_media_type))
+//						{
+//							$instantiations_d['instantiation_media_type_id'] = $inst_media_type->id;
+//						}
+//						else
+//						{
+//							$instantiations_d['instantiation_media_type_id'] = $this->instant->insert_instantiation_media_types(array("media_type" => $pbcoreinstantiation_child['ams:instantiationmediatype'][0]['text']));
+//						}
+//					}
+//					// Instantiation Media Type End //
+//					// Instantiation File Size Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationfilesize'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationfilesize'][0]['text']))
+//					{
+//						$instantiations_d['file_size'] = $pbcoreinstantiation_child['ams:instantiationfilesize'][0]['text'];
+//						if (isset($pbcoreinstantiation_child['ams:instantiationfilesize'][0]['attributes']['unitsofmeasure']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationfilesize'][0]['attributes']['unitsofmeasure']))
+//						{
+//							$instantiations_d['file_size_unit_of_measure'] = $pbcoreinstantiation_child['ams:instantiationfilesize'][0]['attributes']['unitsofmeasure'];
+//						}
+//					}
+//					// Instantiation File Size End //
+//					// Instantiation Time Start Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationtimestart'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationtimestart'][0]['text']))
+//					{
+//						$instantiations_d['time_start'] = trim($pbcoreinstantiation_child['ams:instantiationtimestart'][0]['text']);
+//					}
+//					// Instantiation Time Start End //
+//					// Instantiation Projected Duration Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationduration'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationduration'][0]['text']))
+//					{
+//						$instantiations_d['projected_duration'] = trim($pbcoreinstantiation_child['ams:instantiationduration'][0]['text']);
+//					}
+//					// Instantiation Projected Duration End //
+//					// Instantiation Data Rate Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationdatarate'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationdatarate'][0]['text']))
+//					{
+//						$instantiations_d['data_rate'] = trim($pbcoreinstantiation_child['ams:instantiationdatarate'][0]['text']);
+//						if (isset($pbcoreinstantiation_child['ams:instantiationdatarate'][0]['attributes']['unitsofmeasure']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationdatarate'][0]['attributes']['unitsofmeasure']))
+//						{
+//							$data_rate_unit_d = $this->instant->get_data_rate_units_by_unit($pbcoreinstantiation_child['ams:instantiationdatarate'][0]['attributes']['unitsofmeasure']);
+//							if (isset($data_rate_unit_d) && isset($data_rate_unit_d->id))
+//							{
+//								$instantiations_d['data_rate_units_id'] = $data_rate_unit_d->id;
+//							}
+//							else
+//							{
+//								$instantiations_d['data_rate_units_id'] = $this->instant->insert_data_rate_units(array("unit_of_measure" => $pbcoreinstantiation_child['ams:instantiationdatarate'][0]['attributes']['unitsofmeasure']));
+//							}
+//						}
+//					}
+//					// Instantiation Data Rate End //
+//					// Instantiation Color Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationcolors'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationcolors'][0]['text']))
+//					{
+//
+//						$inst_color_d = $this->instant->get_instantiation_colors_by_color($pbcoreinstantiation_child['ams:instantiationcolors'][0]['text']);
+//						if (isset($inst_color_d) && ! is_empty($inst_color_d))
+//						{
+//							$instantiations_d['instantiation_colors_id'] = $inst_color_d->id;
+//						}
+//						else
+//						{
+//							$instantiations_d['instantiation_colors_id'] = $this->instant->insert_instantiation_colors(array('color' => $pbcoreinstantiation_child['ams:instantiationcolors'][0]['text']));
+//						}
+//					}
+//					// Instantiation Color End //
+//					// Instantiation Tracks Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationtracks'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationtracks'][0]['text']))
+//					{
+//						$instantiations_d['tracks'] = $pbcoreinstantiation_child['ams:instantiationtracks'][0]['text'];
+//					}
+//					// Instantiation Tracks End //
+//					//Instantiation Channel Configuration Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationchannelconfiguration'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationchannelconfiguration'][0]['text']))
+//					{
+//						$instantiations_d['channel_configuration'] = $pbcoreinstantiation_child['ams:instantiationchannelconfiguration'][0]['text'];
+//					}
+//					//Instantiation Channel Configuration End //
+//					//Instantiation Language Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationlanguage'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationlanguage'][0]['text']))
+//					{
+//						$instantiations_d['language'] = $pbcoreinstantiation_child['ams:instantiationlanguage'][0]['text'];
+//					}
+//					//Instantiation Language End //
+//					//Instantiation Alternative Mode Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationalternativemodes'][0]['text']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationalternativemodes'][0]['text']))
+//					{
+//						$instantiations_d['alternative_modes'] = $pbcoreinstantiation_child['ams:instantiationalternativemodes'][0]['text'];
+//					}
+//					//Instantiation Alternative Mode End //
+//
+//					$insert_instantiation = TRUE;
+//					$instantiations_d['created'] = date("Y-m-d H:i:s");
+//					$instantiations_id = $this->instant->insert_instantiations($instantiations_d);
+//					// Instantiations Identifier Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationidentifier']))
+//					{
+//
+//						foreach ($pbcoreinstantiation_child['ams:instantiationidentifier'] as $pbcore_identifier)
+//						{
+//							$instantiation_identifier_d = array();
+//							$instantiation_identifier_d['instantiations_id'] = $instantiations_id;
+//							if (isset($pbcore_identifier['text']) && ! is_empty($pbcore_identifier['text']))
+//							{
+//								$instantiation_identifier_d['instantiation_identifier'] = $pbcore_identifier['text'];
+//								if (isset($pbcore_identifier['attributes']['source']) && ! is_empty($pbcore_identifier['attributes']['source']))
+//								{
+//									$instantiation_identifier_d['instantiation_source'] = $pbcore_identifier['attributes']['source'];
+//								}
+//								$instantiation_identifier_id = $this->instant->insert_instantiation_identifier($instantiation_identifier_d);
+//							}
+//						}
+//					}
+//					// Instantiations Identifier End //
+//					// Instantiations Date Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationdate']))
+//					{
+//
+//						foreach ($pbcoreinstantiation_child['ams:instantiationdate'] as $pbcore_date)
+//						{
+//							$instantiation_dates_d = array();
+//							$instantiation_dates_d['instantiations_id'] = $instantiations_id;
+//							if (isset($pbcore_date['text']) && ! is_empty($pbcore_date['text']))
+//							{
+//								$instantiation_dates_d['instantiation_date'] = str_replace(array('?', 'Unknown', 'unknown', '`', '[' . ']', 'N/A', 'N/A?', 'Jim Cooper', 'various', '.00', '.0', 'John Kelling', 'Roll in', 'interview'), '', $pbcore_date['text']);
+//								if (isset($instantiation_dates_d['instantiation_date']) && ! is_empty($instantiation_dates_d['instantiation_date']))
+//								{
+//									$date_check = $this->is_valid_date($instantiation_dates_d['instantiation_date']);
+//									if ($date_check === FALSE)
+//									{
+//										$instantiation_annotation_d = array();
+//										$instantiation_annotation_d['instantiations_id'] = $instantiations_id;
+//										$instantiation_annotation_d['annotation'] = $instantiation_dates_d['instantiation_date'];
+//										if (isset($pbcore_date['attributes']['datetype']) && ! is_empty($pbcore_date['attributes']['datetype']))
+//										{
+//											$instantiation_annotation_d['annotation_type'] = $pbcore_date['attributes']['datetype'];
+//										}
+//
+//										$this->instant->insert_instantiation_annotations($instantiation_annotation_d);
+//									}
+//									else
+//									{
+//										if (isset($pbcore_date['attributes']['datetype']) && ! is_empty($pbcore_date['attributes']['datetype']))
+//										{
+//											$date_type = $this->instant->get_date_types_by_type($pbcore_date['attributes']['datetype']);
+//											if (isset($date_type) && isset($date_type->id))
+//											{
+//												$instantiation_dates_d['date_types_id'] = $date_type->id;
+//											}
+//											else
+//											{
+//												$instantiation_dates_d['date_types_id'] = $this->instant->insert_date_types(array('date_type' => $pbcore_date['attributes']['datetype']));
+//											}
+//										}
+//										$this->instant->insert_instantiation_dates($instantiation_dates_d);
+//									}
+//								}
+//							}
+//						}
+//					}
+//					// Instantiations Date End //
+//					// Instantiations Dimension Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationdimensions']))
+//					{
+//
+//						foreach ($pbcoreinstantiation_child['ams:instantiationdimensions'] as $pbcore_dimension)
+//						{
+//							$instantiation_dimension_d = array();
+//							$instantiation_dimension_d['instantiations_id'] = $instantiations_id;
+//							if (isset($pbcore_dimension['text']) && ! is_empty($pbcore_dimension['text']))
+//							{
+//								$instantiation_dimension_d['instantiation_dimension'] = $pbcore_dimension['text'];
+//								$instantiation_dimension_d['unit_of_measure'] = '';
+//								if (isset($pbcore_dimension['attributes']['unitofmeasure']) && ! is_empty($pbcore_dimension['attributes']['unitofmeasure']))
+//								{
+//									$instantiation_dimension_d['unit_of_measure'] = $pbcore_dimension['attributes']['unitofmeasure'];
+//								}
+//								$this->instant->insert_instantiation_dimensions($instantiation_dimension_d);
+//							}
+//						}
+//					}
+//					// Instantiations Dimension End //
+//					// Instantiations Format Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationphysical']))
+//					{
+//
+//						foreach ($pbcoreinstantiation_child['ams:instantiationphysical'] as $pbcore_physical)
+//						{
+//							if (isset($pbcore_physical['text']) && ! is_empty($pbcore_physical['text']))
+//							{
+//								$instantiation_format_physical_d = array();
+//								$instantiation_format_physical_d['instantiations_id'] = $instantiations_id;
+//								$instantiation_format_physical_d['format_name'] = $pbcore_physical['text'];
+//								$instantiation_format_physical_d['format_type'] = 'physical';
+//								$instantiation_format_physical_id = $this->instant->insert_instantiation_formats($instantiation_format_physical_d);
+//							}
+//						}
+//					}
+//					else if (isset($pbcoreinstantiation_child['ams:instantiationdigital']))
+//					{
+//
+//						foreach ($pbcoreinstantiation_child['ams:instantiationdigital'] as $pbcore_digital)
+//						{
+//							if (isset($pbcore_digital['text']) && ! is_empty($pbcore_digital['text']))
+//							{
+//								$instantiation_format_digital_d = array();
+//								$instantiation_format_digital_d['instantiations_id'] = $instantiations_id;
+//								$instantiation_format_digital_d['format_name'] = $pbcore_digital['text'];
+//								$instantiation_format_digital_d['format_type'] = 'digital';
+//								$instantiation_format_digital_id = $this->instant->insert_instantiation_formats($instantiation_format_digital_d);
+//							}
+//						}
+//					}
+//					// Instantiations  Format End //
+//					// Instantiations  Generation Start //
+//
+//					if (isset($pbcoreinstantiation_child['ams:instantiationgenerations']) && ! is_empty($pbcoreinstantiation_child['ams:instantiationgenerations']))
+//					{
+//						foreach ($pbcoreinstantiation_child['ams:instantiationgenerations'] as $instantiation_generations)
+//						{
+//							if (isset($instantiation_generations['text']) && ! is_empty($instantiation_generations['text']))
+//							{
+//								$instantiation_format_generations_d = array();
+//								$instantiation_format_generations_d['instantiations_id'] = $instantiations_id;
+//								$generations_d = $this->instant->get_generations_by_generation($instantiation_generations['text']);
+//								if (isset($generations_d) && isset($generations_d->id))
+//								{
+//									$instantiation_format_generations_d['generations_id'] = $generations_d->id;
+//								}
+//								else
+//								{
+//									$instantiation_format_generations_d['generations_id'] = $this->instant->insert_generations(array("generation" => $instantiation_generations['text']));
+//								}
+//								$this->instant->insert_instantiation_generations($instantiation_format_generations_d);
+//							}
+//						}
+//					}
+//					// Instantiations  Generation End //
+//					// Instantiations  Annotation Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationannotation']))
+//					{
+//						foreach ($pbcoreinstantiation_child['ams:instantiationannotation'] as $pbcore_annotation)
+//						{
+//							if (isset($pbcore_annotation['text']) && ! is_empty($pbcore_annotation['text']))
+//							{
+//								$instantiation_annotation_d = array();
+//								$instantiation_annotation_d['instantiations_id'] = $instantiations_id;
+//								$instantiation_annotation_d['annotation'] = $pbcore_annotation['text'];
+//
+//								if (isset($pbcore_annotation['attributes']['annotationtype']) && ! is_empty($pbcore_annotation['attributes']['annotationtype']))
+//								{
+//									$instantiation_annotation_d['annotation_type'] = $pbcore_annotation['attributes']['annotationtype'];
+//								}
+//								$this->instant->insert_instantiation_annotations($instantiation_annotation_d);
+//							}
+//						}
+//					}
+//					// Instantiations  Annotation End //
+//					// Instantiations Relation Start  //
+//					if (isset($pbcoreinstantiation_child['ams:pbcorerelation']))
+//					{
+//						foreach ($pbcoreinstantiation_child['ams:pbcorerelation'] as $pbcorerelation)
+//						{
+//
+//							if (isset($pbcorerelation['children']['ams:pbcorerelationidentifier'][0]['text']) && ! is_empty($pbcore_creator['children']['ams:pbcorerelationidentifier'][0]['text']))
+//							{
+//								$instantiation_relation_d = array();
+//								$instantiation_relation_d['instantiations_id'] = $instantiations_id;
+//								$instantiation_relation_d = $pbcorerelation['children']['ams:pbcorerelationidentifier'][0]['text'];
+//								if (isset($pbcorerelation['children']['pbcorerelationtype'][0]['text']) && ! is_empty($pbcore_creator['children']['pbcorerelationtype'][0]['text']))
+//								{
+//									$relation_type_info['relation_type'] = $pbcorerelation['children']['pbcorerelationtype'][0]['text'];
+//									if (isset($pbcorerelation['children']['ams:pbcorerelationtype'][0]['attributes']['source']) && ! is_empty($pbcore_creator['children']['ams:pbcorerelationtype'][0]['attributes']['source']))
+//									{
+//										$relation_type_info['relation_type_source'] = $pbcorerelation['children']['ams:pbcorerelationtype'][0]['attributes']['source'];
+//									}
+//									if (isset($pbcorerelation['children']['ams:pbcorerelationtype'][0]['attributes']['ref']) && ! is_empty($pbcore_creator['children']['ams:pbcorerelationtype'][0]['attributes']['ref']))
+//									{
+//										$relation_type_info['relation_type_ref'] = $pbcorerelation['children']['ams:pbcorerelationtype'][0]['attributes']['ref'];
+//									}
+//									$db_relations = $this->assets_model->get_relation_types($relation_type_info['relation_type']);
+//									if (isset($db_relations) && isset($db_relations->id))
+//									{
+//										$instantiation_relation_d['relation_types_id'] = $db_relations->id;
+//									}
+//									else
+//									{
+//										$instantiation_relation_d['relation_types_id'] = $this->assets_model->insert_relation_types($relation_type_info);
+//									}
+//									$this->instant->insert_instantiation_relation($instantiation_relation_d);
+//								}
+//							}
+//						}
+//					}
+//					// Instantiations Relation End  //
+//					// Instantiations Essence Tracks Start //
+//					if (isset($pbcoreinstantiation_child['ams:instantiationessencetrack']))
+//					{
+//						foreach ($pbcoreinstantiation_child['ams:instantiationessencetrack'] as $pbcore_essence_track)
+//						{
+//							if (isset($pbcore_essence_track['children']) && ! is_empty($pbcore_essence_track['children']))
+//							{
+//								$pbcore_essence_child = $pbcore_essence_track['children'];
+//								$essence_tracks_d = array();
+//								$essence_tracks_d['instantiations_id'] = $instantiations_id;
+//								// Essence Track Standard Start //
+//								if (isset($pbcore_essence_child['ams:essencetrackstandard'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackstandard'][0]['text']))
+//								{
+//									$essence_tracks_d['standard'] = $pbcore_essence_child['ams:essencetrackstandard'][0]['text'];
+//								}
+//								// Essence Track Standard End //
+//								// Essence Track Data Rate Start //
+//
+//								if (isset($pbcore_essence_child['ams:essencetrackdatarate'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackdatarate'][0]['text']))
+//								{
+//									$essence_tracks_d['data_rate'] = $pbcore_essence_child['essencetrackdatarate'][0]['text'];
+//									if (isset($pbcore_essence_child['ams:essencetrackdatarate'][0]['attributes']['unitsofmeasure']) && ! is_empty($pbcore_essence_child['ams:essencetrackdatarate'][0]['attributes']['unitsofmeasure']))
+//									{
+//
+//										$data_rate_unit_d = $this->instant->get_data_rate_units_by_unit($pbcore_essence_child['ams:essencetrackdatarate'][0]['attributes']['unitsofmeasure']);
+//										if (isset($data_rate_unit_d) && isset($data_rate_unit_d->id))
+//										{
+//											$essence_tracks_d['data_rate_units_id'] = $data_rate_unit_d->id;
+//										}
+//										else
+//										{
+//											$essence_tracks_d['data_rate_units_id'] = $this->instant->insert_data_rate_units(array("unit_of_measure" => $pbcore_essence_child['ams:essencetrackdatarate'][0]['attributes']['unitsofmeasure']));
+//										}
+//									}
+//								}
+//
+//								// Essence Track Data Rate End //
+//								// Essence Track Frame Rate Start //
+//								if (isset($pbcore_essence_child['ams:essencetrackframerate'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackframerate'][0]['text']))
+//								{
+//									$frame_rate = explode(" ", $pbcore_essence_child['ams:essencetrackframerate'][0]['text']);
+//									$essence_tracks_d['frame_rate'] = trim($frame_rate[0]);
+//								}
+//								// Essence Track Frame Rate End //
+//								// Essence Track Play Back Speed Start //
+//								if (isset($pbcore_essence_child['ams:essencetrackplaybackspeed'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackplaybackspeed'][0]['text']))
+//								{
+//									$essence_tracks_d['playback_speed'] = $pbcore_essence_child['ams:essencetrackplaybackspeed'][0]['text'];
+//								}
+//								// Essence Track Play Back Speed End //
+//								// Essence Track Sampling Rate Start //
+//								if (isset($pbcore_essence_child['ams:essencetracksamplingrate'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetracksamplingrate'][0]['text']))
+//								{
+//									$essence_tracks_d['sampling_rate'] = $pbcore_essence_child['ams:essencetracksamplingrate'][0]['text'];
+//								}
+//								// Essence Track Sampling Rate End //
+//								// Essence Track bit depth Start //
+//								if (isset($pbcore_essence_child['ams:essencetrackbitdepth'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackbitdepth'][0]['text']))
+//								{
+//									$essence_tracks_d['bit_depth'] = $pbcore_essence_child['essencetrackbitdepth'][0]['text'];
+//								}
+//								// Essence Track bit depth End //
+//								// Essence Track Aspect Ratio Start //
+//								if (isset($pbcore_essence_child['ams:essencetrackaspectratio'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackaspectratio'][0]['text']))
+//								{
+//									$essence_tracks_d['aspect_ratio'] = $pbcore_essence_child['ams:essencetrackaspectratio'][0]['text'];
+//								}
+//								// Essence Track Aspect Ratio End //
+//								// Essence Track Time Start //
+//								if (isset($pbcore_essence_child['ams:essencetracktimestart'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetracktimestart'][0]['text']))
+//								{
+//									$essence_tracks_d['time_start'] = $pbcore_essence_child['ams:essencetracktimestart'][0]['text'];
+//								}
+//								// Essence Track Time End //
+//								// Essence Track Duration Start //
+//
+//								if (isset($pbcore_essence_child['ams:essencetrackduration'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackduration'][0]['text']))
+//								{
+//									$essence_tracks_d['duration'] = $pbcore_essence_child['essencetrackduration'][0]['text'];
+//								}
+//								// Essence Track Duration End //
+//								// Essence Track Language Start //
+//
+//								if (isset($pbcore_essence_child['ams:essencetracklanguage'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetracklanguage'][0]['text']))
+//								{
+//									$essence_tracks_d['language'] = $pbcore_essence_child['ams:essencetracklanguage'][0]['text'];
+//								}
+//								// Essence Track Language Start //
+//								// Essence Track Type Start //
+//								if (isset($pbcore_essence_child['ams:essencetracktype'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetracktype'][0]['text']))
+//								{
+//									$essence_track_type_d = $this->essence->get_essence_track_by_type($pbcore_essence_child['ams:essencetracktype'][0]['text']);
+//									if (isset($essence_track_type_d) && isset($essence_track_type_d->id))
+//									{
+//										$essence_tracks_d['essence_track_types_id'] = $essence_track_type_d->id;
+//									}
+//									else
+//									{
+//										$essence_tracks_d['essence_track_types_id'] = $this->essence->insert_essence_track_types(array('essence_track_type' => $pbcore_essence_child['ams:essencetracktype'][0]['text']));
+//									}
+//								}
+//								// Essence Track Type End //
+//								// Essence Track Frame Size Start //
+//								if (isset($pbcore_essence_child['ams:essencetrackframesize'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackframesize'][0]['text']))
+//								{
+//									$frame_sizes = explode("x", strtolower($pbcore_essence_child['ams:essencetrackframesize'][0]['text']));
+//									if (isset($frame_sizes[0]) && isset($frame_sizes[1]))
+//									{
+//										$track_frame_size_d = $this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame_sizes[0]), trim($frame_sizes[1]));
+//										if ($track_frame_size_d)
+//										{
+//											$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;
+//										}
+//										else
+//										{
+//											$essence_tracks_d['essence_track_frame_sizes_id'] = $this->essence->insert_essence_track_frame_sizes(array("width" => $frame_sizes[0], "height" => $frame_sizes[1]));
+//										}
+//									}
+//								}
+//								// Essence Track Frame Size End //
+//								if (isset($essence_tracks_d['essence_track_types_id']) && ! empty($essence_tracks_d['essence_track_types_id']) && $essence_tracks_d['essence_track_types_id'] != NULL)
+//								{
+//									$essence_tracks_id = $this->essence->insert_essence_tracks($essence_tracks_d);
+//									$insert_essence_track = TRUE;
+//									// Essence Track Identifier Start //
+//									if (isset($pbcore_essence_child['ams:essencetrackidentifier'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackidentifier'][0]['text']))
+//									{
+//
+//										$essence_track_identifiers_d = array();
+//										$essence_track_identifiers_d['essence_tracks_id'] = $essence_tracks_id;
+//										$essence_track_identifiers_d['essence_track_identifiers'] = $pbcore_essence_child['ams:essencetrackidentifier'][0]['text'];
+//										if (isset($pbcore_essence_child['ams:essencetrackidentifier'][0]['attributes']['source']) && ! is_empty($pbcore_essence_child['ams:essencetrackidentifier'][0]['attributes']['source']))
+//										{
+//											$essence_track_identifiers_d['ams:essence_track_identifier_source'] = $pbcore_essence_child['ams:essencetrackidentifier'][0]['attributes']['source'];
+//										}
+//										$this->essence->insert_essence_track_identifiers($essence_track_identifiers_d);
+//									}
+//									// Essence Track Identifier End //
+//									// Essence Track Encoding Start //
+//									if (isset($pbcore_essence_child['ams:essencetrackencoding'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackencoding'][0]['text']))
+//									{
+//
+//										$essence_track_standard_d = array();
+//										$essence_track_standard_d['essence_tracks_id'] = $essence_tracks_id;
+//										$essence_track_standard_d['encoding'] = $pbcore_essence_child['ams:essencetrackencoding'][0]['text'];
+//										if (isset($pbcore_essence_child['ams:essencetrackencoding'][0]['attributes']['ref']) && ! is_empty($pbcore_essence_child['ams:essencetrackencoding'][0]['attributes']['ref']))
+//										{
+//											$essence_track_standard_d['encoding_source'] = $pbcore_essence_child['ams:essencetrackencoding'][0]['attributes']['ref'];
+//										}
+//										$this->essence->insert_essence_track_encodings($essence_track_standard_d);
+//									}
+//									// Essence Track Encoding End //
+//									// Essence Track Annotation Start //
+//									if (isset($pbcore_essence_child['ams:essencetrackannotation']) && ! is_empty($pbcore_essence_child['ams:essencetrackannotation']))
+//									{
+//										foreach ($pbcore_essence_child['ams:essencetrackannotation'] as $trackannotation)
+//										{
+//											if (isset($trackannotation['text']) && ! is_empty($trackannotation['text']))
+//											{
+//												$essencetrackannotation = array();
+//												$essencetrackannotation['essence_tracks_id'] = $essence_tracks_id;
+//												$essencetrackannotation['annotation'] = $trackannotation['text'];
+//
+//												if (isset($trackannotation['attributes']['type']) && ! is_empty($trackannotation['attributes']['type']))
+//												{
+//													$essencetrackannotation['annotation_type'] = $trackannotation['attributes']['type'];
+//												}
+//												$this->essence->insert_essence_track_annotations($essencetrackannotation);
+//											}
+//										}
+//									}
+//									// Essence Track Annotation End //
+//								}
+//							}
+//						}
+//					}
 					// Instantiations Essence Tracks End //
 					// Asset Extension Start //
 
@@ -1489,7 +1491,7 @@ class Mintimport extends CI_Controller
 							if (isset($map_extension['ams:extensionauthorityused'][0]['text']) && ! is_empty($map_extension['ams:extensionauthorityused'][0]['text']))
 							{
 								$nomination_d = array();
-								$nomination_d['instantiations_id'] = $instantiations_id;
+//								$nomination_d['instantiations_id'] = $instantiations_id;
 								if (strtolower($map_extension['ams:extensionauthorityused'][0]['text']) == strtolower('AACIP Record Nomination Status'))
 								{
 									if (isset($map_extension['ams:extensionvalue'][0]['text']) && ! is_empty($map_extension['ams:extensionvalue'][0]['text']))
@@ -1532,14 +1534,16 @@ class Mintimport extends CI_Controller
 										}
 									}
 								}
+								debug($nomination_d,FALSE);
 								if (isset($nomination_d['nomination_status_id']))
 								{
-									$nomination_d['created'] = date("Y-m-d H:i:s");
-									$this->assets_model->insert_nominations($nomination_d);
+//									$nomination_d['created'] = date("Y-m-d H:i:s");
+//									$this->assets_model->insert_nominations($nomination_d);
 								}
 							}
 						}
 					}
+					exit;
 					// Asset Extension End //
 					$this->load->library('sphnixrt');
 					$this->load->model('searchd_model');

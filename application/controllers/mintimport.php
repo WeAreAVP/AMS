@@ -268,7 +268,7 @@ class Mintimport extends CI_Controller
 		ini_set('display_errors', 1);
 		myLog($path);
 //		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
-		$file_content = file_get_contents('');
+		$file_content = file_get_contents($this->mint_path.'Output_329.xml');
 		$xml_string = @simplexml_load_string($file_content);
 		unset($file_content);
 		$xmlArray = xmlObjToArr($xml_string);

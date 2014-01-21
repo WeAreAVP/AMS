@@ -19,6 +19,7 @@ class Xml extends CI_Controller
 			$track->addChild('title', "Track $i - Track Title");
 		}
 		echo $xml->asXML();
+		exit;
 	}
 
 }

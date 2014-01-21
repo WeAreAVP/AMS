@@ -43,6 +43,7 @@ class Pbcore_Model extends MY_Model
 			$this->db->where($column, $value);
 		}
 		$result = $this->db->get($table);
+		echo $this->db->last_query();
 		if (isset($result) && ! empty($result))
 		{
 			return $result->row();

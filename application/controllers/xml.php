@@ -17,7 +17,7 @@ class Xml extends CI_Controller
 		if ($guid !== 0)
 		{
 
-			$result = $this->pbcore_model->get_one_by($this->pbcore_model->_identifiers_table, array('guid' => $guid));
+			$result = $this->pbcore_model->get_one_by($this->pbcore_model->_identifiers_table, array('guid' =>  "cpb-aacip/{$guid}"));
 			if ($result)
 			{
 				debug($result);

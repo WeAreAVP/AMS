@@ -1,6 +1,6 @@
 <?php
 
-class XML extends CI_Controller
+class Xml extends CI_Controller
 {
 
 	function __construct()
@@ -18,8 +18,6 @@ class XML extends CI_Controller
 			$track->addChild('path', "song$i.mp3");
 			$track->addChild('title', "Track $i - Track Title");
 		}
-
-		Header('Content-type: text/xml');
 		echo $xml->asXML();
 	}
 

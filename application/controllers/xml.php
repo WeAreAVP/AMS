@@ -5,6 +5,7 @@ class Xml extends CI_Controller
 
 	function __construct()
 	{
+		parent::__construct();
 		$this->layout = 'default.php';
 		$this->load->library('pbcore');
 		$this->load->model('pbcore_model');

@@ -5,7 +5,7 @@ class Xml extends CI_Controller
 
 	function __construct()
 	{
-		
+		$this->layout = 'default.php';
 	}
 
 	function pbcore()

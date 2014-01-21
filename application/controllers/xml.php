@@ -15,6 +15,7 @@ class Xml extends CI_Controller
 		for ($i = 1; $i <= 8; ++ $i)
 		{
 			$track = $xml->addChild('track');
+			$track->addAttribute('source', 'Test');
 			$track->addChild('path', "song$i.mp3");
 			$track->addChild('title', "Track $i - Track Title");
 		}

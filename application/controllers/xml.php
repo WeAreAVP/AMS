@@ -6,25 +6,41 @@ class Xml extends CI_Controller
 	function __construct()
 	{
 		$this->layout = 'default.php';
+		$this->load->library('pbcore');
+		$this->load->model('pbcore_model');
 	}
 
 	function pbcore()
 	{
-		$xml = new SimpleXMLElement('<pbcoreDescriptionDocument/>');
-		$xml->addAttribute('xmlns', "http://www.pbcore.org/PBCore/PBCoreNamespace.html");
-		$xml->addAttribute('xmlns:xsi', "http://www.w3.org/2001/XMLSchema-instance");
-		$xml->addAttribute('xsi:schemaLocation', "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://pbcore.org/xsd/pbcore-2.0.xsd");
-		for ($i = 1; $i <= 8; ++ $i)
+		$guid = $this->uri->segment(3, 0);
+		if ($guid !== 0)
 		{
-			$track = $xml->addChild('track');
-			$track->addAttribute('source', 'Test');
-			$track->addChild('path', "song$i.mp3");
-			$track->addChild('title', "Track $i - Track Title");
-		}
 
-		Header('Content-type: text/xml');
-		echo $xml->asXML();
-		exit;
+			$result = $this->pbcore_model->get_one_by($this->pbcore_model->_identifiers_table, array('guid' => $guid));
+			if ($result)
+			{
+				debug($result);
+				for ($i = 1; $i <= 8; ++ $i)
+				{
+					$track = $xml->addChild('track');
+					$track->addAttribute('source', 'Test');
+					$track->addChild('path', "song$i.mp3");
+					$track->addChild('title', "Track $i - Track Title");
+				}
+
+				Header('Content-type: text/xml');
+				echo $xml->asXML();
+				exit;
+			}
+			else
+			{
+				show_error('Invalid GUID.');
+			}
+		}
+		else
+		{
+			show_error('GUID is required.');
+		}
 	}
 
 }

@@ -67,6 +67,12 @@ WHERE assets.stations_id =102
 AND assets.created LIKE '2014-01-13%'
 AND instantiations.id NOT IN($ins_id)"
 		);
+		debug("SELECT instantiations.id
+FROM  `assets` 
+INNER JOIN instantiations ON instantiations.assets_id = assets.`id` 
+WHERE assets.stations_id =102
+AND assets.created LIKE '2014-01-13%'
+AND instantiations.id NOT IN($ins_id)",FALSE);
 		debug(count($result),FALSE);
 		debug($result);
 	}

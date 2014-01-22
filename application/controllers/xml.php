@@ -17,7 +17,7 @@ class Xml extends CI_Controller
 		if ($guid !== 0)
 		{
 
-			$result = $this->pbcore_model->get_one_by($this->pbcore_model->_identifiers_table, array('identifier' =>  "cpb-aacip/{$guid}"));
+			$result = $this->pbcore_model->get_one_by($this->pbcore_model->_identifiers_table, array('identifier' => "cpb-aacip/{$guid}"));
 			if ($result)
 			{
 				debug($result);
@@ -35,7 +35,7 @@ class Xml extends CI_Controller
 			}
 			else
 			{
-				show_error('Invalid GUID.');
+				show_error('Invalid GUID. No record found.');
 			}
 		}
 		else

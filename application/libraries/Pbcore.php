@@ -2,7 +2,7 @@
 
 class Pbcore
 {
-
+	
 	private $CI;
 	protected $xml = NULL;
 

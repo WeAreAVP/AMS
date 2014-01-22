@@ -48,7 +48,15 @@ class Searchd extends CI_Controller
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-		
+		$result = $this->searchd_model->run_query("SELECT assets.id 
+FROM  `assets` 
+WHERE assets.stations_id =102
+AND assets.created LIKE '2014-01-13%'")->result();
+		foreach ($result as $key => $value)
+		{
+			$new_asset_info = make_assets_sphnix_array($value->id, FALSE);
+			$this->sphnixrt->update('assets_list', $new_asset_info);
+		}
 	}
 
 	/**

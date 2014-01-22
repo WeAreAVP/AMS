@@ -54,7 +54,8 @@ WHERE assets.stations_id =102
 AND assets.created LIKE '2014-01-13%'")->result();
 		foreach ($result as $key => $value)
 		{
-			$new_asset_info = make_assets_sphnix_array($value->id, FALSE);
+			$asset_list = $this->searchd_model->get_asset_index(array($value->id));
+			$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
 			$this->sphnixrt->update('assets_list', $new_asset_info);
 		}
 	}

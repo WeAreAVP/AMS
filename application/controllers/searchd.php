@@ -43,27 +43,18 @@ class Searchd extends CI_Controller
 		$this->load->helper('sphnixdata');
 	}
 
-	function delete()
-	{
-		
-	}
 
 	function test()
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-		$count = '';
-		for ($_id = 4847882; $_id <= 4848659; $_id ++ )
-		{
-
-			$count .=$_id . ',';
-//			$this->sphnixrt->delete('instantiations_list', $_id);
-		}
-		echo rtrim($count, ',');
-		exit;
-
-//		$data = $this->sphnixrt->select('instantiations_list', array('start' => 0, 'limit' => 1000));
-//		debug($data);
+		$result=$this->searchd_model->run_query("SELECT instantiations . id 
+FROM  `nominations` 
+INNER JOIN instantiations ON instantiations.id = nominations.`instantiations_id` 
+INNER JOIN assets ON assets.id = instantiations.assets_id
+WHERE assets.stations_id =102
+AND assets.created LIKE '2014-01-13%'");
+		debug($result);
 	}
 
 	/**

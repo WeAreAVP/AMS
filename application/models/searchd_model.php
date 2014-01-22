@@ -45,7 +45,7 @@ class Searchd_Model extends CI_Model
 	 */
 	function run_query($query)
 	{
-		$this->db->query($query);
+		return $this->db->query($query);
 	}
 
 	/**

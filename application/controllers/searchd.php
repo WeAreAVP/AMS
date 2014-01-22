@@ -58,7 +58,7 @@ AND assets.created LIKE '2014-01-13%'")->result();
 		{
 			$ins_id .=$_ids->id . ',';
 		}
-		$ins_id = rtrim($ins_id);
+		$ins_id = rtrim($ins_id,',');
 		debug(count($result),FALSE);
 		$result = $this->searchd_model->run_query("SELECT instantiations.id
 FROM  `assets` 
@@ -66,7 +66,7 @@ INNER JOIN instantiations ON instantiations.assets_id = assets.`id`
 WHERE assets.stations_id =102
 AND assets.created LIKE '2014-01-13%'
 AND instantiations.id NOT IN($ins_id)"
-		);
+		)->result();
 		debug("SELECT instantiations.id
 FROM  `assets` 
 INNER JOIN instantiations ON instantiations.assets_id = assets.`id` 

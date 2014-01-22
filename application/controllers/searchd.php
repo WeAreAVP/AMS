@@ -53,7 +53,7 @@ FROM  `nominations`
 INNER JOIN instantiations ON instantiations.id = nominations.`instantiations_id` 
 INNER JOIN assets ON assets.id = instantiations.assets_id
 WHERE assets.stations_id =102
-AND assets.created LIKE '2014-01-13%'");
+AND assets.created LIKE '2014-01-13%'")->result();
 		debug($result);
 	}
 

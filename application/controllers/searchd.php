@@ -54,6 +54,11 @@ INNER JOIN instantiations ON instantiations.id = nominations.`instantiations_id`
 INNER JOIN assets ON assets.id = instantiations.assets_id
 WHERE assets.stations_id =102
 AND assets.created LIKE '2014-01-13%'")->result();
+		$ins_id='';
+		foreach($result as $ $_ids){
+			$ins_id .=$_ids->id.',';
+		}
+		echo rtrim($ins_id);
 		debug($result);
 	}
 

@@ -40,6 +40,7 @@ class Searchd extends CI_Controller
 		$this->load->library('sphnixrt');
 		$this->load->model('station_model');
 		$this->load->model('searchd_model');
+
 		$this->load->helper('sphnixdata');
 	}
 
@@ -58,8 +59,8 @@ AND assets.created LIKE '2014-01-13%'")->result();
 		{
 			$ins_id .=$_ids->id . ',';
 		}
-		$ins_id = rtrim($ins_id,',');
-		debug(count($result),FALSE);
+		$ins_id = rtrim($ins_id, ',');
+		debug(count($result), FALSE);
 		$result = $this->searchd_model->run_query("SELECT instantiations.id
 FROM  `assets` 
 INNER JOIN instantiations ON instantiations.assets_id = assets.`id` 
@@ -67,14 +68,18 @@ WHERE assets.stations_id =102
 AND assets.created LIKE '2014-01-13%'
 AND instantiations.id NOT IN($ins_id)"
 		)->result();
-		debug("SELECT instantiations.id
-FROM  `assets` 
-INNER JOIN instantiations ON instantiations.assets_id = assets.`id` 
-WHERE assets.stations_id =102
-AND assets.created LIKE '2014-01-13%'
-AND instantiations.id NOT IN($ins_id)",FALSE);
-		debug(count($result),FALSE);
-		debug($result);
+		$this->load->model('assets_model');
+		foreach ($result as $_ids)
+		{
+			$data = array(
+				'instantiations_id' => $_ids->id,
+				'nomination_status_id' => 1,
+				'created' => date('Y-m-d H:m:i')
+			);
+			$isds[]=$this->assets_model->insert_nominations($data);
+		}
+		debug(count($result), FALSE);
+		debug($isds);
 	}
 
 	/**

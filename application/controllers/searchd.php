@@ -48,18 +48,16 @@ class Searchd extends CI_Controller
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-		$result = $this->searchd_model->run_query("SELECT instantiations.id 
+		$result = $this->searchd_model->run_query("SELECT assets.id 
 FROM  `assets` 
-INNER JOIN instantiations ON instantiations.assets_id=assets.id
 WHERE assets.stations_id =62
 ")->result();
 		foreach ($result as $key => $value)
 		{
-			$instantiation_list = $this->searchd_model->get_ins_index(array($value->id));
-					$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], FALSE);
-					$this->sphnixrt->update('instantiations_list', $new_list_info);
 			
-			
+			$asset_list = $this->searchd_model->get_asset_index(array($value->id));
+			$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
+			$this->sphnixrt->update('assets_list', $new_asset_info);
 		}
 	}
 

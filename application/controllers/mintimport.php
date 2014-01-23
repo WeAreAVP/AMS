@@ -273,7 +273,15 @@ class Mintimport extends CI_Controller
 		$xml_string = @simplexml_load_string($file_content);
 		unset($file_content);
 		$xmlArray = xmlObjToArr($xml_string);
-		debug($xmlArray);
+		
+		foreach($xmlArray['children']['ams:pbcoredescriptiondocument'] as $count=>$document){
+			if(isset($document['children'])){
+				debug($document['children'],FALSE);
+				if($count==1)
+					exit;
+			}
+		}
+		exit;
 		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
 
 		myLog('Created Asset ID ' . $asset_id);

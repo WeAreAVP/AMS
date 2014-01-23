@@ -266,6 +266,7 @@ class Mintimport extends CI_Controller
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
+		@ini_set("max_execution_time", 999999999999);
 //		myLog($path);
 //		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
 		$file_content = file_get_contents($this->mint_path . 'unzipped/Transformation_1000/Output_0.xml');

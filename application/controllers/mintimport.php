@@ -266,12 +266,13 @@ class Mintimport extends CI_Controller
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-		myLog($path);
-		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
+//		myLog($path);
+//		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
+		$file_content = file_get_contents($this->mint_path . 'unzipped/Transformation_1000/Output_0.xml');
 		$xml_string = @simplexml_load_string($file_content);
 		unset($file_content);
 		$xmlArray = xmlObjToArr($xml_string);
-
+		debug($xmlArray);
 		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
 
 		myLog('Created Asset ID ' . $asset_id);

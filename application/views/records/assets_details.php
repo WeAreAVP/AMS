@@ -683,7 +683,7 @@
 				if (count($relation) > 0)
 				{
 					$combine_relation = '';
-					$relation_type_src='';
+					$relation_type_src = '';
 					foreach ($relation as $index => $relation)
 					{
 						if (isset($relation->relation_type) && ! empty($relation->relation_type))
@@ -693,7 +693,7 @@
 							$relation_type_src = $relation->relation_type_source;
 						if (isset($relation->relation_type_ref) && ! empty($relation->relation_type_ref))
 							$combine_relation .= " (<a href='$relation->relation_type_ref' target='_blank'>$relation_type_src</a>)";
-						else
+						if ( ! empty($relation_type_src))
 							$combine_relation .=' (' . $relation_type_src . ')';
 						if ( ! empty($combine_relation) && trim($combine_relation) != ':')
 						{

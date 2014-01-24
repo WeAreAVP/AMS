@@ -682,8 +682,8 @@
 				<?php
 				if (count($relation) > 0)
 				{
-					debug($relation);
 					$combine_relation = '';
+					$relation_type_src='';
 					foreach ($relation as $index => $relation)
 					{
 						if (isset($relation->relation_type) && ! empty($relation->relation_type))

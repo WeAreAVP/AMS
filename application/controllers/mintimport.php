@@ -41,6 +41,7 @@ class Mintimport extends CI_Controller
 		parent::__construct();
 		$this->load->model('assets_model');
 		$this->load->model('instantiations_model', 'instant');
+		$this->load->model('essence_track_model', 'essence');
 		$this->load->model('cron_model');
 		$this->load->model('station_model');
 		$this->load->model('mint_model', 'mint');
@@ -274,7 +275,7 @@ class Mintimport extends CI_Controller
 		unset($file_content);
 		$xmlArray = xmlObjToArr($xml_string);
 
-		foreach ($xmlArray['children']['ams:pbcoredescriptiondocument'] as $count => $document)
+		foreach ($xmlArray['children']['ams:pbcoredescriptiondocument'] as $document)
 		{
 			if (isset($document['children']))
 			{
@@ -795,14 +796,14 @@ class Mintimport extends CI_Controller
 				$assets_contributors_d['assets_id'] = $asset_id;
 				if (isset($pbcore_contributor['children']['ams:contributor'][0]['text']) && ! is_empty($pbcore_contributor['children']['ams:contributor'][0]['text']))
 				{
-					$contributor_info['contributor_name'] = $pbcore_contributor['children']['contributor'][0]['text'];
+					$contributor_info['contributor_name'] = $pbcore_contributor['children']['ams:contributor'][0]['text'];
 
 					if (isset($pbcore_contributor['children']['ams:contributor'][0]['attributes']['affiliation']) && ! is_empty($pbcore_contributor['children']['ams:contributor'][0]['attributes']['affiliation']))
 					{
 						$contributor_info['contributor_affiliation'] = $pbcore_contributor['children']['ams:contributor'][0]['attributes']['affiliation'];
 					}
 					if (isset($pbcore_contributor['children']['ams:contributor'][0]['attributes']['ref']) && ! is_empty($pbcore_contributor['children']['ams:contributor'][0]['attributes']['ref']))
-					{
+					{	
 						$contributor_info['contributor_ref'] = $pbcore_contributor['children']['ams:contributor'][0]['attributes']['ref'];
 					}
 					$contributor_d = $this->assets_model->get_contributor_by_contributor_name($contributor_info['contributor_name']);
@@ -1368,7 +1369,7 @@ class Mintimport extends CI_Controller
 								// Essence Track bit depth Start //
 								if (isset($pbcore_essence_child['ams:essencetrackbitdepth'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackbitdepth'][0]['text']))
 								{
-									$essence_tracks_d['bit_depth'] = $pbcore_essence_child['essencetrackbitdepth'][0]['text'];
+									$essence_tracks_d['bit_depth'] = $pbcore_essence_child['ams:essencetrackbitdepth'][0]['text'];
 								}
 								// Essence Track bit depth End //
 								// Essence Track Aspect Ratio Start //
@@ -1387,7 +1388,7 @@ class Mintimport extends CI_Controller
 
 								if (isset($pbcore_essence_child['ams:essencetrackduration'][0]['text']) && ! is_empty($pbcore_essence_child['ams:essencetrackduration'][0]['text']))
 								{
-									$essence_tracks_d['duration'] = $pbcore_essence_child['essencetrackduration'][0]['text'];
+									$essence_tracks_d['duration'] = $pbcore_essence_child['ams:essencetrackduration'][0]['text'];
 								}
 								// Essence Track Duration End //
 								// Essence Track Language Start //

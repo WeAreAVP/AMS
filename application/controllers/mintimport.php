@@ -1494,11 +1494,11 @@ class Mintimport extends CI_Controller
 						foreach ($asset_children['ams:pbcoreextension'] as $pbcore_extension)
 						{
 							$map_extension = $pbcore_extension['children']['ams:extensionwrap'][0]['children'];
-							if ((isset($map_extension['ams:extensionauthorityused'][0]['text']) && ! is_empty($map_extension['ams:extensionauthorityused'][0]['text'])) || (isset($map_extension['ams:extensionelement'][0]['text']) && ! is_empty($map_extension['ams:extensionelement'][0]['text'])))
+							if ((isset($map_extension['ams:extensionauthorityused'][0]['text']) && ! is_empty($map_extension['ams:extensionauthorityused'][0]['text'])))
 							{
 								$nomination_d = array();
 								$nomination_d['instantiations_id'] = $instantiations_id;
-								if ((strtolower($map_extension['ams:extensionauthorityused'][0]['text']) == strtolower('AACIP Record Nomination Status')) || (strtolower($map_extension['ams:extensionelement'][0]['text']) == strtolower('AACIP Record Nomination Status')))
+								if ((strtolower($map_extension['ams:extensionauthorityused'][0]['text']) == strtolower('AACIP Record Nomination Status')) )
 								{
 									if (isset($map_extension['ams:extensionvalue'][0]['text']) && ! is_empty($map_extension['ams:extensionvalue'][0]['text']))
 									{
@@ -1513,7 +1513,7 @@ class Mintimport extends CI_Controller
 										}
 									}
 								}
-								if ((strtolower($map_extension['ams:extensionauthorityused'][0]['text']) == strtolower('AACIP Record Tags')) || (strtolower($map_extension['ams:extensionelement'][0]['text']) == strtolower('AACIP Record Tags')))
+								if ((strtolower($map_extension['ams:extensionauthorityused'][0]['text']) == strtolower('AACIP Record Tags')) )
 								{
 
 									if (isset($map_extension['ams:extensionvalue'][0]['text']) && ! is_empty($map_extension['ams:extensionvalue'][0]['text']))

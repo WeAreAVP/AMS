@@ -173,7 +173,7 @@ if ( ! $isAjax)
 				$('#' + modalElement + '_yes').hide();
 				$('#' + modalElement + '_no').hide();
 				$.post(site_url + 'records/export_pbcore', {}, function(response) {
-					$('#export_csv_msg').html(response.msg);
+					$('#' + modalElement + '_body p').html(response.msg);
 					$('#' + modalElement + '_close').show();
 				}, 'json');
 			}

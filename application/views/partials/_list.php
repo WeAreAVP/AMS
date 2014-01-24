@@ -43,7 +43,7 @@
 							$combine_identifier = '';
 							foreach ($ins_identifier as $index => $identifier)
 							{
-								$combine_identifier.= '<span>';
+								$combine_identifier.= '<span style="word-break:break-all;">';
 								$combine_identifier.= $identifier;
 								if (isset($ins_identifier_src[$index]) && ! empty($ins_identifier_src[$index]))
 									$combine_identifier.=' (' . $ins_identifier_src[$index] . ')';

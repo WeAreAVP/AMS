@@ -151,7 +151,7 @@ if ( ! $isAjax)
 		<div class="modal-footer" id="_modal_footer">
 			<button class="btn" data-dismiss="modal" aria-hidden="true" id="_modal_no">No</button>
 			<button class="btn hide" data-dismiss="modal" aria-hidden="true" id="_modal_close">Close</button>
-			<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" id="_modal_yes" onclick="ConfirmToExport('_modal', 0);">Yes</button>
+			<button class="btn btn-primary"  id="_modal_yes" onclick="ConfirmToExport('_modal', 0);">Yes</button>
 		</div>
 	</div>
 

@@ -52,6 +52,11 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 					<?php
 				}
 			}
+			else
+			{
+				?>
+				<li><a href="#export_csv_confirm_modal" role="button"  data-toggle="modal" data-backdrop="static">Export PBCore</a></li>
+			<?php }
 			?>
 			<?php
 			if ($this->role_id == 1 || $this->role_id == 2)
@@ -107,7 +112,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			{
 				?>
 				<li><a href="<?php echo site_url('autocomplete/mint_login'); ?>">Import Collection</a></li>
-			<?php } ?>
+	<?php } ?>
 		</ul>
 	</div>
 	<?php
@@ -139,27 +144,27 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 				<a href="<?php echo site_url('autocomplete/mint_login/' . $station_records[0]->id); ?>"  id="mint_login_url" class="btn btn-primary">Import Collection</a>
 			</div>
 		</div>
-	<?php } ?>
+<?php } ?>
 </div>
 <script type="text/javascript">
-						var hiden_column =<?php echo json_encode($hidden_fields); ?>;
-						function changeURL() {
-							$('#mint_login_url').attr('href', site_url + 'autocomplete/mint_login/'+$('#station').val());
-						}
+	var hiden_column =<?php echo json_encode($hidden_fields); ?>;
+	function changeURL() {
+		$('#mint_login_url').attr('href', site_url + 'autocomplete/mint_login/' + $('#station').val());
+	}
 <?php
 if ($isAjax)
 {
 	?>
-							is_destroy = true;
+		is_destroy = true;
 <?php } ?>
 <?php
 if ($total > 0)
 {
 	?>
-							$(function()
-							{
-								updateDataTable();
-							});
+		$(function()
+		{
+			updateDataTable();
+		});
 <?php } ?>
 </script>
 

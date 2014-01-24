@@ -682,6 +682,7 @@
 				<?php
 				if (count($relation) > 0)
 				{
+					debug($relation);
 					$combine_relation = '';
 					foreach ($relation as $index => $relation)
 					{

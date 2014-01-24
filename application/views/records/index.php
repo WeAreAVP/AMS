@@ -168,7 +168,7 @@ if ( ! $isAjax)
 				$('#' + modalElement + '_body p').empty();
 				var img = $('<img>');
 				img.attr('src', '/images/ajax-loader.gif');
-				img.appendTo('#' + modalElement.'_body p');
+				img.appendTo('#' + modalElement + '_body p');
 				$('#' + modalElement + '_body p').append('Please wait...');
 				$('#' + modalElement + '_yes').hide();
 				$('#' + modalElement + '_no').hide();

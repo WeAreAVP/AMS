@@ -267,28 +267,25 @@ class Mintimport extends CI_Controller
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 		@ini_set("max_execution_time", 999999999999);
-//		myLog($path);
-//		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
-		$file_content = file_get_contents($this->mint_path . 'unzipped/Transformation_1000/Output_0.xml');
+		myLog($path);
+		$file_content = file_get_contents($this->mint_path . 'unzipped/' . $path);
+
 		$xml_string = @simplexml_load_string($file_content);
 		unset($file_content);
 		$xmlArray = xmlObjToArr($xml_string);
-		
-		foreach($xmlArray['children']['ams:pbcoredescriptiondocument'] as $count=>$document){
-			if(isset($document['children'])){
-				debug($document['children'],FALSE);
-				if($count==1)
-					exit;
+
+		foreach ($xmlArray['children']['ams:pbcoredescriptiondocument'] as $count => $document)
+		{
+			if (isset($document['children']))
+			{
+				$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
+				myLog('Created Asset ID ' . $asset_id);
+				$this->import_asset_info($asset_id, $station_id, $document['children']);
+				myLog('Successfully inserted assets info.');
+				$this->import_instantiation_info($asset_id, $document['children']);
+				myLog('Successfully imported all the information to AMS');
 			}
 		}
-		exit;
-		$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
-
-		myLog('Created Asset ID ' . $asset_id);
-		$this->import_asset_info($asset_id, $station_id, $xmlArray['children']);
-
-		$this->import_instantiation_info($asset_id, $xmlArray['children']);
-		myLog('Successfully imported all the information to AMS');
 	}
 
 	/**
@@ -1496,11 +1493,11 @@ class Mintimport extends CI_Controller
 						foreach ($asset_children['ams:pbcoreextension'] as $pbcore_extension)
 						{
 							$map_extension = $pbcore_extension['children']['ams:extensionwrap'][0]['children'];
-							if (isset($map_extension['ams:extensionauthorityused'][0]['text']) && ! is_empty($map_extension['ams:extensionauthorityused'][0]['text']))
+							if ((isset($map_extension['ams:extensionauthorityused'][0]['text']) && ! is_empty($map_extension['ams:extensionauthorityused'][0]['text'])) || (isset($map_extension['ams:extensionelement'][0]['text']) && ! is_empty($map_extension['ams:extensionelement'][0]['text'])))
 							{
 								$nomination_d = array();
 								$nomination_d['instantiations_id'] = $instantiations_id;
-								if (strtolower($map_extension['ams:extensionauthorityused'][0]['text']) == strtolower('AACIP Record Nomination Status'))
+								if ((strtolower($map_extension['ams:extensionauthorityused'][0]['text']) == strtolower('AACIP Record Nomination Status')) || (strtolower($map_extension['ams:extensionelement'][0]['text']) == strtolower('AACIP Record Nomination Status')))
 								{
 									if (isset($map_extension['ams:extensionvalue'][0]['text']) && ! is_empty($map_extension['ams:extensionvalue'][0]['text']))
 									{
@@ -1515,7 +1512,7 @@ class Mintimport extends CI_Controller
 										}
 									}
 								}
-								if (strtolower($map_extension['ams:extensionauthorityused'][0]['text']) == strtolower('AACIP Record Tags'))
+								if ((strtolower($map_extension['ams:extensionauthorityused'][0]['text']) == strtolower('AACIP Record Tags')) || (strtolower($map_extension['ams:extensionelement'][0]['text']) == strtolower('AACIP Record Tags')))
 								{
 
 									if (isset($map_extension['ams:extensionvalue'][0]['text']) && ! is_empty($map_extension['ams:extensionvalue'][0]['text']))

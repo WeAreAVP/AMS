@@ -164,24 +164,24 @@ if ( ! $isAjax)
 			});
 		});
 		function ConfirmToExport(modalElement, isDefault) {
-			if (isDefault != 1) {
-				$('#' + modalElement.'_body p').empty();
+			if (isDefault == 0) {
+				$('#' + modalElement + '_body p').empty();
 				var img = $('<img>');
 				img.attr('src', '/images/ajax-loader.gif');
 				img.appendTo('#' + modalElement.'_body p');
-				$('#' + modalElement.'_body p').append('Please wait...');
-				$('#' + modalElement.'_yes').hide();
-				$('#' + modalElement.'_no').hide();
+				$('#' + modalElement + '_body p').append('Please wait...');
+				$('#' + modalElement + '_yes').hide();
+				$('#' + modalElement + '_no').hide();
 				$.post(site_url + 'records/export_pbcore', {}, function(response) {
 					$('#export_csv_msg').html(response.msg);
-					$('#' + modalElement.'_close').show();
+					$('#' + modalElement + '_close').show();
 				}, 'json');
 			}
 			else {
-				$('#' + modalElement.'_body p').html('Are you sure you want to export records?');
-				$('#' + modalElement.'_yes').show();
-				$('#' + modalElement.'_no').show();
-				$('#' + modalElement.'_close').hide();
+				$('#' + modalElement + '_body p').html('Are you sure you want to export records?');
+				$('#' + modalElement + '_yes').show();
+				$('#' + modalElement + '_no').show();
+				$('#' + modalElement + '_close').hide();
 			}
 		}
 	</script>

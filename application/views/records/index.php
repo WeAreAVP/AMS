@@ -120,7 +120,7 @@ if ( ! $isAjax)
 		else if ($start >= 1000)
 		{
 			?>
-				
+
 			<div  style="text-align: center;width: 710px;margin-top: 50px;font-size: 20px;">Please refine your search</div>
 			<?php
 		}
@@ -140,10 +140,50 @@ if ( ! $isAjax)
 	{
 		?>
 	</div>
+	<div id="_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="_modal_heading">Export Records to PBCore</h3>
+		</div>
+		<div class="modal-body" id="_modal_body">
+			<p>Are you sure you want to export records? </p>
+		</div>
+		<div class="modal-footer" id="_modal_footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true" id="_modal_no">No</button>
+			<button class="btn hide" data-dismiss="modal" aria-hidden="true" id="_modal_close">Close</button>
+			<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" id="_modal_yes" onclick="ConfirmToExport('_modal', 1);">Yes</button>
+		</div>
+	</div>
+
+
 	<script type="text/javascript">
-				$(document).ready(function() {
-					load_facet_columns('assets_list', $('.search_keys').length);
-				});
+		$(document).ready(function() {
+			load_facet_columns('assets_list', $('.search_keys').length);
+			$('#_modal_close').click(function() {
+				ConfirmToExport('_modal', 0);
+			});
+		});
+		function ConfirmToExport(modalElement, isDefault) {
+			if (isDefault != 1) {
+				$('#' + modalElement.'_body p').empty();
+				var img = $('<img>');
+				img.attr('src', '/images/ajax-loader.gif');
+				img.appendTo('#' + modalElement.'_body p');
+				$('#' + modalElement.'_body p').append('Please wait...');
+				$('#' + modalElement.'_yes').hide();
+				$('#' + modalElement.'_no').hide();
+				$.post(site_url + 'records/export_pbcore', {}, function(response) {
+					$('#export_csv_msg').html(response.msg);
+					$('#' + modalElement.'_close').show();
+				}, 'json');
+			}
+			else {
+				$('#' + modalElement.'_body p').html('Are you sure you want to export records?');
+				$('#' + modalElement.'_yes').show();
+				$('#' + modalElement.'_no').show();
+				$('#' + modalElement.'_close').hide();
+			}
+		}
 	</script>
 
 	<?php

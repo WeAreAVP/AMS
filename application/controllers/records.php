@@ -377,4 +377,18 @@ class Records extends MY_Controller
 		exit_function();
 	}
 
+	/**
+	 * Save cron to export records in pbcore 2 xml format.
+	 * 
+	 * @return JsonArrayType
+	 */
+	function export_pbcore()
+	{
+//		$query = $this->instantiation->export_limited_csv(TRUE);
+//		$record = array('user_id' => $this->user_id, 'status' => 0, 'export_query' => $query, 'query_loop' => ceil($records['total_count'] / 100000));
+//		$this->csv_job->insert_job($record);
+		echo json_encode(array('link' => 'false', 'msg' => 'Email will be sent to you with the link to download.'));
+		exit_function();
+	}
+
 }

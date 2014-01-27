@@ -14,18 +14,23 @@ class Xml extends CI_Controller
 
 	function export_pbcore()
 	{
-		$job = $this->csv_job->get_export_jobs('pbcore');
-		if (count($job) > 0)
+		$export_job = $this->csv_job->get_export_jobs('pbcore');
+		if (count($export_job) > 0)
 		{
-			myLog('CSV Job Started.');
-			for ($i = 0; $i < $job->query_loop; $i ++ )
+			myLog('Pbcore Export Job Started.');
+			for ($i = 0; $i < $export_job->query_loop; $i ++ )
 			{
 				myLog('Query Loop ' . $i);
-				$query = $job->export_query;
+				$query = $export_job->export_query;
 				$query.=' LIMIT ' . ($i * 100000) . ', 100000';
-
 				$records = $this->csv_job->get_csv_records($query);
-				debug($records);exit;
+				foreach ($records as $value)
+				{
+					$this->pbcore->asset_id = $value->id;
+					$this->pbcore->make_xml();
+				}
+
+				exit;
 			}
 		}
 	}

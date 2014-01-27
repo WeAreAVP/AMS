@@ -69,11 +69,11 @@ class Pbcore
 		// Asset Date End
 		// Asset Title Start
 		$asset_titles = $pbcore_model->get_asset_title($this->asset_id);
-		
+		debug($asset_titles);
 		foreach ($asset_titles as $asset_title)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreTitle', 'test');
+			$xml_object = $this->_add_child($this->xml, 'pbcoreTitle', $asset_title->title);
 			if ( ! empty($asset_title->title_source))
 				$attributes['source'] = $asset_title->title_source;
 			if ( ! empty($asset_title->title_ref))

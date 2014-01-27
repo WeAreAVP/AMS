@@ -31,6 +31,8 @@ class MY_Model extends CI_Model
 	public $table_events = 'events';
 	public $table_event_types = 'event_types';
 	public $table_identifers ='identifiers';
+	public $table_asset_types ='asset_types';
+	public $table_assets_asset_types ='assets_asset_types';
 	function __construct()
 	{
 		parent::__construct();

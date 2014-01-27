@@ -64,9 +64,17 @@ class Pbcore_Model extends MY_Model
 		return FALSE;
 	}
 
+	function get_asset_type()
+	{
+		$this->db->select("{$this->table_asset_types}.asset_type")
+		->join($this->table_asset_types, "{$this->table_asset_types}.id = {$this->table_assets_asset_types}.asset_types_id")
+		->where("{$this->table_assets_asset_types}.assets_id", $asset_id)
+		->get($this->table_assets_asset_types)->result();
+	}
+
 	function export_assets($real_time = FALSE)
 	{
- 
+
 		$this->db->select("{$this->_assets_table}.id");
 		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id = $this->_assets_table.id", 'left');
 		$this->db->join("identifiers", "$this->_assets_table.id = identifiers.assets_id AND identifiers.identifier_source!='http://americanarchiveinventory.org'", 'left');

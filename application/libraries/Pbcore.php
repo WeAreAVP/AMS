@@ -32,6 +32,7 @@ class Pbcore
 	private function _fetch_asset()
 	{
 		$pbcore_model = $this->CI->pbcore_model;
+		// Identifier Start
 		$identifiers = $pbcore_model->get_by($pbcore_model->table_identifers, array('assets_id' => $this->asset_id));
 		foreach ($identifiers as $identifer)
 		{
@@ -44,6 +45,15 @@ class Pbcore
 			$this->_add_attribute($xml_object, $attributes);
 			unset($xml_object);
 		}
+		// Identifier End
+		// Asset Type Start
+		$asset_types = $pbcore_model->get_asset_type($this->asset_id);
+		foreach ($asset_types as $asset_type)
+		{
+			$attributes=array();
+			$xml_object=  $this->_add_child($this->xml, 'pbcoreAssetType', $asset_type->asset_type);
+		}
+		// Asset Type End
 //		debug($identifiers);
 	}
 

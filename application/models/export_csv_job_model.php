@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Export_csv_job Model
  * 
@@ -42,9 +43,10 @@ class Export_csv_job_model extends CI_Model
 		return $this->db->get($this->_table)->result();
 	}
 
-	function get_incomplete_jobs()
+	function get_export_jobs($type)
 	{
 		$this->db->where('status', '0');
+		$this->db->where('type', $type);
 		$this->db->limit(1);
 		return $this->db->get($this->_table)->row();
 	}

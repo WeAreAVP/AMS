@@ -73,7 +73,7 @@ class Crons extends CI_Controller
 		@ini_set("memory_limit", "1000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999); # 1GB
 		$this->load->model('export_csv_job_model', 'csv_job');
-		$job = $this->csv_job->get_incomplete_jobs();
+		$job = $this->csv_job->get_export_jobs('limited_csv');
 		if (count($job) > 0)
 		{
 			myLog('CSV Job Started.');

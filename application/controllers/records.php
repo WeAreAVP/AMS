@@ -384,9 +384,11 @@ class Records extends MY_Controller
 	 */
 	function export_pbcore()
 	{
-//		$query = $this->instantiation->export_limited_csv(TRUE);
-//		$record = array('user_id' => $this->user_id, 'status' => 0, 'export_query' => $query, 'query_loop' => ceil($records['total_count'] / 100000));
-//		$this->csv_job->insert_job($record);
+		$this->load->model('pbcore_model');
+		$this->load->model('export_csv_job_model', 'csv_job');
+		$query = $this->pbcore_model->export_assets(TRUE);
+		$record = array('user_id' => $this->user_id, 'status' => 0, 'type' => 'pbcore', 'export_query' => $query, 'query_loop' => 1);
+		$this->csv_job->insert_job($record);
 		echo json_encode(array('link' => 'false', 'msg' => 'Email will be sent to you with the link to download.'));
 		exit_function();
 	}

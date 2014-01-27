@@ -56,7 +56,7 @@ class Pbcore
 		}
 		// Asset Type End
 		// Asset Date Start
-		$asset_dates = $pbcore_model->get_asset_date($this->asset_id);
+		$asset_dates = $pbcore_model->get_asset_date(1933734);
 		foreach ($asset_dates as $asset_date)
 		{
 			$attributes = array();

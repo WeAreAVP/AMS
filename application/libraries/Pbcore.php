@@ -48,6 +48,8 @@ class Pbcore
 		// Identifier End
 		// Asset Type Start
 		$asset_types = $pbcore_model->get_asset_type($this->asset_id);
+		debug($this->asset_id,FALSE);
+		debug($asset_types);
 		foreach ($asset_types as $asset_type)
 		{
 			$attributes=array();

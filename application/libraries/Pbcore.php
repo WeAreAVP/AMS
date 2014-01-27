@@ -89,7 +89,7 @@ class Pbcore
 
 	private function _add_child($object, $tag_name, $value)
 	{
-		$object = $object->addChild($tag_name, $value);
+		$object = $object->addChild($tag_name, htmlentities($value));
 		return $object;
 	}
 
@@ -103,7 +103,7 @@ class Pbcore
 	{
 		foreach ($attributes as $attribute => $value)
 		{
-			$object->addAttribute($attribute, $value);
+			$object->addAttribute($attribute, htmlentities($value));
 		}
 		return $object;
 	}

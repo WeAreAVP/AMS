@@ -33,7 +33,23 @@ class Pbcore
 	{
 		$pbcore_model = $this->CI->pbcore_model;
 		$identifiers = $pbcore_model->get_by($pbcore_model->table_identifers, array('assets_id' => $this->asset_id));
-		debug($identifiers);
+		foreach ($identifiers as $identifer)
+		{
+			$attributes = array();
+			$xml_object = $this->_add_child($this->xml, 'pbcoreIdentifier', $identifer->identifier);
+			if ( ! empty($identifer->identifier_source))
+				$attributes['source'] = $identifer->identifier_source;
+			if ( ! empty($identifer->identifier_ref))
+				$attributes['ref'] = $identifer->identifier_ref;
+			$this->_add_attribute($xml_object, $attributes);
+		}
+//		debug($identifiers);
+	}
+
+	private function _add_child($object, $tag_name, $value)
+	{
+		$object->addChild($tag_name, $value);
+		return $object;
 	}
 
 	/**
@@ -48,6 +64,7 @@ class Pbcore
 		{
 			$object->addAttribute($attribute, $value);
 		}
+		return $object;
 	}
 
 }

@@ -17,10 +17,10 @@ class Xml extends CI_Controller
 		$export_job = $this->csv_job->get_export_jobs('pbcore');
 		if (count($export_job) > 0)
 		{
-			myLog('Pbcore Export Job Started.');
+//			myLog('Pbcore Export Job Started.');
 			for ($i = 0; $i < $export_job->query_loop; $i ++ )
 			{
-				myLog('Query Loop ' . $i);
+//				myLog('Query Loop ' . $i);
 				$query = $export_job->export_query;
 				$query.=' LIMIT ' . ($i * 100000) . ', 100000';
 				$records = $this->csv_job->get_csv_records($query);
@@ -28,6 +28,9 @@ class Xml extends CI_Controller
 				{
 					$this->pbcore->asset_id = $value->id;
 					$this->pbcore->make_xml();
+					Header('Content-type: text/xml');
+					echo $$this->pbcore->xml->asXML();
+					exit;
 				}
 
 				exit;

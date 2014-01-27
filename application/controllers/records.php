@@ -102,8 +102,8 @@ class Records extends MY_Controller
 		}
 		$data['hidden_fields'] = $is_hidden;
 		$data['isAjax'] = FALSE;
-		$param = array('index' => 'assets_list');
-		$records = $this->sphinx->assets_listing($param, $offset);
+
+		$records = $this->sphinx->assets_listing($offset);
 		$data['total'] = $records['total_count'];
 		$config['total_rows'] = $data['total'];
 		$config['per_page'] = 100;
@@ -197,7 +197,7 @@ class Records extends MY_Controller
 			$data['asset_audience_ratings'] = $this->assets_model->get_audience_rating_by_asset_id($asset_id);
 			$data['annotations'] = $this->assets_model->get_annotations_by_asset_id($asset_id);
 			$data['relation'] = $this->assets_model->get_relation_by_asset_id($asset_id);
-			$search_results_data = $this->sphinx->assets_listing(array('index' => 'assets_list'), 0, 1000, TRUE);
+			$search_results_data = $this->sphinx->assets_listing(0, 1000, TRUE);
 			$data['next_result_id'] = FALSE;
 			$data['prev_result_id'] = FALSE;
 			$cur_key = NULL;
@@ -306,8 +306,8 @@ class Records extends MY_Controller
 		$this->session->set_userdata('column_order', $this->input->get('sSortDir_0'));
 
 		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
-		$param = array('index' => 'assets_list');
-		$records = $this->sphinx->assets_listing($param, $offset, 100, TRUE);
+
+		$records = $this->sphinx->assets_listing($offset, 100, TRUE);
 		$data['total'] = $records['total_count'];
 		$record_ids = array_map(array($this, 'make_map_array'), $records['records']);
 		$this->load->model('searchd_model', 'searchd');
@@ -356,8 +356,8 @@ class Records extends MY_Controller
 		$this->session->set_userdata('column', $column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
 		$this->session->set_userdata('column_order', $this->input->get('sSortDir_0'));
 		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
-		$param = array('index' => 'assets_list');
-		$records = $this->sphinx->assets_listing($param, $offset, 100, TRUE);
+
+		$records = $this->sphinx->assets_listing($offset, 100, TRUE);
 		$data['total'] = $records['total_count'];
 		$record_ids = array_map(array($this, 'make_map_array'), $records['records']);
 		$this->load->model('searchd_model', 'searchd');
@@ -386,8 +386,9 @@ class Records extends MY_Controller
 	{
 		$this->load->model('pbcore_model');
 		$this->load->model('export_csv_job_model', 'csv_job');
+		$records = $this->sphinx->assets_listing();
 		$query = $this->pbcore_model->export_assets(TRUE);
-		$record = array('user_id' => $this->user_id, 'status' => 0, 'type' => 'pbcore', 'export_query' => $query, 'query_loop' => 1);
+		$record = array('user_id' => $this->user_id, 'status' => 0, 'type' => 'pbcore', 'export_query' => $query, 'query_loop' => ceil($records['total_count'] / 100000));
 		$this->csv_job->insert_job($record);
 		echo json_encode(array('link' => 'false', 'msg' => 'Email will be sent to you with the link to download.'));
 		exit_function();

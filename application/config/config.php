@@ -35,6 +35,9 @@ if (ENVIRONMENT == 'development')
 	$config['path'] = '/home/ams/public_html/';
 	$config['cookie_domain'] = ".ams.live.geekschicago.com";
 	$config['mint_url'] = "http://mint.avpreserve.com:8080/mint-ams";
+	$config['asset_index'] = 'assets_list';
+	$config['instantiatiion_index'] = 'instantiations_list';
+	$config['station_index'] = 'stations';
 }
 else if (ENVIRONMENT == 'qatesting')
 {
@@ -46,9 +49,12 @@ else if (ENVIRONMENT == 'qatesting')
 	$config['cookie_domain'] = ".amsqa.avpreserve.com";
 	$config['mint_url'] = "http://mint.avpreserve.com:8080/mint-amsqa";
 	$config['instance_name'] = 'amsqa';
+	$config['asset_index'] = 'assets_list';
+	$config['instantiatiion_index'] = 'instantiations_list';
+	$config['station_index'] = 'stations';
 } if (ENVIRONMENT == 'production')
 {
-	$config['base_url'] =   "https://ams.avpreserve.com/";
+	$config['base_url'] = "https://ams.avpreserve.com/";
 	$config['to_email'] = 'ssapienza@cpb.org';
 	$config['from_email'] = 'noreply@ams.avpreserve.com';
 	$config['crawford_email'] = 'cstephenson@mail.crawford.com';
@@ -56,6 +62,9 @@ else if (ENVIRONMENT == 'qatesting')
 	$config['cookie_domain'] = ".ams.avpreserve.com";
 	$config['mint_url'] = "http://mint.avpreserve.com:8080/mint-ams";
 	$config['instance_name'] = 'ams';
+	$config['asset_index'] = 'assets_list';
+	$config['instantiatiion_index'] = 'instantiations_list';
+	$config['station_index'] = 'stations';
 }
 
 

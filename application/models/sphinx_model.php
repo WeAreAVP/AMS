@@ -66,7 +66,7 @@ class Sphinx_Model extends CI_Model
 			$this->sphinxsearch->set_filter_range("start_date", strtotime($params['start_date']), strtotime($params['end_date']));
 
 
-		$res = $this->sphinxsearch->query($params['search_keywords'], 'stations');
+		$res = $this->sphinxsearch->query($params['search_keywords'], $this->config->item('station_index'));
 
 
 		$execution_time = $res['time'];
@@ -210,7 +210,7 @@ class Sphinx_Model extends CI_Model
 
 		$query = $this->where_filter();
 
-		$res = $this->sphinxsearch->query($query, 'instantiations_list');
+		$res = $this->sphinxsearch->query($query, $this->config->item('instantiatiion_index'));
 
 		$execution_time = $res['time'];
 		if ($res)
@@ -313,7 +313,7 @@ class Sphinx_Model extends CI_Model
 
 
 
-		$res = $this->sphinxsearch->query($query, 'instantiations_list');
+		$res = $this->sphinxsearch->query($query,  $this->config->item('instantiatiion_index'));
 
 
 		$execution_time = $res['time'];
@@ -501,7 +501,7 @@ class Sphinx_Model extends CI_Model
 	 * @return array 
 	 * 
 	 */
-	function assets_listing($params, $offset = 0, $limit = 100, $select = FALSE)
+	function assets_listing($offset = 0, $limit = 100, $select = FALSE)
 	{
 		$instantiations = array();
 		$total_record = 0;
@@ -526,9 +526,9 @@ class Sphinx_Model extends CI_Model
 				$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['column']);
 			}
 		}
-		$query = $this->make_where_clause(NULL, $params['index']);
+		$query = $this->make_where_clause(NULL, $this->config->item('asset_index'));
 
-		$res = $this->sphinxsearch->query($query, $params['index']);
+		$res = $this->sphinxsearch->query($query, $this->config->item('asset_index'));
 
 
 		$execution_time = $res['time'];
@@ -551,4 +551,3 @@ class Sphinx_Model extends CI_Model
 	}
 
 }
-

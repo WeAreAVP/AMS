@@ -42,6 +42,7 @@ class Pbcore
 			if ( ! empty($identifer->identifier_ref))
 				$attributes['ref'] = $identifer->identifier_ref;
 			$this->_add_attribute($xml_object, $attributes);
+			unset($xml_object);
 		}
 //		debug($identifiers);
 	}

@@ -178,6 +178,19 @@ class Pbcore_Model extends MY_Model
 		->where("{$this->table_assets_audience_levels}.assets_id", $asset_id)
 		->get($this->table_assets_audience_levels)->result();
 	}
+	/**
+	 * Get Assets Audience rating by asset ID.
+	 * 
+	 * @param integer $asset_id
+	 * @return stdObject
+	 */
+	function get_asset_audience_rating($asset_id)
+	{
+		return $this->db->select("{$this->table_audience_ratings}.*")
+		->join($this->table_audience_ratings, "{$this->table_audience_ratings}.id = {$this->table_assets_audience_ratings}.audience_ratings_id", 'LEFT')
+		->where("{$this->table_assets_audience_ratings}.assets_id", $asset_id)
+		->get($this->table_assets_audience_ratings)->result();
+	}
 
 	function export_assets($real_time = FALSE)
 	{

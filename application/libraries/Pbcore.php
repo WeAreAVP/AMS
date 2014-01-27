@@ -139,7 +139,7 @@ class Pbcore
 		}
 		// Asset Coverage  End
 		// Asset Audience Level  Start
-		$asset_audiences_level = $pbcore_model->get_asset_audience_level(2272108);
+		$asset_audiences_level = $pbcore_model->get_asset_audience_level($this->asset_id);
 
 		foreach ($asset_audiences_level as $asset_audience_level)
 		{
@@ -149,6 +149,21 @@ class Pbcore
 				$attributes['source'] = $asset_audience_level->audience_level_source;
 			if ( ! empty($asset_audience_level->audience_level_ref))
 				$attributes['ref'] = $asset_audience_level->audience_level_ref;
+			$this->_add_attribute($xml_object, $attributes);
+			unset($xml_object);
+		}
+		// Asset Audience Level  End
+		// Asset Audience Level  Start
+		$asset_audiences_rating = $pbcore_model->get_asset_audience_rating($this->asset_id);
+
+		foreach ($asset_audiences_rating as $asset_audience_rating)
+		{
+			$attributes = array();
+			$xml_object = $this->_add_child($this->xml, 'pbcoreAudienceRating', $asset_audience_rating->audience_rating);
+			if ( ! empty($asset_audience_rating->audience_rating_source))
+				$attributes['source'] = $asset_audience_rating->audience_rating_source;
+			if ( ! empty($asset_audience_rating->audience_rating_ref))
+				$attributes['ref'] = $asset_audience_rating->audience_rating_ref;
 			$this->_add_attribute($xml_object, $attributes);
 			unset($xml_object);
 		}

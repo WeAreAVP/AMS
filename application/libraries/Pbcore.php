@@ -10,7 +10,7 @@ class Pbcore
 	function __construct()
 	{
 		$this->CI = & get_instance();
-		$this->load->model('pbcore_model');
+		$this->CI->load->model('pbcore_model');
 		$this->xml = new SimpleXMLElement('<pbcoreDescriptionDocument/>');
 		$attributes = array(
 			'xmlns' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html",

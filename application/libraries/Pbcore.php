@@ -50,10 +50,22 @@ class Pbcore
 		$asset_types = $pbcore_model->get_asset_type($this->asset_id);
 		foreach ($asset_types as $asset_type)
 		{
-			$attributes=array();
-			$xml_object=  $this->_add_child($this->xml, 'pbcoreAssetType', $asset_type->asset_type);
+			$attributes = array();
+			$xml_object = $this->_add_child($this->xml, 'pbcoreAssetType', $asset_type->asset_type);
 		}
 		// Asset Type End
+		// Asset Date Start
+		$asset_dates = $pbcore_model->get_asset_date($this->asset_id);
+		foreach ($asset_dates as $asset_date)
+		{
+			$attributes = array();
+			$xml_object = $this->_add_child($this->xml, 'pbcoreAssetDate', $asset_date->asset_date);
+			if ( ! empty($identifer->date_type))
+				$attributes['dateType'] = $asset_date->date_type;
+			$this->_add_attribute($xml_object, $attributes);
+			unset($xml_object);
+		}
+		// Asset Date End
 //		debug($identifiers);
 	}
 

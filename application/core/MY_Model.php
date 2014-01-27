@@ -33,6 +33,7 @@ class MY_Model extends CI_Model
 	public $table_identifers ='identifiers';
 	public $table_asset_types ='asset_types';
 	public $table_assets_asset_types ='assets_asset_types';
+	public $table_asset_dates ='asset_dates';
 	function __construct()
 	{
 		parent::__construct();

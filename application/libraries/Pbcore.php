@@ -115,7 +115,7 @@ class Pbcore
 		}
 		// Asset Description End
 		// Asset Genre  Start
-		$asset_genres = $pbcore_model->get_asset_genre(13725);
+		$asset_genres = $pbcore_model->get_asset_genre($this->asset_id);
 
 		foreach ($asset_genres as $asset_genre)
 		{
@@ -128,7 +128,18 @@ class Pbcore
 			$this->_add_attribute($xml_object, $attributes);
 			unset($xml_object);
 		}
-		// Asset Description End
+		// Asset Genre End
+		// Asset Coverage  Start
+		$asset_coverages = $pbcore_model->get_by($pbcore_model->table_coverages, array('assets_id' => $this->asset_id));
+		debug($asset_coverages);
+		foreach ($asset_coverages as $asset_coverage)
+		{
+
+			$xml_object = $this->_add_child($this->xml, 'pbcoreCoverage');
+			$this->_add_child($xml_object, 'coverage', $asset_coverage->coverage);
+			$this->_add_child($xml_object, 'coverageType', $asset_coverage->coverage_type);
+		}
+		// Asset Coverage  End
 //		debug($identifiers);
 	}
 

@@ -42,6 +42,7 @@ class MY_Model extends CI_Model
 	public $table_description_types = 'description_types';
 	public $table_assets_genres = 'assets_genres';
 	public $table_genres = 'genres';
+	public $table_coverages = 'coverages';
 
 	function __construct()
 	{

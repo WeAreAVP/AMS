@@ -131,7 +131,7 @@ class Pbcore
 		// Asset Genre End
 		// Asset Coverage  Start
 		$asset_coverages = $pbcore_model->get_by($pbcore_model->table_coverages, array('assets_id' => 21020));
-		debug($asset_coverages);
+//		debug($asset_coverages);
 		foreach ($asset_coverages as $asset_coverage)
 		{
 

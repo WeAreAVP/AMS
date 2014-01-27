@@ -35,6 +35,7 @@ class MY_Model extends CI_Model
 	public $table_asset_types ='asset_types';
 	public $table_assets_asset_types ='assets_asset_types';
 	public $table_asset_dates ='asset_dates';
+	public $table_assets_subjects ='assets_subjects';
 	public $table_subjects ='subjects';
 	public $table_subject_types ='subject_types';
 	function __construct()

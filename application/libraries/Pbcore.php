@@ -4,7 +4,7 @@ class Pbcore
 {
 
 	private $CI;
-	protected $xml = NULL;
+	public $xml = NULL;
 	public $asset_id = NULL;
 
 	function __construct()

@@ -86,7 +86,7 @@ class Pbcore
 		// Asset Title End
 		// Asset Subject  Start
 		$asset_subjects = $pbcore_model->get_asset_subject($this->asset_id);
-		debug($asset_subjects);
+		
 		foreach ($asset_subjects as $asset_subject)
 		{
 			$attributes = array();

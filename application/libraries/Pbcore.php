@@ -69,7 +69,7 @@ class Pbcore
 		// Asset Date End
 		// Asset Title Start
 		$asset_titles = $pbcore_model->get_asset_title($this->asset_id);
-		debug($asset_titles);
+		
 		foreach ($asset_titles as $asset_title)
 		{
 			$attributes = array();

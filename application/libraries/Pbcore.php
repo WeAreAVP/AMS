@@ -86,7 +86,7 @@ class Pbcore
 		// Asset Title End
 		// Asset Subject  Start
 		$asset_subjects = $pbcore_model->get_asset_subject($this->asset_id);
-		
+
 		foreach ($asset_subjects as $asset_subject)
 		{
 			$attributes = array();
@@ -101,6 +101,19 @@ class Pbcore
 			unset($xml_object);
 		}
 		// Asset Subject End
+		// Asset Description  Start
+		$asset_descriptions = $pbcore_model->get_asset_description($this->asset_id);
+
+		foreach ($asset_descriptions as $asset_description)
+		{
+			$attributes = array();
+			$xml_object = $this->_add_child($this->xml, 'pbcoreDescription', $asset_description->description);
+			if ( ! empty($asset_description->description_type))
+				$attributes['descriptionType'] = $asset_description->description_type;
+			$this->_add_attribute($xml_object, $attributes);
+			unset($xml_object);
+		}
+		// Asset Description End
 //		debug($identifiers);
 	}
 

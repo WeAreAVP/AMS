@@ -38,6 +38,8 @@ class MY_Model extends CI_Model
 	public $table_assets_subjects ='assets_subjects';
 	public $table_subjects ='subjects';
 	public $table_subject_types ='subject_types';
+	public $table_asset_descriptions ='asset_descriptions';
+	public $table_description_types ='description_types';
 	function __construct()
 	{
 		parent::__construct();

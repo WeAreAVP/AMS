@@ -97,6 +97,14 @@ class Pbcore_Model extends MY_Model
 		->get($this->table_assets_subjects)->result();
 		
 	}
+	function get_asset_description($asset_id)
+	{
+		return $this->db->select("{$this->table_asset_descriptions}.description,{$this->table_description_types}.description_type")
+		->join($this->table_description_types, "{$this->table_description_types}.id = {$this->table_asset_descriptions}.description_types_id", 'LEFT')
+		->where("{$this->table_asset_descriptions}.assets_id", $asset_id)
+		->get($this->table_asset_descriptions)->result();
+		
+	}
 
 	function export_assets($real_time = FALSE)
 	{

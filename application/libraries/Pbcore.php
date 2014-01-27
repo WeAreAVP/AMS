@@ -130,16 +130,29 @@ class Pbcore
 		}
 		// Asset Genre End
 		// Asset Coverage  Start
-		$asset_coverages = $pbcore_model->get_by($pbcore_model->table_coverages, array('assets_id' => 21020));
-//		debug($asset_coverages);
+		$asset_coverages = $pbcore_model->get_by($pbcore_model->table_coverages, array('assets_id' => $this->asset_id));
 		foreach ($asset_coverages as $asset_coverage)
 		{
-
 			$xml_object = $this->_add_child($this->xml, 'pbcoreCoverage');
 			$this->_add_child($xml_object, 'coverage', $asset_coverage->coverage);
 			$this->_add_child($xml_object, 'coverageType', $asset_coverage->coverage_type);
 		}
 		// Asset Coverage  End
+		// Asset Audience Level  Start
+		$asset_audiences_level = $pbcore_model->get_asset_audience_level($this->asset_id);
+
+		foreach ($asset_audiences_level as $asset_audience_level)
+		{
+			$attributes = array();
+			$xml_object = $this->_add_child($this->xml, 'pbcoreGenre', $asset_audience_level->audience_level);
+			if ( ! empty($asset_audience_level->audience_level_source))
+				$attributes['source'] = $asset_audience_level->audience_level_source;
+			if ( ! empty($asset_audience_level->audience_level_ref))
+				$attributes['ref'] = $asset_audience_level->audience_level_ref;
+			$this->_add_attribute($xml_object, $attributes);
+			unset($xml_object);
+		}
+		// Asset Audience Level  End
 //		debug($identifiers);
 	}
 

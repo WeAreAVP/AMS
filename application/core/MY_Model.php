@@ -43,6 +43,8 @@ class MY_Model extends CI_Model
 	public $table_assets_genres = 'assets_genres';
 	public $table_genres = 'genres';
 	public $table_coverages = 'coverages';
+	public $table_assets_audience_levels = 'assets_audience_levels';
+	public $table_audience_levels = 'audience_levels';
 
 	function __construct()
 	{

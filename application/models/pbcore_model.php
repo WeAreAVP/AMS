@@ -165,6 +165,20 @@ class Pbcore_Model extends MY_Model
 		->get($this->table_assets_genres)->result();
 	}
 
+	/**
+	 * Get Assets Audience level by asset ID.
+	 * 
+	 * @param integer $asset_id
+	 * @return stdObject
+	 */
+	function get_asset_audience_level($asset_id)
+	{
+		return $this->db->select("{$this->table_audience_levels}.*")
+		->join($this->table_audience_levels, "{$this->table_audience_levels}.id = {$this->table_assets_audience_levels}.audience_levels_id", 'LEFT')
+		->where("{$this->table_assets_audience_levels}.assets_id", $asset_id)
+		->get($this->table_assets_audience_levels)->result();
+	}
+
 	function export_assets($real_time = FALSE)
 	{
 

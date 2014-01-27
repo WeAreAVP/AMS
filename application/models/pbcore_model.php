@@ -64,7 +64,7 @@ class Pbcore_Model extends MY_Model
 		return FALSE;
 	}
 
-	function get_asset_type()
+	function get_asset_type($asset_id)
 	{
 		$this->db->select("{$this->table_asset_types}.asset_type")
 		->join($this->table_asset_types, "{$this->table_asset_types}.id = {$this->table_assets_asset_types}.asset_types_id")

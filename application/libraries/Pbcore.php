@@ -41,7 +41,7 @@ class Pbcore
 				$attributes['source'] = $identifer->identifier_source;
 			if ( ! empty($identifer->identifier_ref))
 				$attributes['ref'] = $identifer->identifier_ref;
-//			$this->_add_attribute($xml_object, $attributes);
+			$this->_add_attribute($xml_object, $attributes);
 			unset($xml_object);
 		}
 //		debug($identifiers);
@@ -63,7 +63,7 @@ class Pbcore
 	{
 		foreach ($attributes as $attribute => $value)
 		{
-			$object->addAttribute($attribute, $value);
+			@$object->addAttribute($attribute, $value);
 		}
 		return $object;
 	}

@@ -94,7 +94,7 @@ class Pbcore_Model extends MY_Model
 		->join($this->table_subject_types, "{$this->table_subject_types}.id = {$this->table_subjects}.subjects_types_id", 'LEFT')
 		->where("{$this->table_subjects}.assets_id", $asset_id)
 		->get($this->table_subjects);
-		echo $this->db->last_query;exit;
+		echo $this->db->last_query();exit;
 	}
 
 	function export_assets($real_time = FALSE)

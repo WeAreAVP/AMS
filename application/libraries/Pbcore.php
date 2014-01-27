@@ -73,7 +73,7 @@ class Pbcore
 		foreach ($asset_titles as $asset_title)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreTitle', $asset_title->title);
+			$xml_object = $this->_add_child($this->xml, 'pbcoreTitle', 'test');
 			if ( ! empty($asset_title->title_source))
 				$attributes['source'] = $asset_title->title_source;
 			if ( ! empty($asset_title->title_ref))

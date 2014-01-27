@@ -144,7 +144,7 @@ class Pbcore
 		foreach ($asset_audiences_level as $asset_audience_level)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreGenre', $asset_audience_level->audience_level);
+			$xml_object = $this->_add_child($this->xml, 'pbcoreAudienceLevel', $asset_audience_level->audience_level);
 			if ( ! empty($asset_audience_level->audience_level_source))
 				$attributes['source'] = $asset_audience_level->audience_level_source;
 			if ( ! empty($asset_audience_level->audience_level_ref))

@@ -32,6 +32,7 @@ class Pbcore
 	private function _fetch_asset()
 	{
 		$pbcore_model = $this->CI->pbcore_model;
+		debug($this->asset_id);
 		// Identifier Start
 		$identifiers = $pbcore_model->get_by($pbcore_model->table_identifers, array('assets_id' => $this->asset_id));
 		foreach ($identifiers as $identifer)

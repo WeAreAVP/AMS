@@ -32,7 +32,7 @@ class Pbcore
 	private function _fetch_asset()
 	{
 		$pbcore_model = $this->CI->pbcore_model;
-		
+
 		// Identifier Start
 		$identifiers = $pbcore_model->get_by($pbcore_model->table_identifers, array('assets_id' => $this->asset_id));
 		foreach ($identifiers as $identifer)
@@ -56,7 +56,7 @@ class Pbcore
 		}
 		// Asset Type End
 		// Asset Date Start
-		$asset_dates = $pbcore_model->get_asset_date(1933734);
+		$asset_dates = $pbcore_model->get_asset_date($this->asset_id);
 		foreach ($asset_dates as $asset_date)
 		{
 			$attributes = array();
@@ -67,6 +67,22 @@ class Pbcore
 			unset($xml_object);
 		}
 		// Asset Date End
+		// Asset Title Start
+		$asset_titles = $pbcore_model->get_asset_title($this->asset_id);
+		foreach ($asset_titles as $asset_title)
+		{
+			$attributes = array();
+			$xml_object = $this->_add_child($this->xml, 'pbcoreTitle', $asset_title->title);
+			if ( ! empty($identifer->title_source))
+				$attributes['source'] = $asset_title->title_source;
+			if ( ! empty($identifer->title_ref))
+				$attributes['ref'] = $asset_title->title_ref;
+			if ( ! empty($identifer->title_type))
+				$attributes['titleType'] = $asset_title->title_type;
+			$this->_add_attribute($xml_object, $attributes);
+			unset($xml_object);
+		}
+		// Asset Title End
 //		debug($identifiers);
 	}
 

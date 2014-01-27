@@ -25,6 +25,7 @@ class MY_Model extends CI_Model
 	public $table_instantiation_annotations = 'instantiation_annotations';
 	public $_assets_table = 'assets';
 	public $asset_titles = 'asset_titles';
+	public $table_asset_title_types = 'asset_title_types';
 	public $stations = 'stations';
 	public $table_nominations = 'nominations';
 	public $table_nomination_status = 'nomination_status';

@@ -115,7 +115,7 @@ class Pbcore
 		}
 		// Asset Description End
 		// Asset Genre  Start
-		$asset_genres = $pbcore_model->get_asset_genre($this->asset_id);
+		$asset_genres = $pbcore_model->get_asset_genre(13725);
 
 		foreach ($asset_genres as $asset_genre)
 		{

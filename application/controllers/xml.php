@@ -28,7 +28,7 @@ class Xml extends CI_Controller
 				{
 					$this->pbcore->asset_id = $value->id;
 					$this->pbcore->make_xml();
-//					Header('Content-type: text/xml');
+					Header('Content-type: text/xml');
 					echo $this->pbcore->xml->asXML();
 					exit;
 				}

@@ -80,10 +80,11 @@ class Pbcore_Model extends MY_Model
 	}
 	function get_asset_title($asset_id)
 	{
-		return $this->db->select("{$this->asset_titles}.*,{$this->table_asset_title_types}.title_type")
+		 $this->db->select("{$this->asset_titles}.*,{$this->table_asset_title_types}.title_type")
 		->join($this->table_asset_title_types, "{$this->table_asset_title_types}.id = {$this->asset_titles}.asset_title_types_id",'LEFT')
 		->where("{$this->table_asset_dates}.assets_id", $asset_id)
-		->get($this->asset_titles)->result();
+		->get($this->asset_titles);
+		debug($this->db->last_query());
 	}
 
 	function export_assets($real_time = FALSE)

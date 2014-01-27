@@ -7,7 +7,7 @@ if ( ! defined('BASEPATH'))
 
 class MY_Model extends CI_Model
 {
-
+ 
 	public $_prefix = '';
 	public $table_date_types = 'date_types';
 	public $table_generations = 'generations';

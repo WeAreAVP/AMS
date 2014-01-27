@@ -1161,7 +1161,7 @@ class Instantiations extends MY_Controller
 		{
 			$query = $this->instantiation->export_limited_csv(TRUE);
 			$record = array('user_id' => $this->user_id, 'status' => 0, 'export_query' => $query, 'query_loop' => ceil($records['total_count'] / 100000));
-			$this->csv_job->insert_job($record);
+			$this->csv_job->insert_job($record); 
 			echo json_encode(array('link' => 'false', 'msg' => 'Email will be sent to you with the link of limited csv export.'));
 			exit_function();
 		}

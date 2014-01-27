@@ -49,7 +49,7 @@ else if (ENVIRONMENT == 'qatesting')
 	$config['cookie_domain'] = ".amsqa.avpreserve.com";
 	$config['mint_url'] = "http://mint.avpreserve.com:8080/mint-amsqa";
 	$config['instance_name'] = 'amsqa';
-	$config['asset_index'] = 'assets_list';
+	$config['asset_index'] = 'assets_list'; 
 	$config['instantiatiion_index'] = 'instantiations_list';
 	$config['station_index'] = 'stations';
 } if (ENVIRONMENT == 'production')

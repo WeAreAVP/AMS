@@ -66,7 +66,7 @@ class Pbcore_Model extends MY_Model
 
 	function export_assets($real_time = FALSE)
 	{
-
+ 
 		$this->db->select("{$this->_assets_table}.id");
 		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id = $this->_assets_table.id", 'left');
 		$this->db->join("identifiers", "$this->_assets_table.id = identifiers.assets_id AND identifiers.identifier_source!='http://americanarchiveinventory.org'", 'left');

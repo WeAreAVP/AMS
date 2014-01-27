@@ -381,10 +381,10 @@ class Records extends MY_Controller
 	 * Save cron to export records in pbcore 2 xml format.
 	 * 
 	 * @return JsonArrayType
-	 */
+	 */ 
 	function export_pbcore()
 	{
-		$this->load->model('pbcore_model');
+		$this->load->model('pbcore_model'); 
 		$this->load->model('export_csv_job_model', 'csv_job');
 		$records = $this->sphinx->assets_listing();
 		$query = $this->pbcore_model->export_assets(TRUE);

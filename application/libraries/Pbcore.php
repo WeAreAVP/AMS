@@ -139,7 +139,7 @@ class Pbcore
 		}
 		// Asset Coverage  End
 		// Asset Audience Level  Start
-		$asset_audiences_level = $pbcore_model->get_asset_audience_level($this->asset_id);
+		$asset_audiences_level = $pbcore_model->get_asset_audience_level(2272108);
 
 		foreach ($asset_audiences_level as $asset_audience_level)
 		{

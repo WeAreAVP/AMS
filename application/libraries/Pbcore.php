@@ -114,6 +114,21 @@ class Pbcore
 			unset($xml_object);
 		}
 		// Asset Description End
+		// Asset Genre  Start
+		$asset_genres = $pbcore_model->get_asset_genre($this->asset_id);
+
+		foreach ($asset_genres as $asset_genre)
+		{
+			$attributes = array();
+			$xml_object = $this->_add_child($this->xml, 'pbcoreGenre', $asset_genre->genre);
+			if ( ! empty($asset_genre->genre_source))
+				$attributes['source'] = $asset_genre->genre_source;
+			if ( ! empty($asset_genre->genre_ref))
+				$attributes['ref'] = $asset_genre->genre_ref;
+			$this->_add_attribute($xml_object, $attributes);
+			unset($xml_object);
+		}
+		// Asset Description End
 //		debug($identifiers);
 	}
 

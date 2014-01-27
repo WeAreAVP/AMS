@@ -36,6 +36,14 @@ class Pbcore_Model extends MY_Model
 		parent::__construct();
 	}
 
+	/**
+	 * Find single record by column of a table.
+	 * 
+	 * @param string $table
+	 * @param array  $data
+	 * 
+	 * @return boolean
+	 */
 	function get_one_by($table, array $data)
 	{
 		foreach ($data as $column => $value)
@@ -50,6 +58,14 @@ class Pbcore_Model extends MY_Model
 		return FALSE;
 	}
 
+	/**
+	 * Find records by column of a table.
+	 * 
+	 * @param string $table
+	 * @param array  $data
+	 * 
+	 * @return boolean
+	 */
 	function get_by($table, array $data)
 	{
 		foreach ($data as $column => $value)
@@ -64,6 +80,12 @@ class Pbcore_Model extends MY_Model
 		return FALSE;
 	}
 
+	/**
+	 * Get Assets type by asset ID.
+	 * 
+	 * @param integer $asset_id
+	 * @return stdObject
+	 */
 	function get_asset_type($asset_id)
 	{
 		return $this->db->select("{$this->table_asset_types}.asset_type")
@@ -72,6 +94,12 @@ class Pbcore_Model extends MY_Model
 		->get($this->table_assets_asset_types)->result();
 	}
 
+	/**
+	 * Get Assets dates by asset ID.
+	 * 
+	 * @param integer $asset_id
+	 * @return stdObject
+	 */
 	function get_asset_date($asset_id)
 	{
 		return $this->db->select("{$this->table_asset_dates}.asset_date,{$this->table_date_types}.date_type")
@@ -80,6 +108,12 @@ class Pbcore_Model extends MY_Model
 		->get($this->table_asset_dates)->result();
 	}
 
+	/**
+	 * Get Assets titles by asset ID.
+	 * 
+	 * @param integer $asset_id
+	 * @return stdObject
+	 */
 	function get_asset_title($asset_id)
 	{
 		return $this->db->select("{$this->asset_titles}.*,{$this->table_asset_title_types}.title_type")
@@ -88,6 +122,12 @@ class Pbcore_Model extends MY_Model
 		->get($this->asset_titles)->result();
 	}
 
+	/**
+	 * Get Assets subjects by asset ID.
+	 * 
+	 * @param integer $asset_id
+	 * @return stdObject
+	 */
 	function get_asset_subject($asset_id)
 	{
 		return $this->db->select("{$this->table_subjects}.*,{$this->table_subject_types}.subject_type")
@@ -95,15 +135,34 @@ class Pbcore_Model extends MY_Model
 		->join($this->table_subject_types, "{$this->table_subject_types}.id = {$this->table_subjects}.subjects_types_id", 'LEFT')
 		->where("{$this->table_assets_subjects}.assets_id", $asset_id)
 		->get($this->table_assets_subjects)->result();
-		
 	}
+
+	/**
+	 * Get Assets description by asset ID.
+	 * 
+	 * @param integer $asset_id
+	 * @return stdObject
+	 */
 	function get_asset_description($asset_id)
 	{
 		return $this->db->select("{$this->table_asset_descriptions}.description,{$this->table_description_types}.description_type")
 		->join($this->table_description_types, "{$this->table_description_types}.id = {$this->table_asset_descriptions}.description_types_id", 'LEFT')
 		->where("{$this->table_asset_descriptions}.assets_id", $asset_id)
 		->get($this->table_asset_descriptions)->result();
-		
+	}
+
+	/**
+	 * Get Assets genres by asset ID.
+	 * 
+	 * @param integer $asset_id
+	 * @return stdObject
+	 */
+	function get_asset_genre($asset_id)
+	{
+		return $this->db->select("{$this->table_genres}.*")
+		->join($this->table_genres, "{$this->table_genres}.id = {$this->table_assets_genres}.genres_id", 'LEFT')
+		->where("{$this->table_assets_genres}.assets_id", $asset_id)
+		->get($this->table_assets_genres)->result();
 	}
 
 	function export_assets($real_time = FALSE)

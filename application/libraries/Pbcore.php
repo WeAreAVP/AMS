@@ -136,7 +136,7 @@ class Pbcore
 		{
 
 			$xml_object = $this->_add_child($this->xml, 'pbcoreCoverage');
-			$this->_add_child($xml_object, 'coverage', $asset_coverage->coverage);
+//			$this->_add_child($xml_object, 'coverage', $asset_coverage->coverage);
 //			$this->_add_child($xml_object, 'coverageType', $asset_coverage->coverage_type);
 		}
 		// Asset Coverage  End

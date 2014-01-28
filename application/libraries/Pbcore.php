@@ -32,7 +32,7 @@ class Pbcore
 	private function _fetch_asset()
 	{
 		$array= array('issue'=>'Fahad','issue'=>'Nouman');
-		debug($array);
+		
 		$pbcore_model = $this->CI->pbcore_model;
 
 		// Identifier Start

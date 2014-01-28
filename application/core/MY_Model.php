@@ -52,6 +52,9 @@ class MY_Model extends CI_Model
 	public $table_assets_creators_roles = 'assets_creators_roles';
 	public $table_creators = 'creators';
 	public $table_creator_roles = 'creator_roles';
+	public $table_assets_contributors_roles = 'assets_contributors_roles';
+	public $table_contributors = 'contributors';
+	public $table_contributor_roles = 'contributor_roles';
 
 	function __construct()
 	{

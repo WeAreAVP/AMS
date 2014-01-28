@@ -206,7 +206,7 @@ class Pbcore
 		}
 		// Asset Relations End
 		// Asset Creator and Role  Start
-		$asset_creators = $pbcore_model->get_asset_creator_and_role(4848352);
+		$asset_creators = $pbcore_model->get_asset_creator_and_role($this->asset_id);
 
 		foreach ($asset_creators as $asset_creator)
 		{
@@ -215,21 +215,21 @@ class Pbcore
 			if ( ! empty($asset_creator->creator_name))
 			{
 				$xml_creator_object = $this->_add_child($xml_object, 'creator', $asset_creator->creator_name);
-				if ( ! empty($asset_annotation->creator_affiliation))
-					$attributes['affiliation'] = $asset_annotation->creator_affiliation;
-				if ( ! empty($asset_annotation->creator_source))
-					$attributes['source'] = $asset_annotation->creator_source;
-				if ( ! empty($asset_annotation->creator_ref))
-					$attributes['ref'] = $asset_annotation->creator_ref;
+				if ( ! empty($asset_creator->creator_affiliation))
+					$attributes['affiliation'] = $asset_creator->creator_affiliation;
+				if ( ! empty($asset_creator->creator_source))
+					$attributes['source'] = $asset_creator->creator_source;
+				if ( ! empty($asset_creator->creator_ref))
+					$attributes['ref'] = $asset_creator->creator_ref;
 				$this->_add_attribute($xml_creator_object, $attributes);
 			}
 			if ( ! empty($asset_creator->creator_role))
 			{
 				$xml_creator_role_object = $this->_add_child($xml_object, 'creatorRole', $asset_creator->creator_role);
-				if ( ! empty($asset_annotation->creator_role_source))
-					$attributes['source'] = $asset_annotation->creator_role_source;
-				if ( ! empty($asset_annotation->creator_role_ref))
-					$attributes['ref'] = $asset_annotation->creator_role_ref;
+				if ( ! empty($asset_creator->creator_role_source))
+					$attributes['source'] = $asset_creator->creator_role_source;
+				if ( ! empty($asset_creator->creator_role_ref))
+					$attributes['ref'] = $asset_creator->creator_role_ref;
 				$this->_add_attribute($xml_creator_role_object, $attributes);
 			}
 
@@ -237,7 +237,40 @@ class Pbcore
 
 			unset($xml_object);
 		}
-		// Asset Relations End
+		//  Asset Creator and Role  End
+		// Asset Contributor and Role  Start
+		$asset_contributors = $pbcore_model->get_asset_contributor_and_role(4848311);
+
+		foreach ($asset_contributors as $asset_contributor)
+		{
+			$attributes = array();
+			$xml_object = $this->_add_child($this->xml, 'pbcoreContributor');
+			if ( ! empty($asset_contributor->contributor_name))
+			{
+				$xml_contributor_object = $this->_add_child($xml_object, 'contributor', $asset_contributor->contributor_name);
+				if ( ! empty($asset_contributor->contributor_affiliation))
+					$attributes['affiliation'] = $asset_contributor->contributor_affiliation;
+				if ( ! empty($asset_contributor->contributor_source))
+					$attributes['source'] = $asset_contributor->contributor_source;
+				if ( ! empty($asset_contributor->contributor_ref))
+					$attributes['ref'] = $asset_contributor->contributor_ref;
+				$this->_add_attribute($xml_contributor_object, $attributes);
+			}
+			if ( ! empty($asset_creator->contributor_role))
+			{
+				$xml_contributor_role_object = $this->_add_child($xml_object, 'contributorRole', $asset_contributor->contributor_role);
+				if ( ! empty($asset_contributor->contributor_role_source))
+					$attributes['source'] = $asset_contributor->contributor_role_source;
+				if ( ! empty($asset_contributor->contributor_role_ref))
+					$attributes['ref'] = $asset_contributor->contributor_role_ref;
+				$this->_add_attribute($xml_contributor_role_object, $attributes);
+			}
+
+
+
+			unset($xml_object);
+		}
+		//  Asset Contributor and Role  End
 //		debug($identifiers);
 	}
 

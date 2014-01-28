@@ -222,6 +222,21 @@ class Pbcore_Model extends MY_Model
 		->get($this->table_assets_creators_roles)->result();
 	}
 
+	/**
+	 * Get Assets Contributors and its role by asset ID.
+	 * 
+	 * @param integer $asset_id
+	 * @return stdObject
+	 */
+	function get_asset_contributor_and_role($asset_id)
+	{
+		return $this->db->select("{$this->table_contributors}.*,{$this->table_contributor_roles}.*")
+		->join($this->table_contributors, "{$this->table_contributors}.id = {$this->table_assets_contributors_roles}.contributors_id", 'LEFT')
+		->join($this->table_contributor_roles, "{$this->table_contributor_roles}.id = {$this->table_assets_contributors_roles}.contributor_roles_id", 'LEFT')
+		->where("{$this->table_assets_contributors_roles}.assets_id", $asset_id)
+		->get($this->table_assets_contributors_roles)->result();
+	}
+
 	function export_assets($real_time = FALSE)
 	{
 

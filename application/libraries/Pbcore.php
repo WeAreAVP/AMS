@@ -206,7 +206,7 @@ class Pbcore
 		}
 		// Asset Relations End
 		// Asset Creator and Role  Start
-		$asset_creators = $pbcore_model->get_asset_creator_and_role($this->asset_id);
+		$asset_creators = $pbcore_model->get_asset_creator_and_role(4848352);
 		debug($asset_creators);
 		foreach ($asset_relations as $asset_relation)
 		{

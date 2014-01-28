@@ -43,7 +43,7 @@ class Xml extends CI_Controller
 
 		if (isset($guid) && $guid !== 0)
 		{
-
+			
 			$result = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('identifier' => "cpb-aacip/{$guid}"));
 			if ($result)
 			{

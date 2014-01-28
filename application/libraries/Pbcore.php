@@ -31,6 +31,8 @@ class Pbcore
 
 	private function _fetch_asset()
 	{
+		$array= array('issue'=>'Fahad','issue'=>'Nouman');
+		debug($array);
 		$pbcore_model = $this->CI->pbcore_model;
 
 		// Identifier Start
@@ -169,7 +171,7 @@ class Pbcore
 		}
 		// Asset Audience Level  End
 		// Asset Annotation  Start
-		$asset_annotations = $pbcore_model->get_by($pbcore_model->table_annotations, array('assets_id' => 1937777));
+		$asset_annotations = $pbcore_model->get_by($pbcore_model->table_annotations, array('assets_id' => $this->asset_id));
 		foreach ($asset_annotations as $asset_annotation)
 		{
 			$attributes = array();
@@ -182,6 +184,20 @@ class Pbcore
 			unset($xml_object);
 		}
 		// Asset Annotation End
+		// Asset Relations  Start
+		$asset_relations = $pbcore_model->get_asset_relation($this->asset_id);
+		foreach ($asset_relations as $asset_relation)
+		{
+			$attributes = array();
+			$xml_object = $this->_add_child($this->xml, 'pbcoreRelation', $asset_relation->annotation);
+			if ( ! empty($asset_annotation->annotation_type))
+				$attributes['annotationType'] = $asset_annotation->annotation_type;
+			if ( ! empty($asset_annotation->annotation_ref))
+				$attributes['ref'] = $asset_annotation->annotation_ref;
+			$this->_add_attribute($xml_object, $attributes);
+			unset($xml_object);
+		}
+		// Asset Relations End
 //		debug($identifiers);
 	}
 

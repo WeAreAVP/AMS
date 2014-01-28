@@ -48,6 +48,7 @@ class MY_Model extends CI_Model
 	public $table_assets_audience_ratings = 'assets_audience_ratings';
 	public $table_audience_ratings = 'audience_ratings';
 	public $table_annotations = 'annotations';
+	public $table_assets_relations = 'assets_relations';
 
 	function __construct()
 	{

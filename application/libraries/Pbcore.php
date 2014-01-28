@@ -169,16 +169,15 @@ class Pbcore
 		}
 		// Asset Audience Level  End
 		// Asset Annotation  Start
-		$asset_annotations = $pbcore_model->get_by($pbcore_model->table_annotations, array('assets_id' => $this->asset_id));
-		debug($asset_annotations);
+		$asset_annotations = $pbcore_model->get_by($pbcore_model->table_annotations, array('assets_id' => 1937777));
 		foreach ($asset_annotations as $asset_annotation)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreAudienceRating', $asset_audience_rating->audience_rating);
-			if ( ! empty($asset_audience_rating->audience_rating_source))
-				$attributes['source'] = $asset_audience_rating->audience_rating_source;
-			if ( ! empty($asset_audience_rating->audience_rating_ref))
-				$attributes['ref'] = $asset_audience_rating->audience_rating_ref;
+			$xml_object = $this->_add_child($this->xml, 'pbcoreAnnotation', $asset_annotation->annotation);
+			if ( ! empty($asset_annotation->annotation_type))
+				$attributes['annotationType'] = $asset_annotation->annotation_type;
+			if ( ! empty($asset_annotation->annotation_ref))
+				$attributes['ref'] = $asset_annotation->annotation_ref;
 			$this->_add_attribute($xml_object, $attributes);
 			unset($xml_object);
 		}

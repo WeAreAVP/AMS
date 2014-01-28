@@ -207,21 +207,32 @@ class Pbcore
 		// Asset Relations End
 		// Asset Creator and Role  Start
 		$asset_creators = $pbcore_model->get_asset_creator_and_role(4848352);
-		debug($asset_creators);
-		foreach ($asset_relations as $asset_relation)
+
+		foreach ($asset_creators as $asset_creator)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreRelation');
-			$this->_add_child($xml_object, 'pbcoreRelationIdentifier', $asset_relation->relation_identifier);
-			if ( ! empty($asset_relation->relation_type))
+			$xml_object = $this->_add_child($this->xml, 'pbcoreCreator');
+			if ( ! empty($asset_creator->creator_name))
 			{
-				$xml_object = $this->_add_child($xml_object, 'pbcorerelationtype', $asset_relation->relation_type);
-				if ( ! empty($asset_relation->relation_type_source))
-					$attributes['source'] = $asset_relation->relation_type_source;
-				if ( ! empty($asset_relation->relation_type_ref))
-					$attributes['ref'] = $asset_relation->relation_type_ref;
-				$this->_add_attribute($xml_object, $attributes);
+				$xml_creator_object = $this->_add_child($xml_object, 'creator', $asset_creator->creator_name);
+				if ( ! empty($asset_annotation->creator_affiliation))
+					$attributes['affiliation'] = $asset_annotation->creator_affiliation;
+				if ( ! empty($asset_annotation->creator_source))
+					$attributes['source'] = $asset_annotation->creator_source;
+				if ( ! empty($asset_annotation->creator_ref))
+					$attributes['ref'] = $asset_annotation->creator_ref;
+				$this->_add_attribute($xml_creator_object, $attributes);
 			}
+			if ( ! empty($asset_creator->creator_role))
+			{
+				$xml_creator_role_object = $this->_add_child($xml_object, 'creatorRole', $asset_creator->creator_role);
+				if ( ! empty($asset_annotation->creator_role_source))
+					$attributes['source'] = $asset_annotation->creator_role_source;
+				if ( ! empty($asset_annotation->creator_role_ref))
+					$attributes['ref'] = $asset_annotation->creator_role_ref;
+				$this->_add_attribute($xml_creator_role_object, $attributes);
+			}
+
 
 
 			unset($xml_object);

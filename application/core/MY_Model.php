@@ -49,6 +49,9 @@ class MY_Model extends CI_Model
 	public $table_audience_ratings = 'audience_ratings';
 	public $table_annotations = 'annotations';
 	public $table_assets_relations = 'assets_relations';
+	public $table_assets_creators_roles = 'assets_creators_roles';
+	public $table_creators = 'creators';
+	public $table_creator_roles = 'creator_roles';
 
 	function __construct()
 	{

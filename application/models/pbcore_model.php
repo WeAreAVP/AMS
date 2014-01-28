@@ -207,6 +207,21 @@ class Pbcore_Model extends MY_Model
 		->get($this->table_assets_relations)->result();
 	}
 
+	/**
+	 * Get Assets Creators and its role by asset ID.
+	 * 
+	 * @param integer $asset_id
+	 * @return stdObject
+	 */
+	function get_asset_creator_and_role($asset_id)
+	{
+		return $this->db->select("{$this->table_creators}.*,{$this->table_creator_roles}.*")
+		->join($this->table_creators, "{$this->table_creators}.id = {$this->table_assets_creators_roles}.creators_id", 'LEFT')
+		->join($this->table_creator_roles, "{$this->table_creator_roles}.id = {$this->table_assets_creators_roles}.creator_roles_id", 'LEFT')
+		->where("{$this->table_assets_creators_roles}.assets_id", $asset_id)
+		->get($this->table_assets_creators_roles)->result();
+	}
+
 	function export_assets($real_time = FALSE)
 	{
 

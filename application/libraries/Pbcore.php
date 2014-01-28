@@ -185,7 +185,29 @@ class Pbcore
 		}
 		// Asset Annotation End
 		// Asset Relations  Start
-		$asset_relations = $pbcore_model->get_asset_relation(274409);
+		$asset_relations = $pbcore_model->get_asset_relation($this->asset_id);
+		foreach ($asset_relations as $asset_relation)
+		{
+			$attributes = array();
+			$xml_object = $this->_add_child($this->xml, 'pbcoreRelation');
+			$this->_add_child($xml_object, 'pbcoreRelationIdentifier', $asset_relation->relation_identifier);
+			if ( ! empty($asset_relation->relation_type))
+			{
+				$xml_object = $this->_add_child($xml_object, 'pbcorerelationtype', $asset_relation->relation_type);
+				if ( ! empty($asset_relation->relation_type_source))
+					$attributes['source'] = $asset_relation->relation_type_source;
+				if ( ! empty($asset_relation->relation_type_ref))
+					$attributes['ref'] = $asset_relation->relation_type_ref;
+				$this->_add_attribute($xml_object, $attributes);
+			}
+
+
+			unset($xml_object);
+		}
+		// Asset Relations End
+		// Asset Creator and Role  Start
+		$asset_creators = $pbcore_model->get_asset_creator_and_role($this->asset_id);
+		debug($asset_creators);
 		foreach ($asset_relations as $asset_relation)
 		{
 			$attributes = array();

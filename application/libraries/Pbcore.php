@@ -185,7 +185,7 @@ class Pbcore
 		}
 		// Asset Annotation End
 		// Asset Relations  Start
-		$asset_relations = $pbcore_model->get_asset_relation($this->asset_id);
+		$asset_relations = $pbcore_model->get_asset_relation(274409);
 		foreach ($asset_relations as $asset_relation)
 		{
 			$attributes = array();

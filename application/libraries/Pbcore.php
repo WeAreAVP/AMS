@@ -239,7 +239,7 @@ class Pbcore
 		}
 		//  Asset Creator and Role  End
 		// Asset Contributor and Role  Start
-		$asset_contributors = $pbcore_model->get_asset_contributor_and_role(4848311);
+		$asset_contributors = $pbcore_model->get_asset_contributor_and_role($this->asset_id);
 
 		foreach ($asset_contributors as $asset_contributor)
 		{

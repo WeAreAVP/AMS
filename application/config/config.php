@@ -41,7 +41,7 @@ if (ENVIRONMENT == 'development')
 }
 else if (ENVIRONMENT == 'qatesting')
 {
-	$config['base_url'] = HTTP_PREFIX_STR . "amsqa.avpreserve.com/";
+	$config['base_url'] = "https://amsqa.avpreserve.com/";
 	$config['to_email'] = 'ssapienza@cpb.org';
 	$config['from_email'] = 'noreply@amsqa.avpreserve.com';
 	$config['crawford_email'] = 'cstephenson@mail.crawford.com';

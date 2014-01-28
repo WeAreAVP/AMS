@@ -256,7 +256,7 @@ class Pbcore
 					$attributes['ref'] = $asset_contributor->contributor_ref;
 				$this->_add_attribute($xml_contributor_object, $attributes);
 			}
-			if ( ! empty($asset_creator->contributor_role))
+			if ( ! empty($asset_contributor->contributor_role))
 			{
 				$xml_contributor_role_object = $this->_add_child($xml_object, 'contributorRole', $asset_contributor->contributor_role);
 				if ( ! empty($asset_contributor->contributor_role_source))

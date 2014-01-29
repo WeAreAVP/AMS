@@ -12,12 +12,18 @@ if ( ! defined('BASEPATH'))
   |	http://codeigniter.com/user_guide/general/hooks.html
   |
  */
-$hook['pre_controller'][] = array(
-	'class' => 'Pear_hook',
-	'function' => 'initialize',
-	'filename' => 'pear_hook.php',
+$hook['pre_system'][] = array(
+	'class' => 'CI_Autoloader',
+	'function' => 'register',
+	'filename' => 'CI_Autoloader.php',
 	'filepath' => 'hooks',
 	'params' => array(APPPATH . 'base/')
+);
+$hook['pre_controller'][] = array(
+	'class' => 'Pear_hook',
+	'function' => 'index',
+	'filename' => 'pear_hook.php',
+	'filepath' => 'hooks'
 );
 $hook['display_override'][] = array('class' => 'Yield',
 	'function' => 'doYield',

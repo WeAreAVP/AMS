@@ -12,7 +12,7 @@ if ( ! defined('BASEPATH'))
   |	http://codeigniter.com/user_guide/general/hooks.html
   |
  */
-$hook['pre_system'][] = array(
+$hook['pre_controller'][] = array(
 	'class' => 'CI_Autoloader',
 	'function' => 'register',
 	'filename' => 'CI_Autoloader.php',

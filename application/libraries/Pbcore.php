@@ -338,7 +338,7 @@ class Pbcore
 	{
 		$pbcore_model = $this->CI->pbcore_model;
 
-		$instantiations = $pbcore_model->get_by($pbcore_model->table_instantiations, array('assets_id' => 4852601));
+		$instantiations = $pbcore_model->get_by($pbcore_model->table_instantiations, array('assets_id' => $this->asset_id));
 		foreach ($instantiations as $instantiation)
 		{
 			$instantiations_object = $this->_add_child($this->xml, 'pbcoreInstantiation');
@@ -358,6 +358,7 @@ class Pbcore
 				$this->_add_child($instantiations_object, 'instantiationAlternativeModes', $instantiation->alternative_modes);
 			if ( ! empty($instantiation->language))
 				$this->_add_child($instantiations_object, 'instantiationLanguage', $instantiation->language);
+			// Instantiations Filesize Start
 			if ( ! empty($instantiation->file_size))
 			{
 				$xml_filesize = $this->_add_child($instantiations_object, 'instantiationFileSize', $instantiation->file_size);
@@ -370,16 +371,22 @@ class Pbcore
 					unset($attributes);
 				}
 			}
+			// Instantiations Filesize End
+			// Instantiations Media Type Start
 			if ((int) $instantiation->instantiation_media_type_id !== 0)
 			{
 				$media_type = $pbcore_model->get_one_by($pbcore_model->table_instantiation_media_types, array('id' => $instantiation->instantiation_media_type_id));
 				$this->_add_child($instantiations_object, 'instantiationMediaType', $media_type->media_type);
 			}
-			if (!empty($instantiation->instantiation_colors_id))
+			// Instantiations Media Type End
+			// Instantiations Color Start
+			if ( ! empty($instantiation->instantiation_colors_id))
 			{
 				$color = $pbcore_model->get_one_by($pbcore_model->table_instantiation_colors, array('id' => $instantiation->instantiation_colors_id));
 				$this->_add_child($instantiations_object, 'instantiationColors', $color->color);
 			}
+			// Instantiations Color End
+			// Instantiations Date Rate Start
 			if ( ! empty($instantiation->data_rate))
 			{
 				$xml_daterate = $this->_add_child($instantiations_object, 'instantiationDataRate', $instantiation->data_rate);
@@ -392,6 +399,21 @@ class Pbcore
 					unset($attributes);
 				}
 			}
+			// Instantiations Date Rate End
+			// Instantiations Identifier Start
+			$identifiers = $pbcore_model->get_by($pbcore_model->table_instantiation_identifier, array('instantiations_id' => $instantiation->id));
+			foreach ($identifiers as $identifier)
+			{
+				$xml_identifier = $this->_add_child($instantiations_object, 'instantiationIdentifier', $identifier->instantiation_identifier);
+				if ( ! empty($identifier->instantiation_source))
+				{
+					$attributes = array();
+					$attributes['source'] = $identifier->instantiation_source;
+					$this->_add_attribute($xml_identifier, $attributes);
+					unset($attributes);
+				}
+			}
+			// Instantiations Identifier End
 		}
 	}
 

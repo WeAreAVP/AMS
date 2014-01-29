@@ -427,7 +427,7 @@ class Pbcore
 			}
 			// Instantiations Date End
 			// Instantiations Dimensions Start
-			$dimensions = $pbcore_model->get_by($pbcore_model->table_instantiation_dimensions, array('instantiations_id' => 3714029));
+			$dimensions = $pbcore_model->get_by($pbcore_model->table_instantiation_dimensions, array('instantiations_id' => $instantiation->id));
 			foreach ($dimensions as $dimension)
 			{
 				$xml_dimension = $this->_add_child($instantiations_object, 'instantiationDimensions', $dimension->instantiation_dimension);
@@ -440,6 +440,20 @@ class Pbcore
 				}
 			}
 			// Instantiations Dimensions End
+			// Instantiations Physical Format Start
+			$physical_formats = $pbcore_model->get_by($pbcore_model->table_instantiation_formats, array('instantiations_id' => $instantiation->id, 'format_type' => 'physical'));
+			foreach ($physical_formats as $physical_format)
+			{
+				$xml_dimension = $this->_add_child($instantiations_object, 'instantiationPhysical', $physical_format->format_name);
+			}
+			// Instantiations Physical Format End
+			// Instantiations Digital Format Start
+			$digital_formats = $pbcore_model->get_by($pbcore_model->table_instantiation_formats, array('instantiations_id' => $instantiation->id, 'format_type' => 'digital'));
+			foreach ($digital_formats as $digital_format)
+			{
+				$xml_dimension = $this->_add_child($instantiations_object, 'instantiationDigital', $digital_format->format_name);
+			}
+			// Instantiations Digital Format End
 		}
 	}
 

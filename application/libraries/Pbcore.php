@@ -32,7 +32,7 @@ class Pbcore
 
 	private function _fetch_asset()
 	{
-		$array = array('issue' => 'Fahad', 'issue' => 'Nouman');
+		
 
 		$pbcore_model = $this->CI->pbcore_model;
 
@@ -336,6 +336,7 @@ class Pbcore
 
 	private function _fetch_instantiations()
 	{
+		$pbcore_model = $this->CI->pbcore_model;
 		$instantiations = $pbcore_model->get_by($pbcore_model->table_instantiations, array('assets_id' => $this->asset_id));
 		foreach ($instantiations as $instantiation)
 		{

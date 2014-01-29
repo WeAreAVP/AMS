@@ -427,7 +427,7 @@ class Pbcore
 			}
 			// Instantiations Date End
 			// Instantiations Dimensions Start
-			$dimensions = $pbcore_model->get_by($pbcore_model->table_instantiation_dimensions, array('instantiations_id' => $instantiation->id));
+			$dimensions = $pbcore_model->get_by($pbcore_model->table_instantiation_dimensions, array('instantiations_id' => 3714029));
 			foreach ($dimensions as $dimension)
 			{
 				$xml_dimension = $this->_add_child($instantiations_object, 'instantiationDimensions', $dimension->instantiation_dimension);

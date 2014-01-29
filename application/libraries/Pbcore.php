@@ -64,7 +64,7 @@ class Pbcore
 		{
 			$attributes = array();
 			$xml_object = $this->_add_child($this->xml, 'pbcoreAssetDate', $asset_date->asset_date);
-			if ( ! empty($identifer->date_type))
+			if ( ! empty($asset_date->date_type))
 				$attributes['dateType'] = $asset_date->date_type;
 			$this->_add_attribute($xml_object, $attributes);
 			unset($xml_object);
@@ -414,6 +414,18 @@ class Pbcore
 				}
 			}
 			// Instantiations Identifier End
+			// Instantiations Date Start
+			$instantiation_dates = $pbcore_model->get_instantiation_dates($instantiation->id);
+			foreach ($instantiation_dates as $instantiation_date)
+			{
+				$attributes = array();
+				$xml_date_object = $this->_add_child($instantiations_object, 'instantiationDate', $instantiation_date->instantiation_date);
+				if ( ! empty($instantiation_date->date_type))
+					$attributes['dateType'] = $instantiation_date->date_type;
+				$this->_add_attribute($xml_date_object, $attributes);
+				unset($xml_object);
+			}
+			// Instantiations Date End
 		}
 	}
 

@@ -24,7 +24,7 @@
  * @version    GIT: <$Id>
  * @link       http://ams.avpreserve.com
  */
-class Pbcore_Model extends MY_Model
+class Pbcore_Model extends Dashboard_Model
 {
 
 	/**

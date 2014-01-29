@@ -17,6 +17,14 @@ if ( ! defined('BASEPATH'))
   | path to your installation.
   |
  */
+function __autoload($class)
+{
+	if (strpos($class, 'CI_') !== 0)
+	{
+		@include_once( APPPATH . 'core/' . $class . EXT );
+	}
+}
+
 if (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)
 {
 	define("HTTP_PREFIX_STR", "https://");

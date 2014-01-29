@@ -43,6 +43,20 @@ class MY_Instantiation_Model extends MY_Essencetrack_Model
 		->get($this->table_instantiation_generations)->result();
 	}
 
+	/**
+	 * Get Instantiation Relations by instantiation ID.
+	 * 
+	 * @param integer $instantiation_id
+	 * @return stdObject
+	 */
+	function get_instantiation_relations($instantiation_id)
+	{
+		return $this->db->select("{$this->table_instantiation_relations}.relation_identifier,{$this->table_relation_types}.*")
+		->join($this->table_relation_types, "{$this->table_relation_types}.id = {$this->table_instantiation_relations}.relation_types_id", 'LEFT')
+		->where("{$this->table_instantiation_relations}.instantiations_id", $instantiation_id)
+		->get($this->table_instantiation_relations)->result();
+	}
+
 }
 
 ?>

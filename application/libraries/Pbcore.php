@@ -194,7 +194,7 @@ class Pbcore
 			$this->_add_child($xml_object, 'pbcoreRelationIdentifier', $asset_relation->relation_identifier);
 			if ( ! empty($asset_relation->relation_type))
 			{
-				$xml_object = $this->_add_child($xml_object, 'pbcorerelationtype', $asset_relation->relation_type);
+				$xml_object = $this->_add_child($xml_object, 'pbcoreRelationType', $asset_relation->relation_type);
 				if ( ! empty($asset_relation->relation_type_source))
 					$attributes['source'] = $asset_relation->relation_type_source;
 				if ( ! empty($asset_relation->relation_type_ref))
@@ -462,7 +462,7 @@ class Pbcore
 			}
 			// Instantiations Generation End
 			// Instantiations Annotation Start
-			$annotations = $pbcore_model->get_by($pbcore_model->table_instantiation_annotations, array('instantiations_id' => 42));
+			$annotations = $pbcore_model->get_by($pbcore_model->table_instantiation_annotations, array('instantiations_id' => $instantiation->id));
 			foreach ($annotations as $annotation)
 			{
 				$xml_annotation = $this->_add_child($instantiations_object, 'instantiationAnnotation', $annotation->annotation);
@@ -474,7 +474,27 @@ class Pbcore
 					unset($attributes);
 				}
 			}
-			// Instantiations Annotation End
+			// Instantiation Annotation End
+			// Instantiation Relations  Start
+			$relations = $pbcore_model->get_instantiation_relations($instantiation->id);
+			foreach ($relations as $relation)
+			{
+				$attributes = array();
+				$xml_relation_object = $this->_add_child($instantiations_object, 'pbcoreRelation');
+				$this->_add_child($xml_relation_object, 'pbcoreRelationIdentifier', $relation->relation_identifier);
+				if ( ! empty($relation->relation_type))
+				{
+					$xml_relation_type_object = $this->_add_child($xml_relation_object, 'pbcoreRelationType', $relation->relation_type);
+					if ( ! empty($relation->relation_type_source))
+						$attributes['source'] = $relation->relation_type_source;
+					if ( ! empty($relation->relation_type_ref))
+						$attributes['ref'] = $relation->relation_type_ref;
+					$this->_add_attribute($xml_relation_type_object, $attributes);
+					unset($attributes);
+				}
+				unset($xml_object);
+			}
+			// Instantiation Relations End
 		}
 	}
 

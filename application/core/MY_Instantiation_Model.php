@@ -64,8 +64,8 @@ class MY_Instantiation_Model extends MY_Essencetrack_Model
 	 */
 	function get_instantiation_nomination($instantiation_id)
 	{
-		return $this->db->select("{$this->table_nominations}.*,{$this->able_nomination_status}.*")
-		->join($this->able_nomination_status, "{$this->able_nomination_status}.id = {$this->table_nominations}.nomination_status_id", 'LEFT')
+		return $this->db->select("{$this->table_nominations}.*,{$this->table_nomination_status}.*")
+		->join($this->table_nomination_status, "{$this->able_nomination_status}.id = {$this->table_nominations}.nomination_status_id", 'LEFT')
 		->where("{$this->table_nominations}.instantiations_id", $instantiation_id)
 		->get($this->table_nominations)->result();
 	}

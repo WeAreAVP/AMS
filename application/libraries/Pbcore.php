@@ -225,6 +225,7 @@ class Pbcore
 			}
 			if ( ! empty($asset_creator->creator_role))
 			{
+				$attributes = array();
 				$xml_creator_role_object = $this->_add_child($xml_object, 'creatorRole', $asset_creator->creator_role);
 				if ( ! empty($asset_creator->creator_role_source))
 					$attributes['source'] = $asset_creator->creator_role_source;
@@ -260,6 +261,7 @@ class Pbcore
 			}
 			if ( ! empty($asset_contributor->contributor_role))
 			{
+				$attributes = array();
 				$xml_contributor_role_object = $this->_add_child($xml_object, 'contributorRole', $asset_contributor->contributor_role);
 				if ( ! empty($asset_contributor->contributor_role_source))
 					$attributes['source'] = $asset_contributor->contributor_role_source;
@@ -290,6 +292,7 @@ class Pbcore
 			}
 			if ( ! empty($asset_publisher->publisher_role))
 			{
+				$attributes = array();
 				$xml_publisher_role_object = $this->_add_child($xml_object, 'publisherRole', $asset_publisher->publisher_role);
 				if ( ! empty($asset_publisher->publisher_role_source))
 					$attributes['source'] = $asset_publisher->publisher_role_source;

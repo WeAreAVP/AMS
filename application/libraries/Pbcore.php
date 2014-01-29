@@ -338,7 +338,7 @@ class Pbcore
 	{
 		$pbcore_model = $this->CI->pbcore_model;
 
-		$instantiations = $pbcore_model->get_by($pbcore_model->table_instantiations, array('assets_id' => 1595584));
+		$instantiations = $pbcore_model->get_by($pbcore_model->table_instantiations, array('assets_id' => 18010));
 		foreach ($instantiations as $instantiation)
 		{
 			$instantiations_object = $this->_add_child($this->xml, 'pbcoreInstantiation');
@@ -374,6 +374,11 @@ class Pbcore
 			{
 				$media_type = $pbcore_model->get_one_by($pbcore_model->table_instantiation_media_types, array('id' => $instantiation->instantiation_media_type_id));
 				$this->_add_child($instantiations_object, 'instantiationMediaType', $media_type->media_type);
+			}
+			if (!empty($instantiation->instantiation_colors_id))
+			{
+				$color = $pbcore_model->get_one_by($pbcore_model->table_instantiation_colors, array('id' => $instantiation->instantiation_colors_id));
+				$this->_add_child($instantiations_object, 'instantiationColors', $color->color);
 			}
 			if ( ! empty($instantiation->data_rate))
 			{

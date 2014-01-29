@@ -32,7 +32,7 @@ class Pbcore
 
 	private function _fetch_asset()
 	{
-		
+
 
 		$pbcore_model = $this->CI->pbcore_model;
 
@@ -337,7 +337,7 @@ class Pbcore
 	private function _fetch_instantiations()
 	{
 		$pbcore_model = $this->CI->pbcore_model;
-		debug($this->asset_id);
+		
 		$instantiations = $pbcore_model->get_by($pbcore_model->table_instantiations, array('assets_id' => $this->asset_id));
 		foreach ($instantiations as $instantiation)
 		{
@@ -369,6 +369,11 @@ class Pbcore
 					$this->_add_attribute($xml_filesize, $attributes);
 					unset($attributes);
 				}
+			}
+			if ((int) $instantiation->instantiation_media_type_id !== 0)
+			{
+				$media_type = $pbcore_model->get_one_by($pbcore_model->table_instantiation_media_types, array('id' => $instantiation->instantiation_media_type_id));
+				$this->_add_child($instantiations_object, 'instantiationMediaType', $media_type->media_type);
 			}
 		}
 	}

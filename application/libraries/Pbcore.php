@@ -337,6 +337,7 @@ class Pbcore
 	private function _fetch_instantiations()
 	{
 		$pbcore_model = $this->CI->pbcore_model;
+		debug($this->asset_id);
 		$instantiations = $pbcore_model->get_by($pbcore_model->table_instantiations, array('assets_id' => $this->asset_id));
 		foreach ($instantiations as $instantiation)
 		{

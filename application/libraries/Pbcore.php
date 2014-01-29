@@ -495,6 +495,26 @@ class Pbcore
 				unset($xml_object);
 			}
 			// Instantiation Relations End
+			// Instantiation Nominations Start
+			$extensions = $pbcore_model->get_instantiation_nomination($instantiation->id);
+			foreach ($extensions as $extension)
+			{
+				$attributes = array();
+				$xml_object = $this->_add_child($this->xml, 'pbcoreExtension');
+				$xml_object = $this->_add_child($xml_object, 'extensionWrap');
+				$this->_add_child($xml_object, 'extensionAuthorityUsed', 'AACIP Record Nomination Status');
+				if ( ! empty($extension->status))
+					$this->_add_child($xml_object, 'extensionValue', $extension->status);
+				if ( ! empty($extension->nomination_reason))
+				{
+					$xml_object = $this->_add_child($this->xml, 'pbcoreExtension');
+					$xml_object = $this->_add_child($xml_object, 'extensionWrap');
+					$this->_add_child($xml_object, 'extensionAuthorityUsed', 'AACIP Record Tags');
+					$this->_add_child($xml_object, 'extensionValue', $extension->nomination_reason);
+				}
+				unset($xml_object);
+			}
+			// Instantiation Nominations End
 		}
 	}
 

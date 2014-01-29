@@ -236,6 +236,20 @@ class Pbcore_Model extends MY_Model
 		->where("{$this->table_assets_contributors_roles}.assets_id", $asset_id)
 		->get($this->table_assets_contributors_roles)->result();
 	}
+	/**
+	 * Get Assets Publishers and its role by asset ID.
+	 * 
+	 * @param integer $asset_id
+	 * @return stdObject
+	 */
+	function get_asset_publisher_and_role($asset_id)
+	{
+		return $this->db->select("{$this->table_publishers}.*,{$this->table_publisher_roles}.*")
+		->join($this->table_publishers, "{$this->table_publishers}.id = {$this->table_assets_publishers_role}.publishers_id", 'LEFT')
+		->join($this->table_publisher_roles, "{$this->table_publisher_roles}.id = {$this->table_assets_publishers_role}.publisher_roles_id", 'LEFT')
+		->where("{$this->table_assets_publishers_role}.assets_id", $asset_id)
+		->get($this->table_assets_publishers_role)->result();
+	}
 
 	function export_assets($real_time = FALSE)
 	{

@@ -199,9 +199,8 @@ class Pbcore
 				if ( ! empty($asset_relation->relation_type_ref))
 					$attributes['ref'] = $asset_relation->relation_type_ref;
 				$this->_add_attribute($xml_object, $attributes);
+				unset($attributes);
 			}
-
-
 			unset($xml_object);
 		}
 		// Asset Relations End
@@ -222,6 +221,7 @@ class Pbcore
 				if ( ! empty($asset_creator->creator_ref))
 					$attributes['ref'] = $asset_creator->creator_ref;
 				$this->_add_attribute($xml_creator_object, $attributes);
+				unset($attributes);
 			}
 			if ( ! empty($asset_creator->creator_role))
 			{
@@ -231,6 +231,7 @@ class Pbcore
 				if ( ! empty($asset_creator->creator_role_ref))
 					$attributes['ref'] = $asset_creator->creator_role_ref;
 				$this->_add_attribute($xml_creator_role_object, $attributes);
+				unset($attributes);
 			}
 
 
@@ -255,6 +256,7 @@ class Pbcore
 				if ( ! empty($asset_contributor->contributor_ref))
 					$attributes['ref'] = $asset_contributor->contributor_ref;
 				$this->_add_attribute($xml_contributor_object, $attributes);
+				unset($attributes);
 			}
 			if ( ! empty($asset_contributor->contributor_role))
 			{
@@ -264,13 +266,41 @@ class Pbcore
 				if ( ! empty($asset_contributor->contributor_role_ref))
 					$attributes['ref'] = $asset_contributor->contributor_role_ref;
 				$this->_add_attribute($xml_contributor_role_object, $attributes);
+				unset($attributes);
 			}
-
-
-
 			unset($xml_object);
 		}
 		//  Asset Contributor and Role  End
+		// Asset Publisher and Role  Start
+		$asset_publishers = $pbcore_model->get_asset_publisher_and_role(2987035);
+
+		foreach ($asset_publishers as $asset_publisher)
+		{
+			$attributes = array();
+			$xml_object = $this->_add_child($this->xml, 'pbcorePublisher');
+			if ( ! empty($asset_publisher->publisher))
+			{
+				$xml_publisher_object = $this->_add_child($xml_object, 'publisher', $asset_publisher->publisher);
+				if ( ! empty($asset_publisher->publisher_affiliation))
+					$attributes['affiliation'] = $asset_publisher->publisher_affiliation;
+				if ( ! empty($asset_publisher->publisher_ref))
+					$attributes['ref'] = $asset_publisher->publisher_ref;
+				$this->_add_attribute($xml_publisher_object, $attributes);
+				unset($attributes);
+			}
+			if ( ! empty($asset_publisher->publisher_role))
+			{
+				$xml_publisher_role_object = $this->_add_child($xml_object, 'publisherRole', $asset_publisher->publisher_role);
+				if ( ! empty($asset_publisher->publisher_role_source))
+					$attributes['source'] = $asset_publisher->publisher_role_source;
+				if ( ! empty($asset_publisher->publisher_role_ref))
+					$attributes['ref'] = $asset_publisher->publisher_role_ref;
+				$this->_add_attribute($xml_publisher_role_object, $attributes);
+				unset($attributes);
+			}
+			unset($xml_object);
+		}
+		//  Asset Publisher and Role  End
 //		debug($identifiers);
 	}
 

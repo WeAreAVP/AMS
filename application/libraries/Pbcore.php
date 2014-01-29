@@ -496,7 +496,7 @@ class Pbcore
 			}
 			// Instantiation Relations End
 			// Instantiation Nominations Start
-			$extensions = $pbcore_model->get_instantiation_nomination($instantiation->id);
+			$extensions = $pbcore_model->get_instantiation_nomination(1735902);
 			foreach ($extensions as $extension)
 			{
 				$attributes = array();

@@ -336,7 +336,39 @@ class Pbcore
 
 	private function _fetch_instantiations()
 	{
-		$instantiations_object = $this->_add_child($this->xml, 'pbcoreInstantiation');
+		$instantiations = $pbcore_model->get_by($pbcore_model->table_instantiations, array('assets_id' => $this->asset_id));
+		foreach ($instantiations as $instantiation)
+		{
+			$instantiations_object = $this->_add_child($this->xml, 'pbcoreInstantiation');
+			if ( ! empty($instantiation->location))
+				$this->_add_child($instantiations_object, 'instantiationLocation', $instantiation->location);
+			if ( ! empty($instantiation->standard))
+				$this->_add_child($instantiations_object, 'instantiationStandard', $instantiation->standard);
+			if ( ! empty($instantiation->time_start))
+				$this->_add_child($instantiations_object, 'instantiationTimeStart', $instantiation->time_start);
+			if ( ! empty($instantiation->projected_duration))
+				$this->_add_child($instantiations_object, 'instantiationDuration', $instantiation->projected_duration);
+			if ( ! empty($instantiation->tracks))
+				$this->_add_child($instantiations_object, 'instantiationTracks', $instantiation->tracks);
+			if ( ! empty($instantiation->channel_configuration))
+				$this->_add_child($instantiations_object, 'instantiationChannelConfiguration', $instantiation->channel_configuration);
+			if ( ! empty($instantiation->alternative_modes))
+				$this->_add_child($instantiations_object, 'instantiationAlternativeModes', $instantiation->alternative_modes);
+			if ( ! empty($instantiation->language))
+				$this->_add_child($instantiations_object, 'instantiationLanguage', $instantiation->language);
+			if ( ! empty($instantiation->file_size))
+			{
+				$xml_filesize = $this->_add_child($instantiations_object, 'instantiationFileSize', $instantiation->file_size);
+
+				if ( ! empty($instantiation->file_size_unit_of_measure))
+				{
+					$attributes = array();
+					$attributes['unitsOfMeasure'] = $instantiation->file_size_unit_of_measure;
+					$this->_add_attribute($xml_filesize, $attributes);
+					unset($attributes);
+				}
+			}
+		}
 	}
 
 	private function _add_child($object, $tag_name, $value = NULL)

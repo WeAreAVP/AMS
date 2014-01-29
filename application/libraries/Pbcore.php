@@ -305,7 +305,7 @@ class Pbcore
 		}
 		//  Asset Publisher and Role  End
 		// Asset Right Summary Start
-		$asset_rights = $pbcore_model->get_by($pbcore_model->table_rights_summaries, array('assets_id' => 2030098));
+		$asset_rights = $pbcore_model->get_by($pbcore_model->table_rights_summaries, array('assets_id' => $this->asset_id));
 		foreach ($asset_rights as $asset_right)
 		{
 			$attributes = array();
@@ -317,6 +317,20 @@ class Pbcore
 			unset($xml_object);
 		}
 		// Asset Right Summary End
+		// Asset Extension Start
+		$asset_extensions = $pbcore_model->get_by($pbcore_model->table_extensions, array('assets_id' => $this->asset_id));
+		foreach ($asset_extensions as $asset_extension)
+		{
+			$attributes = array();
+			$xml_object = $this->_add_child($this->xml, 'pbcoreExtension');
+			$xml_object = $this->_add_child($xml_object, 'extensionWrap');
+			if ( ! empty($asset_extension->extension_element))
+				$this->_add_child($xml_object, 'extensionAuthorityUsed', $asset_extension->extension_element);
+			if ( ! empty($asset_extension->extension_value))
+				$this->_add_child($xml_object, 'extensionValue', $asset_extension->extension_value);
+			unset($xml_object);
+		}
+		// Asset Extension End
 	}
 
 	private function _add_child($object, $tag_name, $value = NULL)

@@ -59,6 +59,7 @@ class MY_Model extends CI_Model
 	public $table_publishers = 'publishers';
 	public $table_publisher_roles = 'publisher_roles';
 	public $table_rights_summaries = 'rights_summaries';
+	public $table_extensions = 'extensions';
 
 	function __construct()
 	{

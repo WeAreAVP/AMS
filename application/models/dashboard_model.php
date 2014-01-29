@@ -24,7 +24,7 @@
  * @license    AMS http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */
-class Dashboard_Model extends MY_Model
+class Dashboard_Model extends CI_Model
 {
 
 	/**

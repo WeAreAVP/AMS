@@ -454,13 +454,27 @@ class Pbcore
 				$xml_dimension = $this->_add_child($instantiations_object, 'instantiationDigital', $digital_format->format_name);
 			}
 			// Instantiations Digital Format End
-			// Instantiations Generation End
+			// Instantiations Generation Start
 			$generations = $pbcore_model->get_instantiation_generations($instantiation->id);
 			foreach ($generations as $generation)
 			{
 				$this->_add_child($instantiations_object, 'instantiationGenerations', $generation->generation);
 			}
 			// Instantiations Generation End
+			// Instantiations Annotation Start
+			$annotations = $pbcore_model->get_by($pbcore_model->table_instantiation_annotations, array('instantiations_id' => $instantiation->id));
+			foreach ($annotations as $annotation)
+			{
+				$xml_annotation = $this->_add_child($instantiations_object, 'instantiationAnnotation', $annotation->annotation);
+				if ( ! empty($annotation->annotation_type))
+				{
+					$attributes = array();
+					$attributes['annotationType'] = $annotation->annotation_type;
+					$this->_add_attribute($xml_annotation, $attributes);
+					unset($attributes);
+				}
+			}
+			// Instantiations Annotation End
 		}
 	}
 

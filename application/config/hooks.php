@@ -19,12 +19,12 @@ $hook['pre_system'][] = array(
 	'filepath' => 'hooks',
 	'params' => array(APPPATH . 'base/')
 );
-$hook['pre_controller'][] = array(
-	'class' => 'Pear_hook',
-	'function' => 'index',
-	'filename' => 'pear_hook.php',
-	'filepath' => 'hooks'
-);
+//$hook['pre_controller'][] = array(
+//	'class' => 'Pear_hook',
+//	'function' => 'index',
+//	'filename' => 'pear_hook.php',
+//	'filepath' => 'hooks'
+//);
 $hook['display_override'][] = array('class' => 'Yield',
 	'function' => 'doYield',
 	'filename' => 'Yield.php',

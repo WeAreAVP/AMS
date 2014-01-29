@@ -305,7 +305,7 @@ class Pbcore
 		}
 		//  Asset Publisher and Role  End
 		// Asset Right Summary Start
-		$asset_rights = $pbcore_model->get_by($pbcore_model->table_rights_summaries, array('assets_id' => $this->asset_id));
+		$asset_rights = $pbcore_model->get_by($pbcore_model->table_rights_summaries, array('assets_id' => 2030098));
 		foreach ($asset_rights as $asset_right)
 		{
 			$attributes = array();

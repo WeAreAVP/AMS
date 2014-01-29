@@ -5,7 +5,7 @@ if ( ! defined('BASEPATH'))
 	exit('No direct script access allowed');
 }
 
-class MY_Asset_Model extends MY_Model
+class MY_Asset_Model extends MY_Instantiation_Model
 {
 
 	function __construct()

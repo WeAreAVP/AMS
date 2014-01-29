@@ -49,7 +49,7 @@ else if (ENVIRONMENT == 'qatesting')
 	$config['cookie_domain'] = ".amsqa.avpreserve.com";
 	$config['mint_url'] = "http://mint.avpreserve.com:8080/mint-amsqa";
 	$config['instance_name'] = 'amsqa';
-	$config['asset_index'] = 'assets_list'; 
+	$config['asset_index'] = 'assets_list';
 	$config['instantiatiion_index'] = 'instantiations_list';
 	$config['station_index'] = 'stations';
 } if (ENVIRONMENT == 'production')
@@ -408,5 +408,23 @@ $config['proxy_ips'] = '';
 $config['messages_type'] = array(1 => "Digitization Start Date", 2 => "Materials Received Digitization Vendor", 3 => "Shipment Return", 4 => "Hard Drive Return Date", 5 => "Audio FTP Review");
 $config['ship_types'] = array(1 => "fedex", 2 => "truck", 3 => "UPS");
 $config['demo'] = true;
+/*
+  | -------------------------------------------------------------------
+  |  Native Auto-load
+  | -------------------------------------------------------------------
+  |
+  | Nothing to do with cnfig/autoload.php, this allows PHP autoload to work
+  | for base controllers and some third-party libraries.
+  |
+ */
+
+function __autoload($class)
+{
+	if (strpos($class, 'CI_') !== 0)
+	{
+		@include_once( APPPATH . 'core/' . $class . EXT );
+	}
+}
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */

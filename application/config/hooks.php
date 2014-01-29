@@ -11,7 +11,7 @@
 */
 $hook['pre_controller'][] = array(
 		'class' => 'Pear_hook',
-		'function' => 'index',
+		'function' => 'initialize',
 		'filename' => 'pear_hook.php',
 		'filepath' => 'hooks'
 );

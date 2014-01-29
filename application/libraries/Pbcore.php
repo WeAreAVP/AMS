@@ -426,6 +426,20 @@ class Pbcore
 				unset($xml_object);
 			}
 			// Instantiations Date End
+			// Instantiations Dimensions Start
+			$dimensions = $pbcore_model->get_by($pbcore_model->table_instantiation_dimensions, array('instantiations_id' => $instantiation->id));
+			foreach ($dimensions as $dimension)
+			{
+				$xml_dimension = $this->_add_child($instantiations_object, 'instantiationDimensions', $dimension->instantiation_dimension);
+				if ( ! empty($dimension->unit_of_measure))
+				{
+					$attributes = array();
+					$attributes['unitOfMeasure'] = $dimension->unit_of_measure;
+					$this->_add_attribute($xml_dimension, $attributes);
+					unset($attributes);
+				}
+			}
+			// Instantiations Dimensions End
 		}
 	}
 

@@ -337,7 +337,7 @@ class Pbcore
 	private function _fetch_instantiations()
 	{
 		$pbcore_model = $this->CI->pbcore_model;
-		
+
 		$instantiations = $pbcore_model->get_by($pbcore_model->table_instantiations, array('assets_id' => $this->asset_id));
 		foreach ($instantiations as $instantiation)
 		{
@@ -374,6 +374,18 @@ class Pbcore
 			{
 				$media_type = $pbcore_model->get_one_by($pbcore_model->table_instantiation_media_types, array('id' => $instantiation->instantiation_media_type_id));
 				$this->_add_child($instantiations_object, 'instantiationMediaType', $media_type->media_type);
+			}
+			if ( ! empty($instantiation->data_rate))
+			{
+				$xml_daterate = $this->_add_child($instantiations_object, 'instantiationDataRate', $instantiation->data_rate);
+				if ( ! empty($instantiation->data_rate_units_id))
+				{
+					$data_rate_unit = $pbcore_model->get_one_by($pbcore_model->table_data_rate_units, array('id' => $instantiation->data_rate_units_id));
+					$attributes = array();
+					$attributes['unitsOfMeasure'] = $data_rate_unit->unit_of_measure;
+					$this->_add_attribute($xml_daterate, $attributes);
+					unset($attributes);
+				}
 			}
 		}
 	}

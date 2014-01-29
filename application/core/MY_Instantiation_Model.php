@@ -17,6 +17,7 @@ class MY_Instantiation_Model extends MY_Essencetrack_Model
 	 * Get Instantiation dates by instantiations ID.
 	 * 
 	 * @param integer $instantiation_id
+	 * 
 	 * @return stdObject
 	 */
 	function get_instantiation_dates($instantiation_id)
@@ -25,6 +26,21 @@ class MY_Instantiation_Model extends MY_Essencetrack_Model
 		->join($this->table_date_types, "{$this->table_date_types}.id = {$this->table_instantiation_dates}.date_types_id", 'LEFT')
 		->where("{$this->table_instantiation_dates}.instantiations_id", $instantiation_id)
 		->get($this->table_instantiation_dates)->result();
+	}
+
+	/**
+	 * Get Instantiation generations by instantiations ID.
+	 * 
+	 * @param type $instantiation_id
+	 * 
+	 * @return stdObject
+	 */
+	function get_instantiation_generations($instantiation_id)
+	{
+		return $this->db->select("{$this->table_generations}.generation")
+		->join($this->table_generations, "{$this->table_generations}.id = {$this->table_instantiation_generations}.generations_id", 'LEFT')
+		->where("{$this->table_instantiation_generations}.instantiations_id", $instantiation_id)
+		->get($this->table_instantiation_generations)->result();
 	}
 
 }

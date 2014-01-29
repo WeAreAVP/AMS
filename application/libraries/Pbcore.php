@@ -454,6 +454,13 @@ class Pbcore
 				$xml_dimension = $this->_add_child($instantiations_object, 'instantiationDigital', $digital_format->format_name);
 			}
 			// Instantiations Digital Format End
+			// Instantiations Generation End
+			$generations = $pbcore_model->get_instantiation_generations($instantiation->id);
+			foreach ($generations as $generation)
+			{
+				$this->_add_child($instantiations_object, 'instantiationGenerations', $generation->generation);
+			}
+			// Instantiations Generation End
 		}
 	}
 

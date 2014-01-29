@@ -462,7 +462,7 @@ class Pbcore
 			}
 			// Instantiations Generation End
 			// Instantiations Annotation Start
-			$annotations = $pbcore_model->get_by($pbcore_model->table_instantiation_annotations, array('instantiations_id' => $instantiation->id));
+			$annotations = $pbcore_model->get_by($pbcore_model->table_instantiation_annotations, array('instantiations_id' => 42));
 			foreach ($annotations as $annotation)
 			{
 				$xml_annotation = $this->_add_child($instantiations_object, 'instantiationAnnotation', $annotation->annotation);

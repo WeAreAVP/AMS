@@ -274,7 +274,7 @@ class Pbcore
 		}
 		//  Asset Contributor and Role  End
 		// Asset Publisher and Role  Start
-		$asset_publishers = $pbcore_model->get_asset_publisher_and_role(2987035);
+		$asset_publishers = $pbcore_model->get_asset_publisher_and_role($this->asset_id);
 
 		foreach ($asset_publishers as $asset_publisher)
 		{
@@ -304,7 +304,19 @@ class Pbcore
 			unset($xml_object);
 		}
 		//  Asset Publisher and Role  End
-//		debug($identifiers);
+		// Asset Right Summary Start
+		$asset_rights = $pbcore_model->get_by($pbcore_model->table_rights_summaries, array('assets_id' => $this->asset_id));
+		foreach ($asset_rights as $asset_right)
+		{
+			$attributes = array();
+			$xml_object = $this->_add_child($this->xml, 'pbcoreRightsSummary');
+			if ( ! empty($asset_right->rights))
+				$this->_add_child($xml_object, 'rightsSummary', $asset_right->rights);
+			if ( ! empty($asset_right->rights_link))
+				$this->_add_child($xml_object, 'rightsLink', $asset_right->rights_link);
+			unset($xml_object);
+		}
+		// Asset Right Summary End
 	}
 
 	private function _add_child($object, $tag_name, $value = NULL)

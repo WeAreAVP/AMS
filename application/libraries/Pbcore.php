@@ -338,7 +338,7 @@ class Pbcore
 	{
 		$pbcore_model = $this->CI->pbcore_model;
 
-		$instantiations = $pbcore_model->get_by($pbcore_model->table_instantiations, array('assets_id' => 18010));
+		$instantiations = $pbcore_model->get_by($pbcore_model->table_instantiations, array('assets_id' => 4852601));
 		foreach ($instantiations as $instantiation)
 		{
 			$instantiations_object = $this->_add_child($this->xml, 'pbcoreInstantiation');

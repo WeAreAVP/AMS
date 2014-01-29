@@ -26,6 +26,7 @@ class Pbcore
 		if ($this->asset_id !== NULL)
 		{
 			$this->_fetch_asset();
+			$this->_fetch_instantiations();
 		}
 	}
 
@@ -331,6 +332,11 @@ class Pbcore
 			unset($xml_object);
 		}
 		// Asset Extension End
+	}
+
+	private function _fetch_instantiations()
+	{
+		$instantiations_object = $this->_add_child($this->xml, 'pbcoreInstantiation');
 	}
 
 	private function _add_child($object, $tag_name, $value = NULL)

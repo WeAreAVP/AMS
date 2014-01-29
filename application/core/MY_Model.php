@@ -66,6 +66,50 @@ class MY_Model extends CI_Model
 		parent::__construct();
 	}
 
+	/**
+	 * Find single record by column of a table.
+	 * 
+	 * @param string $table
+	 * @param array  $data
+	 * 
+	 * @return boolean
+	 */
+	function get_one_by($table, array $data)
+	{
+		foreach ($data as $column => $value)
+		{
+			$this->db->where($column, $value);
+		}
+		$result = $this->db->get($table);
+		if (isset($result) && ! empty($result))
+		{
+			return $result->row();
+		}
+		return FALSE;
+	}
+
+	/**
+	 * Find records by column of a table.
+	 * 
+	 * @param string $table
+	 * @param array  $data
+	 * 
+	 * @return boolean
+	 */
+	function get_by($table, array $data)
+	{
+		foreach ($data as $column => $value)
+		{
+			$this->db->where($column, $value);
+		}
+		$result = $this->db->get($table);
+		if (isset($result) && ! empty($result))
+		{
+			return $result->result();
+		}
+		return FALSE;
+	}
+
 }
 
 ?>

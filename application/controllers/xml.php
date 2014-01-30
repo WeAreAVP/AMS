@@ -29,7 +29,7 @@ class Xml extends CI_Controller
 				$query = $export_job->export_query;
 				$query.=' LIMIT ' . ($i * 100000) . ', 100000';
 				$records = $this->csv_job->get_csv_records($query);
-				$count=0;
+				
 				foreach ($records as $value)
 				{
 					$this->export_pbcore_premis->asset_id = $value->id;
@@ -41,9 +41,8 @@ class Xml extends CI_Controller
 					$this->export_pbcore_premis->xml->saveXML($path);
 
 					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
-					if($count==300)
-						break;
-					$count++;
+					
+					
 				}
 			}
 			$bagit_lib->update();

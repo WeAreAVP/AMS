@@ -48,13 +48,13 @@ class Xml extends CI_Controller
 
 
 					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
-					if ($count == 100)
+					if ($count == 5000)
 					{
 						$mem = memory_get_usage() / 1024;
 						$mem = $mem / 1024;
 
 						myLog($mem . ' MB');
-						exit;
+						
 					}
 
 					$count ++;

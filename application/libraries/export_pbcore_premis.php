@@ -6,27 +6,40 @@ class Export_pbcore_premis
 	private $CI;
 	public $xml = NULL;
 	public $asset_id = NULL;
-	public $is_parent_document = TRUE;
 	public $is_parent_collection = FALSE;
+	public $is_pbcore_export = FALSE;
 
 	function __construct()
 	{
 		$this->CI = & get_instance();
 		$this->CI->load->model('pbcore_model');
-		$this->xml = new SimpleXMLElement('<pbcoreDescriptionDocument/>');
-		$attributes = array(
-			'xmlns' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html",
-			'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-			'xmlns:premis' => "info:lc/xmlns/premis-v2",
-			'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd
-									info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd");
-		$this->_add_attribute($this->xml, $attributes);
 	}
 
 	public function make_xml()
 	{
 		if ($this->asset_id !== NULL)
 		{
+			if ($this->is_pbcore_export)
+			{
+				$this->xml = new SimpleXMLElement('<pbcoreDescriptionDocument/>');
+				$attributes = array(
+					'xmlns' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html",
+					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+					'xmlns:premis' => "info:lc/xmlns/premis-v2",
+					'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd
+									info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd");
+				$this->_add_attribute($this->xml, $attributes);
+			}
+			else
+			{
+				$this->xml = new SimpleXMLElement('<premis:premis/>');
+				$attributes = array(
+					'xmlns:premis' => "info:lc/xmlns/premis-v2",
+					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
+					'version' => "2.2");
+				$this->_add_attribute($this->xml, $attributes);
+			}
 			$this->_fetch_asset();
 			$this->_fetch_instantiations();
 		}

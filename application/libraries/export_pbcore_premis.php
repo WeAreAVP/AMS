@@ -525,7 +525,7 @@ class Export_pbcore_premis
 	{
 		$pbcore_model = $this->CI->pbcore_model;
 
-		$essence_tracks = $pbcore_model->get_by($pbcore_model->table_essence_tracks, array('instantiations_id' => $instantiations_id));
+		$essence_tracks = $pbcore_model->get_by($pbcore_model->table_essence_tracks, array('instantiations_id' => 274209));
 		foreach ($essence_tracks as $essence_track)
 		{
 			$xml_essencetrack = $this->_add_child($instantiations_object, 'instantiationEssenceTrack');

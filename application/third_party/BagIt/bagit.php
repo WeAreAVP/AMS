@@ -293,8 +293,7 @@ class BagIt
     function setHashEncoding($hashAlgorithm)
     {
         $hashAlgorithm = strtolower($hashAlgorithm);
-		echo $hashAlgorithm;exit;
-        if ($hashAlgorithm != 'md5' && $hashAlgorithm != 'sha1') {
+		if ($hashAlgorithm != 'md5' && $hashAlgorithm != 'sha1') {
             throw new InvalidArgumentException("Invalid hash algorithim: '$hashAlgorithm'.");
         }
 
@@ -448,7 +447,7 @@ class BagIt
      *
      * @return void
      */
-    function package($destination, $method='zip')
+    function package($destination, $method='tgz')
     {
         $method = strtolower($method);
         if ($method != 'zip' && $method != 'tgz') {

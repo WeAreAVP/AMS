@@ -41,8 +41,8 @@ class Export_pbcore_premis
 					'version' => "2.2");
 				$this->_add_attribute($this->xml, $attributes);
 			}
-			$this->_fetch_asset();
-			$this->_fetch_instantiations();
+//			$this->_fetch_asset();
+//			$this->_fetch_instantiations();
 		}
 	}
 

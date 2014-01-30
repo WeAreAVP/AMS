@@ -44,6 +44,8 @@ class Export_pbcore_premis
 				$this->_add_attribute($this->xml, $attributes);
 			}
 		}
+		
+		unset($this->xml);
 	}
 
 	private function _fetch_asset()

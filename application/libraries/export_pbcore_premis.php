@@ -33,16 +33,17 @@ class Export_pbcore_premis
 			else
 			{
 				$this->xml = new SimpleXMLElement('<premis></premis>');
-				$this->xml->registerXPathNamespace('premis','info:lc/xmlns/premis-v2');
+				$NS = array(
+					'premis' => 'info:lc/xmlns/premis-v2'
+				);
+				$this->xml->registerXPathNamespace('premis', $NS['premis']);
 				$attributes = array(
 //					'xmlns:premis' => "info:lc/xmlns/premis-v2",
 					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
 					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
 					'version' => "2.2");
 				$this->_add_attribute($this->xml, $attributes);
-//				foreach($xml->xpath('//event:event') as $event) {
-// var_export($event->xpath('event:sessionKey'));
-//}
+				$this->xml->addChild('abc', 'holi',$NS['premis']);
 			}
 //			$this->_fetch_asset();
 //			$this->_fetch_instantiations();

@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(dirname(__FILE__)) . '/third_party/BagIt/bagit.php');
+//require_once(dirname(dirname(__FILE__)) . '/third_party/BagIt/bagit.php');
 
 class Xml extends CI_Controller
 {
@@ -10,7 +10,7 @@ class Xml extends CI_Controller
 		parent::__construct();
 		$this->layout = 'default.php';
 		$this->load->library('export_pbcore_premis');
-//		$this->load->library('bagit_lib');
+		$this->load->library('bagit_lib');
 		$this->load->model('pbcore_model');
 		$this->load->model('export_csv_job_model', 'csv_job');
 	}

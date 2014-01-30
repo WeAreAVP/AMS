@@ -619,7 +619,7 @@ class BagIt
 
         $this->bagitFile = $this->bagDirectory . '/bagit.txt';
         $this->manifest = new BagItManifest(
-            "{$this->bagDirectory}/manifest-sha1.txt",
+            "{$this->bagDirectory}/manifest-md5.txt",
             $this->bagDirectory . '/',
             $this->tagFileEncoding
         );

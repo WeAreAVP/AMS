@@ -36,7 +36,7 @@ class Xml extends CI_Controller
 					$file_name = str_replace('/', '-', $guid->identifier);
 					$path = "./uploads/{$file_name}.xml";
 					$this->export_pbcore_premis->xml->saveXML($path);
-					$bagit_lib = new BagIt('./assets/bagit');
+					$bagit_lib = new BagIt('./assets/bagit/abc.zip');
 					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
 					$bagit_lib->update();
 					$bagit_lib->package('testbag');

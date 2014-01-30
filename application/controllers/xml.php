@@ -43,7 +43,7 @@ class Xml extends CI_Controller
 					$path = "./uploads/{$file_name}.xml";
 //					header("Content-Type: application/xml; charset=utf-8");
 					$this->export_pbcore_premis->xml->saveXML($path);
-
+					unset($this->export_pbcore_premis->xml);
 
 
 

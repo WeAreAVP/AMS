@@ -196,7 +196,7 @@ class BagIt
         $this->tagFileEncoding = 'UTF-8';
         $this->bagDirectory = null;
         $this->bagitFile = null;
-        $this->manifest = null;
+        $this->manifest = new BagItManifest();
         $this->tagManifest = null;
         $this->fetch = null;
         $this->bagInfoFile = null;

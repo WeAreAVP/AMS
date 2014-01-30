@@ -15,7 +15,7 @@ class Bagit_lib extends BagIt
 	{
 		$this->bag ='./assets/bagit';
 		$this->bagDirectory='./assets/bagit/abc';
-		$this->manifest='manifest-md5.txt';
+//		$this->manifest='manifest-md5.txt';
 //		$this->bagit_lib = new Bagit($this->bagit_path);
 	}
 

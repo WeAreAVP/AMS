@@ -29,8 +29,8 @@ class Xml extends CI_Controller
 					$this->export_pbcore_premis->asset_id = $value->id;
 					$this->export_pbcore_premis->make_xml();
 					$guid = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('assets_id' => $value->id, 'identifier_source' => 'http://americanarchiveinventory.org'));
-					debug($guid);
-					$this->export_pbcore_premis->xml->saveXML('./uploads/abc.xml');
+					$file_name = str_replace('/', '-', $guid->identifier);
+					$this->export_pbcore_premis->xml->saveXML("./uploads/{$file_name}.xml");
 					exit;
 				}
 

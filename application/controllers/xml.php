@@ -1,5 +1,7 @@
 <?php
 
+require_once(dirname(dirname(__FILE__)) . '/third_party/BagIt/bagit.php');
+
 class Xml extends CI_Controller
 {
 
@@ -8,14 +10,14 @@ class Xml extends CI_Controller
 		parent::__construct();
 		$this->layout = 'default.php';
 		$this->load->library('export_pbcore_premis');
-		$this->load->library('bagit_lib');
+//		$this->load->library('bagit_lib');
 		$this->load->model('pbcore_model');
 		$this->load->model('export_csv_job_model', 'csv_job');
 	}
 
 	function export_pbcore()
 	{
-		
+
 		$export_job = $this->csv_job->get_export_jobs('pbcore');
 		if (count($export_job) > 0)
 		{
@@ -32,11 +34,12 @@ class Xml extends CI_Controller
 					$this->export_pbcore_premis->make_xml();
 					$guid = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('assets_id' => $value->id, 'identifier_source' => 'http://americanarchiveinventory.org'));
 					$file_name = str_replace('/', '-', $guid->identifier);
-					$path="./uploads/{$file_name}.xml";
+					$path = "./uploads/{$file_name}.xml";
 					$this->export_pbcore_premis->xml->saveXML($path);
-					$this->bagit_lib->addFile($path,"{$file_name}/{$file_name}_pbcore.xml");
-					$this->bagit_lib->update();
-					$this->bagit_lib->package('testbag');
+					$bagit_lib = new BagIt('./assets/bagit');
+					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
+					$bagit_lib->update();
+					$bagit_lib->package('testbag');
 					exit;
 				}
 

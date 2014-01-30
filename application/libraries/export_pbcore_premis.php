@@ -1,11 +1,13 @@
 <?php
 
-class Pbcore
+class Export_pbcore_premis
 {
 
 	private $CI;
 	public $xml = NULL;
 	public $asset_id = NULL;
+	public $is_parent_document = TRUE;
+	public $is_parent_collection = FALSE;
 
 	function __construct()
 	{
@@ -496,7 +498,7 @@ class Pbcore
 			}
 			// Instantiation Relations End
 			// Instantiation Nominations Start
-			$extensions = $pbcore_model->get_instantiation_nomination(1735902);
+			$extensions = $pbcore_model->get_instantiation_nomination($instantiation->id);
 			foreach ($extensions as $extension)
 			{
 				$attributes = array();
@@ -515,6 +517,107 @@ class Pbcore
 				unset($xml_object);
 			}
 			// Instantiation Nominations End
+			$this->_fetch_essence_tracks($instantiation->id, $instantiations_object);
+		}
+	}
+
+	private function _fetch_essence_tracks($instantiations_id, $instantiations_object)
+	{
+		$pbcore_model = $this->CI->pbcore_model;
+
+		$essence_tracks = $pbcore_model->get_by($pbcore_model->table_essence_tracks, array('instantiations_id' => $instantiations_id));
+		foreach ($essence_tracks as $essence_track)
+		{
+			$xml_essencetrack = $this->_add_child($instantiations_object, 'instantiationEssenceTrack');
+			if ( ! empty($essence_track->standard))
+				$this->_add_child($xml_essencetrack, 'essenceTrackStandard', $essence_track->standard);
+			if ( ! empty($essence_track->frame_rate))
+				$this->_add_child($xml_essencetrack, 'essenceTrackFrameRate', $essence_track->frame_rate);
+			if ( ! empty($essence_track->playback_speed))
+				$this->_add_child($xml_essencetrack, 'essenceTrackPlaybackSpeed', $essence_track->playback_speed);
+			if ( ! empty($essence_track->sampling_rate))
+				$this->_add_child($xml_essencetrack, 'essenceTrackSamplingRate', $essence_track->sampling_rate);
+			if ( ! empty($essence_track->bit_depth))
+				$this->_add_child($xml_essencetrack, 'essenceTrackBitDepth', $essence_track->bit_depth);
+			if ( ! empty($essence_track->aspect_ratio))
+				$this->_add_child($xml_essencetrack, 'essenceTrackAspectRatio', $essence_track->aspect_ratio);
+			if ( ! empty($essence_track->time_start))
+				$this->_add_child($xml_essencetrack, 'essenceTrackTimeStart', $essence_track->time_start);
+			if ( ! empty($essence_track->duration))
+				$this->_add_child($xml_essencetrack, 'essenceTrackDuration', $essence_track->duration);
+			if ( ! empty($essence_track->language))
+				$this->_add_child($xml_essencetrack, 'essenceTrackLanguage', $essence_track->language);
+			// Essence Track Track Type Start
+			if ( ! empty($essence_track->essence_track_types_id))
+			{
+				$essence_track_type = $pbcore_model->get_one_by($pbcore_model->table_essence_track_types, array('id' => $essence_track->essence_track_types_id));
+				$this->_add_child($xml_essencetrack, 'essenceTrackType', $essence_track_type->essence_track_type);
+			}
+			// Essence Track Track Type End
+			// Essence Track Frame Size Start
+			if ((int) $essence_track->essence_track_frame_sizes_id !== 0)
+			{
+				$essence_track_frame = $pbcore_model->get_one_by($pbcore_model->table_essence_track_frame_sizes, array('id' => $essence_track->essence_track_frame_sizes_id));
+				$this->_add_child($xml_essencetrack, 'essenceTrackFrameSize', $essence_track_frame->width . ' x ' . $essence_track_frame->height);
+			}
+			// Essence Track Frame Size End
+			// Essence Track Date Rate Start
+			if ( ! empty($essence_track->data_rate))
+			{
+				$xml_daterate = $this->_add_child($xml_essencetrack, 'essenceTrackDataRate', $essence_track->data_rate);
+				if ( ! empty($essence_track->data_rate_units_id))
+				{
+					$data_rate_unit = $pbcore_model->get_one_by($pbcore_model->table_data_rate_units, array('id' => $essence_track->data_rate_units_id));
+					$attributes = array();
+					$attributes['unitsOfMeasure'] = $data_rate_unit->unit_of_measure;
+					$this->_add_attribute($xml_daterate, $attributes);
+					unset($attributes);
+				}
+			}
+			// Essence Track Date Rate End
+			// Essence Track Identifiers Start
+			$essence_track_identifiers = $pbcore_model->get_by($pbcore_model->table_essence_track_identifiers, array('essence_tracks_id' => $essence_track->id));
+			foreach ($essence_track_identifiers as $identifier)
+			{
+				$xml_identifier = $this->_add_child($xml_essencetrack, 'essenceTrackIdentifier', $identifier->essence_track_identifiers);
+				if ( ! empty($identifier->essence_track_identifier_source))
+				{
+					$attributes = array();
+					$attributes['source'] = $identifier->essence_track_identifier_source;
+					$this->_add_attribute($xml_identifier, $attributes);
+					unset($attributes);
+				}
+			}
+			// Essence Track Identifiers End
+			// Essence Track Encoding Start
+			$essence_track_encodings = $pbcore_model->get_by($pbcore_model->table_essence_track_encodings, array('essence_tracks_id' => $essence_track->id));
+			foreach ($essence_track_encodings as $encoding)
+			{
+				$xml_encoding = $this->_add_child($xml_essencetrack, 'essenceTrackEncoding', $encoding->encoding);
+				$attributes = array();
+				if ( ! empty($encoding->encoding_source))
+					$attributes['source'] = $encoding->encoding_source;
+				if ( ! empty($encoding->encoding_ref))
+					$attributes['ref'] = $encoding->encoding_ref;
+				$this->_add_attribute($xml_encoding, $attributes);
+				unset($attributes);
+			}
+			// Essence Track Encoding End
+			// Essence Track Annotation Start
+			$essence_track_annotations = $pbcore_model->get_by($pbcore_model->table_essence_track_annotations, array('essence_tracks_id' => $essence_track->id));
+			foreach ($essence_track_annotations as $annotation)
+			{
+				$xml_annotation = $this->_add_child($xml_essencetrack, 'essenceTrackAnnotation', $annotation->annotation);
+
+				if ( ! empty($annotation->annotation_type))
+				{
+					$attributes = array();
+					$attributes['type'] = $annotation->annotation_type;
+					$this->_add_attribute($xml_annotation, $attributes);
+					unset($attributes);
+				}
+			}
+			// Essence Track Annotation End
 		}
 	}
 

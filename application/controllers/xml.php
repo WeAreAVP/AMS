@@ -7,7 +7,7 @@ class Xml extends CI_Controller
 	{
 		parent::__construct();
 		$this->layout = 'default.php';
-		$this->load->library('pbcore');
+		$this->load->library('export_pbcore_premis');
 		$this->load->model('pbcore_model');
 		$this->load->model('export_csv_job_model', 'csv_job');
 	}
@@ -26,10 +26,10 @@ class Xml extends CI_Controller
 				$records = $this->csv_job->get_csv_records($query);
 				foreach ($records as $value)
 				{
-					$this->pbcore->asset_id = $value->id;
-					$this->pbcore->make_xml();
+					$this->export_pbcore_premis->asset_id = $value->id;
+					$this->export_pbcore_premis->make_xml();
 					Header('Content-type: text/xml');
-					echo $this->pbcore->xml->asXML();
+					echo $this->export_pbcore_premis->xml->asXML();
 					exit;
 				}
 

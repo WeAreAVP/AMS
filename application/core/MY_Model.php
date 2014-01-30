@@ -60,6 +60,12 @@ class MY_Model extends CI_Model
 	public $table_publisher_roles = 'publisher_roles';
 	public $table_rights_summaries = 'rights_summaries';
 	public $table_extensions = 'extensions';
+	public $table_essence_tracks = 'essence_tracks';
+	public $table_essence_track_types = 'essence_track_types';
+	public $table_essence_track_frame_sizes = 'essence_track_frame_sizes';
+	public $table_essence_track_identifiers = 'essence_track_identifiers';
+	public $table_essence_track_encodings = 'essence_track_encodings';
+	public $table_essence_track_annotations = 'essence_track_annotations';
 
 	function __construct()
 	{

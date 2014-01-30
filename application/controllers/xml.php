@@ -28,8 +28,8 @@ class Xml extends CI_Controller
 				{
 					$this->export_pbcore_premis->asset_id = $value->id;
 					$this->export_pbcore_premis->make_xml();
-					Header('Content-type: text/xml');
-					echo $this->export_pbcore_premis->xml->asXML();
+					
+					$this->export_pbcore_premis->xml->saveXML('./uploads/abc.xml');
 					exit;
 				}
 

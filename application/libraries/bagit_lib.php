@@ -5,7 +5,7 @@ if ( ! defined('BASEPATH'))
 
 require_once(dirname(dirname(__FILE__)) . '/third_party/BagIt/bagit.php');
 
-class Bagit_lib
+class Bagit_lib extends BagIt
 {
 
 //	private $bagit_lib;

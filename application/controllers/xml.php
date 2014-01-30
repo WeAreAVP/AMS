@@ -8,12 +8,14 @@ class Xml extends CI_Controller
 		parent::__construct();
 		$this->layout = 'default.php';
 		$this->load->library('export_pbcore_premis');
+		$this->load->library('bagit_lib');
 		$this->load->model('pbcore_model');
 		$this->load->model('export_csv_job_model', 'csv_job');
 	}
 
 	function export_pbcore()
 	{
+		debug($this->bagit_lib);
 		$export_job = $this->csv_job->get_export_jobs('pbcore');
 		if (count($export_job) > 0)
 		{
@@ -30,6 +32,7 @@ class Xml extends CI_Controller
 					$this->export_pbcore_premis->make_xml();
 					$guid = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('assets_id' => $value->id, 'identifier_source' => 'http://americanarchiveinventory.org'));
 					$file_name = str_replace('/', '-', $guid->identifier);
+					
 					$this->export_pbcore_premis->xml->saveXML("./uploads/{$file_name}.xml");
 					exit;
 				}

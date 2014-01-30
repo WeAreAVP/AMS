@@ -42,7 +42,7 @@ class Export_pbcore_premis
 				$this->_add_attribute($this->xml, $attributes);
 //				foreach($xml->xpath('//event:event') as $event) {
 // var_export($event->xpath('event:sessionKey'));
-}
+//}
 			}
 //			$this->_fetch_asset();
 //			$this->_fetch_instantiations();

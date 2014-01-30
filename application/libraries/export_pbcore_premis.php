@@ -21,7 +21,7 @@ class Export_pbcore_premis
 		{
 			if ($this->is_pbcore_export)
 			{
-				$this->xml = new SimpleXMLElement('<pbcoreDescriptionDocument/>');
+				$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><pbcoreDescriptionDocument></pbcoreDescriptionDocument>');
 				$attributes = array(
 					'xmlns' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html",
 					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
@@ -44,8 +44,6 @@ class Export_pbcore_premis
 //				$this->_add_attribute($this->xml, $attributes);
 //			}
 		}
-		
-		
 	}
 
 	private function _fetch_asset()

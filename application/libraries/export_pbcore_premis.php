@@ -33,9 +33,9 @@ class Export_pbcore_premis
 			else
 			{
 				$this->xml = new SimpleXMLElement('<premis:premis></premis:premis>',0,FALSE,'premis',TRUE);
-//				$this->xml->registerXPathNamespace('premis','info:lc/xmlns/premis-v2');
+				$this->xml->registerXPathNamespace('premis','info:lc/xmlns/premis-v2');
 				$attributes = array(
-//					'xmlns:premis' => "info:lc/xmlns/premis-v2",
+					'xmlns:premis' => "info:lc/xmlns/premis-v2",
 					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
 					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
 					'version' => "2.2");

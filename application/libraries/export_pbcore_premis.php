@@ -7,7 +7,7 @@ class Export_pbcore_premis
 	public $xml = NULL;
 	public $asset_id = NULL;
 	public $is_parent_collection = FALSE;
-	public $is_pbcore_export = FALSE;
+	public $is_pbcore_export = TRUE;
 
 	function __construct()
 	{

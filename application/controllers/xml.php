@@ -28,7 +28,8 @@ class Xml extends CI_Controller
 				{
 					$this->export_pbcore_premis->asset_id = $value->id;
 					$this->export_pbcore_premis->make_xml();
-					
+					$guid = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('assets_id' => $value->id, 'identifier_source' => 'http://americanarchiveinventory.org'));
+					debug($guid);
 					$this->export_pbcore_premis->xml->saveXML('./uploads/abc.xml');
 					exit;
 				}
@@ -43,7 +44,7 @@ class Xml extends CI_Controller
 
 		if (isset($guid) && $guid !== 0)
 		{
-			
+
 			$result = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('identifier' => "cpb-aacip/{$guid}"));
 			if ($result)
 			{

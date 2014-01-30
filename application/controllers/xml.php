@@ -22,12 +22,14 @@ class Xml extends CI_Controller
 		if (count($export_job) > 0)
 		{
 //			myLog('Pbcore Export Job Started.');
+			$bagit_lib = new BagIt('./assets/bagit/ams_export_' . date('Ymd'));
 			for ($i = 0; $i < $export_job->query_loop; $i ++ )
 			{
 //				myLog('Query Loop ' . $i);
 				$query = $export_job->export_query;
 				$query.=' LIMIT ' . ($i * 100000) . ', 100000';
 				$records = $this->csv_job->get_csv_records($query);
+
 				foreach ($records as $value)
 				{
 					$this->export_pbcore_premis->asset_id = $value->id;
@@ -36,15 +38,12 @@ class Xml extends CI_Controller
 					$file_name = str_replace('/', '-', $guid->identifier);
 					$path = "./uploads/{$file_name}.xml";
 					$this->export_pbcore_premis->xml->saveXML($path);
-					$bagit_lib = new BagIt('./assets/bagit/ams_export_'.date('Ymd'));
-					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
-					$bagit_lib->update();
-					$bagit_lib->package('./assets/bagit/ams_export_'.date('Ymd'),'zip');
-					exit;
-				}
 
-				exit;
+					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
+				}
 			}
+			$bagit_lib->update();
+			$bagit_lib->package('./assets/bagit/ams_export_' . date('Ymd'), 'zip');
 		}
 	}
 

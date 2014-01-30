@@ -447,7 +447,7 @@ class BagIt
      *
      * @return void
      */
-    function package($destination, $method='tgz')
+    function package($destination, $method='zip')
     {
         $method = strtolower($method);
         if ($method != 'zip' && $method != 'tgz') {

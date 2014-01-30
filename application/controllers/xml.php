@@ -42,24 +42,15 @@ class Xml extends CI_Controller
 					$file_name = str_replace('/', '-', $guid->identifier);
 					$path = "./uploads/{$file_name}.xml";
 //					header("Content-Type: application/xml; charset=utf-8");
-					$this->export_pbcore_premis->xml->saveXML($path);
+					file_put_contents($path, $this->export_pbcore_premis->xml->asXML());
 					unset($this->export_pbcore_premis->xml);
-
-
-
 					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
-					if ($count == 5000)
-					{
-						$mem = memory_get_usage() / 1024;
-						$mem = $mem / 1024;
-
-						myLog($mem . ' MB');
-						
-					}
-
-					$count ++;
 				}
 			}
+			$mem = memory_get_usage() / 1024;
+			$mem = $mem / 1024;
+
+			myLog($mem . ' MB');
 			$bagit_lib->update();
 			$bagit_lib->package('./assets/bagit/ams_export_' . date('Ymd'), 'zip');
 		}

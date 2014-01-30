@@ -13,6 +13,7 @@ class Bagit_lib extends BagIt
 
 	function __construct()
 	{
+		$this->bag ='./assets/bagit';
 //		$this->bagit_lib = new Bagit($this->bagit_path);
 	}
 

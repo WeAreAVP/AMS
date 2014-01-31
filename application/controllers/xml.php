@@ -5,8 +5,8 @@
 class Xml extends CI_Controller
 {
 
-	private $temp_path = './uploads/export_temp/';
-	private $bagit_path = './assets/bagit/';
+	private $temp_path = 'uploads/export_temp/';
+	private $bagit_path = 'assets/bagit/';
 
 	function __construct()
 	{
@@ -26,7 +26,8 @@ class Xml extends CI_Controller
 		$export_job = $this->csv_job->get_export_jobs('pbcore');
 		if (count($export_job) > 0)
 		{
-			$bagit_lib = new BagIt("{$this->bagit_path}ams_export_" . time());
+			$bag_name = 'ams_export_' . time();
+			$bagit_lib = new BagIt("{$this->bagit_path}{$bag_name}");
 			for ($i = 0; $i < $export_job->query_loop; $i ++ )
 			{
 				$query = $export_job->export_query;
@@ -52,12 +53,13 @@ class Xml extends CI_Controller
 				}
 			}
 			$bagit_lib->update();
-			$bagit_lib->package("{$this->bagit_path}ams_export_" . time(), 'zip');
+			$bagit_lib->package("{$this->bagit_path}{$bag_name}", 'zip');
 			rmdir($this->temp_path);
-			$this->csv_job->update_job($export_job->id, array('status' => '1'));
+			rmdir("{$this->bagit_path}{$bag_name}");
+			$this->csv_job->update_job($export_job->id, array('status' => '1', 'file_path' => "{$this->bagit_path}{$bag_name}.zip"));
 			$user = $this->users->get_user_by_id($export_job->user_id)->row();
 			myLog('Sending Email to ' . $user->email);
-			send_email($user->email, $this->config->item('from'), 'AMS XML Export', $url);
+			send_email($user->email, $this->config->item('from'), 'AMS XML Export', "{$this->bagit_path}{$bag_name}.zip");
 		}
 	}
 

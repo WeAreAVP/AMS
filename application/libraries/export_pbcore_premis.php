@@ -678,7 +678,7 @@ class Export_pbcore_premis
 
 	public function make_file_name()
 	{
-		$guid = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('assets_id' => $this->asset_id, 'identifier_source' => 'http://americanarchiveinventory.org'));
+		$guid = $this->CI->pbcore_model->get_one_by($this->CI->pbcore_model->table_identifers, array('assets_id' => $this->asset_id, 'identifier_source' => 'http://americanarchiveinventory.org'));
 		$file_name = str_replace('/', '-', $guid->identifier);
 		return $file_name;
 	}

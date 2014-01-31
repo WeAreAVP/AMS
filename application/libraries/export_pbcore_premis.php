@@ -42,9 +42,7 @@ class Export_pbcore_premis
 					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
 					'version' => "2.2");
 				$this->_add_attribute($this->xml, $attributes);
-				$this->_fetch_events($this->xml);
-				Header('Content-type: text/xml');
-				echo $this->xml->asXML();exit;
+				return $this->_fetch_events($this->xml);
 			}
 		}
 	}
@@ -52,20 +50,25 @@ class Export_pbcore_premis
 	private function _fetch_events($xml_object)
 	{
 		$pbcore_model = $this->CI->pbcore_model;
-		$events = $pbcore_model->get_instantiation_events(11153);
-		foreach ($events as $event)
+		$events = $pbcore_model->get_instantiation_events($this->asset_id);
+		if (count($events) > 0)
 		{
-			$event_object = $this->_add_child($xml_object, 'event');
-			$event_identifier_object = $this->_add_child($event_object, 'eventIdentifier');
-			$this->_add_child($event_identifier_object, 'eventIdentifierType', 'AMS event ID');
-			$this->_add_child($event_identifier_object, 'eventIdentifierValue', $event->id);
-			if ( ! empty($event->event_type))
-				$this->_add_child($event_object, 'eventType', $event->event_type);
-			if ( ! empty($event->event_date))
-				$this->_add_child($event_object, 'eventDateTime', $event->event_date);
-			if ( ! empty($event->event_note))
-				$this->_add_child($event_object, 'eventDetail', $event->event_note);
+			foreach ($events as $event)
+			{
+				$event_object = $this->_add_child($xml_object, 'event');
+				$event_identifier_object = $this->_add_child($event_object, 'eventIdentifier');
+				$this->_add_child($event_identifier_object, 'eventIdentifierType', 'AMS event ID');
+				$this->_add_child($event_identifier_object, 'eventIdentifierValue', $event->id);
+				if ( ! empty($event->event_type))
+					$this->_add_child($event_object, 'eventType', $event->event_type);
+				if ( ! empty($event->event_date))
+					$this->_add_child($event_object, 'eventDateTime', $event->event_date);
+				if ( ! empty($event->event_note))
+					$this->_add_child($event_object, 'eventDetail', $event->event_note);
+			}
+			return TRUE;
 		}
+		return FALSE;
 	}
 
 	private function _fetch_asset()

@@ -44,11 +44,15 @@ class Xml extends CI_Controller
 					$this->export_pbcore_premis->xml->saveXML($path);
 					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
 					$this->export_pbcore_premis->is_pbcore_export = FALSE;
-					$this->export_pbcore_premis->make_xml();
-					$file_name = $this->export_pbcore_premis->make_file_name();
-					$path = "{$this->temp_path}{$file_name}_premis.xml";
-					$this->export_pbcore_premis->xml->saveXML($path);
-					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_premis.xml");
+					$result = $this->export_pbcore_premis->make_xml();
+					if ($result)
+					{
+						$file_name = $this->export_pbcore_premis->make_file_name();
+						$path = "{$this->temp_path}{$file_name}_premis.xml";
+						$this->export_pbcore_premis->xml->saveXML($path);
+						$bagit_lib->addFile($path, "{$file_name}/{$file_name}_premis.xml");
+					}
+
 					unset($this->export_pbcore_premis->xml);
 				}
 			}

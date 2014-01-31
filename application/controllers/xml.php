@@ -10,7 +10,7 @@ class Xml extends CI_Controller
 	{
 		parent::__construct();
 		$this->layout = 'default.php';
-		$this->load->library('export_pbcore_premis', 'pbcore_premis');
+		$this->load->library('export_pbcore_premis');
 		$this->load->library('bagit_lib');
 		$this->load->model('pbcore_model');
 		$this->load->model('export_csv_job_model', 'export_job');
@@ -41,24 +41,24 @@ class Xml extends CI_Controller
 				foreach ($records as $value)
 				{
 					make_dir($this->temp_path);
-					$this->pbcore_premis->asset_id = $value->id;
-					$this->pbcore_premis->is_pbcore_export = TRUE;
-					$this->pbcore_premis->make_xml();
-					$file_name = $this->pbcore_premis->make_file_name();
+					$this->export_pbcore_premis->asset_id = $value->id;
+					$this->export_pbcore_premis->is_pbcore_export = TRUE;
+					$this->export_pbcore_premis->make_xml();
+					$file_name = $this->export_pbcore_premis->make_file_name();
 					$path = "{$this->temp_path}{$file_name}_pbcore.xml";
-					$this->pbcore_premis->xml->saveXML($path);
+					$this->export_pbcore_premis->xml->saveXML($path);
 					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
-					$this->pbcore_premis->is_pbcore_export = FALSE;
-					$result = $this->pbcore_premis->make_xml();
+					$this->export_pbcore_premis->is_pbcore_export = FALSE;
+					$result = $this->export_pbcore_premis->make_xml();
 					if ($result)
 					{
-						$file_name = $this->pbcore_premis->make_file_name();
+						$file_name = $this->export_pbcore_premis->make_file_name();
 						$path = "{$this->temp_path}{$file_name}_premis.xml";
-						$this->pbcore_premis->xml->saveXML($path);
+						$this->export_pbcore_premis->xml->saveXML($path);
 						$bagit_lib->addFile($path, "{$file_name}/{$file_name}_premis.xml");
 					}
 
-					unset($this->pbcore_premis->xml);
+					unset($this->export_pbcore_premis->xml);
 				}
 			}
 			$bagit_lib->update();
@@ -84,7 +84,7 @@ class Xml extends CI_Controller
 	/**
 	 * Download the zip file of exported record.
 	 * 
-	 * @return void
+	 * @return 
 	 */
 	function download()
 	{

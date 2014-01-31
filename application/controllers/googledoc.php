@@ -123,7 +123,7 @@ class Googledoc extends CI_Controller
 				{
 					$guid = $event_row[2];
 					$explode = explode('-', $guid, 3);
-					$db_guid = 'cpb-aacip/' . $explode[2];
+					$db_guid = 'cpb-aacip/' . trim($explode[2]);
 					$instantiation = $this->instantiation->get_instantiation_by_guid_physical_format($db_guid, $event_row[5]);
 					if ($instantiation)
 					{
@@ -184,7 +184,7 @@ class Googledoc extends CI_Controller
 	private function _store_event_type_inspection($event_row, $instantiation_id)
 	{
 		myLog('Start storing Event Inspection info from Spreadsheet');
-		if ((isset($event_row[8]) && ! empty($event_row[8])) OR (isset($event_row[9]) && ! empty($event_row[9])))
+		if ((isset($event_row[8]) && ! empty($event_row[8])))
 		{
 			$event_data = array();
 			$event_type = 'inspection';
@@ -217,7 +217,7 @@ class Googledoc extends CI_Controller
 	private function _store_event_type_baked($event_row, $instantiation_id)
 	{
 
-		if ((isset($event_row[12]) && ! empty($event_row[12])) OR (isset($event_row[13]) && ! empty($event_row[13])))
+		if ((isset($event_row[12]) && ! empty($event_row[12])))
 		{
 			$event_type = 'baked';
 			$event_data['instantiations_id'] = $instantiation_id;
@@ -248,7 +248,7 @@ class Googledoc extends CI_Controller
 	 */
 	private function _store_event_type_cleaned($event_row, $instantiation_id)
 	{
-		if ((isset($event_row[14]) && ! empty($event_row[14])) OR (isset($event_row[16]) && ! empty($event_row[16])))
+		if ((isset($event_row[14]) && ! empty($event_row[14])))
 		{
 			$event_type = 'cleaned';
 			$event_data['instantiations_id'] = $instantiation_id;
@@ -279,7 +279,7 @@ class Googledoc extends CI_Controller
 	 */
 	private function _store_event_type_migration($event_row, $instantiation_id)
 	{
-		if ((isset($event_row[17]) && ! empty($event_row[17])) OR (isset($event_row[34]) && ! empty($event_row[34])) OR (isset($event_row[35]) && ! empty($event_row[35])))
+		if ((isset($event_row[17]) && ! empty($event_row[17])))
 		{
 			$event_type = 'migration';
 			$event_data['instantiations_id'] = $instantiation_id;

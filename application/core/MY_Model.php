@@ -116,6 +116,21 @@ class MY_Model extends CI_Model
 		return FALSE;
 	}
 
+	/**
+	 * Insert data into table.
+	 * 
+	 * @param string $table
+	 * @param array $data
+	 * @return integer
+	 */
+	function insert($table, array $data)
+	{
+		$this->db->insert($table, $data);
+		return $this->db->insert_id();
+	}
+
+	
+
 }
 
 ?>

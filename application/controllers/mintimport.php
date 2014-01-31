@@ -48,6 +48,7 @@ class Mintimport extends CI_Controller
 		$this->load->model('dx_auth/user_profile', 'user_profile');
 		$this->load->model('dx_auth/users', 'users');
 		$this->mint_path = 'assets/mint_import/';
+		$this->load->model('pbcore_model');
 	}
 
 	public function visit()
@@ -1418,7 +1419,8 @@ class Mintimport extends CI_Controller
 									$frame_sizes = explode("x", strtolower($pbcore_essence_child['ams:essencetrackframesize'][0]['text']));
 									if (isset($frame_sizes[0]) && isset($frame_sizes[1]))
 									{
-										$track_frame_size_d = $this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame_sizes[0]), trim($frame_sizes[1]));
+//										$track_frame_size_d = $this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame_sizes[0]), trim($frame_sizes[1]));
+										$track_frame_size_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_frame_sizes, array('width' => trim($frame_sizes['width']), 'height' => trim($frame_sizes['height'])));
 										if ($track_frame_size_d)
 										{
 											$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;

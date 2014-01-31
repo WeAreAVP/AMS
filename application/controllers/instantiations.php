@@ -50,6 +50,7 @@ class Instantiations extends MY_Controller
 		$this->load->helper('datatable');
 		$this->load->model('refine_modal');
 		$this->load->model('cron_model');
+		$this->load->model('pbcore_model');
 	}
 
 	/**
@@ -615,7 +616,8 @@ class Instantiations extends MY_Controller
 							if ( ! empty($width) && ! empty($height))
 							{
 								$db_essence_track = TRUE;
-								$track_frame_size_d = $this->essence_track->get_essence_track_frame_sizes_by_width_height(trim($this->input->post('width')), trim($this->input->post('height')));
+//								$track_frame_size_d = $this->essence_track->get_essence_track_frame_sizes_by_width_height(trim($this->input->post('width')), trim($this->input->post('height')));
+								$track_frame_size_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_frame_sizes, array('width' => trim($this->input->post('width')), 'height' => trim($this->input->post('height'))));
 								if ($track_frame_size_d)
 								{
 									$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;
@@ -986,7 +988,8 @@ class Instantiations extends MY_Controller
 				if ( ! empty($width) && ! empty($height))
 				{
 					$db_essence_track = TRUE;
-					$track_frame_size_d = $this->essence_track->get_essence_track_frame_sizes_by_width_height(trim($this->input->post('width')), trim($this->input->post('height')));
+//					$track_frame_size_d = $this->essence_track->get_essence_track_frame_sizes_by_width_height(trim($this->input->post('width')), trim($this->input->post('height')));
+					$track_frame_size_d =$this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_frame_sizes, array('width' => trim($this->input->post('width')), 'height' => trim($this->input->post('height'))));
 					if ($track_frame_size_d)
 					{
 						$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;
@@ -1161,7 +1164,7 @@ class Instantiations extends MY_Controller
 		{
 			$query = $this->instantiation->export_limited_csv(TRUE);
 			$record = array('user_id' => $this->user_id, 'status' => 0, 'export_query' => $query, 'query_loop' => ceil($records['total_count'] / 100000));
-			$this->csv_job->insert_job($record); 
+			$this->csv_job->insert_job($record);
 			echo json_encode(array('link' => 'false', 'msg' => 'Email will be sent to you with the link of limited csv export.'));
 			exit_function();
 		}

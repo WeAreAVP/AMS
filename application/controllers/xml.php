@@ -37,6 +37,7 @@ class Xml extends CI_Controller
 				{
 					make_dir($this->temp_path);
 					$this->export_pbcore_premis->asset_id = $value->id;
+					$this->export_pbcore_premis->is_pbcore_export = TRUE;
 					$this->export_pbcore_premis->make_xml();
 					$file_name = $this->export_pbcore_premis->make_file_name();
 					$path = "{$this->temp_path}{$file_name}_pbcore.xml";
@@ -79,20 +80,12 @@ class Xml extends CI_Controller
 			$job_id = base64_decode($job_id);
 			$export_info = $this->export_job->get_job_by_id($job_id);
 			if (count($export_info) > 0)
-			{
-
-				$path = $export_info->file_path;
-				download_file($path);
-			}
+				download_file($export_info->file_path);
 			else
-			{
 				show_error('Invalid AMS export information.');
-			}
 		}
 		else
-		{
 			show_error('No Export available.');
-		}
 	}
 
 	function pbcore($guid)

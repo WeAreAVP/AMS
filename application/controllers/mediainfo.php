@@ -852,7 +852,6 @@ class Mediainfo extends CI_Controller
 						}
 						if (isset($frame['width']) || isset($frame['height']))
 						{
-//							$track_frame_size = $this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame['width']), trim($frame['height']));
 							$track_frame_size = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_frame_sizes, array('width' => trim($frame['width']), 'height' => trim($frame['height'])));
 							if ($track_frame_size)
 							{

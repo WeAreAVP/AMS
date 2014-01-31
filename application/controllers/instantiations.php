@@ -616,7 +616,7 @@ class Instantiations extends MY_Controller
 							if ( ! empty($width) && ! empty($height))
 							{
 								$db_essence_track = TRUE;
-//								$track_frame_size_d = $this->essence_track->get_essence_track_frame_sizes_by_width_height(trim($this->input->post('width')), trim($this->input->post('height')));
+
 								$track_frame_size_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_frame_sizes, array('width' => trim($this->input->post('width')), 'height' => trim($this->input->post('height'))));
 								if ($track_frame_size_d)
 								{
@@ -988,7 +988,7 @@ class Instantiations extends MY_Controller
 				if ( ! empty($width) && ! empty($height))
 				{
 					$db_essence_track = TRUE;
-//					$track_frame_size_d = $this->essence_track->get_essence_track_frame_sizes_by_width_height(trim($this->input->post('width')), trim($this->input->post('height')));
+
 					$track_frame_size_d =$this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_frame_sizes, array('width' => trim($this->input->post('width')), 'height' => trim($this->input->post('height'))));
 					if ($track_frame_size_d)
 					{

@@ -1391,7 +1391,7 @@ class Pbcore2 extends CI_Controller
 									$frame_sizes = explode("x", strtolower($pbcore_essence_child['essencetrackframesize'][0]['text']));
 									if (isset($frame_sizes[0]) && isset($frame_sizes[1]))
 									{
-//										$track_frame_size_d = $this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame_sizes[0]), trim($frame_sizes[1]));
+
 										$track_frame_size_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_frame_sizes, array('width' => trim($frame_sizes['width']), 'height' => trim($frame_sizes['height'])));
 										if ($track_frame_size_d)
 										{

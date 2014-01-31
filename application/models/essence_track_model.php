@@ -44,24 +44,7 @@ class Essence_Track_Model extends CI_Model
 		$this->_table_data_rate_units = 'data_rate_units';
 	}
 
-	/**
-	 * search essence_track_frame_sizes by @width and height
-	 * 
-	 * @param type $width
-	 * @param type $height
-	 * @return object 
-	 */
-	function get_essence_track_frame_sizes_by_width_height($width, $height)
-	{
-		$this->db->where('width', $width);
-		$this->db->where('height', $height);
-		$res = $this->db->get($this->_table_essence_track_frame_sizes);
-		if (isset($res) && ! empty($res))
-		{
-			return $res->row();
-		}
-		return false;
-	}
+	
 
 	/**
 	 * search generations by @generation

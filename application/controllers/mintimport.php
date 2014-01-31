@@ -804,7 +804,7 @@ class Mintimport extends CI_Controller
 						$contributor_info['contributor_affiliation'] = $pbcore_contributor['children']['ams:contributor'][0]['attributes']['affiliation'];
 					}
 					if (isset($pbcore_contributor['children']['ams:contributor'][0]['attributes']['ref']) && ! is_empty($pbcore_contributor['children']['ams:contributor'][0]['attributes']['ref']))
-					{	
+					{
 						$contributor_info['contributor_ref'] = $pbcore_contributor['children']['ams:contributor'][0]['attributes']['ref'];
 					}
 					$contributor_d = $this->assets_model->get_contributor_by_contributor_name($contributor_info['contributor_name']);
@@ -1419,7 +1419,6 @@ class Mintimport extends CI_Controller
 									$frame_sizes = explode("x", strtolower($pbcore_essence_child['ams:essencetrackframesize'][0]['text']));
 									if (isset($frame_sizes[0]) && isset($frame_sizes[1]))
 									{
-//										$track_frame_size_d = $this->essence->get_essence_track_frame_sizes_by_width_height(trim($frame_sizes[0]), trim($frame_sizes[1]));
 										$track_frame_size_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_frame_sizes, array('width' => trim($frame_sizes['width']), 'height' => trim($frame_sizes['height'])));
 										if ($track_frame_size_d)
 										{
@@ -1500,7 +1499,7 @@ class Mintimport extends CI_Controller
 							{
 								$nomination_d = array();
 								$nomination_d['instantiations_id'] = $instantiations_id;
-								if ((strtolower($map_extension['ams:extensionauthorityused'][0]['text']) == strtolower('AACIP Record Nomination Status')) )
+								if ((strtolower($map_extension['ams:extensionauthorityused'][0]['text']) == strtolower('AACIP Record Nomination Status')))
 								{
 									if (isset($map_extension['ams:extensionvalue'][0]['text']) && ! is_empty($map_extension['ams:extensionvalue'][0]['text']))
 									{
@@ -1515,7 +1514,7 @@ class Mintimport extends CI_Controller
 										}
 									}
 								}
-								if ((strtolower($map_extension['ams:extensionauthorityused'][0]['text']) == strtolower('AACIP Record Tags')) )
+								if ((strtolower($map_extension['ams:extensionauthorityused'][0]['text']) == strtolower('AACIP Record Tags')))
 								{
 
 									if (isset($map_extension['ams:extensionvalue'][0]['text']) && ! is_empty($map_extension['ams:extensionvalue'][0]['text']))

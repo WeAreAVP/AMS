@@ -68,7 +68,9 @@ class Xml extends CI_Controller
 			$data['export_id'] = $export_job->id;
 			myLog('Sending Email to ' . $user->email);
 			send_email($user->email, $this->config->item('from_email'), 'AMS XML Export', $this->load->view('email/export_pbcore', $data, TRUE));
+			myLog('email sent successfully ' . $user->email);
 		}
+		exit_function();
 	}
 
 	function download()

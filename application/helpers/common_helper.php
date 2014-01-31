@@ -294,3 +294,25 @@ function make_dir($folder_path, $filename = '')
 
 	return $complete_path;
 }
+
+function download_file($file_path)
+{
+	if ( ! is_readable($file_path))
+		die('File not found/unable to read it');
+
+	if (file_exists($file_path))
+	{
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename=' . basename($file_path));
+		header('Content-Transfer-Encoding: binary');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+		header('Pragma: public');
+		header('Content-Length: ' . filesize($file_path));
+		ob_clean();
+		flush();
+		readfile($file_path);
+		exit_function();
+	}
+}

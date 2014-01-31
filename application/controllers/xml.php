@@ -1,7 +1,5 @@
 <?php
 
-//require_once(dirname(dirname(__FILE__)) . '/third_party/BagIt/bagit.php');
-
 class Xml extends CI_Controller
 {
 
@@ -15,7 +13,7 @@ class Xml extends CI_Controller
 		$this->load->library('export_pbcore_premis');
 		$this->load->library('bagit_lib');
 		$this->load->model('pbcore_model');
-		$this->load->model('export_csv_job_model', 'csv_job');
+		$this->load->model('export_csv_job_model', 'export_job');
 		$this->load->model('dx_auth/users', 'users');
 		$this->load->model('dx_auth/user_profile', 'user_profile');
 	}
@@ -24,7 +22,7 @@ class Xml extends CI_Controller
 	{
 		@ini_set("max_execution_time", 999999999999); # unlimited
 		@ini_set("memory_limit", "1000M"); # 1GB
-		$export_job = $this->csv_job->get_export_jobs('pbcore');
+		$export_job = $this->export_job->get_export_jobs('pbcore');
 		if (count($export_job) > 0)
 		{
 			$bag_name = 'ams_export_' . time();
@@ -33,7 +31,7 @@ class Xml extends CI_Controller
 			{
 				$query = $export_job->export_query;
 				$query.=' LIMIT ' . ($i * 100000) . ', 100000';
-				$records = $this->csv_job->get_csv_records($query);
+				$records = $this->export_job->get_csv_records($query);
 				$count = 0;
 				foreach ($records as $value)
 				{
@@ -61,7 +59,7 @@ class Xml extends CI_Controller
 			$bagit_lib->package("{$this->bagit_path}{$bag_name}", 'zip');
 			exec("rm -rf $this->temp_path");
 			exec("rm -rf {$this->bagit_path}{$bag_name}");
-			$this->csv_job->update_job($export_job->id, array('status' => '1', 'file_path' => "{$this->bagit_path}{$bag_name}.zip"));
+			$this->export_job->update_job($export_job->id, array('status' => '1', 'file_path' => "{$this->bagit_path}{$bag_name}.zip"));
 			$user = $this->users->get_user_by_id($export_job->user_id)->row();
 			$data['user_profile'] = $this->user_profile->get_profile($export_job->user_id)->row();
 			$data['user'] = $user;
@@ -75,7 +73,26 @@ class Xml extends CI_Controller
 
 	function download()
 	{
-		
+		$job_id = $this->uri->segment(3, 0);
+		if ($job_id !== 0)
+		{
+			$job_id = base64_decode($job_id);
+			$export_info = $this->export_job->get_job_by_id($job_id);
+			if (count($export_info) > 0)
+			{
+
+				$path = $export_info->file_path;
+				download_file($path);
+			}
+			else
+			{
+				show_error('Invalid AMS export information.');
+			}
+		}
+		else
+		{
+			show_error('No Export available.');
+		}
 	}
 
 	function pbcore($guid)

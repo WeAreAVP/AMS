@@ -10,7 +10,7 @@ class Xml extends CI_Controller
 	{
 		parent::__construct();
 		$this->layout = 'default.php';
-		$this->load->library('export_pbcore_premis');
+		$this->load->library('export_pbcore_premis', 'pbcore_premis');
 		$this->load->library('bagit_lib');
 		$this->load->model('pbcore_model');
 		$this->load->model('export_csv_job_model', 'export_job');
@@ -18,6 +18,11 @@ class Xml extends CI_Controller
 		$this->load->model('dx_auth/user_profile', 'user_profile');
 	}
 
+	/**
+	 * Export records from AMS for PBCore and PREMIS and save all the exported records in zip file using BagIt.
+	 * 
+	 * @return void
+	 */
 	function export_pbcore()
 	{
 		@ini_set("max_execution_time", 999999999999); # unlimited
@@ -25,6 +30,7 @@ class Xml extends CI_Controller
 		$export_job = $this->export_job->get_export_jobs('pbcore');
 		if (count($export_job) > 0)
 		{
+			myLog('Started export for ID =>' . $export_job->id);
 			$bag_name = 'ams_export_' . time();
 			$bagit_lib = new BagIt("{$this->bagit_path}{$bag_name}");
 			for ($i = 0; $i < $export_job->query_loop; $i ++ )
@@ -32,31 +38,27 @@ class Xml extends CI_Controller
 				$query = $export_job->export_query;
 				$query.=' LIMIT ' . ($i * 100000) . ', 100000';
 				$records = $this->export_job->get_csv_records($query);
-				$count = 0;
 				foreach ($records as $value)
 				{
 					make_dir($this->temp_path);
-					$this->export_pbcore_premis->asset_id = $value->id;
-					$this->export_pbcore_premis->is_pbcore_export = TRUE;
-					$this->export_pbcore_premis->make_xml();
-					$file_name = $this->export_pbcore_premis->make_file_name();
+					$this->pbcore_premis->asset_id = $value->id;
+					$this->pbcore_premis->is_pbcore_export = TRUE;
+					$this->pbcore_premis->make_xml();
+					$file_name = $this->pbcore_premis->make_file_name();
 					$path = "{$this->temp_path}{$file_name}_pbcore.xml";
-					$dom = dom_import_simplexml($this->export_pbcore_premis->xml)->ownerDocument;
-					$dom->formatOutput = TRUE;
-					file_put_contents($path, $dom->saveXML());exit;
-					$this->export_pbcore_premis->xml->saveXML($path);
+					$this->pbcore_premis->xml->saveXML($path);
 					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
-					$this->export_pbcore_premis->is_pbcore_export = FALSE;
-					$result = $this->export_pbcore_premis->make_xml();
+					$this->pbcore_premis->is_pbcore_export = FALSE;
+					$result = $this->pbcore_premis->make_xml();
 					if ($result)
 					{
-						$file_name = $this->export_pbcore_premis->make_file_name();
+						$file_name = $this->pbcore_premis->make_file_name();
 						$path = "{$this->temp_path}{$file_name}_premis.xml";
-						$this->export_pbcore_premis->xml->saveXML($path);
+						$this->pbcore_premis->xml->saveXML($path);
 						$bagit_lib->addFile($path, "{$file_name}/{$file_name}_premis.xml");
 					}
 
-					unset($this->export_pbcore_premis->xml);
+					unset($this->pbcore_premis->xml);
 				}
 			}
 			$bagit_lib->update();
@@ -72,9 +74,18 @@ class Xml extends CI_Controller
 			send_email($user->email, $this->config->item('from_email'), 'AMS XML Export', $this->load->view('email/export_pbcore', $data, TRUE));
 			myLog('email sent successfully ' . $user->email);
 		}
+		else
+		{
+			myLog('No record availabe for export');
+		}
 		exit_function();
 	}
 
+	/**
+	 * Download the zip file of exported record.
+	 * 
+	 * @return void
+	 */
 	function download()
 	{
 		$job_id = $this->uri->segment(3, 0);

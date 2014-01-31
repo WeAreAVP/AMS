@@ -115,7 +115,7 @@ class Users extends CI_Model
 		$this->db->where('id', $user_id);
 		return $this->db->get($this->_table);
 	}
-
+	
 	function get_user_by_username($username)
 	{
 		$this->db->where('username', $username);

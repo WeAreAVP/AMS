@@ -17,6 +17,7 @@ class Xml extends CI_Controller
 		$this->load->model('pbcore_model');
 		$this->load->model('export_csv_job_model', 'csv_job');
 		$this->load->model('dx_auth/users', 'users');
+		$this->load->model('dx_auth/user_profile', 'user_profile');
 	}
 
 	function export_pbcore()
@@ -58,13 +59,21 @@ class Xml extends CI_Controller
 			}
 			$bagit_lib->update();
 			$bagit_lib->package("{$this->bagit_path}{$bag_name}", 'zip');
-			rmdir($this->temp_path);
-			rmdir("{$this->bagit_path}{$bag_name}");
+			exec("rm -rf $this->temp_path");
+			exec("rm -rf {$this->bagit_path}{$bag_name}");
 			$this->csv_job->update_job($export_job->id, array('status' => '1', 'file_path' => "{$this->bagit_path}{$bag_name}.zip"));
 			$user = $this->users->get_user_by_id($export_job->user_id)->row();
+			$data['user_profile'] = $this->user_profile->get_profile($export_job->user_id)->row();
+			$data['user'] = $user;
+			$data['export_id'] = $export_job->id;
 			myLog('Sending Email to ' . $user->email);
-			send_email($user->email, $this->config->item('from'), 'AMS XML Export', "{$this->bagit_path}{$bag_name}.zip");
+			send_email($user->email, $this->config->item('from_email'), 'AMS XML Export', $this->load->view('email/export_pbcore', $data, TRUE));
 		}
+	}
+
+	function download()
+	{
+		
 	}
 
 	function pbcore($guid)

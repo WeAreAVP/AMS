@@ -285,3 +285,12 @@ function get_essence_track_annotation($essence_track_id)
 	$CI->load->model('essence_track_model', 'essence_track');
 	return $CI->essence_track->get_annotation_by_essence_track_id($essence_track_id);
 }
+
+function make_dir($folder_path, $filename = '')
+{
+	$complete_path = $folder_path . $filename;
+	if ( ! is_dir($folder_path))
+		mkdir($folder_path, 0777, TRUE);
+
+	return $complete_path;
+}

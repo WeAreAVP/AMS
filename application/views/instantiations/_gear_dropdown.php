@@ -55,7 +55,7 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 			else
 			{
 				?>
-				<li><a href="#_modal" role="button"  data-toggle="modal" data-backdrop="static">Export to PBCore</a></li>
+				<li><a href="#_modal" role="button"  data-toggle="modal" data-backdrop="static">Export Results</a></li>
 			<?php }
 			?>
 			<?php

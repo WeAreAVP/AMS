@@ -5,6 +5,9 @@
 class Xml extends CI_Controller
 {
 
+	private $temp_path = './uploads/export_temp/';
+	private $bagit_path = './assets/bagit/';
+
 	function __construct()
 	{
 		parent::__construct();
@@ -13,6 +16,7 @@ class Xml extends CI_Controller
 		$this->load->library('bagit_lib');
 		$this->load->model('pbcore_model');
 		$this->load->model('export_csv_job_model', 'csv_job');
+		$this->load->model('dx_auth/users', 'users');
 	}
 
 	function export_pbcore()
@@ -22,38 +26,38 @@ class Xml extends CI_Controller
 		$export_job = $this->csv_job->get_export_jobs('pbcore');
 		if (count($export_job) > 0)
 		{
-//			myLog('Pbcore Export Job Started.');
-			$bagit_lib = new BagIt('./assets/bagit/ams_export_' . date('Ymd'));
+			$bagit_lib = new BagIt("{$this->bagit_path}ams_export_" . time());
 			for ($i = 0; $i < $export_job->query_loop; $i ++ )
 			{
-//				myLog('Query Loop ' . $i);
 				$query = $export_job->export_query;
 				$query.=' LIMIT ' . ($i * 100000) . ', 100000';
 				$records = $this->csv_job->get_csv_records($query);
 				$count = 0;
-				$mem = memory_get_usage() / 1024;
-				$mem = $mem / 1024;
-
-				myLog($mem . ' MB');
 				foreach ($records as $value)
 				{
+					make_dir($this->temp_path);
 					$this->export_pbcore_premis->asset_id = $value->id;
 					$this->export_pbcore_premis->make_xml();
-					$guid = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('assets_id' => $value->id, 'identifier_source' => 'http://americanarchiveinventory.org'));
-					$file_name = str_replace('/', '-', $guid->identifier);
-					$path = "./uploads/{$file_name}.xml";
-//					header("Content-Type: application/xml; charset=utf-8");
-					file_put_contents($path, $this->export_pbcore_premis->xml->asXML());
-					unset($this->export_pbcore_premis->xml);
+					$file_name = $this->export_pbcore_premis->make_file_name();
+					$path = "{$this->temp_path}{$file_name}_pbcore.xml";
+					$this->export_pbcore_premis->xml->saveXML($path);
 					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
+					$this->export_pbcore_premis->is_pbcore_export = FALSE;
+					$this->export_pbcore_premis->make_xml();
+					$file_name = $this->export_pbcore_premis->make_file_name();
+					$path = "{$this->temp_path}{$file_name}_premis.xml";
+					$this->export_pbcore_premis->xml->saveXML($path);
+					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_premis.xml");
+					unset($this->export_pbcore_premis->xml);
 				}
 			}
-			$mem = memory_get_usage() / 1024;
-			$mem = $mem / 1024;
-
-			myLog($mem . ' MB');
 			$bagit_lib->update();
-			$bagit_lib->package('./assets/bagit/ams_export_' . date('Ymd'), 'zip');
+			$bagit_lib->package("{$this->bagit_path}ams_export_" . time(), 'zip');
+			rmdir($this->temp_path);
+			$this->csv_job->update_job($export_job->id, array('status' => '1'));
+			$user = $this->users->get_user_by_id($export_job->user_id)->row();
+			myLog('Sending Email to ' . $user->email);
+			send_email($user->email, $this->config->item('from'), 'AMS XML Export', $url);
 		}
 	}
 

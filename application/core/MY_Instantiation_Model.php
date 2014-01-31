@@ -56,6 +56,7 @@ class MY_Instantiation_Model extends MY_Essencetrack_Model
 		->where("{$this->table_instantiation_relations}.instantiations_id", $instantiation_id)
 		->get($this->table_instantiation_relations)->result();
 	}
+
 	/**
 	 * Get Instantiation nomination by instantiation ID.
 	 * 
@@ -68,7 +69,22 @@ class MY_Instantiation_Model extends MY_Essencetrack_Model
 		->join($this->table_nomination_status, "{$this->table_nomination_status}.id = {$this->table_nominations}.nomination_status_id", 'LEFT')
 		->where("{$this->table_nominations}.instantiations_id", $instantiation_id)
 		->get($this->table_nominations)->result();
-		
+	}
+
+	/**
+	 * Get Instantiation events info by asset ID.
+	 * 
+	 * @param integer $asset_id
+	 * @return stdObject
+	 */
+	function get_instantiation_events($asset_id)
+	{
+		return $this->db->select("{$this->table_events}.*,{$this->table_event_types}.event_type")
+		->join($this->table_event_types, "{$this->table_event_types}.id = {$this->table_events}.event_types_id", 'LEFT')
+		->join($this->table_instantiations, "{$this->table_instantiations}.id = {$this->table_events}.instantiations_id", 'LEFT')
+		->join($this->_assets_table, "{$this->_assets_table}.id = {$this->table_instantiations}.assets_id", 'LEFT')
+		->where("{$this->_assets_table}.id", $asset_id)
+		->get($this->table_events)->result();
 	}
 
 }

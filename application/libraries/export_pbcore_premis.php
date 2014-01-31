@@ -32,24 +32,44 @@ class Export_pbcore_premis
 				$this->_fetch_asset();
 				$this->_fetch_instantiations();
 			}
-//			else
-//			{
-//				$this->xml = new SimpleXMLElement('<premis/>');
-////				$this->xml->registerXPathNamespace('premis','info:lc/xmlns/premis-v2');
-//				$attributes = array(
-//					'xmlns:premis' => "info:lc/xmlns/premis-v2",
-//					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-//					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
-//					'version' => "2.2");
-//				$this->_add_attribute($this->xml, $attributes);
-//			}
+			else
+			{
+				$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><premis></premis>');
+//				$this->xml->registerXPathNamespace('premis','info:lc/xmlns/premis-v2');
+				$attributes = array(
+					'xmlns:premis' => "info:lc/xmlns/premis-v2",
+					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
+					'version' => "2.2");
+				$this->_add_attribute($this->xml, $attributes);
+				$this->_fetch_events($this->xml);
+				Header('Content-type: text/xml');
+				echo $this->xml->asXML();exit;
+			}
+		}
+	}
+
+	private function _fetch_events($xml_object)
+	{
+		$pbcore_model = $this->CI->pbcore_model;
+		$events = $pbcore_model->get_instantiation_events(11153);
+		foreach ($events as $event)
+		{
+			$event_object = $this->_add_child($xml_object, 'event');
+			$event_identifier_object = $this->_add_child($event_object, 'eventIdentifier');
+			$this->_add_child($event_identifier_object, 'eventIdentifierType', 'AMS event ID');
+			$this->_add_child($event_identifier_object, 'eventIdentifierValue', $event->id);
+			if ( ! empty($event->event_type))
+				$this->_add_child($event_object, 'eventType', $event->event_type);
+			if ( ! empty($event->event_date))
+				$this->_add_child($event_object, 'eventDateTime', $event->event_date);
+			if ( ! empty($event->event_note))
+				$this->_add_child($event_object, 'eventDetail', $event->event_note);
 		}
 	}
 
 	private function _fetch_asset()
 	{
-
-
 		$pbcore_model = $this->CI->pbcore_model;
 
 		// Identifier Start
@@ -654,6 +674,13 @@ class Export_pbcore_premis
 			$object->addAttribute($attribute, htmlentities($value));
 		}
 		return $object;
+	}
+
+	public function make_file_name()
+	{
+		$guid = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('assets_id' => $this->asset_id, 'identifier_source' => 'http://americanarchiveinventory.org'));
+		$file_name = str_replace('/', '-', $guid->identifier);
+		return $file_name;
 	}
 
 }

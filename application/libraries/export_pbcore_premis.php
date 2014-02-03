@@ -26,8 +26,7 @@ class Export_pbcore_premis
 					'xmlns' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html",
 					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
 					'xmlns:premis' => "info:lc/xmlns/premis-v2",
-					'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd
-									info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd");
+					'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd");
 				$this->_add_attribute($this->xml, $attributes);
 				$this->_fetch_asset();
 				$this->_fetch_instantiations();

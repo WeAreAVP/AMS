@@ -127,11 +127,10 @@ class Export_pbcore_premis
 		// Asset Title End
 		// Asset Subject  Start
 		$asset_subjects = $pbcore_model->get_asset_subject($this->asset_id);
-		debug($asset_subjects);
 		foreach ($asset_subjects as $asset_subject)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreSubject', $asset_subject->title);
+			$xml_object = $this->_add_child($this->xml, 'pbcoreSubject', $asset_subject->subject);
 			if ( ! empty($asset_subject->subject_source))
 				$attributes['source'] = $asset_subject->subject_source;
 			if ( ! empty($asset_subject->subject_ref))

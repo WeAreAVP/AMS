@@ -41,7 +41,7 @@ class Xml extends CI_Controller
 				foreach ($records as $value)
 				{
 					make_dir($this->temp_path);
-					$this->export_pbcore_premis->asset_id = $value->id;
+					$this->export_pbcore_premis->asset_id = 1717470;
 					$this->export_pbcore_premis->is_pbcore_export = TRUE;
 					$this->export_pbcore_premis->make_xml();
 					$file_name = $this->export_pbcore_premis->make_file_name();

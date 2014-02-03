@@ -35,7 +35,6 @@ class Export_pbcore_premis
 			else
 			{
 				$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><premis></premis>');
-//				$this->xml->registerXPathNamespace('premis','info:lc/xmlns/premis-v2');
 				$attributes = array(
 					'xmlns:premis' => "info:lc/xmlns/premis-v2",
 					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",

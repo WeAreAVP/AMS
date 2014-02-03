@@ -103,7 +103,7 @@ class Xml extends CI_Controller
 			show_error('No Export available.');
 	}
 
-	function pbcore($guid)
+	function pbcore($guid = NULL)
 	{
 		$guid = '190-12m63zwr';
 		if (isset($guid) && $guid !== 0)

@@ -710,6 +710,17 @@ class Export_pbcore_premis
 		return $file_name;
 	}
 
+	public function format_xml($path)
+	{
+		$dom = new DOMDocument('1.0');
+		$dom->preserveWhiteSpace = false;
+		$dom->formatOutput = true;
+		$dom->loadXML($this->xml->asXML());
+		$dom->save($path);
+		unset($dom);
+		return $path;
+	}
+
 }
 
 ?>

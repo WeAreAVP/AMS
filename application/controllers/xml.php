@@ -41,19 +41,12 @@ class Xml extends CI_Controller
 				foreach ($records as $value)
 				{
 					make_dir($this->temp_path);
-					$this->export_pbcore_premis->asset_id = 1717470;
+					$this->export_pbcore_premis->asset_id = $value->id;
 					$this->export_pbcore_premis->is_pbcore_export = TRUE;
 					$this->export_pbcore_premis->make_xml();
 					$file_name = $this->export_pbcore_premis->make_file_name();
 					$path = "{$this->temp_path}{$file_name}_pbcore.xml";
-					$dom = new DOMDocument('1.0');
-					$dom->preserveWhiteSpace = false;
-					$dom->formatOutput = true;
-					$dom->loadXML($this->export_pbcore_premis->xml->asXML());
-					$dom->save($path);
-					unset($dom);
-//					$this->export_pbcore_premis->xml->saveXML($path);
-					exit;
+					$this->export_pbcore_premis->format_xml($path);
 					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
 					$this->export_pbcore_premis->is_pbcore_export = FALSE;
 					$result = $this->export_pbcore_premis->make_xml();
@@ -61,14 +54,14 @@ class Xml extends CI_Controller
 					{
 						$file_name = $this->export_pbcore_premis->make_file_name();
 						$path = "{$this->temp_path}{$file_name}_premis.xml";
-						$this->export_pbcore_premis->xml->saveXML($path);
+						$this->export_pbcore_premis->format_xml($path);
 						$bagit_lib->addFile($path, "{$file_name}/{$file_name}_premis.xml");
 					}
 
 					unset($this->export_pbcore_premis->xml);
 				}
 			}
-			exit;
+			
 			$bagit_lib->update();
 			$bagit_lib->package("{$this->bagit_path}{$bag_name}", 'zip');
 			exec("rm -rf $this->temp_path");

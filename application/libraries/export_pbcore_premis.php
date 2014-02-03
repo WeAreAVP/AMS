@@ -29,7 +29,6 @@ class Export_pbcore_premis
 					'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd");
 				$this->_add_attribute($this->xml, $attributes);
 				$this->_fetch_asset();
-				$this->_fetch_instantiations();
 			}
 			else
 			{
@@ -152,6 +151,10 @@ class Export_pbcore_premis
 			$this->_add_attribute($xml_object, $attributes);
 			unset($xml_object);
 		}
+		if (count($asset_descriptions) <= 0)
+		{
+			$xml_object = $this->_add_child($this->xml, 'pbcoreDescription', 'No description available');
+		}
 		// Asset Description End
 		// Asset Genre  Start
 		$asset_genres = $pbcore_model->get_asset_genre($this->asset_id);
@@ -207,20 +210,6 @@ class Export_pbcore_premis
 			unset($xml_object);
 		}
 		// Asset Audience Level  End
-		// Asset Annotation  Start
-		$asset_annotations = $pbcore_model->get_by($pbcore_model->table_annotations, array('assets_id' => $this->asset_id));
-		foreach ($asset_annotations as $asset_annotation)
-		{
-			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreAnnotation', $asset_annotation->annotation);
-			if ( ! empty($asset_annotation->annotation_type))
-				$attributes['annotationType'] = $asset_annotation->annotation_type;
-			if ( ! empty($asset_annotation->annotation_ref))
-				$attributes['ref'] = $asset_annotation->annotation_ref;
-			$this->_add_attribute($xml_object, $attributes);
-			unset($xml_object);
-		}
-		// Asset Annotation End
 		// Asset Relations  Start
 		$asset_relations = $pbcore_model->get_asset_relation($this->asset_id);
 		foreach ($asset_relations as $asset_relation)
@@ -355,19 +344,48 @@ class Export_pbcore_premis
 		}
 		// Asset Right Summary End
 		// Asset Extension Start
-		$asset_extensions = $pbcore_model->get_by($pbcore_model->table_extensions, array('assets_id' => $this->asset_id));
-		foreach ($asset_extensions as $asset_extension)
+//		$asset_extensions = $pbcore_model->get_by($pbcore_model->table_extensions, array('assets_id' => $this->asset_id));
+//		foreach ($asset_extensions as $asset_extension)
+//		{
+//			$attributes = array();
+//			$xml_object = $this->_add_child($this->xml, 'pbcoreExtension');
+//			$xml_object = $this->_add_child($xml_object, 'extensionWrap');
+//			if ( ! empty($asset_extension->extension_element))
+//				$this->_add_child($xml_object, 'extensionAuthorityUsed', $asset_extension->extension_element);
+//			if ( ! empty($asset_extension->extension_value))
+//				$this->_add_child($xml_object, 'extensionValue', $asset_extension->extension_value);
+//			unset($xml_object);
+//		}
+		// Asset Extension End
+		$this->_fetch_instantiations();
+		// Asset Annotation  Start
+		$asset_annotations = $pbcore_model->get_by($pbcore_model->table_annotations, array('assets_id' => $this->asset_id));
+		foreach ($asset_annotations as $asset_annotation)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreExtension');
-			$xml_object = $this->_add_child($xml_object, 'extensionWrap');
-			if ( ! empty($asset_extension->extension_element))
-				$this->_add_child($xml_object, 'extensionAuthorityUsed', $asset_extension->extension_element);
-			if ( ! empty($asset_extension->extension_value))
-				$this->_add_child($xml_object, 'extensionValue', $asset_extension->extension_value);
+			$xml_object = $this->_add_child($this->xml, 'pbcoreAnnotation', $asset_annotation->annotation);
+			if ( ! empty($asset_annotation->annotation_type))
+				$attributes['annotationType'] = $asset_annotation->annotation_type;
+			if ( ! empty($asset_annotation->annotation_ref))
+				$attributes['ref'] = $asset_annotation->annotation_ref;
+			$this->_add_attribute($xml_object, $attributes);
 			unset($xml_object);
 		}
-		// Asset Extension End
+		// Asset Annotation End
+		$asset_info = $pbcore_model->get_one_by($pbcore_model->_assets_table, array('id' => $this->asset_id));
+		$last_modified = ( ! empty($asset_info->updated) ? $asset_info->updated : $asset_info->created);
+		$xml_object = $this->_add_child($this->xml, 'pbcoreAnnotation', $last_modified);
+		$attributes = array();
+		$attributes['annotationType'] = 'last_modified';
+		$this->_add_attribute($xml_object, $attributes);
+		unset($xml_object);
+		$station_info = $pbcore_model->get_one_by($pbcore_model->stations, array('id' => $asset_info->stations_id));
+
+		$xml_object = $this->_add_child($this->xml, 'pbcoreAnnotation', $station_info->station_name);
+		$attributes = array();
+		$attributes['annotationType'] = 'organization';
+		$this->_add_attribute($xml_object, $attributes);
+		unset($xml_object);
 	}
 
 	private function _fetch_instantiations()
@@ -378,64 +396,6 @@ class Export_pbcore_premis
 		foreach ($instantiations as $instantiation)
 		{
 			$instantiations_object = $this->_add_child($this->xml, 'pbcoreInstantiation');
-			if ( ! empty($instantiation->location))
-				$this->_add_child($instantiations_object, 'instantiationLocation', $instantiation->location);
-			if ( ! empty($instantiation->standard))
-				$this->_add_child($instantiations_object, 'instantiationStandard', $instantiation->standard);
-			if ( ! empty($instantiation->time_start))
-				$this->_add_child($instantiations_object, 'instantiationTimeStart', $instantiation->time_start);
-			if ( ! empty($instantiation->projected_duration))
-				$this->_add_child($instantiations_object, 'instantiationDuration', $instantiation->projected_duration);
-			if ( ! empty($instantiation->tracks))
-				$this->_add_child($instantiations_object, 'instantiationTracks', $instantiation->tracks);
-			if ( ! empty($instantiation->channel_configuration))
-				$this->_add_child($instantiations_object, 'instantiationChannelConfiguration', $instantiation->channel_configuration);
-			if ( ! empty($instantiation->alternative_modes))
-				$this->_add_child($instantiations_object, 'instantiationAlternativeModes', $instantiation->alternative_modes);
-			if ( ! empty($instantiation->language))
-				$this->_add_child($instantiations_object, 'instantiationLanguage', $instantiation->language);
-			// Instantiations Filesize Start
-			if ( ! empty($instantiation->file_size))
-			{
-				$xml_filesize = $this->_add_child($instantiations_object, 'instantiationFileSize', $instantiation->file_size);
-
-				if ( ! empty($instantiation->file_size_unit_of_measure))
-				{
-					$attributes = array();
-					$attributes['unitsOfMeasure'] = $instantiation->file_size_unit_of_measure;
-					$this->_add_attribute($xml_filesize, $attributes);
-					unset($attributes);
-				}
-			}
-			// Instantiations Filesize End
-			// Instantiations Media Type Start
-			if ((int) $instantiation->instantiation_media_type_id !== 0)
-			{
-				$media_type = $pbcore_model->get_one_by($pbcore_model->table_instantiation_media_types, array('id' => $instantiation->instantiation_media_type_id));
-				$this->_add_child($instantiations_object, 'instantiationMediaType', $media_type->media_type);
-			}
-			// Instantiations Media Type End
-			// Instantiations Color Start
-			if ( ! empty($instantiation->instantiation_colors_id))
-			{
-				$color = $pbcore_model->get_one_by($pbcore_model->table_instantiation_colors, array('id' => $instantiation->instantiation_colors_id));
-				$this->_add_child($instantiations_object, 'instantiationColors', $color->color);
-			}
-			// Instantiations Color End
-			// Instantiations Date Rate Start
-			if ( ! empty($instantiation->data_rate))
-			{
-				$xml_daterate = $this->_add_child($instantiations_object, 'instantiationDataRate', $instantiation->data_rate);
-				if ( ! empty($instantiation->data_rate_units_id))
-				{
-					$data_rate_unit = $pbcore_model->get_one_by($pbcore_model->table_data_rate_units, array('id' => $instantiation->data_rate_units_id));
-					$attributes = array();
-					$attributes['unitsOfMeasure'] = $data_rate_unit->unit_of_measure;
-					$this->_add_attribute($xml_daterate, $attributes);
-					unset($attributes);
-				}
-			}
-			// Instantiations Date Rate End
 			// Instantiations Identifier Start
 			$identifiers = $pbcore_model->get_by($pbcore_model->table_instantiation_identifier, array('instantiations_id' => $instantiation->id));
 			foreach ($identifiers as $identifier)
@@ -462,20 +422,6 @@ class Export_pbcore_premis
 				unset($xml_object);
 			}
 			// Instantiations Date End
-			// Instantiations Dimensions Start
-			$dimensions = $pbcore_model->get_by($pbcore_model->table_instantiation_dimensions, array('instantiations_id' => $instantiation->id));
-			foreach ($dimensions as $dimension)
-			{
-				$xml_dimension = $this->_add_child($instantiations_object, 'instantiationDimensions', $dimension->instantiation_dimension);
-				if ( ! empty($dimension->unit_of_measure))
-				{
-					$attributes = array();
-					$attributes['unitOfMeasure'] = $dimension->unit_of_measure;
-					$this->_add_attribute($xml_dimension, $attributes);
-					unset($attributes);
-				}
-			}
-			// Instantiations Dimensions End
 			// Instantiations Physical Format Start
 			$physical_formats = $pbcore_model->get_by($pbcore_model->table_instantiation_formats, array('instantiations_id' => $instantiation->id, 'format_type' => 'physical'));
 			foreach ($physical_formats as $physical_format)
@@ -490,6 +436,17 @@ class Export_pbcore_premis
 				$xml_dimension = $this->_add_child($instantiations_object, 'instantiationDigital', $digital_format->format_name);
 			}
 			// Instantiations Digital Format End
+			if ( ! empty($instantiation->standard))
+				$this->_add_child($instantiations_object, 'instantiationStandard', $instantiation->standard);
+			if ( ! empty($instantiation->location))
+				$this->_add_child($instantiations_object, 'instantiationLocation', $instantiation->location);
+			// Instantiations Media Type Start
+			if ((int) $instantiation->instantiation_media_type_id !== 0)
+			{
+				$media_type = $pbcore_model->get_one_by($pbcore_model->table_instantiation_media_types, array('id' => $instantiation->instantiation_media_type_id));
+				$this->_add_child($instantiations_object, 'instantiationMediaType', $media_type->media_type);
+			}
+			// Instantiations Media Type End
 			// Instantiations Generation Start
 			$generations = $pbcore_model->get_instantiation_generations($instantiation->id);
 			foreach ($generations as $generation)
@@ -497,20 +454,70 @@ class Export_pbcore_premis
 				$this->_add_child($instantiations_object, 'instantiationGenerations', $generation->generation);
 			}
 			// Instantiations Generation End
-			// Instantiations Annotation Start
-			$annotations = $pbcore_model->get_by($pbcore_model->table_instantiation_annotations, array('instantiations_id' => $instantiation->id));
-			foreach ($annotations as $annotation)
+			// Instantiations Filesize Start
+			if ( ! empty($instantiation->file_size))
 			{
-				$xml_annotation = $this->_add_child($instantiations_object, 'instantiationAnnotation', $annotation->annotation);
-				if ( ! empty($annotation->annotation_type))
+				$xml_filesize = $this->_add_child($instantiations_object, 'instantiationFileSize', $instantiation->file_size);
+
+				if ( ! empty($instantiation->file_size_unit_of_measure))
 				{
 					$attributes = array();
-					$attributes['annotationType'] = $annotation->annotation_type;
-					$this->_add_attribute($xml_annotation, $attributes);
+					$attributes['unitsOfMeasure'] = $instantiation->file_size_unit_of_measure;
+					$this->_add_attribute($xml_filesize, $attributes);
 					unset($attributes);
 				}
 			}
-			// Instantiation Annotation End
+			// Instantiations Filesize End
+			// Instantiations Date Rate Start
+			if ( ! empty($instantiation->data_rate))
+			{
+				$xml_daterate = $this->_add_child($instantiations_object, 'instantiationDataRate', $instantiation->data_rate);
+				if ( ! empty($instantiation->data_rate_units_id))
+				{
+					$data_rate_unit = $pbcore_model->get_one_by($pbcore_model->table_data_rate_units, array('id' => $instantiation->data_rate_units_id));
+					$attributes = array();
+					$attributes['unitsOfMeasure'] = $data_rate_unit->unit_of_measure;
+					$this->_add_attribute($xml_daterate, $attributes);
+					unset($attributes);
+				}
+			}
+			// Instantiations Date Rate End
+			if ( ! empty($instantiation->tracks))
+				$this->_add_child($instantiations_object, 'instantiationTracks', $instantiation->tracks);
+			if ( ! empty($instantiation->channel_configuration))
+				$this->_add_child($instantiations_object, 'instantiationChannelConfiguration', $instantiation->channel_configuration);
+			if ( ! empty($instantiation->time_start))
+				$this->_add_child($instantiations_object, 'instantiationTimeStart', $instantiation->time_start);
+			if ( ! empty($instantiation->projected_duration))
+				$this->_add_child($instantiations_object, 'instantiationDuration', $instantiation->projected_duration);
+
+			if ( ! empty($instantiation->alternative_modes))
+				$this->_add_child($instantiations_object, 'instantiationAlternativeModes', $instantiation->alternative_modes);
+			if ( ! empty($instantiation->language))
+				$this->_add_child($instantiations_object, 'instantiationLanguage', $instantiation->language);
+
+
+			// Instantiations Color Start
+			if ( ! empty($instantiation->instantiation_colors_id))
+			{
+				$color = $pbcore_model->get_one_by($pbcore_model->table_instantiation_colors, array('id' => $instantiation->instantiation_colors_id));
+				$this->_add_child($instantiations_object, 'instantiationColors', $color->color);
+			}
+			// Instantiations Color End
+			// Instantiations Dimensions Start
+			$dimensions = $pbcore_model->get_by($pbcore_model->table_instantiation_dimensions, array('instantiations_id' => $instantiation->id));
+			foreach ($dimensions as $dimension)
+			{
+				$xml_dimension = $this->_add_child($instantiations_object, 'instantiationDimensions', $dimension->instantiation_dimension);
+				if ( ! empty($dimension->unit_of_measure))
+				{
+					$attributes = array();
+					$attributes['unitOfMeasure'] = $dimension->unit_of_measure;
+					$this->_add_attribute($xml_dimension, $attributes);
+					unset($attributes);
+				}
+			}
+			// Instantiations Dimensions End
 			// Instantiation Relations  Start
 			$relations = $pbcore_model->get_instantiation_relations($instantiation->id);
 			foreach ($relations as $relation)
@@ -536,22 +543,38 @@ class Export_pbcore_premis
 			foreach ($extensions as $extension)
 			{
 				$attributes = array();
-				$xml_object = $this->_add_child($this->xml, 'pbcoreExtension');
+				$xml_object = $this->_add_child($instantiations_object, 'instantiationExtension');
 				$xml_object = $this->_add_child($xml_object, 'extensionWrap');
-				$this->_add_child($xml_object, 'extensionAuthorityUsed', 'AACIP Record Nomination Status');
+				$this->_add_child($xml_object, 'extensionElement', 'AACIP');
 				if ( ! empty($extension->status))
 					$this->_add_child($xml_object, 'extensionValue', $extension->status);
+				$this->_add_child($xml_object, 'extensionAuthorityUsed', 'AACIP Record Nomination Status');
 				if ( ! empty($extension->nomination_reason))
 				{
-					$xml_object = $this->_add_child($this->xml, 'pbcoreExtension');
+					$xml_object = $this->_add_child($instantiations_object, 'instantiationExtension');
 					$xml_object = $this->_add_child($xml_object, 'extensionWrap');
-					$this->_add_child($xml_object, 'extensionAuthorityUsed', 'AACIP Record Tags');
+					$this->_add_child($xml_object, 'extensionElement', 'AACIP');
 					$this->_add_child($xml_object, 'extensionValue', $extension->nomination_reason);
+					$this->_add_child($xml_object, 'extensionAuthorityUsed', 'AACIP Record Tags');
 				}
 				unset($xml_object);
 			}
 			// Instantiation Nominations End
 			$this->_fetch_essence_tracks($instantiation->id, $instantiations_object);
+			// Instantiations Annotation Start
+			$annotations = $pbcore_model->get_by($pbcore_model->table_instantiation_annotations, array('instantiations_id' => $instantiation->id));
+			foreach ($annotations as $annotation)
+			{
+				$xml_annotation = $this->_add_child($instantiations_object, 'instantiationAnnotation', $annotation->annotation);
+				if ( ! empty($annotation->annotation_type))
+				{
+					$attributes = array();
+					$attributes['annotationType'] = $annotation->annotation_type;
+					$this->_add_attribute($xml_annotation, $attributes);
+					unset($attributes);
+				}
+			}
+			// Instantiation Annotation End
 		}
 	}
 
@@ -563,24 +586,6 @@ class Export_pbcore_premis
 		foreach ($essence_tracks as $essence_track)
 		{
 			$xml_essencetrack = $this->_add_child($instantiations_object, 'instantiationEssenceTrack');
-			if ( ! empty($essence_track->standard))
-				$this->_add_child($xml_essencetrack, 'essenceTrackStandard', $essence_track->standard);
-			if ( ! empty($essence_track->frame_rate))
-				$this->_add_child($xml_essencetrack, 'essenceTrackFrameRate', $essence_track->frame_rate);
-			if ( ! empty($essence_track->playback_speed))
-				$this->_add_child($xml_essencetrack, 'essenceTrackPlaybackSpeed', $essence_track->playback_speed);
-			if ( ! empty($essence_track->sampling_rate))
-				$this->_add_child($xml_essencetrack, 'essenceTrackSamplingRate', $essence_track->sampling_rate);
-			if ( ! empty($essence_track->bit_depth))
-				$this->_add_child($xml_essencetrack, 'essenceTrackBitDepth', $essence_track->bit_depth);
-			if ( ! empty($essence_track->aspect_ratio))
-				$this->_add_child($xml_essencetrack, 'essenceTrackAspectRatio', $essence_track->aspect_ratio);
-			if ( ! empty($essence_track->time_start))
-				$this->_add_child($xml_essencetrack, 'essenceTrackTimeStart', $essence_track->time_start);
-			if ( ! empty($essence_track->duration))
-				$this->_add_child($xml_essencetrack, 'essenceTrackDuration', $essence_track->duration);
-			if ( ! empty($essence_track->language))
-				$this->_add_child($xml_essencetrack, 'essenceTrackLanguage', $essence_track->language);
 			// Essence Track Track Type Start
 			if ( ! empty($essence_track->essence_track_types_id))
 			{
@@ -588,27 +593,6 @@ class Export_pbcore_premis
 				$this->_add_child($xml_essencetrack, 'essenceTrackType', $essence_track_type->essence_track_type);
 			}
 			// Essence Track Track Type End
-			// Essence Track Frame Size Start
-			if ((int) $essence_track->essence_track_frame_sizes_id !== 0)
-			{
-				$essence_track_frame = $pbcore_model->get_one_by($pbcore_model->table_essence_track_frame_sizes, array('id' => $essence_track->essence_track_frame_sizes_id));
-				$this->_add_child($xml_essencetrack, 'essenceTrackFrameSize', $essence_track_frame->width . ' x ' . $essence_track_frame->height);
-			}
-			// Essence Track Frame Size End
-			// Essence Track Date Rate Start
-			if ( ! empty($essence_track->data_rate))
-			{
-				$xml_daterate = $this->_add_child($xml_essencetrack, 'essenceTrackDataRate', $essence_track->data_rate);
-				if ( ! empty($essence_track->data_rate_units_id))
-				{
-					$data_rate_unit = $pbcore_model->get_one_by($pbcore_model->table_data_rate_units, array('id' => $essence_track->data_rate_units_id));
-					$attributes = array();
-					$attributes['unitsOfMeasure'] = $data_rate_unit->unit_of_measure;
-					$this->_add_attribute($xml_daterate, $attributes);
-					unset($attributes);
-				}
-			}
-			// Essence Track Date Rate End
 			// Essence Track Identifiers Start
 			$essence_track_identifiers = $pbcore_model->get_by($pbcore_model->table_essence_track_identifiers, array('essence_tracks_id' => $essence_track->id));
 			foreach ($essence_track_identifiers as $identifier)
@@ -624,6 +608,7 @@ class Export_pbcore_premis
 			}
 			// Essence Track Identifiers End
 			// Essence Track Encoding Start
+
 			$essence_track_encodings = $pbcore_model->get_by($pbcore_model->table_essence_track_encodings, array('essence_tracks_id' => $essence_track->id));
 			foreach ($essence_track_encodings as $encoding)
 			{
@@ -637,6 +622,48 @@ class Export_pbcore_premis
 				unset($attributes);
 			}
 			// Essence Track Encoding End
+			// Essence Track Date Rate Start
+			if ( ! empty($essence_track->data_rate))
+			{
+				$xml_daterate = $this->_add_child($xml_essencetrack, 'essenceTrackDataRate', $essence_track->data_rate);
+				if ( ! empty($essence_track->data_rate_units_id))
+				{
+					$data_rate_unit = $pbcore_model->get_one_by($pbcore_model->table_data_rate_units, array('id' => $essence_track->data_rate_units_id));
+					$attributes = array();
+					$attributes['unitsOfMeasure'] = $data_rate_unit->unit_of_measure;
+					$this->_add_attribute($xml_daterate, $attributes);
+					unset($attributes);
+				}
+			}
+			// Essence Track Date Rate End
+			if ( ! empty($essence_track->sampling_rate))
+				$this->_add_child($xml_essencetrack, 'essenceTrackSamplingRate', $essence_track->sampling_rate);
+			if ( ! empty($essence_track->duration))
+				$this->_add_child($xml_essencetrack, 'essenceTrackDuration', $essence_track->duration);
+			if ( ! empty($essence_track->standard))
+				$this->_add_child($xml_essencetrack, 'essenceTrackStandard', $essence_track->standard);
+			if ( ! empty($essence_track->frame_rate))
+				$this->_add_child($xml_essencetrack, 'essenceTrackFrameRate', $essence_track->frame_rate);
+			if ( ! empty($essence_track->playback_speed))
+				$this->_add_child($xml_essencetrack, 'essenceTrackPlaybackSpeed', $essence_track->playback_speed);
+
+			if ( ! empty($essence_track->bit_depth))
+				$this->_add_child($xml_essencetrack, 'essenceTrackBitDepth', $essence_track->bit_depth);
+			if ( ! empty($essence_track->aspect_ratio))
+				$this->_add_child($xml_essencetrack, 'essenceTrackAspectRatio', $essence_track->aspect_ratio);
+			if ( ! empty($essence_track->time_start))
+				$this->_add_child($xml_essencetrack, 'essenceTrackTimeStart', $essence_track->time_start);
+
+			if ( ! empty($essence_track->language))
+				$this->_add_child($xml_essencetrack, 'essenceTrackLanguage', $essence_track->language);
+
+			// Essence Track Frame Size Start
+			if ((int) $essence_track->essence_track_frame_sizes_id !== 0)
+			{
+				$essence_track_frame = $pbcore_model->get_one_by($pbcore_model->table_essence_track_frame_sizes, array('id' => $essence_track->essence_track_frame_sizes_id));
+				$this->_add_child($xml_essencetrack, 'essenceTrackFrameSize', $essence_track_frame->width . ' x ' . $essence_track_frame->height);
+			}
+			// Essence Track Frame Size End
 			// Essence Track Annotation Start
 			$essence_track_annotations = $pbcore_model->get_by($pbcore_model->table_essence_track_annotations, array('essence_tracks_id' => $essence_track->id));
 			foreach ($essence_track_annotations as $annotation)

@@ -61,7 +61,7 @@ class Xml extends CI_Controller
 					unset($this->export_pbcore_premis->xml);
 				}
 			}
-			
+
 			$bagit_lib->update();
 			$bagit_lib->package("{$this->bagit_path}{$bag_name}", 'zip');
 			exec("rm -rf $this->temp_path");
@@ -105,24 +105,23 @@ class Xml extends CI_Controller
 
 	function pbcore($guid)
 	{
-
+		$guid = '190-12m63zwr';
 		if (isset($guid) && $guid !== 0)
 		{
-
-			$result = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('identifier' => "cpb-aacip/{$guid}"));
+			//190-12m63zwr => cpb-aacip/cpb-aacip
+			//cpb-aacip-190-12m63zwr cpb-aacip/cpb-aacip
+//			if ( ! preg_match('/^cpb-aacip-/', $guid))
+//			{
+//				$guid = "cpb-aacip/{$guid}";
+//			}
+			$result = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('identifier' => "cpb-aacip-{$guid}"));
 			if ($result)
 			{
-				debug($result);
-				for ($i = 1; $i <= 8; ++ $i)
-				{
-					$track = $xml->addChild('track');
-					$track->addAttribute('source', 'Test');
-					$track->addChild('path', "song$i.mp3");
-					$track->addChild('title', "Track $i - Track Title");
-				}
-
+				$this->export_pbcore_premis->asset_id = $result->assets_id;
+				$this->export_pbcore_premis->is_pbcore_export = TRUE;
+				$this->export_pbcore_premis->make_xml();
 				Header('Content-type: text/xml');
-				echo $xml->asXML();
+				echo $this->export_pbcore_premis->xml->asXML();
 				exit;
 			}
 			else

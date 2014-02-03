@@ -120,7 +120,7 @@ class Xml extends CI_Controller
 				$this->export_pbcore_premis->asset_id = $result->assets_id;
 				$this->export_pbcore_premis->is_pbcore_export = TRUE;
 				$this->export_pbcore_premis->make_xml();
-//				Header('Content-type: text/xml');
+				Header('Content-type: text/xml');
 				echo $this->export_pbcore_premis->xml->asXML();
 				exit;
 			}

@@ -68,6 +68,7 @@ class Xml extends CI_Controller
 					unset($this->export_pbcore_premis->xml);
 				}
 			}
+			exit;
 			$bagit_lib->update();
 			$bagit_lib->package("{$this->bagit_path}{$bag_name}", 'zip');
 			exec("rm -rf $this->temp_path");

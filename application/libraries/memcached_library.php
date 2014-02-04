@@ -30,7 +30,6 @@ class Memcached_library
 			{
 				case 'Memcached':
 					$this->m = new Memcached();
-					debug($this->m);
 					break;
 				case 'Memcache':
 					$this->m = new Memcache();

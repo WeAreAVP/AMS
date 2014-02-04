@@ -102,20 +102,40 @@ class Xml extends CI_Controller
 		else
 			show_error('No Export available.');
 	}
-	function premis(){
-		
-	}
-	function pbcore($guid = NULL)
+
+	function premis()
 	{
-		$guid = '190-12m63zwr';
+		$guid = $this->uri->segment(3, 0);
 		if (isset($guid) && $guid !== 0)
 		{
-			//190-12m63zwr => cpb-aacip/cpb-aacip
-			//cpb-aacip-190-12m63zwr cpb-aacip/cpb-aacip
-//			if ( ! preg_match('/^cpb-aacip-/', $guid))
-//			{
-//				$guid = "cpb-aacip/{$guid}";
-//			}
+
+			$result = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('identifier' => "cpb-aacip/{$guid}"));
+			if ($result)
+			{
+				$this->export_pbcore_premis->asset_id = $result->assets_id;
+				$this->export_pbcore_premis->is_pbcore_export = FALSE;
+				$this->export_pbcore_premis->make_xml();
+				Header('Content-type: text/xml');
+				echo $this->export_pbcore_premis->xml->asXML();
+				exit;
+			}
+			else
+			{
+				show_error('Invalid GUID. No record found.');
+			}
+		}
+		else
+		{
+			show_error('GUID is required.');
+		}
+	}
+
+	function pbcore()
+	{
+		$guid = $this->uri->segment(3, 0);
+		if (isset($guid) && $guid !== 0)
+		{
+
 			$result = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('identifier' => "cpb-aacip/{$guid}"));
 			if ($result)
 			{

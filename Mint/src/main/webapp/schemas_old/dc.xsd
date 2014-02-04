@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp2 (http://www.altova.com) by www.serials.ws (www.serials.ws) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://purl.org/dc/elements/1.1/" targetNamespace="http://purl.org/dc/elements/1.1/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">
+      DCMES 1.1 XML Schema
+      XML Schema for http://purl.org/dc/elements/1.1/ namespace
+
+      Created 2008-02-11
+
+      Created by 
+
+      Tim Cole (t-cole3@uiuc.edu)
+      Tom Habing (thabing@uiuc.edu)
+      Jane Hunter (jane@dstc.edu.au)
+      Pete Johnston (p.johnston@ukoln.ac.uk),
+      Carl Lagoze (lagoze@cs.cornell.edu)
+
+      This schema declares XML elements for the 15 DC elements from the
+      http://purl.org/dc/elements/1.1/ namespace.
+
+      It defines a complexType SimpleLiteral which permits mixed content 
+      and makes the xml:lang attribute available. It disallows child elements by
+      use of minOcccurs/maxOccurs.
+
+      However, this complexType does permit the derivation of other complexTypes
+      which would permit child elements.
+
+      All elements are declared as substitutable for the abstract element any, 
+      which means that the default type for all elements is dc:SimpleLiteral.
+
+    </xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+	<xs:complexType name="SimpleLiteral" mixed="true">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+            This is the default type for all of the DC elements.
+            It permits text content only with optional
+            xml:lang attribute.
+            Text is allowed because mixed="true", but sub-elements
+            are disallowed because minOccurs="0" and maxOccurs="0" 
+            are on the xs:any tag.
+
+    	    This complexType allows for restriction or extension permitting
+            child elements.
+    	</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent mixed="true">
+			<xs:restriction base="xs:anyType">
+				<xs:sequence>
+					<xs:any processContents="lax" minOccurs="0" maxOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute ref="xml:lang" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SimpleLiteralWithLang" mixed="true">
+		<xs:complexContent mixed="true">
+			<xs:restriction base="xs:anyType">
+				<xs:sequence>
+					<xs:any processContents="lax" minOccurs="0" maxOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute ref="xml:lang" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SimpleLiteralNoLang" mixed="true">
+		<xs:complexContent mixed="true">
+			<xs:restriction base="xs:anyType">
+				<xs:sequence>
+					<xs:any processContents="lax" minOccurs="0" maxOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="any" type="SimpleLiteral" abstract="true"/>
+	<xs:element name="anyWithLang" type="SimpleLiteralWithLang" abstract="true"/>
+	<xs:element name="anyNoLang" type="SimpleLiteralNoLang" abstract="true"/>
+	<xs:element name="title" substitutionGroup="anyWithLang">
+		<xs:annotation>
+			<xs:documentation>The name given to the resource. Typically, a Title will be a name by which the resource is formally known. The title of the original analog or born digital object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="creator" substitutionGroup="any">
+		<xs:annotation>
+			<xs:documentation>An entity primarily responsible for making the content of the resource. Examples of a Creator include a person, an organization, or a service. Typically the name of the Creator should be used to indicate the entity. In ECLAP, the name of Partner uploading is kept automatically in a separate field. This is the name of the creator of the original analog or born digital object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subject" substitutionGroup="anyWithLang">
+		<xs:annotation>
+			<xs:documentation>The topic of the content of the resource. Typically, a Subject will be expressed as keywords or key phrases or classification codes that describe the topic of the resource. Recommended best practice is to select a value from your own classification scheme. This is the subject of the original analog or born digital object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="description" substitutionGroup="anyWithLang">
+		<xs:annotation>
+			<xs:documentation>An account of the content of the resource. Description may include but is not limited to: an abstract, table of contents, reference to a graphical representation of content or a free-text account of the content. A description of the original analog or born digital object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="publisher" substitutionGroup="any">
+		<xs:annotation>
+			<xs:documentation>The entity responsible for making the resource available. Examples of a Publisher include a person, an organization, or a service. Typically, the name of a Publisher should be used to indicate the entity. In ECLAP, the name of Partner that has provided the content is automatically tracked and stored in a different field. The name of the publisher of the original analog or born digital object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="contributor" substitutionGroup="any">
+		<xs:annotation>
+			<xs:documentation>An entity responsible for making contributions to the content of the resource. Examples of a Contributor include a person, an organization or a service. Typically, the name of a Contributor should be used to indicate the entity. In most cases, the authors of a document are listed here. The name of contributors to the original analog or born digital object. This could be a person, an organisation or a service.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="date" substitutionGroup="anyNoLang">
+		<xs:annotation>
+			<xs:documentation>A date associated with an event in the life cycle of the resource. Typically, Date will be associated with the creation or availability of the resource. Recommended best practice for encoding the date value is defined in a profile of ISO 8601 [Date and Time Formats, W3C Note, http://www.w3.org/TR/NOTE-datetime] and follows the YYYY-MM-DD format. If the full date is unknown, month and year (YYYY-MM) or just year (YYYY) may be used. Many other schemes are possible, but if used, they may not be easily interpreted by users or software. Use for a significant date in the life of the original analog or born digital object. Use dcterms:temporal (or dc:coverage) if the date is associated with the topic of the resource.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="type" substitutionGroup="anyWithLang">
+		<xs:annotation>
+			<xs:documentation>The nature or genre of the content of the resource. Type includes terms describing general categories, functions, genres, or aggregation levels for content. Recommended best practice is to select a value from a controlled vocabulary (for example, the DCMIType vocabulary http://dublincore.org/documents/dcmi-type-vocabulary/ ). To describe the physical or digital manifestation of the resource, use the FORMAT element. The type of the original analog or born digital object as recorded by the content holder, this element typically includes values such as photograph, painting, sculpture etc.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="format" substitutionGroup="any">
+		<xs:annotation>
+			<xs:documentation>The physical or digital manifestation of the resource. Typically, Format may include the media-type or dimensions of the resource. Examples of dimensions include size and duration. Format may be used to determine the software, hardware or other equipment needed to display or operate the resource. Recommended best practice is to select a value from a controlled vocabulary (for example, the list of Internet Media Types [http://www.iana.org/ assignments/media-types/] defining computer media formats). The unqualified element includes file format, physical medium or dimensions of the original and/or digital object. Use this element for the file format of the digital object or born digital originals. Internet Media Types [MIME] are highly recommended (http://www.iana.org/assignments/media-types/). Use of the more specific elements dcterms:extent (dimensions) and dcterms:medium (physical medium) is preferred where appropriate.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="identifier" substitutionGroup="anyNoLang">
+		<xs:annotation>
+			<xs:documentation>An unambiguous reference to the resource within a given context. Recommended best practice is to identify the resource by means of a string or number conforming to a formal identification system. Examples of formal identification systems include the Uniform Resource Identifier (URI) (including the Uniform Resource Locator (URL), the Digital Object Identifier (DOI) and the International Standard Book Number (ISBN). This is the identifier for the original analog or born digital object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="source" substitutionGroup="any">
+		<xs:annotation>
+			<xs:documentation>A Reference to a resource from which the present resource is derived. The present resource may be derived from the Source resource in whole or part. Recommended best practice is to reference the resource by means of a string or number conforming to a formal identification system. In general, include in this area information about a resource that is related intellectually to the described resource but does not fit easily into a Relation element. In ECLAP, this value should be the URL or the filename of the original resource. The file uploaded and the URL provided in the upload form are tracked automatically in different fields. This element can be used for several different types of source that are related to the object (such as reference sources). The name of the content holder should no longer be recorded here as a new element.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="language" substitutionGroup="anyNoLang">
+		<xs:annotation>
+			<xs:documentation>A language of the resource. The recommended best practice is to use a controlled vocabulary such as RFC 4646 (http://www.rfc-archive.org/getrfc.php?rfc=4646) which, in conjunction with ISO 639, defines two- and three-letter primary language tags. Either a coded value or text string can be represented here. Use this element for the language of textual objects and also where there is a language aspect to other objects e.g. sound recordings, posters, newspapers etc). If there is no language aspect to the digital object (e.g. a photograph), please ignore this element. This element is not for the language of the metadata of a resource, which may be described in xml:lang attribute.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="relation" substitutionGroup="any">
+		<xs:annotation>
+			<xs:documentation>A reference to a related resource. Recommended best practice is to reference the resource by means of a string or number conforming to a formal identification system. This is information about resources that are related to the original analog or born digital object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="coverage" substitutionGroup="any">
+		<xs:annotation>
+			<xs:documentation>The extent or scope of the content of the resource. Coverage will typically include spatial location (a place name or geographic co-ordinates), temporal period (a period label, date, or date range) or jurisdiction (such as a named administrative entity). Recommended best practice is to select a value from a controlled vocabulary (for example, the Thesaurus of Geographic Names [Getty Thesaurus of Geographic Names, http://www. getty.edu/research/tools/vocabulary/tgn/]). Where appropriate, named places or time periods should be used in preference to numeric identifiers such as sets of co-ordinates or date ranges. Coverage is the unqualified spatial or temporal coverage of the original analog or born digital object. Use of the more specific dcterms:spatial and dcterms:temporal elements is preferred where possible.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="rights" substitutionGroup="anyWithLang">
+		<xs:annotation>
+			<xs:documentation>Information about rights held in and over the resource. Typically a Rights element will contain a rights management statement for the resource, or reference a service providing such information. Rights information often encompasses Intellectual Property Rights (IPR), Copyright, and various Property Rights. If the rights element is absent, no assumptions can be made about the status of these and other rights with respect to the resource. This is a free text element and should be used for information about intellectual property rights or access arrangements for the digital object that is additional to the controlled value provided in europeana:rights.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:group name="elementsGroup">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+    	    This group is included as a convenience for schema authors
+            who need to refer to all the elements in the 
+            http://purl.org/dc/elements/1.1/ namespace.
+    	</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="any"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="elementContainer">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+    		This complexType is included as a convenience for schema authors who need to define a root
+    		or container element for all of the DC elements.
+    	</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:group ref="elementsGroup"/>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,613 @@
+/* -------------------------------------------------------------------------------
+COMMON
+---------------------------------------------------------------------------------*/
+
+#custom-doc
+{
+	margin:auto;
+	min-width:1032px;
+	text-align:left;
+	width:76.87em;
+}
+
+#ft
+{
+    clear: both;
+    margin-top: 20px;
+}
+
+#ft.brd
+{
+	padding-top: 40px;
+}
+#hd
+{
+	clear:both;
+	height:40px;
+	position:relative;
+	z-index:10;
+}
+
+#bd
+{
+	clear:both;
+	position:relative;
+	z-index:9;
+}
+
+/* user-bar
+=======================*/
+#user-bar
+{
+	background:#eaeaea;
+	margin:0 0 4px;
+	padding:4px 10px;
+	position:relative;
+	text-align:right;
+	top:0;
+}
+
+/* headers
+=======================*/
+h1,h2,h3,h4
+{
+	color:#797979;
+	font-weight:700;
+}
+
+h1
+{
+	border-bottom:1px solid #ccc;
+	font-size:200%;
+	margin:30px 0;
+}
+
+h2
+{
+	font-size:150%;
+	margin:30px 0 0;
+}
+
+h3
+{
+	font-size:125%;
+}
+
+h4
+{
+	font-size:100%;
+}
+
+/* unvisited link */
+a:visited,ul.point a:visited
+{
+	color:#26a097;
+	text-decoration:underline;
+}
+
+/* visited link */
+a:hover,ul.point a:hover
+{
+	color:#F0F;
+	text-decoration:underline;
+}
+
+/* selected link */
+strong
+{
+	font-weight:700;
+}
+
+/* index page
+=======================*/
+
+/* homepage has background image, other pages do not. Use pId in bodytag to identify */
+
+body#in {
+    background: #fff url(../images/bg-grad-2.gif) 0 500px repeat-x;
+}
+
+#top
+{
+	background:transparent;
+	height:160px;
+	width:100%;
+}
+
+#middle
+{
+	background:transparent;
+	height:100px;
+	width:100%;
+}
+
+#bottom
+{
+	background:transparent;
+	height:200px;
+	width:100%;
+}
+
+#top h1
+{
+	border:none;
+	font-size:1.2em;
+	margin:70px 50px 0;
+	padding-right:75px;
+}
+
+#top h1 a,h1.intro a:link,h1.intro a:visited,h1.intro a:active
+{
+	color:#797979;
+	text-decoration:underline;
+}
+
+#top h1 a:hover
+{
+	color:#333;
+	text-decoration:underline;
+}
+
+
+#secondaryContent
+{
+	margin:30px 0 20px;
+}
+
+/* globalNav
+=======================*/
+ul#mainNav
+{
+	background-color:transparent;
+	float:right;
+	list-style:none;
+	margin:0;
+	padding:0;
+	position:relative;
+}
+
+ul#mainNav li
+{
+	border-bottom:solid 1px #ccc;
+	float:left;
+	list-style:none;
+	margin:0 0 2px 1em;
+	min-width:90px;
+	padding:0;
+}
+
+ul#mainNav a
+{
+	color:#000;
+	float:left;
+	line-height:1.5;
+	margin:0;
+	padding:12px 0 0 4px;
+	text-decoration:none;
+}
+
+ul#mainNav li a
+{
+	margin-left:0;
+	min-width:90px;
+}
+
+ul#mainNav a:link,ul a:visited,ul a:active
+{
+	color:#000;
+	text-decoration:none;
+}
+
+ul#mainNav .first a
+{
+	background:#f0f0f0;
+}
+
+ul#mainNav li.no-border
+{
+	border-bottom:none;
+	margin:0 0 0 10px;
+	padding:12px 0 0;
+}
+
+/* search
+=======================*/
+
+#search
+{
+	height:50px;
+	margin-top:50px;
+	padding:0;
+
+}
+
+#search input.search-input
+{
+	border:solid 1px #ccc;
+	color:#797979;
+	cursor:text;
+	height:22px;
+	margin:2px 10px 0 0;
+	padding:1px 0;
+	width:365px;
+    z-index: 999;
+}
+
+#search input, .search select
+{
+	color:#797979;
+	cursor:text;
+	font-size:1.2em;
+	margin:2px 0 0;
+}
+
+#search .button,.button
+{
+	background:#fff;
+	border:1px solid #ccc;
+	color:#797979;
+	cursor:pointer;
+	font-weight:700;
+	height:26px;
+	margin:2px 0 0;
+	padding:0 8px;
+}
+
+#search input:focus,textarea:focus
+{
+	background-color:#ffc;
+}
+
+input.text
+{
+	border:solid 1px #ccc;
+	color:#797979;
+	cursor:text;
+	height:16px;
+	margin:2px 5px 4px 0;
+	padding:1px 0;
+}
+
+input.error
+{
+	border:1px dotted #FF1493;
+	clear:both;
+}
+
+.button.small
+{
+	font-size:.95em;
+	height:20px;
+	margin:2px 0 8px;
+	padding:0;
+	width:50px;
+}
+
+#search .search_home
+{
+	margin-left:50px;
+	margin-top:-25px;
+
+
+}
+
+#search #search_advanced
+{
+	background:#eee;
+	border:1px solid #ccc;
+    -moz-border-radius: 8px; -webkit-border-radius: 8px;
+	padding:10px;
+}
+
+#search #search_advanced.search_home
+{
+	left:300px;
+	position:absolute;
+	top:150px;
+}
+
+#search #search_advanced.search_result
+{
+	left:150px;
+	position:absolute;
+	top:0;
+}
+
+#tbl_adv_search td
+{
+	padding:2px;
+}
+
+#search a,#search a:link,#search a:visited,#search a:active
+{
+	color:#000;
+	font-size:.85em;
+	font-weight:400;
+	text-decoration:underline;
+}
+
+/* footer
+=======================*/
+#ft ul
+{
+	float:left;
+	margin:0;
+	padding:0;
+	text-align:left;
+	width:100%;
+}
+
+#ft ul li
+{
+	border:none;
+	display:inline;
+	float:left;
+	font-size:0.85em;
+	list-style:none;
+	margin:0;
+	min-width:10px;
+	padding:0 10px 0 0;
+	white-space:nowrap;
+}
+
+#ft ul li a
+{
+	font-weight:400;
+	line-height:1.2;
+}
+
+#ft a:link,#ft a:visited,#ft a:active
+{
+	color:#797979;
+	text-decoration:none;
+}
+
+#ft ul li.signoff
+{
+	border:none;
+	color:#797979;
+	float:right;
+	margin:0;
+}
+
+#ft ul li.signoff img
+{
+	margin-bottom:-2px;
+	padding-left:5px;
+}
+
+/* foreground colors
+=======================*/
+.fg-gray
+{
+	color:#999;
+}
+
+.fg-gold
+{
+	color:#fc0;
+}
+
+.fg-green, a:link.fg-green
+{
+	color:#26a097;
+}
+
+.fg-red
+{
+	color:#b22222;
+}
+
+.fg-white
+{
+	color:#fff;
+}
+
+/* background colors
+=======================*/
+.bg-gray
+{
+	background:#eaeaea;
+}
+
+.bg-green
+{
+	background-color:#26a097;
+}
+
+/* pageLayout
+=======================*/
+.hide
+{
+	display:none;
+}
+
+.msg
+{
+	font-size:90%;
+	padding:4px;
+}
+
+.msg-hide
+{
+	background:url(../images/related-grad-bg.gif) 0 0;
+	display:none;
+	font-size:90%;
+	padding:4px;
+	text-align:left;
+}
+
+#mainContent
+{
+	margin:o 0 0 60px;
+}
+
+/*#mainContent h1, #yui-main h1 {margin: 30px 0 30px 0; border-bottom: 1px solid #ccc; color:#666;}
+#mainContent h2, #yui-main h2 {margin:30px 0 0 0; color: #aaa;}*/
+#mainContent p,#yui-main p
+{
+	margin:10px 0;
+}
+
+/* secondaryContent */
+#secondaryContent ul
+{
+	list-style-type:none;
+	margin:0 20px 0 0;
+	padding:0;
+}
+
+#secondaryContent ul.sub
+{
+	margin:0 0 0 40px;
+}
+
+#secondaryContent ul li
+{
+	background:url(../images/arrowright.gif) right 10px no-repeat;
+	border-bottom:dotted 1px #797979;
+	margin:0;
+	padding:0.4em 1em 0.4em 0;
+}
+
+#secondaryContent ul.sub li
+{
+	background-image:none;
+	border-bottom:none;
+	list-style-type:disc;
+	padding:0.2em 0;
+}
+
+#secondaryContent ul li a
+{
+	color:#000;
+	font-size:0.9em;
+	margin:0;
+	padding:0 0 0.4em;
+	text-decoration:none;
+}
+
+#secondaryContent ul li a:hover
+{
+	cursor:pointer;
+	text-decoration:underline;
+}
+
+#secondaryContent h4
+{
+	border-bottom:solid 1px #bdbdbd;
+	margin:0 0 4px;
+	padding:0 0 3px;
+}
+
+ul.point,ol.number
+{
+	margin:10px 0 10px 22px;
+}
+
+ul.subpoint
+{
+	margin:0 0 0 22px;
+}
+
+ul.point li
+{
+	list-style:disc;
+}
+
+ul.subpoint li
+{
+	list-style:circle;
+}
+
+ol.number li
+{
+	list-style:decimal;
+}
+
+.attention
+{
+	background:#fff;
+	border:1px solid #f60;
+	margin-bottom:10px;
+	padding:10px;
+}
+
+.error
+{
+	border:1px solid red;
+}
+
+.success
+{
+	border:1px solid green;
+}
+
+.tblList th
+{
+	background:#666;
+	border-right:1px solid #fff;
+	color:#fff;
+	font-size:1em;
+	font-weight:700;
+	padding:0.25em;
+	text-align:center;
+}
+
+.tblList td
+{
+	border-bottom:1px solid #ccc;
+	font-size:.85em;
+	line-height:1.5em;
+	padding:0.25em;
+}
+
+#tblContributors th
+{
+	background:#26a097;
+}
+
+#tblPartners th
+{
+	background:#FF1493;
+}
+
+a:link,ul.point a:link,a:active,ul.point a:active
+{
+	color:#00F;
+	text-decoration:underline;
+}
+
+ul#mainNav a:hover,ul#mainNav a.current
+{
+	background:#f0f0f0;
+	color:#000;
+	text-decoration:none;
+}
+
+label.error,.fg-pink
+{
+	color:#FF1493;
+}
+
+#search .search_result,#search .search_exception
+{
+	margin-left:150px;
+}
+
+#ft a:hover,#ft a.current
+{
+	background:transparent;
+	color:#333;
+	text-decoration:underline;
+}
+
+
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}

@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSpy v2008 rel. 2 (http://www.altova.com) by mazuki (darksiderg) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:lido="http://www.lido-schema.org" targetNamespace="http://www.lido-schema.org" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:redefine schemaLocation="lido-draft-v0.9.xsd">
+		<xsd:complexType name="eventComplexType">
+			<xsd:complexContent>
+				<xsd:restriction base="lido:eventComplexType">
+					<xsd:sequence>
+						<xsd:element name="eventID" type="lido:identifierComplexType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="eventType" type="lido:customConcept"/>
+						<xsd:element name="roleInEvent" type="lido:conceptComplexType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="eventName" type="lido:appellationComplexType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="eventActor" type="lido:actorInRoleSetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="culture" type="lido:conceptComplexType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="eventDate" type="lido:dateSetComplexType" minOccurs="0"/>
+						<xsd:element name="periodName" type="lido:conceptComplexType" minOccurs="0"/>
+						<xsd:element name="eventPlace" type="lido:placeSetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="eventMethod" type="lido:conceptComplexType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="eventMaterialsTech" type="lido:materialsTechSetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="thingPresent" type="lido:objectSetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="relatedEventSet" type="lido:relatedEventSetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="eventDescriptionSet" type="lido:descriptiveNoteComplexType" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:restriction>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:redefine>
+	<xsd:complexType name="customTerm">
+		<xsd:simpleContent>
+			<xsd:restriction base="lido:termComplexType">
+				<xsd:enumeration value="Create"/>
+				<xsd:enumeration value="Find"/>
+				<xsd:enumeration value="Use"/>
+				<xsd:enumeration value="Modification"/>
+				<xsd:enumeration value="Acquisition"/>
+				<xsd:enumeration value="Collecting"/>
+				<xsd:enumeration value="Design"/>
+				<xsd:enumeration value="Destruction"/>
+				<xsd:enumeration value="Excavation"/>
+				<xsd:enumeration value="Exhibition"/>
+				<xsd:enumeration value="Loss"/>
+				<xsd:enumeration value="Move"/>
+				<xsd:enumeration value="Part Addition"/>
+				<xsd:enumeration value="Part Removal"/>
+				<xsd:enumeration value="Performance"/>
+				<xsd:enumeration value="Production"/>
+				<xsd:enumeration value="Restoration"/>
+				<xsd:enumeration value="Transformation"/>
+				<xsd:enumeration value="Type Assignment"/>
+				<xsd:enumeration value="Type Creation"/>
+				<xsd:enumeration value="Order"/>
+				<xsd:enumeration value="Planning"/>
+				<xsd:enumeration value="Provenance"/>
+				<xsd:enumeration value="Publication"/>
+				<xsd:enumeration value="Non-specified"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="customConcept">
+		<xsd:complexContent>
+			<xsd:restriction base="lido:conceptComplexType">
+				<xsd:sequence>
+					<xsd:element name="conceptID" type="lido:identifierComplexType" minOccurs="0"/>
+					<xsd:element name="term" type="lido:customTerm" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,478 @@
+body {
+	/*background: #eaeaea url(images/960/white_bg.gif) top center repeat-y;*/
+}
+#container {
+	overflow: hidden;
+    margin-top: 20px;
+}
+#sidebar {
+    min-width: 215px;
+}
+#main {    
+    background: transparent;
+    overflow: hidden;
+}
+#main.home {
+    margin-top: 100px;
+}
+#top-bar {
+    text-align: right;
+}
+
+#top-bar, #search, #breadcrumbs, #objTypes, .pagination {
+    margin-bottom: 40px;
+}
+
+#identity h1 {
+	display: none;
+}
+#logo-home {
+    float: right;    
+}
+#search_simple input.txt-input{
+   width: 300px;
+}
+.search_home {
+    margin-top: 120px;
+}
+#search_advanced {
+    background: #fff;
+}
+
+#top-bar ul, #footer ul, .breadcrumb ul, #navResultTabs ul, .nav ul{
+	list-style: none;
+	margin:0 0 0 0;
+	padding: 0 0 0 0;
+    position: relative;
+}
+#top-bar li, #footer li, .breadcrumb li, #navResultTabs li, .nav li {
+	float: left;
+	margin: 0;
+	padding: 0 10px 0 0;
+	list-style: none;
+}
+
+#facet-list {
+    margin-top: 50px;
+}
+
+#facet-list h4 {
+    color: #555;
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-size: 1.25em;   
+}
+#facet-list h5 {
+    color: #555;
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    font-weight: normal;
+    border-bottom: 1px solid #ccc;
+}
+#facet-list h6 {
+    color: #333;
+    margin: 10px 0;
+    font-size: 1em;
+    font-weight: normal;
+}
+#facet-list div.scroll {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 100px;
+    margin-bottom: 10px;
+  
+}
+#facet-list .add {
+    background: transparent url(images/toggle_plus.gif) no-repeat top left;
+    padding: 0 0 0 16px;
+}
+#facet-list .remove {
+    background: transparent url(images/toggle_minus.gif) no-repeat top left;
+    color: #555;
+    padding: 0 0 0 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* breadcrumb
+=======================*/
+
+#breadcrumbs ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 1.25em;
+}
+
+#breadcrumbs ul li {
+    float: left;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border: none;
+    min-width: 15px;
+}
+
+#breadcrumbs ul a {
+    padding: 0 4px 0 0;
+    text-decoration: none;
+    color: #666;
+    float: left;
+    display: block;
+}
+
+#breadcrumbs ul a:hover {
+    color: #666;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#breadcrumbs ul .first {
+    font-weight: bold;
+    cursor: default;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+#viewselect {
+     float:right;
+ }
+#viewselect a {
+    text-decoration: none;
+}
+/* pagination */
+.pagination {
+    text-align: left;
+    padding: 0;
+}
+
+/* objTypes */
+#objTypes {
+
+}
+#objTypes div:first-child {
+    height: 30px;
+    margin-right: 20px;
+    float: left;
+}
+#objTypes ul, #pagination ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+}
+#objTypes ul li, #pagination ul li {
+    float: left;
+    margin: 0 0 0 0;
+    padding: 0 8px 0 0;
+    border: none;
+    min-width: 15px;
+}
+
+
+table caption {
+	background: #000;
+	color: #fff;
+    display: none;
+}
+
+.attention {
+    border: 1px solid #ff6600;
+    background: #ffffcc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.msg {
+    padding:4px;
+    font-size: 90%;
+}
+.msg-hide {
+    display: none;
+    padding: 0 4px;
+    text-align: left;
+    font-size: 90%;
+}
+.disabled {
+    color: #888;
+}
+
+#results {
+
+}
+/* brief search results */
+
+#multi {
+    border-collapse: collapse;
+    background-color: transparent;
+    font-size: 90%;
+    font-weight: normal;
+    line-height: 1.2;
+    margin-top: 20px;
+}
+
+#multi h6 {
+    font-weight: 500;
+    font-size: 1.25em;
+    color: #000;
+    margin: 0 0 8px 0;
+    padding: 0;
+}
+
+#multi ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+#multi ul li {
+    margin: 0;
+    padding: 0;
+    /*display: inline-block;*/
+    color: #555;
+    line-height: 1.25em;
+}
+
+#multi td {
+    padding: 0 8px 20px 0;
+}
+#multi td p {
+    margin: 0;
+    color: #555;
+}
+/* table wraps item detail / img and text
+================================================*/
+#item-detail #img-full {
+    overflow-x:hidden;
+    overflow-y:hidden;
+    text-align:center;
+}
+
+#item-detail h5 {
+    background:none;
+    border-bottom:solid 4px #ccc;
+    color:#333;
+    margin: 0 0 10px 0;
+    padding: 0 0 0 30px;
+}
+
+#item-detail h5.SOUND {
+    background:url(images/icon-sound.gif) left top no-repeat;
+}
+#item-detail h5.TEXT {
+    background:url(images/icon-page.gif) left top no-repeat;
+}
+#item-detail h5.VIDEO {
+    background:url(images/icon-video.gif) left top no-repeat;
+}
+#item-detail h5.IMAGE {
+    background:url(images/icon-image.gif) left top no-repeat;
+}
+/* UI Button styles */
+.fg-button { outline: 0; margin:0 4px 0 0; padding: .15em 0.5em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; zoom: 1; }
+.fg-button .ui-icon { position: absolute; top: 50%; margin-top: -8px; left: 50%; margin-left: -8px; }
+
+a.fg-button { float:left; }
+
+/* remove extra button width in IE */
+button.fg-button, input.fg-button { width:auto; overflow:visible; }
+
+.fg-button-icon-left { padding-left: 2.1em; }
+.fg-button-icon-right { padding-right: 2.1em; }
+.fg-button-icon-left .ui-icon { right: auto; left: .2em; margin-left: 0; }
+.fg-button-icon-right .ui-icon { left: auto; right: .2em; margin-left: 0; }
+
+.fg-button-icon-solo { display:block; width:8px; text-indent: -9999px; }	 /* solo icon buttons must have block properties for the text-indent to work */
+
+.fg-buttonset { float:left; }
+.fg-buttonset .fg-button { float: left; }
+.fg-buttonset-single .fg-button,
+.fg-buttonset-multi .fg-button { margin-right: -1px;}
+
+.fg-toolbar { padding: .15em .25em; margin: 0;  }
+.fg-toolbar .fg-buttonset { margin-right:1.5em; padding-left: 1px; }
+.fg-toolbar .fg-button { font-size: 1em;  }
+/* ui accordion */
+
+/**
+ * ----------------------------------------------------------------------------
+ * toggleElements.css - Stylesheet for jQuery-Plugin toggleElements
+ * ----------------------------------------------------------------------------
+ */
+
+/* Screen ------------------------------------------------------------------- */
+
+@media projection, screen {
+
+	/* Toggler - default style */
+	.toggler {
+	   margin:10px 0;
+        border-bottom: solid 1px #ccc;
+		cursor:pointer;
+		font-size: 1.0em;
+		font-weight:bold;
+		line-height:30px;
+		display: block;
+        text-decoration: none;
+	}
+	.toggler-closed {
+		color:#333;
+		padding-left:8px;
+		height:30px;
+		background: #fff url(images/togglerc.gif) center right no-repeat;
+
+	}
+	.toggler-closed:hover {
+		color: #000;
+		padding-left:8px;
+		height:30px;
+		background: #fff url(images/togglerch.gif) center right no-repeat;
+	}
+	.toggler-opened {
+		color:#333;
+		padding-left:8px;
+		height:30px;
+		background: #fff url(images/togglero.gif) center right no-repeat;
+	}
+	.toggler-opened:hover {
+		color: #000;
+		padding-left:8px;
+		height:30px;
+		background: #fff url(images/toggleroh.gif) center right no-repeat;
+
+	}
+
+	/* Container - default style */
+	.toggler-c {
+	}
+	.toggler-c-closed {
+	   background:transparent;
+	    margin:-10px 0px 10px 0px;
+	   padding:4px;
+	}
+	.toggler-c-opened {
+	    margin:-10px 0px 10px 0px;
+	   padding:4px;
+	   background:#fff;
+	}
+
+}
+
+/* Print -------------------------------------------------------------------- */
+@media print {
+
+	.toggler-c { margin-bottom:25px; }
+	.toggler { display: none; }
+
+}
+
+/* Login/register */
+.login-register form {}
+.login-register label {font-weight: bold; }
+.login-register label.norm {font-weight: normal;}
+.login-register input {display: block; margin-bottom: 1em; }
+.login-register input.inline {display: inline; margin: 0 0 0 0; line-height: 2em;}
+.login-register p {font-size: 85%; padding: 5px; font-weight: bold;}
+.login-register p.failure {background-color: firebrick; color: #fff;}
+.login-register p.success {background-color: green; color: #fff;}
+
+
+#regForm fieldset {
+    /*height: 20em;*/
+    width: 200px;
+    border: 0;
+    margin: 0;
+    padding: 1em;
+    float: left;
+     }
+#regForm fieldset legend {
+    font-size: 4em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #888;
+    }
+#regForm fieldset legend span {
+    display: none;
+    }
+#regForm fieldset h3 {
+    /*height: 2em;*/
+    font-size: 1.25em;
+    margin: 0 0 20px 0;
+    }
+#regForm fieldset div.help {
+    color: #333;
+    font-size: 85% ;
+    font-weight: normal;
+    /*margin: 0 0 20px 0;*/
+    min-height: 6em;
+    }
+#regForm fieldset label {
+    /*font-size: ;*/
+    display: block;
+    line-height: 1.5em;
+    }
+#regForm fieldset input {
+    /*font-size: ;*/
+    /*height: 1.2em;*/
+    }
+
+/* Error Styling */
+#regForm fieldset.error,
+#regForm fieldset.error legend,
+#regForm fieldset.error div.help {
+    color: #FFCC33;
+    }
+#regForm fieldset strong.error {
+    color: #fff;
+    background-color: #CC0000;
+    padding: 0.2em;
+    font-size: 0.7em;
+    font-weight: bold;
+    display: block;
+    }
+
+/* Part 4 Styling */
+#regForm #pt4 {
+    clear: both;
+    width: 700px;
+    /*height: 2em;*/
+    border: 1px dotted #CCC;
+    border-width: 1px 0;
+    padding: 1em 0;
+    }
+#regForm #pt4 legend {
+    display: none;
+    }
+#regForm #pt4 h3 {
+    display: none;
+    }
+#regForm #pt4 #disclaimer-text {
+    width: 50em;
+    float: left;
+    font-size: 0.7em;
+    float: left;
+    margin-right: 10px;
+    }
+/*
+#regForm #pt4 #agree {
+    width: 15em;
+    float: left;
+    color: #000;
+    float: left;
+    }
+*/    
+#regForm #pt4 #agree input#disclaimer {
+    float:left;
+    margin-right: 10px;
+}
+
+
+.fg-green {
+    color: green;
+}
+
+.ui-dialog {
+
+    background: #fff;
+    height: 200px;
+}
+

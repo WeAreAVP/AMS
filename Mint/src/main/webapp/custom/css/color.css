@@ -1,0 +1,148 @@
+
+a, a:link {color: #3fa9fa;}
+
+.mainclr{color: #3c3c3c;}
+
+table#general{background-color: #CDE9A7;color: #455138;} /*bg color on table tops*/
+
+/*drop down list background color on select mapping*/
+.hiLite {background:#44597B!important; color:#fff!important;}
+.hiLite a {background:#44597B!important; color:#fff!important;}
+
+form.athform legend { padding-left: 0;color: #CDE9A7; }
+
+form.athform fieldset {
+	border-top: 0px solid #ddd;
+	background: #ebebeb;
+}
+
+form.athform fieldset li {
+	padding: 5px 10px 7px 5px;
+	background: url(../images/formdiv3.gif) left bottom repeat-x;
+}
+
+h1,h2,h4,h5,h6 {
+	color:  #3c3c3c;
+
+}
+
+
+#unpub {
+	color: #FFFFFF;
+	background-color:  #CDE9A7;
+
+}
+
+#green a {
+	color: #CDE9A7;
+
+}
+
+
+#footer {
+	background-color: #DDDDDD;
+	color: #111111;
+
+
+}
+
+
+#openBox h3 {
+	background-color: #D1D1D1;
+	color: #3c3c3c;
+}
+
+
+.imgteaser a:hover .desc{
+   	color: #70934A;
+   	background: #FFF;
+
+}
+
+.ddcolortabs a{
+
+	color: #111111;
+	background: #fff;
+	border-top-left-radius: 0.3 em;
+	border-top-right-radius: 0.3 em;
+
+}
+
+.ddcolortabs a span{
+
+	/*background: transparent url(../images/color_tabs_right.gif) no-repeat right top;*/
+	border-top-left-radius: 0.3 em;
+	border-top-right-radius: 0.3 em;
+
+}
+
+
+.ddcolortabs a:hover{
+	background-color: #C8D59B;
+	border-top-left-radius: 0.3 em;
+	border-top-right-radius: 0.3 em;
+}
+
+.ddcolortabs a:hover span{
+	background-color: #44597B;
+	color: #fff;
+	border-top-left-radius: 0.3 em;
+	border-top-right-radius: 0.3 em;
+}
+
+.ddcolortabs a.current, #ddcolortabs a.current span{ /*currently selected tab*/
+	background-color: #44597B;
+	color: #fff;
+	border-top-left-radius: 0.3 em;
+	border-top-right-radius: 0.3 em;
+}
+
+
+.ddcolortabsline{
+	background: #EAEAEA;
+	border-top: 1px solid #fff; /*Remove this to remove border between bar and tabs*/
+}
+
+.yui-module .hd {
+    background: #EAEAEA;
+}
+
+div.xpath_mapping {
+    color:  #336633;
+
+}
+
+
+/*color of elements in mapping tool*/
+div.no_mapping {
+	color:  #70934A;
+}
+
+.groupby {
+	color: #aaaaaa;
+}
+
+a.button {
+    color: #444444;
+}
+
+
+.yui-skin-sam .yui-navset .yui-nav, .yui-skin-sam .yui-navset .yui-navset-top .yui-nav {
+    border:solid #CCCCCC;
+}
+
+.plaisio{width:300px;background:#D1D1D1;padding:10px; border-radius:3px; position:relative;}
+
+.yui-layout .yui-layout-unit div.yui-layout-hd h2 {
+
+    font-weight: normal;
+    margin: 7px;
+    padding: 10px;
+    border-radius:3px;
+    background: #D1D1D1;
+    position: relative;
+
+}
+
+.rounded_top {background-color: #D1D1D1;
+			  color: #3c3c3c;}

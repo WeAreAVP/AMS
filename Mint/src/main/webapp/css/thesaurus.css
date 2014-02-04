@@ -1,0 +1,247 @@
+#spacer {
+	height: 95%;
+	float: left;
+	width: 1px;
+	font-size: 1px; /* to make sure width is not overridden */
+	padding: 0;
+	margin: 0;
+	background-color: red; /* visual effect only */
+}
+
+#thesaurus_source_tree {
+	float: left;
+	width: 34%;
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: auto;
+	background: #eeeeee;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+
+#content {
+	background: #dddddd;
+	float: left;
+	width: 65%;
+	height: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+
+#thesauri_header {
+	width: 100%;
+	background: #dddddd;
+	margin: 0px;
+	padding: 0px;
+	
+}
+
+#thesaurus_filter {
+	background: #cccccc;
+	width: 45%;
+	height: 45%;
+	float: left;
+	border: 0px;
+	padding: 0px; margin 0px;
+	overflow-y: auto;
+	overflow-x: auto;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+
+#thesaurus_info_panel {
+	background: #bbbbbb;
+	width: 52%;
+	height: 45%;
+	float: left;
+	border: 0px;
+	padding: 0px;
+	margin-left: 5px;
+	margin-top: 10px;
+	overflow-y: auto;
+	overflow-x: auto;
+	
+}
+
+#thesaurus_info_buttons {
+	text-align: center;
+}
+
+#thesaurus_level_xpath_list {
+	margin: 15px;
+	background: #c8c8c8;
+	border: 1px solid  #aaaaaa;
+	clear: both;
+	min-height: 50px;
+	overflow: auto;
+}
+
+#thesaurus_level_xpath_list.red {
+	padding-bottom: 20px;
+	border: 1px solid red;
+	clear: both;
+}
+
+#thesaurus_level_xpath_list.black {
+	padding-bottom: 20px;
+	border: 1px solid red;
+	clear: both;
+}
+
+#thesaurus_info {
+	margin-left:5px;
+}
+
+#data_form {
+	background: #dddddd;
+	clear: both;
+	width: 99%;
+	border: 0px;
+	padding: 0px;
+	
+}
+
+#addform {
+	clear: both;
+	width: 100%;
+}
+
+.thesaurusinput {
+	width: 90%;
+}
+
+.thesaurus.submit {
+	width: auto;
+}
+
+ul.thesaurus_list {
+	width: 100%;
+	height: 80%;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	padding-bottom: 20px;
+}
+
+.thesaurus_row1 {
+	background: #ffffff;
+}
+
+.thesaurus_row2 {
+	background: #999999;
+}
+
+ul.thesaurus_list li {
+	border: none;
+	margin: 1px;
+}
+
+ul.thesaurus_list li:hover {
+	background-color: #99CC00;
+	border: none;
+	margin: 1px;
+}
+
+ul.labels {
+	padding-bottom: 20px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: 100;
+	line-height: 13px;
+}
+
+ul.labels li {
+	background-color: #99CC00;
+	display: inline;
+	color: #CCCCCC;
+	float: left;
+	margin: 0px 2px 2px 0px;
+	height: 13px;
+}
+
+ul.labels li span {
+	background-color: #99CC00;
+	background: url(../images/label_front.gif) no-repeat center left;
+	font-size: 11px;
+	font-weight: normal;
+	white-space: nowrap;
+	padding: 0px 3px;
+	color: white;
+	vertical-align: top;
+	float: left;
+}
+
+ul.labels li a {
+	padding: 1px 4px 0px 11px;
+	padding-top /*\**/: 0px\9; /*Hack for IE*/
+	background: url(../images/labelx.gif) no-repeat center right;
+	cursor: pointer;
+	border-left: 1px dotted white;
+	outline: none;
+}
+
+ul.labels li a:hover {
+	background: url(../images/labelx_hover.gif) no-repeat center right;
+	word-wrap:break-word;
+}
+
+ul.labels li span span {
+	display: none;
+}
+
+ul.labels li span:hover span { /*the span will display just on :hover state*/
+    display:block;
+    position: absolute;
+    margin-top: -20px;
+    border:1px solid #dff;
+    background-color:#cff; color:#000;
+    text-align: center;
+}
+
+.stats-table {
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+}
+
+.stats-table th {
+	font-weight: bold;
+	border: 1px solid black;
+	padding: 0px;
+	margin: 0px;
+}
+
+.stats-table td {
+	border-bottom: 0px;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-top: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.yui-pe-content {
+	display: none;
+}
+
+.yui-panel-container select {
+	_visibility: hidden;
+}
+
+.yui-modal select {
+	_visibility: inherit;
+}
+
+.error {
+	color: red;
+}
+
+.info{
+    position:relative; /*this is the key*/
+    z-index:24; background-color:#ccc;
+    color:#000;
+    text-decoration:none;}
+

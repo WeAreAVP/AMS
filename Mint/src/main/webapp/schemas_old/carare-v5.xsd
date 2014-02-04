@@ -1,0 +1,1185 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns="http://www.dcu.gr/carareSchema" elementFormDefault="qualified" targetNamespace="http://www.dcu.gr/carareSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="carare">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">The CARARE schema start element. It wraps exactly one collection information wrapper and zero or more of each of the other global wrappers (Monument, Digital resource, Activity).</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group minOccurs="0" maxOccurs="unbounded" ref="collectionInformation" />
+        <xs:group minOccurs="0" maxOccurs="unbounded" ref="heritageAsset" />
+        <xs:group minOccurs="0" maxOccurs="unbounded" ref="digitalResource" />
+        <xs:group minOccurs="0" maxOccurs="unbounded" ref="activity" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:group name="collectionInformation">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">holds the collection-level description.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="collectionInformation">
+        <xs:annotation>
+          <xs:documentation>The following elements provide a collection level description of the resources being harvested</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element minOccurs="1" name="title">
+              <xs:annotation>
+                <xs:documentation>the title of the collection. The element may be repeated using the XML:lang attribute if the element value is available in alternate languages. A preferred/alternate attribute may be used to indicate which value is preferred.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="lang" use="required" />
+                <xs:attribute name="preferred" type="xs:boolean" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="keywords">
+              <xs:annotation>
+                <xs:documentation>for the collection. The element may be repeated using the XML:lang attribute if the element value is available in alternate languages. Use of a controlled vocabulary such as Getty Arts and Architecture Thesaurus is recommended, and the vocabulary used may be indicated using an attribute.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="lang" use="required" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="1" name="contacts" type="contacts">
+              <xs:annotation>
+                <xs:documentation>for the collection</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="rights" type="rights">
+              <xs:annotation>
+                <xs:documentation>associated with the collection as a whole</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="source">
+              <xs:annotation>
+                <xs:documentation>organisation that is the source of the collection</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="language">
+              <xs:annotation>
+                <xs:documentation>of the metadata. Specifies the default language of the records in the collection; deviations in particular records are specified in the record metadata, and deviations in particular elements are specified using the xml:lang attribute where allowed. Specified (like the xml:lang attribute) using ISO 639-1:2002, i.e. standard two letter language codes (en, fr, etc.).</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="lang" use="required" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="statement">
+              <xs:annotation>
+                <xs:documentation>free text. The element may be repeated using the XML:lang attribute if the element value is available in alternate languages. A preferred/alternate attribute may be used to indicate which value is preferred.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="lang" use="required" />
+                <xs:attribute name="preferred" type="xs:boolean" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="creation">
+              <xs:annotation>
+                <xs:documentation>information about how the resources being harvested were collected includes:</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="createdOn">
+                    <xs:annotation>
+                      <xs:documentation>when the collection was created</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="query">
+                    <xs:annotation>
+                      <xs:documentation>The query used to extract the data.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="coverage">
+              <xs:annotation>
+                <xs:documentation>of the collection</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="temporal" type="temporal">
+                    <xs:annotation>
+                      <xs:documentation>general temporal coverage of the collection</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="spatial" type="spatial">
+                    <xs:annotation>
+                      <xs:documentation>general spatial coverage of the collection, e.g. the country covered.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="spatialReferenceSystem">
+              <xs:annotation>
+                <xs:documentation>Use of a controlled vocabulary is recommended, and the vocabulary used may be indicated using an attribute. The OGC URN scheme for spatial reference systems is recommended for use.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="heritageAsset">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">holds the metadata for a monument, including descriptive and administrative metadata.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="heritageAsset">
+        <xs:complexType>
+          <xs:all>
+            <xs:element minOccurs="1" maxOccurs="1" name="recordInformation">
+              <xs:annotation>
+                <xs:documentation>The ID, language, creation information and other metadata describing the record. The ID element of this information block holds the ID assigned by the content provider, cf. section 8. </xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:complexContent mixed="false">
+                  <xs:extension base="recordInformation" />
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="appellation" type="appellation">
+              <xs:annotation>
+                <xs:documentation>This is information about the identifier (ID) and name of the monument (see section 11). The ID sub-element is the record ID in the CARARE repository and will be generated by CARARE on ingest. The name sub-element may be repeated if a monument is known by more than one name, using the XML:lang attribute if the names are in alternate languages. A preferred/alternate attribute may be used to indicate which name is preferred. </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" name="description" type="description">
+              <xs:annotation>
+                <xs:documentation>of the features of the archaeological monuments, historic buildings, industrial monuments, archaeological landscape areas, shipwreck, artefact or ecofact.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="actors" type="actors">
+              <xs:annotation>
+                <xs:documentation>the actors involved with this monument, may be repeated.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="designations">
+              <xs:annotation>
+                <xs:documentation xml:lang="en">This is information about any designations for a monument or building which provide it with protection in law.  There may be more than one designation. </xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="protectionType">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">the type of designation or protection.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:attribute name="lang" use="required" />
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="grade">
+                    <xs:annotation>
+                      <xs:documentation>the grade or level of protection.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:attribute name="lang" />
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element minOccurs="1" maxOccurs="1" name="dateFrom" type="xs:date">
+                    <xs:annotation>
+                      <xs:documentation>the date from which the protection came into force.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="dateTo" type="xs:date">
+                    <xs:annotation>
+                      <xs:documentation>the date until which the monument is protected.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="conditions">
+              <xs:annotation>
+                <xs:documentation>This is information about the condition of a monument or building. The element is repeatable.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element maxOccurs="1" name="condition">
+                    <xs:annotation>
+                      <xs:documentation>the observed condition (e.g. good, fair, bad, poor, part destroyed, under restoration.)</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element maxOccurs="1" name="conditionAssessment">
+                    <xs:annotation>
+                      <xs:documentation>A detailed assessment of the condition of a Heritage Asset and any treatment required and an estimation of the percentage of the monument affected. </xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element maxOccurs="1" name="conditionDate">
+                    <xs:annotation>
+                      <xs:documentation>the date when the assessment of condition was made.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="relations">
+                    <xs:annotation>
+                      <xs:documentation>to an associated event/activity.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:attribute name="id" />
+                      <xs:attribute name="url" />
+                    </xs:complexType>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" name="characters">
+              <xs:annotation>
+                <xs:documentation>This is a set of index information to describe the character of the monument</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element maxOccurs="1" name="heritageAssetType">
+                    <xs:annotation>
+                      <xs:documentation>classification of the monument, building, landscape feature, artefact or ecofact primarily with respect to its function or use, e.g. house. Use of a controlled vocabulary is recommended, and the vocabulary used may be indicated using an attribute. No particular common vocabulary is recommended for use.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:attribute name="term" />
+                      <xs:attribute name="namespace">
+                        <xs:annotation>
+                          <xs:documentation>this is the name/location of the controlled vocabulary from which the term is taken.</xs:documentation>
+                        </xs:annotation>
+                      </xs:attribute>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element minOccurs="1" maxOccurs="1" name="temporal" type="temporal">
+                    <xs:annotation>
+                      <xs:documentation>(see section 11)</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="materials">
+                    <xs:annotation>
+                      <xs:documentation>the basic materials of which a monument is composed, e.g. brick, stone, tile. Use of a controlled vocabulary is recommended, and the vocabulary used may be indicated using an attribute. No particular common vocabulary is recommended for use.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="inscriptions">
+                    <xs:annotation>
+                      <xs:documentation>text inscribed on a monument or building, if any. The element may be repeated using the XML:lang attribute if the element value is available in alternate languages. A preferred/alternate attribute may be used to indicate which value is preferred. The type of inscription may be indicated using an attribute. Use of a controlled vocabulary to indicate the type of inscription is recommended, and the vocabulary used may be indicated using an attribute. No particular common vocabulary is recommended for use.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:attribute name="lang" />
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element minOccurs="1" name="dimensions">
+                    <xs:complexType>
+                      <xs:all>
+                        <xs:element minOccurs="1" maxOccurs="1" name="measurementType">
+                          <xs:annotation>
+                            <xs:documentation>e.g. height, length, width, depth, shape (e.g. oval)</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element minOccurs="1" name="units">
+                          <xs:annotation>
+                            <xs:documentation>e.g. metres, centimetres</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element minOccurs="1" name="scale" />
+                        <xs:element minOccurs="1" name="value" />
+                      </xs:all>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="craft">
+                    <xs:annotation>
+                      <xs:documentation>– this is a set of information to describe shipwrecks if any</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:all>
+                        <xs:element name="placeOfRegistration">
+                          <xs:annotation>
+                            <xs:documentation>of the ship</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element maxOccurs="1" name="nationality">
+                          <xs:annotation>
+                            <xs:documentation>of the ship</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="constructionMethod">
+                          <xs:annotation>
+                            <xs:documentation>of the ship</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element maxOccurs="1" name="propulsion">
+                          <xs:annotation>
+                            <xs:documentation>of the ship</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element maxOccurs="1" name="lastJourneyDetails">
+                          <xs:annotation>
+                            <xs:documentation>of the ship</xs:documentation>
+                          </xs:annotation>
+                          <xs:complexType>
+                            <xs:all>
+                              <xs:element maxOccurs="1" name="departure">
+                                <xs:annotation>
+                                  <xs:documentation>Port of departure</xs:documentation>
+                                </xs:annotation>
+                              </xs:element>
+                              <xs:element name="destination">
+                                <xs:annotation>
+                                  <xs:documentation>Port of destination</xs:documentation>
+                                </xs:annotation>
+                              </xs:element>
+                              <xs:element name="cargo">
+                                <xs:annotation>
+                                  <xs:documentation>of the ship</xs:documentation>
+                                </xs:annotation>
+                              </xs:element>
+                              <xs:element name="mannerOfLoss">
+                                <xs:annotation>
+                                  <xs:documentation>how the ship was lost </xs:documentation>
+                                </xs:annotation>
+                              </xs:element>
+                              <xs:element name="dateOfLoss">
+                                <xs:annotation>
+                                  <xs:documentation>when the ship was lost </xs:documentation>
+                                </xs:annotation>
+                              </xs:element>
+                            </xs:all>
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="dimensions">
+                          <xs:annotation>
+                            <xs:documentation>of the ship</xs:documentation>
+                          </xs:annotation>
+                          <xs:complexType>
+                            <xs:all>
+                              <xs:element minOccurs="1" maxOccurs="1" name="measurementType" />
+                              <xs:element minOccurs="1" name="units" />
+                              <xs:element minOccurs="1" name="scale" />
+                              <xs:element minOccurs="1" name="value" />
+                            </xs:all>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:all>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element minOccurs="1" maxOccurs="1" name="repositoryLocation">
+                    <xs:annotation>
+                      <xs:documentation>identification of the institution with custody of the artefact and possibly the current location.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="references">
+              <xs:annotation>
+                <xs:documentation>these are sources of information about the heritage asset in publications and archival sources (for example, photographs, drawings, plans, bibliographic references etc.). Digital objects (image, text, video, audio, 3D model, etc.) which are accessible online and will represent the asset in Europeana should be describe as Digital Resources, not References. </xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element minOccurs="1" maxOccurs="1" name="recordInformation" type="recordInformation" />
+                  <xs:element minOccurs="1" name="appellation" type="appellation">
+                    <xs:annotation>
+                      <xs:documentation>the ID and name given to the information source. </xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="1" name="actor" type="actors">
+                    <xs:annotation>
+                      <xs:documentation>(creator, author, contributor, editor, etc.)</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="1" maxOccurs="1" name="type">
+                    <xs:annotation>
+                      <xs:documentation>(archive, file, record, book, chapter, article etc.) Use of a controlled vocabulary is recommended, and the vocabulary used may be indicated using an attribute. No particular common vocabulary is recommended for use.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element maxOccurs="1" name="medium">
+                    <xs:annotation>
+                      <xs:documentation>the medium or physical carrier of the resource.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element maxOccurs="1" name="extent">
+                    <xs:annotation>
+                      <xs:documentation>the size or extent of the resource</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="rights" />
+                  <xs:element minOccurs="1" name="publicationStatement" type="publicationStatement" />
+                  <xs:element name="subject">
+                    <xs:annotation>
+                      <xs:documentation>the topic of the resource. Use of a controlled vocabulary is recommended, and the vocabulary used may be indicated using an attribute. No particular common vocabulary is recommended for use.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element maxOccurs="1" name="note" />
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="relations" type="relations">
+              <xs:annotation>
+                <xs:documentation>of the heritage asset to other heritage assets, resources, events etc.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="digitalResource">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">holds the metadata about a digital resource.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="digitalResource">
+        <xs:annotation>
+          <xs:documentation>These are digital resources (image, text, video, audio, 3D model) that are being made accessible to the service environment (e.g. CARARE, Europeana).  Use this to describe those digital objects which will represent a heritage asset in Europeana. (And use Reference under Heritage Asset to describe other sources of information about the asset, e.g. bibliographic references or analogue representations of the object.)</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element minOccurs="1" maxOccurs="1" name="recordInformation" type="recordInformation">
+              <xs:annotation>
+                <xs:documentation>The ID, language, creation information and other metadata describing the record. The ID element of this information block holds the ID assigned by the content provider, cf. section 8.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="appellation" type="appellation">
+              <xs:annotation>
+                <xs:documentation>the ID and the name given to the information source (see section 11).</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="actor" type="actors">
+              <xs:annotation>
+                <xs:documentation>The actors involved in the creation of a digital resource</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="format">
+              <xs:annotation>
+                <xs:documentation>the file format of the resource. Recommended best practice is to use a controlled vocabulary such as the list of Internet Media Types (MIME).</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="formatDetails">
+              <xs:annotation>
+                <xs:documentation>Additional information about the file or its production that could be of use in selecting an appropriate viewer for the resource, such as specific codecs used.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="medium">
+              <xs:annotation>
+                <xs:documentation>the medium or physical carrier of the resource.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="extent">
+              <xs:annotation>
+                <xs:documentation>the size or extent of the resource, including the unit of measurement.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="subject">
+              <xs:annotation>
+                <xs:documentation>the topic of the resource. Use of a controlled vocabulary such as Getty Arts and Architecture thesaurus is recommended, and the vocabulary used may be indicated using an attribute.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="spatial" type="spatial">
+              <xs:annotation>
+                <xs:documentation>the spatial characteristics of the digital resource (as opposed to the heritage asset it might represent).</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="temporal" type="temporal">
+              <xs:annotation>
+                <xs:documentation>use for dates associated with the topic of the resource, e.g. for digitised copies of historic photographs use for the date when the original photograph was taken (the date of the view of the monument) (see section 11).</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="publicationStatement" type="publicationStatement">
+              <xs:annotation>
+                <xs:documentation>(see section 11)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="type">
+              <xs:annotation>
+                <xs:documentation>The nature or genre of the resource. Use of the DCMI controlled vocabulary is recommended, and the vocabulary used may be indicated using an attribute.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" name="description" type="description">
+              <xs:annotation>
+                <xs:documentation>The description of the resource, e.g. describe the view of the monument.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="note" />
+            <xs:element maxOccurs="1" name="created">
+              <xs:annotation>
+                <xs:documentation>this is the date when the resource was created</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" name="provenance">
+              <xs:annotation>
+                <xs:documentation>A statement of any changes in ownership and custody of the resource since its creation that are significant for its authenticity, integrity, and interpretation.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="language">
+              <xs:annotation>
+                <xs:documentation>use for the language of the resource, e.g. the language sub-titles or a voice-over in a movie or a Virtual Reality model of a monument. Specified (like the xml:lang attribute) using ISO 639-1:2002, i.e. standard two letter language codes (en, fr, etc.).</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="lang" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="1" name="link">
+              <xs:annotation>
+                <xs:documentation>the URL of the resource. A reference to the digital object on the content provider’s web site in the best available resolution/quality. (i.e. a link to the resource as a text, image, sound, or video file, not to the webpage that contains it.) Data here will allow the full functionality of Europeana and the automatic generation of a thumbnail by them.
+Object (source = ESE v3.3) – a URL containing a thumbnail or other reduced-quality version of the resource.
+IsShownAt (source = ESE v3.3) – A URL to the digital object on the content provider’s website in its full information context.
+
+</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" name="object" />
+            <xs:element maxOccurs="1" name="isShownAt" />
+            <xs:element minOccurs="1" name="resourceMetadataLocation">
+              <xs:annotation>
+                <xs:documentation>pointer to other information about the resource making the resource available</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="relations" type="relations">
+              <xs:annotation>
+                <xs:documentation>to heritage assets, other resources or to references.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="rights" type="rights" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="activity">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This is information about the events or activities that the monument has taken part in, for example: Field investigation; Research and analysis; Creation; Change in use; Historical events, etc. Source = MIDAS + POLIS DTD.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="activity">
+        <xs:complexType>
+          <xs:all>
+            <xs:element minOccurs="1" maxOccurs="1" name="recordInformation" type="recordInformation">
+              <xs:annotation>
+                <xs:documentation>The ID, language, creation information and other metadata describing the record. The ID element of this information block holds the ID assigned by the content provider, cf. section 8.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="appellation" type="appellation">
+              <xs:annotation>
+                <xs:documentation>This is the name of the event.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" name="description" type="description">
+              <xs:annotation>
+                <xs:documentation>of the event or activity which took place.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="actors" type="actors">
+              <xs:annotation>
+                <xs:documentation>the people or organisations involved in this event, may be repeated.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="eventType">
+              <xs:annotation>
+                <xs:documentation>classification of the type of event or activity which took place, e.g. survey, archaeological excavation, rebuilding. Use of a controlled vocabulary is recommended.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="term" />
+                <xs:attribute name="namespace">
+                  <xs:annotation>
+                    <xs:documentation>this is the name/location of the controlled vocabulary from which the term is taken.</xs:documentation>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="1" name="temporal" type="temporal">
+              <xs:annotation>
+                <xs:documentation>the date or time span of the event.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" name="spatial" type="spatial">
+              <xs:annotation>
+                <xs:documentation>the location or area covered by the event.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="assessments">
+              <xs:annotation>
+                <xs:documentation>assessments made of the monument during the event, e.g. of the condition of the monument.  Use of a controlled vocabulary is recommended.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="term" />
+                <xs:attribute name="namespace">
+                  <xs:annotation>
+                    <xs:documentation>this is the name/location of the controlled vocabulary from which the term is taken.</xs:documentation>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="eventMethod">
+              <xs:annotation>
+                <xs:documentation>the method by which the event is carried out</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="materialsAndTechniques">
+              <xs:annotation>
+                <xs:documentation>the materials and/or techniques used during the event. Use of a controlled vocabulary is recommended, and the vocabulary used may be indicated using an attribute. No particular common vocabulary is recommended for use.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="relations" type="relations">
+              <xs:annotation>
+                <xs:documentation>of the event to other events, references, resources etc.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <xs:complexType name="recordInformation">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">The ID, language, creation information and other metadata describing the record. The ID element of this information block holds the ID assigned by the content provider, cf. section 8. </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element minOccurs="1" maxOccurs="1" name="id">
+        <xs:annotation>
+          <xs:documentation>i.e. the local ID number in the content providers’ information system; it is unique within the collection, but may follow any schema.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="1" name="type">
+        <xs:annotation>
+          <xs:documentation>of the record. Use of a controlled vocabulary is recommended, and the vocabulary used may be indicated using an attribute. No particular common vocabulary is recommended for use.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="source">
+        <xs:annotation>
+          <xs:documentation>of the record (the name of the organisation that maintains the record)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="creation">
+        <xs:annotation>
+          <xs:documentation>when created and who by;</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element minOccurs="1" maxOccurs="1" name="actor" type="actors" />
+            <xs:element name="date" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="update">
+        <xs:annotation>
+          <xs:documentation>the date of the last update to the record and who by</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element minOccurs="1" maxOccurs="1" name="actor" type="actors" />
+            <xs:element name="date" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="1" name="language">
+        <xs:annotation>
+          <xs:documentation>(of the metadata record). Specifies the default language of the record; deviations in particular elements are specified using the xml:lang attribute where allowed. Specified (like the xml:lang attribute) using ISO 639-1:2002, i.e. standard two letter language codes (en, fr, etc.).</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="lang" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="rights" type="rights">
+        <xs:annotation>
+          <xs:documentation>to the metadata</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="keywords">
+        <xs:annotation>
+          <xs:documentation>for the record. The element may be repeated using the XML:lang attribute if the element value is available in alternate languages. Use of a controlled vocabulary such as Getty Arts and Architecture Thesaurus is recommended, and the vocabulary used may be indicated using an attribute.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="lang" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="rights">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Information about the rights associated with the object, metadata and the
+digital surrogate being harvested into the service environment based on MIDAS Heritage.  </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="copyright">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="rightsHolder" />
+            <xs:element name="rightsDates" />
+            <xs:element name="creditLine">
+              <xs:annotation>
+                <xs:documentation>(statement)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="accessRights">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="grantedTo" />
+            <xs:element name="conditions" />
+            <xs:element maxOccurs="1" name="dateFrom" type="xs:date" />
+            <xs:element maxOccurs="1" name="dateTo" type="xs:date" />
+            <xs:element name="statement" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="reproductionRights">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="statement" />
+            <xs:element name="contacts" />
+            <xs:element name="fees" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="licence">
+        <xs:annotation>
+          <xs:documentation>a URI indicating a license or conditions for the use of the object or data, e.g. a Creative Commons license  or the public domain mark . Use as an alternative or supplement to the information above.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="appellation">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This is information about the identifier (ID) and name of the monument (see section 11). The ID sub-element is the record ID in the CARARE repository and will be generated by CARARE on ingest. The name sub-element may be repeated if a monument is known by more than one name, using the XML:lang attribute if the names are in alternate languages. A preferred/alternate attribute may be used to indicate which name is preferred. </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element minOccurs="1" maxOccurs="1" name="id">
+        <xs:annotation>
+          <xs:documentation>an identifier of an object. An attribute type should be accompany this sub-element denoting the type of the identifier (URI, ISBN, etc,) The element may be repeated.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" name="name">
+        <xs:annotation>
+          <xs:documentation>this is the name of the entity. The element may be repeated using the XML:lang attribute if the element value is available in alternate languages. A preferred/alternate attribute may be used to indicate which value is preferred.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="lang" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="temporal">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Information about the date and/or period of an entity.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="timeSpan">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="startDate">
+              <xs:annotation>
+                <xs:documentation>the earliest date in the range</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="startDate" type="xs:date" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="endDate">
+              <xs:annotation>
+                <xs:documentation>the latest date in the range</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="endDate" type="xs:date" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dimension" />
+            <xs:element name="dateRangeQualifier">
+              <xs:annotation>
+                <xs:documentation>the nature of the time span given (e.g. throughout, at some time during, etc.) Use of a controlled vocabulary is recommended, and the vocabulary used may be indicated using an attribute. No particular common vocabulary is recommended for use.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="namespace" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="language">
+              <xs:complexType>
+                <xs:attribute name="lang" />
+              </xs:complexType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="periodName">
+        <xs:annotation>
+          <xs:documentation>the name given to the period in history when something occurred. The element may be repeated using the XML:lang attribute if the element value is available in alternate languages. A preferred/alternate attribute may be used to indicate which value is preferred. </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="lang" use="required" />
+          <xs:attribute name="preferred" type="xs:boolean" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="displayDate">
+        <xs:annotation>
+          <xs:documentation>a free text field used to display the date or period for users (e.g. early 19th century, 1950s). The element may be repeated using the XML:lang attribute if the element value is available in alternate languages. A preferred/alternate attribute may be used to indicate which value is preferred.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="lang" use="required" />
+          <xs:attribute name="preferred" type="xs:boolean" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="scientificDate">
+        <xs:annotation>
+          <xs:documentation>date according to scientific dating methods, e.g. ‘1250 bp +/-30 PBN-1675’, recorded precisely as received from the specialist.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="scientificDateMethod">
+        <xs:annotation>
+          <xs:documentation>e.g. ‘radiocarbon dating’. Use of a controlled vocabulary is recommended, and the vocabulary used may be indicated using an attribute. No particular common vocabulary is recommended for use.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="spatial">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Information about locations or positions in space.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element minOccurs="1" maxOccurs="1" name="locationSet">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="namedLocation">
+              <xs:annotation>
+                <xs:documentation>the name of a place or location which is relevant to the entity being described, for example ‘Lake Windermere’. The element may be repeated using the XML:lang attribute if the element value is available in alternate languages. A preferred/alternate attribute may be used to indicate which value is preferred. Use of a controlled vocabulary such as http://www.geonames.org/ is recommended, and the vocabulary used may be indicated using an attribute.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="lang" use="required" />
+                <xs:attribute name="preferred" type="xs:boolean" />
+                <xs:attribute name="namespace" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" name="address" type="address">
+              <xs:annotation>
+                <xs:documentation>the postal address</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="geopoliticalArea">
+              <xs:annotation>
+                <xs:documentation>the name of an administrative region which does not form part of the address, for example Scotland, England, Tuscany etc. May also be used for a historical geopolitical area, or an administrative unit (e.g. as defined in the INSPIRE directive).</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="geopoliticalAreaType">
+              <xs:annotation>
+                <xs:documentation>Use of a controlled vocabulary such as http://www.geonames.org/ is recommended, and the vocabulary used may be indicated using an attribute.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="namespace" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" name="cadastralReference">
+              <xs:complexType>
+                <xs:attribute name="ref" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="1" name="historicalName">
+              <xs:annotation>
+                <xs:documentation>The element may be repeated using the XML:lang attribute if the element value is available in alternate languages. A preferred/alternate attribute may be used to indicate which value is preferred.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="lang" use="required" />
+                <xs:attribute name="period" />
+              </xs:complexType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element maxOccurs="1" name="cartographicReference">
+        <xs:complexType>
+          <xs:all>
+            <xs:element minOccurs="1" maxOccurs="1" name="spatialFeatureType">
+              <xs:annotation>
+                <xs:documentation>(how a feature is depicted in a GIS, e.g. point, line, polygon, multi-point, multi-line, multi-polygon). Use of a controlled vocabulary is recommended, and the vocabulary used may be indicated using an attribute. No particular common vocabulary is recommended for use.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="coordinates">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element minOccurs="1" maxOccurs="1" name="x" type="xs:decimal" />
+                  <xs:element minOccurs="1" maxOccurs="1" name="y" type="xs:decimal" />
+                  <xs:element minOccurs="1" maxOccurs="1" name="z" type="xs:decimal" />
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="geometry">
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" name="boundingBox">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element minOccurs="1" maxOccurs="1" name="minX" />
+                  <xs:element minOccurs="1" maxOccurs="1" name="maxX" />
+                  <xs:element minOccurs="1" maxOccurs="1" name="minY" />
+                  <xs:element minOccurs="1" maxOccurs="1" name="maxY" />
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" name="quickpoint">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element minOccurs="1" maxOccurs="1" name="x" type="xs:decimal" />
+                  <xs:element minOccurs="1" maxOccurs="1" name="y" type="xs:decimal" />
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" name="entity">
+              <xs:annotation>
+                <xs:documentation>GML, Well-known text (WKT).</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" name="storedPrecision">
+              <xs:annotation>
+                <xs:documentation>delivery precision (the precision of a coordinate as stored in the system, and as delivered to users).</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" name="height" type="xs:decimal">
+              <xs:annotation>
+                <xs:documentation>datum, units</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" name="area">
+              <xs:annotation>
+                <xs:documentation>units</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element maxOccurs="1" name="representations">
+        <xs:annotation>
+          <xs:documentation>how a feature is represented on a map</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="address">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This is the postal address for a building, contact, etc.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element maxOccurs="1" name="buildingName">
+        <xs:complexType>
+          <xs:attribute name="lang" />
+          <xs:attribute name="authority" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element maxOccurs="1" name="roadNumber">
+        <xs:annotation>
+          <xs:documentation>the number in a road or street used to identify a property</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="lang" />
+          <xs:attribute name="authority" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element maxOccurs="1" name="roadName" />
+      <xs:element minOccurs="1" maxOccurs="1" name="city">
+        <xs:complexType>
+          <xs:attribute name="lang" />
+          <xs:attribute name="authority" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element maxOccurs="1" name="postcode">
+        <xs:complexType>
+          <xs:attribute name="lang" />
+          <xs:attribute name="authority" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element maxOccurs="1" name="locality">
+        <xs:annotation>
+          <xs:documentation>a named area within which a monument or building lies</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="lang" />
+          <xs:attribute name="authority" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element maxOccurs="1" name="adminArea">
+        <xs:annotation>
+          <xs:documentation>the name by which an administrative area is known, e.g. Shropshire</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="lang" />
+          <xs:attribute name="authority" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="country">
+        <xs:complexType>
+          <xs:attribute name="lang" />
+          <xs:attribute name="authority" />
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="actors">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">the actors involved with this monument, may be repeated.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element minOccurs="1" maxOccurs="1" name="id" />
+      <xs:element minOccurs="1" name="name">
+        <xs:annotation>
+          <xs:documentation>the name of the person or organisation)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" name="actorType">
+        <xs:annotation>
+          <xs:documentation>indicates whether the actor is an individual, a group of individuals or an organisation.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="lang" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="1" name="roles">
+        <xs:annotation>
+          <xs:documentation>the roles of the actor (creator, custody, repository, curator, architect, sculptor, photographer, compiler, etc.) Use of a controlled vocabulary such as Getty Arts and Architecture thesaurus is recommended, and the vocabulary used may be indicated using an attribute.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="lang" />
+          <xs:attribute name="namespace" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="contact">
+        <xs:annotation>
+          <xs:documentation>contact information if known</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="vitalDates">
+        <xs:annotation>
+          <xs:documentation>date of birth, date of death if known.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="birthDate" />
+            <xs:element name="deathDate" />
+            <xs:element name="type" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="placeOfBirth">
+        <xs:annotation>
+          <xs:documentation>Use of a controlled vocabulary such as http://www.geonames.org/ is recommended, and the vocabulary used may be indicated using an attribute.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="namespace" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="placeOfDeath">
+        <xs:annotation>
+          <xs:documentation>Use of a controlled vocabulary such as http://www.geonames.org/ is recommended, and the vocabulary used may be indicated using an attribute.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="namespace" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="placeOfActivity">
+        <xs:annotation>
+          <xs:documentation>Use of a controlled vocabulary such as http://www.geonames.org/ is recommended, and the vocabulary used may be indicated using an attribute.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="namespace" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="bibliographicalNote">
+        <xs:annotation>
+          <xs:documentation>The element may be repeated using the XML:lang attribute if the element value is available in alternate languages. A preferred/alternate attribute may be used to indicate which value is preferred.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="lang" use="required" />
+          <xs:attribute name="preferred" type="xs:boolean" />
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="contacts">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Information about how a person or organisation can be contacted</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="name">
+        <xs:annotation>
+          <xs:documentation>title, first name, last name, other name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="role">
+        <xs:annotation>
+          <xs:documentation>the particular role played by the person or organisation</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="organization" />
+      <xs:element name="address">
+        <xs:annotation>
+          <xs:documentation>the postal address of the person or organisation</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="phone" />
+      <xs:element name="fax" />
+      <xs:element name="email" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="description">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">The element may be repeated using the XML:lang attribute if the element value is available in alternate languages. A preferred/alternate attribute may be used to indicate which value is preferred.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="lang" use="required" />
+    <xs:attribute name="preferred" type="xs:boolean" />
+    <xs:attribute name="type" />
+  </xs:complexType>
+  <xs:complexType name="publicationStatement">
+    <xs:annotation>
+      <xs:documentation xml:lang="en" />
+    </xs:annotation>
+    <xs:all>
+      <xs:element minOccurs="1" name="publisher" />
+      <xs:element name="place">
+        <xs:annotation>
+          <xs:documentation>of publication</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="date">
+        <xs:annotation>
+          <xs:documentation>of publication</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="relations">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This is information about the relations between heritage assets, events or resources and other entities
+
+•	The type of relation, for example ‘is successor of’, ‘is next in sequence’, ‘has part’.
+•	The target of the relation (the ID number of the related heritage asset, event or resource)
+
+The relations which are included in the Europeana Data Model are as follows:
+
+•	Is Derivative Of – a version of another resource
+•	Is Next In Sequence – the ordered parts of a resource, e.g. the pages in a book or an ordered sequence of 3D models showing the change of a monument over time.
+•	Is Related To – a general relationship between objects
+•	Is Representation Of – associates an information resource to the object that it represents, e.g. a digital image is a representation of the monument which is the target of the relation. We use it in the CARARE schema to associate a heritage asset and a Digital Resource
+•	Is Successor Of – the relation between the continuation of a resource and that resource, e.g. a church is successor of an earlier church on the same site.
+•	Occurred At – associates an event to the smallest known time span that overlaps with the occurrence of that event.
+•	Happened At – relates a place to the events which happened at that place.
+•	Was Present At – this relation associates the people, things or information sources with the Event that they were present at.
+•	Has Part – used for objects that incorporate other objects, e.g. a monument made up of smaller monuments or a site with a number of monuments.
+
+Additional CARARE properties:
+
+•	hasEvent – associates a heritage asset with an Activity.
+•	Is Replica of – used for heritage assets that replicate other heritage assets, including scale models.
+•	Is In Front Of – a spatial relationship signifying the relative position of one monument to another.
+•	Is Behind – a spatial relationship signifying the relative position of one monument to another.
+•	Is Above – a spatial relationship signifying the relative position of one monument to another.
+•	Is Below – a spatial relationship signifying the relative position of one monument to another.
+•	Is North Of – a spatial relationship signifying the relative position of one monument to another.
+•	Is South Of – a spatial relationship signifying the relative position of one monument to another.
+•	Is East Of – a spatial relationship signifying the relative position of one monument to another.
+•	Is West Of – a spatial relationship signifying the relative position of one monument to another.
+•	Same As (source = OWL) – indicates that the two participants in the relation actually refer to the same thing.
+</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element minOccurs="1" maxOccurs="1" name="type" />
+      <xs:element minOccurs="1" maxOccurs="1" name="target" />
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

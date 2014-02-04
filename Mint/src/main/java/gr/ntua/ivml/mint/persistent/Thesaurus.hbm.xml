@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="gr.ntua.ivml.mint.persistent.Thesaurus" table="thesauri">
+	    <id name="dbID" column="thesauri_id">
+		    <generator class="sequence">
+		    	<param name="sequence">seq_thesauri_id</param>
+		    </generator>
+	    </id>
+          
+        
+	    <property name="url" column="url" />
+	    <property name="description" column="description" />
+	    <property name="title" column="title" />
+
+	    <property name="contactPerson" column="contact" />
+	    <property name="uploadDate"  column="upload_date" />
+	    <property name="filename" column="filename" />
+	    <property name="contentType" column="content_type" />
+	    
+		<many-to-one name="organization"
+	        class="gr.ntua.ivml.mint.persistent.Organization"
+	     	column="organization_id" not-null="true"/>
+	     	
+	    <many-to-one name="file"
+	        class="gr.ntua.ivml.mint.persistent.BlobWrap"
+	        cascade="all"
+	     	column="blob_id"
+	     	unique="true"
+	     	not-null="false"/>
+	    
+   </class>
+</hibernate-mapping>

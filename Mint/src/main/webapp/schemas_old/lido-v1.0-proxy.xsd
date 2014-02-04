@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSpy v2008 rel. 2 (http://www.altova.com) by mazuki (darksiderg) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:lido="http://www.lido-schema.org" targetNamespace="http://www.lido-schema.org" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:redefine schemaLocation="lido-v1.0.xsd">
+		<xsd:complexType name="eventComplexType">
+			<xsd:complexContent>
+				<xsd:restriction base="lido:eventComplexType">
+					<xsd:sequence>
+						<xsd:element name="eventID" type="lido:identifierComplexType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="eventType" type="lido:customConcept"/>
+			<xsd:element name="roleInEvent" type="lido:conceptComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Definition: The role played within this event by the described entity. </xsd:documentation>
+					<xsd:documentation>How to record: Preferably taken from a published controlled vocabulary. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="eventName" type="lido:appellationComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Definition: An appellation for the event, e.g. a title, identifying phrase, or name given to it.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="eventActor" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Definition: Wrapper for display and index elements for an actor with role information (participating or being present in the event).</xsd:documentation>
+					<xsd:documentation>How to record: For multiple actors repeat the element.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:actorInRoleSetComplexType">
+							<xsd:attribute ref="lido:sortorder"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="culture" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Definition: Name of a culture, cultural context, people, or also a nationality. </xsd:documentation>
+					<xsd:documentation>How to record: Preferably using a controlled vocabuarly. </xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:conceptComplexType">
+							<xsd:attribute ref="lido:sortorder"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="eventDate" type="lido:dateSetComplexType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Definition: Date specification of the event.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="periodName" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Definition: A period in which the event happened. </xsd:documentation>
+					<xsd:documentation>How to record: Preferably taken from a published controlled vocabulary. Repeat this element only for indicating an earliest and latest period delimiting the event. </xsd:documentation>
+					<xsd:documentation>Notes: Period concepts have delimiting character in time and space. </xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:conceptComplexType">
+							<xsd:attribute ref="lido:type">
+								<xsd:annotation>
+									<xsd:documentation>How to record: Data values may be: earliestPeriod, latestPeriod.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+							<xsd:attribute ref="lido:sortorder"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="eventPlace" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Definition: Place specification of the event.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:placeSetComplexType">
+							<xsd:attribute ref="lido:type">
+								<xsd:annotation>
+									<xsd:documentation>How to record: Data values may be: moveFrom, moveTo, alternative.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+							<xsd:attribute ref="lido:sortorder"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="eventMethod" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Definition: The method by which the event is carried out. </xsd:documentation>
+					<xsd:documentation>How to record: Preferably taken from a published controlled vocabulary.</xsd:documentation>
+					<xsd:documentation>Notes: Used e.g. for SPECTRUM Units of Information "field collection method", "acquisition method".</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:conceptComplexType">
+							<xsd:attribute ref="lido:sortorder"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="eventMaterialsTech" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Definition: Indicates the substances or materials used within the event (e.g. the creation of an object / work), as well as any implements, production or manufacturing techniques, processes, or methods incorporated.</xsd:documentation>
+					<xsd:documentation>How to record: Will be used most often within a production event, but also others such as excavation, restoration, etc. </xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:materialsTechSetComplexType">
+							<xsd:attribute ref="lido:sortorder"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="thingPresent" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Definition: References another object that was present at this same event.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:objectSetComplexType">
+							<xsd:attribute ref="lido:sortorder"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="relatedEventSet" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Definition: References an event which is linked in some way to this event, e.g. a field trip within which this object was collected. </xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:relatedEventSetComplexType">
+							<xsd:attribute ref="lido:sortorder"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="eventDescriptionSet" type="lido:descriptiveNoteComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Definition: Wrapper for a description of the event, including description identifer, descriptive note of the event and its sources. </xsd:documentation>
+					<xsd:documentation>How to record: If there is more than one descriptive note, repeat this element.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			</xsd:sequence>
+				</xsd:restriction>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:redefine>
+	<xsd:complexType name="customTerm">
+		<xsd:simpleContent>
+			<xsd:restriction base="lido:termComplexType">
+				<xsd:enumeration value="Acquisition"/>
+				<xsd:enumeration value="Collecting"/>
+				<xsd:enumeration value="Commisioning"/>
+				<xsd:enumeration value="Creation"/>
+				<xsd:enumeration value="Designing"/>
+				<xsd:enumeration value="Destruction"/>
+				<xsd:enumeration value="Excavation"/>
+				<xsd:enumeration value="Exhibition"/>
+				<xsd:enumeration value="Finding"/>
+				<xsd:enumeration value="Loss"/>
+				<xsd:enumeration value="Modification"/>
+				<xsd:enumeration value="Move"/>
+				<xsd:enumeration value="Part addition"/>
+				<xsd:enumeration value="Part removal"/>
+				<xsd:enumeration value="Performance"/>
+				<xsd:enumeration value="Planning"/>
+				<xsd:enumeration value="Production"/>
+				<xsd:enumeration value="Provenance"/>
+				<xsd:enumeration value="Publication"/>
+				<xsd:enumeration value="Restoration"/>
+				<xsd:enumeration value="Transformation"/>
+				<xsd:enumeration value="Type assignment"/>
+				<xsd:enumeration value="Type creation"/>
+				<xsd:enumeration value="Use"/>
+				<xsd:enumeration value="(Non-specified)"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="customConcept">
+		<xsd:complexContent>
+			<xsd:restriction base="lido:conceptComplexType">
+				<xsd:sequence>
+					<xsd:element name="conceptID" type="lido:identifierComplexType" minOccurs="0"/>
+					<xsd:element name="term" type="lido:customTerm" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

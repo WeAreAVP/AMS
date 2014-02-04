@@ -1,0 +1,960 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/EDMSchemaV9"
+	xmlns:tns="http://www.example.org/EDMSchemaV9"
+	elementFormDefault="qualified">
+
+	
+
+    <complexType name="SimpleLiteral">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="lang" type="language"></attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="PhysicalThingType">
+		<annotation>
+			<documentation>A persistent physical item such as a painting, a building, a book or a stone.
+Persons are not items. This class represents Cultural Heritage Objects known
+to Europeana to be physical things (such as Mona Lisa) as well as all physical
+things Europeana refers to in the descriptions of Cultural Heritage Objects
+(such as the Rosetta Stone).
+
+Example:the Venus by Praxiteles,any non-digital Cultural Heritage Object, the House of Parliament
+			</documentation>
+		</annotation>
+		<sequence>
+		    <element name="identifier" type="tns:Resource" maxOccurs="1" minOccurs="1">
+		    	<annotation>
+		    		<documentation>The physical thing identifier.
+
+Type: Resource</documentation>
+		    	</annotation></element>
+			<element name="type" type="tns:SimpleLiteral" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>The type of the physicalThing
+
+Example: String</documentation>
+				</annotation></element>
+			<element name="realizes" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+                <annotation>
+                	<documentation>A relation between an information realization and the information resource it
+realizes.
+
+Example: Gutenberg’s edition realizes the Bible
+Type: anyURI</documentation>
+                </annotation>
+			</element>
+			<element name="currentLocation" type="tns:PlaceType"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>The geographic location and/or name of the repository, building, site, or other
+entity whose boundaries presently include the resource.
+
+Type: Place</documentation>
+				</annotation>
+			</element>
+		</sequence>
+
+	</complexType>
+
+	<element name="Aggregation" type="tns:AggregationType"></element>
+
+
+	<complexType name="AggregationWrapType">
+      <sequence>
+        <element name="Aggregation" type="tns:AggregationType" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+    
+    <element name="AggregationWrap" type="tns:AggregationWrapType">
+    
+    </element>
+
+	<complexType name="WebResourceType">
+		<annotation>
+			<documentation>
+				For every WebResourceType we make an instance of
+				edm:WebResource (WebResourceInst)
+
+				Relations EDMObjectInst edm:hasView WebResourceInst
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="resourceUri" type="anyURI" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="isRepresentationOf"
+				type="tns:PhysicalThingType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The physicalThing is the pshysical thing of the
+						EDMObjectType
+					</documentation>
+				</annotation>
+			</element>
+			<element name="isSimilarTo" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+
+
+
+	<complexType name="EventType">
+		<annotation>
+			<documentation>An event is a change “of states in cultural, social or physical systems,
+regardless of scale, brought about by a series or group of coherent physical,
+cultural, technological or legal phenomena” (E5 Event in CIDOC CRM) or a
+“set of coherent phenomena or cultural manifestations bounded in time and
+space” (E4 Period in CIDOC CRM)
+
+Example:the act of painting Mona Lisa, the 2nd World War, the change of custody of Mona Lisa</documentation>
+		</annotation>
+		<sequence>
+            <element name="happenedAt" type="tns:PlaceType" maxOccurs="1" minOccurs="1">
+                <annotation>
+                	<documentation>This property associates an event with the place at which the event
+happened.
+
+Example: The creation of Mona Lisa happened at Florence.
+The excavation of the Egyptian Amphora L2409 happened at Heraklion, Crete.
+Type: edm:Place</documentation>
+                </annotation>
+            </element>
+            <element name="occuredAt" type="tns:TimeSpanType" maxOccurs="1" minOccurs="1">
+                <annotation>
+                	<documentation>This property associates an event to the smallest known time span that
+overlaps with the occurrence of that event
+
+Example: The creation of Mona Lisa occurred at 1503 - 1506
+Type: edm:TimeSpan</documentation>
+                </annotation>
+            </element>
+            <element name="agentWasPresentAt" type="tns:AgentType"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>This property associates the people with an event at which they were present.
+
+Example: Leonardo da Vinci was present at the event of the creation of Mona Lisa.
+Type: edm:Agent
+					</documentation>
+				</annotation>
+            </element>
+			<element name="physThWasPresentAt"
+				type="tns:PhysicalThingType" maxOccurs="unbounded" minOccurs="0">
+                <annotation>
+                	<documentation>This property associates thing with an event at which they were present.
+
+Example: A paintbrush was present at the event of the creation of Mona Lisa.
+Type: edm:PhysicalThing</documentation>
+                </annotation>
+			</element>
+			<element name="infResWasPresentAt"
+				type="tns:InformationResourceType" maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>This property associates thing with an event at which they were present.
+
+Example: A paintbrush was present at the event of the creation of Mona Lisa.
+Type: edm:InformationResource</documentation>
+                </annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="DCType">
+        <annotation>
+        	<documentation>DCType contains the Dublin Core Properties.</documentation>
+        </annotation>
+        <sequence>
+			<element name="contributor" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>An entity responsible for making contributions to the resource.
+
+Example: <contributor>Maria Callas</contributor>
+Type: String </documentation>
+                </annotation>
+			</element>
+			<element name="coverage" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>The spatial or temporal topic of the resource, the spatial applicability of the
+resource, or the jurisdiction under which the resource is relevant. This may be
+a named place, a location, a spatial coordinate, a period, date, date range or a
+named administrative entity.
+
+Example:<coverage>1995-1996</coverage>
+<coverage>Boston, MA</coverage>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="creator" type="tns:SimpleLiteral"  maxOccurs="1" minOccurs="0">
+                <annotation>
+                	<documentation>An entity primarily responsible for making the resource. This may be a person,
+organisation or a service.
+
+Example: <creator>Shakespeare, William</creator>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="date" type="tns:SimpleLiteral"  maxOccurs="unbounded" minOccurs="0">
+                <annotation>
+                	<documentation>A point or period of time associated with an event in the lifecycle of the
+resource.
+
+Example: <date>17th century</date> (For example the date when an object was
+repaired)
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="description" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>An account of the resource.
+
+Example: <description>Illustrated guide to airport markings and lighting signals, with
+particular reference to SMGCS (Surface Movement Guidance and Control
+System) for airports with low visibility conditions.</description>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="format" type="tns:SimpleLiteral"  maxOccurs="unbounded" minOccurs="0">
+                <annotation>
+                	<documentation>The file format, physical medium or dimensions of the resource.
+
+Example: <format>image/jpeg</format>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="identifier" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>An unambiguous reference to the resource within a given context.
+
+Example: <identifier>urn:isbn:9780387097466</identifier>
+<identifier>http://upload.wikimedia.org/wikipedia/en/f/f3/
+Europeana_logo.png</identifier>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="language" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A language of the resource.
+
+Example:<language>it</language>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="publisher" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>An entity responsible for making the resource available. Examples of a
+publisher include a person, an organisation and a service.
+
+Example: <publisher>Oxford University Press</publisher>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="relation" type="tns:SimpleLiteral"  maxOccurs="unbounded" minOccurs="0">
+                <annotation>
+                	<documentation>A related resource. The recommended best practice is to identify the resource
+using a formal identification scheme.
+
+Example: <relation>maps.crace.1/33</relation> (This is the shelf mark for a map
+held in the British Library’s Crace Collection).
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="rights" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>Information about copyright of the digital object as specified by isShownBy
+and isShownAt.
+
+Example: <rights>Creative Commons Attribution 3.0 License</rights>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="source" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A related resource from which the described resource is derived in whole or in
+part.
+
+Example:<source>Security Magazine pp 3-12</source>
+<source>BAM portal</source>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="subject" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>The topic of the resource.
+
+Example: <subject>submarine</subject>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="title" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A name given to the resource. Typically, a Title will be a name by which the
+resource is formally known.
+
+Example:<title>Taal vitaal</title>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="type" maxOccurs="unbounded" minOccurs="0"
+				type="tns:SimpleLiteral">
+                <annotation>
+                	<documentation>The nature or genre of the resource. Type includes terms describing general
+categories, functions, genres, or aggregation levels for content.
+
+Example:<type>painting</type>
+<type>photograph</type>
+<type>coin</type>
+Type: String</documentation>
+                </annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="DCTermsType">
+        <annotation>
+        	<documentation>DCTermsType contains the DC Terms Properties.</documentation>
+        </annotation>
+        <sequence>
+			<element name="alternative" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>An alternative name for the resource. This can be any form of the title that is
+used as a substitute or an alternative to the formal title of the resource
+including abbreviations or translations of the title.
+
+Example:<alternative>Ocho semanas</alternative> (When
+<title>Eight weeks</title>)
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="conformsTo" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>An established standard to which the described resource conforms.
+
+Example: <conformsTo>W3C WCAG 2.0</conformsTo> (for an HTML
+document that conforms to web content accessibility guidelines).
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="created" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>Date of creation of the resource
+
+Example: <created>1564</created>
+<created>Iron Age</created>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="extent" type="tns:SimpleLiteral"  maxOccurs="unbounded" minOccurs="0">
+                <annotation>
+                	<documentation>The size or duration of the resource.
+
+Example: <extent>13 cm</extent> (the width of an original object).
+<extent>34 minutes</extent> (the length of an audio file).
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="hasFormat" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A related resource that is substantially the same as the pre-existing described
+resource, but in another format.
+
+Example: <hasFormat>http://upload.wikimedia.org/wikipedia/en/f/f3/Europeana
+_logo.png</hasFormat> where the resource being described is a tiff
+image file.
+Type: String</documentation>
+                </annotation>
+			</element>
+            <element name="hasVersion" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A related resource that is a version, edition, or adaptation of the described
+resource. Changes in version imply substantive changes in content rather
+than differences in format.
+
+Example: <hasVersion>The Sorcerer’s Apprentice (translation by Edwin
+Zeydel, 1955)</hasVersion>. In this example the 1955 translation is
+a version of the described resource.
+Type: String</documentation>
+                </annotation>
+            </element>
+			<element name="isFormatOf" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A related resource that is substantially the same as the described resource,
+but in another format.
+
+Example: <isFormatOf>Europeana_logo.tiff</isFormatOf>
+where the resource being described is a png image file.
+Type: String</documentation>
+                </annotation>
+			</element>
+            <element name="isReferencedBy" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A related resource that references, cites, or otherwise points to the described
+resource.
+
+Example:<isReferencedBy>Till, Nicholas (1994) Mozart and the
+Enlightenment: Truth, Virtue and Beauty in Mozart’s Operas, W. W. Norton &amp;
+Company </isReferencedBy>
+Type: String</documentation>
+                </annotation>
+            </element>
+			<element name="isReplacedBy" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A related resource that supplants, displaces, or supersedes the described
+resource.
+
+Example: <isReplacedBy>http://dublincore.org/about/2009/01/05/bylaws/</isReplacedBy> where the resource described is an older version (http://dublincore.org/about/2006/01/01/bylaws/)
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="isRequiredBy" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A related resource that requires the described resource to support its function,
+delivery or coherence.
+
+Example:<isRequiredBy>http://www.myslides.com/myslideshow.ppt</isRequiredBy>
+where the image being described is required for an online slideshow.
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="issued" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>Date of formal issuance (e.g., publication) of the resource.
+
+Example: <issued>1993</issued>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="isVersionOf" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A related resource of which the described resource is a version, edition, or
+adaptation. Changes in version imply substantive changes in content rather
+than differences in format
+
+Example: <isVersionOf>ESE Version 0.5</isVersionOf>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="medium" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>The material or physical carrier of the resource.
+
+Example: <medium>metal</medium>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="provenance" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A statement of any changes in ownership and custody of the resource since
+its creation that are significant for its authenticity, integrity and interpretation.
+This may include a description of any changes successive custodians made to
+the resource.
+
+Example: <provenance>Donated by The National Library in
+1965</provenance>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="references" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A related resource that is referenced, cited, or otherwise pointed to by the
+described resource
+
+Example: <references>Honderd jaar Noorse schilderkunst
+</references>
+Type: String</documentation>
+                </annotation>
+			</element>
+            <element name="replaces" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A related resource that is supplanted, displaced, or superseded by the
+described resource.
+
+Example: <replaces>http://dublincore.org/about/2006/01/01/bylaws/</replaces> where the resource described is a newer version (http://dublincore.org/about/2009/01/05/bylaws/)
+Type: String</documentation>
+                </annotation>
+            </element>
+			<element name="requires" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A related resource that is required by the described resource to support its
+function, delivery or coherence.
+
+Example:<requires>http://ads.ahds.ac.uk/project/userinfo/css/oldbrowsers.css
+</requires> where the resource described is a HTML file at
+http://ads.ahds.ac.uk/project/userinfo/digitalTextArchiving.html
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="spatial" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>Spatial characteristics of the resource.
+
+Example:<spatial>Portugal</spatial>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="tableOfContents" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A list of subunits of the resource.
+
+Example:<tableOfContents>Chapter 1. Introduction, Chapter 2. History
+</tableOfContents>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="temporal" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>Temporal characteristics of the resource
+
+Example: <temporal>Roman</temporal>
+Type: String</documentation>
+                </annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="EuropeanaType">
+        <annotation>
+        	<documentation>EuropeanaType contains the Europeana Properties.</documentation>
+        </annotation>
+        <sequence>
+			<element name="country" type="tns:SimpleLiteral"
+				maxOccurs="1" minOccurs="1">
+                <annotation>
+                	<documentation>This is the name of the country in which the Provider is based or “Europe” in
+the case of Europe-wide projects.
+
+Example: <country>AL</country>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="dataProvider" type="string" maxOccurs="1"
+				minOccurs="0">
+                <annotation>
+                	<documentation>The name or identifier of the organisation that contributes data to Europeana
+
+Example: <dataProvider>Lille, Palais des Beaux-Arts</dataProvider>
+<dataProvider>Koninklijke Bibliotheek van België / Bibliothèque royale de
+Belgique</dataProvider>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="hasMet" type="tns:SimpleLiteral"
+				maxOccurs="unbounded" minOccurs="0">
+                <annotation>
+                	<documentation>hasMet relates a resource with the objects or phenomena that have
+happened to or have happened together with the resource under
+consideration. We can abstractly think of history and the present as a series of
+“meetings” between people and other things in space-time. Therefore we
+name this relationship as the things the object “has met” in the course of its
+existence. These meetings are events in the proper sense, in which other
+people and things participate in any role.
+
+Example: The location of an object may be due to a transport, move to a place, or
+because it has been created at that spot.
+Type: String</documentation>
+                </annotation>
+			</element>
+            <element name="hasType" type="tns:SimpleLiteral" maxOccurs="unbounded" minOccurs="0">
+            	<annotation>
+            		<documentation>This property relates a resource with the concepts it belongs to in a suitable
+type system such as MIME or any thesaurus that captures categories of
+objects in a given field (e.g., the “Objects” facet in Getty’s Art and Architecture
+Thesaurus). It does not capture aboutness.
+
+Example: The type of Mona Lisa is (AAT) Painting. The type of a digital image of Mona
+Lisa may be JPEG.
+Type: String</documentation>
+            	</annotation></element>
+            <element name="language" type="tns:SimpleLiteral"
+				maxOccurs="1" minOccurs="1">
+                <annotation>
+                	<documentation>A language assigned to the resource with reference to the Provider.
+
+Example:<language>ro</language>
+Type: String</documentation>
+                </annotation>
+            </element>
+			<element name="object" type="anyURI" maxOccurs="1"
+				minOccurs="0">
+                <annotation>
+                	<documentation>The URL of a thumbnail representing the digital object or, if there is no such
+thumbnail, the URL of the digital object in the best resolution available on the
+web site of the data provider from which a thumbnail could be generated. This
+will often be the same URL as given in isShownBy.
+
+Example:<object>http://upload.wikimedia.org/wikipedia/en/f/f3/Europeana_logo.png
+</object>
+Type: anyURI
+</documentation>
+                </annotation>
+			</element>
+			<element name="provider" type="string" maxOccurs="1" minOccurs="1">
+                <annotation>
+                	<documentation>Name of the organization that delivers data to Europeana
+
+Example: <provider>Het Geheugen van Nederland</provider>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="rights" type="anyURI" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>Information about copyright of the digital object as specified by isShownBy
+and isShownAt
+
+Example:<rights>http://www.europeana.eu/rights/pd/</rights></documentation>
+				</annotation></element>
+			<element name="type" type="tns:Edmtype" maxOccurs="1"
+				minOccurs="1">
+                <annotation>
+                	<documentation>The nature or genre of the resource. Type includes terms describing general
+categories, functions, genres, or aggregation levels for content.
+
+Example: <type>TEXT</type> 
+<type> IMAGE</type> 
+Type: String</documentation>
+                </annotation>
+			</element>
+			
+			<element name="unstored" type="string" maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>This is a container element which includes all relevant information that
+otherwise cannot be mapped to another element in the ESE.
+
+Example:<unstored> National Gallery, London</unstored> (Where the National
+Gallery is the current location of the object; there is no other element suitable
+for this information).
+Type: String
+</documentation>
+                </annotation>
+			</element>
+			<element name="uri" type="tns:SimpleLiteral" maxOccurs="1"
+				minOccurs="0">
+                <annotation>
+                	<documentation>An unambiguous URI to the resource within Europeana’s context.
+
+Example: <uri>
+http://www.europeana.eu/resolve/record/004/A7F7E0E6600</uri>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="userTag" type="tns:SimpleLiteral"
+				maxOccurs="unbounded" minOccurs="0">
+                <annotation>
+                	<documentation>This is a tag created by a user through the Europeana interface.
+
+Example: <userTag>My favorite food!</userTag>
+Type: String</documentation>
+                </annotation>
+			</element>
+			<element name="year" type="date" maxOccurs="unbounded"
+				minOccurs="0">
+                <annotation>
+                	<documentation>A point of time associated with an event in the life of the original analog or
+born digital object.
+
+Example: <year>1523</year>
+Type: date</documentation>
+                </annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="AggregationType">
+		<annotation>
+			<documentation>A set of related resources (Aggregated Resources), grouped together such
+that the set can be treated as a single resource. This is the entity described
+within the ORE interoperability framework by a Resource Map.</documentation>
+		</annotation>
+		<sequence>
+			<element name="proxy" type="tns:ProxyType" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="aggregatedCHO" type="tns:PhysicalThingType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="webResources" type="tns:WebWrapperType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="creator" type="tns:SimpleLiteral"  maxOccurs="unbounded" minOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="AgentType">
+		<annotation>
+			<documentation>This class comprises people, either individually or in groups, who have the
+potential to perform intentional actions for which they can be held responsible.
+
+Example:Leonardo da Vinci, the British Museum, W3C</documentation>
+		</annotation>
+		<sequence>
+            <element name="agentName" type="tns:SimpleLiteral" maxOccurs="1" minOccurs="1">
+                <annotation>
+                	<documentation>This class comprises people, either individually or in groups, who have the
+potential to perform intentional actions for which they can be held responsible.
+
+Type: String</documentation>
+                </annotation>
+            </element>
+            <element name="agentResource" type="anyURI" maxOccurs="unbounded" minOccurs="0">
+                <annotation>
+                	<documentation>This class comprises people, either individually or in groups, who have the
+potential to perform intentional actions for which they can be held responsible.
+
+Type: anyUri</documentation>
+                </annotation>
+            </element>
+			<element name="skosLabel" type="tns:SimpleLiteral"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="PlaceType">
+        <annotation>
+        	<documentation>An “extent in space, in particular on the surface of the earth, in the pure sense
+of physics: independent from temporal phenomena and matter” (CIDOC CRM)
+
+Example:the region of space occupied by Rome today, the region of space 
+occupied by the United Kingdom today, the region of space occupied by 
+the Republic of Crimea in 1945</documentation>
+        </annotation>
+        <sequence>
+            <element name="place" type="tns:SimpleLiteral" maxOccurs="1" minOccurs="1">
+                <annotation>
+                	<documentation>An “extent in space, in particular on the surface of the earth, in the pure sense
+of physics: independent from temporal phenomena and matter” (CIDOC CRM)
+
+Type: String</documentation>
+                </annotation>
+            </element>
+            <element name="placeResource" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+                <annotation>
+                	<documentation>An “extent in space, in particular on the surface of the earth, in the pure sense
+of physics: independent from temporal phenomena and matter” (CIDOC CRM)
+
+Type: anyUri</documentation>
+                </annotation>
+            </element>
+		</sequence>
+	</complexType>
+
+	<complexType name="TimeSpanType">
+        <annotation>
+        	<documentation>The class of “abstract temporal extents, in the sense of Galilean physics,
+having a beginning, an end and a duration” (CIDOC CRM)
+
+Example:2001-12-31, 01.01.01 – 02.02.02, 1503 – 1506 (the time span of the creation of Mona Lisa)</documentation>
+        </annotation>
+        <sequence>
+			<element name="startDate" type="date" maxOccurs="1"
+				minOccurs="1">
+                <annotation>
+                	<documentation>The start date of a time span.
+
+Type: date</documentation>
+                </annotation>
+			</element>
+			<element name="endDate" type="date" maxOccurs="1"
+				minOccurs="0">
+                <annotation>
+                	<documentation>The end date of a time span.
+
+Type: date</documentation>
+                </annotation>
+			</element>
+            <element name="timeSpanResource" type="anyURI" maxOccurs="unbounded" minOccurs="0">
+                <annotation>
+                	<documentation>The class of “abstract temporal extents, in the sense of Galilean physics,
+having a beginning, an end and a duration” (CIDOC CRM)
+
+Type: anyURI</documentation>
+                </annotation>
+            </element>
+        </sequence>
+	</complexType>
+
+
+	<complexType name="RelatedProxiesType">
+		<sequence>
+			<element name="RelationType">
+				<simpleType>
+					<restriction base="string">
+						<enumeration value="hasPart"></enumeration>
+						<enumeration value="isDerivativeOf"></enumeration>
+						<enumeration value="isSuccessorOf"></enumeration>
+						<enumeration value="incorporates"></enumeration>
+						<enumeration value="isRelatedTo"></enumeration>
+						<enumeration value="isNextInSequence"></enumeration>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="ProxyUri" type="anyURI"></element>
+		</sequence>
+	</complexType>
+
+
+	<element name="aggregatedCHO" type="tns:PhysicalThingType"></element>
+
+	<element name="webResources" type="tns:WebWrapperType"></element>
+
+	<element name="Time" type="tns:TimeSpanType"></element>
+
+
+	<element name="Agent" type="tns:AgentType"></element>
+
+	<element name="EventWrap" type="tns:EventWrapType"></element>
+
+	<element name="Place" type="tns:PlaceType"></element>
+
+	<element name="RelatedWrap" type="tns:RelatedProxiesWrapType"></element>
+
+	<element name="RelatedEDMObject" type="string"></element>
+
+	
+	<complexType name="ProxyType">
+        <annotation>
+        	<documentation>A Proxy is a Resource that indicates an Aggregated Resource in the context
+of a specific Aggregation. The type ore:Proxy is associated with a Resource
+via an assertion that describes the Aggregation that is the context of the
+Proxy. The URI of a Proxy then can be used in assertions specific to the
+Aggregated Resource in the context of that aggregation.</documentation></annotation>
+        <sequence>
+			<element name="Europeana" type="tns:EuropeanaType" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="DC" type="tns:DCType" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="DCTerms" type="tns:DCTermsType" maxOccurs="1"
+				minOccurs="0">
+			</element>
+            <element name="EventWrap" type="tns:EventWrapType" maxOccurs="1" minOccurs="0">
+			</element>
+            <element name="RelatedWrap" type="tns:RelatedProxiesWrapType" maxOccurs="1" minOccurs="0">
+			</element>
+        </sequence>
+	</complexType>
+
+	<complexType name="EventWrapType">
+		<sequence>
+			<element name="wasPresentAt" type="tns:EventType"
+				maxOccurs="unbounded" minOccurs="0">
+                <annotation>
+                	<documentation>This property associates the people, things or information resources with an
+event at which they were present.
+
+Example: Leonardo da Vinci was present at the event of the creation of Mona Lisa.
+</documentation>
+                </annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="RelatedProxiesWrapType">
+		<sequence>
+			<element name="relatedProxies" type="tns:RelatedProxiesType"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="WebWrapperType">
+		<sequence>
+            <element name="landingPage" type="anyURI" maxOccurs="1" minOccurs="1"></element>
+            <element name="hasView" type="anyURI" maxOccurs="unbounded" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="InformationResourceType">
+        <annotation>
+        	<documentation>An information resource is a resource whose essential characteristics can be
+conveyed in a single message. It can be associated with a URI, it can have a
+representation, for example: a text is an InformationResource.
+
+Example:The text of a book, a digital object, a musical score are all information
+resources.</documentation>
+        </annotation>
+        <sequence>
+            <element name="description" type="tns:SimpleLiteral" maxOccurs="1" minOccurs="1">
+			</element>
+            <element name="resource" type="anyURI" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	
+
+
+	<simpleType name="Edmtype">
+		<restriction base="string">
+			<enumeration value="TEXT"></enumeration>
+			<enumeration value="VIDEO"></enumeration>
+			<enumeration value="IMAGE"></enumeration>
+			<enumeration value="SOUND"></enumeration>
+		</restriction>
+	</simpleType>
+
+
+	<complexType name="Resource">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="resType" use="required">
+					<simpleType>
+						<restriction base="string">
+							<enumeration value="HTTP URI"></enumeration>
+							<enumeration value="Local ID"></enumeration>
+							<enumeration value="DOI"></enumeration>
+							<enumeration value="URN"></enumeration>
+							<enumeration value="ARK"></enumeration>
+							<enumeration value="Other"></enumeration>
+						</restriction>
+					</simpleType>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<element name="DC" type="tns:DCType"></element>
+
+	<element name="DCTerms" type="tns:DCTermsType"></element>
+
+	<element name="Europeana" type="tns:EuropeanaType"></element>
+</schema>

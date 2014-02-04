@@ -1,0 +1,162 @@
+<project name="mint" default="instrument" basedir=".">
+	<description>
+  		Athena build file
+	 </description>
+
+
+	<!-- set global properties for this build -->
+	<property name="src" location="WEB-INF/src/java"/>
+
+	<property name="build" location="WEB-INF/classes"/>
+	<property name="lib" location="WEB-INF/lib"/>
+	
+	<property name="dist"  location="work/dist"/>
+	<property environment="env"/>
+	<property name="tomcat.home" location="${env.ATHENA_HOME}" />
+
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp/>
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}"/>
+	</target>
+
+	<target name="instrument" depends="compile">
+	    <taskdef name="instrument" classname="org.hibernate.tool.instrument.javassist.InstrumentTask">
+	        <classpath >
+				<fileset dir="${lib}">
+					<include name="**/*.jar"/>
+				</fileset>
+	        </classpath>	
+	        <classpath path="${build}"/>
+	    </taskdef>
+
+	    <instrument verbose="true">
+	        <fileset dir="${build}/gr/ntua/ivml/mint/persistent">
+	            <include name="*.class"/>
+	        </fileset>
+	    </instrument>
+	</target>
+	
+	<target name="compile" depends="init"
+        description="compile the source " >
+		<echo message="Compiling source code..." />
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src}" destdir="${build}" source="1.6" debug="true" listfiles="true">
+			<classpath>
+				<pathelement path="${classpath}"/>
+				<fileset dir="WEB-INF/lib">
+					<include name="**/*.jar"/>
+				</fileset>
+				<fileset dir="${tomcat.home}/lib">
+					<include name="**/*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+		<copy todir="${build}">
+		   <fileset dir="${src}" excludes="**/*.java"/>
+		</copy>
+
+		<echo message="Source code compile completed!" />
+	</target>
+
+	<target name="dist" depends="compile"
+        description="generate the distribution" >
+		<echo message="Generating distribution..." />
+		<mkdir dir="${dist}/mint"/>
+		<echo message="Copying css..." />
+		<copy todir="${dist}/mint/css">
+			<fileset dir="css" />
+		</copy>
+		<echo message="Copying template..." />
+		<copy todir="${dist}/mint/template" >
+			<fileset dir="template" />
+		</copy>
+		<echo message="Copying example..." />
+		<copy todir="${dist}/mint/example" >
+			<fileset dir="example" />
+		</copy>
+		<echo message="Copying images..." />
+		<copy todir="${dist}/mint/images" >
+			<fileset dir="images" />
+		</copy>
+		<echo message="Copying js..." />
+		<copy todir="${dist}/mint/js">
+			<fileset dir="js" />
+		</copy>
+		<echo message="Copying WEB-INF..." />
+		<copy todir="${dist}/mint/WEB-INF">
+			<fileset dir="WEB-INF" />
+		</copy>
+		<copy todir="${dist}/mint/WEB-INF/classes">
+			<fileset dir="WEB-INF/src/java" />
+		</copy>
+		<copy todir="${dist}/mint/WEB-INF/classes">
+			<fileset dir="${build}" />
+		</copy>
+		<echo message="Copying index.html..." />
+		<copy tofile="${dist}/mint/index.html" file="index.html"/>
+	</target>
+
+	<target name="clean"
+        description="clean up" >
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<delete dir="${build}"/>
+		<delete dir="${dist}"/>
+	</target>
+
+	<target name="deploy" depends="dist" description="deploy web app">
+		<copy todir="${tomcat.home}/webapps/mint" overwrite="true">
+			<fileset dir="${dist}/mint">
+				 <include name="**/*"/>
+			</fileset>
+		</copy>
+	</target>
+
+
+	<target name="deploy-dev" depends="dist" description="deploy web app">
+		<delete failonerror="false">
+			 <fileset dir="${tomcat.home}/webapps/mint" includes="**/*"/>
+		</delete>
+		<copy todir="${tomcat.home}/webapps/mint" overwrite="true">
+			<fileset dir="${dist}/mint">
+				<include name="**/*"/>
+				<exclude name="**/WEB-INF/src/**" />
+			</fileset>
+		</copy>
+		<!-- change db and log properties to dev environment-->
+		<copy overwrite="true" tofile="${tomcat.home}/webapps/mint/WEB-INF/classes/hibernate.properties"
+		      file="WEB-INF/src/java/hibernate.properties.dev" />
+		<copy overwrite="true" tofile="${tomcat.home}/webapps/mint/WEB-INF/classes/log4j.properties"
+		      file="WEB-INF/src/java/log4j.properties.dev" />
+	</target>
+
+<!--target name="tomcat-stop">
+    <java jar="${tomcat.home}/bin/bootstrap.jar" fork="true">
+        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+        <arg line="stop"/>
+    </java>
+</target-->
+
+
+<!--target name="tomcat-start">
+    <java jar="${tomcat.home}/bin/bootstrap.jar" fork="true">
+        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+    </java>
+</target-->
+
+
+	<target name="tomcat-stop">
+		 <exec executable="${tomcat.home}/bin/shutdown.bat" spawn="true">
+		      <env key="CATALINA_HOME" value="${tomcat.home}"/>
+		</exec>
+	</target>
+
+
+	<target name="tomcat-start">
+		 <exec executable="${tomcat.home}/bin/startup.bat" spawn="true">
+		      <env key="CATALINA_HOME" value="${tomcat.home}"/>
+		</exec>
+	</target>
+
+</project>

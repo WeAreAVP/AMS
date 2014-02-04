@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lido:lidoWrap xmlns:lido="http://www.lido-schema.org" xmlns:xalan="http://xml.apache.org/xalan">
+  <lido:lido>
+    <lido:lidoRecID lido:type="LINKED HERITAGE">LINKED HERITAGE:000000</lido:lidoRecID>
+    <lido:category/>
+    <lido:descriptiveMetadata xml:lang="unmapped">
+      <lido:objectClassificationWrap>
+        <lido:objectWorkTypeWrap>
+          <lido:objectWorkType>
+            <lido:term lido:addedSearchTerm="no">unmapped</lido:term>
+          </lido:objectWorkType>
+        </lido:objectWorkTypeWrap>
+        <lido:classificationWrap>
+          <lido:classification lido:type="europeana:type">
+            <lido:term lido:addedSearchTerm="no">IMAGE</lido:term>
+          </lido:classification>
+        </lido:classificationWrap>
+      </lido:objectClassificationWrap>
+      <lido:objectIdentificationWrap>
+        <lido:titleWrap>
+          <lido:titleSet>
+            <lido:appellationValue>unmapped</lido:appellationValue>
+          </lido:titleSet>
+        </lido:titleWrap>
+      </lido:objectIdentificationWrap>
+    </lido:descriptiveMetadata>
+    <lido:administrativeMetadata xml:lang="unmapped">
+      <lido:recordWrap>
+        <lido:recordID lido:type="unmapped">unmapped</lido:recordID>
+        <lido:recordType>
+          <lido:term lido:addedSearchTerm="no">unmapped</lido:term>
+        </lido:recordType>
+        <lido:recordSource lido:type="europeana:dataProvider">
+          <lido:legalBodyName>
+            <lido:appellationValue>unmapped</lido:appellationValue>
+          </lido:legalBodyName>
+        </lido:recordSource>
+      </lido:recordWrap>
+      <lido:resourceWrap>
+        <lido:resourceSet>
+          <lido:resourceRepresentation lido:type="image_master">
+            <lido:linkResource>unmapped</lido:linkResource>
+          </lido:resourceRepresentation>
+          <lido:resourceRepresentation lido:type="image_thumb">
+            <lido:linkResource>unmapped</lido:linkResource>
+          </lido:resourceRepresentation>
+          <lido:rightsResource>
+            <lido:rightsType>
+              <lido:term lido:addedSearchTerm="no">http://www.europeana.eu/rights/rr-f/</lido:term>
+            </lido:rightsType>
+          </lido:rightsResource>
+        </lido:resourceSet>
+      </lido:resourceWrap>
+    </lido:administrativeMetadata>
+  </lido:lido>
+</lido:lidoWrap>

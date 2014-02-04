@@ -1,0 +1,13 @@
+﻿Graphics customization
+
+to change top logo change custom/css/custom.css
+
+to change colors change custom/css/color.css
+change images in custom/images
+
+change images (mainly ui-bg_highlight-hard_15_a751a5_1x100.png and ui-bg_highlight-soft_25_a751a5_1x100.png)
+ in custom/css/jquery/south-street to change bg of select list in mapping selection panel
+
+
+
+DONT DELETE ANYTHING IN THIS DIR

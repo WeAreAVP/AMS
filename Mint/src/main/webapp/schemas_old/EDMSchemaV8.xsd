@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/EDMSchemaV8"
+	xmlns:tns="http://www.example.org/EDMSchemaV8"
+	elementFormDefault="qualified">
+
+	<complexType name="SimpleLiteral">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="lang" type="language"></attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="PhysicalThingType">
+		<annotation>
+			<documentation>
+				For every PhysicalThingType we make an instance of
+				edm:PhysicalThing (PhysicalThingInst)
+
+				Relations EDMObjectInst edm:aggregatesCHO
+				PhysicalThingInst
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="type" type="tns:SimpleLiteral" maxOccurs="1" minOccurs="1"></element>
+			<element name="name" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="realizes" type="tns:WebResourceType"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+
+	</complexType>
+
+	<element name="EDMObject" type="tns:EDMObjectType"></element>
+
+
+
+	<complexType name="WebResourceType">
+		<annotation>
+			<documentation>
+				For every WebResourceType we make an instance of
+				edm:WebResource (WebResourceInst)
+
+				Relations EDMObjectInst edm:hasView WebResourceInst
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="resourceUri" type="anyURI" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="isRepresentationOf"
+				type="tns:PhysicalThingType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The physicalThing is the pshysical thing of the
+						EDMObjectType
+					</documentation>
+				</annotation>
+			</element>
+			<element name="isSimilarTo" type="tns:WebResourceType"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+
+
+
+	<complexType name="EventType">
+		<annotation>
+			<documentation>
+				For every EventType we make an instance of edm:Event
+				(EventInst)
+
+				Relations ProxyInst edm:wasPresentAt EventInst
+			</documentation>
+		</annotation>
+		<sequence>
+            <element name="happenedAt" type="tns:PlaceType" maxOccurs="1" minOccurs="1">
+			</element>
+            <element name="occuredAt" type="tns:TimeSpanType" maxOccurs="1" minOccurs="1">
+			</element>
+            <element name="agentWasPresentAt" type="tns:AgentType"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>
+						For every Agent we make an instance of edm:Agent
+						(AgentInst)
+
+						Relations AgentInst edm:wasPresentAt EventInst
+					</documentation>
+				</annotation>
+			</element>
+			<element name="physThWasPresentAt"
+				type="tns:PhysicalThingType" maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="infResWasPresentAt"
+				type="tns:InformationResourceType" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="DescriptiveMetadata">
+		<annotation>
+			<documentation>
+				For every ProxyType we make an instance of ore:Proxys
+				(ProxyInst)
+
+				Relations ProxyInst ore:proxyFor PhysicalThingInst
+				ProxyInst ore:proxyIn EDMObjectInst
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="currentLocation" type="tns:PlaceType"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>
+						For every Place we make an instance of edm:Place
+						(PlaceInst2)
+
+						Relations ProxyInst edm:CurrentLocation
+						PlaceResource
+					</documentation>
+				</annotation>
+			</element>
+			<element name="alternative" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="conformsTo" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="contributor" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="country" type="tns:SimpleLiteral"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="coverage" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="created" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="creator" type="tns:SimpleLiteral"  maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="dataProvider" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="date" type="tns:SimpleLiteral"  maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="description" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="extent" type="tns:SimpleLiteral"  maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="format" type="tns:SimpleLiteral"  maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="hasFormat" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="hasMet" type="tns:SimpleLiteral"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+            <element name="hasType" type="tns:SimpleLiteral" maxOccurs="unbounded" minOccurs="0"></element>
+            <element name="hasVersion" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="identifier" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="isFormatOf" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+            <element name="isReferencedBy" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="isReplacedBy" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="isRequiredBy" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="issued" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="isVersionOf" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="dclanguage" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="language" type="tns:SimpleLiteral"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="medium" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="object" type="anyURI" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="provenance" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="provider" type="string" maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="publisher" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="references" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+            <element name="relation" type="tns:SimpleLiteral"  maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="replaces" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="requires" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="dcrights" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="rights" type="anyURI" maxOccurs="1" minOccurs="0"></element>
+			<element name="source" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="spatial" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="subject" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="tableOfContents" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="temporal" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="title" type="tns:SimpleLiteral"  maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="type" type="tns:Dctype" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="dctype" maxOccurs="unbounded" minOccurs="0"
+				type="tns:Dctype">
+			</element>
+			<element name="unstored" type="string" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="uri" type="tns:SimpleLiteral" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="userTag" type="tns:SimpleLiteral"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="year" type="date" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+
+
+	<complexType name="EDMObjectType">
+		<annotation>
+			<documentation>
+				For every EDMObjectType we make an instance of
+				ore:Aggregation (EDMObjectInst)
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="proxy" type="tns:ProxyType" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="aggregatedCHO" type="tns:PhysicalThingType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="webResources" type="tns:WebWrapperType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="creator" type="tns:SimpleLiteral"  maxOccurs="unbounded" minOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="AgentType">
+		<annotation>
+			<documentation>
+				For an AgentType we accept an Agent (Resource-anyURI)
+				from the provider if this is known and an AgentName
+			</documentation>
+		</annotation>
+		<sequence>
+            <element name="agentName" type="tns:SimpleLiteral" maxOccurs="1" minOccurs="1">
+			</element>
+            <element name="agentResource" type="anyURI" maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="skosLabel" type="tns:SimpleLiteral"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="PlaceType">
+		<sequence>
+            <element name="place" type="tns:SimpleLiteral" maxOccurs="1" minOccurs="1">
+			</element>
+            <element name="placeResource" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="TimeSpanType">
+		<sequence>
+			<element name="startDate" type="date" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="endDate" type="date" maxOccurs="1"
+				minOccurs="0">
+			</element>
+            <element name="timeSpanResource" type="anyURI" maxOccurs="unbounded" minOccurs="0">
+			</element>
+        </sequence>
+	</complexType>
+
+
+	<complexType name="RelatedProxiesType">
+		<sequence>
+			<element name="RelationType">
+				<simpleType>
+					<restriction base="string">
+						<enumeration value="hasPart"></enumeration>
+						<enumeration value="isDerivativeOf"></enumeration>
+						<enumeration value="isSuccessorOf"></enumeration>
+						<enumeration value="incorporates"></enumeration>
+						<enumeration value="isRelatedTo"></enumeration>
+						<enumeration value="isNextInSequence"></enumeration>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="ProxyUri" type="anyURI"></element>
+		</sequence>
+	</complexType>
+
+
+	<element name="aggregatedCHO" type="tns:PhysicalThingType"></element>
+
+	<element name="webResources" type="tns:WebWrapperType"></element>
+
+	<element name="Time" type="tns:TimeSpanType"></element>
+
+	<element name="Proxy" type="tns:DescriptiveMetadata"></element>
+
+	<element name="Agent" type="tns:AgentType"></element>
+
+	<element name="EventWrap" type="tns:EventWrapType"></element>
+
+	<element name="Place" type="tns:PlaceType"></element>
+
+	<element name="RelatedWrap" type="tns:RelatedProxiesWrapType"></element>
+
+	<element name="RelatedEDMObject" type="string"></element>
+
+	<element name="descriptiveMetadata" type="tns:DescriptiveMetadata"/>
+	
+	<complexType name="ProxyType">
+		<sequence>
+			<element name="descriptiveMetadata" type="tns:DescriptiveMetadata"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="EventWrap" type="tns:EventWrapType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="RelatedWrap" type="tns:RelatedProxiesWrapType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="EventWrapType">
+		<sequence>
+			<element name="wasPresentAt" type="tns:EventType"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="RelatedProxiesWrapType">
+		<sequence>
+			<element name="relatedProxies" type="tns:RelatedProxiesType"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="WebWrapperType">
+		<sequence>
+            <element name="landingPage" type="tns:WebResourceType" maxOccurs="1" minOccurs="1"></element>
+            <element name="hasView" type="tns:WebResourceType" maxOccurs="unbounded" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="InformationResourceType">
+		<sequence>
+            <element name="description" type="tns:SimpleLiteral" maxOccurs="1" minOccurs="1">
+			</element>
+            <element name="resource" type="anyURI" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	
+
+
+	<simpleType name="Dctype">
+		<restriction base="string">
+			<enumeration value="TEXT"></enumeration>
+			<enumeration value="VIDEO"></enumeration>
+			<enumeration value="IMAGE"></enumeration>
+			<enumeration value="SOUND"></enumeration>
+		</restriction>
+	</simpleType>
+</schema>

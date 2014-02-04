@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="gr.ntua.ivml.mint.persistent.DataUpload" table="data_upload">
+	    <id name="dbID" column="data_upload_id">
+		    <generator class="sequence">
+		    	<param name="sequence">seq_data_upload_id</param>
+		    </generator>
+	    </id>
+	    <property name="uploadDate" column="upload_date" />
+
+	    <many-to-one name="organization" 
+        column="organization_id"
+        not-null="false"/>
+
+	    <many-to-one name="uploader" 
+        column="uploader_id"
+        not-null="false"/>
+        
+	    <many-to-one name="data" 
+	    cascade="all"
+        column="blob_wrap_id"
+		unique="true"
+        not-null="false"/>
+        
+	    <many-to-one name="itemXpath" 
+	    cascade="save-update"
+        column="item_xpath_id"
+        not-null="false"/>
+        
+	    <many-to-one name="itemLabelXpath" 
+	    cascade="save-update"
+        column="item_label_xpath_id"
+        not-null="false"/>
+        
+	    <many-to-one name="xmlObject" 
+	    cascade="all"
+        column="xml_object_id"
+        unique="true"
+        not-null="false"/>
+
+		<many-to-one name="jsonMapping"
+		 column="mapping_id"
+		 not-null="false"  />      
+        
+	    <property name="noOfFiles" column="no_of_files" />
+	    <property name="sourceURL" column="source_url" />
+	    <property name="originalFilename" column="original_filename" />
+
+	    <property name="structuralFormat" column="structural_format" />
+	    <property name="httpUpload"  column="http_upload" />
+	    <property name="adminUpload"  column="admin_upload" />
+	    <property name="zippedUpload"  column="zipped_upload" />
+	    <property name="uploadSize"  column="upload_size" />
+	    <property name="status" />
+	    <property name="message" />
+	    <property name="resumptionToken" column="resumption_token" />
+	    <property name="oaiHarvest" column="oai_harvest" />
+	    <property name="nodeCount" column="node_count" />
+
+		<property name="xsl" />
+		<property name="schemaName" column="schema_name" />
+	    
+   </class>
+</hibernate-mapping>

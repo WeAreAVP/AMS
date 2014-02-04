@@ -1,0 +1,1 @@
+for different background in mappings, panels etc also change images/sprite.png and js/mapping/lib/yui/assets/skins/sam/sprite.png

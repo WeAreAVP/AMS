@@ -1,0 +1,40 @@
+body {
+	height: 100%;
+}
+
+.editor {
+	position: relative;
+	min-height: 500px;
+}
+
+.value-mappings {
+	background: #dddddd;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.value-mapping {
+}
+
+.value-mapping-title {
+	font-size: 120%;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.value-mapping-row {
+	background-color: #cccccc;
+	padding: 5px;
+}
+
+.value-mapping-row-alternative {
+	background-color: #aaaaaa;
+}
+
+.value-mapping-values img {
+	vertical-align: middle;
+}
+
+.value-mapping-remove {
+	width: 16px;
+}

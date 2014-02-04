@@ -1,0 +1,178 @@
+
+/* move to core*/
+    form.athform {
+        font-size: 0.9em;
+        color: #333;
+        display: block;
+       margin: 10px 10px 30px 30px;
+		width: 600px;
+        }
+       
+	form.athform img {
+	vertical-align: top;
+	padding-left: 8px;
+    }   
+
+    form.athform legend { padding-left: 0; }
+     
+       
+    form.athform label {
+	color: #333;
+	width: 150px; 
+	align: right;
+	}
+
+	.tdLabel {
+	color: #333;
+	width: 150px; 
+	}
+	
+    form.athform fieldset {
+        border: none;
+       background-repeat: repeat;
+        }
+       
+    form.athform fieldset fieldset { background: none; }
+       
+   
+
+    form.athform text {
+        padding-left: 5px;
+        padding-right: 5px;
+		display: inline-block;
+		vertical-align: middle;
+		
+		}
+
+    form.athform fieldset { margin-bottom: 10px #FFFFFF; }
+   
+	form.athform legend {
+		padding: 0 2px;
+		font-weight: bold;
+		_margin: 0 -7px; /* IE Win */
+		}
+	
+	form.athform legend a img {
+	vertical-align: bottom;
+	
+    }      
+	   
+	form.athform label {
+		display: inline-block;
+		line-height: 1.8;
+		vertical-align: top;
+		/*width: 180px;*/
+		}
+
+	form.athform fieldset ol {
+		margin: 0;
+		padding: 0;
+		}
+	   
+	form.athform fieldset li {
+		list-style: none;
+		padding: 5px;
+		margin: 0;
+		}
+   form.athform fieldset a{
+		border:0;
+         vertical-align:top;
+		}
+
+  form.athform fieldset ol li ol{
+		margin: 0;
+		padding: 0;
+		}
+	   
+	form.athform fieldset li ol li{
+	    padding-left: 5px;
+        background: none;
+ 		list-style: none;
+		margin: 0;
+		}
+
+/* form.athform fieldset li ol li label { width: 220px; }*/
+
+	   
+	form.athform fieldset fieldset {
+		border: none;
+		margin: 3px 0 0;
+		}
+	   
+	form.athform fieldset fieldset legend {
+		padding: 0 0 5px;
+		font-weight: normal;
+
+		}
+	   
+	form.athform fieldset fieldset label {
+		display: block;
+		width: auto;
+		}
+	
+	form.athform em {
+	font-weight: normal;
+	font-style: normal;
+	color: #f00;
+	margin-left: 5px;
+		}
+	
+
+	form.athform fieldset fieldset label { margin-left: 123px; } /* Width plus 3 (html space) */
+
+	form.athform table {
+
+	}
+
+  form.athform fieldval {
+	margin: 0;
+	padding: 1px;
+	font-size: 100%;
+	font-family: inherit;	
+	color: #0000FF;
+    }
+
+
+form.athform fieldset label strong {  
+	display: block;  
+	color: #FF0000;  
+	font-size: 85%;  
+	font-weight: bold;  
+	text-transform: uppercase;
+	}
+
+
+.clear { /* generic container (i.e. div) for floating buttons */
+    overflow: hidden;
+    width: 100%;
+}
+
+a.button {
+    background: transparent url('../images/bg_button_a.gif') no-repeat scroll top right;
+    color: #444444;
+    display: block;
+    float: left;
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+}
+
+a.button span {
+    background: transparent url('../images/bg_button_span.gif') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+} 
+
+a.button:active {
+    background-position: bottom right;
+    color: #000;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+a.button:active span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px; /* push text down 1px */
+} 

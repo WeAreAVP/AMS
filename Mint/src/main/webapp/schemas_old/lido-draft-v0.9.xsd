@@ -1,0 +1,1448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:doc="http://www.mda.org.uk/spectrumXML/Documentation" xmlns:gml="http://www.opengis.net/gml" xmlns:lido="http://www.lido-schema.org" xmlns:xml="http://www.w3.org/XML/1998/namespace" targetNamespace="http://www.lido-schema.org" elementFormDefault="qualified" attributeFormDefault="qualified">
+	<xsd:annotation>
+		<xsd:documentation>LIDO - Lightweight Information Describing Objects</xsd:documentation>
+		<xsd:documentation>This draft document may be updated, replaced, or made obsolete by other documents at any time.</xsd:documentation>
+		<xsd:documentation>LIDO DRAFT v0.9</xsd:documentation>
+		<xsd:documentation>XML Schema for Contributing Content to Cultural Heritage Repositories</xsd:documentation>
+		<xsd:documentation>ARTstor, Collections Trust, Deutscher Museumsbund - Fachgruppe Dokumentation, Deutsches Dokumentationszentrum f&#252;r Kunstgeschichte - Bildarchiv Foto Marburg, digiCULT Schleswig-Holstein, Institut f&#252;r Museumsforschung (SMB-PK), J. Paul Getty Trust, Zuse-Institut Berlin</xsd:documentation>
+		<xsd:documentation>LIDO draft version: 2010-03-23: lido-draft-v0.9.xsd</xsd:documentation>
+		<xsd:documentation>Prepared for CIDOC Working Group Data Harvesting and Interchange, CDWA Lite/museumdat Working Group, Collections Trust and Deutscher Museumsbund - Fachgruppe Dokumentation
+by: Erin Coburn (ecoburn@getty.edu), Richard Light (richard@light.demon.co.uk), Gordon McKenna (gordon@collectionstrust.org.uk), Regine Stein (r.stein@fotomarburg.de), Axel Vitzthum (avitzthum@digicult.uni-kiel.de)</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/03/xml.xsd"/>
+	<xsd:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/feature.xsd"/>
+	<xsd:complexType name="actorComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Contains identifying, indexing actor information.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="actorID" type="lido:identifierComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="nameActorSet" type="lido:appellationComplexType" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A wrapper for name elements, if there exists more than one name for a single actor, repeat Name Actor Set.</xsd:documentation>
+					<xsd:documentation>Indicates names, appellations, or other identifiers assigned to an individual, group of people, firm or other corporate body, or other entity.</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: nameCreatorSet is generalized into nameActorSet</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: nameActorSet</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="nationalityActor" type="lido:conceptComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>National or cultural affiliation of the person or corporate body. Controlled.</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: nationalityCreator is generalized into nationalityActor</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: nationalityActor</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="vitalDatesActor" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A description of the lifespan of the person or the existence of the corporate body, using "ca." and any other expressions of uncertainty or nuance. For Birth and Death date attributes, record years of birth and death, estimated where necessary. For a corporate body, use birthdate and deathdate to record the dates of founding and dissolution.</xsd:documentation>
+					<xsd:documentation>Although this is not a mandatory field the use of birth date and death date is strongly recommended in the case of artists.</xsd:documentation>
+					<xsd:documentation>If only a reference period (not the exact period of life) of a person is known, and the event in which the person took part cannot be exactly dated, then the reference period should be taken as the dating of the event.</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: vitalDatesCreator is generalized into vitalDatesActor</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: vitalDatesActor</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute name="birthDate" type="xsd:string"/>
+							<xsd:attribute name="deathDate" type="xsd:string"/>
+							<xsd:attribute ref="lido:source"/>
+							<xsd:attribute ref="xml:lang"/>
+							<xsd:attribute ref="lido:encodinganalog"/>
+							<xsd:attribute ref="lido:label"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="genderActor" type="lido:textComplexType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>The sex of the individual. Not applicable for corporate bodies.</xsd:documentation>
+					<xsd:documentation>Data values: male, female, unknown, not applicable.</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: genderCreator is generalized into genderActor</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: genderActor</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="actorType">
+			<xsd:annotation>
+				<xsd:documentation>Indicates if the actor is an individual, a group of individuals or a corporation (firm or other corporate body).</xsd:documentation>
+				<xsd:documentation>CDWA Lite v1.1: nameCreator@type is replaced by actorType (as it characterizes the actor self and not the name)</xsd:documentation>
+				<xsd:documentation>museumdat v1.0: nameActor@type is replaced by actorType (as it characterizes the actor self and not the name)</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="person"/>
+					<xsd:enumeration value="corporation"/>
+					<xsd:enumeration value="group"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="actorInRoleComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Describes an actor with role and (if necessary) attributions related to the event the actor participated in.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: indexingCreatorSet is generalized into actorInRole</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: indexingActorSet</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="actor" type="lido:actorComplexType"/>
+			<xsd:element name="roleActor" type="lido:conceptComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Role of the Actor in the event. Controlled</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: roleCreator is generalized into roleActor</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: roleActor</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="attributionQualifierActor" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A qualifier used when the attribution is uncertain, is in dispute, when there is more than one actor, when there is a former attribution, or when the attribution otherwise requires explanation.</xsd:documentation>
+					<xsd:documentation>Data values: attributed to, studio of, workshop of, atelier of, office of, assistant of, associate of, pupil of, follower of, school of, circle of, style of, after copyist of, manner of...</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: attributionQualifierCreator is generalized into attributionQualifierActor</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: attributionQualifierActor</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="extentActor" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Extent of the actor's participation in the event, if there are several actors.</xsd:documentation>
+					<xsd:documentation>Data values: design, execution, with additions by, figures, renovation by, predella, embroidery, cast by, printed by, ...</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: extentCreator is generalized into extentActor</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: extentActor</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="actorInRoleSetComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for display and index elements for an actor with role information (participating in an event). For multiple actors repeat the element.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="displayActorInRole" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Display element for an actor, corresponding to the following actor element.</xsd:documentation>
+					<xsd:documentation>May include name, brief biographical information, and roles (if necessary) of the named actor, presented in a syntax suitable for display to the end-user and including any necessary indications of uncertainty, ambiguity, and nuance. If there is no known actor, make a reference to the presumed culture or nationality of the unknown actor.</xsd:documentation>
+					<xsd:documentation>May be concatenated from the respective Actor element. The name should be in natural order, if possible, although inverted order is acceptable. Include nationality and life dates. For unknown actors, use e.g.: "unknown," "unknown Chinese," "Chinese," or "unknown 15th century Chinese."</xsd:documentation>
+					<xsd:documentation>Repeat this element only for language variants!</xsd:documentation>
+					<xsd:documentation>CDWA lite v1.1: displayCreator corresponds partly / is generalized into lido:displayActor</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: displayCreator corresponds partly / is generalized into lido:displayActor</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="actorInRole" type="lido:actorInRoleComplexType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="actorSetComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for display and index elements for an actor. For multiple actors repeat this element.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="displayActor" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Display element for an actor, corresponding to the following actor element.</xsd:documentation>
+					<xsd:documentation>May include name, brief biographical information of the named actor, presented in a syntax suitable for display to the end-user. If there is no known actor, make a reference to the presumed culture or nationality of the unknown actor.</xsd:documentation>
+					<xsd:documentation>May be concatenated from the respective Actor element. The name should be in natural order, if possible, although inverted order is acceptable. Include nationality and life dates. For unknown actors, use e.g.: "unknown," "unknown Chinese," "Chinese," or "unknown 15th century Chinese."</xsd:documentation>
+					<xsd:documentation>Repeat this element only for language variants!</xsd:documentation>
+					<xsd:documentation>CDWA lite v1.1: displayCreator corresponds partly to lido:displayActor (without role information)</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: displayCreator corresponds partly to lido:displayActor (without role information)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="actor" type="lido:actorComplexType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:attribute name="addedSearchTerm" default="no">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="yes"/>
+				<xsd:enumeration value="no"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+	<xsd:element name="administrativeMetadata">
+		<xsd:annotation>
+			<xsd:documentation>Holds the administrative metadata of an object record.</xsd:documentation>
+			<xsd:documentation>The attribute xml:lang is mandatory and specifies the language of the administrative metadata.</xsd:documentation>
+			<xsd:documentation>For fully multi-lingual resources, repeat this element once for each language represented.</xsd:documentation>
+			<xsd:documentation>If only a few data fields (e.g. creditline) are provided in more than one language, the respective text elements may be repeated specifying the lang attribute on the text level.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: administrativeMetadata</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: administrativeMetadata</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="lido:rightsWorkWrap" minOccurs="0"/>
+				<xsd:element ref="lido:recordWrap"/>
+				<xsd:element ref="lido:resourceWrap" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute ref="xml:lang" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="appellationComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for a name of an entity, and its related information. If there is more than one name, repeat the appellation element.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="appellationValue">
+				<xsd:annotation>
+					<xsd:documentation>Appellations, e.g. titles, identifying phrases, or names given to an item, but also name of a person or corporation, also place name etc.</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: e.g. title, nameCreator, locationName correspond to lido:appellationValue</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: e.g. title, repositoryName, nameActor, nameLocation correspond to lido:appellationValue</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute ref="lido:pref"/>
+							<xsd:attribute ref="xml:lang"/>
+							<xsd:attribute ref="lido:encodinganalog"/>
+							<xsd:attribute ref="lido:label"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="sourceAppellation" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The source for the appellation, generally a published source.</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: e.g. sourceTitle, sourceNameCreator correspond to lido:sourceAppellation</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: e.g. sourceTitle, sourceNameActor correspond to lido:sourceAppellation</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute ref="xml:lang"/>
+							<xsd:attribute ref="lido:encodinganalog"/>
+							<xsd:attribute ref="lido:label"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="classificationWrap">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for classification information.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="classification" minOccurs="0" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>Term used to categorize a work by grouping it together with other works on the basis of similar characteristics. The category belongs to a systematic scheme (classification) which groups objects of similar characteristics according to uniform aspects. This grouping / classification may be done according to material, form, shape, function, region of origin, cultural context, or historical or stylistic period. In addition to this systematic grouping it may also be done according to organizational divisions within a museum (e.g., according to the collection structure of a museum).If the work is assigned to multiple classifications, repeat this element.</xsd:documentation>
+						<xsd:documentation>CDWA Lite v1.1: classification (assigns a term) corresponds to lido:classification (assigns a concept with its identifiers and various terms)</xsd:documentation>
+						<xsd:documentation>museumdat v1.0: classification (assigns a term) corresponds to lido:classification (assigns a concept with its identifiers and various terms)</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:complexContent>
+							<xsd:extension base="lido:conceptComplexType">
+								<xsd:attribute ref="lido:type"/>
+							</xsd:extension>
+						</xsd:complexContent>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="conceptComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Set for identifiers and terms of a concept.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="conceptID" type="lido:identifierComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="term" type="lido:termComplexType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="dateComplexType">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for date specification: This may be a period or a set of years in the proleptic Gregorian calendar delimiting the span of time. If it is an exact date, possibly with time, repeat the same date (and time) in earliest and latest dates.</xsd:documentation>
+			<xsd:documentation>Format of the data values is according to ISO 8601. This includes date and time specification.</xsd:documentation>
+			<xsd:documentation>For ca. and other uncertain or approximate dates, estimate the greatest possible span for indexing. Uncertainty should be indicated in the display element.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: indexingDatesSet is generalized and refined into lido:dateComplexType</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: indexingDates is refined into lido:dateComplexType</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="earliestDate">
+				<xsd:annotation>
+					<xsd:documentation>A year or exact date that broadly delimits the beginning of an implied date span. Format: YYYY[-MM[-DD]]</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: earliestDate</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: earliestDate</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute ref="lido:source"/>
+							<xsd:attribute ref="lido:encodinganalog"/>
+							<xsd:attribute ref="lido:label"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="latestDate">
+				<xsd:annotation>
+					<xsd:documentation>A year or exact date that broadly delimits the end of an implied date span. Format: YYYY[-MM[-DD]]</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: latestDate</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: latestDate</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute ref="lido:source"/>
+							<xsd:attribute ref="lido:encodinganalog"/>
+							<xsd:attribute ref="lido:label"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="dateSetComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for display and index elements for date information.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="displayDate" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Display element for a date specification, corresponding to the following date element.</xsd:documentation>
+					<xsd:documentation>It is a concise description of the date, presented in a syntax suitable for display to the end-user and including any necessary indications of uncertainty, ambiguity, and nuance.</xsd:documentation>
+					<xsd:documentation>Repeat this element only for language variants!</xsd:documentation>
+					<xsd:documentation>CDWA lite v1.1: displayCreationDate is generalized into lido:displayDate</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: displayCreationDate is generalized into lido:displayDate</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="date" type="lido:dateComplexType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="descriptiveMetadata">
+		<xsd:annotation>
+			<xsd:documentation>Holds the descriptive metadata of an object record.</xsd:documentation>
+			<xsd:documentation>The attribute xml:lang is mandatory and specifies the language of the descriptive metadata.</xsd:documentation>
+			<xsd:documentation>For fully multi-lingual resources, repeat this element once for each language represented.</xsd:documentation>
+			<xsd:documentation>If only a few data fields (e.g. title) are provided in more than one language, the respective text elements may be repeated specifying the lang attribute on the text level.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: descriptiveMetadata</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: descriptiveMetadata</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="lido:objectClassificationWrap"/>
+				<xsd:element ref="lido:objectIdentificationWrap"/>
+				<xsd:element ref="lido:eventWrap" minOccurs="0"/>
+				<xsd:element ref="lido:objectRelationWrap" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute ref="xml:lang" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="descriptiveNoteComplexType">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for a descriptive note and its sources. If there is more than one descriptive note, repeat this set.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="descriptiveNoteValue" type="lido:textComplexType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Usually a relatively brief essay-like text that describes the entity.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sourceDescriptiveNote" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The source for the descriptive note, generally a published source.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute ref="lido:type"/>
+	</xsd:complexType>
+	<xsd:element name="displayStateEditionWrap">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for Display State Editions</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: displayStateEditionWrap</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: displayStateEditionWrap</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="displayState" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>A description of the state of the work; used primarily for prints and other multiples</xsd:documentation>
+						<xsd:documentation>Formulated according to rules. For State, include state identification and known states, as appropriate.</xsd:documentation>
+						<xsd:documentation>Repeat this element only for language variants!</xsd:documentation>
+						<xsd:documentation>CDWA Lite v1.1: displayState</xsd:documentation>
+						<xsd:documentation>museumdat v1.0: displayState</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="displayEdition" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>A description of the edition of the work; used primarily for prints and other multiples.</xsd:documentation>
+						<xsd:documentation>Formulated according to rules. For Edition, include impression number, edition size, and edition number, or edition name, as appropriate.</xsd:documentation>
+						<xsd:documentation>Repeat this element only for language variants!</xsd:documentation>
+						<xsd:documentation>CDWA Lite v1.1: displayEdition</xsd:documentation>
+						<xsd:documentation>museumdat v1.0: displayEdition</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="sourceStateEdition" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>The published source of the state or edition information.</xsd:documentation>
+						<xsd:documentation>CDWA Lite v1.1: sourceStateEdition</xsd:documentation>
+						<xsd:documentation>museumdat v1.0: sourceStateEdition</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:attribute name="encodinganalog" type="xsd:string"/>
+	<xsd:complexType name="eventComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Complex type for one event related with the work and its related information. If there is more than one event described, repeat the Event Set element.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: no equivalent</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: indexingEventSet is extended and refined into lido:eventComplexType</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="eventID" type="lido:identifierComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="eventType" type="lido:conceptComplexType">
+				<xsd:annotation>
+					<xsd:documentation>Qualifier of the event, e.g. creation, find, ... Data values to be controlled. Recommended: Defined list of subclasses of CRM entity E5 Event.</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: no equivalent</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: eventType is refined into lido:eventType</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="roleInEvent" type="lido:conceptComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The role played within this event by the object being recorded.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="eventName" type="lido:appellationComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="eventActor" type="lido:actorInRoleSetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="culture" type="lido:conceptComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Name of a culture, people, or nationality participating in the event. Controlled.</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: culture</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: culture</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="eventDate" type="lido:dateSetComplexType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Date specification of the event.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="periodName" type="lido:conceptComplexType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A period defining the range of dates. Data values should be controlled.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="eventPlace" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Place specification of the event.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:placeSetComplexType">
+							<xsd:attribute ref="lido:type"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="eventMethod" type="lido:conceptComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The method by which the event is carried out. Used e.g. for SPECTRUM Units of Information "field collection method", "acquisition method".</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="eventMaterialsTech" type="lido:materialsTechSetComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Indicates the substances or materials used within the event (e.g. the creation of a work), as well as any implements, production or manufacturing techniques, processes, or methods incorporated.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="thingPresent" type="lido:objectSetComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>References an other object that was present at this same event.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="relatedEventSet" type="lido:relatedEventSetComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>An event which is linked in some way to this event, e.g. a field trip within which this object was collected.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="eventDescriptionSet" type="lido:descriptiveNoteComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A description of the event.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="eventSetComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for display and index elements for events (e.g. creation, find, use etc.), in which the described object participated. For multiple events repeat the element.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="displayEvent" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Display element for an event, corresponding to the following event element.</xsd:documentation>
+					<xsd:documentation>Repeat this element only for language variants!</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="event" type="lido:eventComplexType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="eventWrap">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for event sets.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1:no equivalent</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: eventWrap corresponds to lido:eventWrap</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="eventSet" type="lido:eventSetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:attribute name="geographicalEntity" type="xsd:string"/>
+	<xsd:complexType name="gmlComplexType">
+		<xsd:annotation>
+			<xsd:documentation>GML Instantiation</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="gml:Point" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="gml:LineString" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="gml:Polygon" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="identifierComplexType">
+		<xsd:annotation>
+			<xsd:documentation>There is no controlled list of identifier types. Suggested values include, but are not limited to the following:doi (Digital Objects Identifier)guid (Globally unique identifier)hdl (Handle)isbn (International Standard Book Number)ismn (International Standard Music Number)isrc (International Standard Recording Code)issn (International Standard Serials Number)localpermalinkpurl (Persistent Uniform Resource Locator)url (Uniform Resource Locator)urn (Uniform Resource Name)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute ref="lido:pref"/>
+				<xsd:attribute ref="lido:type" use="required"/>
+				<xsd:attribute ref="lido:source"/>
+				<xsd:attribute ref="lido:encodinganalog"/>
+				<xsd:attribute ref="lido:label"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:element name="inscriptionsWrap">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for information about inscriptions and other marks.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: inscriptionsWrap</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: inscriptionsWrap</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="inscriptions" minOccurs="0" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>A description or transcription of any distinguishing or identifying physical lettering, annotations, texts, markings, or labels that are affixed, applied, stamped, written, inscribed, or attached to the work, excluding any mark or text inherent in the materials of which the work is made (record watermarks in Display Materials/Techniques).</xsd:documentation>
+						<xsd:documentation>The assigned type attribute allows to qualify text, e.g. to indicate that the text is a transcription of the inscription</xsd:documentation>
+						<xsd:documentation>CDWA Lite v1.1: inscriptions, with a newly assigned type attribute</xsd:documentation>
+						<xsd:documentation>museumdat v1.0: inscriptions, with a newly assigned type attribute</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:complexContent>
+							<xsd:extension base="lido:textComplexType">
+								<xsd:attribute ref="lido:type"/>
+							</xsd:extension>
+						</xsd:complexContent>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:attribute name="label" type="xsd:string"/>
+	<xsd:complexType name="legalBodyRefComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Reference information to a legal body</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="legalBodyID" type="lido:identifierComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Unambiguous identification of the institution or person.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="legalBodyName" type="lido:appellationComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Appellation of the institution or person.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="legalBodyWeblink" type="lido:webResourceComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Weblink of the institution or person.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="lido">
+		<xsd:annotation>
+			<xsd:documentation>Holds the metadata of an object.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: cdwalite</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: museumdat</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="lidoRecID" type="lido:identifierComplexType" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>A unique lido record identification, preferably composed of an identifier for the contributor and a record identification in the contributor's (local) system.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="category" type="lido:conceptComplexType" minOccurs="0"/>
+				<xsd:element ref="lido:descriptiveMetadata" maxOccurs="unbounded"/>
+				<xsd:element ref="lido:administrativeMetadata" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="lidoWrap">
+		<xsd:annotation>
+			<xsd:documentation>Holds one or multiple object records.</xsd:documentation>
+			<xsd:documentation>The attribute relatedencoding contains the source format for the attributes encodinganalog and label (see Object type). This may be any metadata standard like Dublin Core, but also MIDAS, KNORR or system-specific formats. This attribute is optional.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: cdwaliteWrap</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: museumdatWrap</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="lido:lido" maxOccurs="unbounded"/>
+			</xsd:sequence>
+			<xsd:attribute name="relatedencoding" type="xsd:string"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:attribute name="linkscheme" type="xsd:string"/>
+	<xsd:complexType name="materialsTechComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Materials and techniques for retrieval; if multiple parts of the work require separate materials and techniques, or if you are recording media and support separately, repeat the materialsTechSet element qualifying the extent sub-element.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="termMaterialsTech" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A term to index materials and/or technique.</xsd:documentation>
+					<xsd:documentation>Data values for Type-Attribut: technique, material, implement, mark (e.g., watermark or other mark inherent in the material)</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:conceptComplexType">
+							<xsd:attribute ref="lido:type"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="extentMaterialsTech" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>An explanation of the part of the work to which the materials or technique are applicable; included when necessary for clarity.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sourceMaterialsTech" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The source of the information about materials and technique, often used when citing a published source of watermarks.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="materialsTechSetComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for display and index elements for materials and technique information.</xsd:documentation>
+			<xsd:documentation>Indicates the substances or materials used, as well as any implements, production or manufacturing techniques, processes, or methods incorporated.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="displayMaterialsTech" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Display element for materials/technique, corresponding to the following materialsTech-Element.</xsd:documentation>
+					<xsd:documentation>It is presented in a syntax suitable for display to the end-user and including any necessary indications of uncertainty, ambiguity, and nuance.</xsd:documentation>
+					<xsd:documentation>Repeat this element only for language variants!</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="materialsTech" type="lido:materialsTechComplexType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="objectClassificationWrap">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for data classifying the object.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1:no equivalent</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: objectClassificationWrap</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="lido:objectWorkTypeWrap"/>
+				<xsd:element ref="lido:classificationWrap" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="objectComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Reference to an object.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="objectWebResource" type="lido:webResourceComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A Uri/Url-Reference representing the object in the worldwide web environment.</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: linkRelatedWork</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: linkRelatedWork</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="objectID" type="lido:identifierComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Unique identifier of the referenced object.</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: locRelatedWork@relWorkID corresponds to lido:objectID</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: locRelatedWork@relWorkID corresponds to lido:objectID</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="objectNote" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A descriptive identification of the object that will be meaningful to end-users, including some or all of the following information, as necessary for clarity and if known: title, object/work type, important actor, date and/or place information, potentially location of the object.</xsd:documentation>
+					<xsd:documentation>The information should ideally be generated from fields/elements in the related record.</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: labelRelatedWork</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: labelRelatedWork</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:textComplexType">
+							<xsd:attribute ref="lido:type"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="objectDescriptionWrap">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for Description/Descriptive Note information.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: descriptiveNoteWrap</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: descriptiveNoteWrap</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="objectDescriptionSet" type="lido:descriptiveNoteComplexType" minOccurs="0" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>A wrapper for a descriptive note and its sources. If there is more than one descriptive note, repeat this sub-element.</xsd:documentation>
+						<xsd:documentation>Includes usually a relatively brief essay-like text that describes the content and context of the work, including comments and an interpretation that may supplement, qualify, or explain the physical characteristics, subject, circumstances of creation or discovery, or other information about the work.</xsd:documentation>
+						<xsd:documentation>Data values for the type attribute: Object history, description, catalogue text etc.</xsd:documentation>
+						<xsd:documentation>CDWA Lite v1.1: descriptiveNoteSet</xsd:documentation>
+						<xsd:documentation>museumdat v1.0: descriptiveNoteSet</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="objectIdentificationWrap">
+		<xsd:annotation>
+			<xsd:documentation>A Wrapper for information that identifies the object.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1:no equivalent</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: identificationWrap corresponds to lido:objectIdentificationWrap</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="lido:titleWrap"/>
+				<xsd:element ref="lido:inscriptionsWrap" minOccurs="0"/>
+				<xsd:element ref="lido:repositoryWrap" minOccurs="0"/>
+				<xsd:element ref="lido:displayStateEditionWrap" minOccurs="0"/>
+				<xsd:element ref="lido:objectDescriptionWrap" minOccurs="0"/>
+				<xsd:element ref="lido:objectMeasurementsWrap" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="objectMeasurementsComplexType">
+		<xsd:annotation>
+			<xsd:documentation>The dimensions, size, shape, scale, format, or storage configuration of the work, including volume, weight, area or running time. Measurements are formatted to allow retrieval; preferably in metric units where applicable.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: indexingMeasurementsSet, with all sub-elements</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: indexingMeasurementsSet, with all sub-elements</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="measurementsSet" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The dimensions or other measurements for one aspect of a work (e.g., width); may be combined with extent, qualifier, and other sub-elements as necessary.</xsd:documentation>
+					<xsd:documentation>Data values for value: Whole numbers or decimal fractions.</xsd:documentation>
+					<xsd:documentation>Data values for unit: cm, mm, m, g, kg, kb, Mb, Gb.</xsd:documentation>
+					<xsd:documentation>Data values for type: height, width, depth, length, diameter, circumference, stories, count, area, volume, running time, size, ...</xsd:documentation>
+					<xsd:documentation>All three attributes - unit, value and type - are mandatory attributes for the measurementsSet.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="unit" type="xsd:string" use="required"/>
+					<xsd:attribute ref="lido:type" use="required"/>
+					<xsd:attribute name="value" type="xsd:string" use="required"/>
+					<xsd:attribute ref="xml:lang"/>
+					<xsd:attribute ref="lido:encodinganalog"/>
+					<xsd:attribute ref="lido:label"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="extentMeasurements" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>An explanation of the part of the work being measured; included when necessary for clarity.</xsd:documentation>
+					<xsd:documentation>Data values: overall, components, sheet, plate mark, chain lines, pattern repeat, lid, base, laid lines, folios, leaves, columns per page, lines per page, tessera, footprint, panel, interior, mat, window of mat, secondary support, frame, mount, ...</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="qualifierMeasurements" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A word or phrase that elaborates on the nature of the measurements of the work when necessary, as when the measurements are approximate.</xsd:documentation>
+					<xsd:documentation>Data values: approximate, sight, maximum, larges, smallest, average, variable, assembled, before restoration, before restoration, at corners, rounded, framed, with base, ...</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="formatMeasurements" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The configuration of a work, including technical formats, used as necessary.</xsd:documentation>
+					<xsd:documentation>Data values: Vignette, VHS, IMAX, DOS ...</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="shapeMeasurements" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The shape of a work, used for unusual shapes (e.g., an oval painting).</xsd:documentation>
+					<xsd:documentation>Data values: oval, round, square, rectangular, irregular, ...</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="scaleMeasurements" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>An expression of the ratio between the size of the representation of something and that thing (e.g., the size of the drawn structure and the actual built work). Used for studies, record drawings, models, and other representations drawn or constructed to scale.</xsd:documentation>
+					<xsd:documentation>Data values for scale: numeric (e.g., 1 inch = 1 foot), full-size, life-size, half size,monumental. and others as recommended in CCO and CDWA. Combine this tag with Measurement Sets for numeric scales. For measurementsSet type for Scale, use "base" for the left side of the equation, and "target" for the right side of the equation).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="objectMeasurementsSetComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for display and index elements for object measurements. If multiple parts of the work are measured, repeat the element</xsd:documentation>
+			<xsd:documentation>Holds information about the dimensions, size, or scale of the work. It may also include the number of the parts of a complex work, series, or collection.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="displayObjectMeasurements" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Display element for one object measurement, corresponding to the following objectMeasurement element.</xsd:documentation>
+					<xsd:documentation>Repeat this element only for language variants!</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="objectMeasurements" type="lido:objectMeasurementsComplexType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="objectMeasurementsWrap">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for the Measurements.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="objectMeasurementsSet" type="lido:objectMeasurementsSetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="objectRelationWrap">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for indexing related topics and works, collections, etc.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1:no equivalent</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: relationWrap corresponds to lido:objectRelationWrap</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="lido:subjectWrap" minOccurs="0"/>
+				<xsd:element ref="lido:relatedWorksWrap" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="objectSetComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for display and reference elements for an other object.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="displayObject" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A free-text description of the object, corresponding to the following object element</xsd:documentation>
+					<xsd:documentation>Repeat this element only for language variants!</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="object" type="lido:objectComplexType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="objectWorkTypeWrap">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for Object/Work Types.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="objectWorkType" type="lido:conceptComplexType" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>Object Work Types are identifying the specific kind of object or work being described. For a collection, include repeating instances for identifying all of or the most important items in the collection.</xsd:documentation>
+						<xsd:documentation>CDWA Lite v1.1: objectWorkType (assigns a term) corresponds to lido:objectWorkType (assigns a concept with its identifiers and various terms)</xsd:documentation>
+						<xsd:documentation>museumdat v1.0: objectWorkType (assigns a term) corresponds to lido:objectWorkType (assigns a concept with its identifiers and various terms)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="placeComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Structured element for place information</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: locationSet corresponds partly to lido:placeComplexType</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: indexingLocationWrap is refined into lido:placeComplexType</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="placeID" type="lido:identifierComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="namePlaceSet" type="lido:appellationComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The name of the geographic place. If there are different names of the same place, e.g. today's and historical names, repeat this element.</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: locationName corresponds partly to lido:namePlaceSet/lido:appellationComplexType</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: nameLocationSet</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="gml" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>GML-conformant Content</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:gmlComplexType">
+							<xsd:attribute ref="xml:lang"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="partOfPlace" type="lido:placeComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Allows for indexing larger geographical entities.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="placeClassification" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A classification of the place, e.g. by geological complex, stratigraphic unit or habitat type.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:conceptComplexType">
+							<xsd:attribute ref="lido:type"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute ref="lido:politicalEntity">
+			<xsd:annotation>
+				<xsd:documentation>Data values can include: Gemeinde, Kreis, Bundesland, Staat, Herzogtum, city, county, country, civil parish</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute ref="lido:geographicalEntity">
+			<xsd:annotation>
+				<xsd:documentation>Data values can include: Naturraum, Landschaft, natural environment, landscape</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="placeSetComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for display and index elements for place information.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="displayPlace" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Display element for a place specification, corresponding to the following place element.</xsd:documentation>
+					<xsd:documentation>Repeat this element only for language variants!</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="place" type="lido:placeComplexType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:attribute name="politicalEntity" type="xsd:string"/>
+	<xsd:attribute name="pref">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="preferred"/>
+				<xsd:enumeration value="alternate"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+	<xsd:complexType name="recordInfoSetComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for metadata information about this record.</xsd:documentation>
+			<xsd:documentation>Note: The metadata information contains the reference to the "lido"-metadata set but may also be constituted by reference to an "object data sheet" in an online database.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: recordInfoWrap</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: recordInfoSet</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="recordInfoID" type="lido:identifierComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Unique ID of the metadata. Record Info ID has the same definition as Record ID but out of the context of original local system, such as a persistent identifier or an oai identifier (e.g., oai1:getty.edu:paintings/00001234 attribute type= oai).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordInfoLink" type="lido:webResourceComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Link of the metadata, e.g., to the object data sheet (not the same as link of the object).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordRelID" type="lido:identifierComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Unique ID of the metadata of the related object.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordMetadataLoc" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Pointer(s) to other metadata (administrative, technical, structural).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordMetadataDate" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Creation date or date modified of the metadata record. Format will vary depending upon implementation.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:textComplexType">
+							<xsd:attribute ref="lido:type"/>
+							<xsd:attribute ref="lido:source"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute ref="lido:type"/>
+	</xsd:complexType>
+	<xsd:element name="recordWrap">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for information about the record that contains the cataloguing information.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: recordWrap</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: recordWrap</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="recordID" type="lido:identifierComplexType" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>A unique record identification in the contributor's (local) system.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="recordType" type="lido:textComplexType">
+					<xsd:annotation>
+						<xsd:documentation>Term establishing whether the record represents an individual item or a collection, series, or group of works.</xsd:documentation>
+						<xsd:documentation>It is required to designate the Record type. The default is item. Other data values: collection, series, group, volume, fonds,</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="recordSource" type="lido:legalBodyRefComplexType" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>The source of information in this record, generally the repository or other institution.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="recordRights" type="lido:rightsComplexType" minOccurs="0" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>Information about rights regarding the metadata provided in this record.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="recordInfoSet" type="lido:recordInfoSetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="relatedEventSetComplexType">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for one event related to the described event.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="relatedEvent" type="lido:eventSetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="relatedEventRelType" type="lido:conceptComplexType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A term describing the nature of the relationship between the described event and the related event.</xsd:documentation>
+					<xsd:documentation>Recommended data values: sub-event of, ... The default is "related to".</xsd:documentation>
+					<xsd:documentation>Note: For implementation of the data: Note that relationships are conceptually reciprocal, but the Relationship Type is often different on either side of the relationship.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="relatedWorksSetComplexType">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for one work, group, collection, or series that is directly related to the work at hand, including direct relationships between two works, between a work and its components, and between an item and the larger group, collection, or series of works. Objects referred to may be corresponding objects or objects created to be shown together with the object in question, but also e.g., literature (bibliographic objects) in which the object is documented or mentioned forms a "relatedWorkSet". If there is more than one object referred to the set should be repeated.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="relatedWork" type="lido:objectSetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="relatedWorkRelType" type="lido:conceptComplexType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A term describing the nature of the relationship between the work at hand and the related entity.</xsd:documentation>
+					<xsd:documentation>Recommended data values: part of, larger context for, model of, model for, study of, study forrendering of, copy of, ... The default is "related to".</xsd:documentation>
+					<xsd:documentation>Note: For implementation of the data: Note that relationships are conceptually reciprocal, but the Relationship Type is often different on either side of the relationship (e.g., one work is part of a second work, but from the point of view of the second record, the first work is the larger context for the second work). Whether or not relationships are physically reciprocal as implemented in systems is a local decision.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="relatedWorksWrap">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for Related Works information.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="relatedWorksSet" type="lido:relatedWorksSetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="repositorySetComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for designation and identification of the institution of custody and, possibly, indication of the exact location of the object. If there are several designations known, e.g., a current one and former ones (see: type attribute), repeat the element.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: locationSet is partly a subset of lido:repositorySet</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: repositorySet - refined into lido:repositorySet (see repositoryName and repositoryLocation)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="repositoryName" type="lido:legalBodyRefComplexType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Unambiguous identification, designation and weblink of the institution of custody</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: locationName corresponds partly to lido:repositoryName</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: repositoryName - refined into lido:repositoryName</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="workID" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>An unambiguous numeric or alphanumeric identification number, assigned to the object by the institution of custody.</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: workID</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: workID</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute ref="lido:type"/>
+							<xsd:attribute ref="lido:encodinganalog"/>
+							<xsd:attribute ref="lido:label"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="repositoryLocation" type="lido:placeComplexType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Location of the object, especially relevant for architecture and archaeological sites.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="repositoryType">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="current"/>
+					<xsd:enumeration value="former"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:element name="repositoryWrap">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for Repository/ Location information.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: locationWrap is partly corresponding lido:repositorySet</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: repositoryWrap - refined into lido:repositoryWrap (see repositoryName and repositoryLocation)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="repositorySet" type="lido:repositorySetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="resourceSetComplexType">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for sets of resource information. If there are multiple resources associated with the work, repeat the Resource Set sub-element.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: resourceSet</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: resourceSet</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="linkResource" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A uri/url reference that is universal in the worldwide web environment.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:webResourceComplexType">
+							<xsd:attribute ref="lido:type"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="resourceID" type="lido:identifierComplexType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>The unique numeric or alphanumeric identification of the resource.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="resourceRelType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The relationship of an image or other resource to the work being described.</xsd:documentation>
+					<xsd:documentation>Data values: conservation image, documentary image, contextual image, historical image, reconstruction, installation image...</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:textComplexType">
+							<xsd:attribute ref="lido:type"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="resourceType" type="lido:conceptComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The generic identification of the medium of the image or other resource.</xsd:documentation>
+					<xsd:documentation>Data values: Controlled. Digital image, photograph, slide, videotape, X-ray photograph, negative,</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rightsResource" type="lido:rightsComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Information about rights regarding the image or other resource. Use this sub-element if the holder of the reproduction rights for the image/resource differs from the holder of rights for the work. See also Rights Work above. (E.g., the work rights are " National Museum of African Art, Smithsonian Instituition (Washing DC), " but the image rights are "Photo Frank Khoury.")</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="resourceViewDescription" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A description of the spatial, chronological, or contextual aspects of the work as captured in the view of this particular image or other resource.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:textComplexType">
+							<xsd:attribute ref="lido:type"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="resourceViewType" type="lido:conceptComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The specific vantage point or perspective of the view.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="resourceViewSubjectTerm" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Terms or phrases that characterize the subject matter of the work as it is depicted in a specific image or other resource.</xsd:documentation>
+					<xsd:documentation>Data values: Controlled. E.g., IconClass, museumsvokabular.de, SWD, AAT</xsd:documentation>
+					<xsd:documentation>Recommended values for type attribute: conceptTerm, iconography, eventName, personalName, corporateBodyName, geographicName</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:conceptComplexType">
+							<xsd:attribute ref="lido:type"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="resourceViewDate" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A date or range of dates associated with the creation or production of the image. This is not necessarily the same as the date of production of the resource (e.g., a print of a negative may be made years after the image was first captured on film). For the date of the resource, use Resource Date. Format will vary depending upon implementation.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute name="earliestdate" type="xsd:string"/>
+							<xsd:attribute name="latestdate" type="xsd:string"/>
+							<xsd:attribute ref="xml:lang"/>
+							<xsd:attribute ref="lido:encodinganalog"/>
+							<xsd:attribute ref="lido:label"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="resourceSource" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Identification of the agency, individual, repository, or publication from which the image or other resource was obtained, including a bibliographic citation in the case of copy photography. Include this sub-element when the source of the image/resource differs from the source named in Record Source.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:textComplexType">
+							<xsd:attribute ref="lido:type"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="linkRelatedResource" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A reference to an image or other resource that is related to the resource in this Resource Set, generally linking a group or collection of images or other resources to members of the group or collection. For multiple related resources, repeat this element.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="relatedResourceRelType" type="lido:textComplexType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>A term describing the nature of the relationship between the resource at hand and the related resource.</xsd:documentation>
+								<xsd:documentation>Recommended values: part of, larger context for, related to, ...</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="labelRelatedResource" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>An identification of the related image or other resource that will be meaningful to end-users.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute ref="lido:linkscheme"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="resourceMetadataLoc" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Pointer(s) to other metadata (administrative, technical, structural).</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="lido:textComplexType">
+							<xsd:attribute ref="lido:type"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="resourceWrap">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for image information. An identification of an image (visual surrogate) of the work, including digital images, slides, transparencies, photographs, and moving images, but excluding items that are considered works in their own right. For works such as drawings, prints, paintings, or photographs considered art, and other works that themselves contain representations of other works, use Related Works and/or Subjects.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: resourceWrap</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: resourceWrap</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="resourceSet" type="lido:resourceSetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="rightsComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Information about rights management; may include copyright and other intellectual property statements.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="rightsType" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The specific type of right being recorded. For example: copyright, publication right, data protection right, trademark.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rightsDate" type="lido:dateComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The date on which a right is or was current.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rightsHolder" type="lido:legalBodyRefComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The holder of the right.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="creditLine" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Acknowledgement of the rights associated with the physical and/or digital object.</xsd:documentation>
+					<xsd:documentation>Repeat this element only for language variants.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="rightsWorkWrap">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for rights information.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: no equivalent (cdwalite:rightsWork is not wrapped)</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: no equivalent (museumdat:rightsWork is not wrapped)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="rightsWorkSet" type="lido:rightsComplexType" minOccurs="0" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>Information about rights management; may include copyright and other intellectual property statements required for use of the metadata.</xsd:documentation>
+						<xsd:documentation>CDWA Lite v1.1: rightsWork / rightsResource - semantics of the simple text elements correspond to the structured lido:rightsComplexType</xsd:documentation>
+						<xsd:documentation>museumdat v1.0: rightsWork / rightsResource - semantics of the simple text elements correspond to the structured lido:rightsComplexType</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:attribute name="source" type="xsd:string"/>
+	<xsd:complexType name="subjectComplexType">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for one set of Subject Indexing information. These identify, describe, and/or interpret what is depicted in and by a work or what the work is about. If a work has multiple parts or otherwise has separate, multiple subjects, repeat this element with Extent Subject. This element may also be repeated to distinguish between subjects that reflect what a work is *of* (description and identification) from what it is *about* (interpretation).</xsd:documentation>
+			<xsd:documentation>While not required, it is highly recommended to include subject information, even for non-objective art, for which the function or purpose of the work may be included as subject.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: indexingSubjectSet, but refined</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: indexingSubjectSet, but refined</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="extentSubject" type="lido:textComplexType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>When there are multiple subjects, a term indicating the part of the work to which these subject terms apply.</xsd:documentation>
+					<xsd:documentation>Data values: recto, verso, side A, side B, main panel, predella, ...</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: extentSubject</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: extentSubject</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="subjectConcept" type="lido:conceptComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Subject terms - these may include iconography, themes from literature, or generic terms describing the material world, or topics (e.g., concepts, themes, or issues). However, references to people, events, places are indicated in the the respective sub-elements Subject: Actor, Subject: Event, Subject: Place.</xsd:documentation>
+					<xsd:documentation>Data values should be controlled, e.g. Iconclass, AAT, museumsvokabular.de, SWD.</xsd:documentation>
+					<xsd:documentation>CDWA Lite v1.1: subjectTerm, but restricted to concepts - cf. new sub-elements subjectActor, subjectEvent, subjectPlace</xsd:documentation>
+					<xsd:documentation>museumdat v1.0: subjectTerm, but restricted to concepts - cf. new sub-elements subjectActor, subjectEvent, subjectPlace</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="subjectActor" type="lido:actorSetComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A person, group, or institution depicted in or by an object, or the object is about.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="subjectDate" type="lido:dateSetComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A time specification or period depicted in or by an object, or the object is about.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="subjectEvent" type="lido:eventSetComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>An event depicted in or by an object, or the object is about.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="subjectPlace" type="lido:placeSetComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A place depicted in or by an object, or the object is about.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="subjectObject" type="lido:objectSetComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>An object - e.g. a building or a work of art depicted in or by an object, or the object is about.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute ref="lido:type"/>
+	</xsd:complexType>
+	<xsd:complexType name="subjectSetComplexType">
+		<xsd:annotation>
+			<xsd:documentation>A single set of subject indexing information, together with its textual equivalent.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="displaySubject" type="lido:textComplexType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A free-text description of the subject matter represented by/in the object, corresponding to the following subject element</xsd:documentation>
+					<xsd:documentation>Repeat this element only for language variants!</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="subject" type="lido:subjectComplexType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="subjectWrap">
+		<xsd:annotation>
+			<xsd:documentation>A wrapper for Subject information.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="subjectSet" type="lido:subjectSetComplexType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="termComplexType">
+		<xsd:annotation>
+			<xsd:documentation>A name for a concept / term, usually from a controlled vocabulary.</xsd:documentation>
+			<xsd:documentation>The attributes are to be used as follows:pref - has allowable values:  preferred | alternate. Indicates whether it is the preferred name of the concept / term, or an alternative name.xml:lang - specifies the language of the concept / term.addedSearchTerm - has allowable values: yes | no. Default is "no". imported = "yes" means that the item includes an additional item (e.g. synonym, generic term) from the standard vocabulary used, which is included only for retrieval purposes.encodinganalog and label - used to indicate the category of data from the source system from the data values were taken. encodinganalog refers to the internal label for the external field name. The reference format is specified in lidoWrap.The attributes are optional.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute ref="lido:pref"/>
+				<xsd:attribute ref="lido:addedSearchTerm"/>
+				<xsd:attribute ref="xml:lang"/>
+				<xsd:attribute ref="lido:encodinganalog"/>
+				<xsd:attribute ref="lido:label"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="textComplexType">
+		<xsd:annotation>
+			<xsd:documentation>Simple text element with encodinganalog and label attribute</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute ref="xml:lang"/>
+				<xsd:attribute ref="lido:encodinganalog"/>
+				<xsd:attribute ref="lido:label"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:element name="titleWrap">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for Object name / Title information.</xsd:documentation>
+			<xsd:documentation>CDWA Lite v1.1: titleWrap</xsd:documentation>
+			<xsd:documentation>museumdat v1.0: titleWrap</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="titleSet" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>Wrapper for one title or object name and its related information. If there is more than one title, repeat the Title Set element.</xsd:documentation>
+						<xsd:documentation>CDWA Lite v1.1: titleSet</xsd:documentation>
+						<xsd:documentation>museumdat v1.0: titleSet</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:complexContent>
+							<xsd:extension base="lido:appellationComplexType">
+								<xsd:attribute ref="lido:type"/>
+							</xsd:extension>
+						</xsd:complexContent>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:attribute name="type" type="xsd:string"/>
+	<xsd:complexType name="webResourceComplexType">
+		<xsd:annotation>
+			<xsd:documentation>A uri/url reference to a web resource that describes / represents the item, e.g. a metadata record. Note that it differs from an identifier for the item itself.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute ref="lido:pref"/>
+				<xsd:attribute name="formatResource" type="xsd:string"/>
+				<xsd:attribute ref="xml:lang"/>
+				<xsd:attribute ref="lido:encodinganalog"/>
+				<xsd:attribute ref="lido:label"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+</xsd:schema>
+

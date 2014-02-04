@@ -1,0 +1,1109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/EDMSchemaV13"
+	xmlns:tns="http://www.example.org/EDMSchemaV13"
+	elementFormDefault="qualified">
+
+	
+
+    <complexType name="SimpleLiteral">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="lang" type="language"></attribute>
+            </extension>
+		</simpleContent>
+	</complexType>
+
+
+	<element name="Aggregation" type="tns:AggregationType"></element>
+
+
+
+	<complexType name="WebResourceType">
+		<annotation>
+			<documentation>
+				For every WebResourceType we make an instance of
+				edm:WebResource (WebResourceInst)
+
+				Relations EDMObjectInst edm:hasView WebResourceInst
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="dc_format" type="tns:LiteralOrResource"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="dc_rights" type="tns:LiteralOrResource"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="dct_conformsTo" type="tns:LiteralOrResource"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="dct_extent" type="tns:LiteralOrResource"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="dct_isFormatOf" type="tns:LiteralOrResource"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="ens_rights" type="anyURI" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="relatedWR" type="tns:RelatedWR" maxOccurs="1"
+				minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+
+
+
+	<complexType name="EventType">
+		<annotation>
+			<documentation>An event is a change “of states in cultural, social or physical systems,
+regardless of scale, brought about by a series or group of coherent physical,
+cultural, technological or legal phenomena” (E5 Event in CIDOC CRM) or a
+“set of coherent phenomena or cultural manifestations bounded in time and
+space” (E4 Period in CIDOC CRM)
+
+Example:the act of painting Mona Lisa, the 2nd World War, the change of custody of Mona Lisa</documentation>
+		</annotation>
+		<sequence>
+			<element name="happenedAt" type="tns:PlaceType"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>
+						This property associates an event with the place
+						at which the event happened.
+
+						Example: The creation of Mona Lisa happened at
+						Florence. The excavation of the Egyptian Amphora
+						L2409 happened at Heraklion, Crete. Type:
+						edm:Place
+					</documentation>
+				</annotation>
+			</element>
+			<element name="occuredAt" type="tns:TimeSpanType"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>
+						This property associates an event to the
+						smallest known time span that overlaps with the
+						occurrence of that event
+
+						Example: The creation of Mona Lisa occurred at
+						1503 - 1506 Type: edm:TimeSpan
+					</documentation>
+				</annotation>
+			</element>
+			<element name="owl_sameAs" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="skosLabels" type="tns:SkosLabels"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="dc_identifier" type="string"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="hasType" type="anyURI" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="relatedEvents" type="tns:ReletedEvents"
+				maxOccurs="1" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="DCType">
+        <annotation>
+        	<documentation>DCType contains the Dublin Core Properties.</documentation>
+        </annotation>
+        <sequence>
+        	<element name="contributor" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				An entity responsible for making contributions
+        				to the resource.
+
+        				Example:
+        				<contributor>Maria Callas</contributor>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="coverage" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				The spatial or temporal topic of the resource,
+        				the spatial applicability of the resource, or
+        				the jurisdiction under which the resource is
+        				relevant. This may be a named place, a location,
+        				a spatial coordinate, a period, date, date range
+        				or a named administrative entity.
+
+        				Example:
+        				<coverage>1995-1996</coverage>
+        				<coverage>Boston, MA</coverage>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="creator" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				An entity primarily responsible for making the
+        				resource. This may be a person, organisation or
+        				a service.
+
+        				Example:
+        				<creator>Shakespeare, William</creator>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="date" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				A point or period of time associated with an
+        				event in the lifecycle of the resource.
+
+        				Example:
+        				<date>17th century</date>
+        				(For example the date when an object was
+        				repaired) Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="description" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				An account of the resource.
+
+        				Example:
+        				<description>
+        					Illustrated guide to airport markings and
+        					lighting signals, with particular reference
+        					to SMGCS (Surface Movement Guidance and
+        					Control System) for airports with low
+        					visibility conditions.
+        				</description>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="format" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				The file format, physical medium or dimensions
+        				of the resource.
+
+        				Example:
+        				<format>image/jpeg</format>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="reference" type="tns:SimpleLiteral"
+        		maxOccurs="unbounded" minOccurs="0">
+        	</element>
+        	<element name="language" type="tns:SimpleLiteral"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				A language of the resource.
+
+        				Example:
+        				<language>it</language>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="publisher" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				An entity responsible for making the resource
+        				available. Examples of a publisher include a
+        				person, an organisation and a service.
+
+        				Example:
+        				<publisher>Oxford University Press</publisher>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="relation" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				A related resource. The recommended best
+        				practice is to identify the resource using a
+        				formal identification scheme.
+
+        				Example:
+        				<relation>maps.crace.1/33</relation>
+        				(This is the shelf mark for a map held in the
+        				British Library’s Crace Collection). Type:
+        				String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="rights" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Information about copyright of the digital
+        				object as specified by isShownBy and isShownAt.
+
+        				Example:
+        				<rights>
+        					Creative Commons Attribution 3.0 License
+        				</rights>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="source" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				A related resource from which the described
+        				resource is derived in whole or in part.
+
+        				Example:
+        				<source>Security Magazine pp 3-12</source>
+        				<source>BAM portal</source>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="subject" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				The topic of the resource.
+
+        				Example:
+        				<subject>submarine</subject>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="title" type="tns:SimpleLiteral"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				A name given to the resource. Typically, a Title
+        				will be a name by which the resource is formally
+        				known.
+
+        				Example:
+        				<title>Taal vitaal</title>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="type" maxOccurs="unbounded" minOccurs="0"
+        		type="tns:LiteralOrResource">
+        		<annotation>
+        			<documentation>
+        				The nature or genre of the resource. Type
+        				includes terms describing general categories,
+        				functions, genres, or aggregation levels for
+        				content.
+
+        				Example:
+        				<type>painting</type>
+        				<type>photograph</type>
+        				<type>coin</type>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        </sequence>
+	</complexType>
+	
+	<complexType name="DCTermsType">
+        <annotation>
+        	<documentation>DCTermsType contains the DC Terms Properties.</documentation>
+        </annotation>
+        <sequence>
+        	<element name="alternative" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				An alternative name for the resource. This can
+        				be any form of the title that is used as a
+        				substitute or an alternative to the formal title
+        				of the resource including abbreviations or
+        				translations of the title.
+
+        				Example:
+        				<alternative>Ocho semanas</alternative>
+        				(When
+        				<title>Eight weeks</title>
+        				) Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="conformsTo" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				An established standard to which the described
+        				resource conforms.
+
+        				Example:
+        				<conformsTo>W3C WCAG 2.0</conformsTo>
+        				(for an HTML document that conforms to web
+        				content accessibility guidelines). Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="created" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Date of creation of the resource
+
+        				Example:
+        				<created>1564</created>
+        				<created>Iron Age</created>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="extent" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				The size or duration of the resource.
+
+        				Example:
+        				<extent>13 cm</extent>
+        				(the width of an original object).
+        				<extent>34 minutes</extent>
+        				(the length of an audio file). Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="hasFormat" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				A related resource that is substantially the
+        				same as the pre-existing described resource, but
+        				in another format.
+
+        				Example:
+        				<hasFormat>
+        					http://upload.wikimedia.org/wikipedia/en/f/f3/Europeana
+        					_logo.png
+        				</hasFormat>
+        				where the resource being described is a tiff
+        				image file. Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="hasVersion" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				A related resource that is a version, edition,
+        				or adaptation of the described resource. Changes
+        				in version imply substantive changes in content
+        				rather than differences in format.
+
+        				Example:
+        				<hasVersion>
+        					The Sorcerer’s Apprentice (translation by
+        					Edwin Zeydel, 1955)
+        				</hasVersion>
+        				. In this example the 1955 translation is a
+        				version of the described resource. Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="isFormatOf" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				A related resource that is substantially the
+        				same as the described resource, but in another
+        				format.
+
+        				Example:
+        				<isFormatOf>Europeana_logo.tiff</isFormatOf>
+        				where the resource being described is a png
+        				image file. Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="issued" type="tns:LiteralOrResource" maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Date of formal issuance (e.g., publication) of
+        				the resource.
+
+        				Example:
+        				<issued>1993</issued>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+            <element name="isVersionOf" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				A related resource of which the described
+        				resource is a version, edition, or adaptation.
+        				Changes in version imply substantive changes in
+        				content rather than differences in format
+
+        				Example:
+        				<isVersionOf>ESE Version 0.5</isVersionOf>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="medium" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				The material or physical carrier of the
+        				resource.
+
+        				Example:
+        				<medium>metal</medium>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="provenance" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				A statement of any changes in ownership and
+        				custody of the resource since its creation that
+        				are significant for its authenticity, integrity
+        				and interpretation. This may include a
+        				description of any changes successive custodians
+        				made to the resource.
+
+        				Example:
+        				<provenance>
+        					Donated by The National Library in 1965
+        				</provenance>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	            <element name="spatial" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Spatial characteristics of the resource.
+
+        				Example:
+        				<spatial>Portugal</spatial>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="tableOfContents" type="tns:SimpleLiteral"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				A list of subunits of the resource.
+
+        				Example:
+        				<tableOfContents>
+        					Chapter 1. Introduction, Chapter 2. History
+        				</tableOfContents>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="temporal" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Temporal characteristics of the resource
+
+        				Example:
+        				<temporal>Roman</temporal>
+        				Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        </sequence>
+	</complexType>
+	
+	<complexType name="EuropeanaType">
+        <annotation>
+        	<documentation>EuropeanaType contains the Europeana Properties.</documentation>
+        </annotation>
+        <sequence>
+        	<element name="currentLocation" type="tns:PlaceType"
+        		maxOccurs="unbounded" minOccurs="0">
+        	</element>
+        	<element name="hasType" type="tns:LiteralOrResource"
+        		maxOccurs="unbounded" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				This property relates a resource with the
+        				concepts it belongs to in a suitable type system
+        				such as MIME or any thesaurus that captures
+        				categories of objects in a given field (e.g.,
+        				the “Objects” facet in Getty’s Art and
+        				Architecture Thesaurus). It does not capture
+        				aboutness.
+
+        				Example: The type of Mona Lisa is (AAT)
+        				Painting. The type of a digital image of Mona
+        				Lisa may be JPEG. Type: String
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="wasPresentAt" type="tns:EventType" maxOccurs="unbounded" minOccurs="0"></element>
+
+        </sequence>
+	</complexType>
+
+	<complexType name="AggregationType">
+		<annotation>
+			<documentation>A set of related resources (Aggregated Resources), grouped together such
+that the set can be treated as a single resource. This is the entity described
+within the ORE interoperability framework by a Resource Map.</documentation>
+		</annotation>
+		<sequence>
+			<element name="aggregatedCHO" type="tns:ProvidedCHO" maxOccurs="1" minOccurs="1"></element>
+			<element name="webResources" type="tns:WebWrapperType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="dataProvider" type="tns:AgentType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="provider" type="tns:AgentType" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="dc_rights" type="tns:SimpleLiteral"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+            <element name="ens_rights" type="anyURI" maxOccurs="1" minOccurs="1">
+			</element>
+        </sequence>
+	</complexType>
+
+	<complexType name="AgentType">
+		<annotation>
+			<documentation>This class comprises people, either individually or in groups, who have the
+potential to perform intentional actions for which they can be held responsible.
+
+Example:Leonardo da Vinci, the British Museum, W3C</documentation>
+		</annotation>
+		<sequence>
+			<element name="wasPresentAt" type="tns:EventType"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="skol_Labels" type="tns:SkosLabels"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="owl_sameAs" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="foaf_name" type="tns:SimpleLiteral"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="dc_date" type="tns:SimpleLiteral"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="dc_identifier" type="tns:SimpleLiteral"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="rdaGr2_dateOfBirth " type="tns:SimpleLiteral"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="rdaGr2_dateOfDeath" type="tns:SimpleLiteral"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="rdaGr2_dateOfEstablishment "
+				type="tns:SimpleLiteral" maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="rdaGr2_dateOfTermination "
+				type="tns:SimpleLiteral" maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="rdaGr2_gender " type="tns:SimpleLiteral"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="rdaGr2_professionOrOccupation "
+				type="tns:SimpleLiteral" maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="rdaGr2_biographicalInformation "
+				type="tns:SimpleLiteral" maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="ens_isRelatedTo" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="PlaceType">
+        <annotation>
+        	<documentation>An “extent in space, in particular on the surface of the earth, in the pure sense
+of physics: independent from temporal phenomena and matter” (CIDOC CRM)
+
+Example:the region of space occupied by Rome today, the region of space 
+occupied by the United Kingdom today, the region of space occupied by 
+the Republic of Crimea in 1945</documentation>
+        </annotation>
+        <sequence>
+        	<element name="wgs84_pos_lat " type="tns:SimpleLiteral"
+        		maxOccurs="1" minOccurs="0">
+        	</element>
+        	<element name="wgs84_pos_long" type="tns:SimpleLiteral"
+        		maxOccurs="1" minOccurs="0">
+        	</element>
+        	<element name="wgs84_pos_alt" type="tns:SimpleLiteral"
+        		maxOccurs="1" minOccurs="0">
+        	</element>
+        	<element name="wgs84_pos_lat_long" type="tns:SimpleLiteral"
+        		maxOccurs="1" minOccurs="0">
+        	</element>
+        	<element name="skosLabels" type="tns:SkosLabels"
+        		maxOccurs="1" minOccurs="0">
+        	</element>
+        	<element name="owl_sameAs" type="anyURI"
+        		maxOccurs="unbounded" minOccurs="0">
+        	</element>
+        	<element name="relatedPlace" type="tns:RelatedPlace"
+        		maxOccurs="1" minOccurs="0">
+        	</element>
+        </sequence>
+	</complexType>
+
+	<complexType name="TimeSpanType">
+        <annotation>
+        	<documentation>The class of “abstract temporal extents, in the sense of Galilean physics,
+having a beginning, an end and a duration” (CIDOC CRM)
+
+Example:2001-12-31, 01.01.01 – 02.02.02, 1503 – 1506 (the time span of the creation of Mona Lisa)</documentation>
+        </annotation>
+        <sequence>
+        	<element name="skosLabels" type="tns:SkosLabels"
+        		maxOccurs="1" minOccurs="0">
+        	</element>
+        	<element name="owl_sameAs" type="anyURI"
+        		maxOccurs="unbounded" minOccurs="0">
+        	</element>
+        	<element name="crm_P79F.beginning_is_qualified_by"
+        		type="tns:SimpleLiteral" maxOccurs="unbounded"
+        		minOccurs="0">
+        	</element>
+        	<element name="crm_P80F.end_is_qualified_by"
+        		type="tns:SimpleLiteral" maxOccurs="unbounded"
+        		minOccurs="0">
+        	</element>
+        	<element name="relatedTimeSpan" type="tns:RelatedTimeSpan"
+        		maxOccurs="1" minOccurs="0">
+        	</element>
+        </sequence>
+	</complexType>
+
+
+
+
+
+	<element name="WebResources" type="tns:WebWrapperType"></element>
+
+	<element name="Time" type="tns:TimeSpanType"></element>
+
+
+	<element name="Agent" type="tns:AgentType"></element>
+
+
+	<element name="Place" type="tns:PlaceType"></element>
+
+	<element name="RelatedWrap" type="tns:RelatedCHOsType"></element>
+	
+
+	
+
+
+	<complexType name="RelatedProxiesWrapType">
+		<sequence>
+			<element name="relatedProxies" type="string"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="WebWrapperType">
+		<sequence>
+			<element name="isShownBy" type="tns:WebResourceType"
+				maxOccurs="unbounded" minOccurs="1">
+			</element>
+			<element name="isShownAt" type="tns:WebResourceType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="object" type="tns:WebResourceType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+		</sequence>
+	</complexType>
+
+
+	
+
+
+	<simpleType name="Edmtype">
+		<restriction base="string">
+			<enumeration value="TEXT"></enumeration>
+			<enumeration value="VIDEO"></enumeration>
+			<enumeration value="IMAGE"></enumeration>
+			<enumeration value="SOUND"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<element name="DC" type="tns:DCType"></element>
+
+	<element name="DCTerms" type="tns:DCTermsType"></element>
+
+	<element name="Europeana" type="tns:EuropeanaType"></element>
+
+	<complexType name="ProvidedCHO">
+		<sequence>
+			<element name="DC" type="tns:DCType" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="DCTerms" type="tns:DCTermsType" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="Europeana" type="tns:EuropeanaType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="owl_sameAs" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="rdf_type" type="tns:SkosConceptType"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="ens_type" type="tns:Edmtype" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="relatedCHOs" type="tns:RelatedCHOsType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="PhysicalThingType">
+		<sequence>
+			<element name="DC" type="tns:DCType" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="DCTerms" type="tns:DCTermsType" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="Europeana" type="tns:EuropeanaType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="relatedPT" type="tns:RelatedCHOsType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="SkosConceptType">
+		<sequence>
+            <element name="skosLabels" type="tns:SkosLabels" maxOccurs="1" minOccurs="0"></element>
+            <element name="broader" type="anyURI" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="narrower" type="anyURI" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="related" type="anyURI" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="broadMatch" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="narrowMatch" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="relatedMatch" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="exactMatch" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="closeMatch" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="notation" type="string" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="inScheme" type="tns:SkosConceptScheme"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="SkosConceptScheme">
+		<sequence>
+			<element name="dc_title" type="tns:SimpleLiteral"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="dc_creator" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="skos_hasTopConcept" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="skos_note" type="tns:SimpleLiteral"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="LiteralOrResource">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="lang" type="language"></attribute>
+				<attribute name="type" use="required">
+					<simpleType>
+						<restriction base="string">
+							<enumeration value="Literal"></enumeration>
+							<enumeration value="Reference"></enumeration>
+						</restriction>
+					</simpleType>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="CulturalHeritageObject">
+		<sequence>
+			<element name="physicalThing" type="tns:PhysicalThingType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="providedCHO" type="tns:ProvidedCHO"
+				maxOccurs="1" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="RelatedCHOsType">
+		<sequence>
+			<element name="dct_hasPart" type="tns:LiteralOrResource"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+            <element name="dct_isPartOf" type="tns:LiteralOrResource"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="dct_isReferencedBy" type="tns:LiteralOrResource"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>
+						A related resource that references, cites, or
+						otherwise points to the described resource.
+
+						Example:
+						<isReferencedBy>
+							Till, Nicholas (1994) Mozart and the
+							Enlightenment: Truth, Virtue and Beauty in
+							Mozart’s Operas, W. W. Norton &amp; Company
+						</isReferencedBy>
+						Type: String
+					</documentation>
+				</annotation>
+			</element>
+			<element name="dct_isReplacedBy" type="tns:LiteralOrResource"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>
+						A related resource that supplants, displaces, or
+						supersedes the described resource.
+
+						Example:
+						<isReplacedBy>
+							http://dublincore.org/about/2009/01/05/bylaws/
+						</isReplacedBy>
+						where the resource described is an older version
+						(http://dublincore.org/about/2006/01/01/bylaws/)
+						Type: String
+					</documentation>
+				</annotation>
+			</element>
+            <element name="dct_isRequiredBy" type="tns:LiteralOrResource"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>
+						A related resource that requires the described
+						resource to support its function, delivery or
+						coherence.
+
+						Example:
+						<isRequiredBy>
+							http://www.myslides.com/myslideshow.ppt
+						</isRequiredBy>
+						where the image being described is required for
+						an online slideshow. Type: String
+					</documentation>
+				</annotation>
+			</element>
+			<element name="dct_references" type="tns:LiteralOrResource"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>
+						A related resource that is referenced, cited, or
+						otherwise pointed to by the described resource
+
+						Example:
+						<references>
+							Honderd jaar Noorse schilderkunst
+						</references>
+						Type: String
+					</documentation>
+				</annotation>
+			</element>
+			<element name="dct_replaces" type="tns:LiteralOrResource"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>
+						A related resource that is supplanted,
+						displaced, or superseded by the described
+						resource.
+
+						Example:
+						<replaces>
+							http://dublincore.org/about/2006/01/01/bylaws/
+						</replaces>
+						where the resource described is a newer version
+						(http://dublincore.org/about/2009/01/05/bylaws/)
+						Type: String
+					</documentation>
+				</annotation>
+			</element>
+			<element name="dct_requires" type="tns:LiteralOrResource"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>
+						A related resource that is required by the
+						described resource to support its function,
+						delivery or coherence.
+
+						Example:
+						<requires>
+							http://ads.ahds.ac.uk/project/userinfo/css/oldbrowsers.css
+						</requires>
+						where the resource described is a HTML file at
+						http://ads.ahds.ac.uk/project/userinfo/digitalTextArchiving.html
+						Type: String
+					</documentation>
+				</annotation>
+			</element>
+
+
+			<element name="ens_incorporates" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="ens_isDerivativeOf" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="ens_isNextInSequence " type="anyURI"
+				maxOccurs="1" minOccurs="0">
+			</element>
+            <element name="ens_isRelatedTo" type="anyURI" maxOccurs="unbounded" minOccurs="0">
+        	</element>
+            <element name="ens_isRepresentationOf" type="anyURI" maxOccurs="1" minOccurs="0">
+        	</element>
+            <element name="ens_isSimilarTo" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="ens_isSuccessorOf" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+            <element name="ens_realizes" type="anyURI" maxOccurs="unbounded" minOccurs="0">
+        	</element>
+        </sequence>
+	</complexType>
+
+	<complexType name="RelatedWR">
+		<sequence>
+            <element name="dct_hasPart" type="tns:LiteralOrResource"
+            	maxOccurs="unbounded" minOccurs="0">
+            </element>
+            <element name="ens_isNextInSequencce" type="anyURI" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="RelatedPlace">
+		<sequence>
+            <element name="dct_hasPart" type="anyURI" maxOccurs="unbounded" minOccurs="0">
+			</element>
+            <element name="dct_isPartOf" type="anyURI" maxOccurs="unbounded" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+	<complexType name="RelatedTimeSpan">
+		<sequence>
+            <element name="dct_hasPart" type="anyURI" maxOccurs="unbounded" minOccurs="0">
+			</element>
+            <element name="dct_isPartOf" type="anyURI" maxOccurs="unbounded" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+	
+
+	<complexType name="ReletedEvents">
+		<sequence>
+			<element name="dct_hasPart" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="dct_isPartOf" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="crm_P120F.occurs_before" type="anyURI"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="SkosLabels">
+		<sequence>
+            <element name="prefLabel" type="tns:SimpleLiteral"
+            	maxOccurs="unbounded" minOccurs="0">
+            </element>
+            <element name="altLabel" type="tns:SimpleLiteral"
+            	maxOccurs="unbounded" minOccurs="0">
+            </element>
+            <element name="hiddenLabel" type="tns:SimpleLiteral"
+            	maxOccurs="unbounded" minOccurs="0">
+            </element>
+            <element name="note" type="tns:SimpleLiteral"
+            	maxOccurs="unbounded" minOccurs="0">
+            </element>
+            
+		</sequence>
+	</complexType>
+
+	<complexType name="AggregationWrapType">
+		<sequence>
+			<element name="aggregation" type="tns:AggregationType" maxOccurs="unbounded" minOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<element name="AggregationWrap" type="tns:AggregationWrapType"></element>
+
+
+	<element name="DataProvider" type="tns:AgentType"></element>
+
+	<element name="Provider" type="tns:AgentType"></element>
+
+	<element name="ProvidedCHO" type="tns:ProvidedCHO"></element>
+</schema>

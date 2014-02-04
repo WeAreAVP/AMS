@@ -1,0 +1,16 @@
+ALTER TABLE transformation ADD COLUMN is_approved int NOT NULL default 0;
+ALTER TABLE mapping ADD COLUMN user_id int NOT NULL default 1000;
+
+
+Kill all session
+SELECT pg_terminate_backend(pg_stat_activity.procpid)
+FROM pg_stat_activity
+WHERE pg_stat_activity.datname = 'mint';
+
+
+
+
+update users set email='noumantayyab@gmail.com' WHERE users_id=1000;
+update users set md5_password='b5d3b7366cb92ed27f9534b51a23bd01' WHERE users_id=1000;
+
+dropdb -U postgres mint

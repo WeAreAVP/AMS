@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp2 (http://www.altova.com) by www.serials.ws (www.serials.ws) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns="http://purl.org/dc/terms/" targetNamespace="http://purl.org/dc/terms/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">
+      DCterms XML Schema
+      XML Schema for http://purl.org/dc/terms/ namespace
+ 
+      Created 2008-02-11
+
+      Created by 
+
+      Tim Cole (t-cole3@uiuc.edu)
+      Tom Habing (thabing@uiuc.edu)
+      Jane Hunter (jane@dstc.edu.au)
+      Pete Johnston (p.johnston@ukoln.ac.uk),
+      Carl Lagoze (lagoze@cs.cornell.edu)
+
+      This schema declares XML elements for the DC elements and
+      DC element refinements from the http://purl.org/dc/terms/ namespace.
+      
+      It reuses the complexType dc:SimpleLiteral, imported from the dc.xsd
+      schema, which permits simple element content, and makes the xml:lang
+      attribute available.
+
+      This complexType permits the derivation of other complexTypes
+      which would permit child elements.
+
+      XML elements corresponding to DC elements are declared as substitutable for the abstract element dc:any, and 
+      XML elements corresponding to DC element refinements are defined as substitutable for the base elements 
+      which they refine.
+
+      This means that the default type for all XML elements (i.e. corresponding to all DC elements and 
+      element refinements) is dc:SimpleLiteral.
+
+      Encoding schemes are defined as complexTypes which are restrictions
+      of the dc:SimpleLiteral complexType. These complexTypes restrict 
+      values to an appropriates syntax or format using data typing,
+      regular expressions, or enumerated lists.
+  
+      In order to specify one of these encodings an xsi:type attribute must 
+      be used in the instance document.
+
+      Also, note that one shortcoming of this approach is that any type can be 
+      applied to any of the elements or refinements.  There is no convenient way
+      to restrict types to specific elements using this approach.
+
+      Changes in 2008-02-11 version:
+      
+      Add element declarations corresponding to 15 new dcterms URIs, and amend use of substitutionGroups.
+      
+      Add compexType definitions corresponding to ISO639-3, RFC4646.
+      
+    </xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+	<xs:import namespace="http://purl.org/dc/elements/1.1/" schemaLocation="dc.xsd"/>
+	<xs:import namespace="http://purl.org/dc/dcmitype/" schemaLocation="dcmitype.xsd"/>
+	<xs:element name="title" substitutionGroup="dc:title"/>
+	<xs:element name="creator" substitutionGroup="dc:creator"/>
+	<xs:element name="subject" substitutionGroup="dc:subject"/>
+	<xs:element name="description" substitutionGroup="dc:description"/>
+	<xs:element name="publisher" substitutionGroup="dc:publisher"/>
+	<xs:element name="contributor" substitutionGroup="dc:contributor"/>
+	<xs:element name="date" substitutionGroup="dc:date"/>
+	<xs:element name="type" substitutionGroup="dc:type"/>
+	<xs:element name="format" substitutionGroup="dc:format"/>
+	<xs:element name="identifier" substitutionGroup="dc:identifier"/>
+	<xs:element name="source" substitutionGroup="dc:source"/>
+	<xs:element name="language" substitutionGroup="dc:language"/>
+	<xs:element name="relation" substitutionGroup="dc:relation"/>
+	<xs:element name="coverage" substitutionGroup="dc:coverage"/>
+	<xs:element name="rights" substitutionGroup="dc:rights"/>
+	<xs:element name="alternative" substitutionGroup="title">
+		<xs:annotation>
+			<xs:documentation>An alternative name given to the resource. Typically, an Alternative title will be a name by which the resource is alternatively referred and it is different from the formal Title. Any alternative title by which the original analog or born digital object is known. This can include abbreviations or translations of the title.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="tableOfContents" substitutionGroup="description">
+		<xs:annotation>
+			<xs:documentation>A list of subunits of the resource. A list of the units within the original analog or born digital resource object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="abstract" substitutionGroup="description">
+		<xs:annotation>
+			<xs:documentation>An account of the content of the resource. Abstract is limited to a free-text account of the content.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="created" substitutionGroup="date">
+		<xs:annotation>
+			<xs:documentation>Date of creation of the resource. This is the date when the original analog or born digital object was created.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="valid" substitutionGroup="date">
+		<xs:annotation>
+			<xs:documentation>Date (often a range) of validity of a resource.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="available" substitutionGroup="date"/>
+	<xs:element name="issued" substitutionGroup="date">
+		<xs:annotation>
+			<xs:documentation>Date of formal issuance (e.g., publication) of the resource. The date when the original analog or born digital object was issued or published.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="modified" substitutionGroup="date"/>
+	<xs:element name="dateAccepted" substitutionGroup="date">
+		<xs:annotation>
+			<xs:documentation>Date of acceptance of the resource. Examples of resources to which a Date Accepted may be relevant are a thesis (accepted by a university department) or an article (accepted by a journal).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dateCopyrighted" substitutionGroup="date"/>
+	<xs:element name="dateSubmitted" substitutionGroup="date"/>
+	<xs:element name="extent" substitutionGroup="format">
+		<xs:annotation>
+			<xs:documentation>The size or duration of the resource. Refinement of format. Size or duration of the digital object and the original object may be recorded.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="medium" substitutionGroup="format">
+		<xs:annotation>
+			<xs:documentation>The material or physical carrier of the resource. Refinement of dc:format.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="isVersionOf" substitutionGroup="relation">
+		<xs:annotation>
+			<xs:documentation>A related resource of which the described resource is a version, edition, or adaptation. Changes in version imply substantive changes in content rather than differences in format. Refinement of dc:relation. See also dcterms:hasVersion.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="hasVersion" substitutionGroup="relation">
+		<xs:annotation>
+			<xs:documentation>A related resource that is a version, edition, or adaptation of the described resource. Changes in version imply substantive changes in content rather than differences in format. Refinement of dc:relation. See also dcterms:isVersionOf. Use dcterms:hasFormat for differences in format. </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="isReplacedBy" substitutionGroup="relation">
+		<xs:annotation>
+			<xs:documentation>A related resource that supplants, displaces, or supersedes the described resource.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="replaces" substitutionGroup="relation">
+		<xs:annotation>
+			<xs:documentation>A related resource that is supplanted, displaced, or superseded by the described resource.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="isRequiredBy" substitutionGroup="relation">
+		<xs:annotation>
+			<xs:documentation>A related resource that requires the described resource to support its function, delivery, or coherence.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="requires" substitutionGroup="relation">
+		<xs:annotation>
+			<xs:documentation>A related resource that is required by the described resource to support its function, delivery, or coherence.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="isPartOf" substitutionGroup="relation">
+		<xs:annotation>
+			<xs:documentation>Is Part Of - A related resource in which the described resource is physically or logically included. Use for the name of the collection which the digital object is part of.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="hasPart" substitutionGroup="relation">
+		<xs:annotation>
+			<xs:documentation>A related resource that is included either physically or logically in the described resource. Refinement of dc:relation. See also dcterms:isPartOf.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="isReferencedBy" substitutionGroup="relation">
+		<xs:annotation>
+			<xs:documentation>Is Referenced By: A related resource that references, cites, or otherwise points to the described resource.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="references" substitutionGroup="relation">
+		<xs:annotation>
+			<xs:documentation>A related resource that is referenced, cited, or otherwise pointed to by the described resource.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="isFormatOf" substitutionGroup="relation">
+		<xs:annotation>
+			<xs:documentation>A related resource that is substantially the same as the described resource, but in another format. Refinement of dc:relation. See also dcterms:hasFormat.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="hasFormat" substitutionGroup="relation">
+		<xs:annotation>
+			<xs:documentation>A related resource that is substantially the same as the pre-existing described resource, but in another format. Refinement of dc:relation. See also dcterms:isFormatOf. Use dcterms:hasVersion for differences in version.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="conformsTo" substitutionGroup="relation">
+		<xs:annotation>
+			<xs:documentation>An established standard to which the described resource conforms. Refinement of dc:relation. The names of standards that the digital object (digitized or born digital) complies with and which are useful for the use of the object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="spatial" substitutionGroup="coverage">
+		<xs:annotation>
+			<xs:documentation>Spatial characteristics of the resource. Information about the spatial characteristics of the original analog or born digital object, i.e. what the resource represents or depicts in terms of space. This may be a named place, a location, a spatial coordinate or a named administrative entity.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="temporal" substitutionGroup="coverage">
+		<xs:annotation>
+			<xs:documentation>Temporal characteristics of the resource. The temporal characteristics of the original analog or born digital object i.e. what the resource is about or depicts in terms of time. This may be a period, date or date range.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="audience" substitutionGroup="dc:any">
+		<xs:annotation>
+			<xs:documentation>A class of entity for whom the resource is intended or useful. A class of entity may be determined by the creator or the publisher or by a third party. Audience terms are best utilized in the context of formal or informal controlled vocabularies. None are presently recommended or registered by DCMI, but several communities of interest are engaged in setting up audience vocabularies. In the absence of recommended controlled vocabularies, implementors are encouraged to develop local lists of values, and to use them consistently.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accrualMethod" substitutionGroup="dc:any"/>
+	<xs:element name="accrualPeriodicity" substitutionGroup="dc:any"/>
+	<xs:element name="accrualPolicy" substitutionGroup="dc:any"/>
+	<xs:element name="instructionalMethod" substitutionGroup="dc:any">
+		<xs:annotation>
+			<xs:documentation>A process, used to engender knowledge, attitudes and skills, that the described resource is designed to support. Instructional Method will typically include ways of presenting instructional materials or conducting instructional activities, patterns of learner-to-learner and learner-to-instructor interactions, and mechanisms by which group and individual levels of learning are measured. Instructional methods include all aspects of the instruction and learning processes from planning and implementation through evaluation and feedback.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="provenance" substitutionGroup="dc:any">
+		<xs:annotation>
+			<xs:documentation>A statement of any changes in ownership and custody of the resource since its creation that are significant for its authenticity, integrity, and interpretation. The statement may include a description of any changes successive custodians made to the resource. This relates to the ownership and custody of the original analog or born digital object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="rightsHolder" substitutionGroup="dc:any">
+		<xs:annotation>
+			<xs:documentation>A person or organization owning or managing rights over the resource.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mediator" substitutionGroup="audience">
+		<xs:annotation>
+			<xs:documentation>An entity that mediates access to the resource and for whom the resource is intended or useful. In an educational context, a mediator might be a parent, teacher, teaching assistant, or care-giver.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="educationLevel" substitutionGroup="audience"/>
+	<xs:element name="accessRights" substitutionGroup="rights"/>
+	<xs:element name="license" substitutionGroup="rights">
+		<xs:annotation>
+			<xs:documentation>A legal document giving official permission to do something with the resource. Reference or inclusion of the text. Typically a reference. In ECLAP, this field is strongly similar to the Europeana.rights that has a specific limited number of possible values.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="bibliographicCitation" substitutionGroup="identifier"/>
+	<xs:complexType name="LCSH">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="MESH">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="DDC">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="LCC">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="UDC">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Period">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="W3CDTF">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:union memberTypes="xs:gYear xs:gYearMonth xs:date xs:dateTime"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="DCMIType">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="dcmitype:DCMIType"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="IMT">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="URI">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:anyURI"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ISO639-2">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ISO639-3">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="RFC1766">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:language"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="RFC3066">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:language"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="RFC4646">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:language"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Point">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ISO3166">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Box">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="TGN">
+		<xs:simpleContent>
+			<xs:restriction base="dc:SimpleLiteral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+				<xs:attribute ref="xml:lang" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:group name="elementsAndRefinementsGroup">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+    		This group is included as a convenience for schema authors
+            who need to refer to all the DC elements and element refinements 
+            in the http://purl.org/dc/elements/1.1/ and 
+            http://purl.org/dc/terms namespaces. 
+            N.B. Refinements available via substitution groups.
+    	</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="dc:any"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="elementOrRefinementContainer">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+    		This is included as a convenience for schema authors who need to define a root
+    		or container element for all of the DC elements and element refinements.
+    	</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:group ref="elementsAndRefinementsGroup"/>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>

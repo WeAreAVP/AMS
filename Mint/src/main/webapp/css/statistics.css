@@ -1,0 +1,63 @@
+/* 
+    Document   : editor
+    Created on : Jun 16, 2009, 2:40:48 PM
+    Author     : Mith
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+html, body {
+    height: 98%;
+    overflow: hidden;
+}
+
+body {
+	margin:0;
+	padding:0;
+}
+
+
+.yui-module {
+    background: #eeffee;
+    font-size: 100%;
+    text-align: left;
+}
+
+.yui-module .hd {
+    padding: 5px;
+    font-size: 110%;
+}
+.yui-module .bd {
+	background: #eeffee;
+    padding: 5px;
+}
+.yui module .ft { border:1px solid black;padding:5px; }
+
+button {
+    width: 200px;
+    height: 50px;
+}
+
+div.mappingTarget {
+    border: 1px solid transparent
+}
+
+
+div.element {
+    font-style: italic;
+    font-weight: bold;
+    color: black;
+    width: 150px;
+}
+
+div.mapping {
+    font-style: normal;
+    font-weight: normal;
+    color:  #666666;
+    padding-left: 10px;
+}

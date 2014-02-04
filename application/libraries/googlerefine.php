@@ -12,7 +12,8 @@ class Googlerefine
 
 	function __construct()
 	{
-		$this->server = rtrim(site_url(), "/") . ':3333';
+		$CI = & get_instance();
+		$this->server = $CI->config->item('google_refine_url');
 	}
 
 	function create_project($project_name, $file_path)

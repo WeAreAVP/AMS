@@ -103,8 +103,14 @@ class Xml extends CI_Controller
 			show_error('No Export available.');
 	}
 
+	/**
+	 * Export the premis xml against guid.
+	 * 
+	 * @return void
+	 */
 	function premis()
 	{
+		Header('Content-type: text/xml');
 		$guid = $this->uri->segment(3, 0);
 		if (isset($guid) && $guid !== 0)
 		{
@@ -115,23 +121,26 @@ class Xml extends CI_Controller
 				$this->export_pbcore_premis->asset_id = $result->assets_id;
 				$this->export_pbcore_premis->is_pbcore_export = FALSE;
 				$this->export_pbcore_premis->make_xml();
-				Header('Content-type: text/xml');
+
 				echo $this->export_pbcore_premis->xml->asXML();
-				exit;
 			}
 			else
 			{
-				show_error('Invalid GUID. No record found.');
+				$result = $this->export_pbcore_premis->xml_error('Invalid GUID. No record found.');
+				echo $result->asXML();
 			}
 		}
 		else
 		{
-			show_error('GUID is required.');
+			$result = $this->export_pbcore_premis->xml_error('GUID is required.');
+			echo $result->asXML();
 		}
+		exit_function();
 	}
 
 	function pbcore()
 	{
+		Header('Content-type: text/xml');
 		$guid = $this->uri->segment(3, 0);
 		if (isset($guid) && $guid !== 0)
 		{
@@ -142,19 +151,21 @@ class Xml extends CI_Controller
 				$this->export_pbcore_premis->asset_id = $result->assets_id;
 				$this->export_pbcore_premis->is_pbcore_export = TRUE;
 				$this->export_pbcore_premis->make_xml();
-				Header('Content-type: text/xml');
+
 				echo $this->export_pbcore_premis->xml->asXML();
-				exit;
 			}
 			else
 			{
-				show_error('Invalid GUID. No record found.');
+				$result = $this->export_pbcore_premis->xml_error('Invalid GUID. No record found.');
+				echo $result->asXML();
 			}
 		}
 		else
 		{
-			show_error('GUID is required.');
+			$result = $this->export_pbcore_premis->xml_error('GUID is required.');
+			echo $result->asXML();
 		}
+		exit_function();
 	}
 
 }

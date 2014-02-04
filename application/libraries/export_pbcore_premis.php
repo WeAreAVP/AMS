@@ -721,6 +721,13 @@ class Export_pbcore_premis
 		return $path;
 	}
 
+	public function xml_error($error)
+	{
+		$xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?>');
+		$this->_add_child($xml, 'error', $error);
+		return $xml;
+	}
+
 }
 
 ?>

@@ -723,8 +723,8 @@ class Export_pbcore_premis
 
 	public function xml_error($error)
 	{
-		$xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?>');
-		$this->_add_child($xml, 'error', $error);
+		$xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><error></error>');
+		$this->_add_child($xml, 'string', $error);
 		return $xml;
 	}
 

@@ -15,6 +15,16 @@ class Export_pbcore_premis
 		$this->CI->load->model('pbcore_model');
 	}
 
+	function make_collection_xml()
+	{
+		
+	}
+
+	/**
+	 * Make pbcore or premis file depend on the parameters.
+	 * 
+	 * @return boolean
+	 */
 	public function make_xml()
 	{
 		if ($this->asset_id !== NULL)
@@ -28,7 +38,8 @@ class Export_pbcore_premis
 					'xmlns:premis' => "info:lc/xmlns/premis-v2",
 					'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd");
 				$this->_add_attribute($this->xml, $attributes);
-				$this->_fetch_asset();
+				$this->_fetch_asset($this->xml);
+				return TRUE;
 			}
 			else
 			{
@@ -44,6 +55,12 @@ class Export_pbcore_premis
 		}
 	}
 
+	/**
+	 * Fetch events information from database.
+	 * 
+	 * @param \SimpleXMLElement $xml_object
+	 * @return boolean
+	 */
 	private function _fetch_events($xml_object)
 	{
 		$pbcore_model = $this->CI->pbcore_model;
@@ -68,7 +85,14 @@ class Export_pbcore_premis
 		return FALSE;
 	}
 
-	private function _fetch_asset()
+	/**
+	 * Fetch Assets information from system.
+	 * 
+	 * @param \SimpleXMLElement $asset_xml_object
+	 * 
+	 * @return void
+	 */
+	private function _fetch_asset($asset_xml_object)
 	{
 		$pbcore_model = $this->CI->pbcore_model;
 
@@ -77,7 +101,7 @@ class Export_pbcore_premis
 		foreach ($identifiers as $identifer)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreIdentifier', $identifer->identifier);
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreIdentifier', $identifer->identifier);
 			if ( ! empty($identifer->identifier_source))
 				$attributes['source'] = $identifer->identifier_source;
 			if ( ! empty($identifer->identifier_ref))
@@ -91,7 +115,7 @@ class Export_pbcore_premis
 		foreach ($asset_types as $asset_type)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreAssetType', $asset_type->asset_type);
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreAssetType', $asset_type->asset_type);
 		}
 		// Asset Type End
 		// Asset Date Start
@@ -99,7 +123,7 @@ class Export_pbcore_premis
 		foreach ($asset_dates as $asset_date)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreAssetDate', $asset_date->asset_date);
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreAssetDate', $asset_date->asset_date);
 			if ( ! empty($asset_date->date_type))
 				$attributes['dateType'] = $asset_date->date_type;
 			$this->_add_attribute($xml_object, $attributes);
@@ -112,7 +136,7 @@ class Export_pbcore_premis
 		foreach ($asset_titles as $asset_title)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreTitle', $asset_title->title);
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreTitle', $asset_title->title);
 			if ( ! empty($asset_title->title_source))
 				$attributes['source'] = $asset_title->title_source;
 			if ( ! empty($asset_title->title_ref))
@@ -128,7 +152,7 @@ class Export_pbcore_premis
 		foreach ($asset_subjects as $asset_subject)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreSubject', $asset_subject->subject);
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreSubject', $asset_subject->subject);
 			if ( ! empty($asset_subject->subject_source))
 				$attributes['source'] = $asset_subject->subject_source;
 			if ( ! empty($asset_subject->subject_ref))
@@ -145,7 +169,7 @@ class Export_pbcore_premis
 		foreach ($asset_descriptions as $asset_description)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreDescription', $asset_description->description);
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreDescription', $asset_description->description);
 			if ( ! empty($asset_description->description_type))
 				$attributes['descriptionType'] = $asset_description->description_type;
 			$this->_add_attribute($xml_object, $attributes);
@@ -153,7 +177,7 @@ class Export_pbcore_premis
 		}
 		if (count($asset_descriptions) <= 0)
 		{
-			$xml_object = $this->_add_child($this->xml, 'pbcoreDescription', 'No description available');
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreDescription', 'No description available');
 		}
 		// Asset Description End
 		// Asset Genre  Start
@@ -162,7 +186,7 @@ class Export_pbcore_premis
 		foreach ($asset_genres as $asset_genre)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreGenre', $asset_genre->genre);
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreGenre', $asset_genre->genre);
 			if ( ! empty($asset_genre->genre_source))
 				$attributes['source'] = $asset_genre->genre_source;
 			if ( ! empty($asset_genre->genre_ref))
@@ -175,7 +199,7 @@ class Export_pbcore_premis
 		$asset_coverages = $pbcore_model->get_by($pbcore_model->table_coverages, array('assets_id' => $this->asset_id));
 		foreach ($asset_coverages as $asset_coverage)
 		{
-			$xml_object = $this->_add_child($this->xml, 'pbcoreCoverage');
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreCoverage');
 			$this->_add_child($xml_object, 'coverage', $asset_coverage->coverage);
 			$this->_add_child($xml_object, 'coverageType', $asset_coverage->coverage_type);
 		}
@@ -186,7 +210,7 @@ class Export_pbcore_premis
 		foreach ($asset_audiences_level as $asset_audience_level)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreAudienceLevel', $asset_audience_level->audience_level);
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreAudienceLevel', $asset_audience_level->audience_level);
 			if ( ! empty($asset_audience_level->audience_level_source))
 				$attributes['source'] = $asset_audience_level->audience_level_source;
 			if ( ! empty($asset_audience_level->audience_level_ref))
@@ -201,7 +225,7 @@ class Export_pbcore_premis
 		foreach ($asset_audiences_rating as $asset_audience_rating)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreAudienceRating', $asset_audience_rating->audience_rating);
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreAudienceRating', $asset_audience_rating->audience_rating);
 			if ( ! empty($asset_audience_rating->audience_rating_source))
 				$attributes['source'] = $asset_audience_rating->audience_rating_source;
 			if ( ! empty($asset_audience_rating->audience_rating_ref))
@@ -215,7 +239,7 @@ class Export_pbcore_premis
 		foreach ($asset_relations as $asset_relation)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreRelation');
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreRelation');
 			$this->_add_child($xml_object, 'pbcoreRelationIdentifier', $asset_relation->relation_identifier);
 			if ( ! empty($asset_relation->relation_type))
 			{
@@ -236,7 +260,7 @@ class Export_pbcore_premis
 		foreach ($asset_creators as $asset_creator)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreCreator');
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreCreator');
 			if ( ! empty($asset_creator->creator_name))
 			{
 				$xml_creator_object = $this->_add_child($xml_object, 'creator', $asset_creator->creator_name);
@@ -272,7 +296,7 @@ class Export_pbcore_premis
 		foreach ($asset_contributors as $asset_contributor)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreContributor');
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreContributor');
 			if ( ! empty($asset_contributor->contributor_name))
 			{
 				$xml_contributor_object = $this->_add_child($xml_object, 'contributor', $asset_contributor->contributor_name);
@@ -305,7 +329,7 @@ class Export_pbcore_premis
 		foreach ($asset_publishers as $asset_publisher)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcorePublisher');
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcorePublisher');
 			if ( ! empty($asset_publisher->publisher))
 			{
 				$xml_publisher_object = $this->_add_child($xml_object, 'publisher', $asset_publisher->publisher);
@@ -335,7 +359,7 @@ class Export_pbcore_premis
 		foreach ($asset_rights as $asset_right)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreRightsSummary');
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreRightsSummary');
 			if ( ! empty($asset_right->rights))
 				$this->_add_child($xml_object, 'rightsSummary', $asset_right->rights);
 			if ( ! empty($asset_right->rights_link))
@@ -348,7 +372,7 @@ class Export_pbcore_premis
 //		foreach ($asset_extensions as $asset_extension)
 //		{
 //			$attributes = array();
-//			$xml_object = $this->_add_child($this->xml, 'pbcoreExtension');
+//			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreExtension');
 //			$xml_object = $this->_add_child($xml_object, 'extensionWrap');
 //			if ( ! empty($asset_extension->extension_element))
 //				$this->_add_child($xml_object, 'extensionAuthorityUsed', $asset_extension->extension_element);
@@ -357,13 +381,13 @@ class Export_pbcore_premis
 //			unset($xml_object);
 //		}
 		// Asset Extension End
-		$this->_fetch_instantiations();
+		$this->_fetch_instantiations($asset_xml_object);
 		// Asset Annotation  Start
 		$asset_annotations = $pbcore_model->get_by($pbcore_model->table_annotations, array('assets_id' => $this->asset_id));
 		foreach ($asset_annotations as $asset_annotation)
 		{
 			$attributes = array();
-			$xml_object = $this->_add_child($this->xml, 'pbcoreAnnotation', $asset_annotation->annotation);
+			$xml_object = $this->_add_child($asset_xml_object, 'pbcoreAnnotation', $asset_annotation->annotation);
 			if ( ! empty($asset_annotation->annotation_type))
 				$attributes['annotationType'] = $asset_annotation->annotation_type;
 			if ( ! empty($asset_annotation->annotation_ref))
@@ -374,28 +398,35 @@ class Export_pbcore_premis
 		// Asset Annotation End
 		$asset_info = $pbcore_model->get_one_by($pbcore_model->_assets_table, array('id' => $this->asset_id));
 		$last_modified = ( ! empty($asset_info->updated) ? $asset_info->updated : $asset_info->created);
-		$xml_object = $this->_add_child($this->xml, 'pbcoreAnnotation', $last_modified);
+		$xml_object = $this->_add_child($asset_xml_object, 'pbcoreAnnotation', $last_modified);
 		$attributes = array();
 		$attributes['annotationType'] = 'last_modified';
 		$this->_add_attribute($xml_object, $attributes);
 		unset($xml_object);
 		$station_info = $pbcore_model->get_one_by($pbcore_model->stations, array('id' => $asset_info->stations_id));
 
-		$xml_object = $this->_add_child($this->xml, 'pbcoreAnnotation', $station_info->station_name);
+		$xml_object = $this->_add_child($asset_xml_object, 'pbcoreAnnotation', $station_info->station_name);
 		$attributes = array();
 		$attributes['annotationType'] = 'organization';
 		$this->_add_attribute($xml_object, $attributes);
 		unset($xml_object);
 	}
 
-	private function _fetch_instantiations()
+	/**
+	 * Fetch instantiations information from system
+	 * 
+	 * @param \SimpleXMLElement $asset_xml_object
+	 * 
+	 * @return void
+	 */
+	private function _fetch_instantiations($asset_xml_object)
 	{
 		$pbcore_model = $this->CI->pbcore_model;
 
 		$instantiations = $pbcore_model->get_by($pbcore_model->table_instantiations, array('assets_id' => $this->asset_id));
 		foreach ($instantiations as $instantiation)
 		{
-			$instantiations_object = $this->_add_child($this->xml, 'pbcoreInstantiation');
+			$instantiations_object = $this->_add_child($asset_xml_object, 'pbcoreInstantiation');
 			// Instantiations Identifier Start
 			$identifiers = $pbcore_model->get_by($pbcore_model->table_instantiation_identifier, array('instantiations_id' => $instantiation->id));
 			foreach ($identifiers as $identifier)
@@ -578,6 +609,14 @@ class Export_pbcore_premis
 		}
 	}
 
+	/**
+	 * Fetch essence track info from system.
+	 * 
+	 * @param integer $instantiations_id
+	 * @param \SimpleXMLElement $instantiations_object
+	 * 
+	 * @return void
+	 */
 	private function _fetch_essence_tracks($instantiations_id, $instantiations_object)
 	{
 		$pbcore_model = $this->CI->pbcore_model;
@@ -682,6 +721,14 @@ class Export_pbcore_premis
 		}
 	}
 
+	/**
+	 * Add child to given object of xml.
+	 * 
+	 * @param \SimpleXMLElement $object
+	 * @param string $tag_name
+	 * @param string $value
+	 * @return \SimpleXMLElement
+	 */
 	private function _add_child($object, $tag_name, $value = NULL)
 	{
 		$object = $object->addChild($tag_name, htmlentities($value));
@@ -691,8 +738,10 @@ class Export_pbcore_premis
 	/**
 	 * Add attributes to xml tag.
 	 * 
-	 * @param type $object
+	 * @param \SimpleXMLElement $object
 	 * @param array $attributes
+	 * 
+	 * @return \SimpleXMLElement
 	 */
 	private function _add_attribute($object, array $attributes)
 	{
@@ -703,6 +752,11 @@ class Export_pbcore_premis
 		return $object;
 	}
 
+	/**
+	 * Make file name for xml.
+	 * 
+	 * @return string
+	 */
 	public function make_file_name()
 	{
 		$guid = $this->CI->pbcore_model->get_one_by($this->CI->pbcore_model->table_identifers, array('assets_id' => $this->asset_id, 'identifier_source' => 'http://americanarchiveinventory.org'));
@@ -710,6 +764,13 @@ class Export_pbcore_premis
 		return $file_name;
 	}
 
+	/**
+	 * Format XML and return its path.
+	 * 
+	 * @param string $path
+	 * 
+	 * @return string
+	 */
 	public function format_xml($path)
 	{
 		$dom = new DOMDocument('1.0');
@@ -721,6 +782,12 @@ class Export_pbcore_premis
 		return $path;
 	}
 
+	/**
+	 * Make xml of given error.
+	 * 
+	 * @param string $error
+	 * @return \SimpleXMLElement
+	 */
 	public function xml_error($error)
 	{
 		$xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><error></error>');

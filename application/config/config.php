@@ -17,18 +17,11 @@ if ( ! defined('BASEPATH'))
   | path to your installation.
   |
  */
-if (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)
-{
-	define("HTTP_PREFIX_STR", "https://");
-}
-else
-{
-	define("HTTP_PREFIX_STR", "http://");
-}
+
 $config['index_page'] = '';
 if (ENVIRONMENT == 'development')
 {
-	$config['base_url'] = HTTP_PREFIX_STR . "ams.live.geekschicago.com/";
+	$config['base_url'] = "http://ams.live.geekschicago.com/";
 	$config['to_email'] = 'noumantayyab@avpreserve.com';
 	$config['from_email'] = 'noreply@amsdev.avpreserve.com';
 	$config['crawford_email'] = 'nouman@geekschicago.com';
@@ -47,7 +40,7 @@ else if (ENVIRONMENT == 'qatesting')
 	$config['crawford_email'] = 'cstephenson@mail.crawford.com';
 	$config['path'] = '/var/www/html/';
 	$config['cookie_domain'] = ".amsqa.avpreserve.com";
-	$config['mint_url'] = "http://mint.avpreserve.com:8080/mint-amsqa";
+	$config['mint_url'] = "http://amsqa.avpreserve.com:8080/mint-ams";
 	$config['instance_name'] = 'amsqa';
 	$config['asset_index'] = 'assets_list';
 	$config['instantiatiion_index'] = 'instantiations_list';

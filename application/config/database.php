@@ -61,10 +61,10 @@ if (ENVIRONMENT == 'development')
 }
 else if (ENVIRONMENT == 'qatesting')
 {
-	$db['default']['hostname'] = 'amsdb.cnltxk49gtb0.us-east-1.rds.amazonaws.com';
+	$db['default']['hostname'] = 'localhost';
 	$db['default']['username'] = 'root';
-	$db['default']['password'] = 'GCAVPSQL098';
-	$db['default']['database'] = 'ams_qa';
+	$db['default']['password'] = 'Av9S@0v4123';
+	$db['default']['database'] = 'amsqa';
 	$db['default']['dbdriver'] = 'mysql';
 	$db['default']['db_debug'] = FALSE;
 }

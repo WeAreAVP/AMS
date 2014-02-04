@@ -102,7 +102,9 @@ class Xml extends CI_Controller
 		else
 			show_error('No Export available.');
 	}
-
+	function premis(){
+		
+	}
 	function pbcore($guid = NULL)
 	{
 		$guid = '190-12m63zwr';

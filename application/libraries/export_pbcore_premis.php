@@ -19,7 +19,7 @@ class Export_pbcore_premis
 	{
 		if ($this->is_pbcore_export)
 		{
-			$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><pbcoreCollection></pbcoreCollection>');
+			$this->xml = new SimpleXMLElement('<pbcoreCollection></pbcoreCollection>');
 			foreach ($records as $_key => $asset)
 			{
 				$document_object = $this->_add_child($this->xml, 'pbcoreDescriptionDocument');

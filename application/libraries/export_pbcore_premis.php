@@ -22,7 +22,7 @@ class Export_pbcore_premis
 			$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><pbcoreCollection></pbcoreCollection>');
 			foreach ($records as $_key => $asset)
 			{
-				if ($_key == 102)
+				if ($_key == 103)
 				{
 					$document_object = $this->_add_child($this->xml, 'pbcoreDescriptionDocument');
 					$attributes = array(

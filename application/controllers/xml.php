@@ -174,10 +174,19 @@ class Xml extends CI_Controller
 		}
 		else if ( ! empty($_uri['digitized']) || ! empty($_uri['modified_date']))
 		{
-			$records = $this->pbcore_model->get_by($this->pbcore_model->_assets_table, array('stations_id' => 100));
-			$this->export_pbcore_premis->is_pbcore_export = TRUE;
-			$this->export_pbcore_premis->make_collection_xml($records);
-			echo $this->export_pbcore_premis->xml->asXML();
+			$result = check_web_service_params($_uri);
+			if ($result == TRUE)
+			{
+				$records = $this->pbcore_model->get_by($this->pbcore_model->_assets_table, array('stations_id' => 100));
+				$this->export_pbcore_premis->is_pbcore_export = TRUE;
+				$this->export_pbcore_premis->make_collection_xml($records);
+				echo $this->export_pbcore_premis->xml->asXML();
+			}
+			else
+			{
+				$response = $this->export_pbcore_premis->xml_error($result);
+				echo $response->asXML();
+			}
 		}
 		else
 		{

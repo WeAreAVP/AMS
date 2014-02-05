@@ -316,3 +316,28 @@ function download_file($file_path)
 		exit_function();
 	}
 }
+
+/**
+ * Check the date format
+ * 
+ * @param type $value
+ * @return boolean 
+ */
+function is_valid_date($value)
+{
+	$date = date_parse($value);
+	if ($date['error_count'] == 0 && $date['warning_count'] == 0)
+	{
+		return date("Y-m-d", strtotime($value));
+	}
+	return FALSE;
+}
+
+function check_web_service_params($params)
+{
+	if ( ! in_array($params['digitized'], array(0, 1)))
+		return 'digitized value can be only 1 or 0';
+	if ( ! is_valid_date($params['modified_date']))
+		return 'modified_date should be in YYYYMMDD';
+	return TRUE;
+}

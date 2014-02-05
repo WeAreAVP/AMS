@@ -202,6 +202,10 @@ class Crons extends CI_Controller
 				else
 				{
 					$result = $this->sphinx->facet_index($facet, $index_name);
+					foreach ($result['records'] as $_key => $station)
+					{
+						$result['records'][$_key]['@count'] = $station['count(*)'];
+					}
 					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
 				}
 			}
@@ -263,7 +267,7 @@ class Crons extends CI_Controller
 		/* End Graph Get Scheduled Formats  */
 		/* Start Meterial Goal  */
 		$data['material_goal'] = $this->dashboard_model->get_digitized_hours();
-		
+
 		$this->memcached_library->set('material_goal', json_encode($data['material_goal']), 3600);
 		/* End Meterial Goal  */
 
@@ -287,12 +291,12 @@ class Crons extends CI_Controller
 		/* End Hours at crawford  */
 
 		/* Start goal hours  */
-		
+
 //		$data['total_goal'] = $this->dashboard_model->get_material_goal()->total;
 		$data['total_goal'] = 40000;
-		
-		
-		
+
+
+
 		$digitized_hours = $this->dashboard_model->get_digitized_hours();
 		$data['total_hours'] = $this->abbr_number((isset($data['total_goal'])) ? $data['total_goal'] : 0);
 

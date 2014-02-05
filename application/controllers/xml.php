@@ -148,7 +148,7 @@ class Xml extends CI_Controller
 		$default = array('guid', 'digitized', 'modified_date');
 		$_uri = $this->uri->uri_to_assoc(3, $default);
 
-//		Header('Content-type: text/xml');
+		Header('Content-type: text/xml');
 		if (isset($_uri['guid']) && ! empty($_uri['guid']))
 		{
 

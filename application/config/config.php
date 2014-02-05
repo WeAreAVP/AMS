@@ -41,7 +41,7 @@ else if (ENVIRONMENT == 'qatesting')
 	$config['crawford_email'] = 'cstephenson@mail.crawford.com';
 	$config['path'] = '/var/www/html/';
 	$config['cookie_domain'] = ".amsqa.avpreserve.com";
-	$config['mint_url'] = "http://amsqa.avpreserve.com:8080/mint-ams";
+	$config['mint_url'] = "http://mint.amsqa.avpreserve.com/mint-ams";
 	$config['google_refine_url'] = "http://amsqa.avpreserve.com:3333";
 	$config['instance_name'] = 'amsqa';
 	$config['asset_index'] = 'assets_list';

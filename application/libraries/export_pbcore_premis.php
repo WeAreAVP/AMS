@@ -20,7 +20,7 @@ class Export_pbcore_premis
 		if ($this->is_pbcore_export)
 		{
 			$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><pbcoreCollection></pbcoreCollection>');
-			foreach ($records as $asset)
+			foreach ($records as $_key => $asset)
 			{
 				$document_object = $this->_add_child($this->xml, 'pbcoreDescriptionDocument');
 				$attributes = array(
@@ -31,6 +31,8 @@ class Export_pbcore_premis
 				$this->_add_attribute($document_object, $attributes);
 				$this->asset_id = $asset->id;
 				$this->_fetch_asset($this->xml);
+				if($_key>10)
+					break;
 			}
 			return TRUE;
 		}

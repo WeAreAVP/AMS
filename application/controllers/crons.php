@@ -197,16 +197,16 @@ class Crons extends CI_Controller
 					$this->load->library('sphnixrt');
 //					$result = $this->sphinx->facet_index($facet, $index_name, $columns);
 					$result = $this->sphnixrt->select($index_name, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
-					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
-				}
-				else
-				{
-					$result = $this->sphinx->facet_index($facet, $index_name);
 					foreach ($result['records'] as $_key => $station)
 					{
 						debug($station);
 						$result['records'][$_key]['@count'] = $station['count(*)'];
 					}
+					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
+				}
+				else
+				{
+					$result = $this->sphinx->facet_index($facet, $index_name);
 					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
 				}
 			}

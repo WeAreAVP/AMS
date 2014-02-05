@@ -3,14 +3,14 @@
 
 		<?php
 		$disable = FALSE;
-		if (isset($inst_format->format_type) && $inst_format->format_type == 'physical')
-		{
-			$disable = TRUE;
-			if (( empty($instantiation_detail->digitized) && $instantiation_detail->digitized == NULL) || $instantiation_detail->digitized == 1)
-			{
-				$disable = TRUE;
-			}
-		}
+//		if (isset($inst_format->format_type) && $inst_format->format_type == 'physical')
+//		{
+//			$disable = TRUE;
+//			if (( empty($instantiation_detail->digitized) && $instantiation_detail->digitized == NULL) || $instantiation_detail->digitized == 1)
+//			{
+//				$disable = TRUE;
+//			}
+//		}
 		$asset_title_type = explode('|', trim(str_replace('(**)', '', $asset_details->title_type)));
 		$asset_title = explode('|', trim(str_replace('(**)', '', $asset_details->title)));
 		$asset_title_ref = explode('|', trim(str_replace('(**)', '', $asset_details->title_ref)));

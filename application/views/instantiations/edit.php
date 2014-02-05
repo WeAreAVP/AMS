@@ -2,7 +2,7 @@
 	<div style="margin: 2px 0px 10px 0px;float:left;width: 570px;">
 
 		<?php
-		$disable = FALSE;
+		$disable = TRUE;
 //		if (isset($inst_format->format_type) && $inst_format->format_type == 'physical')
 //		{
 //			$disable = TRUE;

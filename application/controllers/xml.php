@@ -152,7 +152,7 @@ class Xml extends CI_Controller
 		if (isset($_uri['guid']) && ! empty($_uri['guid']))
 		{
 
-			$result = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('identifier' => "cpb-aacip/{$guid}"));
+			$result = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('identifier' => "cpb-aacip/{$_uri['guid']}"));
 			if ($result)
 			{
 				$this->export_pbcore_premis->asset_id = $result->assets_id;

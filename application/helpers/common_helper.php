@@ -335,9 +335,11 @@ function is_valid_date($value)
 
 function check_web_service_params($params)
 {
-	if ( ! in_array($params['digitized'], array(0, 1)))
-		return 'digitized value can be only 1 or 0';
-	if ( ! is_valid_date($params['modified_date']))
-		return 'modified_date should be in YYYYMMDD';
+	if ( ! empty($params['digitized']))
+		if ( ! in_array($params['digitized'], array(0, 1)))
+			return 'digitized value can be only 1 or 0';
+	if ( ! empty($params['modified_date']))
+		if ( ! is_valid_date($params['modified_date']))
+			return 'modified_date should be in YYYYMMDD';
 	return TRUE;
 }

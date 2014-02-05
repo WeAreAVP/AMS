@@ -235,7 +235,7 @@ function sortByOneKey(array $array, $key, $manage_count = FALSE, $asc = TRUE)
 	}
 	if ($manage_count)
 	{
-		if ($CI->role_id != '20')
+		if (isset($CI->role_id) && $CI->role_id != '20')
 			$result = array_merge($count_greater, $count_lesser);
 		else
 			$result = $count_greater;

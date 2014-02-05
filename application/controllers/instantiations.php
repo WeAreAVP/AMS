@@ -670,7 +670,8 @@ class Instantiations extends MY_Controller
 						}
 						/* Essence Track Aspect Ratio End */
 						/* Essence Track Type Start */
-						$essence_track_type_d = $this->essence_track->get_essence_track_by_type('General');
+						
+						$essence_track_type_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_types, array('essence_track_type' => 'General'), TRUE);
 						if (isset($essence_track_type_d) && isset($essence_track_type_d->id))
 						{
 							$essence_tracks_d['essence_track_types_id'] = $essence_track_type_d->id;
@@ -1042,7 +1043,7 @@ class Instantiations extends MY_Controller
 			}
 			/* Essence Track Aspect Ratio End */
 			/* Essence Track Type Start */
-			$essence_track_type_d = $this->essence_track->get_essence_track_by_type('General');
+			$essence_track_type_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_types, array('essence_track_type' => 'General'), TRUE);
 			if (isset($essence_track_type_d) && isset($essence_track_type_d->id))
 			{
 				$essence_tracks_d['essence_track_types_id'] = $essence_track_type_d->id;

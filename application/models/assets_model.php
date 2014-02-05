@@ -262,47 +262,9 @@ class Assets_Model extends CI_Model
 		return false;
 	}
 
-	/**
-	 * Get aa guid by assets_id
-	 * @param type $assets_id
-	 * @return array 
-	 */
-	function get_aa_guid_by_asset_id($asset_id)
-	{
-		$this->db->where('assets_id', $asset_id);
-		$this->db->where('identifier_source', "http://americanarchiveinventory.org");
-		$query = $this->db->get($this->_table_identifiers);
-		if (isset($query) && ! empty($query))
-		{
-			$res = $query->row();
-			if (isset($res) && ! empty($res))
-			{
-				return $res->identifier;
-			}
-		}
-		return false;
-	}
+	
 
-	/**
-	 * Get local_id by asset_id
-	 * @param type $assets_id
-	 * @return array 
-	 */
-	function get_local_id_by_asset_id($asset_id)
-	{
-		$this->db->where('assets_id', $asset_id);
-		$this->db->where('identifier_source !=', "http://americanarchiveinventory.org");
-		$query = $this->db->get($this->_table_identifiers);
-		if (isset($query) && ! empty($query))
-		{
-			$res = $query->result();
-			if (isset($res) && ! empty($res))
-			{
-				return $res;
-			}
-		}
-		return false;
-	}
+	
 
 	/**
 	 * Get list of all the Assets

@@ -46,23 +46,6 @@ class Essence_Track_Model extends CI_Model
 
 	
 
-	/**
-	 * search generations by @generation
-	 * 
-	 * @param type $status
-	 * @return object 
-	 */
-	function get_essence_track_by_type($essence_track_type)
-	{
-		$this->db->where('essence_track_type LIKE', $essence_track_type);
-		$res = $this->db->get($this->_table_essence_track_types);
-		if (isset($res) && ! empty($res))
-		{
-			return $res->row();
-		}
-		return false;
-	}
-
 	/*
 	 *
 	 *  Insert the record in essence_track_frame_sizes table

@@ -1374,7 +1374,8 @@ class Pbcore2 extends CI_Controller
 								// Essence Track Type Start //
 								if (isset($pbcore_essence_child['essencetracktype'][0]['text']) && ! is_empty($pbcore_essence_child['essencetracktype'][0]['text']))
 								{
-									$essence_track_type_d = $this->essence->get_essence_track_by_type($pbcore_essence_child['essencetracktype'][0]['text']);
+									
+									$essence_track_type_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_types, array('essence_track_type' => $pbcore_essence_child['essencetracktype'][0]['text']), TRUE);
 									if (isset($essence_track_type_d) && isset($essence_track_type_d->id))
 									{
 										$essence_tracks_d['essence_track_types_id'] = $essence_track_type_d->id;

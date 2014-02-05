@@ -80,11 +80,14 @@ class MY_Model extends CI_Model
 	 * 
 	 * @return boolean
 	 */
-	function get_one_by($table, array $data)
+	function get_one_by($table, array $data, $use_like = FALSE)
 	{
 		foreach ($data as $column => $value)
 		{
-			$this->db->where($column, $value);
+			if ($use_like)
+				$this->db->like($column, $value);
+			else
+				$this->db->where($column, $value);
 		}
 		$result = $this->db->get($table);
 		if (isset($result) && ! empty($result))
@@ -128,8 +131,6 @@ class MY_Model extends CI_Model
 		$this->db->insert($table, $data);
 		return $this->db->insert_id();
 	}
-
-	
 
 }
 

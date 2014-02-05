@@ -1,4 +1,4 @@
-<?php
+F<?php
 
 /**
  * Searchd Model

@@ -695,7 +695,8 @@ class Mediainfo extends CI_Controller
 					if ($track_type != '')
 					{
 						$dessence_track[$dessence_track_counter]['track_type'] = $track_type;
-						$essence_track_type = $this->essence->get_essence_track_by_type($track_type);
+						
+						$essence_track_type = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_types, array('essence_track_type' => $track_type), TRUE);
 						if (isset($essence_track_type) && isset($essence_track_type->id))
 						{
 							$essence_track['essence_track_types_id'] = $essence_track_type->id;

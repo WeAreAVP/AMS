@@ -25,7 +25,7 @@
  * @link       http://ams.avpreserve.com
  */
 class Cron_Model extends CI_Model
-{  
+{
 
 	/**
 	 * constructor. set table name amd prefix
@@ -195,7 +195,7 @@ class Cron_Model extends CI_Model
 		$this->db->where('folder_status', 'complete');
 		$this->db->where('data_type', 'mediainfo');
 		$this->db->order_by('id', 'ASC');
-		
+
 		$res = $this->db->get();
 		if (isset($res) && ! empty($res))
 		{

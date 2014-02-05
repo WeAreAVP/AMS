@@ -116,4 +116,3 @@ class Tracking_Model extends CI_Model
 	}
 
 }
-

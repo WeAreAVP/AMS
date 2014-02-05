@@ -313,7 +313,7 @@ class Sphinx_Model extends CI_Model
 
 
 
-		$res = $this->sphinxsearch->query($query,  $this->config->item('instantiatiion_index'));
+		$res = $this->sphinxsearch->query($query, $this->config->item('instantiatiion_index'));
 
 
 		$execution_time = $res['time'];
@@ -501,7 +501,7 @@ class Sphinx_Model extends CI_Model
 	 * @return array 
 	 * 
 	 */
-	function assets_listing($offset = 0, $limit = 100, $select = FALSE) 
+	function assets_listing($offset = 0, $limit = 100, $select = FALSE)
 	{
 		$instantiations = array();
 		$total_record = 0;

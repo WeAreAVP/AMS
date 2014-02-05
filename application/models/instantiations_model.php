@@ -137,59 +137,7 @@ class Instantiations_Model extends CI_Model
 		return $query = $this->db->get($this->table_nomination_status)->result();
 	}
 
-	function get_media_types()
-	{
-		$this->db->order_by("media_type");
-		return $query = $this->db->get($this->table_instantiation_media_types)->result();
-	}
-
-	function get_physical_formats()
-	{
-		$this->db->order_by("format_name");
-		$this->db->where('format_type ', 'physical');
-		$this->db->group_by('format_name');
-		return $query = $this->db->get($this->table_instantiation_formats)->result();
-	}
-
-	function get_digital_formats()
-	{
-		$this->db->order_by("format_name");
-		$this->db->where('format_type ', 'digital');
-		$this->db->group_by('format_name');
-		return $query = $this->db->get($this->table_instantiation_formats)->result();
-	}
-
-	function get_generations()
-	{
-		$this->db->order_by("generation");
-		$this->db->group_by('generation');
-		return $query = $this->db->get($this->table_generations)->result();
-	}
-
-	function get_file_size()
-	{
-		$this->db->select("file_size");
-		$this->db->where('file_size !=', 'NULL');
-		$this->db->order_by("file_size");
-		$this->db->distinct();
-		$result = $this->db->get($this->table_instantiations)->result();
-		return $result;
-	}
-
-	function get_event_type()
-	{
-		$this->db->order_by("event_type");
-		$this->db->group_by('event_type');
-		return $query = $this->db->get($this->table_event_types)->result();
-	}
-
-	function get_event_outcome()
-	{
-		$this->db->select("CASE WHEN event_outcome=0 THEN 'FAIL' WHEN event_outcome=1 THEN 'PASS' END AS event_outcome", FALSE);
-		$this->db->order_by("event_outcome");
-		$query = $this->db->get($this->table_events)->result();
-		return $query;
-	}
+	
 
 	/**
 	 * 

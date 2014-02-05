@@ -842,7 +842,8 @@ class Pbcore extends CI_Controller
 								// Required Fields 1.essencetracktype If this not set then no record enter for essence_track
 								if (isset($pbcore_essence_child['essencetracktype'][0]['text']) && ! is_empty($pbcore_essence_child['essencetracktype'][0]['text']))
 								{
-									$essence_track_type_d = $this->essence->get_essence_track_by_type($pbcore_essence_child['essencetracktype'][0]['text']);
+
+									$essence_track_type_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_types, array('essence_track_type' => $pbcore_essence_child['essencetracktype'][0]['text']), TRUE);
 									if (isset($essence_track_type_d) && isset($essence_track_type_d->id))
 									{
 										$essence_tracks_d['essence_track_types_id'] = $essence_track_type_d->id;
@@ -854,7 +855,8 @@ class Pbcore extends CI_Controller
 								}
 								else
 								{
-									$essence_track_type_d = $this->essence->get_essence_track_by_type('General');
+								
+									$essence_track_type_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_types, array('essence_track_type' => 'General'), TRUE);
 									if (isset($essence_track_type_d) && isset($essence_track_type_d->id))
 									{
 										$essence_tracks_d['essence_track_types_id'] = $essence_track_type_d->id;

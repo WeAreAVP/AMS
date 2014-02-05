@@ -235,4 +235,3 @@ class Station_Model extends CI_Model
 	}
 
 }
-

@@ -185,6 +185,23 @@ class MY_Asset_Model extends MY_Instantiation_Model
 		->get($this->table_assets_publishers_role)->result();
 	}
 
+	function get_assets_by_date_digitized($date, $digitized)
+	{
+		$this->db->select("{$this->_assets_table}.id")
+		->join($this->table_instantiations, "{$this->table_instantiations}.assets_id = {$this->_assets_table}.id", 'LEFT');
+		if ( ! empty($date))
+			$this->db->where("({$this->_assets_table}.created LIKE '{$date}%' OR {$this->_assets_table}.updated LIKE '{$date}%')");
+		if ( ! empty($digitized))
+		{
+			if ($digitized == 0)
+				$this->db->where("({$this->table_instantiations}.digitized = $digitized  OR {$this->table_instantiations}.digitized IS NULL)");
+			else
+				$this->db->where("{$this->table_instantiations}.digitized", $digitized);
+		}
+
+		return $this->db->get($this->_assets_table)->result();
+	}
+
 }
 
 ?>

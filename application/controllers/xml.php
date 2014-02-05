@@ -145,6 +145,9 @@ class Xml extends CI_Controller
 
 	function pbcore()
 	{
+		$default = array('guid', 'digitized', 'modified_date');
+		$_uri = $this->uri->uri_to_assoc(3, $default);
+		debug($_uri);
 		Header('Content-type: text/xml');
 		$guid = $this->uri->segment(3, 0);
 		if (isset($guid) && $guid !== 0)

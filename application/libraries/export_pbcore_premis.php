@@ -15,9 +15,41 @@ class Export_pbcore_premis
 		$this->CI->load->model('pbcore_model');
 	}
 
-	function make_collection_xml()
+	function make_collection_xml($records)
 	{
-		
+		if ($this->is_pbcore_export)
+		{
+			$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><pbcoreCollection></pbcoreCollection>');
+			foreach ($records as $asset)
+			{
+				$document_object = $this->_add_child($this->xml, 'pbcoreDescriptionDocument');
+				$attributes = array(
+					'xmlns' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html",
+					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+					'xmlns:premis' => "info:lc/xmlns/premis-v2",
+					'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd");
+				$this->_add_attribute($document_object, $attributes);
+				$this->asset_id = $asset->id;
+				$this->_fetch_asset($this->xml);
+			}
+			return TRUE;
+		}
+		else
+		{
+			$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><premisCollection></premisCollection>');
+			foreach ($records as $asset)
+			{
+				$premis_object = $this->_add_child($this->xml, 'premis');
+				$attributes = array(
+					'xmlns:premis' => "info:lc/xmlns/premis-v2",
+					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
+					'version' => "2.0");
+				$this->_add_attribute($premis_object, $attributes);
+				$this->_fetch_events($premis_object);
+			}
+			return TRUE;
+		}
 	}
 
 	/**

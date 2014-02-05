@@ -30,7 +30,7 @@ class Export_pbcore_premis
 					'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd");
 				$this->_add_attribute($document_object, $attributes);
 				$this->asset_id = $asset->id;
-				$this->_fetch_asset($this->xml);
+				$this->_fetch_asset($document_object);
 				if($_key>10)
 					break;
 			}

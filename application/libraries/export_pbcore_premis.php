@@ -210,7 +210,7 @@ class Export_pbcore_premis
 		// Asset Subject End
 		// Asset Description  Start
 		$asset_descriptions = $pbcore_model->get_asset_description($this->asset_id);
-
+		debug($asset_descriptions);
 		foreach ($asset_descriptions as $asset_description)
 		{
 			$attributes = array();

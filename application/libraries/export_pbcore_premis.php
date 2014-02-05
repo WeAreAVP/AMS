@@ -19,7 +19,7 @@ class Export_pbcore_premis
 	{
 		if ($this->is_pbcore_export)
 		{
-			$this->xml = new SimpleXMLElement('<pbcoreCollection></pbcoreCollection>');
+			$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><pbcoreCollection></pbcoreCollection>');
 			foreach ($records as $_key => $asset)
 			{
 				$document_object = $this->_add_child($this->xml, 'pbcoreDescriptionDocument');
@@ -774,7 +774,7 @@ class Export_pbcore_premis
 	 */
 	private function _add_child($object, $tag_name, $value = NULL)
 	{
-		$object = $object->addChild($tag_name, htmlentities(preg_replace('#[\\xA1-\\xFF](?![\\x80-\\xBF]{2,})#', utf8_encode($value), $value)));
+		$object = $object->addChild($tag_name, iconv('ISO-8859-1', 'UTF-8', $value));
 		return $object;
 	}
 
@@ -790,7 +790,7 @@ class Export_pbcore_premis
 	{
 		foreach ($attributes as $attribute => $value)
 		{
-			$object->addAttribute($attribute, htmlentities(preg_replace('#[\\xA1-\\xFF](?![\\x80-\\xBF]{2,})#', utf8_encode($value), $value)));
+			$object->addAttribute($attribute, iconv('ISO-8859-1', 'UTF-8', $value));
 		}
 		return $object;
 	}

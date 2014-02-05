@@ -31,9 +31,8 @@ class Export_pbcore_premis
 				$this->_add_attribute($document_object, $attributes);
 				$this->asset_id = $asset->id;
 				$this->_fetch_asset($document_object);
-				if($_key==101)
+				if($_key==102)
 					break;
-				
 			}
 			return TRUE;
 		}
@@ -776,7 +775,7 @@ class Export_pbcore_premis
 	 */
 	private function _add_child($object, $tag_name, $value = NULL)
 	{
-		$object = $object->addChild($tag_name, @iconv('ISO-8859-1', 'UTF-8', $value));
+		$object = $object->addChild($tag_name, htmlentities($value));
 		return $object;
 	}
 
@@ -792,7 +791,7 @@ class Export_pbcore_premis
 	{
 		foreach ($attributes as $attribute => $value)
 		{
-			$object->addAttribute($attribute, @iconv('ISO-8859-1', 'UTF-8', $value));
+			$object->addAttribute($attribute, htmlentities($value));
 		}
 		return $object;
 	}

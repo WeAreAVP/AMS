@@ -147,10 +147,9 @@ class Xml extends CI_Controller
 	{
 		$default = array('guid', 'digitized', 'modified_date');
 		$_uri = $this->uri->uri_to_assoc(3, $default);
-		debug($_uri);
+
 		Header('Content-type: text/xml');
-		$guid = $this->uri->segment(3, 0);
-		if (isset($guid) && $guid !== 0)
+		if (isset($_uri['guid']) && ! empty($_uri['guid']))
 		{
 
 			$result = $this->pbcore_model->get_one_by($this->pbcore_model->table_identifers, array('identifier' => "cpb-aacip/{$guid}"));
@@ -168,9 +167,16 @@ class Xml extends CI_Controller
 				echo $result->asXML();
 			}
 		}
+		else if ( ! empty($_uri['digitized']) || ! empty($_uri['modified_date']))
+		{
+			$records = $this->pbcore_model->get_by($this->pbcore_model->_assets_table, array('stations_id' => 100));
+			$this->export_pbcore_premis->is_pbcore_export = TRUE;
+			$this->export_pbcore_premis->make_collection_xml($records);
+			echo $this->export_pbcore_premis->xml->asXML();
+		}
 		else
 		{
-			$result = $this->export_pbcore_premis->xml_error('GUID is required.');
+			$result = $this->export_pbcore_premis->xml_error('guid,digitized or modified_date. One of the parameter is required.');
 			echo $result->asXML();
 		}
 		exit_function();

@@ -774,7 +774,7 @@ class Export_pbcore_premis
 	 */
 	private function _add_child($object, $tag_name, $value = NULL)
 	{
-		$object = $object->addChild($tag_name, iconv('ISO-8859-1', 'UTF-8', $value));
+		$object = $object->addChild($tag_name, @iconv('ISO-8859-1', 'UTF-8', $value));
 		return $object;
 	}
 
@@ -790,7 +790,7 @@ class Export_pbcore_premis
 	{
 		foreach ($attributes as $attribute => $value)
 		{
-			$object->addAttribute($attribute, iconv('ISO-8859-1', 'UTF-8', $value));
+			$object->addAttribute($attribute, @iconv('ISO-8859-1', 'UTF-8', $value));
 		}
 		return $object;
 	}

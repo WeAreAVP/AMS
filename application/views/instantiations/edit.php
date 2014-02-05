@@ -2,15 +2,22 @@
 	<div style="margin: 2px 0px 10px 0px;float:left;width: 570px;">
 
 		<?php
-		$disable = TRUE;
-//		if (isset($inst_format->format_type) && $inst_format->format_type == 'physical')
-//		{
-//			$disable = TRUE;
-//			if (( empty($instantiation_detail->digitized) && $instantiation_detail->digitized == NULL) || $instantiation_detail->digitized == 1)
-//			{
-//				$disable = TRUE;
-//			}
-//		}
+		$disable = FALSE;
+		if (isset($inst_format->format_type) && ! empty($inst_format->format_type))
+		{
+			if ($inst_format->format_type == 'physical')
+			{
+				$disable = TRUE;
+				if (( empty($instantiation_detail->digitized) && $instantiation_detail->digitized == NULL) || $instantiation_detail->digitized == 1)
+				{
+					$disable = TRUE;
+				}
+			}
+		}
+		else
+		{
+			$disable = TRUE;
+		}
 		$asset_title_type = explode('|', trim(str_replace('(**)', '', $asset_details->title_type)));
 		$asset_title = explode('|', trim(str_replace('(**)', '', $asset_details->title)));
 		$asset_title_ref = explode('|', trim(str_replace('(**)', '', $asset_details->title_ref)));
@@ -37,7 +44,7 @@
 		<h2><?php echo $combine_title; ?></h2>
 	</div>
 	<div class="clearfix"></div>
-	<?php $this->load->view('partials/_list'); ?>
+<?php $this->load->view('partials/_list'); ?>
 	<div class="span9" style="margin-left: 250px;" id="ins_view_detail">
 		<form class="form-horizontal" method="POST" action="<?php echo site_url('instantiations/edit/' . $inst_id); ?>" id="edit_instantiation_form">
 			<table cellPadding="8" class="record-detail-table">
@@ -73,7 +80,7 @@
 														<span  class="help-block" style="display:none;">Instantiation ID is required.</span>
 													</p>
 												</div>
-											<?php } ?>
+		<?php } ?>
 											<div>
 												<p>Instantiation ID Source: <span class="label_star"> *</span> </p>
 												<p>
@@ -88,7 +95,7 @@
 										{
 											?>
 											<div class="remove_element" onclick="removeElement('#remove_instantiation_id_<?php echo $index; ?>', 'instantiation_id');"><img src="/images/remove-item.png" /></div>
-										<?php } ?>
+		<?php } ?>
 										<div class="clearfix" style="margin-bottom: 10px;"></div>
 									</div>
 
@@ -112,7 +119,7 @@
 													<span  class="help-block" style="display:none;">Instantiation ID is required.</span>
 												</p>
 											</div>
-										<?php } ?>
+	<?php } ?>
 										<div>
 											<p>INSTANTIATION ID SOURCE: <span class="label_star"> *</span> </p>
 											<p>
@@ -133,7 +140,7 @@
 						{
 							?>
 							<div class="add-new-element" onclick="addElement('#main_instantiation_id', 'instantiation_id');"><i class="icon-plus-sign icon-white"></i><span id="add_instantiation_id"><?php echo $add; ?></span></div>
-						<?php } ?>
+<?php } ?>
 					</td>
 
 				</tr>
@@ -190,7 +197,7 @@
 																	$less = TRUE;
 																	?>
 																	<optgroup label="Less Commonly Used">Less Commonly Used</optgroup>
-																<?php } ?>
+				<?php } ?>
 
 
 																<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
@@ -789,16 +796,16 @@
 	</div>
 </div>
 <script type="text/javascript">
-												var disable = '<?php echo ($disable ? 1 : 0); ?>';
-												var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
-												var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
-												var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;
-												var pbcoreGeneration =<?php echo json_encode($pbcore_generations); ?>;
+	var disable = '<?php echo ($disable ? 1 : 0); ?>';
+	var pbcoreDateTypes =<?php echo json_encode($pbcore_asset_date_types); ?>;
+	var pbcoreRelationTypes =<?php echo json_encode($pbcore_relation_types); ?>;
+	var pbcoreMediaTypes =<?php echo json_encode($pbcore_media_types); ?>;
+	var pbcoreGeneration =<?php echo json_encode($pbcore_generations); ?>;
 
 </script>
 <script type="text/javascript" src="/js/edit_instantiation.js?<?php echo time(); ?>"></script>
 <style type="text/css">
 	.ui-datepicker,.ui-datepicker-group{
-         width: 22em !important;
-}
+		width: 22em !important;
+	}
 </style>

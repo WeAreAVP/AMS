@@ -205,7 +205,7 @@ class Sphnixrt
 
 		$this->_clear();
 		// build first part of query
-		$query = "SELECT {$data_array['column_name']},COUNT(DISTINCT id) FROM `{$index_name}`";
+		$query = "SELECT {$data_array['column_name']},COUNT(*) FROM `{$index_name}`";
 		if (isset($data_array['where']) && ! empty($data_array['where']))
 			$query .= ' WHERE ' . $data_array['where'] . '';
 		if (isset($data_array['group_by']) && ! empty($data_array['group_by']))
@@ -219,7 +219,7 @@ class Sphnixrt
 			// have some values, push these
 			$query .= ' LIMIT ' . $data_array['start'] . ', ' . $data_array['limit'];
 		}
-		echo $query;
+		
 		// execute query
 		$result = $this->sphinxql_link->query($query);
 

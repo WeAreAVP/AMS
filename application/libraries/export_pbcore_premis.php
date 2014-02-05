@@ -774,7 +774,7 @@ class Export_pbcore_premis
 	 */
 	private function _add_child($object, $tag_name, $value = NULL)
 	{
-		$object = $object->addChild($tag_name, htmlentities($value));
+		$object = $object->addChild($tag_name, htmlentities(preg_replace('#[\\xA1-\\xFF](?![\\x80-\\xBF]{2,})#', utf8_encode($value), $value)));
 		return $object;
 	}
 
@@ -790,7 +790,7 @@ class Export_pbcore_premis
 	{
 		foreach ($attributes as $attribute => $value)
 		{
-			$object->addAttribute($attribute, htmlentities($value));
+			$object->addAttribute($attribute, htmlentities(preg_replace('#[\\xA1-\\xFF](?![\\x80-\\xBF]{2,})#', utf8_encode($value), $value)));
 		}
 		return $object;
 	}

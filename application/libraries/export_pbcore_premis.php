@@ -31,7 +31,8 @@ class Export_pbcore_premis
 				$this->_add_attribute($document_object, $attributes);
 				$this->asset_id = $asset->id;
 				$this->_fetch_asset($document_object);
-				
+				if($_key==100)
+					break;
 			}
 			return TRUE;
 		}

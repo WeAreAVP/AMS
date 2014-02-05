@@ -210,7 +210,7 @@ class Export_pbcore_premis
 		// Asset Subject End
 		// Asset Description  Start
 		$asset_descriptions = $pbcore_model->get_asset_description($this->asset_id);
-		
+
 		foreach ($asset_descriptions as $asset_description)
 		{
 			$attributes = array();
@@ -776,8 +776,8 @@ class Export_pbcore_premis
 	 */
 	private function _add_child($object, $tag_name, $value = NULL)
 	{
-		debug($tag_name,FALSE);
-		$object = $object->addChild($tag_name, htmlentities(str_replace("…",'&hellip;',$value)));
+		debug($tag_name, FALSE);
+		$object = $object->addChild($tag_name, str_replace("…", '&hellip;', htmlentities($value)));
 		return $object;
 	}
 

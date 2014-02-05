@@ -48,7 +48,7 @@ class Export_pbcore_premis
 					'xmlns:premis' => "info:lc/xmlns/premis-v2",
 					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
 					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
-					'version' => "2.2");
+					'version' => "2.0");
 				$this->_add_attribute($this->xml, $attributes);
 				return $this->_fetch_events($this->xml);
 			}
@@ -79,6 +79,11 @@ class Export_pbcore_premis
 					$this->_add_child($event_object, 'eventDateTime', $event->event_date);
 				if ( ! empty($event->event_note))
 					$this->_add_child($event_object, 'eventDetail', $event->event_note);
+				$linking_object = $this->_add_child($event_object, 'linkingObjectIdentifier');
+				$this->_add_child($linking_object, 'linkingObjectIdentifierType', 'American Archive GUID');
+				$guid = $pbcore_model->get_one_by($this->CI->pbcore_model->table_identifers, array('assets_id' => $this->asset_id, 'identifier_source' => 'http://americanarchiveinventory.org'));
+
+				$this->_add_child($linking_object, 'linkingObjectIdentifierValue', $guid->identifier);
 			}
 			return TRUE;
 		}

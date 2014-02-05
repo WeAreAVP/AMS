@@ -777,7 +777,7 @@ class Export_pbcore_premis
 	private function _add_child($object, $tag_name, $value = NULL)
 	{
 		debug($tag_name,FALSE);
-		$object = $object->addChild($tag_name, htmlentities($value));
+		$object = $object->addChild($tag_name, htmlentities(str_replace("…",'&#133;',$value)));
 		return $object;
 	}
 

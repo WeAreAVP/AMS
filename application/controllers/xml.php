@@ -175,7 +175,7 @@ class Xml extends CI_Controller
 		else if ( ! empty($_uri['digitized']) || ! empty($_uri['modified_date']))
 		{
 			$result = check_web_service_params($_uri);
-			if ($result == TRUE)
+			if ($result === 'valid')
 			{
 				$records = $this->pbcore_model->get_by($this->pbcore_model->_assets_table, array('stations_id' => 100));
 				$this->export_pbcore_premis->is_pbcore_export = TRUE;

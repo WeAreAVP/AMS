@@ -341,5 +341,5 @@ function check_web_service_params($params)
 	if ( ! empty($params['modified_date']))
 		if ( ! is_valid_date($params['modified_date']))
 			return 'modified_date should be in YYYYMMDD';
-	return TRUE;
+	return 'valid';
 }

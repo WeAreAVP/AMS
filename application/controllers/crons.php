@@ -204,6 +204,7 @@ class Crons extends CI_Controller
 					$result = $this->sphinx->facet_index($facet, $index_name);
 					foreach ($result['records'] as $_key => $station)
 					{
+						debug($station);
 						$result['records'][$_key]['@count'] = $station['count(*)'];
 					}
 					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);

@@ -25,12 +25,12 @@ class Export_pbcore_premis
 				if ($_key == 102)
 				{
 					$document_object = $this->_add_child($this->xml, 'pbcoreDescriptionDocument');
-					$attributes = array(
-						'xmlns' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html",
-						'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-						'xmlns:premis' => "info:lc/xmlns/premis-v2",
-						'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd");
-					$this->_add_attribute($document_object, $attributes);
+//					$attributes = array(
+//						'xmlns' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html",
+//						'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+//						'xmlns:premis' => "info:lc/xmlns/premis-v2",
+//						'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd");
+//					$this->_add_attribute($document_object, $attributes);
 					$this->asset_id = $asset->id;
 					$this->_fetch_asset($document_object);
 				}

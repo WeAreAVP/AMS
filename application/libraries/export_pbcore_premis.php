@@ -67,6 +67,11 @@ class Export_pbcore_premis
 		$events = $pbcore_model->get_instantiation_events($this->asset_id);
 		if (count($events) > 0)
 		{
+			$guid = $pbcore_model->get_one_by($this->CI->pbcore_model->table_identifers, array('assets_id' => $this->asset_id, 'identifier_source' => 'http://americanarchiveinventory.org'));
+			$object_guid = $this->_add_child($xml_object, 'object');
+			$object_identifier = $this->_add_child($object_guid, 'objectIdentifier');
+			$this->_add_child($object_identifier, 'objectIdentifierType', 'American Archive GUID');
+			$this->_add_child($object_identifier, 'objectIdentifierValue', $guid->identifier);
 			foreach ($events as $event)
 			{
 				$event_object = $this->_add_child($xml_object, 'event');
@@ -81,7 +86,7 @@ class Export_pbcore_premis
 					$this->_add_child($event_object, 'eventDetail', $event->event_note);
 				$linking_object = $this->_add_child($event_object, 'linkingObjectIdentifier');
 				$this->_add_child($linking_object, 'linkingObjectIdentifierType', 'American Archive GUID');
-				$guid = $pbcore_model->get_one_by($this->CI->pbcore_model->table_identifers, array('assets_id' => $this->asset_id, 'identifier_source' => 'http://americanarchiveinventory.org'));
+
 
 				$this->_add_child($linking_object, 'linkingObjectIdentifierValue', $guid->identifier);
 			}

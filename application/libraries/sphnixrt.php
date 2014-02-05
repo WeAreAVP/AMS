@@ -205,7 +205,7 @@ class Sphnixrt
 
 		$this->_clear();
 		// build first part of query
-		$query = "SELECT {$data_array['column_name']},@count FROM `{$index_name}`";
+		$query = "SELECT {$data_array['column_name']},count FROM `{$index_name}`";
 		if (isset($data_array['where']) && ! empty($data_array['where']))
 			$query .= ' WHERE ' . $data_array['where'] . '';
 		if (isset($data_array['group_by']) && ! empty($data_array['group_by']))

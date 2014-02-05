@@ -207,6 +207,7 @@ class Crons extends CI_Controller
 			}
 			myLog("Succussfully Updated $index_name Facet Search");
 		}
+		exit;
 	}
 
 	/**

@@ -38,10 +38,12 @@ class Xml extends CI_Controller
 				'Contact-Phone' => '+1 617-300-5921',
 				'Contact-Email' => 'info@americanarchive.org ',
 				'External-Description' => 'The American Archive of Public Broadcasting, a collaboration between WGBH Boston and the Library of Congress, includes millions of records of public television and radio assets contributed by over 100 stations and organizations across the United States.',
-				
+				'Bagging-Date' => date('Y-m-d')
 			);
 			$bagit_lib = new BagIt("{$this->bagit_path}{$bag_name}", TRUE, TRUE, FALSE, $bagit_info);
 			$bagit_lib->setHashEncoding('md5');
+			$total_size = 0;
+			$total_files = 0;
 			for ($i = 0; $i < $export_job->query_loop; $i ++ )
 			{
 				$query = $export_job->export_query;
@@ -56,6 +58,8 @@ class Xml extends CI_Controller
 					$file_name = $this->export_pbcore_premis->make_file_name();
 					$path = "{$this->temp_path}{$file_name}_pbcore.xml";
 					$this->export_pbcore_premis->format_xml($path);
+					$total_size = $total_size + filesize($path);
+					$total_files ++;
 					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
 					$this->export_pbcore_premis->is_pbcore_export = FALSE;
 					$result = $this->export_pbcore_premis->make_xml();
@@ -65,12 +69,15 @@ class Xml extends CI_Controller
 						$path = "{$this->temp_path}{$file_name}_premis.xml";
 						$this->export_pbcore_premis->format_xml($path);
 						$bagit_lib->addFile($path, "{$file_name}/{$file_name}_premis.xml");
+						$total_size = $total_size + filesize($path);
+						$total_files ++;
 					}
 
 					unset($this->export_pbcore_premis->xml);
 				}
 			}
-
+			$bag->setBagInfoData('Payload-Oxum', $total_size . '.' . $total_files);
+			$bag->setBagInfoData('Bag-Size', sizeFormat($total_size));
 			$bagit_lib->update();
 			$bagit_lib->package("{$this->bagit_path}{$bag_name}", 'zip');
 			exec("rm -rf $this->temp_path");

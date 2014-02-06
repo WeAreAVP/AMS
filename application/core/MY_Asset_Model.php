@@ -185,6 +185,13 @@ class MY_Asset_Model extends MY_Instantiation_Model
 		->get($this->table_assets_publishers_role)->result();
 	}
 
+	/**
+	 * Get assets by digitization and last modified date.
+	 * 
+	 * @param string $date
+	 * @param integer $digitized
+	 * @return stdObject
+	 */
 	function get_assets_by_date_digitized($date, $digitized)
 	{
 		$this->db->select("{$this->_assets_table}.id")

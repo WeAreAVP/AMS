@@ -73,7 +73,7 @@ class Xml extends CI_Controller
 			}
 
 			$bagit_lib->update();
-			$bagit_lib->package("{$this->bagit_path}{$bag_name}", 'zip');
+			$bagit_lib->package("{$this->bagit_path}{$bag_name}");
 			exec("rm -rf $this->temp_path");
 			exec("rm -rf {$this->bagit_path}{$bag_name}");
 			$this->export_job->update_job($export_job->id, array('status' => '1', 'file_path' => "{$this->bagit_path}{$bag_name}.zip"));

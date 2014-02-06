@@ -160,9 +160,17 @@ class Xml extends CI_Controller
 				@ini_set("max_execution_time", 999999999999); # unlimited
 				@ini_set("memory_limit", "1000M"); # 1GB
 				$records = $this->pbcore_model->get_assets_by_date_digitized($_uri['modified_date'], $_uri['digitized']);
-				$this->export_pbcore_premis->is_pbcore_export = FALSE;
-				$this->export_pbcore_premis->make_collection_xml($records);
-				echo $this->export_pbcore_premis->xml->asXML();
+				if (count($records) > 0)
+				{
+					$this->export_pbcore_premis->is_pbcore_export = FALSE;
+					$this->export_pbcore_premis->make_collection_xml($records);
+					echo $this->export_pbcore_premis->xml->asXML();
+				}
+				else
+				{
+					$response = $this->export_pbcore_premis->xml_error('No record found.');
+					echo $response->asXML();
+				}
 			}
 			else
 			{
@@ -210,10 +218,17 @@ class Xml extends CI_Controller
 				@ini_set("max_execution_time", 999999999999); # unlimited
 				@ini_set("memory_limit", "1000M"); # 1GB
 				$records = $this->pbcore_model->get_assets_by_date_digitized($_uri['modified_date'], $_uri['digitized']);
-				debug($records);
-				$this->export_pbcore_premis->is_pbcore_export = TRUE;
-				$this->export_pbcore_premis->make_collection_xml($records);
-				echo $this->export_pbcore_premis->xml->asXML();
+				if (count($records) > 0)
+				{
+					$this->export_pbcore_premis->is_pbcore_export = TRUE;
+					$this->export_pbcore_premis->make_collection_xml($records);
+					echo $this->export_pbcore_premis->xml->asXML();
+				}
+				else
+				{
+					$response = $this->export_pbcore_premis->xml_error('No record found.');
+					echo $response->asXML();
+				}
 			}
 			else
 			{

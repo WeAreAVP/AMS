@@ -208,7 +208,8 @@ class MY_Asset_Model extends MY_Instantiation_Model
 		}
 		$this->db->limit(100);
 
-
+		$this->db->get($this->_assets_table);
+		debug($this->db->last_query());
 		return $this->db->get($this->_assets_table)->result();
 	}
 

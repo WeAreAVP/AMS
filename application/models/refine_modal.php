@@ -109,7 +109,7 @@ class Refine_modal extends CI_Model
 
 	function export_refine_csv($real_time = FALSE)
 	{
-
+		$where = ' 1=1 ';
 		$this->db->select("$this->stations.station_name as organization", FALSE);
 		$this->db->select("$this->asset_titles.title as asset_title", FALSE);
 		$this->db->select("asset_descriptions.description", FALSE);
@@ -254,7 +254,7 @@ class Refine_modal extends CI_Model
 			);
 
 			$keyword_json = $session['custom_search'];
-			$where = '( 1=1';
+			$where .= ' AND ( 1=1';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
@@ -266,20 +266,11 @@ class Refine_modal extends CI_Model
 
 						foreach ($facet_columns as $column)
 						{
-//							if ($count == 0)
-//								$this->db->like($column, $keyword);
-//							else
-//								$this->db->or_like($column, $keyword);
-//							$count ++;
 							$where .=" OR $column LIKE '%$keyword%'";
 						}
 					}
 					else
 					{
-//						if ($count == 0)
-//							$this->db->like($index, $keyword);
-//						else
-//							$this->db->or_like($index, $keyword);
 						$where .=" OR $index LIKE '%$keyword%'";
 					}
 					$count ++;
@@ -291,10 +282,9 @@ class Refine_modal extends CI_Model
 		if (isset($session['date_range']) && $session['date_range'] != '')
 		{
 			$keyword_json = $this->session->userdata['date_range'];
-			$where = ' (1=1';
+			$where .= ' AND (1=1';
 			foreach ($keyword_json as $index => $key_columns)
 			{
-//				$count = 0;
 				foreach ($key_columns as $keys => $keywords)
 				{
 
@@ -309,31 +299,20 @@ class Refine_modal extends CI_Model
 					}
 					if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
 					{
-//						if ($count == 0)
-//						{
-//							$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates >=", $start_date);
-//							$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates <=", $end_date);
-//						}
-//						else
-//						{
-//							$this->db->or_where("$this->table_instantiation_dates.$this->table_instantiation_dates >=", $start_date);
-//							$this->db->or_where("$this->table_instantiation_dates.$this->table_instantiation_dates <=", $end_date);
-//						}
+
 
 						$where .="OR ($this->table_instantiation_dates.instantiation_date >= $start_date AND $this->table_instantiation_dates.instantiation_date<= $end_date )";
 
 						if ($index != 'All')
 						{
 							$where .=" AND $this->table_date_types.date_type LIKE '$index'";
-//							$this->db->where_in("$this->table_date_types.date_type", $index);
 						}
 					}
-//					$count ++;
 				}
 			}
 			$where .=' )';
 		}
-
+		$this->db->where($where);
 		if ($this->is_station_user)
 		{
 			$this->db->where_in("$this->stations.station_name", $this->station_name);
@@ -357,6 +336,7 @@ class Refine_modal extends CI_Model
 	function export_asset_refine_csv($real_time = FALSE)
 	{
 
+		$where = ' 1=1 ';
 		$this->db->select("$this->stations.station_name as organization", FALSE);
 		$this->db->select("$this->asset_titles.title as asset_title", FALSE);
 		$this->db->select("asset_descriptions.description", FALSE);
@@ -526,7 +506,7 @@ class Refine_modal extends CI_Model
 			);
 
 			$keyword_json = $session['custom_search'];
-			$where = '( 1=1';
+			$where .= ' AND ( 1=1';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
@@ -538,23 +518,13 @@ class Refine_modal extends CI_Model
 
 						foreach ($facet_columns as $column)
 						{
-//							if ($count == 0)
-//								$this->db->like($column, $keyword);
-//							else
-//								$this->db->or_like($column, $keyword);
-//							$count ++;
 							$where .=" OR $column LIKE '%$keyword%'";
 						}
 					}
 					else
 					{
-//						if ($count == 0)
-//							$this->db->like($index, $keyword);
-//						else
-//							$this->db->or_like($index, $keyword);
 						$where .=" OR $index LIKE '%$keyword%'";
 					}
-//					$count ++;
 				}
 			}
 			$where .=' )';
@@ -562,7 +532,7 @@ class Refine_modal extends CI_Model
 		if (isset($session['date_range']) && $session['date_range'] != '')
 		{
 			$keyword_json = $this->session->userdata['date_range'];
-			$where = ' (1=1';
+			$where .= ' AND (1=1';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
@@ -580,31 +550,18 @@ class Refine_modal extends CI_Model
 					}
 					if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
 					{
-//						if ($count == 0)
-//						{
-//							$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates >=", $start_date);
-//							$this->db->where("$this->table_instantiation_dates.$this->table_instantiation_dates <=", $end_date);
-//							
-//						}
-//						else
-//						{
-//							$this->db->or_where("$this->table_instantiation_dates.$this->table_instantiation_dates >=", $start_date);
-//							$this->db->or_where("$this->table_instantiation_dates.$this->table_instantiation_dates <=", $end_date);
-//						}
 						$where .="OR ($this->table_instantiation_dates.instantiation_date >= $start_date AND $this->table_instantiation_dates.instantiation_date<= $end_date )";
 
 						if ($index != 'All')
 						{
 							$where .=" AND $this->table_date_types.date_type LIKE '$index'";
-//							$this->db->where_in("$this->table_date_types.date_type", $index);
 						}
 					}
-//					$count ++;
 				}
 			}
 			$where .=' )';
 		}
-
+		$this->db->where($where);
 		if ($this->is_station_user)
 		{
 			$this->db->where_in("$this->stations.station_name", $this->station_name);

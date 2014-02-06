@@ -233,7 +233,7 @@ class Pbcore_Model extends MY_Asset_Model
 			}
 			$where .=' )';
 		}
-		
+		$this->db->where($where);
 		if ($this->is_station_user)
 		{
 			$this->db->where_in("$this->stations.station_name", $this->station_name);

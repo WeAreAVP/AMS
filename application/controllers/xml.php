@@ -41,6 +41,7 @@ class Xml extends CI_Controller
 				
 			);
 			$bagit_lib = new BagIt("{$this->bagit_path}{$bag_name}", TRUE, TRUE, FALSE, $bagit_info);
+			$bagit_lib->setHashEncoding('md5');
 			for ($i = 0; $i < $export_job->query_loop; $i ++ )
 			{
 				$query = $export_job->export_query;
@@ -71,7 +72,7 @@ class Xml extends CI_Controller
 			}
 
 			$bagit_lib->update();
-			$bagit_lib->package("{$this->bagit_path}{$bag_name}");
+			$bagit_lib->package("{$this->bagit_path}{$bag_name}", 'zip');
 			exec("rm -rf $this->temp_path");
 			exec("rm -rf {$this->bagit_path}{$bag_name}");
 			$this->export_job->update_job($export_job->id, array('status' => '1', 'file_path' => "{$this->bagit_path}{$bag_name}.zip"));

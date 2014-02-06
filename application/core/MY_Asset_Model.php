@@ -209,7 +209,7 @@ class MY_Asset_Model extends MY_Instantiation_Model
 			else
 				$this->db->where("{$this->table_instantiations}.digitized", $digitized);
 		}
-		$this->db->limit(100);
+		$this->db->limit(1000);
 
 		
 		

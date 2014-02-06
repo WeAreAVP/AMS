@@ -76,8 +76,8 @@ class Xml extends CI_Controller
 					unset($this->export_pbcore_premis->xml);
 				}
 			}
-			$bag->setBagInfoData('Payload-Oxum', $total_size . '.' . $total_files);
-			$bag->setBagInfoData('Bag-Size', sizeFormat($total_size));
+			$bagit_lib->setBagInfoData('Payload-Oxum', $total_size . '.' . $total_files);
+			$bagit_lib->setBagInfoData('Bag-Size', sizeFormat($total_size));
 			$bagit_lib->update();
 			$bagit_lib->package("{$this->bagit_path}{$bag_name}", 'zip');
 			exec("rm -rf $this->temp_path");

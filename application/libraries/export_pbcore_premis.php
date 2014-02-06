@@ -128,6 +128,7 @@ class Export_pbcore_premis
 			}
 			return TRUE;
 		}
+		
 		return FALSE;
 	}
 

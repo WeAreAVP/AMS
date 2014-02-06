@@ -373,7 +373,7 @@ class Records extends MY_Controller
 			"iTotalDisplayRecords" => $data['count'],
 			'aaData' => $table_view
 		);
-		debug($dataTable);
+		
 		echo json_encode($dataTable);
 		exit_function();
 	}

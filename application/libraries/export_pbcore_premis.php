@@ -63,12 +63,11 @@ class Export_pbcore_premis
 		{
 			if ($this->is_pbcore_export)
 			{
-				$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><xmlns:ws:pbcoreDocument></xmlns:ws:pbcoreDocument>', LIBXML_NOERROR, false, 'ws', true);
+				$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><xmlns:ws:Test></xmlns:ws:Test>', LIBXML_NOERROR, false, 'ws', true);
 				$attributes = array(
-					'xmlns:xmlns:ws'=> 'http://www.pbcore.org/PBCore/PBCoreNamespace.html',
-					'xmlns:xmlns:xsi'=> 'http://http://www.w3.org/2001/XMLSchema-instance',
-//					'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd"
-					);
+					'xmlns' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html",
+					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+					'xmlns:xmlns:xsi' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd");
 				$this->_add_attribute($this->xml, $attributes);
 				$this->_fetch_asset($this->xml);
 				return TRUE;

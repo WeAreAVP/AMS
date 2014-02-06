@@ -47,6 +47,7 @@ class Export_pbcore_premis
 					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
 					'version' => "2.0");
 				$this->_add_attribute($premis_object, $attributes);
+				$this->asset_id = $asset->id;
 				$this->_fetch_events($premis_object);
 			}
 			return TRUE;

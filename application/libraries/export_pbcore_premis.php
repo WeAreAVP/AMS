@@ -63,7 +63,7 @@ class Export_pbcore_premis
 		{
 			if ($this->is_pbcore_export)
 			{
-				$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><xmlns:ws:Test></xmlns:ws:Test>', LIBXML_NOERROR, false, 'ws', true);
+				$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><xmlns:ws:pbcoreDocument></xmlns:ws:pbcoreDocument>', LIBXML_NOERROR, false, 'ws', true);
 				$attributes = array(
 					'xmlns:xmlns:ws', 'http://url.to.namespace',
 					'xmlns:xsi' => 'xmlns:xmlns:xsi', 'http://http://www.w3.org/2001/XMLSchema-instance',

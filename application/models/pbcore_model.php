@@ -36,14 +36,13 @@ class Pbcore_Model extends MY_Asset_Model
 		parent::__construct();
 	}
 
-	
-
 	function export_assets($real_time = FALSE)
 	{
 
 		$this->db->select("{$this->_assets_table}.id");
 		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id = $this->_assets_table.id", 'left');
 		$this->db->join("identifiers", "$this->_assets_table.id = identifiers.assets_id AND identifiers.identifier_source!='http://americanarchiveinventory.org'", 'left');
+		$this->db->join("identifiers guid", "$this->_assets_table.id = guid.assets_id AND guid.identifier_source='http://americanarchiveinventory.org'", 'left');
 		$this->db->join($this->table_instantiation_formats, "$this->table_instantiation_formats.instantiations_id = $this->table_instantiations.id", 'left');
 		$this->db->join($this->table_nominations, "$this->table_nominations.instantiations_id = $this->table_instantiations.id", 'left');
 		$this->db->join($this->table_nomination_status, "$this->table_nomination_status.id = $this->table_nominations.nomination_status_id", 'left');
@@ -135,7 +134,7 @@ class Pbcore_Model extends MY_Asset_Model
 		if (isset($session['custom_search']) && $session['custom_search'] != '')
 		{
 			$facet_columns = array(
-				'guid_identifier' => 'identifiers.identifier',
+				'guid_identifier' => 'guid.identifier',
 				'asset_title' => 'asset_titles.title',
 				'asset_subject' => 'subjects.subject',
 				'asset_coverage' => 'coverages.coverage',

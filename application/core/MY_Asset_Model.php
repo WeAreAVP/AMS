@@ -194,6 +194,7 @@ class MY_Asset_Model extends MY_Instantiation_Model
 	 */
 	function get_assets_by_date_digitized($date, $digitized)
 	{
+		$date=date('Y-m-d',strtotime($date));
 		$this->db->select("{$this->_assets_table}.id")
 		->join($this->table_instantiations, "{$this->table_instantiations}.assets_id = {$this->_assets_table}.id", 'LEFT');
 		if ( ! empty($date))

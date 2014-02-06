@@ -152,7 +152,7 @@ class Xml extends CI_Controller
 				echo $result->asXML();
 			}
 		}
-		else if ( ! empty($_uri['digitized']) || ! empty($_uri['modified_date']))
+		else if ( $_uri['digitized'] != '' || ! empty($_uri['modified_date']))
 		{
 			$result = check_web_service_params($_uri);
 			if ($result === 'valid')

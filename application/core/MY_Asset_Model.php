@@ -194,11 +194,14 @@ class MY_Asset_Model extends MY_Instantiation_Model
 	 */
 	function get_assets_by_date_digitized($date, $digitized)
 	{
-		$date = date('Y-m-d', strtotime($date));
+
 		$this->db->select("{$this->_assets_table}.id")
 		->join($this->table_instantiations, "{$this->table_instantiations}.assets_id = {$this->_assets_table}.id", 'LEFT');
 		if ( ! empty($date))
+		{
+			$date = date('Y-m-d', strtotime($date));
 			$this->db->where("({$this->_assets_table}.created LIKE '{$date}%' OR {$this->_assets_table}.updated LIKE '{$date}%')");
+		}
 		if ( ! empty($digitized))
 		{
 			if ($digitized == 0)
@@ -209,7 +212,7 @@ class MY_Asset_Model extends MY_Instantiation_Model
 		$this->db->limit(100);
 
 		$this->db->get($this->_assets_table);
-		debug($this->db->last_query());
+		
 		return $this->db->get($this->_assets_table)->result();
 	}
 

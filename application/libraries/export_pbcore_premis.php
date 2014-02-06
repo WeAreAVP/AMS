@@ -19,7 +19,8 @@ class Export_pbcore_premis
 	{
 		if ($this->is_pbcore_export)
 		{
-			$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><pbcoreCollection></pbcoreCollection>');
+
+			$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><xsi:pbcoreCollection></xsi:pbcoreCollection>', LIBXML_NOERROR, false, 'xsi', true);
 			foreach ($records as $_key => $asset)
 			{
 

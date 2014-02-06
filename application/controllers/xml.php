@@ -193,7 +193,9 @@ class Xml extends CI_Controller
 			$result = check_web_service_params($_uri);
 			if ($result === 'valid')
 			{
-				$records = $this->pbcore_model->get_assets_by_date_digitized($_uri['modified_date'],$_uri['digitized']);
+				@ini_set("max_execution_time", 999999999999); # unlimited
+				@ini_set("memory_limit", "1000M"); # 1GB
+				$records = $this->pbcore_model->get_assets_by_date_digitized($_uri['modified_date'], $_uri['digitized']);
 				$this->export_pbcore_premis->is_pbcore_export = TRUE;
 				$this->export_pbcore_premis->make_collection_xml($records);
 				echo $this->export_pbcore_premis->xml->asXML();

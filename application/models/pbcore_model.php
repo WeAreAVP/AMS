@@ -38,7 +38,7 @@ class Pbcore_Model extends MY_Asset_Model
 
 	function export_assets($real_time = FALSE)
 	{
-		$where=' 1=1 ';
+		$where = ' 1=1 ';
 		$this->db->select("{$this->_assets_table}.id");
 		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id = $this->_assets_table.id", 'left');
 		$this->db->join("identifiers", "$this->_assets_table.id = identifiers.assets_id AND identifiers.identifier_source!='http://americanarchiveinventory.org'", 'left');
@@ -130,7 +130,7 @@ class Pbcore_Model extends MY_Asset_Model
 			$this->db->where("$this->table_event_types.event_type", 'migration');
 			$this->db->where("$this->table_events.event_outcome", '0');
 		}
-		
+
 		if (isset($session['custom_search']) && $session['custom_search'] != '')
 		{
 			$facet_columns = array(
@@ -177,25 +177,30 @@ class Pbcore_Model extends MY_Asset_Model
 			);
 
 			$keyword_json = $session['custom_search'];
-			$where .= ' AND ( 1=1';
+			$where .= ' AND ( ';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
 				foreach ($key_columns as $keys => $keywords)
 				{
 					$keyword = trim($keywords->value);
+					if ($count != 0)
+					{
+						$where .=" OR ";
+					}
 					if ($index == 'all')
 					{
 
 						foreach ($facet_columns as $column)
 						{
-							$where .=" OR $column LIKE '%$keyword%'";
+							$where .="  $column LIKE '%$keyword%'";
 						}
 					}
 					else
 					{
-						$where .=" OR $index LIKE '%$keyword%'";
+						$where .="  $index LIKE '%$keyword%'";
 					}
+					$count ++;
 				}
 			}
 			$where .=' )';
@@ -203,7 +208,7 @@ class Pbcore_Model extends MY_Asset_Model
 		if (isset($session['date_range']) && $session['date_range'] != '')
 		{
 			$keyword_json = $this->session->userdata['date_range'];
-			$where .= ' AND ( 1=1';
+			$where .= ' AND ( ';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
@@ -221,9 +226,12 @@ class Pbcore_Model extends MY_Asset_Model
 					}
 					if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
 					{
-
-						$where .="OR ($this->table_instantiation_dates.instantiation_date >= $start_date AND $this->table_instantiation_dates.instantiation_date<= $end_date )";
-
+						if ($count != 0)
+						{
+							$where .=" OR ";
+						}
+						$where .=" ($this->table_instantiation_dates.instantiation_date >= $start_date AND $this->table_instantiation_dates.instantiation_date<= $end_date )";
+						$count ++;
 						if ($index != 'All')
 						{
 							$where .=" AND $this->table_date_types.date_type LIKE '$index'";

@@ -401,7 +401,7 @@ class BagIt
             $tagFiles = array(
                 "$bagdir/bagit.txt",
                 "$bagdir/bag-info.txt",
-                $this->fetch->fileName,
+//                $this->fetch->fileName,
                 $this->manifest->getFileName()
             );
             $this->tagManifest->update($tagFiles);

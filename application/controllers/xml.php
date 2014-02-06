@@ -38,9 +38,7 @@ class Xml extends CI_Controller
 				'Contact-Phone' => '+1 617-300-5921',
 				'Contact-Email' => 'info@americanarchive.org ',
 				'External-Description' => 'The American Archive of Public Broadcasting, a collaboration between WGBH Boston and the Library of Congress, includes millions of records of public television and radio assets contributed by over 100 stations and organizations across the United States.',
-				'Bagging-Date' => '',
-				'Payload-Oxum' => '',
-				'Bag-Size' => '',
+				
 			);
 			$bagit_lib = new BagIt("{$this->bagit_path}{$bag_name}", TRUE, TRUE, FALSE, $bagit_info);
 			for ($i = 0; $i < $export_job->query_loop; $i ++ )

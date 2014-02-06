@@ -87,7 +87,7 @@ class Export_pbcore_premis
 	 * @param \SimpleXMLElement $premis_object
 	 * @return boolean
 	 */
-	private function _fetch_events($premis_object, $collection = FALSE)
+	private function _fetch_events($xml_object, $collection = FALSE)
 	{
 		$pbcore_model = $this->CI->pbcore_model;
 		$events = $pbcore_model->get_instantiation_events($this->asset_id);
@@ -95,7 +95,7 @@ class Export_pbcore_premis
 		{
 			if ($collection)
 			{
-				$xml_object = $this->_add_child($premis_object, 'premis');
+				$xml_object = $this->_add_child($xml_object, 'premis');
 				$attributes = array(
 					'xmlns:premis' => "info:lc/xmlns/premis-v2",
 					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",

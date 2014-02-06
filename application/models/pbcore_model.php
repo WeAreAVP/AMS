@@ -189,10 +189,15 @@ class Pbcore_Model extends MY_Asset_Model
 
 					if ($index == 'all')
 					{
+						$counter = 0;
 
 						foreach ($facet_columns as $column)
 						{
+							$_or = ' OR ';
+							if ($counter == 0)
+								$_or = ' ';
 							$where .=" $_or $column LIKE '%$keyword%'";
+							$counter ++;
 						}
 					}
 					else

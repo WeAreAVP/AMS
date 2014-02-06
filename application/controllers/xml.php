@@ -37,8 +37,7 @@ class Xml extends CI_Controller
 				'Contact-Name' => 'Casey E. Davis, Project Manager',
 				'Contact-Phone' => '+1 617-300-5921',
 				'Contact-Email' => 'info@americanarchive.org ',
-				'External-Description' => 'The American Archive of Public Broadcasting, a collaboration between WGBH Boston and the Library of Congress, includes millions of records of public television and radio assets contributed by over 100 stations and organizations across the United States.',
-				'Bagging-Date' => date('Y-m-d')
+				'External-Description' => 'The American Archive of Public Broadcasting, a collaboration between WGBH Boston and the Library of Congress, includes millions of records of public television and radio assets contributed by over 100 stations and organizations across the United States.'
 			);
 			$bagit_lib = new BagIt("{$this->bagit_path}{$bag_name}", TRUE, TRUE, FALSE, $bagit_info);
 			$bagit_lib->setHashEncoding('md5');
@@ -77,6 +76,7 @@ class Xml extends CI_Controller
 				}
 			}
 			$bagit_lib->setBagInfoData('Payload-Oxum', $total_size . '.' . $total_files);
+			$bagit_lib->setBagInfoData('Bagging-Date', date('Y-m-d'));
 			$bagit_lib->setBagInfoData('Bag-Size', sizeFormat($total_size));
 			$bagit_lib->update();
 			$bagit_lib->package("{$this->bagit_path}{$bag_name}", 'zip');

@@ -48,7 +48,9 @@ class Export_pbcore_premis
 					'version' => "2.0");
 				$this->_add_attribute($premis_object, $attributes);
 				$this->asset_id = $asset->id;
-				$this->_fetch_events($premis_object);
+				$result = $this->_fetch_events($premis_object);
+				if ( ! $result)
+					unset($premis_object);
 			}
 			return TRUE;
 		}

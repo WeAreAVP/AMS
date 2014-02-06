@@ -38,7 +38,6 @@ class Pbcore_Model extends MY_Asset_Model
 
 	function export_assets($real_time = FALSE)
 	{
-		
 		$this->db->select("{$this->_assets_table}.id");
 		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id = $this->_assets_table.id", 'left');
 		$this->db->join("identifiers", "$this->_assets_table.id = identifiers.assets_id AND identifiers.identifier_source!='http://americanarchiveinventory.org'", 'left');
@@ -177,47 +176,47 @@ class Pbcore_Model extends MY_Asset_Model
 			);
 
 			$keyword_json = $session['custom_search'];
-			$where = ' ( ';
+			$where = '(';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
 				foreach ($key_columns as $keys => $keywords)
 				{
 					$keyword = trim($keywords->value);
-					if ($count != 0)
-					{
-						$where .=" OR ";
-					}
+					$_or = ' OR ';
+					if ($count == 0)
+						$_or = ' ';
+
 					if ($index == 'all')
 					{
 
 						foreach ($facet_columns as $column)
 						{
-							$where .="  $column LIKE '%$keyword%'";
+							$where .=" $_or $column LIKE '%$keyword%'";
 						}
 					}
 					else
 					{
-						$where .="  $index LIKE '%$keyword%'";
+						$where .=" $_or $index LIKE '%$keyword%'";
 					}
 					$count ++;
 				}
 			}
 			$where .=' )';
 			$this->db->where($where);
-			unset($where);
 		}
-
-
 		if (isset($session['date_range']) && $session['date_range'] != '')
 		{
 			$keyword_json = $this->session->userdata['date_range'];
-			$where = ' ( ';
+			$where = '(';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
 				foreach ($key_columns as $keys => $keywords)
 				{
+					$_or = ' OR ';
+					if ($count == 0)
+						$_or = ' ';
 
 					$date_range = explode("to", $keywords->value);
 					if (isset($date_range[0]) && trim($date_range[0]) != '')
@@ -230,22 +229,19 @@ class Pbcore_Model extends MY_Asset_Model
 					}
 					if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
 					{
-						if ($count != 0)
-						{
-							$where .=" OR ";
-						}
-						$where .=" ($this->table_instantiation_dates.instantiation_date >= $start_date AND $this->table_instantiation_dates.instantiation_date<= $end_date )";
-						$count ++;
+
+						$where .="$_or ($this->table_instantiation_dates.instantiation_date >= $start_date AND $this->table_instantiation_dates.instantiation_date<= $end_date )";
+
 						if ($index != 'All')
 						{
 							$where .=" AND $this->table_date_types.date_type LIKE '$index'";
 						}
 					}
+					$count ++;
 				}
 			}
 			$where .=' )';
 			$this->db->where($where);
-			unset($where);
 		}
 
 		if ($this->is_station_user)

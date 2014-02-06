@@ -649,8 +649,8 @@ class BagIt
                 $this->tagFileEncoding
             );
 
-            $fetchFile = $this->bagDirectory . '/fetch.txt';
-            $this->fetch = new BagItFetch($fetchFile, $this->tagFileEncoding);
+//            $fetchFile = $this->bagDirectory . '/fetch.txt';
+//            $this->fetch = new BagItFetch($fetchFile, $this->tagFileEncoding);
 
             $this->bagInfoFile = $this->bagDirectory . '/bag-info.txt';
             touch($this->bagInfoFile);

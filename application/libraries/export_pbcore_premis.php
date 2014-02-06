@@ -27,7 +27,7 @@ class Export_pbcore_premis
 				$document_object = $this->_add_child($this->xml, 'pbcoreDescriptionDocument');
 				$attributes = array(
 					'xsi:xmlns' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html",
-					'xsi:xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+					'xsi:xmlns' => "http://www.w3.org/2001/XMLSchema-instance",
 					'xsi:xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd");
 				$this->_add_attribute($document_object, $attributes, 'xsi');
 				$this->asset_id = $asset->id;

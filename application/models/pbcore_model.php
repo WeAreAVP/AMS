@@ -38,7 +38,7 @@ class Pbcore_Model extends MY_Asset_Model
 
 	function export_assets($real_time = FALSE)
 	{
-		$where = ' 1=1 ';
+		
 		$this->db->select("{$this->_assets_table}.id");
 		$this->db->join($this->table_instantiations, "$this->table_instantiations.assets_id = $this->_assets_table.id", 'left');
 		$this->db->join("identifiers", "$this->_assets_table.id = identifiers.assets_id AND identifiers.identifier_source!='http://americanarchiveinventory.org'", 'left');
@@ -177,7 +177,7 @@ class Pbcore_Model extends MY_Asset_Model
 			);
 
 			$keyword_json = $session['custom_search'];
-			$where .= ' AND ( ';
+			$where = ' ( ';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
@@ -204,11 +204,15 @@ class Pbcore_Model extends MY_Asset_Model
 				}
 			}
 			$where .=' )';
+			$this->db->where($where);
+			unset($where);
 		}
+
+
 		if (isset($session['date_range']) && $session['date_range'] != '')
 		{
 			$keyword_json = $this->session->userdata['date_range'];
-			$where .= ' AND ( ';
+			$where = ' ( ';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
@@ -240,8 +244,10 @@ class Pbcore_Model extends MY_Asset_Model
 				}
 			}
 			$where .=' )';
+			$this->db->where($where);
+			unset($where);
 		}
-		$this->db->where($where);
+
 		if ($this->is_station_user)
 		{
 			$this->db->where_in("$this->stations.station_name", $this->station_name);

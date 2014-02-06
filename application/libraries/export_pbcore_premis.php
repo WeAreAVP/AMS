@@ -29,7 +29,7 @@ class Export_pbcore_premis
 					'xmlns' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html",
 					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
 					'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd");
-				$this->_add_attribute($document_object, $attributes);
+				$this->_add_attribute($document_object, $attributes,'xsi');
 				$this->asset_id = $asset->id;
 				$this->_fetch_asset($document_object);
 			}
@@ -784,11 +784,11 @@ class Export_pbcore_premis
 	 * 
 	 * @return \SimpleXMLElement
 	 */
-	private function _add_attribute($object, array $attributes)
+	private function _add_attribute($object, array $attributes, $namespace = NULL)
 	{
 		foreach ($attributes as $attribute => $value)
 		{
-			$object->addAttribute($attribute, htmlentities(@iconv('UTF-8', 'ASCII//IGNORE', $value)));
+			$object->addAttribute($attribute, htmlentities(@iconv('UTF-8', 'ASCII//IGNORE', $value)), $namespace);
 		}
 		return $object;
 	}

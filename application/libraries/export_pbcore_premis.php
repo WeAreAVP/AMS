@@ -65,7 +65,7 @@ class Export_pbcore_premis
 			{
 				$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><xmlns:ws:pbcoreDocument></xmlns:ws:pbcoreDocument>', LIBXML_NOERROR, false, 'ws', true);
 				$attributes = array(
-					'xmlns:xmlns:ws'=> 'http://url.to.namespace',
+					'xmlns:xmlns:ws'=> 'http://www.pbcore.org/PBCore/PBCoreNamespace.html',
 					'xmlns:xmlns:xsi'=> 'http://http://www.w3.org/2001/XMLSchema-instance',
 //					'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd"
 					);

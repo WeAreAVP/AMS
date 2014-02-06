@@ -638,10 +638,10 @@ class Export_pbcore_premis
 				$attributes = array();
 				$xml_object = $this->_add_child($instantiations_object, 'instantiationExtension');
 				$xml_object = $this->_add_child($xml_object, 'extensionWrap');
-				$this->_add_child($xml_object, 'extensionElement', 'AACIP');
+				$this->_add_child($xml_object, 'extensionElement', 'AACIP Record Nomination Status');
 				if ( ! empty($extension->status))
 					$this->_add_child($xml_object, 'extensionValue', $extension->status);
-				$this->_add_child($xml_object, 'extensionAuthorityUsed', 'AACIP Record Nomination Status');
+				$this->_add_child($xml_object, 'extensionAuthorityUsed', 'AACIP');
 				if ( ! empty($extension->nomination_reason))
 				{
 					$xml_object = $this->_add_child($instantiations_object, 'instantiationExtension');

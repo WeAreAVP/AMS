@@ -40,17 +40,8 @@ class Export_pbcore_premis
 			$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><premisCollection></premisCollection>');
 			foreach ($records as $asset)
 			{
-				$premis_object = $this->_add_child($this->xml, 'premis');
-				$attributes = array(
-					'xmlns:premis' => "info:lc/xmlns/premis-v2",
-					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
-					'version' => "2.0");
-				$this->_add_attribute($premis_object, $attributes);
 				$this->asset_id = $asset->id;
-				$result = $this->_fetch_events($premis_object);
-				if ( ! $result)
-					unset($premis_object);
+				$result = $this->_fetch_events($this->xml, TRUE);
 			}
 			return TRUE;
 		}
@@ -93,15 +84,25 @@ class Export_pbcore_premis
 	/**
 	 * Fetch events information from database.
 	 * 
-	 * @param \SimpleXMLElement $xml_object
+	 * @param \SimpleXMLElement $premis_object
 	 * @return boolean
 	 */
-	private function _fetch_events($xml_object)
+	private function _fetch_events($premis_object, $collection = FALSE)
 	{
 		$pbcore_model = $this->CI->pbcore_model;
 		$events = $pbcore_model->get_instantiation_events($this->asset_id);
 		if (count($events) > 0)
 		{
+			if ($collection)
+			{
+				$xml_object = $this->_add_child($premis_object, 'premis');
+				$attributes = array(
+					'xmlns:premis' => "info:lc/xmlns/premis-v2",
+					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
+					'version' => "2.0");
+				$this->_add_attribute($xml_object, $attributes);
+			}
 			$guid = $pbcore_model->get_one_by($this->CI->pbcore_model->table_identifers, array('assets_id' => $this->asset_id, 'identifier_source' => 'http://americanarchiveinventory.org'));
 			$object_guid = $this->_add_child($xml_object, 'object');
 			$object_identifier = $this->_add_child($object_guid, 'objectIdentifier');

@@ -190,8 +190,8 @@ class Xml extends CI_Controller
 	{
 		$default = array('guid', 'digitized', 'modified_date');
 		$_uri = $this->uri->uri_to_assoc(3, $default);
-		debug($_uri);
-		Header('Content-type: text/xml');
+		
+//		Header('Content-type: text/xml');
 		if (isset($_uri['guid']) && ! empty($_uri['guid']))
 		{
 
@@ -212,6 +212,7 @@ class Xml extends CI_Controller
 		}
 		else if ( ! empty($_uri['digitized']) || ! empty($_uri['modified_date']))
 		{
+			debug($_uri);
 			$result = check_web_service_params($_uri);
 			if ($result === 'valid')
 			{

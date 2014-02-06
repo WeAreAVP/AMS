@@ -130,7 +130,7 @@ class Pbcore_Model extends MY_Asset_Model
 			$this->db->where("$this->table_event_types.event_type", 'migration');
 			$this->db->where("$this->table_events.event_outcome", '0');
 		}
-
+		debug($session['custom_search']);
 		if (isset($session['custom_search']) && $session['custom_search'] != '')
 		{
 			$facet_columns = array(

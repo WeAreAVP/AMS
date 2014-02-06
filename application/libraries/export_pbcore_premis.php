@@ -67,7 +67,8 @@ class Export_pbcore_premis
 				$attributes = array(
 					'xmlns:xmlns:ws', 'http://url.to.namespace',
 					'xmlns:xsi' => 'xmlns:xmlns:xsi', 'http://http://www.w3.org/2001/XMLSchema-instance',
-//					'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd");
+//					'xsi:schemaLocation' => "http://www.pbcore.org/PBCore/PBCoreNamespace.html http://www.pbcore.org/xsd/pbcore-2.0.xsd"
+					);
 				$this->_add_attribute($this->xml, $attributes);
 				$this->_fetch_asset($this->xml);
 				return TRUE;

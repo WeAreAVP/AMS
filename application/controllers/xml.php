@@ -32,7 +32,15 @@ class Xml extends CI_Controller
 		{
 			myLog('Started export for ID =>' . $export_job->id);
 			$bag_name = 'ams_export_' . time();
-			$bagit_lib = new BagIt("{$this->bagit_path}{$bag_name}");
+			$bagit_info = array('Source-Organization' => 'WGBH on behalf of the American Archive of Public Broadcasting',
+				'Organization-Address' => 'Media Library & Archives, One Guest Street, Boston, MA 02135',
+				'Contact-Name' => 'Casey E. Davis, Project Manager',
+				'Contact-Phone' => '+1 617-300-5921',
+				'Contact-Email' => 'info@americanarchive.org ',
+				'External-Description' => 'The American Archive of Public Broadcasting, a collaboration between WGBH Boston and the Library of Congress, includes millions of records of public television and radio assets contributed by over 100 stations and organizations across the United States.',
+//				'Bagging-Date' => date('Y-m-d'),
+			);
+			$bagit_lib = new BagIt("{$this->bagit_path}{$bag_name}", TRUE, TRUE, FALSE, $bagit_info);
 			for ($i = 0; $i < $export_job->query_loop; $i ++ )
 			{
 				$query = $export_job->export_query;

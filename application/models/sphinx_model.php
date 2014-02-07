@@ -44,7 +44,7 @@ class Sphinx_Model extends CI_Model
 	 * @Perm Get Array of Perm possible value of array are certified,agreed,start_date,end_date,search_kewords
 	 * @return Object 
 	 */
-	public function search_stations($params, $offset = 0, $limit = 1000)
+	public function search_stations($params, $offset = 0, $limit = 2000)
 	{
 		$stations_list = array();
 		$total_record = 0;
@@ -57,7 +57,7 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->set_sort_mode(SPH_SORT_ATTR_ASC, 'station_name');
 		$this->sphinxsearch->set_connect_timeout(120);
 		if ($limit)
-			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
+			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 2000 ) ? $limit : 2000 );
 		if (isset($params['certified']) && $params['certified'] != '')
 			$this->sphinxsearch->set_filter("is_certified", array($params['certified']));
 		if (isset($params['agreed']) && $params['agreed'] != '')

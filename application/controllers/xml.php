@@ -130,6 +130,16 @@ class Xml extends CI_Controller
 		exit_function();
 	}
 
+	/**
+	 * Export files and add to bagit.
+	 * 
+	 * @param integer $asset_id
+	 * @param integer $total_size
+	 * @param integer $total_files
+	 * @param object $bagit_lib
+	 * 
+	 * @return boolean
+	 */
 	function do_export($asset_id, &$total_size, &$total_files, $bagit_lib)
 	{
 		make_dir($this->temp_path);

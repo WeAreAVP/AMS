@@ -46,8 +46,9 @@ class Export_pbcore_premis
 //					'xsi:xmlns:premis' => "info:lc/xmlns/premis-v2",
 					'xsi:xmlns' => "http://www.w3.org/2001/XMLSchema-instance",
 					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
-					'version' => "2.0");
-				$this->_add_attribute($xml_object, $attributes,'xsi');
+				);
+				$this->_add_attribute($xml_object, $attributes, 'xsi');
+				$this->_add_attribute($xml_object, array('version' => "2.0"));
 				$result = $this->_fetch_events($this->xml, TRUE);
 			}
 			return TRUE;

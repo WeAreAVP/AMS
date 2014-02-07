@@ -41,7 +41,6 @@ class Pbcore2 extends CI_Controller
 		$this->load->model('cron_model');
 		$this->load->model('assets_model');
 		$this->load->model('instantiations_model', 'instant');
-		$this->load->model('essence_track_model', 'essence');
 		$this->load->model('station_model');
 		$this->pbcore_path = 'assets/export_pbcore2/';
 		$this->load->model('pbcore_model');
@@ -1374,7 +1373,7 @@ class Pbcore2 extends CI_Controller
 								// Essence Track Type Start //
 								if (isset($pbcore_essence_child['essencetracktype'][0]['text']) && ! is_empty($pbcore_essence_child['essencetracktype'][0]['text']))
 								{
-									
+
 									$essence_track_type_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_types, array('essence_track_type' => $pbcore_essence_child['essencetracktype'][0]['text']), TRUE);
 									if (isset($essence_track_type_d) && isset($essence_track_type_d->id))
 									{
@@ -1382,7 +1381,7 @@ class Pbcore2 extends CI_Controller
 									}
 									else
 									{
-										$essence_tracks_d['essence_track_types_id'] = $this->essence->insert_essence_track_types(array('essence_track_type' => $pbcore_essence_child['essencetracktype'][0]['text']));
+										$essence_tracks_d['essence_track_types_id'] = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_types, array('essence_track_type' => $pbcore_essence_child['essencetracktype'][0]['text']));
 									}
 								}
 								// Essence Track Type End //
@@ -1400,14 +1399,14 @@ class Pbcore2 extends CI_Controller
 										}
 										else
 										{
-											$essence_tracks_d['essence_track_frame_sizes_id'] = $this->essence->insert_essence_track_frame_sizes(array("width" => $frame_sizes[0], "height" => $frame_sizes[1]));
+											$essence_tracks_d['essence_track_frame_sizes_id'] = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_frame_sizes, array("width" => $frame_sizes[0], "height" => $frame_sizes[1]));
 										}
 									}
 								}
 								if (isset($essence_tracks_d['essence_track_types_id']) && ! empty($essence_tracks_d['essence_track_types_id']) && $essence_tracks_d['essence_track_types_id'] != NULL)
 								{
 									// Essence Track Frame Size End //
-									$essence_tracks_id = $this->essence->insert_essence_tracks($essence_tracks_d);
+									$essence_tracks_id = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_tracks, $essence_tracks_d);
 									$insert_essence_track = TRUE;
 									// Essence Track Identifier Start //
 									if (isset($pbcore_essence_child['essencetrackidentifier'][0]['text']) && ! is_empty($pbcore_essence_child['essencetrackidentifier'][0]['text']))
@@ -1420,7 +1419,7 @@ class Pbcore2 extends CI_Controller
 										{
 											$essence_track_identifiers_d['essence_track_identifier_source'] = $pbcore_essence_child['essencetrackidentifier'][0]['attributes']['source'];
 										}
-										$this->essence->insert_essence_track_identifiers($essence_track_identifiers_d);
+										$this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_identifiers, $essence_track_identifiers_d);
 									}
 									// Essence Track Identifier End //
 									// Essence Track Encoding Start //
@@ -1434,7 +1433,7 @@ class Pbcore2 extends CI_Controller
 										{
 											$essence_track_standard_d['encoding_source'] = $pbcore_essence_child['essencetrackencoding'][0]['attributes']['ref'];
 										}
-										$this->essence->insert_essence_track_encodings($essence_track_standard_d);
+										$this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_encodings, $essence_track_standard_d);
 									}
 									// Essence Track Encoding End //
 									// Essence Track Annotation Start //
@@ -1452,7 +1451,7 @@ class Pbcore2 extends CI_Controller
 												{
 													$essencetrackannotation['annotation_type'] = $trackannotation['attributes']['type'];
 												}
-												$this->essence->insert_essence_track_annotations($essencetrackannotation);
+												$this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_annotations, $essencetrackannotation);
 											}
 										}
 									}

@@ -41,7 +41,6 @@ class Mediainfo extends CI_Controller
 		$this->load->model('cron_model');
 		$this->load->model('assets_model');
 		$this->load->model('instantiations_model', 'instant');
-		$this->load->model('essence_track_model', 'essence');
 		$this->load->model('station_model');
 		$this->media_info_path = 'assets/mediainfo/';
 		$this->load->model('pbcore_model');
@@ -695,7 +694,7 @@ class Mediainfo extends CI_Controller
 					if ($track_type != '')
 					{
 						$dessence_track[$dessence_track_counter]['track_type'] = $track_type;
-						
+
 						$essence_track_type = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_types, array('essence_track_type' => $track_type), TRUE);
 						if (isset($essence_track_type) && isset($essence_track_type->id))
 						{
@@ -703,7 +702,7 @@ class Mediainfo extends CI_Controller
 						}
 						else
 						{
-							$essence_track['essence_track_types_id'] = $this->essence->insert_essence_track_types(array('essence_track_type' => $track_type));
+							$essence_track['essence_track_types_id'] = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_types, array('essence_track_type' => $track_type));
 						}
 					}
 //					}
@@ -759,7 +758,7 @@ class Mediainfo extends CI_Controller
 					/* Insert Essence Track Start */
 					$essence_track['instantiations_id'] = $db_instantiation_id;
 
-					$db_essence_track_id = $this->essence->insert_essence_tracks($essence_track);
+					$db_essence_track_id = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_tracks, $essence_track);
 
 					/* Insert Essence Track End */
 
@@ -788,7 +787,7 @@ class Mediainfo extends CI_Controller
 					{
 						$essence_track_encodeing['essence_tracks_id'] = $db_essence_track_id;
 						$dessence_track[$dessence_track_counter]['encoding_source'] = $essence_track_encodeing['encoding_source'] = 'mediainfo';
-						$this->essence->insert_essence_track_encodings($essence_track_encodeing);
+						$this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_encodings, $essence_track_encodeing);
 					}
 					unset($essence_track_encodeing);
 					/* Essence Track Encoding End */
@@ -807,7 +806,7 @@ class Mediainfo extends CI_Controller
 					if (isset($essence_track_identifier['essence_track_identifiers']))
 					{
 						$essence_track_identifier['essence_tracks_id'] = $db_essence_track_id;
-						$this->essence->insert_essence_track_identifiers($essence_track_identifier);
+						$this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_identifiers, $essence_track_identifier);
 					}
 
 					unset($essence_track_identifier);
@@ -860,13 +859,13 @@ class Mediainfo extends CI_Controller
 							}
 							else
 							{
-								$essence_track['essence_track_frame_sizes_id'] = $this->essence->insert_essence_track_frame_sizes($frame);
+								$essence_track['essence_track_frame_sizes_id'] = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_frame_sizes, $frame);
 							}
 						}
 						unset($frame);
 						/* Essence Track Frame Size End */
 						/* Update Essence Track Start */
-						$this->essence->update_essence_track($db_essence_track_id, $essence_track);
+						$this->pbcore_model->update_essence_track($db_essence_track_id, $essence_track);
 						/* Update Essence Track End */
 
 						/* Essence Track Annotation Start */
@@ -891,7 +890,7 @@ class Mediainfo extends CI_Controller
 							foreach ($essence_annotation as $annotation)
 							{
 								$annotation['essence_tracks_id'] = $db_essence_track_id;
-								$this->essence->insert_essence_track_annotations($annotation);
+								$this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_annotations, $annotation);
 							}
 						}
 						unset($essence_annotation);

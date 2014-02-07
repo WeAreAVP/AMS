@@ -1,10 +1,33 @@
 <?php
 
+/**
+ * MY_Model Core
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage Core
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @version    GIT: <$Id>
+ * @link       http://ams.avpreserve.com
+ */
 if ( ! defined('BASEPATH'))
 {
 	exit('No direct script access allowed');
 }
 
+/**
+ * MY_Model Class
+ *
+ * @category   Class
+ * @package    CI
+ * @subpackage Core
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @link       http://ams.avpreserve.com
+ */
 class MY_Model extends CI_Model
 {
 
@@ -131,7 +154,17 @@ class MY_Model extends CI_Model
 		$this->db->insert($table, $data);
 		return $this->db->insert_id();
 	}
+	/**
+	 * Insert data into table.
+	 * 
+	 * @param string $table
+	 * @param array $data
+	 * @return integer
+	 */
+	function insert_record($table, array $data)
+	{
+		$this->db->insert($table, $data);
+		return $this->db->insert_id();
+	}
 
 }
-
-?>

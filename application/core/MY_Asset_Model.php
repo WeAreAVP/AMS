@@ -1,10 +1,33 @@
 <?php
 
+/**
+ * MY_Asset_Model Core
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage Core
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @version    GIT: <$Id>
+ * @link       http://ams.avpreserve.com
+ */
 if ( ! defined('BASEPATH'))
 {
 	exit('No direct script access allowed');
 }
 
+/**
+ * MY_Asset_Model Class
+ *
+ * @category   Class
+ * @package    CI
+ * @subpackage Core
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @link       http://ams.avpreserve.com
+ */
 class MY_Asset_Model extends MY_Instantiation_Model
 {
 
@@ -218,5 +241,3 @@ class MY_Asset_Model extends MY_Instantiation_Model
 	}
 
 }
-
-?>

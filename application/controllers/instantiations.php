@@ -42,7 +42,6 @@ class Instantiations extends MY_Controller
 		$this->load->model('manage_asset_model', 'manage_asset');
 		$this->load->model('export_csv_job_model', 'csv_job');
 		$this->load->model('assets_model');
-		$this->load->model('essence_track_model', 'essence_track');
 		$this->load->model('sphinx_model', 'sphinx');
 		$this->load->library('pagination');
 		$this->load->library('Ajax_pagination');
@@ -179,7 +178,7 @@ class Instantiations extends MY_Controller
 				$data['inst_annotation'] = $this->instantiation->get_annotation_by_instantiation_id($instantiation_id);
 				$data['inst_relation'] = $this->manage_asset->get_relation_by_instantiation_id($instantiation_id);
 
-				$data['essence_track'] = $this->essence_track->get_essence_tracks_by_instantiations_id($instantiation_id);
+				$data['essence_track'] = $this->pbcore_model->get_essence_tracks_by_instantiations_id($instantiation_id);
 //				debug($data['essence_track']);
 
 				$data['instantiation_events'] = $this->instantiation->get_events_by_instantiation_id($instantiation_id);
@@ -205,41 +204,7 @@ class Instantiations extends MY_Controller
 						$data['prev_result_id'] = $search_results[$cur_key - 1]->id;
 					if (isset($search_results[$cur_key + 1]))
 						$data['next_result_id'] = $search_results[$cur_key + 1]->id;
-//					debug($search_results);
-//					$search_results_array = array();
-//					$num_search_results = 0;
-//					if ($search_results)
-//					{
-//						foreach ($search_results as $search_result)
-//						{
-//							$search_results_array[]['id'] = $search_result->id;
-//						}
-//						$num_search_results = count($search_results);
-//					}
-//					# Get result number of current asset
-//					$search_result_pointer = 0;
-//					foreach ($search_results_array as $search_res)
-//					{
-//						if ($search_res['id'] == $instantiation_id)
-//							break;
-//						$search_result_pointer ++;
-//					}
-//					$data['cur_result'] = $search_result_pointer + 1;
-//
-//					# Get number of results
-//					$data['num_results'] = $num_search_results;
-//
-//					# Get result number of next listings
-//					if ($search_result_pointer >= ($num_search_results - 1))
-//						$data['next_result_id'] = FALSE;
-//					else
-//						$data['next_result_id'] = $search_results_array[$search_result_pointer + 1]['id'];
-//
-//					# Get result number of previous listings
-//					if ($search_result_pointer <= 0 || $num_search_results == 1)
-//						$data['prev_result_id'] = FALSE;
-//					else
-//						$data['prev_result_id'] = $search_results_array[$search_result_pointer - 1]['id'];
+
 				}
 				$data['last_page'] = '';
 				if (isset($this->session->userdata['page_link']) && ! is_empty($this->session->userdata['page_link']))
@@ -624,7 +589,7 @@ class Instantiations extends MY_Controller
 								}
 								else
 								{
-									$essence_tracks_d['essence_track_frame_sizes_id'] = $this->essence_track->insert_essence_track_frame_sizes(array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
+									$essence_tracks_d['essence_track_frame_sizes_id'] = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_frame_sizes,array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
 								}
 							}
 						}
@@ -678,7 +643,7 @@ class Instantiations extends MY_Controller
 						}
 						else
 						{
-							$essence_tracks_d['essence_track_types_id'] = $this->essence_track->insert_essence_track_types(array('essence_track_type' => 'General'));
+							$essence_tracks_d['essence_track_types_id'] = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_types,array('essence_track_type' => 'General'));
 						}
 						/* Essence Track Type End */
 
@@ -689,12 +654,12 @@ class Instantiations extends MY_Controller
 							$essence_track = $this->manage_asset->get_single_essence_tracks_by_instantiations_id($instantiation_id);
 							if ($essence_track)
 							{
-								$this->essence_track->update_essence_track($essence_track->id, $essence_tracks_d);
+								$this->pbcore_model->update_essence_track($essence_track->id, $essence_tracks_d);
 							}
 							else
 							{
 								$essence_tracks_d['instantiations_id'] = $instantiation_id;
-								$this->essence_track->insert_essence_tracks($essence_tracks_d);
+								$this->pbcore_model->insert_record($this->pbcore_model->table_essence_tracks, $essence_tracks_d);
 							}
 						}
 						/* Essence Track End */
@@ -997,7 +962,7 @@ class Instantiations extends MY_Controller
 					}
 					else
 					{
-						$essence_tracks_d['essence_track_frame_sizes_id'] = $this->essence_track->insert_essence_track_frame_sizes(array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
+						$essence_tracks_d['essence_track_frame_sizes_id'] =  $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_frame_sizes,array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
 					}
 				}
 			}
@@ -1050,7 +1015,7 @@ class Instantiations extends MY_Controller
 			}
 			else
 			{
-				$essence_tracks_d['essence_track_types_id'] = $this->essence_track->insert_essence_track_types(array('essence_track_type' => 'General'));
+				$essence_tracks_d['essence_track_types_id'] = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_types,array('essence_track_type' => 'General'));
 			}
 			/* Essence Track Type End */
 
@@ -1059,7 +1024,7 @@ class Instantiations extends MY_Controller
 			if ($db_essence_track)
 			{
 				$essence_tracks_d['instantiations_id'] = $instantiation_id;
-				$this->essence_track->insert_essence_tracks($essence_tracks_d);
+				$this->pbcore_model->insert_record($this->pbcore_model->table_essence_tracks,$essence_tracks_d);
 			}
 			/* Essence Track End */
 

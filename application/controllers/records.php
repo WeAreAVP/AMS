@@ -373,7 +373,7 @@ class Records extends MY_Controller
 			"iTotalDisplayRecords" => $data['count'],
 			'aaData' => $table_view
 		);
-		
+
 		echo json_encode($dataTable);
 		exit_function();
 	}
@@ -382,14 +382,29 @@ class Records extends MY_Controller
 	 * Save cron to export records in pbcore 2 xml format.
 	 * 
 	 * @return JsonArrayType
-	 */ 
+	 */
 	function export_pbcore()
 	{
-		$this->load->model('pbcore_model'); 
+		$this->load->model('pbcore_model');
 		$this->load->model('export_csv_job_model', 'csv_job');
 		$records = $this->sphinx->assets_listing();
-		$query = $this->pbcore_model->export_assets(TRUE);
-		$record = array('user_id' => $this->user_id, 'status' => 0, 'type' => 'pbcore', 'export_query' => $query, 'query_loop' => ceil($records['total_count'] / 100000));
+		$_ids = '';
+		if ($records['total_count'] <= 2000)
+		{
+			foreach ($records['records'] as $record)
+			{
+				$_ids .="{$record->id},";
+			}
+			$query = rtrim($_ids, ',');
+			$query_loop = 0;
+		}
+		else
+		{
+			$query = $this->pbcore_model->export_assets(TRUE);
+			$query_loop = ceil($records['total_count'] / 100000);
+		}
+
+		$record = array('user_id' => $this->user_id, 'status' => 0, 'type' => 'pbcore', 'export_query' => $query, 'query_loop' => $query_loop);
 		$this->csv_job->insert_job($record);
 		echo json_encode(array('link' => 'false', 'msg' => 'Email will be sent to you with the link to download.'));
 		exit_function();

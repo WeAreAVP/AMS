@@ -85,38 +85,28 @@ class Xml extends CI_Controller
 			$bagit_lib->setHashEncoding('md5');
 			$total_size = 0;
 			$total_files = 0;
-			for ($i = 0; $i < $export_job->query_loop; $i ++ )
+			if ($export_job->query_loop == 0)
 			{
-				$query = $export_job->export_query;
-				$query.=' LIMIT ' . ($i * 100000) . ', 100000';
-				$records = $this->export_job->get_csv_records($query);
-				foreach ($records as $value)
+				$export_ids = explode(',', $export_job->export_query);
+				foreach ($export_ids as $asset_id)
 				{
-					make_dir($this->temp_path);
-					$this->export_pbcore_premis->asset_id = $value->id;
-					$this->export_pbcore_premis->is_pbcore_export = TRUE;
-					$this->export_pbcore_premis->make_xml();
-					$file_name = $this->export_pbcore_premis->make_file_name();
-					$path = "{$this->temp_path}{$file_name}_pbcore.xml";
-					$this->export_pbcore_premis->format_xml($path);
-					$total_size = $total_size + filesize($path);
-					$total_files ++;
-					$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
-					$this->export_pbcore_premis->is_pbcore_export = FALSE;
-					$result = $this->export_pbcore_premis->make_xml();
-					if ($result)
-					{
-						$file_name = $this->export_pbcore_premis->make_file_name();
-						$path = "{$this->temp_path}{$file_name}_premis.xml";
-						$this->export_pbcore_premis->format_xml($path);
-						$bagit_lib->addFile($path, "{$file_name}/{$file_name}_premis.xml");
-						$total_size = $total_size + filesize($path);
-						$total_files ++;
-					}
-
-					unset($this->export_pbcore_premis->xml);
+					$this->do_export($asset_id, $total_size, $total_files, $bagit_lib);
 				}
 			}
+			else
+			{
+				for ($i = 0; $i < $export_job->query_loop; $i ++ )
+				{
+					$query = $export_job->export_query;
+					$query.=' LIMIT ' . ($i * 100000) . ', 100000';
+					$records = $this->export_job->get_csv_records($query);
+					foreach ($records as $value)
+					{
+						$this->do_export($value->id, $total_size, $total_files, $bagit_lib);
+					}
+				}
+			}
+
 			$bagit_lib->setBagInfoData('Payload-Oxum', $total_size . '.' . $total_files);
 			$bagit_lib->setBagInfoData('Bagging-Date', date('Y-m-d'));
 			$bagit_lib->setBagInfoData('Bag-Size', sizeFormat($total_size));
@@ -138,6 +128,33 @@ class Xml extends CI_Controller
 			myLog('No record availabe for export');
 		}
 		exit_function();
+	}
+
+	function do_export($asset_id, &$total_size, &$total_files, $bagit_lib)
+	{
+		make_dir($this->temp_path);
+		$this->export_pbcore_premis->asset_id = $asset_id;
+		$this->export_pbcore_premis->is_pbcore_export = TRUE;
+		$this->export_pbcore_premis->make_xml();
+		$file_name = $this->export_pbcore_premis->make_file_name();
+		$path = "{$this->temp_path}{$file_name}_pbcore.xml";
+		$this->export_pbcore_premis->format_xml($path);
+		$total_size = $total_size + filesize($path);
+		$total_files ++;
+		$bagit_lib->addFile($path, "{$file_name}/{$file_name}_pbcore.xml");
+		$this->export_pbcore_premis->is_pbcore_export = FALSE;
+		$result = $this->export_pbcore_premis->make_xml();
+		if ($result)
+		{
+			$file_name = $this->export_pbcore_premis->make_file_name();
+			$path = "{$this->temp_path}{$file_name}_premis.xml";
+			$this->export_pbcore_premis->format_xml($path);
+			$bagit_lib->addFile($path, "{$file_name}/{$file_name}_premis.xml");
+			$total_size = $total_size + filesize($path);
+			$total_files ++;
+		}
+		unset($this->export_pbcore_premis->xml);
+		return TRUE;
 	}
 
 	/**

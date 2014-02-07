@@ -1,20 +1,79 @@
 <?php
 
+/**
+ * Export_pbcore_premis Library
+ * 
+ * It manage the exporting of assets and associated instantiations and essence track to PBCore xml.
+ * It also manage the exporting of events in PREMIS xml
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage Library
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @version    GIT: <$Id>
+ * @link       http://ams.avpreserve.com
+ */
+
+/**
+ * Export_pbcore_premis Class
+ *
+ * @category   Class
+ * @package    CI
+ * @subpackage Library
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @link       http://ams.avpreserve.com
+ */
 class Export_pbcore_premis
 {
 
+	/**
+	 * CI instance.
+	 * 
+	 * @var object 
+	 */
 	private $CI;
+
+	/**
+	 * XML object
+	 * 
+	 * @var \SimpleXMLElement 
+	 */
 	public $xml = NULL;
+
+	/**
+	 * Asset database ID.
+	 * 
+	 * @var integer 
+	 */
 	public $asset_id = NULL;
-	public $is_parent_collection = FALSE;
+
+	/**
+	 * To manage the export type. If TRUE then its a PBCore export otherwise its PREMIS.
+	 * 
+	 * @var boolean 
+	 */
 	public $is_pbcore_export = TRUE;
 
+	/**
+	 * Constructor.
+	 * 
+	 */
 	function __construct()
 	{
 		$this->CI = & get_instance();
 		$this->CI->load->model('pbcore_model');
 	}
 
+	/**
+	 * Make XML object and export multiple records in one container or collection for PBCore and PREMIS respectively.
+	 * 
+	 * @param stdObject $records
+	 * @return boolean
+	 */
 	function make_collection_xml($records)
 	{
 		if ($this->is_pbcore_export)
@@ -56,7 +115,7 @@ class Export_pbcore_premis
 	}
 
 	/**
-	 * Make pbcore or premis file depend on the parameters.
+	 * Make PBCore or PREMIS file depend on the parameters.
 	 * 
 	 * @return boolean
 	 */
@@ -844,6 +903,10 @@ class Export_pbcore_premis
 		return $xml;
 	}
 
+	/* End of Export_pbcore_premis Class */
 }
 
-?>
+// END Export_pbcore_premis Controller
+
+// End of file export_pbcore_premis.php 
+/* Location: ./application/libraries/export_pbcore_premis.php */

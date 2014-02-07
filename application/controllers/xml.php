@@ -1,11 +1,53 @@
 <?php
 
+/**
+ * XML Controller
+ * 
+ * Controller manage the webservice for output the response in xml. It also export bag of xml using bagit library.
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage Controller
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @version    GIT: <$Id>
+ * @link       http://ams.avpreserve.com
+ */
+
+/**
+ * XML Class
+ *
+ * @category   Class
+ * @package    CI
+ * @subpackage Controller
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @license    AMS http://ams.avpreserve.com
+ * @link       http://ams.avpreserve.com
+ */
 class Xml extends CI_Controller
 {
 
+	/**
+	 * Path for temporary folder for storing xml files.
+	 * 
+	 * @var string 
+	 */
 	private $temp_path = 'uploads/export_temp/';
+
+	/**
+	 * Path for bagit where bag will be added.
+	 * 
+	 * @var string 
+	 */
 	private $bagit_path = 'assets/bagit/';
 
+	/**
+	 * Constructer to load libraries and models.
+	 * 
+	 * 
+	 */
 	function __construct()
 	{
 		parent::__construct();
@@ -120,7 +162,13 @@ class Xml extends CI_Controller
 	}
 
 	/**
-	 * Export the premis xml against guid.
+	 * Make xml for PREMIS format and output the xml for webservice.
+	 * 
+	 * It receives at least one parameter and page number in uri segments.
+	 * Parameters are guid string
+	 * Parameters are digitized 0 or 1
+	 * Parameters are modified_date YYYYMMDD
+	 * Parameters are page number
 	 * 
 	 * @return void
 	 */
@@ -180,6 +228,17 @@ class Xml extends CI_Controller
 		exit_function();
 	}
 
+	/**
+	 * Make xml for PBcore format and output the xml for webservice.
+	 * 
+	 * It receives at least one parameter and page number in uri segments.
+	 * Parameters are guid string
+	 * Parameters are digitized 0 or 1
+	 * Parameters are modified_date YYYYMMDD
+	 * Parameters are page number
+	 * 
+	 * @return void
+	 */
 	function pbcore()
 	{
 		$default = array('guid', 'digitized', 'modified_date', 'page');
@@ -239,4 +298,10 @@ class Xml extends CI_Controller
 		exit_function();
 	}
 
+	/* End of XML Class */
 }
+
+// END XML Controller
+
+// End of file xml.php 
+/* Location: ./application/controllers/xml.php */

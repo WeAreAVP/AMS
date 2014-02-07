@@ -8,7 +8,7 @@
  * @category   AMS
  * @package    CI
  * @subpackage Model
- * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
  * @license    AMS http://ams.avpreserve.com
  * @version    GIT: <$Id>
  * @link       http://ams.avpreserve.com
@@ -20,7 +20,7 @@
  * @category   Class
  * @package    CI
  * @subpackage Model
- * @author     Nouman Tayyab <nouman@geekschicago.com>
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
  * @license    AMS http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
  */
@@ -40,11 +40,13 @@ class Cron_Model extends CI_Model
 		$this->_table_rotate_indexes = 'rotate_indexes';
 	}
 
-	/*
-	  @Get process_pbcore_data through file_path
-	  @return object
+	/**
+	 * Get process_pbcore_data through file_path
+	 * 
+	 * @param string $file_path
+	 * 
+	 * @return boolean
 	 */
-
 	function get_pbcore_file_by_path($file_path)
 	{
 		$this->db->select("*");
@@ -58,11 +60,14 @@ class Cron_Model extends CI_Model
 		return false;
 	}
 
-	/*
-	  @Get process_pbcore_data through file_path
-	  @return object
+	/**
+	 * Get process_pbcore_data through file_path.
+	 * 
+	 * @param string $file_path
+	 * @param integer $data_folder_id
+	 * 
+	 * @return boolean
 	 */
-
 	function is_pbcore_file_by_path($file_path, $data_folder_id)
 	{
 		$this->db->select("COUNT(id) AS total");
@@ -78,11 +83,15 @@ class Cron_Model extends CI_Model
 		return false;
 	}
 
-	/*
-	  @Get process_pbcore_data through data_folder_id
-	  @return object
+	/**
+	 * Get process_pbcore_data through data_folder_id
+	 * 
+	 * @param integer $data_folder_id
+	 * @param integer $offset
+	 * @param integer $limit
+	 * 
+	 * @return boolean
 	 */
-
 	function get_pbcore_file_by_folder_id($data_folder_id, $offset = 0, $limit = 20)
 	{
 		$this->db->select("*");
@@ -99,11 +108,13 @@ class Cron_Model extends CI_Model
 		return false;
 	}
 
-	/*
-	  @Get process_pbcore_data un-processed files count through data_folder_id
-	  @return object
+	/**
+	 * Get process_pbcore_data un-processed files count through data_folder_id
+	 * 
+	 * @param integer $data_folder_id
+	 * 
+	 * @return boolean
 	 */
-
 	function get_pbcore_file_count_by_folder_id($data_folder_id)
 	{
 		$this->db->select("COUNT(id) AS total");
@@ -122,11 +133,12 @@ class Cron_Model extends CI_Model
 		return false;
 	}
 
-	/*
-	  @Get data folder through folder_path
-	  @return object
+	/**
+	 * Get data folder through folder_path.
+	 * 
+	 * @param string $folder_path
+	 * @return boolean
 	 */
-
 	function get_data_folder_id_by_path($folder_path)
 	{
 		$this->db->select("id");
@@ -145,11 +157,11 @@ class Cron_Model extends CI_Model
 		return false;
 	}
 
-	/*
-	  @Get all data folder
-	  @return object
+	/**
+	 * Get all data folder.
+	 * 
+	 * @return boolean
 	 */
-
 	function get_all_data_folder()
 	{
 		$this->db->select("*");
@@ -169,6 +181,11 @@ class Cron_Model extends CI_Model
 		return false;
 	}
 
+	/**
+	 * Get all the PBCore 2 folders whose status is complete.
+	 * 
+	 * @return boolean
+	 */
 	function get_all_pbcoretwo_folder()
 	{
 		$this->db->select("*");
@@ -188,6 +205,11 @@ class Cron_Model extends CI_Model
 		return false;
 	}
 
+	/**
+	 * Get all the Mediainfo folders whose status is complete.
+	 * 
+	 * @return boolean
+	 */
 	function get_all_mediainfo_folder()
 	{
 		$this->db->select("*");
@@ -208,11 +230,13 @@ class Cron_Model extends CI_Model
 		return false;
 	}
 
-	/*
-	  @Get all data folder
-	  @return object
+	/**
+	 * Get all data folder
+	 * 
+	 * @param integer $id
+	 * 
+	 * @return boolean
 	 */
-
 	function get_data_folder_by_id($id)
 	{
 		$this->db->select('*');
@@ -230,61 +254,60 @@ class Cron_Model extends CI_Model
 		return false;
 	}
 
-	/*
-	  @Insert data into process_pbcore_data
-	  @Perm Array of table data
-	  @return insert id
+	/**
+	 * Insert data into process_pbcore_data
+	 * 
+	 * @param array $data
+	 * @return integer
 	 */
-
 	function insert_prcoess_data($data)
 	{
 		$this->db->insert($this->_table, $data);
 		return $this->db->insert_id();
 	}
 
-	/*
-	  @Update data into process_pbcore_data
-	  @Perm Array of table data
-	  @Perm Integer of id
-	  @return bool
+	/**
+	 * Update data into process_pbcore_data
+	 * 
+	 * @param array $data
+	 * @param integer $file_id
 	 */
-
 	function update_prcoess_data($data, $file_id)
 	{
 		$this->db->where('id', $file_id);
 		$this->db->update($this->_table, $data);
 	}
 
-	/*
-	  @Insert data folder
-	  @Perm Array of table data
-	  @return insert id
+	/**
+	 * Insert data folder
+	 * 
+	 * @param array $data
+	 * @return integer
 	 */
-
 	function insert_data_folder($data)
 	{
 		$this->db->insert($this->_table_data_folders, $data);
 		return $this->db->insert_id();
 	}
 
-	/*
-	  @Update data folder
-	  @Perm Array of table data
-	  @Perm Integer Folder id
+	/**
+	 * Update data folder.
+	 * 
+	 * @param array $data
+	 * @param integer $id
 	 */
-
 	function update_data_folder($data, $id)
 	{
 		$this->db->where('id', $id);
 		$this->db->update($this->_table_data_folders, $data);
 	}
 
-	/*
-	 * Scan Directory and Store Path in process_pbcore_data
-	 * @Perm Path of Directory
-	 * @Perm type of data
+	/**
+	 * Scan Directory and Store Path in process_pbcore_data.
+	 * 
+	 * @param string $dir
+	 * @param array $my_data_array
 	 */
-
 	function scan_directory($dir, &$my_data_array)
 	{
 		$dir = rtrim(trim($dir, '\\'), '/') . '/';
@@ -321,11 +344,14 @@ class Cron_Model extends CI_Model
 		@closedir($d);
 	}
 
-	/*
-	  @Get process_pbcore_data by type and is_processed=0
-	  @Return object
+	/**
+	 * Get process_pbcore_data by type and is_processed=0
+	 * 
+	 * @param string $type
+	 * @param integer $is_processed
+	 * 
+	 * @return boolean
 	 */
-
 	function get_pbcore_data_type_is_processed($type, $is_processed = 0)
 	{
 		$this->db->select("*");
@@ -341,28 +367,11 @@ class Cron_Model extends CI_Model
 	}
 
 	/**
-	 * Get the sphnix indexes that need to be rotated.
+	 * Scan directory of mint.
 	 * 
-	 * @return boolean 
+	 * @param string $dir
+	 * @param array $my_data_array
 	 */
-	function get_sphnix_indexes()
-	{
-		$this->db->where('status', '0');
-		$this->db->limit(1);
-		$result = $this->db->get($this->_table_rotate_indexes);
-		if (isset($result))
-		{
-			return $result->row();
-		}
-		return FALSE;
-	}
-
-	function update_rotate_indexes($id, $data)
-	{
-		$this->db->where('id', $id);
-		return $this->db->update($this->_table_rotate_indexes, $data);
-	}
-
 	function scan_mint_directory($dir, &$my_data_array)
 	{
 		$dir = rtrim(trim($dir, '\\'), '/') . '/';

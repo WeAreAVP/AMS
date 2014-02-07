@@ -129,32 +129,7 @@ class Crons extends CI_Controller
 		exit_function();
 	}
 
-	/**
-	 * Update Sphnix Indexes
-	 *  
-	 * @return
-	 */
-	public function rotate_sphnix_indexes()
-	{
-		$record = $this->cron_model->get_sphnix_indexes();
-		if ($record)
-		{
-			$index = $record->index_name;
-			@exec("/usr/bin/indexer $index --rotate", $output);
-			$email_output = implode('<br/>', $output);
-			$db_output = implode("\n", $output);
-
-			$this->cron_model->update_rotate_indexes($record->id, array('status' => 1, 'output' => $db_output));
-
-			send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'Index Rotation for ' . $index, $email_output);
-			myLog("$index rotated successfully");
-		}
-		else
-		{
-			myLog('No index available for rotation');
-		}
-		exit_function();
-	}
+	
 
 	/**
 	 * Save Facet Search Values into memcahed.

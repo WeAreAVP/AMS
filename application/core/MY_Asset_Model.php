@@ -192,7 +192,7 @@ class MY_Asset_Model extends MY_Instantiation_Model
 	 * @param integer $digitized
 	 * @return stdObject
 	 */
-	function get_assets_by_date_digitized($date, $digitized)
+	function get_assets_by_date_digitized($date, $digitized, $page, $limit = 1000)
 	{
 
 		$this->db->select("{$this->_assets_table}.id")
@@ -209,11 +209,12 @@ class MY_Asset_Model extends MY_Instantiation_Model
 			else
 				$this->db->where("{$this->table_instantiations}.digitized", $digitized);
 		}
-		$this->db->limit(1000);
+		if (empty($page))
+			$offset = 0;
+		else
+			$offset = ($page - 1) * $limit;
 
-		
-		
-		return $this->db->get($this->_assets_table)->result();
+		return $this->db->get($this->_assets_table, $limit, $offset)->result();
 	}
 
 }

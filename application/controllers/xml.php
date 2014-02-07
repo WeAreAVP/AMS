@@ -126,7 +126,7 @@ class Xml extends CI_Controller
 	 */
 	function premis()
 	{
-		$default = array('guid', 'digitized', 'modified_date');
+		$default = array('guid', 'digitized', 'modified_date', 'page');
 		$_uri = $this->uri->uri_to_assoc(3, $default);
 		Header('Content-type: text/xml');
 		if (isset($_uri['guid']) && ! empty($_uri['guid']))
@@ -152,14 +152,14 @@ class Xml extends CI_Controller
 				echo $result->asXML();
 			}
 		}
-		else if ( $_uri['digitized'] != '' || ! empty($_uri['modified_date']))
+		else if ($_uri['digitized'] != '' || ! empty($_uri['modified_date']))
 		{
 			$result = check_web_service_params($_uri);
 			if ($result === 'valid')
 			{
 				@ini_set("max_execution_time", 999999999999); # unlimited
 				@ini_set("memory_limit", "1000M"); # 1GB
-				$records = $this->pbcore_model->get_assets_by_date_digitized($_uri['modified_date'], $_uri['digitized']);
+				$records = $this->pbcore_model->get_assets_by_date_digitized($_uri['modified_date'], $_uri['digitized'], $_uri['page']);
 				if (count($records) > 0)
 				{
 					$this->export_pbcore_premis->is_pbcore_export = FALSE;
@@ -188,7 +188,7 @@ class Xml extends CI_Controller
 
 	function pbcore()
 	{
-		$default = array('guid', 'digitized', 'modified_date');
+		$default = array('guid', 'digitized', 'modified_date', 'page');
 		$_uri = $this->uri->uri_to_assoc(3, $default);
 
 		Header('Content-type: text/xml');
@@ -212,13 +212,13 @@ class Xml extends CI_Controller
 		}
 		else if ($_uri['digitized'] != '' || ! empty($_uri['modified_date']))
 		{
-			
+
 			$result = check_web_service_params($_uri);
 			if ($result === 'valid')
 			{
 				@ini_set("max_execution_time", 999999999999); # unlimited
 				@ini_set("memory_limit", "1000M"); # 1GB
-				$records = $this->pbcore_model->get_assets_by_date_digitized($_uri['modified_date'], $_uri['digitized']);
+				$records = $this->pbcore_model->get_assets_by_date_digitized($_uri['modified_date'], $_uri['digitized'], $_uri['page']);
 				if (count($records) > 0)
 				{
 					$this->export_pbcore_premis->is_pbcore_export = TRUE;

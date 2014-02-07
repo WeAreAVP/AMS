@@ -154,6 +154,7 @@ class MY_Model extends CI_Model
 		$this->db->insert($table, $data);
 		return $this->db->insert_id();
 	}
+
 	/**
 	 * Insert data into table.
 	 * 
@@ -165,6 +166,37 @@ class MY_Model extends CI_Model
 	{
 		$this->db->insert($table, $data);
 		return $this->db->insert_id();
+	}
+
+	/**
+	 * Get autocomplete value by keyword.
+	 * 
+	 * @param string $table  Name of the table
+	 * @param column $column On which filter is applied
+	 * @param type   $term   keyword to search
+	 * 
+	 * @return stdObject
+	 */
+	function get_autocomplete_value($table, $column, $term)
+	{
+		if ($table === 'pbcore_picklist_value_by_type')
+		{
+			$this->db->select("DISTINCT value AS value", FALSE);
+			$this->db->where("element_type_id", 16);
+			$this->db->where("display_value !=", 3);
+			$this->db->like("value", $term, 'after');
+			$this->db->order_by("display_value,value");
+		}
+		else
+		{
+			$this->db->select("DISTINCT $column AS value", FALSE);
+			$this->db->like("$column", $term, 'after');
+			if ($table === 'identifiers')
+				$this->db->where("$column !=", "http://americanarchiveinventory.org");
+			$this->db->limit(50);
+		}
+		$result = $this->db->get($table)->result();
+		return $result;
 	}
 
 }

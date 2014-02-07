@@ -36,7 +36,7 @@ class Autocomplete extends MY_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('autocomplete_model', 'autocomplete');
+		$this->load->model('pbcore_model');
 		$this->layout = 'main_layout.php';
 		$this->load->model('dx_auth/user_profile', 'user_profile');
 		$this->load->model('dx_auth/users', 'users');
@@ -52,7 +52,7 @@ class Autocomplete extends MY_Controller
 		$term = $this->input->get('term');
 		$table = $this->input->get('table');
 		$column = $this->input->get('column');
-		$source = $this->autocomplete->get_autocomplete_value($table, $column, $term);
+		$source = $this->pbcore_model->get_autocomplete_value($table, $column, $term);
 		$autoSource = array();
 
 		foreach ($source as $key => $value)

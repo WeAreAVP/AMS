@@ -37,17 +37,17 @@ class Export_pbcore_premis
 		}
 		else
 		{
-			$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><premisCollection></premisCollection>');
+			$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><premisContainer></premisContainer>', LIBXML_NOERROR, false, 'xsi', true);
 			foreach ($records as $asset)
 			{
 				$this->asset_id = $asset->id;
 				$xml_object = $this->_add_child($this->xml, 'premis');
 				$attributes = array(
-					'xmlns:premis' => "info:lc/xmlns/premis-v2",
-					'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
+					'xsi:xmlns:premis' => "info:lc/xmlns/premis-v2",
+					'xsi:xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+					'xsi:xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
 					'version' => "2.0");
-				$this->_add_attribute($xml_object, $attributes);
+				$this->_add_attribute($xml_object, $attributes,'xsi');
 				$result = $this->_fetch_events($this->xml, TRUE);
 			}
 			return TRUE;

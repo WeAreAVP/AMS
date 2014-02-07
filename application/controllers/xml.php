@@ -138,13 +138,7 @@ class Xml extends CI_Controller
 				$this->export_pbcore_premis->asset_id = $result->assets_id;
 				$this->export_pbcore_premis->is_pbcore_export = FALSE;
 				$result = $this->export_pbcore_premis->make_xml();
-				if ($result)
-					echo $this->export_pbcore_premis->xml->asXML();
-				else
-				{
-					$response = $this->export_pbcore_premis->xml_error('No PREMIS info available.');
-					echo $response->asXML();
-				}
+				echo $this->export_pbcore_premis->xml->asXML();
 			}
 			else
 			{

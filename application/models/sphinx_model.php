@@ -296,7 +296,7 @@ class Sphinx_Model extends CI_Model
 		if ($select)
 			$this->sphinxsearch->set_select('id');
 		if ($limit)
-			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
+			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 2000 ) ? $limit : 2000 );
 		if ($select)
 		{
 			if (isset($this->session->userdata['column']) && $this->session->userdata['column'] != '' && $this->session->userdata['column'] != 'flag')

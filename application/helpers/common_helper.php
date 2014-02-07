@@ -342,7 +342,7 @@ function check_web_service_params($params)
 		if ( ! is_valid_date($params['modified_date']))
 			return 'modified_date should be in YYYYMMDD';
 	if ( ! empty($params['page']))
-		if ( ! is_int($params['page']))
+		if ( ! is_numeric($params['page']))
 			return 'page must be integer.';
 	return 'valid';
 }

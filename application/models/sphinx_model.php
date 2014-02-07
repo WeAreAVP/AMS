@@ -106,7 +106,7 @@ class Sphinx_Model extends CI_Model
 	 * @param integer $limit
 	 * @return array
 	 */
-	public function facet_index($column_name, $index_name, $type = NULL, $offset = 0, $limit = 1000)
+	public function facet_index($column_name, $index_name, $type = NULL, $offset = 0, $limit = 2000)
 	{
 		$list = array();
 		$total_record = 0;
@@ -122,7 +122,7 @@ class Sphinx_Model extends CI_Model
 
 		$this->sphinxsearch->set_connect_timeout(120);
 		if ($limit)
-			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
+			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 2000 ) ? $limit : 2000 );
 
 		$query = $this->make_where_clause($type, $index_name);
 		$res = $this->sphinxsearch->query($query, $index_name);
@@ -196,7 +196,7 @@ class Sphinx_Model extends CI_Model
 		if ($select)
 			$this->sphinxsearch->set_select('id');
 		if ($limit)
-			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
+			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 2000 ) ? $limit : 2000 );
 		if (isset($this->session->userdata['standalone_column_order']))
 		{
 			if ($this->session->userdata['standalone_column_order'] == 'asc')
@@ -514,7 +514,7 @@ class Sphinx_Model extends CI_Model
 		if ($select)
 			$this->sphinxsearch->set_select('id');
 		if ($limit)
-			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
+			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 2000 ) ? $limit : 2000 );
 		if ($select)
 		{
 			if (isset($this->session->userdata['column']) && $this->session->userdata['column'] != '' && $this->session->userdata['column'] != 'flag')

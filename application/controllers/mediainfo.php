@@ -488,6 +488,7 @@ class Mediainfo extends CI_Controller
 							$identifier['instantiation_source'] = 'mediainfo';
 
 							$db_instantiation_id = $this->instant->insert_instantiations($instantiation);
+							debug($db_instantiation_id);
 							$identifier['instantiations_id'] = $db_instantiation_id;
 							$this->instant->insert_instantiation_identifier($identifier);
 							$filename = $identifier['instantiation_identifier'];

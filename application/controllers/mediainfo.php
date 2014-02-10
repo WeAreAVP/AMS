@@ -290,6 +290,7 @@ class Mediainfo extends CI_Controller
 			$instantiation = array();
 			$instantiation['digitized'] = 0;
 			$instantiation['location'] = 'N/A';
+			$db_instantiation_id = $this->instant->insert_instantiations($instantiation);
 			$essence_track = array();
 			$dessence_track = array();
 			$dessence_track_counter = 0;
@@ -487,7 +488,7 @@ class Mediainfo extends CI_Controller
 
 							$identifier['instantiation_source'] = 'mediainfo';
 
-							$db_instantiation_id = $this->instant->insert_instantiations($instantiation);
+							$this->instant->update_instantiations($db_instantiation_id, $instantiation);
 							
 							$identifier['instantiations_id'] = $db_instantiation_id;
 							$this->instant->insert_instantiation_identifier($identifier);
@@ -640,7 +641,7 @@ class Mediainfo extends CI_Controller
 							{
 								$channel = substr_replace($audio_track['channel_s__string'][0]['text'], "", -1);
 //								echo '<br/>Channel Configuration = ' . $channel;
-								debug($db_instantiation_id);
+								
 								$this->instant->update_instantiations($db_instantiation_id, array('channel_configuration' => $channel));
 							}
 						}

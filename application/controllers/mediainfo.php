@@ -488,7 +488,7 @@ class Mediainfo extends CI_Controller
 							$identifier['instantiation_source'] = 'mediainfo';
 
 							$db_instantiation_id = $this->instant->insert_instantiations($instantiation);
-							debug($db_instantiation_id);
+							
 							$identifier['instantiations_id'] = $db_instantiation_id;
 							$this->instant->insert_instantiation_identifier($identifier);
 							$filename = $identifier['instantiation_identifier'];
@@ -640,7 +640,7 @@ class Mediainfo extends CI_Controller
 							{
 								$channel = substr_replace($audio_track['channel_s__string'][0]['text'], "", -1);
 //								echo '<br/>Channel Configuration = ' . $channel;
-
+								debug($db_instantiation_id);
 								$this->instant->update_instantiations($db_instantiation_id, array('channel_configuration' => $channel));
 							}
 						}

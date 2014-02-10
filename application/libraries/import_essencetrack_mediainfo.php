@@ -100,7 +100,7 @@ class Import_essencetrack_mediainfo
 		/* Insert Essence Track Start */
 		$this->essence_track['instantiations_id'] = $this->_instantiation_id;
 
-		$this->_essence_track_id = $this->_model->insert_record($this->_model->table_essence_tracks, $essence_track);
+		$this->_essence_track_id = $this->_model->insert_record($this->_model->table_essence_tracks, $this->essence_track);
 
 		/* Insert Essence Track End */
 		$this->save_track_encoding($track);

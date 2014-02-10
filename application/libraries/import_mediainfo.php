@@ -280,7 +280,7 @@ class Import_mediainfo
 			if ( ! empty($general_track['overallbitrate_string'][0]['text']))
 			{
 				$datarate = explode(' ', $general_track['overallbitrate_string'][0]['text']);
-				$instantiation['data_rate'] = (isset($datarate[0])) ? $datarate[0] : '';
+				$this->instantiation_info['data_rate'] = (isset($datarate[0])) ? $datarate[0] : '';
 				$data_rate_unit = (isset($datarate[1])) ? $datarate[1] : '';
 				if ($data_rate_unit != '')
 				{
@@ -371,7 +371,7 @@ class Import_mediainfo
 		else if (isset($general_track['audiocount']) && isset($general_track['audiocount'][0]))
 			if ( ! empty($general_track['audiocount'][0]['text']) || $general_track['audiocount'][0]['text'] != NULL)
 				$media_type = 'Sound';
-		if ($media_type !== '')
+		if ($media_type != '')
 		{
 			$inst_media_type = $this->_model->get_one_by($this->_model->table_instantiation_media_types, array('media_type' => $media_type), TRUE);
 			if ( ! is_empty($inst_media_type))

@@ -275,14 +275,14 @@ class Mediainfo extends CI_Controller
 	 *  
 	 */
 	function import_media_files($file_path)
-	{ // assets/mediainfo/cpb-aacip-331-15bcc3x8-sparse/data/cpb-aacip-331-15bcc3x8.wav.mediainfo.xml
+	{
+		$file_path = "assets/mediainfo/cpb-aacip-331-15bcc3x8-sparse/data/cpb-aacip-331-15bcc3x8.wav.mediainfo.xml";
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 		if (file_exists($file_path))
 		{
 			$data = file_get_contents($file_path);
 			$x = @simplexml_load_string($data);
-			debug($file_path);
 			$data = xmlObjToArr($x);
 
 			$tracks_data = $data['children']['file'][0]['children']['track'];

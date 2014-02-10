@@ -261,7 +261,7 @@ class Mediainfo extends CI_Controller
 			}
 			else
 			{
-				myLog(" Data files not found " . $file_path);
+				myLog(" Data files not found ");
 			}
 		}
 		else
@@ -277,7 +277,7 @@ class Mediainfo extends CI_Controller
 	function import_media_files($file_path)
 	{
 		$this->load->library('import_mediainfo');
-		$file_path = "assets/mediainfo/cpb-aacip-331-15bcc3x8-sparse/data/cpb-aacip-331-15bcc3x8.wav.mediainfo.xml";
+
 		$this->import_mediainfo->initialize($file_path);
 	}
 

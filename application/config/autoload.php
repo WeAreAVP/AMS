@@ -67,7 +67,7 @@ $autoload['libraries'] = array('DX_Auth', 'Form_validation','Emailtemplates');
   |	$autoload['helper'] = array('url', 'file');
  */
 
-$autoload['helper'] = array('html', 'url', 'form', 'common_helper','email');
+$autoload['helper'] = array('html', 'url', 'form', 'common_helper','email','import');
 
  
 /*

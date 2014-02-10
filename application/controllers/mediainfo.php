@@ -291,6 +291,7 @@ class Mediainfo extends CI_Controller
 			$instantiation['digitized'] = 0;
 			$instantiation['location'] = 'N/A';
 			$db_instantiation_id = $this->instant->insert_instantiations($instantiation);
+			debug($db_instantiation_id);
 			$essence_track = array();
 			$dessence_track = array();
 			$dessence_track_counter = 0;

@@ -275,7 +275,7 @@ class Mediainfo extends CI_Controller
 	 *  
 	 */
 	function import_media_files($file_path)
-	{ //data/cpb-aacip-331-15bcc3x8.wav.mediainfo.xml
+	{ // assets/mediainfo/cpb-aacip-331-15bcc3x8-sparse/data/cpb-aacip-331-15bcc3x8.wav.mediainfo.xml
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 		if (file_exists($file_path))
@@ -879,6 +879,10 @@ class Mediainfo extends CI_Controller
 			}
 			unset($instantiation);
 			unset($essence_track);
+		}
+		else
+		{
+			$this->myLog(" File not found " . $file_path);
 		}
 	}
 

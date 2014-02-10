@@ -76,7 +76,7 @@ public class AjaxApproval extends GeneralAction implements ServletRequestAware,S
 				tr.setIsApproved(Integer.parseInt(request.getParameter("approved")));
 				DB.commit();
 				String urlParameters = request.getParameter("id")+"/"+request.getParameter("approved")+'/'+user.getDbID();
-			String request = "http://amsqa.avpreserve.com/mintimport/update_transformed_info/"+urlParameters;
+			String request = "https://amsqa.avpreserve.com/mintimport/update_transformed_info/"+urlParameters;
 			URL url = new URL(request); 
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();           
 			connection.setDoOutput(true);

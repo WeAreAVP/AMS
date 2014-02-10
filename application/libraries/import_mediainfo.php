@@ -46,6 +46,11 @@ class Import_mediainfo
 	 * @var integer 
 	 */
 	private $instantiation_info = array();
+
+	/**
+	 *
+	 * @var integer 
+	 */
 	private $_instantiation_id = NULL;
 
 	/**
@@ -83,6 +88,8 @@ class Import_mediainfo
 				}
 			}
 			$this->insert_ins_asset_index($this->_instantiation_id);
+			$this->instantiation_info = array();
+			$this->_instantiation_id = NULL;
 		}
 	}
 

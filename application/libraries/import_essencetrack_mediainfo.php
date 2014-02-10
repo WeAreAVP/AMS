@@ -42,7 +42,17 @@ class Import_essencetrack_mediainfo
 	 * @var integer 
 	 */
 	private $_instantiation_id = NULL;
+
+	/**
+	 *
+	 * @var integer 
+	 */
 	private $_essence_track_id = NULL;
+
+	/**
+	 *
+	 * @var type 
+	 */
 	private $essence_track = array();
 
 	/**
@@ -99,6 +109,8 @@ class Import_essencetrack_mediainfo
 		{
 			$this->fetch_video_info($track['children']);
 		}
+		$this->essence_track = array();
+		$this->_essence_track_id = NULL;
 	}
 
 	function save_essence_identifier($track)

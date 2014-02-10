@@ -529,7 +529,7 @@ class Sphinx_Model extends CI_Model
 		$query = $this->make_where_clause(NULL, $this->config->item('asset_index'));
 
 		$res = $this->sphinxsearch->query($query, $this->config->item('asset_index'));
-
+		debug($res);
 
 		$execution_time = $res['time'];
 		if ($res)

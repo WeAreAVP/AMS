@@ -882,7 +882,7 @@ class Mediainfo extends CI_Controller
 		}
 		else
 		{
-			$this->myLog(" File not found " . $file_path);
+			$this->myLog("File not found {$file_path}");
 		}
 	}
 

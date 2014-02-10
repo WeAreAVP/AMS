@@ -116,10 +116,13 @@ class Import_mediainfo
 
 		/* Standard End */
 		$this->save_instantiation_tracks($general_track);
+		myLog('Tracks are updated');
 		$this->save_filesize_and_daterate($general_track);
+		myLog('Fize size and data rate imported');
 		$this->update_parent_instantiaion($general_track);
+		myLog('Parent Instantiation updated');
 		$this->save_instantiation_date($general_track);
-
+		myLog('Dates imported');
 		/* Instantiation Format Start */
 		if (isset($general_track['internetmediatype']) && isset($general_track['internetmediatype'][0]))
 		{
@@ -200,6 +203,7 @@ class Import_mediainfo
 				$asset_id = $this->_model->get_one_by($this->_model->table_identifers, array('identifier' => $guid_db, 'identifier_source' => 'http://americanarchiveinventory.org'), TRUE);
 				if ($asset_id && ! empty($asset_id))
 				{
+					myLog('Asset ID => ' . $asset_id->assets_id);
 					return $asset_id->assets_id;
 				}
 			}
@@ -235,6 +239,7 @@ class Import_mediainfo
 				{
 					$this->instantiation_info['assets_id'] = $db_asset_id;
 					$this->_model->update_instantiations($this->_instantiation_id, $this->instantiation_info);
+					myLog('Instantiation updated');
 				}
 
 				// Save Identifier of Instantiation Start

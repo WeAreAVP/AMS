@@ -239,7 +239,7 @@ class Import_mediainfo
 				{
 					$this->instantiation_info['assets_id'] = $db_asset_id;
 					$this->_model->update_instantiations($this->_instantiation_id, $this->instantiation_info);
-					myLog('Instantiation updated');
+					myLog('Instantiation updated ID => ' . $this->_instantiation_id);
 				}
 
 				// Save Identifier of Instantiation Start

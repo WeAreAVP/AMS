@@ -277,10 +277,9 @@ class Mediainfo extends CI_Controller
 	function import_media_files($file_path)
 	{
 		$file_path = "assets/mediainfo/cpb-aacip-331-15bcc3x8-sparse/data/cpb-aacip-331-15bcc3x8.wav.mediainfo.xml";
-		error_reporting(E_ALL);
-		ini_set('display_errors', 1);
+		enable_errors();
 		$data = convert_file_to_xml($file_path);
-		debug($data);
+
 
 		$tracks_data = $data['children']['file'][0]['children']['track'];
 		$db_asset_id = NULL;
@@ -290,9 +289,7 @@ class Mediainfo extends CI_Controller
 		{
 			$instantiation = array();
 			$instantiation['digitized'] = 0;
-//			echo '<br/>Digitized= ' . $instantiation['digitized'];
 			$instantiation['location'] = 'N/A';
-//			echo '<br/>Location= ';
 			$essence_track = array();
 			$dessence_track = array();
 			$dessence_track_counter = 0;

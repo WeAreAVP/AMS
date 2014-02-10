@@ -110,4 +110,28 @@ class MY_Instantiation_Model extends MY_Essencetrack_Model
 		->get($this->table_events)->result();
 	}
 
+	function get_instantiation_with_event_by_asset_id($asset_id)
+	{
+		$this->db->select("$this->table_instantiations.id");
+		$this->db->select("$this->table_events.event_types_id");
+		$this->db->where("$this->table_instantiations.assets_id", $asset_id);
+		$this->db->join($this->table_events, "$this->table_events.instantiations_id=$this->table_instantiations.id");
+
+		return $this->db->get($this->table_instantiations)->row();
+	}
+
+	/**
+	 * update the instantiations record
+	 * 
+	 * @param type $instantiation_id
+	 * @param array $data
+	 * @return boolean 
+	 */
+	function update_instantiations($instantiation_id, $data)
+	{
+		$data['updated'] = date('Y-m-d H:i:s');
+		$this->db->where('id', $instantiation_id);
+		return $this->db->update($this->table_instantiations, $data);
+	}
+
 }

@@ -67,10 +67,10 @@ class Mediainfo extends CI_Controller
 			foreach ($dir_files as $dir)
 			{
 				$cmd = escapeshellcmd('/usr/bin/php ' . $this->config->item('path') . 'index.php mediainfo process_dir_child ' . base64_encode($dir));
-				$this->config->item('path') . "cronlog/media_info.log";
+				$this->config->item('path') . "cronlog/mediainfo_processdir.log";
 				$pidFile = $this->config->item('path') . "PIDs/media_info/" . $loop_counter . ".txt";
 				@exec('touch ' . $pidFile);
-				$this->runProcess($cmd, $pidFile, $this->config->item('path') . "cronlog/media_info.log");
+				$this->runProcess($cmd, $pidFile, $this->config->item('path') . "cronlog/mediainfo_processdir.log");
 				$file_text = file_get_contents($pidFile);
 				$this->arrPIDs[$file_text] = $loop_counter;
 				$proc_cnt = $this->procCounter();
@@ -189,7 +189,7 @@ class Mediainfo extends CI_Controller
 						$cmd = escapeshellcmd('/usr/bin/php ' . $this->config->item('path') . 'index.php mediainfo process_xml_file_child ' . $folder->id . ' ' . $offset . ' ' . $limit);
 						$pidFile = $this->config->item('path') . "PIDs/media_info/" . $loop_counter . ".txt";
 						@exec('touch ' . $pidFile);
-						$this->runProcess($cmd, $pidFile, $this->config->item('path') . "cronlog/mediainfo.log");
+						$this->runProcess($cmd, $pidFile, $this->config->item('path') . "cronlog/mediainfo_xml.log");
 						$file_text = file_get_contents($pidFile);
 						$this->arrPIDs[$file_text] = $loop_counter;
 						$proc_cnt = $this->procCounter();

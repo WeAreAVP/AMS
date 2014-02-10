@@ -371,7 +371,7 @@ class Import_mediainfo
 		else if (isset($general_track['audiocount']) && isset($general_track['audiocount'][0]))
 			if ( ! empty($general_track['audiocount'][0]['text']) || $general_track['audiocount'][0]['text'] != NULL)
 				$media_type = 'Sound';
-		
+
 		if ($media_type != '')
 		{
 			$inst_media_type = $this->_model->get_one_by($this->_model->table_instantiation_media_types, array('media_type' => $media_type), TRUE);

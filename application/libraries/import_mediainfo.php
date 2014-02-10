@@ -84,7 +84,7 @@ class Import_mediainfo
 				}
 				else
 				{
-					$this->import_essencetrack_mediainfo->initialize($this->_instantiation_id, $track);
+					$this->_CI->import_essencetrack_mediainfo->initialize($this->_instantiation_id, $track);
 				}
 			}
 			$this->insert_ins_asset_index($this->_instantiation_id);

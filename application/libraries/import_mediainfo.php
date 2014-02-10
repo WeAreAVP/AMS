@@ -353,7 +353,7 @@ class Import_mediainfo
 		}
 	}
 
-	function set_media_type()
+	function set_media_type($general_track)
 	{
 		$media_type = '';
 		if (isset($general_track['videocount']) && isset($general_track['videocount'][0]))
@@ -371,7 +371,7 @@ class Import_mediainfo
 		else if (isset($general_track['audiocount']) && isset($general_track['audiocount'][0]))
 			if ( ! empty($general_track['audiocount'][0]['text']) || $general_track['audiocount'][0]['text'] != NULL)
 				$media_type = 'Sound';
-		myLog('Media Type => ' . $media_type);
+		
 		if ($media_type != '')
 		{
 			$inst_media_type = $this->_model->get_one_by($this->_model->table_instantiation_media_types, array('media_type' => $media_type), TRUE);

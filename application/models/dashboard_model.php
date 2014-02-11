@@ -43,6 +43,8 @@ class Dashboard_Model extends CI_Model
 		$this->table_nomination_status = 'nomination_status';
 		$this->_table_messages = 'messages';
 		$this->_table_assets = 'assets';
+		$this->table_generations = 'generations';
+		$this->table_instantiation_generations = 'instantiation_generations';
 	}
 
 	function get_digitized_formats()
@@ -85,9 +87,12 @@ class Dashboard_Model extends CI_Model
 	function get_digitized_hours()
 	{
 		$this->db->select("ROUND((SUM(TIME_TO_SEC($this->table_instantiations.actual_duration))/60)/60) AS total", FALSE);
+		$this->db->join($this->table_instantiation_generations, "$this->table_instantiation_generations.instantiations_id = $this->table_instantiations.id");
+		$this->db->join($this->table_generations, "$this->table_generations.id = $this->table_instantiation_generations.generations_id");
 		$this->db->where("$this->table_instantiations.digitized", '0');
+		$this->db->where("$this->table_generations.generation", 'Preservation Master');
 		$result = $this->db->get($this->table_instantiations);
-		
+
 		return $result->row();
 	}
 
@@ -150,7 +155,7 @@ class Dashboard_Model extends CI_Model
 			$this->db->where_in("$this->_table.state", array('AZ', 'CA', 'CO', 'ID', 'MT', 'NM', 'NV', 'OR', 'UT', 'WA', 'WY')); //west
 
 		$result = $this->db->get($this->_table_assets);
-		
+
 		return $result->row();
 	}
 

@@ -81,7 +81,7 @@ class Googledoc extends CI_Controller
 							{
 								myLog('Worksheet Name: ' . $work_sheet['name']);
 								$data = $this->google_spreadsheet->displayWorksheetData($work_sheet['spreedSheetId'], $work_sheet['workSheetId']);
-								
+
 								myLog('Start importing Spreadsheet ' . $work_sheet['spreedSheetId']);
 								$instantiation_id = $this->_store_event_data($data);
 								exit;
@@ -128,6 +128,8 @@ class Googledoc extends CI_Controller
 					$guid = $event_row[2];
 					$explode = explode('-', $guid, 3);
 					$db_guid = 'cpb-aacip/' . trim($explode[2]);
+					myLog('GUID => ' . $db_guid);
+					myLog('Physical Format  => ' . $event_row[5]);
 					$instantiation = $this->instantiation->get_instantiation_by_guid_physical_format($db_guid, $event_row[5]);
 					if ($instantiation)
 					{
@@ -164,7 +166,7 @@ class Googledoc extends CI_Controller
 					}
 					else
 					{
-						myLog('No instantiation found against ' . $event_row[2]);
+						myLog('No instantiation found against ' . $db_guid);
 						return FALSE;
 					}
 				}

@@ -81,9 +81,10 @@ class Googledoc extends CI_Controller
 							{
 								myLog('Worksheet Name: ' . $work_sheet['name']);
 								$data = $this->google_spreadsheet->displayWorksheetData($work_sheet['spreedSheetId'], $work_sheet['workSheetId']);
-								debug($data);
+								
 								myLog('Start importing Spreadsheet ' . $work_sheet['spreedSheetId']);
 								$instantiation_id = $this->_store_event_data($data);
+								exit;
 								if ($instantiation_id)
 								{
 									$this->load->library('sphnixrt');

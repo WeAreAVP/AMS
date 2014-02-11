@@ -23,7 +23,7 @@
  * @author     Nouman Tayyab <nouman@geekschicago.com>
  * @license    AMS http://ams.avpreserve.com
  * @link       http://ams.avpreserve.com
- */ 
+ */
 class Instantiations_Model extends CI_Model
 {
 
@@ -137,8 +137,6 @@ class Instantiations_Model extends CI_Model
 		return $query = $this->db->get($this->table_nomination_status)->result();
 	}
 
-	
-
 	/**
 	 * 
 	 * @param Integer $instantiation_id
@@ -165,8 +163,8 @@ class Instantiations_Model extends CI_Model
 	 */
 	function get_generations_by_generation($generation)
 	{
-		$this->db->where('generation LIKE',$generation);
-		$res = $this->db->get( $this->table_generations);
+		$this->db->where('generation LIKE', $generation);
+		$res = $this->db->get($this->table_generations);
 		if (isset($res) && ! empty($res))
 		{
 			return $res->row();
@@ -205,7 +203,7 @@ class Instantiations_Model extends CI_Model
 				LEFT JOIN instantiation_formats AS inf ON  ins.id=inf.instantiations_id
 				LEFT JOIN instantiation_generations AS ing ON  ins.id=ing.instantiations_id
 				LEFT JOIN generations AS gen ON ing.generations_id=gen.id
-				WHERE ide.identifier LIKE "' . $guid . '" AND inf.format_name LIKE "' . $physical_format . '" AND inf.format_type="physical"';
+				WHERE ide.identifier LIKE "' . $guid . '" AND REPLACE(LOWER(inf.format_name)," ","") LIKE "' . str_replace(' ', '', strtolower($physical_format)) . '" AND inf.format_type="physical"';
 		$res = $this->db->query($sql);
 		if (isset($res) && ! empty($res))
 		{

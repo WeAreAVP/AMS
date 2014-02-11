@@ -57,21 +57,29 @@ class Googledoc extends CI_Controller
 		{
 			foreach ($spreed_sheets as $index => $spreed_sheet)
 			{
-				$is_exist = $this->pbcore_model->get_one_by($this->pbcore_model->google_spreadsheets, array('spreadsheet_id' => $spreed_sheet['spreedSheetId'], 'spreadsheet_name' => $spreed_sheet['name']));
-				if ( ! $is_exist)
+				$explode_name = explode('_', $spreed_sheet['name']);
+				if (isset($explode_name[0]))
 				{
-					$googlesheet = array();
-					$googlesheet['spreadsheet_name'] = $spreed_sheet['name'];
-					$googlesheet['spreadsheet_id'] = $spreed_sheet['spreedSheetId'];
-					$googlesheet['spreadsheet_url'] = $spreed_sheet['URL'];
-					$googlesheet['created_at'] = date('Y-m-d H:m:i');
-					$googlesheet['updated_at'] = date('Y-m-d H:m:i');
-					$this->pbcore_model->insert_record($this->pbcore_model->google_spreadsheets, $googlesheet);
-					myLog('Successfully added in dataase Spreadsheet Name => ' . $spreed_sheet['name']);
-				}
-				else
-				{
-					myLog('Already Exist in database Spreadsheet Name => ' . $spreed_sheet['name']);
+					$station_info = $this->station->get_station_by_cpb_id($explode_name[0]);
+					if ($station_info)
+					{
+						$is_exist = $this->pbcore_model->get_one_by($this->pbcore_model->google_spreadsheets, array('spreadsheet_id' => $spreed_sheet['spreedSheetId'], 'spreadsheet_name' => $spreed_sheet['name']));
+						if ( ! $is_exist)
+						{
+							$googlesheet = array();
+							$googlesheet['spreadsheet_name'] = $spreed_sheet['name'];
+							$googlesheet['spreadsheet_id'] = $spreed_sheet['spreedSheetId'];
+							$googlesheet['spreadsheet_url'] = $spreed_sheet['URL'];
+							$googlesheet['created_at'] = date('Y-m-d H:m:i');
+							$googlesheet['updated_at'] = date('Y-m-d H:m:i');
+							$this->pbcore_model->insert_record($this->pbcore_model->google_spreadsheets, $googlesheet);
+							myLog('Successfully added in dataase Spreadsheet Name => ' . $spreed_sheet['name']);
+						}
+						else
+						{
+							myLog('Already Exist in database Spreadsheet Name => ' . $spreed_sheet['name']);
+						}
+					}
 				}
 			}
 		}
@@ -94,28 +102,20 @@ class Googledoc extends CI_Controller
 		$spreadsheet_info = $this->pbcore_model->get_spreadsheets();
 		myLog('Spreadsheet Name: ' . $spreadsheet_info->spreadsheet_name);
 
-		$explode_name = explode('_', $spreadsheet_info->spreadsheet_name);
-		if (isset($explode_name[0]))
-		{
-			$station_info = $this->station->get_station_by_cpb_id($explode_name[0]);
-			if ($station_info)
-			{
-				$work_sheets = $this->google_spreadsheet->getAllWorksSheetsDetails($spreadsheet_info->spreadsheet_id);
-				foreach ($work_sheets as $work_sheet)
-				{
-					if ($work_sheet['name'] === 'Template')
-					{
-						myLog('Worksheet Name: ' . $work_sheet['name']);
-						$data = $this->google_spreadsheet->displayWorksheetData($work_sheet['spreedSheetId'], $work_sheet['workSheetId']);
 
-						myLog('Start importing Spreadsheet ' . $work_sheet['spreedSheetId']);
-						$this->_store_event_data($data);
-					}
-				}
-				unset($work_sheets);
-				unset($station_info);
+		$work_sheets = $this->google_spreadsheet->getAllWorksSheetsDetails($spreadsheet_info->spreadsheet_id);
+		foreach ($work_sheets as $work_sheet)
+		{
+			if ($work_sheet['name'] === 'Template')
+			{
+				myLog('Worksheet Name: ' . $work_sheet['name']);
+				$data = $this->google_spreadsheet->displayWorksheetData($work_sheet['spreedSheetId'], $work_sheet['workSheetId']);
+
+				myLog('Start importing Spreadsheet ' . $work_sheet['spreedSheetId']);
+				$this->_store_event_data($data);
 			}
 		}
+		unset($work_sheets);
 	}
 
 	/**

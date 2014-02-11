@@ -28,16 +28,7 @@
 	$(function() {
 		var chart;
 		$(document).ready(function() {
-			var pie_total_radio_scheduled = new Array();
-			var pie_total_radio_completed = new Array();
-			var radio_scheduled =<?php echo $pie_total_radio_scheduled; ?>;
-			var radio_completed =<?php echo $pie_total_radio_completed; ?>;
-			for (cnt in radio_scheduled) {
-				pie_total_radio_scheduled[cnt] = parseInt(radio_scheduled[cnt]);
-			}
-			for (cnt in radio_completed) {
-				pie_total_radio_completed[cnt] = parseInt(radio_completed[cnt]);
-			}
+			
 			chart = new Highcharts.Chart({
 				chart: {
 					renderTo: 'tv_graph',
@@ -78,8 +69,8 @@
 						type: 'pie',
 						name: 'Radio',
 						data: [
-							['Scheduled', pie_total_radio_scheduled],
-							['Digitized', pie_total_radio_completed]
+							['Scheduled', <?php echo $pie_total_radio_scheduled; ?>],
+							['Digitized', <?php echo $pie_total_radio_completed; ?>]
 
 						]
 					}]

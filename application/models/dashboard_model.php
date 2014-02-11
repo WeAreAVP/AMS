@@ -87,10 +87,10 @@ class Dashboard_Model extends CI_Model
 	function get_digitized_hours()
 	{
 		$this->db->select("ROUND((SUM(TIME_TO_SEC($this->table_instantiations.actual_duration))/60)/60) AS total", FALSE);
-		$this->db->join($this->table_instantiation_generations, "$this->table_instantiation_generations.instantiations_id = $this->table_instantiations.id");
-		$this->db->join($this->table_generations, "$this->table_generations.id = $this->table_instantiation_generations.generations_id");
+//		$this->db->join($this->table_instantiation_generations, "$this->table_instantiation_generations.instantiations_id = $this->table_instantiations.id");
+//		$this->db->join($this->table_generations, "$this->table_generations.id = $this->table_instantiation_generations.generations_id");
 		$this->db->where("$this->table_instantiations.digitized", '0');
-		$this->db->where("$this->table_generations.generation", 'Preservation Master');
+//		$this->db->where("$this->table_generations.generation", 'Preservation Master');
 		$result = $this->db->get($this->table_instantiations);
 
 		return $result->row();

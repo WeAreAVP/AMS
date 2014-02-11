@@ -63,8 +63,6 @@ class Googledoc extends CI_Controller
 
 			foreach ($spreed_sheets as $index => $spreed_sheet)
 			{
-				$spreed_sheet['name'] = '1784.2_WGBH_Second_Priority_CPB-AA';
-				$spreed_sheet['spreedSheetId'] = 'tfTNs2txOe_RqH34SMOxXPQ';
 				myLog('Spreadsheet Name: ' . $spreed_sheet['name']);
 				myLog('Spreadsheet #: ' . $index);
 				$explode_name = explode('_', $spreed_sheet['name']);
@@ -90,9 +88,9 @@ class Googledoc extends CI_Controller
 						unset($station_info);
 					}
 				}
-				exit;
 			}
 		}
+		exit;
 	}
 
 	/**

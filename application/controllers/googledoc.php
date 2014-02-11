@@ -42,6 +42,11 @@ class Googledoc extends CI_Controller
 		$this->load->model('pbcore_model');
 	}
 
+	/**
+	 * Fetch Spreadsheet information from google drive and save into database.
+	 * 
+	 * @return void
+	 */
 	function fetch_gsheets()
 	{
 		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM='));

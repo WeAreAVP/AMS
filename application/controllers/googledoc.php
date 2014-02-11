@@ -85,48 +85,37 @@ class Googledoc extends CI_Controller
 	function import_gsheets()
 	{
 		set_time_limit(0);
-//		@ini_set("memory_limit", "1000M"); # 1GB
+		@ini_set("memory_limit", "1000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999); # 1GB
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM='));
-		myLog('Getting Spreadsheet Info');
-		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('');
-		debug($spreed_sheets);
-		myLog('Total Spreadsheet Count ' . count($spreed_sheets));
-		if ($spreed_sheets)
+
+		$spreadsheet_info = $this->pbcore_model->get_spreadsheets();
+		myLog('Spreadsheet Name: ' . $spreadsheet_info->spreadsheet_name);
+
+		$explode_name = explode('_', $spreadsheet_info->spreadsheet_name);
+		if (isset($explode_name[0]))
 		{
-
-			foreach ($spreed_sheets as $index => $spreed_sheet)
+			$station_info = $this->station->get_station_by_cpb_id($explode_name[0]);
+			if ($station_info)
 			{
-				myLog('Spreadsheet Name: ' . $spreed_sheet['name']);
-				myLog('Spreadsheet #: ' . $index);
-				$explode_name = explode('_', $spreed_sheet['name']);
-				if (isset($explode_name[0]))
+				$work_sheets = $this->google_spreadsheet->getAllWorksSheetsDetails($spreadsheet_info->spreadsheet_id);
+				foreach ($work_sheets as $work_sheet)
 				{
-					$station_info = $this->station->get_station_by_cpb_id($explode_name[0]);
-					if ($station_info)
+					if ($work_sheet['name'] === 'Template')
 					{
+						myLog('Worksheet Name: ' . $work_sheet['name']);
+						$data = $this->google_spreadsheet->displayWorksheetData($work_sheet['spreedSheetId'], $work_sheet['workSheetId']);
 
-						$work_sheets = $this->google_spreadsheet->getAllWorksSheetsDetails($spreed_sheet['spreedSheetId']);
-						foreach ($work_sheets as $work_sheet)
-						{
-							if ($work_sheet['name'] === 'Template')
-							{
-								myLog('Worksheet Name: ' . $work_sheet['name']);
-								$data = $this->google_spreadsheet->displayWorksheetData($work_sheet['spreedSheetId'], $work_sheet['workSheetId']);
-
-								myLog('Start importing Spreadsheet ' . $work_sheet['spreedSheetId']);
-								$this->_store_event_data($data);
-							}
-						}
-						unset($work_sheets);
-						unset($station_info);
+						myLog('Start importing Spreadsheet ' . $work_sheet['spreedSheetId']);
+						$this->_store_event_data($data);
 					}
 				}
+				unset($work_sheets);
+				unset($station_info);
 			}
 		}
-		exit;
 	}
 
 	/**

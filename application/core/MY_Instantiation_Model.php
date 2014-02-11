@@ -133,5 +133,15 @@ class MY_Instantiation_Model extends MY_Essencetrack_Model
 		$this->db->where('id', $instantiation_id);
 		return $this->db->update($this->table_instantiations, $data);
 	}
+	/**
+	 * Last oldest spreadsheet to fetch its information.
+	 * @return type
+	 */
+	function get_spreadsheets()
+	{
+		return $this->db->order_by("$this->google_spreadsheets.updated_at", 'ASC')
+		->limit(1)
+		->get($this->google_spreadsheets)->row();
+	}
 
 }

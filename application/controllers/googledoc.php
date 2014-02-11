@@ -41,6 +41,21 @@ class Googledoc extends CI_Controller
 		$this->load->model('cron_model');
 	}
 
+	function fetch_gsheets()
+	{
+		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM='));
+		myLog('Getting Spreadsheet Info');
+		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('');
+		myLog('Total Spreadsheet Count ' . count($spreed_sheets));
+		if ($spreed_sheets)
+		{
+			foreach ($spreed_sheets as $index => $spreed_sheet)
+			{
+				
+			}
+		}
+	}
+
 	/**
 	 * Map Correct Spreadsheets and their worksheets.
 	 * 
@@ -49,7 +64,7 @@ class Googledoc extends CI_Controller
 	function import_gsheets()
 	{
 		set_time_limit(0);
-		@ini_set("memory_limit", "1000M"); # 1GB
+//		@ini_set("memory_limit", "1000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999); # 1GB
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);

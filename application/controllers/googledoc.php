@@ -177,13 +177,13 @@ class Googledoc extends CI_Controller
 					else
 					{
 						myLog('No instantiation found against ' . $db_guid);
-						return FALSE;
+						
 					}
 				}
 				else
 				{
 					myLog('Event rows are empty');
-					return FALSE;
+					
 				}
 			}
 		}

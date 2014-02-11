@@ -77,7 +77,15 @@ else if (ENVIRONMENT == 'production')
 	$db['default']['dbdriver'] = 'mysql';
 	$db['default']['db_debug'] = FALSE;
 }
-
+else
+{
+	$db['default']['hostname'] = 'localhost';
+	$db['default']['username'] = 'root';
+	$db['default']['password'] = 'Av9S@0v4123';
+	$db['default']['database'] = 'ams';
+	$db['default']['dbdriver'] = 'mysql';
+	$db['default']['db_debug'] = FALSE;
+}
 $db['sphnix']['hostname'] = 'localhost';
 $db['sphnix']['username'] = '';
 $db['sphnix']['password'] = '';

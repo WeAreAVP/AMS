@@ -60,6 +60,7 @@ class Googledoc extends CI_Controller
 		myLog('Total Spreadsheet Count ' . count($spreed_sheets));
 		if ($spreed_sheets)
 		{
+			debug($spreed_sheets);
 			foreach ($spreed_sheets as $index => $spreed_sheet)
 			{
 				myLog('Spreadsheet Name: ' . $spreed_sheet['name']);

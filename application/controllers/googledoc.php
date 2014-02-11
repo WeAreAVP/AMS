@@ -83,20 +83,7 @@ class Googledoc extends CI_Controller
 								$data = $this->google_spreadsheet->displayWorksheetData($work_sheet['spreedSheetId'], $work_sheet['workSheetId']);
 
 								myLog('Start importing Spreadsheet ' . $work_sheet['spreedSheetId']);
-								$instantiation_id = $this->_store_event_data($data);
-								exit;
-								if ($instantiation_id)
-								{
-									$this->load->library('sphnixrt');
-									$this->load->model('searchd_model');
-									$this->load->helper('sphnixdata');
-									$instantiation_list = $this->searchd_model->get_ins_index(array($instantiation_id));
-									$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], FALSE);
-									$this->sphnixrt->update('instantiations_list', $new_list_info);
-									$asset_list = $this->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
-									$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
-									$this->sphnixrt->update('assets_list', $new_asset_info);
-								}
+								$this->_store_event_data($data);
 							}
 						}
 						unset($work_sheets);
@@ -162,7 +149,7 @@ class Googledoc extends CI_Controller
 						$this->_store_event_type_baked($event_row, $instantiation->id);
 						$this->_store_event_type_cleaned($event_row, $instantiation->id);
 						$this->_store_event_type_migration($event_row, $instantiation->id);
-						return $instantiation->id;
+						$this->update_event_info($instantiation->id);
 					}
 					else
 					{
@@ -177,6 +164,20 @@ class Googledoc extends CI_Controller
 				}
 			}
 		}
+	}
+
+	function update_event_info($instantiation_id)
+	{
+
+		$this->load->library('sphnixrt');
+		$this->load->model('searchd_model');
+		$this->load->helper('sphnixdata');
+		$instantiation_list = $this->searchd_model->get_ins_index(array($instantiation_id));
+		$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], FALSE);
+		$this->sphnixrt->update('instantiations_list', $new_list_info);
+		$asset_list = $this->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
+		$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
+		$this->sphnixrt->update('assets_list', $new_asset_info);
 	}
 
 	/**

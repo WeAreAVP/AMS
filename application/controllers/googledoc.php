@@ -90,6 +90,7 @@ class Googledoc extends CI_Controller
 						unset($station_info);
 					}
 				}
+				exit;
 			}
 		}
 	}

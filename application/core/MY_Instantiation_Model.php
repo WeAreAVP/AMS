@@ -145,6 +145,13 @@ class MY_Instantiation_Model extends MY_Essencetrack_Model
 		->get($this->google_spreadsheets)->row();
 	}
 
+	/**
+	 * Update google spreadsheet info.
+	 * 
+	 * @param integer $_id
+	 * @param array $data
+	 * @return boolean
+	 */
 	function update_spreadsheet($_id, $data)
 	{
 		$this->db->where('id', $_id);

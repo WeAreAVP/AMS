@@ -89,6 +89,7 @@ class MY_Model extends CI_Model
 	public $table_essence_track_identifiers = 'essence_track_identifiers';
 	public $table_essence_track_encodings = 'essence_track_encodings';
 	public $table_essence_track_annotations = 'essence_track_annotations';
+	public $google_spreadsheets = 'google_spreadsheets';
 
 	function __construct()
 	{

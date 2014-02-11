@@ -39,6 +39,7 @@ class Googledoc extends CI_Controller
 		$this->load->model('instantiations_model', 'instantiation');
 		$this->load->model('station_model', 'station');
 		$this->load->model('cron_model');
+		$this->load->model('pbcore_model');
 	}
 
 	function fetch_gsheets()
@@ -51,7 +52,16 @@ class Googledoc extends CI_Controller
 		{
 			foreach ($spreed_sheets as $index => $spreed_sheet)
 			{
-				
+				$is_exist = $this->pbcore_model->get_one_by($this->pbcore_model->google_spreadsheets, array('spreadsheet_id' => $spreed_sheet['spreedSheetId'], 'spreadsheet_name' => $spreed_sheet['name']));
+				if ( ! $is_exist)
+				{
+					$googlesheet['spreadsheet_name'] = $spreed_sheet['name'];
+					$googlesheet['spreadsheet_id'] = $spreed_sheet['spreedSheetId'];
+					$googlesheet['spreadsheet_url'] = $spreed_sheet['URL'];
+					$googlesheet['created_at'] = date('Y-m-d H:m:i');
+					$googlesheet['updated_at'] = date('Y-m-d H:m:i');
+					$this->pbcore_model->insert_record($this->pbcore_model->google_spreadsheets);
+				}
 			}
 		}
 	}

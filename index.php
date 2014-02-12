@@ -18,15 +18,18 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-if ( ! getenv('ENVIRONMENT'))
-{
-	define('ENVIRONMENT', 'development');
-}
-else
+if (getenv('ENVIRONMENT'))
 {
 	define('ENVIRONMENT', getenv('ENVIRONMENT'));
 }
-
+else if (getenv('REDIRECT_ENVIRONMENT'))
+{
+	define('ENVIRONMENT', getenv('REDIRECT_ENVIRONMENT'));
+}
+else
+{
+	define('ENVIRONMENT', 'production');
+}
 
 /**
  * Setting the default timezone

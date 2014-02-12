@@ -135,7 +135,7 @@ class Dashboard_Model extends CI_Model
 			$this->db->where_in("$this->_table.state", array('AZ', 'CA', 'CO', 'ID', 'MT', 'NM', 'NV', 'OR', 'UT', 'WA', 'WY')); //west
 
 		$result = $this->db->get($this->_table_assets);
-		debug($this->db->last_query(), FALSE);
+		
 		return $result->row();
 	}
 
@@ -161,7 +161,7 @@ class Dashboard_Model extends CI_Model
 			$this->db->where_in("$this->_table.state", array('AZ', 'CA', 'CO', 'ID', 'MT', 'NM', 'NV', 'OR', 'UT', 'WA', 'WY')); //west
 
 		$result = $this->db->get($this->_table_assets);
-		debug($this->db->last_query(), FALSE);
+		
 		return $result->row();
 	}
 

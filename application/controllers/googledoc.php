@@ -110,7 +110,7 @@ class Googledoc extends CI_Controller
 				$data = $this->google_spreadsheet->displayWorksheetData($work_sheet['spreedSheetId'], $work_sheet['workSheetId']);
 
 				myLog('Start importing Spreadsheet ' . $work_sheet['spreedSheetId']);
-				$this->_store_event_data($data);
+				$this->_store_event_data($data, $spreadsheet_info);
 			}
 		}
 		$this->pbcore_model->update_spreadsheet($spreadsheet_info->id, array('updated_at' => date('Y-m-d H:m:i')));
@@ -124,7 +124,7 @@ class Googledoc extends CI_Controller
 	 * 
 	 * @return helper
 	 */
-	private function _store_event_data($data)
+	private function _store_event_data($data, $spreadsheet_info)
 	{
 		if (isset($data) && ! empty($data))
 		{
@@ -176,14 +176,18 @@ class Googledoc extends CI_Controller
 					}
 					else
 					{
+						$message = "No Instantiations Found"
+						. "Spreadsheet Name: {$spreadsheet_info->spreadsheet_name}<br/>"
+						. "GUID: {$db_guid}<br/>"
+						. "Physical Format: {$event_row[5]}";
+
+						send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Google Spreadsheet', $message);
 						myLog('No instantiation found against ' . $db_guid);
-						
 					}
 				}
 				else
 				{
 					myLog('Event rows are empty');
-					
 				}
 			}
 		}

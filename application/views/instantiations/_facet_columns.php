@@ -442,7 +442,7 @@ if (count($digitized) > 0)
 				$batch_check = $this->session->userdata['digitized'];
 			}
 			?>
-			<span id="batch_check" style="cursor: default;">
+			<span id="digitized" style="cursor: default;">
 				<input type="hidden" id="digitized_state" name="digitized" value="<?php echo $batch_check; ?>"/> 
 			</span>
 			<b>Digitized</b>

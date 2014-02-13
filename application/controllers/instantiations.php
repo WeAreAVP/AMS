@@ -79,7 +79,7 @@ class Instantiations extends MY_Controller
 			$search['digital_format'] = $this->input->post('digital_format_main_search');
 			$search['generation'] = $this->input->post('generation_main_search');
 
-			if ($this->input->post('digitized') && $this->input->post('digitized') === '1')
+			if ($this->input->post('digitized') && ! empty($this->input->post('digitized')))
 			{
 				$search['digitized'] = $this->input->post('digitized');
 			}
@@ -204,7 +204,6 @@ class Instantiations extends MY_Controller
 						$data['prev_result_id'] = $search_results[$cur_key - 1]->id;
 					if (isset($search_results[$cur_key + 1]))
 						$data['next_result_id'] = $search_results[$cur_key + 1]->id;
-
 				}
 				$data['last_page'] = '';
 				if (isset($this->session->userdata['page_link']) && ! is_empty($this->session->userdata['page_link']))
@@ -589,7 +588,7 @@ class Instantiations extends MY_Controller
 								}
 								else
 								{
-									$essence_tracks_d['essence_track_frame_sizes_id'] = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_frame_sizes,array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
+									$essence_tracks_d['essence_track_frame_sizes_id'] = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_frame_sizes, array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
 								}
 							}
 						}
@@ -635,7 +634,7 @@ class Instantiations extends MY_Controller
 						}
 						/* Essence Track Aspect Ratio End */
 						/* Essence Track Type Start */
-						
+
 						$essence_track_type_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_types, array('essence_track_type' => 'General'), TRUE);
 						if (isset($essence_track_type_d) && isset($essence_track_type_d->id))
 						{
@@ -643,7 +642,7 @@ class Instantiations extends MY_Controller
 						}
 						else
 						{
-							$essence_tracks_d['essence_track_types_id'] = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_types,array('essence_track_type' => 'General'));
+							$essence_tracks_d['essence_track_types_id'] = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_types, array('essence_track_type' => 'General'));
 						}
 						/* Essence Track Type End */
 
@@ -955,14 +954,14 @@ class Instantiations extends MY_Controller
 				{
 					$db_essence_track = TRUE;
 
-					$track_frame_size_d =$this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_frame_sizes, array('width' => trim($this->input->post('width')), 'height' => trim($this->input->post('height'))));
+					$track_frame_size_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_frame_sizes, array('width' => trim($this->input->post('width')), 'height' => trim($this->input->post('height'))));
 					if ($track_frame_size_d)
 					{
 						$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;
 					}
 					else
 					{
-						$essence_tracks_d['essence_track_frame_sizes_id'] =  $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_frame_sizes,array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
+						$essence_tracks_d['essence_track_frame_sizes_id'] = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_frame_sizes, array("width" => $this->input->post('width'), "height" => $this->input->post('height')));
 					}
 				}
 			}
@@ -1015,7 +1014,7 @@ class Instantiations extends MY_Controller
 			}
 			else
 			{
-				$essence_tracks_d['essence_track_types_id'] = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_types,array('essence_track_type' => 'General'));
+				$essence_tracks_d['essence_track_types_id'] = $this->pbcore_model->insert_record($this->pbcore_model->table_essence_track_types, array('essence_track_type' => 'General'));
 			}
 			/* Essence Track Type End */
 
@@ -1024,7 +1023,7 @@ class Instantiations extends MY_Controller
 			if ($db_essence_track)
 			{
 				$essence_tracks_d['instantiations_id'] = $instantiation_id;
-				$this->pbcore_model->insert_record($this->pbcore_model->table_essence_tracks,$essence_tracks_d);
+				$this->pbcore_model->insert_record($this->pbcore_model->table_essence_tracks, $essence_tracks_d);
 			}
 			/* Essence Track End */
 

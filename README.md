@@ -15,6 +15,8 @@ Web Server: Apache, Tomcat
 
 Other Tools: OpenRefine, MINT, Maven, NOID
 
+Library Used: Zend gData, domPDF, PHPExcel, BagIt, Memcached
+
 Installation Instructions
 ===
 1) First Clone code from git using following command.

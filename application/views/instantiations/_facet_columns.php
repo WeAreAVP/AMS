@@ -188,7 +188,7 @@ if (count($media_types) > 0)
 								$less_common = TRUE;
 							}
 							?>
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['media_type']); ?>', 'media_type_main');"><?php echo $value['media_type'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
+								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['media_type']); ?>', 'media_type_main');"><?php echo $value['media_type'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
@@ -259,7 +259,7 @@ if (count($physical_formats) > 0)
 								$less_common = TRUE;
 							}
 							?>
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['format_name']); ?>', 'physical_format_main');"><?php echo $value['format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
+								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['format_name']); ?>', 'physical_format_main');"><?php echo $value['format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
@@ -330,7 +330,7 @@ if (count($digital_formats) > 0)
 								$less_common = TRUE;
 							}
 							?>
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['format_name']); ?>', 'digital_format_main');"><?php echo $value['format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
+								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['format_name']); ?>', 'digital_format_main');"><?php echo $value['format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
@@ -401,7 +401,7 @@ if (count($generations) > 0)
 								$less_common = TRUE;
 							}
 							?>
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['facet_generation']); ?>', 'generation_main');"><?php echo $value['facet_generation'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
+								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['facet_generation']); ?>', 'generation_main');"><?php echo $value['facet_generation'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
@@ -436,17 +436,13 @@ if (count($digitized) > 0)
 	<div class="field-filters">
 		<div class="filter-fileds">
 			<?php
-			$digitized_check = 0;
-			if (isset($this->session->userdata['digitized']) && ! empty($this->session->userdata['digitized']))
+			$checked = '';
+			if (isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1')
 			{
-				$batch_check = $this->session->userdata['digitized'];
+				$checked = 'checked="checked"';
 			}
 			?>
-			<span id="digitized" style="cursor: default;">
-				<input type="hidden" id="digitized_state" name="digitized" value="<?php echo $batch_check; ?>"/> 
-			</span>
-			<b>Digitized</b>
-				<!--<b>Digitized</b><span style="margin: 0px 10px;"><input type="checkbox" name="digitized" id="digitized" value="1" <?php echo $checked; ?> onchange="add_checked_token('digitized', 'Digitized');" /></span>-->
+			<b>Digitized</b><span style="margin: 0px 10px;"><input type="checkbox" name="digitized" id="digitized" value="1" <?php echo $checked; ?> onchange="add_checked_token('digitized', 'Digitized');" /></span>
 		</div>
 	</div>
 <?php } ?>
@@ -471,7 +467,18 @@ if (count($migration) > 0)
 <?php } ?>
 <!--				Migration End      -->
 
-<script type="text/javascript">
+<?php 
+//		$digitized_check = 0;
+//			if (isset($this->session->userdata['digitized']) && ! empty($this->session->userdata['digitized']))
+//			{
+//				$batch_check = $this->session->userdata['digitized'];
+//			}
+			?>
+<!--			<span id="digitized" style="cursor: default;">
+				<input type="hidden" id="digitized_state" name="digitized" value="<?php echo $batch_check; ?>"/> 
+			</span>
+			<b>Digitized</b>-->
+<!--<script type="text/javascript">
 	initTriStateCheckBox('digitized', 'digitized_state', true);
 	
-</script>
+</script>-->

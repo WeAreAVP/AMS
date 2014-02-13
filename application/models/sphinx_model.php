@@ -425,21 +425,21 @@ class Sphinx_Model extends CI_Model
 				}
 			}
 		}
-//		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
-//		{
-//			$this->sphinxsearch->set_filter("digitized", array(1));
-//		}
-		if (isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] != '')
-			{
-				if ($this->session->userdata['digitized'] == 1)
-				{
-					$this->sphinxsearch->set_filter("digitized", array(1));
-				}
-				if ($this->session->userdata['digitized'] == 2)
-				{
-					$this->sphinxsearch->set_filter("digitized", array(0));
-				}
-			}
+		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
+		{
+			$this->sphinxsearch->set_filter("digitized", array(1));
+		}
+//		if (isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] != '')
+//			{
+//				if ($this->session->userdata['digitized'] == 1)
+//				{
+//					$this->sphinxsearch->set_filter("digitized", array(1));
+//				}
+//				if ($this->session->userdata['digitized'] == 2)
+//				{
+//					$this->sphinxsearch->set_filter("digitized", array(0));
+//				}
+//			}
 
 		if (isset($this->session->userdata['organization']) && $this->session->userdata['organization'] != '')
 		{

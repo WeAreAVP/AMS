@@ -17,9 +17,9 @@ var CHECKED_NORM = 'CHECKED_NORM';
 var CHECKED_HILI = 'CHECKED_HILI';
 
 var DEFAULT_CONFIG = {
-	UNCHECKED_NORM: 'images/unchecked.gif',
-	UNCHECKED_HILI: 'images/unchecked_highlighted.gif',
-	INTERMEDIATE_NORM: 'images/intermediate.gif',
+	UNCHECKED_NORM: '/images/unchecked.gif',
+	UNCHECKED_HILI: '/images/unchecked_highlighted.gif',
+	INTERMEDIATE_NORM: '/images/intermediate.gif',
 	INTERMEDIATE_HILI: '/images/intermediate_highlighted.gif',
 	CHECKED_NORM: '/images/checked.png',
 	CHECKED_HILI: '/images/checked_highlighted.png'

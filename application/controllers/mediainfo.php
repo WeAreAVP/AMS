@@ -179,7 +179,7 @@ class Mediainfo extends CI_Controller
 				if (isset($count) && $count > 0)
 				{
 					$maxProcess = 10;
-					$limit = 1;
+					$limit = 10;
 					$loop_end = ceil($count / $limit);
 					myLog("Run $loop_end times  $maxProcess at a time");
 					for ($loop_counter = 0; $loop_end > $loop_counter; $loop_counter ++ )

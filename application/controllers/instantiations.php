@@ -79,7 +79,7 @@ class Instantiations extends MY_Controller
 			$search['digital_format'] = $this->input->post('digital_format_main_search');
 			$search['generation'] = $this->input->post('generation_main_search');
 
-			if ($this->input->post('digitized') && $this->input->post('digitized') === '1')
+			if ($this->input->post('digitized'))
 			{
 				$search['digitized'] = $this->input->post('digitized');
 			}

@@ -57,6 +57,7 @@
 		echo link_tag("css/style.css");
 		echo link_tag("css/jplayer.blue.monday.css");
 		echo link_tag("js/flowplayer/skin/minimalist.css");
+		echo link_js('tristate-0.9.2.js');
 		?> 
 		<!--[if IE]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>

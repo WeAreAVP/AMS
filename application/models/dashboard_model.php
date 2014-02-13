@@ -127,7 +127,7 @@ class Dashboard_Model extends CI_Model
 		else if ($region == 'northeast')
 			$this->db->where_in("$this->_table.state", array('CT', 'MA', 'ME', 'NH', 'NJ', 'NY', 'PA', 'RI', 'VT')); //northeast
 		else if ($region == 'south')
-			$this->db->where_in("$this->_table.state", array('AR', 'DC', 'FL', 'GA', 'KY', 'LA', 'MD', 'NC', 'SC', 'TN', 'TX', 'VA')); //south
+			$this->db->where_in("$this->_table.state", array('AR', 'DC', 'FL', 'GA', 'MS', 'KY', 'LA', 'MD', 'NC', 'SC', 'TN', 'TX', 'VA')); //south
 		else if ($region == 'west')
 			$this->db->where_in("$this->_table.state", array('AZ', 'CA', 'CO', 'ID', 'MT', 'NM', 'NV', 'OR', 'UT', 'WA', 'WY')); //west
 
@@ -153,7 +153,7 @@ class Dashboard_Model extends CI_Model
 		else if ($region == 'northeast')
 			$this->db->where_in("$this->_table.state", array('CT', 'MA', 'ME', 'NH', 'NJ', 'NY', 'PA', 'RI', 'VT')); //northeast
 		else if ($region == 'south')
-			$this->db->where_in("$this->_table.state", array('AR', 'DC', 'FL', 'GA', 'KY', 'LA', 'MD', 'NC', 'SC', 'TN', 'TX', 'VA')); //south
+			$this->db->where_in("$this->_table.state", array('AR', 'DC', 'FL', 'GA', 'MS', 'KY', 'LA', 'MD', 'NC', 'SC', 'TN', 'TX', 'VA')); //south
 		else if ($region == 'west')
 			$this->db->where_in("$this->_table.state", array('AZ', 'CA', 'CO', 'ID', 'MT', 'NM', 'NV', 'OR', 'UT', 'WA', 'WY')); //west
 

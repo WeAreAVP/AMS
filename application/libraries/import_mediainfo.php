@@ -87,7 +87,7 @@ class Import_mediainfo
 					$this->_CI->import_essencetrack_mediainfo->initialize($this->_instantiation_id, $track);
 				}
 			}
-//			$this->insert_ins_asset_index($this->_instantiation_id);
+			$this->insert_ins_asset_index($this->_instantiation_id);
 			$this->instantiation_info = array();
 			$this->_instantiation_id = NULL;
 		}
@@ -224,7 +224,7 @@ class Import_mediainfo
 				if (count($parent_instantiations) == 1)
 				{
 					$this->_model->update_instantiations($parent_instantiations[0]->id, array('digitized' => 1));
-//					$this->update_ins_asset_index($parent_instantiations[0]->id);
+					$this->update_ins_asset_index($parent_instantiations[0]->id);
 				}
 				else
 				{
@@ -232,7 +232,7 @@ class Import_mediainfo
 					if (count($parent_instantiations) > 0)
 					{
 						$this->_model->update_instantiations($parent_instantiations->id, array('digitized' => 1));
-//						$this->update_ins_asset_index($parent_instantiations->id);
+						$this->update_ins_asset_index($parent_instantiations->id);
 					}
 				}
 				if ($db_asset_id)

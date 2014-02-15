@@ -134,10 +134,11 @@ public class XSLTransform implements Runnable, NodeStoreI, EntryProcessor, Repor
 //			connection.setReadTimeout(10000);
 //			connection.setRequestMethod("GET"); 
 			connection.setRequestProperty("charset", "utf-8");
-			
-//			connection.connect();
+			log.debug( "Nouman Tayyab ");
+			connection.connect();
 			int responseCode = connection.getResponseCode();
 			log.debug( "Response Code " + responseCode);
+			log.debug( "Nouman Tayyab Bokhari");
 //			BufferedReader rd  = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 //			StringBuffer sb = new StringBuffer();
         
@@ -150,7 +151,7 @@ public class XSLTransform implements Runnable, NodeStoreI, EntryProcessor, Repor
 //          System.out.println(sb.toString());
 
 			
-//			connection.disconnect();
+			connection.disconnect();
 		} catch( Exception e ) {
 			// already handled, but needed to skip readNodes or index if transform or readNodes fails
 		} catch( Throwable t ) {

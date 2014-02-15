@@ -122,7 +122,9 @@ public class XSLTransform implements Runnable, NodeStoreI, EntryProcessor, Repor
 			tr.setIsApproved(0);
 			tr.setStatusCode(Transformation.OK);
 			String urlParameters = uID+"/"+tID;
+			log.debug( "URL Parameter " + urlParameters);
 			String request = "https://amsqa.avpreserve.com/mint/save_transformed_info/"+urlParameters;
+			log.debug( "URL " + request);
 			URL url = new URL(request); 
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();           
 			connection.setDoOutput(true);
@@ -140,7 +142,7 @@ public class XSLTransform implements Runnable, NodeStoreI, EntryProcessor, Repor
           {
               sb.append(line + '\n');
           }
-        
+        log.debug( "Response " + sb.toString());
           System.out.println(sb.toString());
 
 			

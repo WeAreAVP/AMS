@@ -123,7 +123,7 @@ public class XSLTransform implements Runnable, NodeStoreI, EntryProcessor, Repor
 			tr.setStatusCode(Transformation.OK);
 			String urlParameters = uID+"/"+tID;
 			log.debug( "URL Parameter " + urlParameters);
-			String request = "https://amsqa.avpreserve.com/mint/save_transformed_info/"+urlParameters;
+			String request = "https://amsqa.avpreserve.com/mintimport/save_transformed_info/"+urlParameters;
 			log.debug( "URL " + request);
 			URL url = new URL(request); 
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();           

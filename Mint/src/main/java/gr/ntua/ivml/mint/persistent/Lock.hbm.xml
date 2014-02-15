@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="gr.ntua.ivml.mint.persistent.Lock" table="locks">
+	    <id name="dbID" column="locks_id">
+		    <generator class="sequence">
+		    	<param name="sequence">seq_locks_id</param>
+		    </generator>
+	    </id>
+	    <timestamp name="aquired"  />
+	    <property name="userLogin"  column="user_login" />
+	    <property name="objectId" column="object_id" />
+	    <property name="objectType" column="object_type" />
+	    <property name="httpSessionId" column="http_session_id" />
+	    <property name="name" />
+   </class>
+
+</hibernate-mapping>

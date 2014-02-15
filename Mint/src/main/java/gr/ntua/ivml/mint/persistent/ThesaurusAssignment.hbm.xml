@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="gr.ntua.ivml.mint.persistent.ThesaurusAssignment" table="thesauri_assign">
+	    <id name="dbID" column="assign_id">
+		    <generator class="sequence">
+		    	<param name="sequence">seq_thesauri_assign_id</param>
+		    </generator>
+	    </id>
+	    <property name="assignDate"  column="assign_date" />
+	    <many-to-one name="user" 
+	    	class="gr.ntua.ivml.mint.persistent.User"
+    	    column="user_id"/>
+    	<many-to-one name="xpath" 
+	    	class="gr.ntua.ivml.mint.persistent.XpathHolder"
+	    	unique="true"
+    	    column="xpath"/>
+	    <many-to-one name="thesaurus"
+	        class="gr.ntua.ivml.mint.persistent.Thesaurus"
+	     	column="thesaurus_id" not-null="true"/>
+	     <many-to-one name="dataUpload"
+	        class="gr.ntua.ivml.mint.persistent.DataUpload"
+	     	column="data_upload_id" not-null="true"/>
+   </class>
+</hibernate-mapping>

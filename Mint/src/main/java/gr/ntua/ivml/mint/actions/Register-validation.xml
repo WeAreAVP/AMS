@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0.2//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+    <field name="username">
+        <field-validator type="requiredstring">
+            <message key="requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+        	 <param name="minLength">5</param>
+             <param name="maxLength">10</param>
+             <param name="trim">true</param>        	
+            <message key="stringlength"/>
+        </field-validator>
+    </field>
+    <field name="password">
+        <field-validator type="requiredstring">
+            <message key="requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+        	 <param name="minLength">5</param>
+             <param name="maxLength">10</param>
+             <param name="trim">true</param>        	
+            <message key="stringlength"/>
+        </field-validator>
+     </field>   
+     <field name="passwordconf">
+     <field-validator type="fieldexpression">
+		  <param name="expression">passwordconf.equals(password)</param>
+		  <message>Password and password confirmation must be the same</message>
+	</field-validator>
+	</field>   
+	    <field name="firstName">
+        <field-validator type="requiredstring">
+            <message>First Name is required</message>
+        </field-validator>
+    </field>
+        <field name="lastName">
+        <field-validator type="requiredstring">
+            <message>Last Name is required</message>
+        </field-validator>
+    </field>
+	<field name="email">
+        <field-validator type="requiredstring">
+            <message key="requiredstring"/>
+        </field-validator>
+         <field-validator type="email">
+           <message>Not a valid e-mail</message>
+       </field-validator>        
+     </field> 
+</validators>

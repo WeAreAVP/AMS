@@ -1,0 +1,148 @@
+<project name="mint" default="dist" basedir=".">
+	<description>
+  		Mint build file
+	 </description>
+
+
+	<!-- set global properties for this build -->
+	<property name="src" location="WEB-INF/src/java"/>
+	<property name="custom-src" location="WEB-INF/custom/java"/>
+	
+	<property name="build" location="WEB-INF/classes"/>
+	<property name="lib" location="WEB-INF/lib"/>
+
+	<property name="dist"  location="work/dist"/>
+	<property environment="env"/>
+	<property name="tomcat.home" location="${env.TOMCAT_HOME}" />
+	
+	<target name="init">
+		<fail unless="appname" message="Please call ant with -Dappname=something. This is used as subdir in dist and for tomcat deploy." />
+		<!-- Create the time stamp -->
+		<tstamp/>
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}"/>
+	</target>
+
+	<target name="compile" depends="init"
+        description="compile the source " >
+		<echo message="Compiling source code..." />
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac destdir="${build}" 
+			encoding = "utf-8"
+			source="1.6" debug="true" debuglevel="lines,source" 
+			includeAntRuntime="no" >
+			<src path="${src}" />
+			<src path="${custom-src}" />
+			
+			<classpath>
+				<pathelement path="${classpath}"/>
+				<fileset dir="WEB-INF/lib">
+					<include name="**/*.jar"/>
+				</fileset>
+				<fileset dir="${tomcat.home}/lib">
+					<include name="**/*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+		<echo message="Source code compile completed!" />
+		<copy todir="${build}">
+		    <fileset dir="${src}"
+		             excludes="**/*.java" />
+		    <fileset dir="${custom-src}"
+		             excludes="**/*.java" />
+		</copy>
+		<echo message="Resources copied to class folder." />
+	</target>
+
+	<target name="instrument" depends="compile">
+	    <echo message="Instrumenting domain..." />
+	    <taskdef name="instrument" classname="org.hibernate.tool.instrument.javassist.InstrumentTask">
+	        <classpath >
+			<fileset dir="${lib}">
+				<include name="**/*.jar"/>
+			</fileset>
+	        </classpath>	
+	        <classpath path="${build}"/>
+	    </taskdef>
+
+	    <instrument verbose="true">
+	        <fileset dir="${build}/gr/ntua/ivml/mint/persistent">
+	            <include name="Mapping.class"/>
+	        </fileset>
+	    </instrument>
+	</target>
+
+	<target name="properties" depends="init" description="Build a build.properties file" >
+		<tstamp>
+		    <format property="NOW" pattern="d-MMM-yyyy HH:mm:ss" locale="en,UK"/>
+		  </tstamp>
+		<echo file="build.properties" message="svn-revision=" />
+		<exec executable="svnversion" output="build.properties" append="true"/>
+		<echo file="build.properties" append="true" >appname=${appname}
+deploy_target=${deploy_target}
+build-time=${NOW}</echo>
+	</target>
+		
+	<target name="dist" depends="instrument, properties"
+        description="generate the distribution" >
+		<echo message="Generating distribution..." />
+		<mkdir dir="${dist}/${appname}"/>
+		<echo message="Copying css..." />
+		<copy todir="${dist}/${appname}/css">
+			<fileset dir="css" />
+		</copy>
+		<echo message="Copying template..." />
+		<copy todir="${dist}/${appname}/template" >
+			<fileset dir="template" />
+		</copy>
+		<echo message="Copying images..." />
+		<copy todir="${dist}/${appname}/images" >
+			<fileset dir="images" />
+		</copy>
+		<echo message="Copying js..." />
+		<copy todir="${dist}/${appname}/js">
+			<fileset dir="js" />
+		</copy>
+		<echo message="Copying schemas..." />
+		<copy todir="${dist}/${appname}/schemas">
+			<fileset dir="schemas" />
+		</copy>
+		<echo message="Copying xsl..." />
+		<copy todir="${dist}/${appname}/xsl">
+			<fileset dir="xsl" />
+		</copy>
+		<echo message="Copying scripts..." />
+		<copy todir="${dist}/${appname}/scripts">
+			<fileset dir="scripts" />
+		</copy>
+		<echo message="Copying custom resources..." />
+		<copy todir="${dist}/${appname}/custom">
+			<fileset dir="custom" />
+		</copy>
+		<echo message="Copying WEB-INF..." />
+		<copy todir="${dist}/${appname}/WEB-INF">
+			<fileset dir="WEB-INF" />
+		</copy>
+		<echo message="Copying index.html..." />
+		<copy tofile="${dist}/${appname}/index.html" file="index.html"/>
+		<copy tofile="${dist}/${appname}/build.properties" file="build.properties"/>
+	</target>
+
+	<target name="clean"
+        description="clean up" >
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<delete dir="${build}"/>
+		<delete dir="${dist}"/>
+	</target>
+
+
+	<import file="WEB-INF/deploy/${deploy_target}/deploy.xml" optional="true" />
+	
+	<target name="modify" depends="dist" >
+		<antcall target="modify-specific"/>
+	</target>
+	
+	<target name="deploy" depends="modify, dist" if="deploy_target">
+		<antcall target="deploy-specific"/>
+	</target>
+</project>

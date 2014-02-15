@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="gr.ntua.ivml.mint.persistent.Mapping" table="mapping">
+	    <id name="dbID" column="mapping_id">
+		    <generator class="sequence">
+		    	<param name="sequence">seq_mapping_id</param>
+		    </generator>
+	    </id>
+	    <property name="name" />
+	    <property name="shared" />
+	    <property name="finished" />
+	    
+	    <property name="creationDate" column="creation_date" />
+		<many-to-one name="organization" 
+        column="organization_id"
+        not-null="false"/>
+		
+		<many-to-one name="targetSchema" 
+        column="target_schema_id"
+        not-null="false"/>
+		
+	    <property name="jsonString" column="json" lazy="true"/>
+   </class>
+
+</hibernate-mapping>

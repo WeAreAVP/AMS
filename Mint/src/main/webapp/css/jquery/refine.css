@@ -1,0 +1,68 @@
+#refintro {
+    height: 600px;
+    margin: 10px auto;
+    padding: 0 10px;
+    position: relative;
+    width: 900px;
+}
+
+
+#refim {
+	background: url("../images/logoref.png") no-repeat scroll left top transparent; 
+	position: relative;
+	height: 100px;
+	width: 500px;
+	}
+	
+#refmain {
+	margin :20px;
+	position: relative; 
+}  
+
+h2{
+	font-size: 1.6em;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-left: 5px;
+	}
+
+#containerbox, #loadbox {
+   -moz-border-radius: 5px 5px 0px 0px;
+    /*background-color: #F2FFE1;*/
+     background: url("south-street/images/ui-bg_highlight-hard_15_459e00_1x100.png");
+    border-style:solid;
+	border-width:1px;
+	border-color: #CCCCCC;
+    margin-left: 10px;
+    
+}
+
+#containerbox {
+	
+    width:350px;
+    position: absolute; 
+    
+}
+
+#loadbox {
+	
+    width:450px;
+    position: relative; 
+    float: right;
+    
+}
+
+#boxcontents {
+    border-top: 1px solid #CCCCCC;
+    height: 320px;
+    overflow: auto;    
+    color: #000;
+    background-color: #FFFFFF;
+    padding: none;
+  
+}
+
+
+.Tips { border: 1px solid transparent; padding-left: 0.3em; font-size: 0.9em; }
+
+

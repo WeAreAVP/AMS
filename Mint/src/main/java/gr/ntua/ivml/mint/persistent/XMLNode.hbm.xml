@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="gr.ntua.ivml.mint.persistent.XMLNode"  
+         mutable="false" table="xml_node_master"
+         >
+	    <id name="nodeId" column="xml_node_id">
+	    </id>
+
+	    <many-to-one name="parentNode" 
+        column="parent_node_id"
+        not-null="false"/>
+
+	    <property name="size" />
+	    <property name="content" />
+	    <property name="checksum" />
+	    <property name="nodeType" column="node_type" />
+		
+	   <many-to-one name="xmlObject" 
+	   column="xml_object_id"
+	   not-null="true" />
+		
+	    <many-to-one name="xpathHolder" 
+        column="xpath_summary_id"
+        not-null="false"  />
+
+	    <bag name="children" order-by="xml_node_id"  inverse="true" >           
+        	<key column="parent_node_id" />
+        	<one-to-many class="gr.ntua.ivml.mint.persistent.XMLNode" />
+        </bag>
+
+   </class>
+   <class name="gr.ntua.ivml.mint.persistent.XpathHolder"
+    	table="xpath_summary" >
+       <id name="dbID" column="xpath_summary_id" >
+       		 <generator class="sequence">
+		    	<param name="sequence">seq_xpath_summary_id</param>
+		    </generator>
+       </id>
+	   <property name="xpath" />
+	   <property name="count" />
+
+	   <many-to-one name="xmlObject" 
+	   column="xml_object_id"
+	   not-null="true" />
+
+	   <many-to-one name="parent" cascade="all"
+	   column="parent_summary_id"
+	   not-null="false" />
+
+	   <property name="name" />
+	   <property name="uri" />
+	   <property name="uriPrefix" column="uri_prefix" />
+	   <property name="optional" />
+	   <property name="multiple" />
+	   <property name="description" />
+
+	    <bag name="children" order-by="xpath_summary_id"  inverse="true" batch-size="30">           
+        	<key column="parent_summary_id" />
+        	<one-to-many class="gr.ntua.ivml.mint.persistent.XpathHolder" />
+        </bag>
+	   	   
+   </class>
+    <class name="gr.ntua.ivml.mint.persistent.XmlObject"
+    	table="xml_object" >
+       <id name="dbID" column="xml_object_id" >
+       		 <generator class="sequence">
+		    	<param name="sequence">seq_xml_object_id</param>
+		    </generator>
+       </id>
+       <sql-delete check="none">delete from xml_object where xml_object_id = ? 
+       </sql-delete>
+   </class>
+</hibernate-mapping>

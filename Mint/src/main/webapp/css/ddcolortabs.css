@@ -1,0 +1,70 @@
+.ddcolortabs{
+padding: 0;
+width: 100%;
+background: #3C3C3C;
+
+
+
+/*voice-family: "\"}\"";
+voice-family: inherit;*/
+}
+
+.ddcolortabs ul{
+font: bold 11px Arial, Verdana, sans-serif;
+margin:0;
+padding:0;
+list-style:none;
+}
+
+.ddcolortabs li{
+display:inline;
+
+text-transform:uppercase;
+border-top-left-radius: 0.3 em;
+border-top-right-radius: 0.3 em;
+}
+
+
+.ddcolortabs a{
+float:left;
+margin:0 2px 0 0;
+padding:0 0 1px 3px;
+text-decoration:none;
+letter-spacing: 1px;
+border-top-left-radius: 0.3 em;
+border-top-right-radius: 0.3 em;
+-moz-border-radius-topleft:0.3 em;
+-moz-border-radius-topright: 0.3 em;
+
+}
+
+.ddcolortabs a span{
+float:left;
+display:block;
+padding: 6px 8px 3px 7px;
+border-top-left-radius: 0.3 em;
+border-top-right-radius: 0.3 em;
+}
+
+.ddcolortabs a span{
+float:none;
+}
+
+
+.ddcolortabsline{
+clear: both;
+padding: 0;
+width: 100%;
+height: 8px;
+line-height: 8px;
+}
+
+.tabcontainer{
+clear: left;
+width:95%; /*width of 2nd level sub menus*/
+height:1.5em; /*height of 2nd level sub menus. Set to largest's sub menu's height to avoid jittering.*/
+}
+
+.tabcontent{
+display:none;
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="gr.ntua.ivml.mint.persistent.Transformation" table="transformation">
+	    <id name="dbID" column="transformation_id">
+		    <generator class="sequence">
+		    	<param name="sequence">seq_transformation_id</param>
+		    </generator>
+	    </id>
+		<property name="beginTransform" column="begin_transform" />
+		<property name="endTransform" column="end_transform" />
+		<property name="statusCode" column="status_code" />
+		<property name="report" />
+		<property name="statusMessage" column="status_message" />
+		<property name="jsonMapping" column="json_mapping"/>
+	    <many-to-one name="user" 
+        column="users_id"
+        not-null="false"/>
+        
+	    <many-to-one name="dataUpload" 
+        column="data_upload_id"
+        not-null="false"/>
+        
+	    <many-to-one name="parsedOutput" 
+        column="output_xml_object_id"
+        not-null="false"/>
+        
+	    <many-to-one name="mapping" 
+        column="mapping_id"
+        not-null="false"/>
+        
+	    <many-to-one name="zippedOutput" 
+	    cascade="all"
+        column="blob_wrap_id"
+		unique="true"
+        not-null="false"/>
+   </class>
+</hibernate-mapping>

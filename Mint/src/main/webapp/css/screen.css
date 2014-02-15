@@ -1,0 +1,15 @@
+/**********************************
+
+Use: Main Screen Import
+Author: Anna
+
+***********************************/
+    @import "reset.css"; 
+    @import "core.css"; 
+    @import "menu.css";
+	@import "athform.css";
+	
+	@import "../custom/css/custom.css";
+	@import "../custom/css/color.css";
+	
+

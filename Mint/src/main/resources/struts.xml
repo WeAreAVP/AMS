@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+	<constant name="struts.convention.default.parent.package" value="default"/>
+   	<constant name="struts.i18n.encoding" value="UTF-8"/>
+    <constant name="struts.custom.i18n.resources" value="gr.ntua.ivml.mint.actions.properties"/>
+    <constant name="struts.multipart.maxSize" value="50000000" /> 
+
+	   <package name="default" namespace="/" extends="struts-default">
+
+  		<interceptors>
+           <interceptor name="login" class="gr.ntua.ivml.mint.actions.LoggedInInterceptor"/>
+           <interceptor-stack name="myStack">
+           
+            <interceptor-ref name="i18n"/>
+                <interceptor-ref name="login"/>
+                <interceptor-ref name="paramsPrepareParamsStack">
+                           <param name="fileUpload.maximumSize">50000000</param>
+                </interceptor-ref>
+            </interceptor-stack>
+		</interceptors>	
+
+        <default-interceptor-ref name="myStack" /> 
+        <default-action-ref name="index" />
+
+		<global-results>
+			<result name="logon" type="redirectAction">Login_input</result>
+			<result name="Exception">/WEB-INF/jsp/actionerror.jsp</result>
+		</global-results>
+  
+  		<global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="Exception"/>
+        </global-exception-mappings>
+  		
+  
+        <action name="index">
+            <result type="redirectAction">
+                <param name="actionName">Login_input</param>
+            </result>
+        </action>
+        
+        <action name="Logout"  class="gr.ntua.ivml.mint.actions.Logout">
+            <result type="redirectAction">Login_input</result>
+        </action>
+
+		<action name="*" class="gr.ntua.ivml.mint.actions.GeneralAction">
+            <result>/WEB-INF/jsp/{1}.jsp</result>
+        </action>
+
+        <action name = "download" class="gr.ntua.ivml.mint.actions.Download">
+		  <result name="success" type = "stream">
+		   <param name="contentType">${contentType}</param>
+		   <param name="inputName">inputStream</param>
+		   <param name="contentDisposition">${contentDisposition}</param>
+		   <param name="bufferSize">1024</param>
+		 </result>
+		</action>
+        
+        
+        
+    </package>
+    <!-- Add packages here -->
+
+</struts>

@@ -1,0 +1,51 @@
+create a database in Postgresql
+
+Is easiest if you are user postgres. Assume the user, database and schema are mint, replace if
+you want to do he procedure for a differently named user / subproject.
+
+Login and create a User for the application
+
+=>psql -U postgres mint
+=>create user mint password 'mint' login;
+
+logout with
+=>\q
+
+From the shell do:
+
+createdb -U postgres -E UTF8 --lc-collate=C --lc-ctype=C -T template0 -O mint mint 
+
+
+
+login again as mint.
+Its helpful to be in the directory with the createSchema.sql file
+
+=>psql -U mint mint
+=> create language plpgsql;
+=>\i createSchema.sql
+
+That should setup the schema!
+
+To update the schema use either sql scripts to update the existing schema without 
+destroying the data.
+
+Or do a 
+=> drop database mint;
+
+If there are pending connections, you can do
+=> SELECT pg_terminate_backend(procpid)
+	FROM pg_stat_activity
+	WHERE datname = 'mint';
+
+to get rid of them.
+
+Then redo the database creation without the user creation (the user still exists)
+
+
+-- postgres configuration
+
+edit the postgresql.conf file and set
+#constraint_exclusion = off
+constraint_exclusion = on
+
+to enable quick xml_node table searches for uploads

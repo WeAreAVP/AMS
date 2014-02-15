@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp2 (http://www.altova.com) by www.serials.ws (www.serials.ws) -->
+<schema xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:eclap="http://www.eclap.eu/ECLAPSchemaV0" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.eclap.eu/ECLAPSchemaV0" elementFormDefault="qualified">
+	<import namespace="http://purl.org/dc/elements/1.1/" schemaLocation="dc.xsd"/>
+	<import namespace="http://purl.org/dc/terms/" schemaLocation="dcterms.xsd"/>
+	<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+	<element name="ECLAPObject" type="eclap:ECLAPObjectType"/>
+	<complexType name="ECLAPObjectType">
+		<sequence>
+			<element ref="eclap:DC"/>
+			<element ref="eclap:DCTERMS" minOccurs="0"/>
+			<element ref="eclap:TechnicalMetadata"/>
+			<element ref="eclap:PerformingArtsMetadata" minOccurs="0"/>
+		</sequence>
+	</complexType>
+        <element name="ECLAPObjectWrap" type="eclap:ECLAPObjectWrapType"/>
+        <complexType name="ECLAPObjectWrapType">
+                <sequence>
+                        <element ref="eclap:ECLAPObject" minOccurs="0" maxOccurs="unbounded"/>
+                </sequence>
+        </complexType>
+	<element name="DC" type="eclap:DCType"/>
+	<complexType name="DCType">
+		<sequence>
+			<element ref="dc:contributor" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dc:coverage" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dc:creator" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dc:date" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dc:description" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dc:format" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dc:identifier" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dc:language" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dc:publisher" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dc:relation" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dc:rights" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dc:source" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dc:subject" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dc:title" maxOccurs="unbounded"/>
+			<element ref="dc:type" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<element name="DCTERMS" type="eclap:DCTERMSType"/>
+	<complexType name="DCTERMSType">
+		<sequence>
+			<element ref="dcterms:alternative" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:conformsTo" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:created" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:extent" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:hasFormat" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:hasPart" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:hasVersion" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:isFormatOf" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:isPartOf" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:isReferencedBy" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:isReplacedBy" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:isRequiredBy" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:issued" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:isVersionOf" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:medium" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:provenance" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:references" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:replaces" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:requires" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:spatial" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:tableOfContents" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="dcterms:temporal" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<element name="TechnicalMetadata" type="eclap:TechnicalMetadataType"/>
+	<complexType name="TechnicalMetadataType">
+		<sequence>
+			<element name="Type">
+				<annotation>
+					<documentation>type of content, basic, playlist or collection</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="string">
+						<enumeration value="BASIC_CONTENT"/>
+						<enumeration value="PLAYLIST"/>
+						<enumeration value="COLLECTION"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="ProviderID">
+				<annotation>
+					<documentation>partner acronim providing the data</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="string">
+						<enumeration value="ARCHIBRAILLE"/>
+						<enumeration value="BEELD EN GELUID"/>
+						<enumeration value="BELLONE"/>
+						<enumeration value="CTA-UNIROMA"/>
+						<enumeration value="CTFR"/>
+						<enumeration value="DIGILAB"/>
+						<enumeration value="ESMAE-IPP"/>
+						<enumeration value="FIFF"/>
+						<enumeration value="GROWTOSKY"/>
+						<enumeration value="IKP"/>
+						<enumeration value="ITB"/>
+						<enumeration value="MUZEUM"/>
+						<enumeration value="NINA"/>
+						<enumeration value="ODIN"/>
+						<enumeration value="OSZMI"/>
+						<enumeration value="TIN"/>
+						<enumeration value="TWM"/>
+						<enumeration value="UCAM"/>
+						<enumeration value="UCLM"/>
+						<enumeration value="UG"/>
+						<enumeration value="UVA"/>
+						<enumeration value="DSI"/>
+						<enumeration value="NTUA"/>
+						<enumeration value="FRD"/>
+						<enumeration value="OTHER"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="ProviderName" type="string" minOccurs="0">
+				<annotation>
+					<documentation>optional name of content provider (to be used if OTHER is set as ProviderID)</documentation>
+				</annotation>
+			</element>
+			<element name="ProviderContentID" minOccurs="0">
+				<annotation>
+					<documentation>identifier of the content for the provider (used for aggregations)</documentation>
+				</annotation>
+			</element>
+			<element name="ProviderContentUrl" type="string">
+				<annotation>
+					<documentation>url or filename of the content, use filename if you are providing content via HardDisk</documentation>
+				</annotation>
+			</element>
+			<element name="AggregationID" type="string" minOccurs="0">
+				<annotation>
+					<documentation>identifier that may be used to aggregate different content e.g. content related to the same performance or to the same piece</documentation>
+				</annotation>
+			</element>
+			<element name="AggregationName" type="string" minOccurs="0">
+				<annotation>
+					<documentation>name of the aggregation if not provided the aggregation id is used</documentation>
+				</annotation>
+			</element>
+			<element name="IPRModelID" minOccurs="0">
+				<annotation>
+					<documentation>free ID identifying the IPR model to be used for the content, content with same ID will use the same IPR model</documentation>
+				</annotation>
+			</element>
+			<element name="IPRContactUrl" type="anyURI" minOccurs="0">
+				<annotation>
+					<documentation>information (e.g. email or url) to be shown to users to get detailed information on IPR of the content</documentation>
+				</annotation>
+			</element>
+			<element name="EuropeanaRightsUrl" type="anyURI" minOccurs="0">
+				<annotation>
+					<documentation>the europeana rights url</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<element name="PerformingArtsMetadata" type="eclap:PerformingArtsMetadataType"/>
+	<complexType name="PerformingArtsMetadataType">
+		<sequence>
+			<element name="FirstPerformance" type="eclap:PerformanceType" minOccurs="0"/>
+			<element name="Performance" type="eclap:PerformanceType" minOccurs="0"/>
+			<element name="PerformingArtsGroup" type="string" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Name of the group performing</documentation>
+				</annotation>
+			</element>
+			<element name="PlotSummary" type="string" minOccurs="0">
+				<annotation>
+					<documentation>summary of the plot</documentation>
+				</annotation>
+			</element>
+			<element name="Cast" type="string" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Members of the cast, use if cannot use Professional</documentation>
+				</annotation>
+			</element>
+			<element name="PerformersAndCrew" type="string" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Performers and Crew for the performance, use if cannot use Professional</documentation>
+				</annotation>
+			</element>
+			<element name="Professional" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>name of professional people in charge of specific roles</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attribute name="role" use="required">
+								<simpleType>
+									<restriction base="string">
+										<enumeration value="Acrobat"/>
+										<enumeration value="Actor"/>
+										<enumeration value="Adaptator"/>
+										<enumeration value="Architect"/>
+										<enumeration value="Assistant_director"/>
+										<enumeration value="Casting"/>
+										<enumeration value="Choreographer"/>
+										<enumeration value="Clown"/>
+										<enumeration value="Concept_originator"/>
+										<enumeration value="Composer"/>
+										<enumeration value="Costume_designer"/>
+										<enumeration value="Critic"/>
+										<enumeration value="Dancer"/>
+										<enumeration value="Director"/>
+										<enumeration value="Dramaturge"/>
+										<enumeration value="Hairdresser"/>
+										<enumeration value="Light designer"/>
+										<enumeration value="Make-up_artist"/>
+										<enumeration value="Marketing_manager"/>
+										<enumeration value="Mask_designer"/>
+										<enumeration value="Mime"/>
+										<enumeration value="Musician"/>
+										<enumeration value="Patron"/>
+										<enumeration value="Performer"/>
+										<enumeration value="Playwright"/>
+										<enumeration value="Producer"/>
+										<enumeration value="Puppet_designer"/>
+										<enumeration value="Scenographer"/>
+										<enumeration value="Seamster"/>
+										<enumeration value="Set_builder"/>
+										<enumeration value="Set_designer"/>
+										<enumeration value="Singer"/>
+										<enumeration value="Sound_designer"/>
+										<enumeration value="Stage_manager"/>
+										<enumeration value="Technician"/>
+										<enumeration value="Theatre_manager"/>
+										<enumeration value="Theoretician"/>
+										<enumeration value="Translator"/>
+										<enumeration value="Other"/>
+									</restriction>
+								</simpleType>
+							</attribute>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="Object" type="string" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Objects used in the performance, (i.e. Sets, Costumes, Props, Programs, Prints, Drawings,...)</documentation>
+				</annotation>
+			</element>
+			<element name="Genre" type="string" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>The genre in which the work can be categorized</documentation>
+				</annotation>
+			</element>
+			<element name="PerformingArtType" type="string" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="HistoricalPeriod" type="string" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Historical period in which a work has been created</documentation>
+				</annotation>
+			</element>
+			<element name="ArtisticMovementAndActingStyle" type="string" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Artistic movement and acting styles in which the work can be categorized</documentation>
+				</annotation>
+			</element>
+			<element name="ManagementAndOrganization" type="string" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="RecordingDate" type="string" minOccurs="0">
+				<annotation>
+					<documentation>Date of creaion of the digital object</documentation>
+				</annotation>
+			</element>
+			<element name="PersonRecord" type="string" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Credits for the audio or video recording</documentation>
+				</annotation>
+			</element>
+			<element name="PieceRecord" type="string" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Credits for the text or image</documentation>
+				</annotation>
+			</element>
+			<element name="ProductionRecord" type="string" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Credits of the production team</documentation>
+				</annotation>
+			</element>
+		</sequence>
+		<attribute ref="xml:lang"/>
+	</complexType>
+	<complexType name="PerformanceType">
+		<sequence>
+			<element name="Place" type="string" minOccurs="0">
+				<annotation>
+					<documentation>name of the theatre or venue where the performance took place</documentation>
+				</annotation>
+			</element>
+			<element name="City" type="string" minOccurs="0">
+				<annotation>
+					<documentation>name of the city where the performance took place</documentation>
+				</annotation>
+			</element>
+			<element name="Country" type="string" minOccurs="0">
+				<annotation>
+					<documentation>name of the country where the performance took place</documentation>
+				</annotation>
+			</element>
+			<element name="Date" type="string" minOccurs="0">
+				<annotation>
+					<documentation>date of the performance</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+</schema>

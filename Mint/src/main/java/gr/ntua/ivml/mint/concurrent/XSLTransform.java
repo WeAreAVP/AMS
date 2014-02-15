@@ -125,29 +125,32 @@ public class XSLTransform implements Runnable, NodeStoreI, EntryProcessor, Repor
 			log.debug( "URL Parameter " + urlParameters);
 			String request = "https://amsqa.avpreserve.com/mintimport/save_transformed_info/"+urlParameters;
 			log.debug( "URL " + request);
+			
 			URL url = new URL(request); 
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();           
-			connection.setDoOutput(true);
-			connection.setReadTimeout(10000);
-			connection.setRequestMethod("GET"); 
-			connection.setRequestProperty("charset", "utf-8");
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();   
 			connection.setUseCaches (false);
-			connection.connect();
+			connection.setAllowUserInteraction(false);
+//			connection.setDoOutput(true);
+//			connection.setReadTimeout(10000);
+//			connection.setRequestMethod("GET"); 
+			connection.setRequestProperty("charset", "utf-8");
+			
+//			connection.connect();
 			int responseCode = connection.getResponseCode();
 			log.debug( "Response Code " + responseCode);
-			BufferedReader rd  = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			StringBuffer sb = new StringBuffer();
+//			BufferedReader rd  = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+//			StringBuffer sb = new StringBuffer();
         
-			String line = "";
-            while ((line = rd.readLine()) != null)
-			{
-				sb.append(line + '\n');
-			}
-			log.debug( "Response " + sb.toString());
-          System.out.println(sb.toString());
+//			String line = "";
+//            while ((line = rd.readLine()) != null)
+//			{
+//				sb.append(line + '\n');
+//			}
+//			log.debug( "Response " + sb.toString());
+//          System.out.println(sb.toString());
 
 			
-			connection.disconnect();
+//			connection.disconnect();
 		} catch( Exception e ) {
 			// already handled, but needed to skip readNodes or index if transform or readNodes fails
 		} catch( Throwable t ) {

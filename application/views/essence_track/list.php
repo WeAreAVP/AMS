@@ -323,7 +323,7 @@ if ($essence_track)
 						<!-- Essence Track Language End -->
 						<!-- Essence Track Annotation Start -->
 						<?php
-						if (count(get_essence_track_annotation($value->id)) > 0)
+						if (get_essence_track_annotation($value->id))
 						{
 							$annotations = get_essence_track_annotation($value->id);
 							$combine_annotation = '';

@@ -133,16 +133,17 @@ public class XSLTransform implements Runnable, NodeStoreI, EntryProcessor, Repor
 			connection.setRequestProperty("charset", "utf-8");
 			connection.setUseCaches (false);
 			connection.connect();
-			
+			int responseCode = connection.getResponseCode();
+			log.debug( "Response Code " + responseCode);
 			BufferedReader rd  = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			StringBuilder sb = new StringBuilder();
+			StringBuffer sb = new StringBuffer();
         
 			String line = "";
-          while ((line = rd.readLine()) != null)
-          {
-              sb.append(line + '\n');
-          }
-        log.debug( "Response " + sb.toString());
+            while ((line = rd.readLine()) != null)
+			{
+				sb.append(line + '\n');
+			}
+			log.debug( "Response " + sb.toString());
           System.out.println(sb.toString());
 
 			

@@ -178,8 +178,8 @@ class Mediainfo extends CI_Controller
 				$count = $this->cron_model->get_pbcore_file_count_by_folder_id($folder->id);
 				if (isset($count) && $count > 0)
 				{
-					$maxProcess = 100;
-					$limit = 500;
+					$maxProcess = 1;
+					$limit = 10;
 					$loop_end = ceil($count / $limit);
 					myLog("Run $loop_end times  $maxProcess at a time");
 					for ($loop_counter = 0; $loop_end > $loop_counter; $loop_counter ++ )

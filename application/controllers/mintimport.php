@@ -1425,7 +1425,7 @@ class Mintimport extends CI_Controller
 									$frame_sizes = explode("x", strtolower($pbcore_essence_child['ams:essencetrackframesize'][0]['text']));
 									if (isset($frame_sizes[0]) && isset($frame_sizes[1]))
 									{
-										$track_frame_size_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_frame_sizes, array('width' => trim($frame_sizes['width']), 'height' => trim($frame_sizes['height'])));
+										$track_frame_size_d = $this->pbcore_model->get_one_by($this->pbcore_model->table_essence_track_frame_sizes, array('width' => trim($frame_sizes[0]), 'height' => trim($frame_sizes[1])));
 										if ($track_frame_size_d)
 										{
 											$essence_tracks_d['essence_track_frame_sizes_id'] = $track_frame_size_d->id;

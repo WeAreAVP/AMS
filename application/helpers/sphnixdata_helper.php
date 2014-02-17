@@ -144,7 +144,7 @@ function make_instantiation_sphnix_array($row, $new = TRUE)
 	$data['data_rate'] = ! empty($row->data_rate) ? $row->data_rate : '';
 	$data['location'] = ! empty($row->location) ? $row->location : '';
 	$data['tracks'] = ! empty($row->tracks) ? $row->tracks : '';
-	$data['digitized'] = ($row->digitized != '') ? (int) $row->digitized : (int) -1;
+	$data['digitized'] = (isset($row->digitized) && $row->digitized != '') ? (int) $row->digitized : (int) -1;
 	$data['s_language'] = ! empty($row->language) ? $row->language : '';
 	$data['language'] = ! empty($row->language) ? $row->language : '';
 	$data['actual_duration'] = ! empty($row->actual_duration) ? (int) $row->actual_duration : 0;

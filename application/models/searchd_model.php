@@ -221,7 +221,7 @@ class Searchd_Model extends CI_Model
 	function get_ins_index($record_ids)
 	{
 		$search_ids = implode(',', $record_ids);
-		return $this->db->query("SELECT  instantiations.id, 
+		$result = $this->db->query("SELECT  instantiations.id, 
 				instantiations.assets_id,
 				stations.station_name AS organization, 
 				stations.state,
@@ -329,7 +329,12 @@ class Searchd_Model extends CI_Model
 				LEFT JOIN `essence_track_annotations` ON `essence_track_annotations`.`essence_tracks_id`=`essence_tracks`.`id` 
 				LEFT JOIN `instantiation_annotations` ON `instantiation_annotations`.`instantiations_id`=`instantiations`.`id` 
 			WHERE instantiations.id in ($search_ids)
-			GROUP BY `instantiations`.`id`")->result();
+			GROUP BY `instantiations`.`id`");
+		if (isset($result) && ! empty($result))
+		{
+			return $result->result();
+		}
+		return FALSE;
 	}
 
 	/**
@@ -340,7 +345,7 @@ class Searchd_Model extends CI_Model
 	function get_asset_index($record_ids)
 	{
 		$search_ids = implode(',', $record_ids);
-		return $this->db->query("SELECT `assets`.`id`,
+		$result = $this->db->query("SELECT `assets`.`id`,
 			stations.station_name AS organization,stations.state, 
 			`identifiers`.`identifier` AS guid_identifier, 
 			`asset_descriptions`.`description`,
@@ -479,7 +484,12 @@ instantiation_media_types.media_type,
  LEFT JOIN `essence_track_annotations` ON `essence_track_annotations`.`essence_tracks_id`=`essence_tracks`.`id` 
  LEFT JOIN `instantiation_annotations` ON `instantiation_annotations`.`instantiations_id`=`instantiations`.`id` 
 WHERE assets.id IN ($search_ids) 
- GROUP BY `assets`.`id` ")->result();
+ GROUP BY `assets`.`id` ");
+		if (isset($result) && ! empty($result))
+		{
+			return $result->result();
+		}
+		return FALSE;
 	}
 
 	/**

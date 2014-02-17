@@ -389,12 +389,19 @@ class Import_mediainfo
 		$this->_CI->load->model('searchd_model');
 		$this->_CI->load->helper('sphnixdata');
 		$instantiation_list = $this->_CI->searchd_model->get_ins_index(array($db_instantiation_id));
-		$new_list_info = make_instantiation_sphnix_array($instantiation_list[0]);
-		myLog('Instantiation Inserted');
-		$this->_CI->sphnixrt->insert('instantiations_list', $new_list_info, $db_instantiation_id);
-		$asset_list = $this->_CI->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
-		$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
-		$this->_CI->sphnixrt->update('assets_list', $new_asset_info);
+		if (count($instantiation_list) > 0 && isset($instantiation_list[0]))
+		{
+			$new_list_info = make_instantiation_sphnix_array($instantiation_list[0]);
+			myLog('Instantiation Inserted');
+			$this->_CI->sphnixrt->insert('instantiations_list', $new_list_info, $db_instantiation_id);
+			$asset_list = $this->_CI->searchd_model->get_asset_index(array($instantiation_list[0]->assets_id));
+			$new_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
+			$this->_CI->sphnixrt->update('assets_list', $new_asset_info);
+		}
+		else
+		{
+			myLog('Issue Found ' . $db_instantiation_id);
+		}
 	}
 
 	function update_ins_asset_index($db_instantiation_id)

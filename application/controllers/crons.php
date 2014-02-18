@@ -179,7 +179,8 @@ class Crons extends CI_Controller
 						$final_facet = array();
 						foreach ($make_facet as $_index => $_single_facet)
 						{
-							$final_facet[] = array($facet => $_index, '@count' => $_single_facet);
+							if ($_index != '(**)')
+								$final_facet[] = array($facet => $_index, '@count' => $_single_facet);
 						}
 						debug($final_facet);
 					}

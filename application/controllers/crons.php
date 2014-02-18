@@ -129,8 +129,6 @@ class Crons extends CI_Controller
 		exit_function();
 	}
 
-	
-
 	/**
 	 * Save Facet Search Values into memcahed.
 	 * 
@@ -159,13 +157,24 @@ class Crons extends CI_Controller
 		{
 			foreach ($search_facet as $columns => $facet)
 			{
-				$grouping = FALSE;
-				if (in_array($facet, array('media_type', 'format_name', 'facet_generation')))
-					$grouping = TRUE;
-				if (in_array($columns, array('physical', 'digital', 'digitized', 'migration')))
+				if ($index_name === 'assets_list')
 				{
-					$result = $this->sphinx->facet_index($facet, $index_name, $columns);
-					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
+					if (in_array($facet, array('media_type', 'format_name', 'facet_generation')))
+					{
+						$result = $this->sphinx->facet_index($facet, $index_name, $columns);
+						debug($result,FALSE);
+					}
+				}
+				else if ($index_name === 'instantiations_list')
+				{
+					$grouping = FALSE;
+					if (in_array($facet, array('media_type', 'format_name', 'facet_generation')))
+						$grouping = TRUE;
+					if (in_array($columns, array('physical', 'digital', 'digitized', 'migration')))
+					{
+						$result = $this->sphinx->facet_index($facet, $index_name, $columns);
+						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
+					}
 				}
 				else if ($columns == 'stations')
 				{
@@ -312,9 +321,9 @@ class Crons extends CI_Controller
 		$pie_total = $pie_total_completed->total + $pie_total_scheduled->total;
 		$pie_total = ($pie_total == 0) ? 1 : $pie_total;
 		$data['pie_total_radio_completed'] = (int) round(($pie_total_completed->total * 100) / $pie_total);
-		
+
 		$data['pie_total_radio_scheduled'] = (int) round(($pie_total_scheduled->total * 100) / $pie_total);
-		
+
 		$this->memcached_library->set('pie_total_radio_completed', json_encode($data['pie_total_radio_completed']), 3600);
 		$this->memcached_library->set('pie_total_radio_scheduled', json_encode($data['pie_total_radio_scheduled']), 3600);
 		/* Pie Chart for Radio Formats End */

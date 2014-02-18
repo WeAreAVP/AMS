@@ -165,8 +165,8 @@ class Crons extends CI_Controller
 						$make_facet = array();
 						foreach ($result['records'] as $_row)
 						{
-							debug($_row);
-							$exploded_facet = explode('|', $_row->$facet);
+							
+							$exploded_facet = explode('|', $_row[$facet]);
 							foreach ($exploded_facet as $single_value)
 							{
 								if (isset($make_facet[trim($single_value)]))

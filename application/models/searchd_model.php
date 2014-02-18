@@ -407,9 +407,11 @@ class Searchd_Model extends CI_Model
  GROUP_CONCAT(DISTINCT(IFNULL(`instantiations`.`alternative_modes`,'(**)')) SEPARATOR ' | ') AS `alternative_modes`, 
  GROUP_CONCAT(DISTINCT(IFNULL(UNIX_TIMESTAMP(instantiation_dates.instantiation_date ),0)) SEPARATOR ' | ') AS instantiation_date, 
  GROUP_CONCAT(DISTINCT(IFNULL(instantiation_media_types.media_type,'(**)')) SEPARATOR ' | ') AS `media_type`, 
- GROUP_CONCAT(DISTINCT(IFNULL(instantiation_formats.format_type,'(**)')) SEPARATOR ' | ') AS `format_type`, 
- GROUP_CONCAT(DISTINCT(IFNULL(instantiation_formats.format_name,'(**)')) SEPARATOR ' | ') AS `format_name`, 
- GROUP_CONCAT(DISTINCT(IFNULL(generations.generation,'(**)')) SEPARATOR ' | ') AS `facet_generation`, 
+ GROUP_CONCAT(DISTINCT(instantiation_formats.format_type) SEPARATOR ' | ') AS `physical_format_type`, 
+ GROUP_CONCAT(DISTINCT(instantiation_formats.format_name) SEPARATOR ' | ') AS `physical_format_name`, 
+ GROUP_CONCAT(DISTINCT(d_format.format_type) SEPARATOR ' | ') AS `digital_format_type`, 
+ GROUP_CONCAT(DISTINCT(d_format.format_name) SEPARATOR ' | ') AS `digital_format_name`, 
+ GROUP_CONCAT(DISTINCT(generations.generation) SEPARATOR ' | ') AS `facet_generation`, 
  
  GROUP_CONCAT(DISTINCT(IFNULL(instantiation_colors.color,'(**)'))  SEPARATOR ' | ') AS  color, 
  nomination_status.status, 
@@ -467,7 +469,8 @@ class Searchd_Model extends CI_Model
  LEFT JOIN `instantiation_dates` ON `instantiation_dates`.`instantiations_id` = `instantiations`.`id` 
  LEFT JOIN `date_types` AS `ins_date_types` ON `ins_date_types`.`id` = `instantiation_dates`.`date_types_id` 
  LEFT JOIN `instantiation_media_types` ON `instantiation_media_types`.`id` = `instantiations`.`instantiation_media_type_id` 
- LEFT JOIN `instantiation_formats` ON `instantiation_formats`.`instantiations_id` = `instantiations`.`id` 
+ LEFT JOIN `instantiation_formats` ON `instantiation_formats`.`instantiations_id` = `instantiations`.`id` AND instantiation_formats.format_type='physical'
+ LEFT JOIN `instantiation_formats` d_format ON d_format.`instantiations_id` = `instantiations`.`id` AND d_format.format_type='digital'
  LEFT JOIN `instantiation_colors` ON `instantiation_colors`.`id` = `instantiations`.`instantiation_colors_id` 
  LEFT JOIN `instantiation_identifier` ON `instantiations`.`id` = `instantiation_identifier`.`instantiations_id` 
  LEFT JOIN `instantiation_generations` ON `instantiation_generations`.`instantiations_id` = `instantiations`.`id` 

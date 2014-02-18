@@ -162,7 +162,19 @@ class Crons extends CI_Controller
 					if (in_array($facet, array('media_type', 'format_name', 'facet_generation')))
 					{
 						$result = $this->sphinx->facet_index($facet, $index_name, $columns);
-						debug($result,FALSE);
+						$make_facet = array();
+						foreach ($result as $_row)
+						{
+							$exploded_facet = explode('|', $_row->$facet);
+							foreach ($exploded_facet as $single_value)
+							{
+								if (isset($make_facet[trim($single_value)]))
+									$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + 1;
+								else
+									$make_facet[trim($single_value)] = 1;
+							}
+						}
+						debug($make_facet);
 					}
 				}
 				else if ($index_name === 'instantiations_list')

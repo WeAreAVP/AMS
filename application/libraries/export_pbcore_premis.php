@@ -820,7 +820,7 @@ class Export_pbcore_premis
 				if ( ! empty($annotation->annotation_type))
 				{
 					$attributes = array();
-					$attributes['type'] = $annotation->annotation_type;
+					$attributes['annotationType'] = $annotation->annotation_type;
 					$this->_add_attribute($xml_annotation, $attributes);
 					unset($attributes);
 				}

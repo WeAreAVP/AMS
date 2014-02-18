@@ -166,7 +166,7 @@ class Crons extends CI_Controller
 						$make_facet = array();
 						foreach ($result['records'] as $_row)
 						{
-							
+
 							$exploded_facet = explode('|', $_row[$facet]);
 							foreach ($exploded_facet as $single_value)
 							{
@@ -176,7 +176,12 @@ class Crons extends CI_Controller
 									$make_facet[trim($single_value)] = $_row['@count'];
 							}
 						}
-						debug($make_facet);
+						$final_facet = array();
+						foreach ($make_facet as $_index => $_single_facet)
+						{
+							$final_facet[] = array($facet => $_index, '@count' => $_single_facet);
+						}
+						debug($final_facet);
 					}
 				}
 				else if ($index_name === 'instantiations_list')

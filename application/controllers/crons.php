@@ -162,7 +162,7 @@ class Crons extends CI_Controller
 					if (in_array($facet, array('media_type', 'format_name', 'facet_generation')))
 					{
 						$result = $this->sphinx->facet_index($facet, $index_name, $columns);
-						debug($result);
+//						debug($result);
 						$make_facet = array();
 						foreach ($result['records'] as $_row)
 						{
@@ -171,9 +171,9 @@ class Crons extends CI_Controller
 							foreach ($exploded_facet as $single_value)
 							{
 								if (isset($make_facet[trim($single_value)]))
-									$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + 1;
+									$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
 								else
-									$make_facet[trim($single_value)] = 1;
+									$make_facet[trim($single_value)] = $_row['@count'];
 							}
 						}
 						debug($make_facet);

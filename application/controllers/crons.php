@@ -162,6 +162,7 @@ class Crons extends CI_Controller
 					if (in_array($facet, array('media_type', 'format_name', 'facet_generation')))
 					{
 						$result = $this->sphinx->facet_index($facet, $index_name, $columns);
+						debug($result);
 						$make_facet = array();
 						foreach ($result['records'] as $_row)
 						{

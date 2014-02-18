@@ -182,6 +182,7 @@ class Crons extends CI_Controller
 							if ($_index != '(**)')
 								$final_facet[] = array($facet => $_index, '@count' => $_single_facet);
 						}
+						$final_facet=sortByOneKey($final_facet, $facet, TRUE);
 						debug($final_facet);
 					}
 				}

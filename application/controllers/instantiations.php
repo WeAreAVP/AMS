@@ -1218,10 +1218,12 @@ class Instantiations extends MY_Controller
 				$data['physical_formats'] = sortByOneKey($p_format, 'format_name', TRUE);
 				unset($p_format);
 				$d_format = $this->sphinx->facet_index('format_name', $index, 'digital');
-				$data['digital_formats'] = sortByOneKey($d_format['records'], 'format_name', TRUE);
+				$d_format = $this->make_facet($d_format, 'format_name');
+				$data['digital_formats'] = sortByOneKey($d_format, 'format_name', TRUE);
 				unset($d_format);
 				$generation = $this->sphinx->facet_index('facet_generation', $index);
-				$data['generations'] = sortByOneKey($generation['records'], 'facet_generation', TRUE);
+				$generation = $this->make_facet($generation, 'format_name');
+				$data['generations'] = sortByOneKey($generation, 'facet_generation', TRUE);
 				unset($generation);
 				$digitized = $this->sphinx->facet_index('digitized', $index, 'digitized');
 				$data['digitized'] = $digitized['records'];

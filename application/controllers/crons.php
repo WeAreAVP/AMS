@@ -182,8 +182,7 @@ class Crons extends CI_Controller
 							if ($_index != '(**)')
 								$final_facet[] = array($facet => $_index, '@count' => $_single_facet);
 						}
-						$final_facet=sortByOneKey($final_facet, $facet, TRUE);
-						debug($final_facet);
+						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($final_facet, $facet, TRUE)), 36000);
 					}
 				}
 				else if ($index_name === 'instantiations_list')

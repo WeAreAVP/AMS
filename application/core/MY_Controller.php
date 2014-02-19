@@ -257,20 +257,13 @@ class MY_Controller extends CI_Controller
 			$exploded_facet = explode('|', $_row[$facet]);
 			foreach ($exploded_facet as $single_value)
 			{
-				if (isset($this->session->userdata[$session_key]) && ! empty($this->session->userdata[$session_key]))
-				{
+//				if (isset($this->session->userdata[$session_key]) && $this->session->userdata[$session_key] == $single_value)
+//				{
 					if (isset($make_facet[trim($single_value)]))
 						$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
 					else
 						$make_facet[trim($single_value)] = $_row['@count'];
-				}
-				else if (isset($this->session->userdata[$session_key]) && $this->session->userdata[$session_key] == $single_value)
-				{
-					if (isset($make_facet[trim($single_value)]))
-						$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
-					else
-						$make_facet[trim($single_value)] = $_row['@count'];
-				}
+//				}
 			}
 		}
 		$final_facet = array();

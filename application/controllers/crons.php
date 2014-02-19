@@ -182,42 +182,41 @@ class Crons extends CI_Controller
 							if ($_index != '(**)' && $_index != '')
 								$final_facet[] = array($facet => $_index, '@count' => $_single_facet);
 						}
-						
+
 						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($final_facet, $facet, TRUE)), 36000);
-						
 					}
 					else if (in_array($columns, array('digitized', 'migration')))
 					{
 						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, FALSE)), 36000);
 					}
-				}
-				else if ($index_name === 'instantiations_list')
-				{
-					$grouping = FALSE;
-					if (in_array($facet, array('media_type', 'format_name', 'facet_generation')))
-						$grouping = TRUE;
-					if (in_array($columns, array('physical', 'digital', 'digitized', 'migration')))
+					else if ($columns == 'stations')
 					{
-						$result = $this->sphinx->facet_index($facet, $index_name, $columns);
+						$this->load->library('sphnixrt');
+
+						$result = $this->sphnixrt->select($index_name, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
+						foreach ($result['records'] as $_key => $station)
+						{
+							$result['records'][$_key]['@count'] = $station['count(*)'];
+						}
+						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
+					}
+					else
+					{
+						$result = $this->sphinx->facet_index($facet, $index_name);
 						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
 					}
 				}
-				if ($columns == 'stations')
-				{
-					$this->load->library('sphnixrt');
-//					$result = $this->sphinx->facet_index($facet, $index_name, $columns);
-					$result = $this->sphnixrt->select($index_name, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
-					foreach ($result['records'] as $_key => $station)
-					{
-						$result['records'][$_key]['@count'] = $station['count(*)'];
-					}
-					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
-				}
-				else
-				{
-					$result = $this->sphinx->facet_index($facet, $index_name);
-					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
-				}
+//				else if ($index_name === 'instantiations_list')
+//				{
+//					$grouping = FALSE;
+//					if (in_array($facet, array('media_type', 'format_name', 'facet_generation')))
+//						$grouping = TRUE;
+//					if (in_array($columns, array('physical', 'digital', 'digitized', 'migration')))
+//					{
+//						$result = $this->sphinx->facet_index($facet, $index_name, $columns);
+//						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
+//					}
+//				}
 			}
 			myLog("Succussfully Updated $index_name Facet Search");
 		}

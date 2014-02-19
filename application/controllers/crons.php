@@ -198,12 +198,12 @@ class Crons extends CI_Controller
 						{
 							$result['records'][$_key]['@count'] = $station['count(*)'];
 						}
-						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
+						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, FALSE)), 36000);
 					}
 					else
 					{
 						$result = $this->sphinx->facet_index($facet, $index_name);
-						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
+						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, FALSE)), 36000);
 					}
 				}
 //				else if ($index_name === 'instantiations_list')

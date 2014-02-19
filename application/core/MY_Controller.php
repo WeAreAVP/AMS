@@ -251,24 +251,26 @@ class MY_Controller extends CI_Controller
 	function make_facet($result, $facet, $session_key)
 	{
 		$make_facet = array();
-		debug($result['records'],FALSE);
+		
 		foreach ($result['records'] as $_row)
 		{
 
 			$exploded_facet = explode('|', $_row[$facet]);
 			foreach ($exploded_facet as $single_value)
 			{
-				debug($single_value,FALSE);
+				
 				if (isset($this->session->userdata[$session_key]) && ! empty($this->session->userdata[$session_key]))
 				{
+					debug($this->session->userdata[$session_key],FALSE);
+					debug($single_value,FALSE);
 					if ($this->session->userdata[$session_key] == $single_value)
 					{
-						debug($_row['@count'],FALSE);
+						
 						if (isset($make_facet[trim($single_value)]))
 							$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
 						else
 							$make_facet[trim($single_value)] = $_row['@count'];
-						debug($make_facet[trim($single_value)], FALSE);
+						
 					}
 				}
 				else

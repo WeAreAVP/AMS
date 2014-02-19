@@ -467,21 +467,21 @@ class Sphinx_Model extends CI_Model
 			$physical_format = str_replace('|||', '" | "', trim($this->session->userdata['physical_format']));
 			$where .=" @s_physical_format_name \"^$physical_format$\" | @s_physical_format_name \"$physical_format |\" | @s_physical_format_name \"| $physical_format\"";
 		}
-		else if ($type == 'physical'  && $sphnix_index !='assets_list')
-		{
-
-			$where .= " @s_format_type \"physical\"";
-		}
+//		else if ($type == 'physical'  && $sphnix_index !='assets_list')
+//		{
+//
+//			$where .= " @s_format_type \"physical\"";
+//		}
 
 		if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
 		{
 			$digital_format = str_replace('|||', '" | "', trim($this->session->userdata['digital_format']));
 			$where .=" @s_digital_format_name \"^$digital_format$\"";
 		}
-		else if ($type == 'digital'  && $sphnix_index !='assets_list')
-		{
-			$where .= " @s_format_type \"digital\"";
-		}
+//		else if ($type == 'digital'  && $sphnix_index !='assets_list')
+//		{
+//			$where .= " @s_format_type \"digital\"";
+//		}
 		if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
 		{
 			$generation = str_replace('|||', '" | "', trim($this->session->userdata['generation']));

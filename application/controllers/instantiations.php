@@ -1189,8 +1189,8 @@ class Instantiations extends MY_Controller
 	{
 //		if (isAjax())
 //		{
-			$is_all_facet = $this->input->post('issearch');
-			$index = $this->input->post('index');
+			$is_all_facet = 1;
+			$index = 'asset';
 			$this->load->library('sphnixrt');
 
 			if ($is_all_facet > 0)

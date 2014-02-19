@@ -538,6 +538,7 @@ function instantiations_datatable_view($records, $column_order)
 			}
 			else if ($type == 'Duration')
 			{
+				$duration='';
 				if ( ! empty($value->actual_duration))
 					$duration = date('H:i:s', strtotime($value->actual_duration));
 				else if ( ! empty($value->projected_duration))

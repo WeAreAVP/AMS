@@ -232,7 +232,7 @@ if (count($physical_formats) > 0)
 				if ($key < 4)
 				{
 					?>
-					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['format_name']); ?>', 'physical_format_main');"><?php echo $value['format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></div>
+					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['physical_format_name']); ?>', 'physical_format_main');"><?php echo $value['physical_format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></div>
 					<?php
 				}
 				else if ($key == 4)
@@ -259,7 +259,7 @@ if (count($physical_formats) > 0)
 								$less_common = TRUE;
 							}
 							?>
-								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['format_name']); ?>', 'physical_format_main');"><?php echo $value['format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
+								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['physical_format_name']); ?>', 'physical_format_main');"><?php echo $value['physical_format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
@@ -272,7 +272,7 @@ if (count($physical_formats) > 0)
 								?>
 								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
 							<?php } ?>
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['format_name']); ?>', 'physical_format_main');"><?php echo $value['format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['physical_format_name']); ?>', 'physical_format_main');"><?php echo $value['physical_format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 					}
@@ -303,7 +303,7 @@ if (count($digital_formats) > 0)
 				if ($key < 4)
 				{
 					?>
-					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['format_name']); ?>', 'digital_format_main');"><?php echo $value['format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></div>
+					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['digital_format_name']); ?>', 'digital_format_main');"><?php echo $value['digital_format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></div>
 					<?php
 				}
 				else if ($key == 4)
@@ -330,7 +330,7 @@ if (count($digital_formats) > 0)
 								$less_common = TRUE;
 							}
 							?>
-								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['format_name']); ?>', 'digital_format_main');"><?php echo $value['format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
+								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['digital_format_name']); ?>', 'digital_format_main');"><?php echo $value['digital_format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
@@ -343,7 +343,7 @@ if (count($digital_formats) > 0)
 								?>
 								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
 							<?php } ?>
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['format_name']); ?>', 'digital_format_main');"><?php echo $value['format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['digital_format_name']); ?>', 'digital_format_main');"><?php echo $value['digital_format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 					}

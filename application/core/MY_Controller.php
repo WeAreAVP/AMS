@@ -266,13 +266,13 @@ class MY_Controller extends CI_Controller
 						else
 							$make_facet[trim($single_value)] = $_row['@count'];
 					}
+				}
+				else
+				{
+					if (isset($make_facet[trim($single_value)]))
+						$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
 					else
-					{
-						if (isset($make_facet[trim($single_value)]))
-							$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
-						else
-							$make_facet[trim($single_value)] = $_row['@count'];
-					}
+						$make_facet[trim($single_value)] = $_row['@count'];
 				}
 			}
 		}

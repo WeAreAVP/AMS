@@ -454,7 +454,6 @@ function instantiations_datatable_view($records, $column_order)
 	$table_view = array();
 	foreach ($records as $main_index => $value)
 	{
-		debug($value);
 		foreach ($column_order as $key => $row)
 		{
 			$type = $row['title'];
@@ -526,23 +525,16 @@ function instantiations_datatable_view($records, $column_order)
 			}
 			else if ($type == 'Generation')
 			{
-				$table_view[$main_index][] = '<span style="float:left;min-width:150px;max-width:150px;">' . $value->facet_generation . '</span>';
+				$table_view[$main_index][] = '<span style="float:left;min-width:150px;max-width:150px;">' . $value->generation . '</span>';
 			}
 			else if ($type == 'Format')
 			{
-				if ( ! empty($value->physical_format_name))
-				{
-					$column = 'physical: ' . $value->physical_format_name;
-				}
-				if ( ! empty($value->digital_format_name))
-				{
-					$column = 'digital: ' . $value->digital_format_name;
-				}
-//				$column = $value->format_type;
-//				if ($value->format_name != '')
-//					$column.=': ' . $value->format_name;
+
+				$column = $value->format_type;
+				if ($value->format_name != '')
+					$column.=': ' . $value->format_name;
 				$table_view[$main_index][] = '<span style="float:left;min-width:150px;max-width:150px;">' . $column . '</span>';
-				$column = NULL;
+				$column=NULL;
 			}
 			else if ($type == 'Duration')
 			{
@@ -557,14 +549,14 @@ function instantiations_datatable_view($records, $column_order)
 			{
 				$date = ($value->dates == 0) ? '' : date('Y-m-d', $value->dates) . ' ' . $value->date_type;
 				$table_view[$main_index][] = '<span style="float:left;min-width:150px;max-width:150px;">' . $date . '</span>';
-				$date = NULL;
+				$date=NULL;
 			}
 			else if ($type == 'File_size')
 			{
 				$file_size_unit = ($value->file_size_unit_of_measure) ? $value->file_size_unit_of_measure : '';
 				$file_size = $value->file_size . ' ' . $file_size_unit;
 				$table_view[$main_index][] = '<span style="float:left;min-width:150px;max-width:150px;">' . $file_size . '</span>';
-				$file_size = NULL;
+				$file_size=NULL;
 			}
 			else if ($type == 'Colors')
 			{

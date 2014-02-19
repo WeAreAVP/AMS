@@ -147,7 +147,7 @@ class Memcached_library
 		{
 			$expiration = $this->config['config']['expiration'];
 		}
-		echo $this->client_type;
+
 		switch ($this->client_type)
 		{
 			case 'Memcache':

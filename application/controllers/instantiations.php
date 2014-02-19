@@ -1243,7 +1243,7 @@ class Instantiations extends MY_Controller
 					$key_name = 'ins';
 				}
 				$data['org_states'] = json_decode($this->memcached_library->get($key_name . '_state'), TRUE);
-
+				
 				$data['stations'] = json_decode($this->memcached_library->get($key_name . '_stations'), TRUE);
 
 				$data['nomination_status'] = json_decode($this->memcached_library->get($key_name . '_status'), TRUE);

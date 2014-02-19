@@ -148,8 +148,8 @@ class Crons extends CI_Controller
 		$search_facet->stations = 'organization';
 		$search_facet->status = 'status';
 		$search_facet->media_type = 'media_type';
-		$search_facet->physical = 'format_name';
-		$search_facet->digital = 'format_name';
+		$search_facet->physical = 'physical_format_name';
+		$search_facet->digital = 'digital_format_name';
 		$search_facet->generations = 'facet_generation';
 		$search_facet->digitized = 'digitized';
 		$search_facet->migration = 'migration';
@@ -160,10 +160,10 @@ class Crons extends CI_Controller
 				if ($index_name === 'assets_list')
 				{
 					$result = $this->sphinx->facet_index($facet, $index_name, $columns);
-					debug($result);
-					if (in_array($facet, array('media_type', 'format_name', 'facet_generation')))
+					
+					if (in_array($facet, array( 'physical_format_name', 'digital_format_name')))
 					{
-
+						debug($result);
 						$make_facet = array();
 						foreach ($result['records'] as $_row)
 						{

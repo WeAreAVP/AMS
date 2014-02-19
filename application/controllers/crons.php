@@ -184,6 +184,7 @@ class Crons extends CI_Controller
 						}
 						
 						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($final_facet, $facet, TRUE)), 36000);
+						debug(json_decode($this->memcached_library->get($index . '_' . $columns), TRUE),FALSE);
 					}
 					else if (in_array($columns, array('digitized', 'migration')))
 					{

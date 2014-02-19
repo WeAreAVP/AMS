@@ -243,6 +243,8 @@ class Searchd_Model extends CI_Model
 				
 				
 GROUP_CONCAT(DISTINCT(IFNULL(instantiation_media_types.media_type,'(**)')) SEPARATOR ' | ') AS `media_type`, 
+a_format.format_type,
+a_format.format_name,
  GROUP_CONCAT(DISTINCT(instantiation_formats.format_type) SEPARATOR ' | ') AS `physical_format_type`, 
  GROUP_CONCAT(DISTINCT(instantiation_formats.format_name) SEPARATOR ' | ') AS `physical_format_name`, 
  GROUP_CONCAT(DISTINCT(d_format.format_type) SEPARATOR ' | ') AS `digital_format_type`, 
@@ -317,6 +319,7 @@ instantiation_colors.color,
 				LEFT JOIN `instantiation_dates` ON `instantiation_dates`.`instantiations_id` = `instantiations`.`id` 
 				LEFT JOIN `date_types` ON `date_types`.`id` = `instantiation_dates`.`date_types_id` 
 				LEFT JOIN `instantiation_media_types` ON `instantiation_media_types`.`id` = `instantiations`.`instantiation_media_type_id` 
+				LEFT JOIN `instantiation_formats` AS a_format ON a_format.`instantiations_id` = `instantiations`.`id` 
 				LEFT JOIN `instantiation_formats` ON `instantiation_formats`.`instantiations_id` = `instantiations`.`id` AND instantiation_formats.format_type LIKE 'physical'
 				LEFT JOIN `instantiation_formats` AS d_format ON d_format.`instantiations_id` = `instantiations`.`id` AND d_format.format_type LIKE 'digital'
 				LEFT JOIN `instantiation_generations` ON `instantiation_generations`.`instantiations_id` = `instantiations`.`id`

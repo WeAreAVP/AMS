@@ -408,9 +408,9 @@ class Searchd_Model extends CI_Model
  GROUP_CONCAT(DISTINCT(IFNULL(UNIX_TIMESTAMP(instantiation_dates.instantiation_date ),0)) SEPARATOR ' | ') AS instantiation_date, 
  GROUP_CONCAT(DISTINCT(IFNULL(instantiation_media_types.media_type,'(**)')) SEPARATOR ' | ') AS `media_type`, 
  GROUP_CONCAT(DISTINCT(instantiation_formats.format_type) SEPARATOR ' | ') AS `physical_format_type`, 
- GROUP_CONCAT(instantiation_formats.format_name SEPARATOR ' | ') AS `physical_format_name`, 
+ GROUP_CONCAT(DISTINCT(instantiation_formats.format_name) SEPARATOR ' | ') AS `physical_format_name`, 
  GROUP_CONCAT(DISTINCT(d_format.format_type) SEPARATOR ' | ') AS `digital_format_type`, 
- GROUP_CONCAT(d_format.format_name SEPARATOR ' | ') AS `digital_format_name`, 
+ GROUP_CONCAT(DISTINCT(d_format.format_name) SEPARATOR ' | ') AS `digital_format_name`, 
  GROUP_CONCAT(DISTINCT(generations.generation) SEPARATOR ' | ') AS `facet_generation`, 
  
  GROUP_CONCAT(DISTINCT(IFNULL(instantiation_colors.color,'(**)'))  SEPARATOR ' | ') AS  color, 

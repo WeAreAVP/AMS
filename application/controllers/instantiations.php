@@ -1187,10 +1187,10 @@ class Instantiations extends MY_Controller
 
 	function load_facet_columns()
 	{
-//		if (isAjax())
-//		{
-			$is_all_facet = 1;
-			$index = 'assets_list';
+		if (isAjax())
+		{
+			$is_all_facet = $this->input->post('issearch');
+			$index = $this->input->post('index');
 			$this->load->library('sphnixrt');
 
 			if ($is_all_facet > 0)
@@ -1261,8 +1261,8 @@ class Instantiations extends MY_Controller
 
 			echo $this->load->view('instantiations/_facet_columns', $data, TRUE);
 			exit_function();
-//		}
-//		show_404();
+		}
+		show_404();
 	}
 
 }

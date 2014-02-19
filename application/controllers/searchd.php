@@ -118,7 +118,7 @@ class Searchd extends CI_Controller
 			$inst = $this->searchd_model->get_asset($offset, 1000);
 			$ids = array_map(array($this, 'make_map_array'), $inst);
 			$records = $this->searchd_model->get_asset_index($ids);
-			debug($records);
+			
 			foreach ($records as $row)
 			{
 				$data = make_assets_sphnix_array($row);

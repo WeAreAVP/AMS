@@ -459,7 +459,7 @@ class Sphinx_Model extends CI_Model
 		if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
 		{
 			$media_type = str_replace('|||', '" | "', trim($this->session->userdata['media_type']));
-			$where .=" @s_media_type \"^$media_type$\"";
+			$where .=" @s_media_type \"^$media_type$\" | @s_media_type \"$media_type |\"";
 		}
 		if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
 		{

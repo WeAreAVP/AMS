@@ -251,6 +251,7 @@ class MY_Controller extends CI_Controller
 	function make_facet($result, $facet, $session_key)
 	{
 		$make_facet = array();
+		debug($result['records']);
 		foreach ($result['records'] as $_row)
 		{
 

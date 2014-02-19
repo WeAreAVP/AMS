@@ -23,7 +23,7 @@ $memcached['servers'] = array(
 $memcached['config'] = array(
 
 	'prefix' 				=> '',						// Prefixes every key value (useful for multi environment setups)
-	'compression'			=> FALSE,					// Default: FALSE or MEMCACHE_COMPRESSED Compression Method (Memcache only).
+	'compression'			=> MEMCACHE_COMPRESSED,					// Default: FALSE or MEMCACHE_COMPRESSED Compression Method (Memcache only).
 
 	// Not necessary if you already are using 'compression'
 	'auto_compress_tresh'	=> FALSE,					// Controls the minimum value length before attempting to compress automatically.

@@ -248,7 +248,7 @@ class MY_Controller extends CI_Controller
 		$this->station_model->insert_log($data);
 	}
 
-	function make_facet($result, $facet)
+	function make_facet($result, $facet, $session_key)
 	{
 		$make_facet = array();
 		foreach ($result['records'] as $_row)
@@ -257,16 +257,19 @@ class MY_Controller extends CI_Controller
 			$exploded_facet = explode('|', $_row[$facet]);
 			foreach ($exploded_facet as $single_value)
 			{
-				if (isset($make_facet[trim($single_value)]))
-					$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
-				else
-					$make_facet[trim($single_value)] = $_row['@count'];
+				if (isset($this->session->userdata[$session_key]) && $this->session->userdata[$session_key] == $single_value)
+				{
+					if (isset($make_facet[trim($single_value)]))
+						$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
+					else
+						$make_facet[trim($single_value)] = $_row['@count'];
+				}
 			}
 		}
 		$final_facet = array();
 		foreach ($make_facet as $_index => $_single_facet)
 		{
-			if ($_index != '(**)')
+			if ($_index != '(**)' && $_index != '')
 				$final_facet[] = array($facet => $_index, '@count' => $_single_facet);
 		}
 		return $final_facet;

@@ -1211,19 +1211,19 @@ class Instantiations extends MY_Controller
 				$data['nomination_status'] = sortByOneKey($nomination['records'], 'status');
 				unset($nomination);
 				$media_type = $this->sphinx->facet_index('media_type', $index);
-				$media_type = $this->make_facet($media_type, 'media_type');
+				$media_type = $this->make_facet($media_type, 'media_type', 'media_type');
 				$data['media_types'] = sortByOneKey($media_type, 'media_type', TRUE);
 				unset($media_type);
 				$p_format = $this->sphinx->facet_index('physical_format_name', $index, 'physical');
-				$p_format = $this->make_facet($p_format, 'physical_format_name');
+				$p_format = $this->make_facet($p_format, 'physical_format_name', 'physical_format');
 				$data['physical_formats'] = sortByOneKey($p_format, 'physical_format_name', TRUE);
 				unset($p_format);
 				$d_format = $this->sphinx->facet_index('digital_format_name', $index, 'digital');
-				$d_format = $this->make_facet($d_format, 'digital_format_name');
+				$d_format = $this->make_facet($d_format, 'digital_format_name', 'digital_format');
 				$data['digital_formats'] = sortByOneKey($d_format, 'digital_format_name', TRUE);
 				unset($d_format);
 				$generation = $this->sphinx->facet_index('facet_generation', $index);
-				$generation = $this->make_facet($generation, 'facet_generation');
+				$generation = $this->make_facet($generation, 'facet_generation', 'generation');
 				$data['generations'] = sortByOneKey($generation, 'facet_generation', TRUE);
 				unset($generation);
 				$digitized = $this->sphinx->facet_index('digitized', $index, 'digitized');
@@ -1243,13 +1243,13 @@ class Instantiations extends MY_Controller
 					$key_name = 'ins';
 				}
 				$data['org_states'] = json_decode($this->memcached_library->get($key_name . '_state'), TRUE);
-				
+
 				$data['stations'] = json_decode($this->memcached_library->get($key_name . '_stations'), TRUE);
 
 				$data['nomination_status'] = json_decode($this->memcached_library->get($key_name . '_status'), TRUE);
 				$data['media_types'] = json_decode($this->memcached_library->get($key_name . '_media_type'), TRUE);
 				$data['physical_formats'] = json_decode($this->memcached_library->get($key_name . '_physical'), TRUE);
-				
+
 				$data['digital_formats'] = json_decode($this->memcached_library->get($key_name . '_digital'), TRUE);
 				$data['generations'] = json_decode($this->memcached_library->get($key_name . '_generations'), TRUE);
 

@@ -261,8 +261,8 @@ class MY_Controller extends CI_Controller
 				
 				if (isset($this->session->userdata[$session_key]) && ! empty($this->session->userdata[$session_key]))
 				{
-					debug($this->session->userdata[$session_key],FALSE);
-					debug($single_value,FALSE);
+					debug('Session=> '.$this->session->userdata[$session_key],FALSE);
+					debug('Single => '.$single_value,FALSE);
 					if ($this->session->userdata[$session_key] == $single_value)
 					{
 						

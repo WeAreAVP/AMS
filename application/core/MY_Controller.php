@@ -261,13 +261,13 @@ class MY_Controller extends CI_Controller
 				
 				if (isset($this->session->userdata[$session_key]) && ! empty($this->session->userdata[$session_key]))
 				{
-					debug('Session=> '.$this->session->userdata[$session_key],FALSE);
+					
+					if ($this->session->userdata[$session_key] == $single_value)
+					{
+						debug('Session=> '.$this->session->userdata[$session_key],FALSE);
 					debug('Single => '.$single_value,FALSE);
 					debug('Count => '.$_row['@count'],FALSE);
 					debug('<hr/>',FALSE);
-					if ($this->session->userdata[$session_key] == $single_value)
-					{
-						
 						if (isset($make_facet[trim($single_value)]))
 							$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
 						else

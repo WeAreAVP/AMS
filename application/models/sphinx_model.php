@@ -459,7 +459,7 @@ class Sphinx_Model extends CI_Model
 		if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
 		{
 			$media_type = str_replace('|||', '" | "', trim($this->session->userdata['media_type']));
-			$where .=" @s_media_type \"$media_type\"";
+			$where .=" @s_media_type \"^$media_type$\"";
 		}
 		if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
 		{
@@ -476,7 +476,7 @@ class Sphinx_Model extends CI_Model
 		if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
 		{
 			$digital_format = str_replace('|||', '" | "', trim($this->session->userdata['digital_format']));
-			$where .=" @s_digital_format_name \"$digital_format\"";
+			$where .=" @s_digital_format_name \"^$digital_format$\"";
 		}
 		else if ($type == 'digital'  && $sphnix_index !='assets_list')
 		{
@@ -485,7 +485,7 @@ class Sphinx_Model extends CI_Model
 		if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
 		{
 			$generation = str_replace('|||', '" | "', trim($this->session->userdata['generation']));
-			$where .=" @s_generation \"$generation\"";
+			$where .=" @s_generation \"^$generation$\"";
 		}
 
 		if ((isset($this->session->userdata['migration_failed']) && $this->session->userdata['migration_failed'] === '1' ) || $type == 'migration')

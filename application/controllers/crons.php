@@ -157,8 +157,7 @@ class Crons extends CI_Controller
 		{
 			foreach ($search_facet as $columns => $facet)
 			{
-				if ($index_name === 'assets_list')
-				{
+				
 					$result = $this->sphinx->facet_index($facet, $index_name, $columns);
 
 					if (in_array($facet, array('media_type', 'physical_format_name', 'digital_format_name', 'facet_generation')))
@@ -205,7 +204,7 @@ class Crons extends CI_Controller
 						$result = $this->sphinx->facet_index($facet, $index_name);
 						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, FALSE)), 36000);
 					}
-				}
+				
 //				else if ($index_name === 'instantiations_list')
 //				{
 //					$grouping = FALSE;

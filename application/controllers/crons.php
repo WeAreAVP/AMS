@@ -160,6 +160,7 @@ class Crons extends CI_Controller
 				if ($index_name === 'assets_list')
 				{
 					$result = $this->sphinx->facet_index($facet, $index_name, $columns);
+					debug($result);
 					if (in_array($facet, array('media_type', 'format_name', 'facet_generation')))
 					{
 

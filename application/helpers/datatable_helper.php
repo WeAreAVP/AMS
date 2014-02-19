@@ -454,6 +454,7 @@ function instantiations_datatable_view($records, $column_order)
 	$table_view = array();
 	foreach ($records as $main_index => $value)
 	{
+		debug($value);
 		foreach ($column_order as $key => $row)
 		{
 			$type = $row['title'];

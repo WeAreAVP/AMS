@@ -459,13 +459,13 @@ class Sphinx_Model extends CI_Model
 		if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
 		{
 			$media_type = str_replace('|||', '" | "', trim($this->session->userdata['media_type']));
-			$where .=" @s_media_type \"^$media_type$\" | @s_media_type \"$media_type |\"";
+			$where .=" @s_media_type \"^$media_type$\" | @s_media_type \"$media_type |\" | @s_media_type \"| $media_type$\"";
 		}
 		if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
 		{
 
 			$physical_format = str_replace('|||', '" | "', trim($this->session->userdata['physical_format']));
-			$where .=" @s_physical_format_name \"^$physical_format$\" | @s_physical_format_name \"$physical_format |\" | @s_physical_format_name \"| $physical_format\"";
+			$where .=" @s_physical_format_name \"^$physical_format$\" | @s_physical_format_name \"$physical_format |\" | @s_physical_format_name \"| $physical_format$\"";
 		}
 //		else if ($type == 'physical'  && $sphnix_index !='assets_list')
 //		{

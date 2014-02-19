@@ -465,7 +465,7 @@ class Sphinx_Model extends CI_Model
 		{
 
 			$physical_format = str_replace('|||', '" | "', trim($this->session->userdata['physical_format']));
-			$where .=" @s_physical_format_name \"^$physical_format$\" | @s_physical_format_name \"$physical_format |\" | @s_physical_format_name \"| $physical_format$\"";
+			$where .=" @s_physical_format_name \"^$physical_format$\" | @s_physical_format_name \"^$physical_format |\" | @s_physical_format_name \"| $physical_format$\" | @s_physical_format_name \"| $physical_format |\"";
 		}
 //		else if ($type == 'physical'  && $sphnix_index !='assets_list')
 //		{

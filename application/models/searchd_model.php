@@ -240,12 +240,19 @@ class Searchd_Model extends CI_Model
 				ins_data_rate_units.unit_of_measure AS data_rate_unit_of_measure, 
 				IFNULL(UNIX_TIMESTAMP(instantiation_dates.instantiation_date ),0) AS dates, 
 				date_types.date_type AS date_type, 
-				instantiation_media_types.media_type, 
-				instantiation_formats.format_type, 
-				instantiation_formats.format_name, 
-				instantiation_colors.color, 
-				GROUP_CONCAT(DISTINCT(`generations`.`generation`) SEPARATOR ' | ') AS generation, 
-				`generations`.`generation` AS facet_generation, 
+				
+				
+GROUP_CONCAT(DISTINCT(IFNULL(instantiation_media_types.media_type,'(**)')) SEPARATOR ' | ') AS `media_type`, 
+ GROUP_CONCAT(DISTINCT(instantiation_formats.format_type) SEPARATOR ' | ') AS `physical_format_type`, 
+ GROUP_CONCAT(DISTINCT(instantiation_formats.format_name) SEPARATOR ' | ') AS `physical_format_name`, 
+ GROUP_CONCAT(DISTINCT(d_format.format_type) SEPARATOR ' | ') AS `digital_format_type`, 
+ GROUP_CONCAT(DISTINCT(d_format.format_name) SEPARATOR ' | ') AS `digital_format_name`, 
+ GROUP_CONCAT(DISTINCT(generations.generation) SEPARATOR ' | ') AS `facet_generation`,
+
+
+instantiation_colors.color, 
+				
+				
 				nomination_status.status, 
 				CASE WHEN events.event_outcome=0 THEN 'FAIL' WHEN events.event_outcome=1 THEN 'PASS' END AS outcome_event, 
 				event_types.event_type, 
@@ -310,7 +317,8 @@ class Searchd_Model extends CI_Model
 				LEFT JOIN `instantiation_dates` ON `instantiation_dates`.`instantiations_id` = `instantiations`.`id` 
 				LEFT JOIN `date_types` ON `date_types`.`id` = `instantiation_dates`.`date_types_id` 
 				LEFT JOIN `instantiation_media_types` ON `instantiation_media_types`.`id` = `instantiations`.`instantiation_media_type_id` 
-				LEFT JOIN `instantiation_formats` ON `instantiation_formats`.`instantiations_id` = `instantiations`.`id` 
+				LEFT JOIN `instantiation_formats` ON `instantiation_formats`.`instantiations_id` = `instantiations`.`id` AND instantiation_formats.format_type LIKE 'physical'
+				LEFT JOIN `instantiation_formats` AS d_format ON d_format.`instantiations_id` = `instantiations`.`id` AND d_format.format_type LIKE 'digital'
 				LEFT JOIN `instantiation_generations` ON `instantiation_generations`.`instantiations_id` = `instantiations`.`id`
 				LEFT JOIN `generations` ON `generations`.`id` = `instantiation_generations`.`generations_id`
 				LEFT JOIN `instantiation_colors` ON `instantiation_colors`.`id` = `instantiations`.`instantiation_colors_id` 

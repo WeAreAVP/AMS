@@ -469,8 +469,8 @@ class Searchd_Model extends CI_Model
  LEFT JOIN `instantiation_dates` ON `instantiation_dates`.`instantiations_id` = `instantiations`.`id` 
  LEFT JOIN `date_types` AS `ins_date_types` ON `ins_date_types`.`id` = `instantiation_dates`.`date_types_id` 
  LEFT JOIN `instantiation_media_types` ON `instantiation_media_types`.`id` = `instantiations`.`instantiation_media_type_id` 
- LEFT JOIN `instantiation_formats` ON `instantiation_formats`.`instantiations_id` = `instantiations`.`id` AND instantiation_formats.format_type='physical'
- LEFT JOIN `instantiation_formats` d_format ON d_format.`instantiations_id` = `instantiations`.`id` AND d_format.format_type='digital'
+ LEFT JOIN `instantiation_formats` ON `instantiation_formats`.`instantiations_id` = `instantiations`.`id` AND instantiation_formats.format_type LIKE 'physical'
+ LEFT JOIN `instantiation_formats` AS d_format ON d_format.`instantiations_id` = `instantiations`.`id` AND d_format.format_type LIKE 'digital'
  LEFT JOIN `instantiation_colors` ON `instantiation_colors`.`id` = `instantiations`.`instantiation_colors_id` 
  LEFT JOIN `instantiation_identifier` ON `instantiations`.`id` = `instantiation_identifier`.`instantiations_id` 
  LEFT JOIN `instantiation_generations` ON `instantiation_generations`.`instantiations_id` = `instantiations`.`id` 

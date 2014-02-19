@@ -263,6 +263,8 @@ class MY_Controller extends CI_Controller
 				{
 					debug('Session=> '.$this->session->userdata[$session_key],FALSE);
 					debug('Single => '.$single_value,FALSE);
+					debug('Count => '.$_row['@count'],FALSE);
+					debug('<hr/>',FALSE);
 					if ($this->session->userdata[$session_key] == $single_value)
 					{
 						

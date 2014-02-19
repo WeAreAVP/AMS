@@ -262,7 +262,7 @@ class MY_Controller extends CI_Controller
 				{
 					if ($this->session->userdata[$session_key] == $single_value)
 					{
-						debug($make_facet[trim($single_value)]);
+						
 						if (isset($make_facet[trim($single_value)]))
 							$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
 						else

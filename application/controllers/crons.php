@@ -157,65 +157,53 @@ class Crons extends CI_Controller
 		{
 			foreach ($search_facet as $columns => $facet)
 			{
-				
-					$result = $this->sphinx->facet_index($facet, $index_name, $columns);
 
-					if (in_array($facet, array('media_type', 'physical_format_name', 'digital_format_name', 'facet_generation')))
-					{
-						$make_facet = array();
-						foreach ($result['records'] as $_row)
-						{
+				$result = $this->sphinx->facet_index($facet, $index_name, $columns);
 
-							$exploded_facet = explode('|', $_row[$facet]);
-							foreach ($exploded_facet as $single_value)
-							{
-								if (isset($make_facet[trim($single_value)]))
-									$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
-								else
-									$make_facet[trim($single_value)] = $_row['@count'];
-							}
-						}
-						$final_facet = array();
-						foreach ($make_facet as $_index => $_single_facet)
-						{
-							if ($_index != '(**)' && $_index != '')
-								$final_facet[] = array($facet => $_index, '@count' => $_single_facet);
-						}
-						
-						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($final_facet, $facet, TRUE)), 36000);
-					}
-					else if (in_array($columns, array('digitized', 'migration')))
+				if (in_array($facet, array('media_type', 'physical_format_name', 'digital_format_name', 'facet_generation')))
+				{
+					$make_facet = array();
+					foreach ($result['records'] as $_row)
 					{
-						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, FALSE)), 36000);
-					}
-					else if ($columns == 'stations')
-					{
-						$this->load->library('sphnixrt');
 
-						$result = $this->sphnixrt->select($index_name, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
-						foreach ($result['records'] as $_key => $station)
+						$exploded_facet = explode('|', $_row[$facet]);
+						foreach ($exploded_facet as $single_value)
 						{
-							$result['records'][$_key]['@count'] = $station['count(*)'];
+							if (isset($make_facet[trim($single_value)]))
+								$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
+							else
+								$make_facet[trim($single_value)] = $_row['@count'];
 						}
-						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, FALSE)), 36000);
 					}
-					else
+					$final_facet = array();
+					foreach ($make_facet as $_index => $_single_facet)
 					{
-						$result = $this->sphinx->facet_index($facet, $index_name);
-						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, FALSE)), 36000);
+						if ($_index != '(**)' && $_index != '')
+							$final_facet[] = array($facet => $_index, '@count' => $_single_facet);
 					}
-				
-//				else if ($index_name === 'instantiations_list')
-//				{
-//					$grouping = FALSE;
-//					if (in_array($facet, array('media_type', 'format_name', 'facet_generation')))
-//						$grouping = TRUE;
-//					if (in_array($columns, array('physical', 'digital', 'digitized', 'migration')))
-//					{
-//						$result = $this->sphinx->facet_index($facet, $index_name, $columns);
-//						$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, $grouping)), 36000);
-//					}
-//				}
+
+					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($final_facet, $facet, TRUE)), 36000);
+				}
+				else if (in_array($columns, array('digitized', 'migration')))
+				{
+					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, FALSE)), 36000);
+				}
+				else if ($columns == 'stations')
+				{
+					$this->load->library('sphnixrt');
+
+					$result = $this->sphnixrt->select($index_name, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
+					foreach ($result['records'] as $_key => $station)
+					{
+						$result['records'][$_key]['@count'] = $station['count(*)'];
+					}
+					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, FALSE)), 36000);
+				}
+				else
+				{
+					$result = $this->sphinx->facet_index($facet, $index_name);
+					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, FALSE)), 36000);
+				}
 			}
 			myLog("Succussfully Updated $index_name Facet Search");
 		}

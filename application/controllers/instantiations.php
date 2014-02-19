@@ -1146,7 +1146,7 @@ class Instantiations extends MY_Controller
 			'Nomination' => 'status',
 			'Instantiation\'s_Asset_Title' => 'asset_title',
 			'Media_Type' => 'media_type',
-			'Generation' => 'generation',
+			'Generation' => 'facet_generation',
 			'Format' => 'format_name',
 			'Duration' => 'projected_duration',
 			'Date' => 'dates',

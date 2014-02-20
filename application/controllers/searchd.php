@@ -52,6 +52,7 @@ class Searchd extends CI_Controller
 		$sample_array['title']= 'Nouman Tayyab';
 		$sample_array['format_name']= json_encode(array('Betacam'));
 		$sample_array['media_type']= json_encode(array('Media_type'));
+		debug($sample_array);
 		$this->sphnixrt->insert('test', $sample_array, 1);
 		$sample_array['title']= 'Nouman Tayyab';
 		$sample_array['format_name']= json_encode(array('Betacam','Betacam SP'));

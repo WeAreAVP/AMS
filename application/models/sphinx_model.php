@@ -576,8 +576,8 @@ class Sphinx_Model extends CI_Model
 		$sphinx['start'] = $offset;
 		$sphinx['limit'] = $limit;
 		$sphinx['where'] = $query;
-		$sphinx['order_by'] = $query;
-		$sphinx['order_type'] = $query;
+		$sphinx['order_by'] = $cloumn;
+		$sphinx['order_type'] = $order_type;
 		return $result = $this->sphnixrt->sphinx_search('assets_list', $sphinx);
 	}
 

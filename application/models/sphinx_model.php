@@ -499,7 +499,7 @@ class Sphinx_Model extends CI_Model
 		{
 			$where .=" @s_organization \"^$this->station_name$\"";
 		}
-		send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'Where', $where);
+//		send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'Where', $where);
 		
 		return $where;
 	}

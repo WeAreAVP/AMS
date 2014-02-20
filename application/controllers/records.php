@@ -264,7 +264,7 @@ class Records extends MY_Controller
 		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
 
 		$records = $this->sphinx->assets_listing($offset, 100, TRUE);
-		$data['total'] = $records['total_count'];
+		$data['total'] = $records['meta']['total_found'];
 		$record_ids = array_map(array($this, 'make_map_array'), $records['records']);
 		$this->load->model('searchd_model', 'searchd');
 		$records = $this->searchd->get_assets($record_ids);

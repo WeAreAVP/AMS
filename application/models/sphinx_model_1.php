@@ -562,22 +562,11 @@ class Sphinx_Model extends CI_Model
 //		}
 //
 //		return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
-		$cloumn = '';
-		$order_type = 'ASC';
-		if (isset($this->session->userdata['column']) && $this->session->userdata['column'] != '' && $this->session->userdata['column'] != 'flag')
-		{
-			if ($this->session->userdata['column_order'] == 'asc')
-				$order_type = 'ASC';
-			else
-				$order_type = 'DESC';
-			$cloumn = $this->session->userdata['column'];
-		}
 		$this->load->library('sphnixrt');
 		$sphinx['start'] = $offset;
 		$sphinx['limit'] = $limit;
+
 		$sphinx['where'] = $query;
-		$sphinx['order_by'] = $query;
-		$sphinx['order_type'] = $query;
 		return $result = $this->sphnixrt->sphinx_search('assets_list', $sphinx);
 	}
 

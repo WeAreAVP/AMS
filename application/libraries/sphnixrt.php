@@ -197,20 +197,36 @@ class Sphnixrt
 
 		return $where;
 	}
+
 	public function sphinx_search($index_name, $data_array)
 	{
-
-
-
 		$this->_clear();
+		$select = '';
+		if (isset($data_array['group_by']) && ! empty($data_array['group_by']))
+		{
+			$select = ',COUNT(*)';
+		}
 		// build first part of query
-		$query = "SELECT * FROM `{$index_name}`";
+		$query = "SELECT * $select FROM `{$index_name}`";
 		if (isset($data_array['where']) && ! empty($data_array['where']))
 			$query .= " WHERE MATCH('" . $data_array['where'] . "')";
 		if (isset($data_array['group_by']) && ! empty($data_array['group_by']))
 		{
 			// have some values, push these
 			$query .= ' GROUP BY `' . $data_array['group_by'] . '`';
+		}
+		if (isset($data_array['order_by']) && ! empty($data_array['order_by']))
+		{
+			// have some values, push these
+			$query .= ' ORDER BY `' . $data_array['order_by'] . '`';
+			if (isset($data_array['order_type']) && ! empty($data_array['order_type']))
+			{
+				$query .=$data_array['order_type'];
+			}
+			else
+			{
+				$query .='ASC';
+			}
 		}
 // add start/limits?
 		if (is_int($data_array['limit']) && is_int($data_array['start']))
@@ -277,6 +293,7 @@ class Sphnixrt
 				'native' => $this->sphinxql_link->error);
 		}
 	}
+
 	public function select($index_name, $data_array)
 	{
 

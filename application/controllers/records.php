@@ -81,7 +81,7 @@ class Records extends MY_Controller
 			$this->set_facet_search($search);
 			
 		}
-		debug($this->session->userdata,FALSE);
+		
 		$this->session->set_userdata('page_link', 'records/index');
 		$data['facet_search_url'] = site_url('records/index');
 		$data['current_tab'] = 'simple';

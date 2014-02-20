@@ -117,17 +117,23 @@ class Sphinx_Model extends CI_Model
 	 */
 	public function facet_index($column_name, $index_name, $type = NULL, $offset = 0, $limit = 1000)
 	{
-		
+
 		$this->load->library('sphnixrt');
 		$query = $this->make_where_clause($type, $index_name);
 		$sphinx['start'] = $offset;
 		$sphinx['limit'] = $limit;
 		$sphinx['where'] = $query;
+		$sphinx['filter'] = '';
+		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
+		{
+			$sphinx['filter'] = ' digitized IN (0,1) ';
+		}
+
 		$sphinx['group_by'] = $column_name;
-		
+
 		return $result = $this->sphnixrt->sphinx_search($index_name, $sphinx);
-		
-		
+
+
 //		$list = array();
 //		$total_record = 0;
 //		$query = '';
@@ -589,6 +595,11 @@ class Sphinx_Model extends CI_Model
 		$sphinx['where'] = $query;
 		$sphinx['order_by'] = $cloumn;
 		$sphinx['order_type'] = $order_type;
+		$sphinx['filter'] = '';
+		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
+		{
+			$sphinx['filter'] = ' digitized IN (0,1) ';
+		}
 		return $result = $this->sphnixrt->sphinx_search('assets_list', $sphinx);
 	}
 

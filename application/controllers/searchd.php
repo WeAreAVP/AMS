@@ -50,14 +50,12 @@ class Searchd extends CI_Controller
 		
 		ini_set('display_errors', 1);
 		$sample_array['title']= 'Nouman Tayyab';
-		$sample_array['format_name']='{"Betacam"}';
-		$sample_array['media_type']= '{"Moving Image"}';
-		
+		$sample_array['format_name']= '(Betacam)';
+		$sample_array['media_type']= '(Moving Image)';
 		$this->sphnixrt->insert('test', $sample_array, 1);
-		debug($sample_array);
 		$sample_array['title']= 'Nouman Tayyab';
-		$sample_array['format_name']= json_encode(array('Betacam','Betacam SP'));
-		$sample_array['media_type']= json_encode(array('Media_type'));
+		$sample_array['format_name']= '(Betacam,Betacam SP)';
+		$sample_array['media_type']= '(Moving Image)';
 		$this->sphnixrt->insert('test', $sample_array, 2);
 		exit;
 		$sphinx['start']=0;

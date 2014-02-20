@@ -123,6 +123,7 @@ class Sphinx_Model extends CI_Model
 		$sphinx['start'] = $offset;
 		$sphinx['limit'] = $limit;
 		$sphinx['where'] = $query;
+		$sphinx['group_by'] = $column_name;
 		
 		return $result = $this->sphnixrt->sphinx_search($index_name, $sphinx);
 		

@@ -210,11 +210,7 @@ class Sphnixrt
 		$query = "SELECT * $select FROM `{$index_name}`";
 		if (isset($data_array['where']) && ! empty($data_array['where']))
 			$query .= " WHERE MATCH('" . $data_array['where'] . "')";
-		if (isset($data_array['group_by']) && ! empty($data_array['group_by']))
-		{
-			// have some values, push these
-			$query .= ' GROUP BY `' . $data_array['group_by'] . '`';
-		}
+		
 		if (isset($data_array['order_by']) && ! empty($data_array['order_by']))
 		{
 			// have some values, push these
@@ -228,6 +224,11 @@ class Sphnixrt
 			{
 				$query .= ' ORDER BY `' . $data_array['order_by'] . '` ASC ';
 			}
+		}
+		if (isset($data_array['group_by']) && ! empty($data_array['group_by']))
+		{
+			// have some values, push these
+			$query .= ' GROUP BY `' . $data_array['group_by'] . '`';
 		}
 // add start/limits?
 		if (is_int($data_array['limit']) && is_int($data_array['start']))

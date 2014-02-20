@@ -240,8 +240,7 @@ class MY_Controller extends CI_Controller
 	 */
 	function make_map_array($value)
 	{
-		if(is_array($value))
-			return $value['id'];
+
 		return $value->id;
 	}
 
@@ -267,18 +266,18 @@ class MY_Controller extends CI_Controller
 					if ($this->session->userdata[$session_key] == trim($single_value))
 					{
 						if (isset($make_facet[trim($single_value)]))
-							$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['count(*)'];
+							$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
 						else
-							$make_facet[trim($single_value)] = $_row['count(*)'];
+							$make_facet[trim($single_value)] = $_row['@count'];
 						
 					}
 				}
 				else
 				{
 					if (isset($make_facet[trim($single_value)]))
-						$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['count(*)'];
+						$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
 					else
-						$make_facet[trim($single_value)] = $_row['count(*)'];
+						$make_facet[trim($single_value)] = $_row['@count'];
 				}
 			}
 			
@@ -288,7 +287,7 @@ class MY_Controller extends CI_Controller
 		foreach ($make_facet as $_index => $_single_facet)
 		{
 			if ($_index != '(**)' && $_index != '')
-				$final_facet[] = array($facet => $_index, 'count(*)' => $_single_facet);
+				$final_facet[] = array($facet => $_index, '@count' => $_single_facet);
 		}
 		return $final_facet;
 	}

@@ -37,13 +37,9 @@ class Sphinx_Model extends CI_Model
 		//rt_attr_multi
 		parent::__construct();
 		$this->load->library('sphinxsearch');
-		$this->load->library('sphinxsearch', "", 'searchsphinx');
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
 		$this->sphinxsearch->reset_overrides();
-		$this->searchsphinx->reset_filters();
-		$this->searchsphinx->reset_group_by();
-		$this->searchsphinx->reset_overrides();
 	}
 
 	/**
@@ -117,64 +113,47 @@ class Sphinx_Model extends CI_Model
 	 */
 	public function facet_index($column_name, $index_name, $type = NULL, $offset = 0, $limit = 1000)
 	{
+		$list = array();
+		$total_record = 0;
+		$query = '';
+		$this->sphinxsearch->reset_filters();
+		$this->sphinxsearch->reset_group_by();
+		$this->sphinxsearch->reset_overrides();
+		$mode = SPH_MATCH_EXTENDED;
+		$this->sphinxsearch->set_array_result(true);
+		$this->sphinxsearch->set_match_mode($mode);
 
-		$this->load->library('sphnixrt');
+		$this->sphinxsearch->set_group_by($column_name, SPH_GROUPBY_ATTR);
+
+		$this->sphinxsearch->set_connect_timeout(120);
+		if ($limit)
+			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
+
 		$query = $this->make_where_clause($type, $index_name);
-		$sphinx['start'] = $offset;
-		$sphinx['limit'] = $limit;
-		$sphinx['where'] = $query;
-		$sphinx['filter'] = '';
-		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
+		$res = $this->sphinxsearch->query($query, $index_name);
+
+
+
+		$execution_time = $res['time'];
+
+		if ($res)
 		{
-			$sphinx['filter'] = ' digitized IN (0,1) ';
+			$total_record = $res['total_found'];
+			if ($total_record > 0)
+			{
+				if (isset($res['matches']))
+				{
+					foreach ($res['matches'] as $record)
+					{
+
+
+						$list[] = array_merge(array('id' => $record['id']), $record['attrs']);
+					}
+				}
+			}
 		}
 
-		$sphinx['group_by'] = $column_name;
-
-		return $result = $this->sphnixrt->sphinx_search($index_name, $sphinx);
-
-
-//		$list = array();
-//		$total_record = 0;
-//		$query = '';
-//		$this->searchsphinx->reset_filters();
-//		$this->searchsphinx->reset_group_by();
-//		$this->searchsphinx->reset_overrides();
-//		$mode = SPH_MATCH_EXTENDED;
-//		$this->searchsphinx->set_array_result(true);
-//		$this->searchsphinx->set_match_mode($mode);
-//
-//		$this->searchsphinx->set_group_by($column_name, SPH_GROUPBY_ATTR);
-//
-//		$this->searchsphinx->set_connect_timeout(120);
-//		if ($limit)
-//			$this->searchsphinx->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
-//
-//		$query = $this->make_where_clause($type, $index_name);
-//		$res = $this->searchsphinx->query($query, $index_name);
-//
-//
-//
-//		$execution_time = $res['time'];
-//
-//		if ($res)
-//		{
-//			$total_record = $res['total_found'];
-//			if ($total_record > 0)
-//			{
-//				if (isset($res['matches']))
-//				{
-//					foreach ($res['matches'] as $record)
-//					{
-//
-//
-//						$list[] = array_merge(array('id' => $record['id']), $record['attrs']);
-//					}
-//				}
-//			}
-//		}
-//
-//		return array("total_count" => $total_record, "records" => $list, "query_time" => $execution_time);
+		return array("total_count" => $total_record, "records" => $list, "query_time" => $execution_time);
 	}
 
 	/*
@@ -486,37 +465,36 @@ class Sphinx_Model extends CI_Model
 		}
 		if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
 		{
-			$media_type = trim($this->session->userdata['media_type']);
-			$where .=" @s_media_type(\"^$media_type$\" && (\"^$media_type |\" |  \"| $media_type$\" |  \"| $media_type |\"))";
+			$media_type = trim($this->session->userdata['media_type']) . ' |';
+			$where .=" @s_media_type \"^$media_type$\"";
 		}
 		if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
 		{
 
-			$physical_format = trim($this->session->userdata['physical_format']);
-			$where .=" @s_physical_format_name (\"^$physical_format$\" && (\"^$physical_format |\" |  \"| $physical_format$\" |  \"| $physical_format |\"))";
+			$physical_format = trim($this->session->userdata['physical_format']) . ' |';
+			$where .=" @s_physical_format_name \"^$physical_format$\"";
 		}
 
 		if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
 		{
-			$digital_format = trim($this->session->userdata['digital_format']);
-			$where .=" @s_digital_format_name (\"^$digital_format$\" && (\"^$digital_format |\" | \"| $digital_format$\" | \"| $digital_format |\"))";
+			$digital_format = trim($this->session->userdata['digital_format']) . ' |';
+			$where .=" @s_digital_format_name \"^$digital_format$\"";
 		}
 
 		if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
 		{
-			$generation = trim($this->session->userdata['generation']);
-			$where .=" @s_facet_generation (\"^$generation$\" && (\"^$generation |\" | \"| $generation$\" | \"| $generation |\"))";
+			$generation = trim($this->session->userdata['generation']) . ' |';
+			$where .=" @s_facet_generation \"^$generation$\"";
 		}
 
-//		if ((isset($this->session->userdata['migration_failed']) && $this->session->userdata['migration_failed'] === '1' ) || $type == 'migration')
-//		{
-//			$where .=' @event_type "migration" @event_outcome "FAIL"';
-//		}
+		if ((isset($this->session->userdata['migration_failed']) && $this->session->userdata['migration_failed'] === '1' ) || $type == 'migration')
+		{
+			$where .=' @event_type "migration" @event_outcome "FAIL"';
+		}
 		if (@$this->is_station_user)
 		{
 			$where .=" @s_organization \"^$this->station_name$\"";
 		}
-//		send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'Where', $where);
 
 		return $where;
 	}
@@ -533,74 +511,52 @@ class Sphinx_Model extends CI_Model
 	 */
 	function assets_listing($offset = 0, $limit = 100, $select = FALSE)
 	{
-//		$instantiations = array();
-//		$total_record = 0;
-//		$this->sphinxsearch->reset_filters();
-//		$this->sphinxsearch->reset_group_by();
-//		$this->sphinxsearch->reset_overrides();
-//		$mode = SPH_MATCH_EXTENDED;
-//		$this->sphinxsearch->set_array_result(true);
-//		$this->sphinxsearch->set_match_mode($mode);
-//		$this->sphinxsearch->set_connect_timeout(120);
-//		if ($select)
-//			$this->sphinxsearch->set_select('id');
-//		if ($limit)
-//			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
-//		if ($select)
-//		{
-//			if (isset($this->session->userdata['column']) && $this->session->userdata['column'] != '' && $this->session->userdata['column'] != 'flag')
-//			{
-//				if ($this->session->userdata['column_order'] == 'asc')
-//					$sort_mode = SPH_SORT_ATTR_ASC;
-//				else
-//					$sort_mode = SPH_SORT_ATTR_DESC;
-//				$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['column']);
-//			}
-//		}
+		$instantiations = array();
+		$total_record = 0;
+		$this->sphinxsearch->reset_filters();
+		$this->sphinxsearch->reset_group_by();
+		$this->sphinxsearch->reset_overrides();
+		$mode = SPH_MATCH_EXTENDED;
+		$this->sphinxsearch->set_array_result(true);
+		$this->sphinxsearch->set_match_mode($mode);
+		$this->sphinxsearch->set_connect_timeout(120);
+		if ($select)
+			$this->sphinxsearch->set_select('id');
+		if ($limit)
+			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
+		if ($select)
+		{
+			if (isset($this->session->userdata['column']) && $this->session->userdata['column'] != '' && $this->session->userdata['column'] != 'flag')
+			{
+				if ($this->session->userdata['column_order'] == 'asc')
+					$sort_mode = SPH_SORT_ATTR_ASC;
+				else
+					$sort_mode = SPH_SORT_ATTR_DESC;
+				$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['column']);
+			}
+		}
 		$query = $this->make_where_clause(NULL, $this->config->item('asset_index'));
-//
-//		$res = $this->sphinxsearch->query($query, $this->config->item('asset_index'));
-//
-//
-//		$execution_time = $res['time'];
-//		if ($res)
-//		{
-//			$total_record = $res['total_found'];
-//			if ($total_record > 0)
-//			{
-//				if (isset($res['matches']))
-//				{
-//					foreach ($res['matches'] as $record)
-//					{
-//						$instantiations[] = (object) array_merge(array('id' => $record['id']), $record['attrs']);
-//					}
-//				}
-//			}
-//		}
-//
-//		return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
-		$cloumn = '';
-		$order_type = 'ASC';
-		if (isset($this->session->userdata['column']) && $this->session->userdata['column'] != '' && $this->session->userdata['column'] != 'flag')
+
+		$res = $this->sphinxsearch->query($query, $this->config->item('asset_index'));
+
+
+		$execution_time = $res['time'];
+		if ($res)
 		{
-			if ($this->session->userdata['column_order'] == 'asc')
-				$order_type = 'ASC';
-			else
-				$order_type = 'DESC';
-			$cloumn = $this->session->userdata['column'];
+			$total_record = $res['total_found'];
+			if ($total_record > 0)
+			{
+				if (isset($res['matches']))
+				{
+					foreach ($res['matches'] as $record)
+					{
+						$instantiations[] = (object) array_merge(array('id' => $record['id']), $record['attrs']);
+					}
+				}
+			}
 		}
-		$this->load->library('sphnixrt');
-		$sphinx['start'] = $offset;
-		$sphinx['limit'] = $limit;
-		$sphinx['where'] = $query;
-		$sphinx['order_by'] = $cloumn;
-		$sphinx['order_type'] = $order_type;
-		$sphinx['filter'] = '';
-		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1'))
-		{
-			$sphinx['filter'] = ' digitized IN (0,1) ';
-		}
-		return $result = $this->sphnixrt->sphinx_search('assets_list', $sphinx);
+
+		return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
 	}
 
 }

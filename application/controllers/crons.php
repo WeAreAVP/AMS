@@ -170,16 +170,16 @@ class Crons extends CI_Controller
 						foreach ($exploded_facet as $single_value)
 						{
 							if (isset($make_facet[trim($single_value)]))
-								$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['count(*)'];
+								$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
 							else
-								$make_facet[trim($single_value)] = $_row['count(*)'];
+								$make_facet[trim($single_value)] = $_row['@count'];
 						}
 					}
 					$final_facet = array();
 					foreach ($make_facet as $_index => $_single_facet)
 					{
 						if ($_index != '(**)' && $_index != '')
-							$final_facet[] = array($facet => $_index, 'count(*)' => $_single_facet);
+							$final_facet[] = array($facet => $_index, '@count' => $_single_facet);
 					}
 
 					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($final_facet, $facet, TRUE)), 36000);
@@ -195,7 +195,7 @@ class Crons extends CI_Controller
 					$result = $this->sphnixrt->select($index_name, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
 					foreach ($result['records'] as $_key => $station)
 					{
-						$result['records'][$_key]['count(*)'] = $station['count(*)'];
+						$result['records'][$_key]['@count'] = $station['count(*)'];
 					}
 					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, FALSE)), 36000);
 				}

@@ -36,9 +36,13 @@ class Sphinx_Model extends CI_Model
 	{
 		parent::__construct();
 		$this->load->library('sphinxsearch');
+		$this->load->library('sphinxsearch', "", 'searchsphinx');
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
 		$this->sphinxsearch->reset_overrides();
+		$this->searchsphinx->reset_filters();
+		$this->searchsphinx->reset_group_by();
+		$this->searchsphinx->reset_overrides();
 	}
 
 	/**
@@ -115,21 +119,21 @@ class Sphinx_Model extends CI_Model
 		$list = array();
 		$total_record = 0;
 		$query = '';
-		$this->sphinxsearch->reset_filters();
-		$this->sphinxsearch->reset_group_by();
-		$this->sphinxsearch->reset_overrides();
+		$this->searchsphinx->reset_filters();
+		$this->searchsphinx->reset_group_by();
+		$this->searchsphinx->reset_overrides();
 		$mode = SPH_MATCH_EXTENDED;
-		$this->sphinxsearch->set_array_result(true);
-		$this->sphinxsearch->set_match_mode($mode);
+		$this->searchsphinx->set_array_result(true);
+		$this->searchsphinx->set_match_mode($mode);
 
-		$this->sphinxsearch->set_group_by($column_name, SPH_GROUPBY_ATTR);
+		$this->searchsphinx->set_group_by($column_name, SPH_GROUPBY_ATTR);
 
-		$this->sphinxsearch->set_connect_timeout(120);
+		$this->searchsphinx->set_connect_timeout(120);
 		if ($limit)
-			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
+			$this->searchsphinx->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
 		$query = $this->make_where_clause($type, $index_name);
-		$res = $this->sphinxsearch->query($query, $index_name);
+		$res = $this->searchsphinx->query($query, $index_name);
 
 
 
@@ -433,7 +437,7 @@ class Sphinx_Model extends CI_Model
 		}
 		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
 		{
-			$this->sphinxsearch->set_filter("digitized", array(1,0));
+			$this->sphinxsearch->set_filter("digitized", array(1, 0));
 		}
 //		if (isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] != '')
 //			{

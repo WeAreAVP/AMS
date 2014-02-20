@@ -268,7 +268,7 @@ class MY_Controller extends CI_Controller
 					if ($this->session->userdata[$session_key] == trim($single_value))
 					{
 						if (isset($make_facet[trim($single_value)]))
-							$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
+							$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['count(*)'];
 						else
 							$make_facet[trim($single_value)] = $_row['count(*)'];
 						
@@ -277,7 +277,7 @@ class MY_Controller extends CI_Controller
 				else
 				{
 					if (isset($make_facet[trim($single_value)]))
-						$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['@count'];
+						$make_facet[trim($single_value)] = $make_facet[trim($single_value)] + $_row['count(*)'];
 					else
 						$make_facet[trim($single_value)] = $_row['count(*)'];
 				}

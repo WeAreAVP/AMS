@@ -289,7 +289,7 @@ class Sphinx_Model extends CI_Model
 			$this->sphinxsearch->set_filter("assets_id", array($params['asset_id']));
 		}
 
-		$mode = SPH_MATCH_EXTENDED2;
+		$mode = SPH_MATCH_PHRASE;
 		$this->sphinxsearch->set_array_result(true);
 		$this->sphinxsearch->set_match_mode($mode);
 		$this->sphinxsearch->set_connect_timeout(120);

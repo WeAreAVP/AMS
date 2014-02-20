@@ -475,7 +475,7 @@ if (count($migration) > 0)
 //			}
 			?>
 <!--			<span id="digitized" style="cursor: default;">
-				<input type="hidden" id="digitized_state" name="digitized" value="<?php echo $batch_check; ?>"/> 
+				<input type="hidden" id="digitized_state" name="digitized" value="<?php //echo $batch_check; ?>"/> 
 			</span>
 			<b>Digitized</b>-->
 <!--<script type="text/javascript">

@@ -50,6 +50,7 @@ class Sphinx_Model extends CI_Model
 		$total_record = 0;
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
+		$this->sphinxsearch->reset_overrides();
 		//$where = $this->get_sphinx_search_condtion($params);
 		$mode = SPH_MATCH_EXTENDED;
 		$this->sphinxsearch->set_array_result(true);
@@ -113,7 +114,7 @@ class Sphinx_Model extends CI_Model
 		$query = '';
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
-
+		$this->sphinxsearch->reset_overrides();
 		$mode = SPH_MATCH_EXTENDED;
 		$this->sphinxsearch->set_array_result(true);
 		$this->sphinxsearch->set_match_mode($mode);
@@ -189,6 +190,7 @@ class Sphinx_Model extends CI_Model
 		$total_record = 0;
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
+		$this->sphinxsearch->reset_overrides();
 		$mode = SPH_MATCH_EXTENDED;
 		$this->sphinxsearch->set_array_result(true);
 		$this->sphinxsearch->set_match_mode($mode);
@@ -283,6 +285,7 @@ class Sphinx_Model extends CI_Model
 		$total_record = 0;
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
+		$this->sphinxsearch->reset_overrides();
 		//$where = $this->get_sphinx_search_condtion($params);
 		if (isset($params['asset_id']))
 		{
@@ -509,6 +512,7 @@ class Sphinx_Model extends CI_Model
 		$total_record = 0;
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
+		$this->sphinxsearch->reset_overrides();
 		$mode = SPH_MATCH_EXTENDED;
 		$this->sphinxsearch->set_array_result(true);
 		$this->sphinxsearch->set_match_mode($mode);

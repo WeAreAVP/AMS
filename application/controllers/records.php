@@ -59,7 +59,6 @@ class Records extends MY_Controller
 		if (isAjax())
 		{
 			$this->unset_facet_search();
-			$this->session->set_userdata('offset', $offset);
 			$search['custom_search'] = json_decode($this->input->post('keyword_field_main_search'));
 			$search['date_range'] = json_decode($this->input->post('date_field_main_search'));
 			$search['organization'] = $this->input->post('organization_main_search');
@@ -69,7 +68,6 @@ class Records extends MY_Controller
 			$search['physical_format'] = $this->input->post('physical_format_main_search');
 			$search['digital_format'] = $this->input->post('digital_format_main_search');
 			$search['generation'] = $this->input->post('generation_main_search');
-
 			if ($this->input->post('digitized') && $this->input->post('digitized') === '1')
 			{
 				$search['digitized'] = $this->input->post('digitized');
@@ -79,9 +77,8 @@ class Records extends MY_Controller
 				$search['migration_failed'] = $this->input->post('migration_failed');
 			}
 			$this->set_facet_search($search);
-			
 		}
-		
+
 		$this->session->set_userdata('page_link', 'records/index');
 		$data['facet_search_url'] = site_url('records/index');
 		$data['current_tab'] = 'simple';
@@ -149,18 +146,7 @@ class Records extends MY_Controller
 		}
 	}
 
-	/*
-	 *
-	 * To List All flagged
-	 *
-	 */
-
-	function flagged()
-	{
-		show_404();
-		exit();
-//			$this->load->view('records/flagged');
-	}
+	
 
 	/*
 	 * To Display Assets details
@@ -216,40 +202,7 @@ class Records extends MY_Controller
 					$data['prev_result_id'] = $search_results[$cur_key - 1]->id;
 				if (isset($search_results[$cur_key + 1]))
 					$data['next_result_id'] = $search_results[$cur_key + 1]->id;
-//				$search_results_array = array();
-//				$num_search_results = 0;
-//				if ($search_results)
-//				{
-//					foreach ($search_results as $search_result)
-//					{
-//						$search_results_array[]['id'] = $search_result->id;
-//					}
-//					$num_search_results = count($search_results);
-//				}
-//# Get result number of current asset
-//				$search_result_pointer = 0;
-//				foreach ($search_results_array as $search_res)
-//				{
-//					if ($search_res['id'] == $asset_id)
-//						break;
-//					$search_result_pointer ++;
-//				}
-//				$data['cur_result'] = $search_result_pointer + 1;
-//
-//# Get number of results
-//				$data['num_results'] = $num_search_results;
-//
-//# Get result number of next listings
-//				if ($search_result_pointer >= ($num_search_results - 1))
-//					$data['next_result_id'] = FALSE;
-//				else
-//					$data['next_result_id'] = $search_results_array[$search_result_pointer + 1]['id'];
-//
-//# Get result number of previous listings
-//				if ($search_result_pointer <= 0 || $num_search_results == 1)
-//					$data['prev_result_id'] = FALSE;
-//				else
-//					$data['prev_result_id'] = $search_results_array[$search_result_pointer - 1]['id'];
+
 			}
 			$data['last_page'] = '';
 			if (isset($this->session->userdata['page_link']) && ! is_empty($this->session->userdata['page_link']))

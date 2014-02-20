@@ -16,7 +16,7 @@ if (count($stations) > 0 && ! $this->is_station_user)
 				if ($key < 4)
 				{
 					?>
-					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['organization']); ?>', 'organization_main');"><?php echo $value['organization'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></div>
+					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['organization']); ?>', 'organization_main');"><?php echo $value['organization'] . ' (' . number_format($value['@count']) . ')'; ?></a></div>
 					<?php
 				}
 				else if ($key == 4)
@@ -28,13 +28,13 @@ if (count($stations) > 0 && ! $this->is_station_user)
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['organization']); ?>', 'organization_main');"><?php echo $value['organization'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></li>
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['organization']); ?>', 'organization_main');"><?php echo $value['organization'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>
 							<?php
 						}
 						else
 						{
 							?>
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['organization']); ?>', 'organization_main');"><?php echo $value['organization'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></li>
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['organization']); ?>', 'organization_main');"><?php echo $value['organization'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>
 							<?php
 						}
 					}
@@ -64,7 +64,7 @@ if (count($org_states) > 0)
 				if ($key < 4)
 				{
 					?>
-					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['state']); ?>', 'states_main');"><?php echo $value['state'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></div>
+					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['state']); ?>', 'states_main');"><?php echo $value['state'] . ' (' . number_format($value['@count']) . ')'; ?></a></div>
 					<?php
 				}
 				else if ($key == 4)
@@ -76,13 +76,13 @@ if (count($org_states) > 0)
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['state']); ?>', 'states_main');"><?php echo $value['state'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></li>  
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['state']); ?>', 'states_main');"><?php echo $value['state'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
 						{
 							?>
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['state']); ?>', 'states_main');"><?php echo $value['state'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></li>  
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['state']); ?>', 'states_main');"><?php echo $value['state'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 					}
@@ -112,7 +112,7 @@ if (count($nomination_status) > 0)
 				if ($key < 4)
 				{
 					?>
-					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['status']); ?>', 'nomination_status_main');"><?php echo $value['status'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></div>
+					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['status']); ?>', 'nomination_status_main');"><?php echo $value['status'] . ' (' . number_format($value['@count']) . ')'; ?></a></div>
 					<?php
 				}
 				else if ($key == 4)
@@ -124,13 +124,13 @@ if (count($nomination_status) > 0)
 							<b class="caret"></b>
 						</a> 
 						<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['status']); ?>', 'nomination_status_main');"><?php echo $value['status'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></li>  
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['status']); ?>', 'nomination_status_main');"><?php echo $value['status'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
 						{
 							?>
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['status']); ?>', 'nomination_status_main');"><?php echo $value['status'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></li>  
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['status']); ?>', 'nomination_status_main');"><?php echo $value['status'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 					}
@@ -161,7 +161,7 @@ if (count($media_types) > 0)
 				if ($key < 4)
 				{
 					?>
-					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['media_type']); ?>', 'media_type_main');"><?php echo $value['media_type'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></div>
+					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['media_type']); ?>', 'media_type_main');"><?php echo $value['media_type'] . ' (' . number_format($value['@count']) . ')'; ?></a></div>
 					<?php
 				}
 				else if ($key == 4)
@@ -174,7 +174,7 @@ if (count($media_types) > 0)
 						</a>
 						<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
 							<?php
-							if ($value['count(*)'] >= 100)
+							if ($value['@count'] >= 100)
 							{
 								?>
 								<li><a href="javascript://"><b>--commonly used--</b></a></li>  
@@ -188,20 +188,20 @@ if (count($media_types) > 0)
 								$less_common = TRUE;
 							}
 							?>
-								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['media_type']); ?>', 'media_type_main');"><?php echo $value['media_type'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></li>  
+								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['media_type']); ?>', 'media_type_main');"><?php echo $value['media_type'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
 						{
 							?>
 							<?php
-							if ($value['count(*)'] < 100 && ! $less_common)
+							if ($value['@count'] < 100 && ! $less_common)
 							{
 								$less_common = TRUE;
 								?>
 								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
 							<?php } ?>
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['media_type']); ?>', 'media_type_main');"><?php echo $value['media_type'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></li>  
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['media_type']); ?>', 'media_type_main');"><?php echo $value['media_type'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 					}
@@ -232,7 +232,7 @@ if (count($physical_formats) > 0)
 				if ($key < 4)
 				{
 					?>
-					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['physical_format_name']); ?>', 'physical_format_main');"><?php echo $value['physical_format_name'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></div>
+					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['physical_format_name']); ?>', 'physical_format_main');"><?php echo $value['physical_format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></div>
 					<?php
 				}
 				else if ($key == 4)
@@ -245,7 +245,7 @@ if (count($physical_formats) > 0)
 						</a>
 						<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
 							<?php
-							if ($value['count(*)'] >= 100)
+							if ($value['@count'] >= 100)
 							{
 								?>
 								<li><a href="javascript://"><b>--commonly used--</b></a></li>  
@@ -259,20 +259,20 @@ if (count($physical_formats) > 0)
 								$less_common = TRUE;
 							}
 							?>
-								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['physical_format_name']); ?>', 'physical_format_main');"><?php echo $value['physical_format_name'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></li>  
+								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['physical_format_name']); ?>', 'physical_format_main');"><?php echo $value['physical_format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
 						{
 							?>
 							<?php
-							if ($value['count(*)'] < 100 && ! $less_common)
+							if ($value['@count'] < 100 && ! $less_common)
 							{
 								$less_common = TRUE;
 								?>
 								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
 							<?php } ?>
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['physical_format_name']); ?>', 'physical_format_main');"><?php echo $value['physical_format_name'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></li>  
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['physical_format_name']); ?>', 'physical_format_main');"><?php echo $value['physical_format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 					}
@@ -303,7 +303,7 @@ if (count($digital_formats) > 0)
 				if ($key < 4)
 				{
 					?>
-					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['digital_format_name']); ?>', 'digital_format_main');"><?php echo $value['digital_format_name'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></div>
+					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['digital_format_name']); ?>', 'digital_format_main');"><?php echo $value['digital_format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></div>
 					<?php
 				}
 				else if ($key == 4)
@@ -316,7 +316,7 @@ if (count($digital_formats) > 0)
 						</a>
 						<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
 							<?php
-							if ($value['count(*)'] >= 100)
+							if ($value['@count'] >= 100)
 							{
 								?>
 								<li><a href="javascript://"><b>--commonly used--</b></a></li>  
@@ -330,20 +330,20 @@ if (count($digital_formats) > 0)
 								$less_common = TRUE;
 							}
 							?>
-								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['digital_format_name']); ?>', 'digital_format_main');"><?php echo $value['digital_format_name'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></li>  
+								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['digital_format_name']); ?>', 'digital_format_main');"><?php echo $value['digital_format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
 						{
 							?>
 							<?php
-							if ($value['count(*)'] < 100 && ! $less_common)
+							if ($value['@count'] < 100 && ! $less_common)
 							{
 								$less_common = TRUE;
 								?>
 								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
 							<?php } ?>
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['digital_format_name']); ?>', 'digital_format_main');"><?php echo $value['digital_format_name'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></li>  
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['digital_format_name']); ?>', 'digital_format_main');"><?php echo $value['digital_format_name'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 					}
@@ -374,7 +374,7 @@ if (count($generations) > 0)
 				if ($key < 4)
 				{
 					?>
-					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['facet_generation']); ?>', 'generation_main');"><?php echo $value['facet_generation'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></div>
+					<div><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['facet_generation']); ?>', 'generation_main');"><?php echo $value['facet_generation'] . ' (' . number_format($value['@count']) . ')'; ?></a></div>
 					<?php
 				}
 				else if ($key == 4)
@@ -387,7 +387,7 @@ if (count($generations) > 0)
 						</a>
 						<ul class="dropdown-menu custom-dropdown-menu" role="menu" aria-labelledby="dLabel">
 							<?php
-							if ($value['count(*)'] >= 100)
+							if ($value['@count'] >= 100)
 							{
 								?>
 								<li><a href="javascript://"><b>--commonly used--</b></a></li>  
@@ -401,20 +401,20 @@ if (count($generations) > 0)
 								$less_common = TRUE;
 							}
 							?>
-								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['facet_generation']); ?>', 'generation_main');"><?php echo $value['facet_generation'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></li>  
+								<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['facet_generation']); ?>', 'generation_main');"><?php echo $value['facet_generation'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 						else
 						{
 							?>
 							<?php
-							if ($value['count(*)'] < 100 && ! $less_common)
+							if ($value['@count'] < 100 && ! $less_common)
 							{
 								$less_common = TRUE;
 								?>
 								<li><a href="javascript://"><b>--less commonly used--</b></a></li>  
 							<?php } ?>
-							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['facet_generation']); ?>', 'generation_main');"><?php echo $value['facet_generation'] . ' (' . number_format($value['count(*)']) . ')'; ?></a></li>  
+							<li><a href="javascript://" onclick="add_token('<?php echo htmlentities($value['facet_generation']); ?>', 'generation_main');"><?php echo $value['facet_generation'] . ' (' . number_format($value['@count']) . ')'; ?></a></li>  
 							<?php
 						}
 					}

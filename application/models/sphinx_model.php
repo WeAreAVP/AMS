@@ -488,7 +488,7 @@ class Sphinx_Model extends CI_Model
 		{
 			$where .=" @s_organization \"^$this->station_name$\"";
 		}
-		debug($where);
+		debug($where,FALSE);
 		return $where;
 	}
 

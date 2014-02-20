@@ -449,7 +449,7 @@ if (count($digitized) > 0)
 <!--				Digitized End      -->
 <!--				Migration Start				-->
 <?php
-if (count($migration) > 0)
+if (isset($migration) && count($migration) > 0)
 {
 	?>
 	<div class="field-filters">

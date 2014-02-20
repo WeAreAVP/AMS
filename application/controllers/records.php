@@ -103,7 +103,7 @@ class Records extends MY_Controller
 		$data['isAjax'] = FALSE;
 
 		$records = $this->sphinx->assets_listing($offset);
-		$data['total'] = $records['total_count'];
+		$data['total'] = $records['total_found'];
 		$config['total_rows'] = $data['total'];
 		$config['per_page'] = 100;
 		$data['records'] = $records['records'];

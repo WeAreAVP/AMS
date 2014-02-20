@@ -103,7 +103,6 @@ class Records extends MY_Controller
 		$data['isAjax'] = FALSE;
 
 		$records = $this->sphinx->assets_listing($offset);
-//		debug($records);
 		$data['total'] = $records['meta']['total_found'];
 		$config['total_rows'] = $data['total'];
 		$config['per_page'] = 100;
@@ -146,8 +145,6 @@ class Records extends MY_Controller
 			exit;
 		}
 	}
-
-	
 
 	/*
 	 * To Display Assets details
@@ -203,7 +200,6 @@ class Records extends MY_Controller
 					$data['prev_result_id'] = $search_results[$cur_key - 1]->id;
 				if (isset($search_results[$cur_key + 1]))
 					$data['next_result_id'] = $search_results[$cur_key + 1]->id;
-
 			}
 			$data['last_page'] = '';
 			if (isset($this->session->userdata['page_link']) && ! is_empty($this->session->userdata['page_link']))

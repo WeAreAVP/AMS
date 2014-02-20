@@ -117,47 +117,57 @@ class Sphinx_Model extends CI_Model
 	 */
 	public function facet_index($column_name, $index_name, $type = NULL, $offset = 0, $limit = 1000)
 	{
-		$list = array();
-		$total_record = 0;
-		$query = '';
-		$this->searchsphinx->reset_filters();
-		$this->searchsphinx->reset_group_by();
-		$this->searchsphinx->reset_overrides();
-		$mode = SPH_MATCH_EXTENDED;
-		$this->searchsphinx->set_array_result(true);
-		$this->searchsphinx->set_match_mode($mode);
-
-		$this->searchsphinx->set_group_by($column_name, SPH_GROUPBY_ATTR);
-
-		$this->searchsphinx->set_connect_timeout(120);
-		if ($limit)
-			$this->searchsphinx->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
-
+		
+		$this->load->library('sphnixrt');
 		$query = $this->make_where_clause($type, $index_name);
-		$res = $this->searchsphinx->query($query, $index_name);
-
-
-
-		$execution_time = $res['time'];
-
-		if ($res)
-		{
-			$total_record = $res['total_found'];
-			if ($total_record > 0)
-			{
-				if (isset($res['matches']))
-				{
-					foreach ($res['matches'] as $record)
-					{
-
-
-						$list[] = array_merge(array('id' => $record['id']), $record['attrs']);
-					}
-				}
-			}
-		}
-
-		return array("total_count" => $total_record, "records" => $list, "query_time" => $execution_time);
+		$sphinx['start'] = $offset;
+		$sphinx['limit'] = $limit;
+		$sphinx['where'] = $query;
+		
+		return $result = $this->sphnixrt->sphinx_search($index_name, $sphinx);
+		
+		
+//		$list = array();
+//		$total_record = 0;
+//		$query = '';
+//		$this->searchsphinx->reset_filters();
+//		$this->searchsphinx->reset_group_by();
+//		$this->searchsphinx->reset_overrides();
+//		$mode = SPH_MATCH_EXTENDED;
+//		$this->searchsphinx->set_array_result(true);
+//		$this->searchsphinx->set_match_mode($mode);
+//
+//		$this->searchsphinx->set_group_by($column_name, SPH_GROUPBY_ATTR);
+//
+//		$this->searchsphinx->set_connect_timeout(120);
+//		if ($limit)
+//			$this->searchsphinx->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
+//
+//		$query = $this->make_where_clause($type, $index_name);
+//		$res = $this->searchsphinx->query($query, $index_name);
+//
+//
+//
+//		$execution_time = $res['time'];
+//
+//		if ($res)
+//		{
+//			$total_record = $res['total_found'];
+//			if ($total_record > 0)
+//			{
+//				if (isset($res['matches']))
+//				{
+//					foreach ($res['matches'] as $record)
+//					{
+//
+//
+//						$list[] = array_merge(array('id' => $record['id']), $record['attrs']);
+//					}
+//				}
+//			}
+//		}
+//
+//		return array("total_count" => $total_record, "records" => $list, "query_time" => $execution_time);
 	}
 
 	/*

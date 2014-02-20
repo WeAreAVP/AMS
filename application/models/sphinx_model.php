@@ -487,8 +487,9 @@ class Sphinx_Model extends CI_Model
 		if (isset($this->is_station_user) && $this->is_station_user)
 		{
 			$where .=" @s_organization \"^$this->station_name$\"";
+			echo $where;exit;
 		}
-		debug($where,FALSE);
+		
 		return $where;
 	}
 

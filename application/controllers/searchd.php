@@ -48,6 +48,8 @@ class Searchd extends CI_Controller
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
+		$sphinx['start']=0;
+		$sphinx['limit']=1000;
 		$sphinx['column_name']='id';
 		$sphinx['where']='MATCH(@s_media_type("^Moving Image$" && ("^Moving Image |" | "| Moving Image$" | "| Moving Image |")))';
 		$result=$this->sphnixrt->select('assets_list',$sphinx);

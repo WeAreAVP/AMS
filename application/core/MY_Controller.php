@@ -240,8 +240,10 @@ class MY_Controller extends CI_Controller
 	 */
 	function make_map_array($value)
 	{
-
+		if(is_object($value))
 		return $value->id;
+		if(is_array($value))
+			return $value['id'];
 	}
 
 	function audit_trail($data)

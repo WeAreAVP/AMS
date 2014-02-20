@@ -218,14 +218,15 @@ class Sphnixrt
 		if (isset($data_array['order_by']) && ! empty($data_array['order_by']))
 		{
 			// have some values, push these
-			$query .= ' ORDER BY `' . $data_array['order_by'] . '`';
+
 			if (isset($data_array['order_type']) && ! empty($data_array['order_type']))
 			{
-				$query .=$data_array['order_type'];
+				$query .= ' ORDER BY `' . $data_array['order_by'] . '` ' . $data_array['order_type'] . ' ';
+				
 			}
 			else
 			{
-				$query .='ASC';
+				$query .= ' ORDER BY `' . $data_array['order_by'] . '` ASC ';
 			}
 		}
 // add start/limits?

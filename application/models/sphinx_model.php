@@ -289,7 +289,7 @@ class Sphinx_Model extends CI_Model
 			$this->sphinxsearch->set_filter("assets_id", array($params['asset_id']));
 		}
 
-		$mode = SPH_MATCH_ALL;
+		$mode = SPH_MATCH_EXTENDED;
 		$this->sphinxsearch->set_array_result(true);
 		$this->sphinxsearch->set_match_mode($mode);
 		$this->sphinxsearch->set_connect_timeout(120);
@@ -465,7 +465,7 @@ class Sphinx_Model extends CI_Model
 		{
 
 			$physical_format = trim($this->session->userdata['physical_format']);
-			$where .=" @s_physical_format_name (\"^$physical_format$\" | \"^$physical_format |\" |  \"| $physical_format$\" |  \"| $physical_format |\")";
+			$where .=" @s_physical_format_name (\"^$physical_format$\" && \"^$physical_format |\" |  \"| $physical_format$\" |  \"| $physical_format |\")";
 		}
 
 		if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')

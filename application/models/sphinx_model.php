@@ -433,7 +433,7 @@ class Sphinx_Model extends CI_Model
 		}
 		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
 		{
-			$this->sphinxsearch->set_filter("digitized", array(1));
+			$this->sphinxsearch->set_filter("digitized", array(1,0));
 		}
 //		if (isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] != '')
 //			{
@@ -465,7 +465,6 @@ class Sphinx_Model extends CI_Model
 		if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
 		{
 			$media_type = trim($this->session->userdata['media_type']);
-//			$where .=" @s_media_type(\"^$media_type$\" | \"^$media_type |\" |  \"| $media_type$\" |  \"| $media_type |\")";
 			$where .=" @s_media_type(\"^$media_type$\" && (\"^$media_type |\" |  \"| $media_type$\" |  \"| $media_type |\"))";
 		}
 		if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')

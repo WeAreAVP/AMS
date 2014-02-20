@@ -1229,8 +1229,8 @@ class Instantiations extends MY_Controller
 				$digitized = $this->sphinx->facet_index('digitized', $index, 'digitized');
 				$data['digitized'] = $digitized['records'];
 
-				$migration = $this->sphinx->facet_index('migration', $index, 'migration');
-				$data['migration'] = $migration['records'];
+//				$migration = $this->sphinx->facet_index('migration', $index, 'migration');
+//				$data['migration'] = $migration['records'];
 			}
 			else
 			{

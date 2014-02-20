@@ -500,7 +500,7 @@ class Sphinx_Model extends CI_Model
 			$where .=" @s_organization \"^$this->station_name$\"";
 		}
 //		send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'Where', $where);
-		
+
 		return $where;
 	}
 
@@ -516,52 +516,58 @@ class Sphinx_Model extends CI_Model
 	 */
 	function assets_listing($offset = 0, $limit = 100, $select = FALSE)
 	{
-		$instantiations = array();
-		$total_record = 0;
-		$this->sphinxsearch->reset_filters();
-		$this->sphinxsearch->reset_group_by();
-		$this->sphinxsearch->reset_overrides();
-		$mode = SPH_MATCH_EXTENDED;
-		$this->sphinxsearch->set_array_result(true);
-		$this->sphinxsearch->set_match_mode($mode);
-		$this->sphinxsearch->set_connect_timeout(120);
-		if ($select)
-			$this->sphinxsearch->set_select('id');
-		if ($limit)
-			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
-		if ($select)
-		{
-			if (isset($this->session->userdata['column']) && $this->session->userdata['column'] != '' && $this->session->userdata['column'] != 'flag')
-			{
-				if ($this->session->userdata['column_order'] == 'asc')
-					$sort_mode = SPH_SORT_ATTR_ASC;
-				else
-					$sort_mode = SPH_SORT_ATTR_DESC;
-				$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['column']);
-			}
-		}
+//		$instantiations = array();
+//		$total_record = 0;
+//		$this->sphinxsearch->reset_filters();
+//		$this->sphinxsearch->reset_group_by();
+//		$this->sphinxsearch->reset_overrides();
+//		$mode = SPH_MATCH_EXTENDED;
+//		$this->sphinxsearch->set_array_result(true);
+//		$this->sphinxsearch->set_match_mode($mode);
+//		$this->sphinxsearch->set_connect_timeout(120);
+//		if ($select)
+//			$this->sphinxsearch->set_select('id');
+//		if ($limit)
+//			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
+//		if ($select)
+//		{
+//			if (isset($this->session->userdata['column']) && $this->session->userdata['column'] != '' && $this->session->userdata['column'] != 'flag')
+//			{
+//				if ($this->session->userdata['column_order'] == 'asc')
+//					$sort_mode = SPH_SORT_ATTR_ASC;
+//				else
+//					$sort_mode = SPH_SORT_ATTR_DESC;
+//				$this->sphinxsearch->set_sort_mode($sort_mode, $this->session->userdata['column']);
+//			}
+//		}
 		$query = $this->make_where_clause(NULL, $this->config->item('asset_index'));
+//
+//		$res = $this->sphinxsearch->query($query, $this->config->item('asset_index'));
+//
+//
+//		$execution_time = $res['time'];
+//		if ($res)
+//		{
+//			$total_record = $res['total_found'];
+//			if ($total_record > 0)
+//			{
+//				if (isset($res['matches']))
+//				{
+//					foreach ($res['matches'] as $record)
+//					{
+//						$instantiations[] = (object) array_merge(array('id' => $record['id']), $record['attrs']);
+//					}
+//				}
+//			}
+//		}
+//
+//		return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
+		$this->load->library('sphnixrt');
+		$sphinx['start'] = $offset;
+		$sphinx['limit'] = $limit;
 
-		$res = $this->sphinxsearch->query($query, $this->config->item('asset_index'));
-
-
-		$execution_time = $res['time'];
-		if ($res)
-		{
-			$total_record = $res['total_found'];
-			if ($total_record > 0)
-			{
-				if (isset($res['matches']))
-				{
-					foreach ($res['matches'] as $record)
-					{
-						$instantiations[] = (object) array_merge(array('id' => $record['id']), $record['attrs']);
-					}
-				}
-			}
-		}
-
-		return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
+		$sphinx['where'] = $query;
+		return $result = $this->sphnixrt->sphinx_search('assets_list', $sphinx);
 	}
 
 }

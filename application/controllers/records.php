@@ -103,7 +103,7 @@ class Records extends MY_Controller
 		$data['isAjax'] = FALSE;
 
 		$records = $this->sphinx->assets_listing($offset);
-		debug($records);exit;
+		
 		$data['total'] = $records['total_found'];
 		$config['total_rows'] = $data['total'];
 		$config['per_page'] = 100;
@@ -314,7 +314,7 @@ class Records extends MY_Controller
 		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
 
 		$records = $this->sphinx->assets_listing($offset, 100, TRUE);
-		$data['total'] = $records['total_count'];
+		$data['total'] = $records['total_found'];
 		$record_ids = array_map(array($this, 'make_map_array'), $records['records']);
 		$this->load->model('searchd_model', 'searchd');
 		$records = $this->searchd->get_assets($record_ids);

@@ -218,7 +218,7 @@ class Sphnixrt
 			// have some values, push these
 			$query .= ' LIMIT ' . $data_array['start'] . ', ' . $data_array['limit'];
 		}
-
+		echo $query.'<br/>';
 		// execute query
 		$result = $this->sphinxql_link->query($query);
 

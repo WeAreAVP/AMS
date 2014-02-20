@@ -491,10 +491,10 @@ class Sphinx_Model extends CI_Model
 			$where .=" @s_facet_generation (\"^$generation$\" && (\"^$generation |\" | \"| $generation$\" | \"| $generation |\"))";
 		}
 
-		if ((isset($this->session->userdata['migration_failed']) && $this->session->userdata['migration_failed'] === '1' ) || $type == 'migration')
-		{
-			$where .=' @event_type "migration" @event_outcome "FAIL"';
-		}
+//		if ((isset($this->session->userdata['migration_failed']) && $this->session->userdata['migration_failed'] === '1' ) || $type == 'migration')
+//		{
+//			$where .=' @event_type "migration" @event_outcome "FAIL"';
+//		}
 		if (@$this->is_station_user)
 		{
 			$where .=" @s_organization \"^$this->station_name$\"";

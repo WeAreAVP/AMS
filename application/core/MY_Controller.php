@@ -289,7 +289,7 @@ class MY_Controller extends CI_Controller
 		foreach ($make_facet as $_index => $_single_facet)
 		{
 			if ($_index != '(**)' && $_index != '')
-				$final_facet[] = array($facet => $_index, '@count' => $_single_facet);
+				$final_facet[] = array($facet => $_index, 'count(*)' => $_single_facet);
 		}
 		return $final_facet;
 	}

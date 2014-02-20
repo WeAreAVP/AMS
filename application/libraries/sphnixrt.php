@@ -206,7 +206,7 @@ class Sphnixrt
 		// build first part of query
 		$query = "SELECT COUNT(*) FROM `{$index_name}`";
 		if (isset($data_array['where']) && ! empty($data_array['where']))
-			$query .= ' WHERE MATCH("' . $data_array['where'] . '")';
+			$query .= " WHERE MATCH('" . $data_array['where'] . "')";
 		if (isset($data_array['group_by']) && ! empty($data_array['group_by']))
 		{
 			// have some values, push these

@@ -51,7 +51,7 @@ class Searchd extends CI_Controller
 		$sphinx['start']=0;
 		$sphinx['limit']=1000;
 		$sphinx['column_name']='id';
-		$sphinx['where']="@s_media_type('^Moving Image$' && ('^Moving Image |' | '| Moving Image$' | '| Moving Image |')))";
+		$sphinx['where']='@s_media_type("^Moving Image$" && ("^Moving Image |" | "| Moving Image$" | "| Moving Image |"))';
 		$result=$this->sphnixrt->sphinx_search('assets_list',$sphinx);
 		debug($result);
 		

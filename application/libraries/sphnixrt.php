@@ -197,7 +197,86 @@ class Sphnixrt
 
 		return $where;
 	}
+	public function sphinx_search($index_name, $data_array)
+	{
 
+
+
+		$this->_clear();
+		// build first part of query
+		$query = "SELECT COUNT(*) FROM `{$index_name}`";
+		if (isset($data_array['where']) && ! empty($data_array['where']))
+			$query .= ' WHERE MATCH("' . $data_array['where'] . '")';
+		if (isset($data_array['group_by']) && ! empty($data_array['group_by']))
+		{
+			// have some values, push these
+			$query .= ' GROUP BY `' . $data_array['group_by'] . '`';
+		}
+// add start/limits?
+		if (is_int($data_array['limit']) && is_int($data_array['start']))
+		{
+			// have some values, push these
+			$query .= ' LIMIT ' . $data_array['start'] . ', ' . $data_array['limit'];
+		}
+
+		// execute query
+		$result = $this->sphinxql_link->query($query);
+
+		// successful query?
+		if ($result)
+		{
+			// loop through results
+			while ($rows = $result->fetch_array())
+			{
+				// add in row
+				$this->storage['results']['records'][] = $rows;
+			}
+
+			// are there any results?
+			if (isset($this->storage['results']))
+			{
+				// clean up the records
+				$this->storage['results']['records'] = $this->_fix_records($this->storage['results']['records']);
+
+				// we need meta information
+				$result_meta = $this->sphinxql_link->query('SHOW META');
+
+				// let's parse that result meta information
+				while ($rows_meta = $result_meta->fetch_array())
+				{
+					// add in meta
+					$this->storage['results']['meta'][$rows_meta['Variable_name']] = $rows_meta['Value'];
+				}
+
+				// pass back all the result data
+				return $this->storage['results'];
+			}
+			else
+			{
+				// define
+				$this->storage['results'] = array();
+
+				// still need meta information
+				$result_meta = $this->sphinxql_link->query('SHOW META');
+
+				// let's parse that result meta information
+				while ($rows_meta = $result_meta->fetch_array())
+				{
+					// add in meta
+					$this->storage['results']['meta'][$rows_meta['Variable_name']] = $rows_meta['Value'];
+				}
+
+				// no results
+				return $this->storage['results'];
+			}
+		}
+		else
+		{
+			// no results
+			return array('error' => $this->errors[3],
+				'native' => $this->sphinxql_link->error);
+		}
+	}
 	public function select($index_name, $data_array)
 	{
 

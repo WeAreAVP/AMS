@@ -34,6 +34,7 @@ class Sphinx_Model extends CI_Model
 	 */
 	function __construct()
 	{
+		//rt_attr_multi
 		parent::__construct();
 		$this->load->library('sphinxsearch');
 		$this->load->library('sphinxsearch', "", 'searchsphinx');

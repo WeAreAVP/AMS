@@ -54,7 +54,7 @@ class MY_Controller extends CI_Controller
 				$this->is_station_user = TRUE;
 				$this->station_id = $this->dx_auth->get_station_id();
 				$this->station_name = $this->station_model->get_station_by_id($this->station_id)->station_name;
-				
+				debug($this->station_name,FALSE);
 			}
 			$this->frozen_column = 0;
 			$this->column_order = '';

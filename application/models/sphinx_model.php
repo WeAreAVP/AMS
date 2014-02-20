@@ -596,7 +596,7 @@ class Sphinx_Model extends CI_Model
 		$sphinx['order_by'] = $cloumn;
 		$sphinx['order_type'] = $order_type;
 		$sphinx['filter'] = '';
-		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1') || $type == 'digitized')
+		if ((isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1'))
 		{
 			$sphinx['filter'] = ' digitized IN (0,1) ';
 		}

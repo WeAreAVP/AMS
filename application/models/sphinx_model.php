@@ -483,7 +483,7 @@ class Sphinx_Model extends CI_Model
 		if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
 		{
 			$generation = trim($this->session->userdata['generation']);
-			$where .=" @s_generation (\"^$generation$\" && (\"^$generation |\" | \"| $generation$\" | \"| $generation |\"))";
+			$where .=" @s_facet_generation (\"^$generation$\" && (\"^$generation |\" | \"| $generation$\" | \"| $generation |\"))";
 		}
 
 		if ((isset($this->session->userdata['migration_failed']) && $this->session->userdata['migration_failed'] === '1' ) || $type == 'migration')

@@ -465,7 +465,7 @@ class Sphinx_Model extends CI_Model
 		{
 
 			$physical_format = trim($this->session->userdata['physical_format']);
-			$where .=' @s_physical_format_name ("^Betacam$" OR "| Betacam |" OR "| Betacam$" OR "^Betacam |")';
+			$where .=' @s_physical_format_name ("^Betacam$" | "| Betacam |" | "| Betacam$" | "^Betacam |")';
 		}
 
 		if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')

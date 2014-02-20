@@ -484,10 +484,10 @@ class Sphinx_Model extends CI_Model
 		{
 			$where .=' @event_type "migration" @event_outcome "FAIL"';
 		}
-		if (isset($this->is_station_user) && $this->is_station_user)
+		if ($this->is_station_user)
 		{
 			$where .=" @s_organization \"^$this->station_name$\"";
-			echo $where;exit;
+			
 		}
 		
 		return $where;

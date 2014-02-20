@@ -218,7 +218,7 @@ function sortByOneKey(array $array, $key, $manage_count = FALSE, $asc = TRUE)
 			if ($manage_count)
 			{
 
-				if ($array[$index]['@count'] >= 100)
+				if ($array[$index]['count(*)'] >= 100)
 				{
 					$count_greater[] = $array[$index];
 				}

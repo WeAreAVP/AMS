@@ -1193,7 +1193,7 @@ class Instantiations extends MY_Controller
 			$index = $this->input->post('index');
 			$this->load->library('sphnixrt');
 
-			if ($is_all_facet > 0)
+			if ($is_all_facet > 0 || $this->is_station_user)
 			{
 				$states = $this->sphinx->facet_index('state', $index);
 				$data['org_states'] = sortByOneKey($states['records'], 'state');

@@ -242,14 +242,14 @@ class Searchd_Model extends CI_Model
 				date_types.date_type AS date_type, 
 				
 				
-CONCAT(GROUP_CONCAT(DISTINCT(instantiation_media_types.media_type) SEPARATOR '|'),'|') AS `media_type`, 
+CONCAT('|',GROUP_CONCAT(DISTINCT(instantiation_media_types.media_type) SEPARATOR '|'),'|') AS `media_type`, 
 a_format.format_type,
 a_format.format_name,
- CONCAT(GROUP_CONCAT(DISTINCT(instantiation_formats.format_type) SEPARATOR '|'),'|') AS `physical_format_type`, 
- CONCAT(GROUP_CONCAT(DISTINCT(instantiation_formats.format_name) SEPARATOR '|'),'|') AS `physical_format_name`, 
- CONCAT(GROUP_CONCAT(DISTINCT(d_format.format_type) SEPARATOR '|'),'|') AS `digital_format_type`, 
- CONCAT(GROUP_CONCAT(DISTINCT(d_format.format_name) SEPARATOR '|'),'|') AS `digital_format_name`, 
- CONCAT(GROUP_CONCAT(DISTINCT(generations.generation) SEPARATOR '|'),'|') AS `facet_generation`,
+ CONCAT('|',GROUP_CONCAT(DISTINCT(instantiation_formats.format_type) SEPARATOR '|'),'|') AS `physical_format_type`, 
+ CONCAT('|',GROUP_CONCAT(DISTINCT(instantiation_formats.format_name) SEPARATOR '|'),'|') AS `physical_format_name`, 
+ CONCAT('|',GROUP_CONCAT(DISTINCT(d_format.format_type) SEPARATOR '|'),'|') AS `digital_format_type`, 
+ CONCAT('|',GROUP_CONCAT(DISTINCT(d_format.format_name) SEPARATOR '|'),'|') AS `digital_format_name`, 
+ CONCAT('|',GROUP_CONCAT(DISTINCT(generations.generation) SEPARATOR '|'),'|') AS `facet_generation`,
 
 
 instantiation_colors.color, 

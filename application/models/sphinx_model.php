@@ -472,19 +472,19 @@ class Sphinx_Model extends CI_Model
 		{
 
 			$physical_format = '|' . trim($this->session->userdata['physical_format']) . '|';
-			$where .=" @s_physical_format_name \"$physical_format\"";
+			$where .=" @s_physical_format_name \"^$physical_format$\"";
 		}
 
 		if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
 		{
 			$digital_format = '|' . trim($this->session->userdata['digital_format']) . '|';
-			$where .=" @s_digital_format_name \"$digital_format\"";
+			$where .=" @s_digital_format_name \"^$digital_format$\"";
 		}
 
 		if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
 		{
 			$generation = '|' . trim($this->session->userdata['generation']) . '|';
-			$where .=" @s_facet_generation \"$generation\"";
+			$where .=" @s_facet_generation \"^$generation$\"";
 		}
 
 		if ((isset($this->session->userdata['migration_failed']) && $this->session->userdata['migration_failed'] === '1' ) || $type == 'migration')

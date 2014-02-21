@@ -166,7 +166,7 @@ class Crons extends CI_Controller
 					foreach ($result['records'] as $_row)
 					{
 
-						$exploded_facet = explode('|', $_row[$facet]);
+						$exploded_facet = explode('(;)', $_row[$facet]);
 						foreach ($exploded_facet as $single_value)
 						{
 							if (isset($make_facet[trim($single_value)]))

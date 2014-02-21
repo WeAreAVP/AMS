@@ -466,19 +466,19 @@ class Sphinx_Model extends CI_Model
 		if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
 		{
 			$media_type = trim($this->session->userdata['media_type']) . '|';
-			$where .=" @s_media_type \"$media_type\"";
+			$where .=" @s_media_type \"^$media_type$\"";
 		}
 		if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
 		{
 
 			$physical_format = trim($this->session->userdata['physical_format']) . '|';
-			$where .=" @s_physical_format_name \"$physical_format$\"";
+			$where .=" @s_physical_format_name \"^$physical_format$\"";
 		}
 
 		if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
 		{
 			$digital_format = trim($this->session->userdata['digital_format']) . '|';
-			$where .=" @s_digital_format_name (\"$digital_format$\" | \"^$digital_format$\" | \"|$digital_format\")";
+			$where .=" @s_digital_format_name \"^$digital_format$\"";
 		}
 
 		if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
@@ -516,7 +516,7 @@ class Sphinx_Model extends CI_Model
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
 		$this->sphinxsearch->reset_overrides();
-		$mode = SPH_MATCH_EXTENDED;
+		$mode = SPH_MATCH_PHRASE;
 		$this->sphinxsearch->set_array_result(true);
 		$this->sphinxsearch->set_match_mode($mode);
 		$this->sphinxsearch->set_connect_timeout(120);

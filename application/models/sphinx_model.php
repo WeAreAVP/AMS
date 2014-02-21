@@ -472,7 +472,7 @@ class Sphinx_Model extends CI_Model
 		{
 
 			$physical_format = trim($this->session->userdata['physical_format']) . '|';
-			$where .=" @s_physical_format_name \"$physical_format\"";
+			$where .=" @s_physical_format_name \"$physical_format|\"";
 		}
 
 		if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')

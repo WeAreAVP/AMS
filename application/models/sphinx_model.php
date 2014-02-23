@@ -130,7 +130,7 @@ class Sphinx_Model extends CI_Model
 
 		$query = $this->make_where_clause($type, $index_name);
 		$result = $this->sphinxsearch->query($query, $index_name);
-
+		$execution_time = $result['time'];
 		if ($result)
 		{
 			$total_record = $result['total_found'];

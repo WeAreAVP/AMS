@@ -27,6 +27,8 @@
 class Sphinx_Model extends CI_Model
 {
 
+	private $unique_separator = '___';
+
 	/**
 	 *
 	 * constructor. Load Sphinx Search Library
@@ -34,12 +36,9 @@ class Sphinx_Model extends CI_Model
 	 */
 	function __construct()
 	{
-		//rt_attr_multi
+
 		parent::__construct();
 		$this->load->library('sphinxsearch');
-		$this->sphinxsearch->reset_filters();
-		$this->sphinxsearch->reset_group_by();
-		$this->sphinxsearch->reset_overrides();
 	}
 
 	/**
@@ -113,8 +112,6 @@ class Sphinx_Model extends CI_Model
 	 */
 	public function facet_index($column_name, $index_name, $type = NULL, $offset = 0, $limit = 1000)
 	{
-		$list = array();
-		$total_record = 0;
 		$query = '';
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
@@ -130,30 +127,9 @@ class Sphinx_Model extends CI_Model
 			$this->sphinxsearch->set_limits((int) $offset, (int) $limit, ( $limit > 1000 ) ? $limit : 1000 );
 
 		$query = $this->make_where_clause($type, $index_name);
-		$res = $this->sphinxsearch->query($query, $index_name);
+		$result = $this->sphinxsearch->query($query, $index_name);
 
-
-
-		$execution_time = $res['time'];
-
-		if ($res)
-		{
-			$total_record = $res['total_found'];
-			if ($total_record > 0)
-			{
-				if (isset($res['matches']))
-				{
-					foreach ($res['matches'] as $record)
-					{
-
-
-						$list[] = array_merge(array('id' => $record['id']), $record['attrs']);
-					}
-				}
-			}
-		}
-
-		return array("total_count" => $total_record, "records" => $list, "query_time" => $execution_time);
+		return $this->make_response($result);
 	}
 
 	/*
@@ -190,8 +166,6 @@ class Sphinx_Model extends CI_Model
 	 */
 	function standalone_report($offset = 0, $limit = 100, $select = FALSE)
 	{
-		$instantiations = array();
-		$total_record = 0;
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
 		$this->sphinxsearch->reset_overrides();
@@ -216,25 +190,9 @@ class Sphinx_Model extends CI_Model
 
 		$query = $this->where_filter();
 
-		$res = $this->sphinxsearch->query($query, $this->config->item('instantiatiion_index'));
+		$result = $this->sphinxsearch->query($query, $this->config->item('instantiatiion_index'));
 
-		$execution_time = $res['time'];
-		if ($res)
-		{
-			$total_record = $res['total_found'];
-			if ($total_record > 0)
-			{
-				if (isset($res['matches']))
-				{
-					foreach ($res['matches'] as $record)
-					{
-						$instantiations[] = (object) array_merge(array('id' => $record['id']), $record['attrs']);
-					}
-				}
-			}
-		}
-
-		return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
+		return $this->make_response($result);
 	}
 
 	/**
@@ -285,8 +243,6 @@ class Sphinx_Model extends CI_Model
 	function instantiations_list($params, $offset = 0, $limit = 100, $select = FALSE)
 	{
 
-		$instantiations = array();
-		$total_record = 0;
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
 		$this->sphinxsearch->reset_overrides();
@@ -320,26 +276,10 @@ class Sphinx_Model extends CI_Model
 
 
 
-		$res = $this->sphinxsearch->query($query, $this->config->item('instantiatiion_index'));
+		$result = $this->sphinxsearch->query($query, $this->config->item('instantiatiion_index'));
 
 
-		$execution_time = $res['time'];
-		if ($res)
-		{
-			$total_record = $res['total_found'];
-			if ($total_record > 0)
-			{
-				if (isset($res['matches']))
-				{
-					foreach ($res['matches'] as $record)
-					{
-						$instantiations[] = (object) array_merge(array('id' => $record['id']), $record['attrs']);
-					}
-				}
-			}
-		}
-
-		return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
+		return $this->make_response($result);
 	}
 
 	/**
@@ -465,25 +405,25 @@ class Sphinx_Model extends CI_Model
 		}
 		if (isset($this->session->userdata['media_type']) && $this->session->userdata['media_type'] != '')
 		{
-			$media_type = '__' . trim($this->session->userdata['media_type']) . '__';
+			$media_type = $this->unique_separator . trim($this->session->userdata['media_type']) . $this->unique_separator;
 			$where .=" @s_media_type \"$media_type\"";
 		}
 		if (isset($this->session->userdata['physical_format']) && $this->session->userdata['physical_format'] != '')
 		{
 
-			$physical_format = '__' . trim($this->session->userdata['physical_format']) . '__';
+			$physical_format = $this->unique_separator . trim($this->session->userdata['physical_format']) . $this->unique_separator;
 			$where .=" @s_physical_format_name \"$physical_format\"";
 		}
 
 		if (isset($this->session->userdata['digital_format']) && $this->session->userdata['digital_format'] != '')
 		{
-			$digital_format = '__' . trim($this->session->userdata['digital_format']) . '__';
+			$digital_format = $this->unique_separator . trim($this->session->userdata['digital_format']) . $this->unique_separator;
 			$where .=" @s_digital_format_name \"$digital_format\"";
 		}
 
 		if (isset($this->session->userdata['generation']) && $this->session->userdata['generation'] != '')
 		{
-			$generation = '__' . trim($this->session->userdata['generation']) . '__';
+			$generation = $this->unique_separator . trim($this->session->userdata['generation']) . $this->unique_separator;
 			$where .=" @s_facet_generation \"$generation\"";
 		}
 
@@ -511,12 +451,11 @@ class Sphinx_Model extends CI_Model
 	 */
 	function assets_listing($offset = 0, $limit = 100, $select = FALSE)
 	{
-		$instantiations = array();
-		$total_record = 0;
+		$mode = SPH_MATCH_EXTENDED;
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
 		$this->sphinxsearch->reset_overrides();
-		$mode = SPH_MATCH_EXTENDED;
+
 		$this->sphinxsearch->set_array_result(true);
 		$this->sphinxsearch->set_match_mode($mode);
 		$this->sphinxsearch->set_connect_timeout(120);
@@ -537,26 +476,31 @@ class Sphinx_Model extends CI_Model
 		}
 		$query = $this->make_where_clause(NULL, $this->config->item('asset_index'));
 
-		$res = $this->sphinxsearch->query($query, $this->config->item('asset_index'));
+		$result = $this->sphinxsearch->query($query, $this->config->item('asset_index'));
+		return $this->make_response($result);
+	}
 
-
-		$execution_time = $res['time'];
-		if ($res)
+	function make_response($result)
+	{
+		$records = array();
+		$total_record = 0;
+		$execution_time = $result['time'];
+		if ($result)
 		{
-			$total_record = $res['total_found'];
+			$total_record = $result['total_found'];
 			if ($total_record > 0)
 			{
-				if (isset($res['matches']))
+				if (isset($result['matches']))
 				{
-					foreach ($res['matches'] as $record)
+					foreach ($result['matches'] as $record)
 					{
-						$instantiations[] = (object) array_merge(array('id' => $record['id']), $record['attrs']);
+						$records[] = (object) array_merge(array('id' => $record['id']), $record['attrs']);
 					}
 				}
 			}
 		}
 
-		return array("total_count" => $total_record, "records" => $instantiations, "query_time" => $execution_time);
+		return array("total_count" => $total_record, "records" => $records, "query_time" => $execution_time);
 	}
 
 }

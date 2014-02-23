@@ -113,6 +113,8 @@ class Sphinx_Model extends CI_Model
 	public function facet_index($column_name, $index_name, $type = NULL, $offset = 0, $limit = 1000)
 	{
 		$query = '';
+		$list = array();
+		$total_record = 0;
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();
 		$this->sphinxsearch->reset_overrides();
@@ -129,7 +131,22 @@ class Sphinx_Model extends CI_Model
 		$query = $this->make_where_clause($type, $index_name);
 		$result = $this->sphinxsearch->query($query, $index_name);
 
-		return $this->make_response($result);
+		if ($result)
+		{
+			$total_record = $result['total_found'];
+			if ($total_record > 0)
+			{
+				if (isset($result['matches']))
+				{
+					foreach ($result['matches'] as $record)
+					{
+						$list[] = array_merge(array('id' => $record['id']), $record['attrs']);
+					}
+				}
+			}
+		}
+
+		return array("total_count" => $total_record, "records" => $list, "query_time" => $execution_time);
 	}
 
 	/*

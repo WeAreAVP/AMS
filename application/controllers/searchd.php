@@ -47,26 +47,16 @@ class Searchd extends CI_Controller
 	function test()
 	{
 		error_reporting(E_ALL);
-		$test=json_encode(array(
-			'name' => 'media_type',
-			'value' => 'Moving Image'
-			));
 		ini_set('display_errors', 1);
-		$sample_array['title'] = 'Nouman Tayyab';
-		$sample_array['format_name'] = '["Betacam"]';
-		$sample_array['media_type'] = $test;
-		$this->sphnixrt->insert('test', $sample_array, 1);
-		$sample_array['title'] = 'Nouman Tayyab';
-		$sample_array['format_name'] = '["Betacam","Betacam SP"]';
-		$sample_array['media_type'] = '["Moving Image"]';
-		$this->sphnixrt->insert('test', $sample_array, 2);
-		exit;
-		$sphinx['start'] = 0;
-		$sphinx['limit'] = 1000;
-		$sphinx['column_name'] = 'id';
-		$sphinx['where'] = '@s_media_type("^Moving Image$" && ("^Moving Image |" | "| Moving Image$" | "| Moving Image |"))';
-		$result = $this->sphnixrt->sphinx_search('assets_list', $sphinx);
-		debug($result);
+		$query = 'SELECT id From assets WHERE stations_id=62';
+		$result = $this->searchd_model->run_query($query)->result();
+		$ids = array();
+		foreach ($result as $row)
+		{
+			$ids[] = $row->id;
+		}
+
+		$this->sphnixrt->delete('assets_list', $ids);
 	}
 
 	/**

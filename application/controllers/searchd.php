@@ -48,7 +48,16 @@ class Searchd extends CI_Controller
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-		$query = 'SELECT id From assets WHERE stations_id=62';
+//		$query = 'SELECT id From assets WHERE stations_id=62';
+//		$result = $this->searchd_model->run_query($query)->result();
+//		$ids = array();
+//		foreach ($result as $row)
+//		{
+//			$ids[] = $row->id;
+//		}
+//
+//		$this->sphnixrt->delete('assets_list', $ids);
+		$query = 'SELECT instantiations.id From instantiations INNER JOIN assets ON assets.id=instantiations.assets_id WHERE assets.stations_id=62';
 		$result = $this->searchd_model->run_query($query)->result();
 		$ids = array();
 		foreach ($result as $row)
@@ -56,7 +65,7 @@ class Searchd extends CI_Controller
 			$ids[] = $row->id;
 		}
 
-		$this->sphnixrt->delete('assets_list', $ids);
+		$this->sphnixrt->delete('instantiations_list', $ids);
 	}
 
 	/**

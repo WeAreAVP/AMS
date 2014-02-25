@@ -14,9 +14,9 @@ Documentation
 
 2- [Installation and Configuration](documentation/install-configure.md)
 
-3- [Installation](documentation/installation.md)
+3- [Sphinx Configuration](documentation/sphinx-configure.md)
 
-4- [Databases](documentation/prerequisite.md)
+
 
 
 

@@ -9,7 +9,7 @@ The core goal of the Archival Management System (“AMS”) is to provide the ba
 
 Documentation
 ===
-[a relative link](documentation/test.md)
+[Prerequisite](documentation/prerequisite.md)
 
 
 

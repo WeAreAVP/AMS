@@ -6,7 +6,7 @@ AMS Application
 ----------
 Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codeigniter)**
 
-**1) Goto apache web directory
+**1) Goto apache web directory**
 
 **2) First clone code from git using following command.**
 

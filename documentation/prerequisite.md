@@ -1,6 +1,6 @@
 Prerequisite
 ===
-**[Back: Introduction](../README.md)**
+[Back: Introduction](../README.md)
 
 Server
 -------

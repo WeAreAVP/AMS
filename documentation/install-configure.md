@@ -8,7 +8,7 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 
 **1) Goto apache web directory**
 
-**2) First clone code from git using following command.**
+**2) Clone code from git using following command.**
 
 	$ git clone git@github.com:avpreserve/AMS.git .
 
@@ -21,11 +21,11 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 **Database ERD:**
 ![alt text](database/ERD_database.png "ERD database")
 
-You can find source file for Entity Relation Diagram in documentation/database
+**You can find source file for Entity Relation Diagram in documentation/database**
 
   File Path documentation/database/schema.sql
    
-  Steps to use schema in mySQL
+  **Steps to use schema in mySQL**
 
 **Connection with mysql**
 

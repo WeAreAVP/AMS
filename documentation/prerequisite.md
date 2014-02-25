@@ -5,8 +5,9 @@ Prerequisite
 Server Architecture
 -------
 * CPU: need to update
-* RAM: need to update
-* Volume: need to update
+* RAM: minimum 8 GB
+* Volume: minimum 250 GB
+* 64-bit architecture
 
 Operation System
 -----------

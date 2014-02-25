@@ -39,14 +39,17 @@ Database
 * **PostgreSQL**
  * Version = 8.4.18
 	
+Build Tool
+---------
 
-Build Tool:
+**Apache Maven**
+* Version 3.1.0
 
-	Apache Maven (version 3.1.0)
-
-Unique Identifier Tool:
-	
-	NOID (version 0.424)
+Unique Identifier Tool
+---------
+**NOID**	
+* Version 0.424
+	 
 
 Search Server:
 

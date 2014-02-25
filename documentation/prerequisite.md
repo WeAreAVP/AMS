@@ -1,7 +1,9 @@
 Prerequisite
 ===
 
-Operation System : LINUX distribution (recommanded CentOS release 6.4 (Final)) 
+Operation System : 
+	
+	LINUX distribution (recommanded CentOS release 6.4 (Final)) 
 
 Web Server: 
 	

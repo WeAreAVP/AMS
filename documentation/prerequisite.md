@@ -61,13 +61,10 @@ Caching System
 **Memcached**
 * Version 1.4.4
 
-Data Cleanup Application
+Data Cleanup, Ingestion and Mapping Tool
 ---------
-**Open Refine**
-
-Ingestion, mapping and aggregation of metadata records Tool
----------	
-**MINT**
+* **Open Refine**
+* **MINT**
 
 
 

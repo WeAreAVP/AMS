@@ -9,7 +9,7 @@
 				if (isset($this->session->userdata['digitized']) && $this->session->userdata['digitized'] === '1')
 				{
 					?>
-					<div class="btn-img" id="digitized_token" ><span class="search_keys">Digitized</span><i class="icon-remove-sign" style="float: right;" onclick="remove_checked_token('digitized')"></i></div>
+					<div class="btn-img" id="digitized_token" ><span class="search_keys">Reformatted</span><i class="icon-remove-sign" style="float: right;" onclick="remove_checked_token('digitized')"></i></div>
 					<?php
 				}
 				if (isset($this->session->userdata['migration_failed']) && $this->session->userdata['migration_failed'] === '1')

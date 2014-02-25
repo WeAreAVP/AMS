@@ -9,7 +9,7 @@
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    AVPS http://ams.avpreserve.com
+ * @license    AVPS http://ams.avpreserve.com/license.txt
  * @version    GIT: <$Id>
  * @link       http://ams.avpreserve.com
  */
@@ -21,7 +21,7 @@
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    AVPS http://ams.avpreserve.com
+ * @license    AVPS http://ams.avpreserve.com/license.txt
  * @link       http://ams.avpreserve.com
  */
 class Searchd extends CI_Controller
@@ -40,7 +40,6 @@ class Searchd extends CI_Controller
 		$this->load->library('sphnixrt');
 		$this->load->model('station_model');
 		$this->load->model('searchd_model');
-
 		$this->load->helper('sphnixdata');
 	}
 
@@ -49,11 +48,10 @@ class Searchd extends CI_Controller
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 		echo phpinfo();
-		
 	}
 
 	/**
-	 * Insert Stations in Sphnix Realtime Index.
+	 * Insert Stations information to Sphnix Realtime Index.
 	 * 
 	 * @return none
 	 */
@@ -63,10 +61,8 @@ class Searchd extends CI_Controller
 		foreach ($stations as $key => $row)
 		{
 			$record = make_station_sphnix_array($row);
-			$this->sphnixrt->insert('stations', $record, $row->id);
+			$this->sphnixrt->insert($this->config->item('station_index'), $record, $row->id);
 		}
-//		$data = $this->sphnixrt->select('stations', array('start' => 0, 'limit' => 1000));
-
 		exit_function();
 	}
 
@@ -77,7 +73,7 @@ class Searchd extends CI_Controller
 	}
 
 	/**
-	 * Insert Stations in Sphnix Realtime Index.
+	 * Insert Instantiations information to Sphnix Realtime Index.
 	 * 
 	 * @return none
 	 */
@@ -85,7 +81,7 @@ class Searchd extends CI_Controller
 	{
 		set_time_limit(0);
 		@ini_set("memory_limit", "1000M"); # 1GB
-		@ini_set("max_execution_time", 999999999999); # 1GB
+		@ini_set("max_execution_time", 999999999999);
 		$db_count = 0;
 		$offset = 0;
 		while ($db_count == 0)
@@ -96,7 +92,7 @@ class Searchd extends CI_Controller
 			foreach ($records as $row)
 			{
 				$data = make_instantiation_sphnix_array($row);
-				$this->sphnixrt->insert('instantiations_list', $data, $row->id);
+				$this->sphnixrt->insert($this->config->item('instantiatiion_index'), $data, $row->id);
 			}
 			$offset = $offset + 1000;
 			if (count($inst) < 1000)
@@ -106,11 +102,16 @@ class Searchd extends CI_Controller
 		exit_function();
 	}
 
+	/**
+	 * Insert Assets information to Sphnix Realtime Index.
+	 * 
+	 * @return none
+	 */
 	function insert_assets_sphnix()
 	{
 		set_time_limit(0);
 		@ini_set("memory_limit", "1000M"); # 1GB
-		@ini_set("max_execution_time", 999999999999); # 1GB
+		@ini_set("max_execution_time", 999999999999);
 
 		$db_count = 0;
 		$offset = 0;
@@ -122,7 +123,7 @@ class Searchd extends CI_Controller
 			foreach ($records as $row)
 			{
 				$data = make_assets_sphnix_array($row);
-				$this->sphnixrt->insert('assets_list', $data, $row->id);
+				$this->sphnixrt->insert($this->config->item('asset_index'), $data, $row->id);
 			}
 			$offset = $offset + 1000;
 			if (count($inst) < 1000)
@@ -134,7 +135,7 @@ class Searchd extends CI_Controller
 
 }
 
-// END Dashboard Controller
+// END Searchd Controller
 
-// End of file dashboard.php 
-/* Location: ./application/controllers/dashboard.php */
+// End of file searchd.php 
+/* Location: ./application/controllers/searchd.php */

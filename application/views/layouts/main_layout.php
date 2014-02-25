@@ -1,11 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
+		<title>CPB AMS</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="author" content="Nouman Tayyab"/>
-
-        <title>AMS</title>
-        <script type="text/javascript">
+		<script type="text/javascript">
 			var site_url = '<?php echo site_url() ?>';
         </script>
 		<script src="/tiny_mce/tiny_mce.js" type="text/javascript"></script>
@@ -60,8 +59,8 @@
 		echo link_js('tristate-0.9.2.js');
 		?> 
 		<!--[if IE]>
-<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
     </head>
 	<body>
         <div class="navbar navbar-fixed-top">
@@ -189,41 +188,31 @@
 
 
 		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#myGeneral').on('hidden', function() {
-					$('#myGeneral_body').html('');
-				});
-//				if ($.browser.msie) {
-//					if ($.browser.version != '7.0' || $.browser.version != '8.0') {
-//						document.addEventListener("touchstart", function() {
-//						}, true);
-//					}
-//				}
-//				else {
-//					document.addEventListener("touchstart", function() {
-//					}, true);
-//				}
+	$(document).ready(function() {
+		$('#myGeneral').on('hidden', function() {
+			$('#myGeneral_body').html('');
+		});
 
-				var dates = $("#start_date, #end_date").datepicker({
-					defaultDate: "+1w",
-					changeMonth: true,
-					numberOfMonths: 1,
-					dateFormat: 'yy-mm-dd',
-					onSelect: function(selectedDate) {
-						var option = this.id == "start_date" ? "minDate" : "maxDate",
-						instance = $(this).data("datepicker"),
-						date = $.datepicker.parseDate(
-						instance.settings.dateFormat ||
-						$.datepicker._defaults.dateFormat,
-						selectedDate, instance.settings);
-						dates.not(this).datepicker("option", option, date);
-					}
-				});
-				$("[rel=tooltip]").tooltip();
-				$("#station_table").tablesorter();
-				$("#user_table_list").tablesorter();
+		var dates = $("#start_date, #end_date").datepicker({
+			defaultDate: "+1w",
+			changeMonth: true,
+			numberOfMonths: 1,
+			dateFormat: 'yy-mm-dd',
+			onSelect: function(selectedDate) {
+				var option = this.id == "start_date" ? "minDate" : "maxDate",
+				instance = $(this).data("datepicker"),
+				date = $.datepicker.parseDate(
+				instance.settings.dateFormat ||
+				$.datepicker._defaults.dateFormat,
+				selectedDate, instance.settings);
+				dates.not(this).datepicker("option", option, date);
+			}
+		});
+		$("[rel=tooltip]").tooltip();
+		$("#station_table").tablesorter();
+		$("#user_table_list").tablesorter();
 
-			});
+	});
 		</script>
     </body>
 

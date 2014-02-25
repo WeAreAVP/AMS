@@ -442,7 +442,7 @@ if (count($digitized) > 0)
 				$checked = 'checked="checked"';
 			}
 			?>
-			<b>Digitized</b><span style="margin: 0px 10px;"><input type="checkbox" name="digitized" id="digitized" value="1" <?php echo $checked; ?> onchange="add_checked_token('digitized', 'Digitized');" /></span>
+			<b>Reformatted</b><span style="margin: 0px 10px;"><input type="checkbox" name="digitized" id="digitized" value="1" <?php echo $checked; ?> onchange="add_checked_token('digitized', 'Digitized');" /></span>
 		</div>
 	</div>
 <?php } ?>

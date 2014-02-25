@@ -6,13 +6,11 @@ AMS Application
 ----------
 Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codeigniter)**
 
-**1) First clone code from git using following command.**
+**1) Goto apache web directory
 
-	$ git clone git@github.com:avpreserve/AMS.git
+**2) First clone code from git using following command.**
 
-**2) Goto Code Directory**
-
-	$ cd AMS
+	$ git clone git@github.com:avpreserve/AMS.git .
 
 **3) Run create_directory script. It will create required folders and set permissions.**
 

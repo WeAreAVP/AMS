@@ -23,6 +23,8 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 **Database ERD:**
 ![alt text](database/ERD_database.png "ERD database")
 
+You can find source file for Entity Relation Diagram in documentation/database
+
   File Path documentation/database/schema.sql
    
   Steps to use schema in mySQL

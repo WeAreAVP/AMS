@@ -1,5 +1,5 @@
 Archival Management System Development ( Corporation for Public Broadcasting ) 
-===
+------------------------------------------------------------------------------
 
 AMS Development Project (CBP), The American Archive seeks to preserve and make accessible to the public the legacy of public media content produced for national and local distribution over a span of six decades. It will ensure that the cumulative public investment of billions of dollars in non-commercial media over the years is fully protected for generations to come.
  

@@ -17,23 +17,24 @@ Web Server
 **Apache** 
 	
 * Version >= 2.2.x
-* Port	80
+* Default Port	80
 
 **Tomcat** 	
 
 * Version >= 6
-* Port	8080
+* Default Port	8080
 
-
-    
-
-Language:
+Language
+---------
 	
-	PHP (version >= 5.3)
+* PHP
+ * Version >= 5.3
+* Java
+ * Version >= 1.7
+*Perl
+ * Version >= 5.1
 
-	Java (version >= 1.7)
 	
-	Perl (version >= 5.10)
 
 Database:
 

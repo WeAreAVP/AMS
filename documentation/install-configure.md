@@ -2,23 +2,23 @@ Installation and Configuration
 ===
 [Back: Prerequisite](prerequisite.md)
 
-AMS System Application
+AMS Application
 ----------
 Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codeigniter)**
 
-1) First clone code from git using following command.
+**1) First clone code from git using following command.**
 
 	$ git clone git@github.com:avpreserve/AMS.git
 
-2) Goto Code Directory
+**2) Goto Code Directory**
 
 	$ cd AMS
 
-3) Run create_directory script. It will create required folders and set permissions.
+**3) Run create_directory script. It will create required folders and set permissions.**
 
 	$ sh create_directory.sh
 
-4) **Use mySQL dump file to initialize database with default schema.**
+**4) Use mySQL dump file to initialize database with default schema.**
  
 **Database ERD:**
 ![alt text](database/ERD_database.png "ERD database")
@@ -42,7 +42,7 @@ You can find source file for Entity Relation Diagram in documentation/database
 	source documentation/database/schema.sql
 
 
-5) Application configuration variable (application/config/config.php)
+**5) Application configuration variable (application/config/config.php)**
 
 	$config['base_url'] = "https://domainname.com/";			Base URL of application
 
@@ -72,7 +72,7 @@ You can find source file for Entity Relation Diagram in documentation/database
 
 	$config['google_spreadsheet_password'] = 'bm91bWFqQGF1mCH=';Password of email address (should be in base64_encode)
 
-6) Database configuration (application/config/database.php)
+**6) Database configuration (application/config/database.php)**
 	
 	$db['default']['hostname'] = 'localhost';		Database host
 

@@ -16,13 +16,13 @@ Web Server
 
 **Apache** 
 	
-	* Version >= 2.2.x
-	* Port	80
+* Version >= 2.2.x
+* Port	80
 
 **Tomcat** 	
 
-	* Version >= 6
-	* Port	8080
+* Version >= 6
+* Port	8080
 
 
     

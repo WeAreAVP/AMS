@@ -28,7 +28,9 @@ All the above folders should have ownership of sphinx. You can set ownership usi
 **Note:**rt_filed attr only used for searching and rt_attr_string is used for displaying and sorting.
 
 Index name: **Stations**
+
 Index type: **rt (realtime)
+
 Index path: `/var/lib/sphinx/station/station`
 
 

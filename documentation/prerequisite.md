@@ -14,24 +14,21 @@ LINUX distribution (recommended CentOS release 6.4 (Final))
 Web Server
 -----------	
 
-**Apache** 
-	
-* Version >= 2.2.x
-* Default Port	80
-
-**Tomcat** 	
-
-* Version >= 6
-* Default Port	8080
+* **Apache** 
+ * Version >= 2.2.x
+ * Default Port	80
+* **Tomcat** 	
+ * Version >= 6
+ * Default Port	8080
 
 Language
 ---------
 	
-* PHP
+* **PHP**
  * Version >= 5.3
-* Java
+* **Java**
  * Version >= 1.7
-*Perl
+* **Perl**
  * Version >= 5.1
 
 	

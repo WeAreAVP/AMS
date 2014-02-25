@@ -25,9 +25,12 @@ All the above folders should have ownership of sphinx. You can set ownership usi
 
 **Sphinx Configuration Detail**
 
-Station index: Its a realtime index.
+**Note:**rt_filed attr only used for searching and rt_attr_string is used for displaying and sorting.
 
-Default Path: `/var/lib/sphinx/station/station`
+Index name: **Stations**
+Index type: **rt (realtime)
+Index path: `/var/lib/sphinx/station/station`
+
 
 | Sphinx Column  | Sphinx Column Type  | Database Column | Description |
 | :------------- | :-------------------| :---------------| :-------------|

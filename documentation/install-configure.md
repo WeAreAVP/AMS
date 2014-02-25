@@ -18,9 +18,9 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 
 	$ sh create_directory.sh
 
-4) Use mysql dump file 
+4) Use mySQL dump file to initialize database with default schema.
 
-	[mySQL dump file] (database/schema.sql)
+	File Path documentation/database/schema.sql
 
 5) Configuration variable that can be changed as per requirements (application/config/config.php)
 

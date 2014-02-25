@@ -22,7 +22,7 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 
 	File Path documentation/database/schema.sql
 
-5) Configuration variable that can be changed as per requirements (application/config/config.php)
+5) Application configuration variable (application/config/config.php)
 
 	$config['base_url'] = "https://ams.avpreserve.com/";  Base URL of application
 
@@ -52,6 +52,19 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 
 	$config['google_spreadsheet_password'] = 'bm91bWFqQGF1mCH=';   Password of the email address (should be in base64_encode)
 
+6) Database configuration (application/config/database.php)
+	
+	$db['default']['hostname'] = 'localhost';		Database host
+
+	$db['default']['username'] = 'username';		Username to connect with database
+
+	$db['default']['password'] = 'password';		Password to connect with database
+
+	$db['default']['database'] = 'database_name';   Name of the database
+
+	
+
+	
 
 4) Replace sphinx original configuration with AMS sphinx.conf file. e.g;
 

@@ -31,8 +31,8 @@ Default Path: `/var/lib/sphinx/station/station`
 
 | Sphinx Column  | Sphinx Column Type  | Database Column | Description |
 | :------------- | :-------------------| :---------------| :-------------|
-| s_station_name | rt_field			   | stations.station_name	| used to search on station name|
-| station_name   | rt_attr_string           |   stations.station_name	| use to display station name|
-| s_type         | rt_field           |    stations.type			||
-| type           | rt_attr_string           |    stations.type		||
-| s_address_primary | rt_field        |    stations.address_primary	||
+| s_station_name | rt_field			   | stations.station_name	| used for searching|
+| station_name   | rt_attr_string           |   stations.station_name	| used for displaying|
+| s_type         | rt_field           |    stations.type			| used for searching|
+| type           | rt_attr_string           |    stations.type		|used for displaying||
+| s_address_primary | rt_field        |    stations.address_primary	| used for searching|

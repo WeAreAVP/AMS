@@ -1,5 +1,6 @@
 Prerequisite
 ===
+[Back to Introduction](../README.md)
 
 Operation System : 
 	
@@ -23,7 +24,7 @@ Database:
 
 	mySQL (version >= 2.1.2)
 
-	postgres (version >= 8.4)
+	PostgreSQL (version >= 8.4)
 
 
 Build Tool:
@@ -52,6 +53,6 @@ Ingestion, mapping and aggregation of metadata records Tool
 
 Monitoring Tool
 	
-	Monit
+	Monit Service Manager (version 5.5)
 
 

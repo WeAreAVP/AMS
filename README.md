@@ -12,7 +12,7 @@ Documentation
 
 1- [Prerequisite](documentation/prerequisite.md)
 
-2- [Configuration](documentation/prerequisite.md)
+2- [Installation](documentation/installation.md)
 
 3- [Databases](documentation/prerequisite.md)
 

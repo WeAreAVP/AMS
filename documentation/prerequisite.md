@@ -2,11 +2,11 @@ Prerequisite
 ===
 [Back: Introduction](../README.md)
 
-Server
+Server Architecture
 -------
-* CPU: need to updat
-* RAM: need to updat
-* Volume: need to updat
+* CPU: need to update
+* RAM: need to update
+* Volume: need to update
 
 Operation System
 -----------

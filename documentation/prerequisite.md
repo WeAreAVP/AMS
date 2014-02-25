@@ -15,19 +15,16 @@ Web Server
 -----------	
 
 **Apache** 
-Recommended 
-
-Default Port 80
-
-version >= 2.2.x
+	
+	* Version >= 2.2.x
+	* Port	80
 
 **Tomcat** 	
 
-Recommended
+	* Version >= 6
+	* Port	8080
 
-Default Port 8080
 
-Version 6
     
 
 Language:

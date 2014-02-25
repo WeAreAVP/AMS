@@ -2,15 +2,33 @@ Prerequisite
 ===
 [Back to Introduction](../README.md)
 
-Operation System : 
-	
-	LINUX distribution (recommanded CentOS release 6.4 (Final)) 
+Server
+-------
+need to update
 
-Web Server: 
+Operation System
+-----------
 	
-    Apache (version >=2)
-	
-    Tomcat (version >=6)
+LINUX distribution (recommended CentOS release 6.4 (Final)) 
+
+Web Server
+-----------	
+
+**Apache** 
+Recommended 
+
+Default Port 80
+
+version >= 2.2.x
+
+**Tomcat** 	
+
+Recommended
+
+Default Port 8080
+
+Version 6
+    
 
 Language:
 	

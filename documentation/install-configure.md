@@ -2,7 +2,7 @@ Installation and Configuration
 ===
 [Back to Introduction](../README.md)
 
-1) First Clone code from git using following command.
+1) First clone code from git using following command.
 
 	$ git clone git@github.com:avpreserve/AMS.git
 
@@ -10,7 +10,7 @@ Installation and Configuration
 
 	$ cd AMS
 
-3) Run create_directory script
+3) Run create_directory script. It will create required folders and set permissions.
 
 	$ sh create_directory.sh
 
@@ -18,12 +18,12 @@ Installation and Configuration
 
 	$ cp sphinx.conf /etc/sphinx/sphinx.conf
 
-5) Restart Sphinx Service
+5) Restart Sphinx Service. e.g;
 	
 	$ /etc/init.d/searcd restart
 
 6) Use mysql dump file 
 
-	[mySQL dump file](schema.sql)
+	[mySQL dump file] (schema.sql)
 
 

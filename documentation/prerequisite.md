@@ -23,6 +23,12 @@ Web Server
  * Version 6
  * Default Port	8080
 
+SCM (Source Control Management)
+-------------------------------
+
+* **Git**
+ * Version 1.7.x
+
 Language
 ---------
 	

@@ -70,7 +70,7 @@ You can find source file for Entity Relation Diagram in documentation/database
 
 	$config['google_spreadsheet_email'] = 'email@gmail.com';	Email address to get crawford spreadsheet data
 
-	$config['google_spreadsheet_password'] = 'base64_encoded';Password of email address (should be in base64_encode)
+	$config['google_spreadsheet_password'] = 'base64_encoded';	Password of email address (should be in base64_encode)
 
 **6) Database configuration (application/config/database.php)**
 	

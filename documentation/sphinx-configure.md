@@ -15,6 +15,9 @@ For current sphinx.conf we have path to set to `/var/lib/sphinx`.
 	$ mkdir instantiation
 	$ mkdir asset
 	
+All the above folders should have ownership of sphinx. You can set ownership using 
+
+	$ chown -R sphinx:sphinx .
 
 **3) Restart Sphinx Service. e.g;**
 	

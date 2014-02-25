@@ -18,19 +18,11 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 
 	$ sh create_directory.sh
 
-4) Replace sphinx original configuration with AMS sphinx.conf file. e.g;
+4) Use mysql dump file 
 
-	$ cp sphinx.conf /etc/sphinx/sphinx.conf
+	[mySQL dump file] (database/schema.sql)
 
-5) Restart Sphinx Service. e.g;
-	
-	$ /etc/init.d/searcd restart
-
-6) Use mysql dump file 
-
-	[mySQL dump file] (schema.sql)
-
-7) Configuration variable that can be changed as per requirements (application/config/config.php)
+5) Configuration variable that can be changed as per requirements (application/config/config.php)
 
 	$config['base_url'] = "https://ams.avpreserve.com/";  Base URL of application
 
@@ -58,6 +50,14 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 
 	$config['google_spreadsheet_email'] = 'nouman@avpreserve.com'; Email address to get crawford spreadsheet data
 
-	$config['google_spreadsheet_password'] = 'bm91bWFuQGF2cHM=';   Password of the email address (should be in base64_encode)
+	$config['google_spreadsheet_password'] = 'bm91bWFqQGF1mCH=';   Password of the email address (should be in base64_encode)
 
+
+4) Replace sphinx original configuration with AMS sphinx.conf file. e.g;
+
+	$ cp sphinx.conf /etc/sphinx/sphinx.conf
+
+5) Restart Sphinx Service. e.g;
+	
+	$ /etc/init.d/searcd restart
 

@@ -39,33 +39,33 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 
 5) Application configuration variable (application/config/config.php)
 
-	$config['base_url'] = "https://domainname.com/";  Base URL of application
+	$config['base_url'] = "https://domainname.com/";			Base URL of application
 
-	$config['to_email'] = 'admin@domain.com';			  Admin Email Address
+	$config['to_email'] = 'admin@domain.com';					Admin Email Address
 
-	$config['from_email'] = 'noreply@domain.com'; Default emil from when sending email
+	$config['from_email'] = 'noreply@domain.com';				Default email from when sending email
 
-	$config['crawford_email'] = 'crawdford@mail.crawford.com'; Crawford Email Address
+	$config['crawford_email'] = 'crawdford@crawford.com';		Crawford Email Address
 
-	$config['path'] = '/var/www/html/';					  Document Root of application path
+	$config['path'] = '/var/www/html/';							Document Root of application path
 
-	$config['cookie_domain'] = ".domain.com";	  Cookie name
+	$config['cookie_domain'] = ".domain.com";					Cookie name
 
-	$config['mint_url'] = "http://domain:8080/mint-ams"; Default MINT URL 
+	$config['mint_url'] = "http://domain:8080/mint-ams";		Default MINT URL 
 
-	$config['google_refine_url'] = "http://domain.com:3333"; Default Open Refine URL
+	$config['google_refine_url'] = "http://domain.com:3333";	Default Open Refine URL
 
-	$config['instance_name'] = 'ams';					Instance type for MINT	
+	$config['instance_name'] = 'ams';							Instance type for MINT	
 
-	$config['asset_index'] = 'assets_list';				Sphinx Asset Index Name
+	$config['asset_index'] = 'assets_list';						Sphinx index name for assets
 
-	$config['instantiatiion_index'] = 'instantiations_list'; Sphinx Instantiation Index Name
+	$config['instantiatiion_index'] = 'instantiations_list';	Sphinx index name for instantiations
 
-	$config['station_index'] = 'stations';				Sphinx Station index name
+	$config['station_index'] = 'stations';						Sphinx index name for stations
 
-	$config['google_spreadsheet_email'] = 'email@gmail.com'; Email address to get crawford spreadsheet data
+	$config['google_spreadsheet_email'] = 'email@gmail.com';	Email address to get crawford spreadsheet data
 
-	$config['google_spreadsheet_password'] = 'bm91bWFqQGF1mCH=';   Password of the email address (should be in base64_encode)
+	$config['google_spreadsheet_password'] = 'bm91bWFqQGF1mCH=';Password of the email address (should be in base64_encode)
 
 6) Database configuration (application/config/database.php)
 	

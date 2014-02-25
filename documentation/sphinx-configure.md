@@ -29,7 +29,7 @@ All the above folders should have ownership of sphinx. You can set ownership usi
 
 Index name: **Stations**
 
-Index type: **rt (realtime)
+Index type: **rt (realtime)**
 
 Index path: `/var/lib/sphinx/station/station`
 

@@ -36,8 +36,10 @@ Database
 
 * **mySQL**
  * Version  2.1.2
+ * Default Port 3306
 * **PostgreSQL**
- * Version = 8.4.18
+ * Version 8.4.18
+ * Default Port 5432
 	
 Build Tool
 ---------
@@ -55,15 +57,19 @@ Search Server
 ---------
 **Sphinx**
 * Version 2.1.2
+* Default Port 9312
+* Default TCP Port 9306
 
 Caching System
 ---------
 **Memcached**
 * Version 1.4.4
+* Default Port 11211
 
 Data Cleanup, Ingestion and Mapping Tool
 ---------
 * **Open Refine**
+ * Default Port 3333
 * **MINT**
 
 

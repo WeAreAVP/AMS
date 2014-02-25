@@ -51,24 +51,23 @@ Unique Identifier Tool
 * Version 0.424
 	 
 
-Search Server:
+Search Server
+---------
+**Sphinx**
+* Version 2.1.2
 
-	Sphinx (version >= 2.1.x)
+Caching System
+---------
+**Memcached**
+* Version 1.4.4
 
-Caching System:
-
-	Memcached (version 1.4.4)
-
-Data Cleanup Application:
-
-	Open Refine
+Data Cleanup Application
+---------
+**Open Refine**
 
 Ingestion, mapping and aggregation of metadata records Tool
-	
-	MINT
+---------	
+**MINT**
 
-Monitoring Tool
-	
-	Monit Service Manager (version 5.5)
 
 

@@ -5,9 +5,9 @@ Operation System : LINUX distribution (recommanded CentOS release 6.4 (Final))
 
 Web Server: 
 	
-	Apache (version >=2)
+    Apache (version >=2)
 	
-	Tomcat (version >=6)
+    Tomcat (version >=6)
 
 Language:
 	
@@ -47,38 +47,6 @@ Data Cleanup Application:
 Ingestion, mapping and aggregation of metadata records Tool
 	
 	MINT
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Other Tools: OpenRefine, MINT, Maven, NOID
-
-Library Used: Zend gData, domPDF, PHPExcel, BagIt, Memcached
-
-Installation Instructions
-===
-1) First Clone code from git using following command.
-
-	$ git@github.com:avpreserve/AMS.git
-
-2) Goto Code Directory
-
-	$ cd AMS
-
-3) Run create_directory script
-
-	$ sh create_directory.sh
-
 
 
 

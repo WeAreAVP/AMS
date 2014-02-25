@@ -20,9 +20,8 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 
 4) **Use mySQL dump file to initialize database with default schema.**
  
-  
-ERD Diagram: 
-![alt text](database/ERD_database.png "ERD Diagram")
+**Database ERD:**
+![alt text](database/ERD_database.png "ERD database")
 
   File Path documentation/database/schema.sql
    

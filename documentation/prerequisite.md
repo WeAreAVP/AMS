@@ -15,30 +15,30 @@ Web Server
 -----------	
 
 * **Apache** 
- * Version >= 2.2.x
+ * Version 2.2.15
  * Default Port	80
 * **Tomcat** 	
- * Version >= 6
+ * Version 6
  * Default Port	8080
 
 Language
 ---------
 	
 * **PHP**
- * Version >= 5.3
+ * Version 5.3.3
 * **Java**
- * Version >= 1.7
+ * Version 1.7.0_45
 * **Perl**
- * Version >= 5.1
+ * Version 5.10.1
 
+Database
+---------
+
+* **mySQL**
+ * Version  2.1.2
+* **PostgreSQL**
+ * Version = 8.4.18
 	
-
-Database:
-
-	mySQL (version >= 2.1.2)
-
-	PostgreSQL (version >= 8.4)
-
 
 Build Tool:
 

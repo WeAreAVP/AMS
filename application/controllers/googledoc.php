@@ -49,7 +49,7 @@ class Googledoc extends CI_Controller
 	 */
 	function fetch_gsheets()
 	{
-		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM='));
+		$this->load->library('google_spreadsheet', array('user' => $this->config->item('google_spreadsheet_email'), 'pass' => $this->config->item('google_spreadsheet_password')));
 		myLog('Getting Spreadsheet Info');
 		$spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('');
 		myLog('Total Spreadsheet Count ' . count($spreed_sheets));
@@ -97,7 +97,7 @@ class Googledoc extends CI_Controller
 		@ini_set("max_execution_time", 999999999999); # 1GB
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-		$this->load->library('google_spreadsheet', array('user' => 'nouman@avpreserve.com', 'pass' => 'bm91bWFuQGF2cHM='));
+		$this->load->library('google_spreadsheet', array('user' => $this->config->item('google_spreadsheet_email'), 'pass' => $this->config->item('google_spreadsheet_password')));
 
 		$spreadsheet_info = $this->pbcore_model->get_spreadsheets();
 		myLog('Spreadsheet Name: ' . $spreadsheet_info->spreadsheet_name);

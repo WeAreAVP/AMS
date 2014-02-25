@@ -33,19 +33,22 @@ class Google_Spreadsheet
 	private $spreadsheet_id;
 	private $worksheet = "";
 	private $worksheet_id;
-	var $user = 'nouman@avpreserve.com';
-	var $pass = 'bm91bWFuQGF2cHM=';
+	var $user = '';
+	var $pass = '';
 	var $ss = false;
 	var $ws = false;
 
 	function __construct($config = array())
 	{
+		$this->ci = & get_instance();
+		$this->ci->load->library('zend');
+		$this->user = $this->ci->config->item('google_spreadsheet_email');
+		$this->pass = $this->ci->config->item('google_spreadsheet_password');
 		if (count($config) > 0)
 		{
 			$this->initialize($config);
 		}
-		$this->ci = & get_instance();
-		$this->ci->load->library('zend');
+
 		$this->ci->zend->load('Zend/Http/Client');
 		$this->ci->zend->load('Zend/Gdata');
 		$this->ci->zend->load('Zend/Gdata/AuthSub');
@@ -271,7 +274,7 @@ class Google_Spreadsheet
 		{
 			if ( ! empty($spreedSheet))
 			{
-				
+
 				if ($spreedSheet == $entry->title->text)
 				{
 					$spreadSheets[$key]['name'] = $entry->title->text;

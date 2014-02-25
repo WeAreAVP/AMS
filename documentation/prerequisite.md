@@ -4,7 +4,9 @@ Prerequisite
 
 Server
 -------
-need to update
+* CPU: need to updat
+* RAM: need to updat
+* Volume: need to updat
 
 Operation System
 -----------

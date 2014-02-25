@@ -32,6 +32,8 @@ if (ENVIRONMENT == 'development')
 	$config['asset_index'] = 'assets_list';
 	$config['instantiatiion_index'] = 'instantiations_list';
 	$config['station_index'] = 'stations';
+	$config['google_spreadsheet_email'] = 'nouman@avpreserve.com';
+	$config['google_spreadsheet_password'] = 'bm91bWFuQGF2cHM=';
 }
 else if (ENVIRONMENT == 'qatesting')
 {
@@ -47,6 +49,8 @@ else if (ENVIRONMENT == 'qatesting')
 	$config['asset_index'] = 'assets_list';
 	$config['instantiatiion_index'] = 'instantiations_list';
 	$config['station_index'] = 'stations';
+	$config['google_spreadsheet_email'] = 'nouman@avpreserve.com';
+	$config['google_spreadsheet_password'] = 'bm91bWFuQGF2cHM=';
 } if (ENVIRONMENT == 'production')
 {
 	$config['base_url'] = "https://ams.avpreserve.com/";
@@ -61,6 +65,8 @@ else if (ENVIRONMENT == 'qatesting')
 	$config['asset_index'] = 'assets_list';
 	$config['instantiatiion_index'] = 'instantiations_list';
 	$config['station_index'] = 'stations';
+	$config['google_spreadsheet_email'] = 'nouman@avpreserve.com';
+	$config['google_spreadsheet_password'] = 'bm91bWFuQGF2cHM=';
 }
 
 

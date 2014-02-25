@@ -23,13 +23,16 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 	File Path documentation/database/schema.sql
    
  Steps to use schema in mySQL
-* Connection with mysql
+
+Connection with mysql
 
 	mysql -h host -u username -ppassword
-* Select database
+
+Select database
 
 	use database_name
-* Use default schema
+
+Use default schema
 
 	source documentation/database/schema.sql
 

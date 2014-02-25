@@ -39,21 +39,21 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 
 5) Application configuration variable (application/config/config.php)
 
-	$config['base_url'] = "https://ams.avpreserve.com/";  Base URL of application
+	$config['base_url'] = "https://domainname.com/";  Base URL of application
 
-	$config['to_email'] = 'ssapienza@cpb.org';			  Admin Email Address
+	$config['to_email'] = 'admin@domain.com';			  Admin Email Address
 
-	$config['from_email'] = 'noreply@ams.avpreserve.com'; Default emil from when sending email
+	$config['from_email'] = 'noreply@domain.com'; Default emil from when sending email
 
-	$config['crawford_email'] = 'cstephenson@mail.crawford.com'; Crawford Email Address
+	$config['crawford_email'] = 'crawdford@mail.crawford.com'; Crawford Email Address
 
 	$config['path'] = '/var/www/html/';					  Document Root of application path
 
-	$config['cookie_domain'] = ".ams.avpreserve.com";	  Cookie name
+	$config['cookie_domain'] = ".domain.com";	  Cookie name
 
-	$config['mint_url'] = "http://ams.avpreserve.com:8080/mint-ams"; Default MINT URL 
+	$config['mint_url'] = "http://domain:8080/mint-ams"; Default MINT URL 
 
-	$config['google_refine_url'] = "http://ams.avpreserve.com:3333"; Default Open Refine URL
+	$config['google_refine_url'] = "http://domain.com:3333"; Default Open Refine URL
 
 	$config['instance_name'] = 'ams';					Instance type for MINT	
 
@@ -63,7 +63,7 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 
 	$config['station_index'] = 'stations';				Sphinx Station index name
 
-	$config['google_spreadsheet_email'] = 'nouman@avpreserve.com'; Email address to get crawford spreadsheet data
+	$config['google_spreadsheet_email'] = 'email@gmail.com'; Email address to get crawford spreadsheet data
 
 	$config['google_spreadsheet_password'] = 'bm91bWFqQGF1mCH=';   Password of the email address (should be in base64_encode)
 

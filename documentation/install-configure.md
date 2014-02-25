@@ -21,6 +21,15 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 4) Use mySQL dump file to initialize database with default schema.
 
 	File Path documentation/database/schema.sql
+   
+ Steps to use schema in mySQL
+* Connection with mysql
+	mysql -h host -u username -ppassword
+* Select database
+	use database_name
+* Use default schema
+	source documentation/database/schema.sql
+
 
 5) Application configuration variable (application/config/config.php)
 

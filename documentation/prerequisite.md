@@ -66,7 +66,7 @@ Search Server
 **Sphinx**
 * Version 2.1.2
 * Default Port 9312
-* Default TCP Port 9306
+* Default Port 9306:mysql41
 
 Caching System
 ---------
@@ -80,7 +80,7 @@ Data Cleanup, Ingestion and Mapping Tool
  * Default Port 3333
 * **MINT**
 
-**[Next: Installation and Configuration](install-configure.md)**
+[Next: Installation and Configuration](install-configure.md)
 
 
 

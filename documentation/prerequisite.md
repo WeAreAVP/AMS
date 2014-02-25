@@ -72,7 +72,7 @@ Data Cleanup, Ingestion and Mapping Tool
  * Default Port 3333
 * **MINT**
 
-**[Next > Installation and Configuration](install-configure.md)**
+**[Next: Installation and Configuration](install-configure.md)**
 
 
 

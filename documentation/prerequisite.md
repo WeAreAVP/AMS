@@ -6,7 +6,6 @@ Server Architecture
 -------
 * **CPU**: need to update
 * **RAM**: minimum 8 GB
-* **Volume**: minimum 250 GB
 * **64-bit architecture**
 
 Operation System

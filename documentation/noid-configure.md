@@ -1,85 +1,43 @@
-MINT Setup
+NOID Setup
 ===
-[Back: Open Refine Configuration](openrefine-configure.md)
+[Back: MINT Setup](mint-configure.md)
 
-**1) Goto Mint directory**
+**1) Create directory for NOID on apache web directory**
 
-	$ cd Mint
+in this case /var/www/html
 
-**2) Change only domain name in following files**
+	mkdir /var/www/html/nd
 
-* ./src/main/java/gr/ntua/ivml/mint/actions/AjaxApproval.java at line number 80
-* ./src/main/java/gr/ntua/ivml/mint/concurrent/XSLTransform.java at line number 126
-* ./src/main/webapp/WEB-INF/jsp/menu.jsp at line number 33
+**2) Creates an executable copy of the noid script**
 
-**2) Build Project** 
+	cp -p /usr/local/bin/noid /var/www/html/nd
 
-	mvn package
+**3) Add following in apache config file and restart apache**
 
-It will create a build file in 'target' directory.
+	ScriptAliasMatch ^/nd/noidu(.*) "/var/www/html/nd/noidu$1"
 
-**3) Move build file in tomcat web directory**
+	/etc/init.d/httpd restart
 
-For example. if tomcat web directory is /usr/share/tomcat6/webapps then
+**4) Go to "nd" directory**
 
-	$ cp target/mint-ams.war /usr/share/tomcat6/webapps/mint-ams.war
+	cd /var/www/html/nd
 
-**4) Restart tomcat service**
+**5) Create NOID database**
 
-	$ /etc/init.d/tomcat6 restart
+	noid dbcreate .reedeedeedk
 
-**5) Database Setup**
+	mkdir kt5
+ 
+	mv NOID kt5/
+    
+	ln noid noidu_kt5
 
-Create a database
-	
-	sudo -u postgres createdb -E UTF8 mint
+You can now mint identifier.
 
-Login
+http://domainname.com/nd/noidu_kt5?mint+1 
 
-	sudo -u postgres psql mint
+To see more detail on NOID. Visit
 
-create a user for the application
-
-	create user mint password 'mint' login;
-
-set the user's search path
-
-	alter role mint set search_path to mint,public;
-
-and grant database to the user
-
-	grant all on database mint to mint;
-
-Logout with
-
-	\q
-
-Locate the createSchema.sql in your mint installation (./Mint/src/main/webapp/WEB-INF/src)
-
-Login again as mint
-
-	psql -h localhost -U mint mint
-
-and read in the schema. Its helpful to be in the directory with the createSchema.sql
-
-	\i createSchema.sql
-
-That should setup the schema! Run the update
-
-	\i upgrade_sql_thesauri_1_3.sql
-
-Alter tables
-
-	ALTER TABLE transformation ADD COLUMN is_approved int NOT NULL default 0;
-
-	ALTER TABLE mapping ADD COLUMN user_id int NOT NULL default 1000;
-
-After that, edit the postgresql.conf file - which is normally kept in the data directory (initdb installs a default copy there) - by setting
-
-	#constraint_exclusion = off
-	
-	constraint_exclusion = on
-
-Now Your MINT is setup.
+http://search.cpan.org/~jak/Noid-0.423/noid
 
 [Next: NOID Setup](noid-configure.md)

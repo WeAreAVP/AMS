@@ -126,7 +126,7 @@ class Autocomplete extends MY_Controller
 
 }
 
-// END Dashboard Controller
+// END autocomplete Controller
 
-// End of file dashboard.php 
-/* Location: ./application/controllers/dashboard.php */
+// End of file autocomplete.php 
+/* Location: ./application/controllers/autocomplete.php */

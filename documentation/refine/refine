@@ -1,0 +1,91 @@
+#!/bin/bash
+#chkconfig: 2345 95 20
+
+# Source function library.
+. /etc/init.d/functions
+
+BASEPATH=/var/www/html/OpenRefine
+PIDFILE=$BASEPATH/refine.pid
+LOG_PATH=$BASEPATH/refine.log
+
+touch $PIDFILE
+touch $LOG_PATH
+start() {
+echo -n "Starting Google Refine: "
+PID=""
+if [ -f $PIDFILE ]; then
+PID=`head -n 1 $PIDFILE`
+fi
+
+PIDD=/proc/$PID
+if [ -n "$PID" ]  && [ -d "$PIDD" ]
+then
+echo Google Refine is already running: $PID
+exit 2;
+else
+/usr/bin/nohup $BASEPATH/refine -i 0.0.0.0 >> $LOG_PATH &
+sleep 5
+/bin/ps -ef | /bin/grep "refine"| /bin/grep -v "grep" | /bin/awk '{print $2}' > $PIDFILE
+echo [OK]
+return 0;
+fi
+
+}
+
+stop() {
+echo -n "Shutting down Google Refine: "
+#PID=`head -n 1 $PIDFILE`
+#PIDD=/proc/$PID
+#if [ -n "$PID" ]  && [ -d "$PIDD" ]
+#then
+#kill -9 `cat $PIDFILE`
+#rm  -rf $PIDFILE
+#echo [OK]
+if [ -f $PIDFILE ]; then
+                kill -9 `cat $PIDFILE`
+ rm  -rf $PIDFILE
+                echo [OK]
+                return 0;
+        else
+                echo [FAILED]
+        fi
+#return 0;
+#else
+#echo [FAILED]
+#fi
+
+}
+
+status() {
+PID=`head -n 1 $PIDFILE`
+PIDD=/proc/$PID
+if [ -n "$PID" ]  && [ -d "$PIDD" ]
+then
+echo Google Refine  running: $PID
+exit 0;
+else
+echo Google Refine not running...
+fi
+}
+
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status justniffer
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage:  {start|stop|status|restart}"
+        exit 1
+        ;;
+esac
+exit $?

@@ -82,4 +82,10 @@ After that, edit the postgresql.conf file - which is normally kept in the data d
 
 Now Your MINT is setup.
 
+See the offical site for more details
+
+http://mint.image.ece.ntua.gr/redmine/projects/mint/wiki/Mint
+
+
+
 [Next: NOID Setup](noid-configure.md)

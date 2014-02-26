@@ -40,4 +40,3 @@ To see more detail on NOID. Visit
 
 http://search.cpan.org/~jak/Noid-0.423/noid
 
-[Next: NOID Setup](noid-configure.md)

@@ -2,6 +2,8 @@ Installation and Configuration
 ===
 [Back: Prerequisite](prerequisite.md)
 
+Assumption: All the prerequisites are completed.
+
 AMS Application
 ----------
 Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codeigniter)**

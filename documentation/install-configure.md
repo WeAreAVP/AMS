@@ -2,7 +2,7 @@ Installation and Configuration
 ===
 [Back: Prerequisite](prerequisite.md)
 
-Assumption: All the prerequisites are completed.
+**Assumption: All the prerequisites are completed.**
 
 AMS Application
 ----------

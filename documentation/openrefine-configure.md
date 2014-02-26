@@ -31,16 +31,16 @@ So simply load this script into /etc/init.d
 
 Note
 
-* You can check the status
+ You can check the status
 
-	`$ /etc/init.d/refine status`
+	$ /etc/init.d/refine status
 
-* You can restart the service
+ You can restart the service
 
-	`$ /etc/init.d/refine restart`
+	$ /etc/init.d/refine restart
 
-* You can stop the service
+ You can stop the service
 
-	`$ /etc/init.d/refine stop`
+	$ /etc/init.d/refine stop
 
 [Next: Open Refine](openrefine-configure.md)

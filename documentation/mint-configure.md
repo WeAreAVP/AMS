@@ -80,4 +80,6 @@ After that, edit the postgresql.conf file - which is normally kept in the data d
 	
 	constraint_exclusion = on
 
+Now Your MINT is setup.
+
 [Next: NOID Setup](noid-configure.md)

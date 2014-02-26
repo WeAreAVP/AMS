@@ -10,7 +10,7 @@ Now set BASEPATH .Open Refine source path will be your base path. For example.
 
 	BASEPATH=/var/www/html/OpenRefine
 
-**2) Set up open refine as Service **
+**2) Set up open refine as Service**
 
 So simply load this script into /etc/init.d
 
@@ -21,7 +21,7 @@ So simply load this script into /etc/init.d
 	
 	$ chmod 755 /etc/init.d/refine
 
-**4) Register the script to start up with the server
+**4) Register the script to start up with the server**
 
 	$ chkconfig refine on
 
@@ -33,14 +33,14 @@ Note
 
 * You can check the status
 
-	$ /etc/init.d/refine status
+	`$ /etc/init.d/refine status`
 
 * You can restart the service
 
-	$ /etc/init.d/refine restart
+	`$ /etc/init.d/refine restart`
 
 * You can stop the service
 
-	$ /etc/init.d/refine stop
+	`$ /etc/init.d/refine stop`
 
 [Next: Open Refine](openrefine-configure.md)

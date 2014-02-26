@@ -4,6 +4,9 @@
 		<title>CPB AMS</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="author" content="Nouman Tayyab"/>
+		<link rel="icon" href="/images/favicon.png"></link>
+		
+
 		<script type="text/javascript">
 			var site_url = '<?php echo site_url() ?>';
         </script>

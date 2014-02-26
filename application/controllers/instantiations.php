@@ -1140,58 +1140,7 @@ class Instantiations extends MY_Records_Controller
 //								show_404();
 	}
 
-	/**
-	 * Record data to display in dataTable.
-	 * 
-	 * 
-	 */
-	public function instantiation_table()
-	{
-		$params = array('search' => '');
-		$column = array(
-			'Organization' => 'organization',
-			'Instantiation_ID' => 'instantiation_identifier',
-			'Nomination' => 'status',
-			'Instantiation\'s_Asset_Title' => 'asset_title',
-			'Media_Type' => 'media_type',
-			'Generation' => 'facet_generation',
-			'Format' => 'format_name',
-			'Duration' => 'projected_duration',
-			'Date' => 'dates',
-			'File_size' => 'file_size',
-			'Colors' => 'color',
-			'Language' => 'language',
-		);
-
-
-		$this->session->unset_userdata('column');
-		$this->session->unset_userdata('jscolumn');
-		$this->session->unset_userdata('column_order');
-		$this->session->set_userdata('jscolumn', $this->input->get('iSortCol_0'));
-		$this->session->set_userdata('column', $column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
-		$this->session->set_userdata('column_order', $this->input->get('sSortDir_0'));
-
-
-		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
-		$records = $this->sphinx->instantiations_list($params, $offset, 100, TRUE);
-
-		$data['total'] = $records['total_count'];
-		$record_ids = array_map(array($this, 'make_map_array'), $records['records']);
-		$this->load->model('searchd_model', 'searchd');
-		$records = $this->searchd->get_instantiation($record_ids);
-//		$records = $records['records'];
-		$data['count'] = count($records);
-		$table_view = instantiations_datatable_view($records, $this->column_order);
-
-		$dataTable = array(
-			"sEcho" => intval($this->input->get('sEcho')),
-			"iTotalRecords" => intval($data['count']),
-			"iTotalDisplayRecords" => intval($data['count']),
-			'aaData' => $table_view
-		);
-		echo json_encode($dataTable);
-		exit_function();
-	}
+	
 
 	
 

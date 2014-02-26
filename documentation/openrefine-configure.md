@@ -43,4 +43,4 @@ Note
 
 	$ /etc/init.d/refine stop
 
-[Next: Open Refine](openrefine-configure.md)
+[Next: MINT Setup](mint-configure.md)

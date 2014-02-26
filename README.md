@@ -18,7 +18,7 @@ Documentation
 
 4- [Open Refine](documentation/openrefine-configure.md)
 
-
+5- [MINT Setup](documentation/mint-configure.md)
 
 
 

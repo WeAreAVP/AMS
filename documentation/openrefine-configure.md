@@ -4,7 +4,9 @@ Open Refine Configuration
 
 **1) Configure base path in (documenation/refine/refine);**
 
-Open Refine source path will be your base path. For example.
+	$ vim documenation/refine/refine
+
+Now set BASEPATH .Open Refine source path will be your base path. For example.
 
 	BASEPATH=/var/www/html/OpenRefine
 
@@ -32,9 +34,11 @@ Note
 * You can check the status
 
 	$ /etc/init.d/refine status
+
 * You can restart the service
 
 	$ /etc/init.d/refine restart
+
 * You can stop the service
 
 	$ /etc/init.d/refine stop

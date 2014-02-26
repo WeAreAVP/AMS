@@ -2,7 +2,11 @@ Installation and Configuration
 ===
 [Back: Prerequisite](prerequisite.md)
 
-**Assumption: All the prerequisites are completed.**
+**Assumptions**
+
+* All the prerequisites are completed.
+* Apache web directory /var/www/html
+* Tomcat web directory /usr/share/tomcat6/webapps
 
 AMS Application
 ----------

@@ -20,5 +20,7 @@ Documentation
 
 5- [MINT Setup](documentation/mint-configure.md)
 
+6- [NOID Setup](documentation/noid-configure.md)
+
 
 

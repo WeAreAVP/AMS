@@ -16,6 +16,7 @@ Documentation
 
 3- [Sphinx Configuration](documentation/sphinx-configure.md)
 
+4- [Open Refine](documentation/openrefine-configure.md)
 
 
 

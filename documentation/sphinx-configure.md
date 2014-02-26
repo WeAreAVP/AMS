@@ -33,11 +33,17 @@ Index type: **rt (realtime)**
 
 Index path: `/var/lib/sphinx/station/station`
 
+'id' attribute is reserved and used it insert or update value in index. 
 
-| Sphinx Column  | Sphinx Column Type  | Database Column | Description |
-| :------------- | :-------------------| :---------------| :-------------|
-| s_station_name | rt_field			   | stations.station_name	| used for searching|
-| station_name   | rt_attr_string           |   stations.station_name	| used for displaying|
-| s_type         | rt_field           |    stations.type			| used for searching|
-| type           | rt_attr_string           |    stations.type		|used for displaying||
-| s_address_primary | rt_field        |    stations.address_primary	| used for searching|
+| Sphinx Attribute		| Attribute Type| Database Column			| Description			|
+| :---------------------| :-------------| :-------------------------| :---------------------|
+| s_station_name		| rt_field		| stations.station_name		| used for searching	|
+| station_name			| rt_attr_string| stations.station_name		| used for displaying	|
+| s_type				| rt_field      | stations.type				| used for searching	|
+| type					| rt_attr_string| stations.type				| used for displaying	|
+| s_address_primary		| rt_field      | stations.address_primary	| used for searching	|
+| address_primary		| rt_attr_string| stations.address_primary	| used for displaying	|
+| s_address_secondary	| rt_field      | stations.address_primary	| used for searching	|
+| address_secondary		| rt_attr_string| stations.address_primary	| used for displaying	|
+
+[Next: Open Refine Configuration](openrefine-configure.md)

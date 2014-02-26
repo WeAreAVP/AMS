@@ -26,7 +26,7 @@
  * @license    http://amsqa.avpreserve.com CPB
  * @link       http://amsqa.avpreserve.com
  */
-class Instantiations extends MY_Controller
+class Instantiations extends MY_Records_Controller
 {
 
 	/**

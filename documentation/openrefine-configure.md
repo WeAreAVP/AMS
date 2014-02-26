@@ -43,4 +43,9 @@ Note
 
 	$ /etc/init.d/refine stop
 
+See more about Open refine. http://openrefine.org/
+
+
+
+
 [Next: MINT Setup](mint-configure.md)

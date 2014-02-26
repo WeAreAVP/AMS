@@ -46,4 +46,6 @@ Index path: `/var/lib/sphinx/station/station`
 | s_address_secondary	| rt_field      | stations.address_primary	| used for searching	|
 | address_secondary		| rt_attr_string| stations.address_primary	| used for displaying	|
 
+Visit http://sphinxsearch.com/ for more detail
+
 [Next: Open Refine Configuration](openrefine-configure.md)

@@ -24,7 +24,7 @@
  * @license    http://ams.avpreserve.com CPB
  * @link       http://ams.avpreserve.com
  */
-class Records extends MY_Controller
+class Records extends MY_Records_Controller
 {
 	/*
 	 *

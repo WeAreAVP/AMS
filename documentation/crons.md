@@ -29,7 +29,7 @@ Facet sidebar filters are stored in memcache for quick response.
  
 	* * * * * /bin/sh /var/www/html/crons/memcache.sh  > /dev/null 2>&1
 
-The following cron used memcache to store dashboard info so it display quickly
+It stores the dashboard information into memcache to load the page quickly.
 
 	*/10 * * * * /bin/sh /var/www/html/crons/dashboard_memcache.sh  > /dev/null 2>&1
 

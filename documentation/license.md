@@ -224,7 +224,7 @@ AMS Integral Components and Licensing
 *********************
 
 
-**Name:** Sphnix	
+**Name:** Sphinx	
 
 **Role:** Search and Browse	
 

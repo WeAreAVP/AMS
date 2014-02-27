@@ -24,5 +24,9 @@ Documentation
 
 7- [Cron jobs](documentation/crons.md)
 
+8- [Integration of MINT and Open Refine](documentation/integration.md)
 
+9- [Libraries](documentation/libraries.md)
+
+10- [License](documentation/license.md)
 

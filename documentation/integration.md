@@ -21,6 +21,38 @@ Integration of MINT and Open Refine
 
 **How MINT works in AMS**
 
+* When user wants to ingest data from MINT. User select the station name and we updated our database with it.
+
+ * Controller: autocomplete
+ * Method:     mint_login
+
+* After that we send ajax request on our pgconnect.php file. That creates a user on MINT or it returns the user information if already exist. And then user automatically logged into MINT.
+
+ * File pgconnect.php
+
+* User imported files and creates mapping in MINT.
+
+* When user successfully transformed his/her mapping. We create a entry with pending status. And send email to admin to approve or reject the tramsformation.
+ 
+ * Controller: mintimport
+ * Method:     save_transformed_info
+
+* When admin approves or reject the transformation on MINT. We receive call that will update the entry against specific id.
+
+ * Controller: mintimport
+ * Method:     update_transformed_info
+
+* After that our crons download the transformed zip and and save path to database for importing
+ 
+ * Controller: mintimport
+ * Method:     download_transformed_zip
+
+* Lastly we update the records in our database that came from MINT
+ 
+ * Controller: mintimport
+ * Method:     import_mint_files
+
+
 
 
 

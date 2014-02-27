@@ -11,8 +11,8 @@ You can add the crons using crontab
 
 It runs every minute and process limited csv export those are pending.
 
-*Controller: crons 
-*Method:     csv_export_job
+* Controller: crons 
+* Method:     csv_export_job
 
 	* * * * *       /bin/sh /var/www/html/crons/export_csv.sh > /dev/null 2>&1
 

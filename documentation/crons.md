@@ -33,28 +33,28 @@ It stores the dashboard information into memcache to load the page quickly.
 
 	*/10 * * * * /bin/sh /var/www/html/crons/dashboard_memcache.sh  > /dev/null 2>&1
 
-The following script run onece in day and update the database if new spreadsheet in added in google account.
+The following script run once in day and update the database if new spreadsheet in added in google account.
 	
 	@daily /bin/sh /var/www/html/crons/fetch_gsheets.sh > /dev/null 2>&1
 
-This cron import the data from google spreadsheet into events table
+This cron import the data from google spreadsheet into events table.
 
 	*/15 * * * * /bin/sh /var/www/html/crons/import_gsheets.sh > /dev/null 2>&1
 
-This cron check if any transformation is approved in mint the download it to server
+It download the transformed files when it approved in MINT.
 
 	* * * * * /bin/sh /var/www/html/crons/download_mint_zip.sh  > /dev/null 2>&1
 
-This cron is used to import records into system that are tranformed from MINT.
+The script import records into database that are successfully tranformed in MINT.
 
 	* * * * * /bin/sh /var/www/html/crons/import_mint.sh  > /dev/null 2>&1
 
-This cron is used to export the bag of xml files for PBCore and PREMIS.
+This cron is used to export the bag of XML files for PBCore and PREMIS.
 
 	* * * * * /bin/sh /var/www/html/crons/export_pbcore.sh  > /dev/null 2>&1
 
 
-Unzip all the crawford files and place it in mediainfo folder
+Unzip all the crawford files and place it in mediainfo folder.
 
 	0 4 * * * /bin/sh /var/www/html/crons/unzip_mediainfo.sh  > /dev/null 2>&1
 
@@ -65,3 +65,5 @@ Process the mediainfo files and store the path to database.
 Import mediainfo files data to database.
 
 	0 23 */2 * * /bin/sh /var/www/html/crons/mediainfo_import_xml.sh  > /dev/null 2>&1
+
+[Next: Integration of MINT and Open Refine](integration.md)

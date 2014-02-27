@@ -11,25 +11,21 @@ You can add the crons using crontab
 
 It runs every minute and process limited csv export those are pending.
 
-Controller: crons 
-
-Method:     csv_export_job
-
 	* * * * *       /bin/sh /var/www/html/crons/export_csv.sh > /dev/null 2>&1
 
-This cron send the emails are are in our system queue.
+It runs every minute and send the email that are pending in system.
 
 	* * * * *       /bin/sh /var/www/html/crons/process_email.sh > /dev/null 2>&1
 
-This creates an open refine project and send the URL to user.
+This creates a new project on open refine and send the email to the user.
 
 	* * * * *       /bin/sh /var/www/html/crons/make_refine_csv.sh > /dev/null 2>&1
 
-This crons update the records in system that are updated using open refine.
+This updates the records when changes are commit on google refine.
 
 	* * * * *       /bin/sh /var/www/html/crons/update_refine.sh > /dev/null 2>&1
 
-This will cached the facet records for fast result.
+Facet sidebar filters are stored in memcache for quick response.
  
 	* * * * * /bin/sh /var/www/html/crons/memcache.sh  > /dev/null 2>&1
 

@@ -57,6 +57,22 @@ All the above folders should have ownership of sphinx. You can set ownership usi
 
 ********************************
 
+If you already have data in your database and you want to insert in Sphinx Index.Then run following commands.
+
+You should be in project directory.
+
+Insert Stations data
+
+	$ php index.php searchd insert_station_sphnix
+
+Insert Assets data
+
+	$ php index.php searchd insert_assets_sphnix
+
+Insert Instantiations data
+	
+	$ php index.php searchd insert_instantiations_sphnix
+
 Visit http://sphinxsearch.com/ for more detail
 
 [Next: Open Refine Configuration](openrefine-configure.md)

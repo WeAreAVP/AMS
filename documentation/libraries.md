@@ -39,4 +39,4 @@ Javascript Libraries used.
 
 
 
-[Next: License](libraries.md)
+[Next: License](license.md)

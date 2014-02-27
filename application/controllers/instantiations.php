@@ -224,8 +224,6 @@ class Instantiations extends MY_Records_Controller
 		}
 	}
 
-	
-
 	/**
 	 * Set last state of table view
 	 *  
@@ -248,6 +246,11 @@ class Instantiations extends MY_Records_Controller
 		show_404();
 	}
 
+	/**
+	 * Edit instantations record.
+	 * 
+	 * @return view
+	 */
 	public function edit()
 	{
 		$instantiation_id = $this->uri->segment(3);
@@ -689,6 +692,11 @@ class Instantiations extends MY_Records_Controller
 		}
 	}
 
+	/**
+	 * Add new instantiation
+	 * 
+	 * @return view
+	 */
 	public function add()
 	{
 		$asset_id = $data['asset_id'] = $this->uri->segment(3);
@@ -1039,8 +1047,6 @@ class Instantiations extends MY_Records_Controller
 	 */
 	public function export_csv()
 	{
-//								if(isAjax())
-//								{
 		@ini_set("memory_limit", "3000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999); # 1GB
 		$params = array('search' => '');
@@ -1108,13 +1114,7 @@ class Instantiations extends MY_Records_Controller
 			echo json_encode(array('link' => 'false', 'msg' => 'Email will be sent to you with the link of limited csv export.'));
 			exit_function();
 		}
-//								}
-//								show_404();
 	}
-
-	
-
-	
 
 }
 

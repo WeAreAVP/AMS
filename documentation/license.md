@@ -3,8 +3,11 @@ AMS Integral Components and Licensing
 [Back: Libraries](libraries.md)
 
 **Name:** Codeignitor
+
 **Role:** PHP Framework
+
 **URL:** http://ellislab.com/codeigniter/user-guide/license.html
+
 **License:** "CodeIgniter is licensed under an Apache/BSD-style open source license so you can use it however you please."
 
 *********************
@@ -16,6 +19,8 @@ AMS Integral Components and Licensing
 
 **License:** BSD-2
 
+*********************
+
 **Name:** MINT Import Tool	
 
 **Role:** Metadata Importing and Mapping	
@@ -23,6 +28,9 @@ AMS Integral Components and Licensing
 **URL:** https://github.com/mint-ntua/Mint/blob/master/COPYING	
 
 **License:** GPLv3
+
+*********************
+
 
 **Name:** Zend gData	
 
@@ -32,6 +40,9 @@ AMS Integral Components and Licensing
 
 **License:** BSD-3
 
+*********************
+
+
 **Name:** domPDF	
 
 **Role:** Generating PDFs for reporting	
@@ -39,6 +50,9 @@ AMS Integral Components and Licensing
 **URL:** https://github.com/shadowhand/dompdf/blob/master/dompdf/LICENSE.LGPL	
 
 **License:** LGPLv2.1
+
+*********************
+
 
 **Name:** BagIt
 
@@ -48,6 +62,9 @@ AMS Integral Components and Licensing
 
 **License:** Apache 2.0
 
+*********************
+
+
 **Name:** PHPExcel	
 
 **Role:** Generating CSV output for reporting	
@@ -55,6 +72,9 @@ AMS Integral Components and Licensing
 **URL:** http://phpexcel.codeplex.com/license	
 
 **License:** LGPLv2.1
+
+*********************
+
 
 **Name:** Memcached	
 
@@ -64,6 +84,9 @@ AMS Integral Components and Licensing
 
 **License:** BSD-3
 
+*********************
+
+
 **Name:** Jquery	
 
 **Role:** Multi-use Javascript Library	
@@ -71,6 +94,9 @@ AMS Integral Components and Licensing
 **URL:** https://jquery.org/license/	
 
 **License:** MIT
+
+*********************
+
 
 **Name:** TinyMce
 
@@ -80,6 +106,9 @@ AMS Integral Components and Licensing
 
 **License:** GPLv2
 
+*********************
+
+
 **Name:** BlockUI
 
 **Role:** Used to block page when send ajax request
@@ -87,6 +116,9 @@ AMS Integral Components and Licensing
 **URL:** https://github.com/malsup/blockui/blob/master/README.md
 
 **License:** MIT and GPL
+
+*********************
+
 
 **Name:** Multiselect
 
@@ -96,6 +128,9 @@ AMS Integral Components and Licensing
 
 **License:** GPLv2
 
+*********************
+
+
 **Name:** DataTable	
 
 **Role:** Table features in UI	
@@ -103,6 +138,9 @@ AMS Integral Components and Licensing
 **URL:** http://www.datatables.net/license_gpl2	
 
 **License:** BSD-3
+
+*********************
+
 
 **Name:** Highchart	
 
@@ -112,6 +150,9 @@ AMS Integral Components and Licensing
 
 **License:** Creative Commons Attribution-NonCommercial 3.0 License
 
+*********************
+
+
 **Name:** Bootstrap	
 
 **Role:** Used for UI	
@@ -119,6 +160,9 @@ AMS Integral Components and Licensing
 **URL:** http://getbootstrap.com/about/	
 
 **License:** Apache 2.0
+
+*********************
+
 
 **Name:** JqueryUI	
 
@@ -128,6 +172,9 @@ AMS Integral Components and Licensing
 
 **License:** MIT License (http://en.wikipedia.org/wiki/JQuery_UI)
 
+*********************
+
+
 **Name:** TableSorter	
 
 **Role:** Sorting of tables in UI	
@@ -135,6 +182,9 @@ AMS Integral Components and Licensing
 **URL:** http://tablesorter.com/docs/	
 
 **License:** MIT
+
+*********************
+
 
 **Name:** FlowPlayer
 
@@ -144,6 +194,9 @@ AMS Integral Components and Licensing
 
 **License:** GPLv3
 
+*********************
+
+
 **Name:** jPlayer
 
 **Role:** Used to play proxy files
@@ -151,6 +204,9 @@ AMS Integral Components and Licensing
 **URL:** http://jplayer.org/about/
 
 **License:** MIT
+
+*********************
+
 
 **Peripheral - Not part of distribution but necessary to download and install separately**			
 
@@ -165,6 +221,9 @@ AMS Integral Components and Licensing
 **Notes:** We are not modifying, extending or distributing. Whoever installs AMS will need to download and install. We are simply using the API. Therefore GPL license does not impact our licensing of AMS.
 
 
+*********************
+
+
 **Name:** Sphnix	
 
 **Role:** Search and Browse	
@@ -174,6 +233,9 @@ AMS Integral Components and Licensing
 **License:** GPLv2
 
 **Notes:** We are not modifying, extending or distributing. Whoever installs AMS will need to download and install. We are simply using the API. Therefore GPL license does not impact our licensing of AMS.
+
+*********************
+
 
 
 

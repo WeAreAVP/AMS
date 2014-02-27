@@ -7,7 +7,7 @@ AMS Integral Components and Licensing
 **URL:** http://ellislab.com/codeigniter/user-guide/license.html
 **License:** "CodeIgniter is licensed under an Apache/BSD-style open source license so you can use it however you please."
 
-
+*********************
 **Name:** Open Refine
 
 **Role:** Metadata Refinement	

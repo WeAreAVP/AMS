@@ -32,28 +32,28 @@ All the above folders should have ownership of sphinx. You can set ownership usi
 
 ** Indexes**
 
-Index name: **stations**
+**Index name:** stations
 
-Index type: **rt (realtime)**
+**Index type:** rt (realtime)
 
-Index path: `/var/lib/sphinx/station/station`
+**Index path:** `/var/lib/sphinx/station/station`
 
-
-********************************
-
-Index name: **instantiations_list**
-
-Index type: **rt (realtime)**
-
-Index path: `/var/lib/sphinx/instantiation/instantiation`
 
 ********************************
 
-Index name: **assets_list**
+**Index name:** instantiations_list
 
-Index type: **rt (realtime)**
+**Index type:** rt (realtime)
 
-Index path: `/var/lib/sphinx/asset/asset`
+**Index path:** `/var/lib/sphinx/instantiation/instantiation`
+
+********************************
+
+**Index name:** assets_list
+
+**Index type:** rt (realtime)
+
+**Index path:** `/var/lib/sphinx/asset/asset`
 
 ********************************
 

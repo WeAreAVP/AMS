@@ -2,13 +2,17 @@ Cron Jobs
 ===
 [Back: NOID Setup](noid-configure.md)
 
-**Note: Bash scripts are used in crons setup to prevent from running method more than one time.**
+**Note: Bash scripts are used in crons setup to prevent from running process more than one time.**
 
 You can add the crons using crontab
 
 	$ crontab -e
 
-This cron is used to export csv file and send to user who exported it.
+
+It runs every minute and process limited csv export those are pending.
+
+*Controller: crons 
+*Method:     csv_export_job
 
 	* * * * *       /bin/sh /var/www/html/crons/export_csv.sh > /dev/null 2>&1
 
@@ -51,3 +55,16 @@ This cron is used to import records into system that are tranformed from MINT.
 This cron is used to export the bag of xml files for PBCore and PREMIS.
 
 	* * * * * /bin/sh /var/www/html/crons/export_pbcore.sh  > /dev/null 2>&1
+
+
+Unzip all the crawford files and place it in mediainfo folder
+
+	0 4 * * * /bin/sh /var/www/html/crons/unzip_mediainfo.sh  > /dev/null 2>&1
+
+Process the mediainfo files and store the path to database.
+	
+	0 5 * * * /bin/sh /var/www/html/crons/mediainfo_process_dir.sh  > /dev/null 2>&1
+
+Import mediainfo files data to database.
+
+	0 23 */2 * * /bin/sh /var/www/html/crons/mediainfo_import_xml.sh  > /dev/null 2>&1

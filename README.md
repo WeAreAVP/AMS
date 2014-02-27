@@ -22,5 +22,7 @@ Documentation
 
 6- [NOID Setup](documentation/noid-configure.md)
 
+7- [Cron jobs](documentation/crons.md)
+
 
 

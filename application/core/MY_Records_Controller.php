@@ -18,8 +18,9 @@ class MY_Records_Controller extends MY_Controller
 	}
 
 	/**
-	 * Load Facet sidebar
+	 * Load Facet sidebar for both assets tab and instantations tab.
 	 * 
+	 * @return view
 	 */
 	function load_facet_columns()
 	{
@@ -97,10 +98,11 @@ class MY_Records_Controller extends MY_Controller
 		}
 		show_404();
 	}
+
 	/**
-	 * Record data to display in dataTable.
+	 * Make instantiations data to display in datatable.
 	 * 
-	 * 
+	 * @return json
 	 */
 	public function instantiation_table()
 	{
@@ -146,6 +148,137 @@ class MY_Records_Controller extends MY_Controller
 			"iTotalDisplayRecords" => intval($data['count']),
 			'aaData' => $table_view
 		);
+		echo json_encode($dataTable);
+		exit_function();
+	}
+
+	/**
+	 * Get Proxy file path by guid from crawford server.
+	 * 
+	 * @param string $guid
+	 * @return boolean/array
+	 */
+	function proxy_files($guid)
+	{
+		$proxy_guid = str_replace('/', '-', $guid);
+		$proxy_response = file_get_contents("http://cpbaaaccess.crawfordmedia.com/xml.php?GUID=$proxy_guid");
+		$x = @simplexml_load_string($proxy_response);
+		if (is_object($x))
+		{
+			$data = xmlObjToArr($x);
+
+			$child = $data['children'];
+			if (isset($data['name']) && $data['name'] == 'error')
+			{
+				return FALSE;
+			}
+			else
+			{
+				if (isset($child['mediaurl'][0]))
+				{
+					$media['url'] = $child['mediaurl'][0]['text'];
+				}
+				if (isset($child['format'][0]))
+				{
+					$media['format'] = $child['format'][0]['text'];
+				}
+				return $media;
+			}
+		}
+		return FALSE;
+	}
+
+	/**
+	 * Make assets data to display in datatable simple view.
+	 * 
+	 * @return json
+	 */
+	public function sort_simple_table()
+	{
+		$columns = array('flag', 'organization', 'guid_identifier', 'local_identifier', 'asset_title', 'description');
+		$this->session->unset_userdata('column');
+		$this->session->unset_userdata('jscolumn');
+		$this->session->unset_userdata('column_order');
+
+		$this->session->set_userdata('jscolumn', $this->input->get('iSortCol_0'));
+		$this->session->set_userdata('column', $columns[$this->input->get('iSortCol_0')]);
+
+		$this->session->set_userdata('column_order', $this->input->get('sSortDir_0'));
+
+		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
+
+		$records = $this->sphinx->assets_listing($offset, 100, TRUE);
+		$data['total'] = $records['total_count'];
+		$record_ids = array_map(array($this, 'make_map_array'), $records['records']);
+		$this->load->model('searchd_model', 'searchd');
+		$records = $this->searchd->get_assets($record_ids);
+//		
+//		$records = $records['records'];
+		$data['count'] = count($records);
+		$table_view = simple_simple_datatable_view($records);
+
+
+		$dataTable = array(
+			"sEcho" => $this->input->get('sEcho') + 1,
+			"iTotalRecords" => $data['count'],
+			"iTotalDisplayRecords" => $data['count'],
+			'aaData' => $table_view
+		);
+		echo json_encode($dataTable);
+		exit_function();
+	}
+
+	/**
+	 * Make assets data to display in datatable for full view.
+	 * 
+	 * @return json
+	 */
+	public function sort_full_table()
+	{
+		$column = array(
+			'Organization' => 'organization',
+			'Titles' => 'asset_title',
+			'AA_GUID' => 'guid_identifier',
+			'Local_ID' => 'local_identifier',
+			'Description' => 'description',
+			'Subjects' => 'asset_subject',
+			'Genre' => 'asset_genre',
+			'Assets_Date' => 'dates',
+			'Creator' => 'asset_creator_name',
+			'Contributor' => 'asset_contributor_name',
+			'Publisher' => 'asset_publisher_name',
+			'Coverage' => 'asset_coverage',
+			'Audience_Level' => 'asset_audience_level',
+			'Audience_Rating' => 'asset_audience_rating',
+			'Annotation' => 'asset_annotation',
+			'Rights' => 'asset_rights');
+
+
+		$this->session->unset_userdata('column');
+		$this->session->unset_userdata('jscolumn');
+		$this->session->unset_userdata('column_order');
+		$this->session->set_userdata('jscolumn', $this->input->get('iSortCol_0'));
+		$this->session->set_userdata('column', $column[$this->column_order[$this->input->get('iSortCol_0')]['title']]);
+		$this->session->set_userdata('column_order', $this->input->get('sSortDir_0'));
+		$offset = isset($this->session->userdata['offset']) ? $this->session->userdata['offset'] : 0;
+
+		$records = $this->sphinx->assets_listing($offset, 100, TRUE);
+		$data['total'] = $records['total_count'];
+		$record_ids = array_map(array($this, 'make_map_array'), $records['records']);
+		$this->load->model('searchd_model', 'searchd');
+		$records = $this->searchd->get_assets($record_ids);
+//		
+//		$records = $records['records'];
+		$data['count'] = count($records);
+		$table_view = full_assets_datatable_view($records, $this->column_order);
+
+		$dataTable = array(
+			"sEcho" => $this->input->get('sEcho') + 1,
+			"iTotalRecords" => $data['count'],
+			"iTotalDisplayRecords" => $data['count'],
+			'aaData' => $table_view
+		);
+
 		echo json_encode($dataTable);
 		exit_function();
 	}

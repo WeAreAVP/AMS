@@ -224,35 +224,7 @@ class Instantiations extends MY_Records_Controller
 		}
 	}
 
-	function proxy_files($guid)
-	{
-		$proxy_guid = str_replace('/', '-', $guid);
-		$proxy_response = file_get_contents("http://cpbaaaccess.crawfordmedia.com/xml.php?GUID=$proxy_guid");
-		$x = @simplexml_load_string($proxy_response);
-		if (is_object($x))
-		{
-			$data = xmlObjToArr($x);
-
-			$child = $data['children'];
-			if (isset($data['name']) && $data['name'] == 'error')
-			{
-				return FALSE;
-			}
-			else
-			{
-				if (isset($child['mediaurl'][0]))
-				{
-					$media['url'] = $child['mediaurl'][0]['text'];
-				}
-				if (isset($child['format'][0]))
-				{
-					$media['format'] = $child['format'][0]['text'];
-				}
-				return $media;
-			}
-		}
-		return FALSE;
-	}
+	
 
 	/**
 	 * Set last state of table view

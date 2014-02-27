@@ -10,23 +10,23 @@ The core goal of the Archival Management System (“AMS”) is to provide the ba
 Documentation
 ===
 
-1- [Prerequisite](documentation/prerequisite.md)
+1-  [Prerequisite](documentation/prerequisite.md)
 
-2- [Installation and Configuration](documentation/install-configure.md)
+2-  [Installation and Configuration](documentation/install-configure.md)
 
-3- [Sphinx Configuration](documentation/sphinx-configure.md)
+3-  [Sphinx Configuration](documentation/sphinx-configure.md)
 
-4- [Open Refine](documentation/openrefine-configure.md)
+4-  [Open Refine](documentation/openrefine-configure.md)
 
-5- [MINT Setup](documentation/mint-configure.md)
+5-  [MINT Setup](documentation/mint-configure.md)
 
-6- [NOID Setup](documentation/noid-configure.md)
+6-  [NOID Setup](documentation/noid-configure.md)
 
-7- [Cron jobs](documentation/crons.md)
+7-  [Cron jobs](documentation/crons.md)
 
-8- [Integration of MINT and Open Refine](documentation/integration.md)
+8-  [Integration of MINT and Open Refine](documentation/integration.md)
 
-9- [Libraries](documentation/libraries.md)
+9-  [Libraries](documentation/libraries.md)
 
 10- [License](documentation/license.md)
 

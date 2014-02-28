@@ -19,55 +19,22 @@ if ( ! defined('BASEPATH'))
  */
 
 $config['index_page'] = '';
-if (ENVIRONMENT == 'development')
-{
-	$config['base_url'] = "http://ams.live.geekschicago.com/";
-	$config['to_email'] = 'noumantayyab@avpreserve.com';
-	$config['from_email'] = 'noreply@amsdev.avpreserve.com';
-	$config['crawford_email'] = 'nouman@geekschicago.com';
-	$config['path'] = '/home/ams/public_html/';
-	$config['cookie_domain'] = ".ams.live.geekschicago.com";
-	$config['mint_url'] = "http://mint.avpreserve.com:8080/mint-ams";
-	$config['google_refine_url'] = "http://ams.live.geekschicago.com:3333";
-	$config['asset_index'] = 'assets_list';
-	$config['instantiatiion_index'] = 'instantiations_list';
-	$config['station_index'] = 'stations';
-	$config['google_spreadsheet_email'] = 'nouman@avpreserve.com';
-	$config['google_spreadsheet_password'] = 'bm91bWFuQGF2cHM=';
-}
-else if (ENVIRONMENT == 'qatesting')
-{
-	$config['base_url'] = "https://amsqa.avpreserve.com/";
-	$config['to_email'] = 'ssapienza@cpb.org';
-	$config['from_email'] = 'noreply@amsqa.avpreserve.com';
-	$config['crawford_email'] = 'cstephenson@mail.crawford.com';
-	$config['path'] = '/var/www/html/';
-	$config['cookie_domain'] = ".amsqa.avpreserve.com";
-	$config['mint_url'] = "http://amsqa.avpreserve.com:8080/mint-ams";
-	$config['google_refine_url'] = "http://amsqa.avpreserve.com:3333";
-	$config['instance_name'] = 'amsqa';
-	$config['asset_index'] = 'assets_list';
-	$config['instantiatiion_index'] = 'instantiations_list';
-	$config['station_index'] = 'stations';
-	$config['google_spreadsheet_email'] = 'nouman@avpreserve.com';
-	$config['google_spreadsheet_password'] = 'bm91bWFuQGF2cHM=';
-} if (ENVIRONMENT == 'production')
-{
-	$config['base_url'] = "https://ams.avpreserve.com/";
-	$config['to_email'] = 'ssapienza@cpb.org';
-	$config['from_email'] = 'noreply@ams.avpreserve.com';
-	$config['crawford_email'] = 'cstephenson@mail.crawford.com';
-	$config['path'] = '/var/www/html/';
-	$config['cookie_domain'] = ".ams.avpreserve.com";
-	$config['mint_url'] = "http://ams.avpreserve.com:8080/mint-ams";
-	$config['google_refine_url'] = "http://ams.avpreserve.com:3333";
-	$config['instance_name'] = 'ams';
-	$config['asset_index'] = 'assets_list';
-	$config['instantiatiion_index'] = 'instantiations_list';
-	$config['station_index'] = 'stations';
-	$config['google_spreadsheet_email'] = 'nouman@avpreserve.com';
-	$config['google_spreadsheet_password'] = 'bm91bWFuQGF2cHM=';
-}
+
+$config['base_url'] = '${config.baseUrl}';
+$config['to_email'] = '${config.emailTo}';
+$config['from_email'] = '${config.emailFrom}';
+$config['crawford_email'] = '${config.emailCrawford}';
+$config['path'] = '${config.basePath}';
+$config['cookie_domain'] = '.${config.cookieName}';
+$config['mint_url'] = '${config.mintUrl}';
+$config['google_refine_url'] = '${config.refineUrl}';
+$config['instance_name'] = 'ams';
+$config['asset_index'] = 'assets_list';
+$config['instantiatiion_index'] = 'instantiations_list';
+$config['station_index'] = 'stations';
+$config['google_spreadsheet_email'] = '${config.googleEmail}';
+$config['google_spreadsheet_password'] = '${config.googelPassword}';
+
 
 
 
@@ -409,7 +376,7 @@ $config['proxy_ips'] = '';
 
 $config['messages_type'] = array(1 => "Digitization Start Date", 2 => "Materials Received Digitization Vendor", 3 => "Shipment Return", 4 => "Hard Drive Return Date", 5 => "Audio FTP Review");
 $config['ship_types'] = array(1 => "fedex", 2 => "truck", 3 => "UPS");
-$config['demo'] = true;
+$config['demo'] = ${config . demo};
 /*
   | -------------------------------------------------------------------
   |  Native Auto-load

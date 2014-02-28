@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="dbConfiguration">
+
+	<target name="dbConfiguration">
+		<echo msg="Configuring Please wait..." />
+		<copy todir="${project.basedir}/application/config/" overwrite="true">
+			<filelist dir="${project.basedir}/build/templates/" files="database.php.build" />
+			<mapper type="regexp" from="^(.*).build$" to="\1"/>
+
+			<filterchain>
+				<expandproperties />
+			</filterchain>
+		</copy>
+	</target>
+
+</project> 

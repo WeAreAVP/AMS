@@ -18,11 +18,7 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 
 	$ git clone git@github.com:avpreserve/AMS.git .
 
-**3) Run create_directory script. It will create required folders and set permissions.**
-
-	$ sh create_directory.sh
-
-**4) Use mySQL dump file to initialize database with default schema.**
+**3) Use mySQL dump file to initialize database with default schema.**
  
 **Database ERD:**
 ![alt text](database/ERD_database.png "ERD database")
@@ -44,6 +40,35 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 **Use default schema**
 
 	source documentation/database/schema.sql
+
+**4) Run phing command to configure application.
+
+	$ phing
+
+And follow steps to configure environment,database and configuration values.
+
+#h3 OR Do Manually
+
+
+**4) Run create_directory script. It will create required folders and set permissions.**
+
+	$ sh create_directory.sh
+
+Copy the index.php file from build/templates/index.php.build
+
+	cp build/templates/index.php.build ./index.php
+
+Copy the database.php file from build/templates/database.php.build
+
+	cp build/templates/index.php.build ./application/config/database.php
+
+Copy the config.php file from build/templates/config.php.build
+
+	cp build/templates/index.php.build ./application/config/config.php
+
+Now You have to manually set the values for these files.
+
+
 
 
 **5) Application configuration variable (application/config/config.php)**

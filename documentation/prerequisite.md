@@ -52,8 +52,11 @@ Database
 Build Tool
 ---------
 
-**Apache Maven**
+* **Apache Maven**
 * Version 3.1.0
+
+* **Phing**
+* Version 2.6.1
 
 Unique Identifier Tool
 ---------

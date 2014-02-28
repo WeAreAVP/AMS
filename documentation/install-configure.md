@@ -41,13 +41,13 @@ Application is build in PHP Framework **[CodeIgniter] (http://ellislab.com/codei
 
 	source documentation/database/schema.sql
 
-**4) Run phing command to configure application.
+**4) Run phing command to configure application.**
 
 	$ phing
 
 And follow steps to configure environment,database and configuration values.
 
-#h3 OR Do Manually
+### OR Do Manually
 
 
 **4) Run create_directory script. It will create required folders and set permissions.**

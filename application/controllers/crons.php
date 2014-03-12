@@ -190,14 +190,16 @@ class Crons extends CI_Controller
 				}
 				else if ($columns == 'stations')
 				{
-					$this->load->library('sphnixrt');
-
-					$result = $this->sphnixrt->select($index_name, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
-					foreach ($result['records'] as $_key => $station)
-					{
-						$result['records'][$_key]['@count'] = $station['count(*)'];
-					}
-					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, FALSE)), 36000);
+//					$this->load->library('sphnixrt');
+					$result = $this->sphinx->facet_index($facet, $index_name);
+//					$data['stations'] = sortByOneKey($result['records'], $facet);
+					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet)), 36000);
+//					$result = $this->sphnixrt->select($index_name, array('start' => 0, 'limit' => 1000, 'group_by' => 'organization', 'column_name' => 'organization'));
+//					foreach ($result['records'] as $_key => $station)
+//					{
+//						$result['records'][$_key]['@count'] = $station['count(*)'];
+//					}
+//					$this->memcached_library->set($index . '_' . $columns, json_encode(sortByOneKey($result['records'], $facet, FALSE)), 36000);
 				}
 				else
 				{

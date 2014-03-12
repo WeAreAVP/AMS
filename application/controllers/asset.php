@@ -64,6 +64,7 @@ class Asset extends MY_Controller
 				{
 					$this->assets_model->update_assets($asset_id, array('stations_id' => $this->input->post('organization')));
 				}
+				$this->assets_model->update_assets($asset_id, array('updated' => date('Y-m-d H:m:i')));
 				if ($this->input->post('asset_type'))
 				{
 					foreach ($this->input->post('asset_type') as $value)
@@ -563,8 +564,6 @@ class Asset extends MY_Controller
 		}
 	}
 
-	
-
 	/**
 	 * Add New Asset and redirect to add new instantiations.
 	 * 
@@ -618,7 +617,7 @@ class Asset extends MY_Controller
 			if ( ! empty($guid))
 			{
 				/* Insert Asset Start */
-				$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s")));
+				$asset_id = $this->assets_model->insert_assets(array("stations_id" => $station_id, "created" => date("Y-m-d H:i:s"), "updated" => date("Y-m-d H:i:s")));
 				/* Insert Asset End */
 				/* Insert Asset Type Start */
 				if ($this->input->post('asset_type'))

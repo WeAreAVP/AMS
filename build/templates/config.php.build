@@ -376,7 +376,7 @@ $config['proxy_ips'] = '';
 
 $config['messages_type'] = array(1 => "Digitization Start Date", 2 => "Materials Received Digitization Vendor", 3 => "Shipment Return", 4 => "Hard Drive Return Date", 5 => "Audio FTP Review");
 $config['ship_types'] = array(1 => "fedex", 2 => "truck", 3 => "UPS");
-$config['demo'] = ${config . demo};
+$config['demo'] = ${config.demo};
 /*
   | -------------------------------------------------------------------
   |  Native Auto-load

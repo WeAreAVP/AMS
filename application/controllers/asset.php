@@ -60,11 +60,12 @@ class Asset extends MY_Controller
 			{
 
 				$this->delete_asset_attributes($asset_id);
+				$update_asset_tbl['updated'] = date('Y-m-d H:m:i');
 				if ( ! $this->is_station_user)
 				{
-					$this->assets_model->update_assets($asset_id, array('stations_id' => $this->input->post('organization')));
+					$update_asset_tbl['stations_id'] = $this->input->post('organization');
 				}
-				$this->assets_model->update_assets($asset_id, array('updated' => date('Y-m-d H:m:i')));
+				$this->assets_model->update_assets($asset_id, $update_asset_tbl);
 				if ($this->input->post('asset_type'))
 				{
 					foreach ($this->input->post('asset_type') as $value)

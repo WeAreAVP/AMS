@@ -223,7 +223,8 @@ class MY_Asset_Model extends MY_Instantiation_Model
 		if ( ! empty($date))
 		{
 			$date = date('Y-m-d', strtotime($date));
-			$this->db->where("({$this->_assets_table}.created LIKE '{$date}%' OR {$this->_assets_table}.updated LIKE '{$date}%')");
+
+			$this->db->where("(DATE_FORMAT({$this->_assets_table}.created,'%Y-%m-%d') >= '{$date}' OR DATE_FORMAT({$this->_assets_table}.updated,'%Y-%m-%d') >= '{$date}')");
 		}
 		if ( ! empty($digitized))
 		{

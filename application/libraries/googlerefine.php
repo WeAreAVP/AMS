@@ -20,7 +20,7 @@ class Googlerefine
 	{
 		$data = NULL;
 		$uri = $this->server . '/command/core/create-project-from-upload';
-		myLog("URL=> {$url}");
+		myLog("URL=> {$uri}");
 		$post_field = array('project-file' => "@$file_path", 'project-name' => $project_name);
 		$response = $this->send_curl_request($uri, $post_field);
 		debug($response, FALSE);

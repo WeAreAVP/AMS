@@ -115,38 +115,39 @@ if ( ! $isAjax)
 		</div>
 	</div>
 	<script type="text/javascript">
-		$('#export_csv_modal').on('hidden', function() {
-			$('#export_csv_msg').html('<img src="/images/ajax-loader.gif" />Please wait...');
-		});
+				$('#export_csv_modal').on('hidden', function() {
+					$('#export_csv_msg').html('<img src="/images/ajax-loader.gif" />Please wait...');
+				});
 
-		function confirm_csv_export() {
-			$('#export_csv_modal').modal({
-				backdrop: 'static',
-			});
-			//												$('#export_csv_modal').modal('toggle');
+				function confirm_csv_export() {
+					$('#export_csv_modal').modal({
+						backdrop: 'static',
+					});
+					//												$('#export_csv_modal').modal('toggle');
 
-			export_csv_limited();
-		}
-		function export_csv_limited() {
-			$.ajax({
-				type: 'POST',
-				url: site_url + 'instantiations/export_csv',
-				dataType: 'json',
-				success: function(result) {
-					if (result.link == 'true')
-						$('#export_csv_msg').html('<a href="' + result.msg + '">Download</a>');
-					else
-						$('#export_csv_msg').html(result.msg);
-
+					export_csv_limited();
 				}
-			});
-		}
-		$(document).ready(function() {
-			load_facet_columns('instantiations_list', $('.search_keys').length);
-		});
+				function export_csv_limited() {
+					$.ajax({
+						type: 'POST',
+						url: site_url + 'instantiations/export_csv',
+						dataType: 'json',
+						success: function(result) {
+							if (result.link == 'true')
+								$('#export_csv_msg').html('<a href="' + result.msg + '">Download</a>');
+							else
+								$('#export_csv_msg').html(result.msg);
+
+						}
+					});
+				}
+				$(document).ready(function() {
+					load_facet_columns('instantiations_list', $('.search_keys').length);
+				});
 
 	</script>
 	<?php
 	$this->load->view('partials/_standalone_popup');
+	$this->load->view('partials/_refine_popup');
 }
 ?>

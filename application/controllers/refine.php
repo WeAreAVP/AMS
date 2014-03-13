@@ -76,11 +76,11 @@ class Refine extends MY_Controller
 	 * 
 	 * @retun 
 	 */
-	public function remove($project_id)
+	public function remove($db_id)
 	{
-
-		$this->googlerefine->delete_project($project_id);
-		$db_detail = $this->refine_modal->get_by_project_id($project_id);
+		$db_detail = $this->refine_modal->get_by_id($db_id);
+		$this->googlerefine->delete_project($db_detail->project_id);
+		
 		if ($db_detail)
 		{
 			$data = array('is_active' => 0);

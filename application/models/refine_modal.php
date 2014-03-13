@@ -93,7 +93,7 @@ class Refine_modal extends CI_Model
 
 	function get_active_refine()
 	{
-		$this->db->select("CONCAT(user_profile.first_name,' ', user_profile.last_name) AS name,google_refine.user_id,google_refine.project_id,google_refine.is_active", FALSE);
+		$this->db->select("id,CONCAT(user_profile.first_name,' ', user_profile.last_name) AS name,google_refine.user_id,google_refine.project_id,google_refine.is_active", FALSE);
 		$this->db->where_in('google_refine.is_active', array(1, 2));
 		$this->db->join('user_profile', 'user_profile.user_id=google_refine.user_id');
 		return $this->db->get('google_refine')->row();

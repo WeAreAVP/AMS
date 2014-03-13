@@ -13,7 +13,7 @@ class Googlerefine
 	function __construct()
 	{
 		$CI = & get_instance();
-		$this->server = $CI->config->item('google_refine_url');
+		$this->server = 'http://localhost:3333';
 	}
 
 	function create_project($project_name, $file_path)

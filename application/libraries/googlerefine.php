@@ -20,14 +20,14 @@ class Googlerefine
 	{
 		$data = NULL;
 		$uri = $this->server . '/command/core/create-project-from-upload';
+		myLog("URL=> {$url}");
 		$post_field = array('project-file' => "@$file_path", 'project-name' => $project_name);
 		$response = $this->send_curl_request($uri, $post_field);
-		debug($response,FALSE);
+		debug($response, FALSE);
 		/* Checking the google refine url */
 		$pattern = '`.*?((http)://[\w#$&+,\/:;=?@.-]+)[^\w#$&+,\/:;=?@.-]*?`i'; //this regexp finds your url
 		if (preg_match_all($pattern, $response, $matches))
 			$project_url = $matches[1][0]; //project ID URL
-		$data['project_url'] = $project_url;
 		if (isset($project_url))
 		{
 			$data['project_url'] = $project_url;

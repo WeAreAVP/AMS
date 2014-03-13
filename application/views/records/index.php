@@ -187,6 +187,6 @@ if ( ! $isAjax)
 	</script>
 
 	<?php
-	$this->load->view('partials/_refine_popup');
+	$this->load->view('partials/_refine_popup', array('is_refine' => $is_refine));
 }
 ?>

@@ -27,7 +27,7 @@
 	</div>
 	<div class="modal-body">
 		Are you sure you want to cancel refining.It will remove all your changes.
-		<?php debug($is_refine,FALSE);?>
+		
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>

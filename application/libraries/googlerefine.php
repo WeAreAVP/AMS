@@ -60,7 +60,7 @@ class Googlerefine
 
 		$page = curl_exec($ch);
 		$response = curl_getinfo($ch);
-		debug($response,FALSE);
+		
 		return $page;
 	}
 

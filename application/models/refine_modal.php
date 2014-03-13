@@ -80,9 +80,11 @@ class Refine_modal extends CI_Model
 		$this->db->where('project_id', $project_id);
 		return $this->db->get('google_refine')->row();
 	}
-	function get_by_id($db_id)
+	function get_by_id_or_project_id($db_id)
 	{
 		$this->db->where('id', $db_id);
+		$this->db->or_where('project_id', $db_id);
+		
 		return $this->db->get('google_refine')->row();
 	}
 

@@ -209,7 +209,7 @@ class Refinecrons extends CI_Controller
 				if ($project_url)
 					send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
 				else
-					send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Refine Instantiations', $project_url);
+					send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Refine Instantiations', 'Something went wrong');
 			}
 		}
 		else

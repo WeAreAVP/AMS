@@ -22,7 +22,7 @@ class Googlerefine
 		$uri = $this->server . '/command/core/create-project-from-upload';
 		$post_field = array('project-file' => "@$file_path", 'project-name' => $project_name);
 		$response = $this->send_curl_request($uri, $post_field);
-
+		debug($response,FALSE);
 		/* Checking the google refine url */
 		$pattern = '`.*?((http)://[\w#$&+,\/:;=?@.-]+)[^\w#$&+,\/:;=?@.-]*?`i'; //this regexp finds your url
 		if (preg_match_all($pattern, $response, $matches))

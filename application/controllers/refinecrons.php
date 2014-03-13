@@ -1,4 +1,5 @@
 <?php
+
 // @codingStandardsIgnoreFile
 /**
  * AMS Archive Management System
@@ -88,7 +89,7 @@ class Refinecrons extends CI_Controller
 		$record = $this->refine_modal->get_job_for_refine();
 		if (count($record) > 0)
 		{
-
+			myLog("Started {$record->refine_type} Refine Cron.");
 			if ($record->refine_type == 'instantiation')
 			{
 				$filename = 'AMS_Refine_Instantiations_' . time() . '.csv';
@@ -134,9 +135,9 @@ class Refinecrons extends CI_Controller
 					if (count($records) < 15000)
 						$db_count ++;
 				}
-
+				
 				$path = $this->config->item('path') . $file_path;
-
+				
 				myLog('CSV file successfully created.');
 				$data = array('export_csv_path' => $path);
 				$this->refine_modal->update_job($record->id, $data);
@@ -201,9 +202,12 @@ class Refinecrons extends CI_Controller
 				}
 
 				$path = $this->config->item('path') . $file_path;
+				myLog('CSV file successfully created.');
 				$data = array('export_csv_path' => $path);
 				$this->refine_modal->update_job($record->id, $data);
+				myLog('Creating AMS Refine Project.');
 				$project_url = $this->create($path, $filename, $record->id);
+				myLog('Successfully Created AMS Refine Project.');
 				$user = $this->users->get_user_by_id($record->user_id)->row();
 				myLog('Sending Email to ' . $user->email);
 				if ($project_url)
@@ -263,8 +267,7 @@ class Refinecrons extends CI_Controller
 		{
 			if ($index != 0)
 			{
-				list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type, $language, $instantiation_id, $identifier_id, $generation_id)
-				= preg_split("/\t/", $line);
+				list($organization, $asset_title, $description, $ins_id, $ins_id_src, $generation, $nomination, $nomination_reason, $media_type, $language, $instantiation_id, $identifier_id, $generation_id) = preg_split("/\t/", $line);
 				/* Check and update Media Type and Language Start */
 				$media_type_id = 0;
 				if ( ! empty($media_type))

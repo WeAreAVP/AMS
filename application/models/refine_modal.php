@@ -254,39 +254,52 @@ class Refine_modal extends CI_Model
 			);
 
 			$keyword_json = $session['custom_search'];
-			$where .= ' AND ( 1=1';
+			$where = '(';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
 				foreach ($key_columns as $keys => $keywords)
 				{
 					$keyword = trim($keywords->value);
+					$_or = ' OR ';
+					if ($count == 0)
+						$_or = ' ';
+
 					if ($index == 'all')
 					{
+						$counter = 0;
 
 						foreach ($facet_columns as $column)
 						{
-							$where .=" OR $column LIKE '%$keyword%'";
+							$_or = ' OR ';
+							if ($counter == 0)
+								$_or = ' ';
+							$where .=" $_or $column LIKE '%$keyword%'";
+							$counter ++;
 						}
 					}
 					else
 					{
-						$where .=" OR $index LIKE '%$keyword%'";
+						$where .=" $_or $index LIKE '%$keyword%'";
 					}
 					$count ++;
 				}
 			}
 			$where .=' )';
-			$this->db->where($where, NULL, FALSE);
+			$this->db->where($where);
 		}
 		if (isset($session['date_range']) && $session['date_range'] != '')
 		{
 			$keyword_json = $this->session->userdata['date_range'];
-			$where .= ' AND (1=1';
+			$where = '(';
 			foreach ($keyword_json as $index => $key_columns)
 			{
+				$count = 0;
 				foreach ($key_columns as $keys => $keywords)
 				{
+					$_or = ' OR ';
+					if ($count == 0)
+						$_or = ' ';
 
 					$date_range = explode("to", $keywords->value);
 					if (isset($date_range[0]) && trim($date_range[0]) != '')
@@ -300,17 +313,18 @@ class Refine_modal extends CI_Model
 					if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
 					{
 
-
-						$where .="OR ($this->table_instantiation_dates.instantiation_date >= $start_date AND $this->table_instantiation_dates.instantiation_date<= $end_date )";
+						$where .="$_or ($this->table_instantiation_dates.instantiation_date >= $start_date AND $this->table_instantiation_dates.instantiation_date<= $end_date )";
 
 						if ($index != 'All')
 						{
 							$where .=" AND $this->table_date_types.date_type LIKE '$index'";
 						}
 					}
+					$count ++;
 				}
 			}
 			$where .=' )';
+			$this->db->where($where);
 		}
 		$this->db->where($where);
 		if ($this->is_station_user)
@@ -506,38 +520,52 @@ class Refine_modal extends CI_Model
 			);
 
 			$keyword_json = $session['custom_search'];
-			$where .= ' AND ( 1=1';
+			$where = '(';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
 				foreach ($key_columns as $keys => $keywords)
 				{
 					$keyword = trim($keywords->value);
+					$_or = ' OR ';
+					if ($count == 0)
+						$_or = ' ';
+
 					if ($index == 'all')
 					{
+						$counter = 0;
 
 						foreach ($facet_columns as $column)
 						{
-							$where .=" OR $column LIKE '%$keyword%'";
+							$_or = ' OR ';
+							if ($counter == 0)
+								$_or = ' ';
+							$where .=" $_or $column LIKE '%$keyword%'";
+							$counter ++;
 						}
 					}
 					else
 					{
-						$where .=" OR $index LIKE '%$keyword%'";
+						$where .=" $_or $index LIKE '%$keyword%'";
 					}
+					$count ++;
 				}
 			}
 			$where .=' )';
+			$this->db->where($where);
 		}
 		if (isset($session['date_range']) && $session['date_range'] != '')
 		{
 			$keyword_json = $this->session->userdata['date_range'];
-			$where .= ' AND (1=1';
+			$where = '(';
 			foreach ($keyword_json as $index => $key_columns)
 			{
 				$count = 0;
 				foreach ($key_columns as $keys => $keywords)
 				{
+					$_or = ' OR ';
+					if ($count == 0)
+						$_or = ' ';
 
 					$date_range = explode("to", $keywords->value);
 					if (isset($date_range[0]) && trim($date_range[0]) != '')
@@ -550,18 +578,21 @@ class Refine_modal extends CI_Model
 					}
 					if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
 					{
-						$where .="OR ($this->table_instantiation_dates.instantiation_date >= $start_date AND $this->table_instantiation_dates.instantiation_date<= $end_date )";
+
+						$where .="$_or ($this->table_instantiation_dates.instantiation_date >= $start_date AND $this->table_instantiation_dates.instantiation_date<= $end_date )";
 
 						if ($index != 'All')
 						{
 							$where .=" AND $this->table_date_types.date_type LIKE '$index'";
 						}
 					}
+					$count ++;
 				}
 			}
 			$where .=' )';
+			$this->db->where($where);
 		}
-		$this->db->where($where);
+
 		if ($this->is_station_user)
 		{
 			$this->db->where_in("$this->stations.station_name", $this->station_name);

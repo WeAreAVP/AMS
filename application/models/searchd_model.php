@@ -242,7 +242,7 @@ class Searchd_Model extends CI_Model
 				date_types.date_type AS date_type, 
 				
 				
-CONCAT('___',GROUP_CONCAT(DISTINCT(instantiation_media_types.media_type) SEPARATOR '__'),'__') AS `media_type`, 
+CONCAT('___',GROUP_CONCAT(DISTINCT(instantiation_media_types.media_type) SEPARATOR '___'),'___') AS `media_type`, 
 a_format.format_type,
 a_format.format_name,
  CONCAT('___',GROUP_CONCAT(DISTINCT(instantiation_formats.format_type) SEPARATOR '___ ___'),'___') AS `physical_format_type`, 

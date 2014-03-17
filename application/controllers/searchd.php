@@ -143,6 +143,7 @@ class Searchd extends CI_Controller
 			myLog('Get 1000 records');
 			$ids = array_map(array($this, 'make_map_array'), $inst);
 			$records = $this->searchd_model->get_asset_index($ids);
+			myLog('Start inserting to sphinx');
 			foreach ($records as $row)
 			{
 				$data = make_assets_sphnix_array($row);

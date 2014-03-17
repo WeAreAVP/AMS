@@ -41,7 +41,7 @@ class Searchd extends CI_Controller
 		$this->load->model('station_model');
 		$this->load->model('searchd_model');
 		$this->load->helper('sphnixdata');
-		$this->load->helper('assets_model');
+		$this->load->model('assets_model');
 	}
 
 	function test()

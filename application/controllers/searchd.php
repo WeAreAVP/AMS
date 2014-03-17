@@ -114,7 +114,7 @@ class Searchd extends CI_Controller
 		@ini_set("max_execution_time", 999999999999);
 
 		$db_count = 0;
-		$offset = 0;
+		$offset = 2120000;
 		while ($db_count == 0)
 		{
 			$inst = $this->searchd_model->get_asset($offset, 1000);

@@ -132,22 +132,24 @@ class Searchd extends CI_Controller
 	function insert_assets_sphnix()
 	{
 		set_time_limit(0);
-		@ini_set("memory_limit", "2000M"); # 1GB
+		@ini_set("memory_limit", "4000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999);
 
 		$db_count = 0;
-		$offset = 2120000;
+		$offset = 0;
 		while ($db_count == 0)
 		{
 			$inst = $this->searchd_model->get_asset($offset, 1000);
 			myLog('Get 1000 records');
 			$ids = array_map(array($this, 'make_map_array'), $inst);
+			mylog($ids);
 			$records = $this->searchd_model->get_asset_index($ids);
 			myLog('Start inserting to sphinx');
 			foreach ($records as $row)
 			{
 				$data = make_assets_sphnix_array($row);
 				$this->sphnixrt->insert($this->config->item('asset_index'), $data, $row->id);
+				myLog('Inserted ID =>' . $row->id);
 			}
 			myLog('Inserted 1000 records');
 			$offset = $offset + 1000;

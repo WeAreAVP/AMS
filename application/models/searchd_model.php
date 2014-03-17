@@ -527,7 +527,7 @@ WHERE assets.id IN ($search_ids)
 	 */
 	function get_asset($offset, $limit)
 	{
-		return $this->db->query("SELECT id FROM assets LIMIT $offset,$limit")->result();
+		return $this->db->query("SELECT id FROM assets ORDER BY id LIMIT $offset,$limit")->result();
 	}
 
 }

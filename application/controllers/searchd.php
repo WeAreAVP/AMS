@@ -41,13 +41,13 @@ class Searchd extends CI_Controller
 		$this->load->model('station_model');
 		$this->load->model('searchd_model');
 		$this->load->helper('sphnixdata');
+		$this->load->helper('assets_model');
 	}
 
 	function test()
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-		
 	}
 
 	/**
@@ -102,6 +102,28 @@ class Searchd extends CI_Controller
 		exit_function();
 	}
 
+	function insert_assets()
+	{
+		$stations = $this->station_model->get_all();
+		foreach ($stations as $key => $row)
+		{
+			$station_id = $row->id;
+			myLog($station_id);
+			$assets = $this->assets_model->get_assets_by_station_id($station_id);
+
+			$ids = array_map(array($this, 'make_map_array'), $assets);
+			$records = $this->searchd_model->get_asset_index($ids);
+			foreach ($records as $row)
+			{
+				$data = make_assets_sphnix_array($row);
+				$this->sphnixrt->insert($this->config->item('asset_index'), $data, $row->id);
+			}
+
+			myLog('Sleeping for 10 seconds...');
+			sleep(10);
+		}
+	}
+
 	/**
 	 * Insert Assets information to Sphnix Realtime Index.
 	 * 
@@ -110,7 +132,7 @@ class Searchd extends CI_Controller
 	function insert_assets_sphnix()
 	{
 		set_time_limit(0);
-		@ini_set("memory_limit", "1000M"); # 1GB
+		@ini_set("memory_limit", "2000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999);
 
 		$db_count = 0;
@@ -118,6 +140,7 @@ class Searchd extends CI_Controller
 		while ($db_count == 0)
 		{
 			$inst = $this->searchd_model->get_asset($offset, 1000);
+			myLog('Get 1000 records');
 			$ids = array_map(array($this, 'make_map_array'), $inst);
 			$records = $this->searchd_model->get_asset_index($ids);
 			foreach ($records as $row)
@@ -125,6 +148,7 @@ class Searchd extends CI_Controller
 				$data = make_assets_sphnix_array($row);
 				$this->sphnixrt->insert($this->config->item('asset_index'), $data, $row->id);
 			}
+			myLog('Inserted 1000 records');
 			$offset = $offset + 1000;
 			if (count($inst) < 1000)
 				$db_count ++;

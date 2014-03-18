@@ -107,18 +107,18 @@ class Searchd extends CI_Controller
 		set_time_limit(0);
 		@ini_set("memory_limit", "4000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999);
-		$assets = $this->searchd_model->run_query('SELECT id from assets WHERE id>4847801')->result();
-		foreach ($assets as $asset)
+		$assets = $this->searchd_model->run_query('SELECT id from assets WHERE id>4851193 LIMIT 500')->result();
+		$ids = array_map(array($this, 'make_map_array'), $assets);
+
+
+		$records = $this->searchd_model->get_asset_index($ids);
+		myLog('Start inserting to sphinx');
+		foreach ($records as $row)
 		{
 			myLog('Start Inserting ID =>' . $asset->id);
-			$records = $this->searchd_model->get_asset_index(array($asset->id));
-			myLog('Start inserting to sphinx');
-			foreach ($records as $row)
-			{
-				$data = make_assets_sphnix_array($row);
-				$this->sphnixrt->insert($this->config->item('asset_index'), $data, $row->id);
-				myLog('Inserted ID =>' . $row->id);
-			}
+			$data = make_assets_sphnix_array($row);
+			$this->sphnixrt->insert($this->config->item('asset_index'), $data, $row->id);
+			myLog('Inserted ID =>' . $row->id);
 		}
 	}
 

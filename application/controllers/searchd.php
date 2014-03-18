@@ -107,7 +107,7 @@ class Searchd extends CI_Controller
 		set_time_limit(0);
 		@ini_set("memory_limit", "4000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999);
-		$assets = $this->searchd_model->run_query('SELECT id from assets WHERE id>4851193')->result();
+		$assets = $this->searchd_model->run_query('SELECT id from assets WHERE id>4851194')->result();
 		foreach ($assets as $asset)
 		{
 			myLog('Start Inserting ID =>' . $asset->id);

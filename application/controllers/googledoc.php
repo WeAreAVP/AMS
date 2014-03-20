@@ -181,8 +181,12 @@ class Googledoc extends CI_Controller
 						. "Spreadsheet Name: {$spreadsheet_info->spreadsheet_name}<br/>"
 						. "GUID: {$db_guid}<br/>"
 						. "Physical Format: {$event_row[5]}";
-
-						send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Google Spreadsheet', $message);
+						$already_in_db = $this->pbcore_model->get_one_by('missing_info_gsheets', array('guid' => $db_guid, 'spreadsheet_name' => $spreadsheet_info->spreadsheet_name));
+						if ( ! $already_in_db)
+						{
+							$this->pbcore_model->insert_record('missing_info_gsheets', array('guid' => $db_guid, 'spreadsheet_name' => $spreadsheet_info->spreadsheet_name, 'format' => $event_row[5]));
+						}
+//						send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Google Spreadsheet', $message);
 						myLog('No instantiation found against ' . $db_guid);
 					}
 				}

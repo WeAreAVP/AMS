@@ -102,6 +102,7 @@ class Googledoc extends CI_Controller
 		$spreadsheet_info = $this->pbcore_model->get_spreadsheets();
 		myLog('Spreadsheet Name: ' . $spreadsheet_info->spreadsheet_name);
 		$work_sheets = $this->google_spreadsheet->getAllWorksSheetsDetails($spreadsheet_info->spreadsheet_id);
+		$this->pbcore_model->update_spreadsheet($spreadsheet_info->id, array('updated_at' => date('Y-m-d H:m:i')));
 		foreach ($work_sheets as $work_sheet)
 		{
 			if ($work_sheet['name'] === 'Template')

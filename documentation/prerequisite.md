@@ -4,7 +4,7 @@ Prerequisite
 
 Server Architecture
 -------
-* **CPU**: need to update
+* **CPU**: 3 Xeon Processor with two cores each
 * **RAM**: minimum 8 GB
 * **64-bit architecture**
 
@@ -43,7 +43,7 @@ Database
 ---------
 
 * **mySQL**
- * Version  2.1.2
+ * Version  5.1.69
  * Default Port 3306
 * **PostgreSQL**
  * Version 8.4.18

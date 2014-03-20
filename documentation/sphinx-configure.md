@@ -27,7 +27,7 @@ All the above folders should have ownership of sphinx. You can set ownership usi
 
 **Note:**
 
-* rt_filed attr only used for searching and rt_attr_string is used for displaying and sorting.
+* rt_field attr only used for searching and rt_attr_string is used for displaying and sorting.
 * 'id' attribute is reserved and used it insert or update value in index. 
 
 ###Sphinx Indexes

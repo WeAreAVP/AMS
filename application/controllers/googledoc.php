@@ -44,6 +44,10 @@ class Googledoc extends CI_Controller
 
 	function failed_import()
 	{
+		$this->layout = 'main_layout.php';
+		if ( ! $this->dx_auth->is_logged_in())
+			redirect('login');
+
 		$data['failed_import'] = $this->pbcore_model->get_failed_import();
 		$this->load->view('googledoc/failed_import', $data);
 	}

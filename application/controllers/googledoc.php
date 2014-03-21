@@ -42,6 +42,11 @@ class Googledoc extends CI_Controller
 		$this->load->model('pbcore_model');
 	}
 
+	/**
+	 * List down all the missing records that are failed to import from google spreadsheet.
+	 * 
+	 * @return void.
+	 */
 	function failed_import()
 	{
 		$this->layout = 'main_layout.php';

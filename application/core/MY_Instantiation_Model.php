@@ -158,6 +158,14 @@ class MY_Instantiation_Model extends MY_Essencetrack_Model
 		return $this->db->update($this->google_spreadsheets, $data);
 	}
 
-	
+	/**
+	 * Get all the missing import records of spreadsheet.
+	 * 
+	 * @return stdObject
+	 */
+	function get_failed_import()
+	{
+		return $this->db->get('missing_info_gsheets')->result();
+	}
 
 }

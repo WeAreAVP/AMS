@@ -42,6 +42,12 @@ class Googledoc extends CI_Controller
 		$this->load->model('pbcore_model');
 	}
 
+	function failed_import()
+	{
+		$data['failed_import'] = $this->pbcore_model->get_failed_import();
+		$this->load->view('googledoc/failed_import', $data);
+	}
+
 	/**
 	 * Fetch Spreadsheet information from google drive and save into database.
 	 * 

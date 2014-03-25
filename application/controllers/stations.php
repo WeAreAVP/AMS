@@ -287,7 +287,7 @@ class Stations extends MY_Controller
 			{
 				if ($index !== 0)
 				{
-					if (count($row) > 21)
+					if (count($row) < 21 && count($row) > 22)
 					{
 						$this->session->set_userdata('upload_csv_error', 'Column count is not correct.');
 						redirect('stations/index');

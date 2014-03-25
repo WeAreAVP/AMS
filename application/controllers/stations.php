@@ -472,7 +472,7 @@ class Stations extends MY_Controller
 		$sphnix_station['start_date'] = ! empty($station->start_date) ? (int) strtotime($station->start_date) : (int) 0;
 		$sphnix_station['end_date'] = ! empty($station->end_date) ? (int) strtotime($station->end_date) : (int) 0;
 
-		if ($new)
+		if (count($station) == 0)
 			$this->sphnixrt->insert('stations', $sphnix_station, $station_id);
 		else
 			$this->sphnixrt->update('stations', $sphnix_station);

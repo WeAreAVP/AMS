@@ -341,10 +341,7 @@ class Stations extends MY_Controller
 							'station_id' => $station_id,
 							'is_secondary' => (strtolower($row[20]) == 'yes') ? 0 : 1
 						);
-						if (isset($row[21]))
-						{
-							$station_user['password'] = crypt($this->dx_auth->_encode($row[21]));
-						}
+
 						$name = explode(' ', $row[2], 2);
 
 
@@ -370,6 +367,10 @@ class Stations extends MY_Controller
 						else
 						{
 							$station_user['email'] = $row[12];
+							if (isset($row[21]))
+							{
+								$station_user['password'] = crypt($this->dx_auth->_encode($row[21]));
+							}
 							$user_id = $this->users->create_user($station_user);
 							$station_user_detail['user_id'] = $user_id;
 							$this->user_profile->insert_profile($station_user_detail);

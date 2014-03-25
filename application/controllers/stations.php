@@ -317,7 +317,7 @@ class Stations extends MY_Controller
 						{
 							$station_id = $station->id;
 							$this->station_model->update_station($station_id, $station_detail);
-							$this->update_sphnix_index($row, $station_id, FALSE, $station);
+							$this->update_sphnix_index($row, $station_id, $station);
 							if ( ! isset($station_update_count['station'][$row[0]]))
 								$station_update_count['station'][$row[0]] = 'updated';
 							$log = array('user_id' => $this->user_id, 'record_id' => $station_id, 'record' => 'station', 'type' => 'edit', 'comments' => 'csv update');
@@ -328,7 +328,7 @@ class Stations extends MY_Controller
 							$station_detail['cpb_id'] = $row[0];
 							$station_detail['station_name'] = $row[1];
 							$station_id = $this->station_model->insert_station($station_detail);
-							$this->update_sphnix_index($row, $station_id, TRUE);
+							$this->update_sphnix_index($row, $station_id);
 							if ( ! isset($station_update_count['station'][$row[0]]))
 								$station_update_count['station'][$row[0]] = 'inserted';
 							$log = array('user_id' => $this->user_id, 'record_id' => $station_id, 'record' => 'station', 'type' => 'add', 'comments' => 'csv insert');
@@ -428,10 +428,10 @@ class Stations extends MY_Controller
 		redirect('stations/index');
 	}
 
-	function update_sphnix_index($row, $station_id, $new = FALSE, $station)
+	function update_sphnix_index($row, $station_id, $station = array())
 	{
 		$sphnix_station = array();
-		if ( ! $new)
+		if (count($station) > 0)
 		{
 			$sphnix_station['id'] = $station_id;
 			$sphnix_station['s_station_name'] = $station->station_name;
@@ -454,7 +454,7 @@ class Stations extends MY_Controller
 		$sphnix_station['state'] = ! empty($row[8]) ? $row[8] : '';
 		$sphnix_station['s_zip'] = ! empty($row[9]) ? $row[9] : '';
 		$sphnix_station['zip'] = ! empty($row[9]) ? $row[9] : '';
-		if ($new)
+		if (count($station) == 0)
 		{
 			$sphnix_station['s_cpb_id'] = ! empty($row[0]) ? $row[0] : '';
 			$sphnix_station['cpb_id'] = ! empty($row[0]) ? $row[0] : '';
@@ -471,7 +471,7 @@ class Stations extends MY_Controller
 		$sphnix_station['is_agreed'] = ($row[16] == 'TRUE') ? 1 : 0;
 		$sphnix_station['start_date'] = ! empty($station->start_date) ? (int) strtotime($station->start_date) : (int) 0;
 		$sphnix_station['end_date'] = ! empty($station->end_date) ? (int) strtotime($station->end_date) : (int) 0;
-		
+
 		if ($new)
 			$this->sphnixrt->insert('stations', $sphnix_station, $station_id);
 		else

@@ -7,6 +7,8 @@ Already, the project has identified nearly 2.5 million records through the Conte
  
 The core goal of the Archival Management System (“AMS”) is to provide the backbone of the American Archive by facilitating the search and retrieval of metadata collected during the inventory, digitization and preservation phases.
 
+copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+
 Documentation
 ===
 

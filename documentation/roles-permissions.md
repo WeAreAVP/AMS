@@ -1,5 +1,8 @@
 AMS Roles and Permissions
 ===
+
+[Back: Libraries](libraries.md)
+
 **AMS User Roles**
 
 1- Super Admin
@@ -40,6 +43,9 @@ Station Admin
 Station User
 
 - See his station and its records
+
+
+[Next: License](license.md)
 
 
 

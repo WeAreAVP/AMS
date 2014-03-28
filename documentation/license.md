@@ -1,6 +1,6 @@
 AMS Integral Components and Licensing
 ===
-[Back: Libraries](libraries.md)
+[Back: Roles and Permissions](roles-permissions.md)
 
 **Name:** Codeignitor
 

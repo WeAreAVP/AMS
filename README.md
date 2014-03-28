@@ -28,5 +28,7 @@ Documentation
 
 9-  [Libraries](documentation/libraries.md)
 
-10- [License](documentation/license.md)
+10- [Roles and Permissions](documentation/roles-permissions.md)
+
+11- [License](documentation/license.md)
 

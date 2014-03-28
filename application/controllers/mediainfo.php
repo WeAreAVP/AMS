@@ -6,24 +6,26 @@
  * 
  * PHP version 5
  * 
- * @category AMS
- * @package  CI
- * @author   Nouman Tayyab <nouman@avpreserve.com>
- * @license  CPB http://ams.avpreserve.com
- * @version  GIT: <$Id>
- * @link     http://ams.avpreserve.com
-
- */
-
-/**
- * MediaInfo Class
- *
  * @category   AMS
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    CPB http://ams.avpreserve.com
- * @link       http://ams.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @version    GIT: <$Id>
+ * @link       https://github.com/avpreserve/AMS
+ */
+
+/**
+ * Mediainfo Class
+ *
+ * @category   Class
+ * @package    CI
+ * @subpackage Controller
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Mediainfo extends CI_Controller
 {

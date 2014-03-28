@@ -2,7 +2,7 @@
 
 // @codingStandardsIgnoreFile
 /**
- * Unit_tesing Controller
+ * AMS Archive Management System
  * 
  * PHP version 5
  * 
@@ -10,20 +10,22 @@
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    CPB http://nouman.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
  * @version    GIT: <$Id>
- * @link       http://amsqa.avpreserve.com
+ * @link       https://github.com/avpreserve/AMS
  */
 
 /**
- * AMS Dashboard Class
+ * Unit_Testing Class
  *
  * @category   Class
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    CPB http://nouman.com
- * @link       http://amsqa.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Unit_Testing extends CI_Controller
 {

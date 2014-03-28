@@ -1,18 +1,19 @@
 <?php
 
 /**
- * Manage_Asset_Model Model
+ * AMS Archive Management System
+ * 
  * 
  * PHP version 5
  * 
  * @category   AMS
  * @package    CI
  * @subpackage Model
- * @author     Ali Raza <ali@geekschicago.com>
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    AVPS http://ams.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
  * @version    GIT: <$Id>
- * @link       http://ams.avpreserve.com
+ * @link       https://github.com/avpreserve/AMS
  */
 
 /**
@@ -21,10 +22,10 @@
  * @category   Class
  * @package    CI
  * @subpackage Model
- * @author     Ali Raza <ali@geekschicago.com.com>
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @version    GIT: <$Id>
- * @link       http://ams.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Manage_Asset_Model extends CI_Model
 {

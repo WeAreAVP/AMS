@@ -1,27 +1,30 @@
 <?php
 
 /**
- * Google Doc Controller
- *  
+ * AMS Archive Management System
+ * 
  * PHP version 5
  * 
- * @category   Controllers
- * @package    AMS
- * @subpackage Google_Documents_Controller
+ * @category   AMS
+ * @package    CI
+ * @subpackage Controller
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    AMS http://ams.appreserve.com
- * @link       http://ams.appreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @version    GIT: <$Id>
+ * @link       https://github.com/avpreserve/AMS
  */
 
 /**
- * Googledoc   controller.
- * 
- * @category   Controllers
- * @package    AMS
- * @subpackage Google_Documents_Controller
+ * Googledoc Class
+ *
+ * @category   Class
+ * @package    CI
+ * @subpackage Controller
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    AMS http://ams.appreserve.com
- * @link       http://ams.appreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Googledoc extends CI_Controller
 {

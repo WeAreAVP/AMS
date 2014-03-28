@@ -1,29 +1,30 @@
 <?php
-
-
 /**
- * Cron model
+ * AMS Archive Management System
+ * 
  * 
  * PHP version 5
  * 
  * @category   AMS
  * @package    CI
  * @subpackage Model
- * @author     Nouman Tayyab <nouman@geekschicago.com>
- * @license    AVPS http://ams.avpreserve.com
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
  * @version    GIT: <$Id>
- * @link       http://ams.avpreserve.com
+ * @link       https://github.com/avpreserve/AMS
  */
 
 /**
- * Cron Model Class
+ * Email_Template_Model Class
  *
  * @category   Class
  * @package    CI
  * @subpackage Model
- * @author     Nouman Tayyab <nouman@geekschicago.com>
- * @license    AMS http://ams.avpreserve.com
- * @link       http://ams.avpreserve.com
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Email_Template_Model extends CI_Model
 {

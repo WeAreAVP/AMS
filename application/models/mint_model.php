@@ -1,28 +1,31 @@
 <?php
 
 /**
- * Mint Model
+ * AMS Archive Management System
+ * 
  * 
  * PHP version 5
  * 
  * @category   AMS
  * @package    CI
  * @subpackage Model
- * @author     Nouman Tayyab <nouman@geekschicago.com>
- * @license    AVPS http://ams.avpreserve.com
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
  * @version    GIT: <$Id>
- * @link       http://ams.avpreserve.com
+ * @link       https://github.com/avpreserve/AMS
  */
 
 /**
- * Mint_Modal Class
+ * Mint_Model Class
  *
  * @category   Class
  * @package    CI
  * @subpackage Model
- * @author     Nouman Tayyab <nouman@geekschicago.com>
- * @license    AMS http://ams.avpreserve.com
- * @link       http://ams.avpreserve.com
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Mint_Model extends CI_Model
 {
@@ -63,7 +66,7 @@ class Mint_Model extends CI_Model
 	{
 		$this->db->where('id', $import_id);
 		return $this->db->update($this->_table_mint_import_info, $data);
-	} 
+	}
 
 	/**
 	 * Insert files info of mint import.
@@ -208,12 +211,13 @@ class Mint_Model extends CI_Model
 		}
 		return FALSE;
 	}
+
 	function get_last_import_by_user($folder_name)
 	{
 		$this->db->select("$this->_table.station_id");
 		$this->db->where("$this->_table_mint_transformation.folder_name", $folder_name);
 		$this->db->join("$this->_table", "$this->_table.user_id=$this->_table_mint_transformation.user_id");
-		$this->db->order_by("$this->_table.id", "desc"); 
+		$this->db->order_by("$this->_table.id", "desc");
 		$result = $this->db->get($this->_table_mint_transformation);
 		if (isset($result) && ! empty($result))
 		{

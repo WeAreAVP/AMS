@@ -1,10 +1,14 @@
 <?php
 
 /**
+ * AMS Archive Management System
+ * 
  * Export_pbcore_premis Library
  * 
  * It manage the exporting of assets and associated instantiations and essence track to PBCore xml.
  * It also manage the exporting of events in PREMIS xml
+ * 
+ * 
  * 
  * PHP version 5
  * 
@@ -12,9 +16,10 @@
  * @package    CI
  * @subpackage Library
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    AMS http://ams.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
  * @version    GIT: <$Id>
- * @link       http://ams.avpreserve.com
+ * @link       https://github.com/avpreserve/AMS
  */
 
 /**
@@ -24,8 +29,9 @@
  * @package    CI
  * @subpackage Library
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    AMS http://ams.avpreserve.com
- * @link       http://ams.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Export_pbcore_premis
 {

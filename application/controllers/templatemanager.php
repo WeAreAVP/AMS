@@ -5,27 +5,26 @@
  * 
  * PHP version 5
  * 
- * @category AMS
- * @package  CI
- * @author   Ali Raza <ali@geekschicago.com>
- * @author   Nouman Tayyab <nouman@avpreserve.com>
- * @license  CPB http://nouman.com
- * @version  GIT: <$Id>
- * @link     http://amsqa.avpreserve.com
-
- */
-if ( ! defined('BASEPATH'))
-	exit('No direct script access allowed');
-
-/**
- * Template Manager Class
- *
  * @category   AMS
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    CPB http://nouman.com
- * @link       http://amsqa.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @version    GIT: <$Id>
+ * @link       https://github.com/avpreserve/AMS
+ */
+
+/**
+ * Templatemanager Class
+ *
+ * @category   Class
+ * @package    CI
+ * @subpackage Controller
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Templatemanager extends MY_Controller
 {

@@ -5,24 +5,26 @@
  * 
  * PHP version 5
  * 
- * @category AMS
- * @package  CI
- * @author   Nouman Tayyab <nouman@avpreserve.com>
- * @license  CPB http://nouman.com
- * @version  GIT: <$Id>
- * @link     http://ams.avpreserve.com
-
+ * @category   AMS
+ * @package    CI
+ * @subpackage Controller
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @version    GIT: <$Id>
+ * @link       https://github.com/avpreserve/AMS
  */
 
 /**
  * Tracking Class
  *
- * @category   AMS
+ * @category   Class
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    CPB http://nouman.com
- * @link       http://ams.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Tracking extends MY_Controller
 {
@@ -178,7 +180,7 @@ class Tracking extends MY_Controller
 			if ($this->session->userdata['DX_email'] !== $this->config->item('crawford_email'))
 			{
 				$user = $this->users->get_user_by_email($this->config->item('crawford_email'))->row();
-				$data = array('sender_id' => $this->user_id, 'receiver_id' => $user->id, 'station_id' =>$record->station_id, 'msg_type' => $template, 'subject' => $subject, 'msg_extras' => json_encode($extra), 'created_at' => date('Y-m-d h:m:i'));
+				$data = array('sender_id' => $this->user_id, 'receiver_id' => $user->id, 'station_id' => $record->station_id, 'msg_type' => $template, 'subject' => $subject, 'msg_extras' => json_encode($extra), 'created_at' => date('Y-m-d h:m:i'));
 				$email_queue_id = $this->emailtemplates->queue_email($template, $this->config->item('crawford_email'), $replacebale);
 				if (isset($email_queue_id) && $email_queue_id)
 				{

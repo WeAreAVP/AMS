@@ -1,8 +1,31 @@
 <?php
 
 /**
+ * AMS Archive Management System
  * 
- * Google Refine Library
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage Library
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @version    GIT: <$Id>
+ * @link       https://github.com/avpreserve/AMS
+ */
+
+/**
+ * Googlerefine Class
+ *
+ * @category   Class
+ * @package    CI
+ * @subpackage Library
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Googlerefine
 {
@@ -24,7 +47,7 @@ class Googlerefine
 		myLog("File Path=> {$file_path}");
 		$post_field = array('project-file' => "@$file_path", 'project-name' => $project_name);
 		$response = $this->send_curl_request($uri, $post_field);
-		
+
 		/* Checking the google refine url */
 		$pattern = '`.*?((http)://[\w#$&+,\/:;=?@.-]+)[^\w#$&+,\/:;=?@.-]*?`i'; //this regexp finds your url
 		if (preg_match_all($pattern, $response, $matches))
@@ -60,7 +83,7 @@ class Googlerefine
 
 		$page = curl_exec($ch);
 		$response = curl_getinfo($ch);
-		
+
 		return $page;
 	}
 

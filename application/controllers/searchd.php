@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Searchd Controller
+ * AMS Archive Management System
  * 
  * PHP version 5
  * 
@@ -9,9 +9,10 @@
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    AVPS http://ams.avpreserve.com/license.txt
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
  * @version    GIT: <$Id>
- * @link       http://ams.avpreserve.com
+ * @link       https://github.com/avpreserve/AMS
  */
 
 /**
@@ -21,8 +22,9 @@
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    AVPS http://ams.avpreserve.com/license.txt
- * @link       http://ams.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Searchd extends CI_Controller
 {

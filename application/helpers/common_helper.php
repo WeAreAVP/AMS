@@ -1,5 +1,20 @@
 <?php
-
+/**
+ * AMS Archive Management System
+ * 
+ * Common_helper
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage helper
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @version    GIT: <$Id>
+ * @link       https://github.com/avpreserve/AMS
+ */
 function active_anchor($orignal_class, $orignal_method, $class = 'active')
 {
 	$CI = & get_instance();

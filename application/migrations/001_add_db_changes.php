@@ -1,16 +1,30 @@
 <?php
-
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+/**
+ * AMS Archive Management System
+ * 
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    CI
+ * @subpackage Migration
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @version    GIT: <$Id>
+ * @link       https://github.com/avpreserve/AMS
+ */
 
 /**
- * AMS Field Migrations
- * 
+ * Migration_Add_Db_Changes Class
  *
- * @package		AMS
- * @subpackage	Migrations
- * @category	Migrations
- * @author		Nouman Tayyab <nouman@geekschicago.com>
+ * @category   Class
+ * @package    CI
+ * @subpackage Migration
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Migration_Add_Db_Changes extends CI_Migration
 {

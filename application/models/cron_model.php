@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Cron model
+ * AMS Archive Management System
+ * 
  * 
  * PHP version 5
  * 
@@ -9,20 +10,22 @@
  * @package    CI
  * @subpackage Model
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    AMS http://ams.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
  * @version    GIT: <$Id>
- * @link       http://ams.avpreserve.com
+ * @link       https://github.com/avpreserve/AMS
  */
 
 /**
- * Cron Model Class
+ * Cron_Model Class
  *
  * @category   Class
  * @package    CI
  * @subpackage Model
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    AMS http://ams.avpreserve.com
- * @link       http://ams.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Cron_Model extends CI_Model
 {

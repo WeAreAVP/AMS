@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Export_csv_job Model
+ * AMS Archive Management System
+ * 
  * 
  * PHP version 5
  * 
@@ -9,20 +10,22 @@
  * @package    CI
  * @subpackage Model
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    AVPS http://ams.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
  * @version    GIT: <$Id>
- * @link       http://ams.avpreserve.com
+ * @link       https://github.com/avpreserve/AMS
  */
 
 /**
- * AMS Export_csv_job_model Class 
+ * Export_csv_job_model Class
  *
  * @category   Class
  * @package    CI
  * @subpackage Model
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @version    GIT: <$Id>
- * @link       http://ams.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Export_csv_job_model extends CI_Model
 {

@@ -5,24 +5,26 @@
  * 
  * PHP version 5
  * 
- * @category AMS
- * @package  CI
- * @author   Nouman Tayyab <nouman@avpreserve.com>
- * @license  CPB http://nouman.com
- * @version  GIT: <$Id>
- * @link     http://ams.avpreserve.com
-
+ * @category   AMS
+ * @package    CI
+ * @subpackage Controller
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @version    GIT: <$Id>
+ * @link       https://github.com/avpreserve/AMS
  */
 
 /**
  * Records Class
  *
- * @category   AMS
+ * @category   Class
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    http://ams.avpreserve.com CPB
- * @link       http://ams.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Records extends MY_Records_Controller
 {
@@ -146,8 +148,6 @@ class Records extends MY_Records_Controller
 		}
 	}
 
-	
-
 	/*
 	 * To Display Assets details
 	 *
@@ -202,7 +202,6 @@ class Records extends MY_Records_Controller
 					$data['prev_result_id'] = $search_results[$cur_key - 1]->id;
 				if (isset($search_results[$cur_key + 1]))
 					$data['next_result_id'] = $search_results[$cur_key + 1]->id;
-
 			}
 			$data['last_page'] = '';
 			if (isset($this->session->userdata['page_link']) && ! is_empty($this->session->userdata['page_link']))
@@ -217,10 +216,6 @@ class Records extends MY_Records_Controller
 			show_404();
 		}
 	}
-
-	
-
-	
 
 	/**
 	 * Save cron to export records in pbcore 2 xml format.

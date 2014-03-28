@@ -1,5 +1,20 @@
 <?php
 
+/**
+ * AMS Archive Management System
+ * 
+ * 
+ * PHP version 5
+ * 
+ * @category   AMS
+ * @package    PHP
+ * @subpackage pgconnect
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @version    GIT: <$Id>
+ * @link       https://github.com/avpreserve/AMS
+ */
 $dbconnection = pg_connect("host=localhost port=5432 dbname=mint user=mint password=mint");
 if ($dbconnection)
 {

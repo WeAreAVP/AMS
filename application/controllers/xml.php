@@ -1,7 +1,7 @@
 <?php
 
 /**
- * XML Controller
+ * AMS Archive Management System
  * 
  * Controller manage the webservice for output the response in xml. It also export bag of xml using bagit library.
  * 
@@ -11,20 +11,22 @@
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    AMS http://ams.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
  * @version    GIT: <$Id>
- * @link       http://ams.avpreserve.com
+ * @link       https://github.com/avpreserve/AMS
  */
 
 /**
- * XML Class
+ * Xml Class
  *
  * @category   Class
  * @package    CI
  * @subpackage Controller
  * @author     Nouman Tayyab <nouman@avpreserve.com>
- * @license    AMS http://ams.avpreserve.com
- * @link       http://ams.avpreserve.com
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Xml extends CI_Controller
 {

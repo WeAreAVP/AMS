@@ -1,28 +1,31 @@
 <?php
 
 /**
- * Refine Model
+ * AMS Archive Management System
+ * 
  * 
  * PHP version 5
  * 
  * @category   AMS
  * @package    CI
  * @subpackage Model
- * @author     Nouman Tayyab <nouman@geekschicago.com>
- * @license    AVPS http://ams.avpreserve.com
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
  * @version    GIT: <$Id>
- * @link       http://ams.avpreserve.com
+ * @link       https://github.com/avpreserve/AMS
  */
 
 /**
- * Refine  Class
+ * Refine_modal Class
  *
  * @category   Class
  * @package    CI
  * @subpackage Model
- * @author     Nouman Tayyab <nouman@geekschicago.com>
- * @license    AMS http://ams.avpreserve.com
- * @link       http://ams.avpreserve.com
+ * @author     Nouman Tayyab <nouman@avpreserve.com>
+ * @copyright  Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
+ * @license    http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @link       https://ams.americanarchive.org
  */
 class Refine_modal extends CI_Model
 {
@@ -80,11 +83,12 @@ class Refine_modal extends CI_Model
 		$this->db->where('project_id', $project_id);
 		return $this->db->get('google_refine')->row();
 	}
+
 	function get_by_id_or_project_id($db_id)
 	{
 		$this->db->where('id', $db_id);
 		$this->db->or_where('project_id', $db_id);
-		
+
 		return $this->db->get('google_refine')->row();
 	}
 

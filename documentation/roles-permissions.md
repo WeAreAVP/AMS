@@ -1,6 +1,6 @@
 AMS Roles and Permissions
 ===
-*AMS User Roles*
+**AMS User Roles**
 
 1- Super Admin
 
@@ -12,7 +12,7 @@ AMS Roles and Permissions
 
 5- Crawford Project Manager
 
-*Permission Per Roles*
+**Permission Per Roles**
 
 Super Admin and CPB Admin
 

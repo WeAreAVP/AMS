@@ -74,6 +74,7 @@ class Xml extends CI_Controller
 		$export_job = $this->export_job->get_export_jobs('pbcore');
 		if (count($export_job) > 0)
 		{
+			$this->export_job->update_job($export_job->id, array('status' => '1'));
 			myLog('Started export for ID =>' . $export_job->id);
 			$bag_name = 'ams_export_' . time();
 			$bagit_info = array('Source-Organization' => 'WGBH on behalf of the American Archive of Public Broadcasting',

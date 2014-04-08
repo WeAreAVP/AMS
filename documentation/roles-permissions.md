@@ -37,12 +37,12 @@ Crawford Project Manager
 
 Station Admin
 
-- See his station and its records
-- Manage only his station users
+- See their station and its records
+- Manage only their station users
 
 Station User
 
-- See his station and its records
+- See their station and its records
 
 
 [Next: License](license.md)

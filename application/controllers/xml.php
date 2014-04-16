@@ -70,7 +70,9 @@ class Xml extends CI_Controller
 	function export_pbcore()
 	{
 		@ini_set("max_execution_time", 999999999999); # unlimited
-		@ini_set("memory_limit", "1000M"); # 1GB
+		@ini_set("memory_limit", "2000M"); # 2GB
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
 		$export_job = $this->export_job->get_export_jobs('pbcore');
 		if (count($export_job) > 0)
 		{

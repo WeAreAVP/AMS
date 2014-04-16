@@ -226,9 +226,9 @@ class Records extends MY_Records_Controller
 	{
 		$this->load->model('pbcore_model');
 		$this->load->model('export_csv_job_model', 'csv_job');
-		$records = $this->sphinx->assets_listing();
+		$records = $this->sphinx->assets_listing(0,1000);
 		$_ids = '';
-		if ($records['total_count'] <= 2000)
+		if ($records['total_count'] <= 1000)
 		{
 			foreach ($records['records'] as $record)
 			{

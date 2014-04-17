@@ -1,4 +1,3 @@
-
 package gr.ntua.ivml.mint.actions;
 
 import static com.opensymphony.xwork2.Action.SUCCESS;
@@ -33,102 +32,100 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.hibernate.Session;
 import org.hibernate.StatelessSession;
-
-
+import org.apache.log4j.Logger;
 
 @Results({
-	  @Result(name="input", location="summary.jsp"),
-	  @Result(name="error", location="summary.jsp"),
-	  @Result(name="success", location="summary.jsp" )
-	})
+	@Result(name = "input", location = "summary.jsp"),
+	@Result(name = "error", location = "summary.jsp"),
+	@Result(name = "success", location = "summary.jsp")
+})
 
+public class AjaxApproval extends GeneralAction implements ServletRequestAware, ServletResponseAware {
 
-public class AjaxApproval extends GeneralAction implements ServletRequestAware,ServletResponseAware  
-{  
-	  
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private Transformation tr;
-	
+	public final Logger log = Logger.getLogger(XSLTransform.class);
 
-	@Action(value="AjaxApproval")
-    public String execute() throws Exception { 
-		
-        PrintWriter writer = null;  
+	@Action(value = "AjaxApproval")
+	public String execute() throws Exception {
+
+		PrintWriter writer = null;
 		try {
-        	writer = response.getWriter();  
-           
-        } catch (IOException ex) {
-            System.out.println(AjaxFileReader.class.getName() + "has thrown an exception: " + ex.getMessage());
-        }
+			writer = response.getWriter();
+
+		} catch (IOException ex) {
+			System.out.println(AjaxFileReader.class.getName() + "has thrown an exception: " + ex.getMessage());
+		}
 		try {
-			
-			Long dbID=Long.parseLong(request.getParameter("id"));
+
+			Long dbID = Long.parseLong(request.getParameter("id"));
 			DataUpload du = DB.getDataUploadDAO().getById(dbID, false);
 			tr = DB.getTransformationDAO().findOneByUpload(du);
-			
+
 			// new version of the transformation for this session
-			if( tr == null ) {
-				
+			if (tr == null) {
+
 				return ERROR;
-			}
-			else{
+			} else {
 				tr.setIsApproved(Integer.parseInt(request.getParameter("approved")));
 				DB.commit();
-				String urlParameters = request.getParameter("id")+"/"+request.getParameter("approved")+'/'+user.getDbID();
-				
-			String request = "https://amsqa.avpreserve.com/mintimport/update_transformed_info/"+urlParameters;
-			URL url = new URL(request); 
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();           
-			connection.setDoOutput(true);
-			connection.setReadTimeout(10000);
-			connection.setRequestMethod("GET"); 
-			connection.setRequestProperty("charset", "utf-8");
-			connection.setUseCaches (false);
-			connection.connect();
-			BufferedReader rd  = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			StringBuilder sb = new StringBuilder();
-        
-			String line = "";
-          while ((line = rd.readLine()) != null)
-          {
-              sb.append(line + '\n');
-          }
-        
-          System.out.println(sb.toString());
-			connection.disconnect();
-				
+				String urlParameters = request.getParameter("id") + "/" + request.getParameter("approved") + '/' + user.getDbID();
+				log.debug("Parameters " + urlParameters);
+				String request = "https://amsnew.avpreserve.com/mintimport/update_transformed_info/" + urlParameters;
+				log.debug("Request URL " + request);
+				URL url = new URL(request);
+				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+				connection.setUseCaches(false);
+				connection.setAllowUserInteraction(false);
+				connection.setDoOutput(true);
+				connection.setReadTimeout(10000);
+				connection.setRequestMethod("GET");
+				connection.setRequestProperty("charset", "utf-8");
+				connection.setUseCaches(false);
+				connection.connect();
+				int responseCode = connection.getResponseCode();
+				log.debug("Response Code " + responseCode);
+				log.debug("Nouman Tayyab Bokhari");
+				BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+				StringBuilder sb = new StringBuilder();
+
+				String line = "";
+				while ((line = rd.readLine()) != null) {
+					sb.append(line + '\n');
+				}
+
+				System.out.println(sb.toString());
+				connection.disconnect();
+
 			}
-		} catch( Exception e ) {
+		} catch (Exception e) {
 			// already handled, but needed to skip readNodes or index if transform or readNodes fails
-		} catch( Throwable t ) {
-			writer.print( "uhh "+ t );
+		} catch (Throwable t) {
+			writer.print("uhh " + t);
 		}
-		
-		
-		
-        response.setStatus(HttpServletResponse.SC_OK);
 
-        writer.flush();
-        writer.close();
-        return "success";
-    }
+		response.setStatus(HttpServletResponse.SC_OK);
 
+		writer.flush();
+		writer.close();
+		return "success";
+	}
 
-	public void setServletRequest(HttpServletRequest request){
-	    this.request = request;
-	  }
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;
+	}
 
-	  public HttpServletRequest getServletRequest(){
-	    return request;
-	  }
+	public HttpServletRequest getServletRequest() {
+		return request;
+	}
 
-	  public void setServletResponse(HttpServletResponse response){
-	    this.response = response;
-	  }
+	public void setServletResponse(HttpServletResponse response) {
+		this.response = response;
+	}
 
-	  public HttpServletResponse getServletResponse(){
-	    return response;
-	  }
+	public HttpServletResponse getServletResponse() {
+		return response;
+	}
 
 }

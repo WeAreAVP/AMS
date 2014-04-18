@@ -180,7 +180,11 @@ class MY_Controller extends CI_Controller
 			$this->can_compose_alert = TRUE;
 		}
 	}
-
+	/** 
+	 * Make array of columns for keyword search.
+	 * 
+	 * @return array
+	 */
 	function make_array()
 	{
 		return array(
@@ -267,12 +271,23 @@ class MY_Controller extends CI_Controller
 
 		return $value->id;
 	}
-
+	/**
+	 * Audit trail when user add/update the record.
+	 * 
+	 * @param type $data
+	 */
 	function audit_trail($data)
 	{
 		$this->station_model->insert_log($data);
 	}
-
+	/**
+	 * Make facet and split the group concated values.
+	 * 
+	 * @param array $result
+	 * @param string $facet
+	 * @param string $session_key
+	 * @return array
+	 */
 	function make_facet($result, $facet, $session_key)
 	{
 		$make_facet = array();

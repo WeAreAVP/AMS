@@ -41,7 +41,13 @@ class Dompdf_lib
 			$this->_dompdf = new DOMPDF();
 		}
 	}
-
+	/**
+	 * Generate PDF file from html
+	 * @param array $data
+	 * @param string $filename
+	 * @param boolean $stream
+	 * @return void
+	 */
 	function convert_html_to_pdf($data, $filename = 'sample.pdf', $stream = TRUE)
 	{
 

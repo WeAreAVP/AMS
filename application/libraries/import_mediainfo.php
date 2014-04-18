@@ -67,7 +67,10 @@ class Import_mediainfo
 		$this->_model = $this->_CI->pbcore_model;
 		enable_errors();
 	}
-
+	/**
+	 * 
+	 * @param string $file_path
+	 */
 	function initialize($file_path)
 	{
 
@@ -94,7 +97,10 @@ class Import_mediainfo
 			$this->_instantiation_id = NULL;
 		}
 	}
-
+	/**
+	 * 
+	 * @param array $general_track
+	 */
 	function get_general_track($general_track)
 	{
 		$this->set_media_type($general_track);
@@ -136,7 +142,10 @@ class Import_mediainfo
 		/* Instantiation Format End */
 		$this->save_annotations($general_track);
 	}
-
+	/**
+	 * 
+	 * @param array $general_track
+	 */
 	function save_annotations($general_track)
 	{
 		if (isset($general_track['encoded_library_string']) && isset($general_track['encoded_library_string'][0]))
@@ -161,7 +170,10 @@ class Import_mediainfo
 		}
 		/* Instantiation Annotation End */
 	}
-
+	/**
+	 * 
+	 * @param array $general_track
+	 */
 	function save_instantiation_date($general_track)
 	{
 
@@ -190,7 +202,11 @@ class Import_mediainfo
 		}
 		/* Instantiation Date End */
 	}
-
+	/**
+	 * 
+	 * @param string $guid
+	 * @return boolean
+	 */
 	function get_asset_id_for_media_import($guid)
 	{
 		$asset_guid = explode('.', $guid);
@@ -213,7 +229,11 @@ class Import_mediainfo
 		}
 		return FALSE;
 	}
-
+	/**
+	 * Update the parent instantiation.
+	 * 
+	 * @param array $general_track
+	 */
 	function update_parent_instantiaion($general_track)
 	{
 		if (isset($general_track['filename']) && isset($general_track['filename'][0]))
@@ -273,7 +293,10 @@ class Import_mediainfo
 			}
 		}
 	}
-
+	/**
+	 * 
+	 * @param array $general_track
+	 */
 	function save_filesize_and_daterate($general_track)
 	{
 		/* Data Rate Start */
@@ -307,7 +330,10 @@ class Import_mediainfo
 		}
 		/* File Size End */
 	}
-
+	/**
+	 * 
+	 * @param array $general_track
+	 */
 	function save_instantiation_tracks($general_track)
 	{
 
@@ -354,7 +380,10 @@ class Import_mediainfo
 			}
 		}
 	}
-
+	/**
+	 * 
+	 * @param array $general_track
+	 */
 	function set_media_type($general_track)
 	{
 		$media_type = '';
@@ -384,7 +413,10 @@ class Import_mediainfo
 			myLog('Inserted Media ID => ' . $this->instantiation_info['instantiation_media_type_id']);
 		}
 	}
-
+	/**
+	 * 
+	 * @param array $db_instantiation_id
+	 */
 	function insert_ins_asset_index($db_instantiation_id)
 	{
 		$this->_CI->load->library('sphnixrt');
@@ -405,7 +437,10 @@ class Import_mediainfo
 			myLog('Issue Found ' . $db_instantiation_id);
 		}
 	}
-
+	/**
+	 * 
+	 * @param array $db_instantiation_id
+	 */
 	function update_ins_asset_index($db_instantiation_id)
 	{
 		$this->_CI->load->library('sphnixrt');

@@ -69,6 +69,11 @@ class Import_essencetrack_mediainfo
 		enable_errors();
 	}
 
+	/**
+	 * 
+	 * @param type $instantiation_id
+	 * @param type $track
+	 */
 	function initialize($instantiation_id, $track)
 	{
 		$this->_instantiation_id = $instantiation_id;
@@ -115,6 +120,10 @@ class Import_essencetrack_mediainfo
 		$this->_essence_track_id = NULL;
 	}
 
+	/**
+	 * 
+	 * @param array $track
+	 */
 	function save_essence_identifier($track)
 	{
 		$essence_track_identifier = array();
@@ -137,6 +146,10 @@ class Import_essencetrack_mediainfo
 		unset($essence_track_identifier);
 	}
 
+	/**
+	 * 
+	 * @param array $track
+	 */
 	function save_track_encoding($track)
 	{
 		/* Essence Track Encoding Start */
@@ -160,6 +173,10 @@ class Import_essencetrack_mediainfo
 		/* Essence Track Encoding End */
 	}
 
+	/**
+	 * 
+	 * @param array $track
+	 */
 	function save_date_rate($track)
 	{
 		if (isset($track['children']['bitrate_string']) && isset($track['children']['bitrate_string'][0]) && isset($track['children']['bitrate_string'][0]['text']) && ! empty($track['children']['bitrate_string'][0]['text']))
@@ -178,6 +195,10 @@ class Import_essencetrack_mediainfo
 		}
 	}
 
+	/**
+	 * 
+	 * @param array $track
+	 */
 	function save_track_type($track)
 	{
 		$track_type = '';
@@ -196,6 +217,10 @@ class Import_essencetrack_mediainfo
 		/* Essence Track type End */
 	}
 
+	/**
+	 * 
+	 * @param array $audio_track
+	 */
 	function fetch_audio_info($audio_track)
 	{
 		if (isset($audio_track['channel_s__string']) && isset($audio_track['channel_s__string'][0]))
@@ -215,6 +240,10 @@ class Import_essencetrack_mediainfo
 		}
 	}
 
+	/**
+	 * 
+	 * @param array $video_track
+	 */
 	function fetch_video_info($video_track)
 	{
 		$this->essence_track = array();
@@ -271,6 +300,10 @@ class Import_essencetrack_mediainfo
 		$this->save_essence_annotation($video_track);
 	}
 
+	/**
+	 * 
+	 * @param array $video_track
+	 */
 	function save_essence_annotation($video_track)
 	{
 		$essence_annotation = array();

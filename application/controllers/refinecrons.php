@@ -137,9 +137,9 @@ class Refinecrons extends CI_Controller
 					if (count($records) < 15000)
 						$db_count ++;
 				}
-				
+
 				$path = $this->config->item('path') . $file_path;
-				
+
 				myLog('CSV file successfully created.');
 				$data = array('export_csv_path' => $path);
 				$this->refine_modal->update_job($record->id, $data);
@@ -739,6 +739,11 @@ class Refinecrons extends CI_Controller
 		}
 	}
 
+	/**
+	 * Save the audit for user add or update info.
+	 * 
+	 * @param array $data
+	 */
 	function audit_trail($data)
 	{
 		$this->load->model('station_model');

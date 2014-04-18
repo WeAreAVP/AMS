@@ -52,6 +52,11 @@ class Mintimport extends CI_Controller
 		$this->load->model('pbcore_model');
 	}
 
+	/**
+	 * This function is used when some user transformed the record in MINT.
+	 * Admin receive the email with visit link to MINT import.
+	 * 
+	 */
 	public function visit()
 	{
 		$this->layout = 'main_layout.php';
@@ -131,7 +136,7 @@ class Mintimport extends CI_Controller
 			if ($record_exist)
 			{
 				$this->mint->update_transformation($record_exist->id, $record);
-				
+
 				echo 'Updated Transformation';
 				exit;
 			}
@@ -139,6 +144,10 @@ class Mintimport extends CI_Controller
 		send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'Mint Transformation', 'testing');
 	}
 
+	/**
+	 * Download the approved import from MINT.
+	 * 
+	 */
 	public function download_transformed_zip()
 	{
 		error_reporting(E_ALL);

@@ -38,7 +38,13 @@ class Googlerefine
 		$CI = & get_instance();
 		$this->server = $CI->config->item('google_refine_url');
 	}
-
+	/**
+	 * Create Project on open refine.
+	 * 
+	 * @param string $project_name
+	 * @param string $file_path
+	 * @return boolean
+	 */
 	function create_project($project_name, $file_path)
 	{
 		$data = NULL;
@@ -64,7 +70,14 @@ class Googlerefine
 			return FALSE;
 		}
 	}
-
+	/**
+	 * Send Curl url 
+	 * 
+	 * @param string $url
+	 * @param array $postFields
+	 * @param string $headers
+	 * @return string
+	 */
 	function send_curl_request($url, $postFields = null, $headers = 1)
 	{
 		$ch = curl_init();
@@ -86,7 +99,12 @@ class Googlerefine
 
 		return $page;
 	}
-
+	/**
+	 * Prepare POST fields for curl call.
+	 * 
+	 * @param array $array
+	 * @return string
+	 */
 	function prepare_post_fields($array)
 	{
 		$params = array();
@@ -98,7 +116,14 @@ class Googlerefine
 
 		return implode('&', $params);
 	}
-
+	/**
+	 * Export rows from open refine for AMS.
+	 * 
+	 * @param string $project_name
+	 * @param integer $project_id
+	 * @param string $format
+	 * @return type
+	 */
 	function export_rows($project_name, $project_id, $format = 'tsv')
 	{
 
@@ -110,7 +135,12 @@ class Googlerefine
 		$response = $this->send_curl_request($uri, $post_field, 0);
 		return $response;
 	}
-
+	/**
+	 * Delete project from open refine.
+	 * 
+	 * @param integer $project_id
+	 * @return boolean
+	 */
 	function delete_project($project_id)
 	{
 		$uri = $this->server . '/command/core/delete-project';

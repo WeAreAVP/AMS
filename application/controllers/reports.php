@@ -83,6 +83,10 @@ class Reports extends MY_Controller
 		$this->dompdf_lib->convert_html_to_pdf($data, $file_name);
 	}
 
+	/**
+	 * Standalone report for instantiation.
+	 * 
+	 */
 	public function standalone()
 	{
 
@@ -145,7 +149,10 @@ class Reports extends MY_Controller
 			show_error('Not a valid report url.');
 		}
 	}
-
+	/**
+	 * Generate Datatable display for standalone report.
+	 * 
+	 */
 	public function standalone_datatable()
 	{
 		$columns = array('organization', 'instantiation_identifier', 'status', 'asset_title', 'generation', 'format_name',
@@ -175,7 +182,11 @@ class Reports extends MY_Controller
 		echo json_encode($dataTable);
 		exit_function();
 	}
-
+	/**
+	 * Generate standalone report with applied facets 
+	 * and gives link to user to see the result.
+	 * 
+	 */
 	public function generate_report()
 	{
 		$other = 0;

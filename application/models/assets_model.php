@@ -81,6 +81,12 @@ class Assets_Model extends CI_Model
 		$this->_table_asset_titles = 'asset_titles';
 	}
 
+	/**
+	 * Ger Relation by asset id.
+	 * 
+	 * @param integer $asset_id
+	 * @return stdObject
+	 */
 	function get_relation_by_asset_id($asset_id)
 	{
 		$this->db->select('assets_relations.relation_identifier');
@@ -263,10 +269,6 @@ class Assets_Model extends CI_Model
 		return false;
 	}
 
-	
-
-	
-
 	/**
 	 * Get list of all the Assets
 	 * 
@@ -337,6 +339,13 @@ class Assets_Model extends CI_Model
 		}return false;
 	}
 
+	/**
+	 * Get GUID by asset id.
+	 * 
+	 * @param integer $asset_id
+	 * 
+	 * @return boolean/stdObject
+	 */
 	function get_guid_by_asset_id($asset_id)
 	{
 		$this->db->select("identifier AS guid_identifier,identifier_ref AS guid_identifier_ref", FALSE);
@@ -352,7 +361,12 @@ class Assets_Model extends CI_Model
 		}
 		return false;
 	}
-
+	/**
+	 * get guid identifier by asset id.
+	 * 
+	 * @param integer $asset_id
+	 * @return boolean/stdObject
+	 */
 	function get_guid_identifier_by_asset_id($asset_id)
 	{
 		$this->db->where("assets_id", $asset_id);
@@ -364,7 +378,12 @@ class Assets_Model extends CI_Model
 		}
 		return false;
 	}
-
+	/**
+	 * Get local ids of asset by id.
+	 * 
+	 * @param integer $asset_id
+	 * @return boolean/stdObject
+	 */
 	function get_localid_by_asset_id($asset_id)
 	{
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifier,'(**)')) SEPARATOR ' | ') AS local_identifier, ", FALSE);
@@ -547,7 +566,12 @@ class Assets_Model extends CI_Model
 		}
 		return false;
 	}
-
+	/**
+	 * Get publisher info by publisher and role.
+	 * 
+	 * @param array $publisher_role
+	 * @return boolean/stdObject
+	 */
 	function get_publisher_info($publisher_role)
 	{
 		$this->db->where("publisher", $publisher_role['publisher']);
@@ -562,7 +586,12 @@ class Assets_Model extends CI_Model
 		}
 		return false;
 	}
-
+	/**
+	 * Get publisher role info by its role,source and ref.
+	 * 
+	 * @param array $publisher_role
+	 * @return boolean/stdObject
+	 */
 	function get_publisher_role_info($publisher_role)
 	{
 		$this->db->where("publisher_role", $publisher_role['publisher_role']);

@@ -46,12 +46,6 @@ class Searchd extends CI_Controller
 		$this->load->model('assets_model');
 	}
 
-	function test()
-	{
-		error_reporting(E_ALL);
-		ini_set('display_errors', 1);
-	}
-
 	/**
 	 * Insert Stations information to Sphnix Realtime Index.
 	 * 
@@ -68,6 +62,12 @@ class Searchd extends CI_Controller
 		exit_function();
 	}
 
+	/**
+	 * Map ID from 2D arrary
+	 * 
+	 * @param array $value
+	 * @return string/integer
+	 */
 	function make_map_array($value)
 	{
 
@@ -103,7 +103,9 @@ class Searchd extends CI_Controller
 
 		exit_function();
 	}
-
+	/**
+	 * Use this function if you want to insert assets one by one in assets sphinx index.
+	 */
 	function insert_assets()
 	{
 		set_time_limit(0);

@@ -73,7 +73,7 @@ Insert Instantiations data
 	
 	$ php index.php searchd insert_instantiations_sphnix
 
-**Re-index Sphinx**
+###Re-index Sphinx
 
 First you need to remove old index files. Default path of files is `/var/lib/sphinx`.
 

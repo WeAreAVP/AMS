@@ -9,12 +9,12 @@ Then run query to delete those records from database. After that you need to rem
 
 First connect with mysql sphinx from command line
 
-  $ mysql --protocol=tcp -P 9306
+    $ mysql --protocol=tcp -P 9306
   
-If you want to delete information from assets_list. Run the following query
+If you want to delete information from `assets_list`. Run the following query
 
-  DELETE FROM assets_list WHERE id IN (comma separated id's from assets.id);
+    DELETE FROM assets_list WHERE id IN (comma separated id's from assets.id);
   
-If you want to delete information from instantiations_list. Run the following query
+If you want to delete information from `instantiations_list`. Run the following query
 
-  DELETE FROM instantiations_list WHERE id IN (comma separated id's from instantiations.id);
+    DELETE FROM instantiations_list WHERE id IN (comma separated id's from instantiations.id);

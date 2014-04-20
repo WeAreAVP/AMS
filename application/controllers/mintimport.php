@@ -105,7 +105,7 @@ class Mintimport extends CI_Controller
 			else
 			{
 				myLog("Admin/Crawford import");
-				$last_import_org = $this->mint->get_last_import_by_user_id($user_info->id);
+				$last_import_org = $this->mint->get_last_import_by_user_id($user_info->user_id);
 				$record['station_id'] = $last_import_org->station_id;
 			}
 

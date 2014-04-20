@@ -226,6 +226,19 @@ class Mint_Model extends CI_Model
 		return FALSE;
 	}
 
+	function get_last_import_by_user_id($user_id)
+	{
+		$this->db->select("$this->_table.station_id");
+		$this->db->where("$this->_table.user_id", $user_id);
+		$this->db->order_by("$this->_table.id", "desc");
+		$result = $this->db->get($this->_table);
+		if (isset($result) && ! empty($result))
+		{
+			return $result->row();
+		}
+		return FALSE;
+	}
+
 }
 
 ?>

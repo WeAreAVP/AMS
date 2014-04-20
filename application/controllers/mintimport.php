@@ -96,6 +96,20 @@ class Mintimport extends CI_Controller
 		$user_info = $this->user_profile->get_profile_by_mint_id($record['mint_user_id']);
 		if ($user_info)
 		{
+			$user = $this->users->get_user_by_id($user_info->user_id);
+			if ($user->role_id == 3 || $user->role_id = 4)
+			{
+				myLog("Station User/Admin import");
+				$record['station_id'] = $station->station_id;
+			}
+			else
+			{
+				myLog("Admin/Crawford import");
+				$last_import_org = $this->mint->get_last_import_by_user_id($user_info->id);
+				$record['station_id'] = $last_import_org->station_id;
+			}
+
+
 			$record['user_id'] = $user_info->user_id;
 			$already_exist = $this->mint->get_transformation($record['user_id'], $record['mint_user_id'], $record['transformed_id']);
 			if ($already_exist)
@@ -178,7 +192,7 @@ class Mintimport extends CI_Controller
 				$zip->close();
 				$this->mint->update_transformation($not_downloaded->id, array('is_downloaded' => 1, 'folder_name' => rtrim($stat['name'], '/')));
 				myLog($stat['name']);
-				$this->process_mint_dir($stat['name']);
+				$this->process_mint_dir($stat['name'],$not_downloaded->station_id);
 			}
 			else
 			{
@@ -195,7 +209,7 @@ class Mintimport extends CI_Controller
 	 * Unzip and store all the mint info imported files.
 	 * 
 	 */
-	function process_mint_dir($folder_name)
+	function process_mint_dir($folder_name,$station_id)
 	{
 		set_time_limit(0);
 		@ini_set("memory_limit", "2000M"); # 2GB
@@ -207,20 +221,20 @@ class Mintimport extends CI_Controller
 		$station_id = 0;
 		foreach ($map as $index => $file)
 		{
-			$station = $this->mint->get_station_by_transformed(rtrim($folder_name, '/'));
-
-			if ($station && ! empty($station->station_id))
-			{
-				myLog("Station User/Admin import");
-				$station_id = $station->station_id;
-			}
-			else
-			{
-				myLog("Admin/Crawford import");
-				$station = $this->mint->get_last_import_by_user(rtrim($folder_name, '/'));
-				if ($station)
-					$station_id = $station->station_id;
-			}
+//			$station = $this->mint->get_station_by_transformed(rtrim($folder_name, '/'));
+//
+//			if ($station && ! empty($station->station_id))
+//			{
+//				myLog("Station User/Admin import");
+//				$station_id = $station->station_id;
+//			}
+//			else
+//			{
+//				myLog("Admin/Crawford import");
+//				$station = $this->mint->get_last_import_by_user(rtrim($folder_name, '/'));
+//				if ($station)
+//					$station_id = $station->station_id;
+//			}
 
 			myLog($station_id);
 			if ($station_id !== 0)

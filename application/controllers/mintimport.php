@@ -96,7 +96,7 @@ class Mintimport extends CI_Controller
 		$user_info = $this->user_profile->get_profile_by_mint_id($record['mint_user_id']);
 		if ($user_info)
 		{
-			$user = $this->users->get_user_by_id($user_info->user_id);
+			$user = $this->users->get_user_by_id($user_info->user_id)->row();
 			if ($user->role_id == 3 || $user->role_id = 4)
 			{
 				myLog("Station User/Admin import");

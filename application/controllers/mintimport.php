@@ -97,7 +97,7 @@ class Mintimport extends CI_Controller
 		if ($user_info)
 		{
 			$user = $this->users->get_user_by_id($user_info->user_id)->row();
-			debug($user,FALSE);
+			
 			if ($user->role_id == 3 || $user->role_id == 4)
 			{
 				myLog("Station User/Admin import");
@@ -110,7 +110,7 @@ class Mintimport extends CI_Controller
 				$record['station_id'] = $last_import_org->station_id;
 			}
 
-			debug($record);
+			
 			$record['user_id'] = $user_info->user_id;
 			$already_exist = $this->mint->get_transformation($record['user_id'], $record['mint_user_id'], $record['transformed_id']);
 			if ($already_exist)

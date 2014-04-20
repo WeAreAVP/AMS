@@ -73,6 +73,29 @@ Insert Instantiations data
 	
 	$ php index.php searchd insert_instantiations_sphnix
 
+###Re-index Sphinx
+
+First you need to remove old index files. Default path of files is `/var/lib/sphinx`.
+
+If you want to re-index stations index.
+	
+	$ rm -rf /var/lib/sphinx/station/*
+	
+	$ php /var/www/html/index.php searchd insert_station_sphnix
+	
+If you want to re-index assets	
+	
+	$ rm -rf /var/lib/sphinx/asset/*
+	
+	$ php /var/www/html/index.php searchd insert_assets_sphnix
+	
+If you want to re-index instantiations	
+	
+	$ rm -rf /var/lib/sphinx/instantiation/*
+	
+	$ php /var/www/html/index.php searchd insert_instantiations_sphnix
+
+
 Visit http://sphinxsearch.com/ for more detail
 
 [Next: Open Refine Configuration](openrefine-configure.md)

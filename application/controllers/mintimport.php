@@ -80,6 +80,7 @@ class Mintimport extends CI_Controller
 		{
 			$data['mint_id'] = NULL;
 		}
+		$data['instance'] = $this->config->item('instance_name');
 		$this->load->view('mint_login', $data);
 	}
 

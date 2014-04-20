@@ -219,7 +219,7 @@ class Mintimport extends CI_Controller
 		myLog('Start Importing files for ' . $folder_name);
 		$map = directory_map($this->mint_path . 'unzipped/' . $folder_name, 2);
 		$count_files = 0;
-		$station_id = 0;
+		
 		foreach ($map as $index => $file)
 		{
 //			$station = $this->mint->get_station_by_transformed(rtrim($folder_name, '/'));

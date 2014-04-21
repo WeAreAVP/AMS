@@ -103,6 +103,7 @@ class Searchd extends CI_Controller
 
 		exit_function();
 	}
+
 	/**
 	 * Use this function if you want to insert assets one by one in assets sphinx index.
 	 */
@@ -160,6 +161,41 @@ class Searchd extends CI_Controller
 		}
 
 		exit_function();
+	}
+
+	/**
+	 * You need to add assets.id in an array that you want to update. and then run this script.
+	 * 
+	 */
+	function update_assets_index()
+	{
+
+		$asset_ids = array(1, 2, 3, 4);
+		foreach ($asset_ids as $_id)
+		{
+			$asset = $this->searchd_model->run_query("SELECT id from assets WHERE id = {$_id}")->row();
+			$asset_list = $this->searchd_model->get_asset_index(array($asset->id));
+			$updated_asset_info = make_assets_sphnix_array($asset_list[0], FALSE);
+			$this->sphnixrt->update($this->config->item('asset_index'), $updated_asset_info);
+			myLog('Asset successfully update with id=> ' . $_id);
+		}
+	}
+
+	/**
+	 * You need to add instantiations.id in an array that you want to update. and then run this script.
+	 * 
+	 */
+	function update_instantiations_index()
+	{
+		$instantiation_ids = array(1, 2, 3, 4);
+		foreach ($instantiation_ids as $_id)
+		{
+			$instantiation = $this->searchd_model->run_query("SELECT id from instantiations WHERE id = {$_id}")->row();
+			$instantiation_list = $this->searchd_model->get_ins_index(array($instantiation));
+			$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], FALSE);
+			$this->sphnixrt->update($this->config->item('instantiatiion_index'), $new_list_info);
+			myLog('Instantiation successfully update with id=> ' . $_id);
+		}
 	}
 
 }

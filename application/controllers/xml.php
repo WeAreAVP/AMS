@@ -206,8 +206,14 @@ class Xml extends CI_Controller
 	 */
 	function premis()
 	{
-		$default = array('guid', 'digitized', 'modified_date', 'page');
+		$default = array('key', 'guid', 'digitized', 'modified_date', 'page');
 		$_uri = $this->uri->uri_to_assoc(3, $default);
+		if ( ! $this->_validate_key($_uri['key']))
+		{
+			$result = $this->export_pbcore_premis->xml_error('You are not authorize to access web services.');
+			echo $result->asXML();
+			exit;
+		}
 		Header('Content-type: text/xml');
 		if (isset($_uri['guid']) && ! empty($_uri['guid']))
 		{
@@ -273,9 +279,14 @@ class Xml extends CI_Controller
 	 */
 	function pbcore()
 	{
-		$default = array('guid', 'digitized', 'modified_date', 'page');
+		$default = array('key', 'guid', 'digitized', 'modified_date', 'page');
 		$_uri = $this->uri->uri_to_assoc(3, $default);
-
+		if ( ! $this->_validate_key($_uri['key']))
+		{
+			$result = $this->export_pbcore_premis->xml_error('You are not authorize to access web services.');
+			echo $result->asXML();
+			exit;
+		}
 		Header('Content-type: text/xml');
 		if (isset($_uri['guid']) && ! empty($_uri['guid']))
 		{
@@ -328,6 +339,20 @@ class Xml extends CI_Controller
 			echo $result->asXML();
 		}
 		exit_function();
+	}
+
+	/**
+	 * Validate the key to access web services.
+	 * 
+	 * @param string $given_key
+	 * @return boolean
+	 */
+	private function _validate_key($given_key)
+	{
+		$original_key = $this->config->item('web_service_key');
+		if ($given_key == $original_key)
+			return TRUE;
+		return FALSE;
 	}
 
 	/* End of XML Class */

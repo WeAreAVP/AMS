@@ -215,7 +215,7 @@ class Xml extends CI_Controller
 			echo $result->asXML();
 			exit;
 		}
-		
+
 		if (isset($_uri['guid']) && ! empty($_uri['guid']))
 		{
 
@@ -351,7 +351,7 @@ class Xml extends CI_Controller
 	private function _validate_key($given_key)
 	{
 		$original_key = $this->config->item('web_service_key');
-		if ($given_key == $original_key)
+		if ( ! empty($given_key) && $given_key == $original_key)
 			return TRUE;
 		return FALSE;
 	}

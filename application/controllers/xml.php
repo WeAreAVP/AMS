@@ -208,13 +208,14 @@ class Xml extends CI_Controller
 	{
 		$default = array('key', 'guid', 'digitized', 'modified_date', 'page');
 		$_uri = $this->uri->uri_to_assoc(3, $default);
+		Header('Content-type: text/xml');
 		if ( ! $this->_validate_key($_uri['key']))
 		{
 			$result = $this->export_pbcore_premis->xml_error('You are not authorize to access web services.');
 			echo $result->asXML();
 			exit;
 		}
-		Header('Content-type: text/xml');
+		
 		if (isset($_uri['guid']) && ! empty($_uri['guid']))
 		{
 
@@ -281,13 +282,14 @@ class Xml extends CI_Controller
 	{
 		$default = array('key', 'guid', 'digitized', 'modified_date', 'page');
 		$_uri = $this->uri->uri_to_assoc(3, $default);
+		Header('Content-type: text/xml');
 		if ( ! $this->_validate_key($_uri['key']))
 		{
 			$result = $this->export_pbcore_premis->xml_error('You are not authorize to access web services.');
 			echo $result->asXML();
-			exit;
+			exit_function();
 		}
-		Header('Content-type: text/xml');
+
 		if (isset($_uri['guid']) && ! empty($_uri['guid']))
 		{
 
@@ -338,7 +340,6 @@ class Xml extends CI_Controller
 			$result = $this->export_pbcore_premis->xml_error('guid,digitized or modified_date. One of the parameter is required.');
 			echo $result->asXML();
 		}
-		exit_function();
 	}
 
 	/**

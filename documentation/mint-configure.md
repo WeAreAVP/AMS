@@ -12,23 +12,23 @@ MINT Setup
 * ./src/main/java/gr/ntua/ivml/mint/concurrent/XSLTransform.java at line number 126
 * ./src/main/webapp/WEB-INF/jsp/menu.jsp at line number 33
 
-**2) Build Project** 
+**3) Build Project** 
 
 	mvn package
 
 It will create a build file in 'target' directory.
 
-**3) Move build file in tomcat web directory**
+**4) Move build file in tomcat web directory**
 
 For example. if tomcat web directory is /usr/share/tomcat6/webapps then
 
 	$ cp target/mint-ams.war /usr/share/tomcat6/webapps/mint-ams.war
 
-**4) Restart tomcat service**
+**5) Restart tomcat service**
 
 	$ /etc/init.d/tomcat6 restart
 
-**5) Database Setup**
+**6) Database Setup**
 
 Create a database
 	

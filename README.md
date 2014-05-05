@@ -36,3 +36,11 @@ Documentation
 
 11- [License](documentation/license.md)
 
+
+**General Help**
+
+[Helpful Info](documentation/helpful-info.md)
+
+[AMS web services](documentation/ams-web-services.md)
+
+

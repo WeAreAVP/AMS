@@ -218,7 +218,7 @@ class MY_Records_Controller extends MY_Controller
 	 */
 	public function sort_simple_table()
 	{
-		$columns = array('flag', 'organization', 'guid_identifier', 'local_identifier', 'asset_title', 'description');
+		$columns = array( 'organization', 'guid_identifier', 'local_identifier', 'asset_title', 'description');
 		$this->session->unset_userdata('column');
 		$this->session->unset_userdata('jscolumn');
 		$this->session->unset_userdata('column_order');

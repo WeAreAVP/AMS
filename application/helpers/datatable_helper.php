@@ -21,7 +21,7 @@ function simple_simple_datatable_view($records)
 	foreach ($records as $index => $value)
 	{
 
-		$tablesort[$index][] = '<span style="float:left;min-width:20px;max-width:20px;"><i style="margin:0px" class="unflag"></i></span>';
+		
 		$asset_title_type = explode('|', trim(str_replace('(**)', '', $value->asset_title_type)));
 		$asset_title = explode('|', trim(str_replace('(**)', '', $value->asset_title)));
 		$asset_title_ref = explode('|', trim(str_replace('(**)', '', $value->asset_title_ref)));

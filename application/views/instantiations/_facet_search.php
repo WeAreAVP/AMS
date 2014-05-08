@@ -787,7 +787,7 @@
 
 		if ($('#assets_table').length > 0)
 		{
-			column_index = '<?php echo isset($this->session->userdata['jscolumn']) ? $this->session->userdata['jscolumn'] : 1; ?>';
+			column_index = '<?php echo isset($this->session->userdata['jscolumn']) ? $this->session->userdata['jscolumn'] : 0; ?>';
 			column_order = '<?php echo isset($this->session->userdata['column_order']) ? $this->session->userdata['column_order'] : 'asc'; ?>';
 
 			sTable =
@@ -795,7 +795,6 @@
 			{
 				"sDom": 'frtiS',
 				"aoColumns": [
-					{"bSortable": false, 'sWidth': '1%'},
 					{'sWidth': '15%'},
 					{'sWidth': '15%'},
 					{'sWidth': '18%'},

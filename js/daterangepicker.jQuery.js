@@ -47,7 +47,7 @@
 		prevLinkText: 'Prev',
 		target: rangeInput,
 		doneButtonText: 'Done',
-		earliestDate: Date.parse('-15years'), //earliest date allowed 
+		earliestDate: Date.parse('-25years'), //earliest date allowed 
 		latestDate: Date.parse('+15years'), //latest date allowed 
 		constrainDates: false,
 		rangeSplitter: '-', //string to use between dates in single input

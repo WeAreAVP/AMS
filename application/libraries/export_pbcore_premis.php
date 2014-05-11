@@ -114,11 +114,7 @@ class Export_pbcore_premis
 //				$this->_add_attribute($xml_object, array('premis:xmlns' => "info:lc/xmlns/premis-v2"), 'premis');
 				$this->_add_attribute($xml_object, $attributes, 'xsi');
 				$this->_add_attribute($xml_object, array('version' => "2.0"));
-				$object_characteristics = $this->_add_child($xml_object, 'objectCharacteristics');
-				$this->_add_child($object_characteristics, 'compositionLevel', 2);
-				$object_format = $this->_add_child($object_characteristics, 'format');
-				$object_format_designation = $this->_add_child($object_format, 'formatDesignation');
-				$this->_add_child($object_format_designation, 'formatName');
+				
 				$result = $this->_fetch_events($this->xml, TRUE);
 			}
 			return TRUE;
@@ -154,11 +150,7 @@ class Export_pbcore_premis
 					'xsi:xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
 					'version' => "2.0");
 				$this->_add_attribute($this->xml, $attributes);
-				$object_characteristics = $this->_add_child($this->xml, 'objectCharacteristics');
-				$this->_add_child($object_characteristics, 'compositionLevel', 2);
-				$object_format = $this->_add_child($object_characteristics, 'format');
-				$object_format_designation = $this->_add_child($object_format, 'formatDesignation');
-				$this->_add_child($object_format_designation, 'formatName');
+
 				return $this->_fetch_events($this->xml);
 			}
 		}
@@ -179,6 +171,11 @@ class Export_pbcore_premis
 		$object_identifier = $this->_add_child($object_guid, 'objectIdentifier');
 		$this->_add_child($object_identifier, 'objectIdentifierType', 'American Archive GUID');
 		$this->_add_child($object_identifier, 'objectIdentifierValue', $guid->identifier);
+		$object_characteristics = $this->_add_child($object_guid, 'objectCharacteristics');
+		$this->_add_child($object_characteristics, 'compositionLevel', 2);
+		$object_format = $this->_add_child($object_characteristics, 'format');
+		$object_format_designation = $this->_add_child($object_format, 'formatDesignation');
+		$this->_add_child($object_format_designation, 'formatName');
 		if (count($events) > 0)
 		{
 

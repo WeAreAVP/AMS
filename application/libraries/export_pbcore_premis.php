@@ -175,7 +175,7 @@ class Export_pbcore_premis
 		$this->_add_child($object_characteristics, 'compositionLevel', 2);
 		$object_format = $this->_add_child($object_characteristics, 'format');
 		$object_format_designation = $this->_add_child($object_format, 'formatDesignation');
-		$this->_add_child($object_format_designation, 'formatName');
+		$this->_add_child($object_format_designation, 'formatName',' ');
 		if (count($events) > 0)
 		{
 

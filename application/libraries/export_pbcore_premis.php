@@ -108,6 +108,7 @@ class Export_pbcore_premis
 				$this->asset_id = $asset->id;
 				$xml_object = $this->_add_child($this->xml, 'premis');
 				$attributes = array(
+					'xmlns' => "info:lc/xmlns/premis-v2",
 					'xsi:xmlns' => "http://www.w3.org/2001/XMLSchema-instance",
 					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
 				);
@@ -145,7 +146,7 @@ class Export_pbcore_premis
 			{
 				$this->xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><premis></premis>', LIBXML_NOERROR, false, 'xsi', true);
 				$attributes = array(
-//					'xsi:xmlns:premis' => "info:lc/xmlns/premis-v2",
+					'xmlns' => "info:lc/xmlns/premis-v2",
 					'xsi:xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
 					'xsi:xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
 					'version' => "2.0");

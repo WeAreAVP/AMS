@@ -115,7 +115,7 @@ class Export_pbcore_premis
 				$this->_add_attribute($xml_object, array('xmlns' => "info:lc/xmlns/premis-v2"));
 				$this->_add_attribute($xml_object, $attributes, 'xsi');
 				$this->_add_attribute($xml_object, array('version' => "2.0"));
-				
+
 				$result = $this->_fetch_events($this->xml, TRUE);
 			}
 			return TRUE;
@@ -169,14 +169,11 @@ class Export_pbcore_premis
 		$events = $pbcore_model->get_instantiation_events($this->asset_id);
 		$guid = $pbcore_model->get_one_by($this->CI->pbcore_model->table_identifers, array('assets_id' => $this->asset_id, 'identifier_source' => 'http://americanarchiveinventory.org'));
 		$object_guid = $this->_add_child($xml_object, 'object');
+		$this->_add_attribute($object_guid, array('type' => 'representation'), 'xsi');
 		$object_identifier = $this->_add_child($object_guid, 'objectIdentifier');
 		$this->_add_child($object_identifier, 'objectIdentifierType', 'American Archive GUID');
 		$this->_add_child($object_identifier, 'objectIdentifierValue', $guid->identifier);
-		$object_characteristics = $this->_add_child($object_guid, 'objectCharacteristics');
-		$this->_add_child($object_characteristics, 'compositionLevel', 2);
-		$object_format = $this->_add_child($object_characteristics, 'format');
-		$object_format_designation = $this->_add_child($object_format, 'formatDesignation');
-		$this->_add_child($object_format_designation, 'formatName',' ');
+
 		if (count($events) > 0)
 		{
 

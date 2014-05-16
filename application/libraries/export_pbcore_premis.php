@@ -109,12 +109,7 @@ class Export_pbcore_premis
 				$xml_object = $this->_add_child($this->xml, 'premis');
 				$this->_add_attribute($xml_object, array('xmlns' => 'info:lc/xmlns/premis-v2'));
 				$this->_add_attribute($xml_object, array('xmlns:xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'));
-//				$attributes = array(
-//					'xsi:xmlns' => "http://www.w3.org/2001/XMLSchema-instance",
-//					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
-//				);
-////				$this->_add_attribute($xml_object, array('premis:xmlns' => "info:lc/xmlns/premis-v2"), 'premis');
-//				$this->_add_attribute($xml_object, $attributes, 'xsi');
+				$this->_add_attribute($xml_object, array('xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd"), 'xsi');
 				$this->_add_attribute($xml_object, array('version' => "2.0"));
 				$result = $this->_fetch_events($this->xml, TRUE);
 			}

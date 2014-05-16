@@ -108,7 +108,8 @@ class Export_pbcore_premis
 				$this->asset_id = $asset->id;
 				$xml_object = $this->_add_child($this->xml, 'premis');
 				$attributes = array(
-					'xsi:xmlns' => "http://www.w3.org/2001/XMLSchema-instance",
+					'xmlns' => "info:lc/xmlns/premis-v2",
+					'xsi:xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
 					'xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd",
 				);
 //				$this->_add_attribute($xml_object, array('premis:xmlns' => "info:lc/xmlns/premis-v2"), 'premis');

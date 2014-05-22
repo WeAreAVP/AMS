@@ -158,7 +158,7 @@ class Export_pbcore_premis
 	 * @param \SimpleXMLElement $premis_object
 	 * @return boolean
 	 */
-	private function _fetch_events($xml_object, $isContainer)
+	private function _fetch_events($xml_object, $isContainer=FALSE)
 	{
 		$pbcore_model = $this->CI->pbcore_model;
 		$events = $pbcore_model->get_instantiation_events($this->asset_id);

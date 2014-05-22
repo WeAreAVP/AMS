@@ -111,7 +111,7 @@ class Export_pbcore_premis
 				$this->_add_attribute($xml_object, array('xmlns:xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'));
 				$this->_add_attribute($xml_object, array('xsi:xsi:schemaLocation' => "info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis.xsd"));
 				$this->_add_attribute($xml_object, array('version' => "2.0"));
-				$result = $this->_fetch_events($this->xml, TRUE);
+				$result = $this->_fetch_events($xml_object, TRUE);
 			}
 			return TRUE;
 		}
@@ -158,7 +158,7 @@ class Export_pbcore_premis
 	 * @param \SimpleXMLElement $premis_object
 	 * @return boolean
 	 */
-	private function _fetch_events($xml_object)
+	private function _fetch_events($xml_object, $isContainer)
 	{
 		$pbcore_model = $this->CI->pbcore_model;
 		$events = $pbcore_model->get_instantiation_events($this->asset_id);

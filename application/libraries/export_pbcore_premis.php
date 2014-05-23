@@ -163,8 +163,8 @@ class Export_pbcore_premis
 		$pbcore_model = $this->CI->pbcore_model;
 		$events = $pbcore_model->get_instantiation_events($this->asset_id);
 		$guid = $pbcore_model->get_one_by($this->CI->pbcore_model->table_identifers, array('assets_id' => $this->asset_id, 'identifier_source' => 'http://americanarchiveinventory.org'));
-		$object_guid = $this->_add_child($xml_object, 'object');
-		$this->_add_attribute($object_guid, array('xsi:type' => 'representation'));
+		$object_guid = $this->_add_child($xml_object, 'xsi:object');
+		$this->_add_attribute($object_guid, array('xsi:xsi:type' => 'representation'));
 		$object_identifier = $this->_add_child($object_guid, 'objectIdentifier');
 		$this->_add_child($object_identifier, 'objectIdentifierType', 'American Archive GUID');
 		$this->_add_child($object_identifier, 'objectIdentifierValue', $guid->identifier);

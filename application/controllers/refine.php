@@ -114,14 +114,13 @@ class Refine extends MY_Controller
 			$file_path = $folder_path . $filename;
 			if ( ! is_dir($folder_path))
 				mkdir($folder_path, 0777, TRUE);
-                        debug('here');
+                        
 			$fp = fopen($file_path, 'a');
 			file_put_contents($path, $response);
 			$this->googlerefine->delete_project($project_id);
 			$data = array('is_active' => 2, 'import_csv_path' => $path);
 			$this->refine_modal->update_job($project_detail->id, $data);
-                        debug($project_detail);
-			if ($project_detail->refine_type == 'instantiation')
+                        if ($project_detail->refine_type == 'instantiation')
 				redirect('instantiations');
 			else
 				redirect('records');

@@ -112,9 +112,11 @@ class Refine extends MY_Controller
 //			$folder_path = $this->config->item('path') . 'assets/google_refine/' . date('Y') . '/' . date('M') . '/imports/';
                         $folder_path = 'assets/google_refine/' . date('Y') . '/' . date('M') . '/imports/';
 			$file_path = $folder_path . $filename;
-			if ( ! is_dir($folder_path))
-				mkdir($folder_path, 0777, TRUE);
-                        debug('here');
+			if ( ! is_dir($folder_path)){
+//				mkdir($folder_path, 0777, TRUE);
+                                exec("mkdir -R {$folder_path}",$output);
+                                }
+                        debug($output);
 			$fp = fopen($file_path, 'a');
 			file_put_contents($path, $response);
 			$this->googlerefine->delete_project($project_id);

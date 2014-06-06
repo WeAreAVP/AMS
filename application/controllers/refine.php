@@ -115,9 +115,9 @@ class Refine extends MY_Controller
 			if ( ! is_dir($folder_path)){
                             
 //				mkdir($folder_path, 0777, TRUE);
-                                echo "mkdir -R {$folder_path}";
+                                exec("mkdir -p {$folder_path}",$output);
                                 }
-                        exit;
+                        debug($output);
 			$fp = fopen($file_path, 'a');
 			file_put_contents($path, $response);
 			$this->googlerefine->delete_project($project_id);

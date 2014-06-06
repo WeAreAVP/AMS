@@ -110,9 +110,10 @@ class Refine extends MY_Controller
                         
 			$filename = 'AMS_Refined_Data_' . time() . '.txt';
 //			$folder_path = $this->config->item('path') . 'assets/google_refine/' . date('Y') . '/' . date('M') . '/imports/';
-                        $folder_path = 'uploads/google_refine/' . date('Y') . '/' . date('M') . '/imports/';
+                        $folder_path = 'assets/google_refine/' . date('Y') . '/' . date('M') . '/imports/';
 			$file_path = $folder_path . $filename;
 			if ( ! is_dir($folder_path)){
+                            echo 'here';exit;
 //				mkdir($folder_path, 0777, TRUE);
                                 exec("mkdir -R {$folder_path}",$output);
                                 }

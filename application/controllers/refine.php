@@ -109,8 +109,8 @@ class Refine extends MY_Controller
 			$response = $this->googlerefine->export_rows($project_detail->project_name, $project_id);
                         
 			$filename = 'AMS_Refined_Data_' . time() . '.txt';
-			$folder_path = $this->config->item('path') . 'assets/google_refine/' . date('Y') . '/' . date('M') . '/imports/';
-                        
+//			$folder_path = $this->config->item('path') . 'assets/google_refine/' . date('Y') . '/' . date('M') . '/imports/';
+                        $folder_path = 'assets/google_refine/' . date('Y') . '/' . date('M') . '/imports/';
 			$file_path = $folder_path . $filename;
 			if ( ! is_dir($folder_path))
 				mkdir($folder_path, 0777, TRUE);

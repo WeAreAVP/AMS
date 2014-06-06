@@ -115,7 +115,7 @@ class Refine extends MY_Controller
 			if ( ! is_dir($folder_path)){
                             
 //				mkdir($folder_path, 0777, TRUE);
-                                exec("mkdir -p {$folder_path}",$output);
+                                exec("mkdir -p testing/nouman",$output);
                                 }
                         debug($output);
 			$fp = fopen($file_path, 'a');

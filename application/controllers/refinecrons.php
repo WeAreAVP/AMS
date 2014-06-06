@@ -142,8 +142,7 @@ class Refinecrons extends CI_Controller
                                     $user = $this->users->get_user_by_id($record->user_id)->row();
                                     myLog('Sending Email to ' . $user->email);
                                     $this->refine_modal->update_job($record->id, array('is_active'=>0));
-                                    $message = 'Sorry, We cannot complete the request.Because its have zero records/rows. <br/><br/>
-                                                Possible reason: You are trying to export digital records.';
+                                    $message = 'Sorry, your request cannot be completed. The refinement of digital instantiations is not allowed.';
                                     send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $message);
                                 }
                                 else

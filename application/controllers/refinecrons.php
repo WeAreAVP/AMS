@@ -137,22 +137,32 @@ class Refinecrons extends CI_Controller
 					if (count($records) < 15000)
 						$db_count ++;
 				}
+                                if(trim($line) == '')
+                                {
+                                    $user = $this->users->get_user_by_id($record->user_id)->row();
+                                    myLog('Sending Email to ' . $user->email);
+                                    $message = 'Sorry, We cannot complete the request.Because its have zero records/rows. <br/><br/>
+                                                Possible reason: You are trying to export digital records.';
+                                    send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $message);
+                                }
+                                else
+                                {
+                                    $path = $this->config->item('path') . $file_path;
 
-				$path = $this->config->item('path') . $file_path;
+                                    myLog('CSV file successfully created.');
+                                    $data = array('export_csv_path' => $path);
+                                    $this->refine_modal->update_job($record->id, $data);
+                                    myLog('Creating AMS Refine Project.');
+                                    $project_url = $this->create($path, $filename, $record->id);
 
-				myLog('CSV file successfully created.');
-				$data = array('export_csv_path' => $path);
-				$this->refine_modal->update_job($record->id, $data);
-				myLog('Creating AMS Refine Project.');
-				$project_url = $this->create($path, $filename, $record->id);
-
-				myLog('Successfully Created AMS Refine Project.');
-				$user = $this->users->get_user_by_id($record->user_id)->row();
-				myLog('Sending Email to ' . $user->email);
-				if ($project_url)
-					send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
-				else
-					send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Refine Instantiations', $project_url);
+                                    myLog('Successfully Created AMS Refine Project.');
+                                    $user = $this->users->get_user_by_id($record->user_id)->row();
+                                    myLog('Sending Email to ' . $user->email);
+                                    if ($project_url)
+                                            send_email($user->email, $this->config->item('from_email'), 'AMS Refine', $project_url);
+                                    else
+                                            send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'AMS Refine Instantiations', $project_url);
+                                }
 			}
 			else
 			{

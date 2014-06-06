@@ -120,7 +120,7 @@ class Refine_modal extends CI_Model
 
 	function export_refine_csv($real_time = FALSE)
 	{
-		$where = ' 1=1 ';
+		
 		$this->db->select("$this->stations.station_name as organization", FALSE);
 		$this->db->select("$this->asset_titles.title as asset_title", FALSE);
 		$this->db->select("asset_descriptions.description", FALSE);
@@ -337,7 +337,7 @@ class Refine_modal extends CI_Model
 			$where .=' )';
 			$this->db->where($where);
 		}
-		$this->db->where($where);
+//		$this->db->where($where);
 		if ($this->is_station_user)
 		{
 			$this->db->where_in("$this->stations.station_name", $this->station_name);
@@ -361,7 +361,7 @@ class Refine_modal extends CI_Model
 	function export_asset_refine_csv($real_time = FALSE)
 	{
 
-		$where = ' 1=1 ';
+
 		$this->db->select("$this->stations.station_name as organization", FALSE);
 		$this->db->select("$this->asset_titles.title as asset_title", FALSE);
 		$this->db->select("asset_descriptions.description", FALSE);

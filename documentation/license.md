@@ -1,13 +1,13 @@
 AMS License
 ===
+[Back: Roles and Permissions](roles-permissions.md)
+
 The AMS is published under a GPLv3 license (http://www.gnu.org/licenses/gpl-3.0.txt).
 
 Copyright (c) WGBH (http://www.wgbh.org/). All Rights Reserved.
 
 AMS Integral Components and Licensing Information
 ===
-[Back: Roles and Permissions](roles-permissions.md)
-
 **Name:** Codeignitor
 
 **Role:** PHP Framework

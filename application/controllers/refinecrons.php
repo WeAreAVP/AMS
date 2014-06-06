@@ -405,6 +405,7 @@ class Refinecrons extends CI_Controller
 				$exploded_columns = preg_split("/\t/", $line);
 
 				$asset_id = $exploded_columns[51];
+                                myLog('Asset ID => '.$asset_id);
 				$asset_date_id = $exploded_columns[50];
 				$asset_identifier_id = $exploded_columns[49];
 				$asset_type_id = $exploded_columns[48];

@@ -118,6 +118,7 @@ class Refine extends MY_Controller
 			$this->googlerefine->delete_project($project_id);
 			$data = array('is_active' => 2, 'import_csv_path' => $path);
 			$this->refine_modal->update_job($project_detail->id, $data);
+                        debug($project_detail);
 			if ($project_detail->refine_type == 'instantiation')
 				redirect('instantiations');
 			else

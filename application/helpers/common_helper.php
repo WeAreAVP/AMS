@@ -298,7 +298,7 @@ function get_essence_track_annotation($essence_track_id)
 {
 	$CI = & get_instance();
 	$CI->load->model('pbcore_model');
-	return $CI->pbcore_model->get_by($CI->pbcore_model->table_essence_track_annotations, array('essence_tracks_id', $essence_track_id));
+	return $CI->pbcore_model->get_by($CI->pbcore_model->table_essence_track_annotations, array('essence_tracks_id'=> $essence_track_id));
 }
 
 function make_dir($folder_path, $filename = '')

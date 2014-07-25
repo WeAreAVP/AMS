@@ -120,7 +120,7 @@ class Refine_modal extends CI_Model
 
 	function export_refine_csv($real_time = FALSE)
 	{
-		
+
 		$this->db->select("$this->stations.station_name as organization", FALSE);
 		$this->db->select("$this->asset_titles.title as asset_title", FALSE);
 		$this->db->select("asset_descriptions.description", FALSE);
@@ -297,7 +297,8 @@ class Refine_modal extends CI_Model
 				}
 			}
 			$where .=' )';
-			$this->db->where($where);
+			if (trim($where) != '( )')
+				$this->db->where($where);
 		}
 		if (isset($session['date_range']) && $session['date_range'] != '')
 		{
@@ -335,7 +336,8 @@ class Refine_modal extends CI_Model
 				}
 			}
 			$where .=' )';
-			$this->db->where($where);
+			if (trim($where) != '( )')
+				$this->db->where($where);
 		}
 //		$this->db->where($where);
 		if ($this->is_station_user)
@@ -531,82 +533,85 @@ class Refine_modal extends CI_Model
 			);
 
 			$keyword_json = $session['custom_search'];
-                        if(count($keyword_json)>0)
-                        {
-                            $where = '(';
-                            foreach ($keyword_json as $index => $key_columns)
-                            {
-                                    $count = 0;
-                                    foreach ($key_columns as $keys => $keywords)
-                                    {
-                                            $keyword = trim($keywords->value);
-                                            $_or = ' OR ';
-                                            if ($count == 0)
-                                                    $_or = ' ';
+			if (count($keyword_json) > 0)
+			{
+				$where = '(';
+				foreach ($keyword_json as $index => $key_columns)
+				{
+					$count = 0;
+					foreach ($key_columns as $keys => $keywords)
+					{
+						$keyword = trim($keywords->value);
+						$_or = ' OR ';
+						if ($count == 0)
+							$_or = ' ';
 
-                                            if ($index == 'all')
-                                            {
-                                                    $counter = 0;
+						if ($index == 'all')
+						{
+							$counter = 0;
 
-                                                    foreach ($facet_columns as $column)
-                                                    {
-                                                            $_or = ' OR ';
-                                                            if ($counter == 0)
-                                                                    $_or = ' ';
-                                                            $where .=" $_or $column LIKE '%$keyword%'";
-                                                            $counter ++;
-                                                    }
-                                            }
-                                            else
-                                            {
-                                                    $where .=" $_or $index LIKE '%$keyword%'";
-                                            }
-                                            $count ++;
-                                    }
-                            }
-                            $where .=' )';
-                            $this->db->where($where);
-                        }
+							foreach ($facet_columns as $column)
+							{
+								$_or = ' OR ';
+								if ($counter == 0)
+									$_or = ' ';
+								$where .=" $_or $column LIKE '%$keyword%'";
+								$counter ++;
+							}
+						}
+						else
+						{
+							$where .=" $_or $index LIKE '%$keyword%'";
+						}
+						$count ++;
+					}
+				}
+				$where .=' )';
+				if (trim($where) != '( )')
+					$this->db->where($where);
+			}
 		}
 		if (isset($session['date_range']) && $session['date_range'] != '')
 		{
 			$keyword_json = $this->session->userdata['date_range'];
-                        if(count($keyword_json)>0){
-                            $where = '(';
-                            foreach ($keyword_json as $index => $key_columns)
-                            {
-                                    $count = 0;
-                                    foreach ($key_columns as $keys => $keywords)
-                                    {
-                                            $_or = ' OR ';
-                                            if ($count == 0)
-                                                    $_or = ' ';
+			if (count($keyword_json) > 0)
+			{
+				$where = '(';
+				foreach ($keyword_json as $index => $key_columns)
+				{
+					$count = 0;
+					foreach ($key_columns as $keys => $keywords)
+					{
+						$_or = ' OR ';
+						if ($count == 0)
+							$_or = ' ';
 
-                                            $date_range = explode("to", $keywords->value);
-                                            if (isset($date_range[0]) && trim($date_range[0]) != '')
-                                            {
-                                                    $start_date = strtotime(trim($date_range[0]));
-                                            }
-                                            if (isset($date_range[1]) && trim($date_range[1]) != '')
-                                            {
-                                                    $end_date = strtotime(trim($date_range[1]));
-                                            }
-                                            if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
-                                            {
+						$date_range = explode("to", $keywords->value);
+						if (isset($date_range[0]) && trim($date_range[0]) != '')
+						{
+							$start_date = strtotime(trim($date_range[0]));
+						}
+						if (isset($date_range[1]) && trim($date_range[1]) != '')
+						{
+							$end_date = strtotime(trim($date_range[1]));
+						}
+						if ($start_date != '' && is_numeric($start_date) && isset($end_date) && is_numeric($end_date) && $end_date >= $start_date)
+						{
 
-                                                    $where .="$_or ($this->table_instantiation_dates.instantiation_date >= $start_date AND $this->table_instantiation_dates.instantiation_date<= $end_date )";
+							$where .="$_or ($this->table_instantiation_dates.instantiation_date >= $start_date AND $this->table_instantiation_dates.instantiation_date<= $end_date )";
 
-                                                    if ($index != 'All')
-                                                    {
-                                                            $where .=" AND $this->table_date_types.date_type LIKE '$index'";
-                                                    }
-                                            }
-                                            $count ++;
-                                    }
-                            }
-                            $where .=' )';
-                            $this->db->where($where);
-                        }
+							if ($index != 'All')
+							{
+								$where .=" AND $this->table_date_types.date_type LIKE '$index'";
+							}
+						}
+						$count ++;
+					}
+				}
+				$where .=' )';
+				if (trim($where) != '( )')
+					$this->db->where($where);
+			}
 		}
 
 		if ($this->is_station_user)

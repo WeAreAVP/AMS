@@ -206,7 +206,7 @@ class Instantiations_Model extends CI_Model
 				LEFT JOIN instantiation_formats AS inf ON  ins.id=inf.instantiations_id
 				LEFT JOIN instantiation_generations AS ing ON  ins.id=ing.instantiations_id
 				LEFT JOIN generations AS gen ON ing.generations_id=gen.id
-				WHERE ide.identifier LIKE "' . $guid . '" AND REPLACE(LOWER(inf.format_name)," ","") LIKE "' . str_replace(' ', '', strtolower($physical_format)) . '" AND inf.format_type="physical"';
+				WHERE ide.identifier LIKE "' . $guid . '" AND REPLACE(LOWER(inf.format_name)," ","") LIKE "' . str_replace(' ', '', strtolower(addslashes($physical_format))) . '" AND inf.format_type="physical"';
 		$res = $this->db->query($sql);
 		if (isset($res) && ! empty($res))
 		{

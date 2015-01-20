@@ -111,8 +111,8 @@ class Googledoc extends CI_Controller
 	function import_gsheets()
 	{
 		set_time_limit(0);
-		@ini_set("memory_limit", "2000M"); # 1GB
-		@ini_set("max_execution_time", 999999999999); # 1GB
+		@ini_set("memory_limit", "4000M");
+		@ini_set("max_execution_time", 999999999999);
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 		$this->load->library('google_spreadsheet', array('user' => $this->config->item('google_spreadsheet_email'), 'pass' => $this->config->item('google_spreadsheet_password')));

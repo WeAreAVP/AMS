@@ -129,7 +129,7 @@ class Mintimport extends CI_Controller
 			$message .='<a href="' . base_url() . 'mintimport/visit/1' . '">Click here</a> to go to MINT.';
 
 //			send_email($this->config->item('to_email'), $this->config->item('from_email'), 'Mint Transformation', $message);
-			send_email('nouman@avpreserve.com', $this->config->item('from_email'), 'Mint Transformation', $message);
+			send_email('casey_davis@wgbh.org', $this->config->item('from_email'), 'Mint Transformation', $message);
 			echo 'Inserted new Transformation';
 			exit;
 		}

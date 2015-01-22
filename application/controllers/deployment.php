@@ -143,10 +143,10 @@ class Deployment extends CI_Controller
 				$display['db_name'] = deployment_display('Database name (ams)', 'OK');
 			else
 				$display['db_name'] = deployment_display('Database name (ams).');
-			if ($this->config->item('base_url') === 'https://ams.avpreserve.com/')
-				$display['url'] = deployment_display('Base URL (https://ams.avpreserve.com/)', 'OK');
+			if ($this->config->item('base_url') === 'https://amsnew.avpreserve.com/')
+				$display['url'] = deployment_display('Base URL (https://amsnew.avpreserve.com/)', 'OK');
 			else
-				$display['url'] = deployment_display('Base URL (https://ams.avpreserve.com/).');
+				$display['url'] = deployment_display('Base URL (https://amsnew.avpreserve.com/).');
 		}
 		else if (ENVIRONMENT === 'qatesting')
 		{

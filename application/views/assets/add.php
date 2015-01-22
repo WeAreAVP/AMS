@@ -1001,7 +1001,16 @@
 				<tr>
 					<td colspan="2">
 						<a class="btn" href="<?php echo site_url('records/index'); ?>">Cancel</a>
+						<?php 
+						// 20140925_kc begin prevent public user from adding assets
+						if ($this->role_id != 20)
+						{
+						?>
 						<input type="button" onclick="validateForm();" value="Create" class="btn btn-primary"/>
+						<?php
+						}
+						// 20140925_kc end prevent public user from adding assets
+						?>
 					</td>
 				</tr>
 			</table>

@@ -37,6 +37,12 @@ if ($table_type == 'assets' && $current_tab == 'simple')
         </ul>
     </div>
 	<div class="btn-group" style="float: left;">
+	<?php
+	// 20140925_kc begin remove 'Operations' button for public user 
+	if ($this->role_id != 20)
+	{
+	// 20140925_kc 
+	?>
 		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="height: 14px;">Operation&nbsp;<span class="caret"></span></a>
 		<ul class="dropdown-menu">
 			<?php
@@ -114,6 +120,10 @@ if ($table_type == 'assets' && $current_tab == 'simple')
 				<li><a href="<?php echo site_url('autocomplete/mint_login'); ?>">Import Collection</a></li>
 	<?php } ?>
 		</ul>
+	<?php
+	// 20140925_kc end remove 'Operations' button for public user 
+	}
+	?>
 	</div>
 	<?php
 	if ($this->role_id == 1 || $this->role_id == 2)

@@ -1,4 +1,4 @@
-<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+<!--<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">-->
 <!--<script src="http://vjs.zencdn.net/c/video.js"></script>-->
 <div style="margin-bottom: 10px;">
     <style type="text/css">

@@ -41,7 +41,7 @@
 
 
 
-		<div style="margin-left: 20px;margin-top: 10px;"><a href="<?php echo $media['url']; ?>" target="=_blank">Open Proxy file</a></div>
+		<div style="margin-left: 20px;margin-top: 10px;"><a href="https://www.youtube.com/watch?v=hamhN3u2rM0" target="=_blank">Open Proxy file</a></div>
 		<script type="text/javascript">
 			$(document).ready(function() {
 

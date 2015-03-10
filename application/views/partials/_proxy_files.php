@@ -18,7 +18,7 @@
 			<video class="video-js vjs-default-skin" controls
 				   preload="auto" width="700" height="320"
 				   data-setup="{}">
-				<source src="<?php echo $media['url']; ?>" type='video/mp4'>
+				<source src="https://www.youtube.com/watch?v=hamhN3u2rM0" type='video/mp4'>
 
 			</video>
 		</div>
@@ -27,7 +27,7 @@
 				 class="flowplayer no-toggle play-button color-light"
 				 data-ratio="0.416" style="width: 720px;">
 				<video>
-					<source type="video/mp4" src="<?php echo $media['url']; ?>">
+					<source type="video/mp4" src="https://www.youtube.com/watch?v=hamhN3u2rM0">
 
 				</video>
 

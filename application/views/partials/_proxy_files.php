@@ -1,5 +1,5 @@
-<!--<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">-->
-<!--<script src="http://vjs.zencdn.net/c/video.js"></script>-->
+<!--<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+<script src="http://vjs.zencdn.net/c/video.js"></script>-->
 <div style="margin-bottom: 10px;">
     <style type="text/css">
 
@@ -14,8 +14,9 @@
     if ($media) {
         ?>
         <div id="jPalayer_div" style="display: none;">
-            <embed width="700" height="320" src="http://www.youtube.com/v/hamhN3u2rM0">
-<!--            </iframe>-->
+            <iframe width="420" height="345"
+                    src="http://www.youtube.com/embed/hamhN3u2rM0">
+            </iframe>
             <!--			<video class="video-js vjs-default-skin" controls
                                                preload="auto" width="700" height="320"
                                                data-setup="{}">
@@ -27,8 +28,9 @@
 <!--            <div data-swf="<?php// echo site_url('js/flowplayer/flowplayer.swf');   ?>"
                  class="flowplayer no-toggle play-button color-light"
                  data-ratio="0.416" style="width: 720px;">-->
-                <embed width="700" height="320" src="http://www.youtube.com/v/hamhN3u2rM0">
-<!--                </iframe>-->
+                <iframe width="420" height="345"
+                        src="http://www.youtube.com/embed/hamhN3u2rM0">
+                </iframe>
                 <!--                        <video>
                                                 <source type="video/mp4" src="https://www.youtube.com/watch?v=hamhN3u2rM0">
                 

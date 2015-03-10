@@ -14,8 +14,8 @@
     if ($media) {
         ?>
         <div id="jPalayer_div" style="display: none;">
-            <iframe width="700" height="320" src="http://www.youtube.com/embed/hamhN3u2rM0">
-            </iframe>
+            <embed width="700" height="320" src="http://www.youtube.com/v/hamhN3u2rM0">
+<!--            </iframe>-->
             <!--			<video class="video-js vjs-default-skin" controls
                                                preload="auto" width="700" height="320"
                                                data-setup="{}">
@@ -27,9 +27,8 @@
 <!--            <div data-swf="<?php// echo site_url('js/flowplayer/flowplayer.swf');   ?>"
                  class="flowplayer no-toggle play-button color-light"
                  data-ratio="0.416" style="width: 720px;">-->
-                <iframe width="700" height="320"
-                        src="http://www.youtube.com/embed/hamhN3u2rM0">
-                </iframe>
+                <embed width="700" height="320" src="http://www.youtube.com/v/hamhN3u2rM0">
+<!--                </iframe>-->
                 <!--                        <video>
                                                 <source type="video/mp4" src="https://www.youtube.com/watch?v=hamhN3u2rM0">
                 

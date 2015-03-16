@@ -197,6 +197,8 @@
 				</tr>
 				<tr>
 					<?php
+					$identifier_ids = explode('|', trim(str_replace('(**)', '', $asset_detail->identifier_id)));					
+					$kevin_identifiers = explode('|', trim(str_replace('(**)', '', $asset_detail->kevin_test)));
 					$identifiers = explode('|', trim(str_replace('(**)', '', $asset_detail->identifier)));
 					$identifier_sources = explode('|', trim(str_replace('(**)', '', $asset_detail->identifier_source)));
 					$identifier_refs = explode('|', trim(str_replace('(**)', '', $asset_detail->identifier_ref)));
@@ -213,27 +215,28 @@
 							if (count($identifiers) > 0 && isset($identifiers[0]) && ! empty($identifiers[0]))
 							{
 								$add = ' ADD ANOTHER LOCAL ID';
-								foreach ($identifiers as $index => $identifier)
+								foreach ($kevin_identifiers as $index => $kevin_identifier)
 								{
-									?>
+										list($this_identifier_id, $this_identifier , $this_identifier_source , $this_identifier_ref) = explode('^', trim(str_replace('(**)', '', $kevin_identifier))); 
+								?>
 									<div id="remove_local_<?php echo $index; ?>" class="remove_local_id">
 										<div class="edit_form_div">
 											<div>
 												<p>Local ID: <span class="label_star"> *</span> </p>
 												<p>
-													<input type="text" id="asset_identifier_<?php echo $index; ?>" name="asset_identifier[]" value="<?php echo trim($identifier); ?>" />
+													<input type="text" id="asset_identifier_<?php echo $index; ?>" name="asset_identifier[]" value="<?php echo (isset($this_identifier)) ? trim($this_identifier) : ''; ?>" />
 												</p>
 											</div>
 											<div>
 												<p>ID Source: <span class="label_star"> *</span> </p>
 												<p>
-													<input type="text" id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($identifier_sources[$index])) ? trim($identifier_sources[$index]) : ''; ?>" />
+													<input type="text" id="asset_identifier_source_<?php echo $index; ?>" name="asset_identifier_source[]" value="<?php echo (isset($this_identifier_source)) ? trim($this_identifier_source) : ''; ?>" />
 												</p>
 											</div>
 											<div>
 												<p>ID Ref:</p>
 												<p>
-													<input type="text" id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($identifier_refs[$index])) ? trim($identifier_refs[$index]) : ''; ?>" />
+													<input type="text" id="asset_identifier_ref_<?php echo $index; ?>" name="asset_identifier_ref[]" value="<?php echo (isset($this_identifier_ref)) ? trim($this_identifier_ref) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>

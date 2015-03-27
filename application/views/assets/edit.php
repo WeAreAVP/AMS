@@ -648,9 +648,11 @@
 				</tr>
 				<tr>
 					<?php
+					$edit_genres = explode('|', trim(str_replace('(**)', '', $asset_detail->genres_edit)));
 					$genres = explode('|', trim(str_replace('(**)', '', $asset_detail->genre)));
 					$genre_sources = explode('|', trim(str_replace('(**)', '', $asset_detail->genre_source)));
 					$genre_refs = explode('|', trim(str_replace('(**)', '', $asset_detail->genre_ref)));
+					$edit_genres = explode('|', trim(str_replace('(**)', '', $asset_detail->genres_edit)));
 					$add = ' ADD GENRE';
 					?>
 					<td class="record-detail-page">
@@ -664,22 +666,24 @@
 							if (count($genres) > 0 && isset($genres[0]) && ! empty($genres[0]))
 							{
 								$add = ' ADD ANOTHER GENRE';
-								foreach ($genres as $index => $genre)
+								// foreach ($genres as $index => $genre)
+								foreach ($edit_genres as $index => $edit_genre)
 								{
+									list($this_genre_id, $this_genre , $this_genre_source , $this_genre_ref) = explode('^', trim(str_replace('(**)', '', $edit_genre)));
 									?>
 									<div id="remove_genre_<?php echo $index; ?>" class="remove_genre">
 										<div class="edit_form_div">
 											<div>
 												<p>Genre:</p>
-												<p><input type="text" id="asset_genre_<?php echo $index; ?>" name="asset_genre[]" value="<?php echo trim($genre); ?>" /></p>
+												<p><input type="text" id="asset_genre_<?php echo $index; ?>" name="asset_genre[]" value="<?php echo trim($this_genre); ?>" /></p>
 											</div>
 											<div>
 												<p>Genre Source:</p>
-												<p><input type="text" id="asset_genre_source_<?php echo $index; ?>" name="asset_genre_source[]" value="<?php echo (isset($genre_sources[$index])) ? trim($genre_sources[$index]) : ''; ?>" /></p>
+												<p><input type="text" id="asset_genre_source_<?php echo $index; ?>" name="asset_genre_source[]" value="<?php echo (isset($this_genre_source)) ? trim($this_genre_source) : ''; ?>" /></p>
 											</div>
 											<div>
 												<p>Genre Ref:</p>
-												<p><input type="text" id="asset_genre_ref_<?php echo $index; ?>" name="asset_genre_ref[]" value="<?php echo (isset($genre_refs[$index])) ? trim($genre_refs[$index]) : ''; ?>" /></p>
+												<p><input type="text" id="asset_genre_ref_<?php echo $index; ?>" name="asset_genre_ref[]" value="<?php echo (isset($this_genre_ref)) ? trim($this_genre_ref) : ''; ?>" /></p>
 												<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 											</div>
 

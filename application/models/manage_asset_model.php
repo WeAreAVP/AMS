@@ -60,6 +60,7 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subject_types.subject_type,'(**)'))  SEPARATOR ' | ') AS subject_type", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_descriptions.description,'(**)'))  SEPARATOR ' | ') AS description", FALSE);
 		$this->db->select("GROUP_CONCAT(IFNULL(description_types.description_type,'(**)')  SEPARATOR ' | ') AS description_type", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',genres.id,genres.genre,genres.genre_source,genres.genre_ref ),'(**)'))   SEPARATOR ' | ') AS genres_edit", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genres.genre,'(**)'))  SEPARATOR ' | ') AS genre", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genres.genre_source,'(**)'))  SEPARATOR ' | ') AS genre_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genres.genre_ref,'(**)'))  SEPARATOR ' | ') AS genre_ref", FALSE);
@@ -78,6 +79,7 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type,'(**)'))  SEPARATOR ' | ') AS relation_type", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type_source,'(**)'))  SEPARATOR ' | ') AS relation_type_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type_ref,'(**)'))  SEPARATOR ' | ') AS relation_type_ref", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',creators.id,creators.creator_name,creators.creator_affiliation,creators.creator_source,creators.creator_ref ),'(**)'))   SEPARATOR ' | ') AS creators_edit", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_name,'(**)'))  SEPARATOR ' | ') AS creator_name", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_affiliation,'(**)'))  SEPARATOR ' | ') AS creator_affiliation", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_ref,'(**)'))  SEPARATOR ' | ') AS creator_ref", FALSE);

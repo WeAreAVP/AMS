@@ -24,6 +24,9 @@
 				$combine_title.=$title;
 			$combine_title.='<div class="clearfix"></div>';
 		}
+echo '<!-- sony_id_array is:  ';
+echo $sony_id_array;
+echo '-->';
 		?>
 		<h2><?php echo $combine_title; ?></h2>
 	</div>

@@ -39,6 +39,16 @@ class Manage_Asset_Model extends CI_Model
 		parent::__construct();
 	}
 
+
+#        function get_sonyidentifier_by_id($asset_id)
+#        {
+#                $this->db->select('identifiers.identifier');
+#                $this->db->where('assets_id', $asset_id);
+#                $this->db->where("identifier_source =", "Sony Ci");
+#                return $result = $this->db->get('identifiers')->result();
+#        }
+
+
 	function get_asset_detail_by_id($asset_id)
 	{
 		$this->db->select('assets.id,assets.stations_id,stations.station_name');
@@ -79,7 +89,12 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type,'(**)'))  SEPARATOR ' | ') AS relation_type", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type_source,'(**)'))  SEPARATOR ' | ') AS relation_type_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type_ref,'(**)'))  SEPARATOR ' | ') AS relation_type_ref", FALSE);
-		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',creators.id,creators.creator_name,creators.creator_affiliation,creators.creator_source,creators.creator_ref ),'(**)'))   SEPARATOR ' | ') AS creators_edit", FALSE);
+
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',assets_creators_roles.assets_id, assets_creators_roles.creators_id, assets_creators_roles.creator_roles_id ),'(**)'))   SEPARATOR ' | ') AS assets_creators_roles_edit", FALSE);
+		 $this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',creators.id,creators.creator_name,creators.creator_affiliation,creators.creator_source,creators.creator_ref ),'(**)'))   SEPARATOR ' | ') AS creators_edit", FALSE);
+		 $this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',creator_roles.id ,creator_roles.creator_role ,creator_roles.creator_role_source ,creator_roles.creator_role_ref ),'(**)'))   SEPARATOR ' | ') AS creator_roles_edit", FALSE);
+
+
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_name,'(**)'))  SEPARATOR ' | ') AS creator_name", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_affiliation,'(**)'))  SEPARATOR ' | ') AS creator_affiliation", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_ref,'(**)'))  SEPARATOR ' | ') AS creator_ref", FALSE);
@@ -107,6 +122,7 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->join('asset_types', 'asset_types.id=assets_asset_types.asset_types_id', 'LEFT');
 		$this->db->join('asset_dates', 'asset_dates.assets_id=assets.id', 'LEFT');
 		$this->db->join('date_types', 'date_types.id=asset_dates.date_types_id', 'LEFT');
+		
 		$this->db->join('identifiers', 'identifiers.assets_id=assets.id AND identifiers.identifier_source != "http://americanarchiveinventory.org"', 'LEFT');
 		$this->db->join('asset_titles', 'asset_titles.assets_id=assets.id', 'LEFT');
 		$this->db->join('asset_title_types', 'asset_title_types.id=asset_titles.asset_title_types_id', 'LEFT');
@@ -145,6 +161,7 @@ class Manage_Asset_Model extends CI_Model
 		}
 		return FALSE;
 	}
+
 
 	function get_picklist_values($element_id)
 	{

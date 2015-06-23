@@ -296,6 +296,8 @@ echo '-->';
 					$title_sources = explode('|', trim(str_replace('(**)', '', $asset_detail->title_source)));
 					$title_refs = explode('|', trim(str_replace('(**)', '', $asset_detail->title_ref)));
 					$title_types = explode('|', trim(str_replace('(**)', '', $asset_detail->title_type)));
+					$edit_asset_titles = explode('|', trim(str_replace('(**)', '', $asset_detail->asset_titles_edit)));
+					$edit_title_types = explode('|', trim(str_replace('(**)', '', $asset_detail->title_types_edit)));
 					$add = ' ADD TITLE';
 					?>
 					<td class="record-detail-page">
@@ -310,15 +312,17 @@ echo '-->';
 							if (count($titles) > 0 && isset($titles[0]) && ! empty($titles[0]))
 							{
 								$add = ' ADD ANOTHER TITLE';
-								foreach ($titles as $index => $title)
+// 								foreach ($titles as $index => $title)
+								foreach ($edit_asset_titles as $index => $edit_asset_title)
 								{
+									list($this_title,$this_title_type_id,$this_title_source,$this_title_ref) = explode('^', trim(str_replace('(**)', '', $edit_asset_title)));
 									?>
 									<div id="remove_title_<?php echo $index; ?>" class="remove_title">
 										<div class="edit_form_div">
 											<div>
 												<p>Title: <span class="label_star"> *</span></p>
 												<p>
-													<textarea id="asset_title_<?php echo $index; ?>" name="asset_title[]"><?php echo trim($title); ?></textarea>
+													<textarea id="asset_title_<?php echo $index; ?>" name="asset_title[]"><?php echo trim($this_title); ?></textarea>
 												</p>
 											</div>
 											<div>
@@ -333,8 +337,16 @@ echo '-->';
 														foreach ($pbcore_asset_title_types as $row)
 														{
 															$selected = '';
-															if (isset($title_types[$index]) && trim($title_types[$index]) == $row->value)
+															//if (isset($title_types[$index]) && trim($title_types[$index]) == $row->value)
+																//$selected = 'selected="selected"';
+															foreach ($edit_title_types as $titleTypeIndex => $this_title_type_id_value )
+															{
+															if ($selected == '' && trim($this_title_type_id_value) == trim($this_title_type_id) . ' ^ ' . $row->value)
+																{
 																$selected = 'selected="selected"';
+																break 1;
+																}
+															}
 															if ($row->display_value == 1 && ! $commonly)
 															{
 																$commonly = TRUE;
@@ -354,16 +366,16 @@ echo '-->';
 													</select>
 												</p>
 											</div>
-											<div>
+									<div>
 												<p>Title Source:</p>
 												<p>
-													<input type="text" id="asset_title_source_<?php echo $index; ?>" name="asset_title_source[]" value="<?php echo (isset($title_sources[$index])) ? trim($title_sources[$index]) : ''; ?>" />
+													<input type="text" id="asset_title_source_<?php echo $index; ?>" name="asset_title_source[]" value="<?php echo (isset($this_title_source)) ? trim($this_title_source) : ''; ?>" />
 												</p>
 											</div>
 											<div>
 												<p>Title Ref:</p>
 												<p>
-													<input type="text" id="asset_title_ref_<?php echo $index; ?>" name="asset_title_ref[]" value="<?php echo (isset($title_refs[$index])) ? trim($title_refs[$index]) : ''; ?>" />
+													<input type="text" id="asset_title_ref_<?php echo $index; ?>" name="asset_title_ref[]" value="<?php echo (isset($this_title_ref)) ? trim($this_title_ref) : ''; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>

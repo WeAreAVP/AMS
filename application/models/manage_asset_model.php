@@ -60,10 +60,14 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifiers.identifier,'(**)'))  SEPARATOR ' | ') AS identifier", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifiers.identifier_source,'(**)'))  SEPARATOR ' | ') AS identifier_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifiers.identifier_ref,'(**)'))  SEPARATOR ' | ') AS identifier_ref", FALSE);
+		
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',asset_titles.title, asset_titles.asset_title_types_id, asset_titles.title_source,asset_titles.title_ref),'(**)'))   SEPARATOR ' | ') AS asset_titles_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',asset_title_types.id,asset_title_types.title_type),'(**)'))   SEPARATOR ' | ') AS title_types_edit", FALSE);
+
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_titles.title,'(**)'))  SEPARATOR ' | ') AS title", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_titles.title_source,'(**)'))  SEPARATOR ' | ') AS title_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_titles.title_ref,'(**)'))  SEPARATOR ' | ') AS title_ref", FALSE);
-		$this->db->select("GROUP_CONCAT(IFNULL(asset_title_types.title_type,'(**)')  SEPARATOR ' | ') AS title_type", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_title_types.title_type,'(**)'))  SEPARATOR ' | ') AS title_type", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subjects.subject,'(**)'))  SEPARATOR ' | ') AS subject", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subjects.subject_source,'(**)'))  SEPARATOR ' | ') AS subject_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subjects.subject_ref,'(**)'))  SEPARATOR ' | ') AS subject_ref", FALSE);

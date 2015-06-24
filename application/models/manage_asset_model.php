@@ -100,8 +100,8 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type_ref,'(**)'))  SEPARATOR ' | ') AS relation_type_ref", FALSE);
 
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',assets_creators_roles.creators_id, assets_creators_roles.creator_roles_id ),'(**)'))   SEPARATOR ' | ') AS assets_creators_roles_edit", FALSE);
-		 $this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',creators.id,creators.creator_name,creators.creator_affiliation,creators.creator_source,creators.creator_ref ),'(**)'))   SEPARATOR ' | ') AS creators_edit", FALSE);
-		 $this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',creator_roles.id ,creator_roles.creator_role ,creator_roles.creator_role_source ,creator_roles.creator_role_ref ),'(**)'))   SEPARATOR ' | ') AS creator_roles_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',creators.id,creators.creator_name,creators.creator_affiliation,creators.creator_source,creators.creator_ref ),'(**)'))   SEPARATOR ' | ') AS creators_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',creator_roles.id ,creator_roles.creator_role ,creator_roles.creator_role_source ,creator_roles.creator_role_ref ),'(**)'))   SEPARATOR ' | ') AS creator_roles_edit", FALSE);
 
 
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_name,'(**)'))  SEPARATOR ' | ') AS creator_name", FALSE);
@@ -110,12 +110,25 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select("GROUP_CONCAT(IFNULL(creator_roles.creator_role,'(**)')  SEPARATOR ' | ') AS creator_role", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_roles.creator_role_source,'(**)'))  SEPARATOR ' | ') AS creator_role_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_roles.creator_role_ref,'(**)'))  SEPARATOR ' | ') AS creator_role_ref", FALSE);
+		
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',assets_contributors_roles.contributors_id, assets_contributors_roles.contributor_roles_id ),'(**)'))   SEPARATOR ' | ') AS assets_contributors_roles_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',contributors.id,contributors.contributor_name,contributors.contributor_affiliation,contributors.contributor_source,contributors.contributor_ref ),'(**)'))   SEPARATOR ' | ') AS contributors_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',contributor_roles.id ,contributor_roles.contributor_role ,contributor_roles.contributor_role_source ,contributor_roles.contributor_role_ref ),'(**)'))   SEPARATOR ' | ') AS contributor_roles_edit", FALSE);
+
+		
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributors.contributor_name,'(**)'))  SEPARATOR ' | ') AS contributor_name", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributors.contributor_affiliation,'(**)'))  SEPARATOR ' | ') AS contributor_affiliation", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributors.contributor_ref,'(**)'))  SEPARATOR ' | ') AS contributor_ref", FALSE);
 		$this->db->select("GROUP_CONCAT(IFNULL(contributor_roles.contributor_role,'(**)')  SEPARATOR ' | ') AS contributor_role", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributor_roles.contributor_role_source,'(**)'))  SEPARATOR ' | ') AS contributor_role_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributor_roles.contributor_role_ref,'(**)'))  SEPARATOR ' | ') AS contributor_role_ref", FALSE);
+
+
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',assets_publishers_role.publishers_id, assets_publishers_role.publisher_roles_id ),'(**)'))   SEPARATOR ' | ') AS assets_publishers_role_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',publishers.id,publishers.publisher,publishers.publisher_affiliation,publishers.publisher_ref ),'(**)'))   SEPARATOR ' | ') AS publishers_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',publisher_roles.id ,publisher_roles.publisher_role ,publisher_roles.publisher_role_source ,publisher_roles.publisher_role_ref ),'(**)'))   SEPARATOR ' | ') AS publisher_roles_edit", FALSE);
+
+
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publishers.publisher,'(**)'))  SEPARATOR ' | ') AS publisher", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publishers.publisher_affiliation,'(**)'))  SEPARATOR ' | ') AS publisher_affiliation", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publishers.publisher_ref,'(**)'))  SEPARATOR ' | ') AS publisher_ref", FALSE);

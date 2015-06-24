@@ -1176,7 +1176,7 @@ echo '-->';
 													<select id="asset_creator_role_<?php echo $index; ?>" name="asset_creator_role[]">
 														<option value="">Select</option>
 														<?php
-														$commonly = $less = FALSE;
+														$listed = $commonly = $less = FALSE;
 														foreach ($pbcore_asset_creator_roles as $row)
 														{
 															$selected = '';
@@ -1185,6 +1185,7 @@ echo '-->';
 															 if ($selected == '' && trim($this_creator_role) ==  $row->value)
 																{
 																$selected = 'selected="selected"';
+																$listed = TRUE;
 																}
 															if ($row->display_value == 1 && ! $commonly)
 															{
@@ -1202,7 +1203,16 @@ echo '-->';
 															<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
 														<?php }
 														?>
-													</select>
+														<?php
+														if (! $listed )
+														{
+															$selected = 'selected="selected"';
+														?>
+														<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo trim($this_creator_role) ; ?></option>
+														<?php
+														}
+													?>
+												</select>
 												</p>
 											</div>
 											<div>
@@ -1239,6 +1249,10 @@ echo '-->';
 					$contributor_role = explode('|', trim(str_replace('(**)', '', $asset_detail->contributor_role)));
 					$contributor_role_source = explode('|', trim(str_replace('(**)', '', $asset_detail->contributor_role_source)));
 					$contributor_role_ref = explode('|', trim(str_replace('(**)', '', $asset_detail->contributor_role_ref)));
+					
+					$edit_assets_contributors_roles = explode('|', trim(str_replace('(**)', '', $asset_detail->assets_contributors_roles_edit)));
+					$edit_contributors = explode('|', trim(str_replace('(**)', '', $asset_detail->contributors_edit)));
+					$edit_contributor_roles = explode('|', trim(str_replace('(**)', '', $asset_detail->contributor_roles_edit)));
 					$add = ' ADD CONTRIBUTOR';
 					?>
 					<td class="record-detail-page">
@@ -1252,8 +1266,25 @@ echo '-->';
 							if (count($contributor_names) > 0 && isset($contributor_names[0]) && ! empty($contributor_names[0]))
 							{
 								$add = ' ADD ANOTHER CONTRIBUTOR';
-								foreach ($contributor_names as $index => $contributor_name)
+								//foreach ($contributor_names as $index => $contributor_name)
+								
+								foreach ($edit_assets_contributors_roles as $index => $edit_assets_contributors_role)
 								{
+									$this_contributor_id = $this_contributor_name = $this_contributor_affiliation = $this_contributor_source = $this_contributor_ref = $this_contributor_role_id  = $this_contributor_role  = $this_contributor_role_source  = $this_contributor_role_ref = '';
+									// initialize vars
+									list($this_contributors_id, $this_contributor_roles_id) = explode('^', trim(str_replace('(**)', '', $edit_assets_contributors_role)));
+									foreach ($edit_contributors as $contributors_index => $edit_contributor)
+									{
+										list($this_contributor_id,$this_contributor_name,$this_contributor_affiliation,$this_contributor_source,$this_contributor_ref) = explode('^', trim(str_replace('(**)', '', $edit_contributor)));
+										if (trim($this_contributor_id) == trim($this_contributors_id))
+											break;
+									}
+									foreach ($edit_contributor_roles as $contributor_roles_index => $edit_contributor_role)
+									{
+										list($this_contributor_role_id ,$this_contributor_role ,$this_contributor_role_source ,$this_contributor_role_ref) = explode('^', trim(str_replace('(**)', '', $edit_contributor_role)));
+										if (trim($this_contributor_role_id) == trim($this_contributor_roles_id))
+											break;
+									}
 									?>
 									<div id="remove_contributor_<?php echo $index; ?>" class="remove_contributor">
 
@@ -1263,7 +1294,7 @@ echo '-->';
 													Contributor:
 												</p>
 												<p>
-													<input type="text" id="asset_contributor_name_<?php echo $index; ?>" name="asset_contributor_name[]" value="<?php echo trim($contributor_name); ?>" />
+													<input type="text" id="asset_contributor_name_<?php echo $index; ?>" name="asset_contributor_name[]" value="<?php echo trim($this_contributor_name); ?>" />
 												</p>
 											</div>
 											<div>
@@ -1271,7 +1302,7 @@ echo '-->';
 													Contributor Affiliation:
 												</p>
 												<p>
-													<input type="text" id="asset_contributor_affiliation_<?php echo $index; ?>" name="asset_contributor_affiliation[]" value="<?php echo (isset($contributor_affiliation[$index])) ? trim($contributor_affiliation[$index]) : ''; ?>" />
+													<input type="text" id="asset_contributor_affiliation_<?php echo $index; ?>" name="asset_contributor_affiliation[]" value="<?php echo $this_contributor_affiliation ; ?>" />
 												</p>
 											</div>
 											<div>
@@ -1279,7 +1310,7 @@ echo '-->';
 													Contributor Ref:
 												</p>
 												<p>
-													<input type="text" id="asset_contributor_ref_<?php echo $index; ?>" name="asset_contributor_ref[]" value="<?php echo (isset($contributor_ref[$index])) ? trim($contributor_ref[$index]) : ''; ?>" />
+													<input type="text" id="asset_contributor_ref_<?php echo $index; ?>" name="asset_contributor_ref[]" value="<?php echo $this_contributor_ref ; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -1289,12 +1320,17 @@ echo '-->';
 													<select id="asset_contributor_role_<?php echo $index; ?>" name="asset_contributor_role[]">
 														<option value="">Select</option>
 														<?php
-														$commonly = $less = FALSE;
+														$listed = $commonly = $less = FALSE;
 														foreach ($pbcore_asset_contributor_roles as $row)
 														{
 															$selected = '';
-															if (isset($contributor_role[$index]) && trim($contributor_role[$index]) == $row->value)
-																$selected = 'selected="selected"';
+															//if (isset($contributor_role[$index]) && trim($contributor_role[$index]) == $row->value)
+																//$selected = 'selected="selected"';
+															if ($selected == '' && trim($this_contributor_role) ==  $row->value)
+															{
+															$selected = 'selected="selected"';
+															$listed = TRUE;
+															}
 															if ($row->display_value == 1 && ! $commonly)
 															{
 																$commonly = TRUE;
@@ -1311,20 +1347,29 @@ echo '-->';
 															<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
 														<?php }
 														?>
-													</select>
+														<?php
+														if (! $listed )
+														{
+															$selected = 'selected="selected"';
+														?>
+														<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo trim($this_contributor_role) ; ?></option>
+														<?php
+														}
+													?>
+												</select>
 
 												</p>
 											</div>
 											<div>
 												<p> Contributor Role Source:</p>
 												<p>
-													<input type="text" id="asset_contributor_role_source_<?php echo $index; ?>" name="asset_contributor_role_source[]" value="<?php echo (isset($contributor_role_source[$index])) ? trim($contributor_role_source[$index]) : ''; ?>" />
+													<input type="text" id="asset_contributor_role_source_<?php echo $index; ?>" name="asset_contributor_role_source[]" value="<?php echo $this_contributor_role_source  ; ?>" />
 												</p>
 											</div>
 											<div>
 												<p> Contributor Role Ref:</p>
 												<p>
-													<input type="text" id="asset_contributor_role_ref_<?php echo $index; ?>" name="asset_contributor_role_ref[]" value="<?php echo (isset($contributor_role_ref[$index])) ? trim($contributor_role_ref[$index]) : ''; ?>" />
+													<input type="text" id="asset_contributor_role_ref_<?php echo $index; ?>" name="asset_contributor_role_ref[]" value="<?php echo $this_contributor_role_ref ; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -1350,6 +1395,10 @@ echo '-->';
 					$publisher_role = explode('|', trim(str_replace('(**)', '', $asset_detail->publisher_role)));
 					$publisher_role_source = explode('|', trim(str_replace('(**)', '', $asset_detail->publisher_role_source)));
 					$publisher_role_ref = explode('|', trim(str_replace('(**)', '', $asset_detail->publisher_role_ref)));
+					
+					$edit_assets_publishers_roles = explode('|', trim(str_replace('(**)', '', $asset_detail->assets_publishers_roles_edit)));
+					$edit_publishers = explode('|', trim(str_replace('(**)', '', $asset_detail->publishers_edit)));
+					$edit_publisher_roles = explode('|', trim(str_replace('(**)', '', $asset_detail->publisher_roles_edit)));
 					$add = ' ADD PUBLISHER';
 					?>
 					<td class="record-detail-page">
@@ -1363,8 +1412,24 @@ echo '-->';
 							if (count($publishers) > 0 && isset($publishers[0]) && ! empty($publishers[0]))
 							{
 								$add = ' ADD ANOTHER PUBLISHER';
-								foreach ($publishers as $index => $publisher)
+								//foreach ($publishers as $index => $publisher)
+								foreach ($edit_assets_publishers_roles as $index => $edit_assets_publishers_role)
 								{
+									$this_publisher_id = $this_publisher_name = $this_publisher_affiliation = $this_publisher_ref = $this_publisher_role_id  = $this_publisher_role  = $this_publisher_role_source  = $this_publisher_role_ref = '';
+									// initialize vars
+									list($this_publishers_id, $this_publisher_roles_id) = explode('^', trim(str_replace('(**)', '', $edit_assets_publishers_role)));
+									foreach ($edit_publishers as $publishers_index => $edit_publisher)
+									{
+										list($this_publisher_id,$this_publisher_name,$this_publisher_affiliation,$this_publisher_ref) = explode('^', trim(str_replace('(**)', '', $edit_publisher)));
+										if (trim($this_publisher_id) == trim($this_publishers_id))
+											break;
+									}
+									foreach ($edit_publisher_roles as $publisher_roles_index => $edit_publisher_role)
+									{
+										list($this_publisher_role_id ,$this_publisher_role ,$this_publisher_role_source ,$this_publisher_role_ref) = explode('^', trim(str_replace('(**)', '', $edit_publisher_role)));
+										if (trim($this_publisher_role_id) == trim($this_publisher_roles_id))
+											break;
+									}
 									?>
 									<div id="remove_publisher_<?php echo $index; ?>" class="remove_publisher">
 										<div class="edit_form_div">
@@ -1373,7 +1438,7 @@ echo '-->';
 													Publisher:
 												</p>
 												<p>
-													<input type="text" id="asset_publisher_<?php echo $index; ?>" name="asset_publisher[]" value="<?php echo trim($publisher); ?>" />
+													<input type="text" id="asset_publisher_<?php echo $index; ?>" name="asset_publisher[]" value="<?php echo trim($this_publisher_name); ?>" />
 												</p>
 											</div>
 											<div>
@@ -1381,7 +1446,7 @@ echo '-->';
 													Publisher Affiliation:
 												</p>
 												<p>
-													<input type="text" id="asset_publisher_affiliation_<?php echo $index; ?>" name="asset_publisher_affiliation[]" value="<?php echo (isset($publisher_affiliation[$index])) ? trim($publisher_affiliation[$index]) : ''; ?>" />
+													<input type="text" id="asset_publisher_affiliation_<?php echo $index; ?>" name="asset_publisher_affiliation[]" value="<?php echo $this_publisher_affiliation ; ?>" />
 												</p>
 											</div>
 											<div>
@@ -1389,7 +1454,7 @@ echo '-->';
 													Publisher Ref:
 												</p>
 												<p>
-													<input type="text" id="asset_publisher_ref_<?php echo $index; ?>" name="asset_publisher_ref[]" value="<?php echo (isset($publisher_ref[$index])) ? trim($publisher_ref[$index]) : ''; ?>" />
+													<input type="text" id="asset_publisher_ref_<?php echo $index; ?>" name="asset_publisher_ref[]" value="<?php echo $this_publisher_ref ; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -1399,12 +1464,17 @@ echo '-->';
 													<select id="asset_publisher_role_<?php echo $index; ?>" name="asset_publisher_role[]">
 														<option value="">Select</option>
 														<?php
-														$commonly = $less = FALSE;
+														$listed = $commonly = $less = FALSE;
 														foreach ($pbcore_asset_publisher_roles as $row)
 														{
 															$selected = '';
-															if (isset($publisher_role[$index]) && trim($publisher_role[$index]) == $row->value)
-																$selected = 'selected="selected"';
+															//if (isset($publisher_role[$index]) && trim($publisher_role[$index]) == $row->value)
+																//$selected = 'selected="selected"';
+															if ($selected == '' && trim($this_publisher_role) ==  $row->value)
+															{
+															$selected = 'selected="selected"';
+															$listed = TRUE;
+															}
 															if ($row->display_value == 1 && ! $commonly)
 															{
 																$commonly = TRUE;
@@ -1421,20 +1491,29 @@ echo '-->';
 															<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo $row->value; ?></option>
 														<?php }
 														?>
-													</select>
+														<?php
+														if (! $listed )
+														{
+															$selected = 'selected="selected"';
+														?>
+														<option value="<?php echo $row->value; ?>" <?php echo $selected; ?>><?php echo trim($this_publisher_role) ; ?></option>
+														<?php
+														}
+													?>
+												</select>
 
 												</p>
 											</div>
 											<div>
 												<p> Publisher Role Source:</p>
 												<p>
-													<input type="text" id="asset_publisher_role_source_<?php echo $index; ?>" name="asset_publisher_role_source[]" value="<?php echo (isset($publisher_role_source[$index])) ? trim($publisher_role_source[$index]) : ''; ?>" />
+													<input type="text" id="asset_publisher_role_source_<?php echo $index; ?>" name="asset_publisher_role_source[]" value="<?php echo $this_publisher_role_source ; ?>" />
 												</p>
 											</div>
 											<div>
 												<p> Publisher Role Ref:</p>
 												<p>
-													<input type="text" id="asset_publisher_role_ref_<?php echo $index; ?>" name="asset_publisher_role_ref[]" value="<?php echo (isset($publisher_role_ref[$index])) ? trim($publisher_role_ref[$index]) : ''; ?>" />
+													<input type="text" id="asset_publisher_role_ref_<?php echo $index; ?>" name="asset_publisher_role_ref[]" value="<?php echo $this_publisher_role_ref ; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>

@@ -537,6 +537,9 @@ echo '-->';
 					<?php
 					$descriptions = explode('|', trim(str_replace('(**)', '', $asset_detail->description)));
 					$description_types = explode('|', trim(str_replace('(**)', '', $asset_detail->description_type)));
+					$edit_asset_descriptions = explode('|', trim(str_replace('(**)', '', $asset_detail->asset_descriptions_edit)));
+					$edit_description_types = explode('|', trim(str_replace('(**)', '', $asset_detail->description_types_edit)));
+
 					$add = ' ADD DESCRIPTION';
 					?>
 					<td class="record-detail-page">
@@ -550,15 +553,17 @@ echo '-->';
 							if (count($descriptions) > 0 && isset($descriptions[0]) && ! empty($descriptions[0]))
 							{
 								$add = ' ADD ANOTHER DESCRIPTION';
-								foreach ($descriptions as $index => $description)
+								//foreach ($descriptions as $index => $description)
+								foreach ($edit_asset_descriptions as $index => $edit_asset_description)
 								{
+									list($this_asset_description,$this_asset_description_types_id) = explode('^', trim(str_replace('(**)', '', $edit_asset_description)));
 									?>
 									<div id="remove_description_<?php echo $index; ?>" class="remove_description">
 										<div class="edit_form_div">
 											<div>
 												<p>Description: <span class="label_star"> *</span></p>
 												<p>
-													<textarea id="asset_description_<?php echo $index; ?>" name="asset_description[]"><?php echo trim($description); ?></textarea>
+													<textarea id="asset_description_<?php echo $index; ?>" name="asset_description[]"><?php echo trim($this_asset_description); ?></textarea>
 												</p>
 											</div>
 											<div>
@@ -573,8 +578,16 @@ echo '-->';
 														foreach ($pbcore_asset_description_types as $row)
 														{
 															$selected = '';
-															if (isset($description_types[$index]) && trim($description_types[$index]) == $row->value)
+															//if (isset($description_types[$index]) && trim($description_types[$index]) == $row->value)
+																//$selected = 'selected="selected"';
+															foreach ($edit_description_types as $descriptionTypeIndex => $this_description_type_id_value )
+															{
+															if ($selected == '' && trim($this_description_type_id_value) == trim($this_asset_description_types_id) . ' ^ ' . $row->value)
+																{
 																$selected = 'selected="selected"';
+																break 1;
+																}
+															}
 															if ($row->display_value == 1 && ! $commonly)
 															{
 																$commonly = TRUE;
@@ -1093,6 +1106,10 @@ echo '-->';
 					$creator_role = explode('|', trim(str_replace('(**)', '', $asset_detail->creator_role)));
 					$creator_role_source = explode('|', trim(str_replace('(**)', '', $asset_detail->creator_role_source)));
 					$creator_role_ref = explode('|', trim(str_replace('(**)', '', $asset_detail->creator_role_ref)));
+					
+					$edit_assets_creators_roles = explode('|', trim(str_replace('(**)', '', $asset_detail->assets_creators_roles_edit)));
+					$edit_creators = explode('|', trim(str_replace('(**)', '', $asset_detail->creators_edit)));
+					$edit_creator_roles = explode('|', trim(str_replace('(**)', '', $asset_detail->creator_roles_edit)));
 					$add = ' ADD CREATOR';
 					?>
 					<td class="record-detail-page">
@@ -1106,8 +1123,25 @@ echo '-->';
 							if (count($creator_names) > 0 && isset($creator_names[0]) && ! empty($creator_names[0]))
 							{
 								$add = ' ADD ANOTHER CREATOR';
-								foreach ($creator_names as $index => $creator_name)
+								//foreach ($creator_names as $index => $creator_name)
+								
+								foreach ($edit_assets_creators_roles as $index => $edit_assets_creators_role)
 								{
+									$this_creator_id = $this_creator_name = $this_creator_affiliation = $this_creator_source = $this_creator_ref = $this_creator_role_id  = $this_creator_role  = $this_creator_role_source  = $this_creator_role_ref = '';
+									// initialize vars
+									list($this_creators_id, $this_creator_roles_id) = explode('^', trim(str_replace('(**)', '', $edit_assets_creators_role)));
+									foreach ($edit_creators as $creators_index => $edit_creator)
+									{
+										list($this_creator_id,$this_creator_name,$this_creator_affiliation,$this_creator_source,$this_creator_ref) = explode('^', trim(str_replace('(**)', '', $edit_creator)));
+										if (trim($this_creator_id) == trim($this_creators_id))
+											break;
+									}
+									foreach ($edit_creator_roles as $creator_roles_index => $edit_creator_role)
+									{
+										list($this_creator_role_id ,$this_creator_role ,$this_creator_role_source ,$this_creator_role_ref) = explode('^', trim(str_replace('(**)', '', $edit_creator_role)));
+										if (trim($this_creator_role_id) == trim($this_creator_roles_id))
+											break;
+									}
 									?>
 									<div id="remove_creator_<?php echo $index; ?>" class="remove_creator">
 										<div class="edit_form_div">
@@ -1116,7 +1150,7 @@ echo '-->';
 													Creator:
 												</p>
 												<p>
-													<input type="text" id="asset_creator_name_<?php echo $index; ?>" name="asset_creator_name[]" value="<?php echo trim($creator_name); ?>" />
+													<input type="text" id="asset_creator_name_<?php echo $index; ?>" name="asset_creator_name[]" value="<?php echo trim($this_creator_name); ?>" />
 												</p>
 											</div>
 											<div>
@@ -1124,7 +1158,7 @@ echo '-->';
 													Creator Affiliation:
 												</p>
 												<p>
-													<input type="text" id="asset_creator_affiliation_<?php echo $index; ?>" name="asset_creator_affiliation[]" value="<?php echo (isset($creator_affiliation[$index])) ? trim($creator_affiliation[$index]) : ''; ?>" />
+													<input type="text" id="asset_creator_affiliation_<?php echo $index; ?>" name="asset_creator_affiliation[]" value="<?php echo $this_creator_affiliation ; ?>" />
 												</p>
 											</div>
 											<div>
@@ -1132,7 +1166,7 @@ echo '-->';
 													Creator Ref:
 												</p>
 												<p>
-													<input type="text" id="asset_creator_ref_<?php echo $index; ?>" name="asset_creator_ref[]" value="<?php echo (isset($creator_ref[$index])) ? trim($creator_ref[$index]) : ''; ?>" />
+													<input type="text" id="asset_creator_ref_<?php echo $index; ?>" name="asset_creator_ref[]" value="<?php echo $this_creator_ref ; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>
@@ -1146,8 +1180,12 @@ echo '-->';
 														foreach ($pbcore_asset_creator_roles as $row)
 														{
 															$selected = '';
-															if (isset($creator_role[$index]) && trim($creator_role[$index]) == $row->value)
+															// if (isset($creator_role[$index]) && trim($creator_role[$index]) == $row->value)
+																// $selected = 'selected="selected"';
+															 if ($selected == '' && trim($this_creator_role) ==  $row->value)
+																{
 																$selected = 'selected="selected"';
+																}
 															if ($row->display_value == 1 && ! $commonly)
 															{
 																$commonly = TRUE;
@@ -1165,19 +1203,18 @@ echo '-->';
 														<?php }
 														?>
 													</select>
-
 												</p>
 											</div>
 											<div>
 												<p> Creator Role Source:</p>
 												<p>
-													<input type="text" id="asset_creator_role_source_<?php echo $index; ?>" name="asset_creator_role_source[]" value="<?php echo (isset($creator_role_source[$index])) ? trim($creator_role_source[$index]) : ''; ?>" />
+													<input type="text" id="asset_creator_role_source_<?php echo $index; ?>" name="asset_creator_role_source[]" value="<?php echo $this_creator_role_source ; ?>" />
 												</p>
 											</div>
 											<div>
 												<p> Creator Role Ref:</p>
 												<p>
-													<input type="text" id="asset_creator_role_ref_<?php echo $index; ?>" name="asset_creator_role_ref[]" value="<?php echo (isset($creator_role_ref[$index])) ? trim($creator_role_ref[$index]) : ''; ?>" />
+													<input type="text" id="asset_creator_role_ref_<?php echo $index; ?>" name="asset_creator_role_ref[]" value="<?php echo $this_creator_role_ref ; ?>" />
 													<span class="help-block">Must be a valid URI/URL (e.g. http://www.example.com)</span>
 												</p>
 											</div>

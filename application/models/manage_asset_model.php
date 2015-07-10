@@ -39,15 +39,31 @@ class Manage_Asset_Model extends CI_Model
 		parent::__construct();
 	}
 
+
+#        function get_sonyidentifier_by_id($asset_id)
+#        {
+#                $this->db->select('identifiers.identifier');
+#                $this->db->where('assets_id', $asset_id);
+#                $this->db->where("identifier_source =", "Sony Ci");
+#                return $result = $this->db->get('identifiers')->result();
+#        }
+
+
 	function get_asset_detail_by_id($asset_id)
 	{
 		$this->db->select('assets.id,assets.stations_id,stations.station_name');
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_types.asset_type,'(**)'))  SEPARATOR ' | ') AS asset_type", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_dates.asset_date,'(**)'))  SEPARATOR ' | ') AS asset_date", FALSE);
-		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(date_types.date_type,'(**)'))  SEPARATOR ' | ') AS date_type", FALSE);
+		$this->db->select("GROUP_CONCAT(IFNULL(date_types.date_type,'(**)')  SEPARATOR ' | ') AS date_type", FALSE);
+		$this->db->select("GROUP_CONCAT(IFNULL(identifiers.id,'(**)')  SEPARATOR ' | ') AS identifier_id", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',identifiers.id,identifiers.identifier,identifiers.identifier_source,identifiers.identifier_ref ),'(**)'))   SEPARATOR ' | ') AS kevin_test", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifiers.identifier,'(**)'))  SEPARATOR ' | ') AS identifier", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifiers.identifier_source,'(**)'))  SEPARATOR ' | ') AS identifier_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(identifiers.identifier_ref,'(**)'))  SEPARATOR ' | ') AS identifier_ref", FALSE);
+		
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',asset_titles.title, asset_titles.asset_title_types_id, asset_titles.title_source,asset_titles.title_ref),'(**)'))   SEPARATOR ' | ') AS asset_titles_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',asset_title_types.id,asset_title_types.title_type),'(**)'))   SEPARATOR ' | ') AS title_types_edit", FALSE);
+
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_titles.title,'(**)'))  SEPARATOR ' | ') AS title", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_titles.title_source,'(**)'))  SEPARATOR ' | ') AS title_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_titles.title_ref,'(**)'))  SEPARATOR ' | ') AS title_ref", FALSE);
@@ -57,12 +73,18 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subjects.subject_ref,'(**)'))  SEPARATOR ' | ') AS subject_ref", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(subject_types.subject_type,'(**)'))  SEPARATOR ' | ') AS subject_type", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(asset_descriptions.description,'(**)'))  SEPARATOR ' | ') AS description", FALSE);
-		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(description_types.description_type,'(**)'))  SEPARATOR ' | ') AS description_type", FALSE);
+		$this->db->select("GROUP_CONCAT(IFNULL(description_types.description_type,'(**)')  SEPARATOR ' | ') AS description_type", FALSE);
+
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',asset_descriptions.description,asset_descriptions.description_types_id),'(**)'))   SEPARATOR ' | ') AS asset_descriptions_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ', description_types.id, description_types.description_type),'(**)'))   SEPARATOR ' | ') AS description_types_edit", FALSE);
+
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',genres.id,genres.genre,genres.genre_source,genres.genre_ref ),'(**)'))   SEPARATOR ' | ') AS genres_edit", FALSE);
+		
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genres.genre,'(**)'))  SEPARATOR ' | ') AS genre", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genres.genre_source,'(**)'))  SEPARATOR ' | ') AS genre_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(genres.genre_ref,'(**)'))  SEPARATOR ' | ') AS genre_ref", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(coverages.coverage,'(**)'))  SEPARATOR ' | ') AS coverage", FALSE);
-		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(coverages.coverage_type,'(**)'))  SEPARATOR ' | ') AS coverage_type", FALSE);
+		$this->db->select("GROUP_CONCAT(IFNULL(coverages.coverage_type,'(**)')  SEPARATOR ' | ') AS coverage_type", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(audience_levels.audience_level,'(**)'))  SEPARATOR ' | ') AS audience_level", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(audience_levels.audience_level_source,'(**)'))  SEPARATOR ' | ') AS audience_level_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(audience_levels.audience_level_ref,'(**)'))  SEPARATOR ' | ') AS audience_level_ref", FALSE);
@@ -76,22 +98,41 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type,'(**)'))  SEPARATOR ' | ') AS relation_type", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type_source,'(**)'))  SEPARATOR ' | ') AS relation_type_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(relation_types.relation_type_ref,'(**)'))  SEPARATOR ' | ') AS relation_type_ref", FALSE);
+
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',assets_creators_roles.creators_id, assets_creators_roles.creator_roles_id ),'(**)'))   SEPARATOR ' | ') AS assets_creators_roles_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',creators.id,creators.creator_name,creators.creator_affiliation,creators.creator_source,creators.creator_ref ),'(**)'))   SEPARATOR ' | ') AS creators_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',creator_roles.id ,creator_roles.creator_role ,creator_roles.creator_role_source ,creator_roles.creator_role_ref ),'(**)'))   SEPARATOR ' | ') AS creator_roles_edit", FALSE);
+
+
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_name,'(**)'))  SEPARATOR ' | ') AS creator_name", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_affiliation,'(**)'))  SEPARATOR ' | ') AS creator_affiliation", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creators.creator_ref,'(**)'))  SEPARATOR ' | ') AS creator_ref", FALSE);
-		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_roles.creator_role,'(**)'))  SEPARATOR ' | ') AS creator_role", FALSE);
+		$this->db->select("GROUP_CONCAT(IFNULL(creator_roles.creator_role,'(**)')  SEPARATOR ' | ') AS creator_role", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_roles.creator_role_source,'(**)'))  SEPARATOR ' | ') AS creator_role_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(creator_roles.creator_role_ref,'(**)'))  SEPARATOR ' | ') AS creator_role_ref", FALSE);
+		
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',assets_contributors_roles.contributors_id, assets_contributors_roles.contributor_roles_id ),'(**)'))   SEPARATOR ' | ') AS assets_contributors_roles_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',contributors.id,contributors.contributor_name,contributors.contributor_affiliation,contributors.contributor_source,contributors.contributor_ref ),'(**)'))   SEPARATOR ' | ') AS contributors_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',contributor_roles.id ,contributor_roles.contributor_role ,contributor_roles.contributor_role_source ,contributor_roles.contributor_role_ref ),'(**)'))   SEPARATOR ' | ') AS contributor_roles_edit", FALSE);
+
+		
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributors.contributor_name,'(**)'))  SEPARATOR ' | ') AS contributor_name", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributors.contributor_affiliation,'(**)'))  SEPARATOR ' | ') AS contributor_affiliation", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributors.contributor_ref,'(**)'))  SEPARATOR ' | ') AS contributor_ref", FALSE);
-		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributor_roles.contributor_role,'(**)'))  SEPARATOR ' | ') AS contributor_role", FALSE);
+		$this->db->select("GROUP_CONCAT(IFNULL(contributor_roles.contributor_role,'(**)')  SEPARATOR ' | ') AS contributor_role", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributor_roles.contributor_role_source,'(**)'))  SEPARATOR ' | ') AS contributor_role_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(contributor_roles.contributor_role_ref,'(**)'))  SEPARATOR ' | ') AS contributor_role_ref", FALSE);
+
+
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',assets_publishers_role.publishers_id, assets_publishers_role.publisher_roles_id ),'(**)'))   SEPARATOR ' | ') AS assets_publishers_role_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',publishers.id,publishers.publisher,publishers.publisher_affiliation,publishers.publisher_ref ),'(**)'))   SEPARATOR ' | ') AS publishers_edit", FALSE);
+		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(CONCAT_WS(' ^ ',publisher_roles.id ,publisher_roles.publisher_role ,publisher_roles.publisher_role_source ,publisher_roles.publisher_role_ref ),'(**)'))   SEPARATOR ' | ') AS publisher_roles_edit", FALSE);
+
+
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publishers.publisher,'(**)'))  SEPARATOR ' | ') AS publisher", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publishers.publisher_affiliation,'(**)'))  SEPARATOR ' | ') AS publisher_affiliation", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publishers.publisher_ref,'(**)'))  SEPARATOR ' | ') AS publisher_ref", FALSE);
-		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher_roles.publisher_role,'(**)'))  SEPARATOR ' | ') AS publisher_role", FALSE);
+		$this->db->select("GROUP_CONCAT(IFNULL(publisher_roles.publisher_role,'(**)')  SEPARATOR ' | ') AS publisher_role", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher_roles.publisher_role_source,'(**)'))  SEPARATOR ' | ') AS publisher_role_source", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(publisher_roles.publisher_role_ref,'(**)'))  SEPARATOR ' | ') AS publisher_role_ref", FALSE);
 		$this->db->select("GROUP_CONCAT(DISTINCT(IFNULL(rights_summaries.rights,'(**)'))  SEPARATOR ' | ') AS rights", FALSE);
@@ -103,6 +144,7 @@ class Manage_Asset_Model extends CI_Model
 		$this->db->join('asset_types', 'asset_types.id=assets_asset_types.asset_types_id', 'LEFT');
 		$this->db->join('asset_dates', 'asset_dates.assets_id=assets.id', 'LEFT');
 		$this->db->join('date_types', 'date_types.id=asset_dates.date_types_id', 'LEFT');
+		
 		$this->db->join('identifiers', 'identifiers.assets_id=assets.id AND identifiers.identifier_source != "http://americanarchiveinventory.org"', 'LEFT');
 		$this->db->join('asset_titles', 'asset_titles.assets_id=assets.id', 'LEFT');
 		$this->db->join('asset_title_types', 'asset_title_types.id=asset_titles.asset_title_types_id', 'LEFT');
@@ -141,6 +183,7 @@ class Manage_Asset_Model extends CI_Model
 		}
 		return FALSE;
 	}
+
 
 	function get_picklist_values($element_id)
 	{

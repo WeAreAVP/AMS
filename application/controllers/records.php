@@ -189,7 +189,8 @@ class Records extends MY_Records_Controller
 			$data['next_result_id'] = FALSE;
 			$data['prev_result_id'] = FALSE;
 			$cur_key = NULL;
-			$data['media'] = $this->proxy_files($data['asset_guid']->guid_identifier);
+#			$data['media'] = $this->proxy_files($data['asset_guid']->guid_identifier);
+			$data['media'] = $this->proxy_files_sony($asset_id);
 			if (isset($search_results_data['records']) && ! is_empty($search_results_data['records']))
 			{
 				$search_results = $search_results_data['records'];

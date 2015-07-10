@@ -30,7 +30,7 @@
 
 <% if(!Config.has("hasDataReports") || Config.getBoolean("hasDataReports")) { %>
 <li><a href="ReportSummary"  id="reportmenu"><span>Data Report</span></a></li>
-<li><a href="https://amsqa.avpreserve.com"  id="backtoamsmenu"><span>Back to AMS</span></a></li>
+<li><a href="https://ams.americanarchive.org"  id="backtoamsmenu"><span>Back to AMS</span></a></li>
 <%} else {%>
 <li></li> 
 <%} %>

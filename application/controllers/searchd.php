@@ -1,5 +1,4 @@
 <?php
-
 /**
  * AMS Archive Management System
  * 
@@ -112,9 +111,13 @@ class Searchd extends CI_Controller
 		set_time_limit(0);
 		@ini_set("memory_limit", "4000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999);
-		$assets = $this->searchd_model->run_query('SELECT id from assets WHERE id>4851194')->result();
+		//4847801 then 4850341 also found this id installed in the next line: 4902235
+		// 4849209
+		$assets = $this->searchd_model->run_query('SELECT id from assets WHERE id > 4911756')->result();
+		//$assets = $this->searchd_model->run_query('SELECT id from assets')->result();
 		foreach ($assets as $asset)
 		{
+			myLog('using searchd.php function insert_assets');
 			myLog('Start Inserting ID =>' . $asset->id);
 			$records = $this->searchd_model->get_asset_index(array($asset->id));
 			myLog('Start inserting to sphinx');
@@ -135,7 +138,7 @@ class Searchd extends CI_Controller
 	function insert_assets_sphnix()
 	{
 		set_time_limit(0);
-		@ini_set("memory_limit", "4000M"); # 1GB
+		@ini_set("memory_limit", "8000M"); # 1GB
 		@ini_set("max_execution_time", 999999999999);
 
 		$db_count = 0;
@@ -145,7 +148,7 @@ class Searchd extends CI_Controller
 			$inst = $this->searchd_model->get_asset($offset, 1000);
 			myLog('Get 1000 records');
 			$ids = array_map(array($this, 'make_map_array'), $inst);
-			mylog($ids);
+			//mylog($ids);
 			$records = $this->searchd_model->get_asset_index($ids);
 			myLog('Start inserting to sphinx');
 			foreach ($records as $row)
@@ -169,8 +172,19 @@ class Searchd extends CI_Controller
 	 */
 	function update_assets_index()
 	{
+		/**
+		* experiment to read values from a file
+		$fh = fopen('/root/kcarter/assets_id2delete.csv','r');
+		$asset_ids = fread($fh, filesize('/root/kcarter/assets_id2delete.csv'));
+		*/
 
+		$asset_ids = array(235089,235089,236450,236450,236450,236450,237065,237065,237234,237234,237419,237419,234970,234970,237005,237005,237322,237322,235251,235251,235251,235251,234950,234950,237092,237092,235228,235228,235228,235228,235070,235070,237172,237172,237440,237440,236490,236490,236490,236490,237396,237396,236961,236961,235015,235015,235269,235269,235269,235269,235108,235108,237298,237298,237191,237191,237357,237357,235032,235032,234890,234890,237377,237377,235313,235313,235313,235313,235289,235289,235289,235289,239214,235052,235052,234910,234910,237150,237150,237211,237211,237111,237111,237134,237134,236989,237026,237026,237255,237255,237811,237811,237278,237278,236410,236410,236410,236410,236984,236984,237337,237337,237047,237047);
+	/**
+	* modify what is commented here to control what becomes $asset_ids
+	*
 		$asset_ids = array(1, 2, 3, 4);
+	*
+	*/
 		foreach ($asset_ids as $_id)
 		{
 			$asset = $this->searchd_model->run_query("SELECT id from assets WHERE id = {$_id}")->row();
@@ -187,7 +201,7 @@ class Searchd extends CI_Controller
 	 */
 	function update_instantiations_index()
 	{
-		$instantiation_ids = array(1, 2, 3, 4);
+		$instantiation_ids = array(2355135);
 		foreach ($instantiation_ids as $_id)
 		{
 			$instantiation = $this->searchd_model->run_query("SELECT id from instantiations WHERE id = {$_id}")->row();

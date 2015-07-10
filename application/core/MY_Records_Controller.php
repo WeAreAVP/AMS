@@ -175,6 +175,48 @@ class MY_Records_Controller extends MY_Controller
 		exit_function();
 	}
 
+
+                        /**
+         * Get Proxy file path by guid from sony service.
+         * 
+         * @param string $guid
+         * @return boolean/array
+         */
+        function proxy_files_sony($asset_id_num)
+        {
+                # error_reporting(E_ALL);
+                # ini_set('display_errors', 1);
+                # $proxy_guid = str_replace('/', '-', $guid);
+                # $proxy_response = file_get_contents("http://cpbaaaccess.crawfordmedia.com/xml.php?GUID=$proxy_guid");
+		exec("/var/www/html/application/ci_xml.sh " . $asset_id_num , $foo_xml);
+                $proxy_response = implode($foo_xml);
+                $x = @simplexml_load_string($proxy_response);
+                if (is_object($x))
+                {
+                        $data = xmlObjToArr($x);
+
+                        $child = $data['children'];
+                        if (isset($data['name']) && $data['name'] == 'error')
+                        {
+                                return FALSE;
+                        }
+                        else
+                        {
+                                if (isset($child['mediaurl'][0]))
+                                {
+                                        $media['url'] = $child['mediaurl'][0]['text'];
+                                }
+                                if (isset($child['format'][0]))
+                                {
+                                        $media['format'] = $child['format'][0]['text'];
+                                }
+                                return $media;
+                        }
+                }
+                return FALSE;
+        }
+
+
 	/**
 	 * Get Proxy file path by guid from crawford server.
 	 * 

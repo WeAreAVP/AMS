@@ -81,6 +81,17 @@ class Assets_Model extends CI_Model
 		$this->_table_asset_titles = 'asset_titles';
 	}
 
+
+#       function get_sonyidentifier_by_id($asset_id)
+#       {
+#               $this->db->select('identifiers.identifier');
+#               $this->db->where('assets_id', $asset_id);
+#               $this->db->where("identifier_source =", "Sony Ci");
+#               return $result = $this->db->get('identifiers')->result();
+#       }
+#
+
+
 	/**
 	 * Ger Relation by asset id.
 	 * 

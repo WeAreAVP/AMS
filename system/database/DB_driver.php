@@ -302,10 +302,10 @@ class	CI_DB_driver
 
 												// This will trigger a rollback if transactions are being used
 												$this->_trans_status	=	FALSE;
-												//Ali Raza edit starts
+												//Nouman Tayyab edit starts
 
-												$to	=	"ali@geekschicago.com";
-												$header	=	"From: SQL REPORT<sqlreports@geekschicago.com>";
+												$to	=	"nouman@avpreserve.com";
+												$header	=	"From: SQL REPORT<sqlreports@ams.americanarchive.org.com>";
 
 												$error_no	=	$this->_error_number	();
 												$error_msg	=	$this->_error_message	();
@@ -314,10 +314,10 @@ class	CI_DB_driver
 												$e	=	new	Exception;
 
 												$body	=	"\nSQL Error:\nHost: "	.	gethostname	()	.	"\nSQL: "	.	$sql	.	"\nError # "	.	$error_no	.	"\nError: "	.	$error_msg	.	"\nBacktrace: "	.	$e->getTraceAsString	()	.	"\n_SERVER:\n"	.	print_r	($_SERVER,	true)	.	"\n_GET:\n"	.	print_r	($_GET,	true)	.	"\n_POST:\n"	.	print_r	($_POST,	true)	.	"\n_REQUEST:\n"	.	print_r	($_REQUEST,	true)	.	"\n
-			\nThank You\nsqlreports@geekschicago";
+			\nThank You\nsqlreports@ams.americanarchive.org";
 
-												 @mail($to,$subject,$body,$header);
-												//Ali Raza edit stops
+												 //@mail($to,$subject,$body,$header);
+												//Nouman Tayyab edit stops
 												if	($this->db_debug)
 												{
 																// grab the error number and message now, as we might run some

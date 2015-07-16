@@ -56,6 +56,7 @@ class Google_Spreadsheet
 		$this->ci->zend->load('Zend/Gdata/AuthSub');
 		$this->ci->zend->load('Zend/Gdata/Spreadsheets');
 		$this->ci->zend->load('Zend/Gdata/ClientLogin');
+                $this->ci->zend->load('Zend/Gdata/OAuthClient');
 		if ( ! isset($this->client))
 		{
 			$this->login($this->user, base64_decode($this->pass));
@@ -270,6 +271,10 @@ class Google_Spreadsheet
 	function getAllSpreedSheetsDetails($spreedSheet = '')
 	{
 		$feed = $this->client->getSpreadsheetFeed();
+//                echo 'herere'.count($feed);
+//                echo '<pre>';
+//                print_r($feed);
+//                exit;
 		foreach ($feed->entries as $key => $entry)
 		{
 			if ( ! empty($spreedSheet))
@@ -345,13 +350,13 @@ class Google_Spreadsheet
 		// Zend Gdata package required
 		// http://framework.zend.com/download/gdata
 //		$service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
-                $http = Zend_Gdata_OAuthClient::getHttpClient('340125315008-6pkogdtn25v2pvrd1vtgfd5kidn1q25t.apps.googleusercontent.com', 'nODT2utDYo-HAL5V1aVfoenZ', '1/SkYKmWp760D6Vj0Kfl1AHu7-Np6E7swXJ6UxKE2VAwM');
+                $http = Zend_Gdata_OAuthClient::getHttpClient('340125315008-6pkogdtn25v2pvrd1vtgfd5kidn1q25t.apps.googleusercontent.com', 'nODT2utDYo-HAL5V1aVfoenZ', '1/CYzflaE8ZJ4O-1yOqpQOFj7gg4adomWfDMRKtO355qI');
 //		$http = Zend_Gdata_ClientLogin::getHttpClient($user, $pass, $service);
 		$this->client = new Zend_Gdata_Spreadsheets($http);
 
-		if ($this->client instanceof Zend_Gdata_Spreadsheets)
+		if ($this->client instanceof Zend_Gdata_Spreadsheets){
 			return TRUE;
-
+                }
 		return FALSE;
 	}
 

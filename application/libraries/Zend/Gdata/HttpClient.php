@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Gdata
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: HttpClient.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: HttpClient.php 20096 2010-01-06 02:05:09Z bkarwin $
  */
 
 /**
@@ -34,7 +34,7 @@ require_once 'Zend/Http/Client.php';
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Gdata
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Gdata_HttpClient extends Zend_Http_Client
@@ -64,6 +64,11 @@ class Zend_Gdata_HttpClient extends Zend_Http_Client
      * @var string
      */
     private $_clientLoginToken = null;
+
+    /**
+     * Token for OAuth
+     */
+    private $_bearerToken = null;
 
     /**
      * Token for ClientLogin authentication.
@@ -184,6 +189,26 @@ class Zend_Gdata_HttpClient extends Zend_Http_Client
     }
 
     /**
+     * Gets the Bearer token used for authentication
+     *
+     * @return string The token
+     */
+    public function getBearerToken() {
+        return $this->_bearerToken;
+    }
+
+    /**
+     * Sets the Bearer token used for authentication
+     *
+     * @param string $token The token
+     * @return Zend_Gdata_HttpClient Provides a fluent interface
+     */
+    public function setBearerToken($token) {
+        $this->_bearerToken = $token;
+        return $this;
+    }
+
+    /**
      * Filters the HTTP requests being sent to add the Authorization header.
      *
      * If both AuthSub and ClientLogin tokens are set,
@@ -236,6 +261,8 @@ class Zend_Gdata_HttpClient extends Zend_Http_Client
             }
         } elseif ($this->getClientLoginToken() != null) {
             $headers['authorization'] = 'GoogleLogin auth=' . $this->getClientLoginToken();
+        } elseif ($this->getBearerToken() != null) {
+            $headers['authorization'] = 'Bearer ' . $this->getBearerToken();
         }
         return array('method' => $method, 'url' => $url, 'body' => $body, 'headers' => $headers, 'contentType' => $contentType);
     }

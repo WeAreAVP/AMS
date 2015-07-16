@@ -341,11 +341,12 @@ class Google_Spreadsheet
 	}
 
 	private function login($user, $pass)
-	{
+	{ 
 		// Zend Gdata package required
 		// http://framework.zend.com/download/gdata
-		$service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
-		$http = Zend_Gdata_ClientLogin::getHttpClient($user, $pass, $service);
+//		$service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
+                $http = Zend_Gdata_OAuthClient::getHttpClient('340125315008-6pkogdtn25v2pvrd1vtgfd5kidn1q25t.apps.googleusercontent.com', 'nODT2utDYo-HAL5V1aVfoenZ', '1/SkYKmWp760D6Vj0Kfl1AHu7-Np6E7swXJ6UxKE2VAwM');
+//		$http = Zend_Gdata_ClientLogin::getHttpClient($user, $pass, $service);
 		$this->client = new Zend_Gdata_Spreadsheets($http);
 
 		if ($this->client instanceof Zend_Gdata_Spreadsheets)

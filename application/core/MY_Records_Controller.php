@@ -226,7 +226,7 @@ class MY_Records_Controller extends MY_Controller
 	function proxy_files($guid)
 	{
 		$proxy_guid = str_replace('/', '-', $guid);
-		$proxy_response = file_get_contents("http://cpbaaaccess.crawfordmedia.com/xml.php?GUID=$proxy_guid");
+		$proxy_response = @file_get_contents("http://cpbaaaccess.crawfordmedia.com/xml.php?GUID=$proxy_guid");
 		$x = @simplexml_load_string($proxy_response);
 		if (is_object($x))
 		{

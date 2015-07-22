@@ -72,6 +72,9 @@
 		<input propertyname="config.refineUrl" promptChar=" ? ">Refine URL</input>
 		<input propertyname="config.googleEmail" promptChar=" ? ">Google Email</input>
 		<input propertyname="config.googelPassword" promptChar=" ? ">Google Password (Must be base64_encoded)</input>
+                <input propertyname="config.googleClientId" promptChar=" ? ">Client Id</input>
+		<input propertyname="config.googleClientSecret" promptChar=" ? ">Client Secret</input>
+		<input propertyname="config.refreshToken" promptChar=" ? ">Refresh Token</input>
 		<php
 			expression          = "$cookiename=str_replace('http://','',(str_replace('https://','',rtrim('${config.baseUrl}','/'))));"
 			returnProperty      = "config.cookieName"

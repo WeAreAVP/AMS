@@ -66,6 +66,7 @@ class Googledoc extends CI_Controller {
         $this->load->library('google_spreadsheet', array('user' => $this->config->item('google_spreadsheet_email'), 'pass' => $this->config->item('google_spreadsheet_password')));
         myLog('Getting Spreadsheet Info');
         $spreed_sheets = $this->google_spreadsheet->getAllSpreedSheetsDetails('');
+//        echo count($spreed_sheets);exit;
         myLog('Total Spreadsheet Count ' . count($spreed_sheets));
         if ($spreed_sheets) {
             foreach ($spreed_sheets as $index => $spreed_sheet) {

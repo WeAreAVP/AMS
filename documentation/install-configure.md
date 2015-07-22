@@ -101,6 +101,12 @@ Now You have to manually set the values for these files.
 
 	$config['google_spreadsheet_password'] = 'base64_encoded';	Password of email address (should be in base64_encode)
 
+        $config['google_client_id'] = 'CLIENT ID';	                Client Id created for your Google App
+
+	$config['google_client_secret'] = 'CLIENT SECRET';	        Client Secret
+
+        $config['refresh_token'] = 'token';	                        Token genereted for login
+
 **6) Database configuration (application/config/database.php)**
 	
 	$db['default']['hostname'] = 'localhost';		Database host

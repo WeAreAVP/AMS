@@ -93,6 +93,7 @@ class Mediainfo extends CI_Controller {
                 }
             }
             echo "All Data Path Under {$media_info_path} Directory Stored ";
+            unset($dir_files);
         }
         exit_function();
     }

@@ -354,6 +354,7 @@ class Crons extends CI_Controller {
                     $res = $zip->open($file_path . $dir);
                     if ($res === TRUE) {
                         $stat = $zip->statIndex(0);
+                        //echo'<pre>'; print_r($stat['mtime']);exit;
                         if (!is_dir($path[$key]))
                             mkdir($path[$key], 0777, TRUE);
                         $zip->extractTo($path[$key]);

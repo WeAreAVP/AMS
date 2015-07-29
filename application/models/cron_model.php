@@ -96,7 +96,8 @@ class Cron_Model extends CI_Model {
         $this->db->where("data_folder_id ", $data_folder_id);
         $this->db->where("is_processed ", 0);
         $this->db->like("status_reason", 'Not processed');
-        $this->db->limit($limit, $offset);
+        if ($offset)
+            $this->db->limit($limit, $offset);
         $res = $this->db->get();
         if (isset($res)) {
             return $res->result();
@@ -201,6 +202,7 @@ class Cron_Model extends CI_Model {
         $this->db->from($this->_table_data_folders);
         $this->db->where('folder_status', 'complete');
         $this->db->where('data_type', 'mediainfo');
+        $this->db->where('is_processed', 0);
         $this->db->order_by('id', 'ASC');
 
         $res = $this->db->get();
@@ -211,6 +213,11 @@ class Cron_Model extends CI_Model {
             }
         }
         return false;
+    }
+
+    function update_mediainfo_folder($folder_id) {
+        $this->db->where('id', $folder_id);
+        $this->db->update($this->_table_data_folders, array('is_processed' => 1));
     }
 
     /**

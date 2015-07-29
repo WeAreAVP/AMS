@@ -23,9 +23,25 @@ class Mediainfo_Model extends CI_Model {
         $this->db->where('type', $type);
         return $this->db->get('media_info')->row();
     }
- 
-    function insert($data){
+
+    function insert($data) {
         $this->db->insert('media_info', $data);
     }
+
+//    function update_instant() {
+//        $this->db->select('instantiations_id');
+//        $this->db->like('instantiation_source', 'mediainfo');
+//        $result = $this->db->get('instantiation_identifier')->result();
+//        foreach ($result as $value) {
+//            $array[] = $value->instantiations_id;
+//        }
+//        $this->update($array);
+//    }
+//
+//    function update($array) {
+//        $this->db->where_in('id', $array);
+//        $this->db->update('instantiations', array('mediainfo_import' => 1));
+//    }
+
     //put your code here
 }

@@ -162,38 +162,27 @@ class Mediainfo extends CI_Controller {
         @ini_set("max_execution_time", 999999999999); # 1GB
         $folders = $this->cron_model->get_all_mediainfo_folder();
         if (isset($folders) && !empty($folders)) {
-            $new_array = array_chunk($folders, 100);
-            foreach ($new_array as $folder) {
-
-                $folder_ids = '';
-                foreach ($folder as $value) {
-                    $folder_ids .= $value->id . ',';
-                }
-                $_new_ids = rtrim($folder_ids, ",");
-                $count = $this->cron_model->get_pbcore_file_count_by_folder_id($_new_ids);
-                $ids = explode(',', $_new_ids);
-                if (isset($count) && $count > 0) {
+            $count = count($folders);
+            if (isset($count) && $count > 0) {
                     $maxProcess = 50;
                     $limit = 100;
                     $loop_end = ceil($count / $limit);
-                    myLog("Run $loop_end times  $maxProcess at a time");
-                    for ($loop_counter = 0; $loop_end > $loop_counter; $loop_counter ++) {
-                        foreach ($ids as $foldr_id) {
-                            $offset = $loop_counter * $limit;
-                            myLog("Started $offset~$limit of $count");
-                            $cmd = escapeshellcmd('/usr/bin/php ' . $this->config->item('path') . 'index.php mediainfo process_xml_file_child ' . $foldr_id . ' ' . $offset . ' ' . $limit);
-                            $pidFile = $this->config->item('path') . "PIDs/media_info/" . $loop_counter . ".txt";
-                            @exec('touch ' . $pidFile);
-                            $this->runProcess($cmd, $pidFile, $this->config->item('path') . "cronlog/mediainfo_xml.log");
-                            $file_text = file_get_contents($pidFile);
-                            $this->arrPIDs[$file_text] = $loop_counter;
+                    myLog("Run $count times  $maxProcess at a time");
+                    for ($loop_counter = 0; $count > $loop_counter; $loop_counter ++) {
+                        $offset = $loop_counter * $limit;
+                        myLog("Started $offset~$limit of $count");
+                        $cmd = escapeshellcmd('/usr/bin/php ' . $this->config->item('path') . 'index.php mediainfo process_xml_file_child ' . $folders[$loop_counter]->id . ' ' . $offset . ' ' . $limit);
+                        $pidFile = $this->config->item('path') . "PIDs/media_info/" . $loop_counter . ".txt";
+                        @exec('touch ' . $pidFile);
+                        $this->runProcess($cmd, $pidFile, $this->config->item('path') . "cronlog/mediainfo_xml.log");
+                        $file_text = file_get_contents($pidFile);
+                        $this->arrPIDs[$file_text] = $loop_counter;
+                        $proc_cnt = $this->procCounter();
+                        while ($proc_cnt == $maxProcess) {
+                            myLog("Sleeping ...");
+                            sleep(5);
                             $proc_cnt = $this->procCounter();
-                            while ($proc_cnt == $maxProcess) {
-                                myLog("Sleeping ...");
-                                sleep(5);
-                                $proc_cnt = $this->procCounter();
-                                echo "Number of Processes running : $proc_cnt/$maxProcess\n";
-                            }
+                            echo "Number of Processes running : $proc_cnt/$maxProcess\n";
                         }
                     }
                     myLog("Waiting for all process to complete");
@@ -206,10 +195,8 @@ class Mediainfo extends CI_Controller {
                         $proc_cnt = $this->procCounter();
                         echo "Number of Processes running : $proc_cnt/$maxProcess\n";
                     }
-                }
-                unset($x);
-                unset($data);
-                unset($ids);
+                    unset($x);
+                    unset($data);
             }
         }
     }
@@ -229,7 +216,8 @@ class Mediainfo extends CI_Controller {
         @ini_set("max_execution_time", 999999999999); # 1GB
         $folder_data = $this->cron_model->get_data_folder_by_id($folder_id);
         if ($folder_data) {
-            $data_files = $this->cron_model->get_pbcore_file_by_folder_id($folder_data->id, $offset, $limit);
+           myLog('Folder id = '.$folder_id);
+            $data_files = $this->cron_model->get_pbcore_file_by_folder_id($folder_data->id);
             if (isset($data_files) && !is_empty($data_files)) {
                 foreach ($data_files as $d_file) {
                     if ($d_file->is_processed == 0) {
@@ -246,9 +234,10 @@ class Mediainfo extends CI_Controller {
                     }
                 }
                 unset($data_files);
-            } else {
+            } else {                
                 myLog(" Data files not found ");
             }
+            $this->cron_model->update_mediainfo_folder($folder_id);
         } else {
             myLog(" folders Data not found " . $file_path);
         }

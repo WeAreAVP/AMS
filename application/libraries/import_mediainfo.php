@@ -79,7 +79,7 @@ class Import_mediainfo
 		if (isset($tracks_data) && count($tracks_data) > 0)
 		{
 			$instantiation = array();
-			$this->_instantiation_id = $this->_model->insert_record($this->_model->table_instantiations, array('digitized' => 0, 'location' => 'N/A', 'created' => date('Y-m-d H:i:s')));
+			$this->_instantiation_id = $this->_model->insert_record($this->_model->table_instantiations, array('digitized' => 0,'mediainfo_import' => 1, 'location' => 'N/A', 'created' => date('Y-m-d H:i:s')));
 			foreach ($tracks_data as $index => $track)
 			{
 				if (isset($track['attributes']['type']) && $track['attributes']['type'] === 'General')

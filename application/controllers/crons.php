@@ -39,6 +39,7 @@ class Crons extends CI_Controller {
 
         $this->load->model('email_template_model', 'email_template');
         $this->load->model('cron_model');
+        $this->load->model('mediainfo_model', 'media_info');
         $this->load->model('dx_auth/users', 'users');
     }
 
@@ -341,7 +342,7 @@ class Crons extends CI_Controller {
         $path['audio'] = 'assets/mediainfo/audio';
         $path['video'] = 'assets/mediainfo/video';
         $this->load->helper('directory');
-        $this->load->model('mediainfo_model', 'media_info');
+        
         $file_paths['audio'] = '/home/crawford/audio_metadata_bag/';
         $file_paths['video'] = '/home/crawford/video_metadata_bag/';
         foreach ($file_paths as $key => $file_path) {
@@ -365,5 +366,9 @@ class Crons extends CI_Controller {
             }
         }
     }
+    
+//    function temp(){
+//        $this->media_info->update_instant();
+//    }
 
 }

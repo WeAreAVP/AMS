@@ -214,6 +214,17 @@ class Cron_Model extends CI_Model {
         }
         return false;
     }
+    
+    function get_all_incomp_mediainfo_folder() {
+        $this->db->select("*");
+        $this->db->from($this->_table_data_folders);
+        $this->db->where('folder_status', 'incomplete');
+        $this->db->where('data_type', 'mediainfo');
+        $this->db->where('is_processed', 0);
+        $this->db->order_by('id', 'ASC');
+
+        return $this->db->get()->result();
+    }
 
     function update_mediainfo_folder($folder_id) {
         $this->db->where('id', $folder_id);

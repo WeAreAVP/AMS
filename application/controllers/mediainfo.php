@@ -216,6 +216,7 @@ class Mediainfo extends CI_Controller {
         @ini_set("max_execution_time", 999999999999); # 1GB
         $folder_data = $this->cron_model->get_data_folder_by_id($folder_id);
         if ($folder_data) {
+            $this->cron_model->update_mediainfo_folder($folder_id);
            myLog('Folder id = '.$folder_id);
             $data_files = $this->cron_model->get_pbcore_file_by_folder_id($folder_data->id);
             if (isset($data_files) && !is_empty($data_files)) {
@@ -237,7 +238,7 @@ class Mediainfo extends CI_Controller {
             } else {                
                 myLog(" Data files not found ");
             }
-            $this->cron_model->update_mediainfo_folder($folder_id);
+            
         } else {
             myLog(" folders Data not found " . $file_path);
         }
@@ -299,6 +300,21 @@ class Mediainfo extends CI_Controller {
     function runProcess($cmd, $pidFilePath, $outputfile = "/dev/null") {
         $cmd = escapeshellcmd($cmd);
         @exec(sprintf("%s >> %s 2>&1 & echo $! > %s", $cmd, $outputfile, $pidFilePath));
+    }
+    
+    function listIncompleteBags(){
+        $folders = $this->cron_model->get_all_incomp_mediainfo_folder();
+        foreach($folders as $folder){
+            $path = explode('/',$folder->folder_path);
+            $type = '';
+            if($path[2] == 'video')
+               $type = 'video_metadata_bag';
+            else
+                $type = 'audio_metadata_bag';
+            $name = $path[count($path)-3];
+            echo $type.'/'.$name.'<br >';
+        }
+        exit;
     }
 
 }

@@ -315,6 +315,9 @@ class Crons extends CI_Controller {
         $pie_total = ($pie_total == 0) ? 1 : $pie_total;
         $data['pie_total_tv_completed'] = (int) round(($pie_total_completed->total * 100) / $pie_total);
         $data['pie_total_tv_scheduled'] = (int) round(($pie_total_scheduled->total * 100) / $pie_total);
+        echo '<pre>';
+        print_r($data);
+        exit;
         $this->memcached_library->set('pie_total_tv_completed', json_encode($data['pie_total_tv_completed']), 3600);
         $this->memcached_library->set('pie_total_tv_scheduled', json_encode($data['pie_total_tv_scheduled']), 3600);
         /* Pie Chart for Radio Formats End */

@@ -164,39 +164,39 @@ class Mediainfo extends CI_Controller {
         if (isset($folders) && !empty($folders)) {
             $count = count($folders);
             if (isset($count) && $count > 0) {
-                    $maxProcess = 50;
-                    $limit = 100;
-                    $loop_end = ceil($count / $limit);
-                    myLog("Run $count times  $maxProcess at a time");
-                    for ($loop_counter = 0; $count > $loop_counter; $loop_counter ++) {
-                        $offset = $loop_counter * $limit;
-                        myLog("Started $offset~$limit of $count");
-                        $cmd = escapeshellcmd('/usr/bin/php ' . $this->config->item('path') . 'index.php mediainfo process_xml_file_child ' . $folders[$loop_counter]->id . ' ' . $offset . ' ' . $limit);
-                        $pidFile = $this->config->item('path') . "PIDs/media_info/" . $loop_counter . ".txt";
-                        @exec('touch ' . $pidFile);
-                        $this->runProcess($cmd, $pidFile, $this->config->item('path') . "cronlog/mediainfo_xml.log");
-                        $file_text = file_get_contents($pidFile);
-                        $this->arrPIDs[$file_text] = $loop_counter;
-                        $proc_cnt = $this->procCounter();
-                        while ($proc_cnt == $maxProcess) {
-                            myLog("Sleeping ...");
-                            sleep(5);
-                            $proc_cnt = $this->procCounter();
-                            echo "Number of Processes running : $proc_cnt/$maxProcess\n";
-                        }
-                    }
-                    myLog("Waiting for all process to complete");
+                $maxProcess = 50;
+                $limit = 100;
+                $loop_end = ceil($count / $limit);
+                myLog("Run $count times  $maxProcess at a time");
+                for ($loop_counter = 0; $count > $loop_counter; $loop_counter ++) {
+                    $offset = $loop_counter * $limit;
+                    myLog("Started $offset~$limit of $count");
+                    $cmd = escapeshellcmd('/usr/bin/php ' . $this->config->item('path') . 'index.php mediainfo process_xml_file_child ' . $folders[$loop_counter]->id . ' ' . $offset . ' ' . $limit);
+                    $pidFile = $this->config->item('path') . "PIDs/media_info/" . $loop_counter . ".txt";
+                    @exec('touch ' . $pidFile);
+                    $this->runProcess($cmd, $pidFile, $this->config->item('path') . "cronlog/mediainfo_xml.log");
+                    $file_text = file_get_contents($pidFile);
+                    $this->arrPIDs[$file_text] = $loop_counter;
                     $proc_cnt = $this->procCounter();
-                    while ($proc_cnt > 0) {
-                        echo "Sleeping....\n";
+                    while ($proc_cnt == $maxProcess) {
+                        myLog("Sleeping ...");
                         sleep(5);
-                        echo "\010\010\010\010\010\010\010\010\010\010\010\010";
-                        echo "\n";
                         $proc_cnt = $this->procCounter();
                         echo "Number of Processes running : $proc_cnt/$maxProcess\n";
                     }
-                    unset($x);
-                    unset($data);
+                }
+                myLog("Waiting for all process to complete");
+                $proc_cnt = $this->procCounter();
+                while ($proc_cnt > 0) {
+                    echo "Sleeping....\n";
+                    sleep(5);
+                    echo "\010\010\010\010\010\010\010\010\010\010\010\010";
+                    echo "\n";
+                    $proc_cnt = $this->procCounter();
+                    echo "Number of Processes running : $proc_cnt/$maxProcess\n";
+                }
+                unset($x);
+                unset($data);
             }
         }
     }
@@ -216,8 +216,7 @@ class Mediainfo extends CI_Controller {
         @ini_set("max_execution_time", 999999999999); # 1GB
         $folder_data = $this->cron_model->get_data_folder_by_id($folder_id);
         if ($folder_data) {
-            $this->cron_model->update_mediainfo_folder($folder_id);
-           myLog('Folder id = '.$folder_id);
+            myLog('Folder id = ' . $folder_id);
             $data_files = $this->cron_model->get_pbcore_file_by_folder_id($folder_data->id);
             if (isset($data_files) && !is_empty($data_files)) {
                 foreach ($data_files as $d_file) {
@@ -235,10 +234,10 @@ class Mediainfo extends CI_Controller {
                     }
                 }
                 unset($data_files);
-            } else {                
+            } else {
                 myLog(" Data files not found ");
             }
-            
+            $this->cron_model->update_mediainfo_folder($folder_id);
         } else {
             myLog(" folders Data not found " . $file_path);
         }
@@ -301,20 +300,52 @@ class Mediainfo extends CI_Controller {
         $cmd = escapeshellcmd($cmd);
         @exec(sprintf("%s >> %s 2>&1 & echo $! > %s", $cmd, $outputfile, $pidFilePath));
     }
-    
-    function listIncompleteBags(){
-        $folders = $this->cron_model->get_all_incomp_mediainfo_folder();
-        foreach($folders as $folder){
-            $path = explode('/',$folder->folder_path);
+
+    function listIncompleteBags() {
+        $folders = $this->cron_model->get_all_incomp_mediainfo_folder('incomplete');
+        foreach ($folders as $folder) {
+            $path = explode('/', $folder->folder_path);
             $type = '';
-            if($path[2] == 'video')
-               $type = 'video_metadata_bag';
+            if ($path[2] == 'video')
+                $type = 'video_metadata_bag';
             else
                 $type = 'audio_metadata_bag';
-            $name = $path[count($path)-3];
-            echo $type.'/'.$name.'<br >';
+            if ($path[count($path) - 2] == 'data')
+                $name = $path[count($path) - 3];
+            else
+                $name = $path[count($path) - 2];
+            echo $type . '/' . $name . '<br >';
         }
         exit;
+    }
+
+    function listInvalidXML() {
+        $folders = $this->cron_model->get_all_incomp_mediainfo_folder('complete');
+        foreach ($folders as $key => $folder) {
+            $data_files = $this->cron_model->get_pbcore_file_by_folder_id($folder->id);
+            if (isset($data_files) && !is_empty($data_files)) {
+                foreach ($data_files as $d_file) {
+                    $file = explode('/', $d_file->file_path);
+                    $files[] = $file[count($file) - 1];
+                }
+            }
+            $path = explode('/', $folder->folder_path);
+            $type = '';
+            if ($path[2] == 'video')
+                $type = 'video_metadata_bag';
+            else
+                $type = 'audio_metadata_bag';
+            if ($path[count($path) - 2] == 'data')
+                $name = $path[count($path) - 3];
+            else
+                $name = $path[count($path) - 2];
+            
+            $_folder[$key]['path'] = $type . '/' . $name;
+            $_folder[$key]['files'] = implode(', ', $files);
+            unset($files);
+        }
+        $data['folders'] = $_folder;
+        $this->load->view('mediainfo/index', $data);
     }
 
 }

@@ -40,6 +40,7 @@ class Messages_Model extends CI_Model
 		$this->_prefix = '';
 		$this->_table = 'messages';
 		$this->_table_users = 'users';
+                $this->db->save_queries = FALSE;
 	}
 
 	/**

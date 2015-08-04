@@ -38,7 +38,7 @@ class Instantiations_Model extends CI_Model
 	{
 		parent::__construct();
 		$this->_prefix = '';
-
+                $this->db->save_queries = FALSE;
 		$this->table_date_types = 'date_types';
 		$this->table_generations = 'generations';
 		$this->table_instantiations = 'instantiations';

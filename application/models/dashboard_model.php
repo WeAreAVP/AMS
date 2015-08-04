@@ -37,6 +37,7 @@ class Dashboard_Model extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
+                $this->db->save_queries = FALSE;
 		$this->_prefix = '';
 		$this->_table = 'stations';
 		$this->table_instantiation_formats = 'instantiation_formats';

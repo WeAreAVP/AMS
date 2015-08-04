@@ -42,6 +42,7 @@ class Sphinx_Model extends CI_Model
 	{
 
 		parent::__construct();
+                $this->db->save_queries = FALSE;
 		$this->load->library('sphinxsearch');
 		$this->sphinxsearch->reset_filters();
 		$this->sphinxsearch->reset_group_by();

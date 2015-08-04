@@ -94,6 +94,7 @@ class MY_Model extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
+                $this->db->save_queries = FALSE;
 	}
 
 	/**

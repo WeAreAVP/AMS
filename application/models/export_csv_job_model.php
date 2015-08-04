@@ -39,6 +39,7 @@ class Export_csv_job_model extends CI_Model
 		parent::__construct();
 		$this->_prefix = '';
 		$this->_table = 'export_csv_job';
+                $this->db->save_queries = FALSE;
 	}
 
 	/**

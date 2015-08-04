@@ -38,7 +38,7 @@ class Mint_Model extends CI_Model
 	{
 		parent::__construct();
 		$this->_prefix = '';
-
+$this->db->save_queries = FALSE;
 		$this->_table = 'mint_import';
 		$this->_table_mint_import_info = 'mint_import_info';
 		$this->_table_mint_transformation = 'mint_transformation';

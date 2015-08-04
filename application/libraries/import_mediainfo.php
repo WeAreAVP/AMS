@@ -281,7 +281,7 @@ class Import_mediainfo
 					$generation = 'Proxy';
 				if ($generation !== '')
 				{
-					$generations_d = $this->_model->get_one_by($this->_model->table_generations, array('generation' => $generation), TRUE);
+					$generations_d = $this->_model->get_one_by($this->_model->table_generations, array('generation' => $generation));
 					if (isset($generations_d) && isset($generations_d->id))
 						$generations['generations_id'] = $generations_d->id;
 					else

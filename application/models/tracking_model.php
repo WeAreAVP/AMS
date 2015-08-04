@@ -37,7 +37,7 @@ class Tracking_Model extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
-
+$this->db->save_queries = FALSE;
 		$this->_prefix = '';
 		$this->_table = 'tracking_info';
 		$this->_table_station = 'stations';

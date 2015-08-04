@@ -37,6 +37,7 @@ class Pbcore_Model extends MY_Asset_Model
 	function __construct()
 	{
 		parent::__construct();
+                $this->db->save_queries = FALSE;
 	}
 
 	function export_assets($real_time = FALSE)

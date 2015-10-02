@@ -161,6 +161,7 @@ class Mediainfo extends CI_Controller {
         @ini_set("memory_limit", "1000M"); # 1GB
         @ini_set("max_execution_time", 999999999999); # 1GB
         $folders = $this->cron_model->get_all_mediainfo_folder();
+       
         if (isset($folders) && !empty($folders)) {
             $count = count($folders);
             if (isset($count) && $count > 0) {

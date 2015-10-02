@@ -200,6 +200,7 @@ class Cron_Model extends CI_Model {
     function get_all_mediainfo_folder() {
         $this->db->select("*");
         $this->db->from($this->_table_data_folders);
+//        $this->db->where('id', 160761); 
         $this->db->where('folder_status', 'complete');
         $this->db->where('data_type', 'mediainfo');
         $this->db->where('is_processed', 0);

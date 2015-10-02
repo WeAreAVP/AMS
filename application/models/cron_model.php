@@ -203,7 +203,6 @@ class Cron_Model extends CI_Model {
 //        $this->db->where('id', 160761); 
         $this->db->where('folder_status', 'complete');
         $this->db->where('data_type', 'mediainfo');
-        $this->db->where('is_processed', 0);
         $this->db->order_by('id', 'ASC');
 
         $res = $this->db->get();
@@ -221,7 +220,6 @@ class Cron_Model extends CI_Model {
         $this->db->from($this->_table_data_folders);
         $this->db->where('folder_status', $status);
         $this->db->where('data_type', 'mediainfo');
-        $this->db->where('is_processed', 0);
         $this->db->order_by('id', 'ASC');
         return $this->db->get()->result();
     }

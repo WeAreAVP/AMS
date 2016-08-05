@@ -15,7 +15,7 @@
         ?>
         <div id="jPalayer_div" style="display: none;">
             <iframe preload="auto" width="700" height="320"
-                    src="https://www.youtube.com/embed/hamhN3u2rM0">
+                    src="https://www.youtube.com/embed/Yc4iTqWr5Lc">
             </iframe>
             <!--			<video class="video-js vjs-default-skin" controls
                                                preload="auto" width="700" height="320"
@@ -29,7 +29,7 @@
                  class="flowplayer no-toggle play-button color-light"
                  data-ratio="0.416" style="width: 720px;">-->
                 <iframe preload="auto" width="700" height="320"
-                        src="https://www.youtube.com/embed/hamhN3u2rM0">
+                        src="https://www.youtube.com/embed/Yc4iTqWr5Lc">
                 </iframe>
                 <!--                        <video>
                                                 <source type="video/mp4" src="https://www.youtube.com/watch?v=hamhN3u2rM0">
@@ -46,8 +46,9 @@
 
 
 
-        <div style="margin-left: 20px;margin-top: 10px;"><a href="https://www.youtube.com/watch?v=hamhN3u2rM0" target="=_blank">Open Proxy file</a></div>
+        <div style="margin-left: 20px;margin-top: 10px;"><a href="https://www.youtube.com/watch?v=Yc4iTqWr5Lc" target="=_blank">Open Proxy file</a></div>
         <script type="text/javascript">
+            https://www.youtube.com/watch?v=hamhN3u2rM0
             $(document).ready(function () {
 
                 if ($.browser.chrome || $.browser.safari) {

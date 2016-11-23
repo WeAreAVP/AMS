@@ -66,6 +66,13 @@
         <![endif]-->
     </head>
     <body>
+        <?php
+        if ($this->config->item("demo")) {
+            ?>
+            <div class="qa-instance">
+                <h2>QA</h2>
+            </div>    
+        <?php } ?>
         <div class="navbar navbar-fixed-top">
             <?php
             if ($this->dx_auth->is_logged_in()) {
@@ -99,20 +106,20 @@
 
                     </div>
                 </div>
-<?php } ?>
+            <?php } ?>
             <div class="custom-nav-inner">
                 <div class="navbar-inner" style="margin: 0 auto;width: 960px;background: none;border: none;">
                     <a class="brand" href="<?php echo site_url() ?>"><img src="/images/cpb_ams.png"/></a>
-            <?php
-            if ($this->dx_auth->is_logged_in()) {
-                ?>
+                    <?php
+                    if ($this->dx_auth->is_logged_in()) {
+                        ?>
                         <div class="nav-collapse">
                             <ul class="nav custom-nav-ul">
-                        <?php
-                        $station_tab_name = 'Station';
-                        if (!$this->is_station_user) {
-                            $station_tab_name = 'Stations';
-                            ?>
+                                <?php
+                                $station_tab_name = 'Station';
+                                if (!$this->is_station_user) {
+                                    $station_tab_name = 'Stations';
+                                    ?>
                                     <li class="<?php echo active_anchor('dashboard', 'index'); ?>"><a href="<?php echo site_url('dashboard') ?>">Dashboard</a></li>
                                 <?php }
                                 ?>
@@ -130,7 +137,7 @@
 
                             </ul>
                         </div><!--/.nav-collapse -->
-                            <?php } ?>
+                    <?php } ?>
 
                 </div>
             </div>
@@ -138,20 +145,20 @@
         <div class="container" style="width:960px;margin:0 auto;margin-top: 55px;">
 
             <div class="content" >
-<?php
-if (is_route_method(array('settings' => array('index', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage', 'manage_crawford'))
-        )
-) {
-    ?>
+                <?php
+                if (is_route_method(array('settings' => array('index', 'edit_profile'), 'templatemanager' => array('add', 'lists', 'edit', 'details', 'readmessage', 'manage_crawford'))
+                        )
+                ) {
+                    ?>
                     <ul class="records-nav">
-                    <?php
-                    if ($this->can_compose_alert || $this->role_id == 20) {
-                        ?>
+                        <?php
+                        if ($this->can_compose_alert || $this->role_id == 20) {
+                            ?>
                             <li class="<?php echo active_anchor('templatemanager', array('add', 'lists', 'edit', 'details', 'readmessage')); ?>"><a href="<?php echo site_url('templatemanager/lists'); ?>" >Email Template</a></li>
-                    <?php } ?>
-                    <?php
-                    if (!$this->is_station_user) {
-                        ?>
+                        <?php } ?>
+                        <?php
+                        if (!$this->is_station_user) {
+                            ?>
                             <li class="<?php echo active_anchor('templatemanager', 'manage_crawford'); ?>"><a href="<?php echo site_url('templatemanager/manage_crawford'); ?>">Crawford Contact Details</a></li> 
                         <?php }
                         ?>
@@ -161,14 +168,14 @@ if (is_route_method(array('settings' => array('index', 'edit_profile'), 'templat
 
                     </ul>
 
-                    <?php } ?>
+                <?php } ?>
 
-                    <?php
-                    if ((active_anchor('messages', array('inbox', 'sent'))) && $this->can_compose_alert) {
+                <?php
+                if ((active_anchor('messages', array('inbox', 'sent'))) && $this->can_compose_alert) {
 
-                        $this->load->view('messages/compose');
-                    }
-                    ?>
+                    $this->load->view('messages/compose');
+                }
+                ?>
 
                 {yield}
             </div>

@@ -800,3 +800,14 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 	margin: 10px;
 }
 
+.qa-instance {
+    -webkit-transform: rotate(-45deg);
+    position: absolute;
+    background: khaki;
+    z-index: 9999;
+    text-align: center;
+    width: 157px;
+    left: -40px;
+    top: 12px;
+}
+

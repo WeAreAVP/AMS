@@ -801,13 +801,17 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 
 .qa-instance {
-    -webkit-transform: rotate(-45deg);
+   -webkit-transform: rotate(-45deg);
     position: absolute;
-    background: khaki;
+    background: yellow;
     z-index: 9999;
     text-align: center;
-    width: 157px;
-    left: -40px;
+    width: 120px;
+    left: -34px;
     top: 12px;
 }
 
+.qa_heading {
+    font-weight: bold ! important;
+    color: blue ! important;
+}

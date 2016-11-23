@@ -70,8 +70,8 @@
         if ($this->config->item("demo")) {
             ?>
             <div class="qa-instance">
-                <h2>QA</h2>
-            </div>    
+                <h2 class="qa_heading">QA</h2>
+            </div>   
         <?php } ?>
         <div class="navbar navbar-fixed-top">
             <?php

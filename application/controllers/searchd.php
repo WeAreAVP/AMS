@@ -205,7 +205,7 @@ class Searchd extends CI_Controller
 		foreach ($instantiation_ids as $_id)
 		{
 			$instantiation = $this->searchd_model->run_query("SELECT id from instantiations WHERE id = {$_id}")->row();
-			$instantiation_list = $this->searchd_model->get_ins_index(array($instantiation));
+			$instantiation_list = $this->searchd_model->get_ins_index(array($instantiation->id));
 			$new_list_info = make_instantiation_sphnix_array($instantiation_list[0], FALSE);
 			$this->sphnixrt->update($this->config->item('instantiatiion_index'), $new_list_info);
 			myLog('Instantiation successfully update with id=> ' . $_id);
